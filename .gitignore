@@ -1,0 +1,11 @@
+*.iml
+*.ipr
+*.iws
+.idea/
+.classpath
+.project
+bin/
+gen/
+out/
+target/
+local.properties
