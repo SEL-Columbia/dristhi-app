@@ -11,3 +11,4 @@ target/
 local.properties
 drishti-app/tmp/
 classes/
+tmp/
