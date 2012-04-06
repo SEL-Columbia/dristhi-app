@@ -16,11 +16,12 @@ public class DrishtiAgent {
         this.drishtiBaseURL = drishtiBaseURL;
     }
 
-    public List<AlertAction> fetchNewAlerts(String anmIdentifier, String previouslyFetchedIndex) throws Exception {
-        String content = agent.fetch(drishtiBaseURL + "/alerts?anmIdentifier=" + anmIdentifier + "&timeStamp=" + previouslyFetchedIndex);
+    public Response<List<AlertAction>> fetchNewAlerts(String anmIdentifier, String previouslyFetchedIndex) throws Exception {
+        Response<String> response = agent.fetch(drishtiBaseURL + "/alerts?anmIdentifier=" + anmIdentifier + "&timeStamp=" + previouslyFetchedIndex);
         Type collectionType = new TypeToken<List<AlertAction>>(){}.getType();
-        List<AlertAction> actions = new Gson().fromJson(content, collectionType);
+        List<AlertAction> actions = new Gson().fromJson(response.payload(), collectionType);
 
-        return actions == null ? new ArrayList<AlertAction>() : actions;
+        return new Response<List<AlertAction>>(response.status(), actions == null ? new ArrayList<AlertAction>() : actions);
     }
+
 }

@@ -33,30 +33,32 @@ public class DrishtiAgentTest {
 
     @Test
     public void shouldFetchAlertActions() throws Exception {
-        when(httpAgent.fetch(EXPECTED_URL)).thenReturn(IOUtils.toString(getClass().getResource("/alerts.json")));
+        when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(Response.ResponseStatus.success, IOUtils.toString(getClass().getResource("/alerts.json"))));
 
-        List<AlertAction> alertActions = drishtiAgent.fetchNewAlerts("anm1", "0");
+        Response<List<AlertAction>> alertActions = drishtiAgent.fetchNewAlerts("anm1", "0");
 
         verify(httpAgent).fetch(EXPECTED_URL);
-        assertEquals(Arrays.asList(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1")), new AlertAction("Case Y", "delete", dataForDeleteAction("ANC 1"))), alertActions);
+        assertEquals(Arrays.asList(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1")), new AlertAction("Case Y", "delete", dataForDeleteAction("ANC 1"))), alertActions.payload());
+        assertEquals(Response.ResponseStatus.success, alertActions.status());
     }
 
     @Test
-    public void shouldFetchNoAlertActionsWhenJsonIsEmpty() throws Exception {
-        when(httpAgent.fetch(EXPECTED_URL)).thenReturn("[]");
+    public void shouldFetchNoAlertActionsWhenJsonIsForEmptyList() throws Exception {
+        when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(Response.ResponseStatus.success, "[]"));
 
-        List<AlertAction> alertActions = drishtiAgent.fetchNewAlerts("anm1", "0");
+        Response<List<AlertAction>> alertActions = drishtiAgent.fetchNewAlerts("anm1", "0");
 
-        assertTrue(alertActions.isEmpty());
+        assertTrue(alertActions.payload().isEmpty());
     }
 
     @Test
     public void shouldFetchNoAlertActionsWhenHTTPCallFails() throws Exception {
-        when(httpAgent.fetch(EXPECTED_URL)).thenReturn(null);
+        when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(Response.ResponseStatus.failure, null));
 
-        List<AlertAction> alertActions = drishtiAgent.fetchNewAlerts("anm1", "0");
+        Response<List<AlertAction>> alertActions = drishtiAgent.fetchNewAlerts("anm1", "0");
 
-        assertTrue(alertActions.isEmpty());
+        assertTrue(alertActions.payload().isEmpty());
+        assertEquals(Response.ResponseStatus.failure, alertActions.status());
     }
 
     private Map<String, String> dataForCreateAction(String lateness, String motherName, String visitCode, String thaayiCardNumber) {
