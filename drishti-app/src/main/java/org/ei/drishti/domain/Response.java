@@ -1,4 +1,4 @@
-package org.ei.drishti;
+package org.ei.drishti.domain;
 
 public class Response<T> {
     private ResponseStatus status;

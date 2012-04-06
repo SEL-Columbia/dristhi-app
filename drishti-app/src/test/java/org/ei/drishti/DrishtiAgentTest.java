@@ -2,6 +2,10 @@ package org.ei.drishti;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.apache.commons.io.IOUtils;
+import org.ei.drishti.service.DrishtiService;
+import org.ei.drishti.agent.HTTPAgent;
+import org.ei.drishti.domain.AlertAction;
+import org.ei.drishti.domain.Response;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,22 +24,23 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
 public class DrishtiAgentTest {
-    @Mock HTTPAgent httpAgent;
+    @Mock
+    HTTPAgent httpAgent;
 
     public static final String EXPECTED_URL = "http://base.drishti.url/alerts?anmIdentifier=anm1&timeStamp=0";
-    private DrishtiAgent drishtiAgent;
+    private DrishtiService drishtiService;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        drishtiAgent = new DrishtiAgent(httpAgent, "http://base.drishti.url");
+        drishtiService = new DrishtiService(httpAgent, "http://base.drishti.url");
     }
 
     @Test
     public void shouldFetchAlertActions() throws Exception {
         when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(Response.ResponseStatus.success, IOUtils.toString(getClass().getResource("/alerts.json"))));
 
-        Response<List<AlertAction>> alertActions = drishtiAgent.fetchNewAlerts("anm1", "0");
+        Response<List<AlertAction>> alertActions = drishtiService.fetchNewAlertActions("anm1", "0");
 
         verify(httpAgent).fetch(EXPECTED_URL);
         assertEquals(Arrays.asList(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1")), new AlertAction("Case Y", "delete", dataForDeleteAction("ANC 1"))), alertActions.payload());
@@ -46,7 +51,7 @@ public class DrishtiAgentTest {
     public void shouldFetchNoAlertActionsWhenJsonIsForEmptyList() throws Exception {
         when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(Response.ResponseStatus.success, "[]"));
 
-        Response<List<AlertAction>> alertActions = drishtiAgent.fetchNewAlerts("anm1", "0");
+        Response<List<AlertAction>> alertActions = drishtiService.fetchNewAlertActions("anm1", "0");
 
         assertTrue(alertActions.payload().isEmpty());
     }
@@ -55,7 +60,7 @@ public class DrishtiAgentTest {
     public void shouldFetchNoAlertActionsWhenHTTPCallFails() throws Exception {
         when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(Response.ResponseStatus.failure, null));
 
-        Response<List<AlertAction>> alertActions = drishtiAgent.fetchNewAlerts("anm1", "0");
+        Response<List<AlertAction>> alertActions = drishtiService.fetchNewAlertActions("anm1", "0");
 
         assertTrue(alertActions.payload().isEmpty());
         assertEquals(Response.ResponseStatus.failure, alertActions.status());

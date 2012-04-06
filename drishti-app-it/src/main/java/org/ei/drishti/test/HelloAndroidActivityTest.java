@@ -1,7 +1,7 @@
 package org.ei.drishti.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import org.ei.drishti.*;
+import org.ei.drishti.activity.DrishtiMainActivity;
 
 public class HelloAndroidActivityTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
 

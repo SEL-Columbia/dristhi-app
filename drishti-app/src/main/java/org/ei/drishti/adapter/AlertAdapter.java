@@ -1,4 +1,4 @@
-package org.ei.drishti;
+package org.ei.drishti.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import org.ei.drishti.R;
+import org.ei.drishti.domain.AlertAction;
 
 import java.util.List;
 
