@@ -4,29 +4,19 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import java.util.Map;
-
-public class AlertAction {
+public class Alert {
     private String caseID;
-    private String alertType;
-    private Map<String, String> data;
+    private String motherName;
+    private String visitCode;
+    private String thaayiCardNumber;
+    private int priority;
 
-    public AlertAction(String caseID, String alertType, Map<String, String> data) {
+    public Alert(String caseID, String motherName, String visitCode, String thaayiCardNumber, int priority) {
         this.caseID = caseID;
-        this.alertType = alertType;
-        this.data = data;
-    }
-
-    public String caseID() {
-        return caseID;
-    }
-
-    public String type() {
-        return alertType;
-    }
-
-    public String get(String key) {
-        return data.get(key);
+        this.motherName = motherName;
+        this.visitCode = visitCode;
+        this.thaayiCardNumber = thaayiCardNumber;
+        this.priority = priority;
     }
 
     @Override

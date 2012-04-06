@@ -2,7 +2,14 @@ package org.ei.drishti.test;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
+import org.ei.drishti.domain.Alert;
+import org.ei.drishti.domain.AlertAction;
 import org.ei.drishti.repository.Repository;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RepositoryTest extends AndroidTestCase {
     private Repository repository;
@@ -27,5 +34,21 @@ public class RepositoryTest extends AndroidTestCase {
         repository.updateSetting("abc", "ghi");
 
         assertEquals("ghi", repository.querySetting("abc", "someDefaultValue"));
+    }
+
+    public void testShouldSaveAnAlert() throws Exception {
+        repository.updateAlert(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1")));
+        List<Alert> alerts = repository.allAlerts();
+
+        assertEquals(Arrays.asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1)), alerts);
+    }
+
+    private Map<String, String> dataForCreateAction(String lateness, String motherName, String visitCode, String thaayiCardNumber) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("latenessStatus", lateness);
+        map.put("motherName", motherName);
+        map.put("visitCode", visitCode);
+        map.put("thaayiCardNumber", thaayiCardNumber);
+        return map;
     }
 }
