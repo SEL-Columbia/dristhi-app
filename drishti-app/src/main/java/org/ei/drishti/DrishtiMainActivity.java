@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class HelloAndroidActivity extends Activity {
+public class DrishtiMainActivity extends Activity {
     private ListView listView;
 
     @Override

@@ -12,7 +12,7 @@ public class MyActivityTest {
 
     @Test
     public void shouldHaveHappySmiles() throws Exception {
-        String appName = new HelloAndroidActivity().getResources().getString(R.string.app_name);
+        String appName = new DrishtiMainActivity().getResources().getString(R.string.app_name);
         assertThat(appName, equalTo("drishti-app"));
     }
 }

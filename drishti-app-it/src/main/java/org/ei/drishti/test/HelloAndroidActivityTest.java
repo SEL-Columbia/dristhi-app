@@ -3,14 +3,14 @@ package org.ei.drishti.test;
 import android.test.ActivityInstrumentationTestCase2;
 import org.ei.drishti.*;
 
-public class HelloAndroidActivityTest extends ActivityInstrumentationTestCase2<HelloAndroidActivity> {
+public class HelloAndroidActivityTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
 
     public HelloAndroidActivityTest() {
-        super(HelloAndroidActivity.class); 
+        super(DrishtiMainActivity.class);
     }
 
     public void testActivity() {
-        HelloAndroidActivity activity = getActivity();
+        DrishtiMainActivity activity = getActivity();
         assertNotNull(activity);
     }
 }
