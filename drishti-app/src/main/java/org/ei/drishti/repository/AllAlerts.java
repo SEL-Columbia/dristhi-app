@@ -2,15 +2,32 @@ package org.ei.drishti.repository;
 
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.AlertAction;
+import org.ei.drishti.exception.AlertTypeException;
 
 import java.util.List;
 
 public class AllAlerts {
-    public void saveNewAlerts(List<AlertAction> alertActions) {
-        throw new RuntimeException("Not implemented");
+    private AlertRepository repository;
+
+    public AllAlerts(AlertRepository repository) {
+        this.repository = repository;
     }
 
     public List<Alert> fetchAllAlerts() {
-        throw new RuntimeException("Not implemented");
+        return repository.allAlerts();
+    }
+
+    public void saveNewAlerts(List<AlertAction> alertActions) {
+        for (AlertAction alertAction : alertActions) {
+            if ("create".equals(alertAction.type())) {
+                repository.update(alertAction);
+            } else if ("delete".equals(alertAction.type())) {
+                repository.delete(alertAction);
+            } else if ("deleteAll".equals(alertAction.type())) {
+                repository.deleteAll(alertAction);
+            } else {
+                throw new AlertTypeException("Unknown type in alert action: " + alertAction);
+            }
+        }
     }
 }

@@ -6,8 +6,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AlertActionBuilder {
-    public static AlertAction actionForCreate(String caseId, String latenessStatus, String motherName, String visitCode, String thaayiCardNumber) {
-        return new AlertAction(caseId, "create", dataForCreateAction(latenessStatus, motherName, visitCode, thaayiCardNumber));
+    public static AlertAction actionForCreate(String caseID, String latenessStatus, String motherName, String visitCode, String thaayiCardNumber) {
+        return new AlertAction(caseID, "create", dataForCreateAction(latenessStatus, motherName, visitCode, thaayiCardNumber));
+    }
+
+    public static AlertAction actionForDelete(String caseID, String visitCode) {
+        return new AlertAction(caseID, "delete", dataForDeleteAction(visitCode));
+    }
+
+    public static AlertAction actionForDeleteAll(String caseID) {
+        return new AlertAction(caseID, "deleteAll", new HashMap<String, String>());
     }
 
     private static Map<String, String> dataForCreateAction(String lateness, String motherName, String visitCode, String thaayiCardNumber) {
@@ -17,10 +25,6 @@ public class AlertActionBuilder {
         map.put("visitCode", visitCode);
         map.put("thaayiCardNumber", thaayiCardNumber);
         return map;
-    }
-
-    public static AlertAction actionForDelete(String caseID, String visitCode) {
-        return new AlertAction(caseID, "delete", dataForDeleteAction(visitCode));
     }
 
     private static Map<String, String> dataForDeleteAction(String visitCode) {
