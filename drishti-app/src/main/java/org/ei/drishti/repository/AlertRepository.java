@@ -41,7 +41,7 @@ public class AlertRepository extends SQLiteOpenHelper {
         return readAllAlerts(cursor);
     }
 
-    public void updateAlert(AlertAction alertAction) {
+    public void update(AlertAction alertAction) {
         SQLiteDatabase database = getWritableDatabase();
         String[] caseAndVisitCodeColumnValues = {alertAction.caseID(), alertAction.get("visitCode")};
 
@@ -54,6 +54,17 @@ public class AlertRepository extends SQLiteOpenHelper {
         } else {
             database.update(ALERTS_TABLE_NAME, values, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, caseAndVisitCodeColumnValues);
         }
+    }
+
+    public void delete(AlertAction alertAction) {
+        SQLiteDatabase database = getWritableDatabase();
+
+        database.delete(ALERTS_TABLE_NAME, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, new String[]{alertAction.caseID(), alertAction.get("visitCode")});
+    }
+
+    public void deleteAll(AlertAction alertAction) {
+        SQLiteDatabase database = getWritableDatabase();
+        database.delete(ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN + "= ?", new String[]{alertAction.caseID()});
     }
 
     private ArrayList<Alert> readAllAlerts(Cursor cursor) {
