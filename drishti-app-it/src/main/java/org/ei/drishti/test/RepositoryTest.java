@@ -43,6 +43,18 @@ public class RepositoryTest extends AndroidTestCase {
         assertEquals(Arrays.asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1)), alerts);
     }
 
+    public void testShouldAddThreePointsOfPriorityForEveryLateAlertAndOnePointForEveryDueAlert() throws Exception {
+        repository.updateAlert(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1")));
+        repository.updateAlert(new AlertAction("Case X", "create", dataForCreateAction("late", "Theresa", "ANC 1", "Thaayi 1")));
+        repository.updateAlert(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1")));
+        repository.updateAlert(new AlertAction("Case X", "create", dataForCreateAction("late", "Theresa", "ANC 1", "Thaayi 1")));
+        List<Alert> alerts = repository.allAlerts();
+
+        int expectedPriority = 1 + 3 + 1 + 3;
+
+        assertEquals(Arrays.asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", expectedPriority)), alerts);
+    }
+
     private Map<String, String> dataForCreateAction(String lateness, String motherName, String visitCode, String thaayiCardNumber) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("latenessStatus", lateness);
