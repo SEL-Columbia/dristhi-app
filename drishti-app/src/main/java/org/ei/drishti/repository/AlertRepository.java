@@ -11,12 +11,7 @@ import org.ei.drishti.domain.AlertAction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Repository extends SQLiteOpenHelper {
-    private static final String SETTINGS_SQL = "CREATE TABLE settings(key VARCHAR PRIMARY KEY, value VARCHAR)";
-    public static final String SETTINGS_TABLE_NAME = "settings";
-    public static final String SETTINGS_KEY_COLUMN = "key";
-    public static final String SETTINGS_VALUE_COLUMN = "value";
-
+public class AlertRepository extends SQLiteOpenHelper {
     private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, thaayiCardNumber VARCHAR, visitCode VARCHAR, benificiaryName VARCHAR, priority INTEGER)";
     private static final String ALERTS_TABLE_NAME = "alerts";
     public static final String ALERTS_CASEID_COLUMN = "caseID";
@@ -27,42 +22,17 @@ public class Repository extends SQLiteOpenHelper {
     private static final String[] ALERTS_TABLE_COLUMNS = new String[] { ALERTS_CASEID_COLUMN, ALERTS_BENIFICIARY_NAME_COLUMN, ALERTS_VISIT_CODE_COLUMN, ALERTS_THAAYI_CARD_COLUMN, ALERTS_PRIORITY_COLUMN};
     public static final String CASE_AND_VISIT_CODE_COLUMN_SELECTIONS = ALERTS_CASEID_COLUMN + " = ? AND " + ALERTS_VISIT_CODE_COLUMN + " = ?";
 
-    public Repository(Context context) {
+    public AlertRepository(Context context) {
         super(context, "drishti.db", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-        database.execSQL(SETTINGS_SQL);
         database.execSQL(ALERTS_SQL);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-    }
-
-    public void updateSetting(String key, String value) {
-        SQLiteDatabase database = getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(SETTINGS_KEY_COLUMN, key);
-        values.put(SETTINGS_VALUE_COLUMN, value);
-
-        database.replace(SETTINGS_TABLE_NAME, null, values);
-    }
-
-    public String querySetting(String key, String defaultValue) {
-        SQLiteDatabase database = getReadableDatabase();
-        Cursor cursor = database.query(SETTINGS_TABLE_NAME, new String[]{SETTINGS_VALUE_COLUMN}, SETTINGS_KEY_COLUMN + " = ?", new String[]{key}, null, null, null, "1");
-        cursor.moveToFirst();
-        if (cursor.isAfterLast()) {
-            cursor.close();
-            return defaultValue;
-        }
-
-        String value = cursor.getString(0);
-        cursor.close();
-        return value;
     }
 
     public List<Alert> allAlerts() {

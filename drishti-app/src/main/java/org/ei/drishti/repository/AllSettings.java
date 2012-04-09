@@ -1,17 +1,17 @@
 package org.ei.drishti.repository;
 
 public class AllSettings {
-    private Repository repository;
+    private SettingsRepository settingsRepository;
 
-    public AllSettings(Repository repository) {
-        this.repository = repository;
+    public AllSettings(SettingsRepository settingsRepository) {
+        this.settingsRepository = settingsRepository;
     }
 
     public void saveANMIdentifier(String value) {
-        repository.updateSetting("anm", value);
+        settingsRepository.updateSetting("anm", value);
     }
 
     public String fetchANMIdentifier(){
-        return repository.querySetting("anm", "ANM");
+        return settingsRepository.querySetting("anm", "ANM");
     }
 }

@@ -14,28 +14,28 @@ import static org.mockito.MockitoAnnotations.initMocks;
 @RunWith(RobolectricTestRunner.class)
 public class AllSettingsTest {
     @Mock
-    private Repository repository;
+    private SettingsRepository settingsRepository;
     private AllSettings allSettings;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        allSettings = new AllSettings(repository);
+        allSettings = new AllSettings(settingsRepository);
     }
 
     @Test
     public void shouldSaveANMID() throws Exception {
         allSettings.saveANMIdentifier("1234");
 
-        verify(repository).updateSetting("anm", "1234");
+        verify(settingsRepository).updateSetting("anm", "1234");
     }
 
     @Test
     public void shouldFetchANMIdentifier() throws Exception {
-        when(repository.querySetting("anm","ANM")).thenReturn("1234");
+        when(settingsRepository.querySetting("anm", "ANM")).thenReturn("1234");
 
         String actual = allSettings.fetchANMIdentifier();
-        verify(repository).querySetting("anm", "ANM");
+        verify(settingsRepository).querySetting("anm", "ANM");
 
         assertEquals("1234", actual);
     }

@@ -10,7 +10,7 @@ import org.ei.drishti.R;
 import org.ei.drishti.adapter.AlertAdapter;
 import org.ei.drishti.domain.AlertAction;
 import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.repository.Repository;
+import org.ei.drishti.repository.SettingsRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,7 +25,7 @@ public class DrishtiMainActivity extends Activity {
         Log.init();
         Log.i(this, "Initializing ...");
         setContentView(R.layout.main);
-        AllSettings allSettings = new AllSettings(new Repository(getApplicationContext()));
+        AllSettings allSettings = new AllSettings(new SettingsRepository(getApplicationContext()));
 
         final String y = allSettings.fetchANMIdentifier();
 
