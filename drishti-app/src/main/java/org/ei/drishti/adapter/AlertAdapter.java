@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import org.ei.drishti.R;
+import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.AlertAction;
 
 import java.util.List;
@@ -37,5 +38,9 @@ public class AlertAdapter extends ArrayAdapter<AlertAction> {
             bar.setRating(1f);
         }
         return v;
+    }
+
+    public void refresh(List<Alert> alerts) {
+        throw new RuntimeException("Not implemented");
     }
 }

@@ -11,7 +11,15 @@ public class AllSettings {
         settingsRepository.updateSetting("anm", value);
     }
 
-    public String fetchANMIdentifier(){
+    public String fetchANMIdentifier() {
         return settingsRepository.querySetting("anm", "ANM");
+    }
+
+    public void savePreviousFetchIndex(String value) {
+        settingsRepository.updateSetting("previousFetchIndex", value);
+    }
+
+    public String fetchPreviousFetchIndex() {
+        return settingsRepository.querySetting("previousFetchIndex", "0");
     }
 }

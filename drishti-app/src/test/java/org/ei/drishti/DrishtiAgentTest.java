@@ -2,22 +2,22 @@ package org.ei.drishti;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.apache.commons.io.IOUtils;
-import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.agent.HTTPAgent;
 import org.ei.drishti.domain.AlertAction;
 import org.ei.drishti.domain.Response;
+import org.ei.drishti.service.DrishtiService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
+import static org.ei.drishti.util.AlertActionBuilder.actionForCreate;
+import static org.ei.drishti.util.AlertActionBuilder.actionForDelete;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -43,7 +43,7 @@ public class DrishtiAgentTest {
         Response<List<AlertAction>> alertActions = drishtiService.fetchNewAlertActions("anm1", "0");
 
         verify(httpAgent).fetch(EXPECTED_URL);
-        assertEquals(Arrays.asList(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1")), new AlertAction("Case Y", "delete", dataForDeleteAction("ANC 1"))), alertActions.payload());
+        assertEquals(Arrays.asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1"), actionForDelete("Case Y", "ANC 1")), alertActions.payload());
         assertEquals(Response.ResponseStatus.success, alertActions.status());
     }
 
@@ -64,20 +64,5 @@ public class DrishtiAgentTest {
 
         assertTrue(alertActions.payload().isEmpty());
         assertEquals(Response.ResponseStatus.failure, alertActions.status());
-    }
-
-    private Map<String, String> dataForCreateAction(String lateness, String motherName, String visitCode, String thaayiCardNumber) {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("latenessStatus", lateness);
-        map.put("motherName", motherName);
-        map.put("visitCode", visitCode);
-        map.put("thaayiCardNumber", thaayiCardNumber);
-        return map;
-    }
-
-    private Map<String, String> dataForDeleteAction(String visitCode) {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("visitCode", visitCode);
-        return map;
     }
 }

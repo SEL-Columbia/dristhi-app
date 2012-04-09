@@ -19,7 +19,7 @@ public class DrishtiService {
         this.drishtiBaseURL = drishtiBaseURL;
     }
 
-    public Response<List<AlertAction>> fetchNewAlertActions(String anmIdentifier, String previouslyFetchedIndex) throws Exception {
+    public Response<List<AlertAction>> fetchNewAlertActions(String anmIdentifier, String previouslyFetchedIndex) {
         Response<String> response = agent.fetch(drishtiBaseURL + "/alerts?anmIdentifier=" + anmIdentifier + "&timeStamp=" + previouslyFetchedIndex);
         Type collectionType = new TypeToken<List<AlertAction>>(){}.getType();
         List<AlertAction> actions = new Gson().fromJson(response.payload(), collectionType);

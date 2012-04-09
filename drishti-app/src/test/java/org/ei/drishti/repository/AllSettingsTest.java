@@ -39,4 +39,21 @@ public class AllSettingsTest {
 
         assertEquals("1234", actual);
     }
+
+    @Test
+    public void shouldSavePreviousFetchIndex() throws Exception {
+        allSettings.savePreviousFetchIndex("1234");
+
+        verify(settingsRepository).updateSetting("previousFetchIndex", "1234");
+    }
+
+    @Test
+    public void shouldFetchPreviousFetchIndex() throws Exception {
+        when(settingsRepository.querySetting("previousFetchIndex", "0")).thenReturn("1234");
+
+        String actual = allSettings.fetchPreviousFetchIndex();
+        verify(settingsRepository).querySetting("previousFetchIndex", "0");
+
+        assertEquals("1234", actual);
+    }
 }
