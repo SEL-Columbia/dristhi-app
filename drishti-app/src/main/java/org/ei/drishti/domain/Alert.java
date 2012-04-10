@@ -37,4 +37,20 @@ public class Alert {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
+
+    public String caseID() {
+        return caseID;
+    }
+
+    public String beneficiaryName() {
+        return motherName;
+    }
+
+    public String thaayiCardNo() {
+        return thaayiCardNumber;
+    }
+
+    public String visitCode() {
+        return visitCode;
+    }
 }

@@ -1,11 +1,10 @@
-package org.ei.drishti;
+package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.apache.commons.io.IOUtils;
 import org.ei.drishti.agent.HTTPAgent;
 import org.ei.drishti.domain.AlertAction;
 import org.ei.drishti.domain.Response;
-import org.ei.drishti.service.DrishtiService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +22,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
-public class DrishtiAgentTest {
+public class DrishtiServiceTest {
     @Mock
     HTTPAgent httpAgent;
 
