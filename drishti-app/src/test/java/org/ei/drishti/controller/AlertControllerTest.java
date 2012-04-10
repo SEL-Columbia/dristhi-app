@@ -81,7 +81,7 @@ public class AlertControllerTest {
     public void shouldRetrieveAlertsAndRefreshView() throws Exception {
         setupAlertActions(success, asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
 
-        List<Alert> alerts = asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1));
+        List<Alert> alerts = asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
         when(allAlerts.fetchAllAlerts()).thenReturn(alerts);
 
         alertController.refreshAlerts();
@@ -95,7 +95,7 @@ public class AlertControllerTest {
         String indexOfLastMessage = "12345";
         setupAlertActions(success, asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "11111"), actionForCreate("Case Y", "due", "Theresa", "ANC 2", "Thaayi 2", indexOfLastMessage)));
 
-        when(allAlerts.fetchAllAlerts()).thenReturn(asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1), new Alert("Case Y", "Theresa", "ANC 2", "Thaayi 2", 1)));
+        when(allAlerts.fetchAllAlerts()).thenReturn(asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1, "2012-01-01"), new Alert("Case Y", "Theresa", "ANC 2", "Thaayi 2", 1, "2012-01-01")));
 
         alertController.refreshAlerts();
 

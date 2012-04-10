@@ -10,17 +10,35 @@ public class Alert {
     private String visitCode;
     private String thaayiCardNumber;
     private int priority;
+    private String dueDate;
 
-    public Alert(String caseID, String motherName, String visitCode, String thaayiCardNumber, int priority) {
+    public Alert(String caseID, String motherName, String visitCode, String thaayiCardNumber, int priority, String dueDate) {
         this.caseID = caseID;
         this.motherName = motherName;
         this.visitCode = visitCode;
         this.thaayiCardNumber = thaayiCardNumber;
         this.priority = priority;
+        this.dueDate = dueDate;
     }
 
     public int priority() {
         return priority;
+    }
+
+    public String beneficiaryName() {
+        return motherName;
+    }
+
+    public String thaayiCardNo() {
+        return thaayiCardNumber;
+    }
+
+    public String visitCode() {
+        return visitCode;
+    }
+
+    public String dueDate() {
+        return dueDate;
     }
 
     @Override
@@ -36,21 +54,5 @@ public class Alert {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-    }
-
-    public String caseID() {
-        return caseID;
-    }
-
-    public String beneficiaryName() {
-        return motherName;
-    }
-
-    public String thaayiCardNo() {
-        return thaayiCardNumber;
-    }
-
-    public String visitCode() {
-        return visitCode;
     }
 }

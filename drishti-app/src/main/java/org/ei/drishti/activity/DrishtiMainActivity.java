@@ -17,8 +17,6 @@ import org.ei.drishti.service.DrishtiService;
 import java.util.ArrayList;
 
 public class DrishtiMainActivity extends Activity {
-    private ListView listView;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,18 +24,11 @@ public class DrishtiMainActivity extends Activity {
         Log.i(this, "Initializing ...");
         setContentView(R.layout.main);
 
-        SettingsRepository settingsRepository = new SettingsRepository();
-        AlertRepository alertRepository = new AlertRepository();
-        new Repository(getApplicationContext(), settingsRepository, alertRepository);
-        AllSettings allSettings = new AllSettings(settingsRepository);
-        AllAlerts allAlerts = new AllAlerts(alertRepository);
-        DrishtiService drishtiService = new DrishtiService(new HTTPAgent(), "http://drishti.modilabs.org");
-
         AlertAdapter alertAdapter = new AlertAdapter(this, R.layout.list_item, new ArrayList<Alert>());
-        final AlertController alertController = new AlertController(drishtiService, allSettings, allAlerts, alertAdapter);
-
-        listView = (ListView) findViewById(R.id.listView);
+        ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(alertAdapter);
+
+        final AlertController alertController = createController(alertAdapter);
 
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +40,16 @@ public class DrishtiMainActivity extends Activity {
                 }
             }
         });
+    }
+
+    private AlertController createController(AlertAdapter alertAdapter) {
+        SettingsRepository settingsRepository = new SettingsRepository();
+        AlertRepository alertRepository = new AlertRepository();
+        new Repository(getApplicationContext(), settingsRepository, alertRepository);
+        AllSettings allSettings = new AllSettings(settingsRepository);
+        AllAlerts allAlerts = new AllAlerts(alertRepository);
+        DrishtiService drishtiService = new DrishtiService(new HTTPAgent(), "http://drishti.modilabs.org");
+        return new AlertController(drishtiService, allSettings, allAlerts, alertAdapter);
     }
 }
 

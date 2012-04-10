@@ -9,6 +9,8 @@ import android.widget.TextView;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.Alert;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class AlertAdapter extends ArrayAdapter<Alert> {
@@ -29,11 +31,22 @@ public class AlertAdapter extends ArrayAdapter<Alert> {
 
         Alert alert = alerts.get(position);
         setTextView(view, R.id.beneficiaryName, alert.beneficiaryName());
-        setTextView(view, R.id.dueDate, "1 Mar");
+        setTextView(view, R.id.dueDate, formattedDueDate(alert.dueDate()));
         setTextView(view, R.id.thaayiCardNo, alert.thaayiCardNo());
         setTextView(view, R.id.visitCode, alert.visitCode());
 
         return view;
+    }
+
+    private String formattedDueDate(String dueDate) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy");
+
+        try {
+            return outputFormat.format(inputFormat.parse(dueDate));
+        } catch (ParseException e) {
+            return dueDate;
+        }
     }
 
     public void refresh(List<Alert> alerts) {
