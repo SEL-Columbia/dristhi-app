@@ -7,6 +7,7 @@ import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.AlertAction;
 
 import java.lang.reflect.Type;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +21,9 @@ public class DrishtiService {
     }
 
     public Response<List<AlertAction>> fetchNewAlertActions(String anmIdentifier, String previouslyFetchedIndex) {
-        Response<String> response = agent.fetch(drishtiBaseURL + "/alerts?anmIdentifier=" + anmIdentifier + "&timeStamp=" + previouslyFetchedIndex);
-        Type collectionType = new TypeToken<List<AlertAction>>(){}.getType();
+        String anmID = URLEncoder.encode(anmIdentifier);
+        Response<String> response = agent.fetch(drishtiBaseURL + "/alerts?anmIdentifier=" + anmID + "&timeStamp=" + previouslyFetchedIndex);
+        Type collectionType = new TypeToken<List<AlertAction>>() { }.getType();
         List<AlertAction> actions = new Gson().fromJson(response.payload(), collectionType);
 
         return new Response<List<AlertAction>>(response.status(), actions == null ? new ArrayList<AlertAction>() : actions);

@@ -64,4 +64,14 @@ public class DrishtiServiceTest {
         assertTrue(alertActions.payload().isEmpty());
         assertEquals(Response.ResponseStatus.failure, alertActions.status());
     }
+
+    @Test
+    public void shouldURLEncodeTheANMIdentifierPartWhenItHasASpace() {
+        String expectedURLWithSpaces = "http://base.drishti.url/alerts?anmIdentifier=ANM+WITH+SPACE&timeStamp=0";
+        when(httpAgent.fetch(expectedURLWithSpaces)).thenReturn(new Response<String>(Response.ResponseStatus.success, "[]"));
+
+        drishtiService.fetchNewAlertActions("ANM WITH SPACE", "0");
+
+        verify(httpAgent).fetch(expectedURLWithSpaces);
+    }
 }
