@@ -1,8 +1,6 @@
 package org.ei.drishti.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.test.UiThreadTest;
-import android.widget.Button;
 import android.widget.ListView;
 import org.ei.drishti.R;
 import org.ei.drishti.activity.DrishtiMainActivity;
@@ -13,20 +11,25 @@ import org.ei.drishti.service.DrishtiService;
 
 import java.util.*;
 
-public class HelloAndroidActivityTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
+public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
 
-    public HelloAndroidActivityTest() {
+    public DrishtiMainActivityTest() {
         super(DrishtiMainActivity.class);
     }
 
-    @UiThreadTest
-    public void testActivity() throws Exception {
-        DrishtiMainActivity activity = getActivity();
-        String suffix = String.valueOf(new Date().getTime());
-        activity.setDrishtiService(fakeDrishtiService(suffix));
+    public void testActivity() throws Throwable {
+        final DrishtiMainActivity activity = getActivity();
+        final String suffix = String.valueOf(new Date().getTime());
 
-        final Button button = (Button) activity.findViewById(R.id.button);
-        button.performClick();
+        this.runTestOnUiThread(new Runnable() {
+            public void run() {
+                activity.setDrishtiService(fakeDrishtiService(suffix));
+                activity.findViewById(R.id.button).performClick();
+            }
+        });
+
+        /* HACK! Get rid of this. */
+        Thread.sleep(2000);
 
         ListView listView = (ListView) activity.findViewById(R.id.listView);
         assertEquals(2, listView.getCount());

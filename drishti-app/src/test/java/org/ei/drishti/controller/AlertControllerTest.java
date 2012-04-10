@@ -47,7 +47,7 @@ public class AlertControllerTest {
     public void shouldFetchAlertActionsAndNotSaveAnythingIfThereIsNothingNewToSave() throws Exception {
         setupAlertActions(success, new ArrayList<AlertAction>());
 
-        alertController.refreshAlerts();
+        alertController.fetchNewAlerts();
 
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
@@ -59,7 +59,7 @@ public class AlertControllerTest {
     public void shouldNotSaveAnythingIfTheDrishtiResponseStatusIsFailure() throws Exception {
         setupAlertActions(failure, asList(actionForDelete("Case X", "ANC 1")));
 
-        alertController.refreshAlerts();
+        alertController.fetchNewAlerts();
 
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
@@ -71,7 +71,7 @@ public class AlertControllerTest {
     public void shouldFetchAlertActionsAndSaveThemToRepository() throws Exception {
         setupAlertActions(success, asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
 
-        alertController.refreshAlerts();
+        alertController.fetchNewAlerts();
 
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
         verify(allAlerts).saveNewAlerts(asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
@@ -84,10 +84,12 @@ public class AlertControllerTest {
         List<Alert> alerts = asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
         when(allAlerts.fetchAllAlerts()).thenReturn(alerts);
 
-        alertController.refreshAlerts();
+        alertController.refreshAlertsOnView();
 
         verify(allAlerts).fetchAllAlerts();
         verify(adapter).refresh(alerts);
+        verifyNoMoreInteractions(drishtiService);
+        verifyNoMoreInteractions(adapter);
     }
 
     @Test
@@ -97,7 +99,7 @@ public class AlertControllerTest {
 
         when(allAlerts.fetchAllAlerts()).thenReturn(asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1, "2012-01-01"), new Alert("Case Y", "Theresa", "ANC 2", "Thaayi 2", 1, "2012-01-01")));
 
-        alertController.refreshAlerts();
+        alertController.fetchNewAlerts();
 
         verify(allSettings).savePreviousFetchIndex(indexOfLastMessage);
     }

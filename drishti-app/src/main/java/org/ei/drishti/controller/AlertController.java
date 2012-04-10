@@ -22,7 +22,7 @@ public class AlertController {
         this.adapter = adapter;
     }
 
-    public void refreshAlerts() {
+    public void fetchNewAlerts() {
         String previousFetchIndex = allSettings.fetchPreviousFetchIndex();
         Response<List<AlertAction>> response = drishtiService.fetchNewAlertActions(allSettings.fetchANMIdentifier(), previousFetchIndex);
 
@@ -32,6 +32,9 @@ public class AlertController {
 
         allAlerts.saveNewAlerts(response.payload());
         allSettings.savePreviousFetchIndex(response.payload().get(response.payload().size() - 1).index());
+    }
+
+    public void refreshAlertsOnView() {
         adapter.refresh(allAlerts.fetchAllAlerts());
     }
 }

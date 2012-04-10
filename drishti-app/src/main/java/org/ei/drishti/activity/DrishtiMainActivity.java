@@ -1,10 +1,12 @@
 package org.ei.drishti.activity;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import de.akquinet.android.androlog.Log;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.AlertAdapter;
@@ -30,6 +32,9 @@ public class DrishtiMainActivity extends Activity {
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(alertAdapter);
 
+        Button button = (Button) findViewById(R.id.button);
+        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         final Lazy<AlertController> lazyAlertController = new Lazy<AlertController>() {
             @Override
             public AlertController setupPayload() {
@@ -45,11 +50,27 @@ public class DrishtiMainActivity extends Activity {
             }
         };
 
-        Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
-                    lazyAlertController.getPayload().refreshAlerts();
+                    new AsyncTask<Void, Void, String>() {
+                        @Override
+                        protected String doInBackground(Void... params) {
+                            lazyAlertController.getPayload().fetchNewAlerts();
+                            return "Done";
+                        }
+
+                        @Override
+                        protected void onPreExecute() {
+                            progressBar.setVisibility(View.VISIBLE);
+                        }
+
+                        @Override
+                        protected void onPostExecute(String result) {
+                            progressBar.setVisibility(View.INVISIBLE);
+                            lazyAlertController.getPayload().refreshAlertsOnView();
+                        }
+                    }.execute(null);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

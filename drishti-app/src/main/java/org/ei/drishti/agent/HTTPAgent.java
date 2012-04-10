@@ -13,6 +13,7 @@ public class HTTPAgent {
         try {
             URL url = new URL(requestURLPath);
             urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setConnectTimeout(5000);
             BufferedInputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
             return new Response<String>(Response.ResponseStatus.success, IOUtils.toString(inputStream));
         } catch (Exception e) {
