@@ -15,7 +15,8 @@ public class AlertRepositoryTest extends AndroidTestCase {
 
     @Override
     protected void setUp() throws Exception {
-        alertRepository = new AlertRepository(new RenamingDelegatingContext(getContext(), "test_"));
+        alertRepository = new AlertRepository();
+        new Repository(new RenamingDelegatingContext(getContext(), "test_"), alertRepository);
     }
 
     public void testShouldSaveAnAlert() throws Exception {

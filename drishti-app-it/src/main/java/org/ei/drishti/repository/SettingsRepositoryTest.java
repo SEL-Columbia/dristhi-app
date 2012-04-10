@@ -8,7 +8,8 @@ public class SettingsRepositoryTest extends AndroidTestCase {
 
     @Override
     protected void setUp() throws Exception {
-        settingsRepository = new SettingsRepository(new RenamingDelegatingContext(getContext(), "test_"));
+        settingsRepository = new SettingsRepository();
+        new Repository(new RenamingDelegatingContext(getContext(), "test_"), settingsRepository);
     }
 
     public void testSettingsFetchAndSave() throws Exception {

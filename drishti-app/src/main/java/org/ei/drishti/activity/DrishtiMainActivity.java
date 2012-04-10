@@ -8,13 +8,13 @@ import android.widget.ListView;
 import de.akquinet.android.androlog.Log;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.AlertAdapter;
-import org.ei.drishti.domain.AlertAction;
-import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.repository.SettingsRepository;
+import org.ei.drishti.agent.HTTPAgent;
+import org.ei.drishti.controller.AlertController;
+import org.ei.drishti.domain.Alert;
+import org.ei.drishti.repository.*;
+import org.ei.drishti.service.DrishtiService;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class DrishtiMainActivity extends Activity {
     private ListView listView;
@@ -25,28 +25,30 @@ public class DrishtiMainActivity extends Activity {
         Log.init();
         Log.i(this, "Initializing ...");
         setContentView(R.layout.main);
-        AllSettings allSettings = new AllSettings(new SettingsRepository(getApplicationContext()));
 
-        final String y = allSettings.fetchANMIdentifier();
+        SettingsRepository settingsRepository = new SettingsRepository();
+        AlertRepository alertRepository = new AlertRepository();
+        new Repository(getApplicationContext(), settingsRepository, alertRepository);
+        AllSettings allSettings = new AllSettings(settingsRepository);
+        AllAlerts allAlerts = new AllAlerts(alertRepository);
+        DrishtiService drishtiService = new DrishtiService(new HTTPAgent(), "http://drishti.modilabs.org");
+
+        AlertAdapter alertAdapter = new AlertAdapter(this, R.layout.list_item, new ArrayList<Alert>());
+        final AlertController alertController = new AlertController(drishtiService, allSettings, allAlerts, alertAdapter);
+
+        listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(alertAdapter);
 
         Button button = (Button) findViewById(R.id.button);
-        listView = (ListView) findViewById(R.id.listView);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
-                    populateList(y);
+                    alertController.refreshAlerts();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }
         });
-    }
-
-    private void populateList(String anm) {
-        List<AlertAction> mothers = new ArrayList<AlertAction>();
-        mothers.add(new AlertAction(anm, "due", new HashMap<String, String>()));
-        mothers.add(new AlertAction("Case Y", "late", new HashMap<String, String>()));
-        listView.setAdapter(new AlertAdapter(this, R.layout.list_item, mothers));
     }
 }
 

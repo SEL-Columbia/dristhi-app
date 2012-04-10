@@ -14,9 +14,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.Response.ResponseStatus.failure;
 import static org.ei.drishti.domain.Response.ResponseStatus.success;
 import static org.ei.drishti.util.AlertActionBuilder.actionForCreate;
@@ -57,7 +57,7 @@ public class AlertControllerTest {
 
     @Test
     public void shouldNotSaveAnythingIfTheDrishtiResponseStatusIsFailure() throws Exception {
-        setupAlertActions(failure, Arrays.asList(actionForDelete("Case X", "ANC 1")));
+        setupAlertActions(failure, asList(actionForDelete("Case X", "ANC 1")));
 
         alertController.refreshAlerts();
 
@@ -69,25 +69,30 @@ public class AlertControllerTest {
 
     @Test
     public void shouldFetchAlertActionsAndSaveThemToRepository() throws Exception {
-        setupAlertActions(success, Arrays.asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
+        setupAlertActions(success, asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
 
         alertController.refreshAlerts();
 
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
-        verify(allAlerts).saveNewAlerts(Arrays.asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
+        verify(allAlerts).saveNewAlerts(asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
     }
 
     @Test
     public void shouldRetrieveAlertsAndRefreshView() throws Exception {
-        setupAlertActions(success, Arrays.asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
+        setupAlertActions(success, asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
 
-        List<Alert> alerts = Arrays.asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1));
+        List<Alert> alerts = asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1));
         when(allAlerts.fetchAllAlerts()).thenReturn(alerts);
 
         alertController.refreshAlerts();
 
         verify(allAlerts).fetchAllAlerts();
         verify(adapter).refresh(alerts);
+    }
+
+    @Test
+    public void shouldUpdatePreviousIndexWithIndexOfLatestAlert() throws Exception {
+//        setupAlertActions(success, asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
     }
 
     private void setupAlertActions(Response.ResponseStatus status, List<AlertAction> list) {
