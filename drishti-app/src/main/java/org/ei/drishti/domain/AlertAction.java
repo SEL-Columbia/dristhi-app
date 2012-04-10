@@ -10,11 +10,13 @@ public class AlertAction {
     private String caseID;
     private String alertType;
     private Map<String, String> data;
+    private String timeStamp;
 
-    public AlertAction(String caseID, String alertType, Map<String, String> data) {
+    public AlertAction(String caseID, String alertType, Map<String, String> data, String timeStamp) {
         this.caseID = caseID;
         this.alertType = alertType;
         this.data = data;
+        this.timeStamp = timeStamp;
     }
 
     public String caseID() {
@@ -23,6 +25,10 @@ public class AlertAction {
 
     public String type() {
         return alertType;
+    }
+
+    public String index() {
+        return timeStamp;
     }
 
     public String get(String key) {

@@ -31,6 +31,7 @@ public class AlertController {
         }
 
         allAlerts.saveNewAlerts(response.payload());
+        allSettings.savePreviousFetchIndex(response.payload().get(response.payload().size() - 1).index());
         adapter.refresh(allAlerts.fetchAllAlerts());
     }
 }

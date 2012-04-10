@@ -10,9 +10,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import java.util.Arrays;
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 import static org.ei.drishti.util.AlertActionBuilder.actionForCreate;
@@ -42,7 +42,7 @@ public class DrishtiServiceTest {
         Response<List<AlertAction>> alertActions = drishtiService.fetchNewAlertActions("anm1", "0");
 
         verify(httpAgent).fetch(EXPECTED_URL);
-        assertEquals(Arrays.asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1"), actionForDelete("Case Y", "ANC 1")), alertActions.payload());
+        assertEquals(asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "1333695798583"), actionForDelete("Case Y", "ANC 1", "1333695798644")), alertActions.payload());
         assertEquals(Response.ResponseStatus.success, alertActions.status());
     }
 

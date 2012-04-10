@@ -20,17 +20,17 @@ public class AlertRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldSaveAnAlert() throws Exception {
-        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1")));
+        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1"), "0"));
         List<Alert> alerts = alertRepository.allAlerts();
 
         assertEquals(Arrays.asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1)), alerts);
     }
 
     public void testShouldAddThreePointsOfPriorityForEveryLateAlertAndOnePointForEveryDueAlert() throws Exception {
-        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1")));
-        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("late", "Theresa", "ANC 1", "Thaayi 1")));
-        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1")));
-        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("late", "Theresa", "ANC 1", "Thaayi 1")));
+        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1"), "0"));
+        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("late", "Theresa", "ANC 1", "Thaayi 1"), "0"));
+        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1"), "0"));
+        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("late", "Theresa", "ANC 1", "Thaayi 1"), "0"));
         List<Alert> alerts = alertRepository.allAlerts();
 
         int expectedPriority = 1 + 3 + 1 + 3;
@@ -39,27 +39,27 @@ public class AlertRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteAlertsBasedOnCaseIDAndVisitCode() throws Exception {
-        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1")));
-        alertRepository.update(new AlertAction("Case Y", "create", dataForCreateAction("due", "SomeOtherWoman", "ANC 2", "Thaayi 2")));
+        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1"), "0"));
+        alertRepository.update(new AlertAction("Case Y", "create", dataForCreateAction("due", "SomeOtherWoman", "ANC 2", "Thaayi 2"), "0"));
 
-        alertRepository.delete(new AlertAction("Case X", "delete", dataForDeleteAction("ANC 1")));
+        alertRepository.delete(new AlertAction("Case X", "delete", dataForDeleteAction("ANC 1"), "0"));
 
         assertEquals(Arrays.asList(new Alert("Case Y", "SomeOtherWoman", "ANC 2", "Thaayi 2", 1)), alertRepository.allAlerts());
     }
 
     public void testShouldNotFailDeletionWhenNothingToDeleteExists() throws Exception {
-        alertRepository.delete(new AlertAction("Case X", "delete", dataForDeleteAction("ANC 1")));
+        alertRepository.delete(new AlertAction("Case X", "delete", dataForDeleteAction("ANC 1"), "0"));
 
         assertTrue(alertRepository.allAlerts().isEmpty());
     }
 
     public void testShouldDeleteAllAlertsForACase() throws Exception {
-        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1")));
-        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 2", "Thaayi 1")));
-        alertRepository.update(new AlertAction("Case Y", "create", dataForCreateAction("due", "SomeOtherWoman", "ANC 2", "Thaayi 2")));
-        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("late", "Theresa", "ANC 3", "Thaayi 1")));
+        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1"), "0"));
+        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 2", "Thaayi 1"), "0"));
+        alertRepository.update(new AlertAction("Case Y", "create", dataForCreateAction("due", "SomeOtherWoman", "ANC 2", "Thaayi 2"), "0"));
+        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("late", "Theresa", "ANC 3", "Thaayi 1"), "0"));
 
-        alertRepository.deleteAll(new AlertAction("Case X", "deleteAll", null));
+        alertRepository.deleteAll(new AlertAction("Case X", "deleteAll", null, "0"));
 
         assertEquals(Arrays.asList(new Alert("Case Y", "SomeOtherWoman", "ANC 2", "Thaayi 2", 1)), alertRepository.allAlerts());
     }

@@ -7,6 +7,7 @@ import org.ei.drishti.exception.AlertTypeException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 
 import java.util.Arrays;
@@ -68,7 +69,7 @@ public class AllAlertsTest {
 
     @Test(expected = AlertTypeException.class)
     public void shouldFailIfActionTypeIsNotExpected() throws Exception {
-        allAlerts.saveNewAlerts(Arrays.asList(new AlertAction("Case X", "UNKNOWN-TYPE", new HashMap<String, String>())));
+        allAlerts.saveNewAlerts(Arrays.asList(new AlertAction("Case X", "UNKNOWN-TYPE", new HashMap<String, String>(), "0")));
     }
 
     @Test
@@ -81,11 +82,12 @@ public class AllAlertsTest {
 
         allAlerts.saveNewAlerts(Arrays.asList(firstCreateAction, firstDeleteAction, secondCreateAction, deleteAllAction, secondDeleteAction));
 
-        verify(alertRepository).update(firstCreateAction);
-        verify(alertRepository).delete(firstDeleteAction);
-        verify(alertRepository).update(secondCreateAction);
-        verify(alertRepository).deleteAll(deleteAllAction);
-        verify(alertRepository).delete(secondDeleteAction);
+        InOrder inOrder = inOrder(alertRepository);
+        inOrder.verify(alertRepository).update(firstCreateAction);
+        inOrder.verify(alertRepository).delete(firstDeleteAction);
+        inOrder.verify(alertRepository).update(secondCreateAction);
+        inOrder.verify(alertRepository).deleteAll(deleteAllAction);
+        inOrder.verify(alertRepository).delete(secondDeleteAction);
         verifyNoMoreInteractions(alertRepository);
     }
 
