@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:text="Beneficiary Name"
+            android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceLarge" android:gravity="left"/>
 
         <TextView

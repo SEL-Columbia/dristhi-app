@@ -3,8 +3,9 @@ package org.ei.drishti.activity;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import de.akquinet.android.androlog.Log;
@@ -22,7 +23,8 @@ import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 public class DrishtiMainActivity extends Activity {
-    private DrishtiService drishtiService;
+    private static DrishtiService drishtiService;
+    private Lazy<AlertController> lazyAlertController;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,10 +37,7 @@ public class DrishtiMainActivity extends Activity {
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(alertAdapter);
 
-        Button button = (Button) findViewById(R.id.button);
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
-        final Lazy<AlertController> lazyAlertController = new Lazy<AlertController>() {
+        lazyAlertController = new Lazy<AlertController>() {
             @Override
             public AlertController setupPayload() {
                 SettingsRepository settingsRepository = new SettingsRepository();
@@ -53,36 +52,57 @@ public class DrishtiMainActivity extends Activity {
             }
         };
 
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                try {
-                    new AsyncTask<Void, Void, Void>() {
-                        @Override
-                        protected Void doInBackground(Void... params) {
-                            lazyAlertController.getPayload().fetchNewAlerts();
-                            return null;
-                        }
-
-                        @Override
-                        protected void onPreExecute() {
-                            progressBar.setVisibility(VISIBLE);
-                        }
-
-                        @Override
-                        protected void onPostExecute(Void result) {
-                            progressBar.setVisibility(INVISIBLE);
-                            lazyAlertController.getPayload().refreshAlertsOnView();
-                        }
-                    }.execute(null);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
+        lazyAlertController.getPayload().refreshAlertsOnView();
+        updateAlerts();
     }
 
-    public void setDrishtiService(DrishtiService value) {
-        this.drishtiService = value;
+    private void updateAlerts() {
+        try {
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... params) {
+                    lazyAlertController.getPayload().fetchNewAlerts();
+                    return null;
+                }
+
+                @Override
+                protected void onPreExecute() {
+                    final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                    progressBar.setVisibility(VISIBLE);
+                }
+
+                @Override
+                protected void onPostExecute(Void result) {
+                    final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                    progressBar.setVisibility(INVISIBLE);
+
+                    lazyAlertController.getPayload().refreshAlertsOnView();
+                }
+            }.execute(null);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void setDrishtiService(DrishtiService value) {
+        drishtiService = value;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.updateMenuItem:
+                updateAlerts();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
-

@@ -5,31 +5,28 @@ import android.widget.ListView;
 import org.ei.drishti.R;
 import org.ei.drishti.activity.DrishtiMainActivity;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.AlertAction;
-import org.ei.drishti.domain.Response;
 import org.ei.drishti.service.DrishtiService;
 
 import java.util.*;
 
+import static android.view.KeyEvent.KEYCODE_MENU;
+
 public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
+
+    private final FakeDrishtiService drishtiService;
 
     public DrishtiMainActivityTest() {
         super(DrishtiMainActivity.class);
+        drishtiService = new FakeDrishtiService();
     }
 
-    public void testActivity() throws Throwable {
-        final DrishtiMainActivity activity = getActivity();
+    public void testShouldLoadOnStartup() throws Throwable {
         final String suffix = String.valueOf(new Date().getTime());
+        DrishtiMainActivity.setDrishtiService(fakeDrishtiService(suffix));
 
-        this.runTestOnUiThread(new Runnable() {
-            public void run() {
-                activity.setDrishtiService(fakeDrishtiService(suffix));
-                activity.findViewById(R.id.button).performClick();
-            }
-        });
+        final DrishtiMainActivity activity = getActivity();
 
-        /* HACK! Get rid of this. */
-        Thread.sleep(2000);
+        waitForProgressBarToGoAway();
 
         ListView listView = (ListView) activity.findViewById(R.id.listView);
         assertEquals(2, listView.getCount());
@@ -41,28 +38,38 @@ public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<Dr
         assertEquals("Theresa 2 " + suffix, secondAlert.beneficiaryName());
     }
 
-    private DrishtiService fakeDrishtiService(final String suffix) {
-        return new DrishtiService(null, null) {
-            @Override
-            public Response<List<AlertAction>> fetchNewAlertActions(String anmIdentifier, String previouslyFetchedIndex) {
-                AlertAction deleteXAction = new AlertAction("Case X", "deleteAll", new HashMap<String, String>(), "123456");
-                AlertAction deleteYAction = new AlertAction("Case Y", "deleteAll", new HashMap<String, String>(), "123456");
-                AlertAction firstAction = new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa 1 " + suffix, "ANC 1", "Thaayi " + suffix, "2012-04-09"), "123456");
-                AlertAction secondAction = new AlertAction("Case Y", "create", dataForCreateAction("due", "Theresa 2 " + suffix, "ANC 1", "Thaayi " + suffix, "2012-04-09"), "123456");
+    public void testShouldUpdateWhenUpdateButtonInMenuIsPressed() throws Throwable {
+        final String suffixForLoadingDuringStartup = String.valueOf(new Date().getTime() - 1);
+        DrishtiMainActivity.setDrishtiService(fakeDrishtiService(suffixForLoadingDuringStartup));
+        final DrishtiMainActivity activity = getActivity();
 
-                return new Response<List<AlertAction>>(Response.ResponseStatus.success, Arrays.asList(deleteXAction, deleteYAction, firstAction, secondAction));
-            }
+        waitForProgressBarToGoAway();
 
-            private Map<String, String> dataForCreateAction(String lateness, String motherName, String visitCode, String thaayiCardNumber, String dueDate) {
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("latenessStatus", lateness);
-                map.put("motherName", motherName);
-                map.put("visitCode", visitCode);
-                map.put("thaayiCardNumber", thaayiCardNumber);
-                map.put("dueDate", dueDate);
-                return map;
-            }
-        };
+        final String suffixForLoadingThroughMenuButton = String.valueOf(new Date().getTime());
+        DrishtiMainActivity.setDrishtiService(fakeDrishtiService(suffixForLoadingThroughMenuButton));
+        getInstrumentation().sendKeyDownUpSync(KEYCODE_MENU);
+        getInstrumentation().invokeMenuActionSync(activity, R.id.updateMenuItem, 0);
+
+        waitForProgressBarToGoAway();
+
+        ListView listView = (ListView) activity.findViewById(R.id.listView);
+        assertEquals(2, listView.getCount());
+
+        Alert firstAlert = ((Alert) listView.getItemAtPosition(0));
+        Alert secondAlert = ((Alert) listView.getItemAtPosition(1));
+
+        assertEquals("Theresa 1 " + suffixForLoadingThroughMenuButton, firstAlert.beneficiaryName());
+        assertEquals("Theresa 2 " + suffixForLoadingThroughMenuButton, secondAlert.beneficiaryName());
     }
-}
 
+    private void waitForProgressBarToGoAway() throws InterruptedException {
+        /* HACK! Get rid of this. */
+        Thread.sleep(2000);
+    }
+
+    private DrishtiService fakeDrishtiService(String suffix) {
+        drishtiService.setSuffix(suffix);
+        return drishtiService;
+    }
+
+}
