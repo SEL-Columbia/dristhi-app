@@ -18,6 +18,9 @@ import org.ei.drishti.service.DrishtiService;
 
 import java.util.ArrayList;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 public class DrishtiMainActivity extends Activity {
     private DrishtiService drishtiService;
 
@@ -53,21 +56,21 @@ public class DrishtiMainActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 try {
-                    new AsyncTask<Void, Void, String>() {
+                    new AsyncTask<Void, Void, Void>() {
                         @Override
-                        protected String doInBackground(Void... params) {
+                        protected Void doInBackground(Void... params) {
                             lazyAlertController.getPayload().fetchNewAlerts();
-                            return "Done";
+                            return null;
                         }
 
                         @Override
                         protected void onPreExecute() {
-                            progressBar.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(VISIBLE);
                         }
 
                         @Override
-                        protected void onPostExecute(String result) {
-                            progressBar.setVisibility(View.INVISIBLE);
+                        protected void onPostExecute(Void result) {
+                            progressBar.setVisibility(INVISIBLE);
                             lazyAlertController.getPayload().refreshAlertsOnView();
                         }
                     }.execute(null);
