@@ -1,7 +1,9 @@
 package org.ei.drishti.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -55,6 +57,9 @@ public class DrishtiMainActivity extends Activity {
             case R.id.updateMenuItem:
                 updateAlerts.updateFromServer();
                 return true;
+            case R.id.settingsMenuItem:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -64,7 +69,7 @@ public class DrishtiMainActivity extends Activity {
         SettingsRepository settingsRepository = new SettingsRepository();
         AlertRepository alertRepository = new AlertRepository();
         new Repository(getApplicationContext(), settingsRepository, alertRepository);
-        AllSettings allSettings = new AllSettings(settingsRepository);
+        AllSettings allSettings = new AllSettings(PreferenceManager.getDefaultSharedPreferences(this), settingsRepository);
         AllAlerts allAlerts = new AllAlerts(alertRepository);
         if (drishtiService == null) {
             drishtiService = new DrishtiService(new HTTPAgent(), "http://drishti.modilabs.org");

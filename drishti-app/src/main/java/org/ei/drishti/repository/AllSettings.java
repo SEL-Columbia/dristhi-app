@@ -1,18 +1,18 @@
 package org.ei.drishti.repository;
 
+import android.content.SharedPreferences;
+
 public class AllSettings {
+    private SharedPreferences preferences;
     private SettingsRepository settingsRepository;
 
-    public AllSettings(SettingsRepository settingsRepository) {
+    public AllSettings(SharedPreferences preferences, SettingsRepository settingsRepository) {
+        this.preferences = preferences;
         this.settingsRepository = settingsRepository;
     }
 
-    public void saveANMIdentifier(String value) {
-        settingsRepository.updateSetting("anm", value);
-    }
-
     public String fetchANMIdentifier() {
-        return settingsRepository.querySetting("anm", "ANM");
+        return preferences.getString("anmIdentifier", "ANM");
     }
 
     public void savePreviousFetchIndex(String value) {

@@ -1,5 +1,6 @@
 package org.ei.drishti.repository;
 
+import android.content.SharedPreferences;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,27 +16,23 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class AllSettingsTest {
     @Mock
     private SettingsRepository settingsRepository;
+    @Mock
+    private SharedPreferences preferences;
+
     private AllSettings allSettings;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        allSettings = new AllSettings(settingsRepository);
+        allSettings = new AllSettings(preferences, settingsRepository);
     }
 
     @Test
-    public void shouldSaveANMID() throws Exception {
-        allSettings.saveANMIdentifier("1234");
-
-        verify(settingsRepository).updateSetting("anm", "1234");
-    }
-
-    @Test
-    public void shouldFetchANMIdentifier() throws Exception {
-        when(settingsRepository.querySetting("anm", "ANM")).thenReturn("1234");
+    public void shouldFetchANMIdentifierFromPreferences() throws Exception {
+        when(preferences.getString("anmIdentifier", "ANM")).thenReturn("1234");
 
         String actual = allSettings.fetchANMIdentifier();
-        verify(settingsRepository).querySetting("anm", "ANM");
+        verify(preferences).getString("anmIdentifier", "ANM");
 
         assertEquals("1234", actual);
     }
