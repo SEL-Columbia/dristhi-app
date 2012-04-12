@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class FakeDrishtiService extends DrishtiService {
+public class FakeDrishtiService extends DrishtiService {
     private String suffix;
 
     public FakeDrishtiService() {

@@ -7,9 +7,10 @@ import org.ei.drishti.activity.DrishtiMainActivity;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.service.DrishtiService;
 
-import java.util.*;
+import java.util.Date;
 
 import static android.view.KeyEvent.KEYCODE_MENU;
+import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
 
@@ -26,7 +27,7 @@ public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<Dr
 
         final DrishtiMainActivity activity = getActivity();
 
-        waitForProgressBarToGoAway();
+        waitForProgressBarToGoAway(getActivity(), 2000);
 
         ListView listView = (ListView) activity.findViewById(R.id.listView);
         assertEquals(2, listView.getCount());
@@ -43,14 +44,14 @@ public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<Dr
         DrishtiMainActivity.setDrishtiService(fakeDrishtiService(suffixForLoadingDuringStartup));
         final DrishtiMainActivity activity = getActivity();
 
-        waitForProgressBarToGoAway();
+        waitForProgressBarToGoAway(getActivity(), 2000);
 
         final String suffixForLoadingThroughMenuButton = String.valueOf(new Date().getTime());
         DrishtiMainActivity.setDrishtiService(fakeDrishtiService(suffixForLoadingThroughMenuButton));
         getInstrumentation().sendKeyDownUpSync(KEYCODE_MENU);
         getInstrumentation().invokeMenuActionSync(activity, R.id.updateMenuItem, 0);
 
-        waitForProgressBarToGoAway();
+        waitForProgressBarToGoAway(getActivity(), 2000);
 
         ListView listView = (ListView) activity.findViewById(R.id.listView);
         assertEquals(2, listView.getCount());
@@ -60,11 +61,6 @@ public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<Dr
 
         assertEquals("Theresa 1 " + suffixForLoadingThroughMenuButton, firstAlert.beneficiaryName());
         assertEquals("Theresa 2 " + suffixForLoadingThroughMenuButton, secondAlert.beneficiaryName());
-    }
-
-    private void waitForProgressBarToGoAway() throws InterruptedException {
-        /* HACK! Get rid of this. */
-        Thread.sleep(2000);
     }
 
     private DrishtiService fakeDrishtiService(String suffix) {

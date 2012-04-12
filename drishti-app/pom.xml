@@ -21,10 +21,6 @@
             <artifactId>android</artifactId>
         </dependency>
         <dependency>
-            <groupId>de.akquinet.android.androlog</groupId>
-            <artifactId>androlog</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.pivotallabs</groupId>
             <artifactId>robolectric</artifactId>
             <version>0.9.8</version>
