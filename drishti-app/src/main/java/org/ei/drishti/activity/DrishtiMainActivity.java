@@ -41,7 +41,7 @@ public class DrishtiMainActivity extends Activity {
 
         updateAlerts = new UpdateAlertsTask(setupController(alertAdapter), (ProgressBar) findViewById(R.id.progressBar));
         updateAlerts.updateDisplay();
-        updateAlerts.updateFromServer();
+        updateAlerts.updateFromServer(true);
     }
 
     private void initSpinner() {
@@ -78,7 +78,7 @@ public class DrishtiMainActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.updateMenuItem:
-                updateAlerts.updateFromServer();
+                updateAlerts.updateFromServer(true);
                 return true;
             case R.id.settingsMenuItem:
                 startActivity(new Intent(this, SettingsActivity.class));

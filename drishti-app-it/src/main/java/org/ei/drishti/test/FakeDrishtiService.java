@@ -21,7 +21,7 @@ public class FakeDrishtiService extends DrishtiService {
         AlertAction deleteXAction = new AlertAction("Case X", "deleteAll", new HashMap<String, String>(), "123456");
         AlertAction deleteYAction = new AlertAction("Case Y", "deleteAll", new HashMap<String, String>(), "123456");
         AlertAction firstAction = new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa 1 " + suffix, "ANC 1", "Thaayi 1 " + suffix, "2012-04-09"), "123456");
-        AlertAction secondAction = new AlertAction("Case Y", "create", dataForCreateAction("due", "Theresa 2 " + suffix, "ANC 1", "Thaayi 2 " + suffix, "2012-04-09"), "123456");
+        AlertAction secondAction = new AlertAction("Case Y", "create", dataForCreateAction("due", "Theresa 2 " + suffix, "TT 1", "Thaayi 2 " + suffix, "2012-04-09"), "123456");
 
         return new Response<List<AlertAction>>(Response.ResponseStatus.success, Arrays.asList(deleteXAction, deleteYAction, firstAction, secondAction));
     }

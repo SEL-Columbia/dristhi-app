@@ -33,9 +33,9 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
 
         runTestOnUiThread(new Runnable() {
             public void run() {
-                updateAlertsTask.updateFromServer();
-                updateAlertsTask.updateFromServer();
-                updateAlertsTask.updateFromServer();
+                updateAlertsTask.updateFromServer(true);
+                updateAlertsTask.updateFromServer(true);
+                updateAlertsTask.updateFromServer(true);
             }
         });
 

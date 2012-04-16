@@ -23,24 +23,29 @@ public class UpdateAlertsTask {
     }
 
     public void updateDisplay() {
+        updateFromServer(false);
+    }
+
+    private void refreshView() {
         alertController.refreshAlertsOnView(visitCodePrefix);
     }
 
-    public void updateFromServer() {
+    public void updateFromServer(final boolean shouldUpdate) {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-                if (!lock.tryLock()) {
-                    logVerbose("Going away. Something else is holding the lock.");
-                    return null;
-                }
+                if (shouldUpdate) {
+                    if (!lock.tryLock()) {
+                        logVerbose("Going away. Something else is holding the lock.");
+                        return null;
+                    }
 
-                try {
-                    alertController.fetchNewAlerts();
-                } finally {
-                    lock.unlock();
+                    try {
+                        alertController.fetchNewAlerts();
+                    } finally {
+                        lock.unlock();
+                    }
                 }
-
                 return null;
             }
 
@@ -51,8 +56,8 @@ public class UpdateAlertsTask {
 
             @Override
             protected void onPostExecute(Void result) {
+                refreshView();
                 progressBar.setVisibility(INVISIBLE);
-                updateDisplay();
             }
         }.execute(null);
     }
