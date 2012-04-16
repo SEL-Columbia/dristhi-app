@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
+import static org.ei.drishti.adapter.AlertFilterCriterion.All;
 import static org.ei.drishti.util.AlertActionBuilder.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -94,9 +95,9 @@ public class AllAlertsTest {
     @Test
     public void shouldFetchAllAlertsFromRepository() throws Exception {
         List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "ANC 1", "Thaayi 1", 1, "2012-01-01"), new Alert("Case Y", "Theresa 2", "ANC 2", "Thaayi 2", 1, "2012-01-01"));
-        when(alertRepository.allAlerts()).thenReturn(expectedAlerts);
+        when(alertRepository.alertsFor(All.visitCodePrefix())).thenReturn(expectedAlerts);
 
-        List<Alert> alerts = allAlerts.fetchAllAlerts();
+        List<Alert> alerts = allAlerts.fetchAlerts(All.visitCodePrefix());
 
         assertEquals(expectedAlerts, alerts);
     }

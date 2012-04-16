@@ -2,6 +2,7 @@ package org.ei.drishti.view;
 
 import android.os.AsyncTask;
 import android.widget.ProgressBar;
+import org.ei.drishti.adapter.AlertFilterCriterion;
 import org.ei.drishti.controller.AlertController;
 
 import java.util.concurrent.locks.ReentrantLock;
@@ -14,6 +15,7 @@ public class UpdateAlertsTask {
     private AlertController alertController;
     private ProgressBar progressBar;
     private static final ReentrantLock lock = new ReentrantLock();
+    private String visitCodePrefix = AlertFilterCriterion.All.visitCodePrefix();
 
     public UpdateAlertsTask(AlertController alertController, ProgressBar progressBar) {
         this.alertController = alertController;
@@ -21,7 +23,7 @@ public class UpdateAlertsTask {
     }
 
     public void updateDisplay() {
-        alertController.refreshAlertsOnView();
+        alertController.refreshAlertsOnView(visitCodePrefix);
     }
 
     public void updateFromServer() {
@@ -53,5 +55,9 @@ public class UpdateAlertsTask {
                 updateDisplay();
             }
         }.execute(null);
+    }
+
+    public void changeAlertFilterCriterion(String visitCodePrefix) {
+        this.visitCodePrefix = visitCodePrefix;
     }
 }

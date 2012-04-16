@@ -3,6 +3,7 @@ package org.ei.drishti.view;
 import android.view.View;
 import android.widget.ProgressBar;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.adapter.AlertFilterCriterion;
 import org.ei.drishti.controller.AlertController;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,6 +35,6 @@ public class UpdateAlertsTaskTest {
         inOrder.verify(progressBar).setVisibility(View.VISIBLE);
         inOrder.verify(alertController).fetchNewAlerts();
         inOrder.verify(progressBar).setVisibility(View.INVISIBLE);
-        inOrder.verify(alertController).refreshAlertsOnView();
+        inOrder.verify(alertController).refreshAlertsOnView(AlertFilterCriterion.All.visitCodePrefix());
     }
 }

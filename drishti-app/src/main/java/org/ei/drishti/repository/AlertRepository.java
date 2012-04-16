@@ -22,9 +22,9 @@ public class AlertRepository implements DrishtiRepository {
     public static final String CASE_AND_VISIT_CODE_COLUMN_SELECTIONS = ALERTS_CASEID_COLUMN + " = ? AND " + ALERTS_VISIT_CODE_COLUMN + " = ?";
     private Repository masterRepository;
 
-    public List<Alert> allAlerts() {
+    public List<Alert> alertsFor(String visitCodePrefix) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(ALERTS_TABLE_NAME, ALERTS_TABLE_COLUMNS, null, null, null, null, null, null);
+        Cursor cursor = database.query(ALERTS_TABLE_NAME, ALERTS_TABLE_COLUMNS, ALERTS_VISIT_CODE_COLUMN + " LIKE ?", new String[]{visitCodePrefix + "%"}, null, null, null, null);
         return readAllAlerts(cursor);
     }
 

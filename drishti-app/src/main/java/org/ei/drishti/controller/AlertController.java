@@ -34,7 +34,7 @@ public class AlertController {
         allSettings.savePreviousFetchIndex(response.payload().get(response.payload().size() - 1).index());
     }
 
-    public void refreshAlertsOnView() {
-        adapter.refresh(allAlerts.fetchAllAlerts());
+    public void refreshAlertsOnView(String visitCodePrefix) {
+        adapter.refresh(allAlerts.fetchAlerts(visitCodePrefix));
     }
 }
