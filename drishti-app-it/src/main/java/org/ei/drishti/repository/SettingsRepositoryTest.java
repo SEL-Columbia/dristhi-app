@@ -12,6 +12,10 @@ public class SettingsRepositoryTest extends AndroidTestCase {
         new Repository(new RenamingDelegatingContext(getContext(), "test_"), settingsRepository);
     }
 
+    public void testShouldGetDefaultValueIfNothingHasBeenSet() throws Exception {
+        assertEquals("someDefaultValue", settingsRepository.querySetting("NOT-SET", "someDefaultValue"));
+    }
+
     public void testSettingsFetchAndSave() throws Exception {
         settingsRepository.updateSetting("abc", "def");
 
