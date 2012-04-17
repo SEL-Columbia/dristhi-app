@@ -47,7 +47,7 @@ public class DrishtiMainActivity extends Activity {
     private void initSpinner() {
         Spinner filterSpinner = (Spinner) findViewById(R.id.filterSpinner);
 
-        ArrayAdapter<AlertFilterCriterion> criteriaAdapter = new ArrayAdapter<AlertFilterCriterion>(this, android.R.layout.simple_spinner_item, asList(All, ANC, BCG, HEP, OPV));
+        ArrayAdapter<AlertFilterCriterion> criteriaAdapter = new ArrayAdapter<AlertFilterCriterion>(this, android.R.layout.simple_spinner_item, asList(All, BCG, HEP, OPV));
         criteriaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         filterSpinner.setAdapter(criteriaAdapter);
 
