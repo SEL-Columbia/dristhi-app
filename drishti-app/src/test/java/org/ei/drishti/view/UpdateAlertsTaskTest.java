@@ -29,12 +29,12 @@ public class UpdateAlertsTaskTest {
     @Test
     public void shouldShowProgressBarsWhileFetchingAlerts() throws Exception {
         UpdateAlertsTask updateAlertsTask = new UpdateAlertsTask(alertController, progressBar);
-        updateAlertsTask.updateFromServer(true);
+        updateAlertsTask.updateFromServer();
 
         InOrder inOrder = inOrder(alertController, progressBar);
         inOrder.verify(progressBar).setVisibility(View.VISIBLE);
         inOrder.verify(alertController).fetchNewAlerts();
-        inOrder.verify(alertController).refreshAlertsOnView(AlertFilterCriterion.All.visitCodePrefix());
         inOrder.verify(progressBar).setVisibility(View.INVISIBLE);
+        inOrder.verify(alertController).refreshAlertsOnView(AlertFilterCriterion.All.visitCodePrefix());
     }
 }
