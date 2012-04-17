@@ -19,6 +19,9 @@ public class AlertAction {
         this.timeStamp = timeStamp;
     }
 
+    public AlertAction() {
+    }
+
     public String caseID() {
         return caseID;
     }
