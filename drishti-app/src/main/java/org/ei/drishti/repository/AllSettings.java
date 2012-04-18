@@ -12,7 +12,7 @@ public class AllSettings {
     }
 
     public String fetchANMIdentifier() {
-        return preferences.getString("anmIdentifier", "ANM");
+        return preferences.getString("anmIdentifier", "ANM").trim();
     }
 
     public void savePreviousFetchIndex(String value) {

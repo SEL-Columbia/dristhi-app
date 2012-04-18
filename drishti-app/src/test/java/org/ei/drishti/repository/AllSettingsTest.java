@@ -38,6 +38,16 @@ public class AllSettingsTest {
     }
 
     @Test
+    public void shouldTrimANMIdentifier() throws Exception {
+        when(preferences.getString("anmIdentifier", "ANM")).thenReturn("  1234 ");
+
+        String actual = allSettings.fetchANMIdentifier();
+        verify(preferences).getString("anmIdentifier", "ANM");
+
+        assertEquals("1234", actual);
+    }
+
+    @Test
     public void shouldSavePreviousFetchIndex() throws Exception {
         allSettings.savePreviousFetchIndex("1234");
 
