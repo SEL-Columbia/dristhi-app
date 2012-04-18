@@ -2,9 +2,7 @@ package org.ei.drishti.controller;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.adapter.AlertAdapter;
-import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.AlertAction;
-import org.ei.drishti.domain.Response;
+import org.ei.drishti.domain.*;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.service.DrishtiService;
@@ -17,9 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static junit.framework.Assert.assertEquals;
 import static org.ei.drishti.adapter.AlertFilterCriterion.All;
-import static org.ei.drishti.domain.Response.ResponseStatus.failure;
-import static org.ei.drishti.domain.Response.ResponseStatus.success;
+import static org.ei.drishti.domain.ResponseStatus.failure;
+import static org.ei.drishti.domain.ResponseStatus.success;
 import static org.ei.drishti.util.AlertActionBuilder.actionForCreate;
 import static org.ei.drishti.util.AlertActionBuilder.actionForDelete;
 import static org.mockito.Mockito.*;
@@ -48,7 +47,7 @@ public class AlertControllerTest {
     public void shouldFetchAlertActionsAndNotSaveAnythingIfThereIsNothingNewToSave() throws Exception {
         setupAlertActions(success, new ArrayList<AlertAction>());
 
-        alertController.fetchNewAlerts();
+        assertEquals(FetchStatus.nothingFetched, alertController.fetchNewAlerts());
 
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
@@ -60,7 +59,7 @@ public class AlertControllerTest {
     public void shouldNotSaveAnythingIfTheDrishtiResponseStatusIsFailure() throws Exception {
         setupAlertActions(failure, asList(actionForDelete("Case X", "ANC 1")));
 
-        alertController.fetchNewAlerts();
+        assertEquals(FetchStatus.nothingFetched, alertController.fetchNewAlerts());
 
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
@@ -72,7 +71,7 @@ public class AlertControllerTest {
     public void shouldFetchAlertActionsAndSaveThemToRepository() throws Exception {
         setupAlertActions(success, asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
 
-        alertController.fetchNewAlerts();
+        assertEquals(FetchStatus.fetched, alertController.fetchNewAlerts());
 
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
         verify(allAlerts).saveNewAlerts(asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
@@ -88,7 +87,7 @@ public class AlertControllerTest {
         alertController.refreshAlertsOnView(All.visitCodePrefix());
 
         verify(allAlerts).fetchAlerts(All.visitCodePrefix());
-        verify(adapter).refresh(alerts);
+        verify(adapter).updateAlerts(alerts);
         verifyNoMoreInteractions(drishtiService);
         verifyNoMoreInteractions(adapter);
     }
@@ -105,7 +104,7 @@ public class AlertControllerTest {
         verify(allSettings).savePreviousFetchIndex(indexOfLastMessage);
     }
 
-    private void setupAlertActions(Response.ResponseStatus status, List<AlertAction> list) {
+    private void setupAlertActions(ResponseStatus status, List<AlertAction> list) {
         when(allSettings.fetchPreviousFetchIndex()).thenReturn("1234");
         when(allSettings.fetchANMIdentifier()).thenReturn("ANM X");
         when(drishtiService.fetchNewAlertActions("ANM X", "1234")).thenReturn(new Response<List<AlertAction>>(status, list));

@@ -5,12 +5,14 @@ import android.widget.ProgressBar;
 import org.ei.drishti.R;
 import org.ei.drishti.activity.DrishtiMainActivity;
 import org.ei.drishti.controller.AlertController;
+import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.test.FakeDrishtiService;
 
 import java.util.Date;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import static org.ei.drishti.domain.FetchStatus.fetched;
 import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
@@ -51,7 +53,7 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
         }
 
         @Override
-        public void fetchNewAlerts() {
+        public FetchStatus fetchNewAlerts() {
             counter++;
             try {
                 Thread.sleep(2000);
@@ -59,6 +61,7 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
                 throw new RuntimeException(e);
             }
             signal.countDown();
+            return fetched;
         }
 
         @Override

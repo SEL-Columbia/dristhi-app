@@ -5,6 +5,7 @@ import org.apache.commons.io.IOUtils;
 import org.ei.drishti.agent.HTTPAgent;
 import org.ei.drishti.domain.AlertAction;
 import org.ei.drishti.domain.Response;
+import org.ei.drishti.domain.ResponseStatus;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,18 +38,18 @@ public class DrishtiServiceTest {
 
     @Test
     public void shouldFetchAlertActions() throws Exception {
-        when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(Response.ResponseStatus.success, IOUtils.toString(getClass().getResource("/alerts.json"))));
+        when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(ResponseStatus.success, IOUtils.toString(getClass().getResource("/alerts.json"))));
 
         Response<List<AlertAction>> alertActions = drishtiService.fetchNewAlertActions("anm1", "0");
 
         verify(httpAgent).fetch(EXPECTED_URL);
         assertEquals(asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "1333695798583"), actionForDelete("Case Y", "ANC 1", "1333695798644")), alertActions.payload());
-        assertEquals(Response.ResponseStatus.success, alertActions.status());
+        assertEquals(ResponseStatus.success, alertActions.status());
     }
 
     @Test
     public void shouldFetchNoAlertActionsWhenJsonIsForEmptyList() throws Exception {
-        when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(Response.ResponseStatus.success, "[]"));
+        when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(ResponseStatus.success, "[]"));
 
         Response<List<AlertAction>> alertActions = drishtiService.fetchNewAlertActions("anm1", "0");
 
@@ -57,18 +58,18 @@ public class DrishtiServiceTest {
 
     @Test
     public void shouldFetchNoAlertActionsWhenHTTPCallFails() throws Exception {
-        when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(Response.ResponseStatus.failure, null));
+        when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(ResponseStatus.failure, null));
 
         Response<List<AlertAction>> alertActions = drishtiService.fetchNewAlertActions("anm1", "0");
 
         assertTrue(alertActions.payload().isEmpty());
-        assertEquals(Response.ResponseStatus.failure, alertActions.status());
+        assertEquals(ResponseStatus.failure, alertActions.status());
     }
 
     @Test
     public void shouldURLEncodeTheANMIdentifierPartWhenItHasASpace() {
         String expectedURLWithSpaces = "http://base.drishti.url/alerts?anmIdentifier=ANM+WITH+SPACE&timeStamp=0";
-        when(httpAgent.fetch(expectedURLWithSpaces)).thenReturn(new Response<String>(Response.ResponseStatus.success, "[]"));
+        when(httpAgent.fetch(expectedURLWithSpaces)).thenReturn(new Response<String>(ResponseStatus.success, "[]"));
 
         drishtiService.fetchNewAlertActions("ANM WITH SPACE", "0");
 

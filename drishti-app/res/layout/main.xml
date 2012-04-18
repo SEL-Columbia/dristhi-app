@@ -16,24 +16,36 @@
         android:layout_height="wrap_content"
         android:background="#80ff0000" >
 
+        <EditText
+            android:id="@+id/searchEditText"
+            android:inputType="textNoSuggestions|textFilter|textVisiblePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:hint="Search"
+            android:layout_centerHorizontal="true"
+            android:ems="10" >
+
+            <requestFocus />
+        </EditText>
+
+        <ImageButton
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/searchEditText"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/searchEditText"
+            android:src="@android:drawable/ic_menu_search" />
+
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:visibility="invisible" />
-
-        <TextView
-            android:id="@+id/activityLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="Workplan"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="16pt"
-            android:typeface="serif" />
 
     </RelativeLayout>
 

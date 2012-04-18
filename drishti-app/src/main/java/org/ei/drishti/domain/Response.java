@@ -1,6 +1,6 @@
 package org.ei.drishti.domain;
 
-import static org.ei.drishti.domain.Response.ResponseStatus.failure;
+import static org.ei.drishti.domain.ResponseStatus.failure;
 
 public class Response<T> {
     private ResponseStatus status;
@@ -21,9 +21,5 @@ public class Response<T> {
 
     public boolean isFailure() {
         return status.equals(failure);
-    }
-
-    public static enum ResponseStatus {
-        failure, success
     }
 }

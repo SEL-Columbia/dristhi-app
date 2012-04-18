@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,6 +30,8 @@ import static org.ei.drishti.util.Log.logVerbose;
 public class DrishtiMainActivity extends Activity {
     private static DrishtiService drishtiService;
     private UpdateAlertsTask updateAlerts;
+    private AlertAdapter alertAdapter;
+    private ListView alertsList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,8 +40,23 @@ public class DrishtiMainActivity extends Activity {
         setContentView(R.layout.main);
 
         initSpinner();
-        final AlertAdapter alertAdapter = new AlertAdapter(this, R.layout.list_item, new ArrayList<Alert>());
-        ((ListView) findViewById(R.id.listView)).setAdapter(alertAdapter);
+        alertAdapter = new AlertAdapter(this, R.layout.list_item, new ArrayList<Alert>());
+        alertsList = (ListView) findViewById(R.id.listView);
+
+        EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            public void afterTextChanged(Editable text) {
+                alertAdapter.getFilter().filter(text);
+            }
+        });
+        alertsList.setAdapter(alertAdapter);
+        alertsList.setTextFilterEnabled(true);
 
         updateAlerts = new UpdateAlertsTask(setupController(alertAdapter), (ProgressBar) findViewById(R.id.progressBar));
         updateAlerts.updateDisplay();
