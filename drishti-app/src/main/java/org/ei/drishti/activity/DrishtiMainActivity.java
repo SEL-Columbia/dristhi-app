@@ -30,8 +30,6 @@ import static org.ei.drishti.util.Log.logVerbose;
 public class DrishtiMainActivity extends Activity {
     private static DrishtiService drishtiService;
     private UpdateAlertsTask updateAlerts;
-    private AlertAdapter alertAdapter;
-    private ListView alertsList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,51 +37,18 @@ public class DrishtiMainActivity extends Activity {
         logVerbose("Initializing ...");
         setContentView(R.layout.main);
 
-        initSpinner();
-        alertAdapter = new AlertAdapter(this, R.layout.list_item, new ArrayList<Alert>());
-        alertsList = (ListView) findViewById(R.id.listView);
+        final AlertAdapter alertAdapter = new AlertAdapter(this, R.layout.list_item, new ArrayList<Alert>());
+        updateAlerts = new UpdateAlertsTask(setupController(alertAdapter), (ProgressBar) findViewById(R.id.progressBar));
 
-        EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
-        searchEditText.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+        initSpinner(updateAlerts);
+        initSearchBox(alertAdapter);
 
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            public void afterTextChanged(Editable text) {
-                alertAdapter.getFilter().filter(text);
-            }
-        });
+        ListView alertsList = (ListView) findViewById(R.id.listView);
         alertsList.setAdapter(alertAdapter);
         alertsList.setTextFilterEnabled(true);
 
-        updateAlerts = new UpdateAlertsTask(setupController(alertAdapter), (ProgressBar) findViewById(R.id.progressBar));
         updateAlerts.updateDisplay();
         updateAlerts.updateFromServer();
-    }
-
-    private void initSpinner() {
-        Spinner filterSpinner = (Spinner) findViewById(R.id.filterSpinner);
-
-        ArrayAdapter<AlertFilterCriterion> criteriaAdapter = new ArrayAdapter<AlertFilterCriterion>(this, android.R.layout.simple_spinner_item, asList(All, BCG, HEP, OPV));
-        criteriaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        filterSpinner.setAdapter(criteriaAdapter);
-
-        filterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                AlertFilterCriterion criterion = (AlertFilterCriterion) parent.getItemAtPosition(position);
-                updateAlerts.changeAlertFilterCriterion(criterion.visitCodePrefix());
-                updateAlerts.updateDisplay();
-            }
-
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-    }
-
-    public static void setDrishtiService(DrishtiService value) {
-        drishtiService = value;
     }
 
     @Override
@@ -117,5 +82,43 @@ public class DrishtiMainActivity extends Activity {
             drishtiService = new DrishtiService(new HTTPAgent(), "http://drishti.modilabs.org");
         }
         return new AlertController(drishtiService, allSettings, allAlerts, alertAdapter);
+    }
+
+    public static void setDrishtiService(DrishtiService value) {
+        drishtiService = value;
+    }
+
+    private void initSearchBox(final AlertAdapter alertAdapter) {
+        EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            public void afterTextChanged(Editable text) {
+                alertAdapter.getFilter().filter(text);
+            }
+        });
+    }
+
+    private void initSpinner(final UpdateAlertsTask updateAlertsTask) {
+        Spinner filterSpinner = (Spinner) findViewById(R.id.filterSpinner);
+
+        ArrayAdapter<AlertFilterCriterion> criteriaAdapter = new ArrayAdapter<AlertFilterCriterion>(this, android.R.layout.simple_spinner_item, asList(All, BCG, HEP, OPV));
+        criteriaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        filterSpinner.setAdapter(criteriaAdapter);
+
+        filterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                AlertFilterCriterion criterion = (AlertFilterCriterion) parent.getItemAtPosition(position);
+                updateAlertsTask.changeAlertFilterCriterion(criterion.visitCodePrefix());
+                updateAlertsTask.updateDisplay();
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 }
