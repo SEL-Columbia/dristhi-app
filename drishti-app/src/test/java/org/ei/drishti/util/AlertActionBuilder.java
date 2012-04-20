@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AlertActionBuilder {
-    public static AlertAction actionForCreate(String caseID, String latenessStatus, String motherName, String visitCode, String thaayiCardNumber) {
-        return new AlertAction(caseID, "create", dataForCreateAction(latenessStatus, motherName, visitCode, thaayiCardNumber), "0");
+    public static AlertAction actionForCreate(String caseID, String latenessStatus, String beneficiaryName, String visitCode, String thaayiCardNumber) {
+        return new AlertAction(caseID, "create", dataForCreateAction(latenessStatus, beneficiaryName, visitCode, thaayiCardNumber), "0");
     }
 
-    public static AlertAction actionForCreate(String caseID, String latenessStatus, String motherName, String visitCode, String thaayiCardNumber, String index) {
-        return new AlertAction(caseID, "create", dataForCreateAction(latenessStatus, motherName, visitCode, thaayiCardNumber), index);
+    public static AlertAction actionForCreate(String caseID, String latenessStatus, String beneficiaryName, String visitCode, String thaayiCardNumber, String index) {
+        return new AlertAction(caseID, "create", dataForCreateAction(latenessStatus, beneficiaryName, visitCode, thaayiCardNumber), index);
     }
 
     public static AlertAction actionForDelete(String caseID, String visitCode) {
@@ -26,10 +26,10 @@ public class AlertActionBuilder {
         return new AlertAction(caseID, "deleteAll", new HashMap<String, String>(), "0");
     }
 
-    private static Map<String, String> dataForCreateAction(String lateness, String motherName, String visitCode, String thaayiCardNumber) {
+    private static Map<String, String> dataForCreateAction(String lateness, String beneficiaryName, String visitCode, String thaayiCardNumber) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("latenessStatus", lateness);
-        map.put("motherName", motherName);
+        map.put("beneficiaryName", beneficiaryName);
         map.put("visitCode", visitCode);
         map.put("thaayiCardNumber", thaayiCardNumber);
         return map;

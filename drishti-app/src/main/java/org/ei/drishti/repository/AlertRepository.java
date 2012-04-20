@@ -70,7 +70,7 @@ public class AlertRepository implements DrishtiRepository {
         values.put(ALERTS_CASEID_COLUMN, alertAction.caseID());
         values.put(ALERTS_THAAYI_CARD_COLUMN, alertAction.get("thaayiCardNumber"));
         values.put(ALERTS_VISIT_CODE_COLUMN, alertAction.get("visitCode"));
-        values.put(ALERTS_BENIFICIARY_NAME_COLUMN, alertAction.get("motherName"));
+        values.put(ALERTS_BENIFICIARY_NAME_COLUMN, alertAction.get("beneficiaryName"));
         values.put(ALERTS_PRIORITY_COLUMN, calculatePriority(existingAlerts, alertAction.get("latenessStatus")));
         values.put(ALERTS_DUEDATE_COLUMN, alertAction.get("dueDate"));
         return values;

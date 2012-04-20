@@ -27,10 +27,10 @@ public class FakeDrishtiService extends DrishtiService {
         return new Response<List<AlertAction>>(ResponseStatus.success, Arrays.asList(deleteXAction, deleteYAction, firstAction, secondAction));
     }
 
-    private Map<String, String> dataForCreateAction(String lateness, String motherName, String visitCode, String thaayiCardNumber, String dueDate) {
+    private Map<String, String> dataForCreateAction(String lateness, String beneficiaryName, String visitCode, String thaayiCardNumber, String dueDate) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("latenessStatus", lateness);
-        map.put("motherName", motherName);
+        map.put("beneficiaryName", beneficiaryName);
         map.put("visitCode", visitCode);
         map.put("thaayiCardNumber", thaayiCardNumber);
         map.put("dueDate", dueDate);

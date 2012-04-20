@@ -6,15 +6,15 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Alert {
     private String caseID;
-    private String motherName;
+    private String beneficiaryName;
     private String visitCode;
     private String thaayiCardNumber;
     private int priority;
     private String dueDate;
 
-    public Alert(String caseID, String motherName, String visitCode, String thaayiCardNumber, int priority, String dueDate) {
+    public Alert(String caseID, String beneficiaryName, String visitCode, String thaayiCardNumber, int priority, String dueDate) {
         this.caseID = caseID;
-        this.motherName = motherName;
+        this.beneficiaryName = beneficiaryName;
         this.visitCode = visitCode;
         this.thaayiCardNumber = thaayiCardNumber;
         this.priority = priority;
@@ -26,7 +26,7 @@ public class Alert {
     }
 
     public String beneficiaryName() {
-        return motherName;
+        return beneficiaryName;
     }
 
     public String thaayiCardNo() {

@@ -4,7 +4,7 @@
         "caseID": "Case X",
         "data": {
             "latenessStatus": "due",
-            "motherName": "Theresa",
+            "beneficiaryName": "Theresa",
             "visitCode": "ANC 1",
             "thaayiCardNumber": "Thaayi 1"
         },
