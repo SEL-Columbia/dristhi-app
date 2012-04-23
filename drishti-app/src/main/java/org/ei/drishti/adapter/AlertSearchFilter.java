@@ -28,7 +28,7 @@ class AlertSearchFilter extends Filter {
         ArrayList<Alert> filteredItems = new ArrayList<Alert>();
 
         for (Alert listItem : alerts) {
-            if (listItem.beneficiaryName().toLowerCase().contains(textForFilter))
+            if (listItem.beneficiaryName().toLowerCase().contains(textForFilter) || listItem.thaayiCardNo().toLowerCase().contains(textForFilter))
                 filteredItems.add(listItem);
         }
 
