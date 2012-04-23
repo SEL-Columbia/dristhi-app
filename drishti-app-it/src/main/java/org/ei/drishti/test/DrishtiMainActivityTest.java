@@ -18,7 +18,7 @@ public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<Dr
 
     public DrishtiMainActivityTest() {
         super(DrishtiMainActivity.class);
-        drishtiService = new FakeDrishtiService();
+        drishtiService = new FakeDrishtiService("Default");
     }
 
     public void testShouldLoadOnStartup() throws Throwable {

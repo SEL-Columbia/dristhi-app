@@ -21,7 +21,7 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
 
     public UpdateAlertsTaskIntegrationTest() {
         super(DrishtiMainActivity.class);
-        drishtiService = new FakeDrishtiService();
+        drishtiService = new FakeDrishtiService("Default");
         drishtiService.setSuffix(String.valueOf(new Date().getTime()));
         DrishtiMainActivity.setDrishtiService(drishtiService);
         signal = new CountDownLatch(1);
