@@ -14,15 +14,22 @@ public class Wait {
     private static boolean waitForProgressBarVisibilityToBe(DrishtiMainActivity activity, int numberOfMillisecondsToWait, int expectedVisibility) {
         for (int i = 0; i < numberOfMillisecondsToWait / 100; i++) {
             if (activity.findViewById(R.id.progressBar).getVisibility() == expectedVisibility) {
+                sleep(200);
                 return true;
             }
 
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            sleep(100);
         }
+
+        sleep(200);
         return false;
+    }
+
+    private static void sleep(int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

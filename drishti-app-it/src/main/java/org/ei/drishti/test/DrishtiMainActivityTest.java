@@ -2,70 +2,70 @@ package org.ei.drishti.test;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ListView;
-import org.ei.drishti.R;
+import com.jayway.android.robotium.solo.Solo;
 import org.ei.drishti.activity.DrishtiMainActivity;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.service.DrishtiService;
 
 import java.util.Date;
 
-import static android.view.KeyEvent.KEYCODE_MENU;
 import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
 
-    private final FakeDrishtiService drishtiService;
+    private FakeDrishtiService drishtiService;
+    private Solo solo;
+    private String defaultSuffix;
 
     public DrishtiMainActivityTest() {
         super(DrishtiMainActivity.class);
-        drishtiService = new FakeDrishtiService("Default");
+    }
+
+    @Override
+    public void setUp() throws Exception {
+        defaultSuffix = String.valueOf(new Date().getTime() - 1);
+        drishtiService = new FakeDrishtiService(defaultSuffix);
+        DrishtiMainActivity.setDrishtiService(drishtiService);
+
+        solo = new Solo(getInstrumentation(), getActivity());
+        waitForProgressBarToGoAway(getActivity(), 2000);
     }
 
     public void testShouldLoadOnStartup() throws Throwable {
-        final String suffix = String.valueOf(new Date().getTime());
-        DrishtiMainActivity.setDrishtiService(fakeDrishtiService(suffix));
+        ListView listView = solo.getCurrentListViews().get(0);
 
-        final DrishtiMainActivity activity = getActivity();
-
-        waitForProgressBarToGoAway(getActivity(), 2000);
-
-        ListView listView = (ListView) activity.findViewById(R.id.listView);
         assertEquals(2, listView.getCount());
-
-        Alert firstAlert = ((Alert) listView.getItemAtPosition(0));
-        Alert secondAlert = ((Alert) listView.getItemAtPosition(1));
-
-        assertEquals("Theresa 1 " + suffix, firstAlert.beneficiaryName());
-        assertEquals("Theresa 2 " + suffix, secondAlert.beneficiaryName());
+        assertBeneficiaryName(0, "Theresa 1 " + defaultSuffix);
+        assertBeneficiaryName(1, "Theresa 2 " + defaultSuffix);
     }
 
     public void testShouldUpdateWhenUpdateButtonInMenuIsPressed() throws Throwable {
-        final String suffixForLoadingDuringStartup = String.valueOf(new Date().getTime() - 1);
-        DrishtiMainActivity.setDrishtiService(fakeDrishtiService(suffixForLoadingDuringStartup));
-        final DrishtiMainActivity activity = getActivity();
-
-        waitForProgressBarToGoAway(getActivity(), 2000);
-
         final String suffixForLoadingThroughMenuButton = String.valueOf(new Date().getTime());
-        DrishtiMainActivity.setDrishtiService(fakeDrishtiService(suffixForLoadingThroughMenuButton));
-        getInstrumentation().sendKeyDownUpSync(KEYCODE_MENU);
-        getInstrumentation().invokeMenuActionSync(activity, R.id.updateMenuItem, 0);
+        setupSuffix(suffixForLoadingThroughMenuButton);
 
+        solo.sendKey(Solo.MENU);
+        solo.clickOnText("Update");
         waitForProgressBarToGoAway(getActivity(), 2000);
 
-        ListView listView = (ListView) activity.findViewById(R.id.listView);
+        ListView listView = solo.getCurrentListViews().get(0);
+
         assertEquals(2, listView.getCount());
-
-        Alert firstAlert = ((Alert) listView.getItemAtPosition(0));
-        Alert secondAlert = ((Alert) listView.getItemAtPosition(1));
-
-        assertEquals("Theresa 1 " + suffixForLoadingThroughMenuButton, firstAlert.beneficiaryName());
-        assertEquals("Theresa 2 " + suffixForLoadingThroughMenuButton, secondAlert.beneficiaryName());
+        assertBeneficiaryName(0, "Theresa 1 " + suffixForLoadingThroughMenuButton);
+        assertBeneficiaryName(1, "Theresa 2 " + suffixForLoadingThroughMenuButton);
     }
 
-    private DrishtiService fakeDrishtiService(String suffix) {
+    private DrishtiService setupSuffix(String suffix) {
         drishtiService.setSuffix(suffix);
         return drishtiService;
     }
 
+    private void assertBeneficiaryName(int position, String expected) {
+        Alert firstAlert = ((Alert) solo.getCurrentListViews().get(0).getItemAtPosition(position));
+        assertEquals(expected, firstAlert.beneficiaryName());
+    }
+
+    @Override
+    public void tearDown() throws Exception {
+        solo.finishOpenedActivities();
+    }
 }
