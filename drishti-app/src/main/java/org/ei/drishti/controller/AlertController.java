@@ -39,4 +39,9 @@ public class AlertController {
     public void refreshAlertsOnView(String visitCodePrefix) {
         adapter.updateAlerts(allAlerts.fetchAlerts(visitCodePrefix));
     }
+
+    public void changeUser() {
+        allSettings.savePreviousFetchIndex("0");
+        allAlerts.deleteAllAlerts();
+    }
 }

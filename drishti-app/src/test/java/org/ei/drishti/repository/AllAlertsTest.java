@@ -45,6 +45,17 @@ public class AllAlertsTest {
     }
 
     @Test
+    public void shouldDeleteAllAlerts() throws Exception {
+        AlertAction firstAction = actionForCreate("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1");
+        AlertAction secondAction = actionForCreate("Case Y", "late", "Theresa 2", "ANC 2", "Thaayi 2");
+
+        allAlerts.saveNewAlerts(Arrays.asList(firstAction, secondAction));
+        allAlerts.deleteAllAlerts();
+
+        verify(alertRepository).deleteAllAlerts();
+    }
+
+    @Test
     public void shouldDeleteFromRepositoryForDeleteActions() throws Exception {
         AlertAction firstAction = actionForDelete("Case X", "ANC 1");
         AlertAction secondAction = actionForDelete("Case Y", "ANC 2");

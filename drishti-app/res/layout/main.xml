@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="right"
-    android:orientation="vertical" >
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:gravity="right"
+              android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#80ff0000" >
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#80ff0000"
+            android:focusableInTouchMode="true">
 
         <EditText
-            android:id="@+id/searchEditText"
-            android:inputType="textNoSuggestions|textFilter|textVisiblePassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:hint="Search"
-            android:layout_centerHorizontal="true"
-            android:ems="10" >
-
-            <requestFocus />
+                android:id="@+id/searchEditText"
+                android:inputType="textNoSuggestions|textFilter|textVisiblePassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:hint="Search"
+                android:layout_centerHorizontal="true"
+                android:ems="10">
         </EditText>
 
         <ImageButton
-            android:id="@+id/searchButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/searchEditText"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/searchEditText"
-            android:src="@android:drawable/ic_menu_search" />
+                android:id="@+id/searchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/searchEditText"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/searchEditText"
+                android:src="@android:drawable/ic_menu_search">
+        </ImageButton>
 
         <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:visibility="invisible" />
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:visibility="invisible"/>
 
     </RelativeLayout>
 
     <Spinner
-        android:id="@+id/filterSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            android:id="@+id/filterSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
     </ListView>
 

@@ -2,6 +2,7 @@ package org.ei.drishti.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
@@ -30,6 +31,8 @@ import static org.ei.drishti.util.Log.logVerbose;
 public class DrishtiMainActivity extends Activity {
     private static DrishtiService drishtiService;
     private UpdateAlertsTask updateAlerts;
+    private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
+    private AlertController controller;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,8 +40,10 @@ public class DrishtiMainActivity extends Activity {
         logVerbose("Initializing ...");
         setContentView(R.layout.main);
 
+
         final AlertAdapter alertAdapter = new AlertAdapter(this, R.layout.list_item, new ArrayList<Alert>());
-        updateAlerts = new UpdateAlertsTask(setupController(alertAdapter), (ProgressBar) findViewById(R.id.progressBar));
+        controller = setupController(alertAdapter);
+        updateAlerts = new UpdateAlertsTask(controller, (ProgressBar) findViewById(R.id.progressBar));
 
         initSpinner(updateAlerts);
         initSearchBox(alertAdapter);
@@ -47,6 +52,18 @@ public class DrishtiMainActivity extends Activity {
         alertsList.setAdapter(alertAdapter);
         alertsList.setTextFilterEnabled(true);
 
+        preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                controller.changeUser();
+                Toast.makeText(getApplicationContext(), "Changes saved.", Toast.LENGTH_LONG).show();
+            }
+        };
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(preferenceChangeListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         updateAlerts.updateDisplay();
         updateAlerts.updateFromServer();
     }

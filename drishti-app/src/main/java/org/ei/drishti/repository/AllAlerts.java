@@ -30,4 +30,8 @@ public class AllAlerts {
             }
         }
     }
+
+    public void deleteAllAlerts() {
+        repository.deleteAllAlerts();
+    }
 }

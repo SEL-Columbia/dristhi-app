@@ -104,6 +104,13 @@ public class AlertControllerTest {
         verify(allSettings).savePreviousFetchIndex(indexOfLastMessage);
     }
 
+    @Test
+    public void shouldDeleteAllAlertsAndPreviousFetchIndexWhenUserChanged() throws Exception {
+        alertController.changeUser();
+        verify(allAlerts).deleteAllAlerts();
+        verify(allSettings).savePreviousFetchIndex("0");
+    }
+
     private void setupAlertActions(ResponseStatus status, List<AlertAction> list) {
         when(allSettings.fetchPreviousFetchIndex()).thenReturn("1234");
         when(allSettings.fetchANMIdentifier()).thenReturn("ANM X");

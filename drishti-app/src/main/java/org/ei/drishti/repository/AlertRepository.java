@@ -89,4 +89,9 @@ public class AlertRepository implements DrishtiRepository {
     public void updateMasterRepository(Repository repository) {
         this.masterRepository = repository;
     }
+
+    public void deleteAllAlerts() {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        database.delete(ALERTS_TABLE_NAME, null,null);
+    }
 }

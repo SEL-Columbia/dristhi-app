@@ -5,6 +5,7 @@ import android.test.RenamingDelegatingContext;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.AlertAction;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,6 +77,12 @@ public class AlertRepositoryTest extends AndroidTestCase {
         alertRepository.deleteAll(new AlertAction("Case X", "deleteAll", null, "0"));
 
         assertEquals(asList(new Alert("Case Y", "SomeOtherWoman", "ANC 2", "Thaayi 2", 1, "2012-01-01")), alertRepository.alertsFor(All.visitCodePrefix()));
+    }
+
+    public void testShouldDeleteAllAlerts() throws Exception {
+        alertRepository.update(new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1", "2012-01-01"), "0"));
+        alertRepository.deleteAllAlerts();
+        assertEquals(new ArrayList<Alert>(), alertRepository.alertsFor(All.visitCodePrefix()));
     }
 
     private Map<String, String> dataForDeleteAction(String visitCode) {
