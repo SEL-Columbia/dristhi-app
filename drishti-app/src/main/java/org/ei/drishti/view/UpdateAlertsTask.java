@@ -51,10 +51,10 @@ public class UpdateAlertsTask {
 
             @Override
             protected void onPostExecute(FetchStatus result) {
-                progressBar.setVisibility(INVISIBLE);
                 if (fetched.equals(result)) {
                     updateDisplay();
                 }
+                progressBar.setVisibility(INVISIBLE);
             }
         }.execute(null);
     }

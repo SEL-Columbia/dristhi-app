@@ -37,8 +37,8 @@ public class UpdateAlertsTaskTest {
         InOrder inOrder = inOrder(alertController, progressBar);
         inOrder.verify(progressBar).setVisibility(View.VISIBLE);
         inOrder.verify(alertController).fetchNewAlerts();
-        inOrder.verify(progressBar).setVisibility(View.INVISIBLE);
         inOrder.verify(alertController).refreshAlertsOnView(All.visitCodePrefix());
+        inOrder.verify(progressBar).setVisibility(View.INVISIBLE);
     }
 
 
