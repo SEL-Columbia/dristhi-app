@@ -23,7 +23,7 @@ public class UpdateAlertsTask {
     }
 
     public void updateDisplay() {
-        alertController.refreshAlertsOnView();
+        alertController.refreshAlertsFromDB();
     }
 
     public void updateFromServer() {

@@ -65,7 +65,7 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
         }
 
         @Override
-        public void refreshAlertsOnView() {
+        public void refreshAlertsFromDB() {
         }
 
         public int numberOfTimesFetchWasCalled() {

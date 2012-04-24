@@ -83,7 +83,7 @@ public class AlertControllerTest {
         List<Alert> alerts = asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
         when(allAlerts.fetchAlerts()).thenReturn(alerts);
 
-        alertController.refreshAlertsOnView();
+        alertController.refreshAlertsFromDB();
 
         verify(allAlerts).fetchAlerts();
         verify(adapter).updateAlerts(alerts);

@@ -36,7 +36,7 @@ public class AlertController {
         return FetchStatus.fetched;
     }
 
-    public void refreshAlertsOnView() {
+    public void refreshAlertsFromDB() {
         adapter.updateAlerts(allAlerts.fetchAlerts());
     }
 

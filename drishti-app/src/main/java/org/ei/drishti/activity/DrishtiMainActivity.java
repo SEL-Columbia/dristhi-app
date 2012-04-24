@@ -15,6 +15,8 @@ import org.ei.drishti.adapter.AlertFilterCriterion;
 import org.ei.drishti.agent.HTTPAgent;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
+import org.ei.drishti.matcher.MatchByBeneficiaryOrThaayiCard;
+import org.ei.drishti.matcher.MatchByVisitCode;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.util.AlertFilter;
@@ -38,14 +40,13 @@ public class DrishtiMainActivity extends Activity {
         logVerbose("Initializing ...");
         setContentView(R.layout.main);
 
-
         final AlertAdapter alertAdapter = new AlertAdapter(this, R.layout.list_item, new ArrayList<Alert>());
         controller = setupController(alertAdapter);
         updateAlerts = new UpdateAlertsTask(controller, (ProgressBar) findViewById(R.id.progressBar));
 
         filter = new AlertFilter(alertAdapter);
-        filter.addSpinner(initSpinner());
-        filter.addTextFilter((EditText) findViewById(R.id.searchEditText));
+        filter.addFilter(new MatchByVisitCode(initSpinner()));
+        filter.addFilter(new MatchByBeneficiaryOrThaayiCard((EditText) findViewById(R.id.searchEditText)));
 
         ListView alertsList = (ListView) findViewById(R.id.listView);
         alertsList.setAdapter(alertAdapter);

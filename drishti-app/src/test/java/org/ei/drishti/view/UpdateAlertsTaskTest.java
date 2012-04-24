@@ -36,7 +36,7 @@ public class UpdateAlertsTaskTest {
         InOrder inOrder = inOrder(alertController, progressBar);
         inOrder.verify(progressBar).setVisibility(View.VISIBLE);
         inOrder.verify(alertController).fetchNewAlerts();
-        inOrder.verify(alertController).refreshAlertsOnView();
+        inOrder.verify(alertController).refreshAlertsFromDB();
         inOrder.verify(progressBar).setVisibility(View.INVISIBLE);
     }
 
@@ -48,6 +48,6 @@ public class UpdateAlertsTaskTest {
 
         updateAlertsTask.updateFromServer();
 
-        verify(alertController, times(0)).refreshAlertsOnView();
+        verify(alertController, times(0)).refreshAlertsFromDB();
     }
 }

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.Alert;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,19 +18,25 @@ import static org.ei.drishti.util.DateUtil.formattedDueDate;
 public class AlertAdapter extends ArrayAdapter<Alert> {
     private List<Alert> alerts;
     private List<Alert> alertsUnfiltered;
-    private OnDataSourceChangedListener onDataSourceChangedListener;
+    private List<WeakReference<OnDataSourceChangedListener>> onDataSourceChangedListeners;
 
     public AlertAdapter(Context context, int listItemResourceId, List<Alert> alerts) {
         super(context, listItemResourceId, alerts);
         this.alerts = alerts;
         this.alertsUnfiltered = new ArrayList<Alert>(alerts);
+        this.onDataSourceChangedListeners = new ArrayList<WeakReference<OnDataSourceChangedListener>>();
     }
 
     public void updateAlerts(List<Alert> alerts) {
         this.alertsUnfiltered.clear();
         this.alertsUnfiltered.addAll(alerts);
 
-        onDataSourceChangedListener.dataSourceChanged();
+        for (WeakReference<OnDataSourceChangedListener> dataSourceChangedListener : onDataSourceChangedListeners) {
+            OnDataSourceChangedListener listener = dataSourceChangedListener.get();
+            if (listener != null) {
+                listener.dataSourceChanged();
+            }
+        }
     }
 
     public void refreshDisplayWithoutUpdatingAlerts(List<Alert> newAlertsToDisplay) {
@@ -65,7 +72,7 @@ public class AlertAdapter extends ArrayAdapter<Alert> {
     }
 
     public void setOnDataSourceChanged(OnDataSourceChangedListener onDataSourceChangedListener) {
-        this.onDataSourceChangedListener = onDataSourceChangedListener;
+        this.onDataSourceChangedListeners.add(new WeakReference<OnDataSourceChangedListener>(onDataSourceChangedListener));
     }
 
     public static interface OnDataSourceChangedListener {
