@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Filter;
 import android.widget.TextView;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.Alert;
@@ -18,21 +17,19 @@ import static org.ei.drishti.util.DateUtil.formattedDueDate;
 public class AlertAdapter extends ArrayAdapter<Alert> {
     private List<Alert> alerts;
     private List<Alert> alertsUnfiltered;
-    private AlertSearchFilter filter;
+    private OnDataSourceChangedListener onDataSourceChangedListener;
 
     public AlertAdapter(Context context, int listItemResourceId, List<Alert> alerts) {
         super(context, listItemResourceId, alerts);
         this.alerts = alerts;
-
         this.alertsUnfiltered = new ArrayList<Alert>(alerts);
-        filter = new AlertSearchFilter(this, alertsUnfiltered);
     }
 
     public void updateAlerts(List<Alert> alerts) {
         this.alertsUnfiltered.clear();
         this.alertsUnfiltered.addAll(alerts);
 
-        refreshDisplayWithoutUpdatingAlerts(this.alertsUnfiltered);
+        onDataSourceChangedListener.dataSourceChanged();
     }
 
     public void refreshDisplayWithoutUpdatingAlerts(List<Alert> newAlertsToDisplay) {
@@ -63,8 +60,15 @@ public class AlertAdapter extends ArrayAdapter<Alert> {
         beneficiaryName.setText(text);
     }
 
-    @Override
-    public Filter getFilter() {
-        return filter;
+    public List<Alert> getAlerts() {
+        return alertsUnfiltered;
+    }
+
+    public void setOnDataSourceChanged(OnDataSourceChangedListener onDataSourceChangedListener) {
+        this.onDataSourceChangedListener = onDataSourceChangedListener;
+    }
+
+    public static interface OnDataSourceChangedListener {
+        void dataSourceChanged();
     }
 }

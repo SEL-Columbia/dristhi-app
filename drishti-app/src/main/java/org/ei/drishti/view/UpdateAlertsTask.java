@@ -2,7 +2,6 @@ package org.ei.drishti.view;
 
 import android.os.AsyncTask;
 import android.widget.ProgressBar;
-import org.ei.drishti.adapter.AlertFilterCriterion;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.FetchStatus;
 
@@ -17,7 +16,6 @@ public class UpdateAlertsTask {
     private AlertController alertController;
     private ProgressBar progressBar;
     private static final ReentrantLock lock = new ReentrantLock();
-    private String visitCodePrefix = AlertFilterCriterion.All.visitCodePrefix();
 
     public UpdateAlertsTask(AlertController alertController, ProgressBar progressBar) {
         this.alertController = alertController;
@@ -25,7 +23,7 @@ public class UpdateAlertsTask {
     }
 
     public void updateDisplay() {
-        alertController.refreshAlertsOnView(visitCodePrefix);
+        alertController.refreshAlertsOnView();
     }
 
     public void updateFromServer() {
@@ -57,9 +55,5 @@ public class UpdateAlertsTask {
                 progressBar.setVisibility(INVISIBLE);
             }
         }.execute(null);
-    }
-
-    public void changeAlertFilterCriterion(String visitCodePrefix) {
-        this.visitCodePrefix = visitCodePrefix;
     }
 }

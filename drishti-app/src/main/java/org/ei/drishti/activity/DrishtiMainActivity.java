@@ -5,12 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.*;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.AlertAdapter;
@@ -32,6 +29,7 @@ public class DrishtiMainActivity extends Activity {
     private UpdateAlertsTask updateAlerts;
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
     private AlertController controller;
+    private DrishtiFilter filter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,8 +42,9 @@ public class DrishtiMainActivity extends Activity {
         controller = setupController(alertAdapter);
         updateAlerts = new UpdateAlertsTask(controller, (ProgressBar) findViewById(R.id.progressBar));
 
-        initSpinner(updateAlerts);
-        initSearchBox(alertAdapter);
+        filter = new DrishtiFilter(alertAdapter);
+        filter.addSpinner(initSpinner());
+        filter.addTextFilter((EditText) findViewById(R.id.searchEditText));
 
         ListView alertsList = (ListView) findViewById(R.id.listView);
         alertsList.setAdapter(alertAdapter);
@@ -104,37 +103,14 @@ public class DrishtiMainActivity extends Activity {
         drishtiService = value;
     }
 
-    private void initSearchBox(final AlertAdapter alertAdapter) {
-        EditText searchEditText = (EditText) findViewById(R.id.searchEditText);
-        searchEditText.addTextChangedListener(new TextWatcher() {
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            public void afterTextChanged(Editable text) {
-                alertAdapter.getFilter().filter(text);
-            }
-        });
-    }
-
-    private void initSpinner(final UpdateAlertsTask updateAlertsTask) {
+    private Spinner initSpinner() {
         Spinner filterSpinner = (Spinner) findViewById(R.id.filterSpinner);
 
         ArrayAdapter<AlertFilterCriterion> criteriaAdapter = new ArrayAdapter<AlertFilterCriterion>(this, android.R.layout.simple_spinner_item, valuesInOrder());
         criteriaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         filterSpinner.setAdapter(criteriaAdapter);
 
-        filterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                AlertFilterCriterion criterion = (AlertFilterCriterion) parent.getItemAtPosition(position);
-                updateAlertsTask.changeAlertFilterCriterion(criterion.visitCodePrefix());
-                updateAlertsTask.updateDisplay();
-            }
+        return filterSpinner;
 
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
     }
 }

@@ -11,7 +11,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 
-import static org.ei.drishti.adapter.AlertFilterCriterion.All;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -37,7 +36,7 @@ public class UpdateAlertsTaskTest {
         InOrder inOrder = inOrder(alertController, progressBar);
         inOrder.verify(progressBar).setVisibility(View.VISIBLE);
         inOrder.verify(alertController).fetchNewAlerts();
-        inOrder.verify(alertController).refreshAlertsOnView(All.visitCodePrefix());
+        inOrder.verify(alertController).refreshAlertsOnView();
         inOrder.verify(progressBar).setVisibility(View.INVISIBLE);
     }
 
@@ -49,6 +48,6 @@ public class UpdateAlertsTaskTest {
 
         updateAlertsTask.updateFromServer();
 
-        verify(alertController, times(0)).refreshAlertsOnView(any(String.class));
+        verify(alertController, times(0)).refreshAlertsOnView();
     }
 }

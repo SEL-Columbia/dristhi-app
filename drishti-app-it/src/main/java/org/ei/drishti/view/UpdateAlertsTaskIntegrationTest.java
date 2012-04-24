@@ -65,7 +65,7 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
         }
 
         @Override
-        public void refreshAlertsOnView(String visitCodePrefix) {
+        public void refreshAlertsOnView() {
         }
 
         public int numberOfTimesFetchWasCalled() {

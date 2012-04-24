@@ -84,7 +84,7 @@ public class AlertControllerTest {
         List<Alert> alerts = asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
         when(allAlerts.fetchAlerts(All.visitCodePrefix())).thenReturn(alerts);
 
-        alertController.refreshAlertsOnView(All.visitCodePrefix());
+        alertController.refreshAlertsOnView();
 
         verify(allAlerts).fetchAlerts(All.visitCodePrefix());
         verify(adapter).updateAlerts(alerts);
