@@ -16,7 +16,6 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
-import static org.ei.drishti.adapter.AlertFilterCriterion.All;
 import static org.ei.drishti.domain.ResponseStatus.failure;
 import static org.ei.drishti.domain.ResponseStatus.success;
 import static org.ei.drishti.util.AlertActionBuilder.actionForCreate;
@@ -82,11 +81,11 @@ public class AlertControllerTest {
         setupAlertActions(success, asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
 
         List<Alert> alerts = asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
-        when(allAlerts.fetchAlerts(All.visitCodePrefix())).thenReturn(alerts);
+        when(allAlerts.fetchAlerts()).thenReturn(alerts);
 
         alertController.refreshAlertsOnView();
 
-        verify(allAlerts).fetchAlerts(All.visitCodePrefix());
+        verify(allAlerts).fetchAlerts();
         verify(adapter).updateAlerts(alerts);
         verifyNoMoreInteractions(drishtiService);
         verifyNoMoreInteractions(adapter);
@@ -97,7 +96,7 @@ public class AlertControllerTest {
         String indexOfLastMessage = "12345";
         setupAlertActions(success, asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "11111"), actionForCreate("Case Y", "due", "Theresa", "ANC 2", "Thaayi 2", indexOfLastMessage)));
 
-        when(allAlerts.fetchAlerts(All.visitCodePrefix())).thenReturn(asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1, "2012-01-01"), new Alert("Case Y", "Theresa", "ANC 2", "Thaayi 2", 1, "2012-01-01")));
+        when(allAlerts.fetchAlerts()).thenReturn(asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1, "2012-01-01"), new Alert("Case Y", "Theresa", "ANC 2", "Thaayi 2", 1, "2012-01-01")));
 
         alertController.fetchNewAlerts();
 

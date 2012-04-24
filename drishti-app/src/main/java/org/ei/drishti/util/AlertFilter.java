@@ -1,4 +1,4 @@
-package org.ei.drishti.activity;
+package org.ei.drishti.util;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,12 +13,12 @@ import org.ei.drishti.domain.Alert;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DrishtiFilter {
+public class AlertFilter {
     private AlertAdapter alertAdapter;
     private String currentVisitCodePrefix = AlertFilterCriterion.All.visitCodePrefix();
     private String currentText = "";
 
-    public DrishtiFilter(AlertAdapter alertAdapter) {
+    public AlertFilter(AlertAdapter alertAdapter) {
         this.alertAdapter = alertAdapter;
 
         alertAdapter.setOnDataSourceChanged(new AlertAdapter.OnDataSourceChangedListener(){

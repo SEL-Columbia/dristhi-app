@@ -17,6 +17,7 @@ import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.DrishtiService;
+import org.ei.drishti.util.AlertFilter;
 import org.ei.drishti.view.UpdateAlertsTask;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class DrishtiMainActivity extends Activity {
     private UpdateAlertsTask updateAlerts;
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
     private AlertController controller;
-    private DrishtiFilter filter;
+    private AlertFilter filter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class DrishtiMainActivity extends Activity {
         controller = setupController(alertAdapter);
         updateAlerts = new UpdateAlertsTask(controller, (ProgressBar) findViewById(R.id.progressBar));
 
-        filter = new DrishtiFilter(alertAdapter);
+        filter = new AlertFilter(alertAdapter);
         filter.addSpinner(initSpinner());
         filter.addTextFilter((EditText) findViewById(R.id.searchEditText));
 

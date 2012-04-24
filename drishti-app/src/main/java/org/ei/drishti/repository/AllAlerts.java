@@ -13,8 +13,8 @@ public class AllAlerts {
         this.repository = repository;
     }
 
-    public List<Alert> fetchAlerts(String visitCodePrefix) {
-        return repository.alertsFor(visitCodePrefix);
+    public List<Alert> fetchAlerts() {
+        return repository.allAlerts();
     }
 
     public void saveNewAlerts(List<AlertAction> alertActions) {

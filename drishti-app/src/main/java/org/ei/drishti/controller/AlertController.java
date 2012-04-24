@@ -1,7 +1,6 @@
 package org.ei.drishti.controller;
 
 import org.ei.drishti.adapter.AlertAdapter;
-import org.ei.drishti.adapter.AlertFilterCriterion;
 import org.ei.drishti.domain.AlertAction;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.Response;
@@ -38,7 +37,7 @@ public class AlertController {
     }
 
     public void refreshAlertsOnView() {
-        adapter.updateAlerts(allAlerts.fetchAlerts(AlertFilterCriterion.All.visitCodePrefix()));
+        adapter.updateAlerts(allAlerts.fetchAlerts());
     }
 
     public void changeUser() {
