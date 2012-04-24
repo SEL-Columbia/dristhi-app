@@ -29,7 +29,7 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<Drish
 
     public void testShouldFetchAlertsForNewANMWHenANMIsChanged() throws Exception {
         String suffix = String.valueOf(new Date().getTime());
-        String newUser = "duck" + suffix;
+        String newUser = "NEW ANM" + suffix;
         drishtiService.expect(newUser, "0", suffix);
 
         solo.sendKey(Solo.MENU);

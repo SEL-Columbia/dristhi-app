@@ -62,6 +62,31 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
     }
 
+    public void testShouldFilterListBasedOnDropDownValue() throws Exception {
+        solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
+
+        solo.pressSpinnerItem(0, 1);
+        waitForFilteringToFinish();
+        solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix);
+
+        solo.pressSpinnerItem(0, 3);
+        waitForFilteringToFinish();
+        solo.assertBeneficiaryNames("Theresa 2 " + defaultSuffix);
+    }
+
+    public void testShouldFilterListBasedOnBothDropDownValueAndTextFilter() throws Exception {
+        solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
+
+        solo.pressSpinnerItem(0, 1);
+        solo.enterText(0, "Thaayi 2");
+        waitForFilteringToFinish();
+        solo.assertEmptyList();
+
+        solo.pressSpinnerItem(0, 3);
+        waitForFilteringToFinish();
+        solo.assertBeneficiaryNames("Theresa 2 " + defaultSuffix);
+    }
+
     @Override
     public void tearDown() throws Exception {
         solo.finishOpenedActivities();

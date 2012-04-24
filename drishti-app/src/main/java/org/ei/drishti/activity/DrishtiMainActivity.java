@@ -24,8 +24,7 @@ import org.ei.drishti.view.UpdateAlertsTask;
 
 import java.util.ArrayList;
 
-import static java.util.Arrays.asList;
-import static org.ei.drishti.adapter.AlertFilterCriterion.*;
+import static org.ei.drishti.adapter.AlertFilterCriterion.valuesInOrder;
 import static org.ei.drishti.util.Log.logVerbose;
 
 public class DrishtiMainActivity extends Activity {
@@ -123,7 +122,7 @@ public class DrishtiMainActivity extends Activity {
     private void initSpinner(final UpdateAlertsTask updateAlertsTask) {
         Spinner filterSpinner = (Spinner) findViewById(R.id.filterSpinner);
 
-        ArrayAdapter<AlertFilterCriterion> criteriaAdapter = new ArrayAdapter<AlertFilterCriterion>(this, android.R.layout.simple_spinner_item, asList(All, BCG, HEP, OPV));
+        ArrayAdapter<AlertFilterCriterion> criteriaAdapter = new ArrayAdapter<AlertFilterCriterion>(this, android.R.layout.simple_spinner_item, valuesInOrder());
         criteriaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         filterSpinner.setAdapter(criteriaAdapter);
 
