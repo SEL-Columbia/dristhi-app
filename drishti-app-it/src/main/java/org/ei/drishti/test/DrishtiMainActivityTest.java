@@ -1,11 +1,11 @@
 package org.ei.drishti.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.ListView;
 import com.jayway.android.robotium.solo.Solo;
 import org.ei.drishti.activity.DrishtiMainActivity;
-import org.ei.drishti.domain.Alert;
 import org.ei.drishti.service.DrishtiService;
+import org.ei.drishti.util.DrishtiSolo;
+import org.ei.drishti.util.FakeDrishtiService;
 
 import java.util.Date;
 
@@ -14,7 +14,7 @@ import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
 
     private FakeDrishtiService drishtiService;
-    private Solo solo;
+    private DrishtiSolo solo;
     private String defaultSuffix;
 
     public DrishtiMainActivityTest() {
@@ -27,16 +27,12 @@ public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<Dr
         drishtiService = new FakeDrishtiService(defaultSuffix);
         DrishtiMainActivity.setDrishtiService(drishtiService);
 
-        solo = new Solo(getInstrumentation(), getActivity());
+        solo = new DrishtiSolo(getInstrumentation(), getActivity());
         waitForProgressBarToGoAway(getActivity(), 2000);
     }
 
     public void testShouldLoadOnStartup() throws Throwable {
-        ListView listView = solo.getCurrentListViews().get(0);
-
-        assertEquals(2, listView.getCount());
-        assertBeneficiaryName(0, "Theresa 1 " + defaultSuffix);
-        assertBeneficiaryName(1, "Theresa 2 " + defaultSuffix);
+        solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
     }
 
     public void testShouldUpdateWhenUpdateButtonInMenuIsPressed() throws Throwable {
@@ -47,21 +43,12 @@ public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<Dr
         solo.clickOnText("Update");
         waitForProgressBarToGoAway(getActivity(), 2000);
 
-        ListView listView = solo.getCurrentListViews().get(0);
-
-        assertEquals(2, listView.getCount());
-        assertBeneficiaryName(0, "Theresa 1 " + suffixForLoadingThroughMenuButton);
-        assertBeneficiaryName(1, "Theresa 2 " + suffixForLoadingThroughMenuButton);
+        solo.assertBeneficiaryNames("Theresa 1 " + suffixForLoadingThroughMenuButton, "Theresa 2 " + suffixForLoadingThroughMenuButton);
     }
 
     private DrishtiService setupSuffix(String suffix) {
         drishtiService.setSuffix(suffix);
         return drishtiService;
-    }
-
-    private void assertBeneficiaryName(int position, String expected) {
-        Alert firstAlert = ((Alert) solo.getCurrentListViews().get(0).getItemAtPosition(position));
-        assertEquals(expected, firstAlert.beneficiaryName());
     }
 
     @Override

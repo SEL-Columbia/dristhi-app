@@ -1,4 +1,4 @@
-package org.ei.drishti.test;
+package org.ei.drishti.util;
 
 import org.ei.drishti.domain.AlertAction;
 import org.ei.drishti.domain.Response;

@@ -6,7 +6,7 @@ import org.ei.drishti.R;
 import org.ei.drishti.activity.DrishtiMainActivity;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.test.FakeDrishtiService;
+import org.ei.drishti.util.FakeDrishtiService;
 
 import java.util.Date;
 import java.util.concurrent.CountDownLatch;

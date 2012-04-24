@@ -3,14 +3,15 @@ package org.ei.drishti.test;
 import android.test.ActivityInstrumentationTestCase2;
 import com.jayway.android.robotium.solo.Solo;
 import org.ei.drishti.activity.DrishtiMainActivity;
-import org.ei.drishti.domain.Alert;
+import org.ei.drishti.util.DrishtiSolo;
+import org.ei.drishti.util.FakeDrishtiService;
 
 import java.util.Date;
 
 import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class SettingsActivityTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
-    private Solo solo;
+    private DrishtiSolo solo;
     private FakeDrishtiService drishtiService;
 
     public SettingsActivityTest() {
@@ -22,7 +23,7 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<Drish
     public void setUp() throws Exception {
         DrishtiMainActivity.setDrishtiService(drishtiService);
 
-        solo = new Solo(getInstrumentation(), getActivity());
+        solo = new DrishtiSolo(getInstrumentation(), getActivity());
         waitForProgressBarToGoAway(getActivity(), 2000);
     }
 
@@ -39,9 +40,7 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<Drish
         solo.clickOnButton("OK");
         solo.goBack();
 
-        assertEquals(2, solo.getCurrentListViews().get(0).getCount());
-        assertEquals("Thaayi 1 " + suffix, ((Alert) solo.getCurrentListViews().get(0).getItemAtPosition(0)).thaayiCardNo());
-        assertEquals("Thaayi 2 " + suffix, ((Alert) solo.getCurrentListViews().get(0).getItemAtPosition(1)).thaayiCardNo());
+        solo.assertBeneficiaryNames("Theresa 1 " + suffix, "Theresa 2 " + suffix);
     }
 
     @Override

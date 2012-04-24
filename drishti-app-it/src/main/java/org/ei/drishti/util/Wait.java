@@ -17,13 +17,22 @@ public class Wait {
                 return true;
             }
 
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            sleep(100);
         }
 
         return false;
     }
+
+    public static void waitForFilteringToFinish() {
+        sleep(200);
+    }
+
+    private static void sleep(int time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+
