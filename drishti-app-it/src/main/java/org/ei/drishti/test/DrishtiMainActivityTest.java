@@ -1,7 +1,6 @@
 package org.ei.drishti.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import com.jayway.android.robotium.solo.Solo;
 import org.ei.drishti.activity.DrishtiMainActivity;
 import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.util.DrishtiSolo;
@@ -39,9 +38,7 @@ public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<Dr
         final String suffixForLoadingThroughMenuButton = String.valueOf(new Date().getTime());
         setupSuffix(suffixForLoadingThroughMenuButton);
 
-        solo.sendKey(Solo.MENU);
-        solo.clickOnText("Update");
-        waitForProgressBarToGoAway(getActivity(), 2000);
+        solo.updateAlerts();
 
         solo.assertBeneficiaryNames("Theresa 1 " + suffixForLoadingThroughMenuButton, "Theresa 2 " + suffixForLoadingThroughMenuButton);
     }

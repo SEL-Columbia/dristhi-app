@@ -1,7 +1,6 @@
 package org.ei.drishti.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import com.jayway.android.robotium.solo.Solo;
 import org.ei.drishti.activity.DrishtiMainActivity;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
@@ -32,13 +31,7 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<Drish
         String newUser = "NEW ANM" + suffix;
         drishtiService.expect(newUser, "0", suffix);
 
-        solo.sendKey(Solo.MENU);
-        solo.clickOnText("Settings");
-        solo.clickOnText("ANM ID");
-        solo.clearEditText(0);
-        solo.enterText(0, newUser);
-        solo.clickOnButton("OK");
-        solo.goBack();
+        solo.changeUser(newUser);
 
         solo.assertBeneficiaryNames("Theresa 1 " + suffix, "Theresa 2 " + suffix);
     }

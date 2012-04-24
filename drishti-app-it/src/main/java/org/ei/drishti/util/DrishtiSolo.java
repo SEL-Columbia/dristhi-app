@@ -10,10 +10,14 @@ import java.util.ArrayList;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
+import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class DrishtiSolo extends Solo {
+    private Activity activity;
+
     public DrishtiSolo(Instrumentation instrumentation, Activity activity) {
         super(instrumentation, activity);
+        this.activity = activity;
     }
 
     public ListView list() {
@@ -32,5 +36,21 @@ public class DrishtiSolo extends Solo {
 
     public void assertEmptyList() {
         assertBeneficiaryNames(new String[0]);
+    }
+
+    public void changeUser(String anmId) {
+        sendKey(MENU);
+        clickOnText("Settings");
+        clickOnText("ANM ID");
+        clearEditText(0);
+        enterText(0, anmId);
+        clickOnButton("OK");
+        goBack();
+    }
+
+    public void updateAlerts() {
+        sendKey(MENU);
+        clickOnText("Update");
+        waitForProgressBarToGoAway(activity, 2000);
     }
 }
