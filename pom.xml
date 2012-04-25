@@ -11,10 +11,11 @@
     <modules>
         <module>drishti-app</module>
         <module>drishti-app-it</module>
+        <module>external/actionbar/actionbar</module>
     </modules>
 
     <properties>
-        <platform.version>2.2.1</platform.version>
+        <platform.version>2.3.3</platform.version>
     </properties>
 
     <dependencyManagement>

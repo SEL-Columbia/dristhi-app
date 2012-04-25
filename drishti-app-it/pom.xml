@@ -29,12 +29,24 @@
             <artifactId>drishti-app</artifactId>
             <type>apk</type>
             <version>0.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.markupartist.android</groupId>
+                    <artifactId>actionbar</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.ei.drishti</groupId>
             <artifactId>drishti-app</artifactId>
             <type>jar</type>
             <version>0.1-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.markupartist.android</groupId>
+                    <artifactId>actionbar</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.pivotallabs</groupId>
