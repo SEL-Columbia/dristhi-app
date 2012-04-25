@@ -8,7 +8,6 @@ import org.ei.drishti.util.FakeDrishtiService;
 import java.util.Date;
 
 import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
-import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
     private DrishtiSolo solo;
@@ -27,7 +26,6 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
         DrishtiMainActivity.setDrishtiService(drishtiService);
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
-        waitForProgressBarToGoAway(getActivity(), 2000);
     }
 
     public void testShouldFilterListByMotherName() throws Exception {

@@ -8,8 +8,6 @@ import org.ei.drishti.util.FakeDrishtiService;
 
 import java.util.Date;
 
-import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
-
 public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
 
     private FakeDrishtiService drishtiService;
@@ -27,7 +25,6 @@ public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<Dr
         DrishtiMainActivity.setDrishtiService(drishtiService);
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
-        waitForProgressBarToGoAway(getActivity(), 2000);
     }
 
     public void testShouldLoadOnStartup() throws Throwable {

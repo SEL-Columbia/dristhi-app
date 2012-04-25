@@ -5,6 +5,10 @@ import android.view.View;
 import org.ei.drishti.R;
 
 public class Wait {
+    public static void waitForProgressBarToGoAway(Activity activity) {
+        waitForProgressBarToGoAway(activity, 2000);
+    }
+
     public static void waitForProgressBarToGoAway(Activity activity, int numberOfMillisecondsToWait) {
         waitForProgressBarVisibilityToBe(activity, 500, View.VISIBLE);
         if (waitForProgressBarVisibilityToBe(activity, numberOfMillisecondsToWait, View.INVISIBLE)) return;

@@ -7,8 +7,6 @@ import org.ei.drishti.util.FakeDrishtiService;
 
 import java.util.Date;
 
-import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
-
 public class SettingsActivityTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
     private DrishtiSolo solo;
     private FakeDrishtiService drishtiService;
@@ -23,7 +21,6 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<Drish
         DrishtiMainActivity.setDrishtiService(drishtiService);
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
-        waitForProgressBarToGoAway(getActivity(), 2000);
     }
 
     public void testShouldFetchAlertsForNewANMWHenANMIsChanged() throws Exception {

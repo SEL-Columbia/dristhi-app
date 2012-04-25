@@ -18,6 +18,7 @@ public class DrishtiSolo extends Solo {
     public DrishtiSolo(Instrumentation instrumentation, Activity activity) {
         super(instrumentation, activity);
         this.activity = activity;
+        waitForProgressBarToGoAway(activity);
     }
 
     public ListView list() {
@@ -46,12 +47,12 @@ public class DrishtiSolo extends Solo {
         enterText(0, anmId);
         clickOnButton("OK");
         goBack();
-        waitForProgressBarToGoAway(activity, 2000);
+        waitForProgressBarToGoAway(activity);
     }
 
     public void updateAlerts() {
         sendKey(MENU);
         clickOnText("Update");
-        waitForProgressBarToGoAway(activity, 2000);
+        waitForProgressBarToGoAway(activity);
     }
 }
