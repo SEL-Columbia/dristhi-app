@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.*;
+import com.markupartist.android.widget.ActionBar;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.AlertAdapter;
 import org.ei.drishti.adapter.AlertFilterCriterion;
@@ -51,6 +52,10 @@ public class DrishtiMainActivity extends Activity {
         ListView alertsList = (ListView) findViewById(R.id.listView);
         alertsList.setAdapter(alertAdapter);
         alertsList.setTextFilterEnabled(true);
+
+        ActionBar actionBar = (ActionBar) findViewById(R.id.actionbar);
+        actionBar.setTitle("Workplan");
+        actionBar.addAction(new DialogAction(this));
 
         preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {

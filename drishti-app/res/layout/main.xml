@@ -63,7 +63,8 @@
                 android:id="@+id/actionbar"
                 style="@style/ActionBar"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true" android:layout_alignParentBottom="true"/>
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 
 </LinearLayout>
