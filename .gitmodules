@@ -1,3 +1,4 @@
 [submodule "external/actionbar"]
 	path = external/actionbar
 	url = git://github.com/johannilsson/android-actionbar.git
+    ignore = untracked
