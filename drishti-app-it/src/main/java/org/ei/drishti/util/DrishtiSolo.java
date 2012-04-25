@@ -46,6 +46,7 @@ public class DrishtiSolo extends Solo {
         enterText(0, anmId);
         clickOnButton("OK");
         goBack();
+        waitForProgressBarToGoAway(activity, 2000);
     }
 
     public void updateAlerts() {
