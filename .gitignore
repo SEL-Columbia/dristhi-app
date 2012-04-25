@@ -13,3 +13,4 @@ drishti-app/tmp/
 classes/
 tmp/
 project.properties
+.DS_Store
