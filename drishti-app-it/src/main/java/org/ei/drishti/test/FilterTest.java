@@ -1,12 +1,22 @@
 package org.ei.drishti.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import org.ei.drishti.view.activity.DrishtiMainActivity;
+import org.ei.drishti.domain.AlertAction;
+import org.ei.drishti.domain.AlertFilterCriterionForTime;
+import org.ei.drishti.domain.Response;
+import org.ei.drishti.domain.ResponseStatus;
+import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
+import org.ei.drishti.view.activity.DrishtiMainActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import static java.util.Arrays.asList;
+import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
+import static org.ei.drishti.util.FakeDrishtiService.dataForCreateAction;
 import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
 
 public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
@@ -14,6 +24,7 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
 
     private String defaultSuffix;
     private FakeDrishtiService drishtiService;
+    private SimpleDateFormat inputFormat;
 
     public FilterTest() {
         super(DrishtiMainActivity.class);
@@ -26,6 +37,7 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
         DrishtiMainActivity.setDrishtiService(drishtiService);
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
+        inputFormat = new SimpleDateFormat("yyyy-MM-dd");
     }
 
     public void testShouldFilterListByMotherName() throws Exception {
@@ -103,6 +115,39 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
         solo.changeUser(newUser);
 
         solo.assertBeneficiaryNames("Theresa 1 " + newSuffix);
+    }
+
+    public void testShouldFilterListBasedOnValueInTimeFilterDialog() throws Exception {
+        solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
+
+        solo.filterByTime(PastDue);
+        solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix);
+
+        solo.filterByTime(Upcoming);
+        solo.assertBeneficiaryNames("Theresa 2 " + defaultSuffix);
+
+        solo.filterByTime(ShowAll);
+        solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
+    }
+
+    public void testShouldShowAlertsForTodayInUpcomingFilteredValues() throws Exception {
+        String newSuffix = String.valueOf(new Date().getTime());
+        String newUser = "NEW ANM" + newSuffix;
+
+        AlertAction alertAction = new AlertAction("Case M", "create", dataForCreateAction("due", "Mom " + newSuffix, "ANC 1", "TC 12", inputFormat.format(DateUtil.today())), "1234567");
+        drishtiService.expect(newUser, "0", new Response<List<AlertAction>>(ResponseStatus.success, asList(alertAction)));
+        solo.changeUser(newUser);
+
+        solo.assertBeneficiaryNames("Mom " + newSuffix);
+
+        solo.filterByTime(AlertFilterCriterionForTime.Upcoming);
+        solo.assertBeneficiaryNames("Mom " + newSuffix);
+
+        solo.filterByTime(AlertFilterCriterionForTime.PastDue);
+        solo.assertEmptyList();
+
+        solo.filterByTime(AlertFilterCriterionForTime.ShowAll);
+        solo.assertBeneficiaryNames("Mom " + newSuffix);
     }
 
     @Override

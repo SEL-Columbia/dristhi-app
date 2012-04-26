@@ -54,9 +54,9 @@ public class DrishtiMainActivity extends Activity {
         actionBar.setTitle("Workplan");
 
         AlertFilter filter = new AlertFilter(alertAdapter);
+        filter.addFilter(new MatchByVisitCode(createDialog(R.drawable.icon, "Filter By Type", All, BCG, HEP, OPV)));
         filter.addFilter(new MatchByBeneficiaryOrThaayiCard((EditText) findViewById(R.id.searchEditText)));
         filter.addFilter(new MatchByTime(createDialog(R.drawable.icon, "Filter By Time", ShowAll, PastDue, Upcoming)));
-        filter.addFilter(new MatchByVisitCode(createDialog(R.drawable.icon, "Filter By Type", All, BCG, HEP, OPV)));
 
         ListView alertsList = (ListView) findViewById(R.id.listView);
         alertsList.setAdapter(alertAdapter);

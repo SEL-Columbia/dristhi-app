@@ -5,6 +5,7 @@ import android.app.Instrumentation;
 import android.widget.ListView;
 import com.jayway.android.robotium.solo.Solo;
 import org.ei.drishti.domain.Alert;
+import org.ei.drishti.domain.AlertFilterCriterionForTime;
 import org.ei.drishti.view.activity.DrishtiMainActivity;
 
 import java.util.ArrayList;
@@ -58,15 +59,22 @@ public class DrishtiSolo extends Solo {
         waitForProgressBarToGoAway(activity);
     }
 
+    public void filterByText(String text) {
+        enterText(0, text);
+        waitForFilteringToFinish();
+    }
+
     public void filterByType(String type) {
-        clickOnImageButton(2);
+        clickOnImageButton(1);
         clickOnText(type);
         waitForActivity(DrishtiMainActivity.class.getSimpleName());
         waitForFilteringToFinish();
     }
 
-    public void filterByText(String text) {
-        enterText(0, text);
+    public void filterByTime(AlertFilterCriterionForTime criterion) {
+        clickOnImageButton(2);
+        clickOnText(criterion.toString());
+        waitForActivity(DrishtiMainActivity.class.getSimpleName());
         waitForFilteringToFinish();
     }
 }
