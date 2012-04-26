@@ -11,19 +11,19 @@ import android.view.MenuItem;
 import android.widget.*;
 import com.markupartist.android.widget.ActionBar;
 import org.ei.drishti.R;
-import org.ei.drishti.view.adapter.AlertAdapter;
-import org.ei.drishti.domain.AlertFilterCriterion;
-import org.ei.drishti.service.HTTPAgent;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.view.matcher.MatchByBeneficiaryOrThaayiCard;
-import org.ei.drishti.view.matcher.MatchByVisitCode;
+import org.ei.drishti.domain.AlertFilterCriterion;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.DrishtiService;
+import org.ei.drishti.service.HTTPAgent;
 import org.ei.drishti.view.AlertFilter;
-import org.ei.drishti.view.OnSelectionChangeListener;
 import org.ei.drishti.view.DialogAction;
 import org.ei.drishti.view.UpdateAlertsTask;
+import org.ei.drishti.view.adapter.AlertAdapter;
+import org.ei.drishti.view.matcher.MatchByBeneficiaryOrThaayiCard;
+import org.ei.drishti.view.matcher.MatchByTime;
+import org.ei.drishti.view.matcher.MatchByVisitCode;
 
 import java.util.ArrayList;
 
@@ -35,8 +35,7 @@ public class DrishtiMainActivity extends Activity {
     private UpdateAlertsTask updateAlerts;
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
     private AlertController controller;
-    private AlertFilter filter;
-    private DialogAction filterDialog;
+    private ActionBar actionBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,15 +47,17 @@ public class DrishtiMainActivity extends Activity {
         controller = setupController(alertAdapter);
         updateAlerts = new UpdateAlertsTask(controller, (ProgressBar) findViewById(R.id.progressBar));
 
-        filter = new AlertFilter(alertAdapter);
+        actionBar = (ActionBar) findViewById(R.id.actionbar);
+        actionBar.setTitle("Workplan");
+
+        AlertFilter filter = new AlertFilter(alertAdapter);
         filter.addFilter(new MatchByVisitCode(initSpinner()));
         filter.addFilter(new MatchByBeneficiaryOrThaayiCard((EditText) findViewById(R.id.searchEditText)));
+        filter.addFilter(new MatchByTime(createDialog(R.drawable.icon, "Filter By Time", "All", "Past Due", "Upcoming")));
 
         ListView alertsList = (ListView) findViewById(R.id.listView);
         alertsList.setAdapter(alertAdapter);
         alertsList.setTextFilterEnabled(true);
-
-        initActionBar();
 
         preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
@@ -122,15 +123,9 @@ public class DrishtiMainActivity extends Activity {
 
     }
 
-    private void initActionBar() {
-        ActionBar actionBar = (ActionBar) findViewById(R.id.actionbar);
-        actionBar.setTitle("Workplan");
-        filterDialog = new DialogAction(this);
-        filterDialog.setOnSelectionChangedListener(new OnSelectionChangeListener() {
-            public void selectionChanged(String selection) {
-                Toast.makeText(getApplicationContext(), selection, Toast.LENGTH_LONG).show();
-            }
-        });
+    private DialogAction createDialog(int icon, String title, String... options) {
+        DialogAction filterDialog = new DialogAction(this, icon, title, options);
         actionBar.addAction(filterDialog);
+        return filterDialog;
     }
 }

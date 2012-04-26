@@ -3,7 +3,6 @@ package org.ei.drishti.view.matcher;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
-import org.ei.drishti.domain.Alert;
 import org.ei.drishti.view.AfterChangeListener;
 
 public abstract class TextFieldMatcher implements Matcher {
@@ -33,6 +32,4 @@ public abstract class TextFieldMatcher implements Matcher {
     public Object currentValue() {
         return currentValue;
     }
-
-    public abstract boolean matches(Alert alert);
 }

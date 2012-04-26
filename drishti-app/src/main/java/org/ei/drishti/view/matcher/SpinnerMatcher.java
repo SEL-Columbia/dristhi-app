@@ -30,6 +30,4 @@ public abstract class SpinnerMatcher implements Matcher {
     public Object currentValue() {
         return currentValue;
     }
-
-    public abstract boolean matches(Alert alert);
 }

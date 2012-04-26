@@ -5,22 +5,22 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 import com.markupartist.android.widget.ActionBar;
-import org.ei.drishti.R;
 
 public class DialogAction implements ActionBar.Action {
-    private int selection = 0;
     private AlertDialog.Builder builder;
-    private CharSequence[] items;
     private AlertDialog dialog;
+    private String[] options;
+    private int icon;
 
-    public DialogAction(Context context) {
-        items = new CharSequence[]{"All", "Past Due", "Upcoming"};
+    public DialogAction(Context context, int icon, String title, String... options) {
+        this.options = options;
+        this.icon = icon;
         builder = new AlertDialog.Builder(context);
-        builder.setTitle("Filter by Time");
+        builder.setTitle(title);
     }
 
     public int getDrawable() {
-        return R.drawable.icon;
+        return icon;
     }
 
     public void performAction(View view) {
@@ -28,10 +28,9 @@ public class DialogAction implements ActionBar.Action {
     }
 
     public void setOnSelectionChangedListener(final OnSelectionChangeListener onSelectionChangeListener) {
-        builder.setSingleChoiceItems(items, selection, new DialogInterface.OnClickListener() {
+        builder.setSingleChoiceItems(options, 0, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
-                selection = item;
-                onSelectionChangeListener.selectionChanged(items[item].toString());
+                onSelectionChangeListener.selectionChanged(options[item]);
                 dialog.dismiss();
             }
         });
