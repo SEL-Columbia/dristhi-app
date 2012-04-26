@@ -4,13 +4,13 @@
     <supports-screens android:anyDensity="true"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <application android:label="@string/app_name">
-        <activity android:name=".activity.DrishtiMainActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait">
+        <activity android:name=".view.activity.DrishtiMainActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SettingsActivity"/>
+        <activity android:name=".view.activity.SettingsActivity"/>
     </application>
 
     <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="8"/>

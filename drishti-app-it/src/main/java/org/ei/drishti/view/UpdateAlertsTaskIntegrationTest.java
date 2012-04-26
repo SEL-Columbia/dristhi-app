@@ -3,7 +3,7 @@ package org.ei.drishti.view;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ProgressBar;
 import org.ei.drishti.R;
-import org.ei.drishti.activity.DrishtiMainActivity;
+import org.ei.drishti.view.activity.DrishtiMainActivity;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.util.FakeDrishtiService;

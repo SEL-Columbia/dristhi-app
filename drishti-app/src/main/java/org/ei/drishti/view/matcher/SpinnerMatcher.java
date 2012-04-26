@@ -1,10 +1,10 @@
-package org.ei.drishti.matcher;
+package org.ei.drishti.view.matcher;
 
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.util.AfterChangeListener;
+import org.ei.drishti.view.AfterChangeListener;
 
 public abstract class SpinnerMatcher implements Matcher {
     private Spinner spinner;

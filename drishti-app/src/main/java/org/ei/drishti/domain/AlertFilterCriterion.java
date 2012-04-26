@@ -1,4 +1,4 @@
-package org.ei.drishti.adapter;
+package org.ei.drishti.domain;
 
 import java.util.List;
 

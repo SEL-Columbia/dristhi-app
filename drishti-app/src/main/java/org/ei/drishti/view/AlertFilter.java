@@ -1,8 +1,8 @@
-package org.ei.drishti.util;
+package org.ei.drishti.view;
 
-import org.ei.drishti.adapter.AlertAdapter;
+import org.ei.drishti.view.adapter.AlertAdapter;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.matcher.Matcher;
+import org.ei.drishti.view.matcher.Matcher;
 
 import java.util.ArrayList;
 import java.util.List;

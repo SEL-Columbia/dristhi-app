@@ -1,7 +1,7 @@
 package org.ei.drishti.controller;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
-import org.ei.drishti.adapter.AlertAdapter;
+import org.ei.drishti.view.adapter.AlertAdapter;
 import org.ei.drishti.domain.*;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllSettings;

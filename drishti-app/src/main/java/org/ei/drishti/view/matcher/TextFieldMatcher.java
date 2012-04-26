@@ -1,10 +1,10 @@
-package org.ei.drishti.matcher;
+package org.ei.drishti.view.matcher;
 
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.util.AfterChangeListener;
+import org.ei.drishti.view.AfterChangeListener;
 
 public abstract class TextFieldMatcher implements Matcher {
     private EditText editText;

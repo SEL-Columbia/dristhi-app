@@ -1,4 +1,4 @@
-package org.ei.drishti.matcher;
+package org.ei.drishti.view.matcher;
 
 import android.widget.EditText;
 import org.ei.drishti.domain.Alert;

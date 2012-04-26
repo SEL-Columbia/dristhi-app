@@ -1,7 +1,7 @@
-package org.ei.drishti.matcher;
+package org.ei.drishti.view.matcher;
 
 import android.widget.Spinner;
-import org.ei.drishti.adapter.AlertFilterCriterion;
+import org.ei.drishti.domain.AlertFilterCriterion;
 import org.ei.drishti.domain.Alert;
 
 public class MatchByVisitCode extends SpinnerMatcher {

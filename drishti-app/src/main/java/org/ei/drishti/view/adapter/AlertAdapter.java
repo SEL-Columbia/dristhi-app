@@ -1,4 +1,4 @@
-package org.ei.drishti.adapter;
+package org.ei.drishti.view.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

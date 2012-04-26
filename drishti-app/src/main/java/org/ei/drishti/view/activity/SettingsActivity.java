@@ -1,4 +1,4 @@
-package org.ei.drishti.activity;
+package org.ei.drishti.view.activity;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;

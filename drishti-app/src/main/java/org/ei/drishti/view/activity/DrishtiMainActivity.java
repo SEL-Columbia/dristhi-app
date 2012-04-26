@@ -1,4 +1,4 @@
-package org.ei.drishti.activity;
+package org.ei.drishti.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,21 +11,23 @@ import android.view.MenuItem;
 import android.widget.*;
 import com.markupartist.android.widget.ActionBar;
 import org.ei.drishti.R;
-import org.ei.drishti.adapter.AlertAdapter;
-import org.ei.drishti.adapter.AlertFilterCriterion;
-import org.ei.drishti.agent.HTTPAgent;
+import org.ei.drishti.view.adapter.AlertAdapter;
+import org.ei.drishti.domain.AlertFilterCriterion;
+import org.ei.drishti.service.HTTPAgent;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.matcher.MatchByBeneficiaryOrThaayiCard;
-import org.ei.drishti.matcher.MatchByVisitCode;
+import org.ei.drishti.view.matcher.MatchByBeneficiaryOrThaayiCard;
+import org.ei.drishti.view.matcher.MatchByVisitCode;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.DrishtiService;
-import org.ei.drishti.util.AlertFilter;
+import org.ei.drishti.view.AlertFilter;
+import org.ei.drishti.view.OnSelectionChangeListener;
+import org.ei.drishti.view.DialogAction;
 import org.ei.drishti.view.UpdateAlertsTask;
 
 import java.util.ArrayList;
 
-import static org.ei.drishti.adapter.AlertFilterCriterion.valuesInOrder;
+import static org.ei.drishti.domain.AlertFilterCriterion.valuesInOrder;
 import static org.ei.drishti.util.Log.logVerbose;
 
 public class DrishtiMainActivity extends Activity {
@@ -34,6 +36,7 @@ public class DrishtiMainActivity extends Activity {
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
     private AlertController controller;
     private AlertFilter filter;
+    private DialogAction filterDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,9 +56,7 @@ public class DrishtiMainActivity extends Activity {
         alertsList.setAdapter(alertAdapter);
         alertsList.setTextFilterEnabled(true);
 
-        ActionBar actionBar = (ActionBar) findViewById(R.id.actionbar);
-        actionBar.setTitle("Workplan");
-        actionBar.addAction(new DialogAction(this));
+        initActionBar();
 
         preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
@@ -119,5 +120,17 @@ public class DrishtiMainActivity extends Activity {
 
         return filterSpinner;
 
+    }
+
+    private void initActionBar() {
+        ActionBar actionBar = (ActionBar) findViewById(R.id.actionbar);
+        actionBar.setTitle("Workplan");
+        filterDialog = new DialogAction(this);
+        filterDialog.setOnSelectionChangedListener(new OnSelectionChangeListener() {
+            public void selectionChanged(String selection) {
+                Toast.makeText(getApplicationContext(), selection, Toast.LENGTH_LONG).show();
+            }
+        });
+        actionBar.addAction(filterDialog);
     }
 }

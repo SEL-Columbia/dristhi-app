@@ -2,7 +2,6 @@ package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.apache.commons.io.IOUtils;
-import org.ei.drishti.agent.HTTPAgent;
 import org.ei.drishti.domain.AlertAction;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
