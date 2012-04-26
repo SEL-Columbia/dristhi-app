@@ -3,7 +3,7 @@ package org.ei.drishti.domain;
 import static java.lang.Integer.MAX_VALUE;
 import static java.lang.Integer.MIN_VALUE;
 
-public enum AlertFilterCriterionForTime implements Criterion {
+public enum AlertFilterCriterionForTime {
      ShowAll("All", MIN_VALUE, MAX_VALUE), PastDue("Past Due", MIN_VALUE, 0), Upcoming("Upcoming", 1, MAX_VALUE);
 
     private String display;
@@ -17,10 +17,6 @@ public enum AlertFilterCriterionForTime implements Criterion {
     }
 
     public String toString() {
-        return display;
-    }
-
-    public String displayValue() {
         return display;
     }
 }

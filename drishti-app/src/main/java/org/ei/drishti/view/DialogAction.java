@@ -5,18 +5,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
 import com.markupartist.android.widget.ActionBar;
-import org.ei.drishti.domain.Criterion;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DialogAction implements ActionBar.Action {
+public class DialogAction<T> implements ActionBar.Action {
     private AlertDialog.Builder builder;
     private AlertDialog dialog;
-    private Criterion[] options;
+    private T[] options;
     private int icon;
 
-    public DialogAction(Context context, int icon, String title, Criterion... options) {
+    public DialogAction(Context context, int icon, String title, T... options) {
         this.options = options;
         this.icon = icon;
         builder = new AlertDialog.Builder(context);
@@ -31,7 +30,7 @@ public class DialogAction implements ActionBar.Action {
         dialog.show();
     }
 
-    public void setOnSelectionChangedListener(final OnSelectionChangeListener onSelectionChangeListener) {
+    public void setOnSelectionChangedListener(final OnSelectionChangeListener<T> onSelectionChangeListener) {
         builder.setSingleChoiceItems(buildDisplayItemsFrom(options), 0, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
                 onSelectionChangeListener.selectionChanged(options[item]);
@@ -41,10 +40,10 @@ public class DialogAction implements ActionBar.Action {
         dialog = builder.create();
     }
 
-    private String[] buildDisplayItemsFrom(Criterion[] options) {
+    private String[] buildDisplayItemsFrom(T[] options) {
         List<String> displayItems = new ArrayList<String>();
-        for (Criterion option : options) {
-            displayItems.add(option.displayValue());
+        for (T option : options) {
+            displayItems.add(option.toString());
         }
         return displayItems.toArray(new String[options.length]);
     }

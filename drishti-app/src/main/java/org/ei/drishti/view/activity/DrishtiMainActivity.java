@@ -16,7 +16,6 @@ import com.markupartist.android.widget.ActionBar;
 import org.ei.drishti.R;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.Criterion;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.service.HTTPAgent;
@@ -116,8 +115,8 @@ public class DrishtiMainActivity extends Activity {
         drishtiService = value;
     }
 
-    private DialogAction createDialog(int icon, String title, Criterion... options) {
-        DialogAction filterDialog = new DialogAction(this, icon, title, options);
+    private <T> DialogAction<T> createDialog(int icon, String title, T... options) {
+        DialogAction<T> filterDialog = new DialogAction<T>(this, icon, title, options);
         actionBar.addAction(filterDialog);
         return filterDialog;
     }

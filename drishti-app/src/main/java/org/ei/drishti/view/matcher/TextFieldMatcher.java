@@ -5,7 +5,7 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import org.ei.drishti.view.AfterChangeListener;
 
-public abstract class TextFieldMatcher implements Matcher {
+public abstract class TextFieldMatcher implements Matcher<String> {
     private EditText editText;
     private String currentValue;
 
@@ -29,7 +29,7 @@ public abstract class TextFieldMatcher implements Matcher {
         });
     }
 
-    public Object currentValue() {
+    public String currentValue() {
         return currentValue;
     }
 }

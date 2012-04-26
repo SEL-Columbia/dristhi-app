@@ -9,7 +9,7 @@ public class MatchByBeneficiaryOrThaayiCard extends TextFieldMatcher {
     }
 
     public boolean matches(Alert alert) {
-        String currentValue = ((String) currentValue()).toLowerCase();
+        String currentValue = currentValue().toLowerCase();
         return (alert.beneficiaryName().toLowerCase().contains(currentValue) || alert.thaayiCardNo().toLowerCase().contains(currentValue));
     }
 }

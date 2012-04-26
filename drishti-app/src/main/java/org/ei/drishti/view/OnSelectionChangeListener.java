@@ -1,8 +1,6 @@
 package org.ei.drishti.view;
 
-import org.ei.drishti.domain.Criterion;
+public interface OnSelectionChangeListener<T> {
 
-public interface OnSelectionChangeListener {
-
-    void selectionChanged(Criterion selection);
+    void selectionChanged(T selection);
 }
