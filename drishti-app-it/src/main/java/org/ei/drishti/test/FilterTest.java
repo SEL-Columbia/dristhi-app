@@ -31,12 +31,10 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
     public void testShouldFilterListByMotherName() throws Exception {
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
 
-        solo.enterText(0, "Theresa 1");
-        waitForFilteringToFinish();
+        solo.filterByText("Theresa 1");
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix);
 
-        solo.enterText(0, "X");
-        waitForFilteringToFinish();
+        solo.filterByText("X");
         solo.assertEmptyList();
 
         solo.clearEditText(0);
@@ -47,12 +45,10 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
     public void testShouldFilterListByThaayiCardNumber() throws Exception {
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
 
-        solo.enterText(0, "Thaayi 1");
-        waitForFilteringToFinish();
+        solo.filterByText("Thaayi 1");
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix);
 
-        solo.enterText(0, "X");
-        waitForFilteringToFinish();
+        solo.filterByText("X");
         solo.assertEmptyList();
 
         solo.clearEditText(0);
@@ -60,28 +56,24 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
     }
 
-    public void testShouldFilterListBasedOnDropDownValue() throws Exception {
+    public void testShouldFilterListBasedOnTypeDialog() throws Exception {
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
 
-        solo.pressSpinnerItem(0, 1);
-        waitForFilteringToFinish();
+        solo.filterByType("BCG");
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix);
 
-        solo.pressSpinnerItem(0, 3);
-        waitForFilteringToFinish();
+        solo.filterByType("OPV");
         solo.assertBeneficiaryNames("Theresa 2 " + defaultSuffix);
     }
 
-    public void testShouldFilterListBasedOnBothDropDownValueAndTextFilter() throws Exception {
+    public void testShouldFilterListBasedOnBothTypeFilterValueAndTextFilter() throws Exception {
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
 
-        solo.pressSpinnerItem(0, 1);
-        solo.enterText(0, "Thaayi 2");
-        waitForFilteringToFinish();
+        solo.filterByType("BCG");
+        solo.filterByText("Thaayi 2");
         solo.assertEmptyList();
 
-        solo.pressSpinnerItem(0, 3);
-        waitForFilteringToFinish();
+        solo.filterByType("OPV");
         solo.assertBeneficiaryNames("Theresa 2 " + defaultSuffix);
     }
 
@@ -89,8 +81,7 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
         String newSuffix = String.valueOf(new Date().getTime());
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
 
-        solo.pressSpinnerItem(0, 1);
-        waitForFilteringToFinish();
+        solo.filterByType("BCG");
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix);
 
         drishtiService.setSuffix(newSuffix);
@@ -106,8 +97,7 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
         drishtiService.expect(newUser, "0", newSuffix);
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
 
-        solo.pressSpinnerItem(0, 1);
-        waitForFilteringToFinish();
+        solo.filterByType("BCG");
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix);
 
         solo.changeUser(newUser);

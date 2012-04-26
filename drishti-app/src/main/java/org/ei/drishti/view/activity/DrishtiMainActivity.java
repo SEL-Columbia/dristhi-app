@@ -8,12 +8,15 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.*;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 import com.markupartist.android.widget.ActionBar;
 import org.ei.drishti.R;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.AlertFilterCriterion;
+import org.ei.drishti.domain.Criterion;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.service.HTTPAgent;
@@ -27,7 +30,8 @@ import org.ei.drishti.view.matcher.MatchByVisitCode;
 
 import java.util.ArrayList;
 
-import static org.ei.drishti.domain.AlertFilterCriterion.valuesInOrder;
+import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
+import static org.ei.drishti.domain.AlertFilterCriterionForType.*;
 import static org.ei.drishti.util.Log.logVerbose;
 
 public class DrishtiMainActivity extends Activity {
@@ -51,9 +55,9 @@ public class DrishtiMainActivity extends Activity {
         actionBar.setTitle("Workplan");
 
         AlertFilter filter = new AlertFilter(alertAdapter);
-        filter.addFilter(new MatchByVisitCode(initSpinner()));
         filter.addFilter(new MatchByBeneficiaryOrThaayiCard((EditText) findViewById(R.id.searchEditText)));
-        filter.addFilter(new MatchByTime(createDialog(R.drawable.icon, "Filter By Time", "All", "Past Due", "Upcoming")));
+        filter.addFilter(new MatchByTime(createDialog(R.drawable.icon, "Filter By Time", ShowAll, PastDue, Upcoming)));
+        filter.addFilter(new MatchByVisitCode(createDialog(R.drawable.icon, "Filter By Type", All, BCG, HEP, OPV)));
 
         ListView alertsList = (ListView) findViewById(R.id.listView);
         alertsList.setAdapter(alertAdapter);
@@ -112,18 +116,7 @@ public class DrishtiMainActivity extends Activity {
         drishtiService = value;
     }
 
-    private Spinner initSpinner() {
-        Spinner filterSpinner = (Spinner) findViewById(R.id.filterSpinner);
-
-        ArrayAdapter<AlertFilterCriterion> criteriaAdapter = new ArrayAdapter<AlertFilterCriterion>(this, android.R.layout.simple_spinner_item, valuesInOrder());
-        criteriaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        filterSpinner.setAdapter(criteriaAdapter);
-
-        return filterSpinner;
-
-    }
-
-    private DialogAction createDialog(int icon, String title, String... options) {
+    private DialogAction createDialog(int icon, String title, Criterion... options) {
         DialogAction filterDialog = new DialogAction(this, icon, title, options);
         actionBar.addAction(filterDialog);
         return filterDialog;

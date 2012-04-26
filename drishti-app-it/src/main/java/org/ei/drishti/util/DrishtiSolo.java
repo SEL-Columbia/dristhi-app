@@ -5,11 +5,13 @@ import android.app.Instrumentation;
 import android.widget.ListView;
 import com.jayway.android.robotium.solo.Solo;
 import org.ei.drishti.domain.Alert;
+import org.ei.drishti.view.activity.DrishtiMainActivity;
 
 import java.util.ArrayList;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
+import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
 import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class DrishtiSolo extends Solo {
@@ -54,5 +56,17 @@ public class DrishtiSolo extends Solo {
         sendKey(MENU);
         clickOnText("Update");
         waitForProgressBarToGoAway(activity);
+    }
+
+    public void filterByType(String type) {
+        clickOnImageButton(2);
+        clickOnText(type);
+        waitForActivity(DrishtiMainActivity.class.getSimpleName());
+        waitForFilteringToFinish();
+    }
+
+    public void filterByText(String text) {
+        enterText(0, text);
+        waitForFilteringToFinish();
     }
 }

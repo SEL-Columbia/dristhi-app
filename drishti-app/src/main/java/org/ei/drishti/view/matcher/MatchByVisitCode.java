@@ -1,16 +1,16 @@
 package org.ei.drishti.view.matcher;
 
-import android.widget.Spinner;
-import org.ei.drishti.domain.AlertFilterCriterion;
 import org.ei.drishti.domain.Alert;
+import org.ei.drishti.domain.AlertFilterCriterionForType;
+import org.ei.drishti.view.DialogAction;
 
-public class MatchByVisitCode extends SpinnerMatcher {
-    public MatchByVisitCode(Spinner spinner) {
-        super(spinner);
+public class MatchByVisitCode extends DialogMatcher {
+    public MatchByVisitCode(DialogAction dialogAction) {
+        super(dialogAction, AlertFilterCriterionForType.All);
     }
 
     public boolean matches(Alert alert) {
-        String currentVisitCodePrefix = ((AlertFilterCriterion) currentValue()).visitCodePrefix();
-        return alert.visitCode().startsWith(currentVisitCodePrefix);
+        AlertFilterCriterionForType criterion = (AlertFilterCriterionForType) currentValue();
+        return alert.visitCode().startsWith(criterion.visitCodePrefix());
     }
 }

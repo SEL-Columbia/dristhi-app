@@ -35,6 +35,7 @@
                     <artifactId>actionbar</artifactId>
                 </exclusion>
             </exclusions>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.ei.drishti</groupId>
@@ -47,6 +48,7 @@
                     <artifactId>actionbar</artifactId>
                 </exclusion>
             </exclusions>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.pivotallabs</groupId>
