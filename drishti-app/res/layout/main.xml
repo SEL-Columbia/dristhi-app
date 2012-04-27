@@ -8,7 +8,7 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#80ff0000"
+            android:background="#808080"
             android:focusableInTouchMode="true">
 
         <EditText
@@ -16,9 +16,9 @@
                 android:inputType="textNoSuggestions|textFilter|textVisiblePassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:hint="Search"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:ems="10">
         </EditText>
 
@@ -28,8 +28,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/searchEditText"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/searchEditText"
+                android:layout_centerVertical="true"
                 android:src="@android:drawable/ic_menu_search">
         </ImageButton>
 

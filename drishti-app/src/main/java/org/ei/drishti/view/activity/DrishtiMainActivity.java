@@ -5,13 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.view.*;
+import android.widget.*;
 import com.markupartist.android.widget.ActionBar;
 import org.ei.drishti.R;
 import org.ei.drishti.controller.AlertController;
@@ -29,6 +24,7 @@ import org.ei.drishti.view.matcher.MatchByVisitCode;
 
 import java.util.ArrayList;
 
+import static android.widget.RelativeLayout.LayoutParams;
 import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.*;
 import static org.ei.drishti.util.Log.logVerbose;
@@ -50,13 +46,12 @@ public class DrishtiMainActivity extends Activity {
         controller = setupController(alertAdapter);
         updateAlerts = new UpdateAlertsTask(controller, (ProgressBar) findViewById(R.id.progressBar));
 
-        actionBar = (ActionBar) findViewById(R.id.actionbar);
-        actionBar.setTitle("Workplan");
+        initActionBar();
 
         AlertFilter filter = new AlertFilter(alertAdapter);
-        filter.addFilter(new MatchByVisitCode(createDialog(R.drawable.icon, "Filter By Type", All, BCG, HEP, OPV)));
+        filter.addFilter(new MatchByVisitCode(createDialog(R.drawable.ic_tab_type, "Filter By Type", All, BCG, HEP, OPV)));
         filter.addFilter(new MatchByBeneficiaryOrThaayiCard((EditText) findViewById(R.id.searchEditText)));
-        filter.addFilter(new MatchByTime(createDialog(R.drawable.icon, "Filter By Time", ShowAll, PastDue, Upcoming)));
+        filter.addFilter(new MatchByTime(createDialog(R.drawable.ic_tab_clock, "Filter By Time", ShowAll, PastDue, Upcoming)));
 
         ListView alertsList = (ListView) findViewById(R.id.listView);
         alertsList.setAdapter(alertAdapter);
@@ -119,5 +114,14 @@ public class DrishtiMainActivity extends Activity {
         DialogAction<T> filterDialog = new DialogAction<T>(this, icon, title, options);
         actionBar.addAction(filterDialog);
         return filterDialog;
+    }
+
+    private void initActionBar() {
+        actionBar = (ActionBar) findViewById(R.id.actionbar);
+        actionBar.setGravity(Gravity.CENTER_HORIZONTAL);
+
+        LinearLayout actionsView = (LinearLayout) findViewById(R.id.actionbar_actions);
+        LayoutParams layoutParams = (LayoutParams) actionsView.getLayoutParams();
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 0);
     }
 }
