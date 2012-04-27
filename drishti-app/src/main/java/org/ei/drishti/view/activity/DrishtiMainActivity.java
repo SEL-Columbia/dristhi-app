@@ -113,6 +113,7 @@ public class DrishtiMainActivity extends Activity {
     private <T> DialogAction<T> createDialog(int icon, String title, T... options) {
         DialogAction<T> filterDialog = new DialogAction<T>(this, icon, title, options);
         actionBar.addAction(filterDialog);
+
         return filterDialog;
     }
 

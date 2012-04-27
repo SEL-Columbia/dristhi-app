@@ -1,22 +1,26 @@
 package org.ei.drishti.view.matcher;
 
+import android.view.View;
 import org.ei.drishti.view.AfterChangeListener;
 import org.ei.drishti.view.DialogAction;
 import org.ei.drishti.view.OnSelectionChangeListener;
 
 public abstract class DialogMatcher<T> implements Matcher<T> {
-    private DialogAction dialogForChoosingTime;
+    private DialogAction dialogForChoosingAnOption;
     private T currentValue;
+    private final T defaultValue;
 
-    public DialogMatcher(DialogAction<T> dialogForChoosingTime, T defaultValue) {
-        this.dialogForChoosingTime = dialogForChoosingTime;
-        currentValue = defaultValue;
+    public DialogMatcher(DialogAction<T> dialogForChoosingAnOption, T defaultValue) {
+        this.dialogForChoosingAnOption = dialogForChoosingAnOption;
+        this.defaultValue = defaultValue;
+        currentValue = this.defaultValue;
     }
 
     public void setOnChangeListener(final AfterChangeListener afterChangeListener) {
-        dialogForChoosingTime.setOnSelectionChangedListener(new OnSelectionChangeListener<T>() {
-            public void selectionChanged(T selection) {
+        dialogForChoosingAnOption.setOnSelectionChangedListener(new OnSelectionChangeListener<T>() {
+            public void selectionChanged(View actionItemView, T selection) {
                 currentValue = selection;
+                actionItemView.setSelected(!selection.equals(defaultValue));
                 afterChangeListener.afterChangeHappened();
             }
         });
