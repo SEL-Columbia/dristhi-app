@@ -57,12 +57,18 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.1</version>
         </dependency>
-	<dependency>
-        <artifactId>actionbar</artifactId>
-        <groupId>com.markupartist.android</groupId>
-        <version>0.1.0-SNAPSHOT</version>
-        <type>apklib</type>
-	</dependency>
+        <dependency>
+            <artifactId>actionbar</artifactId>
+            <groupId>com.markupartist.android</groupId>
+            <version>0.1.0-SNAPSHOT</version>
+            <type>apklib</type>
+        </dependency>
+        <dependency>
+            <artifactId>pulltorefresh</artifactId>
+            <groupId>com.markupartist.android</groupId>
+            <version>0.1.0-SNAPSHOT</version>
+            <type>apklib</type>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
