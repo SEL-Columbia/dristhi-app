@@ -60,7 +60,7 @@ public class DrishtiMainActivity extends Activity {
         preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                 controller.changeUser();
-                Toast.makeText(getApplicationContext(), "Changes saved.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Changes saved.", Toast.LENGTH_SHORT).show();
             }
         };
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(preferenceChangeListener);
