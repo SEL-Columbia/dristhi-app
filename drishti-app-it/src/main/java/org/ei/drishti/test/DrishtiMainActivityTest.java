@@ -25,6 +25,7 @@ public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<Dr
         DrishtiMainActivity.setDrishtiService(drishtiService);
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
+        solo.changeUser("ANM " + defaultSuffix);
     }
 
     public void testShouldLoadOnStartup() throws Throwable {

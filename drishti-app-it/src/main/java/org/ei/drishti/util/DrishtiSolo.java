@@ -30,8 +30,8 @@ public class DrishtiSolo extends Solo {
 
     public void assertBeneficiaryNames(String... beneficiaryNames) {
         ArrayList<String> names = new ArrayList<String>();
-        int count = list().getCount();
-        for (int i = 0; i < count; i++) {
+        int count = list().getCount() - 2;
+        for (int i = 1; i <= count; i++) {
             names.add(((Alert) list().getItemAtPosition(i)).beneficiaryName());
         }
 

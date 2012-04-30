@@ -8,12 +8,14 @@ import android.preference.PreferenceManager;
 import android.view.*;
 import android.widget.*;
 import com.markupartist.android.widget.ActionBar;
+import com.markupartist.android.widget.PullToRefreshListView;
 import org.ei.drishti.R;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.service.HTTPAgent;
+import org.ei.drishti.view.AfterChangeListener;
 import org.ei.drishti.view.AlertFilter;
 import org.ei.drishti.view.DialogAction;
 import org.ei.drishti.view.UpdateAlertsTask;
@@ -53,9 +55,19 @@ public class DrishtiMainActivity extends Activity {
         filter.addFilter(new MatchByBeneficiaryOrThaayiCard((EditText) findViewById(R.id.searchEditText)));
         filter.addFilter(new MatchByTime(createDialog(R.drawable.ic_tab_clock, "Filter By Time", ShowAll, PastDue, Upcoming)));
 
-        ListView alertsList = (ListView) findViewById(R.id.listView);
+        final PullToRefreshListView alertsList = (PullToRefreshListView) findViewById(R.id.listView);
         alertsList.setAdapter(alertAdapter);
         alertsList.setTextFilterEnabled(true);
+
+        alertsList.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
+            public void onRefresh() {
+                updateAlerts.updateFromServer(new AfterChangeListener() {
+                    public void afterChangeHappened() {
+                        alertsList.onRefreshComplete();
+                    }
+                });
+            }
+        });
 
         preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {

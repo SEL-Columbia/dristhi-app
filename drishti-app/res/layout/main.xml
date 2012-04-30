@@ -47,12 +47,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <ListView
+        <com.markupartist.android.widget.PullToRefreshListView
                 android:id="@+id/listView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/actionbar">
-        </ListView>
+        </com.markupartist.android.widget.PullToRefreshListView>
 
         <com.markupartist.android.widget.ActionBar
                 android:id="@+id/actionbar"

@@ -27,6 +27,13 @@ public class UpdateAlertsTask {
     }
 
     public void updateFromServer() {
+        updateFromServer(new AfterChangeListener() {
+            public void afterChangeHappened() {
+            }
+        });
+    }
+
+    public void updateFromServer(final AfterChangeListener afterChangeListener) {
         new AsyncTask<Void, Void, FetchStatus>() {
             @Override
             protected FetchStatus doInBackground(Void... params) {
@@ -52,6 +59,7 @@ public class UpdateAlertsTask {
                 if (fetched.equals(result)) {
                     updateDisplay();
                 }
+                afterChangeListener.afterChangeHappened();
                 progressBar.setVisibility(INVISIBLE);
             }
         }.execute(null);
