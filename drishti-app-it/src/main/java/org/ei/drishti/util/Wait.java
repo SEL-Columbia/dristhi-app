@@ -28,7 +28,7 @@ public class Wait {
     }
 
     public static void waitForFilteringToFinish() {
-        sleep(200);
+        sleep(400);
     }
 
     private static void sleep(int time) {
