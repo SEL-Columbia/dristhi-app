@@ -1,7 +1,8 @@
 package org.ei.drishti.util;
 
 import android.app.Activity;
-import android.test.InstrumentationTestCase;
+import android.app.Instrumentation;
+import android.view.Display;
 import android.widget.ListView;
 import com.jayway.android.robotium.solo.Solo;
 import org.ei.drishti.domain.Alert;
@@ -10,7 +11,6 @@ import org.ei.drishti.view.activity.DrishtiMainActivity;
 
 import java.util.ArrayList;
 
-import static android.test.TouchUtils.dragQuarterScreenDown;
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
 import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
@@ -18,12 +18,10 @@ import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class DrishtiSolo extends Solo {
     private Activity activity;
-    private InstrumentationTestCase instrumentationTestCase;
 
-    public DrishtiSolo(InstrumentationTestCase instrumentationTestCase, Activity activity) {
-        super(instrumentationTestCase.getInstrumentation(), activity);
+    public DrishtiSolo(Instrumentation instrumentation, Activity activity) {
+        super(instrumentation, activity);
         this.activity = activity;
-        this.instrumentationTestCase = instrumentationTestCase;
         waitForProgressBarToGoAway(activity);
     }
 
@@ -63,7 +61,8 @@ public class DrishtiSolo extends Solo {
     }
 
     public void updateAlertsUsingPullToRefresh() {
-        dragQuarterScreenDown(instrumentationTestCase, activity);
+        Display display = activity.getWindowManager().getDefaultDisplay();
+        drag(0, 0, display.getHeight() / 2, (3 * display.getHeight()) / 4, 25);
         waitForProgressBarToGoAway(activity);
     }
 

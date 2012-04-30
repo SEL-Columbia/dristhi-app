@@ -36,7 +36,7 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
         drishtiService = new FakeDrishtiService(defaultSuffix);
         DrishtiMainActivity.setDrishtiService(drishtiService);
 
-        solo = new DrishtiSolo(this, getActivity());
+        solo = new DrishtiSolo(getInstrumentation(), getActivity());
         inputFormat = new SimpleDateFormat("yyyy-MM-dd");
     }
 

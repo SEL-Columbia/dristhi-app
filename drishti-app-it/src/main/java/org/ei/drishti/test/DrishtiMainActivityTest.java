@@ -24,7 +24,7 @@ public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<Dr
         drishtiService = new FakeDrishtiService(defaultSuffix);
         DrishtiMainActivity.setDrishtiService(drishtiService);
 
-        solo = new DrishtiSolo(this, getActivity());
+        solo = new DrishtiSolo(getInstrumentation(), getActivity());
         solo.changeUser("ANM " + defaultSuffix);
     }
 

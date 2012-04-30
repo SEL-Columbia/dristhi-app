@@ -20,7 +20,7 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<Drish
     public void setUp() throws Exception {
         DrishtiMainActivity.setDrishtiService(drishtiService);
 
-        solo = new DrishtiSolo(this, getActivity());
+        solo = new DrishtiSolo(getInstrumentation(), getActivity());
     }
 
     public void testShouldFetchAlertsForNewANMWHenANMIsChanged() throws Exception {
