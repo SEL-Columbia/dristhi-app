@@ -27,6 +27,7 @@ import org.ei.drishti.view.matcher.MatchByVisitCode;
 import java.util.ArrayList;
 
 import static android.widget.RelativeLayout.LayoutParams;
+import static android.widget.RelativeLayout.TRUE;
 import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.*;
 import static org.ei.drishti.util.Log.logVerbose;
@@ -136,5 +137,7 @@ public class DrishtiMainActivity extends Activity {
         LinearLayout actionsView = (LinearLayout) findViewById(R.id.actionbar_actions);
         LayoutParams layoutParams = (LayoutParams) actionsView.getLayoutParams();
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 0);
+        layoutParams.addRule(RelativeLayout.CENTER_VERTICAL, 0);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, TRUE);
     }
 }
