@@ -7,6 +7,7 @@ import android.widget.ListView;
 import com.jayway.android.robotium.solo.Solo;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.AlertFilterCriterionForTime;
+import org.ei.drishti.domain.AlertFilterCriterionForType;
 import org.ei.drishti.view.activity.DrishtiMainActivity;
 
 import java.util.ArrayList;
@@ -71,9 +72,9 @@ public class DrishtiSolo extends Solo {
         waitForFilteringToFinish();
     }
 
-    public void filterByType(String type) {
+    public void filterByType(AlertFilterCriterionForType type) {
         clickOnImageButton(1);
-        clickOnText(type);
+        clickOnText(type.visitCodePrefix());
         waitForActivity(DrishtiMainActivity.class.getSimpleName());
         waitForFilteringToFinish();
     }

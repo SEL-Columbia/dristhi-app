@@ -1,10 +1,7 @@
 package org.ei.drishti.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import org.ei.drishti.domain.AlertAction;
-import org.ei.drishti.domain.AlertFilterCriterionForTime;
-import org.ei.drishti.domain.Response;
-import org.ei.drishti.domain.ResponseStatus;
+import org.ei.drishti.domain.*;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
@@ -16,6 +13,8 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
+import static org.ei.drishti.domain.AlertFilterCriterionForType.BCG;
+import static org.ei.drishti.domain.AlertFilterCriterionForType.OPV;
 import static org.ei.drishti.util.FakeDrishtiService.dataForCreateAction;
 import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
 
@@ -71,21 +70,21 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
     public void testShouldFilterListBasedOnTypeDialog() throws Exception {
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
 
-        solo.filterByType("BCG");
+        solo.filterByType(BCG);
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix);
 
-        solo.filterByType("OPV");
+        solo.filterByType(OPV);
         solo.assertBeneficiaryNames("Theresa 2 " + defaultSuffix);
     }
 
     public void testShouldFilterListBasedOnBothTypeFilterValueAndTextFilter() throws Exception {
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
 
-        solo.filterByType("BCG");
+        solo.filterByType(BCG);
         solo.filterByText("Thaayi 2");
         solo.assertEmptyList();
 
-        solo.filterByType("OPV");
+        solo.filterByType(OPV);
         solo.assertBeneficiaryNames("Theresa 2 " + defaultSuffix);
     }
 
@@ -93,7 +92,7 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
         String newSuffix = String.valueOf(new Date().getTime());
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
 
-        solo.filterByType("BCG");
+        solo.filterByType(BCG);
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix);
 
         drishtiService.setSuffix(newSuffix);
@@ -109,7 +108,7 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
         drishtiService.expect(newUser, "0", newSuffix);
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
 
-        solo.filterByType("BCG");
+        solo.filterByType(BCG);
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix);
 
         solo.changeUser(newUser);
