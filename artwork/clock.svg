@@ -19,7 +19,7 @@
    xml:space="preserve"
    id="svg2985"
    inkscape:version="0.48.1 r9760"
-   sodipodi:docname="android-native-final.svg"
+   sodipodi:docname="clock.svg"
    inkscape:export-filename="/Users/aravind/tmp/ic_tab_clock_unselected_hdpi.png"
    inkscape:export-xdpi="71.999832"
    inkscape:export-ydpi="71.999832"><metadata
@@ -42,12 +42,12 @@
    showguides="true"
    inkscape:guide-bbox="true"
    inkscape:zoom="7.3110943"
-   inkscape:cx="29.676494"
+   inkscape:cx="67.837676"
    inkscape:cy="30.710052"
    inkscape:window-x="0"
    inkscape:window-y="0"
    inkscape:window-maximized="1"
-   inkscape:current-layer="g4349"><sodipodi:guide
+   inkscape:current-layer="g3063"><sodipodi:guide
      orientation="1,0"
      position="60,60"
      id="guide4441" /><sodipodi:guide
@@ -71,7 +71,10 @@
      id="guide4461" /><sodipodi:guide
      orientation="1,0"
      position="54.574594,28.997027"
-     id="guide4463" /></sodipodi:namedview>
+     id="guide4463" /><sodipodi:guide
+     orientation="0,1"
+     position="34.468164,54"
+     id="guide3079" /></sodipodi:namedview>
 
 
 
@@ -226,5 +229,41 @@
    id="path4359"
    inkscape:connector-curvature="0"
    style="fill:#333333" />
+	</g>
+</g></g><g
+   style="display:none"
+   inkscape:label="X selected"
+   id="g3063"
+   inkscape:groupmode="layer"><g
+     transform="translate(0,60)"
+     id="g3065"
+     style="fill:#f9f9f9">
+	<g
+   id="g3067"
+   style="fill:#f9f9f9">
+		<path
+   style="fill:#f9f9f9"
+   inkscape:connector-curvature="0"
+   id="path3069"
+   d="m 43.052,574.702 c 3.369,-3.402 5.453,-8.08 5.453,-13.246 0,-10.398 -8.43,-18.828 -18.828,-18.828 -10.398,0 -18.826,8.43 -18.826,18.828 0,5.256 2.156,10.002 5.629,13.418 l -1.758,1.797 c -1.164,1.189 -1.143,3.096 0.047,4.26 0.584,0.574 1.346,0.859 2.107,0.859 0.781,0 1.563,-0.303 2.152,-0.906 l 2.445,-2.5 c 2.482,1.205 5.26,1.9 8.203,1.9 3.039,0 5.896,-0.736 8.438,-2.014 l 2.557,2.613 c 0.59,0.604 1.371,0.906 2.152,0.906 0.762,0 1.523,-0.285 2.107,-0.859 1.191,-1.164 1.211,-3.07 0.047,-4.26 l -1.925,-1.968 z m -13.375,-0.443 c -7.061,0 -12.801,-5.744 -12.801,-12.803 0,-7.061 5.74,-12.803 12.801,-12.803 7.061,0 12.803,5.742 12.803,12.803 -10e-4,7.059 -5.743,12.803 -12.803,12.803 z" />
+		<g
+   id="g3071"
+   style="fill:#f9f9f9">
+			<path
+   style="fill:#f9f9f9"
+   inkscape:connector-curvature="0"
+   id="path3073"
+   d="m 36.456,562.962 h -8.285 v -10.543 c 0,-0.832 0.674,-1.506 1.506,-1.506 0.834,0 1.508,0.674 1.508,1.506 v 7.531 h 5.271 c 0.832,0 1.506,0.674 1.506,1.506 0,0.832 -0.674,1.506 -1.506,1.506 l 0,0 z" />
+		</g>
+		<path
+   style="fill:#f9f9f9"
+   inkscape:connector-curvature="0"
+   id="path3075"
+   d="m 13.036,538.083 c -4.855,2.803 -5.238,8.719 -5.238,8.719 -0.082,1.24 0.734,1.746 1.811,1.125 l 13.664,-7.891 c 1.076,-0.621 1.047,-1.58 -0.066,-2.129 -0.001,0 -5.317,-2.627 -10.171,0.176 z" />
+		<path
+   style="fill:#f9f9f9"
+   inkscape:connector-curvature="0"
+   id="path3077"
+   d="m 46.319,538.083 c 4.855,2.803 5.236,8.719 5.236,8.719 0.082,1.24 -0.736,1.746 -1.811,1.125 L 36.08,540.036 c -1.076,-0.621 -1.045,-1.58 0.068,-2.129 10e-4,0 5.318,-2.627 10.171,0.176 z" />
 	</g>
 </g></g></svg>
