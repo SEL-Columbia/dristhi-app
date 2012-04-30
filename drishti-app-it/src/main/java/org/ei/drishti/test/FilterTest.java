@@ -36,7 +36,7 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
         drishtiService = new FakeDrishtiService(defaultSuffix);
         DrishtiMainActivity.setDrishtiService(drishtiService);
 
-        solo = new DrishtiSolo(getInstrumentation(), getActivity());
+        solo = new DrishtiSolo(this, getActivity());
         inputFormat = new SimpleDateFormat("yyyy-MM-dd");
     }
 
@@ -98,7 +98,7 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
 
         drishtiService.setSuffix(newSuffix);
 
-        solo.updateAlerts();
+        solo.updateAlertsUsingPullToRefresh();
 
         solo.assertBeneficiaryNames("Theresa 1 " + newSuffix);
     }

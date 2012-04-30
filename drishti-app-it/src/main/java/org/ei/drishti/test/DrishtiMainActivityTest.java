@@ -24,7 +24,7 @@ public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<Dr
         drishtiService = new FakeDrishtiService(defaultSuffix);
         DrishtiMainActivity.setDrishtiService(drishtiService);
 
-        solo = new DrishtiSolo(getInstrumentation(), getActivity());
+        solo = new DrishtiSolo(this, getActivity());
         solo.changeUser("ANM " + defaultSuffix);
     }
 
@@ -36,7 +36,16 @@ public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<Dr
         final String suffixForLoadingThroughMenuButton = String.valueOf(new Date().getTime());
         setupSuffix(suffixForLoadingThroughMenuButton);
 
-        solo.updateAlerts();
+        solo.updateAlertsUsingMenuButton();
+
+        solo.assertBeneficiaryNames("Theresa 1 " + suffixForLoadingThroughMenuButton, "Theresa 2 " + suffixForLoadingThroughMenuButton);
+    }
+
+    public void testShouldUpdateWhenPullToRefreshIsPerformed() throws Throwable {
+        final String suffixForLoadingThroughMenuButton = String.valueOf(new Date().getTime());
+        setupSuffix(suffixForLoadingThroughMenuButton);
+
+        solo.updateAlertsUsingPullToRefresh();
 
         solo.assertBeneficiaryNames("Theresa 1 " + suffixForLoadingThroughMenuButton, "Theresa 2 " + suffixForLoadingThroughMenuButton);
     }
