@@ -37,6 +37,7 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
         inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        solo.changeUser("ANM " + defaultSuffix);
     }
 
     public void testShouldFilterListByMotherName() throws Exception {
@@ -51,6 +52,9 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
         solo.clearEditText(0);
         waitForFilteringToFinish();
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
+
+        solo.filterByText("theresa 1");
+        solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix);
     }
 
     public void testShouldFilterListByThaayiCardNumber() throws Exception {
@@ -65,6 +69,9 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
         solo.clearEditText(0);
         waitForFilteringToFinish();
         solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
+
+        solo.filterByText("thaayi 1");
+        solo.assertBeneficiaryNames("Theresa 1 " + defaultSuffix);
     }
 
     public void testShouldFilterListBasedOnTypeDialog() throws Exception {
