@@ -53,9 +53,9 @@ public class DrishtiMainActivity extends Activity {
         initActionBar();
 
         AlertFilter filter = new AlertFilter(alertAdapter);
-        filter.addFilter(new MatchByVisitCode(createDialog(R.drawable.ic_tab_type, "Filter By Type", All, BCG, HEP, OPV)));
+        filter.addFilter(new MatchByVisitCode(this, createDialog(R.drawable.ic_tab_type, "Filter By Type", All, BCG, HEP, OPV)));
         filter.addFilter(new MatchByBeneficiaryOrThaayiCard((EditText) findViewById(R.id.searchEditText)));
-        filter.addFilter(new MatchByTime(createDialog(R.drawable.ic_tab_clock, "Filter By Time", ShowAll, PastDue, Upcoming)));
+        filter.addFilter(new MatchByTime(this, createDialog(R.drawable.ic_tab_clock, "Filter By Time", ShowAll, PastDue, Upcoming)));
 
         final PullToRefreshListView alertsList = (PullToRefreshListView) findViewById(R.id.listView);
         alertsList.setAdapter(alertAdapter);

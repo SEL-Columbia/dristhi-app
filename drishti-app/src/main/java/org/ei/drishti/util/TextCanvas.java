@@ -1,5 +1,6 @@
 package org.ei.drishti.util;
 
+import android.content.Context;
 import android.graphics.*;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -9,11 +10,14 @@ import static android.graphics.Bitmap.Config.ARGB_8888;
 
 public class TextCanvas {
     private static TextCanvas instance;
+    private final Context context;
 
     public Drawable drawableFor(String text) {
+        float scale = context.getResources().getDisplayMetrics().density;
+
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FAKE_BOLD_TEXT_FLAG);
         paint.setColor(Color.WHITE);
-        paint.setTextSize(18);
+        paint.setTextSize(18 * scale);
         Rect bounds = new Rect();
         paint.getTextBounds(text, 0, text.length(), bounds);
 
@@ -25,13 +29,14 @@ public class TextCanvas {
         return drawable;
     }
 
-    public static TextCanvas getInstance() {
+    public static TextCanvas getInstance(Context context) {
         if (instance == null) {
-            instance = new TextCanvas();
+            instance = new TextCanvas(context);
         }
         return instance;
     }
 
-    private TextCanvas() {
+    private TextCanvas(Context context) {
+        this.context = context;
     }
 }
