@@ -25,8 +25,15 @@ public abstract class DialogMatcher<T extends Displayable> implements Matcher<T>
             public void selectionChanged(View actionItemView, T selection) {
                 currentValue = selection;
                 actionItemView.setSelected(!selection.equals(defaultValue));
-                actionItemView.setBackgroundDrawable(textCanvas.drawableFor(selection.displayValue()));
+                actionItemView.setBackgroundDrawable(textCanvas.drawableFor(displayValueForBadge(selection)));
                 afterChangeListener.afterChangeHappened();
+            }
+
+            private String displayValueForBadge(T selection) {
+                if (selection.equals(defaultValue)) {
+                    return "";
+                }
+                return selection.displayValue();
             }
         });
     }

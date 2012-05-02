@@ -21,9 +21,17 @@ public class TextCanvas {
         Rect bounds = new Rect();
         paint.getTextBounds(text, 0, text.length(), bounds);
 
-        Bitmap bitmap = Bitmap.createBitmap(bounds.width(), bounds.height(), ARGB_8888);
+        if (text.equals("")) {
+            return getDrawable("", 10, scale, paint);
+        }
+
+        return getDrawable(text, bounds.width(), scale, paint);
+    }
+
+    private Drawable getDrawable(String text, int width, float scale, Paint paint) {
+        Bitmap bitmap = Bitmap.createBitmap((int) (width * scale), ((int) (20 * scale)), ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
-        canvas.drawText(text, 0, 15, paint);
+        canvas.drawText(text, 0, 15 * scale, paint);
         BitmapDrawable drawable = new BitmapDrawable(bitmap);
         drawable.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL);
         return drawable;
