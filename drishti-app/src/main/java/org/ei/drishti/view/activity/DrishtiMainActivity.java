@@ -12,6 +12,7 @@ import com.markupartist.android.widget.PullToRefreshListView;
 import org.ei.drishti.R;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
+import org.ei.drishti.domain.Displayable;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.service.HTTPAgent;
@@ -123,7 +124,7 @@ public class DrishtiMainActivity extends Activity {
         drishtiService = value;
     }
 
-    private <T> DialogAction<T> createDialog(int icon, String title, T... options) {
+    private <T extends Displayable> DialogAction<T> createDialog(int icon, String title, T... options) {
         DialogAction<T> filterDialog = new DialogAction<T>(this, icon, title, options);
         actionBar.addAction(filterDialog);
 

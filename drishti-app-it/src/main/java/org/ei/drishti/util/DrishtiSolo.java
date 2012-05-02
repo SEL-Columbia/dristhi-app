@@ -81,7 +81,7 @@ public class DrishtiSolo extends Solo {
 
     public void filterByTime(AlertFilterCriterionForTime criterion) {
         clickOnImageButton(2);
-        clickOnText(criterion.toString());
+        clickOnText(criterion.displayValue());
         waitForActivity(DrishtiMainActivity.class.getSimpleName());
         waitForFilteringToFinish();
     }

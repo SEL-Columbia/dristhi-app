@@ -3,7 +3,7 @@ package org.ei.drishti.domain;
 import static java.lang.Integer.MAX_VALUE;
 import static java.lang.Integer.MIN_VALUE;
 
-public enum AlertFilterCriterionForTime {
+public enum AlertFilterCriterionForTime implements Displayable {
      ShowAll("All", MIN_VALUE, MAX_VALUE), PastDue("Past Due", MIN_VALUE, -1), Upcoming("Upcoming", 0, MAX_VALUE);
 
     private String display;
@@ -16,11 +16,11 @@ public enum AlertFilterCriterionForTime {
         this.endOfRangeInDaysFromToday = endOfRangeInDaysFromToday;
     }
 
-    public String toString() {
-        return display;
-    }
-
     public boolean isInRange(long days) {
         return startOfRangeInDaysFromToday <= days && days <= endOfRangeInDaysFromToday;
+    }
+
+    public String displayValue() {
+        return display;
     }
 }

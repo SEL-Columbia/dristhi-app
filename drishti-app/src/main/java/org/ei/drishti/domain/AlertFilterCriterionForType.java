@@ -1,6 +1,6 @@
 package org.ei.drishti.domain;
 
-public enum AlertFilterCriterionForType {
+public enum AlertFilterCriterionForType implements Displayable {
     ANC("ANC", "ANC"), All("All", ""), BCG("BCG", "BCG"), HEP("Hepatitis", "HEP"), OPV("OPV", "OPV");
 
     private String display;
@@ -15,7 +15,7 @@ public enum AlertFilterCriterionForType {
         return visitCodePrefix;
     }
 
-    public String toString() {
+    public String displayValue() {
         return display;
     }
 }

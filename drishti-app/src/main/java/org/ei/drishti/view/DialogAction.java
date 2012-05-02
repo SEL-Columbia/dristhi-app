@@ -7,11 +7,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 import com.markupartist.android.widget.ActionBar;
 import org.ei.drishti.R;
+import org.ei.drishti.domain.Displayable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DialogAction<T> implements ActionBar.Action {
+public class DialogAction<T extends Displayable> implements ActionBar.Action {
     private AlertDialog.Builder builder;
     private AlertDialog dialog;
     private T[] options;
@@ -51,7 +52,7 @@ public class DialogAction<T> implements ActionBar.Action {
     private String[] buildDisplayItemsFrom(T[] options) {
         List<String> displayItems = new ArrayList<String>();
         for (T option : options) {
-            displayItems.add(option.toString());
+            displayItems.add(option.displayValue());
         }
         return displayItems.toArray(new String[options.length]);
     }
