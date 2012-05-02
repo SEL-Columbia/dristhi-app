@@ -29,7 +29,7 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
 
     public void testShouldNotUpdateWhileAnotherUpdateIsInProgress() throws Throwable {
         AlertControllerWithSimulatedLongRunningTask controller = new AlertControllerWithSimulatedLongRunningTask();
-        final UpdateAlertsTask updateAlertsTask = new UpdateAlertsTask(controller, (ProgressBar) getActivity().findViewById(R.id.progressBar));
+        final UpdateAlertsTask updateAlertsTask = new UpdateAlertsTask(null, controller, (ProgressBar) getActivity().findViewById(R.id.progressBar));
 
         waitForProgressBarToGoAway(getActivity(), 4000);
 

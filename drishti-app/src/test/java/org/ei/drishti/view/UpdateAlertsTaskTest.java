@@ -28,7 +28,7 @@ public class UpdateAlertsTaskTest {
 
     @Test
     public void shouldShowProgressBarsWhileFetchingAlerts() throws Exception {
-        UpdateAlertsTask updateAlertsTask = new UpdateAlertsTask(alertController, progressBar);
+        UpdateAlertsTask updateAlertsTask = new UpdateAlertsTask(null, alertController, progressBar);
         when(alertController.fetchNewAlerts()).thenReturn(FetchStatus.fetched);
 
         updateAlertsTask.updateFromServer();
@@ -43,7 +43,7 @@ public class UpdateAlertsTaskTest {
 
     @Test
     public void shouldNotUpdateDisplayIfNothingWasFetched() throws Exception {
-        UpdateAlertsTask updateAlertsTask = new UpdateAlertsTask(alertController, progressBar);
+        UpdateAlertsTask updateAlertsTask = new UpdateAlertsTask(null, alertController, progressBar);
         when(alertController.fetchNewAlerts()).thenReturn(FetchStatus.nothingFetched);
 
         updateAlertsTask.updateFromServer();

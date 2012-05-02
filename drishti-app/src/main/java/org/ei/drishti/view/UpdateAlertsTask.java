@@ -1,7 +1,9 @@
 package org.ei.drishti.view;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.FetchStatus;
 
@@ -13,11 +15,13 @@ import static org.ei.drishti.domain.FetchStatus.fetched;
 import static org.ei.drishti.util.Log.logVerbose;
 
 public class UpdateAlertsTask {
+    private Context context;
     private AlertController alertController;
     private ProgressBar progressBar;
     private static final ReentrantLock lock = new ReentrantLock();
 
-    public UpdateAlertsTask(AlertController alertController, ProgressBar progressBar) {
+    public UpdateAlertsTask(Context context, AlertController alertController, ProgressBar progressBar) {
+        this.context = context;
         this.alertController = alertController;
         this.progressBar = progressBar;
     }
@@ -41,7 +45,6 @@ public class UpdateAlertsTask {
                     logVerbose("Going away. Something else is holding the lock.");
                     return null;
                 }
-
                 try {
                     return alertController.fetchNewAlerts();
                 } finally {
@@ -58,6 +61,9 @@ public class UpdateAlertsTask {
             protected void onPostExecute(FetchStatus result) {
                 if (fetched.equals(result)) {
                     updateDisplay();
+                }
+                if (context!=null) {
+                    Toast.makeText(context, result.displayValue(), Toast.LENGTH_SHORT).show();
                 }
                 afterChangeListener.afterChangeHappened();
                 progressBar.setVisibility(INVISIBLE);

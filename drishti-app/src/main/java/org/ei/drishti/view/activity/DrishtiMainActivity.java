@@ -48,7 +48,7 @@ public class DrishtiMainActivity extends Activity {
 
         final AlertAdapter alertAdapter = new AlertAdapter(this, R.layout.list_item, new ArrayList<Alert>());
         controller = setupController(alertAdapter);
-        updateAlerts = new UpdateAlertsTask(controller, (ProgressBar) findViewById(R.id.progressBar));
+        updateAlerts = new UpdateAlertsTask(this, controller, (ProgressBar) findViewById(R.id.progressBar));
 
         initActionBar();
 

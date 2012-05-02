@@ -10,6 +10,9 @@ import org.ei.drishti.service.DrishtiService;
 
 import java.util.List;
 
+import static org.ei.drishti.domain.FetchStatus.fetchedFailed;
+import static org.ei.drishti.domain.FetchStatus.nothingFetched;
+
 public class AlertController {
     private DrishtiService drishtiService;
     private AllSettings allSettings;
@@ -27,8 +30,12 @@ public class AlertController {
         String previousFetchIndex = allSettings.fetchPreviousFetchIndex();
         Response<List<AlertAction>> response = drishtiService.fetchNewAlertActions(allSettings.fetchANMIdentifier(), previousFetchIndex);
 
-        if (response.isFailure() || response.payload().isEmpty()) {
-            return FetchStatus.nothingFetched;
+        if (response.isFailure()) {
+            return fetchedFailed;
+        }
+
+        if (response.payload().isEmpty()) {
+            return nothingFetched;
         }
 
         allAlerts.saveNewAlerts(response.payload());

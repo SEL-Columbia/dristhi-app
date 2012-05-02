@@ -16,6 +16,9 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
+import static org.ei.drishti.domain.FetchStatus.fetched;
+import static org.ei.drishti.domain.FetchStatus.fetchedFailed;
+import static org.ei.drishti.domain.FetchStatus.nothingFetched;
 import static org.ei.drishti.domain.ResponseStatus.failure;
 import static org.ei.drishti.domain.ResponseStatus.success;
 import static org.ei.drishti.util.AlertActionBuilder.actionForCreate;
@@ -46,7 +49,7 @@ public class AlertControllerTest {
     public void shouldFetchAlertActionsAndNotSaveAnythingIfThereIsNothingNewToSave() throws Exception {
         setupAlertActions(success, new ArrayList<AlertAction>());
 
-        assertEquals(FetchStatus.nothingFetched, alertController.fetchNewAlerts());
+        assertEquals(nothingFetched, alertController.fetchNewAlerts());
 
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
@@ -58,7 +61,7 @@ public class AlertControllerTest {
     public void shouldNotSaveAnythingIfTheDrishtiResponseStatusIsFailure() throws Exception {
         setupAlertActions(failure, asList(actionForDelete("Case X", "ANC 1")));
 
-        assertEquals(FetchStatus.nothingFetched, alertController.fetchNewAlerts());
+        assertEquals(fetchedFailed, alertController.fetchNewAlerts());
 
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
@@ -70,7 +73,7 @@ public class AlertControllerTest {
     public void shouldFetchAlertActionsAndSaveThemToRepository() throws Exception {
         setupAlertActions(success, asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
 
-        assertEquals(FetchStatus.fetched, alertController.fetchNewAlerts());
+        assertEquals(fetched, alertController.fetchNewAlerts());
 
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
         verify(allAlerts).saveNewAlerts(asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
