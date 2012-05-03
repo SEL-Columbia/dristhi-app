@@ -1,6 +1,8 @@
 package org.ei.drishti.view.activity;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 
 import static android.widget.RelativeLayout.LayoutParams;
 import static android.widget.RelativeLayout.TRUE;
+import static android.widget.Toast.LENGTH_SHORT;
 import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.*;
 import static org.ei.drishti.util.Log.logVerbose;
@@ -71,10 +74,23 @@ public class DrishtiMainActivity extends Activity {
             }
         });
 
+        alertsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent("android.intent.action.MAIN");
+                intent.setComponent(ComponentName.unflattenFromString("org.commcare.android/.activities.CommCareHomeActivity"));
+                intent.addCategory("android.intent.category.Launcher");
+                try {
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(getApplicationContext(), "CommCare ODK is not installed.", LENGTH_SHORT).show();
+                }
+            }
+        });
+
         preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                 controller.changeUser();
-                Toast.makeText(getApplicationContext(), "Changes saved.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Changes saved.", LENGTH_SHORT).show();
             }
         };
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(preferenceChangeListener);

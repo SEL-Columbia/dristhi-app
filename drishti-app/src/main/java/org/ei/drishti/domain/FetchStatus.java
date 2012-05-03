@@ -1,7 +1,7 @@
 package org.ei.drishti.domain;
 
 public enum FetchStatus implements Displayable {
-    fetched("Update Successful."), nothingFetched("Already up to date."), fetchedFailed("Update Failed. Please try again.");
+    fetched("Update successful."), nothingFetched("Already up to date."), fetchedFailed("Update failed. Please try again.");
     private String displayValue;
 
     private FetchStatus(String displayValue) {
