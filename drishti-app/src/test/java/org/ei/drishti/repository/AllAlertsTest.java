@@ -3,7 +3,6 @@ package org.ei.drishti.repository;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.AlertAction;
-import org.ei.drishti.exception.AlertTypeException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -78,8 +77,8 @@ public class AllAlertsTest {
         verifyNoMoreInteractions(alertRepository);
     }
 
-    @Test(expected = AlertTypeException.class)
-    public void shouldFailIfActionTypeIsNotExpected() throws Exception {
+    @Test
+    public void shouldNotFailIfActionTypeIsNotExpected() throws Exception {
         allAlerts.saveNewAlerts(Arrays.asList(new AlertAction("Case X", "UNKNOWN-TYPE", new HashMap<String, String>(), "0")));
     }
 

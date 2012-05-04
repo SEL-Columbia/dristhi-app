@@ -26,7 +26,7 @@ public class DrishtiServiceTest {
     @Mock
     HTTPAgent httpAgent;
 
-    public static final String EXPECTED_URL = "http://base.drishti.url/alerts?anmIdentifier=anm1&timeStamp=0";
+    public static final String EXPECTED_URL = "http://base.drishti.url/actions?anmIdentifier=anm1&timeStamp=0";
     private DrishtiService drishtiService;
 
     @Before
@@ -67,7 +67,7 @@ public class DrishtiServiceTest {
 
     @Test
     public void shouldURLEncodeTheANMIdentifierPartWhenItHasASpace() {
-        String expectedURLWithSpaces = "http://base.drishti.url/alerts?anmIdentifier=ANM+WITH+SPACE&timeStamp=0";
+        String expectedURLWithSpaces = "http://base.drishti.url/actions?anmIdentifier=ANM+WITH+SPACE&timeStamp=0";
         when(httpAgent.fetch(expectedURLWithSpaces)).thenReturn(new Response<String>(ResponseStatus.success, "[]"));
 
         drishtiService.fetchNewAlertActions("ANM WITH SPACE", "0");

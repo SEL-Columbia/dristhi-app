@@ -8,13 +8,13 @@ import java.util.Map;
 
 public class AlertAction {
     private String caseID;
-    private String alertType;
+    private String actionType;
     private Map<String, String> data;
     private String timeStamp;
 
-    public AlertAction(String caseID, String alertType, Map<String, String> data, String timeStamp) {
+    public AlertAction(String caseID, String actionType, Map<String, String> data, String timeStamp) {
         this.caseID = caseID;
-        this.alertType = alertType;
+        this.actionType = actionType;
         this.data = data;
         this.timeStamp = timeStamp;
     }
@@ -27,7 +27,7 @@ public class AlertAction {
     }
 
     public String type() {
-        return alertType;
+        return actionType;
     }
 
     public String index() {

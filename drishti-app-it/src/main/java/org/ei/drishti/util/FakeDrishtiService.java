@@ -50,10 +50,10 @@ public class FakeDrishtiService extends DrishtiService {
     }
 
     private Response<List<AlertAction>> actionsFor(String suffix) {
-        AlertAction deleteXAction = new AlertAction("Case X", "deleteAll", new HashMap<String, String>(), "123456");
-        AlertAction deleteYAction = new AlertAction("Case Y", "deleteAll", new HashMap<String, String>(), "123456");
-        AlertAction firstAction = new AlertAction("Case X", "create", dataForCreateAction("due", "Theresa 1 " + suffix, "BCG", "Thaayi 1 " + suffix, "2012-01-01"), "123456");
-        AlertAction secondAction = new AlertAction("Case Y", "create", dataForCreateAction("due", "Theresa 2 " + suffix, "OPV 1", "Thaayi 2 " + suffix, "2100-04-09"), "123456");
+        AlertAction deleteXAction = new AlertAction("Case X", "deleteAllAlerts", new HashMap<String, String>(), "123456");
+        AlertAction deleteYAction = new AlertAction("Case Y", "deleteAllAlerts", new HashMap<String, String>(), "123456");
+        AlertAction firstAction = new AlertAction("Case X", "createAlert", dataForCreateAction("due", "Theresa 1 " + suffix, "BCG", "Thaayi 1 " + suffix, "2012-01-01"), "123456");
+        AlertAction secondAction = new AlertAction("Case Y", "createAlert", dataForCreateAction("due", "Theresa 2 " + suffix, "OPV 1", "Thaayi 2 " + suffix, "2100-04-09"), "123456");
 
         return new Response<List<AlertAction>>(ResponseStatus.success, Arrays.asList(deleteXAction, deleteYAction, firstAction, secondAction));
     }

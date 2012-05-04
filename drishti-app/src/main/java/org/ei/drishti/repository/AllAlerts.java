@@ -2,7 +2,7 @@ package org.ei.drishti.repository;
 
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.AlertAction;
-import org.ei.drishti.exception.AlertTypeException;
+import org.ei.drishti.util.Log;
 
 import java.util.List;
 
@@ -19,14 +19,14 @@ public class AllAlerts {
 
     public void saveNewAlerts(List<AlertAction> alertActions) {
         for (AlertAction alertAction : alertActions) {
-            if ("create".equals(alertAction.type())) {
+            if ("createAlert".equals(alertAction.type())) {
                 repository.update(alertAction);
-            } else if ("delete".equals(alertAction.type())) {
+            } else if ("deleteAlert".equals(alertAction.type())) {
                 repository.delete(alertAction);
-            } else if ("deleteAll".equals(alertAction.type())) {
+            } else if ("deleteAllAlerts".equals(alertAction.type())) {
                 repository.deleteAll(alertAction);
             } else {
-                throw new AlertTypeException("Unknown type in alert action: " + alertAction);
+                Log.logWarn("Unknown type in alert action: " + alertAction);
             }
         }
     }

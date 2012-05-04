@@ -7,23 +7,23 @@ import java.util.Map;
 
 public class AlertActionBuilder {
     public static AlertAction actionForCreate(String caseID, String latenessStatus, String beneficiaryName, String visitCode, String thaayiCardNumber) {
-        return new AlertAction(caseID, "create", dataForCreateAction(latenessStatus, beneficiaryName, visitCode, thaayiCardNumber), "0");
+        return new AlertAction(caseID, "createAlert", dataForCreateAction(latenessStatus, beneficiaryName, visitCode, thaayiCardNumber), "0");
     }
 
     public static AlertAction actionForCreate(String caseID, String latenessStatus, String beneficiaryName, String visitCode, String thaayiCardNumber, String index) {
-        return new AlertAction(caseID, "create", dataForCreateAction(latenessStatus, beneficiaryName, visitCode, thaayiCardNumber), index);
+        return new AlertAction(caseID, "createAlert", dataForCreateAction(latenessStatus, beneficiaryName, visitCode, thaayiCardNumber), index);
     }
 
     public static AlertAction actionForDelete(String caseID, String visitCode) {
-        return new AlertAction(caseID, "delete", dataForDeleteAction(visitCode), "0");
+        return new AlertAction(caseID, "deleteAlert", dataForDeleteAction(visitCode), "0");
     }
 
     public static AlertAction actionForDelete(String caseID, String visitCode, String index) {
-        return new AlertAction(caseID, "delete", dataForDeleteAction(visitCode), index);
+        return new AlertAction(caseID, "deleteAlert", dataForDeleteAction(visitCode), index);
     }
 
     public static AlertAction actionForDeleteAll(String caseID) {
-        return new AlertAction(caseID, "deleteAll", new HashMap<String, String>(), "0");
+        return new AlertAction(caseID, "deleteAllAlerts", new HashMap<String, String>(), "0");
     }
 
     private static Map<String, String> dataForCreateAction(String lateness, String beneficiaryName, String visitCode, String thaayiCardNumber) {
