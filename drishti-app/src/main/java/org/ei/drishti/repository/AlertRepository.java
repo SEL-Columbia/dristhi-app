@@ -3,8 +3,8 @@ package org.ei.drishti.repository;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.AlertAction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class AlertRepository implements DrishtiRepository {
         return readAllAlerts(cursor);
     }
 
-    public void update(AlertAction alertAction) {
+    public void update(Action alertAction) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         String[] caseAndVisitCodeColumnValues = {alertAction.caseID(), alertAction.get("visitCode")};
 
@@ -43,13 +43,13 @@ public class AlertRepository implements DrishtiRepository {
         }
     }
 
-    public void delete(AlertAction alertAction) {
+    public void delete(Action alertAction) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
 
         database.delete(ALERTS_TABLE_NAME, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, new String[]{alertAction.caseID(), alertAction.get("visitCode")});
     }
 
-    public void deleteAll(AlertAction alertAction) {
+    public void deleteAll(Action alertAction) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.delete(ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN + "= ?", new String[]{alertAction.caseID()});
     }
@@ -65,7 +65,7 @@ public class AlertRepository implements DrishtiRepository {
         return alerts;
     }
 
-    private ContentValues createValuesFor(AlertAction alertAction, List<Alert> existingAlerts) {
+    private ContentValues createValuesFor(Action alertAction, List<Alert> existingAlerts) {
         ContentValues values = new ContentValues();
         values.put(ALERTS_CASEID_COLUMN, alertAction.caseID());
         values.put(ALERTS_THAAYI_CARD_COLUMN, alertAction.get("thaayiCardNumber"));

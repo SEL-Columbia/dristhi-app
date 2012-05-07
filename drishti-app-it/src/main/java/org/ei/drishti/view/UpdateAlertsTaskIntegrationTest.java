@@ -53,7 +53,7 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
         }
 
         @Override
-        public FetchStatus fetchNewAlerts() {
+        public FetchStatus fetchNewActions() {
             counter++;
             try {
                 Thread.sleep(2000);

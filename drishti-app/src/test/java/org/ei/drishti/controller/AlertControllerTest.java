@@ -21,8 +21,8 @@ import static org.ei.drishti.domain.FetchStatus.fetchedFailed;
 import static org.ei.drishti.domain.FetchStatus.nothingFetched;
 import static org.ei.drishti.domain.ResponseStatus.failure;
 import static org.ei.drishti.domain.ResponseStatus.success;
-import static org.ei.drishti.util.AlertActionBuilder.actionForCreate;
-import static org.ei.drishti.util.AlertActionBuilder.actionForDelete;
+import static org.ei.drishti.util.ActionBuilder.actionForCreate;
+import static org.ei.drishti.util.ActionBuilder.actionForDelete;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -47,9 +47,9 @@ public class AlertControllerTest {
 
     @Test
     public void shouldFetchAlertActionsAndNotSaveAnythingIfThereIsNothingNewToSave() throws Exception {
-        setupAlertActions(success, new ArrayList<AlertAction>());
+        setupAlertActions(success, new ArrayList<Action>());
 
-        assertEquals(nothingFetched, alertController.fetchNewAlerts());
+        assertEquals(nothingFetched, alertController.fetchNewActions());
 
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
@@ -61,7 +61,7 @@ public class AlertControllerTest {
     public void shouldNotSaveAnythingIfTheDrishtiResponseStatusIsFailure() throws Exception {
         setupAlertActions(failure, asList(actionForDelete("Case X", "ANC 1")));
 
-        assertEquals(fetchedFailed, alertController.fetchNewAlerts());
+        assertEquals(fetchedFailed, alertController.fetchNewActions());
 
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
@@ -73,7 +73,7 @@ public class AlertControllerTest {
     public void shouldFetchAlertActionsAndSaveThemToRepository() throws Exception {
         setupAlertActions(success, asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
 
-        assertEquals(fetched, alertController.fetchNewAlerts());
+        assertEquals(fetched, alertController.fetchNewActions());
 
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
         verify(allAlerts).saveNewAlerts(asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
@@ -101,7 +101,7 @@ public class AlertControllerTest {
 
         when(allAlerts.fetchAlerts()).thenReturn(asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1, "2012-01-01"), new Alert("Case Y", "Theresa", "ANC 2", "Thaayi 2", 1, "2012-01-01")));
 
-        alertController.fetchNewAlerts();
+        alertController.fetchNewActions();
 
         verify(allSettings).savePreviousFetchIndex(indexOfLastMessage);
     }
@@ -113,9 +113,9 @@ public class AlertControllerTest {
         verify(allSettings).savePreviousFetchIndex("0");
     }
 
-    private void setupAlertActions(ResponseStatus status, List<AlertAction> list) {
+    private void setupAlertActions(ResponseStatus status, List<Action> list) {
         when(allSettings.fetchPreviousFetchIndex()).thenReturn("1234");
         when(allSettings.fetchANMIdentifier()).thenReturn("ANM X");
-        when(drishtiService.fetchNewAlertActions("ANM X", "1234")).thenReturn(new Response<List<AlertAction>>(status, list));
+        when(drishtiService.fetchNewAlertActions("ANM X", "1234")).thenReturn(new Response<List<Action>>(status, list));
     }
 }

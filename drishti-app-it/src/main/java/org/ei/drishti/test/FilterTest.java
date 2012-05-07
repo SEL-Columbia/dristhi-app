@@ -140,8 +140,8 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
         String newSuffix = String.valueOf(new Date().getTime());
         String newUser = "NEW ANM" + newSuffix;
 
-        AlertAction alertAction = new AlertAction("Case M", "createAlert", dataForCreateAction("due", "Mom " + newSuffix, "ANC 1", "TC 12", inputFormat.format(DateUtil.today())), "1234567");
-        drishtiService.expect(newUser, "0", new Response<List<AlertAction>>(ResponseStatus.success, asList(alertAction)));
+        Action alertAction = new Action("Case M", "createAlert", dataForCreateAction("due", "Mom " + newSuffix, "ANC 1", "TC 12", inputFormat.format(DateUtil.today())), "1234567");
+        drishtiService.expect(newUser, "0", new Response<List<Action>>(ResponseStatus.success, asList(alertAction)));
         solo.changeUser(newUser);
 
         solo.assertBeneficiaryNames("Mom " + newSuffix);

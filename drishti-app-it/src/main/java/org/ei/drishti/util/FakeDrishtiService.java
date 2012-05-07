@@ -1,6 +1,6 @@
 package org.ei.drishti.util;
 
-import org.ei.drishti.domain.AlertAction;
+import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.service.DrishtiService;
@@ -18,7 +18,7 @@ public class FakeDrishtiService extends DrishtiService {
     }
 
     @Override
-    public Response<List<AlertAction>> fetchNewAlertActions(String anmIdentifier, String previouslyFetchedIndex) {
+    public Response<List<Action>> fetchNewAlertActions(String anmIdentifier, String previouslyFetchedIndex) {
         for (Expectation expectation : expectations) {
             if (expectation.matches(anmIdentifier, previouslyFetchedIndex)) {
                 return expectation.alertActions();
@@ -45,31 +45,31 @@ public class FakeDrishtiService extends DrishtiService {
         expectations.add(new Expectation(anmId, previousIndex, actionsFor(suffixOfAlertsToReturn)));
     }
 
-    public void expect(String anmId, String previousIndex, Response<List<AlertAction>> suffixOfAlertsToReturn) {
+    public void expect(String anmId, String previousIndex, Response<List<Action>> suffixOfAlertsToReturn) {
         expectations.add(new Expectation(anmId, previousIndex, suffixOfAlertsToReturn));
     }
 
-    private Response<List<AlertAction>> actionsFor(String suffix) {
-        AlertAction deleteXAction = new AlertAction("Case X", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        AlertAction deleteYAction = new AlertAction("Case Y", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        AlertAction firstAction = new AlertAction("Case X", "createAlert", dataForCreateAction("due", "Theresa 1 " + suffix, "BCG", "Thaayi 1 " + suffix, "2012-01-01"), "123456");
-        AlertAction secondAction = new AlertAction("Case Y", "createAlert", dataForCreateAction("due", "Theresa 2 " + suffix, "OPV 1", "Thaayi 2 " + suffix, "2100-04-09"), "123456");
+    private Response<List<Action>> actionsFor(String suffix) {
+        Action deleteXAction = new Action("Case X", "deleteAllAlerts", new HashMap<String, String>(), "123456");
+        Action deleteYAction = new Action("Case Y", "deleteAllAlerts", new HashMap<String, String>(), "123456");
+        Action firstAction = new Action("Case X", "createAlert", dataForCreateAction("due", "Theresa 1 " + suffix, "BCG", "Thaayi 1 " + suffix, "2012-01-01"), "123456");
+        Action secondAction = new Action("Case Y", "createAlert", dataForCreateAction("due", "Theresa 2 " + suffix, "OPV 1", "Thaayi 2 " + suffix, "2100-04-09"), "123456");
 
-        return new Response<List<AlertAction>>(ResponseStatus.success, Arrays.asList(deleteXAction, deleteYAction, firstAction, secondAction));
+        return new Response<List<Action>>(ResponseStatus.success, Arrays.asList(deleteXAction, deleteYAction, firstAction, secondAction));
     }
 
     private class Expectation {
         private String anmId;
         private String previousIndex;
-        private Response<List<AlertAction>> alertsToProvide;
+        private Response<List<Action>> alertsToProvide;
 
-        public Expectation(String anmId, String previousIndex, Response<List<AlertAction>> alertsToProvide) {
+        public Expectation(String anmId, String previousIndex, Response<List<Action>> alertsToProvide) {
             this.anmId = anmId;
             this.previousIndex = previousIndex;
             this.alertsToProvide = alertsToProvide;
         }
 
-        public Response<List<AlertAction>> alertActions() {
+        public Response<List<Action>> alertActions() {
             return alertsToProvide;
         }
 

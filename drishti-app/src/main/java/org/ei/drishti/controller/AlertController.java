@@ -1,7 +1,7 @@
 package org.ei.drishti.controller;
 
+import org.ei.drishti.domain.Action;
 import org.ei.drishti.view.adapter.AlertAdapter;
-import org.ei.drishti.domain.AlertAction;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.repository.AllAlerts;
@@ -26,9 +26,9 @@ public class AlertController {
         this.adapter = adapter;
     }
 
-    public FetchStatus fetchNewAlerts() {
+    public FetchStatus fetchNewActions() {
         String previousFetchIndex = allSettings.fetchPreviousFetchIndex();
-        Response<List<AlertAction>> response = drishtiService.fetchNewAlertActions(allSettings.fetchANMIdentifier(), previousFetchIndex);
+        Response<List<Action>> response = drishtiService.fetchNewAlertActions(allSettings.fetchANMIdentifier(), previousFetchIndex);
 
         if (response.isFailure()) {
             return fetchedFailed;

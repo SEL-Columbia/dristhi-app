@@ -1,7 +1,7 @@
 package org.ei.drishti.repository;
 
+import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.AlertAction;
 import org.ei.drishti.util.Log;
 
 import java.util.List;
@@ -17,8 +17,8 @@ public class AllAlerts {
         return repository.allAlerts();
     }
 
-    public void saveNewAlerts(List<AlertAction> alertActions) {
-        for (AlertAction alertAction : alertActions) {
+    public void saveNewAlerts(List<Action> alertActions) {
+        for (Action alertAction : alertActions) {
             if ("createAlert".equals(alertAction.type())) {
                 repository.update(alertAction);
             } else if ("deleteAlert".equals(alertAction.type())) {

@@ -6,20 +6,20 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Map;
 
-public class AlertAction {
+public class Action {
     private String caseID;
     private String actionType;
     private Map<String, String> data;
     private String timeStamp;
 
-    public AlertAction(String caseID, String actionType, Map<String, String> data, String timeStamp) {
+    public Action(String caseID, String actionType, Map<String, String> data, String timeStamp) {
         this.caseID = caseID;
         this.actionType = actionType;
         this.data = data;
         this.timeStamp = timeStamp;
     }
 
-    public AlertAction() {
+    public Action() {
     }
 
     public String caseID() {

@@ -1,8 +1,8 @@
 package org.ei.drishti.repository;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.AlertAction;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
-import static org.ei.drishti.util.AlertActionBuilder.*;
+import static org.ei.drishti.util.ActionBuilder.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -32,8 +32,8 @@ public class AllAlertsTest {
 
     @Test
     public void shouldUpdateAlertRepositoryForCreateAlertActions() throws Exception {
-        AlertAction firstAction = actionForCreate("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1");
-        AlertAction secondAction = actionForCreate("Case Y", "late", "Theresa 2", "ANC 2", "Thaayi 2");
+        Action firstAction = actionForCreate("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1");
+        Action secondAction = actionForCreate("Case Y", "late", "Theresa 2", "ANC 2", "Thaayi 2");
 
         allAlerts.saveNewAlerts(Arrays.asList(firstAction, secondAction));
 
@@ -44,8 +44,8 @@ public class AllAlertsTest {
 
     @Test
     public void shouldDeleteAllAlerts() throws Exception {
-        AlertAction firstAction = actionForCreate("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1");
-        AlertAction secondAction = actionForCreate("Case Y", "late", "Theresa 2", "ANC 2", "Thaayi 2");
+        Action firstAction = actionForCreate("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1");
+        Action secondAction = actionForCreate("Case Y", "late", "Theresa 2", "ANC 2", "Thaayi 2");
 
         allAlerts.saveNewAlerts(Arrays.asList(firstAction, secondAction));
         allAlerts.deleteAllAlerts();
@@ -55,8 +55,8 @@ public class AllAlertsTest {
 
     @Test
     public void shouldDeleteFromRepositoryForDeleteActions() throws Exception {
-        AlertAction firstAction = actionForDelete("Case X", "ANC 1");
-        AlertAction secondAction = actionForDelete("Case Y", "ANC 2");
+        Action firstAction = actionForDelete("Case X", "ANC 1");
+        Action secondAction = actionForDelete("Case Y", "ANC 2");
 
         allAlerts.saveNewAlerts(Arrays.asList(firstAction, secondAction));
 
@@ -67,8 +67,8 @@ public class AllAlertsTest {
 
     @Test
     public void shouldDeleteAllFromRepositoryForDeleteAllActions() throws Exception {
-        AlertAction firstAction = actionForDeleteAll("Case X");
-        AlertAction secondAction = actionForDeleteAll("Case Y");
+        Action firstAction = actionForDeleteAll("Case X");
+        Action secondAction = actionForDeleteAll("Case Y");
 
         allAlerts.saveNewAlerts(Arrays.asList(firstAction, secondAction));
 
@@ -79,16 +79,16 @@ public class AllAlertsTest {
 
     @Test
     public void shouldNotFailIfActionTypeIsNotExpected() throws Exception {
-        allAlerts.saveNewAlerts(Arrays.asList(new AlertAction("Case X", "UNKNOWN-TYPE", new HashMap<String, String>(), "0")));
+        allAlerts.saveNewAlerts(Arrays.asList(new Action("Case X", "UNKNOWN-TYPE", new HashMap<String, String>(), "0")));
     }
 
     @Test
     public void shouldUpdateDeleteAndDeleteAllAlertActionsBasedOnTheirType() throws Exception {
-        AlertAction firstCreateAction = actionForCreate("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1");
-        AlertAction firstDeleteAction = actionForDelete("Case Y", "ANC 2");
-        AlertAction secondCreateAction = actionForCreate("Case Z", "due", "Theresa 2", "ANC 2", "Thaayi 2");
-        AlertAction deleteAllAction = actionForDeleteAll("Case A");
-        AlertAction secondDeleteAction = actionForDelete("Case B", "ANC 3");
+        Action firstCreateAction = actionForCreate("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1");
+        Action firstDeleteAction = actionForDelete("Case Y", "ANC 2");
+        Action secondCreateAction = actionForCreate("Case Z", "due", "Theresa 2", "ANC 2", "Thaayi 2");
+        Action deleteAllAction = actionForDeleteAll("Case A");
+        Action secondDeleteAction = actionForDelete("Case B", "ANC 3");
 
         allAlerts.saveNewAlerts(Arrays.asList(firstCreateAction, firstDeleteAction, secondCreateAction, deleteAllAction, secondDeleteAction));
 

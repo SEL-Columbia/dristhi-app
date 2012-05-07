@@ -29,13 +29,13 @@ public class UpdateAlertsTaskTest {
     @Test
     public void shouldShowProgressBarsWhileFetchingAlerts() throws Exception {
         UpdateAlertsTask updateAlertsTask = new UpdateAlertsTask(null, alertController, progressBar);
-        when(alertController.fetchNewAlerts()).thenReturn(FetchStatus.fetched);
+        when(alertController.fetchNewActions()).thenReturn(FetchStatus.fetched);
 
         updateAlertsTask.updateFromServer();
 
         InOrder inOrder = inOrder(alertController, progressBar);
         inOrder.verify(progressBar).setVisibility(View.VISIBLE);
-        inOrder.verify(alertController).fetchNewAlerts();
+        inOrder.verify(alertController).fetchNewActions();
         inOrder.verify(alertController).refreshAlertsFromDB();
         inOrder.verify(progressBar).setVisibility(View.INVISIBLE);
     }
@@ -44,7 +44,7 @@ public class UpdateAlertsTaskTest {
     @Test
     public void shouldNotUpdateDisplayIfNothingWasFetched() throws Exception {
         UpdateAlertsTask updateAlertsTask = new UpdateAlertsTask(null, alertController, progressBar);
-        when(alertController.fetchNewAlerts()).thenReturn(FetchStatus.nothingFetched);
+        when(alertController.fetchNewActions()).thenReturn(FetchStatus.nothingFetched);
 
         updateAlertsTask.updateFromServer();
 

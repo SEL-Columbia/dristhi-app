@@ -46,7 +46,7 @@ public class UpdateAlertsTask {
                     return null;
                 }
                 try {
-                    return alertController.fetchNewAlerts();
+                    return alertController.fetchNewActions();
                 } finally {
                     lock.unlock();
                 }
