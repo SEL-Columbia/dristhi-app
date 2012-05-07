@@ -6,6 +6,7 @@ import org.ei.drishti.R;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.service.ActionService;
+import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.view.activity.DrishtiMainActivity;
 
@@ -18,16 +19,23 @@ import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
     private CountDownLatch signal;
+    private final FakeDrishtiService drishtiService;
 
     public UpdateAlertsTaskIntegrationTest() {
         super(DrishtiMainActivity.class);
-        FakeDrishtiService drishtiService = new FakeDrishtiService("Default");
+        drishtiService = new FakeDrishtiService("Default");
         drishtiService.setSuffix(String.valueOf(new Date().getTime()));
-        DrishtiMainActivity.setDrishtiService(drishtiService);
         signal = new CountDownLatch(1);
     }
 
     public void testShouldNotUpdateWhileAnotherUpdateIsInProgress() throws Throwable {
+        Context.setInstance(new Context() {
+            @Override
+            protected DrishtiService drishtiService() {
+                return drishtiService;
+            }
+        }).updateApplicationContext(getActivity().getApplicationContext());
+
         ActionServiceWithSimulatedLongRunningTask service = new ActionServiceWithSimulatedLongRunningTask();
         final UpdateAlertsTask updateAlertsTask = new UpdateAlertsTask(null, service, fakeController(), (ProgressBar) getActivity().findViewById(R.id.progressBar));
 

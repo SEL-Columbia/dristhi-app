@@ -65,7 +65,7 @@ public class UpdateAlertsTask {
                 if (fetched.equals(result)) {
                     updateDisplay();
                 }
-                if (context!=null) {
+                if (result != null && context != null) {
                     Toast.makeText(context, result.displayValue(), Toast.LENGTH_SHORT).show();
                 }
                 afterChangeListener.afterChangeHappened();

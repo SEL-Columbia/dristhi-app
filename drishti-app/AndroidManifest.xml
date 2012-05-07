@@ -11,6 +11,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.activity.SettingsActivity"/>
+        <activity android:name=".view.activity.EligibleCoupleActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait"/>
     </application>
 
     <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="8"/>

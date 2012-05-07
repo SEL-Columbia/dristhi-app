@@ -1,6 +1,8 @@
 package org.ei.drishti.test;
 
 import android.test.ActivityInstrumentationTestCase2;
+import org.ei.drishti.service.DrishtiService;
+import org.ei.drishti.view.Context;
 import org.ei.drishti.view.activity.DrishtiMainActivity;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
@@ -18,7 +20,12 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<Drish
 
     @Override
     public void setUp() throws Exception {
-        DrishtiMainActivity.setDrishtiService(drishtiService);
+        Context.setInstance(new Context() {
+            @Override
+            protected DrishtiService drishtiService() {
+                return drishtiService;
+            }
+        }).updateApplicationContext(getActivity().getApplicationContext());
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
     }

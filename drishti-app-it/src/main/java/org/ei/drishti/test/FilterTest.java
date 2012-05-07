@@ -2,9 +2,11 @@ package org.ei.drishti.test;
 
 import android.test.ActivityInstrumentationTestCase2;
 import org.ei.drishti.domain.*;
+import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
+import org.ei.drishti.view.Context;
 import org.ei.drishti.view.activity.DrishtiMainActivity;
 
 import java.text.SimpleDateFormat;
@@ -33,7 +35,12 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
     public void setUp() throws Exception {
         defaultSuffix = String.valueOf(new Date().getTime() - 1);
         drishtiService = new FakeDrishtiService(defaultSuffix);
-        DrishtiMainActivity.setDrishtiService(drishtiService);
+        Context.setInstance(new Context() {
+            @Override
+            protected DrishtiService drishtiService() {
+                return drishtiService;
+            }
+        }).updateApplicationContext(getActivity().getApplicationContext());
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
         inputFormat = new SimpleDateFormat("yyyy-MM-dd");

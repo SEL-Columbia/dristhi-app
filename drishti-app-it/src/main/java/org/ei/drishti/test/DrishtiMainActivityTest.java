@@ -1,15 +1,15 @@
 package org.ei.drishti.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import org.ei.drishti.view.activity.DrishtiMainActivity;
 import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
+import org.ei.drishti.view.Context;
+import org.ei.drishti.view.activity.DrishtiMainActivity;
 
 import java.util.Date;
 
 public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
-
     private FakeDrishtiService drishtiService;
     private DrishtiSolo solo;
     private String defaultSuffix;
@@ -22,7 +22,12 @@ public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<Dr
     public void setUp() throws Exception {
         defaultSuffix = String.valueOf(new Date().getTime() - 1);
         drishtiService = new FakeDrishtiService(defaultSuffix);
-        DrishtiMainActivity.setDrishtiService(drishtiService);
+        Context.setInstance(new Context() {
+            @Override
+            protected DrishtiService drishtiService() {
+                return drishtiService;
+            }
+        }).updateApplicationContext(getActivity().getApplicationContext());
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
         solo.changeUser("ANM " + defaultSuffix);
