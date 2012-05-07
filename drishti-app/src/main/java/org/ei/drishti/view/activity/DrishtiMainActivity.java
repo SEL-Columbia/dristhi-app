@@ -16,6 +16,7 @@ import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Displayable;
 import org.ei.drishti.repository.*;
+import org.ei.drishti.service.ActionService;
 import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.service.HTTPAgent;
 import org.ei.drishti.view.AfterChangeListener;
@@ -40,8 +41,10 @@ public class DrishtiMainActivity extends Activity {
     private static DrishtiService drishtiService;
     private UpdateAlertsTask updateAlerts;
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
-    private AlertController controller;
     private ActionBar actionBar;
+    private AllSettings allSettings;
+    private AllAlerts allAlerts;
+    private AllEligibleCouples allEligibleCouples;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,8 +53,9 @@ public class DrishtiMainActivity extends Activity {
         setContentView(R.layout.main);
 
         final AlertAdapter alertAdapter = new AlertAdapter(this, R.layout.list_item, new ArrayList<Alert>());
-        controller = setupController(alertAdapter);
-        updateAlerts = new UpdateAlertsTask(this, controller, (ProgressBar) findViewById(R.id.progressBar));
+        AlertController controller = setupController(alertAdapter);
+        final ActionService actionService = setUpActionService();
+        updateAlerts = new UpdateAlertsTask(this, actionService, controller, (ProgressBar) findViewById(R.id.progressBar));
 
         initActionBar();
 
@@ -89,7 +93,7 @@ public class DrishtiMainActivity extends Activity {
 
         preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                controller.changeUser();
+                actionService.changeUser();
                 Toast.makeText(getApplicationContext(), "Changes saved.", LENGTH_SHORT).show();
             }
         };
@@ -130,14 +134,18 @@ public class DrishtiMainActivity extends Activity {
         EligibleCoupleRepository eligibleCoupleRepository = new EligibleCoupleRepository();
         new Repository(getApplicationContext(), settingsRepository, alertRepository, eligibleCoupleRepository);
 
-        AllSettings allSettings = new AllSettings(PreferenceManager.getDefaultSharedPreferences(this), settingsRepository);
-        AllAlerts allAlerts = new AllAlerts(alertRepository);
-        AllEligibleCouples allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository);
+        allSettings = new AllSettings(PreferenceManager.getDefaultSharedPreferences(this), settingsRepository);
+        allAlerts = new AllAlerts(alertRepository);
+        allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository);
         if (drishtiService == null) {
             drishtiService = new DrishtiService(new HTTPAgent(), "http://drishti.modilabs.org");
         }
 
-        return new AlertController(drishtiService, alertAdapter, allSettings, allAlerts, allEligibleCouples);
+        return new AlertController(alertAdapter, allAlerts);
+    }
+
+    private ActionService setUpActionService() {
+        return new ActionService(drishtiService, allSettings, allAlerts, allEligibleCouples);
     }
 
     public static void setDrishtiService(DrishtiService value) {

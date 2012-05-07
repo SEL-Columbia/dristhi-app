@@ -6,6 +6,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.FetchStatus;
+import org.ei.drishti.service.ActionService;
 
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -16,12 +17,14 @@ import static org.ei.drishti.util.Log.logVerbose;
 
 public class UpdateAlertsTask {
     private Context context;
+    private ActionService actionService;
     private AlertController alertController;
     private ProgressBar progressBar;
     private static final ReentrantLock lock = new ReentrantLock();
 
-    public UpdateAlertsTask(Context context, AlertController alertController, ProgressBar progressBar) {
+    public UpdateAlertsTask(Context context, ActionService actionService, AlertController alertController, ProgressBar progressBar) {
         this.context = context;
+        this.actionService = actionService;
         this.alertController = alertController;
         this.progressBar = progressBar;
     }
@@ -46,7 +49,7 @@ public class UpdateAlertsTask {
                     return null;
                 }
                 try {
-                    return alertController.fetchNewActions();
+                    return actionService.fetchNewActions();
                 } finally {
                     lock.unlock();
                 }

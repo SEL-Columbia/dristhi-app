@@ -3,10 +3,11 @@ package org.ei.drishti.view;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ProgressBar;
 import org.ei.drishti.R;
-import org.ei.drishti.view.activity.DrishtiMainActivity;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.FetchStatus;
+import org.ei.drishti.service.ActionService;
 import org.ei.drishti.util.FakeDrishtiService;
+import org.ei.drishti.view.activity.DrishtiMainActivity;
 
 import java.util.Date;
 import java.util.concurrent.CountDownLatch;
@@ -17,19 +18,18 @@ import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
     private CountDownLatch signal;
-    private FakeDrishtiService drishtiService;
 
     public UpdateAlertsTaskIntegrationTest() {
         super(DrishtiMainActivity.class);
-        drishtiService = new FakeDrishtiService("Default");
+        FakeDrishtiService drishtiService = new FakeDrishtiService("Default");
         drishtiService.setSuffix(String.valueOf(new Date().getTime()));
         DrishtiMainActivity.setDrishtiService(drishtiService);
         signal = new CountDownLatch(1);
     }
 
     public void testShouldNotUpdateWhileAnotherUpdateIsInProgress() throws Throwable {
-        AlertControllerWithSimulatedLongRunningTask controller = new AlertControllerWithSimulatedLongRunningTask();
-        final UpdateAlertsTask updateAlertsTask = new UpdateAlertsTask(null, controller, (ProgressBar) getActivity().findViewById(R.id.progressBar));
+        ActionServiceWithSimulatedLongRunningTask service = new ActionServiceWithSimulatedLongRunningTask();
+        final UpdateAlertsTask updateAlertsTask = new UpdateAlertsTask(null, service, fakeController(), (ProgressBar) getActivity().findViewById(R.id.progressBar));
 
         waitForProgressBarToGoAway(getActivity(), 4000);
 
@@ -42,14 +42,15 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
         });
 
         signal.await(6, TimeUnit.SECONDS);
-        assertEquals(1, controller.numberOfTimesFetchWasCalled());
+        assertEquals(1, service.numberOfTimesFetchWasCalled());
+        assertEquals(DrishtiMainActivity.class, getActivity().getClass());
     }
 
-    private class AlertControllerWithSimulatedLongRunningTask extends AlertController {
-        private int counter = 0;
+    private class ActionServiceWithSimulatedLongRunningTask extends ActionService {
 
-        public AlertControllerWithSimulatedLongRunningTask() {
-            super(null, null, null, null, null);
+        private int counter = 0;
+        public ActionServiceWithSimulatedLongRunningTask() {
+            super(null, null, null, null);
         }
 
         @Override
@@ -64,12 +65,16 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
             return fetched;
         }
 
-        @Override
-        public void refreshAlertsFromDB() {
-        }
-
         public int numberOfTimesFetchWasCalled() {
             return counter;
         }
+
+    }
+    private AlertController fakeController() {
+        return new AlertController(null, null) {
+            @Override
+            public void refreshAlertsFromDB() {
+            }
+        };
     }
 }
