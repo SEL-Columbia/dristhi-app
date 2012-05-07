@@ -15,8 +15,8 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
-import static org.ei.drishti.util.ActionBuilder.actionForCreate;
-import static org.ei.drishti.util.ActionBuilder.actionForDelete;
+import static org.ei.drishti.util.ActionBuilder.actionForCreateAlert;
+import static org.ei.drishti.util.ActionBuilder.actionForDeleteAlert;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -42,7 +42,7 @@ public class DrishtiServiceTest {
         Response<List<Action>> alertActions = drishtiService.fetchNewAlertActions("anm1", "0");
 
         verify(httpAgent).fetch(EXPECTED_URL);
-        assertEquals(asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "1333695798583"), actionForDelete("Case Y", "ANC 1", "1333695798644")), alertActions.payload());
+        assertEquals(asList(actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "1333695798583"), actionForDeleteAlert("Case Y", "ANC 1", "1333695798644")), alertActions.payload());
         assertEquals(ResponseStatus.success, alertActions.status());
     }
 

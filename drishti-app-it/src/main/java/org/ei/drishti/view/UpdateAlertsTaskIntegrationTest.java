@@ -49,7 +49,7 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
         private int counter = 0;
 
         public AlertControllerWithSimulatedLongRunningTask() {
-            super(null, null, null, null);
+            super(null, null, null, null, null);
         }
 
         @Override

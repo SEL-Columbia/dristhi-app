@@ -17,17 +17,15 @@ public class AllAlerts {
         return repository.allAlerts();
     }
 
-    public void saveNewAlerts(List<Action> alertActions) {
-        for (Action alertAction : alertActions) {
-            if ("createAlert".equals(alertAction.type())) {
-                repository.update(alertAction);
-            } else if ("deleteAlert".equals(alertAction.type())) {
-                repository.delete(alertAction);
-            } else if ("deleteAllAlerts".equals(alertAction.type())) {
-                repository.deleteAll(alertAction);
-            } else {
-                Log.logWarn("Unknown type in alert action: " + alertAction);
-            }
+    public void handleAction(Action action) {
+        if ("createAlert".equals(action.type())) {
+            repository.update(action);
+        } else if ("deleteAlert".equals(action.type())) {
+            repository.deleteAlertsForVisitCodeOfCase(action);
+        } else if ("deleteAllAlerts".equals(action.type())) {
+            repository.deleteAllAlertsForCase(action);
+        } else {
+            Log.logWarn("Unknown type in alert action: " + action);
         }
     }
 

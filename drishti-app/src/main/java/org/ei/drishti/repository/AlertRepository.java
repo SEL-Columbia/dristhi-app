@@ -43,15 +43,20 @@ public class AlertRepository implements DrishtiRepository {
         }
     }
 
-    public void delete(Action alertAction) {
+    public void deleteAlertsForVisitCodeOfCase(Action alertAction) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
 
         database.delete(ALERTS_TABLE_NAME, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, new String[]{alertAction.caseID(), alertAction.get("visitCode")});
     }
 
-    public void deleteAll(Action alertAction) {
+    public void deleteAllAlertsForCase(Action alertAction) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.delete(ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN + "= ?", new String[]{alertAction.caseID()});
+    }
+
+    public void deleteAllAlerts() {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        database.delete(ALERTS_TABLE_NAME, null,null);
     }
 
     private List<Alert> readAllAlerts(Cursor cursor) {
@@ -88,10 +93,5 @@ public class AlertRepository implements DrishtiRepository {
 
     public void updateMasterRepository(Repository repository) {
         this.masterRepository = repository;
-    }
-
-    public void deleteAllAlerts() {
-        SQLiteDatabase database = masterRepository.getWritableDatabase();
-        database.delete(ALERTS_TABLE_NAME, null,null);
     }
 }

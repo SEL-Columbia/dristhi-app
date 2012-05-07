@@ -32,10 +32,11 @@ public class AllAlertsTest {
 
     @Test
     public void shouldUpdateAlertRepositoryForCreateAlertActions() throws Exception {
-        Action firstAction = actionForCreate("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1");
-        Action secondAction = actionForCreate("Case Y", "late", "Theresa 2", "ANC 2", "Thaayi 2");
+        Action firstAction = actionForCreateAlert("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1", "0");
+        Action secondAction = actionForCreateAlert("Case Y", "late", "Theresa 2", "ANC 2", "Thaayi 2", "0");
 
-        allAlerts.saveNewAlerts(Arrays.asList(firstAction, secondAction));
+        allAlerts.handleAction(firstAction);
+        allAlerts.handleAction(secondAction);
 
         verify(alertRepository).update(firstAction);
         verify(alertRepository).update(secondAction);
@@ -44,10 +45,6 @@ public class AllAlertsTest {
 
     @Test
     public void shouldDeleteAllAlerts() throws Exception {
-        Action firstAction = actionForCreate("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1");
-        Action secondAction = actionForCreate("Case Y", "late", "Theresa 2", "ANC 2", "Thaayi 2");
-
-        allAlerts.saveNewAlerts(Arrays.asList(firstAction, secondAction));
         allAlerts.deleteAllAlerts();
 
         verify(alertRepository).deleteAllAlerts();
@@ -55,49 +52,55 @@ public class AllAlertsTest {
 
     @Test
     public void shouldDeleteFromRepositoryForDeleteActions() throws Exception {
-        Action firstAction = actionForDelete("Case X", "ANC 1");
-        Action secondAction = actionForDelete("Case Y", "ANC 2");
+        Action firstAction = actionForDeleteAlert("Case X", "ANC 1", "0");
+        Action secondAction = actionForDeleteAlert("Case Y", "ANC 2", "0");
 
-        allAlerts.saveNewAlerts(Arrays.asList(firstAction, secondAction));
+        allAlerts.handleAction(firstAction);
+        allAlerts.handleAction(secondAction);
 
-        verify(alertRepository).delete(firstAction);
-        verify(alertRepository).delete(secondAction);
+        verify(alertRepository).deleteAlertsForVisitCodeOfCase(firstAction);
+        verify(alertRepository).deleteAlertsForVisitCodeOfCase(secondAction);
         verifyNoMoreInteractions(alertRepository);
     }
 
     @Test
     public void shouldDeleteAllFromRepositoryForDeleteAllActions() throws Exception {
-        Action firstAction = actionForDeleteAll("Case X");
-        Action secondAction = actionForDeleteAll("Case Y");
+        Action firstAction = actionForDeleteAllAlert("Case X");
+        Action secondAction = actionForDeleteAllAlert("Case Y");
 
-        allAlerts.saveNewAlerts(Arrays.asList(firstAction, secondAction));
+        allAlerts.handleAction(firstAction);
+        allAlerts.handleAction(secondAction);
 
-        verify(alertRepository).deleteAll(firstAction);
-        verify(alertRepository).deleteAll(secondAction);
+        verify(alertRepository).deleteAllAlertsForCase(firstAction);
+        verify(alertRepository).deleteAllAlertsForCase(secondAction);
         verifyNoMoreInteractions(alertRepository);
     }
 
     @Test
     public void shouldNotFailIfActionTypeIsNotExpected() throws Exception {
-        allAlerts.saveNewAlerts(Arrays.asList(new Action("Case X", "UNKNOWN-TYPE", new HashMap<String, String>(), "0")));
+        allAlerts.handleAction(new Action("Case X", "UNKNOWN-TYPE", new HashMap<String, String>(), "0"));
     }
 
     @Test
     public void shouldUpdateDeleteAndDeleteAllAlertActionsBasedOnTheirType() throws Exception {
-        Action firstCreateAction = actionForCreate("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1");
-        Action firstDeleteAction = actionForDelete("Case Y", "ANC 2");
-        Action secondCreateAction = actionForCreate("Case Z", "due", "Theresa 2", "ANC 2", "Thaayi 2");
-        Action deleteAllAction = actionForDeleteAll("Case A");
-        Action secondDeleteAction = actionForDelete("Case B", "ANC 3");
+        Action firstCreateAction = actionForCreateAlert("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1", "0");
+        Action firstDeleteAction = actionForDeleteAlert("Case Y", "ANC 2", "0");
+        Action secondCreateAction = actionForCreateAlert("Case Z", "due", "Theresa 2", "ANC 2", "Thaayi 2", "0");
+        Action deleteAllAction = actionForDeleteAllAlert("Case A");
+        Action secondDeleteAction = actionForDeleteAlert("Case B", "ANC 3", "0");
 
-        allAlerts.saveNewAlerts(Arrays.asList(firstCreateAction, firstDeleteAction, secondCreateAction, deleteAllAction, secondDeleteAction));
+        allAlerts.handleAction(firstCreateAction);
+        allAlerts.handleAction(firstDeleteAction);
+        allAlerts.handleAction(secondCreateAction);
+        allAlerts.handleAction(deleteAllAction);
+        allAlerts.handleAction(secondDeleteAction);
 
         InOrder inOrder = inOrder(alertRepository);
         inOrder.verify(alertRepository).update(firstCreateAction);
-        inOrder.verify(alertRepository).delete(firstDeleteAction);
+        inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase(firstDeleteAction);
         inOrder.verify(alertRepository).update(secondCreateAction);
-        inOrder.verify(alertRepository).deleteAll(deleteAllAction);
-        inOrder.verify(alertRepository).delete(secondDeleteAction);
+        inOrder.verify(alertRepository).deleteAllAlertsForCase(deleteAllAction);
+        inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase(secondDeleteAction);
         verifyNoMoreInteractions(alertRepository);
     }
 

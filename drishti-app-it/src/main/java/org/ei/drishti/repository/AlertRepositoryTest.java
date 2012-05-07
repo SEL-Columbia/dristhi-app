@@ -54,13 +54,13 @@ public class AlertRepositoryTest extends AndroidTestCase {
         alertRepository.update(new Action("Case X", "create", dataForCreateAction("due", "Theresa", "ANC 1", "Thaayi 1", "2012-01-01"), "0"));
         alertRepository.update(new Action("Case Y", "create", dataForCreateAction("due", "SomeOtherWoman", "ANC 2", "Thaayi 2", "2012-01-01"), "0"));
 
-        alertRepository.delete(new Action("Case X", "delete", dataForDeleteAction("ANC 1"), "0"));
+        alertRepository.deleteAlertsForVisitCodeOfCase(new Action("Case X", "delete", dataForDeleteAction("ANC 1"), "0"));
 
         assertEquals(asList(new Alert("Case Y", "SomeOtherWoman", "ANC 2", "Thaayi 2", 1, "2012-01-01")), alertRepository.allAlerts());
     }
 
     public void testShouldNotFailDeletionWhenNothingToDeleteExists() throws Exception {
-        alertRepository.delete(new Action("Case X", "delete", dataForDeleteAction("ANC 1"), "0"));
+        alertRepository.deleteAlertsForVisitCodeOfCase(new Action("Case X", "delete", dataForDeleteAction("ANC 1"), "0"));
 
         assertTrue(alertRepository.allAlerts().isEmpty());
     }
@@ -71,7 +71,7 @@ public class AlertRepositoryTest extends AndroidTestCase {
         alertRepository.update(new Action("Case Y", "create", dataForCreateAction("due", "SomeOtherWoman", "ANC 2", "Thaayi 2", "2012-01-01"), "0"));
         alertRepository.update(new Action("Case X", "create", dataForCreateAction("late", "Theresa", "ANC 3", "Thaayi 1", "2012-01-01"), "0"));
 
-        alertRepository.deleteAll(new Action("Case X", "deleteAll", null, "0"));
+        alertRepository.deleteAllAlertsForCase(new Action("Case X", "deleteAll", null, "0"));
 
         assertEquals(asList(new Alert("Case Y", "SomeOtherWoman", "ANC 2", "Thaayi 2", 1, "2012-01-01")), alertRepository.allAlerts());
     }

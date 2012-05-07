@@ -1,6 +1,7 @@
 package org.ei.drishti.controller;
 
 import org.ei.drishti.domain.Action;
+import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.view.adapter.AlertAdapter;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.Response;
@@ -18,12 +19,14 @@ public class AlertController {
     private AllSettings allSettings;
     private AllAlerts allAlerts;
     private AlertAdapter adapter;
+    private AllEligibleCouples allEligibleCouples;
 
-    public AlertController(DrishtiService drishtiService, AllSettings allSettings, AllAlerts allAlerts, AlertAdapter adapter) {
+    public AlertController(DrishtiService drishtiService, AlertAdapter adapter, AllSettings allSettings, AllAlerts allAlerts, AllEligibleCouples allEligibleCouples) {
         this.drishtiService = drishtiService;
         this.allSettings = allSettings;
         this.allAlerts = allAlerts;
         this.adapter = adapter;
+        this.allEligibleCouples = allEligibleCouples;
     }
 
     public FetchStatus fetchNewActions() {
@@ -38,7 +41,10 @@ public class AlertController {
             return nothingFetched;
         }
 
-        allAlerts.saveNewAlerts(response.payload());
+        for (Action action : response.payload()) {
+            allAlerts.handleAction(action);
+            allEligibleCouples.handleAction(action);
+        }
         allSettings.savePreviousFetchIndex(response.payload().get(response.payload().size() - 1).index());
         return FetchStatus.fetched;
     }

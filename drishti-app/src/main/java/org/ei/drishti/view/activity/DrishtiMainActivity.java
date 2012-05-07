@@ -127,13 +127,17 @@ public class DrishtiMainActivity extends Activity {
     public AlertController setupController(AlertAdapter alertAdapter) {
         SettingsRepository settingsRepository = new SettingsRepository();
         AlertRepository alertRepository = new AlertRepository();
-        new Repository(getApplicationContext(), settingsRepository, alertRepository);
+        EligibleCoupleRepository eligibleCoupleRepository = new EligibleCoupleRepository();
+        new Repository(getApplicationContext(), settingsRepository, alertRepository, eligibleCoupleRepository);
+
         AllSettings allSettings = new AllSettings(PreferenceManager.getDefaultSharedPreferences(this), settingsRepository);
         AllAlerts allAlerts = new AllAlerts(alertRepository);
+        AllEligibleCouples allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository);
         if (drishtiService == null) {
             drishtiService = new DrishtiService(new HTTPAgent(), "http://drishti.modilabs.org");
         }
-        return new AlertController(drishtiService, allSettings, allAlerts, alertAdapter);
+
+        return new AlertController(drishtiService, alertAdapter, allSettings, allAlerts, allEligibleCouples);
     }
 
     public static void setDrishtiService(DrishtiService value) {

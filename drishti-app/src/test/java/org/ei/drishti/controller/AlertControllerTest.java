@@ -1,6 +1,8 @@
 package org.ei.drishti.controller;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.util.ActionBuilder;
 import org.ei.drishti.view.adapter.AlertAdapter;
 import org.ei.drishti.domain.*;
 import org.ei.drishti.repository.AllAlerts;
@@ -21,8 +23,8 @@ import static org.ei.drishti.domain.FetchStatus.fetchedFailed;
 import static org.ei.drishti.domain.FetchStatus.nothingFetched;
 import static org.ei.drishti.domain.ResponseStatus.failure;
 import static org.ei.drishti.domain.ResponseStatus.success;
-import static org.ei.drishti.util.ActionBuilder.actionForCreate;
-import static org.ei.drishti.util.ActionBuilder.actionForDelete;
+import static org.ei.drishti.util.ActionBuilder.actionForCreateAlert;
+import static org.ei.drishti.util.ActionBuilder.actionForDeleteAlert;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -36,13 +38,15 @@ public class AlertControllerTest {
     private AllAlerts allAlerts;
     @Mock
     private AlertAdapter adapter;
+    @Mock
+    private AllEligibleCouples allEligibleCouples;
 
     private AlertController alertController;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        alertController = new AlertController(drishtiService, allSettings, allAlerts, adapter);
+        alertController = new AlertController(drishtiService, adapter, allSettings, allAlerts, allEligibleCouples);
     }
 
     @Test
@@ -59,7 +63,7 @@ public class AlertControllerTest {
 
     @Test
     public void shouldNotSaveAnythingIfTheDrishtiResponseStatusIsFailure() throws Exception {
-        setupAlertActions(failure, asList(actionForDelete("Case X", "ANC 1")));
+        setupAlertActions(failure, asList(actionForDeleteAlert("Case X", "ANC 1", "0")));
 
         assertEquals(fetchedFailed, alertController.fetchNewActions());
 
@@ -71,17 +75,17 @@ public class AlertControllerTest {
 
     @Test
     public void shouldFetchAlertActionsAndSaveThemToRepository() throws Exception {
-        setupAlertActions(success, asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
+        setupAlertActions(success, asList(ActionBuilder.actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "0")));
 
         assertEquals(fetched, alertController.fetchNewActions());
 
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
-        verify(allAlerts).saveNewAlerts(asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
+        verify(allAlerts).handleAction(ActionBuilder.actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "0"));
     }
 
     @Test
     public void shouldRetrieveAlertsAndRefreshView() throws Exception {
-        setupAlertActions(success, asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1")));
+        setupAlertActions(success, asList(ActionBuilder.actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "0")));
 
         List<Alert> alerts = asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
         when(allAlerts.fetchAlerts()).thenReturn(alerts);
@@ -97,7 +101,7 @@ public class AlertControllerTest {
     @Test
     public void shouldUpdatePreviousIndexWithIndexOfLatestAlert() throws Exception {
         String indexOfLastMessage = "12345";
-        setupAlertActions(success, asList(actionForCreate("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "11111"), actionForCreate("Case Y", "due", "Theresa", "ANC 2", "Thaayi 2", indexOfLastMessage)));
+        setupAlertActions(success, asList(actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "11111"), actionForCreateAlert("Case Y", "due", "Theresa", "ANC 2", "Thaayi 2", indexOfLastMessage)));
 
         when(allAlerts.fetchAlerts()).thenReturn(asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1, "2012-01-01"), new Alert("Case Y", "Theresa", "ANC 2", "Thaayi 2", 1, "2012-01-01")));
 
@@ -109,6 +113,7 @@ public class AlertControllerTest {
     @Test
     public void shouldDeleteAllAlertsAndPreviousFetchIndexWhenUserChanged() throws Exception {
         alertController.changeUser();
+
         verify(allAlerts).deleteAllAlerts();
         verify(allSettings).savePreviousFetchIndex("0");
     }

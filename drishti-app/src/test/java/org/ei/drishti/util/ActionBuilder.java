@@ -6,27 +6,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ActionBuilder {
-    public static Action actionForCreate(String caseID, String latenessStatus, String beneficiaryName, String visitCode, String thaayiCardNumber) {
-        return new Action(caseID, "createAlert", dataForCreateAction(latenessStatus, beneficiaryName, visitCode, thaayiCardNumber), "0");
+    public static Action actionForCreateAlert(String caseID, String latenessStatus, String beneficiaryName, String visitCode, String thaayiCardNumber, String index) {
+        return new Action(caseID, "createAlert", dataForCreateActionForAlert(latenessStatus, beneficiaryName, visitCode, thaayiCardNumber), index);
     }
 
-    public static Action actionForCreate(String caseID, String latenessStatus, String beneficiaryName, String visitCode, String thaayiCardNumber, String index) {
-        return new Action(caseID, "createAlert", dataForCreateAction(latenessStatus, beneficiaryName, visitCode, thaayiCardNumber), index);
+    public static Action actionForDeleteAlert(String caseID, String visitCode, String index) {
+        return new Action(caseID, "deleteAlert", dataForDeleteActionForAlert(visitCode), index);
     }
 
-    public static Action actionForDelete(String caseID, String visitCode) {
-        return new Action(caseID, "deleteAlert", dataForDeleteAction(visitCode), "0");
-    }
-
-    public static Action actionForDelete(String caseID, String visitCode, String index) {
-        return new Action(caseID, "deleteAlert", dataForDeleteAction(visitCode), index);
-    }
-
-    public static Action actionForDeleteAll(String caseID) {
+    public static Action actionForDeleteAllAlert(String caseID) {
         return new Action(caseID, "deleteAllAlerts", new HashMap<String, String>(), "0");
     }
 
-    private static Map<String, String> dataForCreateAction(String lateness, String beneficiaryName, String visitCode, String thaayiCardNumber) {
+    public static Action actionForCreateEC(String caseID, String wifeName, String husbandName, String ecNumber) {
+        return new Action(caseID, "createEC", dataForCreateActionForEC(wifeName, husbandName, ecNumber), "0");
+    }
+
+    public static Action actionForDeleteEC(String caseID) {
+        return new Action(caseID, "deleteEC", new HashMap<String, String>(), "0");
+    }
+
+    private static Map<String, String> dataForCreateActionForEC(String wifeName, String husbandName, String ecNumber) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("wife", wifeName);
+        map.put("husband", husbandName);
+        map.put("ecNumber", ecNumber);
+        return map;
+    }
+
+    private static Map<String, String> dataForCreateActionForAlert(String lateness, String beneficiaryName, String visitCode, String thaayiCardNumber) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("latenessStatus", lateness);
         map.put("beneficiaryName", beneficiaryName);
@@ -35,7 +43,7 @@ public class ActionBuilder {
         return map;
     }
 
-    private static Map<String, String> dataForDeleteAction(String visitCode) {
+    private static Map<String, String> dataForDeleteActionForAlert(String visitCode) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("visitCode", visitCode);
         return map;
