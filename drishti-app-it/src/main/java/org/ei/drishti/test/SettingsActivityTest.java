@@ -3,18 +3,18 @@ package org.ei.drishti.test;
 import android.test.ActivityInstrumentationTestCase2;
 import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.view.Context;
-import org.ei.drishti.view.activity.DrishtiMainActivity;
+import org.ei.drishti.view.activity.AlertsActivity;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
 
 import java.util.Date;
 
-public class SettingsActivityTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
+public class SettingsActivityTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
     private DrishtiSolo solo;
     private FakeDrishtiService drishtiService;
 
     public SettingsActivityTest() {
-        super("org.ei.drishti.test", DrishtiMainActivity.class);
+        super("org.ei.drishti.test", AlertsActivity.class);
         drishtiService = new FakeDrishtiService("Default");
     }
 

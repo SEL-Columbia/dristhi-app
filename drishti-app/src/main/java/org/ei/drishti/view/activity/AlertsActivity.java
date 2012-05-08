@@ -34,7 +34,7 @@ import static org.ei.drishti.domain.FetchStatus.fetched;
 import static org.ei.drishti.util.DateUtil.formattedDueDate;
 import static org.ei.drishti.util.Log.logVerbose;
 
-public class DrishtiMainActivity extends Activity {
+public class AlertsActivity extends Activity {
     private UpdateActionsTask updateAlerts;
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
     private Context context;
@@ -70,9 +70,11 @@ public class DrishtiMainActivity extends Activity {
         controller = context.alertController(alertAdapter);
         updateAlerts = new UpdateActionsTask(this, context.actionService(), (ProgressBar) findViewById(R.id.progressBar));
 
-        AlertFilter filter = new AlertFilter(alertAdapter);
+        ItemFilter<Alert> filter = new ItemFilter<Alert>(alertAdapter);
         filter.addFilter(new MatchByVisitCode(this, createDialog(R.drawable.ic_tab_type, "Filter By Type", All, BCG, HEP, OPV)));
-        filter.addFilter(new MatchByBeneficiaryOrThaayiCard((EditText) findViewById(R.id.searchEditText)));
+        EditText searchBox = (EditText) findViewById(R.id.searchEditText);
+        searchBox.setHint("Search Reminders");
+        filter.addFilter(new MatchByBeneficiaryOrThaayiCard(searchBox));
         filter.addFilter(new MatchByTime(this, createDialog(R.drawable.ic_tab_clock, "Filter By Time", ShowAll, PastDue, Upcoming)));
 
         final PullToRefreshListView alertsList = (PullToRefreshListView) findViewById(R.id.listView);

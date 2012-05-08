@@ -1,8 +1,6 @@
 package org.ei.drishti.view.activity;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,7 +9,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.PullToRefreshListView;
 import org.ei.drishti.R;
@@ -21,20 +22,15 @@ import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.view.*;
 import org.ei.drishti.view.adapter.ListAdapter;
-import org.ei.drishti.view.matcher.MatchByBeneficiaryOrThaayiCard;
-import org.ei.drishti.view.matcher.MatchByTime;
-import org.ei.drishti.view.matcher.MatchByVisitCode;
 
 import java.util.ArrayList;
 
 import static android.widget.Toast.LENGTH_SHORT;
-import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
-import static org.ei.drishti.domain.AlertFilterCriterionForType.*;
 import static org.ei.drishti.domain.FetchStatus.fetched;
 
 public class EligibleCoupleActivity extends Activity {
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
-    private UpdateActionsTask updateAlerts;
+    private UpdateActionsTask updateECTask;
     private Context context;
     private EligibleCoupleController controller;
 
@@ -47,10 +43,12 @@ public class EligibleCoupleActivity extends Activity {
 
         findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), DrishtiMainActivity.class));
+                startActivity(new Intent(getApplicationContext(), AlertsActivity.class));
             }
         });
 
+        EditText searchBox = (EditText) findViewById(R.id.searchEditText);
+        searchBox.setHint("Search Couples");
         final ListAdapter<EligibleCouple> ecAdapter = new ListAdapter<EligibleCouple>(this, R.layout.list_item, new ArrayList<EligibleCouple>()) {
             @Override
             protected void populateListItem(View view, EligibleCouple item) {
@@ -62,43 +60,25 @@ public class EligibleCoupleActivity extends Activity {
             private void setTextView(View v, int viewId, String text) {
                 ((TextView) v.findViewById(viewId)).setText(text);
             }
-
         };
         controller = context.eligibleCoupleController(ecAdapter);
-        updateAlerts = new UpdateActionsTask(this, context.actionService(), (ProgressBar) findViewById(org.ei.drishti.R.id.progressBar));
+        updateECTask = new UpdateActionsTask(this, context.actionService(), (ProgressBar) findViewById(org.ei.drishti.R.id.progressBar));
+        ItemFilter<EligibleCouple> itemFilter = new ItemFilter<EligibleCouple>(ecAdapter);
 
-        AlertFilter filter = new AlertFilter(ecAdapter);
-        filter.addFilter(new MatchByVisitCode(this, createDialog(org.ei.drishti.R.drawable.ic_tab_type, "Filter By Type", All, BCG, HEP, OPV)));
-        filter.addFilter(new MatchByBeneficiaryOrThaayiCard((EditText) findViewById(org.ei.drishti.R.id.searchEditText)));
-        filter.addFilter(new MatchByTime(this, createDialog(org.ei.drishti.R.drawable.ic_tab_clock, "Filter By Time", ShowAll, PastDue, Upcoming)));
+        final PullToRefreshListView ecList = (PullToRefreshListView) findViewById(org.ei.drishti.R.id.listView);
+        ecList.setAdapter(ecAdapter);
+        ecList.setTextFilterEnabled(true);
 
-        final PullToRefreshListView alertsList = (PullToRefreshListView) findViewById(org.ei.drishti.R.id.listView);
-        alertsList.setAdapter(ecAdapter);
-        alertsList.setTextFilterEnabled(true);
-
-        alertsList.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
+        ecList.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
             public void onRefresh() {
-                updateAlerts.updateFromServer(new AfterFetchListener() {
+                updateECTask.updateFromServer(new AfterFetchListener() {
                     public void afterChangeHappened(FetchStatus status) {
                         if (fetched.equals(status)) {
-                            controller.refreshAlertsFromDB();
+                            controller.refreshECFromDB();
                         }
-                        alertsList.onRefreshComplete();
+                        ecList.onRefreshComplete();
                     }
                 });
-            }
-        });
-
-        alertsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent("android.intent.action.MAIN");
-                intent.setComponent(ComponentName.unflattenFromString("org.commcare.android/.activities.CommCareHomeActivity"));
-                intent.addCategory("android.intent.category.Launcher");
-                try {
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    Toast.makeText(getApplicationContext(), "CommCare ODK is not installed.", LENGTH_SHORT).show();
-                }
             }
         });
 
@@ -114,8 +94,8 @@ public class EligibleCoupleActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        controller.refreshAlertsFromDB();
-        updateAlerts();
+        controller.refreshECFromDB();
+        updateECs();
     }
 
     @Override
@@ -129,7 +109,7 @@ public class EligibleCoupleActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case org.ei.drishti.R.id.updateMenuItem:
-                updateAlerts();
+                updateECs();
                 return true;
             case org.ei.drishti.R.id.settingsMenuItem:
                 startActivity(new Intent(this, SettingsActivity.class));
@@ -145,11 +125,11 @@ public class EligibleCoupleActivity extends Activity {
         return filterDialog;
     }
 
-    private void updateAlerts() {
-        updateAlerts.updateFromServer(new AfterFetchListener() {
+    private void updateECs() {
+        updateECTask.updateFromServer(new AfterFetchListener() {
             public void afterChangeHappened(FetchStatus status) {
                 if (fetched.equals(status)) {
-                    controller.refreshAlertsFromDB();
+                    controller.refreshECFromDB();
                 }
             }
         });

@@ -6,12 +6,12 @@ import org.ei.drishti.view.matcher.Matcher;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlertFilter<T> {
+public class ItemFilter<T> {
     private ListAdapter<T> alertAdapter;
     private final ListAdapter.OnDataSourceChangedListener dataSourceChangedListener;
-    private List<Matcher> matchers = new ArrayList<Matcher>();
+    private List<Matcher<?, T>> matchers = new ArrayList<Matcher<?, T>>();
 
-    public AlertFilter(ListAdapter<T> alertAdapter) {
+    public ItemFilter(ListAdapter<T> alertAdapter) {
         this.alertAdapter = alertAdapter;
 
         dataSourceChangedListener = new ListAdapter.OnDataSourceChangedListener() {
@@ -22,7 +22,7 @@ public class AlertFilter<T> {
         alertAdapter.setOnDataSourceChanged(dataSourceChangedListener);
     }
 
-    public void addFilter(Matcher matcher) {
+    public void addFilter(Matcher<?, T> matcher) {
         this.matchers.add(matcher);
 
         matcher.setOnChangeListener(new AfterChangeListener() {

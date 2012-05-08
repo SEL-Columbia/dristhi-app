@@ -7,7 +7,7 @@ import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.view.Context;
-import org.ei.drishti.view.activity.DrishtiMainActivity;
+import org.ei.drishti.view.activity.AlertsActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,7 +20,7 @@ import static org.ei.drishti.domain.AlertFilterCriterionForType.OPV;
 import static org.ei.drishti.util.FakeDrishtiService.dataForCreateAction;
 import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
 
-public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
+public class FilterTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
     private DrishtiSolo solo;
 
     private String defaultSuffix;
@@ -28,7 +28,7 @@ public class FilterTest extends ActivityInstrumentationTestCase2<DrishtiMainActi
     private SimpleDateFormat inputFormat;
 
     public FilterTest() {
-        super(DrishtiMainActivity.class);
+        super(AlertsActivity.class);
     }
 
     @Override

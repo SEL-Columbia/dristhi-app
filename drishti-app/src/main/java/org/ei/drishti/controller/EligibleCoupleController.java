@@ -13,7 +13,7 @@ public class EligibleCoupleController {
         this.allEligibleCouples = allEligibleCouples;
     }
 
-    public void refreshAlertsFromDB() {
+    public void refreshECFromDB() {
         adapter.updateItems(allEligibleCouples.fetchAll());
     }
 }

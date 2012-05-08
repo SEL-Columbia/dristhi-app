@@ -8,7 +8,7 @@ import com.jayway.android.robotium.solo.Solo;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.AlertFilterCriterionForTime;
 import org.ei.drishti.domain.AlertFilterCriterionForType;
-import org.ei.drishti.view.activity.DrishtiMainActivity;
+import org.ei.drishti.view.activity.AlertsActivity;
 
 import java.util.ArrayList;
 
@@ -75,14 +75,14 @@ public class DrishtiSolo extends Solo {
     public void filterByType(AlertFilterCriterionForType type) {
         clickOnImageButton(1);
         clickOnText(type.visitCodePrefix());
-        waitForActivity(DrishtiMainActivity.class.getSimpleName());
+        waitForActivity(AlertsActivity.class.getSimpleName());
         waitForFilteringToFinish();
     }
 
     public void filterByTime(AlertFilterCriterionForTime criterion) {
         clickOnImageButton(2);
         clickOnText(criterion.displayValue());
-        waitForActivity(DrishtiMainActivity.class.getSimpleName());
+        waitForActivity(AlertsActivity.class.getSimpleName());
         waitForFilteringToFinish();
     }
 }

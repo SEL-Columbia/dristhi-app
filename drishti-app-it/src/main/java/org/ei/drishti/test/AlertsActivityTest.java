@@ -5,17 +5,17 @@ import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.view.Context;
-import org.ei.drishti.view.activity.DrishtiMainActivity;
+import org.ei.drishti.view.activity.AlertsActivity;
 
 import java.util.Date;
 
-public class DrishtiMainActivityTest extends ActivityInstrumentationTestCase2<DrishtiMainActivity> {
+public class AlertsActivityTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
     private FakeDrishtiService drishtiService;
     private DrishtiSolo solo;
     private String defaultSuffix;
 
-    public DrishtiMainActivityTest() {
-        super(DrishtiMainActivity.class);
+    public AlertsActivityTest() {
+        super(AlertsActivity.class);
     }
 
     @Override

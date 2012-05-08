@@ -44,7 +44,7 @@ public class ActionService {
 
     private void handleActions(Response<List<Action>> response) {
         for (Action action : response.payload()) {
-            if (action.type().endsWith("Alert")) {
+            if (action.type().contains("Alert")) {
                 allAlerts.handleAction(action);
             } else {
                 allEligibleCouples.handleAction(action);
