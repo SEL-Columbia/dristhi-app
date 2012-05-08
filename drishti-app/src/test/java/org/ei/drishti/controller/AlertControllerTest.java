@@ -10,7 +10,7 @@ import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.util.ActionBuilder;
-import org.ei.drishti.view.adapter.AlertAdapter;
+import org.ei.drishti.view.adapter.ListAdapter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +32,7 @@ public class AlertControllerTest {
     @Mock
     private AllAlerts allAlerts;
     @Mock
-    private AlertAdapter adapter;
+    private ListAdapter<Alert> alertAdapter;
     @Mock
     private AllEligibleCouples allEligibleCouples;
 
@@ -41,7 +41,7 @@ public class AlertControllerTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        alertController = new AlertController(adapter, allAlerts);
+        alertController = new AlertController(alertAdapter, allAlerts);
     }
 
     @Test
@@ -54,9 +54,9 @@ public class AlertControllerTest {
         alertController.refreshAlertsFromDB();
 
         verify(allAlerts).fetchAlerts();
-        verify(adapter).updateAlerts(alerts);
+        verify(alertAdapter).updateItems(alerts);
         verifyNoMoreInteractions(drishtiService);
-        verifyNoMoreInteractions(adapter);
+        verifyNoMoreInteractions(alertAdapter);
     }
 
     private void setupAlertActions(ResponseStatus status, List<Action> list) {

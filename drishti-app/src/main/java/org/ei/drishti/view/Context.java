@@ -1,12 +1,13 @@
 package org.ei.drishti.view;
 
 import org.ei.drishti.controller.AlertController;
+import org.ei.drishti.domain.Alert;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.ActionService;
 import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.service.HTTPAgent;
 import org.ei.drishti.service.UserService;
-import org.ei.drishti.view.adapter.AlertAdapter;
+import org.ei.drishti.view.adapter.ListAdapter;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
@@ -43,7 +44,7 @@ public class Context {
         return this;
     }
 
-    public AlertController alertController(AlertAdapter adapter) {
+    public AlertController alertController(ListAdapter<Alert> adapter) {
         new Repository(this.applicationContext, settingsRepository(), alertRepository(), eligibleCoupleRepository());
 
         drishtiService();

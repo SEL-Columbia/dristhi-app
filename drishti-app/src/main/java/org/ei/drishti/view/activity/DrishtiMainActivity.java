@@ -11,10 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.*;
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.PullToRefreshListView;
 import org.ei.drishti.R;
@@ -23,7 +20,7 @@ import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Displayable;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.view.*;
-import org.ei.drishti.view.adapter.AlertAdapter;
+import org.ei.drishti.view.adapter.ListAdapter;
 import org.ei.drishti.view.matcher.MatchByBeneficiaryOrThaayiCard;
 import org.ei.drishti.view.matcher.MatchByTime;
 import org.ei.drishti.view.matcher.MatchByVisitCode;
@@ -34,6 +31,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.*;
 import static org.ei.drishti.domain.FetchStatus.fetched;
+import static org.ei.drishti.util.DateUtil.formattedDueDate;
 import static org.ei.drishti.util.Log.logVerbose;
 
 public class DrishtiMainActivity extends Activity {
@@ -56,7 +54,20 @@ public class DrishtiMainActivity extends Activity {
             }
         });
 
-        final AlertAdapter alertAdapter = new AlertAdapter(this, R.layout.list_item, new ArrayList<Alert>());
+        final ListAdapter<Alert> alertAdapter = new ListAdapter<Alert>(this, R.layout.list_item, new ArrayList<Alert>()) {
+            @Override
+            protected void populateListItem(View view, Alert item) {
+                setTextView(view, R.id.beneficiaryName, item.beneficiaryName());
+                setTextView(view, R.id.dueDate, formattedDueDate(item.dueDate()));
+                setTextView(view, R.id.thaayiCardNo, item.thaayiCardNo());
+                setTextView(view, R.id.visitCode, item.visitCode());
+            }
+
+            private void setTextView(View v, int viewId, String text) {
+                TextView beneficiaryName = (TextView) v.findViewById(viewId);
+                beneficiaryName.setText(text);
+            }
+        };
         controller = context.alertController(alertAdapter);
         updateAlerts = new UpdateActionsTask(this, context.actionService(), (ProgressBar) findViewById(R.id.progressBar));
 

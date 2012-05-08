@@ -9,7 +9,6 @@ import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.util.ActionBuilder;
-import org.ei.drishti.view.adapter.AlertAdapter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,9 +23,7 @@ import static junit.framework.Assert.assertEquals;
 import static org.ei.drishti.domain.FetchStatus.*;
 import static org.ei.drishti.domain.ResponseStatus.failure;
 import static org.ei.drishti.domain.ResponseStatus.success;
-import static org.ei.drishti.util.ActionBuilder.actionForCreateAlert;
-import static org.ei.drishti.util.ActionBuilder.actionForCreateEC;
-import static org.ei.drishti.util.ActionBuilder.actionForDeleteAlert;
+import static org.ei.drishti.util.ActionBuilder.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -38,8 +35,6 @@ public class ActionServiceTest {
     private AllSettings allSettings;
     @Mock
     private AllAlerts allAlerts;
-    @Mock
-    private AlertAdapter adapter;
     @Mock
     private AllEligibleCouples allEligibleCouples;
 
@@ -60,7 +55,6 @@ public class ActionServiceTest {
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
         verifyNoMoreInteractions(allAlerts);
-        verifyNoMoreInteractions(adapter);
     }
 
     @Test
@@ -72,7 +66,6 @@ public class ActionServiceTest {
         verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
         verifyNoMoreInteractions(allAlerts);
-        verifyNoMoreInteractions(adapter);
     }
 
     @Test

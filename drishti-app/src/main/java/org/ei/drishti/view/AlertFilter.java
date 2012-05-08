@@ -1,6 +1,6 @@
 package org.ei.drishti.view;
 
-import org.ei.drishti.view.adapter.AlertAdapter;
+import org.ei.drishti.view.adapter.ListAdapter;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.view.matcher.Matcher;
 
@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlertFilter {
-    private AlertAdapter alertAdapter;
-    private final AlertAdapter.OnDataSourceChangedListener dataSourceChangedListener;
+    private ListAdapter<Alert> alertAdapter;
+    private final ListAdapter.OnDataSourceChangedListener dataSourceChangedListener;
     private List<Matcher> matchers = new ArrayList<Matcher>();
 
-    public AlertFilter(AlertAdapter alertAdapter) {
+    public AlertFilter(ListAdapter<Alert> alertAdapter) {
         this.alertAdapter = alertAdapter;
 
-        dataSourceChangedListener = new AlertAdapter.OnDataSourceChangedListener() {
+        dataSourceChangedListener = new ListAdapter.OnDataSourceChangedListener() {
             public void dataSourceChanged() {
                 filter();
             }
@@ -35,12 +35,12 @@ public class AlertFilter {
 
     private void filter() {
         List<Alert> alerts = new ArrayList<Alert>();
-        for (Alert alert : alertAdapter.getAlerts()) {
+        for (Alert alert : alertAdapter.getItems()) {
             if (allMatchersMatch(alert)) {
                 alerts.add(alert);
             }
         }
-        alertAdapter.refreshDisplayWithoutUpdatingAlerts(alerts);
+        alertAdapter.refreshDisplayWithoutUpdatingItems(alerts);
     }
 
     private boolean allMatchersMatch(Alert alert) {
