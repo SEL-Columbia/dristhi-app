@@ -42,12 +42,6 @@ public class ActionService {
         return FetchStatus.fetched;
     }
 
-    public void changeUser() {
-        allSettings.savePreviousFetchIndex("0");
-        allAlerts.deleteAllAlerts();
-        allEligibleCouples.deleteAll();
-    }
-
     private void handleActions(Response<List<Action>> response) {
         for (Action action : response.payload()) {
             if (action.type().endsWith("Alert")) {

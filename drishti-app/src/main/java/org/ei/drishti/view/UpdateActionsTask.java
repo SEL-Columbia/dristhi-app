@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.service.ActionService;
 
@@ -12,35 +11,21 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
-import static org.ei.drishti.domain.FetchStatus.fetched;
 import static org.ei.drishti.util.Log.logVerbose;
 
-public class UpdateAlertsTask {
+public class UpdateActionsTask {
     private Context context;
     private ActionService actionService;
-    private AlertController alertController;
     private ProgressBar progressBar;
     private static final ReentrantLock lock = new ReentrantLock();
 
-    public UpdateAlertsTask(Context context, ActionService actionService, AlertController alertController, ProgressBar progressBar) {
+    public UpdateActionsTask(Context context, ActionService actionService, ProgressBar progressBar) {
         this.context = context;
         this.actionService = actionService;
-        this.alertController = alertController;
         this.progressBar = progressBar;
     }
 
-    public void updateDisplay() {
-        alertController.refreshAlertsFromDB();
-    }
-
-    public void updateFromServer() {
-        updateFromServer(new AfterChangeListener() {
-            public void afterChangeHappened() {
-            }
-        });
-    }
-
-    public void updateFromServer(final AfterChangeListener afterChangeListener) {
+    public void updateFromServer(final AfterFetchListener afterFetchListener) {
         new AsyncTask<Void, Void, FetchStatus>() {
             @Override
             protected FetchStatus doInBackground(Void... params) {
@@ -62,13 +47,10 @@ public class UpdateAlertsTask {
 
             @Override
             protected void onPostExecute(FetchStatus result) {
-                if (fetched.equals(result)) {
-                    updateDisplay();
-                }
                 if (result != null && context != null) {
                     Toast.makeText(context, result.displayValue(), Toast.LENGTH_SHORT).show();
                 }
-                afterChangeListener.afterChangeHappened();
+                afterFetchListener.afterChangeHappened(result);
                 progressBar.setVisibility(INVISIBLE);
             }
         }.execute(null);

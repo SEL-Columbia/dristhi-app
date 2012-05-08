@@ -18,8 +18,10 @@ import android.widget.Toast;
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.PullToRefreshListView;
 import org.ei.drishti.R;
+import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Displayable;
+import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.view.*;
 import org.ei.drishti.view.adapter.AlertAdapter;
 import org.ei.drishti.view.matcher.MatchByBeneficiaryOrThaayiCard;
@@ -31,11 +33,13 @@ import java.util.ArrayList;
 import static android.widget.Toast.LENGTH_SHORT;
 import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.*;
+import static org.ei.drishti.domain.FetchStatus.fetched;
 
 public class EligibleCoupleActivity extends Activity {
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
-    private UpdateAlertsTask updateAlerts;
+    private UpdateActionsTask updateAlerts;
     private Context context;
+    private AlertController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,8 @@ public class EligibleCoupleActivity extends Activity {
         });
 
         final AlertAdapter alertAdapter = new AlertAdapter(this, org.ei.drishti.R.layout.list_item, new ArrayList<Alert>());
-        updateAlerts = new UpdateAlertsTask(this, context.actionService(), context.alertController(alertAdapter), (ProgressBar) findViewById(org.ei.drishti.R.id.progressBar));
+        controller = context.alertController(alertAdapter);
+        updateAlerts = new UpdateActionsTask(this, context.actionService(), (ProgressBar) findViewById(org.ei.drishti.R.id.progressBar));
 
         AlertFilter filter = new AlertFilter(alertAdapter);
         filter.addFilter(new MatchByVisitCode(this, createDialog(org.ei.drishti.R.drawable.ic_tab_type, "Filter By Type", All, BCG, HEP, OPV)));
@@ -64,8 +69,11 @@ public class EligibleCoupleActivity extends Activity {
 
         alertsList.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
             public void onRefresh() {
-                updateAlerts.updateFromServer(new AfterChangeListener() {
-                    public void afterChangeHappened() {
+                updateAlerts.updateFromServer(new AfterFetchListener() {
+                    public void afterChangeHappened(FetchStatus status) {
+                        if (fetched.equals(status)) {
+                            controller.refreshAlertsFromDB();
+                        }
                         alertsList.onRefreshComplete();
                     }
                 });
@@ -97,8 +105,8 @@ public class EligibleCoupleActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        updateAlerts.updateDisplay();
-        updateAlerts.updateFromServer();
+        controller.refreshAlertsFromDB();
+        updateAlerts();
     }
 
     @Override
@@ -112,7 +120,7 @@ public class EligibleCoupleActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case org.ei.drishti.R.id.updateMenuItem:
-                updateAlerts.updateFromServer();
+                updateAlerts();
                 return true;
             case org.ei.drishti.R.id.settingsMenuItem:
                 startActivity(new Intent(this, SettingsActivity.class));
@@ -128,4 +136,13 @@ public class EligibleCoupleActivity extends Activity {
         return filterDialog;
     }
 
+    private void updateAlerts() {
+        updateAlerts.updateFromServer(new AfterFetchListener() {
+            public void afterChangeHappened(FetchStatus status) {
+                if (fetched.equals(status)) {
+                    controller.refreshAlertsFromDB();
+                }
+            }
+        });
+    }
 }

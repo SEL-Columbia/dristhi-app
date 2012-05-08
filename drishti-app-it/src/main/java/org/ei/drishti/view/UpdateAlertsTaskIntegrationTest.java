@@ -37,15 +37,22 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
         }).updateApplicationContext(getActivity().getApplicationContext());
 
         ActionServiceWithSimulatedLongRunningTask service = new ActionServiceWithSimulatedLongRunningTask();
-        final UpdateAlertsTask updateAlertsTask = new UpdateAlertsTask(null, service, fakeController(), (ProgressBar) getActivity().findViewById(R.id.progressBar));
+        final UpdateActionsTask updateAlertsTask = new UpdateActionsTask(null, service, (ProgressBar) getActivity().findViewById(R.id.progressBar));
 
         waitForProgressBarToGoAway(getActivity(), 4000);
 
         runTestOnUiThread(new Runnable() {
             public void run() {
-                updateAlertsTask.updateFromServer();
-                updateAlertsTask.updateFromServer();
-                updateAlertsTask.updateFromServer();
+                updateFromServer();
+                updateFromServer();
+                updateFromServer();
+            }
+
+            private void updateFromServer() {
+                updateAlertsTask.updateFromServer(new AfterFetchListener() {
+                    public void afterChangeHappened(FetchStatus status) {
+                    }
+                });
             }
         });
 
