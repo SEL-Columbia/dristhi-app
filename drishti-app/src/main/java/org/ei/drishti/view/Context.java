@@ -5,6 +5,7 @@ import org.ei.drishti.repository.*;
 import org.ei.drishti.service.ActionService;
 import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.service.HTTPAgent;
+import org.ei.drishti.service.UserService;
 import org.ei.drishti.view.adapter.AlertAdapter;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
@@ -20,6 +21,7 @@ public class Context {
     private AllEligibleCouples allEligibleCouples;
     private DrishtiService drishtiService;
     private ActionService actionService;
+    private UserService userService;
 
     protected Context() {
     }
@@ -61,6 +63,13 @@ public class Context {
             actionService = new ActionService(drishtiService(), allSettings(), allAlerts(), allEligibleCouples());
         }
         return actionService;
+    }
+
+    public UserService userService() {
+        if (userService == null) {
+            userService = new UserService(allSettings(), allAlerts(), allEligibleCouples());
+        }
+        return userService;
     }
 
     protected AllEligibleCouples allEligibleCouples() {

@@ -7,8 +7,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.*;
-import android.widget.*;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.PullToRefreshListView;
 import org.ei.drishti.R;
@@ -22,8 +28,6 @@ import org.ei.drishti.view.matcher.MatchByVisitCode;
 
 import java.util.ArrayList;
 
-import static android.widget.RelativeLayout.LayoutParams;
-import static android.widget.RelativeLayout.TRUE;
 import static android.widget.Toast.LENGTH_SHORT;
 import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.*;
@@ -32,7 +36,6 @@ import static org.ei.drishti.util.Log.logVerbose;
 public class DrishtiMainActivity extends Activity {
     private UpdateAlertsTask updateAlerts;
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
-    private ActionBar actionBar;
     private Context context;
 
     @Override
@@ -51,8 +54,6 @@ public class DrishtiMainActivity extends Activity {
 
         final AlertAdapter alertAdapter = new AlertAdapter(this, R.layout.list_item, new ArrayList<Alert>());
         updateAlerts = new UpdateAlertsTask(this, context.actionService(), context.alertController(alertAdapter), (ProgressBar) findViewById(R.id.progressBar));
-
-        initActionBar();
 
         AlertFilter filter = new AlertFilter(alertAdapter);
         filter.addFilter(new MatchByVisitCode(this, createDialog(R.drawable.ic_tab_type, "Filter By Type", All, BCG, HEP, OPV)));
@@ -88,7 +89,7 @@ public class DrishtiMainActivity extends Activity {
 
         preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                context.actionService().changeUser();
+                context.userService().changeUser();
                 Toast.makeText(getApplicationContext(), "Changes saved.", LENGTH_SHORT).show();
             }
         };
@@ -125,19 +126,8 @@ public class DrishtiMainActivity extends Activity {
 
     private <T extends Displayable> DialogAction<T> createDialog(int icon, String title, T... options) {
         DialogAction<T> filterDialog = new DialogAction<T>(this, icon, title, options);
-        actionBar.addAction(filterDialog);
-
+        ((ActionBar) findViewById(R.id.actionbar)).addAction(filterDialog);
         return filterDialog;
     }
 
-    private void initActionBar() {
-        actionBar = (ActionBar) findViewById(R.id.actionbar);
-        actionBar.setGravity(Gravity.CENTER_HORIZONTAL);
-
-        LinearLayout actionsView = (LinearLayout) findViewById(R.id.actionbar_actions);
-        LayoutParams layoutParams = (LayoutParams) actionsView.getLayoutParams();
-        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 0);
-        layoutParams.addRule(RelativeLayout.CENTER_VERTICAL, 0);
-        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, TRUE);
-    }
 }

@@ -7,22 +7,20 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.*;
-import android.widget.*;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.PullToRefreshListView;
 import org.ei.drishti.R;
-import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Displayable;
-import org.ei.drishti.repository.*;
-import org.ei.drishti.service.ActionService;
-import org.ei.drishti.service.DrishtiService;
-import org.ei.drishti.service.HTTPAgent;
-import org.ei.drishti.view.AfterChangeListener;
-import org.ei.drishti.view.AlertFilter;
-import org.ei.drishti.view.DialogAction;
-import org.ei.drishti.view.UpdateAlertsTask;
+import org.ei.drishti.view.*;
 import org.ei.drishti.view.adapter.AlertAdapter;
 import org.ei.drishti.view.matcher.MatchByBeneficiaryOrThaayiCard;
 import org.ei.drishti.view.matcher.MatchByTime;
@@ -30,36 +28,30 @@ import org.ei.drishti.view.matcher.MatchByVisitCode;
 
 import java.util.ArrayList;
 
-import static android.widget.RelativeLayout.TRUE;
 import static android.widget.Toast.LENGTH_SHORT;
 import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.*;
 
 public class EligibleCoupleActivity extends Activity {
-    private static DrishtiService drishtiService;
-    private UpdateAlertsTask updateAlerts;
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
-    private ActionBar actionBar;
-    private AllSettings allSettings;
-    private AllAlerts allAlerts;
-    private AllEligibleCouples allEligibleCouples;
+    private UpdateAlertsTask updateAlerts;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.main);
+
+        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+
         findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), DrishtiMainActivity.class));
             }
         });
-        final AlertAdapter alertAdapter = new AlertAdapter(this, org.ei.drishti.R.layout.list_item, new ArrayList<Alert>());
-        AlertController controller = setupController(alertAdapter);
-        final ActionService actionService = setUpActionService();
-        updateAlerts = new UpdateAlertsTask(this, actionService, controller, (ProgressBar) findViewById(org.ei.drishti.R.id.progressBar));
 
-        initActionBar();
+        final AlertAdapter alertAdapter = new AlertAdapter(this, org.ei.drishti.R.layout.list_item, new ArrayList<Alert>());
+        updateAlerts = new UpdateAlertsTask(this, context.actionService(), context.alertController(alertAdapter), (ProgressBar) findViewById(org.ei.drishti.R.id.progressBar));
 
         AlertFilter filter = new AlertFilter(alertAdapter);
         filter.addFilter(new MatchByVisitCode(this, createDialog(org.ei.drishti.R.drawable.ic_tab_type, "Filter By Type", All, BCG, HEP, OPV)));
@@ -95,7 +87,7 @@ public class EligibleCoupleActivity extends Activity {
 
         preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                actionService.changeUser();
+                context.userService().changeUser();
                 Toast.makeText(getApplicationContext(), "Changes saved.", LENGTH_SHORT).show();
             }
         };
@@ -130,41 +122,10 @@ public class EligibleCoupleActivity extends Activity {
         }
     }
 
-    public AlertController setupController(AlertAdapter alertAdapter) {
-        SettingsRepository settingsRepository = new SettingsRepository();
-        AlertRepository alertRepository = new AlertRepository();
-        EligibleCoupleRepository eligibleCoupleRepository = new EligibleCoupleRepository();
-        new Repository(getApplicationContext(), settingsRepository, alertRepository, eligibleCoupleRepository);
-
-        allSettings = new AllSettings(PreferenceManager.getDefaultSharedPreferences(this), settingsRepository);
-        allAlerts = new AllAlerts(alertRepository);
-        allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository);
-        if (drishtiService == null) {
-            drishtiService = new DrishtiService(new HTTPAgent(), "http://drishti.modilabs.org");
-        }
-
-        return new AlertController(alertAdapter, allAlerts);
-    }
-
-    private ActionService setUpActionService() {
-        return new ActionService(drishtiService, allSettings, allAlerts, allEligibleCouples);
-    }
-
     private <T extends Displayable> DialogAction<T> createDialog(int icon, String title, T... options) {
         DialogAction<T> filterDialog = new DialogAction<T>(this, icon, title, options);
-        actionBar.addAction(filterDialog);
-
+        ((ActionBar) findViewById(R.id.actionbar)).addAction(filterDialog);
         return filterDialog;
     }
 
-    private void initActionBar() {
-        actionBar = (ActionBar) findViewById(org.ei.drishti.R.id.actionbar);
-        actionBar.setGravity(Gravity.CENTER_HORIZONTAL);
-
-        LinearLayout actionsView = (LinearLayout) findViewById(org.ei.drishti.R.id.actionbar_actions);
-        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) actionsView.getLayoutParams();
-        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, 0);
-        layoutParams.addRule(RelativeLayout.CENTER_VERTICAL, 0);
-        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, TRUE);
-    }
 }

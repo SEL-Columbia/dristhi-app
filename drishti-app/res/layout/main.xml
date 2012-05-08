@@ -54,7 +54,7 @@
                 android:layout_above="@+id/actionbar">
         </com.markupartist.android.widget.PullToRefreshListView>
 
-        <com.markupartist.android.widget.ActionBar
+        <org.ei.drishti.view.widget.CenteredActionBar
                 android:id="@+id/actionbar"
                 style="@style/ActionBar"
                 android:layout_alignParentLeft="true"

@@ -124,13 +124,4 @@ public class ActionServiceTest {
         when(allSettings.fetchANMIdentifier()).thenReturn("ANM X");
         when(drishtiService.fetchNewAlertActions("ANM X", "1234")).thenReturn(new Response<List<Action>>(status, list));
     }
-
-    @Test
-    public void shouldDeleteDataAndPreviousFetchIndexWhenUserChanged() throws Exception {
-        service.changeUser();
-
-        verify(allAlerts).deleteAllAlerts();
-        verify(allEligibleCouples).deleteAll();
-        verify(allSettings).savePreviousFetchIndex("0");
-    }
 }
