@@ -11,7 +11,7 @@
         android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/beneficiaryName"
+            android:id="@+id/leftTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
@@ -26,7 +26,7 @@
             android:layout_weight="1" android:width="0dp"/>
 
         <TextView
-            android:id="@+id/dueDate"
+            android:id="@+id/rightTop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="right"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/thaayiCardNo"
+            android:id="@+id/leftBottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
@@ -56,7 +56,7 @@
             android:width="0dp" />
 
         <TextView
-            android:id="@+id/visitCode"
+            android:id="@+id/rightBottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="5dp"

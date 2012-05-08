@@ -55,14 +55,14 @@ public class EligibleCoupleActivity extends Activity {
         final ListAdapter<Alert> alertAdapter = new ListAdapter<Alert>(this, R.layout.list_item, new ArrayList<Alert>()) {
             @Override
             protected void populateListItem(View view, Alert item) {
-                setTextView(view, R.id.beneficiaryName, item.beneficiaryName());
-                setTextView(view, R.id.dueDate, formattedDueDate(item.dueDate()));
-                setTextView(view, R.id.thaayiCardNo, item.thaayiCardNo());
-                setTextView(view, R.id.visitCode, item.visitCode());
+                setTextView(view, R.id.leftTop, item.beneficiaryName());
+                setTextView(view, R.id.rightTop, formattedDueDate(item.dueDate()));
+                setTextView(view, R.id.leftBottom, item.thaayiCardNo());
+                setTextView(view, R.id.rightBottom, item.visitCode());
             }
             private void setTextView(View v, int viewId, String text) {
-                TextView beneficiaryName = (TextView) v.findViewById(viewId);
-                beneficiaryName.setText(text);
+                TextView textView = (TextView) v.findViewById(viewId);
+                textView.setText(text);
             }
 
         };
