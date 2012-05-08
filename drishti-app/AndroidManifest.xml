@@ -10,7 +10,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".view.activity.SettingsActivity"/>
+        <activity android:name=".view.activity.SettingsActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait"/>
         <activity android:name=".view.activity.EligibleCoupleActivity" android:theme="@android:style/Theme.NoTitleBar" android:screenOrientation="portrait"/>
     </application>
 

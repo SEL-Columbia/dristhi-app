@@ -64,8 +64,7 @@ public class DrishtiMainActivity extends Activity {
             }
 
             private void setTextView(View v, int viewId, String text) {
-                TextView textView = (TextView) v.findViewById(viewId);
-                textView.setText(text);
+                ((TextView) v.findViewById(viewId)).setText(text);
             }
         };
         controller = context.alertController(alertAdapter);

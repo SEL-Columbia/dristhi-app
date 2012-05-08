@@ -6,7 +6,7 @@ import android.widget.EditText;
 import org.ei.drishti.domain.Displayable;
 import org.ei.drishti.view.AfterChangeListener;
 
-public abstract class TextFieldMatcher implements Matcher<TextFieldMatcher.StringForDisplay> {
+public abstract class TextFieldMatcher<T> implements Matcher<TextFieldMatcher.StringForDisplay, T> {
     private EditText editText;
     private StringForDisplay currentValue;
 

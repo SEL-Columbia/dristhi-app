@@ -49,11 +49,11 @@ public class AlertControllerTest {
         setupAlertActions(success, asList(ActionBuilder.actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "0")));
 
         List<Alert> alerts = asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
-        when(allAlerts.fetchAlerts()).thenReturn(alerts);
+        when(allAlerts.fetchAll()).thenReturn(alerts);
 
         alertController.refreshAlertsFromDB();
 
-        verify(allAlerts).fetchAlerts();
+        verify(allAlerts).fetchAll();
         verify(alertAdapter).updateItems(alerts);
         verifyNoMoreInteractions(drishtiService);
         verifyNoMoreInteractions(alertAdapter);

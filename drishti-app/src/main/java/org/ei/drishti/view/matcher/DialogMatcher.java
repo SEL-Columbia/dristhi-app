@@ -7,7 +7,7 @@ import org.ei.drishti.view.AfterChangeListener;
 import org.ei.drishti.view.DialogAction;
 import org.ei.drishti.view.OnSelectionChangeListener;
 
-public abstract class DialogMatcher<T extends Displayable> implements Matcher<T> {
+public abstract class DialogMatcher<T extends Displayable, Entity> implements Matcher<T, Entity> {
     private DialogAction<T> dialogForChoosingAnOption;
     private T currentValue;
     private final T defaultValue;

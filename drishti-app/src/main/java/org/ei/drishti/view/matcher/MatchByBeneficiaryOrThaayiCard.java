@@ -3,7 +3,7 @@ package org.ei.drishti.view.matcher;
 import android.widget.EditText;
 import org.ei.drishti.domain.Alert;
 
-public class MatchByBeneficiaryOrThaayiCard extends TextFieldMatcher {
+public class MatchByBeneficiaryOrThaayiCard extends TextFieldMatcher<Alert> {
     public MatchByBeneficiaryOrThaayiCard(EditText editText) {
         super(editText);
     }

@@ -10,7 +10,7 @@ import java.util.Date;
 
 import static org.ei.drishti.util.DateUtil.parseDate;
 
-public class MatchByTime extends DialogMatcher<AlertFilterCriterionForTime> {
+public class MatchByTime extends DialogMatcher<AlertFilterCriterionForTime, Alert> {
     public static final int MILLIS_IN_A_DAY = 3600 * 24 * 1000;
 
     public MatchByTime(Context context, DialogAction<AlertFilterCriterionForTime> dialogAction) {

@@ -1,7 +1,9 @@
 package org.ei.drishti.view;
 
 import org.ei.drishti.controller.AlertController;
+import org.ei.drishti.controller.EligibleCoupleController;
 import org.ei.drishti.domain.Alert;
+import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.ActionService;
 import org.ei.drishti.service.DrishtiService;
@@ -23,6 +25,7 @@ public class Context {
     private DrishtiService drishtiService;
     private ActionService actionService;
     private UserService userService;
+    private Repository repository;
 
     protected Context() {
     }
@@ -45,11 +48,11 @@ public class Context {
     }
 
     public AlertController alertController(ListAdapter<Alert> adapter) {
-        new Repository(this.applicationContext, settingsRepository(), alertRepository(), eligibleCoupleRepository());
-
-        drishtiService();
-
         return new AlertController(adapter, allAlerts());
+    }
+
+    public EligibleCoupleController eligibleCoupleController(ListAdapter<EligibleCouple> adapter) {
+        return new EligibleCoupleController(adapter, allEligibleCouples());
     }
 
     protected DrishtiService drishtiService() {
@@ -73,7 +76,14 @@ public class Context {
         return userService;
     }
 
+    private void initRepository() {
+        if (repository == null) {
+            repository = new Repository(this.applicationContext, settingsRepository(), alertRepository(), eligibleCoupleRepository());
+        }
+    }
+
     protected AllEligibleCouples allEligibleCouples() {
+        initRepository();
         if (allEligibleCouples == null) {
             allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository());
         }
@@ -81,6 +91,7 @@ public class Context {
     }
 
     protected AllAlerts allAlerts() {
+        initRepository();
         if (allAlerts == null) {
             allAlerts = new AllAlerts(alertRepository());
         }
@@ -88,6 +99,7 @@ public class Context {
     }
 
     protected AllSettings allSettings() {
+        initRepository();
         if (allSettings == null) {
             allSettings = new AllSettings(getDefaultSharedPreferences(this.applicationContext), settingsRepository());
         }

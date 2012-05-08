@@ -14,6 +14,6 @@ public class AlertController {
     }
 
     public void refreshAlertsFromDB() {
-        adapter.updateItems(allAlerts.fetchAlerts());
+        adapter.updateItems(allAlerts.fetchAll());
     }
 }

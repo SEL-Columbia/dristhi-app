@@ -13,7 +13,7 @@ public class AllAlerts {
         this.repository = repository;
     }
 
-    public List<Alert> fetchAlerts() {
+    public List<Alert> fetchAll() {
         return repository.allAlerts();
     }
 

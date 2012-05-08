@@ -15,9 +15,9 @@ import android.widget.*;
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.PullToRefreshListView;
 import org.ei.drishti.R;
-import org.ei.drishti.controller.AlertController;
-import org.ei.drishti.domain.Alert;
+import org.ei.drishti.controller.EligibleCoupleController;
 import org.ei.drishti.domain.Displayable;
+import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.view.*;
 import org.ei.drishti.view.adapter.ListAdapter;
@@ -31,13 +31,12 @@ import static android.widget.Toast.LENGTH_SHORT;
 import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.*;
 import static org.ei.drishti.domain.FetchStatus.fetched;
-import static org.ei.drishti.util.DateUtil.formattedDueDate;
 
 public class EligibleCoupleActivity extends Activity {
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
     private UpdateActionsTask updateAlerts;
     private Context context;
-    private AlertController controller;
+    private EligibleCoupleController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,30 +51,29 @@ public class EligibleCoupleActivity extends Activity {
             }
         });
 
-        final ListAdapter<Alert> alertAdapter = new ListAdapter<Alert>(this, R.layout.list_item, new ArrayList<Alert>()) {
+        final ListAdapter<EligibleCouple> ecAdapter = new ListAdapter<EligibleCouple>(this, R.layout.list_item, new ArrayList<EligibleCouple>()) {
             @Override
-            protected void populateListItem(View view, Alert item) {
-                setTextView(view, R.id.leftTop, item.beneficiaryName());
-                setTextView(view, R.id.rightTop, formattedDueDate(item.dueDate()));
-                setTextView(view, R.id.leftBottom, item.thaayiCardNo());
-                setTextView(view, R.id.rightBottom, item.visitCode());
+            protected void populateListItem(View view, EligibleCouple item) {
+                setTextView(view, R.id.leftTop, item.wifeName());
+                setTextView(view, R.id.rightTop, item.ecNumber());
+                setTextView(view, R.id.leftBottom, item.husbandName());
             }
+
             private void setTextView(View v, int viewId, String text) {
-                TextView textView = (TextView) v.findViewById(viewId);
-                textView.setText(text);
+                ((TextView) v.findViewById(viewId)).setText(text);
             }
 
         };
-        controller = context.alertController(alertAdapter);
+        controller = context.eligibleCoupleController(ecAdapter);
         updateAlerts = new UpdateActionsTask(this, context.actionService(), (ProgressBar) findViewById(org.ei.drishti.R.id.progressBar));
 
-        AlertFilter filter = new AlertFilter(alertAdapter);
+        AlertFilter filter = new AlertFilter(ecAdapter);
         filter.addFilter(new MatchByVisitCode(this, createDialog(org.ei.drishti.R.drawable.ic_tab_type, "Filter By Type", All, BCG, HEP, OPV)));
         filter.addFilter(new MatchByBeneficiaryOrThaayiCard((EditText) findViewById(org.ei.drishti.R.id.searchEditText)));
         filter.addFilter(new MatchByTime(this, createDialog(org.ei.drishti.R.drawable.ic_tab_clock, "Filter By Time", ShowAll, PastDue, Upcoming)));
 
         final PullToRefreshListView alertsList = (PullToRefreshListView) findViewById(org.ei.drishti.R.id.listView);
-        alertsList.setAdapter(alertAdapter);
+        alertsList.setAdapter(ecAdapter);
         alertsList.setTextFilterEnabled(true);
 
         alertsList.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
