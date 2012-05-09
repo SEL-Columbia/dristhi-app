@@ -5,17 +5,17 @@ import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.view.Context;
-import org.ei.drishti.view.activity.AlertsActivity;
+import org.ei.drishti.view.activity.EligibleCoupleActivity;
 
 import java.util.Date;
 
-public class AlertsActivityTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
-    private FakeDrishtiService drishtiService;
+public class EligibleCoupleActivityTest extends ActivityInstrumentationTestCase2 {
     private DrishtiSolo solo;
+    private FakeDrishtiService drishtiService;
     private String defaultSuffix;
 
-    public AlertsActivityTest() {
-        super(AlertsActivity.class);
+    public EligibleCoupleActivityTest() {
+        super(EligibleCoupleActivity.class);
     }
 
     @Override
@@ -33,8 +33,8 @@ public class AlertsActivityTest extends ActivityInstrumentationTestCase2<AlertsA
         solo.changeUser("ANM " + defaultSuffix);
     }
 
-    public void testShouldLoadOnStartup() throws Throwable {
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
+    public void testShouldLoadECsOnStartup() throws Exception {
+        solo.assertNamesInECs("Wife 1 " + defaultSuffix, "Wife 2 " + defaultSuffix);
     }
 
     public void testShouldUpdateWhenUpdateButtonInMenuIsPressed() throws Throwable {
@@ -43,16 +43,16 @@ public class AlertsActivityTest extends ActivityInstrumentationTestCase2<AlertsA
 
         solo.updateUsingMenuButton();
 
-        solo.assertNamesInAlerts("Theresa 1 " + suffixForLoadingThroughMenuButton, "Theresa 2 " + suffixForLoadingThroughMenuButton);
+        solo.assertNamesInECs("Wife 1 " + defaultSuffix, "Wife 2 " + defaultSuffix, "Wife 1 " + suffixForLoadingThroughMenuButton, "Wife 2 " + suffixForLoadingThroughMenuButton);
     }
 
     public void testShouldUpdateWhenPullToRefreshIsPerformed() throws Throwable {
-        final String suffixForLoadingThroughMenuButton = String.valueOf(new Date().getTime());
-        setupSuffix(suffixForLoadingThroughMenuButton);
+        final String suffixForLoadingThroughPullToRefresh = String.valueOf(new Date().getTime());
+        setupSuffix(suffixForLoadingThroughPullToRefresh);
 
         solo.updateUsingPullToRefresh();
 
-        solo.assertNamesInAlerts("Theresa 1 " + suffixForLoadingThroughMenuButton, "Theresa 2 " + suffixForLoadingThroughMenuButton);
+        solo.assertNamesInECs("Wife 1 " + defaultSuffix, "Wife 2 " + defaultSuffix, "Wife 1 " + suffixForLoadingThroughPullToRefresh, "Wife 2 " + suffixForLoadingThroughPullToRefresh);
     }
 
     private DrishtiService setupSuffix(String suffix) {

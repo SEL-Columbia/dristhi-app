@@ -8,6 +8,8 @@ import java.io.BufferedInputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static org.ei.drishti.util.Log.logWarn;
+
 public class HTTPAgent {
     public Response<String> fetch(String requestURLPath) {
         HttpURLConnection urlConnection = null;
@@ -18,6 +20,7 @@ public class HTTPAgent {
             BufferedInputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
             return new Response<String>(ResponseStatus.success, IOUtils.toString(inputStream));
         } catch (Exception e) {
+            logWarn(e.getMessage());
             return new Response<String>(ResponseStatus.failure, null);
         } finally {
             if (urlConnection != null) {

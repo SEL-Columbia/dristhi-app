@@ -8,6 +8,7 @@ import com.jayway.android.robotium.solo.Solo;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.AlertFilterCriterionForTime;
 import org.ei.drishti.domain.AlertFilterCriterionForType;
+import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.view.activity.AlertsActivity;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class DrishtiSolo extends Solo {
         return getCurrentListViews().get(0);
     }
 
-    public void assertBeneficiaryNames(String... beneficiaryNames) {
+    public void assertNamesInAlerts(String... beneficiaryNames) {
         ArrayList<String> names = new ArrayList<String>();
         int count = list().getCount() - 2;
         for (int i = 1; i <= count; i++) {
@@ -40,8 +41,19 @@ public class DrishtiSolo extends Solo {
         assertEquals(asList(beneficiaryNames), names);
     }
 
+    public void assertNamesInECs(String... wifeNames) {
+        ArrayList<String> names = new ArrayList<String>();
+        int count = list().getCount() - 2;
+
+        for (int i = 1; i <= count; i++) {
+            names.add(((EligibleCouple) list().getItemAtPosition(i)).wifeName());
+        }
+
+        assertEquals(asList(wifeNames), names);
+    }
+
     public void assertEmptyList() {
-        assertBeneficiaryNames(new String[0]);
+        assertNamesInAlerts(new String[0]);
     }
 
     public void changeUser(String anmId) {
@@ -55,13 +67,13 @@ public class DrishtiSolo extends Solo {
         waitForProgressBarToGoAway(activity);
     }
 
-    public void updateAlertsUsingMenuButton() {
+    public void updateUsingMenuButton() {
         sendKey(MENU);
         clickOnText("Update");
         waitForProgressBarToGoAway(activity);
     }
 
-    public void updateAlertsUsingPullToRefresh() {
+    public void updateUsingPullToRefresh() {
         Display display = activity.getWindowManager().getDefaultDisplay();
         drag(0, 0, display.getHeight() / 2, (3 * display.getHeight()) / 4, 25);
         waitForProgressBarToGoAway(activity);

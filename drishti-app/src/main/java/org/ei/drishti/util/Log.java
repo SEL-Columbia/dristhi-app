@@ -1,8 +1,6 @@
 package org.ei.drishti.util;
 
-import static android.util.Log.i;
-import static android.util.Log.v;
-import static android.util.Log.w;
+import static android.util.Log.*;
 
 public class Log {
     public static void logVerbose(String message) {
@@ -15,5 +13,9 @@ public class Log {
 
     public static void logWarn(String message) {
         w("DRISHTI", message);
+    }
+
+    public static void logError(String message) {
+        e("DRISHTI", message);
     }
 }

@@ -37,7 +37,7 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<Alert
 
         solo.changeUser(newUser);
 
-        solo.assertBeneficiaryNames("Theresa 1 " + suffix, "Theresa 2 " + suffix);
+        solo.assertNamesInAlerts("Theresa 1 " + suffix, "Theresa 2 " + suffix);
     }
 
     @Override

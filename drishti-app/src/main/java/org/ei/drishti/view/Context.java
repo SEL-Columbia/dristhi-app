@@ -16,16 +16,20 @@ import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 public class Context {
     private android.content.Context applicationContext;
     private static Context context;
+
+    private Repository repository;
     private EligibleCoupleRepository eligibleCoupleRepository;
     private AlertRepository alertRepository;
     private SettingsRepository settingsRepository;
+
     private AllSettings allSettings;
     private AllAlerts allAlerts;
     private AllEligibleCouples allEligibleCouples;
+
     private DrishtiService drishtiService;
     private ActionService actionService;
     private UserService userService;
-    private Repository repository;
+
 
     protected Context() {
     }

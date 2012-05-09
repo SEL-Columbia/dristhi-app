@@ -33,6 +33,7 @@ public class EligibleCoupleActivity extends Activity {
     private UpdateActionsTask updateECTask;
     private Context context;
     private EligibleCoupleController controller;
+    private ItemFilter<EligibleCouple> itemFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class EligibleCoupleActivity extends Activity {
         };
         controller = context.eligibleCoupleController(ecAdapter);
         updateECTask = new UpdateActionsTask(this, context.actionService(), (ProgressBar) findViewById(org.ei.drishti.R.id.progressBar));
-        ItemFilter<EligibleCouple> itemFilter = new ItemFilter<EligibleCouple>(ecAdapter);
+        itemFilter = new ItemFilter<EligibleCouple>(ecAdapter);
 
         final PullToRefreshListView ecList = (PullToRefreshListView) findViewById(org.ei.drishti.R.id.listView);
         ecList.setAdapter(ecAdapter);
