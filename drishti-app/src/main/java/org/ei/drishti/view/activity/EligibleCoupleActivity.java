@@ -22,6 +22,7 @@ import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.view.*;
 import org.ei.drishti.view.adapter.ListAdapter;
+import org.ei.drishti.view.matcher.MatchECByWifeNameOrNumber;
 
 import java.util.ArrayList;
 
@@ -65,6 +66,7 @@ public class EligibleCoupleActivity extends Activity {
         controller = context.eligibleCoupleController(ecAdapter);
         updateECTask = new UpdateActionsTask(this, context.actionService(), (ProgressBar) findViewById(org.ei.drishti.R.id.progressBar));
         itemFilter = new ItemFilter<EligibleCouple>(ecAdapter);
+        itemFilter.addFilter(new MatchECByWifeNameOrNumber(searchBox));
 
         final PullToRefreshListView ecList = (PullToRefreshListView) findViewById(org.ei.drishti.R.id.listView);
         ecList.setAdapter(ecAdapter);

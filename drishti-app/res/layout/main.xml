@@ -30,7 +30,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_toRightOf="@+id/searchEditText"
                 android:layout_centerVertical="true"
-                android:src="@android:drawable/ic_menu_search">
+                android:src="@drawable/arrow">
         </ImageButton>
 
         <ProgressBar

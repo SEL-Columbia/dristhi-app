@@ -20,14 +20,14 @@ import static org.ei.drishti.domain.AlertFilterCriterionForType.OPV;
 import static org.ei.drishti.util.FakeDrishtiService.dataForCreateAction;
 import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
 
-public class FilterTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
+public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
     private DrishtiSolo solo;
 
     private String defaultSuffix;
     private FakeDrishtiService drishtiService;
     private SimpleDateFormat inputFormat;
 
-    public FilterTest() {
+    public FilterAlertTest() {
         super(AlertsActivity.class);
     }
 
