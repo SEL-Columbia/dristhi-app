@@ -6,8 +6,8 @@ import org.ei.drishti.domain.AlertFilterCriterionForType;
 import org.ei.drishti.util.TextCanvas;
 import org.ei.drishti.view.DialogAction;
 
-public class MatchByVisitCode extends DialogMatcher<AlertFilterCriterionForType, Alert> {
-    public MatchByVisitCode(Context context, DialogAction<AlertFilterCriterionForType> dialogAction) {
+public class MatchAlertByVisitCode extends DialogMatcher<AlertFilterCriterionForType, Alert> {
+    public MatchAlertByVisitCode(Context context, DialogAction<AlertFilterCriterionForType> dialogAction) {
         super(dialogAction, AlertFilterCriterionForType.All, TextCanvas.getInstance(context));
     }
 

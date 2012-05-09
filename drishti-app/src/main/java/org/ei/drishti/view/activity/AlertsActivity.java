@@ -21,9 +21,9 @@ import org.ei.drishti.domain.Displayable;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.view.*;
 import org.ei.drishti.view.adapter.ListAdapter;
-import org.ei.drishti.view.matcher.MatchByBeneficiaryOrThaayiCard;
-import org.ei.drishti.view.matcher.MatchByTime;
-import org.ei.drishti.view.matcher.MatchByVisitCode;
+import org.ei.drishti.view.matcher.MatchAlertByBeneficiaryOrThaayiCard;
+import org.ei.drishti.view.matcher.MatchAlertByTime;
+import org.ei.drishti.view.matcher.MatchAlertByVisitCode;
 
 import java.util.ArrayList;
 
@@ -71,11 +71,11 @@ public class AlertsActivity extends Activity {
         updateAlerts = new UpdateActionsTask(this, context.actionService(), (ProgressBar) findViewById(R.id.progressBar));
 
         ItemFilter<Alert> filter = new ItemFilter<Alert>(alertAdapter);
-        filter.addFilter(new MatchByVisitCode(this, createDialog(R.drawable.ic_tab_type, "Filter By Type", All, BCG, HEP, OPV)));
+        filter.addFilter(new MatchAlertByVisitCode(this, createDialog(R.drawable.ic_tab_type, "Filter By Type", All, BCG, HEP, OPV)));
         EditText searchBox = (EditText) findViewById(R.id.searchEditText);
         searchBox.setHint("Search Reminders");
-        filter.addFilter(new MatchByBeneficiaryOrThaayiCard(searchBox));
-        filter.addFilter(new MatchByTime(this, createDialog(R.drawable.ic_tab_clock, "Filter By Time", ShowAll, PastDue, Upcoming)));
+        filter.addFilter(new MatchAlertByBeneficiaryOrThaayiCard(searchBox));
+        filter.addFilter(new MatchAlertByTime(this, createDialog(R.drawable.ic_tab_clock, "Filter By Time", ShowAll, PastDue, Upcoming)));
 
         final PullToRefreshListView alertsList = (PullToRefreshListView) findViewById(R.id.listView);
         alertsList.setAdapter(alertAdapter);
