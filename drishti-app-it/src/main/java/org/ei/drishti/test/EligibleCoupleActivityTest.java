@@ -5,11 +5,12 @@ import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.view.Context;
+import org.ei.drishti.view.activity.AlertsActivity;
 import org.ei.drishti.view.activity.EligibleCoupleActivity;
 
 import java.util.Date;
 
-public class EligibleCoupleActivityTest extends ActivityInstrumentationTestCase2 {
+public class EligibleCoupleActivityTest extends ActivityInstrumentationTestCase2<EligibleCoupleActivity> {
     private DrishtiSolo solo;
     private FakeDrishtiService drishtiService;
     private String defaultSuffix;
@@ -53,6 +54,16 @@ public class EligibleCoupleActivityTest extends ActivityInstrumentationTestCase2
         solo.updateUsingPullToRefresh();
 
         solo.assertNamesInECs("Wife 1 " + defaultSuffix, "Wife 2 " + defaultSuffix, "Wife 1 " + suffixForLoadingThroughPullToRefresh, "Wife 2 " + suffixForLoadingThroughPullToRefresh);
+    }
+
+    public void testShouldBeAbleToSwitchActivity() throws Exception {
+        solo.assertCurrentActivity("Wrong activity", EligibleCoupleActivity.class);
+        solo.assertNamesInECs("Wife 1 " + defaultSuffix, "Wife 2 " + defaultSuffix);
+
+        solo.switchActivity();
+
+        solo.assertCurrentActivity("Wrong activity", AlertsActivity.class);
+        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
     }
 
     private DrishtiService setupSuffix(String suffix) {

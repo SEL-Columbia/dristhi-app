@@ -6,6 +6,7 @@ import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.view.Context;
 import org.ei.drishti.view.activity.AlertsActivity;
+import org.ei.drishti.view.activity.EligibleCoupleActivity;
 
 import java.util.Date;
 
@@ -53,6 +54,16 @@ public class AlertsActivityTest extends ActivityInstrumentationTestCase2<AlertsA
         solo.updateUsingPullToRefresh();
 
         solo.assertNamesInAlerts("Theresa 1 " + suffixForLoadingThroughMenuButton, "Theresa 2 " + suffixForLoadingThroughMenuButton);
+    }
+
+    public void testShouldBeAbleToSwitchActivity() throws Exception {
+        solo.assertCurrentActivity("Wrong activity", AlertsActivity.class);
+        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
+
+        solo.switchActivity();
+
+        solo.assertCurrentActivity("Wrong activity", EligibleCoupleActivity.class);
+        solo.assertNamesInECs("Wife 1 " + defaultSuffix, "Wife 2 " + defaultSuffix);
     }
 
     private DrishtiService setupSuffix(String suffix) {

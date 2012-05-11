@@ -5,6 +5,7 @@ import android.app.Instrumentation;
 import android.view.Display;
 import android.widget.ListView;
 import com.jayway.android.robotium.solo.Solo;
+import org.ei.drishti.R;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.AlertFilterCriterionForTime;
 import org.ei.drishti.domain.AlertFilterCriterionForType;
@@ -20,10 +21,12 @@ import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class DrishtiSolo extends Solo {
     private Activity activity;
+    private Instrumentation instrumentation;
 
     public DrishtiSolo(Instrumentation instrumentation, Activity activity) {
         super(instrumentation, activity);
         this.activity = activity;
+        this.instrumentation = instrumentation;
         waitForProgressBarToGoAway(activity);
     }
 
@@ -68,8 +71,7 @@ public class DrishtiSolo extends Solo {
     }
 
     public void updateUsingMenuButton() {
-        sendKey(MENU);
-        clickOnText("Update");
+        this.instrumentation.invokeMenuActionSync(activity, R.id.updateMenuItem, 0);
         waitForProgressBarToGoAway(activity);
     }
 
@@ -96,5 +98,9 @@ public class DrishtiSolo extends Solo {
         clickOnText(criterion.displayValue());
         waitForActivity(AlertsActivity.class.getSimpleName());
         waitForFilteringToFinish();
+    }
+
+    public void switchActivity() {
+        clickOnImageButton(0);
     }
 }
