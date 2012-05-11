@@ -9,8 +9,11 @@ import com.markupartist.android.widget.ActionBar;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.Displayable;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 public class DialogAction<T extends Displayable> implements ActionBar.Action {
     private AlertDialog.Builder builder;
@@ -19,6 +22,7 @@ public class DialogAction<T extends Displayable> implements ActionBar.Action {
     private int icon;
     private final Activity context;
     private View viewOfLatestAction;
+    private WeakReference<OnSelectionChangeListener<T>> onSelectionChangeListener;
 
     public DialogAction(Activity context, int icon, String title, T... options) {
         this.options = options;
@@ -39,21 +43,27 @@ public class DialogAction<T extends Displayable> implements ActionBar.Action {
     public void setOnSelectionChangedListener(final OnSelectionChangeListener<T> onSelectionChangeListener) {
         LinearLayout actionItemsLayout = (LinearLayout) context.findViewById(R.id.actionbar_actions);
         viewOfLatestAction = actionItemsLayout.getChildAt(actionItemsLayout.getChildCount() - 1);
+        this.onSelectionChangeListener = new WeakReference<OnSelectionChangeListener<T>>(onSelectionChangeListener);
+        onOptionsChanged(asList(options));
+    }
 
-        builder.setSingleChoiceItems(buildDisplayItemsFrom(options), 0, new DialogInterface.OnClickListener() {
+    public void onOptionsChanged(final List<T> newOptions) {
+        builder.setSingleChoiceItems(buildDisplayItemsFrom(newOptions), 0, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
-                onSelectionChangeListener.selectionChanged(viewOfLatestAction, options[item]);
+                if (onSelectionChangeListener != null) {
+                    onSelectionChangeListener.get().selectionChanged(viewOfLatestAction, newOptions.get(item));
+                }
                 dialog.dismiss();
             }
         });
         dialog = builder.create();
     }
 
-    private String[] buildDisplayItemsFrom(T[] options) {
+    private String[] buildDisplayItemsFrom(List<T> options) {
         List<String> displayItems = new ArrayList<String>();
         for (T option : options) {
             displayItems.add(option.displayValue());
         }
-        return displayItems.toArray(new String[options.length]);
+        return displayItems.toArray(new String[options.size()]);
     }
 }
