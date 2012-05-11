@@ -50,7 +50,7 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
 
             private void updateFromServer() {
                 updateAlertsTask.updateFromServer(new AfterFetchListener() {
-                    public void afterChangeHappened(FetchStatus status) {
+                    public void afterFetch(FetchStatus status) {
                     }
                 });
             }

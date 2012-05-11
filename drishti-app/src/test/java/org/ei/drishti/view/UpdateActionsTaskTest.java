@@ -36,7 +36,7 @@ public class UpdateActionsTaskTest {
         when(actionService.fetchNewActions()).thenReturn(fetched);
 
         updateAlertsTask.updateFromServer(new AfterFetchListener() {
-            public void afterChangeHappened(FetchStatus status) {
+            public void afterFetch(FetchStatus status) {
                 assertEquals(fetched, status);
             }
         });
@@ -53,7 +53,7 @@ public class UpdateActionsTaskTest {
         when(actionService.fetchNewActions()).thenReturn(nothingFetched);
 
         updateAlertsTask.updateFromServer(new AfterFetchListener() {
-            public void afterChangeHappened(FetchStatus status) {
+            public void afterFetch(FetchStatus status) {
                 assertEquals(nothingFetched, status);
             }
         });

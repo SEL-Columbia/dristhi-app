@@ -84,7 +84,7 @@ public class AlertsActivity extends Activity {
         alertsList.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
             public void onRefresh() {
                 updateAlerts.updateFromServer(new AfterFetchListener() {
-                    public void afterChangeHappened(FetchStatus status) {
+                    public void afterFetch(FetchStatus status) {
                         if (fetched.equals(status)) {
                             controller.refreshAlertsFromDB();
                         }
@@ -145,14 +145,14 @@ public class AlertsActivity extends Activity {
     }
 
     private <T extends Displayable> DialogAction<T> createDialog(int icon, String title, T... options) {
-        DialogAction<T> filterDialog = new DialogAction<T>(this, icon, title, options);
+        final DialogAction<T> filterDialog = new DialogAction<T>(this, icon, title, options);
         ((ActionBar) findViewById(R.id.actionbar)).addAction(filterDialog);
         return filterDialog;
     }
 
     private void updateAlerts() {
         updateAlerts.updateFromServer(new AfterFetchListener() {
-            public void afterChangeHappened(FetchStatus status) {
+            public void afterFetch(FetchStatus status) {
                 if (fetched.equals(status)) {
                     controller.refreshAlertsFromDB();
                 }

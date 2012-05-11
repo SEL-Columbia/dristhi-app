@@ -75,7 +75,7 @@ public class EligibleCoupleActivity extends Activity {
         ecList.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
             public void onRefresh() {
                 updateECTask.updateFromServer(new AfterFetchListener() {
-                    public void afterChangeHappened(FetchStatus status) {
+                    public void afterFetch(FetchStatus status) {
                         if (fetched.equals(status)) {
                             controller.refreshECFromDB();
                         }
@@ -130,7 +130,7 @@ public class EligibleCoupleActivity extends Activity {
 
     private void updateECs() {
         updateECTask.updateFromServer(new AfterFetchListener() {
-            public void afterChangeHappened(FetchStatus status) {
+            public void afterFetch(FetchStatus status) {
                 if (fetched.equals(status)) {
                     controller.refreshECFromDB();
                 }

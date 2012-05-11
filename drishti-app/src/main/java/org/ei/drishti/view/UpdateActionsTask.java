@@ -50,7 +50,7 @@ public class UpdateActionsTask {
                 if (result != null && context != null) {
                     Toast.makeText(context, result.displayValue(), Toast.LENGTH_SHORT).show();
                 }
-                afterFetchListener.afterChangeHappened(result);
+                afterFetchListener.afterFetch(result);
                 progressBar.setVisibility(INVISIBLE);
             }
         }.execute(null);
