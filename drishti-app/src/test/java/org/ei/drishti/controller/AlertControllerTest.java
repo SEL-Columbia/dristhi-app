@@ -48,7 +48,7 @@ public class AlertControllerTest {
     public void shouldRetrieveAlertsAndRefreshView() throws Exception {
         setupAlertActions(success, asList(ActionBuilder.actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "0")));
 
-        List<Alert> alerts = asList(new Alert("Case X", "Theresa", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
+        List<Alert> alerts = asList(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
         when(allAlerts.fetchAll()).thenReturn(alerts);
 
         alertController.refreshAlertsFromDB();

@@ -106,7 +106,7 @@ public class AllAlertsTest {
 
     @Test
     public void shouldFetchAllAlertsFromRepository() throws Exception {
-        List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "ANC 1", "Thaayi 1", 1, "2012-01-01"), new Alert("Case Y", "Theresa 2", "ANC 2", "Thaayi 2", 1, "2012-01-01"));
+        List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "bherya", "ANC 1", "Thaayi 1", 1, "2012-01-01"), new Alert("Case Y", "Theresa 2", "bherya", "ANC 2", "Thaayi 2", 1, "2012-01-01"));
         when(alertRepository.allAlerts()).thenReturn(expectedAlerts);
 
         List<Alert> alerts = allAlerts.fetchAll();

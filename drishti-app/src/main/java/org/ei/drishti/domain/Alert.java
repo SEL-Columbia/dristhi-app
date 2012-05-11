@@ -7,14 +7,16 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class Alert {
     private String caseID;
     private String beneficiaryName;
+    private String village;
     private String visitCode;
     private String thaayiCardNumber;
     private int priority;
     private String dueDate;
 
-    public Alert(String caseID, String beneficiaryName, String visitCode, String thaayiCardNumber, int priority, String dueDate) {
+    public Alert(String caseID, String beneficiaryName, String village, String visitCode, String thaayiCardNumber, int priority, String dueDate) {
         this.caseID = caseID;
         this.beneficiaryName = beneficiaryName;
+        this.village = village;
         this.visitCode = visitCode;
         this.thaayiCardNumber = thaayiCardNumber;
         this.priority = priority;
