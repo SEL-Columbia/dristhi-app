@@ -54,6 +54,9 @@ public class AlertsActivity extends Activity {
             }
         });
 
+        EditText searchBox = (EditText) findViewById(R.id.searchEditText);
+        searchBox.setHint("Search Reminders");
+
         final ListAdapter<Alert> alertAdapter = new ListAdapter<Alert>(this, R.layout.list_item, new ArrayList<Alert>()) {
             @Override
             protected void populateListItem(View view, Alert item) {
@@ -72,8 +75,6 @@ public class AlertsActivity extends Activity {
 
         ItemFilter<Alert> filter = new ItemFilter<Alert>(alertAdapter);
         filter.addFilter(new MatchAlertByVisitCode(this, createDialog(R.drawable.ic_tab_type, "Filter By Type", All, BCG, HEP, OPV)));
-        EditText searchBox = (EditText) findViewById(R.id.searchEditText);
-        searchBox.setHint("Search Reminders");
         filter.addFilter(new MatchAlertByBeneficiaryOrThaayiCard(searchBox));
         filter.addFilter(new MatchAlertByTime(this, createDialog(R.drawable.ic_tab_clock, "Filter By Time", ShowAll, PastDue, Upcoming)));
 
