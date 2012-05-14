@@ -2,7 +2,7 @@ package org.ei.drishti.view.matcher;
 
 import android.view.View;
 import org.ei.drishti.domain.Displayable;
-import org.ei.drishti.util.TextCanvas;
+import org.ei.drishti.view.widget.TextCanvas;
 import org.ei.drishti.view.AfterChangeListener;
 import org.ei.drishti.view.DialogAction;
 import org.ei.drishti.view.OnSelectionChangeListener;

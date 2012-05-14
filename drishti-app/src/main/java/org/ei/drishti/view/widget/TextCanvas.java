@@ -1,4 +1,4 @@
-package org.ei.drishti.util;
+package org.ei.drishti.view.widget;
 
 import android.content.Context;
 import android.graphics.*;

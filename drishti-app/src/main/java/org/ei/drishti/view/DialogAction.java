@@ -50,7 +50,7 @@ public class DialogAction<T extends Displayable> implements ActionBar.Action {
     public void onOptionsChanged(final List<T> newOptions) {
         builder.setSingleChoiceItems(buildDisplayItemsFrom(newOptions), 0, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
-                if (onSelectionChangeListener != null) {
+                if (onSelectionChangeListener != null && onSelectionChangeListener.get() != null) {
                     onSelectionChangeListener.get().selectionChanged(viewOfLatestAction, newOptions.get(item));
                 }
                 dialog.dismiss();

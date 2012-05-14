@@ -3,7 +3,7 @@ package org.ei.drishti.view.matcher;
 import android.content.Context;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.AlertFilterCriterionForTime;
-import org.ei.drishti.util.TextCanvas;
+import org.ei.drishti.view.widget.TextCanvas;
 import org.ei.drishti.view.DialogAction;
 
 import java.util.Date;
