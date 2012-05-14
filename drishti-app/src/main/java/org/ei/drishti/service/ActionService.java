@@ -27,7 +27,7 @@ public class ActionService {
 
     public FetchStatus fetchNewActions() {
         String previousFetchIndex = allSettings.fetchPreviousFetchIndex();
-        Response<List<Action>> response = drishtiService.fetchNewAlertActions(allSettings.fetchANMIdentifier(), previousFetchIndex);
+        Response<List<Action>> response = drishtiService.fetchNewActions(allSettings.fetchANMIdentifier(), previousFetchIndex);
 
         if (response.isFailure()) {
             return fetchedFailed;

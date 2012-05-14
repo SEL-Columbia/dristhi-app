@@ -18,7 +18,7 @@ public class FakeDrishtiService extends DrishtiService {
     }
 
     @Override
-    public Response<List<Action>> fetchNewAlertActions(String anmIdentifier, String previouslyFetchedIndex) {
+    public Response<List<Action>> fetchNewActions(String anmIdentifier, String previouslyFetchedIndex) {
         for (Expectation expectation : expectations) {
             if (expectation.matches(anmIdentifier, previouslyFetchedIndex)) {
                 return expectation.alertActions();
@@ -27,12 +27,13 @@ public class FakeDrishtiService extends DrishtiService {
         return actionsFor(defaultSuffix);
     }
 
-    public static Map<String, String> dataForCreateAction(String lateness, String beneficiaryName, String visitCode, String thaayiCardNumber, String dueDate) {
+    public static Map<String, String> dataForCreateAction(String lateness, String beneficiaryName, String visitCode, String thaayiCardNumber, String dueDate, String village) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("latenessStatus", lateness);
         map.put("beneficiaryName", beneficiaryName);
         map.put("visitCode", visitCode);
         map.put("thaayiCardNumber", thaayiCardNumber);
+        map.put("village", village);
         map.put("dueDate", dueDate);
         return map;
     }
@@ -52,8 +53,8 @@ public class FakeDrishtiService extends DrishtiService {
     private Response<List<Action>> actionsFor(String suffix) {
         Action deleteXAction = new Action("Case X", "deleteAllAlerts", new HashMap<String, String>(), "123456");
         Action deleteYAction = new Action("Case Y", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        Action firstAction = new Action("Case X", "createAlert", dataForCreateAction("due", "Theresa 1 " + suffix, "BCG", "Thaayi 1 " + suffix, "2012-01-01"), "123456");
-        Action secondAction = new Action("Case Y", "createAlert", dataForCreateAction("due", "Theresa 2 " + suffix, "OPV 1", "Thaayi 2 " + suffix, "2100-04-09"), "123456");
+        Action firstAction = new Action("Case X", "createAlert", dataForCreateAction("due", "Theresa 1 " + suffix, "BCG", "Thaayi 1 " + suffix, "2012-01-01", "Bherya 1"), "123456");
+        Action secondAction = new Action("Case Y", "createAlert", dataForCreateAction("due", "Theresa 2 " + suffix, "OPV 1", "Thaayi 2 " + suffix, "2100-04-09", "Bherya 2"), "123456");
         Action firstCreateEC = new Action("Case A" + suffix, "createEC", dataForCreateEC("Wife 1 " + suffix, "Husband 1", "EC 1" + suffix), "123456");
         Action secondCreateEC = new Action("Case B" + suffix, "createEC", dataForCreateEC("Wife 2 " + suffix, "Husband 2", "EC 2" + suffix), "123456");
 

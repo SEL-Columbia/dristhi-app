@@ -62,6 +62,6 @@ public class AlertControllerTest {
     private void setupAlertActions(ResponseStatus status, List<Action> list) {
         when(allSettings.fetchPreviousFetchIndex()).thenReturn("1234");
         when(allSettings.fetchANMIdentifier()).thenReturn("ANM X");
-        when(drishtiService.fetchNewAlertActions("ANM X", "1234")).thenReturn(new Response<List<Action>>(status, list));
+        when(drishtiService.fetchNewActions("ANM X", "1234")).thenReturn(new Response<List<Action>>(status, list));
     }
 }

@@ -6,7 +6,7 @@ import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
-import org.ei.drishti.view.Context;
+import org.ei.drishti.Context;
 import org.ei.drishti.view.activity.AlertsActivity;
 
 import java.text.SimpleDateFormat;
@@ -143,11 +143,24 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
         solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
     }
 
+    public void testShouldFilterListBasedOnLocation() throws Exception {
+        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
+
+        solo.filterByLocation("Bherya 1");
+        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix);
+
+        solo.filterByLocation("Bherya 2");
+        solo.assertNamesInAlerts("Theresa 2 " + defaultSuffix);
+
+        solo.filterByLocation("All");
+        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
+    }
+
     public void testShouldShowAlertsForTodayInUpcomingFilteredValues() throws Exception {
         String newSuffix = String.valueOf(new Date().getTime());
         String newUser = "NEW ANM" + newSuffix;
 
-        Action alertAction = new Action("Case M", "createAlert", dataForCreateAction("due", "Mom " + newSuffix, "ANC 1", "TC 12", inputFormat.format(DateUtil.today())), "1234567");
+        Action alertAction = new Action("Case M", "createAlert", dataForCreateAction("due", "Mom " + newSuffix, "ANC 1", "TC 12", inputFormat.format(DateUtil.today()), "Bherya 1"), "1234567");
         drishtiService.expect(newUser, "0", new Response<List<Action>>(ResponseStatus.success, asList(alertAction)));
         solo.changeUser(newUser);
 

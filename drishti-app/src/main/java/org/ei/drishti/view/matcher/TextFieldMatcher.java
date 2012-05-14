@@ -3,16 +3,15 @@ package org.ei.drishti.view.matcher;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
-import org.ei.drishti.domain.Displayable;
 import org.ei.drishti.view.AfterChangeListener;
 
-public abstract class TextFieldMatcher<T> implements Matcher<TextFieldMatcher.StringForDisplay, T> {
+public abstract class TextFieldMatcher<T> implements Matcher<DisplayableString, T> {
     private EditText editText;
-    private StringForDisplay currentValue;
+    private DisplayableString currentValue;
 
     public TextFieldMatcher(EditText editText) {
         this.editText = editText;
-        currentValue = new StringForDisplay(editText.getText().toString());
+        currentValue = new DisplayableString(editText.getText().toString());
     }
 
     public void setOnChangeListener(final AfterChangeListener afterChangeListener) {
@@ -24,25 +23,14 @@ public abstract class TextFieldMatcher<T> implements Matcher<TextFieldMatcher.St
             }
 
             public void afterTextChanged(Editable text) {
-                currentValue = new StringForDisplay(text.toString());
+                currentValue = new DisplayableString(text.toString());
                 afterChangeListener.afterChangeHappened();
             }
         });
     }
 
-    public StringForDisplay currentValue() {
+    public DisplayableString currentValue() {
         return currentValue;
     }
 
-    public static class StringForDisplay implements Displayable {
-        private final String value;
-
-        public StringForDisplay(String value) {
-            this.value = value;
-        }
-
-        public String displayValue() {
-            return value;
-        }
-    }
 }

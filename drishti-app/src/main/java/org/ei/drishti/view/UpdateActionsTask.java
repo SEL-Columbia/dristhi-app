@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import org.ei.drishti.domain.FetchStatus;
+import org.ei.drishti.event.Event;
 import org.ei.drishti.service.ActionService;
 
 import java.util.concurrent.locks.ReentrantLock;
@@ -51,6 +52,7 @@ public class UpdateActionsTask {
                     Toast.makeText(context, result.displayValue(), Toast.LENGTH_SHORT).show();
                 }
                 afterFetchListener.afterFetch(result);
+                Event.ON_DATA_FETCHED.notifyListeners(result);
                 progressBar.setVisibility(INVISIBLE);
             }
         }.execute(null);

@@ -77,6 +77,14 @@ public class AllAlertsTest {
     }
 
     @Test
+    public void shouldFindUniqueLocationsOfAlertsInDB() {
+        List<String> locations = Arrays.asList("Location 1", "Location 2");
+        when(alertRepository.uniqueLocations()).thenReturn(locations);
+
+        assertEquals(locations, allAlerts.uniqueLocations());
+    }
+
+    @Test
     public void shouldNotFailIfActionTypeIsNotExpected() throws Exception {
         allAlerts.handleAction(new Action("Case X", "UNKNOWN-TYPE", new HashMap<String, String>(), "0"));
     }

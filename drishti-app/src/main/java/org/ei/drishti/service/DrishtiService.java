@@ -19,7 +19,7 @@ public class DrishtiService {
         this.drishtiBaseURL = drishtiBaseURL;
     }
 
-    public Response<List<Action>> fetchNewAlertActions(String anmIdentifier, String previouslyFetchedIndex) {
+    public Response<List<Action>> fetchNewActions(String anmIdentifier, String previouslyFetchedIndex) {
         String anmID = URLEncoder.encode(anmIdentifier);
         Response<String> response = agent.fetch(drishtiBaseURL + "/actions?anmIdentifier=" + anmID + "&timeStamp=" + previouslyFetchedIndex);
         Type collectionType = new TypeToken<List<Action>>() { }.getType();

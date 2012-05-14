@@ -29,6 +29,12 @@ public class AlertRepository implements DrishtiRepository {
         return readAllAlerts(cursor);
     }
 
+    public List<String> uniqueLocations() {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(true, ALERTS_TABLE_NAME, new String[] { ALERTS_VILLAGE_COLUMN }, null, null, null, null, null, null);
+        return readAllVillages(cursor);
+    }
+
     public void update(Action alertAction) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         String[] caseAndVisitCodeColumnValues = {alertAction.caseID(), alertAction.get("visitCode")};
@@ -69,6 +75,17 @@ public class AlertRepository implements DrishtiRepository {
         }
         cursor.close();
         return alerts;
+    }
+
+    private List<String> readAllVillages(Cursor cursor) {
+        cursor.moveToFirst();
+        List<String> villages = new ArrayList<String>();
+        while (!cursor.isAfterLast()) {
+            villages.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return villages;
     }
 
     private ContentValues createValuesFor(Action alertAction, List<Alert> existingAlerts) {

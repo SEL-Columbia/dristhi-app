@@ -1,4 +1,4 @@
-package org.ei.drishti.view;
+package org.ei.drishti;
 
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.controller.EligibleCoupleController;
@@ -94,7 +94,7 @@ public class Context {
         return allEligibleCouples;
     }
 
-    protected AllAlerts allAlerts() {
+    public AllAlerts allAlerts() {
         initRepository();
         if (allAlerts == null) {
             allAlerts = new AllAlerts(alertRepository());

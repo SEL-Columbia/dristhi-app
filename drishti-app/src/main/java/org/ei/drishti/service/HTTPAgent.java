@@ -20,7 +20,7 @@ public class HTTPAgent {
             BufferedInputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
             return new Response<String>(ResponseStatus.success, IOUtils.toString(inputStream));
         } catch (Exception e) {
-            logWarn(e.getMessage());
+            logWarn(e.toString());
             return new Response<String>(ResponseStatus.failure, null);
         } finally {
             if (urlConnection != null) {

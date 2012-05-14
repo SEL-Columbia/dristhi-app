@@ -32,4 +32,8 @@ public class AllAlerts {
     public void deleteAllAlerts() {
         repository.deleteAllAlerts();
     }
+
+    public List<String> uniqueLocations() {
+        return repository.uniqueLocations();
+    }
 }

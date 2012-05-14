@@ -52,7 +52,7 @@ public class ActionServiceTest {
 
         assertEquals(nothingFetched, service.fetchNewActions());
 
-        verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
+        verify(drishtiService).fetchNewActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
         verifyNoMoreInteractions(allAlerts);
     }
@@ -63,7 +63,7 @@ public class ActionServiceTest {
 
         assertEquals(fetchedFailed, service.fetchNewActions());
 
-        verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
+        verify(drishtiService).fetchNewActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
         verifyNoMoreInteractions(allAlerts);
     }
@@ -74,7 +74,7 @@ public class ActionServiceTest {
 
         assertEquals(fetched, service.fetchNewActions());
 
-        verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
+        verify(drishtiService).fetchNewActions("ANM X", "1234");
         verify(allAlerts).handleAction(ActionBuilder.actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "0"));
     }
     @Test
@@ -95,7 +95,7 @@ public class ActionServiceTest {
 
         assertEquals(fetched, service.fetchNewActions());
 
-        verify(drishtiService).fetchNewAlertActions("ANM X", "1234");
+        verify(drishtiService).fetchNewActions("ANM X", "1234");
         verify(allEligibleCouples).handleAction(actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number"));
     }
 
@@ -115,6 +115,6 @@ public class ActionServiceTest {
     private void setupActions(ResponseStatus status, List<Action> list) {
         when(allSettings.fetchPreviousFetchIndex()).thenReturn("1234");
         when(allSettings.fetchANMIdentifier()).thenReturn("ANM X");
-        when(drishtiService.fetchNewAlertActions("ANM X", "1234")).thenReturn(new Response<List<Action>>(status, list));
+        when(drishtiService.fetchNewActions("ANM X", "1234")).thenReturn(new Response<List<Action>>(status, list));
     }
 }

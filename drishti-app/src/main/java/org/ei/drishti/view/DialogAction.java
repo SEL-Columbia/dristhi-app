@@ -17,18 +17,17 @@ import static java.util.Arrays.asList;
 public class DialogAction<T extends Displayable> implements ActionBar.Action {
     private AlertDialog.Builder builder;
     private AlertDialog dialog;
-    private T[] options;
     private int icon;
     private final Activity context;
     private View viewOfLatestAction;
     private OnSelectionChangeListener<T> onSelectionChangeListener;
 
     public DialogAction(Activity context, int icon, String title, T... options) {
-        this.options = options;
         this.icon = icon;
         this.context = context;
         builder = new AlertDialog.Builder(this.context);
         builder.setTitle(title);
+        changeOptions(asList(options));
     }
 
     public int getDrawable() {
@@ -43,10 +42,9 @@ public class DialogAction<T extends Displayable> implements ActionBar.Action {
         LinearLayout actionItemsLayout = (LinearLayout) context.findViewById(R.id.actionbar_actions);
         viewOfLatestAction = actionItemsLayout.getChildAt(actionItemsLayout.getChildCount() - 1);
         this.onSelectionChangeListener = onSelectionChangeListener;
-        onOptionsChanged(asList(options));
     }
 
-    public void onOptionsChanged(final List<T> newOptions) {
+    public void changeOptions(final List<T> newOptions) {
         builder.setSingleChoiceItems(buildDisplayItemsFrom(newOptions), 0, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
                 if (onSelectionChangeListener != null) {

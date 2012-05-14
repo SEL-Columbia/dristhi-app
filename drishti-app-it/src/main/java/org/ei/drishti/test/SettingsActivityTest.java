@@ -2,7 +2,7 @@ package org.ei.drishti.test;
 
 import android.test.ActivityInstrumentationTestCase2;
 import org.ei.drishti.service.DrishtiService;
-import org.ei.drishti.view.Context;
+import org.ei.drishti.Context;
 import org.ei.drishti.view.activity.AlertsActivity;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;

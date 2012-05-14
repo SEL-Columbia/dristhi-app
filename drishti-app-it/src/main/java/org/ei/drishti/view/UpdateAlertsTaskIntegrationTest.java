@@ -2,6 +2,7 @@ package org.ei.drishti.view;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ProgressBar;
+import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.FetchStatus;

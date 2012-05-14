@@ -87,20 +87,25 @@ public class DrishtiSolo extends Solo {
     }
 
     public void filterByType(AlertFilterCriterionForType type) {
-        clickOnImageButton(1);
-        clickOnText(type.visitCodePrefix());
-        waitForActivity(AlertsActivity.class.getSimpleName());
-        waitForFilteringToFinish();
+        filter(1, type.visitCodePrefix());
     }
 
     public void filterByTime(AlertFilterCriterionForTime criterion) {
-        clickOnImageButton(2);
-        clickOnText(criterion.displayValue());
-        waitForActivity(AlertsActivity.class.getSimpleName());
-        waitForFilteringToFinish();
+        filter(2, criterion.displayValue());
+    }
+
+    public void filterByLocation(String location) {
+        filter(3, location);
     }
 
     public void switchActivity() {
         clickOnImageButton(0);
+    }
+
+    private void filter(int filterButtonIndex, String dialogSelectionItem) {
+        clickOnImageButton(filterButtonIndex);
+        clickOnText(dialogSelectionItem);
+        waitForActivity(AlertsActivity.class.getSimpleName());
+        waitForFilteringToFinish();
     }
 }

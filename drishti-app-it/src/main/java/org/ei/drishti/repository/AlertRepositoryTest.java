@@ -50,6 +50,15 @@ public class AlertRepositoryTest extends AndroidTestCase {
                 new Alert("Case X", "Theresa 1", "bherya", "TT 1", "Thaayi 1", 1, "2012-01-01"), new Alert("Case Y", "Theresa 2", "bherya", "IFA 1", "Thaayi 2", 1, "2012-01-01")), alertRepository.allAlerts());
     }
 
+    public void testShouldFetchAllUniqueLocations() throws Exception {
+        alertRepository.update(new Action("Case X", "create", dataForCreateAction("Bherya 1", "due", "Theresa 1", "ANC 1", "Thaayi 1", "2012-01-01"), "0"));
+        alertRepository.update(new Action("Case Y", "create", dataForCreateAction("Bherya 2", "due", "Theresa 2", "ANC 2", "Thaayi 2", "2012-01-01"), "0"));
+        alertRepository.update(new Action("Case Z", "create", dataForCreateAction("Bherya 1", "due", "Theresa 3", "TT 1", "Thaayi 3", "2012-01-01"), "0"));
+        alertRepository.update(new Action("Case A", "create", dataForCreateAction("Bherya 3", "due", "Theresa 4", "IFA 1", "Thaayi 4", "2012-01-01"), "0"));
+
+        assertEquals(asList("Bherya 1", "Bherya 2", "Bherya 3"), alertRepository.uniqueLocations());
+    }
+
     public void testShouldDeleteAlertsBasedOnCaseIDAndVisitCode() throws Exception {
         alertRepository.update(new Action("Case X", "create", dataForCreateAction("bherya", "due", "Theresa", "ANC 1", "Thaayi 1", "2012-01-01"), "0"));
         alertRepository.update(new Action("Case Y", "create", dataForCreateAction("bherya", "due", "SomeOtherWoman", "ANC 2", "Thaayi 2", "2012-01-01"), "0"));

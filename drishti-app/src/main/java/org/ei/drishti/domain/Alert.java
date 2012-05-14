@@ -43,6 +43,10 @@ public class Alert {
         return dueDate;
     }
 
+    public String location() {
+        return village;
+    }
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);

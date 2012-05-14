@@ -14,16 +14,18 @@ import android.view.View;
 import android.widget.*;
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.PullToRefreshListView;
+import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Displayable;
 import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.view.*;
+import org.ei.drishti.view.AfterFetchListener;
+import org.ei.drishti.view.DialogAction;
+import org.ei.drishti.view.ItemFilter;
+import org.ei.drishti.view.UpdateActionsTask;
 import org.ei.drishti.view.adapter.ListAdapter;
-import org.ei.drishti.view.matcher.MatchAlertByBeneficiaryOrThaayiCard;
-import org.ei.drishti.view.matcher.MatchAlertByTime;
-import org.ei.drishti.view.matcher.MatchAlertByVisitCode;
+import org.ei.drishti.view.matcher.*;
 
 import java.util.ArrayList;
 
@@ -77,6 +79,7 @@ public class AlertsActivity extends Activity {
         filter.addFilter(new MatchAlertByVisitCode(this, createDialog(R.drawable.ic_tab_type, "Filter By Type", All, BCG, HEP, OPV)));
         filter.addFilter(new MatchAlertByBeneficiaryOrThaayiCard(searchBox));
         filter.addFilter(new MatchAlertByTime(this, createDialog(R.drawable.ic_tab_clock, "Filter By Time", ShowAll, PastDue, Upcoming)));
+        filter.addFilter(new MatchAlertByLocation(this, createDialog(R.drawable.ic_tab_location, "Filter By Location", new DisplayableString("All"))));
 
         final PullToRefreshListView alertsList = (PullToRefreshListView) findViewById(R.id.listView);
         alertsList.setAdapter(alertAdapter);

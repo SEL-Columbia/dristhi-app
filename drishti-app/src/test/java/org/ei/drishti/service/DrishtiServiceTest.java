@@ -39,7 +39,7 @@ public class DrishtiServiceTest {
     public void shouldFetchAlertActions() throws Exception {
         when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(ResponseStatus.success, IOUtils.toString(getClass().getResource("/alerts.json"))));
 
-        Response<List<Action>> alertActions = drishtiService.fetchNewAlertActions("anm1", "0");
+        Response<List<Action>> alertActions = drishtiService.fetchNewActions("anm1", "0");
 
         verify(httpAgent).fetch(EXPECTED_URL);
         assertEquals(asList(actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "1333695798583"), actionForDeleteAlert("Case Y", "ANC 1", "1333695798644")), alertActions.payload());
@@ -50,7 +50,7 @@ public class DrishtiServiceTest {
     public void shouldFetchNoAlertActionsWhenJsonIsForEmptyList() throws Exception {
         when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(ResponseStatus.success, "[]"));
 
-        Response<List<Action>> alertActions = drishtiService.fetchNewAlertActions("anm1", "0");
+        Response<List<Action>> alertActions = drishtiService.fetchNewActions("anm1", "0");
 
         assertTrue(alertActions.payload().isEmpty());
     }
@@ -59,7 +59,7 @@ public class DrishtiServiceTest {
     public void shouldFetchNoAlertActionsWhenHTTPCallFails() throws Exception {
         when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(ResponseStatus.failure, null));
 
-        Response<List<Action>> alertActions = drishtiService.fetchNewAlertActions("anm1", "0");
+        Response<List<Action>> alertActions = drishtiService.fetchNewActions("anm1", "0");
 
         assertTrue(alertActions.payload().isEmpty());
         assertEquals(ResponseStatus.failure, alertActions.status());
@@ -70,7 +70,7 @@ public class DrishtiServiceTest {
         String expectedURLWithSpaces = "http://base.drishti.url/actions?anmIdentifier=ANM+WITH+SPACE&timeStamp=0";
         when(httpAgent.fetch(expectedURLWithSpaces)).thenReturn(new Response<String>(ResponseStatus.success, "[]"));
 
-        drishtiService.fetchNewAlertActions("ANM WITH SPACE", "0");
+        drishtiService.fetchNewActions("ANM WITH SPACE", "0");
 
         verify(httpAgent).fetch(expectedURLWithSpaces);
     }
