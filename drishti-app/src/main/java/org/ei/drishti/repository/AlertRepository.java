@@ -81,7 +81,10 @@ public class AlertRepository implements DrishtiRepository {
         cursor.moveToFirst();
         List<String> villages = new ArrayList<String>();
         while (!cursor.isAfterLast()) {
-            villages.add(cursor.getString(0));
+            String village = cursor.getString(0);
+            if (village != null) {
+                villages.add(village);
+            }
             cursor.moveToNext();
         }
         cursor.close();
