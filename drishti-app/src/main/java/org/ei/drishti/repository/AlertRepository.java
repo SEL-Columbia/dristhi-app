@@ -15,11 +15,11 @@ public class AlertRepository implements DrishtiRepository {
     public static final String ALERTS_CASEID_COLUMN = "caseID";
     public static final String ALERTS_THAAYI_CARD_COLUMN = "thaayiCardNumber";
     public static final String ALERTS_VISIT_CODE_COLUMN = "visitCode";
-    public static final String ALERTS_BENIFICIARY_NAME_COLUMN = "benificiaryName";
+    public static final String ALERTS_BENEFICIARY_NAME_COLUMN = "benificiaryName";
     private static final String ALERTS_VILLAGE_COLUMN = "village";
     public static final String ALERTS_PRIORITY_COLUMN = "priority";
     public static final String ALERTS_DUEDATE_COLUMN = "dueDate";
-    private static final String[] ALERTS_TABLE_COLUMNS = new String[] { ALERTS_CASEID_COLUMN, ALERTS_BENIFICIARY_NAME_COLUMN, ALERTS_VILLAGE_COLUMN, ALERTS_VISIT_CODE_COLUMN, ALERTS_THAAYI_CARD_COLUMN, ALERTS_PRIORITY_COLUMN, ALERTS_DUEDATE_COLUMN};
+    private static final String[] ALERTS_TABLE_COLUMNS = new String[] { ALERTS_CASEID_COLUMN, ALERTS_BENEFICIARY_NAME_COLUMN, ALERTS_VILLAGE_COLUMN, ALERTS_VISIT_CODE_COLUMN, ALERTS_THAAYI_CARD_COLUMN, ALERTS_PRIORITY_COLUMN, ALERTS_DUEDATE_COLUMN};
     public static final String CASE_AND_VISIT_CODE_COLUMN_SELECTIONS = ALERTS_CASEID_COLUMN + " = ? AND " + ALERTS_VISIT_CODE_COLUMN + " = ?";
     private Repository masterRepository;
 
@@ -96,7 +96,7 @@ public class AlertRepository implements DrishtiRepository {
         values.put(ALERTS_CASEID_COLUMN, alertAction.caseID());
         values.put(ALERTS_THAAYI_CARD_COLUMN, alertAction.get("thaayiCardNumber"));
         values.put(ALERTS_VISIT_CODE_COLUMN, alertAction.get("visitCode"));
-        values.put(ALERTS_BENIFICIARY_NAME_COLUMN, alertAction.get("beneficiaryName"));
+        values.put(ALERTS_BENEFICIARY_NAME_COLUMN, alertAction.get("beneficiaryName"));
         values.put(ALERTS_VILLAGE_COLUMN, alertAction.get("village"));
         values.put(ALERTS_PRIORITY_COLUMN, calculatePriority(existingAlerts, alertAction.get("latenessStatus")));
         values.put(ALERTS_DUEDATE_COLUMN, alertAction.get("dueDate"));
