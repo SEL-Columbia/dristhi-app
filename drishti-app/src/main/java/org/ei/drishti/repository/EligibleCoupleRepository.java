@@ -2,7 +2,7 @@ package org.ei.drishti.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.EligibleCouple;
 

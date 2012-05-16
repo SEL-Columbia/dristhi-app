@@ -2,7 +2,7 @@ package org.ei.drishti.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 
 public class SettingsRepository implements DrishtiRepository {
     static final String SETTINGS_SQL = "CREATE TABLE settings(key VARCHAR PRIMARY KEY, value VARCHAR)";

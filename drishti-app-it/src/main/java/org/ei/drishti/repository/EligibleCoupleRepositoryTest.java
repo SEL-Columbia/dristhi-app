@@ -6,6 +6,7 @@ import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.EligibleCouple;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +19,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     @Override
     protected void setUp() throws Exception {
         repository = new EligibleCoupleRepository();
-        new Repository(new RenamingDelegatingContext(getContext(), "test_"), repository);
+        new Repository(new RenamingDelegatingContext(getContext(), "test_"), "drishti.db" + new Date().getTime(), repository);
     }
 
     public void testShouldInsertEligibleCoupleIntoRepository() throws Exception {

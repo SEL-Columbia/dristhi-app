@@ -1,6 +1,6 @@
 package org.ei.drishti.repository;
 
-import android.database.sqlite.SQLiteDatabase;
+import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 
 public interface DrishtiRepository {
     void onCreate(SQLiteDatabase database);

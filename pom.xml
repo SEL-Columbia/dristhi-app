@@ -14,9 +14,19 @@
         <module>external/actionbar/actionbar</module>
         <module>external/pulltorefresh/pulltorefresh</module>
     </modules>
+
     <properties>
         <platform.version>2.3.3</platform.version>
+        <main.basedir>${project.basedir}</main.basedir>
     </properties>
+
+    <repositories>
+      <repository>
+        <id>drishti.local</id>
+        <name>drishti</name>
+        <url>file:${main.basedir}/libs/</url>
+      </repository>
+    </repositories>
 
     <dependencyManagement>
         <dependencies>

@@ -15,6 +15,10 @@
     <packaging>apk</packaging>
     <name>drishti-app-it - Integration tests</name>
 
+    <properties>
+      <main.basedir>${project.basedir}/..</main.basedir>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.google.android</groupId>

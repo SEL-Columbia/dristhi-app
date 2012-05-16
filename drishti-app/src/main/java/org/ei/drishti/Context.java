@@ -82,7 +82,7 @@ public class Context {
 
     private void initRepository() {
         if (repository == null) {
-            repository = new Repository(this.applicationContext, settingsRepository(), alertRepository(), eligibleCoupleRepository());
+            repository = new Repository(this.applicationContext, "drishti.db", settingsRepository(), alertRepository(), eligibleCoupleRepository());
         }
     }
 

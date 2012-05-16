@@ -5,10 +5,7 @@ import android.test.RenamingDelegatingContext;
 import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.Alert;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.Arrays.asList;
 
@@ -18,7 +15,8 @@ public class AlertRepositoryTest extends AndroidTestCase {
     @Override
     protected void setUp() throws Exception {
         alertRepository = new AlertRepository();
-        new Repository(new RenamingDelegatingContext(getContext(), "test_"), alertRepository);
+        new Repository(new RenamingDelegatingContext(getContext(), "test_"), "drishti.db" + new Date().getTime(), alertRepository);
+        alertRepository.deleteAllAlerts();
     }
 
     public void testShouldSaveAnAlert() throws Exception {
