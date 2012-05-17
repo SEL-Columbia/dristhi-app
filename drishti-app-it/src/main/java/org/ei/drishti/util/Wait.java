@@ -17,7 +17,7 @@ public class Wait {
 
     private static boolean waitForProgressBarVisibilityToBe(Activity activity, int numberOfMillisecondsToWait, int expectedVisibility) {
         for (int i = 0; i < numberOfMillisecondsToWait / 100; i++) {
-            if (activity.findViewById(R.id.progressBar).getVisibility() == expectedVisibility) {
+            if (activity.findViewById(R.id.progressBar) == null || activity.findViewById(R.id.progressBar).getVisibility() == expectedVisibility) {
                 return true;
             }
 

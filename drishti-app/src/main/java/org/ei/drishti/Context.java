@@ -26,7 +26,8 @@ public class Context {
     private DrishtiService drishtiService;
     private ActionService actionService;
     private UserService userService;
-
+    private LoginService loginService;
+    private CommCareService commCareService;
 
     protected Context() {
     }
@@ -129,6 +130,16 @@ public class Context {
     }
 
     public LoginService loginService() {
-        return new LoginService();
+        if (loginService == null) {
+            loginService = new LoginService(commCareService());
+        }
+        return loginService;
+    }
+
+    private CommCareService commCareService() {
+        if (commCareService == null) {
+            commCareService = new CommCareService(new HTTPAgent());
+        }
+        return commCareService;
     }
 }

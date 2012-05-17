@@ -1,12 +1,13 @@
 package org.ei.drishti.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import org.ei.drishti.domain.*;
-import org.ei.drishti.service.DrishtiService;
+import org.ei.drishti.domain.Action;
+import org.ei.drishti.domain.AlertFilterCriterionForTime;
+import org.ei.drishti.domain.Response;
+import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
-import org.ei.drishti.Context;
 import org.ei.drishti.view.activity.AlertsActivity;
 
 import java.text.SimpleDateFormat;
@@ -17,6 +18,7 @@ import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.BCG;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.OPV;
+import static org.ei.drishti.util.FakeContext.setupService;
 import static org.ei.drishti.util.FakeDrishtiService.dataForCreateAction;
 import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
 
@@ -35,16 +37,10 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
     public void setUp() throws Exception {
         defaultSuffix = String.valueOf(new Date().getTime() - 1);
         drishtiService = new FakeDrishtiService(defaultSuffix);
-        Context.setInstance(new Context() {
-            @Override
-            protected DrishtiService drishtiService() {
-                return drishtiService;
-            }
-        }).updateApplicationContext(getActivity().getApplicationContext());
+        setupService(drishtiService).updateApplicationContext(getActivity().getApplicationContext());
 
-        solo = new DrishtiSolo(getInstrumentation(), getActivity());
         inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-        solo.changeUser("ANM " + defaultSuffix);
+        solo = new DrishtiSolo(getInstrumentation(), getActivity()).changeUser("ANM " + defaultSuffix);
     }
 
     public void testShouldFilterListByMotherName() throws Exception {

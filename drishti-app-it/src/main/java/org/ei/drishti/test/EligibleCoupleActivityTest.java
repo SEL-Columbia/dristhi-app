@@ -4,11 +4,12 @@ import android.test.ActivityInstrumentationTestCase2;
 import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
-import org.ei.drishti.Context;
 import org.ei.drishti.view.activity.AlertsActivity;
 import org.ei.drishti.view.activity.EligibleCoupleActivity;
 
 import java.util.Date;
+
+import static org.ei.drishti.util.FakeContext.setupService;
 
 public class EligibleCoupleActivityTest extends ActivityInstrumentationTestCase2<EligibleCoupleActivity> {
     private DrishtiSolo solo;
@@ -23,15 +24,10 @@ public class EligibleCoupleActivityTest extends ActivityInstrumentationTestCase2
     public void setUp() throws Exception {
         defaultSuffix = String.valueOf(new Date().getTime() - 1);
         drishtiService = new FakeDrishtiService(defaultSuffix);
-        Context.setInstance(new Context() {
-            @Override
-            protected DrishtiService drishtiService() {
-                return drishtiService;
-            }
-        }).updateApplicationContext(getActivity().getApplicationContext());
 
-        solo = new DrishtiSolo(getInstrumentation(), getActivity());
-        solo.changeUser("ANM " + defaultSuffix);
+        setupService(drishtiService).updateApplicationContext(getActivity().getApplicationContext());
+
+        solo = new DrishtiSolo(getInstrumentation(), getActivity()).changeUser("ANM " + defaultSuffix);
     }
 
     public void testShouldLoadECsOnStartup() throws Exception {

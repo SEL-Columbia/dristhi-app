@@ -59,7 +59,7 @@ public class DrishtiSolo extends Solo {
         assertNamesInAlerts(new String[0]);
     }
 
-    public void changeUser(String anmId) {
+    public DrishtiSolo changeUser(String anmId) {
         sendKey(MENU);
         clickOnText("Settings");
         clickOnText("ANM ID");
@@ -68,6 +68,7 @@ public class DrishtiSolo extends Solo {
         clickOnButton("OK");
         goBack();
         waitForProgressBarToGoAway(activity);
+        return this;
     }
 
     public void updateUsingMenuButton() {
@@ -107,5 +108,14 @@ public class DrishtiSolo extends Solo {
         clickOnText(dialogSelectionItem);
         waitForActivity(AlertsActivity.class.getSimpleName());
         waitForFilteringToFinish();
+    }
+
+    public DrishtiSolo login() {
+        enterText(0, "");
+        enterText(1, "");
+        clickOnButton(0);
+        waitForActivity(AlertsActivity.class.getSimpleName());
+        waitForFilteringToFinish();
+        return this;
     }
 }

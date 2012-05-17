@@ -5,11 +5,11 @@
               android:gravity="center_horizontal|center_vertical"
               android:orientation="vertical">
 
-    <ImageView android:id="@+id/HeaderSpacer" android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="0.33"
+    <ImageView android:id="@+id/login_headerSpacer" android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="0.33"
                android:contentDescription="Spacer"/>
 
     <EditText
-            android:id="@+id/userNameText"
+            android:id="@+id/login_userNameText"
             android:inputType="textNoSuggestions|textFilter|textVisiblePassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
     </EditText>
 
     <EditText
-            android:id="@+id/passwordText"
+            android:id="@+id/login_passwordText"
             android:inputType="textPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,13 +26,17 @@
             android:ems="10">
     </EditText>
 
-    <ImageView android:id="@+id/HeaderSpacer" android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="0.1"
+    <ImageView android:id="@+id/login_spacerBetweenFieldsAndButton" android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="0.1"
                android:contentDescription="Spacer"/>
 
-    <Button android:id="@+id/loginButton" android:layout_height="wrap_content" android:layout_width="wrap_content"
+    <Button android:id="@+id/login_loginButton" android:layout_height="wrap_content" android:layout_width="wrap_content"
             android:text="Login to Dristhi" android:onClick="login" android:ems="10"/>
 
-    <ImageView android:id="@+id/FooterSpacer" android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"
+    <ImageView android:id="@+id/login_spacerBetweenButtonAndStatus" android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="0.1"
                android:contentDescription="Spacer"/>
 
+    <TextView android:id="@+id/login_status" android:layout_height="wrap_content" android:layout_width="wrap_content" />
+
+    <ImageView android:id="@+id/login_footerSpacer" android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"
+               android:contentDescription="Spacer"/>
 </LinearLayout>
