@@ -20,10 +20,7 @@ import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Displayable;
 import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.view.AfterFetchListener;
-import org.ei.drishti.view.DialogAction;
-import org.ei.drishti.view.ItemFilter;
-import org.ei.drishti.view.UpdateActionsTask;
+import org.ei.drishti.view.*;
 import org.ei.drishti.view.adapter.ListAdapter;
 import org.ei.drishti.view.matcher.*;
 

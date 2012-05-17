@@ -4,7 +4,6 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ProgressBar;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
-import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.service.ActionService;
 import org.ei.drishti.service.DrishtiService;
@@ -84,13 +83,5 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
         public int numberOfTimesFetchWasCalled() {
             return counter;
         }
-
-    }
-    private AlertController fakeController() {
-        return new AlertController(null, null) {
-            @Override
-            public void refreshAlertsFromDB() {
-            }
-        };
     }
 }

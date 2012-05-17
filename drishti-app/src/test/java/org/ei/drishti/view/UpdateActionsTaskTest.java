@@ -32,10 +32,10 @@ public class UpdateActionsTaskTest {
 
     @Test
     public void shouldShowProgressBarsWhileFetchingAlerts() throws Exception {
-        UpdateActionsTask updateAlertsTask = new UpdateActionsTask(null, actionService, progressBar);
+        UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, actionService, progressBar);
         when(actionService.fetchNewActions()).thenReturn(fetched);
 
-        updateAlertsTask.updateFromServer(new AfterFetchListener() {
+        updateActionsTask.updateFromServer(new AfterFetchListener() {
             public void afterFetch(FetchStatus status) {
                 assertEquals(fetched, status);
             }
@@ -49,10 +49,10 @@ public class UpdateActionsTaskTest {
 
     @Test
     public void shouldNotUpdateDisplayIfNothingWasFetched() throws Exception {
-        UpdateActionsTask updateAlertsTask = new UpdateActionsTask(null, actionService, progressBar);
+        UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, actionService, progressBar);
         when(actionService.fetchNewActions()).thenReturn(nothingFetched);
 
-        updateAlertsTask.updateFromServer(new AfterFetchListener() {
+        updateActionsTask.updateFromServer(new AfterFetchListener() {
             public void afterFetch(FetchStatus status) {
                 assertEquals(nothingFetched, status);
             }

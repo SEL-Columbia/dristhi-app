@@ -1,60 +1,36 @@
 package org.ei.drishti.view;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.event.Event;
 import org.ei.drishti.service.ActionService;
 
-import java.util.concurrent.locks.ReentrantLock;
-
-import static android.view.View.INVISIBLE;
-import static android.view.View.VISIBLE;
-import static org.ei.drishti.util.Log.logVerbose;
-
 public class UpdateActionsTask {
-    private Context context;
+    private final LockingBackgroundTask task;
     private ActionService actionService;
-    private ProgressBar progressBar;
-    private static final ReentrantLock lock = new ReentrantLock();
+    private Context context;
 
     public UpdateActionsTask(Context context, ActionService actionService, ProgressBar progressBar) {
-        this.context = context;
         this.actionService = actionService;
-        this.progressBar = progressBar;
+        this.context = context;
+        task = new LockingBackgroundTask(progressBar);
     }
 
     public void updateFromServer(final AfterFetchListener afterFetchListener) {
-        new AsyncTask<Void, Void, FetchStatus>() {
-            @Override
-            protected FetchStatus doInBackground(Void... params) {
-                if (!lock.tryLock()) {
-                    logVerbose("Going away. Something else is holding the lock.");
-                    return null;
-                }
-                try {
-                    return actionService.fetchNewActions();
-                } finally {
-                    lock.unlock();
-                }
+        task.doActionInBackground(new BackgroundAction<FetchStatus>() {
+            public FetchStatus actionToDoInBackgroundThread() {
+                return actionService.fetchNewActions();
             }
 
-            @Override
-            protected void onPreExecute() {
-                progressBar.setVisibility(VISIBLE);
-            }
-
-            @Override
-            protected void onPostExecute(FetchStatus result) {
+            public void postExecuteInUIThread(FetchStatus result) {
                 if (result != null && context != null) {
                     Toast.makeText(context, result.displayValue(), Toast.LENGTH_SHORT).show();
                 }
                 afterFetchListener.afterFetch(result);
                 Event.ON_DATA_FETCHED.notifyListeners(result);
-                progressBar.setVisibility(INVISIBLE);
             }
-        }.execute(null);
+        });
     }
 }
