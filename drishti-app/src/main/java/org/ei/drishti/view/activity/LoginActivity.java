@@ -6,10 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
+import org.ei.drishti.event.Listener;
 import org.ei.drishti.service.LoginService;
+import org.ei.drishti.view.BackgroundAction;
+import org.ei.drishti.view.LockingBackgroundTask;
 
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
 import static org.ei.drishti.util.Log.logVerbose;
@@ -30,8 +34,8 @@ public class LoginActivity extends Activity {
         showMessage("");
         hideKeyboard();
 
-        String userName = ((EditText) findViewById(R.id.login_userNameText)).getText().toString();
-        String password = ((EditText) findViewById(R.id.login_passwordText)).getText().toString();
+        final String userName = ((EditText) findViewById(R.id.login_userNameText)).getText().toString();
+        final String password = ((EditText) findViewById(R.id.login_passwordText)).getText().toString();
 
         LoginService loginService = context.loginService();
         if (loginService.isValidLocalLogin(userName, password)) {
@@ -39,13 +43,31 @@ public class LoginActivity extends Activity {
         }
         else {
             showMessage("Logging in using CommCare ...");
-            if (loginService.isValidRemoteLogin(userName, password)) {
-                loginWith(userName, password);
-            }
-            else {
-                showMessage("Login failed. Please check the credentials.");
-            }
+            tryRemoteLogin(userName, password, new Listener<Boolean>() {
+                public void onEvent(Boolean isLoginSuccessful) {
+                    if (isLoginSuccessful) {
+                        loginWith(userName, password);
+                    }
+                    else {
+                        showMessage("Login failed. Please check the credentials.");
+                    }
+                }
+            });
         }
+    }
+
+    private void tryRemoteLogin(final String userName, final String password, final Listener<Boolean> afterLoginCheck) {
+        LockingBackgroundTask task = new LockingBackgroundTask(((ProgressBar) findViewById(R.id.login_progressBar)));
+
+        task.doActionInBackground(new BackgroundAction<Boolean>() {
+            public Boolean actionToDoInBackgroundThread() {
+                return context.loginService().isValidRemoteLogin(userName, password);
+            }
+
+            public void postExecuteInUIThread(Boolean result) {
+                afterLoginCheck.onEvent(result);
+            }
+        });
     }
 
     private void hideKeyboard() {

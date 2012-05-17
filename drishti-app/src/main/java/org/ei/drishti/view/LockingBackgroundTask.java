@@ -45,9 +45,3 @@ public class LockingBackgroundTask {
         }.execute(null);
     }
 }
-
-interface BackgroundAction<T> {
-    T actionToDoInBackgroundThread();
-
-    void postExecuteInUIThread(T result);
-}

@@ -36,6 +36,10 @@
                android:contentDescription="Spacer"/>
 
     <TextView android:id="@+id/login_status" android:layout_height="wrap_content" android:layout_width="wrap_content" />
+    <ProgressBar android:id="@+id/login_progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"/>
 
     <ImageView android:id="@+id/login_footerSpacer" android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"
                android:contentDescription="Spacer"/>
