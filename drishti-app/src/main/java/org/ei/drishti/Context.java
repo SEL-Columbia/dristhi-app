@@ -138,7 +138,7 @@ public class Context {
 
     private CommCareService commCareService() {
         if (commCareService == null) {
-            commCareService = new CommCareService(new HTTPAgent());
+            commCareService = new CommCareService(new HTTPAgent(), "https://www.commcarehq.org", "frhs-who-columbia");
         }
         return commCareService;
     }
