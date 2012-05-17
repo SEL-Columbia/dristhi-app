@@ -5,10 +5,7 @@ import org.ei.drishti.controller.EligibleCoupleController;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.*;
-import org.ei.drishti.service.ActionService;
-import org.ei.drishti.service.DrishtiService;
-import org.ei.drishti.service.HTTPAgent;
-import org.ei.drishti.service.UserService;
+import org.ei.drishti.service.*;
 import org.ei.drishti.view.adapter.ListAdapter;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
@@ -129,5 +126,9 @@ public class Context {
             settingsRepository = new SettingsRepository();
         }
         return settingsRepository;
+    }
+
+    public LoginService loginService() {
+        return new LoginService();
     }
 }

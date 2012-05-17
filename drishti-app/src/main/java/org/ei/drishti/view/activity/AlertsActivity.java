@@ -53,6 +53,7 @@ public class AlertsActivity extends Activity {
         findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), EligibleCoupleActivity.class));
+                finish();
             }
         });
 

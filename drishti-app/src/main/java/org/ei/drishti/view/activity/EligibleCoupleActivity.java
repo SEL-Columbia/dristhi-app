@@ -47,6 +47,7 @@ public class EligibleCoupleActivity extends Activity {
         findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), AlertsActivity.class));
+                finish();
             }
         });
 
