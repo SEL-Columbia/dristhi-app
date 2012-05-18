@@ -11,6 +11,7 @@ import org.ei.drishti.domain.AlertFilterCriterionForTime;
 import org.ei.drishti.domain.AlertFilterCriterionForType;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.view.activity.AlertsActivity;
+import org.ei.drishti.view.activity.LoginActivity;
 
 import java.util.ArrayList;
 
@@ -59,18 +60,6 @@ public class DrishtiSolo extends Solo {
         assertNamesInAlerts(new String[0]);
     }
 
-    public DrishtiSolo changeUser(String anmId) {
-        sendKey(MENU);
-        clickOnText("Settings");
-        clickOnText("ANM ID");
-        clearEditText(0);
-        enterText(0, anmId);
-        clickOnButton("OK");
-        goBack();
-        waitForProgressBarToGoAway(activity);
-        return this;
-    }
-
     public void updateUsingMenuButton() {
         this.instrumentation.invokeMenuActionSync(activity, R.id.updateMenuItem, 0);
         waitForProgressBarToGoAway(activity);
@@ -110,12 +99,18 @@ public class DrishtiSolo extends Solo {
         waitForFilteringToFinish();
     }
 
-    public DrishtiSolo login() {
-        enterText(0, "");
-        enterText(1, "");
+    public DrishtiSolo login(String userName, String password) {
+        enterText(0, userName);
+        enterText(1, password);
         clickOnButton(0);
         waitForActivity(AlertsActivity.class.getSimpleName());
         waitForFilteringToFinish();
         return this;
+    }
+
+    public void logout() {
+        sendKey(MENU);
+        clickOnText("Logout");
+        waitForActivity(LoginActivity.class.getSimpleName());
     }
 }

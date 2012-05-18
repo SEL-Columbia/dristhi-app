@@ -25,7 +25,6 @@ public class Context {
 
     private DrishtiService drishtiService;
     private ActionService actionService;
-    private UserService userService;
     private LoginService loginService;
     private CommCareService commCareService;
 
@@ -73,17 +72,11 @@ public class Context {
         return actionService;
     }
 
-    public UserService userService() {
-        if (userService == null) {
-            userService = new UserService(allSettings(), allAlerts(), allEligibleCouples());
-        }
-        return userService;
-    }
-
-    private void initRepository() {
+    private Repository initRepository() {
         if (repository == null) {
             repository = new Repository(this.applicationContext, repositoryName(), settingsRepository(), alertRepository(), eligibleCoupleRepository());
         }
+        return repository;
     }
 
     protected AllEligibleCouples allEligibleCouples() {
@@ -133,8 +126,8 @@ public class Context {
 
     public LoginService loginService() {
         if (loginService == null) {
-            initRepository();
-            loginService = new LoginService(commCareService(), repository, allSettings());
+            Repository repo = initRepository();
+            loginService = new LoginService(commCareService(), repo, allSettings(), allAlerts(), allEligibleCouples());
         }
         return loginService;
     }

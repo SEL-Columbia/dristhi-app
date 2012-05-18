@@ -77,20 +77,6 @@ public class FilterEligibleCoupleTest extends ActivityInstrumentationTestCase2<E
         solo.assertNamesInECs("Wife 1 " + defaultSuffix, "Wife 1 " + newSuffix);
     }
 
-    public void testShouldApplyFilterAfterUserChange() throws Exception {
-        String newSuffix = String.valueOf(new Date().getTime());
-        String newUser = "NEW ANM" + newSuffix;
-        drishtiService.expect(newUser, "0", newSuffix);
-        solo.assertNamesInECs("Wife 1 " + defaultSuffix, "Wife 2 " + defaultSuffix);
-
-        solo.filterByText("EC 1");
-        solo.assertNamesInECs("Wife 1 " + defaultSuffix);
-
-        solo.changeUser(newUser);
-
-        solo.assertNamesInECs("Wife 1 " + newSuffix);
-    }
-
     @Override
     public void tearDown() throws Exception {
         solo.finishOpenedActivities();

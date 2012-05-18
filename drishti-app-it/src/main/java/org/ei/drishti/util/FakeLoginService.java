@@ -17,7 +17,7 @@ public class FakeLoginService extends LoginService {
     private boolean hasARegisteredUser;
 
     public FakeLoginService() {
-        super(null, null, null);
+        super(null, null, null, null, null);
     }
 
     @Override
@@ -44,6 +44,11 @@ public class FakeLoginService extends LoginService {
     @Override
     public boolean hasARegisteredUser() {
         return hasARegisteredUser;
+    }
+
+    @Override
+    public void logout() {
+        actualCalls.add("logout");
     }
 
     private void assertExpectedCredentials(String userName, String password) {

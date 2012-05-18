@@ -8,6 +8,8 @@ import java.util.List;
 
 public class Event<CallbackType> {
     public static Event<FetchStatus> ON_DATA_FETCHED = new Event<FetchStatus>();
+    public static Event<Boolean> ON_LOGOUT = new Event<Boolean>();
+
     List<WeakReference<Listener<CallbackType>>> listeners;
 
     public Event() {

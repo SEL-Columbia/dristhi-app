@@ -12,7 +12,7 @@ public class AllSettings {
     }
 
     public void registerANM(String userName) {
-        preferences.edit().putString("anmIdentifier", userName).apply();
+        preferences.edit().putString("anmIdentifier", userName).commit();
     }
 
     public String fetchRegisteredANM() {

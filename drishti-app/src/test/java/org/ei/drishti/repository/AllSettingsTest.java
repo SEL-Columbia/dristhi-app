@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import static junit.framework.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -46,18 +45,6 @@ public class AllSettingsTest {
         verify(preferences).getString("anmIdentifier", "");
 
         assertEquals("1234", actual);
-    }
-
-    @Test
-    public void shouldRegisterANMIdentifier() {
-        SharedPreferences.Editor editor = mock(SharedPreferences.Editor.class);
-        when(preferences.edit()).thenReturn(editor);
-        when(editor.putString("anmIdentifier", "ANM X")).thenReturn(editor);
-
-        allSettings.registerANM("ANM X");
-
-        verify(editor).putString("anmIdentifier", "ANM X");
-        verify(editor).apply();
     }
 
     @Test

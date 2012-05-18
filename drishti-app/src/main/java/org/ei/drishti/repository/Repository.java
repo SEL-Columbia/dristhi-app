@@ -9,11 +9,15 @@ import java.io.File;
 public class Repository extends SQLiteOpenHelper {
     private DrishtiRepository[] repositories;
     private File databasePath;
+    private Context context;
+    private String dbName;
 
     public Repository(Context context, String dbName, DrishtiRepository... repositories) {
         super(context, dbName, null, 1);
         this.repositories = repositories;
         this.databasePath = context.getDatabasePath(dbName);
+        this.context = context;
+        this.dbName = dbName;
 
         SQLiteDatabase.loadLibs(context);
         for (DrishtiRepository repository : repositories) {
@@ -50,7 +54,6 @@ public class Repository extends SQLiteOpenHelper {
         try {
             SQLiteDatabase database = SQLiteDatabase.openDatabase(databasePath.getPath(), password, null, SQLiteDatabase.OPEN_READONLY);
             database.close();
-            super.getReadableDatabase(password);
             return true;
         } catch (Exception e) {
             return false;
@@ -59,5 +62,11 @@ public class Repository extends SQLiteOpenHelper {
 
     private String password() {
         return org.ei.drishti.Context.getInstance().password();
+    }
+
+    public void deleteRepository() {
+        close();
+        boolean resultOfDelete = context.deleteDatabase(dbName);
+        context.getDatabasePath(dbName).delete();
     }
 }

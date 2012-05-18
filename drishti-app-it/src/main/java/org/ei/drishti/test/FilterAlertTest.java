@@ -1,25 +1,17 @@
 package org.ei.drishti.test;
 
 import android.test.ActivityInstrumentationTestCase2;
-import org.ei.drishti.domain.Action;
-import org.ei.drishti.domain.AlertFilterCriterionForTime;
-import org.ei.drishti.domain.Response;
-import org.ei.drishti.domain.ResponseStatus;
-import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.view.activity.AlertsActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
-import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.BCG;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.OPV;
 import static org.ei.drishti.util.FakeContext.setupService;
-import static org.ei.drishti.util.FakeDrishtiService.dataForCreateAction;
 import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
 
 public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
@@ -112,20 +104,6 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
         solo.assertNamesInAlerts("Theresa 1 " + newSuffix);
     }
 
-    public void testShouldApplyFilterAfterUserChange() throws Exception {
-        String newSuffix = String.valueOf(new Date().getTime());
-        String newUser = "NEW ANM" + newSuffix;
-        drishtiService.expect(newUser, "0", newSuffix);
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
-
-        solo.filterByType(BCG);
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix);
-
-        solo.changeUser(newUser);
-
-        solo.assertNamesInAlerts("Theresa 1 " + newSuffix);
-    }
-
     public void testShouldFilterListBasedOnValueInTimeFilterDialog() throws Exception {
         solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
 
@@ -152,6 +130,7 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
         solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
     }
 
+/*
     public void testShouldShowAlertsForTodayInUpcomingFilteredValues() throws Exception {
         String newSuffix = String.valueOf(new Date().getTime());
         String newUser = "NEW ANM" + newSuffix;
@@ -171,6 +150,7 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
         solo.filterByTime(AlertFilterCriterionForTime.ShowAll);
         solo.assertNamesInAlerts("Mom " + newSuffix);
     }
+*/
 
     @Override
     public void tearDown() throws Exception {

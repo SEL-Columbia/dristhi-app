@@ -2,6 +2,8 @@ package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.Context;
+import org.ei.drishti.repository.AllAlerts;
+import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.Repository;
 import org.junit.Before;
@@ -22,12 +24,17 @@ public class LoginServiceTest {
     private Repository repository;
     @Mock
     private AllSettings allSettings;
+    @Mock
+    private AllAlerts allAlerts;
+    @Mock
+    private AllEligibleCouples allEligibleCouples;
+
     private LoginService loginService;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        loginService = new LoginService(commCareService, repository, allSettings);
+        loginService = new LoginService(commCareService, repository, allSettings, allAlerts, allEligibleCouples);
     }
 
     @Test
@@ -78,5 +85,14 @@ public class LoginServiceTest {
 
         verify(allSettings).registerANM("user X");
         verify(context).setPassword("password Y");
+    }
+
+    @Test
+    public void shouldDeleteDataAndSettingsWhenLogoutHappens() throws Exception {
+        loginService.logout();
+
+        verify(repository).deleteRepository();
+        verify(allSettings).savePreviousFetchIndex("0");
+        verify(allSettings).registerANM("");
     }
 }
