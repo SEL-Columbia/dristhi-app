@@ -11,7 +11,6 @@ import android.widget.TextView;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
-import org.ei.drishti.service.LoginService;
 import org.ei.drishti.view.BackgroundAction;
 import org.ei.drishti.view.LockingBackgroundTask;
 
@@ -28,32 +27,50 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.login);
 
         context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+
+        fillUserIfExists();
     }
 
-    public void login(View view) {
+    public void login(final View view) {
         showMessage("");
         hideKeyboard();
+        view.setClickable(false);
 
-        final String userName = ((EditText) findViewById(R.id.login_userNameText)).getText().toString();
+        final String userName = userNameEditText().getText().toString();
         final String password = ((EditText) findViewById(R.id.login_passwordText)).getText().toString();
 
-        LoginService loginService = context.loginService();
-        if (loginService.isValidLocalLogin(userName, password)) {
-            loginWith(userName, password);
+        if (context.loginService().hasARegisteredUser()) {
+            localLogin(userName, password);
         }
         else {
-            showMessage("Logging in using CommCare ...");
-            tryRemoteLogin(userName, password, new Listener<Boolean>() {
-                public void onEvent(Boolean isLoginSuccessful) {
-                    if (isLoginSuccessful) {
-                        loginWith(userName, password);
-                    }
-                    else {
-                        showMessage("Login failed. Please check the credentials.");
-                    }
-                }
-            });
+            remoteLogin(userName, password);
         }
+        view.setClickable(true);
+    }
+
+    private void localLogin(String userName, String password) {
+        if (context.loginService().isValidLocalLogin(userName, password)) {
+            loginWith(userName, password);
+        } else {
+            showMessage("Local login failed. Please check the credentials.");
+        }
+    }
+
+    private void remoteLogin(final String userName, final String password) {
+        showMessage("Logging in using CommCare ...");
+        tryRemoteLogin(userName, password, new Listener<Boolean>() {
+            public void onEvent(Boolean isLoginSuccessful) {
+                if (isLoginSuccessful == null) {
+                    return;
+                }
+
+                if (isLoginSuccessful) {
+                    loginWith(userName, password);
+                } else {
+                    showMessage("Remote login failed. Please check the credentials.");
+                }
+            }
+        });
     }
 
     private void tryRemoteLogin(final String userName, final String password, final Listener<Boolean> afterLoginCheck) {
@@ -70,6 +87,13 @@ public class LoginActivity extends Activity {
         });
     }
 
+    private void fillUserIfExists() {
+        if (context.loginService().hasARegisteredUser()) {
+            userNameEditText().setText(context.allSettings().fetchRegisteredANM());
+            userNameEditText().setEnabled(false);
+        }
+    }
+
     private void hideKeyboard() {
         InputMethodManager inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), HIDE_NOT_ALWAYS);
@@ -83,5 +107,9 @@ public class LoginActivity extends Activity {
 
     private void showMessage(String message) {
         ((TextView) findViewById(R.id.login_status)).setText(message);
+    }
+
+    private EditText userNameEditText() {
+        return ((EditText) findViewById(R.id.login_userNameText));
     }
 }

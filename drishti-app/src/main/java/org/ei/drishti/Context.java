@@ -29,6 +29,8 @@ public class Context {
     private LoginService loginService;
     private CommCareService commCareService;
 
+    private String password;
+
     protected Context() {
     }
 
@@ -80,7 +82,7 @@ public class Context {
 
     private void initRepository() {
         if (repository == null) {
-            repository = new Repository(this.applicationContext, "drishti.db", settingsRepository(), alertRepository(), eligibleCoupleRepository());
+            repository = new Repository(this.applicationContext, repositoryName(), settingsRepository(), alertRepository(), eligibleCoupleRepository());
         }
     }
 
@@ -100,7 +102,7 @@ public class Context {
         return allAlerts;
     }
 
-    protected AllSettings allSettings() {
+    public AllSettings allSettings() {
         initRepository();
         if (allSettings == null) {
             allSettings = new AllSettings(getDefaultSharedPreferences(this.applicationContext), settingsRepository());
@@ -131,7 +133,8 @@ public class Context {
 
     public LoginService loginService() {
         if (loginService == null) {
-            loginService = new LoginService(commCareService());
+            initRepository();
+            loginService = new LoginService(commCareService(), repository, allSettings());
         }
         return loginService;
     }
@@ -141,5 +144,18 @@ public class Context {
             commCareService = new CommCareService(new HTTPAgent(), "https://www.commcarehq.org", "frhs-who-columbia");
         }
         return commCareService;
+    }
+
+    public Context setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    protected String repositoryName() {
+        return "drishti.db";
+    }
+
+    public String password() {
+        return password;
     }
 }

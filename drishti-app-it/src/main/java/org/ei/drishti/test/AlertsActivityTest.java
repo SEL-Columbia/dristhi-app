@@ -26,7 +26,7 @@ public class AlertsActivityTest extends ActivityInstrumentationTestCase2<AlertsA
         drishtiService = new FakeDrishtiService(defaultSuffix);
         setupService(drishtiService).updateApplicationContext(getActivity().getApplicationContext());
 
-        solo = new DrishtiSolo(getInstrumentation(), getActivity()).changeUser("ANM " + defaultSuffix);
+        solo = new DrishtiSolo(getInstrumentation(), getActivity());
     }
 
     public void testShouldLoadOnStartup() throws Throwable {

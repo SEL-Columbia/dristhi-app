@@ -2,11 +2,9 @@ package org.ei.drishti.view;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.ProgressBar;
-import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.service.ActionService;
-import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.view.activity.AlertsActivity;
 
@@ -15,6 +13,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import static org.ei.drishti.domain.FetchStatus.fetched;
+import static org.ei.drishti.util.FakeContext.setupService;
 import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
@@ -29,12 +28,7 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
     }
 
     public void testShouldNotUpdateWhileAnotherUpdateIsInProgress() throws Throwable {
-        Context.setInstance(new Context() {
-            @Override
-            protected DrishtiService drishtiService() {
-                return drishtiService;
-            }
-        }).updateApplicationContext(getActivity().getApplicationContext());
+        setupService(drishtiService).updateApplicationContext(getActivity().getApplicationContext());
 
         ActionServiceWithSimulatedLongRunningTask service = new ActionServiceWithSimulatedLongRunningTask();
         final UpdateActionsTask updateAlertsTask = new UpdateActionsTask(null, service, (ProgressBar) getActivity().findViewById(R.id.progressBar));

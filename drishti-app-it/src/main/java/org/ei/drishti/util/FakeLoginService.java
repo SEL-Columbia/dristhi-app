@@ -1,5 +1,6 @@
 package org.ei.drishti.util;
 
+import org.ei.drishti.Context;
 import org.ei.drishti.service.LoginService;
 
 import java.util.ArrayList;
@@ -13,9 +14,10 @@ public class FakeLoginService extends LoginService {
     private String expectedUserName = "";
     private String expectedPassword = "";
     private List<String> actualCalls = new ArrayList<String>();
+    private boolean hasARegisteredUser;
 
     public FakeLoginService() {
-        super(null);
+        super(null, null, null);
     }
 
     @Override
@@ -34,8 +36,14 @@ public class FakeLoginService extends LoginService {
 
     @Override
     public void loginWith(String userName, String password) {
+        Context.getInstance().setPassword(password);
         actualCalls.add("login");
         assertExpectedCredentials(userName, password);
+    }
+
+    @Override
+    public boolean hasARegisteredUser() {
+        return hasARegisteredUser;
     }
 
     private void assertExpectedCredentials(String userName, String password) {
@@ -47,9 +55,10 @@ public class FakeLoginService extends LoginService {
         }
     }
 
-    public void setupFor(String userName, String password, boolean shouldSucceedLocalLogin, boolean shouldSucceedRemoteLogin) {
+    public void setupFor(String userName, String password, boolean hasARegisteredUser, boolean shouldSucceedLocalLogin, boolean shouldSucceedRemoteLogin) {
         this.expectedUserName = userName;
         this.expectedPassword = password;
+        this.hasARegisteredUser = hasARegisteredUser;
         this.shouldSucceedLocalLogin = shouldSucceedLocalLogin;
         this.shouldSucceedRemoteLogin = shouldSucceedRemoteLogin;
     }

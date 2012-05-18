@@ -2,6 +2,7 @@ package org.ei.drishti.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
+import org.ei.drishti.Context;
 import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.EligibleCouple;
 
@@ -19,6 +20,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     @Override
     protected void setUp() throws Exception {
         repository = new EligibleCoupleRepository();
+        Context.getInstance().setPassword("password");
         new Repository(new RenamingDelegatingContext(getContext(), "test_"), "drishti.db" + new Date().getTime(), repository);
     }
 

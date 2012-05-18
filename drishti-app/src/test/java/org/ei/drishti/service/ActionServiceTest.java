@@ -114,7 +114,7 @@ public class ActionServiceTest {
 
     private void setupActions(ResponseStatus status, List<Action> list) {
         when(allSettings.fetchPreviousFetchIndex()).thenReturn("1234");
-        when(allSettings.fetchANMIdentifier()).thenReturn("ANM X");
+        when(allSettings.fetchRegisteredANM()).thenReturn("ANM X");
         when(drishtiService.fetchNewActions("ANM X", "1234")).thenReturn(new Response<List<Action>>(status, list));
     }
 }

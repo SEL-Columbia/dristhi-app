@@ -40,7 +40,7 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
         setupService(drishtiService).updateApplicationContext(getActivity().getApplicationContext());
 
         inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-        solo = new DrishtiSolo(getInstrumentation(), getActivity()).changeUser("ANM " + defaultSuffix);
+        solo = new DrishtiSolo(getInstrumentation(), getActivity());
     }
 
     public void testShouldFilterListByMotherName() throws Exception {

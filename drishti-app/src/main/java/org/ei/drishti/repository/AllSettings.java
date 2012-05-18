@@ -11,8 +11,12 @@ public class AllSettings {
         this.settingsRepository = settingsRepository;
     }
 
-    public String fetchANMIdentifier() {
-        return preferences.getString("anmIdentifier", "ANM").trim();
+    public void registerANM(String userName) {
+        preferences.edit().putString("anmIdentifier", userName).apply();
+    }
+
+    public String fetchRegisteredANM() {
+        return preferences.getString("anmIdentifier", "").trim();
     }
 
     public void savePreviousFetchIndex(String value) {

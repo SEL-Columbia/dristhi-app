@@ -26,7 +26,7 @@ public class FilterEligibleCoupleTest extends ActivityInstrumentationTestCase2<E
         drishtiService = new FakeDrishtiService(defaultSuffix);
         setupService(drishtiService).updateApplicationContext(getActivity().getApplicationContext());
 
-        solo = new DrishtiSolo(getInstrumentation(), getActivity()).changeUser("ANM " + defaultSuffix);
+        solo = new DrishtiSolo(getInstrumentation(), getActivity());
     }
 
     public void testShouldFilterListByWifeName() throws Exception {

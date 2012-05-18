@@ -2,6 +2,7 @@ package org.ei.drishti.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
+import org.ei.drishti.Context;
 
 import java.util.Date;
 
@@ -11,6 +12,7 @@ public class SettingsRepositoryTest extends AndroidTestCase {
     @Override
     protected void setUp() throws Exception {
         settingsRepository = new SettingsRepository();
+        Context.getInstance().setPassword("password");
         new Repository(new RenamingDelegatingContext(getContext(), "test_"), "drishti.db" + new Date().getTime(), settingsRepository);
     }
 
