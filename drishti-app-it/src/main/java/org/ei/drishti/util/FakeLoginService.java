@@ -17,7 +17,7 @@ public class FakeLoginService extends LoginService {
     private boolean hasARegisteredUser;
 
     public FakeLoginService() {
-        super(null, null, null, null, null);
+        super(null, null, null);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class FakeLoginService extends LoginService {
 
     @Override
     public void loginWith(String userName, String password) {
-        Context.getInstance().setPassword(password);
+        super.setupContextForLogin(userName, password);
         actualCalls.add("login");
         assertExpectedCredentials(userName, password);
     }
@@ -48,7 +48,13 @@ public class FakeLoginService extends LoginService {
 
     @Override
     public void logout() {
+        Context.getInstance().startSession(-1000);
         actualCalls.add("logout");
+    }
+
+    @Override
+    public void logoutSession() {
+        super.logoutSession();
     }
 
     private void assertExpectedCredentials(String userName, String password) {

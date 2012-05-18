@@ -34,7 +34,7 @@ public class LoginServiceTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        loginService = new LoginService(commCareService, repository, allSettings, allAlerts, allEligibleCouples);
+        loginService = new LoginService(commCareService, repository, allSettings);
     }
 
     @Test

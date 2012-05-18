@@ -1,8 +1,6 @@
 package org.ei.drishti.service;
 
 import org.ei.drishti.Context;
-import org.ei.drishti.repository.AllAlerts;
-import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.Repository;
 
@@ -12,15 +10,11 @@ public class LoginService {
     private CommCareService commCareService;
     private final Repository repository;
     private final AllSettings allSettings;
-    private final AllAlerts allAlerts;
-    private final AllEligibleCouples allEligibleCouples;
 
-    public LoginService(CommCareService commCareService, Repository repository, AllSettings allSettings, AllAlerts allAlerts, AllEligibleCouples allEligibleCouples) {
+    public LoginService(CommCareService commCareService, Repository repository, AllSettings allSettings) {
         this.commCareService = commCareService;
         this.repository = repository;
         this.allSettings = allSettings;
-        this.allAlerts = allAlerts;
-        this.allEligibleCouples = allEligibleCouples;
     }
 
     public boolean isValidLocalLogin(String userName, String password) {
@@ -32,8 +26,8 @@ public class LoginService {
     }
 
     public void loginWith(String userName, String password) {
+        setupContextForLogin(userName, password);
         allSettings.registerANM(userName);
-        Context.getInstance().setPassword(password);
     }
 
     public boolean hasARegisteredUser() {
@@ -41,9 +35,22 @@ public class LoginService {
     }
 
     public void logout() {
-        ON_LOGOUT.notifyListeners(true);
+        logoutSession();
         allSettings.registerANM("");
         allSettings.savePreviousFetchIndex("0");
         repository.deleteRepository();
+    }
+
+    public void logoutSession() {
+        ON_LOGOUT.notifyListeners(true);
+    }
+
+    public boolean hasSessionExpired() {
+        return Context.getInstance().sessionHasExpired();
+    }
+
+    protected void setupContextForLogin(String userName, String password) {
+        Context.getInstance().startSession(Context.getInstance().sessionLengthInMilliseconds());
+        Context.getInstance().setPassword(password);
     }
 }

@@ -125,6 +125,11 @@ public class AlertsActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (context.loginService().hasSessionExpired()) {
+            startActivity(new Intent(this, LoginActivity.class));
+            context.loginService().logoutSession();
+            return;
+        }
         controller.refreshAlertsFromDB();
         updateAlerts();
     }
@@ -143,8 +148,8 @@ public class AlertsActivity extends Activity {
                 updateAlerts();
                 return true;
             case R.id.logoutMenuItem:
-                context.loginService().logout();
                 startActivity(new Intent(this, LoginActivity.class));
+                context.loginService().logout();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -28,7 +28,7 @@ public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTest
     }
 
     public void testShouldNotUpdateWhileAnotherUpdateIsInProgress() throws Throwable {
-        setupService(drishtiService).updateApplicationContext(getActivity().getApplicationContext());
+        setupService(drishtiService, 1000000).updateApplicationContext(getActivity().getApplicationContext());
 
         ActionServiceWithSimulatedLongRunningTask service = new ActionServiceWithSimulatedLongRunningTask();
         final UpdateActionsTask updateAlertsTask = new UpdateActionsTask(null, service, (ProgressBar) getActivity().findViewById(R.id.progressBar));

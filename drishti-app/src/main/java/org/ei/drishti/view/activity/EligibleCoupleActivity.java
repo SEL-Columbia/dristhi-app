@@ -98,6 +98,11 @@ public class EligibleCoupleActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (context.loginService().hasSessionExpired()) {
+            startActivity(new Intent(this, LoginActivity.class));
+            context.loginService().logoutSession();
+            return;
+        }
         controller.refreshECFromDB();
         updateECs();
     }
@@ -116,8 +121,8 @@ public class EligibleCoupleActivity extends Activity {
                 updateECs();
                 return true;
             case org.ei.drishti.R.id.logoutMenuItem:
-                context.loginService().logout();
                 startActivity(new Intent(this, LoginActivity.class));
+                context.loginService().logout();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

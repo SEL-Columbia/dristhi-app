@@ -7,6 +7,8 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpHead;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.util.Log;
@@ -23,7 +25,10 @@ public class HTTPAgent {
     private final DefaultHttpClient httpClient;
 
     public HTTPAgent() {
-        httpClient = new DefaultHttpClient();
+        BasicHttpParams basicHttpParams = new BasicHttpParams();
+        HttpConnectionParams.setConnectionTimeout(basicHttpParams, 30000);
+        HttpConnectionParams.setSoTimeout(basicHttpParams, 60000);
+        httpClient = new DefaultHttpClient(basicHttpParams);
     }
 
     public Response<String> fetch(String requestURLPath) {

@@ -8,6 +8,8 @@ import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
 import org.ei.drishti.view.adapter.ListAdapter;
 
+import java.util.Date;
+
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class Context {
@@ -29,6 +31,7 @@ public class Context {
     private CommCareService commCareService;
 
     private String password;
+    private long sessionExpiryTime = 0;
 
     protected Context() {
     }
@@ -127,7 +130,7 @@ public class Context {
     public LoginService loginService() {
         if (loginService == null) {
             Repository repo = initRepository();
-            loginService = new LoginService(commCareService(), repo, allSettings(), allAlerts(), allEligibleCouples());
+            loginService = new LoginService(commCareService(), repo, allSettings());
         }
         return loginService;
     }
@@ -144,11 +147,24 @@ public class Context {
         return this;
     }
 
+    public String password() {
+        return password;
+    }
+
     protected String repositoryName() {
         return "drishti.db";
     }
 
-    public String password() {
-        return password;
+    public void startSession(long numberOfMillisecondsAfterNowThatThisSessionEnds) {
+        this.sessionExpiryTime = new Date().getTime() + numberOfMillisecondsAfterNowThatThisSessionEnds;
+    }
+
+    public boolean sessionHasExpired() {
+        long now = new Date().getTime();
+        return now > sessionExpiryTime;
+    }
+
+    public long sessionLengthInMilliseconds() {
+        return 8 * 60 * 60 * 1000;
     }
 }

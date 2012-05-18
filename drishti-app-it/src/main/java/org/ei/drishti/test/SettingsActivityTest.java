@@ -24,7 +24,7 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<Alert
 
     @Override
     public void setUp() throws Exception {
-        setupService(drishtiService, loginService).updateApplicationContext(getActivity().getApplicationContext());
+        setupService(drishtiService, loginService, 1000000).updateApplicationContext(getActivity().getApplicationContext());
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
     }

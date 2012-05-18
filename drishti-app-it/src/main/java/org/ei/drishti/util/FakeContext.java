@@ -7,8 +7,8 @@ import org.ei.drishti.service.LoginService;
 import java.util.Date;
 
 public class FakeContext {
-    public static Context setupService(final DrishtiService drishtiService) {
-        return Context.setInstance(new Context() {
+    public static Context setupService(final DrishtiService drishtiService, final long numberOfMillisecondsAfterNowThatThisSessionEnds) {
+        Context context = Context.setInstance(new Context() {
             @Override
             protected DrishtiService drishtiService() {
                 return drishtiService;
@@ -24,10 +24,12 @@ public class FakeContext {
                 return "password";
             }
         });
+        context.startSession(numberOfMillisecondsAfterNowThatThisSessionEnds);
+        return context;
     }
 
-    public static Context setupService(final DrishtiService drishtiService, final LoginService loginService) {
-        return Context.setInstance(new Context() {
+    public static Context setupService(final DrishtiService drishtiService, final LoginService loginService, final int numberOfMillisecondsAfterNowThatThisSessionEnds) {
+        Context context = Context.setInstance(new Context() {
             @Override
             protected DrishtiService drishtiService() {
                 return drishtiService;
@@ -48,5 +50,7 @@ public class FakeContext {
                 return "password";
             }
         });
+        context.startSession(numberOfMillisecondsAfterNowThatThisSessionEnds);
+        return context;
     }
 }

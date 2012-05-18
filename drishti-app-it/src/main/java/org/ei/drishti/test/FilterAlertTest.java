@@ -29,7 +29,7 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
     public void setUp() throws Exception {
         defaultSuffix = String.valueOf(new Date().getTime() - 1);
         drishtiService = new FakeDrishtiService(defaultSuffix);
-        setupService(drishtiService).updateApplicationContext(getActivity().getApplicationContext());
+        setupService(drishtiService, 1000000).updateApplicationContext(getActivity().getApplicationContext());
 
         inputFormat = new SimpleDateFormat("yyyy-MM-dd");
         solo = new DrishtiSolo(getInstrumentation(), getActivity());

@@ -28,6 +28,10 @@ public class LoginActivity extends Activity {
 
         context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
 
+        if (!context.loginService().hasSessionExpired()) {
+            goToAlerts();
+        }
+
         fillUserIfExists();
     }
 
@@ -40,23 +44,23 @@ public class LoginActivity extends Activity {
         final String password = ((EditText) findViewById(R.id.login_passwordText)).getText().toString();
 
         if (context.loginService().hasARegisteredUser()) {
-            localLogin(userName, password);
+            localLogin(view, userName, password);
         }
         else {
-            remoteLogin(userName, password);
+            remoteLogin(view, userName, password);
         }
-        view.setClickable(true);
     }
 
-    private void localLogin(String userName, String password) {
+    private void localLogin(View view, String userName, String password) {
         if (context.loginService().isValidLocalLogin(userName, password)) {
             loginWith(userName, password);
         } else {
             showMessage("Local login failed. Please check the credentials.");
+            view.setClickable(true);
         }
     }
 
-    private void remoteLogin(final String userName, final String password) {
+    private void remoteLogin(final View view, final String userName, final String password) {
         showMessage("Logging in using CommCare ...");
         tryRemoteLogin(userName, password, new Listener<Boolean>() {
             public void onEvent(Boolean isLoginSuccessful) {
@@ -68,6 +72,7 @@ public class LoginActivity extends Activity {
                     loginWith(userName, password);
                 } else {
                     showMessage("Remote login failed. Please check the credentials.");
+                    view.setClickable(true);
                 }
             }
         });
@@ -101,6 +106,10 @@ public class LoginActivity extends Activity {
 
     private void loginWith(String userName, String password) {
         context.loginService().loginWith(userName, password);
+        goToAlerts();
+    }
+
+    private void goToAlerts() {
         startActivity(new Intent(getApplicationContext(), AlertsActivity.class));
         finish();
     }

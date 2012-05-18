@@ -25,7 +25,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
         FakeDrishtiService drishtiService = new FakeDrishtiService(String.valueOf(new Date().getTime() - 1));
         loginService = new FakeLoginService();
 
-        setupService(drishtiService, loginService).updateApplicationContext(getActivity());
+        setupService(drishtiService, loginService, -1000).updateApplicationContext(getActivity());
         Context.getInstance().setPassword(null);
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
