@@ -6,12 +6,12 @@ import org.ei.drishti.repository.Repository;
 
 import static org.ei.drishti.event.Event.ON_LOGOUT;
 
-public class LoginService {
+public class UserService {
     private CommCareService commCareService;
     private final Repository repository;
     private final AllSettings allSettings;
 
-    public LoginService(CommCareService commCareService, Repository repository, AllSettings allSettings) {
+    public UserService(CommCareService commCareService, Repository repository, AllSettings allSettings) {
         this.commCareService = commCareService;
         this.repository = repository;
         this.allSettings = allSettings;

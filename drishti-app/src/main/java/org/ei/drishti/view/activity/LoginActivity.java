@@ -28,7 +28,7 @@ public class LoginActivity extends Activity {
 
         context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
 
-        if (!context.loginService().hasSessionExpired()) {
+        if (!context.userService().hasSessionExpired()) {
             goToAlerts();
         }
 
@@ -43,7 +43,7 @@ public class LoginActivity extends Activity {
         final String userName = userNameEditText().getText().toString();
         final String password = ((EditText) findViewById(R.id.login_passwordText)).getText().toString();
 
-        if (context.loginService().hasARegisteredUser()) {
+        if (context.userService().hasARegisteredUser()) {
             localLogin(view, userName, password);
         }
         else {
@@ -52,7 +52,7 @@ public class LoginActivity extends Activity {
     }
 
     private void localLogin(View view, String userName, String password) {
-        if (context.loginService().isValidLocalLogin(userName, password)) {
+        if (context.userService().isValidLocalLogin(userName, password)) {
             loginWith(userName, password);
         } else {
             showMessage("Local login failed. Please check the credentials.");
@@ -83,7 +83,7 @@ public class LoginActivity extends Activity {
 
         task.doActionInBackground(new BackgroundAction<Boolean>() {
             public Boolean actionToDoInBackgroundThread() {
-                return context.loginService().isValidRemoteLogin(userName, password);
+                return context.userService().isValidRemoteLogin(userName, password);
             }
 
             public void postExecuteInUIThread(Boolean result) {
@@ -93,7 +93,7 @@ public class LoginActivity extends Activity {
     }
 
     private void fillUserIfExists() {
-        if (context.loginService().hasARegisteredUser()) {
+        if (context.userService().hasARegisteredUser()) {
             userNameEditText().setText(context.allSettings().fetchRegisteredANM());
             userNameEditText().setEnabled(false);
         }
@@ -105,7 +105,7 @@ public class LoginActivity extends Activity {
     }
 
     private void loginWith(String userName, String password) {
-        context.loginService().loginWith(userName, password);
+        context.userService().loginWith(userName, password);
         goToAlerts();
     }
 

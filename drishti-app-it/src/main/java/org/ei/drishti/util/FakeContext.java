@@ -2,7 +2,7 @@ package org.ei.drishti.util;
 
 import org.ei.drishti.Context;
 import org.ei.drishti.service.DrishtiService;
-import org.ei.drishti.service.LoginService;
+import org.ei.drishti.service.UserService;
 
 import java.util.Date;
 
@@ -23,7 +23,7 @@ public class FakeContext {
         return context;
     }
 
-    public static Context setupService(final DrishtiService drishtiService, final LoginService loginService, final int numberOfMillisecondsAfterNowThatThisSessionEnds) {
+    public static Context setupService(final DrishtiService drishtiService, final UserService loginService, final int numberOfMillisecondsAfterNowThatThisSessionEnds) {
         Context context = Context.setInstance(new Context() {
             @Override
             protected DrishtiService drishtiService() {
@@ -31,7 +31,7 @@ public class FakeContext {
             }
 
             @Override
-            public LoginService loginService() {
+            public UserService userService() {
                 return loginService;
             }
 

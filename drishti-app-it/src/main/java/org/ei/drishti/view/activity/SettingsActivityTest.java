@@ -5,19 +5,19 @@ import org.ei.drishti.Context;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
-import org.ei.drishti.util.FakeLoginService;
+import org.ei.drishti.util.FakeUserService;
 
 import static org.ei.drishti.util.FakeContext.setupService;
 
 public class SettingsActivityTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
     private DrishtiSolo solo;
     private FakeDrishtiService drishtiService;
-    private FakeLoginService loginService;
+    private FakeUserService loginService;
 
     public SettingsActivityTest() {
         super("org.ei.drishti.test", AlertsActivity.class);
         drishtiService = new FakeDrishtiService("Default");
-        loginService = new FakeLoginService();
+        loginService = new FakeUserService();
     }
 
     @Override

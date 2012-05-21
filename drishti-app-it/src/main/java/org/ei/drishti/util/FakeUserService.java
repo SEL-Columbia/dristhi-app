@@ -1,13 +1,13 @@
 package org.ei.drishti.util;
 
-import org.ei.drishti.service.LoginService;
+import org.ei.drishti.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Arrays.asList;
 
-public class FakeLoginService extends LoginService {
+public class FakeUserService extends UserService {
     private boolean shouldSucceedLocalLogin;
     private boolean shouldSucceedRemoteLogin;
     private String expectedUserName = "";
@@ -15,7 +15,7 @@ public class FakeLoginService extends LoginService {
     private List<String> actualCalls = new ArrayList<String>();
     private boolean hasARegisteredUser;
 
-    public FakeLoginService() {
+    public FakeUserService() {
         super(null, null, null);
     }
 

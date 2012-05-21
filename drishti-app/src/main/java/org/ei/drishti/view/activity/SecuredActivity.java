@@ -26,9 +26,9 @@ public abstract class SecuredActivity extends Activity {
         };
         ON_LOGOUT.addListener(logoutListener);
 
-        if (context.loginService().hasSessionExpired()) {
+        if (context.userService().hasSessionExpired()) {
             startActivity(new Intent(this, LoginActivity.class));
-            context.loginService().logoutSession();
+            context.userService().logoutSession();
             return;
         }
 
@@ -38,9 +38,9 @@ public abstract class SecuredActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (context.loginService().hasSessionExpired()) {
+        if (context.userService().hasSessionExpired()) {
             startActivity(new Intent(this, LoginActivity.class));
-            context.loginService().logoutSession();
+            context.userService().logoutSession();
             return;
         }
 
@@ -51,7 +51,7 @@ public abstract class SecuredActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case org.ei.drishti.R.id.logoutMenuItem:
-                context.loginService().logout();
+                context.userService().logout();
                 startActivity(new Intent(this, LoginActivity.class));
                 return true;
             default:

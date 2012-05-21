@@ -4,7 +4,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import org.ei.drishti.Context;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
-import org.ei.drishti.util.FakeLoginService;
+import org.ei.drishti.util.FakeUserService;
 
 import java.util.Date;
 
@@ -13,7 +13,7 @@ import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginActivity> {
     private DrishtiSolo solo;
-    private FakeLoginService loginService;
+    private FakeUserService loginService;
 
     public LoginActivityTest() {
         super(LoginActivity.class);
@@ -22,7 +22,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
     @Override
     protected void setUp() throws Exception {
         FakeDrishtiService drishtiService = new FakeDrishtiService(String.valueOf(new Date().getTime() - 1));
-        loginService = new FakeLoginService();
+        loginService = new FakeUserService();
 
         setupService(drishtiService, loginService, -1000).updateApplicationContext(getActivity());
         Context.getInstance().setPassword(null);

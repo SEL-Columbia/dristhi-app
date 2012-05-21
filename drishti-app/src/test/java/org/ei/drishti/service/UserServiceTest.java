@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
-public class LoginServiceTest {
+public class UserServiceTest {
     @Mock
     private CommCareService commCareService;
     @Mock
@@ -29,12 +29,12 @@ public class LoginServiceTest {
     @Mock
     private AllEligibleCouples allEligibleCouples;
 
-    private LoginService loginService;
+    private UserService loginService;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        loginService = new LoginService(commCareService, repository, allSettings);
+        loginService = new UserService(commCareService, repository, allSettings);
     }
 
     @Test
