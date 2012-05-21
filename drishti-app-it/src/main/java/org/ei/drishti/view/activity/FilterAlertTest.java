@@ -1,4 +1,4 @@
-package org.ei.drishti.test;
+package org.ei.drishti.view.activity;
 
 import android.test.ActivityInstrumentationTestCase2;
 import org.ei.drishti.util.DrishtiSolo;

@@ -16,11 +16,11 @@ import static org.ei.drishti.domain.FetchStatus.fetched;
 import static org.ei.drishti.util.FakeContext.setupService;
 import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
-public class UpdateAlertsTaskIntegrationTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
+public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
     private CountDownLatch signal;
     private final FakeDrishtiService drishtiService;
 
-    public UpdateAlertsTaskIntegrationTest() {
+    public UpdateActionsTaskIntegrationTest() {
         super(AlertsActivity.class);
         drishtiService = new FakeDrishtiService("Default");
         drishtiService.setSuffix(String.valueOf(new Date().getTime()));
