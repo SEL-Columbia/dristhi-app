@@ -155,11 +155,16 @@ public class Context {
         return "drishti.db";
     }
 
-    public void startSession(long numberOfMillisecondsAfterNowThatThisSessionEnds) {
+    public Context startSession(long numberOfMillisecondsAfterNowThatThisSessionEnds) {
         setSessionExpiryTimeTo(new Date().getTime() + numberOfMillisecondsAfterNowThatThisSessionEnds);
+        return this;
     }
 
     public boolean sessionHasExpired() {
+        if (password() == null) {
+            return true;
+        }
+
         long now = new Date().getTime();
         return now > sessionExpiryTime;
     }

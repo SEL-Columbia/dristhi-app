@@ -18,13 +18,8 @@ public class FakeContext {
             protected String repositoryName() {
                 return "drishti.db." + (new Date().getTime() - 1);
             }
-
-            @Override
-            public String password() {
-                return "password";
-            }
         });
-        context.startSession(numberOfMillisecondsAfterNowThatThisSessionEnds);
+        context.startSession(numberOfMillisecondsAfterNowThatThisSessionEnds).setPassword("password");
         return context;
     }
 
@@ -44,13 +39,8 @@ public class FakeContext {
             protected String repositoryName() {
                 return "drishti.db." + (new Date().getTime() - 1);
             }
-
-            @Override
-            public String password() {
-                return "password";
-            }
         });
-        context.startSession(numberOfMillisecondsAfterNowThatThisSessionEnds);
+        context.startSession(numberOfMillisecondsAfterNowThatThisSessionEnds).setPassword("password");
         return context;
     }
 }

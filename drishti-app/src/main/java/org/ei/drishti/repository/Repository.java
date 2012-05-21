@@ -66,7 +66,7 @@ public class Repository extends SQLiteOpenHelper {
 
     public void deleteRepository() {
         close();
-        boolean resultOfDelete = context.deleteDatabase(dbName);
+        context.deleteDatabase(dbName);
         context.getDatabasePath(dbName).delete();
     }
 }

@@ -51,6 +51,12 @@ public class EligibleCoupleActivity extends Activity {
         };
         ON_LOGOUT.addListener(logoutListener);
 
+        if (context.loginService().hasSessionExpired()) {
+            startActivity(new Intent(this, LoginActivity.class));
+            context.loginService().logoutSession();
+            return;
+        }
+
         findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), AlertsActivity.class));

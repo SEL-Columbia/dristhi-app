@@ -79,6 +79,16 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
         solo.assertCanLogin("user", "password");
     }
 
+    public void testShouldGoBackToLoginScreenWhenThePasswordIsNotSetBecauseOfTheActivityHavingBeenStoppedByTheOSBeforeExpiryOfSession() {
+        loginService.setupFor("user", "password", false, false, true);
+        solo.assertCanLogin("user", "password");
+
+        Context.getInstance().setPassword(null);
+        solo.switchActivity();
+
+        solo.waitForActivity(LoginActivity.class.getSimpleName());
+    }
+
     @Override
     public void tearDown() throws Exception {
         solo.finishOpenedActivities();
