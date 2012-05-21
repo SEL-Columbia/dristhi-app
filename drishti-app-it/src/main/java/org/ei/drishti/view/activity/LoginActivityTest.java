@@ -13,7 +13,7 @@ import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginActivity> {
     private DrishtiSolo solo;
-    private FakeUserService loginService;
+    private FakeUserService userService;
 
     public LoginActivityTest() {
         super(LoginActivity.class);
@@ -22,65 +22,65 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
     @Override
     protected void setUp() throws Exception {
         FakeDrishtiService drishtiService = new FakeDrishtiService(String.valueOf(new Date().getTime() - 1));
-        loginService = new FakeUserService();
+        userService = new FakeUserService();
 
-        setupService(drishtiService, loginService, -1000).updateApplicationContext(getActivity());
+        setupService(drishtiService, userService, -1000).updateApplicationContext(getActivity());
         Context.getInstance().setPassword(null);
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
     }
 
     public void testShouldAllowLoginWithoutCheckingRemoteLoginWhenLocalLoginSucceeds() throws Exception {
-        loginService.setupFor("user", "password", true, true, false);
+        userService.setupFor("user", "password", true, true, false);
 
         solo.assertCanLogin("user", "password");
 
-        loginService.assertOrderOfCalls("local", "login");
+        userService.assertOrderOfCalls("local", "login");
     }
 
     public void testShouldTryRemoteLoginWhenThereIsNoRegisteredUser() throws Exception {
-        loginService.setupFor("user", "password", false, false, true);
+        userService.setupFor("user", "password", false, false, true);
 
         solo.assertCanLogin("user", "password");
 
-        loginService.assertOrderOfCalls("remote", "login");
+        userService.assertOrderOfCalls("remote", "login");
     }
 
     public void testShouldFailToLoginWhenBothLoginMethodsFail() throws Exception {
-        loginService.setupFor("user", "password", false, false, false);
+        userService.setupFor("user", "password", false, false, false);
 
         solo.assertCannotLogin("user", "password");
 
-        loginService.assertOrderOfCalls("remote");
+        userService.assertOrderOfCalls("remote");
     }
 
     public void testShouldNotTryRemoteLoginWhenRegisteredUserExistsEvenIfLocalLoginFails() throws Exception {
-        loginService.setupFor("user", "password", true, false, true);
+        userService.setupFor("user", "password", true, false, true);
 
         solo.assertCannotLogin("user", "password");
-        loginService.assertOrderOfCalls("local");
+        userService.assertOrderOfCalls("local");
     }
 
     public void testShouldNotTryLocalLoginWhenRegisteredUserDoesNotExist() throws Exception {
-        loginService.setupFor("user", "password", false, true, true);
+        userService.setupFor("user", "password", false, true, true);
 
         solo.assertCanLogin("user", "password");
-        loginService.assertOrderOfCalls("remote", "login");
+        userService.assertOrderOfCalls("remote", "login");
     }
 
     public void testShouldGoBackToLoginScreenWhenLoggedOutWithAbilityToLogBackIn() throws Exception {
-        loginService.setupFor("user", "password", false, false, true);
+        userService.setupFor("user", "password", false, false, true);
         solo.assertCanLogin("user", "password");
 
         solo.logout();
         solo.assertCurrentActivity("Should be in Login screen.", LoginActivity.class);
 
-        loginService.setupFor("user", "password", false, false, true);
+        userService.setupFor("user", "password", false, false, true);
         solo.assertCanLogin("user", "password");
     }
 
     public void testShouldGoBackToLoginScreenWhenThePasswordIsNotSetBecauseOfTheActivityHavingBeenStoppedByTheOSBeforeExpiryOfSession() {
-        loginService.setupFor("user", "password", false, false, true);
+        userService.setupFor("user", "password", false, false, true);
         solo.assertCanLogin("user", "password");
         waitForProgressBarToGoAway(getActivity());
 

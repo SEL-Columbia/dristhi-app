@@ -27,7 +27,7 @@ public class Context {
 
     private DrishtiService drishtiService;
     private ActionService actionService;
-    private UserService loginService;
+    private UserService userService;
     private CommCareService commCareService;
 
     private String password;
@@ -128,11 +128,11 @@ public class Context {
     }
 
     public UserService userService() {
-        if (loginService == null) {
+        if (userService == null) {
             Repository repo = initRepository();
-            loginService = new UserService(commCareService(), repo, allSettings());
+            userService = new UserService(commCareService(), repo, allSettings());
         }
-        return loginService;
+        return userService;
     }
 
     private CommCareService commCareService() {

@@ -23,7 +23,7 @@ public class FakeContext {
         return context;
     }
 
-    public static Context setupService(final DrishtiService drishtiService, final UserService loginService, final int numberOfMillisecondsAfterNowThatThisSessionEnds) {
+    public static Context setupService(final DrishtiService drishtiService, final UserService userService, final int numberOfMillisecondsAfterNowThatThisSessionEnds) {
         Context context = Context.setInstance(new Context() {
             @Override
             protected DrishtiService drishtiService() {
@@ -32,7 +32,7 @@ public class FakeContext {
 
             @Override
             public UserService userService() {
-                return loginService;
+                return userService;
             }
 
             @Override

@@ -29,17 +29,17 @@ public class UserServiceTest {
     @Mock
     private AllEligibleCouples allEligibleCouples;
 
-    private UserService loginService;
+    private UserService userService;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        loginService = new UserService(commCareService, repository, allSettings);
+        userService = new UserService(commCareService, repository, allSettings);
     }
 
     @Test
     public void shouldUseCommCareToDoRemoteLoginCheck() {
-        loginService.isValidRemoteLogin("user X", "password Y");
+        userService.isValidRemoteLogin("user X", "password Y");
 
         verify(commCareService).isValidUser("user X", "password Y");
     }
@@ -49,7 +49,7 @@ public class UserServiceTest {
         when(allSettings.fetchRegisteredANM()).thenReturn("ANM X");
         when(repository.canUseThisPassword("password Z")).thenReturn(true);
 
-        assertTrue(loginService.isValidLocalLogin("ANM X", "password Z"));
+        assertTrue(userService.isValidLocalLogin("ANM X", "password Z"));
 
         verify(allSettings).fetchRegisteredANM();
         verify(repository).canUseThisPassword("password Z");
@@ -59,7 +59,7 @@ public class UserServiceTest {
     public void shouldConsiderALocalLoginInvalidWhenRegisteredUserDoesNotMatch() {
         when(allSettings.fetchRegisteredANM()).thenReturn("ANM X");
 
-        assertFalse(loginService.isValidLocalLogin("SOME OTHER ANM", "password"));
+        assertFalse(userService.isValidLocalLogin("SOME OTHER ANM", "password"));
 
         verify(allSettings).fetchRegisteredANM();
         verifyZeroInteractions(repository);
@@ -70,7 +70,7 @@ public class UserServiceTest {
         when(allSettings.fetchRegisteredANM()).thenReturn("ANM X");
         when(repository.canUseThisPassword("password Z")).thenReturn(false);
 
-        assertFalse(loginService.isValidLocalLogin("ANM X", "password Z"));
+        assertFalse(userService.isValidLocalLogin("ANM X", "password Z"));
 
         verify(allSettings).fetchRegisteredANM();
         verify(repository).canUseThisPassword("password Z");
@@ -81,7 +81,7 @@ public class UserServiceTest {
         Context context = mock(Context.class);
 
         Context.setInstance(context);
-        loginService.loginWith("user X", "password Y");
+        userService.loginWith("user X", "password Y");
 
         verify(allSettings).registerANM("user X");
         verify(context).setPassword("password Y");
@@ -89,7 +89,7 @@ public class UserServiceTest {
 
     @Test
     public void shouldDeleteDataAndSettingsWhenLogoutHappens() throws Exception {
-        loginService.logout();
+        userService.logout();
 
         verify(repository).deleteRepository();
         verify(allSettings).savePreviousFetchIndex("0");

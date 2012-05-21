@@ -12,17 +12,17 @@ import static org.ei.drishti.util.FakeContext.setupService;
 public class SettingsActivityTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
     private DrishtiSolo solo;
     private FakeDrishtiService drishtiService;
-    private FakeUserService loginService;
+    private FakeUserService userService;
 
     public SettingsActivityTest() {
         super("org.ei.drishti.test", AlertsActivity.class);
         drishtiService = new FakeDrishtiService("Default");
-        loginService = new FakeUserService();
+        userService = new FakeUserService();
     }
 
     @Override
     public void setUp() throws Exception {
-        setupService(drishtiService, loginService, 1000000).updateApplicationContext(getActivity().getApplicationContext());
+        setupService(drishtiService, userService, 1000000).updateApplicationContext(getActivity().getApplicationContext());
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
     }
