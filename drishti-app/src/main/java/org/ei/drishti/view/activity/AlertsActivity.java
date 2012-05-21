@@ -1,11 +1,9 @@
 package org.ei.drishti.view.activity;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,13 +11,11 @@ import android.view.View;
 import android.widget.*;
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.PullToRefreshListView;
-import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Displayable;
 import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.event.Listener;
 import org.ei.drishti.view.AfterFetchListener;
 import org.ei.drishti.view.DialogAction;
 import org.ei.drishti.view.ItemFilter;
@@ -33,37 +29,18 @@ import static android.widget.Toast.LENGTH_SHORT;
 import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.*;
 import static org.ei.drishti.domain.FetchStatus.fetched;
-import static org.ei.drishti.event.Event.ON_LOGOUT;
 import static org.ei.drishti.util.DateUtil.formattedDueDate;
 import static org.ei.drishti.util.Log.logVerbose;
 
-public class AlertsActivity extends Activity {
+public class AlertsActivity extends SecuredActivity {
     private UpdateActionsTask updateAlerts;
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
-    private Context context;
     private AlertController controller;
-    private Listener<Boolean> logoutListener;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreation() {
         logVerbose("Initializing ...");
         setContentView(R.layout.main);
-
-        context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
-
-        logoutListener = new Listener<Boolean>() {
-            public void onEvent(Boolean data) {
-                finish();
-            }
-        };
-        ON_LOGOUT.addListener(logoutListener);
-
-        if (context.loginService().hasSessionExpired()) {
-            startActivity(new Intent(this, LoginActivity.class));
-            context.loginService().logoutSession();
-            return;
-        }
 
         findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -129,13 +106,7 @@ public class AlertsActivity extends Activity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (context.loginService().hasSessionExpired()) {
-            startActivity(new Intent(this, LoginActivity.class));
-            context.loginService().logoutSession();
-            return;
-        }
+    protected void onResumption() {
         controller.refreshAlertsFromDB();
         updateAlerts();
     }
@@ -152,10 +123,6 @@ public class AlertsActivity extends Activity {
         switch (item.getItemId()) {
             case R.id.updateMenuItem:
                 updateAlerts();
-                return true;
-            case R.id.logoutMenuItem:
-                context.loginService().logout();
-                startActivity(new Intent(this, LoginActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
