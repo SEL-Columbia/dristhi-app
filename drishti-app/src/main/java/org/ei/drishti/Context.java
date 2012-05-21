@@ -165,6 +165,6 @@ public class Context {
     }
 
     public long sessionLengthInMilliseconds() {
-        return 8 * 60 * 60 * 1000;
+        return 30 * 60 * 1000;
     }
 }
