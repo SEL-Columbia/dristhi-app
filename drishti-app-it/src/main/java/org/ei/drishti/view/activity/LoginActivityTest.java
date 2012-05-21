@@ -9,6 +9,7 @@ import org.ei.drishti.util.FakeLoginService;
 import java.util.Date;
 
 import static org.ei.drishti.util.FakeContext.setupService;
+import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginActivity> {
     private DrishtiSolo solo;
@@ -81,6 +82,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
     public void testShouldGoBackToLoginScreenWhenThePasswordIsNotSetBecauseOfTheActivityHavingBeenStoppedByTheOSBeforeExpiryOfSession() {
         loginService.setupFor("user", "password", false, false, true);
         solo.assertCanLogin("user", "password");
+        waitForProgressBarToGoAway(getActivity());
 
         Context.getInstance().setPassword(null);
         solo.switchActivity();
