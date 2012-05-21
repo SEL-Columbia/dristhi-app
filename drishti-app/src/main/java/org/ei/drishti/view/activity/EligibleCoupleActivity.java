@@ -32,7 +32,7 @@ public class EligibleCoupleActivity extends SecuredActivity {
     protected void onCreation() {
         setContentView(R.layout.main);
 
-        findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.switchViewButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), AlertsActivity.class));
                 finish();

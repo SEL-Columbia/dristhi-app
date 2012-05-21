@@ -42,7 +42,7 @@ public class AlertsActivity extends SecuredActivity {
         logVerbose("Initializing ...");
         setContentView(R.layout.main);
 
-        findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.switchViewButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), EligibleCoupleActivity.class));
                 finish();
