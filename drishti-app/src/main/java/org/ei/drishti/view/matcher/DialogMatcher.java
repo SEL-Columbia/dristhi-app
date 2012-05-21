@@ -30,7 +30,7 @@ public abstract class DialogMatcher<T extends Displayable, Entity> implements Ma
             }
 
             private String displayValueForBadge(T selection) {
-                if (selection.equals(defaultValue)) {
+                if (defaultValue.equals(selection)) {
                     return "";
                 }
                 return selection.displayValue();
@@ -40,5 +40,9 @@ public abstract class DialogMatcher<T extends Displayable, Entity> implements Ma
 
     public T currentValue() {
         return currentValue;
+    }
+
+    public boolean isActive() {
+        return !defaultValue.equals(currentValue());
     }
 }

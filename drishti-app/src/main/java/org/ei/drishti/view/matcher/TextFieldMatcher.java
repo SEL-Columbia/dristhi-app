@@ -33,4 +33,8 @@ public abstract class TextFieldMatcher<T> implements Matcher<DisplayableString, 
         return currentValue;
     }
 
+    public boolean isActive() {
+        return !"".equals(currentValue().displayValue());
+    }
+
 }

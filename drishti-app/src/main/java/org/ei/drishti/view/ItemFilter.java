@@ -33,22 +33,34 @@ public class ItemFilter<T> {
     }
 
     private void filter() {
+        List<Matcher> activeMatchers = activeMatchers();
+
         List<T> alerts = new ArrayList<T>();
         for (T alert : alertAdapter.getItems()) {
-            if (allMatchersMatch(alert)) {
+            if (allMatchersMatch(activeMatchers, alert)) {
                 alerts.add(alert);
             }
         }
         alertAdapter.refreshDisplayWithoutUpdatingItems(alerts);
     }
 
-    private boolean allMatchersMatch(T alert) {
-        for (Matcher matcher : matchers) {
+    private boolean allMatchersMatch(List<Matcher> activeMatchers, T alert) {
+        for (Matcher matcher : activeMatchers) {
             if (!matcher.matches(alert)) {
                 return false;
             }
         }
         return true;
+    }
+
+    private List<Matcher> activeMatchers() {
+        ArrayList activeMatchers = new ArrayList<Matcher>();
+        for (Matcher matcher : matchers) {
+            if (matcher.isActive()) {
+                activeMatchers.add(matcher);
+            }
+        }
+        return activeMatchers;
     }
 
 }

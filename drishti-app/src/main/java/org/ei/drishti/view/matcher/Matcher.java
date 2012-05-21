@@ -9,4 +9,6 @@ public interface Matcher<T extends Displayable, Entity> {
     T currentValue();
 
     boolean matches(Entity entity);
+
+    boolean isActive();
 }
