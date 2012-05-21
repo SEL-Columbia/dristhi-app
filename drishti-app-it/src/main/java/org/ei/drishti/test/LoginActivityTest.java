@@ -5,7 +5,6 @@ import org.ei.drishti.Context;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.util.FakeLoginService;
-import org.ei.drishti.view.activity.AlertsActivity;
 import org.ei.drishti.view.activity.LoginActivity;
 
 import java.util.Date;
@@ -34,56 +33,50 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
     public void testShouldAllowLoginWithoutCheckingRemoteLoginWhenLocalLoginSucceeds() throws Exception {
         loginService.setupFor("user", "password", true, true, false);
 
-        solo.enterText(0, "user");
-        solo.enterText(1, "password");
-        solo.clickOnButton("Login to Dristhi");
+        solo.assertCanLogin("user", "password");
 
-        solo.assertCurrentActivity("Expected to be in Alerts screen", AlertsActivity.class);
         loginService.assertOrderOfCalls("local", "login");
     }
 
     public void testShouldTryRemoteLoginWhenThereIsNoRegisteredUser() throws Exception {
         loginService.setupFor("user", "password", false, false, true);
 
-        solo.enterText(0, "user");
-        solo.enterText(1, "password");
-        solo.clickOnButton("Login to Dristhi");
+        solo.assertCanLogin("user", "password");
 
-        solo.assertCurrentActivity("Expected to be in Alerts screen", AlertsActivity.class);
         loginService.assertOrderOfCalls("remote", "login");
     }
 
     public void testShouldFailToLoginWhenBothLoginMethodsFail() throws Exception {
         loginService.setupFor("user", "password", false, false, false);
 
-        solo.enterText(0, "user");
-        solo.enterText(1, "password");
-        solo.clickOnButton("Login to Dristhi");
+        solo.assertCannotLogin("user", "password");
 
-        solo.assertCurrentActivity("Expected to be in Login screen", LoginActivity.class);
         loginService.assertOrderOfCalls("remote");
     }
 
     public void testShouldNotTryRemoteLoginWhenRegisteredUserExistsEvenIfLocalLoginFails() throws Exception {
         loginService.setupFor("user", "password", true, false, true);
 
-        solo.enterText(0, "user");
-        solo.enterText(1, "password");
-        solo.clickOnButton("Login to Dristhi");
-
-        solo.assertCurrentActivity("Expected to be in Login screen", LoginActivity.class);
+        solo.assertCannotLogin("user", "password");
         loginService.assertOrderOfCalls("local");
     }
 
     public void testShouldNotTryLocalLoginWhenRegisteredUserDoesNotExist() throws Exception {
         loginService.setupFor("user", "password", false, true, true);
 
-        solo.enterText(0, "user");
-        solo.enterText(1, "password");
-        solo.clickOnButton("Login to Dristhi");
-
-        solo.assertCurrentActivity("Expected to be in Alerts screen", AlertsActivity.class);
+        solo.assertCanLogin("user", "password");
         loginService.assertOrderOfCalls("remote", "login");
+    }
+
+    public void testShouldGoBackToLoginScreenWhenLoggedOutWithAbilityToLogBackIn() throws Exception {
+        loginService.setupFor("user", "password", false, false, true);
+        solo.assertCanLogin("user", "password");
+
+        solo.logout();
+        solo.assertCurrentActivity("Should be in Login screen.", LoginActivity.class);
+
+        loginService.setupFor("user", "password", false, false, true);
+        solo.assertCanLogin("user", "password");
     }
 
     @Override

@@ -99,11 +99,20 @@ public class DrishtiSolo extends Solo {
         waitForFilteringToFinish();
     }
 
-    public DrishtiSolo login(String userName, String password) {
+    public DrishtiSolo assertCanLogin(String userName, String password) {
         enterText(0, userName);
         enterText(1, password);
         clickOnButton(0);
         waitForActivity(AlertsActivity.class.getSimpleName());
+        waitForFilteringToFinish();
+        return this;
+    }
+
+    public DrishtiSolo assertCannotLogin(String userName, String password) {
+        enterText(0, userName);
+        enterText(1, password);
+        clickOnButton(0);
+        waitForActivity(LoginActivity.class.getSimpleName());
         waitForFilteringToFinish();
         return this;
     }

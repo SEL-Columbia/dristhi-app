@@ -42,6 +42,7 @@ public class LoginService {
     }
 
     public void logoutSession() {
+        Context.getInstance().expireSession();
         ON_LOGOUT.notifyListeners(true);
     }
 
@@ -53,4 +54,5 @@ public class LoginService {
         Context.getInstance().startSession(Context.getInstance().sessionLengthInMilliseconds());
         Context.getInstance().setPassword(password);
     }
+
 }

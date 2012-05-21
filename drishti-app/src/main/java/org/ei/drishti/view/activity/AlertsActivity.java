@@ -148,8 +148,8 @@ public class AlertsActivity extends Activity {
                 updateAlerts();
                 return true;
             case R.id.logoutMenuItem:
-                startActivity(new Intent(this, LoginActivity.class));
                 context.loginService().logout();
+                startActivity(new Intent(this, LoginActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

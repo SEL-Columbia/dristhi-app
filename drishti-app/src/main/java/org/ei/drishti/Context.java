@@ -156,7 +156,7 @@ public class Context {
     }
 
     public void startSession(long numberOfMillisecondsAfterNowThatThisSessionEnds) {
-        this.sessionExpiryTime = new Date().getTime() + numberOfMillisecondsAfterNowThatThisSessionEnds;
+        setSessionExpiryTimeTo(new Date().getTime() + numberOfMillisecondsAfterNowThatThisSessionEnds);
     }
 
     public boolean sessionHasExpired() {
@@ -164,7 +164,15 @@ public class Context {
         return now > sessionExpiryTime;
     }
 
+    public void expireSession() {
+        setSessionExpiryTimeTo(new Date().getTime() - 1);
+    }
+
     public long sessionLengthInMilliseconds() {
         return 30 * 60 * 1000;
+    }
+
+    private void setSessionExpiryTimeTo(long expiryTimeInMillisecondsSinceEpoch) {
+        this.sessionExpiryTime = expiryTimeInMillisecondsSinceEpoch;
     }
 }

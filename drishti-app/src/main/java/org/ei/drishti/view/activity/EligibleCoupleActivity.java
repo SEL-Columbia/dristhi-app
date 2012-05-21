@@ -121,8 +121,8 @@ public class EligibleCoupleActivity extends Activity {
                 updateECs();
                 return true;
             case org.ei.drishti.R.id.logoutMenuItem:
-                startActivity(new Intent(this, LoginActivity.class));
                 context.loginService().logout();
+                startActivity(new Intent(this, LoginActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

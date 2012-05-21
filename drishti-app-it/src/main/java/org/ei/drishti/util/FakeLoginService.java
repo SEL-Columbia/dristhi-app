@@ -1,6 +1,5 @@
 package org.ei.drishti.util;
 
-import org.ei.drishti.Context;
 import org.ei.drishti.service.LoginService;
 
 import java.util.ArrayList;
@@ -48,7 +47,7 @@ public class FakeLoginService extends LoginService {
 
     @Override
     public void logout() {
-        Context.getInstance().startSession(-1000);
+        super.logoutSession();
         actualCalls.add("logout");
     }
 

@@ -7,7 +7,6 @@ import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.util.FakeLoginService;
 import org.ei.drishti.view.activity.AlertsActivity;
-import org.ei.drishti.view.activity.LoginActivity;
 
 import static org.ei.drishti.util.FakeContext.setupService;
 
@@ -27,15 +26,6 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<Alert
         setupService(drishtiService, loginService, 1000000).updateApplicationContext(getActivity().getApplicationContext());
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
-    }
-
-    public void testShouldGoBackToLoginScreenWhenLoggedOutWithAbilityToLogBackIn() throws Exception {
-        loginService.setupFor("user", "password", false, true, true);
-        solo.logout();
-
-        solo.assertCurrentActivity("Should be in Login screen.", LoginActivity.class);
-
-        solo.login("user", "password");
     }
 
     public void testShouldRegisterANM() throws Exception {
