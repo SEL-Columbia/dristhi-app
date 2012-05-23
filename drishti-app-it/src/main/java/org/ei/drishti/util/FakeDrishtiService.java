@@ -8,12 +8,12 @@ import org.ei.drishti.service.DrishtiService;
 import java.util.*;
 
 public class FakeDrishtiService extends DrishtiService {
-    private String defaultSuffix;
     private List<Expectation> expectations;
+    private Response<List<Action>> defaultActions;
 
     public FakeDrishtiService(String defaultSuffix) {
         super(null, null);
-        this.defaultSuffix = defaultSuffix;
+        setSuffix(defaultSuffix);
         this.expectations = new ArrayList<Expectation>();
     }
 
@@ -24,7 +24,7 @@ public class FakeDrishtiService extends DrishtiService {
                 return expectation.alertActions();
             }
         }
-        return actionsFor(defaultSuffix);
+        return defaultActions;
     }
 
     public static Map<String, String> dataForCreateAction(String lateness, String beneficiaryName, String visitCode, String thaayiCardNumber, String dueDate, String village) {
@@ -39,15 +39,11 @@ public class FakeDrishtiService extends DrishtiService {
     }
 
     public void setSuffix(String suffix) {
-        this.defaultSuffix = suffix;
+        this.defaultActions = actionsFor(suffix);
     }
 
-    public void expect(String anmId, String previousIndex, String suffixOfAlertsToReturn) {
-        expectations.add(new Expectation(anmId, previousIndex, actionsFor(suffixOfAlertsToReturn)));
-    }
-
-    public void expect(String anmId, String previousIndex, Response<List<Action>> suffixOfAlertsToReturn) {
-        expectations.add(new Expectation(anmId, previousIndex, suffixOfAlertsToReturn));
+    public void changeDefaultActions(Response<List<Action>> alertsToProvide) {
+        this.defaultActions = alertsToProvide;
     }
 
     private Response<List<Action>> actionsFor(String suffix) {
