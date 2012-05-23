@@ -18,19 +18,21 @@ public class ActionBuilder {
         return new Action(caseID, "deleteAllAlerts", new HashMap<String, String>(), "0");
     }
 
-    public static Action actionForCreateEC(String caseID, String wifeName, String husbandName, String ecNumber) {
-        return new Action(caseID, "createEC", dataForCreateActionForEC(wifeName, husbandName, ecNumber), "0");
+    public static Action actionForCreateEC(String caseID, String wifeName, String husbandName, String ecNumber, String village, String subCenter) {
+        return new Action(caseID, "createEC", dataForCreateActionForEC(wifeName, husbandName, ecNumber, village, subCenter), "0");
     }
 
     public static Action actionForDeleteEC(String caseID) {
         return new Action(caseID, "deleteEC", new HashMap<String, String>(), "0");
     }
 
-    private static Map<String, String> dataForCreateActionForEC(String wifeName, String husbandName, String ecNumber) {
+    private static Map<String, String> dataForCreateActionForEC(String wifeName, String husbandName, String ecNumber, String village, String subCenter) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("wife", wifeName);
         map.put("husband", husbandName);
         map.put("ecNumber", ecNumber);
+        map.put("village", village);
+        map.put("subcenter", subCenter);
         return map;
     }
 

@@ -51,17 +51,19 @@ public class FakeDrishtiService extends DrishtiService {
         Action deleteYAction = new Action("Case Y", "deleteAllAlerts", new HashMap<String, String>(), "123456");
         Action firstAction = new Action("Case X", "createAlert", dataForCreateAction("due", "Theresa 1 " + suffix, "BCG", "Thaayi 1 " + suffix, "2012-01-01", "Bherya 1"), "123456");
         Action secondAction = new Action("Case Y", "createAlert", dataForCreateAction("due", "Theresa 2 " + suffix, "OPV 1", "Thaayi 2 " + suffix, "2100-04-09", "Bherya 2"), "123456");
-        Action firstCreateEC = new Action("Case A" + suffix, "createEC", dataForCreateEC("Wife 1 " + suffix, "Husband 1", "EC 1" + suffix), "123456");
-        Action secondCreateEC = new Action("Case B" + suffix, "createEC", dataForCreateEC("Wife 2 " + suffix, "Husband 2", "EC 2" + suffix), "123456");
+        Action firstCreateEC = new Action("Case A" + suffix, "createEC", dataForCreateEC("Wife 1 " + suffix, "Husband 1", "EC 1" + suffix, "Village 1", "SubCenter 1"), "123456");
+        Action secondCreateEC = new Action("Case B" + suffix, "createEC", dataForCreateEC("Wife 2 " + suffix, "Husband 2", "EC 2" + suffix, "Village 2", "SubCenter 2"), "123456");
 
         return new Response<List<Action>>(ResponseStatus.success, Arrays.asList(deleteXAction, deleteYAction, firstAction, secondAction, firstCreateEC, secondCreateEC));
     }
 
-    private Map<String, String> dataForCreateEC(String wifeName, String husbandName, String ecNumber) {
+    private Map<String, String> dataForCreateEC(String wifeName, String husbandName, String ecNumber, String subCenter, String village) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("wife", wifeName);
         map.put("husband", husbandName);
         map.put("ecNumber", ecNumber);
+        map.put("village", village);
+        map.put("subcenter", subCenter);
         return map;
     }
 

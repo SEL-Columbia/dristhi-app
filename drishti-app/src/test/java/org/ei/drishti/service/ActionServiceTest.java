@@ -91,17 +91,17 @@ public class ActionServiceTest {
 
     @Test
     public void shouldFetchECActionsAndSaveThemToRepository() throws Exception {
-        setupActions(success, asList(actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number")));
+        setupActions(success, asList(actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1")));
 
         assertEquals(fetched, service.fetchNewActions());
 
         verify(drishtiService).fetchNewActions("ANM X", "1234");
-        verify(allEligibleCouples).handleAction(actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number"));
+        verify(allEligibleCouples).handleAction(actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1"));
     }
 
     @Test
     public void shouldHandleDifferentKindsOfActions() throws Exception {
-        Action ecAction = actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number");
+        Action ecAction = actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1");
         Action alertAction = actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "0");
         setupActions(success, asList(ecAction, alertAction));
 
