@@ -13,13 +13,11 @@ public class FakeContext {
             protected DrishtiService drishtiService() {
                 return drishtiService;
             }
-
-            @Override
-            protected String repositoryName() {
-                return "drishti.db." + (new Date().getTime() - 1);
-            }
         });
-        context.startSession(numberOfMillisecondsAfterNowThatThisSessionEnds).setPassword("password");
+
+        Session session = context.session().start(numberOfMillisecondsAfterNowThatThisSessionEnds);
+        session.setPassword("password").setRepositoryName("drishti.db." + (new Date().getTime() - 1));
+
         return context;
     }
 
@@ -34,13 +32,11 @@ public class FakeContext {
             public UserService userService() {
                 return userService;
             }
-
-            @Override
-            protected String repositoryName() {
-                return "drishti.db." + (new Date().getTime() - 1);
-            }
         });
-        context.startSession(numberOfMillisecondsAfterNowThatThisSessionEnds).setPassword("password");
+
+        Session properties = context.session().start(numberOfMillisecondsAfterNowThatThisSessionEnds);
+        properties.setPassword("password").setRepositoryName("drishti.db." + (new Date().getTime() - 1));
+
         return context;
     }
 }

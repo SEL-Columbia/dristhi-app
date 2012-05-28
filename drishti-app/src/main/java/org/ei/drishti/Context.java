@@ -6,9 +6,8 @@ import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
+import org.ei.drishti.util.Session;
 import org.ei.drishti.view.adapter.ListAdapter;
-
-import java.util.Date;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
@@ -30,8 +29,7 @@ public class Context {
     private UserService userService;
     private CommCareService commCareService;
 
-    private String password;
-    private long sessionExpiryTime = 0;
+    private Session session;
 
     protected Context() {
     }
@@ -77,7 +75,7 @@ public class Context {
 
     private Repository initRepository() {
         if (repository == null) {
-            repository = new Repository(this.applicationContext, repositoryName(), settingsRepository(), alertRepository(), eligibleCoupleRepository());
+            repository = new Repository(this.applicationContext, session().repositoryName(), settingsRepository(), alertRepository(), eligibleCoupleRepository());
         }
         return repository;
     }
@@ -142,42 +140,10 @@ public class Context {
         return commCareService;
     }
 
-    public Context setPassword(String password) {
-        this.password = password;
-        return this;
-    }
-
-    public String password() {
-        return password;
-    }
-
-    protected String repositoryName() {
-        return "drishti.db";
-    }
-
-    public Context startSession(long numberOfMillisecondsAfterNowThatThisSessionEnds) {
-        setSessionExpiryTimeTo(new Date().getTime() + numberOfMillisecondsAfterNowThatThisSessionEnds);
-        return this;
-    }
-
-    public boolean sessionHasExpired() {
-        if (password() == null) {
-            return true;
+    public Session session() {
+        if (session == null) {
+            session = new Session();
         }
-
-        long now = new Date().getTime();
-        return now > sessionExpiryTime;
-    }
-
-    public void expireSession() {
-        setSessionExpiryTimeTo(new Date().getTime() - 1);
-    }
-
-    public long sessionLengthInMilliseconds() {
-        return 30 * 60 * 1000;
-    }
-
-    private void setSessionExpiryTimeTo(long expiryTimeInMillisecondsSinceEpoch) {
-        this.sessionExpiryTime = expiryTimeInMillisecondsSinceEpoch;
+        return session;
     }
 }

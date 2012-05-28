@@ -6,6 +6,7 @@ import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.Repository;
+import org.ei.drishti.util.Session;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -79,12 +80,14 @@ public class UserServiceTest {
     @Test
     public void shouldRegisterANewUser() {
         Context context = mock(Context.class);
+        Session properties = mock(Session.class);
+        when(context.session()).thenReturn(properties);
 
         Context.setInstance(context);
         userService.loginWith("user X", "password Y");
 
         verify(allSettings).registerANM("user X");
-        verify(context).setPassword("password Y");
+        verify(properties).setPassword("password Y");
     }
 
     @Test

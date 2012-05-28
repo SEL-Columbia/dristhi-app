@@ -42,17 +42,17 @@ public class UserService {
     }
 
     public void logoutSession() {
-        Context.getInstance().expireSession();
+        Context.getInstance().session().expire();
         ON_LOGOUT.notifyListeners(true);
     }
 
     public boolean hasSessionExpired() {
-        return Context.getInstance().sessionHasExpired();
+        return Context.getInstance().session().hasExpired();
     }
 
     protected void setupContextForLogin(String userName, String password) {
-        Context.getInstance().startSession(Context.getInstance().sessionLengthInMilliseconds());
-        Context.getInstance().setPassword(password);
+        Context.getInstance().session().start(Context.getInstance().session().lengthInMilliseconds());
+        Context.getInstance().session().setPassword(password);
     }
 
 }

@@ -25,7 +25,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
         userService = new FakeUserService();
 
         setupService(drishtiService, userService, -1000).updateApplicationContext(getActivity());
-        Context.getInstance().setPassword(null);
+        Context.getInstance().session().setPassword(null);
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
     }
@@ -84,7 +84,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
         solo.assertCanLogin("user", "password");
         waitForProgressBarToGoAway(getActivity());
 
-        Context.getInstance().setPassword(null);
+        Context.getInstance().session().setPassword(null);
         solo.switchActivity();
 
         solo.waitForActivity(LoginActivity.class.getSimpleName());

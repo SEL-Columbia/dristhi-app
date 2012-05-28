@@ -16,7 +16,7 @@ public class AlertRepositoryTest extends AndroidTestCase {
     @Override
     protected void setUp() throws Exception {
         alertRepository = new AlertRepository();
-        Context.getInstance().setPassword("password");
+        Context.getInstance().session().setPassword("password");
         new Repository(new RenamingDelegatingContext(getContext(), "test_"), "drishti.db" + new Date().getTime(), alertRepository);
         alertRepository.deleteAllAlerts();
     }

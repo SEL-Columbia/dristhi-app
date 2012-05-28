@@ -61,7 +61,7 @@ public class Repository extends SQLiteOpenHelper {
     }
 
     private String password() {
-        return org.ei.drishti.Context.getInstance().password();
+        return org.ei.drishti.Context.getInstance().session().password();
     }
 
     public void deleteRepository() {

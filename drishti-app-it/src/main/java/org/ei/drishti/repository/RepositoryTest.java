@@ -13,7 +13,7 @@ public class RepositoryTest extends AndroidTestCase {
     public void testShouldCheckPassword() throws Exception {
         AlertRepository alertRepository = new AlertRepository();
         Repository repository = new Repository(new RenamingDelegatingContext(getContext(), "test_"), "drishti.db" + new Date().getTime(), alertRepository);
-        Context.getInstance().setPassword("Hello");
+        Context.getInstance().session().setPassword("Hello");
 
         List<Alert> makeCallJustToInitializeRepository = alertRepository.allAlerts();
 
@@ -25,7 +25,7 @@ public class RepositoryTest extends AndroidTestCase {
         String dbName = "drishti.db" + new Date().getTime();
         AlertRepository alertRepository = new AlertRepository();
         Repository repository = new Repository(new RenamingDelegatingContext(getContext(), "test_"), dbName, alertRepository);
-        Context.getInstance().setPassword("password");
+        Context.getInstance().session().setPassword("password");
 
         List<Alert> makeCallJustToInitializeRepository = alertRepository.allAlerts();
         assertTrue(repository.canUseThisPassword("password"));
