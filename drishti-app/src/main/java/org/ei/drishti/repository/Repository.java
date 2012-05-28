@@ -3,6 +3,7 @@ package org.ei.drishti.repository;
 import android.content.Context;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import info.guardianproject.database.sqlcipher.SQLiteOpenHelper;
+import org.ei.drishti.util.Session;
 
 import java.io.File;
 
@@ -11,13 +12,15 @@ public class Repository extends SQLiteOpenHelper {
     private File databasePath;
     private Context context;
     private String dbName;
+    private Session session;
 
-    public Repository(Context context, String dbName, DrishtiRepository... repositories) {
+    public Repository(Context context, String dbName, Session session, DrishtiRepository... repositories) {
         super(context, dbName, null, 1);
         this.repositories = repositories;
         this.databasePath = context.getDatabasePath(dbName);
         this.context = context;
         this.dbName = dbName;
+        this.session = session;
 
         SQLiteDatabase.loadLibs(context);
         for (DrishtiRepository repository : repositories) {
@@ -61,7 +64,7 @@ public class Repository extends SQLiteOpenHelper {
     }
 
     private String password() {
-        return org.ei.drishti.Context.getInstance().session().password();
+        return session.password();
     }
 
     public void deleteRepository() {

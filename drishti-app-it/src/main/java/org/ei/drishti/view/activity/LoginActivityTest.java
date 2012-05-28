@@ -92,6 +92,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
 
     @Override
     public void tearDown() throws Exception {
+        waitForProgressBarToGoAway(getActivity());
         solo.finishOpenedActivities();
     }
 }
