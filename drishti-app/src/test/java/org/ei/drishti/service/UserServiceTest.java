@@ -1,7 +1,6 @@
 package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
-import org.ei.drishti.Context;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
@@ -29,13 +28,15 @@ public class UserServiceTest {
     private AllAlerts allAlerts;
     @Mock
     private AllEligibleCouples allEligibleCouples;
+    @Mock
+    private Session session;
 
     private UserService userService;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        userService = new UserService(commCareService, repository, allSettings);
+        userService = new UserService(commCareService, repository, allSettings, session);
     }
 
     @Test
@@ -79,15 +80,10 @@ public class UserServiceTest {
 
     @Test
     public void shouldRegisterANewUser() {
-        Context context = mock(Context.class);
-        Session properties = mock(Session.class);
-        when(context.session()).thenReturn(properties);
-
-        Context.setInstance(context);
         userService.loginWith("user X", "password Y");
 
         verify(allSettings).registerANM("user X");
-        verify(properties).setPassword("password Y");
+        verify(session).setPassword("password Y");
     }
 
     @Test

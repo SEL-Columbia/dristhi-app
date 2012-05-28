@@ -1,8 +1,8 @@
 package org.ei.drishti.service;
 
-import org.ei.drishti.Context;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.Repository;
+import org.ei.drishti.util.Session;
 
 import static org.ei.drishti.event.Event.ON_LOGOUT;
 
@@ -10,11 +10,13 @@ public class UserService {
     private CommCareService commCareService;
     private final Repository repository;
     private final AllSettings allSettings;
+    private Session session;
 
-    public UserService(CommCareService commCareService, Repository repository, AllSettings allSettings) {
+    public UserService(CommCareService commCareService, Repository repository, AllSettings allSettings, Session session) {
         this.commCareService = commCareService;
         this.repository = repository;
         this.allSettings = allSettings;
+        this.session = session;
     }
 
     public boolean isValidLocalLogin(String userName, String password) {
@@ -42,17 +44,21 @@ public class UserService {
     }
 
     public void logoutSession() {
-        Context.getInstance().session().expire();
+        session().expire();
         ON_LOGOUT.notifyListeners(true);
     }
 
     public boolean hasSessionExpired() {
-        return Context.getInstance().session().hasExpired();
+        return session().hasExpired();
     }
 
     protected void setupContextForLogin(String userName, String password) {
-        Context.getInstance().session().start(Context.getInstance().session().lengthInMilliseconds());
-        Context.getInstance().session().setPassword(password);
+        session().start(session().lengthInMilliseconds());
+        session().setPassword(password);
+    }
+
+    protected Session session() {
+        return session;
     }
 
 }

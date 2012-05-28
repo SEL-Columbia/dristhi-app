@@ -14,9 +14,10 @@ public class FakeUserService extends UserService {
     private String expectedPassword = "";
     private List<String> actualCalls = new ArrayList<String>();
     private boolean hasARegisteredUser;
+    private Session session;
 
     public FakeUserService() {
-        super(null, null, null);
+        super(null, null, null, null);
     }
 
     @Override
@@ -77,5 +78,14 @@ public class FakeUserService extends UserService {
         if (!actualCalls.equals(asList(calls))) {
             throw new RuntimeException("Expected calls: " + asList(calls) + ". Actual: " + actualCalls);
         }
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    @Override
+    protected Session session() {
+        return session;
     }
 }

@@ -21,7 +21,7 @@ public class FakeContext {
         return context;
     }
 
-    public static Context setupService(final DrishtiService drishtiService, final UserService userService, final int numberOfMillisecondsAfterNowThatThisSessionEnds) {
+    public static Context setupService(final DrishtiService drishtiService, final FakeUserService userService, final int numberOfMillisecondsAfterNowThatThisSessionEnds) {
         Context context = Context.setInstance(new Context() {
             @Override
             protected DrishtiService drishtiService() {
@@ -36,6 +36,7 @@ public class FakeContext {
 
         Session properties = context.session().start(numberOfMillisecondsAfterNowThatThisSessionEnds);
         properties.setPassword("password").setRepositoryName("drishti.db." + (new Date().getTime() - 1));
+        userService.setSession(context.session());
 
         return context;
     }

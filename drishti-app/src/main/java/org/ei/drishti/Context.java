@@ -128,7 +128,7 @@ public class Context {
     public UserService userService() {
         if (userService == null) {
             Repository repo = initRepository();
-            userService = new UserService(commCareService(), repo, allSettings());
+            userService = new UserService(commCareService(), repo, allSettings(), session());
         }
         return userService;
     }
