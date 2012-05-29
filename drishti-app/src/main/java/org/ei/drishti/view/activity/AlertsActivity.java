@@ -3,7 +3,6 @@ package org.ei.drishti.view.activity;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -34,7 +33,6 @@ import static org.ei.drishti.util.Log.logVerbose;
 
 public class AlertsActivity extends SecuredActivity {
     private UpdateActionsTask updateAlerts;
-    private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener;
     private AlertController controller;
 
     @Override
