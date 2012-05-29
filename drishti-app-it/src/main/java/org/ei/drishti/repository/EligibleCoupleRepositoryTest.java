@@ -20,8 +20,8 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     @Override
     protected void setUp() throws Exception {
         repository = new EligibleCoupleRepository();
-        Session session = new Session().setPassword("password");
-        new Repository(new RenamingDelegatingContext(getContext(), "test_"), "drishti.db" + new Date().getTime(), session, repository);
+        Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
+        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository);
     }
 
     public void testShouldInsertEligibleCoupleIntoRepository() throws Exception {

@@ -14,12 +14,12 @@ public class Repository extends SQLiteOpenHelper {
     private String dbName;
     private Session session;
 
-    public Repository(Context context, String dbName, Session session, DrishtiRepository... repositories) {
-        super(context, dbName, null, 1);
+    public Repository(Context context, Session session, DrishtiRepository... repositories) {
+        super(context, session.repositoryName(), null, 1);
         this.repositories = repositories;
-        this.databasePath = context.getDatabasePath(dbName);
+        this.databasePath = context.getDatabasePath(session.repositoryName());
         this.context = context;
-        this.dbName = dbName;
+        this.dbName = session.repositoryName();
         this.session = session;
 
         SQLiteDatabase.loadLibs(context);

@@ -12,8 +12,8 @@ import java.util.List;
 public class RepositoryTest extends AndroidTestCase {
     public void testShouldCheckPassword() throws Exception {
         AlertRepository alertRepository = new AlertRepository();
-        Session session = new Session().setPassword("password");
-        Repository repository = new Repository(new RenamingDelegatingContext(getContext(), "test_"), "drishti.db" + new Date().getTime(), session, alertRepository);
+        Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
+        Repository repository = new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, alertRepository);
 
         List<Alert> makeCallJustToInitializeRepository = alertRepository.allAlerts();
 
@@ -22,10 +22,9 @@ public class RepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteDatabaseCompletely() throws Exception {
-        String dbName = "drishti.db" + new Date().getTime();
         AlertRepository alertRepository = new AlertRepository();
-        Session session = new Session().setPassword("password");
-        Repository repository = new Repository(new RenamingDelegatingContext(getContext(), "test_"), dbName, session, alertRepository);
+        Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
+        Repository repository = new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, alertRepository);
 
         List<Alert> makeCallJustToInitializeRepository = alertRepository.allAlerts();
         assertTrue(repository.canUseThisPassword("password"));
