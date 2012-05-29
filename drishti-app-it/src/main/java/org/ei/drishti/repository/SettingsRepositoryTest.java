@@ -4,14 +4,16 @@ import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 import org.ei.drishti.util.Session;
 
+import java.util.Date;
+
 public class SettingsRepositoryTest extends AndroidTestCase {
     private SettingsRepository settingsRepository;
 
     @Override
     protected void setUp() throws Exception {
         settingsRepository = new SettingsRepository();
-        Session session = new Session().setPassword("password").setRepositoryName("drishti.db");
-        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, settingsRepository);
+        Session session = new Session().setPassword("password");
+        new Repository(new RenamingDelegatingContext(getContext(), "test_"), "drishti.db" + new Date().getTime(), session, settingsRepository);
     }
 
     public void testShouldGetDefaultValueIfNothingHasBeenSet() throws Exception {
