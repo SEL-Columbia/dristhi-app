@@ -5,6 +5,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpHead;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
@@ -15,8 +16,6 @@ import org.ei.drishti.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 import static org.ei.drishti.util.Log.logWarn;
 
@@ -32,20 +31,13 @@ public class HTTPAgent {
     }
 
     public Response<String> fetch(String requestURLPath) {
-        HttpURLConnection urlConnection = null;
         try {
-            URL url = new URL(requestURLPath);
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setConnectTimeout(5000);
-            BufferedInputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
+            HttpResponse response = httpClient.execute(new HttpGet(requestURLPath));
+            BufferedInputStream inputStream = new BufferedInputStream(response.getEntity().getContent());
             return new Response<String>(ResponseStatus.success, IOUtils.toString(inputStream));
         } catch (Exception e) {
             logWarn(e.toString());
             return new Response<String>(ResponseStatus.failure, null);
-        } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
         }
     }
 
