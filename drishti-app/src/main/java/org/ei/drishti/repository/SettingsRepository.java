@@ -4,12 +4,11 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 
-public class SettingsRepository implements DrishtiRepository {
+public class SettingsRepository extends DrishtiRepository {
     static final String SETTINGS_SQL = "CREATE TABLE settings(key VARCHAR PRIMARY KEY, value VARCHAR)";
     public static final String SETTINGS_TABLE_NAME = "settings";
     public static final String SETTINGS_KEY_COLUMN = "key";
     public static final String SETTINGS_VALUE_COLUMN = "value";
-    private Repository masterRepository;
 
     public String querySetting(String key, String defaultValue) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
@@ -37,9 +36,5 @@ public class SettingsRepository implements DrishtiRepository {
 
     public void onCreate(SQLiteDatabase database) {
         database.execSQL(SETTINGS_SQL);
-    }
-
-    public void updateMasterRepository(Repository repository) {
-        this.masterRepository = repository;
     }
 }

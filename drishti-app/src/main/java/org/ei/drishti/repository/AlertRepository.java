@@ -9,7 +9,7 @@ import org.ei.drishti.domain.Alert;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlertRepository implements DrishtiRepository {
+public class AlertRepository extends DrishtiRepository {
     private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, thaayiCardNumber VARCHAR, visitCode VARCHAR, benificiaryName VARCHAR, village VARCHAR, priority INTEGER, dueDate VARCHAR)";
     private static final String ALERTS_TABLE_NAME = "alerts";
     public static final String ALERTS_CASEID_COLUMN = "caseID";
@@ -21,7 +21,6 @@ public class AlertRepository implements DrishtiRepository {
     public static final String ALERTS_DUEDATE_COLUMN = "dueDate";
     private static final String[] ALERTS_TABLE_COLUMNS = new String[] { ALERTS_CASEID_COLUMN, ALERTS_BENEFICIARY_NAME_COLUMN, ALERTS_VILLAGE_COLUMN, ALERTS_VISIT_CODE_COLUMN, ALERTS_THAAYI_CARD_COLUMN, ALERTS_PRIORITY_COLUMN, ALERTS_DUEDATE_COLUMN};
     public static final String CASE_AND_VISIT_CODE_COLUMN_SELECTIONS = ALERTS_CASEID_COLUMN + " = ? AND " + ALERTS_VISIT_CODE_COLUMN + " = ?";
-    private Repository masterRepository;
 
     public List<Alert> allAlerts() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
@@ -111,9 +110,5 @@ public class AlertRepository implements DrishtiRepository {
 
     public void onCreate(SQLiteDatabase database) {
         database.execSQL(ALERTS_SQL);
-    }
-
-    public void updateMasterRepository(Repository repository) {
-        this.masterRepository = repository;
     }
 }

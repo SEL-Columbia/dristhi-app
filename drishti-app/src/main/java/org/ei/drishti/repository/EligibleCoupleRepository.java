@@ -9,7 +9,7 @@ import org.ei.drishti.domain.EligibleCouple;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EligibleCoupleRepository implements DrishtiRepository {
+public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String EC_SQL = "CREATE TABLE eligible_couple(caseID VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR)";
     public static final String CASE_ID_COLUMN = "caseID";
     public static final String EC_NUMBER_COLUMN = "ecNumber";
@@ -19,14 +19,9 @@ public class EligibleCoupleRepository implements DrishtiRepository {
     private static final String VILLAGE_NAME_COLUMN = "village";
     private static final String SUBCENTER_NAME_COLUMN = "subCenter";
     private static final String[] EC_TABLE_COLUMNS = new String[] {CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN, EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN};
-    private Repository masterRepository;
 
     public void onCreate(SQLiteDatabase database) {
         database.execSQL(EC_SQL);
-    }
-
-    public void updateMasterRepository(Repository repository) {
-        this.masterRepository = repository;
     }
 
     public void add(Action createAction) {
