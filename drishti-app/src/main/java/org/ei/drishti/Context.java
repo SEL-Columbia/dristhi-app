@@ -61,7 +61,7 @@ public class Context {
 
     protected DrishtiService drishtiService() {
         if (drishtiService == null) {
-            drishtiService = new DrishtiService(new HTTPAgent(), "http://178.79.173.155:8080");
+            drishtiService = new DrishtiService(new HTTPAgent(applicationContext), "https://drishti.modilabs.org");
         }
         return drishtiService;
     }
@@ -135,7 +135,7 @@ public class Context {
 
     private CommCareService commCareService() {
         if (commCareService == null) {
-            commCareService = new CommCareService(new HTTPAgent(), "https://www.commcarehq.org", "frhs-who-columbia");
+            commCareService = new CommCareService(new HTTPAgent(applicationContext), "https://www.commcarehq.org", "frhs-who-columbia");
         }
         return commCareService;
     }
