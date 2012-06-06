@@ -5,6 +5,7 @@ import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.repository.AllPregnancies;
 import org.ei.drishti.repository.AllSettings;
 
 import java.util.List;
@@ -17,12 +18,14 @@ public class ActionService {
     private final AllSettings allSettings;
     private final AllAlerts allAlerts;
     private final AllEligibleCouples allEligibleCouples;
+    private final AllPregnancies allPregnancies;
 
-    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllAlerts allAlerts, AllEligibleCouples allEligibleCouples) {
+    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllAlerts allAlerts, AllEligibleCouples allEligibleCouples, AllPregnancies allPregnancies) {
         this.drishtiService = drishtiService;
         this.allSettings = allSettings;
         this.allAlerts = allAlerts;
         this.allEligibleCouples = allEligibleCouples;
+        this.allPregnancies = allPregnancies;
     }
 
     public FetchStatus fetchNewActions() {
@@ -46,8 +49,11 @@ public class ActionService {
         for (Action action : response.payload()) {
             if (action.type().contains("Alert")) {
                 allAlerts.handleAction(action);
+            } else if(action.type().contains("Pregnancy")) {
+                allPregnancies.handleAction(action);
             } else {
                 allEligibleCouples.handleAction(action);
+
             }
         }
     }

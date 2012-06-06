@@ -11,10 +11,10 @@ import java.util.List;
 
 public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String EC_SQL = "CREATE TABLE eligible_couple(caseID VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR)";
-    public static final String CASE_ID_COLUMN = "caseID";
-    public static final String EC_NUMBER_COLUMN = "ecNumber";
-    public static final String WIFE_NAME_COLUMN = "wifeName";
-    public static final String HUSBAND_NAME_COLUMN = "husbandName";
+    private static final String CASE_ID_COLUMN = "caseID";
+    private static final String EC_NUMBER_COLUMN = "ecNumber";
+    private static final String WIFE_NAME_COLUMN = "wifeName";
+    private static final String HUSBAND_NAME_COLUMN = "husbandName";
     private static final String EC_TABLE_NAME = "eligible_couple";
     private static final String VILLAGE_NAME_COLUMN = "village";
     private static final String SUBCENTER_NAME_COLUMN = "subCenter";

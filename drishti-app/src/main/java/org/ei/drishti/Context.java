@@ -19,16 +19,18 @@ public class Context {
     private EligibleCoupleRepository eligibleCoupleRepository;
     private AlertRepository alertRepository;
     private SettingsRepository settingsRepository;
+    private BeneficiaryRepository pregnancyRepository;
 
     private AllSettings allSettings;
     private AllAlerts allAlerts;
     private AllEligibleCouples allEligibleCouples;
+    private AllPregnancies allPregnancies;
 
     private DrishtiService drishtiService;
     private ActionService actionService;
     private UserService userService;
-    private CommCareService commCareService;
 
+    private CommCareService commCareService;
     private Session session;
 
     protected Context() {
@@ -68,14 +70,22 @@ public class Context {
 
     public ActionService actionService() {
         if (actionService == null) {
-            actionService = new ActionService(drishtiService(), allSettings(), allAlerts(), allEligibleCouples());
+            actionService = new ActionService(drishtiService(), allSettings(), allAlerts(), allEligibleCouples(), allPregnancies());
         }
         return actionService;
     }
 
+    private AllPregnancies allPregnancies() {
+        initRepository();
+        if (allPregnancies == null) {
+            allPregnancies = new AllPregnancies(pregnancyRepository());
+        }
+        return allPregnancies;
+    }
+
     private Repository initRepository() {
         if (repository == null) {
-            repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(), eligibleCoupleRepository());
+            repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(), eligibleCoupleRepository(), pregnancyRepository());
         }
         return repository;
     }
@@ -123,6 +133,13 @@ public class Context {
             settingsRepository = new SettingsRepository();
         }
         return settingsRepository;
+    }
+
+    private BeneficiaryRepository pregnancyRepository() {
+        if (pregnancyRepository == null) {
+            pregnancyRepository = new BeneficiaryRepository();
+        }
+        return pregnancyRepository;
     }
 
     public UserService userService() {
