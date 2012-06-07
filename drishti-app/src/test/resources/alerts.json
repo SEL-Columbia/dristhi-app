@@ -8,6 +8,7 @@
             "visitCode": "ANC 1",
             "thaayiCardNumber": "Thaayi 1"
         },
+        "actionTarget": "alert",
         "actionType": "createAlert",
         "timeStamp": 1333695798583
     },
@@ -17,6 +18,7 @@
         "data": {
             "visitCode": "ANC 1"
         },
+        "actionTarget": "alert",
         "actionType": "deleteAlert",
         "timeStamp": 1333695798644
     }

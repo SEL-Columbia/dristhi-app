@@ -25,32 +25,36 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldInsertEligibleCoupleIntoRepository() throws Exception {
-        repository.add(new Action("CASE X", "createEC", dataForCreateAction("Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1"), "0"));
+        repository.add(action("CASE X", "createEC", dataForCreateAction("Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1")));
 
         assertEquals(asList(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number")), repository.allEligibleCouples());
     }
 
     public void testShouldDeleteEligibleCoupleFromRepositoryBasedOnCaseID() throws Exception {
-        repository.add(new Action("CASE X", "createEC", dataForCreateAction("Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1"), "0"));
-        repository.add(new Action("CASE Y", "createEC", dataForCreateAction("Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2"), "0"));
+        repository.add(action("CASE X", "createEC", dataForCreateAction("Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1")));
+        repository.add(action("CASE Y", "createEC", dataForCreateAction("Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2")));
 
-        repository.delete(new Action("CASE X", "deleteEC", new HashMap<String, String>(), "0"));
+        repository.delete(action("CASE X", "deleteEC", new HashMap<String, String>()));
         assertEquals(asList(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2")), repository.allEligibleCouples());
 
-        repository.delete(new Action("CASE DOES NOT MATCH", "deleteEC", new HashMap<String, String>(), "0"));
+        repository.delete(action("CASE DOES NOT MATCH", "deleteEC", new HashMap<String, String>()));
         assertEquals(asList(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2")), repository.allEligibleCouples());
 
-        repository.delete(new Action("CASE Y", "deleteEC", new HashMap<String, String>(), "0"));
+        repository.delete(action("CASE Y", "deleteEC", new HashMap<String, String>()));
         assertEquals(new ArrayList<EligibleCouple>(), repository.allEligibleCouples());
     }
 
     public void testShouldDeleteAllEligibleCouplesFromRepository() throws Exception {
-        repository.add(new Action("CASE X", "createEC", dataForCreateAction("Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1"), "0"));
-        repository.add(new Action("CASE Y", "createEC", dataForCreateAction("Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2"), "0"));
+        repository.add(action("CASE X", "createEC", dataForCreateAction("Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1")));
+        repository.add(action("CASE Y", "createEC", dataForCreateAction("Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2")));
 
         repository.deleteAllEligibleCouples();
 
         assertEquals(new ArrayList<EligibleCouple>(), repository.allEligibleCouples());
+    }
+
+    private Action action(String caseId, String type, Map<String, String> data) {
+        return new Action(caseId, "eligibleCouple", type, data, "0");
     }
 
     private Map<String, String> dataForCreateAction(String wife, String husband, String ecNumber, String village, String subCenter) {

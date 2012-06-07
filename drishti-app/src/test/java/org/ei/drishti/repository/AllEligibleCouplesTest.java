@@ -53,7 +53,7 @@ public class AllEligibleCouplesTest {
 
     @Test
     public void shouldNotFailIfActionTypeIsNotExpected() throws Exception {
-        allEligibleCouples.handleAction(new Action("Case X", "UNKNOWN-TYPE", new HashMap<String, String>(), "0"));
+        allEligibleCouples.handleAction(new Action("Case X", "eligibleCouple", "UNKNOWN-TYPE", new HashMap<String, String>(), "0"));
     }
 
     @Test

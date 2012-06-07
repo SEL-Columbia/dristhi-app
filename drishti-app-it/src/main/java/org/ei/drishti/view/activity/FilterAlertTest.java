@@ -143,9 +143,9 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
     public void testShouldShowAlertsForTodayInUpcomingFilteredValues() throws Exception {
         String newSuffix = String.valueOf(new Date().getTime());
         String newUser = "NEW ANM" + newSuffix;
-        Action deleteXAction = new Action("Case X", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        Action deleteYAction = new Action("Case Y", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        Action alertAction = new Action("Case M", "createAlert", dataForCreateAction("due", "Mom " + newSuffix, "ANC 1", "TC 12", inputFormat.format(DateUtil.today()), "Bherya 1"), "1234567");
+        Action deleteXAction = new Action("Case X", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
+        Action deleteYAction = new Action("Case Y", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
+        Action alertAction = new Action("Case M", "alert", "createAlert", dataForCreateAction("due", "Mom " + newSuffix, "ANC 1", "TC 12", inputFormat.format(DateUtil.today()), "Bherya 1"), "1234567");
         drishtiService.changeDefaultActions(new Response<List<Action>>(ResponseStatus.success, asList(deleteXAction, deleteYAction, alertAction)));
         userService.setupFor(newUser, "password", false, true, true);
 

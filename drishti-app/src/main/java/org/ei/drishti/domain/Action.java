@@ -8,12 +8,14 @@ import java.util.Map;
 
 public class Action {
     private String caseID;
+    private String actionTarget;
     private String actionType;
     private Map<String, String> data;
     private String timeStamp;
 
-    public Action(String caseID, String actionType, Map<String, String> data, String timeStamp) {
+    public Action(String caseID, String actionTarget, String actionType, Map<String, String> data, String timeStamp) {
         this.caseID = caseID;
+        this.actionTarget = actionTarget;
         this.actionType = actionType;
         this.data = data;
         this.timeStamp = timeStamp;
@@ -24,6 +26,10 @@ public class Action {
 
     public String caseID() {
         return caseID;
+    }
+
+    public String target() {
+        return actionTarget;
     }
 
     public String type() {

@@ -47,12 +47,12 @@ public class FakeDrishtiService extends DrishtiService {
     }
 
     private Response<List<Action>> actionsFor(String suffix) {
-        Action deleteXAction = new Action("Case X", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        Action deleteYAction = new Action("Case Y", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        Action firstAction = new Action("Case X", "createAlert", dataForCreateAction("due", "Theresa 1 " + suffix, "BCG", "Thaayi 1 " + suffix, "2012-01-01", "Bherya 1"), "123456");
-        Action secondAction = new Action("Case Y", "createAlert", dataForCreateAction("due", "Theresa 2 " + suffix, "OPV 1", "Thaayi 2 " + suffix, "2100-04-09", "Bherya 2"), "123456");
-        Action firstCreateEC = new Action("Case A" + suffix, "createEC", dataForCreateEC("Wife 1 " + suffix, "Husband 1", "EC 1" + suffix, "Village 1", "SubCenter 1"), "123456");
-        Action secondCreateEC = new Action("Case B" + suffix, "createEC", dataForCreateEC("Wife 2 " + suffix, "Husband 2", "EC 2" + suffix, "Village 2", "SubCenter 2"), "123456");
+        Action deleteXAction = new Action("Case X", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
+        Action deleteYAction = new Action("Case Y", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
+        Action firstAction = new Action("Case X", "alert", "createAlert", dataForCreateAction("due", "Theresa 1 " + suffix, "BCG", "Thaayi 1 " + suffix, "2012-01-01", "Bherya 1"), "123456");
+        Action secondAction = new Action("Case Y", "alert", "createAlert", dataForCreateAction("due", "Theresa 2 " + suffix, "OPV 1", "Thaayi 2 " + suffix, "2100-04-09", "Bherya 2"), "123456");
+        Action firstCreateEC = new Action("Case A" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 1 " + suffix, "Husband 1", "EC 1" + suffix, "Village 1", "SubCenter 1"), "123456");
+        Action secondCreateEC = new Action("Case B" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 2 " + suffix, "Husband 2", "EC 2" + suffix, "Village 2", "SubCenter 2"), "123456");
 
         return new Response<List<Action>>(ResponseStatus.success, Arrays.asList(deleteXAction, deleteYAction, firstAction, secondAction, firstCreateEC, secondCreateEC));
     }

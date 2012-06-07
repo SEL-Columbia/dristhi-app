@@ -86,7 +86,7 @@ public class AllAlertsTest {
 
     @Test
     public void shouldNotFailIfActionTypeIsNotExpected() throws Exception {
-        allAlerts.handleAction(new Action("Case X", "UNKNOWN-TYPE", new HashMap<String, String>(), "0"));
+        allAlerts.handleAction(new Action("Case X", "alert", "UNKNOWN-TYPE", new HashMap<String, String>(), "0"));
     }
 
     @Test

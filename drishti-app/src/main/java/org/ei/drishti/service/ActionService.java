@@ -47,9 +47,9 @@ public class ActionService {
 
     private void handleActions(Response<List<Action>> response) {
         for (Action action : response.payload()) {
-            if (action.type().contains("Alert")) {
+            if (action.target().equals("alert")) {
                 allAlerts.handleAction(action);
-            } else if(action.type().contains("Pregnancy")) {
+            } else if(action.target().equals("child")) {
                 allPregnancies.handleAction(action);
             } else {
                 allEligibleCouples.handleAction(action);

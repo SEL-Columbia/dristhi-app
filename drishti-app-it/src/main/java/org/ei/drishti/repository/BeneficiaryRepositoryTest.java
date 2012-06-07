@@ -24,7 +24,7 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldInsertEligibleCoupleIntoRepository() throws Exception {
-        repository.add(new Action("CASE X", "createPregnancy", dataForCreateAction("TC 1", "EC Case 1"), "0"));
+        repository.add(new Action("CASE X", "child", "createPregnancy", dataForCreateAction("TC 1", "EC Case 1"), "0"));
 
         assertEquals(asList(new Beneficiary("CASE X", "EC Case 1", "TC 1", UNBORN)), repository.allBeneficiaries());
     }
