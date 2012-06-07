@@ -8,9 +8,9 @@ public class Beneficiary {
     private final String caseId;
     private final String ecCaseId;
     private final String thaayiCardNumber;
-    private final ChildStatus status;
+    private final BeneficiaryStatus status;
 
-    public Beneficiary(String caseId, String ecCaseId, String thaayiCardNumber, ChildStatus status) {
+    public Beneficiary(String caseId, String ecCaseId, String thaayiCardNumber, BeneficiaryStatus status) {
         this.caseId = caseId;
         this.ecCaseId = ecCaseId;
         this.thaayiCardNumber = thaayiCardNumber;

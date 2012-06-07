@@ -24,7 +24,7 @@ public class Context {
     private AllSettings allSettings;
     private AllAlerts allAlerts;
     private AllEligibleCouples allEligibleCouples;
-    private AllPregnancies allPregnancies;
+    private AllBeneficiaries allPregnancies;
 
     private DrishtiService drishtiService;
     private ActionService actionService;
@@ -75,10 +75,10 @@ public class Context {
         return actionService;
     }
 
-    private AllPregnancies allPregnancies() {
+    private AllBeneficiaries allPregnancies() {
         initRepository();
         if (allPregnancies == null) {
-            allPregnancies = new AllPregnancies(pregnancyRepository());
+            allPregnancies = new AllBeneficiaries(pregnancyRepository());
         }
         return allPregnancies;
     }

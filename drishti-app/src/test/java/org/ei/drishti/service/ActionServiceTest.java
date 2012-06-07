@@ -6,8 +6,8 @@ import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.repository.AllAlerts;
+import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.repository.AllPregnancies;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.util.ActionBuilder;
 import org.junit.Before;
@@ -39,7 +39,7 @@ public class ActionServiceTest {
     @Mock
     private AllEligibleCouples allEligibleCouples;
     @Mock
-    private AllPregnancies allPregnancies;
+    private AllBeneficiaries allPregnancies;
 
     private ActionService service;
 

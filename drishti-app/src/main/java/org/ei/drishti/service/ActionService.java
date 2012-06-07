@@ -4,8 +4,8 @@ import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.repository.AllAlerts;
+import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.repository.AllPregnancies;
 import org.ei.drishti.repository.AllSettings;
 
 import java.util.List;
@@ -18,14 +18,14 @@ public class ActionService {
     private final AllSettings allSettings;
     private final AllAlerts allAlerts;
     private final AllEligibleCouples allEligibleCouples;
-    private final AllPregnancies allPregnancies;
+    private final AllBeneficiaries allBeneficiaries;
 
-    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllAlerts allAlerts, AllEligibleCouples allEligibleCouples, AllPregnancies allPregnancies) {
+    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllAlerts allAlerts, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries) {
         this.drishtiService = drishtiService;
         this.allSettings = allSettings;
         this.allAlerts = allAlerts;
         this.allEligibleCouples = allEligibleCouples;
-        this.allPregnancies = allPregnancies;
+        this.allBeneficiaries = allBeneficiaries;
     }
 
     public FetchStatus fetchNewActions() {
@@ -50,7 +50,7 @@ public class ActionService {
             if (action.target().equals("alert")) {
                 allAlerts.handleAction(action);
             } else if(action.target().equals("child")) {
-                allPregnancies.handleAction(action);
+                allBeneficiaries.handleAction(action);
             } else {
                 allEligibleCouples.handleAction(action);
 
