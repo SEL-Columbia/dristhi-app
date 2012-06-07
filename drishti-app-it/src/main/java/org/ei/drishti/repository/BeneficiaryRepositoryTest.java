@@ -51,6 +51,15 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
         assertEquals(asList(new Beneficiary("CASE NEW CHILD 1", "EC Case 1", "TC 1", BeneficiaryStatus.BORN), new Beneficiary("CASE Y", "EC Case 2", "TC 2", PREGNANT)), repository.allBeneficiaries());
     }
 
+    public void testShouldFetchBeneficiariesByCaseId() throws Exception {
+        repository.addMother(action("CASE X", "createPregnancy", dataForCreateAction("TC 1", "EC Case 1", PREGNANT.value())));
+        repository.addMother(action("CASE Y", "createPregnancy", dataForCreateAction("TC 2", "EC Case 1", PREGNANT.value())));
+        repository.addMother(action("CASE Z", "createPregnancy", dataForCreateAction("TC 3", "EC Case 2", PREGNANT.value())));
+
+        assertEquals(asList(new Beneficiary("CASE X", "EC Case 1", "TC 1", BeneficiaryStatus.PREGNANT), new Beneficiary("CASE Y", "EC Case 1", "TC 2", BeneficiaryStatus.PREGNANT)), repository.findByECCaseId("EC Case 1"));
+        assertEquals(asList(new Beneficiary("CASE Z", "EC Case 2", "TC 3", BeneficiaryStatus.PREGNANT)), repository.findByECCaseId("EC Case 2"));
+    }
+
     private Map<String, String> dataForCreateChild(String motherCaseId) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("motherCaseId", motherCaseId);

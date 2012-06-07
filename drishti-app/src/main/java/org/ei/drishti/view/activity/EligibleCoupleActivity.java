@@ -5,9 +5,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.widget.*;
 import com.markupartist.android.widget.PullToRefreshListView;
 import org.ei.drishti.R;
 import org.ei.drishti.controller.EligibleCoupleController;
@@ -72,6 +70,15 @@ public class EligibleCoupleActivity extends SecuredActivity {
                         ecList.onRefreshComplete();
                     }
                 });
+            }
+        });
+        ecList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                EligibleCouple item = (EligibleCouple) adapterView.getItemAtPosition(position);
+                Intent intent = new Intent(getApplicationContext(), EligibleCoupleViewActivity.class);
+                intent.putExtra("wifeName", item.wifeName());
+                intent.putExtra("caseId", item.caseId());
+                startActivity(intent);
             }
         });
     }

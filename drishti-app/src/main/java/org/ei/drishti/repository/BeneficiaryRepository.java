@@ -56,6 +56,12 @@ public class BeneficiaryRepository extends DrishtiRepository {
         return readAllBeneficiaries(cursor);
     }
 
+    public List<Beneficiary> findByECCaseId(String caseId) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(BENEFICIARY_TABLE_NAME, BENEFICIARY_TABLE_COLUMNS, EC_CASEID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
+        return readAllBeneficiaries(cursor);
+    }
+
     private ContentValues createValuesFor(Action action) {
         ContentValues values = new ContentValues();
         values.put(CASE_ID_COLUMN, action.caseID());

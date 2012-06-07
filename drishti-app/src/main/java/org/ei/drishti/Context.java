@@ -24,7 +24,7 @@ public class Context {
     private AllSettings allSettings;
     private AllAlerts allAlerts;
     private AllEligibleCouples allEligibleCouples;
-    private AllBeneficiaries allPregnancies;
+    private AllBeneficiaries allBeneficiaries;
 
     private DrishtiService drishtiService;
     private ActionService actionService;
@@ -70,22 +70,14 @@ public class Context {
 
     public ActionService actionService() {
         if (actionService == null) {
-            actionService = new ActionService(drishtiService(), allSettings(), allAlerts(), allEligibleCouples(), allPregnancies());
+            actionService = new ActionService(drishtiService(), allSettings(), allAlerts(), allEligibleCouples(), allBeneficiaries());
         }
         return actionService;
     }
 
-    private AllBeneficiaries allPregnancies() {
-        initRepository();
-        if (allPregnancies == null) {
-            allPregnancies = new AllBeneficiaries(pregnancyRepository());
-        }
-        return allPregnancies;
-    }
-
     private Repository initRepository() {
         if (repository == null) {
-            repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(), eligibleCoupleRepository(), pregnancyRepository());
+            repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(), eligibleCoupleRepository(), beneficiaryRepository());
         }
         return repository;
     }
@@ -114,6 +106,14 @@ public class Context {
         return allSettings;
     }
 
+    public AllBeneficiaries allBeneficiaries() {
+        initRepository();
+        if (allBeneficiaries == null) {
+            allBeneficiaries = new AllBeneficiaries(beneficiaryRepository());
+        }
+        return allBeneficiaries;
+    }
+
     protected EligibleCoupleRepository eligibleCoupleRepository() {
         if (eligibleCoupleRepository == null) {
             eligibleCoupleRepository = new EligibleCoupleRepository();
@@ -135,7 +135,7 @@ public class Context {
         return settingsRepository;
     }
 
-    private BeneficiaryRepository pregnancyRepository() {
+    private BeneficiaryRepository beneficiaryRepository() {
         if (pregnancyRepository == null) {
             pregnancyRepository = new BeneficiaryRepository();
         }

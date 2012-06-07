@@ -43,4 +43,8 @@ public class EligibleCouple {
     public String ecNumber() {
         return ecNumber;
     }
+
+    public String caseId() {
+        return caseId;
+    }
 }

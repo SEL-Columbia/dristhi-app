@@ -1,11 +1,13 @@
 package org.ei.drishti.domain;
 
 public enum BeneficiaryStatus {
-    PREGNANT("pregnant"), ABORTED("abortion"), BORN("born"), DELIVERED("delivery"), DEAD("death");
+    PREGNANT("pregnant", "Mother is pregnant"), ABORTED("abortion", "Baby aborted"), BORN("born", "Baby born"), DELIVERED("delivery", "Delivered"), DEAD("death", "Baby dead");
     private String value;
+    private String description;
 
-    BeneficiaryStatus(String value) {
+    BeneficiaryStatus(String value, String description) {
         this.value = value;
+        this.description = description;
     }
 
     public static BeneficiaryStatus from(String value) {
@@ -19,5 +21,9 @@ public enum BeneficiaryStatus {
 
     public String value() {
         return value;
+    }
+
+    public String description() {
+        return description;
     }
 }

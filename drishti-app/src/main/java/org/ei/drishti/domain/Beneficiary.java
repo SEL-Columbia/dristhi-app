@@ -31,4 +31,8 @@ public class Beneficiary {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
+
+    public String description() {
+        return "    Status: " + status.description() + ".\n" + "    Thaayi card: " + thaayiCardNumber;
+    }
 }

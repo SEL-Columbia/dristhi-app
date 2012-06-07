@@ -1,6 +1,9 @@
 package org.ei.drishti.repository;
 
 import org.ei.drishti.domain.Action;
+import org.ei.drishti.domain.Beneficiary;
+
+import java.util.List;
 
 public class AllBeneficiaries {
     private BeneficiaryRepository repository;
@@ -17,5 +20,9 @@ public class AllBeneficiaries {
         } else {
             repository.addChild(action);
         }
+    }
+
+    public List<Beneficiary> findByECCaseId(String caseId) {
+        return repository.findByECCaseId(caseId);
     }
 }
