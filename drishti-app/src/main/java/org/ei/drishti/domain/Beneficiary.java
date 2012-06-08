@@ -35,6 +35,6 @@ public class Beneficiary {
     }
 
     public String description() {
-        return "    Status: " + status.description() + "\n    As of: " + referenceDate + "\n    Thaayi card: " + thaayiCardNumber;
+        return "  Status: " + status.description() + "\n  As of: " + referenceDate + "\n  Thaayi card: " + thaayiCardNumber;
     }
 }

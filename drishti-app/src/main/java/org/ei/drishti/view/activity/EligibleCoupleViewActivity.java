@@ -24,15 +24,23 @@ public class EligibleCoupleViewActivity extends Activity {
 
         setTitle(wifeName);
 
-        String text = "";
         List<Beneficiary> beneficiaries = allBeneficiaries.findByECCaseId(caseId);
-        for (int i = 0; i < beneficiaries.size(); i++) {
-            Beneficiary beneficiary = beneficiaries.get(i);
-            text += "  Pregnancy " + (i + 1) + ":\n";
-            text += beneficiary.description();
-            text += "\n\n";
+        String text = "No pregnancy information found for this eligible couple.";
+        if (beneficiaries.size() > 0) {
+            text = pregnancyInfo(beneficiaries);
         }
         TextView textView = (TextView) findViewById(R.id.textView);
         textView.setText(text);
+    }
+
+    private String pregnancyInfo(List<Beneficiary> beneficiaries) {
+        String text = "";
+        for (int i = 0; i < beneficiaries.size(); i++) {
+            Beneficiary beneficiary = beneficiaries.get(i);
+            text += "Pregnancy " + (i + 1) + ":\n";
+            text += beneficiary.description();
+            text += "\n\n";
+        }
+        return text;
     }
 }
