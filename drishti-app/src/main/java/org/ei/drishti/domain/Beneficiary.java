@@ -9,12 +9,14 @@ public class Beneficiary {
     private final String ecCaseId;
     private final String thaayiCardNumber;
     private final BeneficiaryStatus status;
+    private String referenceDate;
 
-    public Beneficiary(String caseId, String ecCaseId, String thaayiCardNumber, BeneficiaryStatus status) {
+    public Beneficiary(String caseId, String ecCaseId, String thaayiCardNumber, BeneficiaryStatus status, String referenceDate) {
         this.caseId = caseId;
         this.ecCaseId = ecCaseId;
         this.thaayiCardNumber = thaayiCardNumber;
         this.status = status;
+        this.referenceDate = referenceDate;
     }
 
     @Override
@@ -33,6 +35,6 @@ public class Beneficiary {
     }
 
     public String description() {
-        return "    Status: " + status.description() + ".\n" + "    Thaayi card: " + thaayiCardNumber;
+        return "    Status: " + status.description() + "\n    As of: " + referenceDate + "\n    Thaayi card: " + thaayiCardNumber;
     }
 }

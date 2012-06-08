@@ -13,13 +13,14 @@ import java.util.List;
 import static org.ei.drishti.domain.BeneficiaryStatus.BORN;
 
 public class BeneficiaryRepository extends DrishtiRepository {
-    private static final String BENEFICIARY_SQL = "CREATE TABLE beneficiary(caseID VARCHAR, thaayiCardNumber VARCHAR, ecCaseId VARCHAR, status VARCHAR)";
+    private static final String BENEFICIARY_SQL = "CREATE TABLE beneficiary(caseID VARCHAR, thaayiCardNumber VARCHAR, ecCaseId VARCHAR, status VARCHAR, referenceDate VARCHAR)";
     private static final String BENEFICIARY_TABLE_NAME = "beneficiary";
     private static final String CASE_ID_COLUMN = "caseID";
     private static final String EC_CASEID_COLUMN = "ecCaseId";
     private static final String THAAYI_CARD_COLUMN = "thaayiCardNumber";
     private static final String STATUS_COLUMN = "status";
-    private static final String[] BENEFICIARY_TABLE_COLUMNS = {CASE_ID_COLUMN, EC_CASEID_COLUMN, THAAYI_CARD_COLUMN, STATUS_COLUMN};
+    private static final String REF_DATE_COLUMN = "referenceDate";
+    private static final String[] BENEFICIARY_TABLE_COLUMNS = {CASE_ID_COLUMN, EC_CASEID_COLUMN, THAAYI_CARD_COLUMN, STATUS_COLUMN, REF_DATE_COLUMN};
 
     public void addMother(Action action) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
@@ -41,6 +42,7 @@ public class BeneficiaryRepository extends DrishtiRepository {
         ContentValues valuesToBeUpdated = new ContentValues();
         valuesToBeUpdated.put(CASE_ID_COLUMN, action.caseID());
         valuesToBeUpdated.put(STATUS_COLUMN, BORN.value());
+        valuesToBeUpdated.put(REF_DATE_COLUMN, action.get("referenceDate"));
 
         database.update(BENEFICIARY_TABLE_NAME, valuesToBeUpdated, CASE_ID_COLUMN + " = ?", new String[]{action.get("motherCaseId")});
     }
@@ -68,6 +70,7 @@ public class BeneficiaryRepository extends DrishtiRepository {
         values.put(EC_CASEID_COLUMN, action.get("ecCaseId"));
         values.put(THAAYI_CARD_COLUMN, action.get("thaayiCardNumber"));
         values.put(STATUS_COLUMN, action.get("status"));
+        values.put(REF_DATE_COLUMN, action.get("referenceDate"));
         return values;
     }
 
@@ -75,7 +78,7 @@ public class BeneficiaryRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<Beneficiary> beneficiaries = new ArrayList<Beneficiary>();
         while (!cursor.isAfterLast()) {
-            beneficiaries.add(new Beneficiary(cursor.getString(0), cursor.getString(1), cursor.getString(2), BeneficiaryStatus.from(cursor.getString(3))));
+            beneficiaries.add(new Beneficiary(cursor.getString(0), cursor.getString(1), cursor.getString(2), BeneficiaryStatus.from(cursor.getString(3)), cursor.getString(4)));
             cursor.moveToNext();
         }
         cursor.close();
