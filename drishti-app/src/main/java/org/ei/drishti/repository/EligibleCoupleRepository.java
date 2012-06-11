@@ -3,7 +3,6 @@ package org.ei.drishti.repository;
 import android.content.ContentValues;
 import android.database.Cursor;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
-import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.EligibleCouple;
 
 import java.util.ArrayList;
@@ -24,13 +23,13 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         database.execSQL(EC_SQL);
     }
 
-    public void add(Action createAction) {
+    public void add(EligibleCouple eligibleCouple) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
-        database.insert(EC_TABLE_NAME, null, createValuesFor(createAction));
+        database.insert(EC_TABLE_NAME, null, createValuesFor(eligibleCouple));
     }
 
-    public void delete(Action deleteAction) {
-        masterRepository.getWritableDatabase().delete(EC_TABLE_NAME, CASE_ID_COLUMN + " = ?", new String[]{deleteAction.caseID()});
+    public void delete(String caseId) {
+        masterRepository.getWritableDatabase().delete(EC_TABLE_NAME, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
     public void deleteAllEligibleCouples() {
@@ -44,14 +43,14 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         return readAllAlerts(cursor);
     }
 
-    private ContentValues createValuesFor(Action action) {
+    private ContentValues createValuesFor(EligibleCouple eligibleCouple) {
         ContentValues values = new ContentValues();
-        values.put(CASE_ID_COLUMN, action.caseID());
-        values.put(EC_NUMBER_COLUMN, action.get("ecNumber"));
-        values.put(WIFE_NAME_COLUMN, action.get("wife"));
-        values.put(HUSBAND_NAME_COLUMN, action.get("husband"));
-        values.put(VILLAGE_NAME_COLUMN, action.get("village"));
-        values.put(SUBCENTER_NAME_COLUMN, action.get("subcenter"));
+        values.put(CASE_ID_COLUMN,eligibleCouple.caseId());
+        values.put(EC_NUMBER_COLUMN, eligibleCouple.ecNumber());
+        values.put(WIFE_NAME_COLUMN, eligibleCouple.wifeName());
+        values.put(HUSBAND_NAME_COLUMN, eligibleCouple.husbandName());
+        values.put(VILLAGE_NAME_COLUMN, eligibleCouple.village());
+        values.put(SUBCENTER_NAME_COLUMN, eligibleCouple.subCenter());
         return values;
     }
 
@@ -59,7 +58,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<EligibleCouple> eligibleCouples = new ArrayList<EligibleCouple>();
         while (!cursor.isAfterLast()) {
-            eligibleCouples.add(new EligibleCouple(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)));
+            eligibleCouples.add(new EligibleCouple(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
             cursor.moveToNext();
         }
         cursor.close();

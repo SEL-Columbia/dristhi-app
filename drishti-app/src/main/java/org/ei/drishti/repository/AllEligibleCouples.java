@@ -15,9 +15,9 @@ public class AllEligibleCouples {
 
     public void handleAction(Action action) {
         if ("createEC".equals(action.type())) {
-            repository.add(action);
+            repository.add(new EligibleCouple(action.caseID(), action.get("wife"), action.get("husband"), action.get("ecNumber"), action.get("village"), action.get("subcenter")));
         } else if ("deleteEC".equals(action.type())) {
-            repository.delete(action);
+            repository.delete(action.caseID());
         } else {
             Log.logWarn("Unknown type in eligible couple action: " + action);
         }

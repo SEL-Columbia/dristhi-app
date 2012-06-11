@@ -44,10 +44,10 @@ public class AllEligibleCouplesTest {
         allEligibleCouples.handleAction(secondDeleteAction);
 
         InOrder inOrder = inOrder(eligibleCoupleRepository);
-        inOrder.verify(eligibleCoupleRepository).add(firstCreateAction);
-        inOrder.verify(eligibleCoupleRepository).add(secondCreateAction);
-        inOrder.verify(eligibleCoupleRepository).delete(firstDeleteAction);
-        inOrder.verify(eligibleCoupleRepository).delete(secondDeleteAction);
+        inOrder.verify(eligibleCoupleRepository).add(new EligibleCouple("Case X", "Theresa 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1"));
+        inOrder.verify(eligibleCoupleRepository).add(new EligibleCouple("Case Z", "Theresa 2", "Husband 2", "EC Number 2", "Village 1", "SubCenter 1"));
+        inOrder.verify(eligibleCoupleRepository).delete("Case Y");
+        inOrder.verify(eligibleCoupleRepository).delete("Case B");
         verifyNoMoreInteractions(eligibleCoupleRepository);
     }
 
@@ -58,7 +58,7 @@ public class AllEligibleCouplesTest {
 
     @Test
     public void shouldFetchAllAlertsFromRepository() throws Exception {
-        List<EligibleCouple> expectedCouples = Arrays.asList(new EligibleCouple("Case X", "Wife 1", "Husband 1", "EC Number 1"), new EligibleCouple("Case Y", "Wife 2", "Husband 2", "EC Number 2"));
+        List<EligibleCouple> expectedCouples = Arrays.asList(new EligibleCouple("Case X", "Wife 1", "Husband 1", "EC Number 1", "village", "subcenter"), new EligibleCouple("Case Y", "Wife 2", "Husband 2", "EC Number 2", "village", "subcenter"));
         when(eligibleCoupleRepository.allEligibleCouples()).thenReturn(expectedCouples);
 
         List<EligibleCouple> couples = allEligibleCouples.fetchAll();

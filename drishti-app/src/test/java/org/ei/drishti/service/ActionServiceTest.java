@@ -93,7 +93,7 @@ public class ActionServiceTest {
     }
 
     @Test
-    public void shouldFetchECActionsAndSaveThemToRepository() throws Exception {
+    public void shouldFetchECAndSaveThemToRepository() throws Exception {
         setupActions(success, asList(actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1")));
 
         assertEquals(fetched, service.fetchNewActions());
