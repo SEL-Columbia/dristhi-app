@@ -37,4 +37,24 @@ public class Beneficiary {
     public String description() {
         return "  Status: " + status.description() + "\n  As of: " + referenceDate + "\n  Thaayi card: " + thaayiCardNumber;
     }
+
+    public String caseId() {
+        return caseId;
+    }
+
+    public String ecCaseId() {
+        return ecCaseId;
+    }
+
+    public String thaayiCardNumber() {
+        return thaayiCardNumber;
+    }
+
+    public BeneficiaryStatus status() {
+        return status;
+    }
+
+    public String referenceDate() {
+        return referenceDate;
+    }
 }

@@ -3,7 +3,6 @@ package org.ei.drishti.repository;
 import android.content.ContentValues;
 import android.database.Cursor;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
-import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.Beneficiary;
 import org.ei.drishti.domain.BeneficiaryStatus;
 
@@ -22,29 +21,29 @@ public class BeneficiaryRepository extends DrishtiRepository {
     private static final String REF_DATE_COLUMN = "referenceDate";
     private static final String[] BENEFICIARY_TABLE_COLUMNS = {CASE_ID_COLUMN, EC_CASEID_COLUMN, THAAYI_CARD_COLUMN, STATUS_COLUMN, REF_DATE_COLUMN};
 
-    public void addMother(Action action) {
+    public void addMother(Beneficiary beneficiary) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
-        database.insert(BENEFICIARY_TABLE_NAME, null, createValuesFor(action));
+        database.insert(BENEFICIARY_TABLE_NAME, null, createValuesFor(beneficiary));
     }
 
-    public void updateDeliveryStatus(Action action) {
+    public void updateDeliveryStatus(String caseId, String status) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
 
         ContentValues valuesToBeUpdated = new ContentValues();
-        valuesToBeUpdated.put(STATUS_COLUMN, action.get("status"));
+        valuesToBeUpdated.put(STATUS_COLUMN, status);
 
-        database.update(BENEFICIARY_TABLE_NAME, valuesToBeUpdated, CASE_ID_COLUMN + " = ?", new String[]{action.caseID()});
+        database.update(BENEFICIARY_TABLE_NAME, valuesToBeUpdated, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
-    public void addChild(Action action) {
+    public void addChild(String caseId, String referenceDate, String motherCaseId) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
 
         ContentValues valuesToBeUpdated = new ContentValues();
-        valuesToBeUpdated.put(CASE_ID_COLUMN, action.caseID());
+        valuesToBeUpdated.put(CASE_ID_COLUMN, caseId);
         valuesToBeUpdated.put(STATUS_COLUMN, BORN.value());
-        valuesToBeUpdated.put(REF_DATE_COLUMN, action.get("referenceDate"));
+        valuesToBeUpdated.put(REF_DATE_COLUMN, referenceDate);
 
-        database.update(BENEFICIARY_TABLE_NAME, valuesToBeUpdated, CASE_ID_COLUMN + " = ?", new String[]{action.get("motherCaseId")});
+        database.update(BENEFICIARY_TABLE_NAME, valuesToBeUpdated, CASE_ID_COLUMN + " = ?", new String[]{motherCaseId});
     }
 
     @Override
@@ -64,13 +63,13 @@ public class BeneficiaryRepository extends DrishtiRepository {
         return readAllBeneficiaries(cursor);
     }
 
-    private ContentValues createValuesFor(Action action) {
+    private ContentValues createValuesFor(Beneficiary beneficiary) {
         ContentValues values = new ContentValues();
-        values.put(CASE_ID_COLUMN, action.caseID());
-        values.put(EC_CASEID_COLUMN, action.get("ecCaseId"));
-        values.put(THAAYI_CARD_COLUMN, action.get("thaayiCardNumber"));
-        values.put(STATUS_COLUMN, action.get("status"));
-        values.put(REF_DATE_COLUMN, action.get("referenceDate"));
+        values.put(CASE_ID_COLUMN, beneficiary.caseId());
+        values.put(EC_CASEID_COLUMN, beneficiary.ecCaseId());
+        values.put(THAAYI_CARD_COLUMN, beneficiary.thaayiCardNumber());
+        values.put(STATUS_COLUMN, beneficiary.status().value());
+        values.put(REF_DATE_COLUMN, beneficiary.referenceDate());
         return values;
     }
 
