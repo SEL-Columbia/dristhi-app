@@ -2,11 +2,12 @@ package org.ei.drishti.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.util.Session;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import static java.util.Arrays.asList;
 
@@ -22,93 +23,64 @@ public class AlertRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldSaveAnAlert() throws Exception {
-        alertRepository.update(action("Case X", "create", dataForCreateAction("bherya", "due", "Theresa", "ANC 1", "Thaayi 1", "2012-01-01")));
+        alertRepository.createAlert(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
         List<Alert> alerts = alertRepository.allAlerts();
 
         assertEquals(asList(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", 1, "2012-01-01")), alerts);
     }
 
-    public void testShouldAddThreePointsOfPriorityForEveryLateAlertAndOnePointForEveryDueAlert() throws Exception {
-        alertRepository.update(action("Case X", "create", dataForCreateAction("bherya", "due", "Theresa", "ANC 1", "Thaayi 1", "2012-01-01")));
-        alertRepository.update(action("Case X", "create", dataForCreateAction("bherya", "late", "Theresa", "ANC 1", "Thaayi 1", "2012-01-01")));
-        alertRepository.update(action("Case X", "create", dataForCreateAction("bherya", "due", "Theresa", "ANC 1", "Thaayi 1", "2012-01-01")));
-        alertRepository.update(action("Case X", "create", dataForCreateAction("bherya", "late", "Theresa", "ANC 1", "Thaayi 1", "2012-01-01")));
-        List<Alert> alerts = alertRepository.allAlerts();
-
-        int expectedPriority = 1 + 3 + 1 + 3;
-
-        assertEquals(asList(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", expectedPriority, "2012-01-01")), alerts);
-    }
-
     public void testShouldFetchAllAlerts() throws Exception {
-        alertRepository.update(action("Case X", "create", dataForCreateAction("bherya", "due", "Theresa 1", "ANC 1", "Thaayi 1", "2012-01-01")));
-        alertRepository.update(action("Case Y", "create", dataForCreateAction("bherya", "due", "Theresa 2", "ANC 2", "Thaayi 2", "2012-01-01")));
-        alertRepository.update(action("Case X", "create", dataForCreateAction("bherya", "due", "Theresa 1", "TT 1", "Thaayi 1", "2012-01-01")));
-        alertRepository.update(action("Case Y", "create", dataForCreateAction("bherya", "due", "Theresa 2", "IFA 1", "Thaayi 2", "2012-01-01")));
+        Alert alert1 = new Alert("Case X", "Theresa 1", "bherya", "ANC 1", "Thaayi 1", 1, "2012-01-01");
+        Alert alert2 = new Alert("Case Y", "Theresa 2", "bherya", "ANC 2", "Thaayi 2", 1, "2012-01-01");
+        Alert alert3 = new Alert("Case X", "Theresa 1", "bherya", "TT 1", "Thaayi 1", 1, "2012-01-01");
+        Alert alert4 = new Alert("Case Y", "Theresa 2", "bherya", "IFA 1", "Thaayi 2", 1, "2012-01-01");
 
-        assertEquals(asList(new Alert("Case X", "Theresa 1", "bherya", "ANC 1", "Thaayi 1", 1, "2012-01-01"), new Alert("Case Y", "Theresa 2", "bherya", "ANC 2", "Thaayi 2", 1, "2012-01-01"),
-                new Alert("Case X", "Theresa 1", "bherya", "TT 1", "Thaayi 1", 1, "2012-01-01"), new Alert("Case Y", "Theresa 2", "bherya", "IFA 1", "Thaayi 2", 1, "2012-01-01")), alertRepository.allAlerts());
+        alertRepository.createAlert(alert1);
+        alertRepository.createAlert(alert2);
+        alertRepository.createAlert(alert3);
+        alertRepository.createAlert(alert4);
+
+        assertEquals(asList(alert1, alert2, alert3, alert4), alertRepository.allAlerts());
     }
 
     public void testShouldFetchAllUniqueLocations() throws Exception {
-        alertRepository.update(action("Case X", "create", dataForCreateAction("Bherya 1", "due", "Theresa 1", "ANC 1", "Thaayi 1", "2012-01-01")));
-        alertRepository.update(action("Case Y", "create", dataForCreateAction("Bherya 2", "due", "Theresa 2", "ANC 2", "Thaayi 2", "2012-01-01")));
-        alertRepository.update(action("Case Z", "create", dataForCreateAction("Bherya 1", "due", "Theresa 3", "TT 1", "Thaayi 3", "2012-01-01")));
-        alertRepository.update(action("Case A", "create", dataForCreateAction("Bherya 3", "due", "Theresa 4", "IFA 1", "Thaayi 4", "2012-01-01")));
+        alertRepository.createAlert(new Alert("Case X", "Theresa 1", "Bherya 1", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
+        alertRepository.createAlert(new Alert("Case Y", "Theresa 2", "Bherya 2", "ANC 2", "Thaayi 2", 1, "2012-01-01"));
+        alertRepository.createAlert(new Alert("Case Z", "Theresa 3", "Bherya 1", "TT 1", "Thaayi 3", 1, "2012-01-01"));
+        alertRepository.createAlert(new Alert("Case A", "Theresa 4", "Bherya 3", "IFA 1", "Thaayi 4", 1, "2012-01-01"));
 
         assertEquals(asList("Bherya 1", "Bherya 2", "Bherya 3"), alertRepository.uniqueLocations());
     }
 
     public void testShouldDeleteAlertsBasedOnCaseIDAndVisitCode() throws Exception {
-        alertRepository.update(action("Case X", "create", dataForCreateAction("bherya", "due", "Theresa", "ANC 1", "Thaayi 1", "2012-01-01")));
-        alertRepository.update(action("Case Y", "create", dataForCreateAction("bherya", "due", "SomeOtherWoman", "ANC 2", "Thaayi 2", "2012-01-01")));
+        alertRepository.createAlert(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
+        alertRepository.createAlert(new Alert("Case Y", "SomeOtherWoman", "bherya", "ANC 2", "Thaayi 2", 1, "2012-01-01"));
 
-        alertRepository.deleteAlertsForVisitCodeOfCase(action("Case X", "delete", dataForDeleteAction("ANC 1")));
+        alertRepository.deleteAlertsForVisitCodeOfCase("Case X", "ANC 1");
 
         assertEquals(asList(new Alert("Case Y", "SomeOtherWoman", "bherya", "ANC 2", "Thaayi 2", 1, "2012-01-01")), alertRepository.allAlerts());
     }
 
     public void testShouldNotFailDeletionWhenNothingToDeleteExists() throws Exception {
-        alertRepository.deleteAlertsForVisitCodeOfCase(action("Case X", "delete", dataForDeleteAction("ANC 1")));
+        alertRepository.deleteAlertsForVisitCodeOfCase("Case X", "ANC 1");
 
         assertTrue(alertRepository.allAlerts().isEmpty());
     }
 
     public void testShouldDeleteAllAlertsForACase() throws Exception {
-        alertRepository.update(action("Case X", "create", dataForCreateAction("bherya", "due", "Theresa", "ANC 1", "Thaayi 1", "2012-01-01")));
-        alertRepository.update(action("Case X", "create", dataForCreateAction("bherya", "due", "Theresa", "ANC 2", "Thaayi 1", "2012-01-01")));
-        alertRepository.update(action("Case Y", "create", dataForCreateAction("bherya", "due", "SomeOtherWoman", "ANC 2", "Thaayi 2", "2012-01-01")));
-        alertRepository.update(action("Case X", "create", dataForCreateAction("bherya", "late", "Theresa", "ANC 3", "Thaayi 1", "2012-01-01")));
+        alertRepository.createAlert(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
+        alertRepository.createAlert(new Alert("Case X", "Theresa", "bherya", "ANC 2", "Thaayi 1", 1, "2012-01-01"));
+        alertRepository.createAlert(new Alert("Case Y", "SomeOtherWoman", "bherya", "ANC 2", "Thaayi 2", 1, "2012-01-01"));
+        alertRepository.createAlert(new Alert("Case X", "Theresa", "bherya", "ANC 3", "Thaayi 1", 1, "2012-01-01"));
 
-        alertRepository.deleteAllAlertsForCase(action("Case X", "deleteAll", null));
+        alertRepository.deleteAllAlertsForCase("Case X");
 
         assertEquals(asList(new Alert("Case Y", "SomeOtherWoman", "bherya", "ANC 2", "Thaayi 2", 1, "2012-01-01")), alertRepository.allAlerts());
     }
 
     public void testShouldDeleteAllAlerts() throws Exception {
-        alertRepository.update(action("Case X", "create", dataForCreateAction("bherya", "due", "Theresa", "ANC 1", "Thaayi 1", "2012-01-01")));
+        alertRepository.createAlert(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
         alertRepository.deleteAllAlerts();
         assertEquals(new ArrayList<Alert>(), alertRepository.allAlerts());
-    }
-
-    private Action action(String caseId, String type, Map<String, String> data) {
-        return new Action(caseId, "alert", type, data, "0");
-    }
-
-    private Map<String, String> dataForDeleteAction(String visitCode) {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("visitCode", visitCode);
-        return map;
-    }
-
-    private Map<String, String> dataForCreateAction(String village, String lateness, String beneficiaryName, String visitCode, String thaayiCardNumber, String dueDate) {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("latenessStatus", lateness);
-        map.put("beneficiaryName", beneficiaryName);
-        map.put("village", village);
-        map.put("visitCode", visitCode);
-        map.put("thaayiCardNumber", thaayiCardNumber);
-        map.put("dueDate", dueDate);
-        return map;
     }
 }

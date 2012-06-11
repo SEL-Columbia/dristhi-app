@@ -47,6 +47,14 @@ public class Alert {
         return village;
     }
 
+    public String caseId() {
+        return caseID;
+    }
+
+    public String village() {
+        return village;
+    }
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);

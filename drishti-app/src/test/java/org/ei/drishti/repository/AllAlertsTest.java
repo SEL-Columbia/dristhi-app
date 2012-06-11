@@ -32,14 +32,14 @@ public class AllAlertsTest {
 
     @Test
     public void shouldUpdateAlertRepositoryForCreateAlertActions() throws Exception {
-        Action firstAction = actionForCreateAlert("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1", "0");
-        Action secondAction = actionForCreateAlert("Case Y", "late", "Theresa 2", "ANC 2", "Thaayi 2", "0");
+        Action firstAction = actionForCreateAlert("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1", "0", "bherya", "2012-01-01");
+        Action secondAction = actionForCreateAlert("Case Y", "due", "Theresa 2", "ANC 2", "Thaayi 2", "0", "bherya", "2012-01-01");
 
         allAlerts.handleAction(firstAction);
         allAlerts.handleAction(secondAction);
 
-        verify(alertRepository).update(firstAction);
-        verify(alertRepository).update(secondAction);
+        verify(alertRepository).createAlert(new Alert("Case X", "Theresa 1", "bherya", "ANC 1", "Thaayi 1", 0, "2012-01-01"));
+        verify(alertRepository).createAlert(new Alert("Case Y", "Theresa 2", "bherya", "ANC 2", "Thaayi 2", 0, "2012-01-01"));
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -58,8 +58,8 @@ public class AllAlertsTest {
         allAlerts.handleAction(firstAction);
         allAlerts.handleAction(secondAction);
 
-        verify(alertRepository).deleteAlertsForVisitCodeOfCase(firstAction);
-        verify(alertRepository).deleteAlertsForVisitCodeOfCase(secondAction);
+        verify(alertRepository).deleteAlertsForVisitCodeOfCase(firstAction.caseID(), firstAction.get("visitCode"));
+        verify(alertRepository).deleteAlertsForVisitCodeOfCase(secondAction.caseID(), secondAction.get("visitCode"));
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -71,8 +71,8 @@ public class AllAlertsTest {
         allAlerts.handleAction(firstAction);
         allAlerts.handleAction(secondAction);
 
-        verify(alertRepository).deleteAllAlertsForCase(firstAction);
-        verify(alertRepository).deleteAllAlertsForCase(secondAction);
+        verify(alertRepository).deleteAllAlertsForCase(firstAction.caseID());
+        verify(alertRepository).deleteAllAlertsForCase(secondAction.caseID());
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -91,9 +91,9 @@ public class AllAlertsTest {
 
     @Test
     public void shouldUpdateDeleteAndDeleteAllAlertActionsBasedOnTheirType() throws Exception {
-        Action firstCreateAction = actionForCreateAlert("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1", "0");
+        Action firstCreateAction = actionForCreateAlert("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1", "0", "bherya", "2012-01-01");
         Action firstDeleteAction = actionForDeleteAlert("Case Y", "ANC 2", "0");
-        Action secondCreateAction = actionForCreateAlert("Case Z", "due", "Theresa 2", "ANC 2", "Thaayi 2", "0");
+        Action secondCreateAction = actionForCreateAlert("Case Z", "due", "Theresa 2", "ANC 2", "Thaayi 2", "0", "bherya", "2012-01-01");
         Action deleteAllAction = actionForDeleteAllAlert("Case A");
         Action secondDeleteAction = actionForDeleteAlert("Case B", "ANC 3", "0");
 
@@ -104,11 +104,11 @@ public class AllAlertsTest {
         allAlerts.handleAction(secondDeleteAction);
 
         InOrder inOrder = inOrder(alertRepository);
-        inOrder.verify(alertRepository).update(firstCreateAction);
-        inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase(firstDeleteAction);
-        inOrder.verify(alertRepository).update(secondCreateAction);
-        inOrder.verify(alertRepository).deleteAllAlertsForCase(deleteAllAction);
-        inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase(secondDeleteAction);
+        inOrder.verify(alertRepository).createAlert(new Alert("Case X", "Theresa 1", "bherya", "ANC 1", "Thaayi 1", 0, "2012-01-01"));
+        inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase(firstDeleteAction.caseID(), firstDeleteAction.get("visitCode"));
+        inOrder.verify(alertRepository).createAlert(new Alert("Case Z", "Theresa 2", "bherya", "ANC 2", "Thaayi 2", 0, "2012-01-01"));
+        inOrder.verify(alertRepository).deleteAllAlertsForCase(deleteAllAction.caseID());
+        inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase(secondDeleteAction.caseID(), secondDeleteAction.get("visitCode"));
         verifyNoMoreInteractions(alertRepository);
     }
 

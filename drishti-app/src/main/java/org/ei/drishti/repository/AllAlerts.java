@@ -19,11 +19,11 @@ public class AllAlerts {
 
     public void handleAction(Action action) {
         if ("createAlert".equals(action.type())) {
-            repository.update(action);
+            repository.createAlert(new Alert(action.caseID(), action.get("beneficiaryName"), action.get("village"), action.get("visitCode"), action.get("thaayiCardNumber"), 0, action.get("dueDate")));
         } else if ("deleteAlert".equals(action.type())) {
-            repository.deleteAlertsForVisitCodeOfCase(action);
+            repository.deleteAlertsForVisitCodeOfCase(action.caseID(), action.get("visitCode"));
         } else if ("deleteAllAlerts".equals(action.type())) {
-            repository.deleteAllAlertsForCase(action);
+            repository.deleteAllAlertsForCase(action.caseID());
         } else {
             Log.logWarn("Unknown type in alert action: " + action);
         }

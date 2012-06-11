@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ActionBuilder {
-    public static Action actionForCreateAlert(String caseID, String latenessStatus, String beneficiaryName, String visitCode, String thaayiCardNumber, String index) {
-        return new Action(caseID, "alert", "createAlert", dataForCreateActionForAlert(latenessStatus, beneficiaryName, visitCode, thaayiCardNumber), index);
+    public static Action actionForCreateAlert(String caseID, String latenessStatus, String beneficiaryName, String visitCode, String thaayiCardNumber, String index, String village, String dueDate) {
+        return new Action(caseID, "alert", "createAlert", dataForCreateActionForAlert(latenessStatus, beneficiaryName, visitCode, thaayiCardNumber, village, dueDate), index);
     }
 
     public static Action actionForDeleteAlert(String caseID, String visitCode, String index) {
@@ -36,12 +36,14 @@ public class ActionBuilder {
         return map;
     }
 
-    private static Map<String, String> dataForCreateActionForAlert(String lateness, String beneficiaryName, String visitCode, String thaayiCardNumber) {
+    private static Map<String, String> dataForCreateActionForAlert(String lateness, String beneficiaryName, String visitCode, String thaayiCardNumber, String village, String dueDate) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("latenessStatus", lateness);
         map.put("beneficiaryName", beneficiaryName);
         map.put("visitCode", visitCode);
         map.put("thaayiCardNumber", thaayiCardNumber);
+        map.put("village", village);
+        map.put("dueDate", dueDate);
         return map;
     }
 

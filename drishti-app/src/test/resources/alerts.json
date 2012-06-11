@@ -6,7 +6,9 @@
             "latenessStatus": "due",
             "beneficiaryName": "Theresa",
             "visitCode": "ANC 1",
-            "thaayiCardNumber": "Thaayi 1"
+            "thaayiCardNumber": "Thaayi 1",
+            "dueDate": "2012-01-01",
+            "village": "bherya"
         },
         "actionTarget": "alert",
         "actionType": "createAlert",
