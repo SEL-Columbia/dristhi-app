@@ -1,8 +1,8 @@
 package org.ei.drishti.repository;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.dto.Action;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,12 +10,10 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
-import static org.ei.drishti.util.ActionBuilder.actionForCreateEC;
-import static org.ei.drishti.util.ActionBuilder.actionForDeleteEC;
+import static org.ei.drishti.util.ActionBuilder.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -53,7 +51,7 @@ public class AllEligibleCouplesTest {
 
     @Test
     public void shouldNotFailIfActionTypeIsNotExpected() throws Exception {
-        allEligibleCouples.handleAction(new Action("Case X", "eligibleCouple", "UNKNOWN-TYPE", new HashMap<String, String>(), "0"));
+        allEligibleCouples.handleAction(unknownAction("eligibleCouple"));
     }
 
     @Test

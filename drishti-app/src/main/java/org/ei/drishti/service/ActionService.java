@@ -1,6 +1,6 @@
 package org.ei.drishti.service;
 
-import org.ei.drishti.domain.Action;
+import org.ei.drishti.dto.Action;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.repository.AllAlerts;

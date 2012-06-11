@@ -1,11 +1,15 @@
 package org.ei.drishti.util;
 
-import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
+import org.ei.drishti.dto.Action;
 import org.ei.drishti.service.DrishtiService;
+import org.joda.time.DateTime;
 
 import java.util.*;
+
+import static org.ei.drishti.dto.ActionData.createAlert;
+import static org.ei.drishti.dto.ActionData.createEligibleCouple;
 
 public class FakeDrishtiService extends DrishtiService {
     private List<Expectation> expectations;
@@ -27,17 +31,6 @@ public class FakeDrishtiService extends DrishtiService {
         return defaultActions;
     }
 
-    public static Map<String, String> dataForCreateAction(String lateness, String beneficiaryName, String visitCode, String thaayiCardNumber, String dueDate, String village) {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("latenessStatus", lateness);
-        map.put("beneficiaryName", beneficiaryName);
-        map.put("visitCode", visitCode);
-        map.put("thaayiCardNumber", thaayiCardNumber);
-        map.put("village", village);
-        map.put("dueDate", dueDate);
-        return map;
-    }
-
     public void setSuffix(String suffix) {
         this.defaultActions = actionsFor(suffix);
     }
@@ -49,22 +42,20 @@ public class FakeDrishtiService extends DrishtiService {
     private Response<List<Action>> actionsFor(String suffix) {
         Action deleteXAction = new Action("Case X", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
         Action deleteYAction = new Action("Case Y", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        Action firstAction = new Action("Case X", "alert", "createAlert", dataForCreateAction("due", "Theresa 1 " + suffix, "BCG", "Thaayi 1 " + suffix, "2012-01-01", "Bherya 1"), "123456");
-        Action secondAction = new Action("Case Y", "alert", "createAlert", dataForCreateAction("due", "Theresa 2 " + suffix, "OPV 1", "Thaayi 2 " + suffix, "2100-04-09", "Bherya 2"), "123456");
+        Action firstAction = new Action("Case X", "alert", "createAlert", dataForCreateAction("Theresa 1 " + suffix, "Bherya 1", "Thaayi 1 " + suffix, "BCG", "due", "2012-01-01"), "123456");
+        Action secondAction = new Action("Case Y", "alert", "createAlert", dataForCreateAction("Theresa 2 " + suffix, "Bherya 2", "Thaayi 2 " + suffix, "OPV 1", "due", "2100-04-09"), "123456");
         Action firstCreateEC = new Action("Case A" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 1 " + suffix, "Husband 1", "EC 1" + suffix, "Village 1", "SubCenter 1"), "123456");
         Action secondCreateEC = new Action("Case B" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 2 " + suffix, "Husband 2", "EC 2" + suffix, "Village 2", "SubCenter 2"), "123456");
 
         return new Response<List<Action>>(ResponseStatus.success, Arrays.asList(deleteXAction, deleteYAction, firstAction, secondAction, firstCreateEC, secondCreateEC));
     }
 
+    public static Map<String, String> dataForCreateAction(String beneficiaryName, String village, String thaayiCardNumber, String visitCode, String lateness, String dueDate) {
+        return createAlert(beneficiaryName, village, thaayiCardNumber, visitCode, lateness, new DateTime(dueDate)).data();
+    }
+
     private Map<String, String> dataForCreateEC(String wifeName, String husbandName, String ecNumber, String subCenter, String village) {
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("wife", wifeName);
-        map.put("husband", husbandName);
-        map.put("ecNumber", ecNumber);
-        map.put("village", village);
-        map.put("subcenter", subCenter);
-        return map;
+        return createEligibleCouple(wifeName, husbandName, ecNumber, village, subCenter).data();
     }
 
     private class Expectation {

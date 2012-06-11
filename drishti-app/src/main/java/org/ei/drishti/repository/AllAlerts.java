@@ -1,6 +1,6 @@
 package org.ei.drishti.repository;
 
-import org.ei.drishti.domain.Action;
+import org.ei.drishti.dto.Action;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.util.Log;
 

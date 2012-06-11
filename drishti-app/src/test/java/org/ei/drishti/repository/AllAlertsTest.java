@@ -1,8 +1,8 @@
 package org.ei.drishti.repository;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.Action;
 import org.ei.drishti.domain.Alert;
+import org.ei.drishti.dto.Action;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +10,6 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
@@ -58,8 +57,8 @@ public class AllAlertsTest {
         allAlerts.handleAction(firstAction);
         allAlerts.handleAction(secondAction);
 
-        verify(alertRepository).deleteAlertsForVisitCodeOfCase(firstAction.caseID(), firstAction.get("visitCode"));
-        verify(alertRepository).deleteAlertsForVisitCodeOfCase(secondAction.caseID(), secondAction.get("visitCode"));
+        verify(alertRepository).deleteAlertsForVisitCodeOfCase("Case X", "ANC 1");
+        verify(alertRepository).deleteAlertsForVisitCodeOfCase("Case Y", "ANC 2");
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -71,8 +70,8 @@ public class AllAlertsTest {
         allAlerts.handleAction(firstAction);
         allAlerts.handleAction(secondAction);
 
-        verify(alertRepository).deleteAllAlertsForCase(firstAction.caseID());
-        verify(alertRepository).deleteAllAlertsForCase(secondAction.caseID());
+        verify(alertRepository).deleteAllAlertsForCase("Case X");
+        verify(alertRepository).deleteAllAlertsForCase("Case Y");
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -86,7 +85,7 @@ public class AllAlertsTest {
 
     @Test
     public void shouldNotFailIfActionTypeIsNotExpected() throws Exception {
-        allAlerts.handleAction(new Action("Case X", "alert", "UNKNOWN-TYPE", new HashMap<String, String>(), "0"));
+        allAlerts.handleAction(unknownAction("alert"));
     }
 
     @Test
@@ -105,10 +104,10 @@ public class AllAlertsTest {
 
         InOrder inOrder = inOrder(alertRepository);
         inOrder.verify(alertRepository).createAlert(new Alert("Case X", "Theresa 1", "bherya", "ANC 1", "Thaayi 1", 0, "2012-01-01"));
-        inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase(firstDeleteAction.caseID(), firstDeleteAction.get("visitCode"));
+        inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase("Case Y", "ANC 2");
         inOrder.verify(alertRepository).createAlert(new Alert("Case Z", "Theresa 2", "bherya", "ANC 2", "Thaayi 2", 0, "2012-01-01"));
-        inOrder.verify(alertRepository).deleteAllAlertsForCase(deleteAllAction.caseID());
-        inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase(secondDeleteAction.caseID(), secondDeleteAction.get("visitCode"));
+        inOrder.verify(alertRepository).deleteAllAlertsForCase("Case A");
+        inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase("Case B", "ANC 3");
         verifyNoMoreInteractions(alertRepository);
     }
 

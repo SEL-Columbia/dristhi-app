@@ -1,7 +1,7 @@
 package org.ei.drishti.controller;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.Action;
+import org.ei.drishti.dto.Action;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;

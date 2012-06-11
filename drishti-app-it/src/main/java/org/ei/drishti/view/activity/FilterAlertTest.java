@@ -1,7 +1,7 @@
 package org.ei.drishti.view.activity;
 
 import android.test.ActivityInstrumentationTestCase2;
-import org.ei.drishti.domain.Action;
+import org.ei.drishti.dto.Action;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.util.DateUtil;
@@ -145,7 +145,7 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
         String newUser = "NEW ANM" + newSuffix;
         Action deleteXAction = new Action("Case X", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
         Action deleteYAction = new Action("Case Y", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        Action alertAction = new Action("Case M", "alert", "createAlert", dataForCreateAction("due", "Mom " + newSuffix, "ANC 1", "TC 12", inputFormat.format(DateUtil.today()), "Bherya 1"), "1234567");
+        Action alertAction = new Action("Case M", "alert", "createAlert", dataForCreateAction("Mom " + newSuffix, "Bherya 1", "TC 12", "ANC 1", "due", inputFormat.format(DateUtil.today())), "1234567");
         drishtiService.changeDefaultActions(new Response<List<Action>>(ResponseStatus.success, asList(deleteXAction, deleteYAction, alertAction)));
         userService.setupFor(newUser, "password", false, true, true);
 

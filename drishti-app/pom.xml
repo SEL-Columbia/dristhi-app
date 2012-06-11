@@ -114,6 +114,11 @@
           <scope>runtime</scope>
           <type>so</type>
         </dependency>
+        <dependency>
+            <groupId>org.ei.drishti</groupId>
+            <artifactId>drishti-interface</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
