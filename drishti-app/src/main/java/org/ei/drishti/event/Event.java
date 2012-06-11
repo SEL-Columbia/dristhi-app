@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Event<CallbackType> {
-    public static Event<FetchStatus> ON_DATA_FETCHED = new Event<FetchStatus>();
-    public static Event<Boolean> ON_LOGOUT = new Event<Boolean>();
+    public static final Event<FetchStatus> ON_DATA_FETCHED = new Event<FetchStatus>();
+    public static final Event<Boolean> ON_LOGOUT = new Event<Boolean>();
 
     List<WeakReference<Listener<CallbackType>>> listeners;
 
