@@ -21,11 +21,20 @@
     </properties>
 
     <repositories>
-      <repository>
-        <id>drishti.local</id>
-        <name>drishti</name>
-        <url>file:${main.basedir}/libs/</url>
-      </repository>
+        <repository>
+            <id>drishti.local</id>
+            <name>drishti</name>
+            <url>file:${main.basedir}/libs/</url>
+        </repository>
+        <repository>
+            <id>motech.nexus</id>
+            <name>Motech Snapshots Repository</name>
+            <url>http://nexus.motechproject.org/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
     </repositories>
 
     <dependencyManagement>
