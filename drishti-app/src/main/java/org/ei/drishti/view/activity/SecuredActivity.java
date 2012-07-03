@@ -39,8 +39,8 @@ public abstract class SecuredActivity extends Activity {
     protected void onResume() {
         super.onResume();
         if (context.userService().hasSessionExpired()) {
-            startActivity(new Intent(this, LoginActivity.class));
             context.userService().logoutSession();
+            startActivity(new Intent(this, LoginActivity.class));
             return;
         }
 

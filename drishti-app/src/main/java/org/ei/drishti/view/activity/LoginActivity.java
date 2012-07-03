@@ -27,6 +27,11 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.login);
 
         context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         if (!context.userService().hasSessionExpired()) {
             goToAlerts();
