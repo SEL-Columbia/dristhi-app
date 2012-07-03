@@ -1,8 +1,8 @@
 [submodule "external/actionbar"]
 	path = external/actionbar
-    url = git@github.com:harshitagg/android-actionbar.git
+    url = https://github.com/harshitagg/android-actionbar.git
     ignore = untracked
 [submodule "external/pulltorefresh"]
 	path = external/pulltorefresh
-    url = git@github.com:harshitagg/android-pulltorefresh.git
+    url = https://github.com/harshitagg/android-pulltorefresh.git
     ignore = untracked
