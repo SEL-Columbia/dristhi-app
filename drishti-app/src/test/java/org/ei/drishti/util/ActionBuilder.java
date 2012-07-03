@@ -9,8 +9,8 @@ import java.util.HashMap;
 import static org.ei.drishti.dto.ActionData.*;
 
 public class ActionBuilder {
-    public static Action actionForCreateAlert(String caseID, String latenessStatus, String beneficiaryName, String visitCode, String thaayiCardNumber, String index, String village, String dueDate) {
-        return new Action(caseID, "alert", "createAlert", createAlert(beneficiaryName, village, thaayiCardNumber, visitCode, latenessStatus, new DateTime(dueDate)).data(), index);
+    public static Action actionForCreateAlert(String caseID, String latenessStatus, String beneficiaryName, String visitCode, String thaayiCardNumber, String index, String village, String subCenter, String phc, String dueDate) {
+        return new Action(caseID, "alert", "createAlert", createAlert(beneficiaryName, village, subCenter, phc, thaayiCardNumber, visitCode, latenessStatus, new DateTime(dueDate)).data(), index);
     }
 
     public static Action actionForDeleteAlert(String caseID, String visitCode, String index) {
@@ -21,8 +21,8 @@ public class ActionBuilder {
         return new Action(caseID, "alert", "deleteAllAlerts", new HashMap<String, String>(), "0");
     }
 
-    public static Action actionForCreateEC(String caseID, String wifeName, String husbandName, String ecNumber, String village, String subCenter) {
-        return new Action(caseID, "eligibleCouple", "createEC", createEligibleCouple(wifeName, husbandName, ecNumber, village, subCenter).data(), "0");
+    public static Action actionForCreateEC(String caseID, String wifeName, String husbandName, String ecNumber, String village, String subCenter, String phc) {
+        return new Action(caseID, "eligibleCouple", "createEC", createEligibleCouple(wifeName, husbandName, ecNumber, village, subCenter, phc).data(), "0");
     }
 
     public static Action actionForDeleteEC(String caseID) {

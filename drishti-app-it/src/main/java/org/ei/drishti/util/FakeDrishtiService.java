@@ -42,20 +42,20 @@ public class FakeDrishtiService extends DrishtiService {
     private Response<List<Action>> actionsFor(String suffix) {
         Action deleteXAction = new Action("Case X", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
         Action deleteYAction = new Action("Case Y", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        Action firstAction = new Action("Case X", "alert", "createAlert", dataForCreateAction("Theresa 1 " + suffix, "Bherya 1", "Thaayi 1 " + suffix, "BCG", "due", "2012-01-01"), "123456");
-        Action secondAction = new Action("Case Y", "alert", "createAlert", dataForCreateAction("Theresa 2 " + suffix, "Bherya 2", "Thaayi 2 " + suffix, "OPV 1", "due", "2100-04-09"), "123456");
-        Action firstCreateEC = new Action("Case A" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 1 " + suffix, "Husband 1", "EC 1" + suffix, "Village 1", "SubCenter 1"), "123456");
-        Action secondCreateEC = new Action("Case B" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 2 " + suffix, "Husband 2", "EC 2" + suffix, "Village 2", "SubCenter 2"), "123456");
+        Action firstAction = new Action("Case X", "alert", "createAlert", dataForCreateAction("Theresa 1 " + suffix, "Bherya 1", "Sub Center", "PHC X", "Thaayi 1 " + suffix, "BCG", "due", "2012-01-01"), "123456");
+        Action secondAction = new Action("Case Y", "alert", "createAlert", dataForCreateAction("Theresa 2 " + suffix, "Bherya 2", "Sub Center", "PHC X", "Thaayi 2 " + suffix, "OPV 1", "due", "2100-04-09"), "123456");
+        Action firstCreateEC = new Action("Case A" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 1 " + suffix, "Husband 1", "EC 1" + suffix, "SubCenter 1", "Village 1", "PHC X"), "123456");
+        Action secondCreateEC = new Action("Case B" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 2 " + suffix, "Husband 2", "EC 2" + suffix, "SubCenter 2", "Village 2", "PHC X"), "123456");
 
         return new Response<List<Action>>(ResponseStatus.success, Arrays.asList(deleteXAction, deleteYAction, firstAction, secondAction, firstCreateEC, secondCreateEC));
     }
 
-    public static Map<String, String> dataForCreateAction(String beneficiaryName, String village, String thaayiCardNumber, String visitCode, String lateness, String dueDate) {
-        return createAlert(beneficiaryName, village, thaayiCardNumber, visitCode, lateness, new DateTime(dueDate)).data();
+    public static Map<String, String> dataForCreateAction(String beneficiaryName, String village, String subCenter, String phc, String thaayiCardNumber, String visitCode, String lateness, String dueDate) {
+        return createAlert(beneficiaryName, village, subCenter, phc, thaayiCardNumber, visitCode, lateness, new DateTime(dueDate)).data();
     }
 
-    private Map<String, String> dataForCreateEC(String wifeName, String husbandName, String ecNumber, String subCenter, String village) {
-        return createEligibleCouple(wifeName, husbandName, ecNumber, village, subCenter).data();
+    private Map<String, String> dataForCreateEC(String wifeName, String husbandName, String ecNumber, String village, String subCenter, String phc) {
+        return createEligibleCouple(wifeName, husbandName, ecNumber, village, subCenter, phc).data();
     }
 
     private class Expectation {

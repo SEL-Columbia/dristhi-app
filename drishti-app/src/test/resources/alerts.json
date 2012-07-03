@@ -8,7 +8,9 @@
             "visitCode": "ANC 1",
             "thaayiCardNumber": "Thaayi 1",
             "dueDate": "2012-01-01",
-            "village": "bherya"
+            "village": "bherya",
+            "subCenter" : "Sub Center",
+            "phc" : "PHC X"
         },
         "actionTarget": "alert",
         "actionType": "createAlert",

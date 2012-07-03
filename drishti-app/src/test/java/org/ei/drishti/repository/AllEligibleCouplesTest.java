@@ -31,9 +31,9 @@ public class AllEligibleCouplesTest {
 
     @Test
     public void shouldInsertAndDeleteECActionsBasedOnTheirType() throws Exception {
-        Action firstCreateAction = actionForCreateEC("Case X", "Theresa 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1");
+        Action firstCreateAction = actionForCreateEC("Case X", "Theresa 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", "PHC X");
         Action firstDeleteAction = actionForDeleteEC("Case Y");
-        Action secondCreateAction = actionForCreateEC("Case Z", "Theresa 2", "Husband 2", "EC Number 2", "Village 1", "SubCenter 1");
+        Action secondCreateAction = actionForCreateEC("Case Z", "Theresa 2", "Husband 2", "EC Number 2", "Village 1", "SubCenter 1", "PHC X");
         Action secondDeleteAction = actionForDeleteEC("Case B");
 
         allEligibleCouples.handleAction(firstCreateAction);

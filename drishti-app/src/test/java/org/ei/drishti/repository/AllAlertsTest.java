@@ -31,8 +31,8 @@ public class AllAlertsTest {
 
     @Test
     public void shouldUpdateAlertRepositoryForCreateAlertActions() throws Exception {
-        Action firstAction = actionForCreateAlert("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1", "0", "bherya", "2012-01-01");
-        Action secondAction = actionForCreateAlert("Case Y", "due", "Theresa 2", "ANC 2", "Thaayi 2", "0", "bherya", "2012-01-01");
+        Action firstAction = actionForCreateAlert("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1", "0", "bherya", "Sub Center", "PHC X", "2012-01-01");
+        Action secondAction = actionForCreateAlert("Case Y", "due", "Theresa 2", "ANC 2", "Thaayi 2", "0", "bherya", "Sub Center", "PHC X", "2012-01-01");
 
         allAlerts.handleAction(firstAction);
         allAlerts.handleAction(secondAction);
@@ -90,9 +90,9 @@ public class AllAlertsTest {
 
     @Test
     public void shouldUpdateDeleteAndDeleteAllAlertActionsBasedOnTheirType() throws Exception {
-        Action firstCreateAction = actionForCreateAlert("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1", "0", "bherya", "2012-01-01");
+        Action firstCreateAction = actionForCreateAlert("Case X", "due", "Theresa 1", "ANC 1", "Thaayi 1", "0", "bherya", "Sub Center", "PHC X", "2012-01-01");
         Action firstDeleteAction = actionForDeleteAlert("Case Y", "ANC 2", "0");
-        Action secondCreateAction = actionForCreateAlert("Case Z", "due", "Theresa 2", "ANC 2", "Thaayi 2", "0", "bherya", "2012-01-01");
+        Action secondCreateAction = actionForCreateAlert("Case Z", "due", "Theresa 2", "ANC 2", "Thaayi 2", "0", "bherya", "Sub Center", "PHC X", "2012-01-01");
         Action deleteAllAction = actionForDeleteAllAlert("Case A");
         Action secondDeleteAction = actionForDeleteAlert("Case B", "ANC 3", "0");
 

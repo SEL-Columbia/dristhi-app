@@ -73,17 +73,17 @@ public class ActionServiceTest {
 
     @Test
     public void shouldFetchAlertActionsAndSaveThemToRepository() throws Exception {
-        setupActions(success, asList(ActionBuilder.actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "0", "bherya", "2012-01-01")));
+        setupActions(success, asList(ActionBuilder.actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "0", "bherya", "Sub Center", "PHC X", "2012-01-01")));
 
         assertEquals(fetched, service.fetchNewActions());
 
         verify(drishtiService).fetchNewActions("ANM X", "1234");
-        verify(allAlerts).handleAction(ActionBuilder.actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "0", "bherya", "2012-01-01"));
+        verify(allAlerts).handleAction(ActionBuilder.actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "0", "bherya", "Sub Center", "PHC X", "2012-01-01"));
     }
     @Test
     public void shouldUpdatePreviousIndexWithIndexOfLatestAlert() throws Exception {
         String indexOfLastMessage = "12345";
-        setupActions(success, asList(actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "11111", "bherya", "2012-01-01"), actionForCreateAlert("Case Y", "due", "Theresa", "ANC 2", "Thaayi 2", indexOfLastMessage, "bherya", "2012-01-01")));
+        setupActions(success, asList(actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "11111", "bherya", "Sub Center", "PHC X", "2012-01-01"), actionForCreateAlert("Case Y", "due", "Theresa", "ANC 2", "Thaayi 2", indexOfLastMessage, "bherya", null, null, "2012-01-01")));
 
         when(allAlerts.fetchAll()).thenReturn(asList(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", 1, "2012-01-01"), new Alert("Case Y", "Theresa", "bherya", "ANC 2", "Thaayi 2", 1, "2012-01-01")));
 
@@ -94,18 +94,18 @@ public class ActionServiceTest {
 
     @Test
     public void shouldFetchECAndSaveThemToRepository() throws Exception {
-        setupActions(success, asList(actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1")));
+        setupActions(success, asList(actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", "PHC X")));
 
         assertEquals(fetched, service.fetchNewActions());
 
         verify(drishtiService).fetchNewActions("ANM X", "1234");
-        verify(allEligibleCouples).handleAction(actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1"));
+        verify(allEligibleCouples).handleAction(actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", "PHC X"));
     }
 
     @Test
     public void shouldHandleDifferentKindsOfActions() throws Exception {
-        Action ecAction = actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1");
-        Action alertAction = actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "0", "bherya", "2012-01-01");
+        Action ecAction = actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", "PHC X");
+        Action alertAction = actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "0", "bherya", "Sub Center", "PHC X", "2012-01-01");
         setupActions(success, asList(ecAction, alertAction));
 
         service.fetchNewActions();

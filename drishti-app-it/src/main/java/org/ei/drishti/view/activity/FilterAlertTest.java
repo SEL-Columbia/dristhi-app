@@ -145,7 +145,7 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
         String newUser = "NEW ANM" + newSuffix;
         Action deleteXAction = new Action("Case X", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
         Action deleteYAction = new Action("Case Y", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        Action alertAction = new Action("Case M", "alert", "createAlert", dataForCreateAction("Mom " + newSuffix, "Bherya 1", "TC 12", "ANC 1", "due", inputFormat.format(DateUtil.today())), "1234567");
+        Action alertAction = new Action("Case M", "alert", "createAlert", dataForCreateAction("Mom " + newSuffix, "Bherya 1", "Sub Center", "PHC X", "TC 12", "ANC 1", "due", inputFormat.format(DateUtil.today())), "1234567");
         drishtiService.changeDefaultActions(new Response<List<Action>>(ResponseStatus.success, asList(deleteXAction, deleteYAction, alertAction)));
         userService.setupFor(newUser, "password", false, true, true);
 
