@@ -1,9 +1,8 @@
 package org.ei.drishti.view.activity;
 
 import android.test.ActivityInstrumentationTestCase2;
-import org.ei.drishti.dto.Action;
 import org.ei.drishti.domain.Response;
-import org.ei.drishti.domain.ResponseStatus;
+import org.ei.drishti.dto.Action;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
@@ -11,10 +10,8 @@ import org.ei.drishti.util.FakeUserService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
-import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.AlertFilterCriterionForTime.*;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.BCG;
 import static org.ei.drishti.domain.AlertFilterCriterionForType.OPV;
@@ -27,8 +24,6 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
 
     private String defaultSuffix;
     private FakeDrishtiService drishtiService;
-    private SimpleDateFormat inputFormat;
-    private FakeUserService userService;
 
     public FilterAlertTest() {
         super(AlertsActivity.class);
@@ -37,17 +32,21 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
     @Override
     public void setUp() throws Exception {
         defaultSuffix = String.valueOf(new Date().getTime() - 1);
-        drishtiService = new FakeDrishtiService(defaultSuffix);
-        userService = new FakeUserService();
-        setupService(drishtiService, userService, 1000000).updateApplicationContext(getActivity().getApplicationContext());
 
-        inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+        drishtiService = new FakeDrishtiService(defaultSuffix);
+        Response<List<Action>> actionsToUse = drishtiService.actionsFor(defaultSuffix);
+        Action alertActionForToday = new Action("Case M", "alert", "createAlert", dataForCreateAction("Mom " + defaultSuffix, "Bherya 1",
+                "Sub Center", "PHC X", "TC 12", "ANC 1", "due", new SimpleDateFormat("yyyy-MM-dd").format(DateUtil.today())), "1234567");
+        actionsToUse.payload().add(alertActionForToday);
+        drishtiService.changeDefaultActions(actionsToUse);
+
+        setupService(drishtiService, new FakeUserService(), 1000000).updateApplicationContext(getActivity().getApplicationContext());
+
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
+        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix, "Mom " + defaultSuffix);
     }
 
     public void testShouldFilterListByMotherName() throws Exception {
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
-
         solo.filterByText("Theresa 1");
         solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix);
 
@@ -56,15 +55,13 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
 
         solo.clearEditText(0);
         waitForFilteringToFinish();
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
+        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix, "Mom " + defaultSuffix);
 
         solo.filterByText("theresa 1");
         solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix);
     }
 
     public void testShouldFilterListByThaayiCardNumber() throws Exception {
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
-
         solo.filterByText("Thaayi 1");
         solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix);
 
@@ -73,15 +70,13 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
 
         solo.clearEditText(0);
         waitForFilteringToFinish();
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
+        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix, "Mom " + defaultSuffix);
 
         solo.filterByText("thaayi 1");
         solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix);
     }
 
     public void testShouldFilterListBasedOnTypeDialog() throws Exception {
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
-
         solo.filterByType(BCG);
         solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix);
 
@@ -90,8 +85,6 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
     }
 
     public void testShouldFilterListBasedOnBothTypeFilterValueAndTextFilter() throws Exception {
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
-
         solo.filterByType(BCG);
         solo.filterByText("Thaayi 2");
         solo.assertEmptyList();
@@ -102,7 +95,6 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
 
     public void testShouldApplyFilterAfterUpdation() throws Exception {
         String newSuffix = String.valueOf(new Date().getTime());
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
 
         solo.filterByType(BCG);
         solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix);
@@ -114,54 +106,26 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
         solo.assertNamesInAlerts("Theresa 1 " + newSuffix);
     }
 
-    public void testShouldFilterListBasedOnValueInTimeFilterDialog() throws Exception {
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
-
-        solo.filterByTime(PastDue);
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix);
-
-        solo.filterByTime(Upcoming);
-        solo.assertNamesInAlerts("Theresa 2 " + defaultSuffix);
-
-        solo.filterByTime(ShowAll);
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
-    }
-
     public void testShouldFilterListBasedOnLocation() throws Exception {
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
-
         solo.filterByLocation("Bherya 1");
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix);
+        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Mom " + defaultSuffix);
 
         solo.filterByLocation("Bherya 2");
         solo.assertNamesInAlerts("Theresa 2 " + defaultSuffix);
 
         solo.filterByLocation("All");
-        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix);
+        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix, "Mom " + defaultSuffix);
     }
 
-    public void testShouldShowAlertsForTodayInUpcomingFilteredValues() throws Exception {
-        String newSuffix = String.valueOf(new Date().getTime());
-        String newUser = "NEW ANM" + newSuffix;
-        Action deleteXAction = new Action("Case X", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        Action deleteYAction = new Action("Case Y", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        Action alertAction = new Action("Case M", "alert", "createAlert", dataForCreateAction("Mom " + newSuffix, "Bherya 1", "Sub Center", "PHC X", "TC 12", "ANC 1", "due", inputFormat.format(DateUtil.today())), "1234567");
-        drishtiService.changeDefaultActions(new Response<List<Action>>(ResponseStatus.success, asList(deleteXAction, deleteYAction, alertAction)));
-        userService.setupFor(newUser, "password", false, true, true);
-
-        solo.logout();
-        solo.assertCanLogin(newUser, "password");
-
-        solo.assertNamesInAlerts("Mom " + newSuffix);
-
+    public void testShouldFilterByTimeAndShowAlertsForTodayInUpcomingFilteredValues() throws Exception {
         solo.filterByTime(Upcoming);
-        solo.assertNamesInAlerts("Mom " + newSuffix);
+        solo.assertNamesInAlerts("Theresa 2 " + defaultSuffix, "Mom " + defaultSuffix);
 
         solo.filterByTime(PastDue);
-        solo.assertEmptyList();
+        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix);
 
         solo.filterByTime(ShowAll);
-        solo.assertNamesInAlerts("Mom " + newSuffix);
+        solo.assertNamesInAlerts("Theresa 1 " + defaultSuffix, "Theresa 2 " + defaultSuffix, "Mom " + defaultSuffix);
     }
 
     @Override

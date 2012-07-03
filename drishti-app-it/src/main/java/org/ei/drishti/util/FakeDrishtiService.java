@@ -39,7 +39,7 @@ public class FakeDrishtiService extends DrishtiService {
         this.defaultActions = alertsToProvide;
     }
 
-    private Response<List<Action>> actionsFor(String suffix) {
+    public Response<List<Action>> actionsFor(String suffix) {
         Action deleteXAction = new Action("Case X", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
         Action deleteYAction = new Action("Case Y", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
         Action firstAction = new Action("Case X", "alert", "createAlert", dataForCreateAction("Theresa 1 " + suffix, "Bherya 1", "Sub Center", "PHC X", "Thaayi 1 " + suffix, "BCG", "due", "2012-01-01"), "123456");
@@ -47,7 +47,7 @@ public class FakeDrishtiService extends DrishtiService {
         Action firstCreateEC = new Action("Case A" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 1 " + suffix, "Husband 1", "EC 1" + suffix, "SubCenter 1", "Village 1", "PHC X"), "123456");
         Action secondCreateEC = new Action("Case B" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 2 " + suffix, "Husband 2", "EC 2" + suffix, "SubCenter 2", "Village 2", "PHC X"), "123456");
 
-        return new Response<List<Action>>(ResponseStatus.success, Arrays.asList(deleteXAction, deleteYAction, firstAction, secondAction, firstCreateEC, secondCreateEC));
+        return new Response<List<Action>>(ResponseStatus.success, new ArrayList<Action>(Arrays.asList(deleteXAction, deleteYAction, firstAction, secondAction, firstCreateEC, secondCreateEC)));
     }
 
     public static Map<String, String> dataForCreateAction(String beneficiaryName, String village, String subCenter, String phc, String thaayiCardNumber, String visitCode, String lateness, String dueDate) {
