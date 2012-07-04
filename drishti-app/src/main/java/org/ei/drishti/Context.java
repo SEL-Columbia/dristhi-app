@@ -63,7 +63,7 @@ public class Context {
 
     protected DrishtiService drishtiService() {
         if (drishtiService == null) {
-            drishtiService = new DrishtiService(new HTTPAgent(applicationContext), "https://192.168.1.8:9979");
+            drishtiService = new DrishtiService(new HTTPAgent(applicationContext), "https://drishti.modilabs.org");
         }
         return drishtiService;
     }
