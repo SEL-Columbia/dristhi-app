@@ -11,11 +11,11 @@ import java.util.Date;
 import static org.ei.drishti.util.FakeContext.setupService;
 import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
-public class LoginActivityWhenAppIsKilledByAndroidTest extends ActivityInstrumentationTestCase2<LoginActivity> {
+public class LoginActivityWhenAppIsKilledByAndroid extends ActivityInstrumentationTestCase2<LoginActivity> {
     private DrishtiSolo solo;
     private FakeUserService userService;
 
-    public LoginActivityWhenAppIsKilledByAndroidTest() {
+    public LoginActivityWhenAppIsKilledByAndroid() {
         super(LoginActivity.class);
     }
 
