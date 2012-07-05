@@ -12,7 +12,9 @@ import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.scheme.SocketFactory;
+import org.apache.http.conn.ssl.AbstractVerifier;
 import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.params.BasicHttpParams;
@@ -22,6 +24,7 @@ import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.util.Log;
 
+import javax.net.ssl.SSLException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
@@ -83,7 +86,20 @@ public class HTTPAgent {
             } finally {
                 inputStream.close();
             }
-            return new SSLSocketFactory(trustedKeystore);
+            SSLSocketFactory socketFactory = new SSLSocketFactory(trustedKeystore);
+            final X509HostnameVerifier oldVerifier = socketFactory.getHostnameVerifier();
+            socketFactory.setHostnameVerifier(new AbstractVerifier() {
+                @Override
+                public void verify(String host, String[] cns, String[] subjectAlts) throws SSLException {
+                    for (String cn : cns) {
+                        if (host.equals(cn)){
+                            return;
+                        }
+                    }
+                    oldVerifier.verify(host, cns, subjectAlts);
+                }
+            });
+            return socketFactory;
         } catch (Exception e) {
             throw new AssertionError(e);
         }

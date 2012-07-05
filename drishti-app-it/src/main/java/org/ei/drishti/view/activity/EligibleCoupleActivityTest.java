@@ -8,6 +8,8 @@ import org.ei.drishti.util.FakeDrishtiService;
 import java.util.Date;
 
 import static org.ei.drishti.util.FakeContext.setupService;
+import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
+import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class EligibleCoupleActivityTest extends ActivityInstrumentationTestCase2<EligibleCoupleActivity> {
     private DrishtiSolo solo;
@@ -67,6 +69,8 @@ public class EligibleCoupleActivityTest extends ActivityInstrumentationTestCase2
 
     @Override
     public void tearDown() throws Exception {
+        waitForFilteringToFinish();
+        waitForProgressBarToGoAway(getActivity());
         solo.finishOpenedActivities();
     }
 }

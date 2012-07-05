@@ -9,6 +9,7 @@ import org.ei.drishti.util.FakeUserService;
 import java.util.Date;
 
 import static org.ei.drishti.util.FakeContext.setupService;
+import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
 import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginActivity> {
@@ -81,6 +82,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
 
     @Override
     public void tearDown() throws Exception {
+        waitForFilteringToFinish();
         waitForProgressBarToGoAway(getActivity());
         solo.finishOpenedActivities();
     }

@@ -8,6 +8,8 @@ import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.util.FakeUserService;
 
 import static org.ei.drishti.util.FakeContext.setupService;
+import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
+import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class SettingsActivityTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
     private DrishtiSolo solo;
@@ -37,6 +39,8 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<Alert
 
     @Override
     public void tearDown() throws Exception {
+        waitForFilteringToFinish();
+        waitForProgressBarToGoAway(getActivity());
         solo.finishOpenedActivities();
     }
 }

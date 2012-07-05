@@ -18,6 +18,7 @@ import static org.ei.drishti.domain.AlertFilterCriterionForType.OPV;
 import static org.ei.drishti.util.FakeContext.setupService;
 import static org.ei.drishti.util.FakeDrishtiService.dataForCreateAction;
 import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
+import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
 public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
     private DrishtiSolo solo;
@@ -130,6 +131,8 @@ public class FilterAlertTest extends ActivityInstrumentationTestCase2<AlertsActi
 
     @Override
     public void tearDown() throws Exception {
+        waitForFilteringToFinish();
+        waitForProgressBarToGoAway(getActivity());
         solo.finishOpenedActivities();
     }
 }
