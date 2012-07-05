@@ -30,7 +30,7 @@
         <snapshotRepository>
             <id>motech.nexus</id>
             <name>Motech Snapshots Repository</name>
-            <url>http://nexus.motechproject.org/content/repositories/snapshots</url>
+            <url>http://nexus.motechproject.org/content/repositories/drishti</url>
             <uniqueVersion>false</uniqueVersion>
         </snapshotRepository>
     </distributionManagement>
@@ -40,6 +40,15 @@
             <id>drishti.local</id>
             <name>drishti</name>
             <url>file:${main.basedir}/libs/</url>
+        </repository>
+        <repository>
+            <id>motech.drishti</id>
+            <name>Motech Snapshots Repository</name>
+            <url>http://nexus.motechproject.org/content/repositories/drishti</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
         </repository>
         <repository>
             <id>motech.nexus</id>
