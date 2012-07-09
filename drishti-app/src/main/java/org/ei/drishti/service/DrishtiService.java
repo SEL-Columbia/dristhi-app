@@ -1,6 +1,7 @@
 package org.ei.drishti.service;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.dto.Action;
@@ -9,6 +10,8 @@ import java.lang.reflect.Type;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.ei.drishti.domain.ResponseStatus.failure;
 
 public class DrishtiService {
     private HTTPAgent agent = null;
@@ -23,14 +26,13 @@ public class DrishtiService {
         String anmID = URLEncoder.encode(anmIdentifier);
         Response<String> response = agent.fetch(drishtiBaseURL + "/actions?anmIdentifier=" + anmID + "&timeStamp=" + previouslyFetchedIndex);
         Type collectionType = new TypeToken<List<Action>>() { }.getType();
-        List<Action> actions = null;
+        List<Action> actions;
         try {
             actions = new Gson().fromJson(response.payload(), collectionType);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (JsonSyntaxException e) {
+            return new Response<List<Action>>(failure, new ArrayList<Action>());
         }
 
         return new Response<List<Action>>(response.status(), actions == null ? new ArrayList<Action>() : actions);
     }
-
 }

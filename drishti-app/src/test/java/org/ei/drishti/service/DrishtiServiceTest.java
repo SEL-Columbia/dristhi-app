@@ -39,30 +39,30 @@ public class DrishtiServiceTest {
     public void shouldFetchAlertActions() throws Exception {
         when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(ResponseStatus.success, IOUtils.toString(getClass().getResource("/alerts.json"))));
 
-        Response<List<Action>> alertActions = drishtiService.fetchNewActions("anm1", "0");
+        Response<List<Action>> actions = drishtiService.fetchNewActions("anm1", "0");
 
         verify(httpAgent).fetch(EXPECTED_URL);
-        assertEquals(asList(actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "1333695798583", "bherya", "Sub Center", "PHC X", "2012-01-01"), actionForDeleteAlert("Case Y", "ANC 1", "1333695798644")), alertActions.payload());
-        assertEquals(ResponseStatus.success, alertActions.status());
+        assertEquals(asList(actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "1333695798583", "bherya", "Sub Center", "PHC X", "2012-01-01"), actionForDeleteAlert("Case Y", "ANC 1", "1333695798644")), actions.payload());
+        assertEquals(ResponseStatus.success, actions.status());
     }
 
     @Test
     public void shouldFetchNoAlertActionsWhenJsonIsForEmptyList() throws Exception {
         when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(ResponseStatus.success, "[]"));
 
-        Response<List<Action>> alertActions = drishtiService.fetchNewActions("anm1", "0");
+        Response<List<Action>> actions = drishtiService.fetchNewActions("anm1", "0");
 
-        assertTrue(alertActions.payload().isEmpty());
+        assertTrue(actions.payload().isEmpty());
     }
 
     @Test
     public void shouldFetchNoAlertActionsWhenHTTPCallFails() throws Exception {
         when(httpAgent.fetch(EXPECTED_URL)).thenReturn(new Response<String>(ResponseStatus.failure, null));
 
-        Response<List<Action>> alertActions = drishtiService.fetchNewActions("anm1", "0");
+        Response<List<Action>> actions = drishtiService.fetchNewActions("anm1", "0");
 
-        assertTrue(alertActions.payload().isEmpty());
-        assertEquals(ResponseStatus.failure, alertActions.status());
+        assertTrue(actions.payload().isEmpty());
+        assertEquals(ResponseStatus.failure, actions.status());
     }
 
     @Test
@@ -73,5 +73,16 @@ public class DrishtiServiceTest {
         drishtiService.fetchNewActions("ANM WITH SPACE", "0");
 
         verify(httpAgent).fetch(expectedURLWithSpaces);
+    }
+
+    @Test
+    public void shouldReturnFailureResponseWhenJsonIsMalformed() {
+        String expectedURLWithSpaces = "http://base.drishti.url/actions?anmIdentifier=ANMX&timeStamp=0";
+        when(httpAgent.fetch(expectedURLWithSpaces)).thenReturn(new Response<String>(ResponseStatus.success, "[{\"anmIdentifier\": \"ANMX\", "));
+
+        Response<List<Action>> actions = drishtiService.fetchNewActions("ANMX", "0");
+
+        assertTrue(actions.payload().isEmpty());
+        assertEquals(ResponseStatus.failure, actions.status());
     }
 }
