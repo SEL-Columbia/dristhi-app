@@ -1,0 +1,124 @@
+.navbar .navbar-inner {
+    padding-left: 15px;
+}
+
+.navbar.navbar-fixed-top {
+    margin-left: -10px;
+    margin-top: -2px
+}
+
+.ec-status.high-priority {
+    color: #f51136 !important;
+    font-size: 18px;
+}
+
+.ec-container {
+    padding: 8px;
+}
+
+.ec-name {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 6px;
+    margin-top: -6px;
+}
+
+.ec-information-button {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.content {
+    margin-top: 40px;
+}
+
+.divider {
+    height: 1px;
+    width: 100%;
+    overflow: hidden;
+    background-color: #b4b4b4;
+    border-bottom: 1px solid #ffffff;
+}
+
+.divider.divider-padding-top {
+    margin-top: 10px;
+}
+
+.divider.divider-padding-both {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.container-no-padding {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.well-for-beneficiary-details {
+    padding: 8px;
+    padding-top: 0px;
+    margin-bottom: 0px;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 3px 1px #ccc;
+    -webkit-box-shadow: 2px 2px 3px 1px #ccc;
+    border: 1px solid #ccc;
+}
+
+.beneficiary-detail-component {
+    padding-top: 8px;
+}
+
+.beneficiary-detail-component .beneficiary-detail-header {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.family-planning-button {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 6px;
+    display: block;
+}
+
+.family-planning-current {
+    font-weight: 500;
+    margin-left: 5px;
+    font-size: larger;
+}
+.ec-child {
+    display: inline-block;
+    padding: 10px;
+    width: 60px;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.ec-child.boy {
+    background-color: #beedf0;
+}
+
+.ec-child.girl {
+    background-color: #f5dcf3;
+}
+
+body {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #f2f2f2;
+    background-image: url("../img/background.png");
+}
+
+.ec-timeline-details .ec-timeline-details-component {
+    margin-bottom: 10px;
+}
+
+.ec-timeline-details:last-child {
+    margin-bottom: -15px;
+}
+
+.ec-actions-button {
+    font-weight: bold;
+    display: block;
+}

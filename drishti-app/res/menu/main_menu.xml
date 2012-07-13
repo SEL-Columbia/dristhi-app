@@ -2,4 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/updateMenuItem" android:title="Update" android:icon="@drawable/ic_menu_refresh"></item>
     <item android:id="@+id/logoutMenuItem" android:title="Logout" android:icon="@drawable/ic_menu_settings"></item>
+    <item android:id="@+id/myActivityMenuItem" android:title="New App :)" android:icon="@drawable/ic_menu_colorpicker"></item>
 </menu>

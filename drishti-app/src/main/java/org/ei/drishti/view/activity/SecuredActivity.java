@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import org.ei.drishti.Context;
+import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
 
 import static org.ei.drishti.event.Event.ON_LOGOUT;
@@ -53,6 +54,9 @@ public abstract class SecuredActivity extends Activity {
             case org.ei.drishti.R.id.logoutMenuItem:
                 context.userService().logout();
                 startActivity(new Intent(this, LoginActivity.class));
+                return true;
+            case R.id.myActivityMenuItem:
+                startActivity(new Intent(this, MyActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
