@@ -30,4 +30,8 @@ public class AllEligibleCouples {
     public void deleteAll() {
         repository.deleteAllEligibleCouples();
     }
+
+    public EligibleCouple findByCaseID(String caseId) {
+        return repository.findByCaseID(caseId);
+    }
 }

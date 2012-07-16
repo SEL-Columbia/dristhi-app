@@ -28,6 +28,16 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         database.insert(EC_TABLE_NAME, null, createValuesFor(eligibleCouple));
     }
 
+    public EligibleCouple findByCaseID(String caseId) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
+        List<EligibleCouple> couples = readAllEligibleCouples(cursor);
+        if (couples.isEmpty()) {
+            return null;
+        }
+        return couples.get(0);
+    }
+
     public void delete(String caseId) {
         masterRepository.getWritableDatabase().delete(EC_TABLE_NAME, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
@@ -40,7 +50,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     public List<EligibleCouple> allEligibleCouples() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, null, null, null, null, null, null);
-        return readAllAlerts(cursor);
+        return readAllEligibleCouples(cursor);
     }
 
     private ContentValues createValuesFor(EligibleCouple eligibleCouple) {
@@ -54,7 +64,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         return values;
     }
 
-    private List<EligibleCouple> readAllAlerts(Cursor cursor) {
+    private List<EligibleCouple> readAllEligibleCouples(Cursor cursor) {
         cursor.moveToFirst();
         List<EligibleCouple> eligibleCouples = new ArrayList<EligibleCouple>();
         while (!cursor.isAfterLast()) {

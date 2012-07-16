@@ -82,7 +82,7 @@ public class Context {
         return repository;
     }
 
-    protected AllEligibleCouples allEligibleCouples() {
+    public AllEligibleCouples allEligibleCouples() {
         initRepository();
         if (allEligibleCouples == null) {
             allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository());

@@ -1,46 +1,69 @@
 package org.ei.drishti.view.activity;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.view.KeyEvent;
+import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Toast;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
-import org.ei.drishti.domain.Beneficiary;
-import org.ei.drishti.repository.AllBeneficiaries;
+import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.view.controller.EligibleCoupleViewContext;
 
-import java.util.List;
+import static android.widget.Toast.LENGTH_SHORT;
 
 public class EligibleCoupleViewActivity extends Activity {
+
+    private WebView webView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ec_view);
+        setContentView(R.layout.html);
 
-        Context context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
-        AllBeneficiaries allBeneficiaries = context.allBeneficiaries();
+        webView = (WebView) findViewById(R.id.webview);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient());
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 
         String caseId = (String) getIntent().getExtras().get("caseId");
-        String wifeName = (String) getIntent().getExtras().get("wifeName");
+        Context context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+        EligibleCouple eligibleCouple = context.allEligibleCouples().findByCaseID(caseId);
 
-        setTitle(wifeName);
-
-        List<Beneficiary> beneficiaries = allBeneficiaries.findByECCaseId(caseId);
-        String text = "No pregnancy information found for this eligible couple.";
-        if (beneficiaries.size() > 0) {
-            text = pregnancyInfo(beneficiaries);
-        }
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(text);
+        webView.addJavascriptInterface(new Boo(), "boo");
+        webView.addJavascriptInterface(new EligibleCoupleViewContext(eligibleCouple), "context");
+        webView.loadUrl("file:///android_asset/www/EC.html");
     }
 
-    private String pregnancyInfo(List<Beneficiary> beneficiaries) {
-        String text = "";
-        for (int i = 0; i < beneficiaries.size(); i++) {
-            Beneficiary beneficiary = beneficiaries.get(i);
-            text += "Pregnancy " + (i + 1) + ":\n";
-            text += beneficiary.description();
-            text += "\n\n";
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
+            webView.goBack();
+            return true;
         }
-        return text;
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private class Boo {
+        public void startCommCare() {
+            Intent intent = new Intent("android.intent.action.MAIN");
+            intent.setComponent(ComponentName.unflattenFromString("org.commcare.dalvik/.activities.CommCareHomeActivity"));
+            intent.addCategory("android.intent.category.Launcher");
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(getApplicationContext(), "CommCare ODK is not installed.", LENGTH_SHORT).show();
+            }
+        }
+
+        public void startContacts() {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people/")));
+        }
     }
 }

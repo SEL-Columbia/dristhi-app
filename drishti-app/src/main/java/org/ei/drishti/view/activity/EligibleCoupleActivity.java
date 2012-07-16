@@ -76,7 +76,6 @@ public class EligibleCoupleActivity extends SecuredActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 EligibleCouple item = (EligibleCouple) adapterView.getItemAtPosition(position);
                 Intent intent = new Intent(getApplicationContext(), EligibleCoupleViewActivity.class);
-                intent.putExtra("wifeName", item.wifeName());
                 intent.putExtra("caseId", item.caseId());
                 startActivity(intent);
             }
