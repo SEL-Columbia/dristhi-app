@@ -10,11 +10,10 @@
     <script type="text/javascript" src="../js/handlebars-1.0.0.beta.6.js"></script>
     <script type="text/javascript" src="../js/custom.ui.js"></script>
     <script type="text/javascript" src="../template/ec-templates.js"></script>
+    <script type="text/javascript" src="../js/ec.ui.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            var ec = JSON.parse(context.get());
-
-            $("#ec-content").html(Handlebars.templates.ec(ec));
+            new EC(new ECBridge()).populateInto("#ec-content");
         });
     </script>
 </head>

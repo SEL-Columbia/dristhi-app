@@ -19,25 +19,6 @@ public class Beneficiary {
         this.referenceDate = referenceDate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return EqualsBuilder.reflectionEquals(this, o);
-    }
-
-    @Override
-    public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this);
-    }
-
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
-    }
-
-    public String description() {
-        return "  Status: " + status.description() + "\n  As of: " + referenceDate + "\n  Thaayi card: " + thaayiCardNumber;
-    }
-
     public String caseId() {
         return caseId;
     }
@@ -56,5 +37,20 @@ public class Beneficiary {
 
     public String referenceDate() {
         return referenceDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return EqualsBuilder.reflectionEquals(this, o);
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

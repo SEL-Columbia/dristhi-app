@@ -60,7 +60,7 @@ function program8(depth0,data) {
 function program10(depth0,data) {
   
   var buffer = "", stack1, stack2;
-  buffer += "\n                                    <div class=\"ec-timeline-details-component row-fluid\">\n                                        <div class=\"span1\">\n                                            <i class=\"icon-filter\"></i>\n                                        </div>\n                                            <div class=\"span8\">\n                                                <strong>";
+  buffer += "\n                                    <div class=\"ec-timeline-details-component row-fluid\">\n                                        <div class=\"span1\">\n                                            <i class=\"icon-filter\"></i>\n                                        </div>\n                                            <div class=\"span7\">\n                                                <strong>";
   foundHelper = helpers.event;
   stack1 = foundHelper || depth0.event;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
@@ -75,7 +75,7 @@ function program10(depth0,data) {
   tmp1.inverse = self.noop;
   stack1 = stack2.call(depth0, stack1, tmp1);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                                            </div>\n                                        <div class=\"span3 pull-right\" style=\"text-align: right\">\n                                            ";
+  buffer += "\n                                            </div>\n                                        <div class=\"span4 pull-right\" style=\"text-align: right\">\n                                            ";
   foundHelper = helpers.date;
   stack1 = foundHelper || depth0.date;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }

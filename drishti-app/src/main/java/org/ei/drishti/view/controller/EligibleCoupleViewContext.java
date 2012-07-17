@@ -1,16 +1,16 @@
 package org.ei.drishti.view.controller;
 
 import com.google.gson.Gson;
-import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.view.domain.ECContext;
 
 public class EligibleCoupleViewContext {
-    private EligibleCouple eligibleCouple;
+    private ECContext ecContext;
 
-    public EligibleCoupleViewContext(EligibleCouple eligibleCouple) {
-        this.eligibleCouple = eligibleCouple;
+    public EligibleCoupleViewContext(ECContext ecContext) {
+        this.ecContext = ecContext;
     }
 
     public String get() {
-        return new Gson().toJson(eligibleCouple);
+        return new Gson().toJson(ecContext);
     }
 }

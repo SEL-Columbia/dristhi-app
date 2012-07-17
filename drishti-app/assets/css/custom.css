@@ -125,6 +125,11 @@ body {
     background-image: url("../img/background.png");
 }
 
+.ec-timeline-details {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
 .ec-timeline-details .ec-timeline-details-component {
     margin-bottom: 10px;
 }

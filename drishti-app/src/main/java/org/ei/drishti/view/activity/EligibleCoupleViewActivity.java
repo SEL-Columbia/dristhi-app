@@ -13,8 +13,14 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
+import org.ei.drishti.domain.Beneficiary;
+import org.ei.drishti.view.domain.ECTimeline;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.view.controller.EligibleCoupleViewContext;
+import org.ei.drishti.view.domain.ECContext;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -35,9 +41,15 @@ public class EligibleCoupleViewActivity extends Activity {
         String caseId = (String) getIntent().getExtras().get("caseId");
         Context context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
         EligibleCouple eligibleCouple = context.allEligibleCouples().findByCaseID(caseId);
+        List<Beneficiary> beneficiaries = context.allBeneficiaries().findByECCaseId(caseId);
+        List<ECTimeline> ecTimeLines = new ArrayList<ECTimeline>();
+        for (Beneficiary beneficiary : beneficiaries) {
+            ecTimeLines.add(new ECTimeline(beneficiary.status().description(), new String[]{}, beneficiary.referenceDate()));
+        }
 
+        ECContext ecContext = new ECContext(eligibleCouple.wifeName(), eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(), false, null, null, null, null, ecTimeLines);
         webView.addJavascriptInterface(new Boo(), "boo");
-        webView.addJavascriptInterface(new EligibleCoupleViewContext(eligibleCouple), "context");
+        webView.addJavascriptInterface(new EligibleCoupleViewContext(ecContext), "context");
         webView.loadUrl("file:///android_asset/www/EC.html");
     }
 
