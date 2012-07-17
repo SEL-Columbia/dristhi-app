@@ -13,7 +13,10 @@
     <script type="text/javascript" src="../js/ec.ui.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            new EC(new ECBridge()).populateInto("#ec-content");
+            var ec = new EC(new ECBridge());
+            ec.populateInto("#ec-content");
+            ec.bindToContacts("#contactButton");
+            ec.bindToCommCare("#newVisitButton");
         });
     </script>
 </head>
