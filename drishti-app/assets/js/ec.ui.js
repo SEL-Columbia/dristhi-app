@@ -6,13 +6,13 @@ function EC(ecBridge) {
 
         bindToContacts:function (element) {
             $(element).click(function () {
-                window.context.startContacts();
+                ecBridge.delegateToContacts();
             });
         },
 
         bindToCommCare:function (element) {
             $(element).click(function () {
-                window.context.startCommCare();
+                ecBridge.delegateToCommCare();
             });
         }
     };
@@ -22,6 +22,14 @@ function ECBridge() {
     return {
         getCurrentEC:function () {
             return JSON.parse(context.get());
+        },
+
+        delegateToContacts: function () {
+            window.context.startContacts();
+        },
+
+        delegateToCommCare: function () {
+            window.context.startCommCare();
         }
     };
 }

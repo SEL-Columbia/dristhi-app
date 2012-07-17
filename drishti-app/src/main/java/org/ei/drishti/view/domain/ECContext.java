@@ -6,7 +6,7 @@ public class ECContext {
     private final String wifeName;
     private final String village;
     private final String subcenter;
-    private final String caseId;
+    private final String ecNumber;
     private final boolean highPriority;
     private final String address;
     private final String currentMethod;
@@ -14,12 +14,12 @@ public class ECContext {
     private final List<Child> children;
     private final List<ECTimeline> timeline;
 
-    public ECContext(String wifeName, String village, String subcenter, String caseId, boolean isHighPriority, String address,
+    public ECContext(String wifeName, String village, String subcenter, String ecNumber, boolean isHighPriority, String address,
                      String currentMethod, List<ECAlert> alerts, List<Child> children, List<ECTimeline> ecTimeLines) {
         this.wifeName = wifeName;
         this.village = village;
         this.subcenter = subcenter;
-        this.caseId = caseId;
+        this.ecNumber = ecNumber;
         highPriority = isHighPriority;
         this.address = address;
         this.currentMethod = currentMethod;

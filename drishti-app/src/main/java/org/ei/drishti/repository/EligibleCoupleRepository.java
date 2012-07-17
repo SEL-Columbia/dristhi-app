@@ -9,15 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EligibleCoupleRepository extends DrishtiRepository {
-    private static final String EC_SQL = "CREATE TABLE eligible_couple(caseID VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR)";
+    private static final String EC_SQL = "CREATE TABLE eligible_couple(caseID VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, ecNumber VARCHAR, currentMethod VARCHAR, village VARCHAR, subCenter VARCHAR)";
     private static final String CASE_ID_COLUMN = "caseID";
     private static final String EC_NUMBER_COLUMN = "ecNumber";
     private static final String WIFE_NAME_COLUMN = "wifeName";
     private static final String HUSBAND_NAME_COLUMN = "husbandName";
     private static final String EC_TABLE_NAME = "eligible_couple";
+    private static final String CURRENT_METHOD_COLUMN = "currentMethod";
     private static final String VILLAGE_NAME_COLUMN = "village";
     private static final String SUBCENTER_NAME_COLUMN = "subCenter";
-    private static final String[] EC_TABLE_COLUMNS = new String[] {CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN, EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN};
+    private static final String[] EC_TABLE_COLUMNS = new String[] {CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN, EC_NUMBER_COLUMN, CURRENT_METHOD_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN};
 
     public void onCreate(SQLiteDatabase database) {
         database.execSQL(EC_SQL);
@@ -59,6 +60,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         values.put(EC_NUMBER_COLUMN, eligibleCouple.ecNumber());
         values.put(WIFE_NAME_COLUMN, eligibleCouple.wifeName());
         values.put(HUSBAND_NAME_COLUMN, eligibleCouple.husbandName());
+        values.put(CURRENT_METHOD_COLUMN, eligibleCouple.currentMethod());
         values.put(VILLAGE_NAME_COLUMN, eligibleCouple.village());
         values.put(SUBCENTER_NAME_COLUMN, eligibleCouple.subCenter());
         return values;
@@ -68,7 +70,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<EligibleCouple> eligibleCouples = new ArrayList<EligibleCouple>();
         while (!cursor.isAfterLast()) {
-            eligibleCouples.add(new EligibleCouple(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
+            eligibleCouples.add(new EligibleCouple(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), cursor.getString(6)));
             cursor.moveToNext();
         }
         cursor.close();

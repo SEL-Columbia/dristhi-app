@@ -15,7 +15,7 @@ public class AllEligibleCouples {
 
     public void handleAction(Action action) {
         if ("createEC".equals(action.type())) {
-            repository.add(new EligibleCouple(action.caseID(), action.get("wife"), action.get("husband"), action.get("ecNumber"), action.get("village"), action.get("subcenter")));
+            repository.add(new EligibleCouple(action.caseID(), action.get("wife"), action.get("husband"), action.get("ecNumber"), action.get("currentMethod"), action.get("village"), action.get("subcenter")));
         } else if ("deleteEC".equals(action.type())) {
             repository.delete(action.caseID());
         } else {

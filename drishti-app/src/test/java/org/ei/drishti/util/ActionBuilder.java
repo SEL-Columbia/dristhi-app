@@ -21,8 +21,8 @@ public class ActionBuilder {
         return new Action(caseID, "alert", "deleteAllAlerts", new HashMap<String, String>(), "0");
     }
 
-    public static Action actionForCreateEC(String caseID, String wifeName, String husbandName, String ecNumber, String village, String subCenter, String phc) {
-        return new Action(caseID, "eligibleCouple", "createEC", createEligibleCouple(wifeName, husbandName, ecNumber, village, subCenter, phc).data(), "0");
+    public static Action actionForCreateEC(String caseID, String wifeName, String husbandName, String ecNumber, String currentMethod, String village, String subCenter, String phc) {
+        return new Action(caseID, "eligibleCouple", "createEC", createEligibleCouple(wifeName, husbandName, ecNumber, currentMethod, village, subCenter, phc).data(), "0");
     }
 
     public static Action actionForDeleteEC(String caseID) {
@@ -38,7 +38,7 @@ public class ActionBuilder {
     }
 
     public static Action actionForCreateChildBeneficiary() {
-        return new Action("Case X", "child", "createChildBeneficiary", registerChildBirth("motherCaseId", LocalDate.now()).data(), "0");
+        return new Action("Case X", "child", "createChildBeneficiary", registerChildBirth("motherCaseId", LocalDate.now(), "female").data(), "0");
     }
 
     public static Action unknownAction(String target) {
