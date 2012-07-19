@@ -58,7 +58,6 @@ public class AlertsActivityTest extends ActivityInstrumentationTestCase2<AlertsA
         solo.switchActivity();
 
         solo.assertCurrentActivity("Wrong activity", EligibleCoupleActivity.class);
-        solo.assertNamesInECs("Wife 1 " + defaultSuffix, "Wife 2 " + defaultSuffix);
     }
 
     private DrishtiService setupSuffix(String suffix) {

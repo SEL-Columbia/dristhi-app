@@ -1,118 +1,50 @@
 package org.ei.drishti.view.activity;
 
-import android.content.Intent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.*;
-import com.markupartist.android.widget.PullToRefreshListView;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import org.ei.drishti.Context;
 import org.ei.drishti.R;
-import org.ei.drishti.controller.EligibleCoupleController;
 import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.view.AfterFetchListener;
-import org.ei.drishti.view.ItemFilter;
-import org.ei.drishti.view.UpdateActionsTask;
-import org.ei.drishti.view.adapter.ListAdapter;
-import org.ei.drishti.view.matcher.MatchECByWifeNameOrNumber;
+import org.ei.drishti.view.controller.EligibleCoupleListViewContext;
+import org.ei.drishti.view.domain.EC;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import static org.ei.drishti.domain.FetchStatus.fetched;
+public class EligibleCoupleActivity extends Activity {
 
-public class EligibleCoupleActivity extends SecuredActivity {
-    private UpdateActionsTask updateECTask;
-    private EligibleCoupleController controller;
-    private ItemFilter<EligibleCouple> itemFilter;
+    private WebView webView;
 
     @Override
-    protected void onCreation() {
-        setContentView(R.layout.main);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.html);
 
-        findViewById(R.id.switchViewButton).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), AlertsActivity.class));
-                finish();
-            }
-        });
+        webView = (WebView) findViewById(R.id.webview);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient());
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 
-        EditText searchBox = (EditText) findViewById(R.id.searchEditText);
-        searchBox.setHint("Search Couples");
-        final ListAdapter<EligibleCouple> ecAdapter = new ListAdapter<EligibleCouple>(this, R.layout.list_item, new ArrayList<EligibleCouple>()) {
-            @Override
-            protected void populateListItem(View view, EligibleCouple item) {
-                setTextView(view, R.id.leftTop, item.wifeName());
-                setTextView(view, R.id.rightTop, item.ecNumber());
-                setTextView(view, R.id.leftBottom, item.husbandName());
-            }
-
-            private void setTextView(View v, int viewId, String text) {
-                ((TextView) v.findViewById(viewId)).setText(text);
-            }
-        };
-        controller = context.eligibleCoupleController(ecAdapter);
-        updateECTask = new UpdateActionsTask(this, context.actionService(), (ProgressBar) findViewById(org.ei.drishti.R.id.progressBar));
-        itemFilter = new ItemFilter<EligibleCouple>(ecAdapter);
-        itemFilter.addFilter(new MatchECByWifeNameOrNumber(searchBox));
-
-        final PullToRefreshListView ecList = (PullToRefreshListView) findViewById(org.ei.drishti.R.id.listView);
-        ecList.setAdapter(ecAdapter);
-        ecList.setTextFilterEnabled(true);
-
-        ecList.setOnRefreshListener(new PullToRefreshListView.OnRefreshListener() {
-            public void onRefresh() {
-                updateECTask.updateFromServer(new AfterFetchListener() {
-                    public void afterFetch(FetchStatus status) {
-                        if (fetched.equals(status)) {
-                            controller.refreshECFromDB();
-                        }
-                        ecList.onRefreshComplete();
-                    }
-                });
-            }
-        });
-        ecList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                EligibleCouple item = (EligibleCouple) adapterView.getItemAtPosition(position);
-                Intent intent = new Intent(getApplicationContext(), EligibleCoupleViewActivity.class);
-                intent.putExtra("caseId", item.caseId());
-                startActivity(intent);
-            }
-        });
-    }
-
-    @Override
-    protected void onResumption() {
-        controller.refreshECFromDB();
-        updateECs();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(org.ei.drishti.R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case org.ei.drishti.R.id.updateMenuItem:
-                updateECs();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        Context context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+        List<EligibleCouple> couples = context.allEligibleCouples().fetchAll();
+        List<EC> ecList = new ArrayList<EC>();
+        for (EligibleCouple couple : couples) {
+            ecList.add(new EC(couple.caseId(), couple.wifeName(), couple.village(), couple.ecNumber(), false));
         }
+        webView.addJavascriptInterface(new EligibleCoupleListViewContext(ecList, this), "context");
+        webView.loadUrl("file:///android_asset/www/ec_list.html");
     }
 
-    private void updateECs() {
-        updateECTask.updateFromServer(new AfterFetchListener() {
-            public void afterFetch(FetchStatus status) {
-                if (fetched.equals(status)) {
-                    controller.refreshECFromDB();
-                }
-            }
-        });
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
+            webView.goBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/handlebars-1.0.0.beta.6.js"></script>
+    <script type="text/javascript" src="../js/custom.ui.js"></script>
+    <script type="text/javascript" src="../template/ec-templates.js"></script>
+    <script type="text/javascript" src="../js/fake.ec.js"></script>
+    <script type="text/javascript" src="../js/ec.ui.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var list = new ECList(new ECListBridge());
+            list.populateInto("#ec-list");
+            list.bindEveryItemToECView("#ec-list", ".ec-list-item");
+        });
+    </script>
+<body>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner list">
+        <a class="brand list" href="#"><span class="navbar-brand-icon-holder">
+            <i class="icon-book icon-white navbar-brand-icon"></i>
+        </span>EC</a>
+
+        <ul class="nav pull-right">
+            <li class="divider-vertical list"></li>
+            <li><i class="navbar-icon icon-plus icon-white" href="#"></i></li>
+            <li class="divider-vertical list"></li>
+            <li style=""><i class="navbar-icon icon-search icon-white" href="#"></i></li>
+        </ul>
+    </div>
+</div>
+
+<div class="content">
+    <div id="ec-list" class="ec-container container-fluid">
+    </div>
+</div>
+</body>
+</html>

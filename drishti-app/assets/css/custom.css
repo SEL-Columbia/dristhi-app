@@ -1,5 +1,6 @@
 .navbar .navbar-inner {
     padding-left: 15px;
+    zoom: 125%;
 }
 
 .navbar.navbar-fixed-top {
@@ -7,9 +8,46 @@
     margin-top: -2px
 }
 
+.navbar .navbar-inner.list {
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#0a8bcc), color-stop(100%,#1b84bb));
+    background: -webkit-linear-gradient(top, #0a8bcc 0%, #1b84bb 100%)
+}
+
+.brand.list {
+    margin-top: 2px;
+    color: #e8fdfe;
+    font-weight: 500;
+}
+
+.navbar-brand-icon-holder {
+    background-color: #333;
+    padding-left: 4px;
+    margin-left: 5px;
+    margin-right: 12px;
+    border-radius: 2px;
+}
+
+.navbar-brand-icon {
+    margin-top: 6px;
+}
+
+.navbar-icon {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.nav.pull-right:last-child {
+    padding-right: 9px;
+}
+
 .ec-status.high-priority {
     color: #f51136 !important;
     font-size: 18px;
+}
+
+.divider-vertical.list {
+    background-color: #5fc2e5;
+    border-right-color: #39a2d0;
 }
 
 .alert {
@@ -43,7 +81,7 @@
 }
 
 .content {
-    margin-top: 40px;
+    margin-top: 50px;
 }
 
 .divider {
@@ -56,6 +94,10 @@
 
 .divider.divider-padding-top {
     margin-top: 10px;
+}
+
+.divider.divider-padding-bottom {
+    margin-bottom: 10px;
 }
 
 .divider.divider-padding-both {
@@ -123,6 +165,7 @@ body {
     background-clip: border-box;
     background-color: #f2f2f2;
     background-image: url("../img/background.png");
+    font-weight: 600;
 }
 
 .ec-timeline-details {
@@ -141,4 +184,23 @@ body {
 .ec-actions-button {
     font-weight: bold;
     display: block;
+}
+
+.ec-list-item .high-risk {
+    color: red;
+    float: right;
+    text-align: right;
+}
+
+.ec-list-item, .ec-list-item:hover, .ec-list-item:visited, .ec-list-item:visited:hover {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.ec-list-item .ec-name {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 0px;
 }
