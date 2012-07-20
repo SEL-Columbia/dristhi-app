@@ -40,7 +40,7 @@ public class EligibleCoupleViewActivity extends SecuredActivity {
         ECContext ecContext = new ECContext(eligibleCouple.wifeName(), eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(),
                 false, null, eligibleCouple.currentMethod(), null, null, ecTimeLines);
         webView.addJavascriptInterface(new EligibleCoupleViewContext(ecContext, this), "context");
-        webView.loadUrl("file:///android_asset/www/EC.html");
+        webView.loadUrl("file:///android_asset/www/ec_detail.html");
     }
 
     @Override

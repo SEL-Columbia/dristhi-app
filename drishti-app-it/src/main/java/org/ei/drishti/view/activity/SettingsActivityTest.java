@@ -11,13 +11,13 @@ import static org.ei.drishti.util.FakeContext.setupService;
 import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
 import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 
-public class SettingsActivityTest extends ActivityInstrumentationTestCase2<AlertsActivity> {
+public class SettingsActivityTest extends ActivityInstrumentationTestCase2<HomeActivity> {
     private DrishtiSolo solo;
     private FakeDrishtiService drishtiService;
     private FakeUserService userService;
 
     public SettingsActivityTest() {
-        super("org.ei.drishti.test", AlertsActivity.class);
+        super("org.ei.drishti.test", HomeActivity.class);
         drishtiService = new FakeDrishtiService("Default");
         userService = new FakeUserService();
     }

@@ -2,7 +2,6 @@ package org.ei.drishti.util;
 
 import android.app.Activity;
 import android.view.View;
-import org.ei.drishti.R;
 
 public class Wait {
     public static void waitForProgressBarToGoAway(Activity activity) {
@@ -16,15 +15,7 @@ public class Wait {
     }
 
     private static boolean waitForProgressBarVisibilityToBe(Activity activity, int numberOfMillisecondsToWait, int expectedVisibility) {
-        for (int i = 0; i < numberOfMillisecondsToWait / 100; i++) {
-            if (activity.findViewById(R.id.progressBar) == null || activity.findViewById(R.id.progressBar).getVisibility() == expectedVisibility) {
-                return true;
-            }
-
-            sleep(100);
-        }
-
-        return false;
+        return true;
     }
 
     public static void waitForFilteringToFinish() {

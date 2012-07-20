@@ -1,13 +1,8 @@
 package org.ei.drishti;
 
-import org.ei.drishti.controller.AlertController;
-import org.ei.drishti.controller.EligibleCoupleController;
-import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
 import org.ei.drishti.util.Session;
-import org.ei.drishti.view.adapter.ListAdapter;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
@@ -51,14 +46,6 @@ public class Context {
     public Context updateApplicationContext(android.content.Context applicationContext) {
         this.applicationContext = applicationContext;
         return this;
-    }
-
-    public AlertController alertController(ListAdapter<Alert> adapter) {
-        return new AlertController(adapter, allAlerts());
-    }
-
-    public EligibleCoupleController eligibleCoupleController(ListAdapter<EligibleCouple> adapter) {
-        return new EligibleCoupleController(adapter, allEligibleCouples());
     }
 
     protected DrishtiService drishtiService() {
