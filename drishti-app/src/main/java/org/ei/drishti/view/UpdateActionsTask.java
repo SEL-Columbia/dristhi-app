@@ -1,7 +1,6 @@
 package org.ei.drishti.view;
 
 import android.content.Context;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.event.Event;
@@ -12,10 +11,10 @@ public class UpdateActionsTask {
     private ActionService actionService;
     private Context context;
 
-    public UpdateActionsTask(Context context, ActionService actionService, ProgressBar progressBar) {
+    public UpdateActionsTask(Context context, ActionService actionService, ProgressIndicator progressIndicator) {
         this.actionService = actionService;
         this.context = context;
-        task = new LockingBackgroundTask(progressBar);
+        task = new LockingBackgroundTask(progressIndicator);
     }
 
     public void updateFromServer(final AfterFetchListener afterFetchListener) {

@@ -31,7 +31,7 @@ public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTes
         setupService(drishtiService, 1000000).updateApplicationContext(getActivity().getApplicationContext());
 
         ActionServiceWithSimulatedLongRunningTask service = new ActionServiceWithSimulatedLongRunningTask();
-        final UpdateActionsTask updateAlertsTask = new UpdateActionsTask(null, service, (ProgressBar) getActivity().findViewById(R.id.progressBar));
+        final UpdateActionsTask updateAlertsTask = new UpdateActionsTask(null, service, new AndroidProgressIndicator((ProgressBar) getActivity().findViewById(R.id.progressBar)));
 
         waitForProgressBarToGoAway(getActivity(), 4000);
 

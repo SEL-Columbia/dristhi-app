@@ -27,7 +27,7 @@ function program1(depth0,data) {
   stack1 = foundHelper || depth0.ecNumber;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "ecNumber", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</li>\n                </ul>\n            </div>\n\n            <div class=\"span3 high-risk\">\n                    ";
+  buffer += escapeExpression(stack1) + "</li>\n                </ul>\n            </div>\n\n            <div class=\"span3 high-risk pull-text-completely-right\">\n                    ";
   foundHelper = helpers.isHighRisk;
   stack1 = foundHelper || depth0.isHighRisk;
   stack2 = helpers['if'];
@@ -157,7 +157,7 @@ function program11(depth0,data) {
   tmp1.inverse = self.noop;
   stack1 = stack2.call(depth0, stack1, tmp1);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n</div>\n\n<div class=\"content\">\n    <div class=\"ec-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span4\">\n                <img src=\"../img/matt.png\"/>\n            </div>\n\n            <div id=\"ec-name\" class=\"span6\">\n                <ul class=\"ec-details unstyled\">\n                    <li class=\"ec-name\">";
+  buffer += "\n    </div>\n</div>\n\n<div class=\"content\">\n    <div class=\"ec-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span4\">\n                <img src=\"../img/mother.png\"/>\n            </div>\n\n            <div id=\"ec-name\" class=\"span6\">\n                <ul class=\"ec-details unstyled\">\n                    <li class=\"ec-name\">";
   foundHelper = helpers.wifeName;
   stack1 = foundHelper || depth0.wifeName;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }

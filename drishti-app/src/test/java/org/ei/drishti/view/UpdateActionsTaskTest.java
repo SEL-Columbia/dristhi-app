@@ -32,7 +32,7 @@ public class UpdateActionsTaskTest {
 
     @Test
     public void shouldShowProgressBarsWhileFetchingAlerts() throws Exception {
-        UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, actionService, progressBar);
+        UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, actionService, new AndroidProgressIndicator(progressBar));
         when(actionService.fetchNewActions()).thenReturn(fetched);
 
         updateActionsTask.updateFromServer(new AfterFetchListener() {
@@ -49,7 +49,7 @@ public class UpdateActionsTaskTest {
 
     @Test
     public void shouldNotUpdateDisplayIfNothingWasFetched() throws Exception {
-        UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, actionService, progressBar);
+        UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, actionService, new AndroidProgressIndicator(progressBar));
         when(actionService.fetchNewActions()).thenReturn(nothingFetched);
 
         updateActionsTask.updateFromServer(new AfterFetchListener() {

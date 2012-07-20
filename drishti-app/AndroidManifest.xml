@@ -17,6 +17,8 @@
 
         <activity android:name=".view.activity.AlertsActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
                   android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.HomeActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
+                  android:screenOrientation="portrait"/>
         <activity android:name=".view.activity.EligibleCoupleActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
                   android:screenOrientation="portrait"/>
         <activity android:name=".view.activity.EligibleCoupleViewActivity" android:theme="@android:style/Theme.Light.NoTitleBar"

@@ -1,20 +1,17 @@
 package org.ei.drishti.view;
 
 import android.os.AsyncTask;
-import android.widget.ProgressBar;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-import static android.view.View.INVISIBLE;
-import static android.view.View.VISIBLE;
 import static org.ei.drishti.util.Log.logVerbose;
 
 public class LockingBackgroundTask {
-    private ProgressBar progressBar;
+    private ProgressIndicator indicator;
     private static final ReentrantLock lock = new ReentrantLock();
 
-    public LockingBackgroundTask(ProgressBar progressBar) {
-        this.progressBar = progressBar;
+    public LockingBackgroundTask(ProgressIndicator progressIndicator) {
+        this.indicator = progressIndicator;
     }
 
     public <T> void doActionInBackground(final BackgroundAction<T> backgroundAction) {
@@ -34,13 +31,13 @@ public class LockingBackgroundTask {
 
             @Override
             protected void onPreExecute() {
-                progressBar.setVisibility(VISIBLE);
+                indicator.setVisibile();
             }
 
             @Override
             protected void onPostExecute(T result) {
                 backgroundAction.postExecuteInUIThread(result);
-                progressBar.setVisibility(INVISIBLE);
+                indicator.setInvisible();
             }
         }.execute(null);
     }

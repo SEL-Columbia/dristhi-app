@@ -3,8 +3,11 @@ package org.ei.drishti.view.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import org.ei.drishti.Context;
+import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
 
 import static org.ei.drishti.event.Event.ON_LOGOUT;
@@ -57,6 +60,13 @@ public abstract class SecuredActivity extends Activity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
     }
 
     protected abstract void onCreation();

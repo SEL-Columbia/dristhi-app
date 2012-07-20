@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
+
+    <script type="text/javascript" src="../js/custom.ui.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/handlebars-1.0.0.beta.6.js"></script>
+    <script type="text/javascript" src="../template/ec-templates.js"></script>
+    <script type="text/javascript" src="../js/home.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var home = new Home(new HomeBridge());
+            home.bindToEligibleCoupleList("#eligibleCoupleMenuOption");
+        });
+    </script>
+</head>
+<body class="menu-background">
+<div class="menu-background">
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <span class="brand list" href="#">De'souza</span>
+
+            <ul class="nav pull-right">
+                <li class="divider-vertical list"></li>
+                <li><i class="navbar-icon icon-cog icon-white" href="#"></i></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="menu-button-container container-fluid">
+            <div class="row-fluid">
+                <div class="menu-button span6">
+                    <img src="../img/glyphicons_078_warning_sign.png" class="menu-icon"><br>
+                    Workplan
+                </div>
+                <div class="menu-button span6">
+                    <img src="../img/glyphicons_134_inbox_in.png" class="menu-icon"><br>
+                    Inbox
+                </div>
+            </div>
+            <div class="row-fluid menu-button-row-padding">
+                <div class="menu-button span6">
+                    <img src="../img/glyphicons_079_signal.png" class="menu-icon"><br>
+                    My Stats
+                </div>
+                <div class="menu-button span6">
+                    <img src="../img/glyphicons_078_warning_sign.png" class="menu-icon"><br>
+                    Reporting
+                </div>
+            </div>
+            <div class="menu-option row-fluid" id="eligibleCoupleMenuOption">
+                <div class="span1">
+                    <img src="../img/glyphicons_024_parents.png">
+                </div>
+                <div class="span9">Eligible Couple</div>
+                <div class="span2 pull-text-completely-right">547</div>
+            </div>
+            <div class="menu-option-divider"></div>
+
+            <div class="menu-option row-fluid">
+                <div class="span1">
+                    <img src="../img/glyphicons_024_parents.png">
+                </div>
+                <div class="span9">ANC</div>
+                <div class="span2 pull-text-completely-right">26</div>
+            </div>
+            <div class="menu-option-divider"></div>
+
+            <div class="menu-option row-fluid">
+                <div class="span1">
+                    <img src="../img/glyphicons_024_parents.png">
+                </div>
+                <div class="span9">PNC</div>
+                <div class="span2 pull-text-completely-right">12</div>
+            </div>
+            <div class="menu-option-divider"></div>
+
+            <div class="menu-option row-fluid">
+                <div class="span1">
+                    <img src="../img/glyphicons_024_parents.png">
+                </div>
+                <div class="span9">Child</div>
+                <div class="span2 pull-text-completely-right">45</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

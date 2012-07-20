@@ -1,7 +1,5 @@
 package org.ei.drishti.view.activity;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
@@ -17,13 +15,12 @@ import org.ei.drishti.view.domain.ECTimeline;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EligibleCoupleViewActivity extends Activity {
+public class EligibleCoupleViewActivity extends SecuredActivity {
 
     private WebView webView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreation() {
         setContentView(R.layout.html);
 
         webView = (WebView) findViewById(R.id.webview);
@@ -53,5 +50,9 @@ public class EligibleCoupleViewActivity extends Activity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onResumption() {
     }
 }

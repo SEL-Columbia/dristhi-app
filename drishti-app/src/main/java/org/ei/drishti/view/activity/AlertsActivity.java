@@ -15,10 +15,7 @@ import org.ei.drishti.controller.AlertController;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Displayable;
 import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.view.AfterFetchListener;
-import org.ei.drishti.view.DialogAction;
-import org.ei.drishti.view.ItemFilter;
-import org.ei.drishti.view.UpdateActionsTask;
+import org.ei.drishti.view.*;
 import org.ei.drishti.view.adapter.ListAdapter;
 import org.ei.drishti.view.matcher.*;
 
@@ -64,7 +61,7 @@ public class AlertsActivity extends SecuredActivity {
             }
         };
         controller = context.alertController(alertAdapter);
-        updateAlerts = new UpdateActionsTask(this, context.actionService(), (ProgressBar) findViewById(R.id.progressBar));
+        updateAlerts = new UpdateActionsTask(this, context.actionService(), new AndroidProgressIndicator((ProgressBar) findViewById(R.id.progressBar)));
 
         ItemFilter<Alert> filter = new ItemFilter<Alert>(alertAdapter);
         filter.addFilter(new MatchAlertByVisitCode(this, createDialog(R.drawable.ic_tab_type, "Filter By Type", All, BCG, HEP, OPV)));

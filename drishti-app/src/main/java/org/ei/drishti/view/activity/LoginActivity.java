@@ -11,6 +11,7 @@ import android.widget.TextView;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
+import org.ei.drishti.view.AndroidProgressIndicator;
 import org.ei.drishti.view.BackgroundAction;
 import org.ei.drishti.view.LockingBackgroundTask;
 
@@ -84,7 +85,7 @@ public class LoginActivity extends Activity {
     }
 
     private void tryRemoteLogin(final String userName, final String password, final Listener<Boolean> afterLoginCheck) {
-        LockingBackgroundTask task = new LockingBackgroundTask(((ProgressBar) findViewById(R.id.login_progressBar)));
+        LockingBackgroundTask task = new LockingBackgroundTask(new AndroidProgressIndicator(((ProgressBar) findViewById(R.id.login_progressBar))));
 
         task.doActionInBackground(new BackgroundAction<Boolean>() {
             public Boolean actionToDoInBackgroundThread() {
@@ -115,7 +116,7 @@ public class LoginActivity extends Activity {
     }
 
     private void goToAlerts() {
-        startActivity(new Intent(getApplicationContext(), AlertsActivity.class));
+        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
         finish();
     }
 

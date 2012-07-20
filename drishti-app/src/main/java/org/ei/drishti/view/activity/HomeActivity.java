@@ -4,17 +4,14 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import org.ei.drishti.Context;
 import org.ei.drishti.R;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.view.controller.EligibleCoupleListViewContext;
-import org.ei.drishti.view.domain.EC;
+import org.ei.drishti.domain.FetchStatus;
+import org.ei.drishti.view.AfterFetchListener;
+import org.ei.drishti.view.NoOpProgressIndicator;
+import org.ei.drishti.view.UpdateActionsTask;
+import org.ei.drishti.view.controller.HomeActivityContext;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class EligibleCoupleActivity extends SecuredActivity {
-
+public class HomeActivity extends SecuredActivity {
     private WebView webView;
 
     @Override
@@ -26,14 +23,8 @@ public class EligibleCoupleActivity extends SecuredActivity {
         webView.setWebViewClient(new WebViewClient());
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 
-        Context context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
-        List<EligibleCouple> couples = context.allEligibleCouples().fetchAll();
-        List<EC> ecList = new ArrayList<EC>();
-        for (EligibleCouple couple : couples) {
-            ecList.add(new EC(couple.caseId(), couple.wifeName(), couple.village(), couple.ecNumber(), false));
-        }
-        webView.addJavascriptInterface(new EligibleCoupleListViewContext(ecList, this), "context");
-        webView.loadUrl("file:///android_asset/www/ec_list.html");
+        webView.addJavascriptInterface(new HomeActivityContext(this), "context");
+        webView.loadUrl("file:///android_asset/www/home.html");
     }
 
     @Override
@@ -47,5 +38,10 @@ public class EligibleCoupleActivity extends SecuredActivity {
 
     @Override
     protected void onResumption() {
+        UpdateActionsTask updateActionsTask = new UpdateActionsTask(this, context.actionService(), new NoOpProgressIndicator());
+        updateActionsTask.updateFromServer(new AfterFetchListener() {
+            public void afterFetch(FetchStatus status) {
+            }
+        });
     }
 }
