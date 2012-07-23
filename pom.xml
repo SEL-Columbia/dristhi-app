@@ -11,8 +11,6 @@
     <modules>
         <module>drishti-app</module>
         <module>drishti-app-it</module>
-        <module>external/actionbar/actionbar</module>
-        <module>external/pulltorefresh/pulltorefresh</module>
     </modules>
 
     <properties>

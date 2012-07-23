@@ -33,16 +33,6 @@
             <artifactId>drishti-app</artifactId>
             <type>apk</type>
             <version>0.1-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.markupartist.android</groupId>
-                    <artifactId>actionbar</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.markupartist.android</groupId>
-                    <artifactId>pulltorefresh</artifactId>
-                </exclusion>
-            </exclusions>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -50,16 +40,6 @@
             <artifactId>drishti-app</artifactId>
             <type>jar</type>
             <version>0.1-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.markupartist.android</groupId>
-                    <artifactId>actionbar</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.markupartist.android</groupId>
-                    <artifactId>pulltorefresh</artifactId>
-                </exclusion>
-            </exclusions>
             <scope>provided</scope>
         </dependency>
         <dependency>
