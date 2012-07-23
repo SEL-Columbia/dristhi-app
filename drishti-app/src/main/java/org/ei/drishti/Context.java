@@ -14,7 +14,7 @@ public class Context {
     private EligibleCoupleRepository eligibleCoupleRepository;
     private AlertRepository alertRepository;
     private SettingsRepository settingsRepository;
-    private BeneficiaryRepository pregnancyRepository;
+    private BeneficiaryRepository beneficiaryRepository;
 
     private AllSettings allSettings;
     private AllAlerts allAlerts;
@@ -24,6 +24,7 @@ public class Context {
     private DrishtiService drishtiService;
     private ActionService actionService;
     private UserService userService;
+    private ANMService anmService;
 
     private CommCareService commCareService;
     private Session session;
@@ -123,10 +124,10 @@ public class Context {
     }
 
     private BeneficiaryRepository beneficiaryRepository() {
-        if (pregnancyRepository == null) {
-            pregnancyRepository = new BeneficiaryRepository();
+        if (beneficiaryRepository == null) {
+            beneficiaryRepository = new BeneficiaryRepository();
         }
-        return pregnancyRepository;
+        return beneficiaryRepository;
     }
 
     public UserService userService() {
@@ -149,5 +150,12 @@ public class Context {
             session = new Session();
         }
         return session;
+    }
+
+    public ANMService anmService() {
+        if (anmService == null) {
+            anmService = new ANMService(allSettings(), beneficiaryRepository(), eligibleCoupleRepository());
+        }
+        return anmService;
     }
 }

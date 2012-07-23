@@ -1,60 +1,5 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
-templates['ec_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, stack2, foundHelper, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, stack2;
-  buffer += "\n    <div class=\"row-fluid\">\n        <a data-caseId=";
-  foundHelper = helpers.caseId;
-  stack1 = foundHelper || depth0.caseId;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "caseId", { hash: {} }); }
-  buffer += escapeExpression(stack1) + " class=\"ec-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span9\">\n                <ul class=\"ec-details unstyled\">\n                    <li class=\"ec-name\">";
-  foundHelper = helpers.wifeName;
-  stack1 = foundHelper || depth0.wifeName;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "wifeName", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</li>\n                    <li>";
-  foundHelper = helpers.village;
-  stack1 = foundHelper || depth0.village;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "village", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</li>\n                    <li>EC#: ";
-  foundHelper = helpers.ecNumber;
-  stack1 = foundHelper || depth0.ecNumber;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "ecNumber", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</li>\n                </ul>\n            </div>\n\n            <div class=\"span3 high-risk pull-text-completely-right\">\n                    ";
-  foundHelper = helpers.isHighRisk;
-  stack1 = foundHelper || depth0.isHighRisk;
-  stack2 = helpers['if'];
-  tmp1 = self.program(2, program2, data);
-  tmp1.hash = {};
-  tmp1.fn = tmp1;
-  tmp1.inverse = self.noop;
-  stack1 = stack2.call(depth0, stack1, tmp1);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            </div>\n\n            <div class=\"divider divider-padding-bottom\"></div>\n        </a>\n    </div>\n";
-  return buffer;}
-function program2(depth0,data) {
-  
-  
-  return "\n                        High Risk\n                    ";}
-
-  foundHelper = helpers.ec;
-  stack1 = foundHelper || depth0.ec;
-  stack2 = helpers.each;
-  tmp1 = self.program(1, program1, data);
-  tmp1.hash = {};
-  tmp1.fn = tmp1;
-  tmp1.inverse = self.noop;
-  stack1 = stack2.call(depth0, stack1, tmp1);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
-  return buffer;});
 templates['ec'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, stack2, foundHelper, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
@@ -213,5 +158,92 @@ function program11(depth0,data) {
   stack1 = stack2.call(depth0, stack1, tmp1);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                            </div>\n                        </div>\n                    </div>\n                    <script type=\"text/javascript\">\n                        toggleIconDuringCollapse(\"#ec-timeline\", \".toggle-indicator\", \"icon-chevron-down\", \"icon-chevron-up\");\n                    </script>\n\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"ec-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span4\">\n                <a class=\"ec-actions-button btn btn-large\" id=\"contactButton\">Contact</a>\n            </div>\n            <div class=\"span8\">\n                <a class=\"ec-actions-button btn btn-large\" id=\"newVisitButton\">New Visit</a>\n            </div>\n        </div>\n    </div>\n</div>\n";
+  return buffer;});
+templates['ec_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, stack2, foundHelper, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, stack2;
+  buffer += "\n    <div class=\"row-fluid\">\n        <a data-caseId=";
+  foundHelper = helpers.caseId;
+  stack1 = foundHelper || depth0.caseId;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "caseId", { hash: {} }); }
+  buffer += escapeExpression(stack1) + " class=\"ec-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span9\">\n                <ul class=\"ec-details unstyled\">\n                    <li class=\"ec-name\">";
+  foundHelper = helpers.wifeName;
+  stack1 = foundHelper || depth0.wifeName;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "wifeName", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</li>\n                    <li>";
+  foundHelper = helpers.village;
+  stack1 = foundHelper || depth0.village;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "village", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</li>\n                    <li>EC#: ";
+  foundHelper = helpers.ecNumber;
+  stack1 = foundHelper || depth0.ecNumber;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "ecNumber", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</li>\n                </ul>\n            </div>\n\n            <div class=\"span3 high-risk pull-text-completely-right\">\n                    ";
+  foundHelper = helpers.isHighRisk;
+  stack1 = foundHelper || depth0.isHighRisk;
+  stack2 = helpers['if'];
+  tmp1 = self.program(2, program2, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.noop;
+  stack1 = stack2.call(depth0, stack1, tmp1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            </div>\n\n            <div class=\"divider divider-padding-bottom\"></div>\n        </a>\n    </div>\n";
+  return buffer;}
+function program2(depth0,data) {
+  
+  
+  return "\n                        High Risk\n                    ";}
+
+  foundHelper = helpers.ec;
+  stack1 = foundHelper || depth0.ec;
+  stack2 = helpers.each;
+  tmp1 = self.program(1, program1, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.noop;
+  stack1 = stack2.call(depth0, stack1, tmp1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;});
+templates['home'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"navbar navbar-fixed-top\">\n    <div class=\"navbar-inner\">\n        <span class=\"brand list\" href=\"#\">";
+  foundHelper = helpers.anmName;
+  stack1 = foundHelper || depth0.anmName;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "anmName", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</span>\n\n        <ul class=\"nav pull-right\">\n            <li class=\"divider-vertical list\"></li>\n            <li><i class=\"navbar-icon icon-cog icon-white\" href=\"#\"></i></li>\n        </ul>\n    </div>\n</div>\n\n<div class=\"content\">\n    <div class=\"menu-button-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"menu-button span6\">\n                <img src=\"../img/glyphicons_078_warning_sign.png\" class=\"menu-icon\"><br>\n                Workplan\n            </div>\n            <div class=\"menu-button span6\">\n                <img src=\"../img/glyphicons_134_inbox_in.png\" class=\"menu-icon\"><br>\n                Inbox\n            </div>\n        </div>\n        <div class=\"row-fluid menu-button-row-padding\">\n            <div class=\"menu-button span6\">\n                <img src=\"../img/glyphicons_079_signal.png\" class=\"menu-icon\"><br>\n                My Stats\n            </div>\n            <div class=\"menu-button span6\">\n                <img src=\"../img/glyphicons_078_warning_sign.png\" class=\"menu-icon\"><br>\n                Reporting\n            </div>\n        </div>\n        <div class=\"menu-option row-fluid\" id=\"eligibleCoupleMenuOption\">\n            <div class=\"span1\">\n                <img src=\"../img/glyphicons_024_parents.png\">\n            </div>\n            <div class=\"span9\">Eligible Couple</div>\n            <div class=\"span2 pull-text-completely-right\">";
+  foundHelper = helpers.eligibleCoupleCount;
+  stack1 = foundHelper || depth0.eligibleCoupleCount;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "eligibleCoupleCount", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n\n        <div class=\"menu-option row-fluid\">\n            <div class=\"span1\">\n                <img src=\"../img/glyphicons_024_parents.png\">\n            </div>\n            <div class=\"span9\">ANC</div>\n            <div class=\"span2 pull-text-completely-right\">";
+  foundHelper = helpers.ancCount;
+  stack1 = foundHelper || depth0.ancCount;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "ancCount", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n\n        <div class=\"menu-option row-fluid\">\n            <div class=\"span1\">\n                <img src=\"../img/glyphicons_024_parents.png\">\n            </div>\n            <div class=\"span9\">PNC</div>\n            <div class=\"span2 pull-text-completely-right\">";
+  foundHelper = helpers.pncCount;
+  stack1 = foundHelper || depth0.pncCount;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "pncCount", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n\n        <div class=\"menu-option row-fluid\">\n            <div class=\"span1\">\n                <img src=\"../img/glyphicons_024_parents.png\">\n            </div>\n            <div class=\"span9\">Child</div>\n            <div class=\"span2 pull-text-completely-right\">";
+  foundHelper = helpers.childCount;
+  stack1 = foundHelper || depth0.childCount;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "childCount", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</div>\n        </div>\n    </div>\n</div>\n";
   return buffer;});
 })();

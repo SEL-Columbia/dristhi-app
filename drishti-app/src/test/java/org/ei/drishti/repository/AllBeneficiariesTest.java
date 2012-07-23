@@ -10,7 +10,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import static org.ei.drishti.domain.BeneficiaryStatus.PREGNANT;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -31,11 +30,11 @@ public class AllBeneficiariesTest {
         Action action = ActionBuilder.actionForCreateBeneficiary();
         allBeneficiaries.handleAction(action);
         String referenceDate = LocalDate.now().toString();
-        verify(beneficiaryRepository).addMother(new Beneficiary("Case X", "ecCaseId", "thaayiCardNumber", PREGNANT, referenceDate));
+        verify(beneficiaryRepository).addMother(new Beneficiary("Case X", "ecCaseId", "thaayiCardNumber", referenceDate));
 
         action = ActionBuilder.actionForUpdateBeneficiary();
         allBeneficiaries.handleAction(action);
-        verify(beneficiaryRepository).updateDeliveryStatus("Case X", PREGNANT.value());
+        verify(beneficiaryRepository).close("Case X");
 
         action = ActionBuilder.actionForCreateChildBeneficiary();
         allBeneficiaries.handleAction(action);

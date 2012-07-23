@@ -7,15 +7,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.widget.Toast;
 import com.google.gson.Gson;
-import org.ei.drishti.view.domain.ECContext;
+import org.ei.drishti.view.contract.ECContext;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class EligibleCoupleViewContext {
+public class EligibleCoupleViewController {
     private ECContext ecContext;
     private Activity eligibleCoupleViewActivity;
 
-    public EligibleCoupleViewContext(ECContext ecContext, Activity eligibleCoupleViewActivity) {
+    public EligibleCoupleViewController(ECContext ecContext, Activity eligibleCoupleViewActivity) {
         this.ecContext = ecContext;
         this.eligibleCoupleViewActivity = eligibleCoupleViewActivity;
     }

@@ -64,4 +64,21 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         assertEquals(ec, repository.findByCaseID("CASE X"));
         assertEquals(null, repository.findByCaseID("CASE NOTFOUND"));
     }
+
+    public void testShouldGetCountOfECsInRepo() throws Exception {
+        EligibleCouple ec = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1");
+        EligibleCouple anotherEC = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2");
+        EligibleCouple yetAnotherEC = new EligibleCouple("CASE Z", "Wife 3", "Husband 3", "EC Number 3", "IUD", "Village 3", "SubCenter 3");
+
+        repository.add(ec);
+        repository.add(anotherEC);
+
+        assertEquals(2, repository.count());
+
+        repository.add(yetAnotherEC);
+        assertEquals(3, repository.count());
+
+        repository.delete(yetAnotherEC.caseId());
+        assertEquals(2, repository.count());
+    }
 }

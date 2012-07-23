@@ -4,15 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.view.activity.EligibleCoupleViewActivity;
-import org.ei.drishti.view.domain.EC;
+import org.ei.drishti.view.contract.EC;
 
 import java.util.List;
 
-public class EligibleCoupleListViewContext {
+public class EligibleCoupleListViewController {
     private List<EC> ecList;
     private Activity eligibleCoupleListActivity;
 
-    public EligibleCoupleListViewContext(List<EC> ecList, Activity eligibleCoupleListActivity) {
+    public EligibleCoupleListViewController(List<EC> ecList, Activity eligibleCoupleListActivity) {
         this.ecList = ecList;
         this.eligibleCoupleListActivity = eligibleCoupleListActivity;
     }

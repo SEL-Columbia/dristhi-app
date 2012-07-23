@@ -8,14 +8,12 @@ public class Beneficiary {
     private final String caseId;
     private final String ecCaseId;
     private final String thaayiCardNumber;
-    private final BeneficiaryStatus status;
     private String referenceDate;
 
-    public Beneficiary(String caseId, String ecCaseId, String thaayiCardNumber, BeneficiaryStatus status, String referenceDate) {
+    public Beneficiary(String caseId, String ecCaseId, String thaayiCardNumber, String referenceDate) {
         this.caseId = caseId;
         this.ecCaseId = ecCaseId;
         this.thaayiCardNumber = thaayiCardNumber;
-        this.status = status;
         this.referenceDate = referenceDate;
     }
 
@@ -29,10 +27,6 @@ public class Beneficiary {
 
     public String thaayiCardNumber() {
         return thaayiCardNumber;
-    }
-
-    public BeneficiaryStatus status() {
-        return status;
     }
 
     public String referenceDate() {

@@ -1,4 +1,4 @@
-package org.ei.drishti.view.domain;
+package org.ei.drishti.view.contract;
 
 public class ECTimeline {
     private String event;

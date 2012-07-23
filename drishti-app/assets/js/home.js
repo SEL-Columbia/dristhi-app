@@ -1,5 +1,9 @@
 function Home(homeBridge) {
     return {
+        populateInto: function (cssIdentifierOfRootElement) {
+            $(cssIdentifierOfRootElement).html(Handlebars.templates.home(homeBridge.getANMInformation()));
+        },
+
         bindToEligibleCoupleList: function (element) {
             $(element).click(function () {
                 homeBridge.delegateToECList();
@@ -15,6 +19,9 @@ function HomeBridge() {
     }
 
     return {
+        getANMInformation: function () {
+            return JSON.parse(homeContext.get());
+        },
         delegateToECList: function () {
             return homeContext.startECList();
         }
@@ -23,6 +30,9 @@ function HomeBridge() {
 
 function FakeHomeContext() {
     return {
+        get: function () {
+            return "{\"anmName\": \"ANM X\", \"pncCount\": \"4\", \"ancCount\": \"5\", \"childCount\": \"6\", \"eligibleCoupleCount\": \"7\"}";
+        },
         delegateToECList: function() {
             alert("You wanted to go to the EC list view.");
         }

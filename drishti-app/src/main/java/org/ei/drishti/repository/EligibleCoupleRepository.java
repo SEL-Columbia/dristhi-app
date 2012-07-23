@@ -2,6 +2,7 @@ package org.ei.drishti.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.EligibleCouple;
 
@@ -52,6 +53,10 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, null, null, null, null, null, null);
         return readAllEligibleCouples(cursor);
+    }
+
+    public long count() {
+        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + EC_TABLE_NAME, new String[0]);
     }
 
     private ContentValues createValuesFor(EligibleCouple eligibleCouple) {

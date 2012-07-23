@@ -2,53 +2,50 @@ package org.ei.drishti.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.Beneficiary;
-import org.ei.drishti.domain.BeneficiaryStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.ei.drishti.domain.BeneficiaryStatus.BORN;
-
 public class BeneficiaryRepository extends DrishtiRepository {
-    private static final String BENEFICIARY_SQL = "CREATE TABLE beneficiary(caseID VARCHAR, thaayiCardNumber VARCHAR, ecCaseId VARCHAR, status VARCHAR, referenceDate VARCHAR)";
+    private static final String BENEFICIARY_SQL = "CREATE TABLE beneficiary(caseID VARCHAR, thaayiCardNumber VARCHAR, ecCaseId VARCHAR, type VARCHAR, referenceDate VARCHAR)";
     private static final String BENEFICIARY_TABLE_NAME = "beneficiary";
     private static final String CASE_ID_COLUMN = "caseID";
     private static final String EC_CASEID_COLUMN = "ecCaseId";
     private static final String THAAYI_CARD_COLUMN = "thaayiCardNumber";
-    private static final String STATUS_COLUMN = "status";
+    private static final String TYPE_COLUMN = "type";
     private static final String REF_DATE_COLUMN = "referenceDate";
-    private static final String[] BENEFICIARY_TABLE_COLUMNS = {CASE_ID_COLUMN, EC_CASEID_COLUMN, THAAYI_CARD_COLUMN, STATUS_COLUMN, REF_DATE_COLUMN};
+    private static final String[] BENEFICIARY_TABLE_COLUMNS = {CASE_ID_COLUMN, EC_CASEID_COLUMN, THAAYI_CARD_COLUMN, TYPE_COLUMN, REF_DATE_COLUMN};
+
+    private static final String TYPE_PNC = "PNC";
+    private static final String TYPE_ANC = "ANC";
+    private static final String TYPE_CHILD = "CHILD";
+
+    @Override
+    public void onCreate(SQLiteDatabase database) {
+        database.execSQL(BENEFICIARY_SQL);
+    }
 
     public void addMother(Beneficiary beneficiary) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
-        database.insert(BENEFICIARY_TABLE_NAME, null, createValuesFor(beneficiary));
-    }
-
-    public void updateDeliveryStatus(String caseId, String status) {
-        SQLiteDatabase database = masterRepository.getWritableDatabase();
-
-        ContentValues valuesToBeUpdated = new ContentValues();
-        valuesToBeUpdated.put(STATUS_COLUMN, status);
-
-        database.update(BENEFICIARY_TABLE_NAME, valuesToBeUpdated, CASE_ID_COLUMN + " = ?", new String[]{caseId});
+        database.insert(BENEFICIARY_TABLE_NAME, null, createValuesFor(beneficiary, TYPE_ANC));
     }
 
     public void addChild(String caseId, String referenceDate, String motherCaseId) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
 
-        ContentValues valuesToBeUpdated = new ContentValues();
-        valuesToBeUpdated.put(CASE_ID_COLUMN, caseId);
-        valuesToBeUpdated.put(STATUS_COLUMN, BORN.value());
-        valuesToBeUpdated.put(REF_DATE_COLUMN, referenceDate);
+        Beneficiary motherCase = findByCaseId(motherCaseId);
+        if (motherCase == null) {
+            return;
+        }
 
-        database.update(BENEFICIARY_TABLE_NAME, valuesToBeUpdated, CASE_ID_COLUMN + " = ?", new String[]{motherCaseId});
-    }
+        ContentValues motherValuesToBeUpdated = new ContentValues();
+        motherValuesToBeUpdated.put(TYPE_COLUMN, TYPE_PNC);
 
-    @Override
-    public void onCreate(SQLiteDatabase database) {
-        database.execSQL(BENEFICIARY_SQL);
+        database.insert(BENEFICIARY_TABLE_NAME, null, createValuesFor(new Beneficiary(caseId, motherCase.ecCaseId(), motherCase.thaayiCardNumber(), referenceDate), TYPE_CHILD));
+        database.update(BENEFICIARY_TABLE_NAME, motherValuesToBeUpdated, CASE_ID_COLUMN + " = ?", new String[]{motherCaseId});
     }
 
     public List<Beneficiary> allBeneficiaries() {
@@ -57,18 +54,46 @@ public class BeneficiaryRepository extends DrishtiRepository {
         return readAllBeneficiaries(cursor);
     }
 
+    public long ancCount() {
+        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + BENEFICIARY_TABLE_NAME + " WHERE " + TYPE_COLUMN + " = ?", new String[]{TYPE_ANC});
+    }
+
+    public long pncCount() {
+        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + BENEFICIARY_TABLE_NAME + " WHERE " + TYPE_COLUMN + " = ?", new String[]{TYPE_PNC});
+    }
+
+    public long childCount() {
+        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + BENEFICIARY_TABLE_NAME + " WHERE " + TYPE_COLUMN + " = ?", new String[]{"CHILD"});
+    }
+
     public List<Beneficiary> findByECCaseId(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(BENEFICIARY_TABLE_NAME, BENEFICIARY_TABLE_COLUMNS, EC_CASEID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
         return readAllBeneficiaries(cursor);
     }
 
-    private ContentValues createValuesFor(Beneficiary beneficiary) {
+    public void close(String caseId) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        database.delete(BENEFICIARY_TABLE_NAME, CASE_ID_COLUMN + " = ?", new String[]{caseId});
+    }
+
+    private Beneficiary findByCaseId(String caseId) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(BENEFICIARY_TABLE_NAME, BENEFICIARY_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
+        List<Beneficiary> beneficiaries = readAllBeneficiaries(cursor);
+
+        if (beneficiaries.isEmpty()) {
+            return null;
+        }
+        return beneficiaries.get(0);
+    }
+
+    private ContentValues createValuesFor(Beneficiary beneficiary, String type) {
         ContentValues values = new ContentValues();
         values.put(CASE_ID_COLUMN, beneficiary.caseId());
         values.put(EC_CASEID_COLUMN, beneficiary.ecCaseId());
         values.put(THAAYI_CARD_COLUMN, beneficiary.thaayiCardNumber());
-        values.put(STATUS_COLUMN, beneficiary.status().value());
+        values.put(TYPE_COLUMN, type);
         values.put(REF_DATE_COLUMN, beneficiary.referenceDate());
         return values;
     }
@@ -77,7 +102,7 @@ public class BeneficiaryRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<Beneficiary> beneficiaries = new ArrayList<Beneficiary>();
         while (!cursor.isAfterLast()) {
-            beneficiaries.add(new Beneficiary(cursor.getString(0), cursor.getString(1), cursor.getString(2), BeneficiaryStatus.from(cursor.getString(3)), cursor.getString(4)));
+            beneficiaries.add(new Beneficiary(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(4)));
             cursor.moveToNext();
         }
         cursor.close();
