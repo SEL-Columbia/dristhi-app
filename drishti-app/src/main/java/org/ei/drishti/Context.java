@@ -15,6 +15,7 @@ public class Context {
     private AlertRepository alertRepository;
     private SettingsRepository settingsRepository;
     private BeneficiaryRepository beneficiaryRepository;
+    private TimelineEventRepository timelineEventRepository;
 
     private AllSettings allSettings;
     private AllAlerts allAlerts;
@@ -65,7 +66,8 @@ public class Context {
 
     private Repository initRepository() {
         if (repository == null) {
-            repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(), eligibleCoupleRepository(), beneficiaryRepository());
+            repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(),
+                    eligibleCoupleRepository(), beneficiaryRepository(), timelineEventRepository());
         }
         return repository;
     }
@@ -102,21 +104,21 @@ public class Context {
         return allBeneficiaries;
     }
 
-    protected EligibleCoupleRepository eligibleCoupleRepository() {
+    private EligibleCoupleRepository eligibleCoupleRepository() {
         if (eligibleCoupleRepository == null) {
             eligibleCoupleRepository = new EligibleCoupleRepository();
         }
         return eligibleCoupleRepository;
     }
 
-    protected AlertRepository alertRepository() {
+    private AlertRepository alertRepository() {
         if (alertRepository == null) {
             alertRepository = new AlertRepository();
         }
         return alertRepository;
     }
 
-    protected SettingsRepository settingsRepository() {
+    private SettingsRepository settingsRepository() {
         if (settingsRepository == null) {
             settingsRepository = new SettingsRepository();
         }
@@ -125,9 +127,16 @@ public class Context {
 
     private BeneficiaryRepository beneficiaryRepository() {
         if (beneficiaryRepository == null) {
-            beneficiaryRepository = new BeneficiaryRepository();
+            beneficiaryRepository = new BeneficiaryRepository(timelineEventRepository());
         }
         return beneficiaryRepository;
+    }
+
+    private TimelineEventRepository timelineEventRepository() {
+        if (timelineEventRepository == null) {
+            timelineEventRepository = new TimelineEventRepository();
+        }
+        return timelineEventRepository;
     }
 
     public UserService userService() {

@@ -38,6 +38,6 @@ public class AllBeneficiariesTest {
 
         action = ActionBuilder.actionForCreateChildBeneficiary();
         allBeneficiaries.handleAction(action);
-        verify(beneficiaryRepository).addChild("Case X", referenceDate, "motherCaseId");
+        verify(beneficiaryRepository).addChild("Case X", referenceDate, "motherCaseId", action.get("gender"));
     }
 }

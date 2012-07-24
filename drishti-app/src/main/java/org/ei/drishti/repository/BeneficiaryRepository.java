@@ -5,6 +5,7 @@ import android.database.Cursor;
 import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.Beneficiary;
+import org.ei.drishti.domain.TimelineEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,11 @@ public class BeneficiaryRepository extends DrishtiRepository {
     private static final String TYPE_PNC = "PNC";
     private static final String TYPE_ANC = "ANC";
     private static final String TYPE_CHILD = "CHILD";
+    private TimelineEventRepository timelineEventRepository;
+
+    public BeneficiaryRepository(TimelineEventRepository timelineEventRepository) {
+        this.timelineEventRepository = timelineEventRepository;
+    }
 
     @Override
     public void onCreate(SQLiteDatabase database) {
@@ -31,9 +37,10 @@ public class BeneficiaryRepository extends DrishtiRepository {
     public void addMother(Beneficiary beneficiary) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(BENEFICIARY_TABLE_NAME, null, createValuesFor(beneficiary, TYPE_ANC));
+        timelineEventRepository.add(TimelineEvent.forStartOfPregnancy(beneficiary.ecCaseId(), beneficiary.referenceDate()));
     }
 
-    public void addChild(String caseId, String referenceDate, String motherCaseId) {
+    public void addChild(String caseId, String referenceDate, String motherCaseId, String gender) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
 
         Beneficiary motherCase = findByCaseId(motherCaseId);
@@ -46,6 +53,7 @@ public class BeneficiaryRepository extends DrishtiRepository {
 
         database.insert(BENEFICIARY_TABLE_NAME, null, createValuesFor(new Beneficiary(caseId, motherCase.ecCaseId(), motherCase.thaayiCardNumber(), referenceDate), TYPE_CHILD));
         database.update(BENEFICIARY_TABLE_NAME, motherValuesToBeUpdated, CASE_ID_COLUMN + " = ?", new String[]{motherCaseId});
+        timelineEventRepository.add(TimelineEvent.forChildBirth(motherCase.ecCaseId(), referenceDate, gender));
     }
 
     public List<Beneficiary> allBeneficiaries() {
@@ -107,6 +115,5 @@ public class BeneficiaryRepository extends DrishtiRepository {
         }
         cursor.close();
         return beneficiaries;
-
     }
 }
