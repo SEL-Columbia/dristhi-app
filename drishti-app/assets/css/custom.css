@@ -5,7 +5,6 @@
 
 .navbar.navbar-fixed-top {
     margin-left: -10px;
-    margin-top: -2px
 }
 
 .navbar .navbar-inner {
@@ -110,6 +109,7 @@
 
 .content {
     margin-top: 50px;
+    padding-top: 2px;
 }
 
 .divider {
