@@ -9,34 +9,34 @@ import org.joda.time.LocalDate;
 public class TimelineEvent {
     private String ecCaseId;
     private String type;
-    private LocalDate createdOn;
+    private LocalDate referenceDate;
     private String title;
     private String detail1;
     private String detail2;
 
-    public TimelineEvent(String ecCaseId, String type, LocalDate createdOn, String title, String detail1, String detail2) {
+    public TimelineEvent(String ecCaseId, String type, LocalDate referenceDate, String title, String detail1, String detail2) {
         this.ecCaseId = ecCaseId;
         this.type = type;
-        this.createdOn = createdOn;
+        this.referenceDate = referenceDate;
         this.title = title;
         this.detail1 = detail1;
         this.detail2 = detail2;
     }
 
     public static TimelineEvent forChildBirth(String ecCaseId, String dateOfBirth, String gender) {
-        return new TimelineEvent(ecCaseId, "CHILD-BIRTH", LocalDate.now(), "Child Born", StringUtils.capitalize(gender), "DOB: " + dateOfBirth);
+        return new TimelineEvent(ecCaseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), "Child Born", StringUtils.capitalize(gender), "DOB: " + dateOfBirth);
     }
 
     public static TimelineEvent forStartOfPregnancy(String ecCaseId, String referenceDate) {
-        return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.now(), "Got pregnant", "On: " + referenceDate, null);
+        return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(referenceDate), "Got pregnant", "On: " + referenceDate, null);
     }
 
     public String type() {
         return type;
     }
 
-    public String referenceDate() {
-        return createdOn.toString();
+    public LocalDate referenceDate() {
+        return referenceDate;
     }
 
     public String ecCaseId() {

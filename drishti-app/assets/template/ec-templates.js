@@ -61,10 +61,10 @@ function program10(depth0,data) {
   
   var buffer = "", stack1, stack2;
   buffer += "\n                                    <div class=\"ec-timeline-details-component row-fluid\">\n                                        <div class=\"span1\">\n                                            <i class=\"icon-filter\"></i>\n                                        </div>\n                                            <div class=\"span7\">\n                                                <strong>";
-  foundHelper = helpers.event;
-  stack1 = foundHelper || depth0.event;
+  foundHelper = helpers.title;
+  stack1 = foundHelper || depth0.title;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "event", { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "title", { hash: {} }); }
   buffer += escapeExpression(stack1) + "</strong><br>\n                                                ";
   foundHelper = helpers.details;
   stack1 = foundHelper || depth0.details;

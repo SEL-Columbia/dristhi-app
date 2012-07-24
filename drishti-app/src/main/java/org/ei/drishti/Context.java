@@ -21,6 +21,7 @@ public class Context {
     private AllAlerts allAlerts;
     private AllEligibleCouples allEligibleCouples;
     private AllBeneficiaries allBeneficiaries;
+    private AllTimelineEvents allTimelineEvents;
 
     private DrishtiService drishtiService;
     private ActionService actionService;
@@ -102,6 +103,14 @@ public class Context {
             allBeneficiaries = new AllBeneficiaries(beneficiaryRepository());
         }
         return allBeneficiaries;
+    }
+
+    public AllTimelineEvents allTimelineEvents() {
+        initRepository();
+        if (allTimelineEvents == null) {
+            allTimelineEvents = new AllTimelineEvents(timelineEventRepository());
+        }
+        return allTimelineEvents;
     }
 
     private EligibleCoupleRepository eligibleCoupleRepository() {

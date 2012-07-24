@@ -5,14 +5,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import org.ei.drishti.R;
-import org.ei.drishti.domain.Beneficiary;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.view.contract.ECContext;
-import org.ei.drishti.view.contract.ECTimeline;
 import org.ei.drishti.view.controller.EligibleCoupleViewController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class EligibleCoupleViewActivity extends SecuredActivity {
 
@@ -29,16 +22,7 @@ public class EligibleCoupleViewActivity extends SecuredActivity {
 
         String caseId = (String) getIntent().getExtras().get("caseId");
 
-        EligibleCouple eligibleCouple = context.allEligibleCouples().findByCaseID(caseId);
-        List<Beneficiary> beneficiaries = context.allBeneficiaries().findByECCaseId(caseId);
-        List<ECTimeline> ecTimeLines = new ArrayList<ECTimeline>();
-        for (Beneficiary beneficiary : beneficiaries) {
-            ecTimeLines.add(new ECTimeline("Event: Not finished yet", new String[]{}, beneficiary.referenceDate()));
-        }
-
-        ECContext ecContext = new ECContext(eligibleCouple.wifeName(), eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(),
-                false, null, eligibleCouple.currentMethod(), null, null, ecTimeLines);
-        webView.addJavascriptInterface(new EligibleCoupleViewController(ecContext, this), "context");
+        webView.addJavascriptInterface(new EligibleCoupleViewController(this, caseId, context.allEligibleCouples(), context.allBeneficiaries(), context.allTimelineEvents()), "context");
         webView.loadUrl("file:///android_asset/www/ec_detail.html");
     }
 

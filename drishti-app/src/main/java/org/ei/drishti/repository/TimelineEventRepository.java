@@ -28,7 +28,6 @@ public class TimelineEventRepository extends DrishtiRepository {
     public void add(TimelineEvent timelineEvent) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(TIMELINEEVENT_TABLE_NAME, null, createValuesFor(timelineEvent));
-
     }
 
     public List<TimelineEvent> allFor(String ecCaseId) {
@@ -52,7 +51,7 @@ public class TimelineEventRepository extends DrishtiRepository {
         ContentValues values = new ContentValues();
         values.put(EC_CASEID_COLUMN, timelineEvent.ecCaseId());
         values.put(TYPE_COLUMN, timelineEvent.type());
-        values.put(REF_DATE_COLUMN, timelineEvent.referenceDate());
+        values.put(REF_DATE_COLUMN, timelineEvent.referenceDate().toString());
         values.put(TITLE_COLUMN, timelineEvent.title());
         values.put(DETAIL1_COLUMN, timelineEvent.detail1());
         values.put(DETAIL2_COLUMN, timelineEvent.detail2());

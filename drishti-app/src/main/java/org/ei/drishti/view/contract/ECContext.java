@@ -12,10 +12,10 @@ public class ECContext {
     private final String currentMethod;
     private final List<ECAlert> alerts;
     private final List<Child> children;
-    private final List<ECTimeline> timeline;
+    private final List<ECTimelineEvent> timeline;
 
     public ECContext(String wifeName, String village, String subcenter, String ecNumber, boolean isHighPriority, String address,
-                     String currentMethod, List<ECAlert> alerts, List<Child> children, List<ECTimeline> ecTimeLines) {
+                     String currentMethod, List<ECAlert> alerts, List<Child> children, List<ECTimelineEvent> ecTimeLines) {
         this.wifeName = wifeName;
         this.village = village;
         this.subcenter = subcenter;
