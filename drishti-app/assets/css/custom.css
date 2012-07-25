@@ -256,3 +256,8 @@ body {
     padding-top: 15px;
     padding-bottom: 15px;
 }
+
+.home-menu-icon, .home-menu-icon:hover, .home-menu-icon:visited, .home-menu-icon:visited:hover {
+    text-decoration: none;
+    color: #d5d5d5;
+}
