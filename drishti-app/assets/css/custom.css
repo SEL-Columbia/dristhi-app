@@ -12,21 +12,26 @@
     background: -webkit-linear-gradient(top, #0a8bcc 0%, #1b84bb 100%)
 }
 
+.menu-button-container {
+    padding: 5px;
+    padding-bottom: 0px;
+}
+
 .menu-button-container .menu-button {
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#555), to(#222));
     background: -webkit-linear-gradient(top, #555 0%, #222 100%);
     color: #fff;
     border-radius: 4px;
     text-align: center;
-    height: 90px;
+    height: 80px;
     min-height: 0px;
-    padding-top: 20px;
+    padding-top: 10px;
     font-size: 16px;
 }
 
 .menu-button-row-padding {
     padding-top: 6px;
-    padding-bottom: 10px;
+    padding-bottom: 4px;
 }
 
 .menu-background {
@@ -90,10 +95,6 @@
 
 .ec-container {
     padding: 8px;
-}
-
-.menu-button-container {
-    padding: 5px;
 }
 
 .ec-name {

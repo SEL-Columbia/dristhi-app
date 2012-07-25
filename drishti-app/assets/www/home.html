@@ -16,6 +16,11 @@
             var home = new Home(new HomeBridge());
             home.populateInto("#template-container");
             home.bindToEligibleCoupleList("#eligibleCoupleMenuOption");
+
+            home.bindToPage("#workplanButton", "workplan.html");
+            home.bindToPage("#myStatsButton", "my-stats.html");
+            home.bindToPage("#inboxButton", "inbox.html");
+            home.bindToPage("#reportsButton", "reports.html");
         });
     </script>
 </head>

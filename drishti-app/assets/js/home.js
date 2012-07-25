@@ -4,9 +4,15 @@ function Home(homeBridge) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.home(homeBridge.getANMInformation()));
         },
 
-        bindToEligibleCoupleList: function (element) {
-            $(element).click(function () {
+        bindToEligibleCoupleList: function (identifierOfElement) {
+            $(identifierOfElement).click(function () {
                 homeBridge.delegateToECList();
+            });
+        },
+
+        bindToPage: function (identifierOfElement, pageToGoTo) {
+            $(identifierOfElement).click(function () {
+                window.location.href = pageToGoTo;
             });
         }
     };
