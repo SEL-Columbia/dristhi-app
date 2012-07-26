@@ -5,6 +5,7 @@ import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.service.ANMService;
 import org.ei.drishti.view.activity.EligibleCoupleActivity;
+import org.ei.drishti.view.activity.WorkplanActivity;
 import org.ei.drishti.view.contract.HomeContext;
 
 public class HomeActivityController {
@@ -22,5 +23,9 @@ public class HomeActivityController {
 
     public String get() {
         return new Gson().toJson(new HomeContext(anmService.fetchDetails()));
+    }
+
+    public void startWorkplan() {
+        context.startActivity(new Intent(context, WorkplanActivity.class));
     }
 }

@@ -6,3 +6,9 @@ function toggleIconDuringCollapse(cssIdentifierOfRoot, cssIdentifierOfIcon, icon
         $(cssIdentifierOfRoot).find(cssIdentifierOfIcon).removeClass(iconForToggleOff).addClass(iconForToggleOn);
     });
 }
+
+Handlebars.registerHelper('ifNotZero', function(context, options) {
+    if (context != 0) {
+        return options.fn(this);
+    }
+});

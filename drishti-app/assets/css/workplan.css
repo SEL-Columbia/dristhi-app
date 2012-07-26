@@ -1,0 +1,26 @@
+.content .table {
+    width: 92%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.table .summary-icon {
+    margin-right: 10px;
+}
+
+.table .summary {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.village-breakdown {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.village-header {
+    width: 92%;
+    margin: auto;
+    margin-top: 10px;
+    color: #1b84bb;
+}

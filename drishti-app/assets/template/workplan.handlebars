@@ -1,0 +1,23 @@
+<table class="table table-bordered">
+    <tbody>
+    <tr>
+        <td><i class="summary-icon icon-user"></i><span class="summary">{{totalAlertCount}} New Alerts</span></td>
+    </tr>
+    <tr>
+        <td><i class="summary-icon icon-user"></i><span class="summary">{{totalReminderCount}} New Reminder</span></td>
+    </tr>
+    </tbody>
+</table>
+
+<h3 class="village-header">Villages</h3>
+
+<table class="table table-bordered">
+    <tbody>
+    {{#each villages}}
+        <tr>
+            <td><span class="summary">{{name}}</span><br/><span class="village-breakdown">{{reminderCount}} Reminders{{#ifNotZero alertCount}}, {{alertCount}} Alert{{/ifNotZero}}</span>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>

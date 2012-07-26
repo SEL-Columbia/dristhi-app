@@ -14,6 +14,12 @@ function Home(homeBridge) {
             $(identifierOfElement).click(function () {
                 window.location.href = pageToGoTo;
             });
+        },
+
+        bindToWorkplan: function (identifierOfElement, pageToGoTo) {
+            $(identifierOfElement).click(function () {
+                homeBridge.delegateToWorkplan();
+            });
         }
     };
 }
@@ -30,6 +36,9 @@ function HomeBridge() {
         },
         delegateToECList: function () {
             return homeContext.startECList();
+        },
+        delegateToWorkplan: function () {
+            return homeContext.startWorkplan();
         }
     };
 }
@@ -39,8 +48,11 @@ function FakeHomeContext() {
         get: function () {
             return "{\"anmName\": \"ANM X\", \"pncCount\": \"4\", \"ancCount\": \"5\", \"childCount\": \"6\", \"eligibleCoupleCount\": \"7\"}";
         },
-        delegateToECList: function() {
-            alert("You wanted to go to the EC list view.");
+        startECList: function () {
+            window.location.href = "ec_list.html";
+        },
+        startWorkplan: function () {
+            window.location.href = "workplan.html";
         }
     }
 }
