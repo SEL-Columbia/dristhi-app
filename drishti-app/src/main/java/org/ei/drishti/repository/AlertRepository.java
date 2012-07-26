@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.Alert;
+import org.ei.drishti.domain.VillageAlertSummary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class AlertRepository extends DrishtiRepository {
     private static final String ALERTS_VILLAGE_COLUMN = "village";
     public static final String ALERTS_PRIORITY_COLUMN = "priority";
     public static final String ALERTS_DUEDATE_COLUMN = "dueDate";
-    private static final String[] ALERTS_TABLE_COLUMNS = new String[] { ALERTS_CASEID_COLUMN, ALERTS_BENEFICIARY_NAME_COLUMN, ALERTS_VILLAGE_COLUMN, ALERTS_VISIT_CODE_COLUMN, ALERTS_THAAYI_CARD_COLUMN, ALERTS_PRIORITY_COLUMN, ALERTS_DUEDATE_COLUMN};
+    private static final String[] ALERTS_TABLE_COLUMNS = new String[]{ALERTS_CASEID_COLUMN, ALERTS_BENEFICIARY_NAME_COLUMN, ALERTS_VILLAGE_COLUMN, ALERTS_VISIT_CODE_COLUMN, ALERTS_THAAYI_CARD_COLUMN, ALERTS_PRIORITY_COLUMN, ALERTS_DUEDATE_COLUMN};
     public static final String CASE_AND_VISIT_CODE_COLUMN_SELECTIONS = ALERTS_CASEID_COLUMN + " = ? AND " + ALERTS_VISIT_CODE_COLUMN + " = ?";
 
     public List<Alert> allAlerts() {
@@ -27,10 +28,10 @@ public class AlertRepository extends DrishtiRepository {
         return readAllAlerts(cursor);
     }
 
-    public List<String> uniqueLocations() {
+    public List<VillageAlertSummary> summary() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(true, ALERTS_TABLE_NAME, new String[] { ALERTS_VILLAGE_COLUMN }, null, null, null, null, null, null);
-        return readAllVillages(cursor);
+        Cursor cursor = database.query(ALERTS_TABLE_NAME, new String[]{ALERTS_VILLAGE_COLUMN, "count(*)"}, null, null, ALERTS_VILLAGE_COLUMN, null, null);
+        return readAllVillageSummary(cursor);
     }
 
     public void createAlert(Alert alert) {
@@ -61,7 +62,7 @@ public class AlertRepository extends DrishtiRepository {
 
     public void deleteAllAlerts() {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
-        database.delete(ALERTS_TABLE_NAME, null,null);
+        database.delete(ALERTS_TABLE_NAME, null, null);
     }
 
     private List<Alert> readAllAlerts(Cursor cursor) {
@@ -75,18 +76,18 @@ public class AlertRepository extends DrishtiRepository {
         return alerts;
     }
 
-    private List<String> readAllVillages(Cursor cursor) {
+    private List<VillageAlertSummary> readAllVillageSummary(Cursor cursor) {
         cursor.moveToFirst();
-        List<String> villages = new ArrayList<String>();
+        List<VillageAlertSummary> villageSummaries = new ArrayList<VillageAlertSummary>();
         while (!cursor.isAfterLast()) {
             String village = cursor.getString(0);
             if (village != null) {
-                villages.add(village);
+                villageSummaries.add(new VillageAlertSummary(village, cursor.getInt(1)));
             }
             cursor.moveToNext();
         }
         cursor.close();
-        return villages;
+        return villageSummaries;
     }
 
     private ContentValues createValuesFor(Alert alert, List<Alert> existingAlerts) {

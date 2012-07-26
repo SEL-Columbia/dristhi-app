@@ -1,14 +1,15 @@
 package org.ei.drishti.view.controller;
 
 import com.google.gson.Gson;
+import org.ei.drishti.domain.VillageAlertSummary;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.view.contract.WorkplanContext;
 import org.ei.drishti.view.contract.WorkplanVillageSummary;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WorkplanController {
-    private WorkplanContext workplanContext;
     private AllAlerts allAlerts;
 
     public WorkplanController(AllAlerts allAlerts) {
@@ -16,6 +17,13 @@ public class WorkplanController {
     }
 
     public String get() {
-        return new Gson().toJson(new WorkplanContext(4, 2, Arrays.asList(new WorkplanVillageSummary("Harshit", 3, 0), new WorkplanVillageSummary("FooBar", 2, 2))));
+        List<VillageAlertSummary> villageAlertSummaries = allAlerts.villageSummary();
+        List<WorkplanVillageSummary> workplanVillageSummaries = new ArrayList<WorkplanVillageSummary>();
+        int totalAlertCount = 0;
+        for (VillageAlertSummary villageAlertSummary : villageAlertSummaries) {
+            workplanVillageSummaries.add(new WorkplanVillageSummary(villageAlertSummary.name(), 0, villageAlertSummary.alertCount()));
+            totalAlertCount += villageAlertSummary.alertCount();
+        }
+        return new Gson().toJson(new WorkplanContext(totalAlertCount, 0, workplanVillageSummaries));
     }
 }

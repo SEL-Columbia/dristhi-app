@@ -3,6 +3,7 @@ package org.ei.drishti.repository;
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 import org.ei.drishti.domain.Alert;
+import org.ei.drishti.domain.VillageAlertSummary;
 import org.ei.drishti.util.Session;
 
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class AlertRepositoryTest extends AndroidTestCase {
         alertRepository.createAlert(new Alert("Case Z", "Theresa 3", "Bherya 1", "TT 1", "Thaayi 3", 1, "2012-01-01"));
         alertRepository.createAlert(new Alert("Case A", "Theresa 4", "Bherya 3", "IFA 1", "Thaayi 4", 1, "2012-01-01"));
 
-        assertEquals(asList("Bherya 1", "Bherya 2", "Bherya 3"), alertRepository.uniqueLocations());
+        assertEquals(asList(new VillageAlertSummary("Bherya 1", 2), new VillageAlertSummary("Bherya 2", 1), new VillageAlertSummary("Bherya 3", 1)), alertRepository.summary());
     }
 
     public void testShouldDeleteAlertsBasedOnCaseIDAndVisitCode() throws Exception {

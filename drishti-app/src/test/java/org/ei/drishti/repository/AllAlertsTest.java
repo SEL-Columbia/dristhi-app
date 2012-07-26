@@ -2,6 +2,7 @@ package org.ei.drishti.repository;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Alert;
+import org.ei.drishti.domain.VillageAlertSummary;
 import org.ei.drishti.dto.Action;
 import org.junit.Before;
 import org.junit.Test;
@@ -77,10 +78,10 @@ public class AllAlertsTest {
 
     @Test
     public void shouldFindUniqueLocationsOfAlertsInDB() {
-        List<String> locations = Arrays.asList("Location 1", "Location 2");
-        when(alertRepository.uniqueLocations()).thenReturn(locations);
+        List<VillageAlertSummary> summaries = Arrays.asList(new VillageAlertSummary("Location 1", 1), new VillageAlertSummary("Location 2", 1));
+        when(alertRepository.summary()).thenReturn(summaries);
 
-        assertEquals(locations, allAlerts.uniqueLocations());
+        assertEquals(summaries, allAlerts.villageSummary());
     }
 
     @Test

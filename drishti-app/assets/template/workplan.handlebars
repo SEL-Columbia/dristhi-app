@@ -15,7 +15,7 @@
     <tbody>
     {{#each villages}}
         <tr>
-            <td><span class="summary">{{name}}</span><br/><span class="village-breakdown">{{reminderCount}} Reminders{{#ifNotZero alertCount}}, {{alertCount}} Alert{{/ifNotZero}}</span>
+            <td><span class="summary">{{name}}</span><br/><span class="village-breakdown">{{#ifNotZero reminderCount}}{{reminderCount}} Reminders, {{/ifNotZero}}{{#ifNotZero alertCount}}{{alertCount}} Alerts{{/ifNotZero}}</span>
             </td>
         </tr>
     {{/each}}

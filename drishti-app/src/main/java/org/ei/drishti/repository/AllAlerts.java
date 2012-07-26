@@ -1,5 +1,6 @@
 package org.ei.drishti.repository;
 
+import org.ei.drishti.domain.VillageAlertSummary;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.util.Log;
@@ -33,7 +34,7 @@ public class AllAlerts {
         repository.deleteAllAlerts();
     }
 
-    public List<String> uniqueLocations() {
-        return repository.uniqueLocations();
+    public List<VillageAlertSummary> villageSummary() {
+        return repository.summary();
     }
 }

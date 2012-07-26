@@ -261,14 +261,20 @@ function program1(depth0,data) {
   buffer += escapeExpression(stack1) + "</span><br/><span class=\"village-breakdown\">";
   foundHelper = helpers.reminderCount;
   stack1 = foundHelper || depth0.reminderCount;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "reminderCount", { hash: {} }); }
-  buffer += escapeExpression(stack1) + " Reminders";
+  foundHelper = helpers.ifNotZero;
+  stack2 = foundHelper || depth0.ifNotZero;
+  tmp1 = self.program(2, program2, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.noop;
+  if(foundHelper && typeof stack2 === functionType) { stack1 = stack2.call(depth0, stack1, tmp1); }
+  else { stack1 = blockHelperMissing.call(depth0, stack2, stack1, tmp1); }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
   foundHelper = helpers.alertCount;
   stack1 = foundHelper || depth0.alertCount;
   foundHelper = helpers.ifNotZero;
   stack2 = foundHelper || depth0.ifNotZero;
-  tmp1 = self.program(2, program2, data);
+  tmp1 = self.program(4, program4, data);
   tmp1.hash = {};
   tmp1.fn = tmp1;
   tmp1.inverse = self.noop;
@@ -280,12 +286,21 @@ function program1(depth0,data) {
 function program2(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += ", ";
+  foundHelper = helpers.reminderCount;
+  stack1 = foundHelper || depth0.reminderCount;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "reminderCount", { hash: {} }); }
+  buffer += escapeExpression(stack1) + " Reminders, ";
+  return buffer;}
+
+function program4(depth0,data) {
+  
+  var buffer = "", stack1;
   foundHelper = helpers.alertCount;
   stack1 = foundHelper || depth0.alertCount;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "alertCount", { hash: {} }); }
-  buffer += escapeExpression(stack1) + " Alert";
+  buffer += escapeExpression(stack1) + " Alerts";
   return buffer;}
 
   buffer += "<table class=\"table table-bordered\">\n    <tbody>\n    <tr>\n        <td><i class=\"summary-icon icon-user\"></i><span class=\"summary\">";
