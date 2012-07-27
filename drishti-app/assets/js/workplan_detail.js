@@ -22,7 +22,7 @@ function WorkplanDetailBridge() {
 function FakeWorkplanDetailContext() {
     return {
         get: function () {
-            return "{\"village\": \"VillageNameVeryVeryVeryLongLong \", \"alerts\": [{\"beneficiaryName\": \"Gheredaha\", \"villageName\": \"Bherya\", \"description\": \"some detail\"}, {\"beneficiaryName\": \"Bindu\", \"villageName\": \"Bherya\", \"description\": \"some description.\"}]}";
+            return "{\"village\": \"VillageNameVeryVeryVeryLongLong \", \"alerts\": [{\"beneficiaryName\": \"Gheredaha\", \"dueDate\": \"2012-12-12\", \"description\": \"some detail\"}, {\"beneficiaryName\": \"Bindu\", \"dueDate\": \"2012-12-12\", \"description\": \"some description.\"}]}";
         }
     }
 }

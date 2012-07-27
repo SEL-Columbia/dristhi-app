@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'RobotoRegular';
+    src: url('../font/roboto/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .navbar .navbar-inner {
     padding-left: 15px;
     zoom: 125%;
@@ -189,6 +196,7 @@
 }
 
 body {
+    font-family: 'RobotoRegular' !important;
     background-attachment: scroll;
     background-clip: border-box;
     background-color: #f2f2f2;

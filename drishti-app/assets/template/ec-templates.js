@@ -342,11 +342,11 @@ function program1(depth0,data) {
   stack1 = foundHelper || depth0.beneficiaryName;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "beneficiaryName", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</div>\n                    <div class=\"villageName\">";
-  foundHelper = helpers.villageName;
-  stack1 = foundHelper || depth0.villageName;
+  buffer += escapeExpression(stack1) + "</div>\n                    <div class=\"dueDate\">";
+  foundHelper = helpers.dueDate;
+  stack1 = foundHelper || depth0.dueDate;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "villageName", { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "dueDate", { hash: {} }); }
   buffer += escapeExpression(stack1) + "</div>\n                    <div class=\"detail\">";
   foundHelper = helpers.description;
   stack1 = foundHelper || depth0.description;
