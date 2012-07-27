@@ -1,6 +1,6 @@
 package org.ei.drishti.view.controller;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.EligibleCouple;
@@ -13,11 +13,11 @@ import java.util.List;
 
 public class EligibleCoupleListViewController {
     private AllEligibleCouples allEligibleCouples;
-    private Activity eligibleCoupleListActivity;
+    private Context context;
 
-    public EligibleCoupleListViewController(AllEligibleCouples allEligibleCouples, Activity eligibleCoupleListActivity) {
+    public EligibleCoupleListViewController(AllEligibleCouples allEligibleCouples, Context context) {
         this.allEligibleCouples = allEligibleCouples;
-        this.eligibleCoupleListActivity = eligibleCoupleListActivity;
+        this.context = context;
     }
 
     public String get() {
@@ -32,8 +32,8 @@ public class EligibleCoupleListViewController {
     }
 
     public void startEC(String caseId) {
-        Intent intent = new Intent(eligibleCoupleListActivity.getApplicationContext(), EligibleCoupleViewActivity.class);
+        Intent intent = new Intent(context.getApplicationContext(), EligibleCoupleViewActivity.class);
         intent.putExtra("caseId", caseId);
-        eligibleCoupleListActivity.startActivity(intent);
+        context.startActivity(intent);
     }
 }

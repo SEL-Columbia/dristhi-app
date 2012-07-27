@@ -1,3 +1,7 @@
+.content {
+    padding-bottom: 10px;
+}
+
 .content .table {
     width: 92%;
     margin: auto;

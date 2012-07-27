@@ -12,9 +12,9 @@
 <h3 class="village-header">Villages</h3>
 
 <table class="table table-bordered">
-    <tbody>
+    <tbody id="workplan-list">
     {{#each villages}}
-        <tr>
+        <tr class="workplanElement" data-village={{name}}>
             <td><span class="summary">{{name}}</span><br/><span class="village-breakdown">{{#ifNotZero reminderCount}}{{reminderCount}} Reminders, {{/ifNotZero}}{{#ifNotZero alertCount}}{{alertCount}} Alerts{{/ifNotZero}}</span>
             </td>
         </tr>

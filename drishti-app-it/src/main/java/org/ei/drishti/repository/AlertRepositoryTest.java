@@ -44,7 +44,22 @@ public class AlertRepositoryTest extends AndroidTestCase {
         assertEquals(asList(alert1, alert2, alert3, alert4), alertRepository.allAlerts());
     }
 
-    public void testShouldFetchAllUniqueLocations() throws Exception {
+    public void testShouldFetchAllAlertsForAVillage() throws Exception {
+        Alert alert1 = new Alert("Case X", "Theresa 1", "bherya1", "ANC 1", "Thaayi 1", 1, "2012-01-01");
+        Alert alert2 = new Alert("Case Y", "Theresa 2", "bherya2", "ANC 2", "Thaayi 2", 1, "2012-01-01");
+        Alert alert3 = new Alert("Case X", "Theresa 1", "bherya1", "TT 1", "Thaayi 1", 1, "2012-01-01");
+        Alert alert4 = new Alert("Case Y", "Theresa 2", "bherya2", "IFA 1", "Thaayi 2", 1, "2012-01-01");
+
+        alertRepository.createAlert(alert1);
+        alertRepository.createAlert(alert2);
+        alertRepository.createAlert(alert3);
+        alertRepository.createAlert(alert4);
+
+        assertEquals(asList(alert1, alert3), alertRepository.allAlertsFor("bherya1"));
+        assertEquals(asList(alert2, alert4), alertRepository.allAlertsFor("bherya2"));
+    }
+
+    public void testShouldFetchSummaryAllUniqueLocations() throws Exception {
         alertRepository.createAlert(new Alert("Case X", "Theresa 1", "Bherya 1", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
         alertRepository.createAlert(new Alert("Case Y", "Theresa 2", "Bherya 2", "ANC 2", "Thaayi 2", 1, "2012-01-01"));
         alertRepository.createAlert(new Alert("Case Z", "Theresa 3", "Bherya 1", "TT 1", "Thaayi 3", 1, "2012-01-01"));

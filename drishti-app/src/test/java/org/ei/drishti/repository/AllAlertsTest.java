@@ -121,4 +121,14 @@ public class AllAlertsTest {
 
         assertEquals(expectedAlerts, alerts);
     }
+
+    @Test
+    public void shouldFetchAllAlertsForAVillageFromRepository() throws Exception {
+        List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "bherya1", "ANC 1", "Thaayi 1", 1, "2012-01-01"), new Alert("Case Y", "Theresa 2", "bherya1", "ANC 2", "Thaayi 2", 1, "2012-01-01"));
+        when(alertRepository.allAlertsFor("bherya1")).thenReturn(expectedAlerts);
+
+        List<Alert> alerts = allAlerts.fetchAllFor("bherya1");
+
+        assertEquals(expectedAlerts, alerts);
+    }
 }

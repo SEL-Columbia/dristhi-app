@@ -37,4 +37,8 @@ public class AllAlerts {
     public List<VillageAlertSummary> villageSummary() {
         return repository.summary();
     }
+
+    public List<Alert> fetchAllFor(String villageName) {
+        return repository.allAlertsFor(villageName);
+    }
 }

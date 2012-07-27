@@ -79,15 +79,6 @@
     border-right-color: #39a2d0;
 }
 
-.alert {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    font-size: 14px;
-    margin-bottom: 10px;
-    background-color: #fff7bc;
-    border: 1px solid #ebe3a9;
-}
-
 .alert.alert-info {
     background-color: #aedae9;
     border: 1px solid #9dc4d3;
