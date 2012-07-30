@@ -14,42 +14,102 @@
     <script type="text/javascript" src="../template/ec-templates.js"></script>
     <script type="text/javascript" src="../js/workplan.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             var workplan = new Workplan(new WorkplanBridge());
             workplan.populateInto("#content");
             workplan.bindItemToWorkplanDetailView("#workplan-list", ".workplanElement");
         });
     </script>
-<body style="overflow: hidden;">
+<body>
 
-<div class="harshit" style="float: left; left: 0%; width: 90%;">
-    <div class="navbar navbar-fixed-top" style="position: relative;">
-        <div class="navbar-inner">
-            <a class="brand list" href="#"><span class="navbar-brand-icon-holder"><i class="icon-book icon-white navbar-brand-icon"></i> </span>
-                Workplan</a>
+<div class="page">
+    <div id="sidepanel" class="sidepanel affected-by-sidepanel sidepanel-active">
+        <div class="menu-background">
+            <div class="navbar navbar-fixed-top navbar-sidebar">
+                <div class="navbar-inner nav-sidebar">
+                    <span class="brand in-navbar in-sidebar" href="#">{{anmName}}</span>
+
+                    <ul class="nav pull-right">
+                        <li class="divider-vertical in-navbar-sidebar"></li>
+                        <li><i class="navbar-icon icon-cog icon-white" href="#"></i></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content sidebar-content">
+                <div class="menu-button-container container-fluid">
+                    <div class="row-fluid">
+                        <div class="menu-button span6" id="workplanButton">
+                            <img src="../img/icons/nav-workplan.png" class="menu-icon"><br>
+                            Workplan
+                        </div>
+                        <div class="menu-button span6" id="inboxButton">
+                            <img src="../img/icons/nav-inbox.png" class="menu-icon"><br>
+                            Inbox
+                        </div>
+                    </div>
+                    <div class="row-fluid menu-button-row-padding">
+                        <div class="menu-button span6" id="myStatsButton">
+                            <img src="../img/icons/nav-activity.png" class="menu-icon"><br>
+                            My Stats
+                        </div>
+                        <div class="menu-button span6" id="reportsButton">
+                            <img src="../img/icons/nav-reporting.png" class="menu-icon"><br>
+                            Reporting
+                        </div>
+                    </div>
+                    <div class="menu-option row-fluid" id="eligibleCoupleMenuOption">
+                        <div class="span1">
+                            <img src="../img/icons/nav-ec.png">
+                        </div>
+                        <div class="span9">Eligible Couple</div>
+                        <div class="span2 pull-text-completely-right">{{eligibleCoupleCount}}</div>
+                    </div>
+                    <div class="menu-option-divider"></div>
+
+                    <div class="menu-option row-fluid">
+                        <div class="span1">
+                            <img src="../img/icons/nav-anc.png">
+                        </div>
+                        <div class="span9">ANC</div>
+                        <div class="span2 pull-text-completely-right">{{ancCount}}</div>
+                    </div>
+                    <div class="menu-option-divider"></div>
+
+                    <div class="menu-option row-fluid">
+                        <div class="span1">
+                            <img src="../img/icons/nav-pnc.png">
+                        </div>
+                        <div class="span9">PNC</div>
+                        <div class="span2 pull-text-completely-right">{{pncCount}}</div>
+                    </div>
+                    <div class="menu-option-divider"></div>
+
+                    <div class="menu-option row-fluid">
+                        <div class="span1">
+                            <img src="../img/icons/nav-child.png">
+                        </div>
+                        <div class="span9">Child</div>
+                        <div class="span2 pull-text-completely-right">{{childCount}}</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit
-    Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit
-    Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit
-    Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit
-    Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit
-    Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit
-    Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit
-    Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit
-    Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit
-    Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit Harshit
-</div>
-<div id="x" class="x" style="float: right; left: 90%; width: 10%">
-    <div class="navbar navbar-fixed-top" style="position: relative;">
-        <div class="navbar-inner">
-            <a class="brand list ellipsis" href="#"><span class="navbar-brand-icon-holder"><i class="icon-book icon-white navbar-brand-icon"></i> </span>
-                Workplan</a>
+    <div id="mainpanel" class="mainpanel affected-by-sidepanel sidepanel-active">
+        <div class="navbar navbar-fixed-top affected-by-sidepanel sidepanel-active">
+            <div class="navbar-inner">
+                <a class="brand in-navbar ellipsis affected-by-sidepanel sidepanel-active" href="#">
+                    <span class="navbar-brand-icon-holder affected-by-sidepanel sidepanel-active"><i class="icon-book icon-white navbar-brand-icon"></i></span>
+                    <span class="name">Workplan</span>
+                </a>
+            </div>
+        </div>
+        <div id="content" class="content affected-by-sidepanel sidepanel-active">
         </div>
     </div>
-    <div id="content" class="content">
-    </div>
 </div>
+
 </body>
 </html>

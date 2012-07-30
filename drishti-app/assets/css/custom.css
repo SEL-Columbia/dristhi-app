@@ -5,23 +5,75 @@
     font-style: normal;
 }
 
-.navbar .navbar-inner {
-    padding-left: 15px;
-    zoom: 125%;
-}
-
 .navbar.navbar-fixed-top {
     margin-left: -10px;
 }
 
 .navbar .navbar-inner {
+    padding-left: 15px;
+    zoom: 125%;
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#0a8bcc), to(#1b84bb));
     background: -webkit-linear-gradient(top, #0a8bcc 0%, #1b84bb 100%)
+}
+
+.navbar .navbar-inner.nav-sidebar {
+    padding-left: 15px;
+    zoom: 125%;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#292929), to(#212121));
+    background: -webkit-linear-gradient(top, #292929 0%, #212121 100%)
+}
+
+.navbar.sidepanel-active {
+    margin-left: 0px;
+    position: relative;
+}
+
+.brand.sidepanel-active .name {
+    display: none;
+}
+
+.brand.sidepanel-active {
+    text-overflow: clip;
+}
+
+.content.sidepanel-active, .content.sidebar-content {
+    margin-top: 0px;
 }
 
 .menu-button-container {
     padding: 5px;
     padding-bottom: 0px;
+}
+
+.sidepanel {
+    display: none;
+}
+
+.mainpanel {
+    left: 0%;
+    width: 100%
+}
+
+.page {
+    overflow: hidden;
+    height: 460px;
+}
+
+.sidepanel.sidepanel-active {
+    float: left;
+    left: 0%;
+    width: 84%;
+    display: block;
+}
+
+.mainpanel.sidepanel-active {
+    float: right;
+    left: 84%;
+    width: 16%
+}
+
+.navbar-sidebar {
+    position: relative;
 }
 
 .menu-button-container .menu-button {
@@ -49,18 +101,27 @@
     margin-bottom: 10px;
 }
 
-.brand.list {
+.brand.in-navbar {
     margin-top: 2px;
     color: #e8fdfe;
     font-weight: 500;
 }
 
+.brand.in-navbar.in-sidebar {
+    color: #0490c2;
+}
+
 .navbar-brand-icon-holder {
     background-color: #333;
     padding-left: 4px;
-    margin-left: 5px;
+    padding-right: 4px;
+    margin-left: 0px;
     margin-right: 12px;
     border-radius: 2px;
+}
+
+.navbar-brand-icon-holder.affected-by-sidepanel.sidepanel-active {
+    margin-left: -5px;
 }
 
 .navbar-brand-icon {
@@ -81,9 +142,14 @@
     font-size: 18px;
 }
 
-.divider-vertical.list {
+.divider-vertical.in-navbar {
     background-color: #5fc2e5;
     border-right-color: #39a2d0;
+}
+
+.divider-vertical.in-navbar-sidebar {
+    background-color: #5e5e5e;
+    border-right-color: #353535;
 }
 
 .alert.alert-info {
@@ -260,4 +326,11 @@ body {
 .home-menu-icon, .home-menu-icon:hover, .home-menu-icon:visited, .home-menu-icon:visited:hover {
     text-decoration: none;
     color: #d5d5d5;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
 }
