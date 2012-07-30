@@ -258,7 +258,7 @@ function program1(depth0,data) {
   stack1 = foundHelper || depth0.name;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
-  buffer += escapeExpression(stack1) + ">\n            <td><span class=\"summary\">";
+  buffer += escapeExpression(stack1) + ">\n            <td style=\"white-space: nowrap\"><span class=\"summary\">";
   foundHelper = helpers.name;
   stack1 = foundHelper || depth0.name;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
@@ -308,12 +308,12 @@ function program4(depth0,data) {
   buffer += escapeExpression(stack1) + " Alerts";
   return buffer;}
 
-  buffer += "<table class=\"table table-bordered\">\n    <tbody>\n    <tr>\n        <td><i class=\"summary-icon icon-user\"></i><span class=\"summary\">";
+  buffer += "<table class=\"table table-bordered\">\n    <tbody>\n    <tr>\n        <td style=\"white-space: nowrap\"><i class=\"summary-icon icon-user\"></i><span class=\"summary\">";
   foundHelper = helpers.totalAlertCount;
   stack1 = foundHelper || depth0.totalAlertCount;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "totalAlertCount", { hash: {} }); }
-  buffer += escapeExpression(stack1) + " New Alerts</span></td>\n    </tr>\n    <tr>\n        <td><i class=\"summary-icon icon-user\"></i><span class=\"summary\">";
+  buffer += escapeExpression(stack1) + " New Alerts</span></td>\n    </tr>\n    <tr>\n        <td style=\"white-space: nowrap\"><i class=\"summary-icon icon-user\"></i><span class=\"summary\">";
   foundHelper = helpers.totalReminderCount;
   stack1 = foundHelper || depth0.totalReminderCount;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
