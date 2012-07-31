@@ -1,10 +1,10 @@
 <table class="table table-bordered">
     <tbody>
     <tr>
-        <td style="white-space: nowrap"><i class="summary-icon icon-user"></i><span class="summary">{{totalAlertCount}} New Alerts</span></td>
+        <td><i class="summary-icon icon-user"></i><span class="summary">{{totalAlertCount}} New Alerts</span></td>
     </tr>
     <tr>
-        <td style="white-space: nowrap"><i class="summary-icon icon-user"></i><span class="summary">{{totalReminderCount}} New Reminder</span></td>
+        <td><i class="summary-icon icon-user"></i><span class="summary">{{totalReminderCount}} New Reminder</span></td>
     </tr>
     </tbody>
 </table>
@@ -15,7 +15,7 @@
     <tbody id="workplan-list">
     {{#each villages}}
         <tr class="workplanElement" data-village={{name}}>
-            <td style="white-space: nowrap"><span class="summary">{{name}}</span><br/><span class="village-breakdown">{{#ifNotZero reminderCount}}{{reminderCount}} Reminders, {{/ifNotZero}}{{#ifNotZero alertCount}}{{alertCount}} Alerts{{/ifNotZero}}</span>
+            <td><span class="summary">{{name}}</span><br/><span class="village-breakdown">{{#ifNotZero reminderCount}}{{reminderCount}} Reminders, {{/ifNotZero}}{{#ifNotZero alertCount}}{{alertCount}} Alerts{{/ifNotZero}}</span>
             </td>
         </tr>
     {{/each}}

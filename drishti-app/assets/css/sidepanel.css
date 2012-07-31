@@ -46,7 +46,12 @@
 .mainpanel.sidepanel-active {
     float: right;
     left: 84%;
+    white-space: nowrap;
     width: 16%
+}
+
+.nav.sidepanel-active {
+    display: none;
 }
 
 #mainpanel-overlay.sidepanel-active {

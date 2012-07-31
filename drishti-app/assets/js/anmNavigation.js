@@ -24,9 +24,11 @@ function ANMNavigationPanel(anmNavigationBridge) {
     var bindToggleSidebar = function() {
         $(".navbar-brand-icon-holder").click(function () {
             $(".affected-by-sidepanel").addClass("sidepanel-active");
+            $(".affected-by-sidepanel-container").addClass("container");
         });
         $("#mainpanel-overlay").click(function() {
             $(".affected-by-sidepanel").removeClass("sidepanel-active");
+            $(".affected-by-sidepanel-container").removeClass("container");
         });
     };
 
