@@ -25,10 +25,12 @@ function ANMNavigationPanel(anmNavigationBridge) {
         $(".navbar-brand-icon-holder").click(function () {
             $(".affected-by-sidepanel").addClass("sidepanel-active");
             $(".affected-by-sidepanel-container").addClass("container");
+            $(".page").css('height', $(window).height())
         });
         $("#mainpanel-overlay").click(function() {
             $(".affected-by-sidepanel").removeClass("sidepanel-active");
             $(".affected-by-sidepanel-container").removeClass("container");
+            $(".page").css('height', 'auto');
         });
     };
 

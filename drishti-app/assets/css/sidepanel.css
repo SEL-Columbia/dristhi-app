@@ -1,6 +1,4 @@
 .navbar .navbar-inner.nav-sidepanel {
-    padding-left: 15px;
-    zoom: 125%;
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#292929), to(#212121));
     background: -webkit-linear-gradient(top, #292929 0%, #212121 100%)
 }
@@ -31,9 +29,8 @@
     width: 100%
 }
 
-.page {
+.page.sidepanel-active {
     overflow: hidden;
-    height: 460px;
 }
 
 .sidepanel.sidepanel-active {
