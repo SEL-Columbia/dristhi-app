@@ -1,11 +1,22 @@
 function Workplan(workplanBridge) {
     return {
-        populateInto: function (cssIdentifierOfRootElement) {
-            $(cssIdentifierOfRootElement).html(Handlebars.templates.workplan(workplanBridge.getWorkplanSummary()));
+        populateInto: function (cssIdentifierOfContentRootElement) {
+            $(cssIdentifierOfContentRootElement).html(Handlebars.templates.workplan(workplanBridge.getWorkplanSummary()));
         },
-        bindItemToWorkplanDetailView: function (cssIdentifierOfRootElement, cssIdentifierOfEveryListItem) {
-            $(cssIdentifierOfRootElement).on("click", cssIdentifierOfEveryListItem, function (event) {
+        populateSidebar: function (cssIdentifierOfSidePanelContainer) {
+            $(cssIdentifierOfSidePanelContainer).html(Handlebars.templates.sidebar({}));
+        },
+        bindItemToWorkplanDetailView: function (cssIdentifierOfWorkplanListElement, cssIdentifierOfEveryListItem) {
+            $(cssIdentifierOfWorkplanListElement).on("click", cssIdentifierOfEveryListItem, function (event) {
                 workplanBridge.delegateToWorkplanDetail($(this).data("village"));
+            });
+        },
+        bindItemToToggleSidepanel: function (cssIdentifierOfSidePanelToggleElement) {
+            $(cssIdentifierOfSidePanelToggleElement).click(function () {
+                $(".affected-by-sidepanel").addClass("sidepanel-active");
+            });
+            $("#mainpanel-overlay").click(function() {
+                $(".affected-by-sidepanel").removeClass("sidepanel-active");
             });
         }
     };
