@@ -10,6 +10,7 @@ import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.view.AfterFetchListener;
 import org.ei.drishti.view.NoOpProgressIndicator;
 import org.ei.drishti.view.UpdateActionsTask;
+import org.ei.drishti.view.controller.NavigationController;
 
 public abstract class SecuredWebActivity extends SecuredActivity {
     protected WebView webView;
@@ -22,6 +23,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        webView.addJavascriptInterface(new NavigationController(this, context.anmService()), "navigationContext");
 
         onInitialization();
     }

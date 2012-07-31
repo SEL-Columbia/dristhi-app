@@ -3,20 +3,9 @@ function Workplan(workplanBridge) {
         populateInto: function (cssIdentifierOfContentRootElement) {
             $(cssIdentifierOfContentRootElement).html(Handlebars.templates.workplan(workplanBridge.getWorkplanSummary()));
         },
-        populateSidePanel: function (cssIdentifierOfSidePanelContainer) {
-            $(cssIdentifierOfSidePanelContainer).html(Handlebars.templates.sidepanel({}));
-        },
         bindItemToWorkplanDetailView: function (cssIdentifierOfWorkplanListElement, cssIdentifierOfEveryListItem) {
             $(cssIdentifierOfWorkplanListElement).on("click", cssIdentifierOfEveryListItem, function (event) {
                 workplanBridge.delegateToWorkplanDetail($(this).data("village"));
-            });
-        },
-        bindItemToToggleSidepanel: function (cssIdentifierOfSidePanelToggleElement) {
-            $(cssIdentifierOfSidePanelToggleElement).click(function () {
-                $(".affected-by-sidepanel").addClass("sidepanel-active");
-            });
-            $("#mainpanel-overlay").click(function() {
-                $(".affected-by-sidepanel").removeClass("sidepanel-active");
             });
         }
     };

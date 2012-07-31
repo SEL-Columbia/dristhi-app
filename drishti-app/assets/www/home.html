@@ -5,22 +5,17 @@
     <link href="../css/custom.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
 
-    <script type="text/javascript" src="../js/custom.ui.js"></script>
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/handlebars-1.0.0.beta.6.js"></script>
-    <script type="text/javascript" src="../template/ec-templates.js"></script>
-    <script type="text/javascript" src="../js/home.js"></script>
+
+    <script type="text/javascript" src="../js/custom.ui.js"></script>
+    <script type="text/javascript" src="../template/templates.js"></script>
+    <script type="text/javascript" src="../js/anmNavigation.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var home = new Home(new HomeBridge());
+            var home = new ANMNavigationPanel(new ANMNavigationBridge());
             home.populateInto("#template-container");
-            home.bindToEligibleCoupleList("#eligibleCoupleMenuOption");
-
-            home.bindToWorkplan("#workplanButton");
-            home.bindToPage("#myStatsButton", "my-stats.html");
-            home.bindToPage("#inboxButton", "inbox.html");
-            home.bindToPage("#reportsButton", "reports.html");
         });
     </script>
 </head>

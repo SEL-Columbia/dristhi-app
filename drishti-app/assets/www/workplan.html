@@ -11,17 +11,21 @@
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/handlebars-1.0.0.beta.6.js"></script>
+
     <script type="text/javascript" src="../js/custom.ui.js"></script>
-    <script type="text/javascript" src="../template/ec-templates.js"></script>
+    <script type="text/javascript" src="../template/templates.js"></script>
+    <script type="text/javascript" src="../js/anmNavigation.js"></script>
+
     <script type="text/javascript" src="../js/workplan.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
+            var sidePanel = new ANMNavigationPanel(new ANMNavigationBridge());
+            sidePanel.populateInto("#sidePanel");
+
             var workplan = new Workplan(new WorkplanBridge());
             workplan.populateInto("#content");
             workplan.bindItemToWorkplanDetailView("#workplan-list", ".workplanElement");
-
-            workplan.populateSidePanel("#sidePanel");
-            workplan.bindItemToToggleSidepanel(".navbar-brand-icon-holder");
         });
     </script>
 <body>

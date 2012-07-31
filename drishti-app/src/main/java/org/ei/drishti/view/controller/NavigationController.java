@@ -8,11 +8,11 @@ import org.ei.drishti.view.activity.EligibleCoupleActivity;
 import org.ei.drishti.view.activity.WorkplanActivity;
 import org.ei.drishti.view.contract.HomeContext;
 
-public class HomeActivityController {
+public class NavigationController {
     private Context context;
     private ANMService anmService;
 
-    public HomeActivityController(Context context, ANMService anmService) {
+    public NavigationController(Context context, ANMService anmService) {
         this.context = context;
         this.anmService = anmService;
     }
