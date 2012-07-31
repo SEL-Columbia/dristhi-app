@@ -1,4 +1,4 @@
-.navbar .navbar-inner.nav-sidebar {
+.navbar .navbar-inner.nav-sidepanel {
     padding-left: 15px;
     zoom: 125%;
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#292929), to(#212121));
@@ -18,7 +18,7 @@
     text-overflow: clip;
 }
 
-.content.sidepanel-active, .content.sidebar-content {
+.content.sidepanel-active, .content.sidepanel-content {
     margin-top: 0px;
 }
 
@@ -58,15 +58,15 @@
     position: absolute;
 }
 
-.navbar-sidebar {
+.navbar-sidepanel {
     position: relative;
 }
 
-.divider-vertical.in-navbar-sidebar {
+.divider-vertical.in-navbar-sidepanel {
     background-color: #5e5e5e;
     border-right-color: #353535;
 }
-.brand.in-navbar.in-sidebar {
+.brand.in-navbar.in-sidepanel {
     color: #0490c2;
 }
 

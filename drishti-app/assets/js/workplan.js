@@ -3,8 +3,8 @@ function Workplan(workplanBridge) {
         populateInto: function (cssIdentifierOfContentRootElement) {
             $(cssIdentifierOfContentRootElement).html(Handlebars.templates.workplan(workplanBridge.getWorkplanSummary()));
         },
-        populateSidebar: function (cssIdentifierOfSidePanelContainer) {
-            $(cssIdentifierOfSidePanelContainer).html(Handlebars.templates.sidebar({}));
+        populateSidePanel: function (cssIdentifierOfSidePanelContainer) {
+            $(cssIdentifierOfSidePanelContainer).html(Handlebars.templates.sidepanel({}));
         },
         bindItemToWorkplanDetailView: function (cssIdentifierOfWorkplanListElement, cssIdentifierOfEveryListItem) {
             $(cssIdentifierOfWorkplanListElement).on("click", cssIdentifierOfEveryListItem, function (event) {
