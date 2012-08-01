@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.service.ANMService;
-import org.ei.drishti.view.activity.EligibleCoupleActivity;
+import org.ei.drishti.view.activity.EligibleCoupleListActivity;
 import org.ei.drishti.view.activity.WorkplanActivity;
 import org.ei.drishti.view.contract.HomeContext;
 
@@ -18,7 +18,7 @@ public class NavigationController {
     }
 
     public void startECList() {
-        context.startActivity(new Intent(context, EligibleCoupleActivity.class));
+        context.startActivity(new Intent(context, EligibleCoupleListActivity.class));
     }
 
     public String get() {

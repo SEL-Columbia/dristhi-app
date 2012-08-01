@@ -23,7 +23,7 @@ import java.util.Locale;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class EligibleCoupleViewController {
+public class EligibleCoupleDetailController {
     private final Context context;
     private String caseId;
     private final AllEligibleCouples allEligibleCouples;
@@ -31,7 +31,7 @@ public class EligibleCoupleViewController {
     private final AllTimelineEvents allTimelineEvents;
     PrettyTime prettyTime;
 
-    public EligibleCoupleViewController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllTimelineEvents allTimelineEvents) {
+    public EligibleCoupleDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllTimelineEvents allTimelineEvents) {
         this.context = context;
         this.caseId = caseId;
         this.allEligibleCouples = allEligibleCouples;

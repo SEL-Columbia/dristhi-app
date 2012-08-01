@@ -5,7 +5,7 @@ import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.view.activity.EligibleCoupleViewActivity;
+import org.ei.drishti.view.activity.EligibleCoupleDetailActivity;
 import org.ei.drishti.view.contract.EC;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class EligibleCoupleListViewController {
     }
 
     public void startEC(String caseId) {
-        Intent intent = new Intent(context.getApplicationContext(), EligibleCoupleViewActivity.class);
+        Intent intent = new Intent(context.getApplicationContext(), EligibleCoupleDetailActivity.class);
         intent.putExtra("caseId", caseId);
         context.startActivity(intent);
     }
