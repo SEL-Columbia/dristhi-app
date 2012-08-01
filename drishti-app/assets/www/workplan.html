@@ -23,12 +23,12 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
-            sidePanel.populateInto("#sidePanel");
-
             var workplan = new Workplan(new WorkplanBridge());
             workplan.populateInto("#content");
             workplan.bindItemToWorkplanDetailView("#workplan-list", ".workplanElement");
+
+            var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
+            sidePanel.populateInto("#sidePanel");
         });
     </script>
 <body>

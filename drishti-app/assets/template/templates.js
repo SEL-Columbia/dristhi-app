@@ -387,12 +387,12 @@ function program1(depth0,data) {
   buffer += escapeExpression(stack1) + "</div>\n                </div>\n            </div>\n        </div>\n    ";
   return buffer;}
 
-  buffer += "<div class=\"navbar navbar-fixed-top\">\n    <div class=\"navbar-inner\">\n        <a class=\"brand in-navbar ellipsis affected-by-sidepanel\" href=\"#\">\n            <span class=\"navbar-brand-icon-holder\"><i class=\"icon-book icon-white navbar-brand-icon\"></i></span>\n            <span class=\"name\">Workplan: ";
+  buffer += "<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <a class=\"brand in-navbar ellipsis affected-by-sidepanel\" href=\"#\">\n            <span class=\"navbar-brand-icon-holder affected-by-sidepanel\"><i class=\"icon-book icon-white navbar-brand-icon\"></i></span>\n            <span class=\"name\">Workplan: ";
   foundHelper = helpers.village;
   stack1 = foundHelper || depth0.village;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "village", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</span>\n        </a>\n    </div>\n</div>\n\n<div id=\"content\" class=\"content\">\n    <h3 class=\"priority-header\">Soon</h3>\n    ";
+  buffer += escapeExpression(stack1) + "</span>\n        </a>\n    </div>\n</div>\n\n<div id=\"content\" class=\"content  affected-by-sidepanel\">\n    <h3 class=\"priority-header\">Soon</h3>\n    ";
   foundHelper = helpers.alerts;
   stack1 = foundHelper || depth0.alerts;
   stack2 = helpers.each;

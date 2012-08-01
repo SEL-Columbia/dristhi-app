@@ -19,12 +19,12 @@
     <script type="text/javascript" src="../js/ec.ui.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
-            sidePanel.populateInto("#sidePanel");
-
             var list = new ECList(new ECListBridge());
             list.populateInto("#ec-list");
             list.bindEveryItemToECView("#ec-list", ".ec-list-item");
+
+            var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
+            sidePanel.populateInto("#sidePanel");
         });
     </script>
 <body>
