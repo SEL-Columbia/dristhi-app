@@ -3,7 +3,9 @@
 <head>
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/custom.css" rel="stylesheet">
+    <link href="../css/sidepanel.css" rel="stylesheet">
     <link href="../css/ec-detail.css" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
 
     <script type="text/javascript" src="../js/jquery.min.js"></script>
@@ -12,6 +14,8 @@
 
     <script type="text/javascript" src="../js/custom.ui.js"></script>
     <script type="text/javascript" src="../template/templates.js"></script>
+    <script type="text/javascript" src="../js/anmNavigation.js"></script>
+    <script type="text/javascript" src="../js/sidePanel.js"></script>
 
     <script type="text/javascript" src="../js/ec_detail.js"></script>
     <script type="text/javascript">
@@ -26,16 +30,24 @@
 
         $(document).ready(function() {
             var ec = new EC(new ECBridge());
-            ec.populateInto("#ec-content");
+            ec.populateInto("#mainpanel");
             ec.bindToContacts("#contactButton");
             ec.bindToCommCare("#newVisitButton");
+
+            var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
+            sidePanel.populateInto("#sidePanel");
         });
     </script>
 </head>
 
 <body>
 
-<div id="ec-content"></div>
+<div class="page affected-by-sidepanel">
+    <div id="sidePanel"></div>
+
+    <div id="mainpanel" class="mainpanel affected-by-sidepanel">
+    </div>
+</div>
 
 </body>
 </html>

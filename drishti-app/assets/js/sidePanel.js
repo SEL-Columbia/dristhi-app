@@ -1,20 +1,20 @@
 function SidePanel(anmNavigation) {
-    var closeSidePanel = function(animationDuration) {
-        $("#mainpanel").animate({"width": "100%"}, {duration: animationDuration, queue: false}).animate({"left": "0%"}, {duration: animationDuration, queue: false});
-        $("#sidepanel").animate({"width": "84%%"}, {duration: animationDuration, queue: false}).animate({"left": "-84%"}, {duration: animationDuration, queue: false, complete: function() {
-            $(".affected-by-sidepanel").removeClass("sidepanel-active");
-            $(".affected-by-sidepanel-container").removeClass("container");
-            $(".page").css('height', 'auto');
-        }});
-    };
-
     var openSidePanel = function(animationDuration) {
         $(".affected-by-sidepanel").addClass("sidepanel-active");
-        $(".affected-by-sidepanel-container").addClass("container");
+        $(".mainpanel .container-fluid").addClass("container").addClass("container-affected-by-sidepanel");
         $(".page").css('height', $(window).height())
 
         $("#mainpanel").animate({"width": "16%"}, {duration: animationDuration, queue: false}).animate({"left": "84%"}, {duration: animationDuration, queue: false});
         $("#sidepanel").animate({"width": "84%"}, {duration: animationDuration, queue: false}).animate({"left": "0%"}, {duration: animationDuration, queue: false});
+    };
+
+    var closeSidePanel = function(animationDuration) {
+        $("#mainpanel").animate({"width": "100%"}, {duration: animationDuration, queue: false}).animate({"left": "0%"}, {duration: animationDuration, queue: false});
+        $("#sidepanel").animate({"width": "84%%"}, {duration: animationDuration, queue: false}).animate({"left": "-84%"}, {duration: animationDuration, queue: false, complete: function() {
+            $(".affected-by-sidepanel").removeClass("sidepanel-active");
+            $(".mainpanel .container.container-affected-by-sidepanel").removeClass("container").removeClass("container-affected-by-sidepanel");
+            $(".page").css('height', 'auto');
+        }});
     };
 
     var bindToggleSidebar = function() {

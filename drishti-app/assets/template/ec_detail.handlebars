@@ -1,11 +1,12 @@
-<div class="navbar navbar-fixed-top">
+<div class="navbar navbar-fixed-top affected-by-sidepanel">
     <div class="navbar-inner">
         <a class="brand in-navbar affected-by-sidepanel" href="#">
-            <span class="name">EC: {{wifeName}}</span>
+            <span class="navbar-brand-icon-holder affected-by-sidepanel"><i class="icon-book icon-white navbar-brand-icon"></i></span>
+            <span class="name">EC</span>
         </a>
 
         {{#if isHighPriority}}
-            <ul class="nav pull-right">
+            <ul class="nav pull-right affected-by-sidepanel">
                 <li class="divider-vertical"></li>
                 <li><a class="ec-status high-priority" href="#">High Priority</a></li>
             </ul>
@@ -13,7 +14,7 @@
     </div>
 </div>
 
-<div class="content">
+<div id="content" class="content affected-by-sidepanel">
     <div class="ec-container container-fluid">
         <div class="row-fluid">
             <div class="span4">
