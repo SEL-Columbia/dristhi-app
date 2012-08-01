@@ -22,11 +22,13 @@
 
 .sidepanel {
     display: none;
+    width: 84%;
+    left: -84%;
 }
 
 .mainpanel {
     left: 0%;
-    width: 100%
+    width: 100%;
 }
 
 .page.sidepanel-active {
@@ -35,16 +37,13 @@
 
 .sidepanel.sidepanel-active {
     float: left;
-    left: 0%;
-    width: 84%;
+    position: absolute;
     display: block;
 }
 
 .mainpanel.sidepanel-active {
     float: right;
-    left: 84%;
     white-space: nowrap;
-    width: 16%
 }
 
 .nav.sidepanel-active {

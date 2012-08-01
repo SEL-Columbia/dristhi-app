@@ -22,15 +22,23 @@ function ANMNavigationPanel(anmNavigationBridge) {
     };
 
     var bindToggleSidebar = function() {
+        var animationDuration = 250;
+
         $(".navbar-brand-icon-holder").click(function () {
             $(".affected-by-sidepanel").addClass("sidepanel-active");
             $(".affected-by-sidepanel-container").addClass("container");
             $(".page").css('height', $(window).height())
+
+            $("#mainpanel").animate({"width": "16%"}, {duration: animationDuration, queue: false}).animate({"left": "84%"}, {duration: animationDuration, queue: false});
+            $("#sidepanel").animate({"width": "84%"}, {duration: animationDuration, queue: false}).animate({"left": "0%"}, {duration: animationDuration, queue: false});
         });
         $("#mainpanel-overlay").click(function() {
-            $(".affected-by-sidepanel").removeClass("sidepanel-active");
-            $(".affected-by-sidepanel-container").removeClass("container");
-            $(".page").css('height', 'auto');
+            $("#mainpanel").animate({"width": "100%"}, {duration: animationDuration, queue: false}).animate({"left": "0%"}, {duration: animationDuration, queue: false});
+            $("#sidepanel").animate({"width": "84%%"}, {duration: animationDuration, queue: false}).animate({"left": "-84%"}, {duration: animationDuration, queue: false, complete: function() {
+                $(".affected-by-sidepanel").removeClass("sidepanel-active");
+                $(".affected-by-sidepanel-container").removeClass("container");
+                $(".page").css('height', 'auto');
+            }});
         });
     };
 
