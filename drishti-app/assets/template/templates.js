@@ -1,6 +1,6 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
-templates['ec'] = template(function (Handlebars,depth0,helpers,partials,data) {
+templates['ec_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, stack2, foundHelper, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
 
@@ -92,7 +92,12 @@ function program11(depth0,data) {
   buffer += escapeExpression(stack1) + "<br>\n                                                ";
   return buffer;}
 
-  buffer += "<div class=\"navbar navbar-fixed-top\">\n    <div class=\"navbar-inner\">\n        <a class=\"brand in-navbar affected-by-sidepanel\" href=\"#\">\n            <span class=\"name ellipsis\">EC</span>\n        </a>\n\n        ";
+  buffer += "<div class=\"navbar navbar-fixed-top\">\n    <div class=\"navbar-inner\">\n        <a class=\"brand in-navbar affected-by-sidepanel\" href=\"#\">\n            <span class=\"name\">EC: ";
+  foundHelper = helpers.wifeName;
+  stack1 = foundHelper || depth0.wifeName;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "wifeName", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</span>\n        </a>\n\n        ";
   foundHelper = helpers.isHighPriority;
   stack1 = foundHelper || depth0.isHighPriority;
   stack2 = helpers['if'];
