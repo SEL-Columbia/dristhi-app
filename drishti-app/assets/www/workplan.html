@@ -17,12 +17,13 @@
     <script type="text/javascript" src="../js/custom.ui.js"></script>
     <script type="text/javascript" src="../template/templates.js"></script>
     <script type="text/javascript" src="../js/anmNavigation.js"></script>
+    <script type="text/javascript" src="../js/sidePanel.js"></script>
 
     <script type="text/javascript" src="../js/workplan.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var sidePanel = new ANMNavigationPanel(new ANMNavigationBridge());
+            var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
             sidePanel.populateInto("#sidePanel");
 
             var workplan = new Workplan(new WorkplanBridge());

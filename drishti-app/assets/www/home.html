@@ -15,7 +15,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var home = new ANMNavigationPanel(new ANMNavigationBridge());
-            home.populateInto("#template-container");
+            home.populateInto("#template-container", function() {});
         });
     </script>
 </head>

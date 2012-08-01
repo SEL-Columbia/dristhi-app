@@ -3,57 +3,41 @@ function ANMNavigationPanel(anmNavigationBridge) {
         $(cssIdentifierOfRootElement).html(Handlebars.templates.sidepanel(anmNavigationBridge.getANMInformation()));
     };
 
-    var bindToWorkplan = function (identifierOfElement) {
-        $(identifierOfElement).click(function () {
+    var bindToWorkplan = function (callbackToRunBeforeAnyAction, identifierOfElement) {
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function() {
             anmNavigationBridge.delegateToWorkplan();
         });
     };
 
-    var bindToEligibleCoupleList = function (identifierOfElement) {
-        $(identifierOfElement).click(function () {
+    var bindToEligibleCoupleList = function (callbackToRunBeforeAnyAction, identifierOfElement) {
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             anmNavigationBridge.delegateToECList();
         });
     };
 
-    var bindToPage = function (identifierOfElement, pageToGoTo) {
-        $(identifierOfElement).click(function () {
+    var bindToPage = function (callbackToRunBeforeAnyAction, identifierOfElement, pageToGoTo) {
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             window.location.href = pageToGoTo;
         });
     };
 
-    var bindToggleSidebar = function() {
-        var animationDuration = 250;
-
-        $(".navbar-brand-icon-holder").click(function () {
-            $(".affected-by-sidepanel").addClass("sidepanel-active");
-            $(".affected-by-sidepanel-container").addClass("container");
-            $(".page").css('height', $(window).height())
-
-            $("#mainpanel").animate({"width": "16%"}, {duration: animationDuration, queue: false}).animate({"left": "84%"}, {duration: animationDuration, queue: false});
-            $("#sidepanel").animate({"width": "84%"}, {duration: animationDuration, queue: false}).animate({"left": "0%"}, {duration: animationDuration, queue: false});
-        });
-        $("#mainpanel-overlay").click(function() {
-            $("#mainpanel").animate({"width": "100%"}, {duration: animationDuration, queue: false}).animate({"left": "0%"}, {duration: animationDuration, queue: false});
-            $("#sidepanel").animate({"width": "84%%"}, {duration: animationDuration, queue: false}).animate({"left": "-84%"}, {duration: animationDuration, queue: false, complete: function() {
-                $(".affected-by-sidepanel").removeClass("sidepanel-active");
-                $(".affected-by-sidepanel-container").removeClass("container");
-                $(".page").css('height', 'auto');
-            }});
+    var runWithCallBack = function (callbackToRunBeforeAnyAction, identifierOfElement, action) {
+        $(identifierOfElement).click(function () {
+            callbackToRunBeforeAnyAction();
+            action();
         });
     };
 
     return {
-        populateInto: function(cssIdentifierOfSidePanelElement) {
+        populateInto: function(cssIdentifierOfSidePanelElement, callbackToRunBeforeAnyAction) {
             populateDataInto(cssIdentifierOfSidePanelElement);
 
-            bindToWorkplan("#workplanButton");
-            bindToPage("#myStatsButton", "my-stats.html");
-            bindToPage("#inboxButton", "inbox.html");
-            bindToPage("#reportsButton", "reports.html");
+            bindToWorkplan(callbackToRunBeforeAnyAction, "#workplanButton");
+            bindToPage(callbackToRunBeforeAnyAction, "#myStatsButton", "my-stats.html");
+            bindToPage(callbackToRunBeforeAnyAction, "#inboxButton", "inbox.html");
+            bindToPage(callbackToRunBeforeAnyAction, "#reportsButton", "reports.html");
 
-            bindToEligibleCoupleList("#eligibleCoupleMenuOption");
-
-            bindToggleSidebar();
+            bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
         }
     };
 }
