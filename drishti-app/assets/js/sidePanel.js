@@ -22,9 +22,11 @@ function SidePanel(anmNavigation) {
 
         $(".navbar-brand-icon-holder").click(function () {
             openSidePanel(animationDuration);
+            return false;
         });
         $("#mainpanel-overlay").click(function() {
             closeSidePanel(animationDuration);
+            return false;
         });
     };
 
