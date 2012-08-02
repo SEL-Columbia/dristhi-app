@@ -49,7 +49,7 @@ function FakeECListContext() {
             ]);
         },
         startEC: function(caseId) {
-            alert("Got caseID: " + caseId);
+            window.location.href = "ec_detail.html";
         }
     }
 }

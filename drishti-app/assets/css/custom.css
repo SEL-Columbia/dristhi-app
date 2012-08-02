@@ -89,11 +89,11 @@
     border: 1px solid #9dc4d3;
 }
 
-.ec-container {
+.registry-container {
     padding: 8px;
 }
 
-.ec-name {
+.client-name {
     font-weight: bold;
     font-size: 16px;
     margin-bottom: 6px;
@@ -219,7 +219,7 @@ body {
     display: block;
 }
 
-.ec-list-item .high-risk {
+.client-list-item .high-risk {
     color: red;
 }
 
@@ -228,14 +228,14 @@ body {
     text-align: right;
 }
 
-.ec-list-item, .ec-list-item:hover, .ec-list-item:visited, .ec-list-item:visited:hover {
+.client-list-item, .client-list-item:hover, .client-list-item:visited, .client-list-item:visited:hover {
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
     color: #333;
 }
 
-.ec-list-item .ec-name {
+.client-list-item .client-name {
     font-weight: bold;
     font-size: 18px;
     margin-bottom: 0px;

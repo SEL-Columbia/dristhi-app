@@ -18,11 +18,7 @@
 
     <script type="text/javascript" src="../js/ec_list.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            var list = new ECList(new ECListBridge());
-            list.populateInto("#ec-list");
-            list.bindEveryItemToECView("#ec-list", ".client-list-item");
-
+        $(document).ready(function () {
             var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
             sidePanel.populateInto("#sidePanel");
         });
@@ -36,7 +32,7 @@
             <div class="navbar-inner">
                 <a class="brand in-navbar affected-by-sidepanel" href="#">
                     <span class="navbar-brand-icon-holder affected-by-sidepanel"><i class="icon-book icon-white navbar-brand-icon"></i></span>
-                    <span class="name">EC</span>
+                    <span class="name">ANC</span>
                 </a>
 
                 <ul class="nav pull-right affected-by-sidepanel">
@@ -49,7 +45,42 @@
         </div>
 
         <div id="content" class="content affected-by-sidepanel">
-            <div id="ec-list" class="registry-container container-fluid">
+            <div id="anc-list" class="registry-container container-fluid">
+                <div class="row-fluid">
+                    <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
+                        <div class="span9">
+                            <ul class="client-details unstyled">
+                                <li class="client-name">Bindu</li>
+                                <li>bherya</li>
+                                <li>Thaayi #: 011</li>
+                            </ul>
+                        </div>
+
+                        <div class="span3 high-risk pull-text-completely-right">
+                            High Priority
+                        </div>
+
+                        <div class="divider divider-padding-bottom"></div>
+                    </a>
+                </div>
+
+                <div class="row-fluid">
+                    <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
+                        <div class="span9">
+                            <ul class="client-details unstyled">
+                                <li class="client-name">Bindu</li>
+                                <li>bherya</li>
+                                <li>Thaayi #: 011</li>
+                            </ul>
+                        </div>
+
+                        <div class="span3 high-risk pull-text-completely-right">
+                            High Priority
+                        </div>
+
+                        <div class="divider divider-padding-bottom"></div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

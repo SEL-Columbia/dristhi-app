@@ -15,6 +15,12 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
+    var bindToANCList = function (callbackToRunBeforeAnyAction, identifierOfElement) {
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
+            anmNavigationBridge.delegateToANCList();
+        });
+    };
+
     var bindToPage = function (callbackToRunBeforeAnyAction, identifierOfElement, pageToGoTo) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             window.location.href = pageToGoTo;
@@ -38,6 +44,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
             bindToPage(callbackToRunBeforeAnyAction, "#reportsButton", "reports.html");
 
             bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
+            bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
         }
     };
 }
@@ -55,6 +62,9 @@ function ANMNavigationBridge() {
         delegateToECList: function () {
             return anmNavigationContext.startECList();
         },
+        delegateToANCList: function () {
+            return anmNavigationContext.startANCList();
+        },
         delegateToWorkplan: function () {
             return anmNavigationContext.startWorkplan();
         }
@@ -68,6 +78,9 @@ function FakeANMNavigationContext() {
         },
         startECList: function () {
             window.location.href = "ec_list.html";
+        },
+        startANCList: function () {
+            window.location.href = "anc_list.html";
         },
         startWorkplan: function () {
             window.location.href = "workplan.html";
