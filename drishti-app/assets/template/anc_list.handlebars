@@ -1,0 +1,19 @@
+{{#each anc}}
+    <div class="row-fluid">
+        <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
+            <div class="span9">
+                <ul class="client-details unstyled">
+                    <li class="client-name">{{womanName}}</li>
+                    <li>{{villageName}}</li>
+                    <li>Thaayi #: {{thaayiCardNumber}}</li>
+                </ul>
+            </div>
+
+            <div class="span3 high-risk pull-text-completely-right">
+                {{#if isHighRisk}} High Risk {{/if}}
+            </div>
+
+            <div class="divider divider-padding-bottom"></div>
+        </a>
+    </div>
+{{/each}}

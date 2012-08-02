@@ -1,5 +1,60 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
+templates['anc_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, stack2, foundHelper, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, stack2;
+  buffer += "\n    <div class=\"row-fluid\">\n        <a data-caseId=";
+  foundHelper = helpers.caseId;
+  stack1 = foundHelper || depth0.caseId;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "caseId", { hash: {} }); }
+  buffer += escapeExpression(stack1) + " class=\"client-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span9\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"client-name\">";
+  foundHelper = helpers.womanName;
+  stack1 = foundHelper || depth0.womanName;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "womanName", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</li>\n                    <li>";
+  foundHelper = helpers.villageName;
+  stack1 = foundHelper || depth0.villageName;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "villageName", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</li>\n                    <li>Thaayi #: ";
+  foundHelper = helpers.thaayiCardNumber;
+  stack1 = foundHelper || depth0.thaayiCardNumber;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "thaayiCardNumber", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</li>\n                </ul>\n            </div>\n\n            <div class=\"span3 high-risk pull-text-completely-right\">\n                ";
+  foundHelper = helpers.isHighRisk;
+  stack1 = foundHelper || depth0.isHighRisk;
+  stack2 = helpers['if'];
+  tmp1 = self.program(2, program2, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.noop;
+  stack1 = stack2.call(depth0, stack1, tmp1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            </div>\n\n            <div class=\"divider divider-padding-bottom\"></div>\n        </a>\n    </div>\n";
+  return buffer;}
+function program2(depth0,data) {
+  
+  
+  return " High Risk ";}
+
+  foundHelper = helpers.anc;
+  stack1 = foundHelper || depth0.anc;
+  stack2 = helpers.each;
+  tmp1 = self.program(1, program1, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.noop;
+  stack1 = stack2.call(depth0, stack1, tmp1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n";
+  return buffer;});
 templates['ec_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, stack2, foundHelper, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
