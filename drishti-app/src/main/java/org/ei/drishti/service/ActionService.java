@@ -53,7 +53,6 @@ public class ActionService {
                 allBeneficiaries.handleAction(action);
             } else {
                 allEligibleCouples.handleAction(action);
-
             }
         }
     }

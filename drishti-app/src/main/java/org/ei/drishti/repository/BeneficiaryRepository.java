@@ -71,12 +71,18 @@ public class BeneficiaryRepository extends DrishtiRepository {
     }
 
     public long childCount() {
-        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + BENEFICIARY_TABLE_NAME + " WHERE " + TYPE_COLUMN + " = ?", new String[]{"CHILD"});
+        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + BENEFICIARY_TABLE_NAME + " WHERE " + TYPE_COLUMN + " = ?", new String[]{TYPE_CHILD});
     }
 
     public List<Beneficiary> findByECCaseId(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(BENEFICIARY_TABLE_NAME, BENEFICIARY_TABLE_COLUMNS, EC_CASEID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
+        return readAllBeneficiaries(cursor);
+    }
+
+    public List<Beneficiary> allANCs() {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(BENEFICIARY_TABLE_NAME, BENEFICIARY_TABLE_COLUMNS, TYPE_COLUMN + " = ?", new String[]{TYPE_ANC}, null, null, null, null);
         return readAllBeneficiaries(cursor);
     }
 

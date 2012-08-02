@@ -54,6 +54,18 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
         assertEquals(asList(new Beneficiary("CASE Z", "EC Case 2", "TC 3", "2012-06-08"), new Beneficiary("CASE A", "EC Case 2", "TC 3", "2012-06-09")), repository.findByECCaseId("EC Case 2"));
     }
 
+    public void testShouldFetchAllANCs() throws Exception {
+        repository.addMother(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
+        repository.addMother(new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08"));
+        repository.addMother(new Beneficiary("CASE Z", "EC Case 2", "TC 3", "2012-06-08"));
+
+        assertEquals(asList(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"), new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08"), new Beneficiary("CASE Z", "EC Case 2", "TC 3", "2012-06-08")), repository.allANCs());
+
+        repository.addChild("CASE A", "2012-06-09", "CASE Z", "female");
+
+        assertEquals(asList(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"), new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08")), repository.allANCs());
+    }
+
     public void testShouldCountOnlyPregnantBeneficiariesInRepoAsANCs() throws Exception {
         repository.addMother(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
         repository.addMother(new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08"));

@@ -1,6 +1,5 @@
 package org.ei.drishti.view.activity;
 
-import android.webkit.WebView;
 import org.ei.drishti.view.controller.EligibleCoupleListViewController;
 
 public class EligibleCoupleListActivity extends SecuredWebActivity {
