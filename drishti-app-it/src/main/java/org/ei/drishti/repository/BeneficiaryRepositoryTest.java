@@ -2,6 +2,7 @@ package org.ei.drishti.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
+import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Beneficiary;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.util.Session;
@@ -13,13 +14,16 @@ import static java.util.Arrays.asList;
 public class BeneficiaryRepositoryTest extends AndroidTestCase {
     private BeneficiaryRepository repository;
     private TimelineEventRepository timelineEventRepository;
+    private AlertRepository alertRepository;
 
     @Override
     protected void setUp() throws Exception {
         timelineEventRepository = new TimelineEventRepository();
-        repository = new BeneficiaryRepository(timelineEventRepository);
+        alertRepository = new AlertRepository();
+        repository = new BeneficiaryRepository(timelineEventRepository, alertRepository);
+
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
-        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, timelineEventRepository);
+        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, timelineEventRepository, alertRepository);
     }
 
     public void testShouldInsertMother() throws Exception {
@@ -105,5 +109,29 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
 
         repository.close("CASE B");
         assertEquals(1, repository.childCount());
+    }
+
+    public void testShouldDeleteCorrespondingAlertsWhenABeneficiaryIsDeleted() throws Exception {
+        repository.addMother(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
+        alertRepository.createAlert(new Alert("CASE X", "Theresa 1", "Bherya 1", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
+
+        repository.addMother(new Beneficiary("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
+        alertRepository.createAlert(new Alert("CASE Y", "Theresa 2", "Bherya 2", "ANC 2", "Thaayi 2", 1, "2012-01-01"));
+
+        repository.close("CASE X");
+
+        assertEquals(asList(new Alert("CASE Y", "Theresa 2", "Bherya 2", "ANC 2", "Thaayi 2", 1, "2012-01-01")), alertRepository.allAlerts());
+    }
+
+    public void testShouldDeleteCorrespondingTimelineEventsWhenABeneficiaryIsDeleted() throws Exception {
+        repository.addMother(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
+        timelineEventRepository.add(TimelineEvent.forChildBirth("CASE X", "2012-06-09", "female"));
+
+        repository.addMother(new Beneficiary("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
+        timelineEventRepository.add(TimelineEvent.forChildBirth("CASE Y", "2012-06-09", "male"));
+
+        repository.close("CASE X");
+
+        assertEquals(asList(TimelineEvent.forChildBirth("CASE Y", "2012-06-09", "male")), timelineEventRepository.allFor("CASE Y"));
     }
 }

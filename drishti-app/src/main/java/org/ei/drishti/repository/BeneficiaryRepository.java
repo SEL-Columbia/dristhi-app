@@ -24,9 +24,11 @@ public class BeneficiaryRepository extends DrishtiRepository {
     private static final String TYPE_ANC = "ANC";
     private static final String TYPE_CHILD = "CHILD";
     private TimelineEventRepository timelineEventRepository;
+    private AlertRepository alertRepository;
 
-    public BeneficiaryRepository(TimelineEventRepository timelineEventRepository) {
+    public BeneficiaryRepository(TimelineEventRepository timelineEventRepository, AlertRepository alertRepository) {
         this.timelineEventRepository = timelineEventRepository;
+        this.alertRepository = alertRepository;
     }
 
     @Override
@@ -88,6 +90,8 @@ public class BeneficiaryRepository extends DrishtiRepository {
 
     public void close(String caseId) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
+        alertRepository.deleteAllAlertsForCase(caseId);
+        timelineEventRepository.deleteAllTimelineEventsForCase(caseId);
         database.delete(BENEFICIARY_TABLE_NAME, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 

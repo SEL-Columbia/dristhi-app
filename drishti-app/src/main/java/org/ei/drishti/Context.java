@@ -136,7 +136,7 @@ public class Context {
 
     private BeneficiaryRepository beneficiaryRepository() {
         if (beneficiaryRepository == null) {
-            beneficiaryRepository = new BeneficiaryRepository(timelineEventRepository());
+            beneficiaryRepository = new BeneficiaryRepository(timelineEventRepository(), alertRepository());
         }
         return beneficiaryRepository;
     }
