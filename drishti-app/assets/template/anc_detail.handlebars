@@ -1,0 +1,57 @@
+
+        <div class="navbar navbar-fixed-top affected-by-sidepanel">
+            <div class="navbar-inner">
+                <a class="brand in-navbar affected-by-sidepanel" href="#">
+                    <span class="navbar-brand-icon-holder affected-by-sidepanel"><i class="icon-book icon-white navbar-brand-icon"></i></span>
+                    <span class="name">ANC</span>
+                </a>
+
+                {{#if isHighPriority}}
+                <ul class="nav pull-right affected-by-sidepanel">
+                    <li class="divider-vertical"></li>
+                    <li><a class="ec-status high-priority" href="#">High Priority</a></li>
+                </ul>
+                {{/if}}
+
+            </div>
+        </div>
+
+        <div id="content" class="content affected-by-sidepanel">
+            <div class="registry-container container-fluid">
+                <div class="row-fluid">
+                    <div class="span4">
+                        <img src="../img/mother.png"/>
+                    </div>
+
+                    <div id="ec-name" class="span6">
+                        <ul class="client-details unstyled">
+                            <li class="ec-name">{{womanName}}</li>
+                            <li>{{villageName}}, {{subcenter}}</li>
+                            <li>TC: {{thaayiCardNumber}}</li>
+                        </ul>
+                    </div>
+
+                    <div class="span2" style="float: right;">
+                        <a class="ec-information-button btn btn-inverse" href="#">
+                            <i class="icon-user icon-white"></i>
+                            <i class="icon-align-justify icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="todos" class="registry-container container-fluid">
+            {{#each todos}}
+            <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-info todo">
+                <i class="icon-check"></i>
+                <strong>{{message}}</strong>
+            </div>
+            {{/each}}
+
+            <div class="divider"></div>
+        </div>
+
+
+
