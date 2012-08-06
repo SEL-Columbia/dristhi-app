@@ -23,13 +23,13 @@
 
             <div id="ec-name" class="span6">
                 <ul class="client-details unstyled">
-                    <li class="ec-name">{{wifeName}}</li>
+                    <li class="big-text">{{wifeName}}</li>
                     <li>{{village}}, {{subcenter}}</li>
                     <li>EC: {{ecNumber}}</li>
                 </ul>
             </div>
 
-            <div class="span2" style="float: right;">
+            <div class="span2 pull-right">
                 <a class="ec-information-button btn btn-inverse" href="#">
                     <i class="icon-user icon-white"></i>
                     <i class="icon-align-justify icon-white"></i>
@@ -53,7 +53,7 @@
     </div>
 
     <div class="registry-container container-fluid">
-        <div class="client-name row-fluid">
+        <div class="big-text row-fluid detail-section-header">
             EC Summary
         </div>
         <div class="well well-for-beneficiary-details">
@@ -91,15 +91,15 @@
                     <div class="divider divider-padding-top"></div>
 
                     <div id="ec-timeline" class="row-fluid beneficiary-detail-component">
-                        <div class="beneficiary-detail-header" data-toggle="collapse" data-target="#nonono">
+                        <div class="beneficiary-detail-header" data-toggle="collapse" data-target="#timeline-toggled-content">
                             <i class="icon-calendar"></i> View EC Timeline
                             <a><i class="toggle-indicator icon-chevron-down pull-right"></i></a>
                         </div>
-                        <div class="beneficiary-detail-content collapse" id="nonono">
+                        <div class="beneficiary-detail-content collapse" id="timeline-toggled-content">
                             <div class="divider divider-padding-both"></div>
-                            <div class="ec-timeline-details container-fluid">
+                            <div class="container-section container-fluid">
                                 {{#each timeline}}
-                                    <div class="ec-timeline-details-component row-fluid">
+                                    <div class="container-section-component row-fluid">
                                         <div class="span1">
                                             <i class="icon-filter"></i>
                                         </div>
@@ -109,7 +109,7 @@
                                                     {{this}}<br>
                                                 {{/each}}
                                             </div>
-                                        <div class="span4 pull-right" style="text-align: right">
+                                        <div class="span4 pull-right text-right">
                                             {{date}}
                                         </div>
                                     </div>

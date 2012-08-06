@@ -52,6 +52,11 @@
     font-weight: 500;
 }
 
+.nav .navbar-text {
+    color: #e8fdfe;
+    font-weight: 500;
+}
+
 .navbar-brand-icon-holder {
     background-color: #333;
     padding-left: 4px;
@@ -74,7 +79,7 @@
     padding-right: 9px;
 }
 
-.ec-status.high-priority {
+.high-priority {
     color: #f51136 !important;
     font-size: 18px;
 }
@@ -93,10 +98,9 @@
     padding: 8px;
 }
 
-.client-name {
+.big-text {
     font-weight: bold;
     font-size: 16px;
-    margin-bottom: 6px;
 }
 
 .ec-information-button {
@@ -162,6 +166,11 @@
     margin-bottom: 4px;
 }
 
+.beneficiary-detail-component .beneficiary-detail-footer {
+    font-weight: bold;
+    margin-top: 4px;
+}
+
 .family-planning-button {
     font-weight: bold;
     text-transform: uppercase;
@@ -201,22 +210,30 @@ body {
     background-image: url("../img/background.png");
 }
 
-.ec-timeline-details {
+.container-section {
     padding-right: 10px;
     padding-left: 10px;
 }
 
-.ec-timeline-details .ec-timeline-details-component {
+.container-section .container-section-component {
     margin-bottom: 10px;
 }
 
-.ec-timeline-details:last-child {
+.container-section:last-child {
     margin-bottom: -10px;
 }
 
 .ec-actions-button {
     font-weight: bold;
     display: block;
+}
+
+.high-risk {
+    color: #d50000;
+}
+
+.normal-risk {
+    color: #0a8bcc;
 }
 
 .client-list-item .high-risk {
@@ -235,7 +252,7 @@ body {
     color: #333;
 }
 
-.client-list-item .client-name {
+.client-list-item .big-text {
     font-weight: bold;
     font-size: 18px;
     margin-bottom: 0px;
@@ -265,4 +282,31 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;
+}
+
+.profile-alert {
+    margin-top: -10px;
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.risk-detail-text {
+    color: #989898;
+}
+
+.detail-section-header {
+    color: #989898;
+    margin-bottom: 6px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.meta-summary-text {
+    color: #b4b4b4;
 }

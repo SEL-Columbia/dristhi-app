@@ -10,7 +10,7 @@ function EC(ecBridge) {
             });
         },
 
-        bindEveryTodoToCommCare: function (element) {
+        bindToCommCare: function (element) {
             $(element).click(function () {
                 ecBridge.delegateToCommCare();
             });

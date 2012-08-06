@@ -41,13 +41,21 @@ function FakeANCContext() {
                     thaayiCardNumber: "TC Number 1",
                     villageName: "Village 1",
                     subcenter: "SubCenter 1",
-                    isHighPriority: true,
+                    isHighRisk: true,
+                    riskDetail: "Anaemia (active): 21 months",
+                    facility: "Broadway",
+                    monthsPregnant: "7",
+                    edd: "24/12/12",
+                    ashaName: "Shiwani",
+                    contact: "----",
                     alerts: [
                         {
-                            message: "Alert 1"
+                            message: "Alert 1",
+                            formToOpen: "ANC"
                         },
                         {
-                            message: "Alert 2"
+                            message: "Alert 2",
+                            formToOpen: "ANC"
                         }
                     ],
                     todos: [
@@ -58,6 +66,18 @@ function FakeANCContext() {
                         {
                             message: "ANC Visit #3",
                             formToOpen: "ANC"
+                        }
+                    ],
+                    timeline: [
+                        {
+                            title: "Event 1",
+                            details: ["Detail 1", "Detail 2"],
+                            date: "1y 2m ago"
+                        },
+                        {
+                            title: "Event 2",
+                            details: ["Detail 3", "Detail 4"],
+                            date: "2m 3d ago"
                         }
                     ]
                 }

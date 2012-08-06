@@ -49,8 +49,7 @@ function FakeANCListContext() {
             ]);
         },
         startANC: function(caseId) {
-            alert('Should go to anc_detail for : ' + caseId);
-//            window.location.href = "anc_detail.html";
+            window.location.href = "anc_detail.html";
         }
     }
 }

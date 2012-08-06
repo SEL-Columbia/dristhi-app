@@ -39,7 +39,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
             populateDataInto(cssIdentifierOfSidePanelElement);
 
             bindToWorkplan(callbackToRunBeforeAnyAction, "#workplanButton");
-            bindToPage(callbackToRunBeforeAnyAction, "#myStatsButton", "my-stats.html");
+            bindToPage(callbackToRunBeforeAnyAction, "#myStatsButton", "anc_detail.html");
             bindToPage(callbackToRunBeforeAnyAction, "#inboxButton", "inbox.html");
             bindToPage(callbackToRunBeforeAnyAction, "#reportsButton", "reports.html");
 
