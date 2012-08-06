@@ -115,7 +115,7 @@ public class Context {
 
     private EligibleCoupleRepository eligibleCoupleRepository() {
         if (eligibleCoupleRepository == null) {
-            eligibleCoupleRepository = new EligibleCoupleRepository();
+            eligibleCoupleRepository = new EligibleCoupleRepository(alertRepository(), timelineEventRepository(), beneficiaryRepository());
         }
         return eligibleCoupleRepository;
     }

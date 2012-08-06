@@ -10,6 +10,7 @@ import org.ei.drishti.util.Session;
 import java.util.Date;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
 
 public class BeneficiaryRepositoryTest extends AndroidTestCase {
     private BeneficiaryRepository repository;
@@ -133,5 +134,21 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
         repository.close("CASE X");
 
         assertEquals(asList(TimelineEvent.forChildBirth("CASE Y", "2012-06-09", "male")), timelineEventRepository.allFor("CASE Y"));
+    }
+
+    public void testShouldDeleteAllBeneficiariesForAnEC() throws Exception {
+        repository.addMother(new Beneficiary("CASE Y", "CASE X", "TC 1", "2012-01-01"));
+        repository.addMother(new Beneficiary("CASE Z", "CASE X", "TC 2", "2012-01-01"));
+        timelineEventRepository.add(TimelineEvent.forStartOfPregnancy("CASE Y", "2012-01-01"));
+
+        repository.addMother(new Beneficiary("CASE B", "CASE A", "TC 2", "2012-01-01"));
+        timelineEventRepository.add(TimelineEvent.forStartOfPregnancy("CASE B", "2012-01-01"));
+
+        repository.closeAllCasesForEC("CASE X");
+
+        assertEquals(emptyList(), timelineEventRepository.allFor("CASE Y"));
+
+        assertEquals(asList(new Beneficiary("CASE B", "CASE A", "TC 2", "2012-01-01")), repository.allANCs());
+        assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE B", "2012-01-01")), timelineEventRepository.allFor("CASE B"));
     }
 }

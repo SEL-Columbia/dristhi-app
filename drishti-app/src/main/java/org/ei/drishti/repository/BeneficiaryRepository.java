@@ -95,6 +95,12 @@ public class BeneficiaryRepository extends DrishtiRepository {
         database.delete(BENEFICIARY_TABLE_NAME, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
+    public void closeAllCasesForEC(String ecCaseId) {
+        for (Beneficiary beneficiary : findByECCaseId(ecCaseId)) {
+            close(beneficiary.caseId());
+        }
+    }
+
     private Beneficiary findByCaseId(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(BENEFICIARY_TABLE_NAME, BENEFICIARY_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
