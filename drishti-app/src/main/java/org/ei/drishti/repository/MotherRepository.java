@@ -22,11 +22,11 @@ public class MotherRepository extends DrishtiRepository {
 
     private static final String TYPE_ANC = "ANC";
     private static final String TYPE_PNC = "PNC";
-    private BeneficiaryRepository childRepository;
+    private ChildRepository childRepository;
     private TimelineEventRepository timelineEventRepository;
     private AlertRepository alertRepository;
 
-    public MotherRepository(BeneficiaryRepository childRepository, TimelineEventRepository timelineEventRepository, AlertRepository alertRepository) {
+    public MotherRepository(ChildRepository childRepository, TimelineEventRepository timelineEventRepository, AlertRepository alertRepository) {
         this.childRepository = childRepository;
         this.timelineEventRepository = timelineEventRepository;
         this.alertRepository = alertRepository;
@@ -75,12 +75,12 @@ public class MotherRepository extends DrishtiRepository {
     public Mother find(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
-        List<Mother> beneficiaries = readAll(cursor);
+        List<Mother> mothers = readAll(cursor);
 
-        if (beneficiaries.isEmpty()) {
+        if (mothers.isEmpty()) {
             return null;
         }
-        return beneficiaries.get(0);
+        return mothers.get(0);
     }
 
     public void closeAllCasesForEC(String ecCaseId) {
@@ -103,24 +103,24 @@ public class MotherRepository extends DrishtiRepository {
         masterRepository.getWritableDatabase().delete(MOTHER_TABLE_NAME, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
-    private ContentValues createValuesFor(Mother beneficiary, String type) {
+    private ContentValues createValuesFor(Mother mother, String type) {
         ContentValues values = new ContentValues();
-        values.put(CASE_ID_COLUMN, beneficiary.caseId());
-        values.put(EC_CASEID_COLUMN, beneficiary.ecCaseId());
-        values.put(THAAYI_CARD_COLUMN, beneficiary.thaayiCardNumber());
+        values.put(CASE_ID_COLUMN, mother.caseId());
+        values.put(EC_CASEID_COLUMN, mother.ecCaseId());
+        values.put(THAAYI_CARD_COLUMN, mother.thaayiCardNumber());
         values.put(TYPE_COLUMN, type);
-        values.put(REF_DATE_COLUMN, beneficiary.referenceDate());
+        values.put(REF_DATE_COLUMN, mother.referenceDate());
         return values;
     }
 
     private List<Mother> readAll(Cursor cursor) {
         cursor.moveToFirst();
-        List<Mother> beneficiaries = new ArrayList<Mother>();
+        List<Mother> mothers = new ArrayList<Mother>();
         while (!cursor.isAfterLast()) {
-            beneficiaries.add(new Mother(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(4)));
+            mothers.add(new Mother(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(4)));
             cursor.moveToNext();
         }
         cursor.close();
-        return beneficiaries;
+        return mothers;
     }
 }

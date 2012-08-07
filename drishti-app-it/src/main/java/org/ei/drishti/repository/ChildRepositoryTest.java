@@ -3,7 +3,7 @@ package org.ei.drishti.repository;
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.Beneficiary;
+import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.util.Session;
@@ -13,8 +13,8 @@ import java.util.Date;
 
 import static java.util.Arrays.asList;
 
-public class BeneficiaryRepositoryTest extends AndroidTestCase {
-    private BeneficiaryRepository repository;
+public class ChildRepositoryTest extends AndroidTestCase {
+    private ChildRepository repository;
     private TimelineEventRepository timelineEventRepository;
     private AlertRepository alertRepository;
 
@@ -22,7 +22,7 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
     protected void setUp() throws Exception {
         timelineEventRepository = new TimelineEventRepository();
         alertRepository = new AlertRepository();
-        repository = new BeneficiaryRepository(timelineEventRepository, alertRepository);
+        repository = new ChildRepository(timelineEventRepository, alertRepository);
 
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
         new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, timelineEventRepository, alertRepository);
@@ -32,23 +32,23 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
         Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-01");
         repository.addChildForMother(mother, "CASE A", "2012-06-09", "female");
 
-        assertEquals(asList(new Beneficiary("CASE A", "CASE X", "TC 1", "2012-06-09")), repository.all());
+        assertEquals(asList(new Child("CASE A", "CASE X", "TC 1", "2012-06-09")), repository.all());
         assertEquals(asList(TimelineEvent.forChildBirth("CASE A", "2012-06-09", "female")), timelineEventRepository.allFor("CASE A"));
     }
 
     public void testShouldNotInsertChildForANonExistingMother() throws Exception {
         repository.addChildForMother(null, "CASE A", "2012-06-09", "female");
 
-        assertEquals(new ArrayList<Beneficiary>(), repository.all());
+        assertEquals(new ArrayList<Child>(), repository.all());
     }
 
-    public void testShouldFetchBeneficiariesByTheirOwnCaseId() throws Exception {
+    public void testShouldFetchChildrenByTheirOwnCaseId() throws Exception {
         Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-01");
         repository.addChildForMother(mother, "CASE A", "2012-06-09", "female");
         repository.addChildForMother(mother, "CASE B", "2012-06-10", "female");
 
-        assertEquals(new Beneficiary("CASE A", "CASE X", "TC 1", "2012-06-09"), repository.findByCaseId("CASE A"));
-        assertEquals(new Beneficiary("CASE B", "CASE X", "TC 1", "2012-06-10"), repository.findByCaseId("CASE B"));
+        assertEquals(new Child("CASE A", "CASE X", "TC 1", "2012-06-09"), repository.findByCaseId("CASE A"));
+        assertEquals(new Child("CASE B", "CASE X", "TC 1", "2012-06-10"), repository.findByCaseId("CASE B"));
     }
 
     public void testShouldCountChildren() throws Exception {
@@ -98,7 +98,7 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
 
         repository.closeAllCasesForMother("CASE X");
 
-        assertEquals(asList(new Beneficiary("CASE C", "CASE Y", "TC 2", "2012-06-09")), repository.all());
+        assertEquals(asList(new Child("CASE C", "CASE Y", "TC 2", "2012-06-09")), repository.all());
 
         assertEquals(new ArrayList<TimelineEvent>(), timelineEventRepository.allFor("CASE A"));
         assertEquals(new ArrayList<TimelineEvent>(), timelineEventRepository.allFor("CASE B"));

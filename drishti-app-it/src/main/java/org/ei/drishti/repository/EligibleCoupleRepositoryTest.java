@@ -15,14 +15,14 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     private EligibleCoupleRepository repository;
     private AlertRepository alertRepository;
     private TimelineEventRepository timelineEventRepository;
-    private BeneficiaryRepository childRepository;
+    private ChildRepository childRepository;
     private MotherRepository motherRepository;
 
     @Override
     protected void setUp() throws Exception {
         alertRepository = new AlertRepository();
         timelineEventRepository = new TimelineEventRepository();
-        childRepository = new BeneficiaryRepository(timelineEventRepository, alertRepository);
+        childRepository = new ChildRepository(timelineEventRepository, alertRepository);
         motherRepository = new MotherRepository(childRepository, timelineEventRepository, alertRepository);
         repository = new EligibleCoupleRepository(motherRepository, timelineEventRepository, alertRepository);
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
@@ -91,7 +91,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         assertEquals(asList(event), timelineEventRepository.allFor("CASE Y"));
     }
 
-    public void testShouldDeleteCorrespondingBeneficiariesAndTheirDependenciesWhenDeletingAnEC() throws Exception {
+    public void testShouldDeleteCorrespondingChildrenAndTheirDependenciesWhenDeletingAnEC() throws Exception {
         repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1"));
 
         Mother mother = new Mother("CASE Y", "CASE X", "TC 1", "2012-01-01");

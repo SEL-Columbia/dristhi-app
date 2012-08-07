@@ -6,11 +6,11 @@ import org.ei.drishti.dto.Action;
 import java.util.List;
 
 public class AllBeneficiaries {
-    private BeneficiaryRepository beneficiaryRepository;
+    private ChildRepository childRepository;
     private MotherRepository motherRepository;
 
-    public AllBeneficiaries(BeneficiaryRepository beneficiaryRepository, MotherRepository motherRepository) {
-        this.beneficiaryRepository = beneficiaryRepository;
+    public AllBeneficiaries(ChildRepository childRepository, MotherRepository motherRepository) {
+        this.childRepository = childRepository;
         this.motherRepository = motherRepository;
     }
 
@@ -18,9 +18,9 @@ public class AllBeneficiaries {
         if (action.type().equals("createBeneficiary")) {
             motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate")));
         } else if (action.type().equals("updateBeneficiary")) {
-            beneficiaryRepository.close(action.caseID());
+            childRepository.close(action.caseID());
         } else {
-            beneficiaryRepository.addChildForMother(motherRepository.find(action.get("motherCaseId")), action.caseID(), action.get("referenceDate"), action.get("gender"));
+            childRepository.addChildForMother(motherRepository.find(action.get("motherCaseId")), action.caseID(), action.get("referenceDate"), action.get("gender"));
         }
     }
 
@@ -41,6 +41,6 @@ public class AllBeneficiaries {
     }
 
     public long childCount() {
-        return beneficiaryRepository.childCount();
+        return childRepository.childCount();
     }
 }

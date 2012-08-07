@@ -14,7 +14,7 @@ public class Context {
     private EligibleCoupleRepository eligibleCoupleRepository;
     private AlertRepository alertRepository;
     private SettingsRepository settingsRepository;
-    private BeneficiaryRepository beneficiaryRepository;
+    private ChildRepository childRepository;
     private MotherRepository motherRepository;
     private TimelineEventRepository timelineEventRepository;
 
@@ -69,7 +69,7 @@ public class Context {
     private Repository initRepository() {
         if (repository == null) {
             repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(),
-                    eligibleCoupleRepository(), beneficiaryRepository(), timelineEventRepository(), motherRepository());
+                    eligibleCoupleRepository(), childRepository(), timelineEventRepository(), motherRepository());
         }
         return repository;
     }
@@ -101,7 +101,7 @@ public class Context {
     public AllBeneficiaries allBeneficiaries() {
         initRepository();
         if (allBeneficiaries == null) {
-            allBeneficiaries = new AllBeneficiaries(beneficiaryRepository(), motherRepository());
+            allBeneficiaries = new AllBeneficiaries(childRepository(), motherRepository());
         }
         return allBeneficiaries;
     }
@@ -135,16 +135,16 @@ public class Context {
         return settingsRepository;
     }
 
-    private BeneficiaryRepository beneficiaryRepository() {
-        if (beneficiaryRepository == null) {
-            beneficiaryRepository = new BeneficiaryRepository(timelineEventRepository(), alertRepository());
+    private ChildRepository childRepository() {
+        if (childRepository == null) {
+            childRepository = new ChildRepository(timelineEventRepository(), alertRepository());
         }
-        return beneficiaryRepository;
+        return childRepository;
     }
 
     private MotherRepository motherRepository() {
         if (motherRepository == null) {
-            motherRepository = new MotherRepository(beneficiaryRepository(), timelineEventRepository(), alertRepository());
+            motherRepository = new MotherRepository(childRepository(), timelineEventRepository(), alertRepository());
         }
         return motherRepository;
     }

@@ -3,7 +3,6 @@ package org.ei.drishti.view.controller;
 import android.content.Context;
 import android.content.Intent;
 import com.google.gson.Gson;
-import org.ei.drishti.domain.Beneficiary;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
@@ -26,11 +25,11 @@ public class ANCListViewController {
     }
 
     public String get() {
-        List<Mother> beneficiaries = allBeneficiaries.allANCs();
+        List<Mother> mothers = allBeneficiaries.allANCs();
         List<ANC> ancs = new ArrayList<ANC>();
-        for (Mother beneficiary : beneficiaries) {
-            EligibleCouple ec = allEligibleCouples.findByCaseID(beneficiary.ecCaseId());
-            ancs.add(new ANC(beneficiary.caseId(), ec.wifeName(), ec.village(), beneficiary.thaayiCardNumber(), false));
+        for (Mother mother : mothers) {
+            EligibleCouple ec = allEligibleCouples.findByCaseID(mother.ecCaseId());
+            ancs.add(new ANC(mother.caseId(), ec.wifeName(), ec.village(), mother.thaayiCardNumber(), false));
         }
         return new Gson().toJson(ancs);
     }

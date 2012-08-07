@@ -17,7 +17,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 @RunWith(RobolectricTestRunner.class)
 public class AllBeneficiariesTest {
     @Mock
-    private BeneficiaryRepository beneficiaryRepository;
+    private ChildRepository childRepository;
     @Mock
     private MotherRepository motherRepository;
 
@@ -26,23 +26,23 @@ public class AllBeneficiariesTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        allBeneficiaries = new AllBeneficiaries(beneficiaryRepository, motherRepository);
+        allBeneficiaries = new AllBeneficiaries(childRepository, motherRepository);
     }
 
     @Test
     public void shouldHandleDifferentTypesOfActions() throws Exception {
-        Action action = ActionBuilder.actionForCreateBeneficiary("Case X");
+        Action action = ActionBuilder.actionForCreateMother("Case X");
         allBeneficiaries.handleAction(action);
         String referenceDate = LocalDate.now().toString();
         verify(motherRepository).add(new Mother("Case X", "ecCaseId", "thaayiCardNumber", referenceDate));
 
         action = ActionBuilder.actionForUpdateBeneficiary();
         allBeneficiaries.handleAction(action);
-        verify(beneficiaryRepository).close("Case X");
+        verify(childRepository).close("Case X");
 
         when(motherRepository.find("Case Mom")).thenReturn(new Mother("Case Mom", "EC Case 1", "TC 1", "2012-06-08"));
-        Action childAction = ActionBuilder.actionForCreateChildBeneficiary("Case Mom");
+        Action childAction = ActionBuilder.actionForCreateChild("Case Mom");
         allBeneficiaries.handleAction(childAction);
-        verify(beneficiaryRepository).addChildForMother(new Mother("Case Mom", "EC Case 1", "TC 1", "2012-06-08"), "Case X", referenceDate, "female");
+        verify(childRepository).addChildForMother(new Mother("Case Mom", "EC Case 1", "TC 1", "2012-06-08"), "Case X", referenceDate, "female");
     }
 }

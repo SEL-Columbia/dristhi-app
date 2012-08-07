@@ -14,7 +14,7 @@ import static java.util.Arrays.asList;
 
 public class MotherRepositoryTest extends AndroidTestCase {
     private MotherRepository repository;
-    private BeneficiaryRepository childRepository;
+    private ChildRepository childRepository;
     private TimelineEventRepository timelineEventRepository;
     private AlertRepository alertRepository;
 
@@ -22,7 +22,7 @@ public class MotherRepositoryTest extends AndroidTestCase {
     protected void setUp() throws Exception {
         timelineEventRepository = new TimelineEventRepository();
         alertRepository = new AlertRepository();
-        childRepository = new BeneficiaryRepository(timelineEventRepository, alertRepository);
+        childRepository = new ChildRepository(timelineEventRepository, alertRepository);
 
         repository = new MotherRepository(childRepository, timelineEventRepository, alertRepository);
 

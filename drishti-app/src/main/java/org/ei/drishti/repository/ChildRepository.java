@@ -4,14 +4,14 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
-import org.ei.drishti.domain.Beneficiary;
+import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BeneficiaryRepository extends DrishtiRepository {
+public class ChildRepository extends DrishtiRepository {
     private static final String CHILD_SQL = "CREATE TABLE child(caseID VARCHAR, thaayiCardNumber VARCHAR, motherCaseId VARCHAR, referenceDate VARCHAR)";
     private static final String CHILD_TABLE_NAME = "child";
     private static final String CASE_ID_COLUMN = "caseID";
@@ -23,7 +23,7 @@ public class BeneficiaryRepository extends DrishtiRepository {
     private TimelineEventRepository timelineEventRepository;
     private AlertRepository alertRepository;
 
-    public BeneficiaryRepository(TimelineEventRepository timelineEventRepository, AlertRepository alertRepository) {
+    public ChildRepository(TimelineEventRepository timelineEventRepository, AlertRepository alertRepository) {
         this.timelineEventRepository = timelineEventRepository;
         this.alertRepository = alertRepository;
     }
@@ -39,14 +39,14 @@ public class BeneficiaryRepository extends DrishtiRepository {
         }
 
         SQLiteDatabase database = masterRepository.getWritableDatabase();
-        database.insert(CHILD_TABLE_NAME, null, createValuesFor(new Beneficiary(caseId, mother.caseId(), mother.thaayiCardNumber(), referenceDate)));
+        database.insert(CHILD_TABLE_NAME, null, createValuesFor(new Child(caseId, mother.caseId(), mother.thaayiCardNumber(), referenceDate)));
         timelineEventRepository.add(TimelineEvent.forChildBirth(caseId, referenceDate, gender));
     }
 
-    public List<Beneficiary> all() {
+    public List<Child> all() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(CHILD_TABLE_NAME, CHILD_TABLE_COLUMNS, null, null, null, null, null, null);
-        return readAllBeneficiaries(cursor);
+        return readAll(cursor);
     }
 
     public long childCount() {
@@ -61,45 +61,45 @@ public class BeneficiaryRepository extends DrishtiRepository {
     }
 
     public void closeAllCasesForMother(String motherCaseId) {
-        for (Beneficiary beneficiary : findByMotherCaseId(motherCaseId)) {
-            close(beneficiary.caseId());
+        for (Child child : findByMotherCaseId(motherCaseId)) {
+            close(child.caseId());
         }
     }
 
-    public Beneficiary findByCaseId(String caseId) {
+    public Child findByCaseId(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(CHILD_TABLE_NAME, CHILD_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
-        List<Beneficiary> beneficiaries = readAllBeneficiaries(cursor);
+        List<Child> children = readAll(cursor);
 
-        if (beneficiaries.isEmpty()) {
+        if (children.isEmpty()) {
             return null;
         }
-        return beneficiaries.get(0);
+        return children.get(0);
     }
 
-    private List<Beneficiary> findByMotherCaseId(String caseId) {
+    private List<Child> findByMotherCaseId(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(CHILD_TABLE_NAME, CHILD_TABLE_COLUMNS, MOTHER_CASEID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
-        return readAllBeneficiaries(cursor);
+        return readAll(cursor);
     }
 
-    private ContentValues createValuesFor(Beneficiary beneficiary) {
+    private ContentValues createValuesFor(Child child) {
         ContentValues values = new ContentValues();
-        values.put(CASE_ID_COLUMN, beneficiary.caseId());
-        values.put(MOTHER_CASEID_COLUMN, beneficiary.ecCaseId());
-        values.put(THAAYI_CARD_COLUMN, beneficiary.thaayiCardNumber());
-        values.put(REF_DATE_COLUMN, beneficiary.referenceDate());
+        values.put(CASE_ID_COLUMN, child.caseId());
+        values.put(MOTHER_CASEID_COLUMN, child.ecCaseId());
+        values.put(THAAYI_CARD_COLUMN, child.thaayiCardNumber());
+        values.put(REF_DATE_COLUMN, child.referenceDate());
         return values;
     }
 
-    private List<Beneficiary> readAllBeneficiaries(Cursor cursor) {
+    private List<Child> readAll(Cursor cursor) {
         cursor.moveToFirst();
-        List<Beneficiary> beneficiaries = new ArrayList<Beneficiary>();
+        List<Child> children = new ArrayList<Child>();
         while (!cursor.isAfterLast()) {
-            beneficiaries.add(new Beneficiary(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)));
+            children.add(new Child(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)));
             cursor.moveToNext();
         }
         cursor.close();
-        return beneficiaries;
+        return children;
     }
 }

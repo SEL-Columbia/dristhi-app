@@ -4,13 +4,13 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Beneficiary {
+public class Child {
     private final String caseId;
     private final String ecCaseId;
     private final String thaayiCardNumber;
     private String referenceDate;
 
-    public Beneficiary(String caseId, String ecCaseId, String thaayiCardNumber, String referenceDate) {
+    public Child(String caseId, String ecCaseId, String thaayiCardNumber, String referenceDate) {
         this.caseId = caseId;
         this.ecCaseId = ecCaseId;
         this.thaayiCardNumber = thaayiCardNumber;
