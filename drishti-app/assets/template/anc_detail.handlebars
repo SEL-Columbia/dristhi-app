@@ -47,8 +47,12 @@
 <div id="todos" class="registry-container container-fluid">
     {{#each todos}}
     <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-info todo">
-        <i class="icon-check"></i>
-        <strong>{{message}}</strong>
+        <!-- <i class="icon-check"></i> -->
+
+		<label class="checkbox">
+			<input type="checkbox"> 
+	        <strong>{{message}}</strong>
+		</label>
     </div>
     {{/each}}
 
@@ -94,17 +98,30 @@
     <div class="well well-for-beneficiary-details">
         <div class="container-fluid container-no-padding container-section">
             <div class="row-fluid beneficiary-detail-component">
-                <div class="span1"><i class="icon-check"></i></div>
+                <div class="span1"><!-- <i class="icon-check"></i> --> 
+					<label class="checkbox">
+						<input type="checkbox">
+					</label>
+				</div>
+				
                 <div class="span3 big-text">Facility</div>
                 <div class="span8">{{facilityDetails.facility}}</div>
             </div>
             <div class="row-fluid beneficiary-detail-component">
-                <div class="span1"><i class="icon-check"></i></div>
+                <div class="span1"><!-- <i class="icon-check"></i> -->
+					<label class="checkbox">
+						<input type="checkbox">
+					</label>
+				</div>
                 <div class="span3 big-text">Contact</div>
                 <div class="span8">{{facilityDetails.contact}}</div>
             </div>
             <div class="row-fluid beneficiary-detail-component">
-                <div class="span1"><i class="icon-check"></i></div>
+                <div class="span1"><!-- <i class="icon-check"></i> -->
+					<label class="checkbox">
+						<input type="checkbox">
+					</label>
+				</div>
                 <div class="span3 big-text">ASHA</div>
                 <div class="span8">{{facilityDetails.ashaName}}</div>
             </div>
