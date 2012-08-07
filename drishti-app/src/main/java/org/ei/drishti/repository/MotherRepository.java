@@ -22,10 +22,12 @@ public class MotherRepository extends DrishtiRepository {
 
     private static final String TYPE_ANC = "ANC";
     private static final String TYPE_PNC = "PNC";
+    private BeneficiaryRepository childRepository;
     private TimelineEventRepository timelineEventRepository;
     private AlertRepository alertRepository;
 
-    public MotherRepository(TimelineEventRepository timelineEventRepository, AlertRepository alertRepository) {
+    public MotherRepository(BeneficiaryRepository childRepository, TimelineEventRepository timelineEventRepository, AlertRepository alertRepository) {
+        this.childRepository = childRepository;
         this.timelineEventRepository = timelineEventRepository;
         this.alertRepository = alertRepository;
     }
@@ -82,6 +84,9 @@ public class MotherRepository extends DrishtiRepository {
     }
 
     public void close(String caseId) {
+        childRepository.closeAllCasesForMother(caseId);
+        alertRepository.deleteAllAlertsForCase(caseId);
+        timelineEventRepository.deleteAllTimelineEventsForCase(caseId);
         masterRepository.getWritableDatabase().delete(MOTHER_TABLE_NAME, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 

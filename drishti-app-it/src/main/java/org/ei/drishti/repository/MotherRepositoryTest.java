@@ -2,16 +2,19 @@ package org.ei.drishti.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
+import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Beneficiary;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.util.Session;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static java.util.Arrays.asList;
 
 public class MotherRepositoryTest extends AndroidTestCase {
     private MotherRepository repository;
+    private BeneficiaryRepository childRepository;
     private TimelineEventRepository timelineEventRepository;
     private AlertRepository alertRepository;
 
@@ -19,10 +22,12 @@ public class MotherRepositoryTest extends AndroidTestCase {
     protected void setUp() throws Exception {
         timelineEventRepository = new TimelineEventRepository();
         alertRepository = new AlertRepository();
-        repository = new MotherRepository(timelineEventRepository, alertRepository);
+        childRepository = new BeneficiaryRepository(timelineEventRepository, alertRepository);
+
+        repository = new MotherRepository(childRepository, timelineEventRepository, alertRepository);
 
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
-        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, timelineEventRepository, alertRepository);
+        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, childRepository, timelineEventRepository, alertRepository);
     }
 
     public void testShouldInsertMother() throws Exception {
@@ -79,5 +84,55 @@ public class MotherRepositoryTest extends AndroidTestCase {
         repository.close("CASE NOT FOUND");
         assertEquals(1, repository.ancCount());
         assertEquals(1, repository.pncCount());
+    }
+
+    public void testShouldRemoveTimelineEventsWhenMotherIsClosed() throws Exception {
+        Beneficiary mother1 = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08");
+        Beneficiary mother2 = new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
+
+        repository.add(mother1);
+        repository.add(mother2);
+
+        repository.close(mother1.caseId());
+
+        assertEquals(new ArrayList<TimelineEvent>(), timelineEventRepository.allFor(mother1.caseId()));
+        assertEquals(asList(TimelineEvent.forStartOfPregnancy(mother2.caseId(), "2012-06-08")), timelineEventRepository.allFor(mother2.caseId()));
+    }
+
+    public void testShouldRemoveAlertsWhenMotherIsClosed() throws Exception {
+        Beneficiary mother1 = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08");
+        Beneficiary mother2 = new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
+
+        repository.add(mother1);
+        alertRepository.createAlert(new Alert("CASE X", "Theresa 1", "bherya", "ANC 1", "TC 1", 1, "2012-01-01"));
+        repository.add(mother2);
+        alertRepository.createAlert(new Alert("CASE Y", "Theresa 2", "bherya", "ANC 1", "TC 2", 1, "2012-01-01"));
+
+        repository.close(mother1.caseId());
+
+        assertEquals(asList(new Alert("CASE Y", "Theresa 2", "bherya", "ANC 1", "TC 2", 1, "2012-01-01")), alertRepository.allAlerts());
+    }
+
+    public void testShouldRemoveChildrenAndTheirEntitiesWhenMotherIsClosed() throws Exception {
+        Beneficiary mother1 = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08");
+        Beneficiary mother2 = new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
+
+        repository.add(mother1);
+        childRepository.addChildForMother(mother1, "CASE A", "2012-06-09", "female");
+        childRepository.addChildForMother(mother1, "CASE B", "2012-06-09", "male");
+
+        repository.add(mother2);
+        childRepository.addChildForMother(mother2, "CASE C", "2012-06-10", "female");
+
+        repository.close(mother1.caseId());
+
+        assertEquals(asList(mother2), repository.allANCs());
+        assertNull(childRepository.findByCaseId("CASE A"));
+        assertNull(childRepository.findByCaseId("CASE B"));
+        assertNotNull(childRepository.findByCaseId("CASE C"));
+
+        assertTrue(timelineEventRepository.allFor("CASE A").isEmpty());
+        assertTrue(timelineEventRepository.allFor("CASE B").isEmpty());
+        assertEquals(1, timelineEventRepository.allFor("CASE C").size());
     }
 }

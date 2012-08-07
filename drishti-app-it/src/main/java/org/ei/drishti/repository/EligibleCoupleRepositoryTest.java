@@ -15,7 +15,6 @@ import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 
 public class EligibleCoupleRepositoryTest extends AndroidTestCase {
-
     private EligibleCoupleRepository repository;
     private AlertRepository alertRepository;
     private TimelineEventRepository timelineEventRepository;
