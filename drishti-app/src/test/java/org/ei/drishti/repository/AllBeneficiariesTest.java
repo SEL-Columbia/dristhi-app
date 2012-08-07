@@ -22,10 +22,12 @@ public class AllBeneficiariesTest {
     private MotherRepository motherRepository;
 
     private AllBeneficiaries allBeneficiaries;
+    private String referenceDate;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
+        referenceDate = LocalDate.now().toString();
         allBeneficiaries = new AllBeneficiaries(motherRepository, childRepository);
     }
 
@@ -33,16 +35,20 @@ public class AllBeneficiariesTest {
     public void shouldHandleDifferentTypesOfActions() throws Exception {
         Action action = ActionBuilder.actionForCreateMother("Case X");
         allBeneficiaries.handleAction(action);
-        String referenceDate = LocalDate.now().toString();
         verify(motherRepository).add(new Mother("Case X", "ecCaseId", "thaayiCardNumber", referenceDate));
 
         action = ActionBuilder.actionForUpdateBeneficiary();
         allBeneficiaries.handleAction(action);
         verify(childRepository).close("Case X");
+    }
 
+    @Test
+    public void shouldSwitchMotherToPNCWhenChildIsAdded() throws Exception {
         when(motherRepository.find("Case Mom")).thenReturn(new Mother("Case Mom", "EC Case 1", "TC 1", "2012-06-08"));
         Action childAction = ActionBuilder.actionForCreateChild("Case Mom");
         allBeneficiaries.handleAction(childAction);
+
+        verify(motherRepository).switchToPNC("Case Mom");
         verify(childRepository).addChildForMother(new Mother("Case Mom", "EC Case 1", "TC 1", "2012-06-08"), "Case X", referenceDate, "female");
     }
 }
