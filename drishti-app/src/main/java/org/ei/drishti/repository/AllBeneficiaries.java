@@ -9,7 +9,7 @@ public class AllBeneficiaries {
     private ChildRepository childRepository;
     private MotherRepository motherRepository;
 
-    public AllBeneficiaries(ChildRepository childRepository, MotherRepository motherRepository) {
+    public AllBeneficiaries(MotherRepository motherRepository, ChildRepository childRepository) {
         this.childRepository = childRepository;
         this.motherRepository = motherRepository;
     }

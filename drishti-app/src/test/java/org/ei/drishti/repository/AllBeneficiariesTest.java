@@ -26,7 +26,7 @@ public class AllBeneficiariesTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        allBeneficiaries = new AllBeneficiaries(childRepository, motherRepository);
+        allBeneficiaries = new AllBeneficiaries(motherRepository, childRepository);
     }
 
     @Test
