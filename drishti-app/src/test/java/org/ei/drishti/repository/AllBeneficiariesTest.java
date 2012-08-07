@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
@@ -30,7 +31,7 @@ public class AllBeneficiariesTest {
 
     @Test
     public void shouldHandleDifferentTypesOfActions() throws Exception {
-        Action action = ActionBuilder.actionForCreateBeneficiary();
+        Action action = ActionBuilder.actionForCreateBeneficiary("Case X");
         allBeneficiaries.handleAction(action);
         String referenceDate = LocalDate.now().toString();
         verify(motherRepository).add(new Beneficiary("Case X", "ecCaseId", "thaayiCardNumber", referenceDate));
@@ -39,8 +40,9 @@ public class AllBeneficiariesTest {
         allBeneficiaries.handleAction(action);
         verify(beneficiaryRepository).close("Case X");
 
-        action = ActionBuilder.actionForCreateChildBeneficiary();
-        allBeneficiaries.handleAction(action);
-        verify(beneficiaryRepository).addChild("Case X", referenceDate, "motherCaseId", action.get("gender"));
+        when(motherRepository.find("Case Mom")).thenReturn(new Beneficiary("Case Mom", "EC Case 1", "TC 1", "2012-06-08"));
+        Action childAction = ActionBuilder.actionForCreateChildBeneficiary("Case Mom");
+        allBeneficiaries.handleAction(childAction);
+        verify(beneficiaryRepository).addChildForMother(new Beneficiary("Case Mom", "EC Case 1", "TC 1", "2012-06-08"), "Case X", referenceDate, "female");
     }
 }

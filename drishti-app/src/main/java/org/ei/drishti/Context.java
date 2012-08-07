@@ -69,7 +69,7 @@ public class Context {
     private Repository initRepository() {
         if (repository == null) {
             repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(),
-                    eligibleCoupleRepository(), beneficiaryRepository(), timelineEventRepository());
+                    eligibleCoupleRepository(), beneficiaryRepository(), timelineEventRepository(), motherRepository());
         }
         return repository;
     }

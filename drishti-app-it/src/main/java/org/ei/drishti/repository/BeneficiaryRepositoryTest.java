@@ -7,10 +7,10 @@ import org.ei.drishti.domain.Beneficiary;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.util.Session;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static java.util.Arrays.asList;
-import static java.util.Collections.emptyList;
 
 public class BeneficiaryRepositoryTest extends AndroidTestCase {
     private BeneficiaryRepository repository;
@@ -27,126 +27,80 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
         new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, timelineEventRepository, alertRepository);
     }
 
-    @Deprecated
-    public void testShouldInsertMother() throws Exception {
-        repository.addMother(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-
-        assertEquals(asList(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08")), repository.allBeneficiaries());
-        assertEquals(asList(TimelineEvent.forStartOfPregnancy("EC Case 1", "2012-06-08")), timelineEventRepository.allFor("EC Case 1"));
-    }
-
     public void testShouldInsertChildForExistingMother() throws Exception {
-        repository.addMother(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.addChild("CASE A", "2012-06-09", "CASE X", "female");
+        Beneficiary mother = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-01");
+        repository.addChildForMother(mother, "CASE A", "2012-06-09", "female");
 
-        assertEquals(asList(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"), new Beneficiary("CASE A", "EC Case 1", "TC 1", "2012-06-09")), repository.allBeneficiaries());
-        assertEquals(asList(TimelineEvent.forStartOfPregnancy("EC Case 1", "2012-06-08"), TimelineEvent.forChildBirth("EC Case 1", "2012-06-09", "female")), timelineEventRepository.allFor("EC Case 1"));
+        assertEquals(asList(new Beneficiary("CASE A", "CASE X", "TC 1", "2012-06-09")), repository.all());
+        assertEquals(asList(TimelineEvent.forChildBirth("CASE A", "2012-06-09", "female")), timelineEventRepository.allFor("CASE A"));
     }
 
     public void testShouldNotInsertChildForANonExistingMother() throws Exception {
-        repository.addMother(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.addChild("CASE A", "2012-06-09", "CASE NON-EXISTING-MOTHER", "female");
+        repository.addChildForMother(null, "CASE A", "2012-06-09", "female");
 
-        assertEquals(asList(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08")), repository.allBeneficiaries());
+        assertEquals(new ArrayList<Beneficiary>(), repository.all());
     }
 
-    @Deprecated
-    public void testShouldFetchBeneficiariesByECCaseId() throws Exception {
-        repository.addMother(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.addMother(new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08"));
-        repository.addMother(new Beneficiary("CASE Z", "EC Case 2", "TC 3", "2012-06-08"));
-        repository.addChild("CASE A", "2012-06-09", "CASE Z", "female");
-
-//        assertEquals(asList(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"), new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08")), repository.findByECCaseId("EC Case 1"));
-//        assertEquals(asList(new Beneficiary("CASE Z", "EC Case 2", "TC 3", "2012-06-08"), new Beneficiary("CASE A", "EC Case 2", "TC 3", "2012-06-09")), repository.findByECCaseId("EC Case 2"));
-    }
-
-    @Deprecated
     public void testShouldFetchBeneficiariesByTheirOwnCaseId() throws Exception {
-        repository.addMother(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.addChild("CASE A", "2012-06-09", "CASE X", "female");
+        Beneficiary mother = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-01");
+        repository.addChildForMother(mother, "CASE A", "2012-06-09", "female");
+        repository.addChildForMother(mother, "CASE B", "2012-06-10", "female");
 
-//        assertEquals(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"), repository.findByCaseId("CASE X"));
-//        assertEquals(new Beneficiary("CASE A", "EC Case 1", "TC 1", "2012-06-09"), repository.findByCaseId("CASE A"));
-    }
-
-    @Deprecated
-    public void testShouldFetchAllANCs() throws Exception {
-        repository.addMother(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.addMother(new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08"));
-        repository.addMother(new Beneficiary("CASE Z", "EC Case 2", "TC 3", "2012-06-08"));
-
-        assertEquals(asList(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"), new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08"), new Beneficiary("CASE Z", "EC Case 2", "TC 3", "2012-06-08")), repository.allANCs());
-
-        repository.addChild("CASE A", "2012-06-09", "CASE Z", "female");
-
-        assertEquals(asList(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"), new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08")), repository.allANCs());
-    }
-
-    @Deprecated
-    public void testShouldCountBeneficiariesAfterBirthOrAbortionAsPNCs() throws Exception {
-        repository.addMother(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        assertEquals(0, repository.pncCount());
-
-        repository.addChild("CASE A", "2012-06-09", "CASE X", "female");
-        assertEquals(1, repository.pncCount());
-
-        repository.close("CASE X");
-        assertEquals(0, repository.pncCount());
+        assertEquals(new Beneficiary("CASE A", "CASE X", "TC 1", "2012-06-09"), repository.findByCaseId("CASE A"));
+        assertEquals(new Beneficiary("CASE B", "CASE X", "TC 1", "2012-06-10"), repository.findByCaseId("CASE B"));
     }
 
     public void testShouldCountChildren() throws Exception {
-        repository.addMother(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.addMother(new Beneficiary("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
         assertEquals(0, repository.childCount());
 
-        repository.addChild("CASE A", "2012-06-09", "CASE X", "female");
+        Beneficiary mother = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-01");
+        repository.addChildForMother(mother, "CASE A", "2012-06-09", "female");
         assertEquals(1, repository.childCount());
 
-        repository.addChild("CASE B", "2012-06-09", "CASE Y", "female");
+        repository.addChildForMother(mother, "CASE B", "2012-06-09", "female");
         assertEquals(2, repository.childCount());
 
         repository.close("CASE B");
         assertEquals(1, repository.childCount());
     }
 
-    public void testShouldDeleteCorrespondingAlertsWhenABeneficiaryIsDeleted() throws Exception {
-        repository.addMother(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        alertRepository.createAlert(new Alert("CASE X", "Theresa 1", "Bherya 1", "ANC 1", "Thaayi 1", 1, "2012-01-01"));
+    public void testShouldDeleteCorrespondingAlertsWhenAChildIsDeleted() throws Exception {
+        Beneficiary mother = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-01");
+        repository.addChildForMother(mother, "CASE A", "2012-06-09", "female");
+        alertRepository.createAlert(new Alert("CASE A", "Child 1", "Bherya 1", "ANC 1", "TC 1", 1, "2012-01-01"));
 
-        repository.addMother(new Beneficiary("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
-        alertRepository.createAlert(new Alert("CASE Y", "Theresa 2", "Bherya 2", "ANC 2", "Thaayi 2", 1, "2012-01-01"));
+        repository.addChildForMother(mother, "CASE B", "2012-06-10", "female");
+        alertRepository.createAlert(new Alert("CASE B", "Child 2", "Bherya 1", "ANC 1", "TC 1", 1, "2012-01-01"));
 
-        repository.close("CASE X");
+        repository.close("CASE A");
 
-        assertEquals(asList(new Alert("CASE Y", "Theresa 2", "Bherya 2", "ANC 2", "Thaayi 2", 1, "2012-01-01")), alertRepository.allAlerts());
+        assertEquals(asList(new Alert("CASE B", "Child 2", "Bherya 1", "ANC 1", "TC 1", 1, "2012-01-01")), alertRepository.allAlerts());
     }
 
-    public void testShouldDeleteCorrespondingTimelineEventsWhenABeneficiaryIsDeleted() throws Exception {
-        repository.addMother(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        timelineEventRepository.add(TimelineEvent.forChildBirth("CASE X", "2012-06-09", "female"));
+    public void testShouldDeleteCorrespondingTimelineEventsWhenAChildIsDeleted() throws Exception {
+        Beneficiary mother = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-01");
+        repository.addChildForMother(mother, "CASE A", "2012-06-09", "female");
+        repository.addChildForMother(mother, "CASE B", "2012-06-10", "female");
 
-        repository.addMother(new Beneficiary("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
-        timelineEventRepository.add(TimelineEvent.forChildBirth("CASE Y", "2012-06-09", "male"));
+        repository.close("CASE A");
 
-        repository.close("CASE X");
-
-        assertEquals(asList(TimelineEvent.forChildBirth("CASE Y", "2012-06-09", "male")), timelineEventRepository.allFor("CASE Y"));
+        assertEquals(new ArrayList<TimelineEvent>(), timelineEventRepository.allFor("CASE A"));
+        assertEquals(asList(TimelineEvent.forChildBirth("CASE B", "2012-06-10", "female")), timelineEventRepository.allFor("CASE B"));
     }
 
-    public void testShouldDeleteAllBeneficiariesForAnEC() throws Exception {
-        repository.addMother(new Beneficiary("CASE Y", "CASE X", "TC 1", "2012-01-01"));
-        repository.addMother(new Beneficiary("CASE Z", "CASE X", "TC 2", "2012-01-01"));
-        timelineEventRepository.add(TimelineEvent.forStartOfPregnancy("CASE Y", "2012-01-01"));
+    public void testShouldDeleteAllChildrenAndTheirDependentEntitiesForAGivenMother() throws Exception {
+        Beneficiary mother1 = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-01");
+        Beneficiary mother2 = new Beneficiary("CASE Y", "EC Case 2", "TC 2", "2012-06-01");
+        repository.addChildForMother(mother1, "CASE A", "2012-06-09", "female");
+        repository.addChildForMother(mother1, "CASE B", "2012-06-09", "female");
+        repository.addChildForMother(mother2, "CASE C", "2012-06-09", "female");
 
-        repository.addMother(new Beneficiary("CASE B", "CASE A", "TC 2", "2012-01-01"));
-        timelineEventRepository.add(TimelineEvent.forStartOfPregnancy("CASE B", "2012-01-01"));
+        repository.closeAllCasesForMother("CASE X");
 
-        repository.closeAllCasesForEC("CASE X");
+        assertEquals(asList(new Beneficiary("CASE C", "CASE Y", "TC 2", "2012-06-09")), repository.all());
 
-        assertEquals(emptyList(), timelineEventRepository.allFor("CASE Y"));
-
-        assertEquals(asList(new Beneficiary("CASE B", "CASE A", "TC 2", "2012-01-01")), repository.allANCs());
-        assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE B", "2012-01-01")), timelineEventRepository.allFor("CASE B"));
+        assertEquals(new ArrayList<TimelineEvent>(), timelineEventRepository.allFor("CASE A"));
+        assertEquals(new ArrayList<TimelineEvent>(), timelineEventRepository.allFor("CASE B"));
+        assertEquals(asList(TimelineEvent.forChildBirth("CASE C", "2012-06-09", "female")), timelineEventRepository.allFor("CASE C"));
     }
 }

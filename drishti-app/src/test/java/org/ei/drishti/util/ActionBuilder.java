@@ -33,12 +33,12 @@ public class ActionBuilder {
         return new Action("Case X", "child", "updateBeneficiary", updateBeneficiary("pregnant").data(), "0");
     }
 
-    public static Action actionForCreateBeneficiary() {
-        return new Action("Case X", "child", "createBeneficiary", createBeneficiary("ecCaseId", "thaayiCardNumber", LocalDate.now()).data(), "0");
+    public static Action actionForCreateBeneficiary(String motherCaseId) {
+        return new Action(motherCaseId, "child", "createBeneficiary", createBeneficiary("ecCaseId", "thaayiCardNumber", LocalDate.now()).data(), "0");
     }
 
-    public static Action actionForCreateChildBeneficiary() {
-        return new Action("Case X", "child", "createChildBeneficiary", registerChildBirth("motherCaseId", LocalDate.now(), "female").data(), "0");
+    public static Action actionForCreateChildBeneficiary(String motherCaseId) {
+        return new Action("Case X", "child", "createChildBeneficiary", registerChildBirth(motherCaseId, LocalDate.now(), "female").data(), "0");
     }
 
     public static Action unknownAction(String target) {

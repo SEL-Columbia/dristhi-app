@@ -105,7 +105,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
 
         repository.delete("CASE X");
 
-        assertEquals(asList(new Beneficiary("CASE B", "CASE A", "TC 2", "2012-01-01")), beneficiaryRepository.allANCs());
+        assertEquals(asList(new Beneficiary("CASE B", "CASE A", "TC 2", "2012-01-01")), beneficiaryRepository.all());
         assertEquals(emptyList(), timelineEventRepository.allFor("CASE Y"));
 
         assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE B", "2012-01-01")), timelineEventRepository.allFor("CASE B"));

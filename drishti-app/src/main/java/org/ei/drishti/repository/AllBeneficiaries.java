@@ -20,7 +20,7 @@ public class AllBeneficiaries {
         } else if (action.type().equals("updateBeneficiary")) {
             beneficiaryRepository.close(action.caseID());
         } else {
-            beneficiaryRepository.addChild(action.caseID(), action.get("referenceDate"), action.get("motherCaseId"), action.get("gender"));
+            beneficiaryRepository.addChildForMother(motherRepository.find(action.get("motherCaseId")), action.caseID(), action.get("referenceDate"), action.get("gender"));
         }
     }
 

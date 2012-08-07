@@ -52,7 +52,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     public void delete(String caseId) {
         alertRepository.deleteAllAlertsForCase(caseId);
         timelineEventRepository.deleteAllTimelineEventsForCase(caseId);
-        beneficiaryRepository.closeAllCasesForEC(caseId);
+        beneficiaryRepository.closeAllCasesForMother(caseId);
         masterRepository.getWritableDatabase().delete(EC_TABLE_NAME, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
