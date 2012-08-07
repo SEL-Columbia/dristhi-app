@@ -31,11 +31,11 @@ function program3(depth0,data,depth1) {
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth1.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" class=\"alert alert-info todo\">\n        <i class=\"icon-check\"></i>\n        <strong>";
+  buffer += escapeExpression(stack1) + "\" class=\"alert alert-info todo\">\n        <!-- <i class=\"icon-check\"></i> -->\n\n		<label class=\"checkbox\">\n			<input type=\"checkbox\"> \n	        <strong>";
   foundHelper = helpers.message;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</strong>\n    </div>\n    ";
+  buffer += escapeExpression(stack1) + "</strong>\n		</label>\n    </div>\n    ";
   return buffer;}
 
 function program5(depth0,data) {
@@ -115,15 +115,15 @@ function program10(depth0,data) {
   stack1 = depth0.pregnancyDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.edd;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">EDD</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        Delivery Plan\n    </div>\n    <div class=\"well well-for-beneficiary-details\">\n        <div class=\"container-fluid container-no-padding container-section\">\n            <div class=\"row-fluid beneficiary-detail-component\">\n                <div class=\"span1\"><i class=\"icon-check\"></i></div>\n                <div class=\"span3 big-text\">Facility</div>\n                <div class=\"span8\">";
+  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">EDD</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        Delivery Plan\n    </div>\n    <div class=\"well well-for-beneficiary-details\">\n        <div class=\"container-fluid container-no-padding container-section\">\n            <div class=\"row-fluid beneficiary-detail-component\">\n                <div class=\"span1\"><!-- <i class=\"icon-check\"></i> --> \n					<label class=\"checkbox\">\n						<input type=\"checkbox\">\n					</label>\n				</div>\n				\n                <div class=\"span3 big-text\">Facility</div>\n                <div class=\"span8\">";
   stack1 = depth0.facilityDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.facility;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</div>\n            </div>\n            <div class=\"row-fluid beneficiary-detail-component\">\n                <div class=\"span1\"><i class=\"icon-check\"></i></div>\n                <div class=\"span3 big-text\">Contact</div>\n                <div class=\"span8\">";
+  buffer += escapeExpression(stack1) + "</div>\n            </div>\n            <div class=\"row-fluid beneficiary-detail-component\">\n                <div class=\"span1\"><!-- <i class=\"icon-check\"></i> -->\n					<label class=\"checkbox\">\n						<input type=\"checkbox\">\n					</label>\n				</div>\n                <div class=\"span3 big-text\">Contact</div>\n                <div class=\"span8\">";
   stack1 = depth0.facilityDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.contact;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</div>\n            </div>\n            <div class=\"row-fluid beneficiary-detail-component\">\n                <div class=\"span1\"><i class=\"icon-check\"></i></div>\n                <div class=\"span3 big-text\">ASHA</div>\n                <div class=\"span8\">";
+  buffer += escapeExpression(stack1) + "</div>\n            </div>\n            <div class=\"row-fluid beneficiary-detail-component\">\n                <div class=\"span1\"><!-- <i class=\"icon-check\"></i> -->\n					<label class=\"checkbox\">\n						<input type=\"checkbox\">\n					</label>\n				</div>\n                <div class=\"span3 big-text\">ASHA</div>\n                <div class=\"span8\">";
   stack1 = depth0.facilityDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.ashaName;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
