@@ -135,4 +135,18 @@ public class MotherRepositoryTest extends AndroidTestCase {
         assertTrue(timelineEventRepository.allFor("CASE B").isEmpty());
         assertEquals(1, timelineEventRepository.allFor("CASE C").size());
     }
+
+    public void testShouldCloseAllMothersForEC() throws Exception {
+        Beneficiary mother1 = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08");
+        Beneficiary mother2 = new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
+        Beneficiary mother3 = new Beneficiary("CASE Z", "EC Case 2", "TC 3", "2012-06-08");
+
+        repository.add(mother1);
+        repository.add(mother2);
+        repository.add(mother3);
+
+        repository.closeAllCasesForEC("EC Case 1");
+
+        assertEquals(asList(mother3), repository.allANCs());
+    }
 }

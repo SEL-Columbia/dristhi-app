@@ -55,13 +55,13 @@ public class MotherRepository extends DrishtiRepository {
     public List<Beneficiary> allANCs() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, TYPE_COLUMN + " = ?", new String[]{TYPE_ANC}, null, null, null, null);
-        return readAllBeneficiaries(cursor);
+        return readAll(cursor);
     }
 
     public List<Beneficiary> allPNCs() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, TYPE_COLUMN + " = ?", new String[]{TYPE_PNC}, null, null, null, null);
-        return readAllBeneficiaries(cursor);
+        return readAll(cursor);
     }
 
     public long ancCount() {
@@ -75,12 +75,25 @@ public class MotherRepository extends DrishtiRepository {
     public Beneficiary find(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
-        List<Beneficiary> beneficiaries = readAllBeneficiaries(cursor);
+        List<Beneficiary> beneficiaries = readAll(cursor);
 
         if (beneficiaries.isEmpty()) {
             return null;
         }
         return beneficiaries.get(0);
+    }
+
+    public void closeAllCasesForEC(String ecCaseId) {
+        List<Beneficiary> mothers = findAllCasesForEC(ecCaseId);
+        for (Beneficiary mother : mothers) {
+            close(mother.caseId());
+        }
+    }
+
+    private List<Beneficiary> findAllCasesForEC(String ecCaseId) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, EC_CASEID_COLUMN + " = ?", new String[]{ecCaseId}, null, null, null, null);
+        return readAll(cursor);
     }
 
     public void close(String caseId) {
@@ -100,7 +113,7 @@ public class MotherRepository extends DrishtiRepository {
         return values;
     }
 
-    private List<Beneficiary> readAllBeneficiaries(Cursor cursor) {
+    private List<Beneficiary> readAll(Cursor cursor) {
         cursor.moveToFirst();
         List<Beneficiary> beneficiaries = new ArrayList<Beneficiary>();
         while (!cursor.isAfterLast()) {

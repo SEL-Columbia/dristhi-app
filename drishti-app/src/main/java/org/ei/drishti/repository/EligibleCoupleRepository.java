@@ -20,14 +20,14 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String VILLAGE_NAME_COLUMN = "village";
     private static final String SUBCENTER_NAME_COLUMN = "subCenter";
     private static final String[] EC_TABLE_COLUMNS = new String[] {CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN, EC_NUMBER_COLUMN, CURRENT_METHOD_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN};
+    private MotherRepository motherRepository;
     private final AlertRepository alertRepository;
     private final TimelineEventRepository timelineEventRepository;
-    private BeneficiaryRepository beneficiaryRepository;
 
-    public EligibleCoupleRepository(AlertRepository alertRepository, TimelineEventRepository timelineEventRepository, BeneficiaryRepository beneficiaryRepository) {
+    public EligibleCoupleRepository(MotherRepository motherRepository, TimelineEventRepository timelineEventRepository, AlertRepository alertRepository) {
+        this.motherRepository = motherRepository;
         this.alertRepository = alertRepository;
         this.timelineEventRepository = timelineEventRepository;
-        this.beneficiaryRepository = beneficiaryRepository;
     }
 
     public void onCreate(SQLiteDatabase database) {
@@ -49,10 +49,10 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         return couples.get(0);
     }
 
-    public void delete(String caseId) {
+    public void close(String caseId) {
         alertRepository.deleteAllAlertsForCase(caseId);
         timelineEventRepository.deleteAllTimelineEventsForCase(caseId);
-        beneficiaryRepository.closeAllCasesForMother(caseId);
+        motherRepository.closeAllCasesForEC(caseId);
         masterRepository.getWritableDatabase().delete(EC_TABLE_NAME, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 

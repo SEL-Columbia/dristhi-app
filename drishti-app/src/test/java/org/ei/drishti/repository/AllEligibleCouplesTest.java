@@ -44,8 +44,8 @@ public class AllEligibleCouplesTest {
         InOrder inOrder = inOrder(eligibleCoupleRepository);
         inOrder.verify(eligibleCoupleRepository).add(new EligibleCouple("Case X", "Theresa 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1"));
         inOrder.verify(eligibleCoupleRepository).add(new EligibleCouple("Case Z", "Theresa 2", "Husband 2", "EC Number 2", "IUD", "Village 1", "SubCenter 1"));
-        inOrder.verify(eligibleCoupleRepository).delete("Case Y");
-        inOrder.verify(eligibleCoupleRepository).delete("Case B");
+        inOrder.verify(eligibleCoupleRepository).close("Case Y");
+        inOrder.verify(eligibleCoupleRepository).close("Case B");
         verifyNoMoreInteractions(eligibleCoupleRepository);
     }
 

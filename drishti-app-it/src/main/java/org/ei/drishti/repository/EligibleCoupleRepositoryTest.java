@@ -18,16 +18,18 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     private EligibleCoupleRepository repository;
     private AlertRepository alertRepository;
     private TimelineEventRepository timelineEventRepository;
-    private BeneficiaryRepository beneficiaryRepository;
+    private BeneficiaryRepository childRepository;
+    private MotherRepository motherRepository;
 
     @Override
     protected void setUp() throws Exception {
         alertRepository = new AlertRepository();
         timelineEventRepository = new TimelineEventRepository();
-        beneficiaryRepository = new BeneficiaryRepository(timelineEventRepository, alertRepository);
-        repository = new EligibleCoupleRepository(alertRepository, timelineEventRepository, beneficiaryRepository);
+        childRepository = new BeneficiaryRepository(timelineEventRepository, alertRepository);
+        motherRepository = new MotherRepository(childRepository, timelineEventRepository, alertRepository);
+        repository = new EligibleCoupleRepository(motherRepository, timelineEventRepository, alertRepository);
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
-        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, alertRepository, timelineEventRepository, beneficiaryRepository);
+        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, alertRepository, timelineEventRepository, childRepository, motherRepository);
     }
 
     public void testShouldInsertEligibleCoupleIntoRepository() throws Exception {
@@ -44,13 +46,13 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1"));
         repository.add(eligibleCouple);
 
-        repository.delete("CASE X");
+        repository.close("CASE X");
         assertEquals(asList(eligibleCouple), repository.allEligibleCouples());
 
-        repository.delete("CASE DOES NOT MATCH");
+        repository.close("CASE DOES NOT MATCH");
         assertEquals(asList(eligibleCouple), repository.allEligibleCouples());
 
-        repository.delete("CASE Y");
+        repository.close("CASE Y");
         assertEquals(new ArrayList<EligibleCouple>(), repository.allEligibleCouples());
     }
 
@@ -72,7 +74,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         repository.add(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2"));
         alertRepository.createAlert(alert);
 
-        repository.delete("CASE X");
+        repository.close("CASE X");
 
         assertEquals(asList(alert), alertRepository.allAlerts());
     }
@@ -86,7 +88,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         repository.add(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2"));
         timelineEventRepository.add(event);
 
-        repository.delete("CASE X");
+        repository.close("CASE X");
 
         assertEquals(emptyList(), timelineEventRepository.allFor("CASE X"));
         assertEquals(asList(event), timelineEventRepository.allFor("CASE Y"));
@@ -94,18 +96,26 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
 
     public void testShouldDeleteCorrespondingBeneficiariesAndTheirDependenciesWhenDeletingAnEC() throws Exception {
         repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1"));
-        beneficiaryRepository.addMother(new Beneficiary("CASE Y", "CASE X", "TC 1", "2012-01-01"));
-        beneficiaryRepository.addMother(new Beneficiary("CASE Z", "CASE X", "TC 2", "2012-01-01"));
-        timelineEventRepository.add(TimelineEvent.forStartOfPregnancy("CASE Y", "2012-01-01"));
 
-        repository.add(new EligibleCouple("CASE A", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2"));
-        beneficiaryRepository.addMother(new Beneficiary("CASE B", "CASE A", "TC 2", "2012-01-01"));
-        timelineEventRepository.add(TimelineEvent.forStartOfPregnancy("CASE B", "2012-01-01"));
+        Beneficiary mother = new Beneficiary("CASE Y", "CASE X", "TC 1", "2012-01-01");
+        motherRepository.add(mother);
+        motherRepository.add(new Beneficiary("CASE Z", "CASE X", "TC 2", "2012-01-01"));
+        childRepository.addChildForMother(mother, "CASE C1", "2012-06-08", "female");
 
-        repository.delete("CASE X");
+        EligibleCouple ecWhoIsNotClosed = new EligibleCouple("CASE A", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2");
+        Beneficiary motherWhoIsNotClosed = new Beneficiary("CASE B", "CASE A", "TC 2", "2012-01-01");
+        repository.add(ecWhoIsNotClosed);
+        motherRepository.add(motherWhoIsNotClosed);
 
-        assertEquals(asList(new Beneficiary("CASE B", "CASE A", "TC 2", "2012-01-01")), beneficiaryRepository.all());
+        repository.close("CASE X");
+
+        assertEquals(asList(ecWhoIsNotClosed), repository.allEligibleCouples());
+        assertEquals(asList(motherWhoIsNotClosed), motherRepository.allANCs());
+        assertEquals(emptyList(), childRepository.all());
+        assertEquals(emptyList(), timelineEventRepository.allFor("CASE X"));
         assertEquals(emptyList(), timelineEventRepository.allFor("CASE Y"));
+        assertEquals(emptyList(), timelineEventRepository.allFor("CASE Z"));
+        assertEquals(emptyList(), timelineEventRepository.allFor("CASE C1"));
 
         assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE B", "2012-01-01")), timelineEventRepository.allFor("CASE B"));
     }
@@ -134,7 +144,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         repository.add(yetAnotherEC);
         assertEquals(3, repository.count());
 
-        repository.delete(yetAnotherEC.caseId());
+        repository.close(yetAnotherEC.caseId());
         assertEquals(2, repository.count());
     }
 }
