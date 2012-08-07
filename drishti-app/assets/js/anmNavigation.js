@@ -21,6 +21,12 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
+    var bindToPNCList = function (callbackToRunBeforeAnyAction, identifierOfElement) {
+            runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
+                anmNavigationBridge.delegateToPNCList();
+            });
+     };
+
     var bindToPage = function (callbackToRunBeforeAnyAction, identifierOfElement, pageToGoTo) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             window.location.href = pageToGoTo;
@@ -45,6 +51,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
 
             bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
             bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
+            bindToPNCList(callbackToRunBeforeAnyAction, "#pncMenuOption");
         }
     };
 }
@@ -65,6 +72,9 @@ function ANMNavigationBridge() {
         delegateToANCList: function () {
             return anmNavigationContext.startANCList();
         },
+        delegateToPNCList: function () {
+            return anmNavigationContext.startPNCList();
+        },
         delegateToWorkplan: function () {
             return anmNavigationContext.startWorkplan();
         }
@@ -81,6 +91,9 @@ function FakeANMNavigationContext() {
         },
         startANCList: function () {
             window.location.href = "anc_list.html";
+        },
+        startPNCList: function () {
+            window.location.href = "pnc_list.html";
         },
         startWorkplan: function () {
             window.location.href = "workplan.html";
