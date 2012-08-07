@@ -4,7 +4,7 @@ function ANC(ancBridge) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.anc_detail(ancBridge.getCurrentANC()));
         },
 
-        bindEveryTodoToCommCare: function (cssIdentifierOfRootElement, cssClassOfChildElement) {
+        bindEveryItemToCommCare: function (cssIdentifierOfRootElement, cssClassOfChildElement) {
             $(cssIdentifierOfRootElement).on("click", cssClassOfChildElement, function (event) {
                 ancBridge.delegateToCommCare($(this).data("caseid"), $(this).data("form"));
             });
@@ -39,15 +39,21 @@ function FakeANCContext() {
                     womanName: "Wife 1",
                     caseId: "1234",
                     thaayiCardNumber: "TC Number 1",
-                    villageName: "Village 1",
-                    subcenter: "SubCenter 1",
-                    isHighRisk: true,
-                    riskDetail: "Anaemia (active): 21 months",
-                    facility: "Broadway",
-                    monthsPregnant: "7",
-                    edd: "24/12/12",
-                    ashaName: "Shiwani",
-                    contact: "----",
+                    location: {
+                        villageName: "Village 1",
+                        subcenter: "SubCenter 1"
+                    },
+                    pregnancyDetails: {
+                        isHighRisk: true,
+                        riskDetail: "Anaemia (active): 21 months",
+                        monthsPregnant: "7",
+                        edd: "24/12/12"
+                    },
+                    facilityDetails: {
+                        facility: "Broadway",
+                        ashaName: "Shiwani",
+                        contact: "----"
+                    },
                     alerts: [
                         {
                             message: "Alert 1",
@@ -68,7 +74,7 @@ function FakeANCContext() {
                             formToOpen: "ANC"
                         }
                     ],
-                    timeline: [
+                    timelineEvents: [
                         {
                             title: "Event 1",
                             details: ["Detail 1", "Detail 2"],

@@ -1,11 +1,13 @@
 package org.ei.drishti.view.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.Beneficiary;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.view.activity.ANCDetailActivity;
 import org.ei.drishti.view.contract.ANC;
 
 import java.util.ArrayList;
@@ -33,6 +35,8 @@ public class ANCListViewController {
     }
 
     public void startANC(String caseId) {
-
+        Intent intent = new Intent(context.getApplicationContext(), ANCDetailActivity.class);
+        intent.putExtra("caseId", caseId);
+        context.startActivity(intent);
     }
 }

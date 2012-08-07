@@ -1,10 +1,10 @@
 package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
-import org.ei.drishti.dto.Action;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
+import org.ei.drishti.dto.Action;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;

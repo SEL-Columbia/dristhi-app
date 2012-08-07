@@ -101,7 +101,7 @@ public class BeneficiaryRepository extends DrishtiRepository {
         }
     }
 
-    private Beneficiary findByCaseId(String caseId) {
+    public Beneficiary findByCaseId(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(BENEFICIARY_TABLE_NAME, BENEFICIARY_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
         List<Beneficiary> beneficiaries = readAllBeneficiaries(cursor);

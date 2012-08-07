@@ -8,12 +8,11 @@ import android.net.Uri;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.view.contract.ECContext;
-import org.ei.drishti.view.contract.ECTimelineEvent;
+import org.ei.drishti.view.contract.TimelineEvent;
 import org.ocpsoft.pretty.time.PrettyTime;
 
 import java.util.ArrayList;
@@ -42,11 +41,11 @@ public class EligibleCoupleDetailController {
 
     public String get() {
         EligibleCouple eligibleCouple = allEligibleCouples.findByCaseID(caseId);
-        List<TimelineEvent> events = allTimelineEvents.forEligibleCouple(caseId);
-        List<ECTimelineEvent> ecTimeLines = new ArrayList<ECTimelineEvent>();
-        for (TimelineEvent event : events) {
+        List<org.ei.drishti.domain.TimelineEvent> events = allTimelineEvents.forEligibleCouple(caseId);
+        List<TimelineEvent> ecTimeLines = new ArrayList<TimelineEvent>();
+        for (org.ei.drishti.domain.TimelineEvent event : events) {
             String dateOfEvent = prettyTime.format(prettyTime.calculatePreciseDuration(event.referenceDate().toDate()).subList(0, 2)).replaceAll(" _", "");
-            ecTimeLines.add(new ECTimelineEvent(event.type(), event.title(), new String[] { event.detail1(), event.detail2()}, dateOfEvent));
+            ecTimeLines.add(new TimelineEvent(event.type(), event.title(), new String[] { event.detail1(), event.detail2()}, dateOfEvent));
         }
 
         ECContext ecContext = new ECContext(eligibleCouple.wifeName(), eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(),

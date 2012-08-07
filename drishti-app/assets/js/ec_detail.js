@@ -49,11 +49,12 @@ function FakeECContext() {
         },
         get: function () {
             return JSON.stringify({
-                wifeName: "Wife 1",
+                    wifeName: "Wife 1",
                     ecNumber: "EC Number 1",
                     village: "Village 1",
                     subcenter: "SubCenter 1",
                     isHighPriority: true,
+                    currentMethod: "IUD",
                     alerts: [
                         {
                             message: "Alert 1"
@@ -62,7 +63,6 @@ function FakeECContext() {
                             message: "Alert 2"
                         }
                     ],
-                    currentMethod: "IUD",
                     children: [
                         {
                             isFemale: true,

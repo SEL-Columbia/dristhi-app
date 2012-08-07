@@ -29,4 +29,8 @@ public class AllBeneficiaries {
     public List<Beneficiary> allANCs() {
         return repository.allANCs();
     }
+
+    public Beneficiary findByCaseId(String caseId) {
+        return repository.findByCaseId(caseId);
+    }
 }
