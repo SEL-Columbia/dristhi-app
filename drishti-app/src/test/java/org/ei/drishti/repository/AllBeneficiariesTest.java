@@ -1,7 +1,7 @@
 package org.ei.drishti.repository;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.Beneficiary;
+import org.ei.drishti.domain.Mother;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.util.ActionBuilder;
 import org.joda.time.LocalDate;
@@ -34,15 +34,15 @@ public class AllBeneficiariesTest {
         Action action = ActionBuilder.actionForCreateBeneficiary("Case X");
         allBeneficiaries.handleAction(action);
         String referenceDate = LocalDate.now().toString();
-        verify(motherRepository).add(new Beneficiary("Case X", "ecCaseId", "thaayiCardNumber", referenceDate));
+        verify(motherRepository).add(new Mother("Case X", "ecCaseId", "thaayiCardNumber", referenceDate));
 
         action = ActionBuilder.actionForUpdateBeneficiary();
         allBeneficiaries.handleAction(action);
         verify(beneficiaryRepository).close("Case X");
 
-        when(motherRepository.find("Case Mom")).thenReturn(new Beneficiary("Case Mom", "EC Case 1", "TC 1", "2012-06-08"));
+        when(motherRepository.find("Case Mom")).thenReturn(new Mother("Case Mom", "EC Case 1", "TC 1", "2012-06-08"));
         Action childAction = ActionBuilder.actionForCreateChildBeneficiary("Case Mom");
         allBeneficiaries.handleAction(childAction);
-        verify(beneficiaryRepository).addChildForMother(new Beneficiary("Case Mom", "EC Case 1", "TC 1", "2012-06-08"), "Case X", referenceDate, "female");
+        verify(beneficiaryRepository).addChildForMother(new Mother("Case Mom", "EC Case 1", "TC 1", "2012-06-08"), "Case X", referenceDate, "female");
     }
 }

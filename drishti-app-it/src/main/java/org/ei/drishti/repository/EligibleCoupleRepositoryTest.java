@@ -2,10 +2,7 @@ package org.ei.drishti.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.Beneficiary;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.TimelineEvent;
+import org.ei.drishti.domain.*;
 import org.ei.drishti.util.Session;
 
 import java.util.ArrayList;
@@ -97,13 +94,13 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     public void testShouldDeleteCorrespondingBeneficiariesAndTheirDependenciesWhenDeletingAnEC() throws Exception {
         repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1"));
 
-        Beneficiary mother = new Beneficiary("CASE Y", "CASE X", "TC 1", "2012-01-01");
+        Mother mother = new Mother("CASE Y", "CASE X", "TC 1", "2012-01-01");
         motherRepository.add(mother);
-        motherRepository.add(new Beneficiary("CASE Z", "CASE X", "TC 2", "2012-01-01"));
+        motherRepository.add(new Mother("CASE Z", "CASE X", "TC 2", "2012-01-01"));
         childRepository.addChildForMother(mother, "CASE C1", "2012-06-08", "female");
 
         EligibleCouple ecWhoIsNotClosed = new EligibleCouple("CASE A", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2");
-        Beneficiary motherWhoIsNotClosed = new Beneficiary("CASE B", "CASE A", "TC 2", "2012-01-01");
+        Mother motherWhoIsNotClosed = new Mother("CASE B", "CASE A", "TC 2", "2012-01-01");
         repository.add(ecWhoIsNotClosed);
         motherRepository.add(motherWhoIsNotClosed);
 

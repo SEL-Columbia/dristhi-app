@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
-import org.ei.drishti.domain.Beneficiary;
+import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
 
 import java.util.ArrayList;
@@ -37,10 +37,10 @@ public class MotherRepository extends DrishtiRepository {
         database.execSQL(MOTHER_SQL);
     }
 
-    public void add(Beneficiary beneficiary) {
+    public void add(Mother mother) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
-        database.insert(MOTHER_TABLE_NAME, null, createValuesFor(beneficiary, TYPE_ANC));
-        timelineEventRepository.add(TimelineEvent.forStartOfPregnancy(beneficiary.caseId(), beneficiary.referenceDate()));
+        database.insert(MOTHER_TABLE_NAME, null, createValuesFor(mother, TYPE_ANC));
+        timelineEventRepository.add(TimelineEvent.forStartOfPregnancy(mother.caseId(), mother.referenceDate()));
     }
 
     public void switchToPNC(String caseId) {
@@ -52,13 +52,13 @@ public class MotherRepository extends DrishtiRepository {
         database.update(MOTHER_TABLE_NAME, motherValuesToBeUpdated, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
-    public List<Beneficiary> allANCs() {
+    public List<Mother> allANCs() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, TYPE_COLUMN + " = ?", new String[]{TYPE_ANC}, null, null, null, null);
         return readAll(cursor);
     }
 
-    public List<Beneficiary> allPNCs() {
+    public List<Mother> allPNCs() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, TYPE_COLUMN + " = ?", new String[]{TYPE_PNC}, null, null, null, null);
         return readAll(cursor);
@@ -72,10 +72,10 @@ public class MotherRepository extends DrishtiRepository {
         return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + MOTHER_TABLE_NAME + " WHERE " + TYPE_COLUMN + " = ?", new String[]{TYPE_PNC});
     }
 
-    public Beneficiary find(String caseId) {
+    public Mother find(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
-        List<Beneficiary> beneficiaries = readAll(cursor);
+        List<Mother> beneficiaries = readAll(cursor);
 
         if (beneficiaries.isEmpty()) {
             return null;
@@ -84,13 +84,13 @@ public class MotherRepository extends DrishtiRepository {
     }
 
     public void closeAllCasesForEC(String ecCaseId) {
-        List<Beneficiary> mothers = findAllCasesForEC(ecCaseId);
-        for (Beneficiary mother : mothers) {
+        List<Mother> mothers = findAllCasesForEC(ecCaseId);
+        for (Mother mother : mothers) {
             close(mother.caseId());
         }
     }
 
-    private List<Beneficiary> findAllCasesForEC(String ecCaseId) {
+    private List<Mother> findAllCasesForEC(String ecCaseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, EC_CASEID_COLUMN + " = ?", new String[]{ecCaseId}, null, null, null, null);
         return readAll(cursor);
@@ -103,7 +103,7 @@ public class MotherRepository extends DrishtiRepository {
         masterRepository.getWritableDatabase().delete(MOTHER_TABLE_NAME, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
-    private ContentValues createValuesFor(Beneficiary beneficiary, String type) {
+    private ContentValues createValuesFor(Mother beneficiary, String type) {
         ContentValues values = new ContentValues();
         values.put(CASE_ID_COLUMN, beneficiary.caseId());
         values.put(EC_CASEID_COLUMN, beneficiary.ecCaseId());
@@ -113,11 +113,11 @@ public class MotherRepository extends DrishtiRepository {
         return values;
     }
 
-    private List<Beneficiary> readAll(Cursor cursor) {
+    private List<Mother> readAll(Cursor cursor) {
         cursor.moveToFirst();
-        List<Beneficiary> beneficiaries = new ArrayList<Beneficiary>();
+        List<Mother> beneficiaries = new ArrayList<Mother>();
         while (!cursor.isAfterLast()) {
-            beneficiaries.add(new Beneficiary(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(4)));
+            beneficiaries.add(new Mother(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(4)));
             cursor.moveToNext();
         }
         cursor.close();

@@ -1,7 +1,7 @@
 package org.ei.drishti.repository;
 
+import org.ei.drishti.domain.Mother;
 import org.ei.drishti.dto.Action;
-import org.ei.drishti.domain.Beneficiary;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class AllBeneficiaries {
 
     public void handleAction(Action action) {
         if (action.type().equals("createBeneficiary")) {
-            motherRepository.add(new Beneficiary(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate")));
+            motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate")));
         } else if (action.type().equals("updateBeneficiary")) {
             beneficiaryRepository.close(action.caseID());
         } else {
@@ -24,11 +24,11 @@ public class AllBeneficiaries {
         }
     }
 
-    public List<Beneficiary> allANCs() {
+    public List<Mother> allANCs() {
         return motherRepository.allANCs();
     }
 
-    public Beneficiary findMother(String caseId) {
+    public Mother findMother(String caseId) {
         return motherRepository.find(caseId);
     }
 

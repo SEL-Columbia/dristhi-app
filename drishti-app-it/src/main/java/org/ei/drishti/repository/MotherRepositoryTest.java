@@ -3,7 +3,7 @@ package org.ei.drishti.repository;
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.Beneficiary;
+import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.util.Session;
 
@@ -31,45 +31,45 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldInsertMother() throws Exception {
-        repository.add(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
+        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
 
-        assertEquals(asList(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08")), repository.allANCs());
+        assertEquals(asList(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08")), repository.allANCs());
         assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE X", "2012-06-08")), timelineEventRepository.allFor("CASE X"));
     }
 
     public void testShouldLoadAllANCs() throws Exception {
-        repository.add(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.add(new Beneficiary("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
+        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
+        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
 
-        assertEquals(asList(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"), new Beneficiary("CASE Y", "EC Case 2", "TC 2", "2012-06-08")), repository.allANCs());
+        assertEquals(asList(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"), new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08")), repository.allANCs());
     }
 
     public void testShouldSwitchWomanToPNC() throws Exception {
-        repository.add(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.add(new Beneficiary("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
+        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
+        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
 
         repository.switchToPNC("CASE X");
 
-        assertEquals(asList(new Beneficiary("CASE Y", "EC Case 2", "TC 2", "2012-06-08")), repository.allANCs());
-        assertEquals(asList(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08")), repository.allPNCs());
+        assertEquals(asList(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08")), repository.allANCs());
+        assertEquals(asList(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08")), repository.allPNCs());
     }
 
     public void testShouldFindAMotherByCaseId() throws Exception {
-        repository.add(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.add(new Beneficiary("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
+        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
+        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
 
-        assertEquals(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"), repository.find("CASE X"));
-        assertEquals(new Beneficiary("CASE Y", "EC Case 2", "TC 2", "2012-06-08"), repository.find("CASE Y"));
+        assertEquals(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"), repository.find("CASE X"));
+        assertEquals(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08"), repository.find("CASE Y"));
         assertEquals(null, repository.find("CASE NOT FOUND"));
     }
 
     public void testShouldCountANCsAndPNCs() throws Exception {
-        repository.add(new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.add(new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08"));
+        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
+        repository.add(new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08"));
         assertEquals(2, repository.ancCount());
         assertEquals(0, repository.pncCount());
 
-        repository.add(new Beneficiary("CASE Z", "EC Case 2", "TC 3", "2012-06-08"));
+        repository.add(new Mother("CASE Z", "EC Case 2", "TC 3", "2012-06-08"));
         assertEquals(3, repository.ancCount());
         assertEquals(0, repository.pncCount());
 
@@ -87,8 +87,8 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldRemoveTimelineEventsWhenMotherIsClosed() throws Exception {
-        Beneficiary mother1 = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08");
-        Beneficiary mother2 = new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
+        Mother mother1 = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
+        Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
 
         repository.add(mother1);
         repository.add(mother2);
@@ -100,8 +100,8 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldRemoveAlertsWhenMotherIsClosed() throws Exception {
-        Beneficiary mother1 = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08");
-        Beneficiary mother2 = new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
+        Mother mother1 = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
+        Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
 
         repository.add(mother1);
         alertRepository.createAlert(new Alert("CASE X", "Theresa 1", "bherya", "ANC 1", "TC 1", 1, "2012-01-01"));
@@ -114,8 +114,8 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldRemoveChildrenAndTheirEntitiesWhenMotherIsClosed() throws Exception {
-        Beneficiary mother1 = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08");
-        Beneficiary mother2 = new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
+        Mother mother1 = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
+        Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
 
         repository.add(mother1);
         childRepository.addChildForMother(mother1, "CASE A", "2012-06-09", "female");
@@ -137,9 +137,9 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldCloseAllMothersForEC() throws Exception {
-        Beneficiary mother1 = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-08");
-        Beneficiary mother2 = new Beneficiary("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
-        Beneficiary mother3 = new Beneficiary("CASE Z", "EC Case 2", "TC 3", "2012-06-08");
+        Mother mother1 = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
+        Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
+        Mother mother3 = new Mother("CASE Z", "EC Case 2", "TC 3", "2012-06-08");
 
         repository.add(mother1);
         repository.add(mother2);

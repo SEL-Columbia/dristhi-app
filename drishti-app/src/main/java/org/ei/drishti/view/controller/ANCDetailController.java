@@ -6,8 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
 import com.google.gson.Gson;
-import org.ei.drishti.domain.Beneficiary;
 import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
@@ -34,7 +34,7 @@ public class ANCDetailController {
     }
 
     public String get() {
-        Beneficiary beneficiary = allBeneficiaries.findMother(caseId);
+        Mother beneficiary = allBeneficiaries.findMother(caseId);
         EligibleCouple couple = allEligibleCouples.findByCaseID(beneficiary.ecCaseId());
 
         ANCDetail detail = new ANCDetail(caseId, beneficiary.thaayiCardNumber(), couple.wifeName(), new LocationDetails(couple.village(), couple.village()), new PregnancyDetails(true, "Anaemic", "7", "24/8/12"),

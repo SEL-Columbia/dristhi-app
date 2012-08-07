@@ -5,6 +5,7 @@ import android.database.Cursor;
 import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.Beneficiary;
+import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
 
 import java.util.ArrayList;
@@ -32,20 +33,13 @@ public class BeneficiaryRepository extends DrishtiRepository {
         database.execSQL(CHILD_SQL);
     }
 
-    @Deprecated
-    public void addMother(Beneficiary beneficiary) {
-        SQLiteDatabase database = masterRepository.getWritableDatabase();
-        database.insert(CHILD_TABLE_NAME, null, createValuesFor(beneficiary));
-        timelineEventRepository.add(TimelineEvent.forStartOfPregnancy(beneficiary.ecCaseId(), beneficiary.referenceDate()));
-    }
-
-    public void addChildForMother(Beneficiary motherCase, String caseId, String referenceDate, String gender) {
-        if (motherCase == null) {
+    public void addChildForMother(Mother mother, String caseId, String referenceDate, String gender) {
+        if (mother == null) {
             return;
         }
 
         SQLiteDatabase database = masterRepository.getWritableDatabase();
-        database.insert(CHILD_TABLE_NAME, null, createValuesFor(new Beneficiary(caseId, motherCase.caseId(), motherCase.thaayiCardNumber(), referenceDate)));
+        database.insert(CHILD_TABLE_NAME, null, createValuesFor(new Beneficiary(caseId, mother.caseId(), mother.thaayiCardNumber(), referenceDate)));
         timelineEventRepository.add(TimelineEvent.forChildBirth(caseId, referenceDate, gender));
     }
 

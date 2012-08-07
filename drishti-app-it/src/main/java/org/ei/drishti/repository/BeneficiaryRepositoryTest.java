@@ -4,6 +4,7 @@ import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Beneficiary;
+import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.util.Session;
 
@@ -28,7 +29,7 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldInsertChildForExistingMother() throws Exception {
-        Beneficiary mother = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-01");
+        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-01");
         repository.addChildForMother(mother, "CASE A", "2012-06-09", "female");
 
         assertEquals(asList(new Beneficiary("CASE A", "CASE X", "TC 1", "2012-06-09")), repository.all());
@@ -42,7 +43,7 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldFetchBeneficiariesByTheirOwnCaseId() throws Exception {
-        Beneficiary mother = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-01");
+        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-01");
         repository.addChildForMother(mother, "CASE A", "2012-06-09", "female");
         repository.addChildForMother(mother, "CASE B", "2012-06-10", "female");
 
@@ -53,7 +54,7 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
     public void testShouldCountChildren() throws Exception {
         assertEquals(0, repository.childCount());
 
-        Beneficiary mother = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-01");
+        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-01");
         repository.addChildForMother(mother, "CASE A", "2012-06-09", "female");
         assertEquals(1, repository.childCount());
 
@@ -65,7 +66,7 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteCorrespondingAlertsWhenAChildIsDeleted() throws Exception {
-        Beneficiary mother = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-01");
+        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-01");
         repository.addChildForMother(mother, "CASE A", "2012-06-09", "female");
         alertRepository.createAlert(new Alert("CASE A", "Child 1", "Bherya 1", "ANC 1", "TC 1", 1, "2012-01-01"));
 
@@ -78,7 +79,7 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteCorrespondingTimelineEventsWhenAChildIsDeleted() throws Exception {
-        Beneficiary mother = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-01");
+        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-01");
         repository.addChildForMother(mother, "CASE A", "2012-06-09", "female");
         repository.addChildForMother(mother, "CASE B", "2012-06-10", "female");
 
@@ -89,8 +90,8 @@ public class BeneficiaryRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteAllChildrenAndTheirDependentEntitiesForAGivenMother() throws Exception {
-        Beneficiary mother1 = new Beneficiary("CASE X", "EC Case 1", "TC 1", "2012-06-01");
-        Beneficiary mother2 = new Beneficiary("CASE Y", "EC Case 2", "TC 2", "2012-06-01");
+        Mother mother1 = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-01");
+        Mother mother2 = new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-01");
         repository.addChildForMother(mother1, "CASE A", "2012-06-09", "female");
         repository.addChildForMother(mother1, "CASE B", "2012-06-09", "female");
         repository.addChildForMother(mother2, "CASE C", "2012-06-09", "female");
