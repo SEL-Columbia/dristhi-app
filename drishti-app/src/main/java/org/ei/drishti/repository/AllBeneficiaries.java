@@ -6,31 +6,41 @@ import org.ei.drishti.domain.Beneficiary;
 import java.util.List;
 
 public class AllBeneficiaries {
-    private BeneficiaryRepository repository;
+    private BeneficiaryRepository beneficiaryRepository;
+    private MotherRepository motherRepository;
 
-    public AllBeneficiaries(BeneficiaryRepository repository) {
-        this.repository = repository;
+    public AllBeneficiaries(BeneficiaryRepository beneficiaryRepository, MotherRepository motherRepository) {
+        this.beneficiaryRepository = beneficiaryRepository;
+        this.motherRepository = motherRepository;
     }
 
     public void handleAction(Action action) {
         if (action.type().equals("createBeneficiary")) {
-            repository.addMother(new Beneficiary(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate")));
+            motherRepository.add(new Beneficiary(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate")));
         } else if (action.type().equals("updateBeneficiary")) {
-            repository.close(action.caseID());
+            beneficiaryRepository.close(action.caseID());
         } else {
-            repository.addChild(action.caseID(), action.get("referenceDate"), action.get("motherCaseId"), action.get("gender"));
+            beneficiaryRepository.addChild(action.caseID(), action.get("referenceDate"), action.get("motherCaseId"), action.get("gender"));
         }
     }
 
-    public List<Beneficiary> findByECCaseId(String caseId) {
-        return repository.findByECCaseId(caseId);
-    }
-
     public List<Beneficiary> allANCs() {
-        return repository.allANCs();
+        return motherRepository.allANCs();
     }
 
-    public Beneficiary findByCaseId(String caseId) {
-        return repository.findByCaseId(caseId);
+    public Beneficiary findMother(String caseId) {
+        return motherRepository.find(caseId);
+    }
+
+    public long ancCount() {
+        return motherRepository.ancCount();
+    }
+
+    public long pncCount() {
+        return motherRepository.pncCount();
+    }
+
+    public long childCount() {
+        return beneficiaryRepository.childCount();
     }
 }

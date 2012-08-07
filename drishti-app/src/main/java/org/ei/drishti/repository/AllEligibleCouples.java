@@ -34,4 +34,8 @@ public class AllEligibleCouples {
     public EligibleCouple findByCaseID(String caseId) {
         return repository.findByCaseID(caseId);
     }
+
+    public long count() {
+        return repository.count();
+    }
 }

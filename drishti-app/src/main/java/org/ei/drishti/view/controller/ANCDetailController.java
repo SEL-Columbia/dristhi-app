@@ -34,7 +34,7 @@ public class ANCDetailController {
     }
 
     public String get() {
-        Beneficiary beneficiary = allBeneficiaries.findByCaseId(caseId);
+        Beneficiary beneficiary = allBeneficiaries.findMother(caseId);
         EligibleCouple couple = allEligibleCouples.findByCaseID(beneficiary.ecCaseId());
 
         ANCDetail detail = new ANCDetail(caseId, beneficiary.thaayiCardNumber(), couple.wifeName(), new LocationDetails(couple.village(), couple.village()), new PregnancyDetails(true, "Anaemic", "7", "24/8/12"),

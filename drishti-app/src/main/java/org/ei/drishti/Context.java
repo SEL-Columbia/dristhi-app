@@ -15,6 +15,7 @@ public class Context {
     private AlertRepository alertRepository;
     private SettingsRepository settingsRepository;
     private BeneficiaryRepository beneficiaryRepository;
+    private MotherRepository motherRepository;
     private TimelineEventRepository timelineEventRepository;
 
     private AllSettings allSettings;
@@ -100,7 +101,7 @@ public class Context {
     public AllBeneficiaries allBeneficiaries() {
         initRepository();
         if (allBeneficiaries == null) {
-            allBeneficiaries = new AllBeneficiaries(beneficiaryRepository());
+            allBeneficiaries = new AllBeneficiaries(beneficiaryRepository(), motherRepository());
         }
         return allBeneficiaries;
     }
@@ -141,6 +142,13 @@ public class Context {
         return beneficiaryRepository;
     }
 
+    private MotherRepository motherRepository() {
+        if (motherRepository == null) {
+            motherRepository = new MotherRepository(timelineEventRepository(), alertRepository());
+        }
+        return motherRepository;
+    }
+
     private TimelineEventRepository timelineEventRepository() {
         if (timelineEventRepository == null) {
             timelineEventRepository = new TimelineEventRepository();
@@ -172,7 +180,7 @@ public class Context {
 
     public ANMService anmService() {
         if (anmService == null) {
-            anmService = new ANMService(allSettings(), beneficiaryRepository(), eligibleCoupleRepository());
+            anmService = new ANMService(allSettings(), allBeneficiaries(), allEligibleCouples());
         }
         return anmService;
     }

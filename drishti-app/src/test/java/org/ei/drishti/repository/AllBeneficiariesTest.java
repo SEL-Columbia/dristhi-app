@@ -17,12 +17,15 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class AllBeneficiariesTest {
     @Mock
     private BeneficiaryRepository beneficiaryRepository;
+    @Mock
+    private MotherRepository motherRepository;
+
     private AllBeneficiaries allBeneficiaries;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        allBeneficiaries = new AllBeneficiaries(beneficiaryRepository);
+        allBeneficiaries = new AllBeneficiaries(beneficiaryRepository, motherRepository);
     }
 
     @Test
@@ -30,7 +33,7 @@ public class AllBeneficiariesTest {
         Action action = ActionBuilder.actionForCreateBeneficiary();
         allBeneficiaries.handleAction(action);
         String referenceDate = LocalDate.now().toString();
-        verify(beneficiaryRepository).addMother(new Beneficiary("Case X", "ecCaseId", "thaayiCardNumber", referenceDate));
+        verify(motherRepository).add(new Beneficiary("Case X", "ecCaseId", "thaayiCardNumber", referenceDate));
 
         action = ActionBuilder.actionForUpdateBeneficiary();
         allBeneficiaries.handleAction(action);

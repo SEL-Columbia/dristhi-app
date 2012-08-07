@@ -36,6 +36,7 @@ public class BeneficiaryRepository extends DrishtiRepository {
         database.execSQL(BENEFICIARY_SQL);
     }
 
+    @Deprecated
     public void addMother(Beneficiary beneficiary) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(BENEFICIARY_TABLE_NAME, null, createValuesFor(beneficiary, TYPE_ANC));
@@ -58,14 +59,11 @@ public class BeneficiaryRepository extends DrishtiRepository {
         timelineEventRepository.add(TimelineEvent.forChildBirth(motherCase.ecCaseId(), referenceDate, gender));
     }
 
+    @Deprecated
     public List<Beneficiary> allBeneficiaries() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(BENEFICIARY_TABLE_NAME, BENEFICIARY_TABLE_COLUMNS, null, null, null, null, null, null);
         return readAllBeneficiaries(cursor);
-    }
-
-    public long ancCount() {
-        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + BENEFICIARY_TABLE_NAME + " WHERE " + TYPE_COLUMN + " = ?", new String[]{TYPE_ANC});
     }
 
     public long pncCount() {
@@ -74,12 +72,6 @@ public class BeneficiaryRepository extends DrishtiRepository {
 
     public long childCount() {
         return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + BENEFICIARY_TABLE_NAME + " WHERE " + TYPE_COLUMN + " = ?", new String[]{TYPE_CHILD});
-    }
-
-    public List<Beneficiary> findByECCaseId(String caseId) {
-        SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(BENEFICIARY_TABLE_NAME, BENEFICIARY_TABLE_COLUMNS, EC_CASEID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
-        return readAllBeneficiaries(cursor);
     }
 
     public List<Beneficiary> allANCs() {
@@ -101,7 +93,13 @@ public class BeneficiaryRepository extends DrishtiRepository {
         }
     }
 
-    public Beneficiary findByCaseId(String caseId) {
+    private List<Beneficiary> findByECCaseId(String caseId) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(BENEFICIARY_TABLE_NAME, BENEFICIARY_TABLE_COLUMNS, EC_CASEID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
+        return readAllBeneficiaries(cursor);
+    }
+
+    private Beneficiary findByCaseId(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(BENEFICIARY_TABLE_NAME, BENEFICIARY_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
         List<Beneficiary> beneficiaries = readAllBeneficiaries(cursor);
