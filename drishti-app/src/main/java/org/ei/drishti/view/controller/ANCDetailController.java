@@ -11,10 +11,15 @@ import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
+import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.view.contract.ANCDetail;
 import org.ei.drishti.view.contract.FacilityDetails;
 import org.ei.drishti.view.contract.LocationDetails;
 import org.ei.drishti.view.contract.PregnancyDetails;
+import org.joda.time.Days;
+import org.joda.time.LocalDate;
+import org.joda.time.Months;
+import org.joda.time.Weeks;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -37,7 +42,13 @@ public class ANCDetailController {
         Mother mother = allBeneficiaries.findMother(caseId);
         EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
 
-        ANCDetail detail = new ANCDetail(caseId, mother.thaayiCardNumber(), couple.wifeName(), new LocationDetails(couple.village(), couple.village()), new PregnancyDetails(true, "Anaemic", "7", "24/8/12"),
+        LocalDate lmp = LocalDate.parse(mother.referenceDate());
+        String edd = lmp.plusWeeks(40).toString();
+        Months numberOfMonthsPregnant = Months.monthsBetween(lmp, DateUtil.today());
+
+        ANCDetail detail = new ANCDetail(caseId, mother.thaayiCardNumber(), couple.wifeName(),
+                new LocationDetails(couple.village(), couple.subCenter()),
+                new PregnancyDetails(mother.isHighRisk(), "Anaemic", String.valueOf(numberOfMonthsPregnant.getMonths()), edd),
                 new FacilityDetails("Broadway", "----", "Shiwani"));
 
         return new Gson().toJson(detail);

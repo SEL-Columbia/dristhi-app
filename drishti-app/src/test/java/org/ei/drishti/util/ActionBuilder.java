@@ -34,7 +34,7 @@ public class ActionBuilder {
     }
 
     public static Action actionForCreateMother(String motherCaseId) {
-        return new Action(motherCaseId, "child", "createBeneficiary", createBeneficiary("ecCaseId", "thaayiCardNumber", LocalDate.now()).data(), "0");
+        return new Action(motherCaseId, "child", "createBeneficiary", createBeneficiary("ecCaseId", "thaayiCardNumber", LocalDate.now(), true).data(), "0");
     }
 
     public static Action actionForCreateChild(String motherCaseId) {

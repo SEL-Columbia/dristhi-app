@@ -9,12 +9,14 @@ public class Mother {
     private final String ecCaseId;
     private final String thaayiCardNumber;
     private String referenceDate;
+    private boolean isHighRisk;
 
     public Mother(String caseId, String ecCaseId, String thaayiCardNumber, String referenceDate) {
         this.caseId = caseId;
         this.ecCaseId = ecCaseId;
         this.thaayiCardNumber = thaayiCardNumber;
         this.referenceDate = referenceDate;
+        this.isHighRisk = false;
     }
 
     public String caseId() {
@@ -31,6 +33,15 @@ public class Mother {
 
     public String referenceDate() {
         return referenceDate;
+    }
+
+    public Mother isHighRisk(boolean isHighRisk) {
+        this.isHighRisk = isHighRisk;
+        return this;
+    }
+
+    public boolean isHighRisk() {
+        return isHighRisk;
     }
 
     @Override

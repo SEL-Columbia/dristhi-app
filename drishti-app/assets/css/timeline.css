@@ -1,0 +1,25 @@
+.timeline dt {
+  	width: 35px;
+	height: 35px;
+	overflow: hidden;
+	border: 0px;
+	border-radius: 18px;
+	display:inline-block;
+	vertical-align: auto;
+}
+
+.timeline dd{
+	display: inline-block;
+	padding-left: 15px;
+}
+
+.done{ background-color: #d9860e;}
+.not-done { background-color: #e6e6e6;}
+
+.done i{
+	margin: 10px 7px 0 12px;
+}
+
+.not-done i{
+	margin: 10px 7px 0 12px;
+}

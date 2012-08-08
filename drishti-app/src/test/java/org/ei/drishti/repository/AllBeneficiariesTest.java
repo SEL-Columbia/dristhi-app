@@ -35,7 +35,7 @@ public class AllBeneficiariesTest {
     public void shouldHandleDifferentTypesOfActions() throws Exception {
         Action action = ActionBuilder.actionForCreateMother("Case X");
         allBeneficiaries.handleAction(action);
-        verify(motherRepository).add(new Mother("Case X", "ecCaseId", "thaayiCardNumber", referenceDate));
+        verify(motherRepository).add(new Mother("Case X", "ecCaseId", "thaayiCardNumber", referenceDate).isHighRisk(true));
 
         action = ActionBuilder.actionForUpdateBeneficiary();
         allBeneficiaries.handleAction(action);
