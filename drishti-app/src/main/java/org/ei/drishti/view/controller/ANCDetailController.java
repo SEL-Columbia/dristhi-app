@@ -37,7 +37,9 @@ public class ANCDetailController {
         Mother mother = allBeneficiaries.findMother(caseId);
         EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
 
-        ANCDetail detail = new ANCDetail(caseId, mother.thaayiCardNumber(), couple.wifeName(), new LocationDetails(couple.village(), couple.village()), new PregnancyDetails(true, "Anaemic", "7", "24/8/12"),
+        ANCDetail detail = new ANCDetail(caseId, mother.thaayiCardNumber(), couple.wifeName(),
+                new LocationDetails(couple.village(), couple.subCenter()),
+                new PregnancyDetails(mother.isHighRisk(), "Anaemic", "7", "24/8/12"),
                 new FacilityDetails("Broadway", "----", "Shiwani"));
 
         return new Gson().toJson(detail);
