@@ -141,58 +141,30 @@
                         {{#each timelineEvents}}
 
                         <div class="container-section-component row-fluid">
-                        <!-- <div class="span1">
-                                                      <dl>
-                                                                               								{{#if this.done}}
-                                                                                                               <dt class="done">
-                                                                                                               {{else}}
-                                                                                                               <dt class="not-done">
-                                                                                                               {{/if}}
-                                                                                                                   <i class="icon-eye-open"></i>
-                                                                                                               </dt>
-                                                                                                        </div>
-                                                                                                           <dd>
-                                                                               							<div class="span7">
-                                                                                                               <strong>{{title}}</strong><br>
-                                                                                                               {{#each details}}
-                                                                                                               {{this}}<br>
-                                                                                                               {{/each}}
-                                                                                                           </div>
-                                                                                                           <div class="span4 pull-right text-right">
-                                                                                                               {{date}}
-                                                                                                           </div>
-                                                                               							</dd>
-                                                                                                       </dl>
-                        						</div> -->
-						
-						
+
+
 							<div class = "timeline">
 								<dl>
-									<div class = "span1">
-										{{#if this.done}}
-										<dt class = "done"> 
-										{{else}}
-										<dt class = "not-done">
-										{{/if}}		
-											<i class = "icon-eye-open"></i></dt>
-										</dt>
-									</div>
+									<dt class = "{{this.status}}">
+									    <div class = "span1">
+											<i class = "icon-eye-open"></i>
+										</div>
+									</dt>
 									
-										<dd>
-											<div class = "span7">
-												<strong>{{title}}</strong><br>
-                                                {{#each details}}
+									<dd>
+										<div class = "span7">
+                                            <strong>{{title}}</strong><br>
+                                            {{#each details}}
                                                 {{this}}<br>
-                                                {{/each}}
-											</div>
-											 <div class="span4 pull-right text-right">
-                                                 {{date}}
-                                             </div>
-										</dd>
-							
+                                            {{/each}}
+                                        </div>
+                                         <div class="span4 pull-right text-right">
+                                             {{date}}
+                                         </div>
+                                    </dd>
 								</dl>
-                        {{/each}}
-                    </div>
+                        </div>
+                    {{/each}}
                 </div>
             </div>
         </div>

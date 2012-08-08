@@ -78,13 +78,19 @@ function FakeANCContext() {
                         {
                             title: "Event 1",
                             details: ["Detail 1", "Detail 2"],
-                            done: false,
+                            status: "upcoming",
+                            date: "1y 2m ago"
+                        },
+                        {
+                            title: "Event 1",
+                            details: ["Detail 1", "Detail 2"],
+                            status: "overdue",
                             date: "1y 2m ago"
                         },
                         {
                             title: "Event 2",
                             details: ["Detail 3", "Detail 4"],
-                            done: true,
+                            status: "done",
                             date: "2m 3d ago"
                         }
                     ]
