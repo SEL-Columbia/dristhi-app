@@ -56,13 +56,17 @@ function program7(depth0,data) {
 function program9(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                        <div class=\"container-section-component row-fluid\">\n                            <div class=\"span1\">\n                                <i class=\"icon-filter\"></i>\n                            </div>\n                            <div class=\"span7\">\n                                <strong>";
+  buffer += "\n\n                        <div class=\"container-section-component row-fluid\">\n                        <div class=\"span1\">\n                                ";
+  stack1 = depth0.done;
+  stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.program(12, program12, data),fn:self.program(10, program10, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n                                    <i class=\"icon-eye-open\"></i>\n                                </dt>\n                            </div>\n                            <div class=\"span7\">\n                                <strong>";
   foundHelper = helpers.title;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "</strong><br>\n                                ";
   stack1 = depth0.details;
-  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)});
+  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(14, program14, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                            </div>\n                            <div class=\"span4 pull-right text-right\">\n                                ";
   foundHelper = helpers.date;
@@ -71,6 +75,16 @@ function program9(depth0,data) {
   buffer += escapeExpression(stack1) + "\n                            </div>\n                        </div>\n                        ";
   return buffer;}
 function program10(depth0,data) {
+  
+  
+  return "\n                                <dt class=\"done\">\n                                ";}
+
+function program12(depth0,data) {
+  
+  
+  return "\n                                <dt class=\"not-done\">\n                                ";}
+
+function program14(depth0,data) {
   
   var buffer = "";
   buffer += "\n                                ";

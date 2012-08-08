@@ -78,11 +78,13 @@ function FakeANCContext() {
                         {
                             title: "Event 1",
                             details: ["Detail 1", "Detail 2"],
+                            done: false,
                             date: "1y 2m ago"
                         },
                         {
                             title: "Event 2",
                             details: ["Detail 3", "Detail 4"],
+                            done: true,
                             date: "2m 3d ago"
                         }
                     ]

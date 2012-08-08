@@ -139,9 +139,16 @@
                 <div class="beneficiary-detail-content">
                     <div class="container-section container-fluid">
                         {{#each timelineEvents}}
+
                         <div class="container-section-component row-fluid">
-                            <div class="span1">
-                                <i class="icon-filter"></i>
+                        <div class="span1">
+                                {{#if this.done}}
+                                <dt class="done">
+                                {{else}}
+                                <dt class="not-done">
+                                {{/if}}
+                                    <i class="icon-eye-open"></i>
+                                </dt>
                             </div>
                             <div class="span7">
                                 <strong>{{title}}</strong><br>
