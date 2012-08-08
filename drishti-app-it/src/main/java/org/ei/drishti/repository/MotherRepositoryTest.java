@@ -31,9 +31,16 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldInsertMother() throws Exception {
-        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
+        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").isHighRisk(true));
 
-        assertEquals(asList(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08")), repository.allANCs());
+        assertEquals(asList(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").isHighRisk(true)), repository.allANCs());
+        assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE X", "2012-06-08")), timelineEventRepository.allFor("CASE X"));
+    }
+
+    public void testShouldInsertNonHighRiskMother() throws Exception {
+        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").isHighRisk(false));
+
+        assertEquals(asList(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").isHighRisk(false)), repository.allANCs());
         assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE X", "2012-06-08")), timelineEventRepository.allFor("CASE X"));
     }
 
