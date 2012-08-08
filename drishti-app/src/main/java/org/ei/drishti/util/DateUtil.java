@@ -1,31 +1,43 @@
 package org.ei.drishti.util;
 
+import org.joda.time.LocalDate;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateUtil {
-    public static String formattedDueDate(String date) {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd MMM yyyy");
+    private static DateUtility dateUtility = new RealDate();
 
-        try {
-            return outputFormat.format(inputFormat.parse(date));
-        } catch (ParseException e) {
-            return date;
-        }
+    public static void fakeIt(LocalDate fakeDayAsToday) {
+        dateUtility = new MockDate(fakeDayAsToday);
     }
 
-    public static Date parseDate(String date) {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            return inputFormat.parse(date);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+    public static LocalDate today() {
+        return dateUtility.today();
+    }
+}
+
+interface DateUtility {
+    LocalDate today();
+}
+
+class RealDate implements DateUtility {
+    @Override
+    public LocalDate today() {
+        return LocalDate.now();
+    }
+}
+
+class MockDate implements DateUtility {
+    private LocalDate fakeDay;
+
+    MockDate(LocalDate fakeDay) {
+        this.fakeDay = fakeDay;
     }
 
-    public static Date today() {
-        return new Date();
+    @Override
+    public LocalDate today() {
+        return fakeDay;
     }
 }

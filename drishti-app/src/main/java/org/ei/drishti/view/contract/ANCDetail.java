@@ -1,5 +1,9 @@
 package org.ei.drishti.view.contract;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +31,21 @@ public class ANCDetail {
         this.alerts = new ArrayList<Reminder>();
         this.todos = new ArrayList<Reminder>();
         this.timelineEvents = new ArrayList<TimelineEvent>();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return EqualsBuilder.reflectionEquals(this, o);
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
 
