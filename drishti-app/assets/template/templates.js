@@ -59,7 +59,10 @@ function program9(depth0,data) {
   buffer += "\n\n                        <div class=\"container-section-component row-fluid\">\n\n\n							<div class = \"timeline\">\n								<dl>\n									<dt class = \"";
   stack1 = depth0.status;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\">\n									    <div class = \"span1\">\n											<i class = \"icon-eye-open\"></i>\n										</div>\n									</dt>\n									\n									<dd>\n										<div class = \"span7\">\n                                            <strong>";
+  buffer += escapeExpression(stack1) + "\">\n									    <div class = \"span1\">\n											<i class = \"icon-eye-open\"></i>\n										</div>\n									</dt>\n									\n									<dd class = \"details-";
+  stack1 = depth0.status;
+  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  buffer += escapeExpression(stack1) + "\">\n										<div class = \"span7\">\n											<strong>";
   foundHelper = helpers.title;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -67,7 +70,7 @@ function program9(depth0,data) {
   stack1 = depth0.details;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(10, program10, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                                        </div>\n                                         <div class=\"span4 pull-right text-right\">\n                                             ";
+  buffer += "\n											</div>\n                                         <div class=\"span4 pull-right text-right\">\n                                             ";
   foundHelper = helpers.date;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1() : stack1; }

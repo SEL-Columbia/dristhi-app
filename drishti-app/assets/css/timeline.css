@@ -13,13 +13,13 @@
 	padding-left: 15px;
 }
 
-.done{ background-color: #d9860e;}
-.not-done { background-color: #e6e6e6;}
+.timeline dl .upcoming {background-color: #c3e4f7;}
+.timeline dl .overdue {background-color: #f7cbca;}
+.timeline dl .not-done {background-color: #e6e6e6;}
 
-.done i{
-	margin: 10px 7px 0 12px;
-}
+.timeline .details-upcoming {color: #0691d2;}
+.timeline .details-overdue {color: #d90e11;}
 
-.not-done i{
+.timeline i{
 	margin: 10px 7px 0 12px;
 }
