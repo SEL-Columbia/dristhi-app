@@ -1,8 +1,11 @@
 package org.ei.drishti.view.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.view.activity.ANCDetailActivity;
+import org.ei.drishti.view.activity.PNCDetailActivity;
 import org.ei.drishti.view.activity.PNCListActivity;
 
 public class PNCListViewController {
@@ -21,5 +24,8 @@ public class PNCListViewController {
     }
 
     public void startPNC(String caseId) {
+        Intent intent = new Intent(context.getApplicationContext(), PNCDetailActivity.class);
+        intent.putExtra("caseId", caseId);
+        context.startActivity(intent);
     }
 }

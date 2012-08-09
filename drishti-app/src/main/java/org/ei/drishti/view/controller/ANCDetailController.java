@@ -16,10 +16,8 @@ import org.ei.drishti.view.contract.ANCDetail;
 import org.ei.drishti.view.contract.FacilityDetails;
 import org.ei.drishti.view.contract.LocationDetails;
 import org.ei.drishti.view.contract.PregnancyDetails;
-import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
-import org.joda.time.Weeks;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
