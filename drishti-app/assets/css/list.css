@@ -1,0 +1,17 @@
+.todo img {
+	float: right;
+	display: block;
+	position: relative;
+	bottom: 0;
+}
+
+.high-risk-header {
+	color: #4ca8d6;
+	font-size: 20px;
+}
+
+.normal-risk-header {
+	color: #4ca8d6;
+	font-size: 20px;
+	margin-top: 30px;
+}

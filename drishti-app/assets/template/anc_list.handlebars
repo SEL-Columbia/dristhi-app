@@ -1,10 +1,11 @@
-<div class="risk-header"> High Risk ({{anc.highRisk.length}}) </div>
-<div class="divider divider-padding-bottom"></div>
+<div class="high-risk-header"> HIGH RISK ({{anc.highRisk.length}}) </div>
+<div class="divider divider-padding-both"></div>
 {{#each anc.highRisk}}
     <div class="row-fluid">
         <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
             <div class="span9">
                 <ul class="client-details unstyled">
+
                     <li class="big-text">
                         {{womanName}}
                         <span class="high-risk"> HRP </span>
@@ -12,22 +13,28 @@
                     <li>{{husbandName}}</li>
                     <li>
                      Thaayi #: {{thaayiCardNumber}}
-                     <div class="span3"> <img src="../img/icons/icon-hastodo.png"> </img></div>
                     </li>
                 </ul>
             </div>
 
             <div class="span3 pull-text-completely-right">
-                {{villageName}}
+                {{villageName}} 
             </div>
+			<div class = "span3">
+				{{#if hasTodos}}
+				<div class = "todo pull-text-completely-right">
+					<img src="../img/icons/icon-hastodo.png"> </img>
+               	</div>
+				{{/if}}
+			</div>
 
-            <div class="divider divider-padding-bottom"></div>
+            <div class="divider divider-padding-both"></div>
         </a>
     </div>
 {{/each}}
 
-<div class="risk-header"> Normal Risk ({{anc.normalRisk.length}}) </div>
-<div class="divider divider-padding-bottom"></div>
+<div class="normal-risk-header"> NORMAL RISK ({{anc.normalRisk.length}}) </div>
+<div class="divider divider-padding-both"></div>
 {{#each anc.normalRisk}}
     <div class="row-fluid">
         <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
@@ -39,16 +46,22 @@
                     <li>{{husbandName}}</li>
                     <li>
                      Thaayi #: {{thaayiCardNumber}}
-                     <div class="span3"> <img src="../img/icons/icon-hastodo.png"> </img></div>
-                    </li>
+					</li>
                 </ul>
             </div>
 
             <div class="span3 pull-text-completely-right">
-                {{villageName}}
-            </div>
+				{{villageName}}
+			</div>
+			<div class = "span3">
+				{{#if hasTodos}} 
+				<div class = "todo pull-text-completely-right">
+					<img src="../img/icons/icon-hastodo.png"> </img>
+                </div>
+				{{/if}}
+			</div>
 
-            <div class="divider divider-padding-bottom"></div>
+            <div class="divider divider-padding-both"></div>
         </a>
     </div>
 {{/each}}

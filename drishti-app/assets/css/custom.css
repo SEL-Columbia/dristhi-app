@@ -138,8 +138,8 @@
 }
 
 .divider.divider-padding-both {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .container-no-padding {
@@ -243,6 +243,10 @@ body {
 .pull-text-completely-right {
     float: right;
     text-align: right;
+}
+
+.pull-text-completely-right .villages {
+	font-weight: 500;
 }
 
 .client-list-item, .client-list-item:hover, .client-list-item:visited, .client-list-item:visited:hover {
