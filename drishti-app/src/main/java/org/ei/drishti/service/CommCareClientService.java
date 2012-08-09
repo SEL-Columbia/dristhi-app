@@ -53,7 +53,7 @@ public class CommCareClientService {
         public String dataFor(String caseId) {
             String caseData = "";
             if (takesCaseId) {
-                caseData = "CASE_ID case_id " + caseId;
+                caseData = MessageFormat.format("CASE_ID case_id {0} ", caseId);
             }
             return MessageFormat.format("COMMAND_ID {0} {1}COMMAND_ID {2}", moduleId, caseData, formId);
         }

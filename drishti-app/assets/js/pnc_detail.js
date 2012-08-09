@@ -12,7 +12,7 @@ function PNC(pncBridge) {
 
         bindItemToCommCare: function(cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
-                ancBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
+                pncBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             })
         }
     };
