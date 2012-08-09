@@ -29,7 +29,9 @@ public class Context {
     private UserService userService;
     private ANMService anmService;
 
-    private CommCareService commCareService;
+    private CommCareHQService commCareService;
+    private CommCareClientService commCareClientService;
+
     private Session session;
 
     protected Context() {
@@ -164,11 +166,18 @@ public class Context {
         return userService;
     }
 
-    private CommCareService commCareService() {
+    private CommCareHQService commCareService() {
         if (commCareService == null) {
-            commCareService = new CommCareService(new HTTPAgent(applicationContext), "https://www.commcarehq.org", "frhs-who-columbia");
+            commCareService = new CommCareHQService(new HTTPAgent(applicationContext), "https://www.commcarehq.org", "frhs-who-columbia");
         }
         return commCareService;
+    }
+
+    public CommCareClientService commCareClientService() {
+        if (commCareClientService == null) {
+            commCareClientService = new CommCareClientService();
+        }
+        return commCareClientService;
     }
 
     public Session session() {

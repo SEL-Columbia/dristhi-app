@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import org.ei.drishti.service.ANMService;
 import org.ei.drishti.view.activity.ANCListActivity;
 import org.ei.drishti.view.activity.EligibleCoupleListActivity;
+import org.ei.drishti.view.activity.PNCListActivity;
 import org.ei.drishti.view.activity.WorkplanActivity;
 import org.ei.drishti.view.contract.HomeContext;
 
@@ -24,6 +25,10 @@ public class NavigationController {
 
     public void startANCList() {
         context.startActivity(new Intent(context, ANCListActivity.class));
+    }
+
+    public void startPNCList() {
+        context.startActivity(new Intent(context, PNCListActivity.class));
     }
 
     public String get() {

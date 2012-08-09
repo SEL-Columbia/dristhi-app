@@ -3,3 +3,12 @@ Handlebars.registerHelper('ifNotZero', function(context, options) {
         return options.fn(this);
     }
 });
+
+Handlebars.registerHelper('ifequal', function (val1, val2, options) {
+    if (val1 === val2) {
+        return options.fn(this);
+    }
+    else {
+        return options.inverse(this);
+    }
+});

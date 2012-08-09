@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="org.ei.drishti" android:versionCode="1" android:versionName="0.1-SNAPSHOT">
+          package="org.ei.drishti" android:versionCode="1" android:versionName="0.1-SNAPSHOT" android:installLocation="preferExternal">
 
     <supports-screens android:anyDensity="true"/>
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -28,6 +28,10 @@
         <activity android:name=".view.activity.ANCListActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
                   android:screenOrientation="portrait"/>
         <activity android:name=".view.activity.ANCDetailActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.PNCListActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.PNCDetailActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
                   android:screenOrientation="portrait"/>
     </application>
 

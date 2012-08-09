@@ -24,6 +24,7 @@
             pnc.populateInto("#mainpanel");
             pnc.bindEveryItemToCommCare("#todos", ".todo");
             pnc.bindEveryItemToCommCare("#alerts", ".todo");
+            pnc.bindItemToCommCare("#plusButton");
 
             var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
             sidePanel.populateInto("#sidePanel");

@@ -6,8 +6,14 @@ function PNC(pncBridge) {
 
         bindEveryItemToCommCare: function (cssIdentifierOfRootElement, cssClassOfChildElement) {
             $(cssIdentifierOfRootElement).on("click", cssClassOfChildElement, function (event) {
-                pncBridge.delegateToCommCare($(this).data("caseid"), $(this).data("form"));
+                pncBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             });
+        },
+
+        bindItemToCommCare: function(cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).click(function () {
+                pncBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
+            })
         }
     };
 }
@@ -23,15 +29,15 @@ function PNCBridge() {
             return JSON.parse(pncContext.get());
         },
 
-        delegateToCommCare: function (caseId, formId) {
-            pncContext.startCommCare(caseId, formId);
+        delegateToCommCare: function (formId, caseId) {
+            pncContext.startCommCare(formId, caseId);
         }
     };
 }
 
 function FakePNCContext() {
     return {
-        startCommCare: function (caseId, formId) {
+        startCommCare: function (formId, caseId) {
             alert("Start CommCare with form " + formId + " on case with caseId: " + caseId);
         },
         get: function () {
