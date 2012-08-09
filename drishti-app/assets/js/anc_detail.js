@@ -8,6 +8,12 @@ function ANC(ancBridge) {
             $(cssIdentifierOfRootElement).on("click", cssClassOfChildElement, function (event) {
                 ancBridge.delegateToCommCare($(this).data("caseid"), $(this).data("form"));
             });
+        },
+
+        bindItemToCommCare: function(cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).click(function () {
+                ancBridge.delegateToCommCare($(this).data("caseid"), 0);
+            })
         }
     };
 }

@@ -52,10 +52,10 @@ public class ANCDetailController {
         return new Gson().toJson(detail);
     }
 
-    public void startCommCare() {
-        Intent intent = new Intent("android.intent.action.MAIN");
+    public void startCommCare(String caseId, String formId) {
+        Intent intent = new Intent("org.commcare.dalvik.action.CommCareSession");
         intent.setComponent(ComponentName.unflattenFromString("org.commcare.dalvik/.activities.CommCareHomeActivity"));
-        intent.addCategory("android.intent.category.Launcher");
+        intent.putExtra("ccodk_session_request", "COMMAND_ID m1 CASE_ID case_id " + caseId + " COMMAND_ID m1-f1");
         try {
             context.startActivity(intent);
         } catch (ActivityNotFoundException e) {
