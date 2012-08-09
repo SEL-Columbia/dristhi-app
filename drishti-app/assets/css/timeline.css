@@ -5,17 +5,16 @@
 	border: 0px;
 	border-radius: 18px;
 	display:inline-block;
-	vertical-align: auto;
+	margin-bottom: 15px;
 }
 
 .timeline dd{
-	display: inline-block;
-	padding-left: 15px;
+	padding-left: 40px;
 }
 
 .timeline dl .upcoming {background-color: #c3e4f7;}
 .timeline dl .overdue {background-color: #f7cbca;}
-.timeline dl .not-done {background-color: #e6e6e6;}
+.timeline dl .done {background-color: #e6e6e6;}
 
 .timeline .details-upcoming {color: #0691d2;}
 .timeline .details-overdue {color: #d90e11;}
@@ -23,3 +22,4 @@
 .timeline i{
 	margin: 10px 7px 0 12px;
 }
+
