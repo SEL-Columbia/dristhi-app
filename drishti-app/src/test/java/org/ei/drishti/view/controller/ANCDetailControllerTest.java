@@ -8,6 +8,7 @@ import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
+import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.view.contract.ANCDetail;
 import org.ei.drishti.view.contract.FacilityDetails;
@@ -33,6 +34,8 @@ public class ANCDetailControllerTest {
     private AllBeneficiaries allBeneficiaries;
     @Mock
     private AllTimelineEvents allTimelineEvents;
+    @Mock
+    private CommCareClientService commCareClientService;
 
     private String caseId = "1234-5678-1234";
     private ANCDetailController controller;
@@ -40,7 +43,7 @@ public class ANCDetailControllerTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new ANCDetailController(context, caseId, allEligibleCouples, allBeneficiaries, allTimelineEvents);
+        controller = new ANCDetailController(context, caseId, allEligibleCouples, allBeneficiaries, allTimelineEvents, commCareClientService);
     }
 
     @Test

@@ -7,12 +7,12 @@ import org.ei.drishti.util.Session;
 import static org.ei.drishti.event.Event.ON_LOGOUT;
 
 public class UserService {
-    private CommCareService commCareService;
+    private CommCareHQService commCareService;
     private final Repository repository;
     private final AllSettings allSettings;
     private Session session;
 
-    public UserService(CommCareService commCareService, Repository repository, AllSettings allSettings, Session session) {
+    public UserService(CommCareHQService commCareService, Repository repository, AllSettings allSettings, Session session) {
         this.commCareService = commCareService;
         this.repository = repository;
         this.allSettings = allSettings;

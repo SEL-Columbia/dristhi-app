@@ -1,16 +1,13 @@
 package org.ei.drishti.view.controller;
 
-import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
-import android.widget.Toast;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
+import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.view.contract.ANCDetail;
 import org.ei.drishti.view.contract.FacilityDetails;
@@ -19,21 +16,21 @@ import org.ei.drishti.view.contract.PregnancyDetails;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 
-import static android.widget.Toast.LENGTH_SHORT;
-
 public class ANCDetailController {
     private final Context context;
     private final String caseId;
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
     private final AllTimelineEvents allTimelineEvents;
+    private CommCareClientService commCareClientService;
 
-    public ANCDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllTimelineEvents allTimelineEvents) {
+    public ANCDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllTimelineEvents allTimelineEvents, CommCareClientService commCareClientService) {
         this.context = context;
         this.caseId = caseId;
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.allTimelineEvents = allTimelineEvents;
+        this.commCareClientService = commCareClientService;
     }
 
     public String get() {
@@ -52,14 +49,7 @@ public class ANCDetailController {
         return new Gson().toJson(detail);
     }
 
-    public void startCommCare(String caseId, String formId) {
-        Intent intent = new Intent("org.commcare.dalvik.action.CommCareSession");
-        intent.setComponent(ComponentName.unflattenFromString("org.commcare.dalvik/.activities.CommCareHomeActivity"));
-        intent.putExtra("ccodk_session_request", "COMMAND_ID m1 CASE_ID case_id " + caseId + " COMMAND_ID m1-f1");
-        try {
-            context.startActivity(intent);
-        } catch (ActivityNotFoundException e) {
-            Toast.makeText(context.getApplicationContext(), "CommCare ODK is not installed.", LENGTH_SHORT).show();
-        }
+    public void startCommCare(String formId, String caseId) {
+        commCareClientService.start(context, formId, caseId);
     }
 }

@@ -19,7 +19,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 @RunWith(RobolectricTestRunner.class)
 public class UserServiceTest {
     @Mock
-    private CommCareService commCareService;
+    private CommCareHQService commCareService;
     @Mock
     private Repository repository;
     @Mock

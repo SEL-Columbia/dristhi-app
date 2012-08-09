@@ -12,7 +12,7 @@ function ANC(ancBridge) {
 
         bindItemToCommCare: function(cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
-                ancBridge.delegateToCommCare($(this).data("caseid"), 0);
+                ancBridge.delegateToCommCare("ANC_SERVICES", $(this).data("caseid"));
             })
         }
     };
@@ -29,8 +29,8 @@ function ANCBridge() {
             return JSON.parse(ancContext.get());
         },
 
-        delegateToCommCare: function (caseId, formId) {
-            ancContext.startCommCare(caseId, formId);
+        delegateToCommCare: function (formId, caseId) {
+            ancContext.startCommCare(formId, caseId);
         }
     };
 }

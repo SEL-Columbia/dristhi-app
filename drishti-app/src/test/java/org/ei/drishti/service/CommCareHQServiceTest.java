@@ -12,16 +12,16 @@ import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
-public class CommCareServiceTest {
+public class CommCareHQServiceTest {
     @Mock
     private HTTPAgent agent;
 
-    private CommCareService service;
+    private CommCareHQService service;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new CommCareService(agent, "http://base-url.org", "domainX");
+        service = new CommCareHQService(agent, "http://base-url.org", "domainX");
     }
 
     @Test
