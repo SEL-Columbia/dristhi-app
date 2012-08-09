@@ -1,19 +1,55 @@
-{{#each anc}}
+<div class="risk-header"> High Risk ({{anc.highRisk.length}}) </div>
+<div class="divider divider-padding-bottom"></div>
+{{#each anc.highRisk}}
     <div class="row-fluid">
         <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
             <div class="span9">
                 <ul class="client-details unstyled">
-                    <li class="big-text">{{womanName}}</li>
-                    <li>{{villageName}}</li>
-                    <li>Thaayi #: {{thaayiCardNumber}}</li>
+                    <li class="big-text">
+                        {{womanName}}
+                        <span class="high-risk"> HRP </span>
+                    </li>
+                    <li>{{husbandName}}</li>
+                    <li>
+                     Thaayi #: {{thaayiCardNumber}}
+                     <div class="span3"> <img src="../img/icons/icon-hastodo.png"> </img></div>
+                    </li>
                 </ul>
             </div>
 
-            <div class="span3 high-risk pull-text-completely-right">
-                {{#if isHighRisk}} High Risk {{/if}}
+            <div class="span3 pull-text-completely-right">
+                {{villageName}}
             </div>
 
             <div class="divider divider-padding-bottom"></div>
         </a>
     </div>
 {{/each}}
+
+<div class="risk-header"> Normal Risk ({{anc.normalRisk.length}}) </div>
+<div class="divider divider-padding-bottom"></div>
+{{#each anc.normalRisk}}
+    <div class="row-fluid">
+        <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
+            <div class="span9">
+                <ul class="client-details unstyled">
+                    <li class="big-text">
+                        {{womanName}}
+                    </li>
+                    <li>{{husbandName}}</li>
+                    <li>
+                     Thaayi #: {{thaayiCardNumber}}
+                     <div class="span3"> <img src="../img/icons/icon-hastodo.png"> </img></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="span3 pull-text-completely-right">
+                {{villageName}}
+            </div>
+
+            <div class="divider divider-padding-bottom"></div>
+        </a>
+    </div>
+{{/each}}
+

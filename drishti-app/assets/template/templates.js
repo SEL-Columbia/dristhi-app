@@ -147,33 +147,72 @@ function program1(depth0,data) {
   foundHelper = helpers.caseId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + " class=\"client-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span9\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">";
+  buffer += escapeExpression(stack1) + " class=\"client-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span9\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">\n                        ";
   foundHelper = helpers.womanName;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.womanName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</li>\n                    <li>";
-  foundHelper = helpers.villageName;
+  buffer += escapeExpression(stack1) + "\n                        <span class=\"high-risk\"> HRP </span>\n                    </li>\n                    <li>";
+  foundHelper = helpers.husbandName;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.villageName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</li>\n                    <li>Thaayi #: ";
+  else { stack1 = depth0.husbandName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</li>\n                    <li>\n                     Thaayi #: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</li>\n                </ul>\n            </div>\n\n            <div class=\"span3 high-risk pull-text-completely-right\">\n                ";
-  stack1 = depth0.isHighRisk;
-  stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n            </div>\n\n            <div class=\"divider divider-padding-bottom\"></div>\n        </a>\n    </div>\n";
+  buffer += escapeExpression(stack1) + "\n                     <div class=\"span3\"> <img src=\"../img/icons/icon-hastodo.png\"> </img></div>\n                    </li>\n                </ul>\n            </div>\n\n            <div class=\"span3 pull-text-completely-right\">\n                ";
+  foundHelper = helpers.villageName;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.villageName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\n            </div>\n\n            <div class=\"divider divider-padding-bottom\"></div>\n        </a>\n    </div>\n";
   return buffer;}
-function program2(depth0,data) {
-  
-  
-  return " High Risk ";}
 
+function program3(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n    <div class=\"row-fluid\">\n        <a data-caseId=";
+  foundHelper = helpers.caseId;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + " class=\"client-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span9\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">\n                        ";
+  foundHelper = helpers.womanName;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.womanName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\n                    </li>\n                    <li>";
+  foundHelper = helpers.husbandName;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.husbandName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</li>\n                    <li>\n                     Thaayi #: ";
+  foundHelper = helpers.thaayiCardNumber;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\n                     <div class=\"span3\"> <img src=\"../img/icons/icon-hastodo.png\"> </img></div>\n                    </li>\n                </ul>\n            </div>\n\n            <div class=\"span3 pull-text-completely-right\">\n                ";
+  foundHelper = helpers.villageName;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.villageName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\n            </div>\n\n            <div class=\"divider divider-padding-bottom\"></div>\n        </a>\n    </div>\n";
+  return buffer;}
+
+  buffer += "<div class=\"risk-header\"> High Risk (";
   stack1 = depth0.anc;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.highRisk;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.length;
+  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  buffer += escapeExpression(stack1) + ") </div>\n<div class=\"divider divider-padding-bottom\"></div>\n";
+  stack1 = depth0.anc;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.highRisk;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
+  buffer += "\n\n<div class=\"risk-header\"> Normal Risk (";
+  stack1 = depth0.anc;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.normalRisk;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.length;
+  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  buffer += escapeExpression(stack1) + ") </div>\n<div class=\"divider divider-padding-bottom\"></div>\n";
+  stack1 = depth0.anc;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.normalRisk;
+  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(3, program3, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n\n";
   return buffer;});
 templates['ec_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
