@@ -6,13 +6,13 @@ function ANC(ancBridge) {
 
         bindEveryItemToCommCare: function (cssIdentifierOfRootElement, cssClassOfChildElement) {
             $(cssIdentifierOfRootElement).on("click", cssClassOfChildElement, function (event) {
-                ancBridge.delegateToCommCare($(this).data("caseid"), $(this).data("form"));
+                ancBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             });
         },
 
         bindItemToCommCare: function(cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
-                ancBridge.delegateToCommCare($(this).data("formid"), $(this).data("caseid"));
+                ancBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             })
         }
     };
@@ -63,21 +63,21 @@ function FakeANCContext() {
                     alerts: [
                         {
                             message: "Alert 1",
-                            formToOpen: "ANC"
+                            formToOpen: "ANC_SERVICES"
                         },
                         {
                             message: "Alert 2",
-                            formToOpen: "ANC"
+                            formToOpen: "ANC_SERVICES"
                         }
                     ],
                     todos: [
                         {
                             message: "IFA Tablet follow-up",
-                            formToOpen: "ANC"
+                            formToOpen: "ANC_SERVICES"
                         },
                         {
                             message: "ANC Visit #3",
-                            formToOpen: "ANC"
+                            formToOpen: "ANC_SERVICES"
                         }
                     ],
                     timelineEvents: [

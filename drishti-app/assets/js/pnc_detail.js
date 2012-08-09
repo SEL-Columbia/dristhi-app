@@ -8,6 +8,12 @@ function PNC(pncBridge) {
             $(cssIdentifierOfRootElement).on("click", cssClassOfChildElement, function (event) {
                 pncBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             });
+        },
+
+        bindItemToCommCare: function(cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).click(function () {
+                ancBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
+            })
         }
     };
 }
