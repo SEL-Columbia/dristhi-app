@@ -29,6 +29,8 @@
                   android:screenOrientation="portrait"/>
         <activity android:name=".view.activity.ANCDetailActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
                   android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.PNCListActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
+                  android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
