@@ -66,15 +66,15 @@ function program7(depth0,data) {
 function program9(depth0,data) {
   
   var buffer = "", stack1, stack2;
-  buffer += "\n\n                        <div class=\"container-section-component row-fluid\">\n\n\n							<div class = \"timeline\">\n								<dl>\n									<dt class = \"";
+  buffer += "\n                            <div class=\"container-section-component row-fluid\">\n                                    <div class=\"timeline dl\">\n                                        <div class=\"span2 ";
   stack1 = depth0.status;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "this.status", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "\">\n									    <div class = \"span1\">\n											<i class = \"icon-eye-open\"></i>\n										</div>\n									</dt>\n									\n									<dd class = \"details-";
+  buffer += escapeExpression(stack1) + " dt\">\n                                            <i class=\"icon-eye-open\"></i>\n                                        </div>\n                                        <div class=\"span6 details-";
   stack1 = depth0.status;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "this.status", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "\">\n										<div class = \"span7\">\n											<strong>";
+  buffer += escapeExpression(stack1) + " dd\">\n                                            <strong>";
   foundHelper = helpers.title;
   stack1 = foundHelper || depth0.title;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
@@ -89,17 +89,21 @@ function program9(depth0,data) {
   tmp1.inverse = self.noop;
   stack1 = stack2.call(depth0, stack1, tmp1);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n											</div>\n                                         <div class=\"span4 pull-right text-right\">\n                                             ";
+  buffer += "\n                                        </div>\n                                        <div class=\"span4 pull-right text-right details-";
+  stack1 = depth0.status;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "this.status", { hash: {} }); }
+  buffer += escapeExpression(stack1) + " dd\">\n                                            ";
   foundHelper = helpers.date;
   stack1 = foundHelper || depth0.date;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "date", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "\n                                         </div>\n                                    </dd>\n								</dl>\n                        </div>\n                    ";
+  buffer += escapeExpression(stack1) + "\n                                        </div>\n                                    </div>\n                                </div>\n                        ";
   return buffer;}
 function program10(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                                                ";
+  buffer += "\n                                            ";
   stack1 = depth0;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "this", { hash: {} }); }
@@ -204,7 +208,7 @@ function program10(depth0,data) {
   tmp1.inverse = self.noop;
   stack1 = stack2.call(depth0, stack1, tmp1);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";
+  buffer += "\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";
   return buffer;});
 templates['anc_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;

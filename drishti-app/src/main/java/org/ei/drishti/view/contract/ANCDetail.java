@@ -33,6 +33,11 @@ public class ANCDetail {
         this.timelineEvents = new ArrayList<TimelineEvent>();
     }
 
+    public ANCDetail addTimelineEvents(List<TimelineEvent> events) {
+        this.timelineEvents.addAll(events);
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);

@@ -11,7 +11,7 @@ public class AllTimelineEvents {
         this.repository = repository;
     }
 
-    public List<TimelineEvent> forEligibleCouple(String ecCaseId) {
+    public List<TimelineEvent> forCase(String ecCaseId) {
         return repository.allFor(ecCaseId);
     }
 }

@@ -28,7 +28,7 @@ public class EligibleCoupleDetailController {
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
     private final AllTimelineEvents allTimelineEvents;
-    PrettyTime prettyTime;
+    private PrettyTime prettyTime;
 
     public EligibleCoupleDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllTimelineEvents allTimelineEvents) {
         this.context = context;
@@ -41,15 +41,9 @@ public class EligibleCoupleDetailController {
 
     public String get() {
         EligibleCouple eligibleCouple = allEligibleCouples.findByCaseID(caseId);
-        List<org.ei.drishti.domain.TimelineEvent> events = allTimelineEvents.forEligibleCouple(caseId);
-        List<TimelineEvent> ecTimeLines = new ArrayList<TimelineEvent>();
-        for (org.ei.drishti.domain.TimelineEvent event : events) {
-            String dateOfEvent = prettyTime.format(prettyTime.calculatePreciseDuration(event.referenceDate().toDate()).subList(0, 2)).replaceAll(" _", "");
-            ecTimeLines.add(new TimelineEvent(event.type(), event.title(), new String[] { event.detail1(), event.detail2()}, dateOfEvent));
-        }
 
         ECContext ecContext = new ECContext(eligibleCouple.wifeName(), eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(),
-                false, null, eligibleCouple.currentMethod(), null, null, ecTimeLines);
+                false, null, eligibleCouple.currentMethod(), null, null, getEvents());
         return new Gson().toJson(ecContext);
     }
 
@@ -66,5 +60,15 @@ public class EligibleCoupleDetailController {
 
     public void startContacts() {
         context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("content://contacts/people/")));
+    }
+
+    private List<TimelineEvent> getEvents() {
+        List<org.ei.drishti.domain.TimelineEvent> events = allTimelineEvents.forCase(caseId);
+        List<TimelineEvent> ecTimeLines = new ArrayList<TimelineEvent>();
+        for (org.ei.drishti.domain.TimelineEvent event : events) {
+            String dateOfEvent = prettyTime.format(prettyTime.calculatePreciseDuration(event.referenceDate().toDate()).subList(0, 2)).replaceAll(" _", "");
+            ecTimeLines.add(new TimelineEvent(event.type(), event.title(), new String[] { event.detail1(), event.detail2()}, dateOfEvent));
+        }
+        return ecTimeLines;
     }
 }

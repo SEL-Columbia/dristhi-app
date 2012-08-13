@@ -44,6 +44,7 @@ public class MotherRepository extends DrishtiRepository {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(MOTHER_TABLE_NAME, null, createValuesFor(mother, TYPE_ANC));
         timelineEventRepository.add(TimelineEvent.forStartOfPregnancy(mother.caseId(), mother.referenceDate()));
+        timelineEventRepository.add(TimelineEvent.forStartOfPregnancyForEC(mother.ecCaseId(), mother.thaayiCardNumber(), mother.referenceDate()));
     }
 
     public void switchToPNC(String caseId) {

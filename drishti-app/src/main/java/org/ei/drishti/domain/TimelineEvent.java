@@ -31,6 +31,10 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(referenceDate), "Got pregnant", "On: " + referenceDate, null);
     }
 
+    public static TimelineEvent forStartOfPregnancyForEC(String ecCaseId, String thaayiCardNumber, String referenceDate) {
+        return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(referenceDate), "Got pregnant", "On: " + referenceDate, "Thaayi #: " + thaayiCardNumber);
+    }
+
     public String type() {
         return type;
     }
