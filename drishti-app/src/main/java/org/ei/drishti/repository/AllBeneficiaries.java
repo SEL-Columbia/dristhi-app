@@ -16,7 +16,8 @@ public class AllBeneficiaries {
 
     public void handleAction(Action action) {
         if (action.type().equals("createBeneficiary")) {
-            motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate")).isHighRisk(Boolean.parseBoolean(action.get("isHighRisk"))));
+            motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate"))
+                    .withExtraDetails(Boolean.parseBoolean(action.get("isHighRisk")), action.get("deliveryPlace")));
         } else if (action.type().equals("updateBeneficiary")) {
             childRepository.close(action.caseID());
         } else {

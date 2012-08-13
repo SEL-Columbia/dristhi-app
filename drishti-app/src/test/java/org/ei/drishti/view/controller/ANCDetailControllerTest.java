@@ -49,13 +49,13 @@ public class ANCDetailControllerTest {
     @Test
     public void shouldGetANCDetailsAsJSON() {
         DateUtil.fakeIt(new LocalDate(2012, 5, 22));
-        when(allBeneficiaries.findMother(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").isHighRisk(true));
+        when(allBeneficiaries.findMother(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withExtraDetails(true, "District Hospital"));
         when(allEligibleCouples.findByCaseID("EC CASE 1")).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "Subcenter 1"));
 
         ANCDetail expectedDetail = new ANCDetail(caseId, "TC 1", "Woman 1",
                 new LocationDetails("Village 1", "Subcenter 1"),
                 new PregnancyDetails(true, "Anaemic", "7", "2012-07-28"),
-                new FacilityDetails("Broadway", "----", "Shiwani"));
+                new FacilityDetails("District Hospital", "----", "Shiwani"));
 
         String actualJson = controller.get();
         ANCDetail actualDetail = new Gson().fromJson(actualJson, ANCDetail.class);

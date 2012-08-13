@@ -10,6 +10,7 @@ public class Mother {
     private final String thaayiCardNumber;
     private String referenceDate;
     private boolean isHighRisk;
+    private String deliveryPlace;
 
     public Mother(String caseId, String ecCaseId, String thaayiCardNumber, String referenceDate) {
         this.caseId = caseId;
@@ -35,13 +36,18 @@ public class Mother {
         return referenceDate;
     }
 
-    public Mother isHighRisk(boolean isHighRisk) {
+    public Mother withExtraDetails(boolean isHighRisk, String deliveryPlace) {
         this.isHighRisk = isHighRisk;
+        this.deliveryPlace = deliveryPlace;
         return this;
     }
 
     public boolean isHighRisk() {
         return isHighRisk;
+    }
+
+    public String deliveryPlace() {
+        return deliveryPlace;
     }
 
     @Override

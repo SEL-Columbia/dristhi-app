@@ -44,7 +44,7 @@ public class ANCDetailController {
         ANCDetail detail = new ANCDetail(caseId, mother.thaayiCardNumber(), couple.wifeName(),
                 new LocationDetails(couple.village(), couple.subCenter()),
                 new PregnancyDetails(mother.isHighRisk(), "Anaemic", String.valueOf(numberOfMonthsPregnant.getMonths()), edd),
-                new FacilityDetails("Broadway", "----", "Shiwani"));
+                new FacilityDetails(mother.deliveryPlace(), "----", "Shiwani"));
 
         return new Gson().toJson(detail);
     }
