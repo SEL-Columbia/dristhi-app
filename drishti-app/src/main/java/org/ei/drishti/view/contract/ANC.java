@@ -14,4 +14,8 @@ public class ANC {
         this.thaayiCardNumber = thaayiCardNumber;
         isHighRisk = highRisk;
     }
+
+    public String womanName() {
+        return womanName;
+    }
 }

@@ -59,7 +59,7 @@ public class AllEligibleCouplesTest {
         List<EligibleCouple> expectedCouples = Arrays.asList(new EligibleCouple("Case X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "village", "subcenter"), new EligibleCouple("Case Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "village", "subcenter"));
         when(eligibleCoupleRepository.allEligibleCouples()).thenReturn(expectedCouples);
 
-        List<EligibleCouple> couples = allEligibleCouples.fetchAll();
+        List<EligibleCouple> couples = allEligibleCouples.all();
 
         assertEquals(expectedCouples, couples);
     }
