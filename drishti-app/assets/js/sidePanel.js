@@ -14,6 +14,7 @@ function SidePanel(anmNavigation) {
             $(".affected-by-sidepanel").removeClass("sidepanel-active");
             $(".mainpanel .container.container-affected-by-sidepanel").removeClass("container").removeClass("container-affected-by-sidepanel");
             $(".page").css('height', 'auto');
+            $(".navbar.navbar-fixed-top").css('margin-top', '-2px')
         }});
     };
 

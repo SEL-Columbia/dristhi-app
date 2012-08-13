@@ -4,16 +4,10 @@ function EC(ecBridge) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.ec_detail(ecBridge.getCurrentEC()));
         },
 
-        bindToContacts: function (element) {
-            $(element).click(function () {
-                ecBridge.delegateToContacts();
-            });
-        },
-
-        bindToCommCare: function (element) {
-            $(element).click(function () {
-                ecBridge.delegateToCommCare();
-            });
+        bindItemToCommCare: function(cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).click(function () {
+                ecBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
+            })
         }
     };
 }
@@ -29,26 +23,20 @@ function ECBridge() {
             return JSON.parse(ecContext.get());
         },
 
-        delegateToContacts: function () {
-            ecContext.startContacts();
-        },
-
-        delegateToCommCare: function () {
-            ecContext.startCommCare();
+        delegateToCommCare: function (formId, caseId) {
+            ecContext.startCommCare(formId, caseId);
         }
     };
 }
 
 function FakeECContext() {
     return {
-        startContacts: function () {
-            alert("Start contacts");
-        },
-        startCommCare: function () {
-            alert("Start CommCare");
+        startCommCare: function (formId, caseId) {
+            alert("Start CommCare for case " + caseId + " with form "+ formId);
         },
         get: function () {
             return JSON.stringify({
+                    caseId: "CASE X",
                     wifeName: "Wife 1",
                     ecNumber: "EC Number 1",
                     village: "Village 1",
@@ -73,16 +61,24 @@ function FakeECContext() {
                             age: "2 years"
                         }
                     ],
-                    timeline: [
+                    timelineEvents: [
                         {
                             title: "Event 1",
                             details: ["Detail 1", "Detail 2"],
-                            date: "1y 2m ago"
+                            date: "1y 2m ago",
+                            status: "overdue"
                         },
                         {
                             title: "Event 2",
                             details: ["Detail 3", "Detail 4"],
-                            date: "2m 3d ago"
+                            date: "2m 3d ago",
+                            status: "upcoming"
+                        },
+                        {
+                            title: "Event 3",
+                            details: ["Detail 4", "Detail 5"],
+                            date: "2m 3d ago",
+                            status: "done"
                         }
                     ]
                 }

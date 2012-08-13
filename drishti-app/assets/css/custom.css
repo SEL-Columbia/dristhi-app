@@ -12,8 +12,8 @@
 .navbar .navbar-inner {
     padding-left: 15px;
     zoom: 125%;
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#0a8bcc), to(#1b84bb));
-    background: -webkit-linear-gradient(top, #0a8bcc 0%, #1b84bb 100%)
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#024565), to(#09405d));
+    background: -webkit-linear-gradient(top, #024565 0%, #09405d 100%)
 }
 
 .menu-button-container {
@@ -85,8 +85,8 @@
 }
 
 .divider-vertical.in-navbar {
-    background-color: #5fc2e5;
-    border-right-color: #39a2d0;
+    background-color: #124a65;
+    border-right-color: #073851;
 }
 
 .alert.alert-info {
@@ -297,6 +297,14 @@ body {
 .detail-section-header {
     color: #989898;
     margin-bottom: 6px;
+}
+
+.unavailable-data {
+    color: #989898;
+    padding-top: 10px;
+    margin-bottom: 6px;
+    text-align: center;
+    font-size: 16px;
 }
 
 .text-center {

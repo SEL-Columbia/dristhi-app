@@ -3,6 +3,7 @@ package org.ei.drishti.view.contract;
 import java.util.List;
 
 public class ECContext {
+    private final String caseId;
     private final String wifeName;
     private final String village;
     private final String subcenter;
@@ -12,10 +13,11 @@ public class ECContext {
     private final String currentMethod;
     private final List<Reminder> alerts;
     private final List<Child> children;
-    private final List<TimelineEvent> timeline;
+    private final List<TimelineEvent> timelineEvents;
 
-    public ECContext(String wifeName, String village, String subcenter, String ecNumber, boolean isHighPriority, String address,
-                     String currentMethod, List<Reminder> alerts, List<Child> children, List<TimelineEvent> ecTimeLines) {
+    public ECContext(String caseId, String wifeName, String village, String subcenter, String ecNumber, boolean isHighPriority, String address,
+                     String currentMethod, List<Reminder> alerts, List<Child> children, List<TimelineEvent> timelineEvents) {
+        this.caseId = caseId;
         this.wifeName = wifeName;
         this.village = village;
         this.subcenter = subcenter;
@@ -25,6 +27,6 @@ public class ECContext {
         this.currentMethod = currentMethod;
         this.alerts = alerts;
         this.children = children;
-        this.timeline = ecTimeLines;
+        this.timelineEvents = timelineEvents;
     }
 }
