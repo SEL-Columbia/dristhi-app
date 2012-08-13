@@ -11,6 +11,8 @@ import org.ei.drishti.view.activity.ANCDetailActivity;
 import org.ei.drishti.view.contract.ANC;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ANCListViewController {
@@ -31,6 +33,12 @@ public class ANCListViewController {
             EligibleCouple ec = allEligibleCouples.findByCaseID(mother.ecCaseId());
             ancs.add(new ANC(mother.caseId(), ec.wifeName(), ec.village(), mother.thaayiCardNumber(), false));
         }
+        Collections.sort(ancs, new Comparator<ANC>() {
+            @Override
+            public int compare(ANC oneAnc, ANC anotherANC) {
+                return oneAnc.womanName().compareToIgnoreCase(anotherANC.womanName());
+            }
+        });
         return new Gson().toJson(ancs);
     }
 

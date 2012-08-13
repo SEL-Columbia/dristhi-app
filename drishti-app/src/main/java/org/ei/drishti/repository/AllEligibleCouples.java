@@ -23,7 +23,7 @@ public class AllEligibleCouples {
         }
     }
 
-    public List<EligibleCouple> fetchAll() {
+    public List<EligibleCouple> all() {
         return repository.allEligibleCouples();
     }
 

@@ -14,4 +14,8 @@ public class EC {
         this.ecNumber = ecNumber;
         isHighRisk = highRisk;
     }
+
+    public String wifeName() {
+        return wifeName;
+    }
 }
