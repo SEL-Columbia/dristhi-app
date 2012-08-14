@@ -17,15 +17,12 @@
             var home = new ANMNavigationPanel(new ANMNavigationBridge());
             home.populateInto("#template-container", function() {});
 
-            if ($(window).height() > $("html").height()) {
-                $("#spacer").css('height', ($(window).height() - $("html").height() - 30) + "px").css('background-color', '#333');
-            }
+            $("html").css("background-color", "#333");
         });
     </script>
 </head>
 <body>
 <div class="menu-background" id="template-container">
 </div>
-<div id="spacer"></div>
 </body>
 </html>
