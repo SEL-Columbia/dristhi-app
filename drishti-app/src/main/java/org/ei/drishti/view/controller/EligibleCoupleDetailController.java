@@ -7,7 +7,7 @@ import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.view.contract.Child;
-import org.ei.drishti.view.contract.ECContext;
+import org.ei.drishti.view.contract.ECDetail;
 import org.ei.drishti.view.contract.Reminder;
 import org.ei.drishti.view.contract.TimelineEvent;
 import org.ocpsoft.pretty.time.PrettyTime;
@@ -37,7 +37,7 @@ public class EligibleCoupleDetailController {
     public String get() {
         EligibleCouple eligibleCouple = allEligibleCouples.findByCaseID(caseId);
 
-        ECContext ecContext = new ECContext(caseId, eligibleCouple.wifeName(), eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(),
+        ECDetail ecContext = new ECDetail(caseId, eligibleCouple.wifeName(), eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(),
                 false, null, eligibleCouple.currentMethod(), new ArrayList<Reminder>(), new ArrayList<Child>(), getEvents());
         return new Gson().toJson(ecContext);
     }
