@@ -815,12 +815,12 @@ templates['workplan'] = template(function (Handlebars,depth0,helpers,partials,da
 function program1(depth0,data) {
   
   var buffer = "", stack1, stack2;
-  buffer += "\n        <tr class=\"workplanElement\" data-village=";
+  buffer += "\n        <tr class=\"workplanElement\" data-village=\"";
   foundHelper = helpers.name;
   stack1 = foundHelper || depth0.name;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
-  buffer += escapeExpression(stack1) + ">\n            <td><span class=\"summary\">";
+  buffer += escapeExpression(stack1) + "\">\n            <td><span class=\"summary\">";
   foundHelper = helpers.name;
   stack1 = foundHelper || depth0.name;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
@@ -880,7 +880,7 @@ function program4(depth0,data) {
   stack1 = foundHelper || depth0.totalReminderCount;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "totalReminderCount", { hash: {} }); }
-  buffer += escapeExpression(stack1) + " New Reminder</span></td>\n    </tr>\n    </tbody>\n</table>\n\n<h3 class=\"village-header\">Villages</h3>\n\n<table class=\"table table-bordered\">\n    <tbody id=\"workplan-list\">\n    ";
+  buffer += escapeExpression(stack1) + " New Reminder</span></td>\n    </tr>\n    </tbody>\n</table>\n\n<h3 class=\"village-header\">Villages</h3>\n\n<table class=\"table table-bordered\" style=\"-webkit-tap-highlight-color: rgba(0, 0, 0, 0);\">\n    <tbody id=\"workplan-list\">\n    ";
   foundHelper = helpers.villages;
   stack1 = foundHelper || depth0.villages;
   stack2 = helpers.each;

@@ -11,10 +11,10 @@
 
 <h3 class="village-header">Villages</h3>
 
-<table class="table table-bordered">
+<table class="table table-bordered" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
     <tbody id="workplan-list">
     {{#each villages}}
-        <tr class="workplanElement" data-village={{name}}>
+        <tr class="workplanElement" data-village="{{name}}">
             <td><span class="summary">{{name}}</span><br/><span class="village-breakdown">{{#ifNotZero reminderCount}}{{reminderCount}} Reminders, {{/ifNotZero}}{{#ifNotZero alertCount}}{{alertCount}} Alerts{{/ifNotZero}}</span>
             </td>
         </tr>
