@@ -31,6 +31,10 @@ public class AllBeneficiaries {
         return motherRepository.allANCs();
     }
 
+    public List<Mother> allPNCs() {
+        return motherRepository.allPNCs();
+    }
+
     public Mother findMother(String caseId) {
         return motherRepository.find(caseId);
     }

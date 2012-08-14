@@ -2,11 +2,16 @@ package org.ei.drishti.view.controller;
 
 import android.content.Context;
 import android.content.Intent;
+import com.google.gson.Gson;
+import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.view.activity.ANCDetailActivity;
 import org.ei.drishti.view.activity.PNCDetailActivity;
-import org.ei.drishti.view.activity.PNCListActivity;
+import org.ei.drishti.view.contract.PNC;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PNCListViewController {
     private final Context context;
@@ -20,7 +25,13 @@ public class PNCListViewController {
     }
 
     public String get() {
-        return "[{\"caseId\":\"12345\",\"womanName\":\"PNC 1\",\"thaayiCardNumber\":\"TC Number 1\",\"villageName\":\"Village 1\",\"isHighRisk\":true},{\"caseId\":\"11111\",\"womanName\":\"PNC 2\",\"thaayiCardNumber\":\"TC Number 2\",\"villageName\":\"Village 2\",\"isHighRisk\":false}]";
+        List<PNC> pncs = new ArrayList<PNC>();
+        List<Mother> mothers = allBeneficiaries.allPNCs();
+        for (Mother mother : mothers) {
+            EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
+            pncs.add(new PNC(mother.caseId(), couple.wifeName(), mother.thaayiCardNumber(), couple.village(), mother.isHighRisk()));
+        }
+        return new Gson().toJson(pncs);
     }
 
     public void startPNC(String caseId) {
