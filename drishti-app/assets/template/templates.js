@@ -585,7 +585,7 @@ function program3(depth0,data) {
 function program5(depth0,data) {
   
   var buffer = "", stack1, stack2;
-  buffer += "\n                    <div class=\"row-fluid\">\n                          <b> Delivery Complications </b>\n                          <ol>\n                              ";
+  buffer += "\n                        <ol>\n                              ";
   foundHelper = helpers.pncDetails;
   stack1 = foundHelper || depth0.pncDetails;
   stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.deliveryComplications);
@@ -596,7 +596,7 @@ function program5(depth0,data) {
   tmp1.inverse = self.noop;
   stack1 = stack2.call(depth0, stack1, tmp1);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                          </ol>\n                    </div>\n                    ";
+  buffer += "\n                        </ol>\n                        ";
   return buffer;}
 function program6(depth0,data) {
   
@@ -610,6 +610,11 @@ function program6(depth0,data) {
 
 function program8(depth0,data) {
   
+  
+  return "\n                            <div class=\"unavailable-data\">\n                                No delivery complications known.\n                            </div>\n                        ";}
+
+function program10(depth0,data) {
+  
   var buffer = "", stack1, stack2;
   buffer += "\n                        <div class=\"container-section-component row-fluid\">\n                            <div class=\"span1\">\n                                <i class=\"icon-filter\"></i>\n                            </div>\n                            <div class=\"span7\">\n                                <strong>";
   foundHelper = helpers.title;
@@ -620,7 +625,7 @@ function program8(depth0,data) {
   foundHelper = helpers.details;
   stack1 = foundHelper || depth0.details;
   stack2 = helpers.each;
-  tmp1 = self.program(9, program9, data);
+  tmp1 = self.program(11, program11, data);
   tmp1.hash = {};
   tmp1.fn = tmp1;
   tmp1.inverse = self.noop;
@@ -633,7 +638,7 @@ function program8(depth0,data) {
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "date", { hash: {} }); }
   buffer += escapeExpression(stack1) + "\n                            </div>\n                        </div>\n                        ";
   return buffer;}
-function program9(depth0,data) {
+function program11(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "\n                                ";
@@ -693,7 +698,7 @@ function program9(depth0,data) {
   stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.dateOfDelivery);
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "pncDetails.dateOfDelivery", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">Date of Delivery</span>\n                        </div>\n                    </div>\n                    <div class=\"divider\"></div>\n                    ";
+  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">Date of Delivery</span>\n                        </div>\n                    </div>\n                    <div class=\"divider\"></div>\n                    <div class=\"row-fluid beneficiary-detail-component\">\n                        <b> Delivery Complications </b>\n                        ";
   foundHelper = helpers.pncDetails;
   stack1 = foundHelper || depth0.pncDetails;
   stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.deliveryComplications);
@@ -701,14 +706,14 @@ function program9(depth0,data) {
   tmp1 = self.program(5, program5, data);
   tmp1.hash = {};
   tmp1.fn = tmp1;
-  tmp1.inverse = self.noop;
+  tmp1.inverse = self.program(8, program8, data);
   stack1 = stack2.call(depth0, stack1, tmp1);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        PNC Plan\n    </div>\n    <div class=\"well well-for-beneficiary-details\">\n        42 day checklist\n    </div>\n</div>\n\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        Timeline\n    </div>\n    <div class=\"well well-for-beneficiary-details\">\n        <div class=\"container-fluid container-no-padding\">\n            <div class=\"row-fluid beneficiary-detail-component\">\n                <div class=\"beneficiary-detail-content\">\n                    <div class=\"container-section container-fluid\">\n                        ";
+  buffer += "\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        PNC Plan\n    </div>\n    <div class=\"well well-for-beneficiary-details\">\n        <div class=\"container-section container-fluid\">\n            <div class=\"row-fluid beneficiary-detail-component\">\n                42 day checklist\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        Timeline\n    </div>\n    <div class=\"well well-for-beneficiary-details\">\n        <div class=\"container-fluid container-no-padding\">\n            <div class=\"row-fluid beneficiary-detail-component\">\n                <div class=\"beneficiary-detail-content\">\n                    <div class=\"container-section container-fluid\">\n                        ";
   foundHelper = helpers.timelineEvents;
   stack1 = foundHelper || depth0.timelineEvents;
   stack2 = helpers.each;
-  tmp1 = self.program(8, program8, data);
+  tmp1 = self.program(10, program10, data);
   tmp1.hash = {};
   tmp1.fn = tmp1;
   tmp1.inverse = self.noop;

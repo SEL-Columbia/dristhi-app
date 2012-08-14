@@ -55,7 +55,6 @@ function FakePNCContext() {
                         daysPostpartum: "23",
                         dateOfDelivery: "24/03/12",
                         deliveryComplications: ["Prolonged Labor"]
-
                     },
                     alerts: [
                         {

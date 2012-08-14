@@ -66,18 +66,22 @@
                         </div>
                     </div>
                     <div class="divider"></div>
-                    {{#if pncDetails.deliveryComplications}}
-                    <div class="row-fluid">
-                          <b> Delivery Complications </b>
-                          <ol>
+                    <div class="row-fluid beneficiary-detail-component">
+                        <b> Delivery Complications </b>
+                        {{#if pncDetails.deliveryComplications}}
+                        <ol>
                               {{#each pncDetails.deliveryComplications}}
                                 <li>
                                 {{this}}
                                 </li>
                               {{/each}}
-                          </ol>
+                        </ol>
+                        {{else}}
+                            <div class="unavailable-data">
+                                No delivery complications known.
+                            </div>
+                        {{/if}}
                     </div>
-                    {{/if}}
                 </div>
             </div>
         </div>
@@ -89,7 +93,11 @@
         PNC Plan
     </div>
     <div class="well well-for-beneficiary-details">
-        42 day checklist
+        <div class="container-section container-fluid">
+            <div class="row-fluid beneficiary-detail-component">
+                42 day checklist
+            </div>
+        </div>
     </div>
 </div>
 
