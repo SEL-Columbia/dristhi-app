@@ -10,10 +10,10 @@
     </parent>
 
     <groupId>org.ei.drishti</groupId>
-    <artifactId>drishti-app</artifactId>
+    <artifactId>dristhi-app</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>apk</packaging>
-    <name>drishti-app - Application</name>
+    <name>dristhi-app - Application</name>
 
     <properties>
       <main.basedir>${project.basedir}/..</main.basedir>

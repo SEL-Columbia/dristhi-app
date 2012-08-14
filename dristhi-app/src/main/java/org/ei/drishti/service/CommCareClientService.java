@@ -39,6 +39,7 @@ public class CommCareClientService {
     enum CommCareForms {
         EC_SERVICES("m0", "m0-f1", true),
         ANC_REGISTER("m1", "m1-f0", false),
+        PNC_SERVICES("m1", "m1-f3", true),
         ANC_SERVICES("m1", "m1-f1", true);
 
         private final String moduleId;

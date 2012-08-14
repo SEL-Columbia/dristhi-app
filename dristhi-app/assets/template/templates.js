@@ -648,7 +648,7 @@ function program11(depth0,data) {
   buffer += escapeExpression(stack1) + "<br>\n                                ";
   return buffer;}
 
-  buffer += "<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <a class=\"brand in-navbar affected-by-sidepanel\" href=\"#\">\n            <span class=\"navbar-brand-icon-holder affected-by-sidepanel\"><i class=\"icon-book icon-white navbar-brand-icon\"></i></span>\n            <span class=\"name\">PNC</span>\n        </a>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li class=\"divider-vertical\"></li>\n            <li id=\"plusButton\" data-form=\"ANC_SERVICES\" data-caseid=";
+  buffer += "<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <a class=\"brand in-navbar affected-by-sidepanel\" href=\"#\">\n            <span class=\"navbar-brand-icon-holder affected-by-sidepanel\"><i class=\"icon-book icon-white navbar-brand-icon\"></i></span>\n            <span class=\"name\">PNC</span>\n        </a>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li class=\"divider-vertical\"></li>\n            <li id=\"plusButton\" data-form=\"PNC_SERVICES\" data-caseid=";
   foundHelper = helpers.caseId;
   stack1 = foundHelper || depth0.caseId;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }

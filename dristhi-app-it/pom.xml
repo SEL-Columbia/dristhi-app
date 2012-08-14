@@ -10,10 +10,10 @@
     </parent>
 
     <groupId>org.ei.drishti</groupId>
-    <artifactId>drishti-app-it</artifactId>
+    <artifactId>dristhi-app-it</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>apk</packaging>
-    <name>drishti-app-it - Integration tests</name>
+    <name>dristhi-app-it - Integration tests</name>
 
     <properties>
       <main.basedir>${project.basedir}/..</main.basedir>
@@ -30,14 +30,14 @@
         </dependency>
         <dependency>
             <groupId>org.ei.drishti</groupId>
-            <artifactId>drishti-app</artifactId>
+            <artifactId>dristhi-app</artifactId>
             <type>apk</type>
             <version>0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.ei.drishti</groupId>
-            <artifactId>drishti-app</artifactId>
+            <artifactId>dristhi-app</artifactId>
             <type>jar</type>
             <version>0.1-SNAPSHOT</version>
             <scope>provided</scope>
