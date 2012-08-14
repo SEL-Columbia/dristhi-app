@@ -58,22 +58,22 @@ public class MotherRepository extends DrishtiRepository {
 
     public List<Mother> allANCs() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, TYPE_COLUMN + " = ?", new String[]{TYPE_ANC}, null, null, null, null);
+        Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, TYPE_COLUMN + " = ? AND date(" + REF_DATE_COLUMN + ", 'start of day', '+280 days') > date('now')", new String[]{TYPE_ANC}, null, null, null, null);
         return readAll(cursor);
     }
 
     public List<Mother> allPNCs() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, TYPE_COLUMN + " = ?", new String[]{TYPE_PNC}, null, null, null, null);
+        Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, TYPE_COLUMN + " = ? OR date(" + REF_DATE_COLUMN + ", 'start of day', '+280 days') <= date('now')", new String[]{TYPE_PNC}, null, null, null, null);
         return readAll(cursor);
     }
 
     public long ancCount() {
-        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + MOTHER_TABLE_NAME + " WHERE " + TYPE_COLUMN + " = ?", new String[]{TYPE_ANC});
+        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + MOTHER_TABLE_NAME + " WHERE " + TYPE_COLUMN + " = ? AND date(" + REF_DATE_COLUMN + ", 'start of day', '+280 days') > date('now')", new String[]{TYPE_ANC});
     }
 
     public long pncCount() {
-        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + MOTHER_TABLE_NAME + " WHERE " + TYPE_COLUMN + " = ?", new String[]{TYPE_PNC});
+        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + MOTHER_TABLE_NAME + " WHERE " + TYPE_COLUMN + " = ? OR date(" + REF_DATE_COLUMN + ", 'start of day', '+280 days') <= date('now')", new String[]{TYPE_PNC});
     }
 
     public Mother find(String caseId) {

@@ -5,7 +5,9 @@ import android.test.RenamingDelegatingContext;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
+import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.Session;
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,11 +46,12 @@ public class MotherRepositoryTest extends AndroidTestCase {
         assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE X", "2012-06-08")), timelineEventRepository.allFor("CASE X"));
     }
 
-    public void testShouldLoadAllANCs() throws Exception {
-        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
+    public void testShouldLoadAllANCsBasedOnType() throws Exception {
+        LocalDate today = DateUtil.today();
+        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", today.minusDays(100).toString()));
+        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", today.minusDays(279).toString()));
 
-        assertEquals(asList(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"), new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08")), repository.allANCs());
+        assertEquals(asList(new Mother("CASE X", "EC Case 1", "TC 1", today.minusDays(100).toString()), new Mother("CASE Y", "EC Case 2", "TC 2", today.minusDays(279).toString())), repository.allANCs());
     }
 
     public void testShouldSwitchWomanToPNC() throws Exception {
@@ -61,6 +64,16 @@ public class MotherRepositoryTest extends AndroidTestCase {
         assertEquals(asList(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08")), repository.allPNCs());
     }
 
+    public void testShouldConsiderMothersAsBelongingToPNCAfterEDD() throws Exception {
+        LocalDate today = DateUtil.today();
+        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", today.minusDays(279).toString()));
+        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", today.minusDays(280).toString()));
+        repository.add(new Mother("CASE Z", "EC Case 3", "TC 3", today.minusDays(281).toString()));
+
+        assertEquals(asList(new Mother("CASE X", "EC Case 1", "TC 1", today.minusDays(279).toString())), repository.allANCs());
+        assertEquals(asList(new Mother("CASE Y", "EC Case 2", "TC 2", today.minusDays(280).toString()), new Mother("CASE Z", "EC Case 3", "TC 3", today.minusDays(281).toString())), repository.allPNCs());
+    }
+
     public void testShouldFindAMotherByCaseId() throws Exception {
         repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
         repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
@@ -71,26 +84,27 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldCountANCsAndPNCs() throws Exception {
-        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.add(new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08"));
+        LocalDate today = DateUtil.today();
+        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", today.minusDays(100).toString()));
+        repository.add(new Mother("CASE Y", "EC Case 1", "TC 2", today.toString()));
         assertEquals(2, repository.ancCount());
         assertEquals(0, repository.pncCount());
 
-        repository.add(new Mother("CASE Z", "EC Case 2", "TC 3", "2012-06-08"));
-        assertEquals(3, repository.ancCount());
-        assertEquals(0, repository.pncCount());
+        repository.add(new Mother("CASE Z", "EC Case 2", "TC 3", today.minusDays(300).toString()));
+        assertEquals(2, repository.ancCount());
+        assertEquals(1, repository.pncCount());
 
         repository.switchToPNC("CASE X");
-        assertEquals(2, repository.ancCount());
-        assertEquals(1, repository.pncCount());
+        assertEquals(1, repository.ancCount());
+        assertEquals(2, repository.pncCount());
 
         repository.close("CASE Y");
-        assertEquals(1, repository.ancCount());
-        assertEquals(1, repository.pncCount());
+        assertEquals(0, repository.ancCount());
+        assertEquals(2, repository.pncCount());
 
         repository.close("CASE NOT FOUND");
-        assertEquals(1, repository.ancCount());
-        assertEquals(1, repository.pncCount());
+        assertEquals(0, repository.ancCount());
+        assertEquals(2, repository.pncCount());
     }
 
     public void testShouldRemoveTimelineEventsWhenMotherIsClosed() throws Exception {
