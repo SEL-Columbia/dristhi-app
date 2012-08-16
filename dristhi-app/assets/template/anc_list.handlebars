@@ -3,9 +3,8 @@
 {{#each anc.highRisk}}
     <div class="row-fluid">
         <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
-            <div class="span9">
+            <div class="span8">
                 <ul class="client-details unstyled">
-
                     <li class="big-text">
                         {{womanName}}
                         <span class="high-risk"> HRP </span>
@@ -17,10 +16,9 @@
                 </ul>
             </div>
 
-            <div class="span3 pull-text-completely-right">
-                {{villageName}} 
-            </div>
-			<div class = "span3">
+            <div class="span4 pull-text-completely-right">
+                {{villageName}}
+                <p>
 				{{#if hasTodos}}
 				<div class = "todo pull-text-completely-right">
 					<img src="../img/icons/icon-hastodo.png"> </img>
@@ -38,7 +36,7 @@
 {{#each anc.normalRisk}}
     <div class="row-fluid">
         <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
-            <div class="span9">
+            <div class="span8">
                 <ul class="client-details unstyled">
                     <li class="big-text">
                         {{womanName}}
@@ -50,11 +48,10 @@
                 </ul>
             </div>
 
-            <div class="span3 pull-text-completely-right">
+            <div class="span4 pull-text-completely-right hide-extra">
 				{{villageName}}
-			</div>
-			<div class = "span3">
-				{{#if hasTodos}} 
+				<p>
+				{{#if hasTodos}}
 				<div class = "todo pull-text-completely-right">
 					<img src="../img/icons/icon-hastodo.png"> </img>
                 </div>

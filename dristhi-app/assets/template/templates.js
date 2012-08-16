@@ -222,7 +222,7 @@ function program1(depth0,data) {
   stack1 = foundHelper || depth0.caseId;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "caseId", { hash: {} }); }
-  buffer += escapeExpression(stack1) + " class=\"client-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span9\">\n                <ul class=\"client-details unstyled\">\n\n                    <li class=\"big-text\">\n                        ";
+  buffer += escapeExpression(stack1) + " class=\"client-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span8\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">\n                        ";
   foundHelper = helpers.womanName;
   stack1 = foundHelper || depth0.womanName;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
@@ -237,12 +237,12 @@ function program1(depth0,data) {
   stack1 = foundHelper || depth0.thaayiCardNumber;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "thaayiCardNumber", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "\n                    </li>\n                </ul>\n            </div>\n\n            <div class=\"span3 pull-text-completely-right\">\n                ";
+  buffer += escapeExpression(stack1) + "\n                    </li>\n                </ul>\n            </div>\n\n            <div class=\"span4 pull-text-completely-right\">\n                ";
   foundHelper = helpers.villageName;
   stack1 = foundHelper || depth0.villageName;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "villageName", { hash: {} }); }
-  buffer += escapeExpression(stack1) + " \n            </div>\n			<div class = \"span3\">\n				";
+  buffer += escapeExpression(stack1) + "\n                <p>\n				";
   foundHelper = helpers.hasTodos;
   stack1 = foundHelper || depth0.hasTodos;
   stack2 = helpers['if'];
@@ -267,7 +267,7 @@ function program4(depth0,data) {
   stack1 = foundHelper || depth0.caseId;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "caseId", { hash: {} }); }
-  buffer += escapeExpression(stack1) + " class=\"client-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span9\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">\n                        ";
+  buffer += escapeExpression(stack1) + " class=\"client-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span8\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">\n                        ";
   foundHelper = helpers.womanName;
   stack1 = foundHelper || depth0.womanName;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
@@ -282,12 +282,12 @@ function program4(depth0,data) {
   stack1 = foundHelper || depth0.thaayiCardNumber;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "thaayiCardNumber", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "\n					</li>\n                </ul>\n            </div>\n\n            <div class=\"span3 pull-text-completely-right\">\n				";
+  buffer += escapeExpression(stack1) + "\n					</li>\n                </ul>\n            </div>\n\n            <div class=\"span4 pull-text-completely-right hide-extra\">\n				";
   foundHelper = helpers.villageName;
   stack1 = foundHelper || depth0.villageName;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "villageName", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "\n			</div>\n			<div class = \"span3\">\n				";
+  buffer += escapeExpression(stack1) + "\n				<p>\n				";
   foundHelper = helpers.hasTodos;
   stack1 = foundHelper || depth0.hasTodos;
   stack2 = helpers['if'];
@@ -302,7 +302,7 @@ function program4(depth0,data) {
 function program5(depth0,data) {
   
   
-  return " \n				<div class = \"todo pull-text-completely-right\">\n					<img src=\"../img/icons/icon-hastodo.png\"> </img>\n                </div>\n				";}
+  return "\n				<div class = \"todo pull-text-completely-right\">\n					<img src=\"../img/icons/icon-hastodo.png\"> </img>\n                </div>\n				";}
 
   buffer += "<div class=\"high-risk-header\"> HIGH RISK (";
   foundHelper = helpers.anc;

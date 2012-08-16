@@ -250,6 +250,10 @@ body {
 	font-weight: 500;
 }
 
+.hide-extra {
+    overflow: hidden;
+}
+
 .client-list-item, .client-list-item:hover, .client-list-item:visited, .client-list-item:visited:hover {
     text-decoration: none;
     font-size: 14px;
