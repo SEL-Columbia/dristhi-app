@@ -6,11 +6,11 @@
     <artifactId>drishti-app-parent</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>drishti-app - Parent</name>
+    <name>dristhi-app - Parent</name>
 
     <modules>
-        <module>drishti-app</module>
-        <module>drishti-app-it</module>
+        <module>dristhi-app</module>
+        <module>dristhi-app-it</module>
     </modules>
 
     <properties>
