@@ -3,6 +3,7 @@ package org.ei.drishti.view.activity;
 import android.test.ActivityInstrumentationTestCase2;
 import org.ei.drishti.Context;
 import org.ei.drishti.repository.AllSettings;
+import org.ei.drishti.service.NavigationService;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.util.FakeUserService;
@@ -24,7 +25,7 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<HomeA
 
     @Override
     public void setUp() throws Exception {
-        setupService(drishtiService, userService, 1000000).updateApplicationContext(getActivity().getApplicationContext());
+        setupService(drishtiService, userService, 1000000, new NavigationService()).updateApplicationContext(getActivity().getApplicationContext());
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
     }

@@ -5,6 +5,7 @@ import android.view.View;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.service.ActionService;
 import org.ei.drishti.util.FakeDrishtiService;
+import org.ei.drishti.util.FakeNavigationService;
 import org.ei.drishti.view.activity.HomeActivity;
 
 import java.util.Date;
@@ -26,7 +27,7 @@ public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTes
     }
 
     public void willLookAtItOnMondayTestShouldNotUpdateWhileAnotherUpdateIsInProgress() throws Throwable {
-        setupService(drishtiService, 1000000).updateApplicationContext(getActivity().getApplicationContext());
+        setupService(drishtiService, 1000000, new FakeNavigationService()).updateApplicationContext(getActivity().getApplicationContext());
 
         ActionServiceWithSimulatedLongRunningTask service = new ActionServiceWithSimulatedLongRunningTask();
         FakeProgressIndicator progressIndicator = new FakeProgressIndicator();

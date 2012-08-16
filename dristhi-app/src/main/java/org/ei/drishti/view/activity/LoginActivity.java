@@ -1,7 +1,6 @@
 package org.ei.drishti.view.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -35,7 +34,7 @@ public class LoginActivity extends Activity {
         super.onResume();
 
         if (!context.userService().hasSessionExpired()) {
-            goToAlerts();
+            goToHome();
         }
 
         fillUserIfExists();
@@ -112,12 +111,11 @@ public class LoginActivity extends Activity {
 
     private void loginWith(String userName, String password) {
         context.userService().loginWith(userName, password);
-        goToAlerts();
+        goToHome();
     }
 
-    private void goToAlerts() {
-        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-        finish();
+    private void goToHome() {
+        context.navigationService().goHome(this);
     }
 
     private void showMessage(String message) {

@@ -1,8 +1,11 @@
 package org.ei.drishti;
 
+import android.app.Activity;
+import android.content.Intent;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
 import org.ei.drishti.util.Session;
+import org.ei.drishti.view.activity.HomeActivity;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
@@ -28,6 +31,7 @@ public class Context {
     private ActionService actionService;
     private UserService userService;
     private ANMService anmService;
+    private NavigationService navigationService;
 
     private CommCareHQService commCareService;
     private CommCareClientService commCareClientService;
@@ -192,5 +196,12 @@ public class Context {
             anmService = new ANMService(allSettings(), allBeneficiaries(), allEligibleCouples());
         }
         return anmService;
+    }
+
+    public NavigationService navigationService() {
+        if (navigationService == null) {
+            navigationService = new NavigationService();
+        }
+        return navigationService;
     }
 }
