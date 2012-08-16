@@ -72,17 +72,6 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
         userService.assertOrderOfCalls("remote", "login");
     }
 
-    public void ignoreForNowTestShouldGoBackToLoginScreenWhenLoggedOutWithAbilityToLogBackIn() throws Exception {
-        userService.setupFor("user", "password", false, false, true);
-        solo.assertCanLogin(navigationService, "user", "password");
-
-        solo.logout();
-        solo.assertCurrentActivity("Should be in Login screen.", LoginActivity.class);
-
-        userService.setupFor("user", "password", false, false, true);
-        solo.assertCanLogin(navigationService, "user", "password");
-    }
-
     @Override
     public void tearDown() throws Exception {
         waitForFilteringToFinish();

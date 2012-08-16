@@ -6,7 +6,7 @@ import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.service.ActionService;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.util.FakeNavigationService;
-import org.ei.drishti.view.activity.HomeActivity;
+import org.ei.drishti.view.activity.LoginActivity;
 
 import java.util.Date;
 import java.util.concurrent.CountDownLatch;
@@ -15,18 +15,18 @@ import java.util.concurrent.TimeUnit;
 import static org.ei.drishti.domain.FetchStatus.fetched;
 import static org.ei.drishti.util.FakeContext.setupService;
 
-public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTestCase2<HomeActivity> {
+public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTestCase2<LoginActivity> {
     private CountDownLatch signal;
     private final FakeDrishtiService drishtiService;
 
     public UpdateActionsTaskIntegrationTest() {
-        super(HomeActivity.class);
+        super(LoginActivity.class);
         drishtiService = new FakeDrishtiService("Default");
         drishtiService.setSuffix(String.valueOf(new Date().getTime()));
         signal = new CountDownLatch(1);
     }
 
-    public void willLookAtItOnMondayTestShouldNotUpdateWhileAnotherUpdateIsInProgress() throws Throwable {
+    public void testShouldNotUpdateWhileAnotherUpdateIsInProgress() throws Throwable {
         setupService(drishtiService, 1000000, new FakeNavigationService()).updateApplicationContext(getActivity().getApplicationContext());
 
         ActionServiceWithSimulatedLongRunningTask service = new ActionServiceWithSimulatedLongRunningTask();
@@ -57,7 +57,7 @@ public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTes
 
         signal.await(6, TimeUnit.SECONDS);
         assertEquals(1, service.numberOfTimesFetchWasCalled());
-        assertEquals(HomeActivity.class, getActivity().getClass());
+        assertEquals(LoginActivity.class, getActivity().getClass());
     }
 
     private class ActionServiceWithSimulatedLongRunningTask extends ActionService {
