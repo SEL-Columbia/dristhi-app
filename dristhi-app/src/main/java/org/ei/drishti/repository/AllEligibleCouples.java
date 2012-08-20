@@ -1,5 +1,6 @@
 package org.ei.drishti.repository;
 
+import com.google.gson.Gson;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.util.Log;
@@ -15,7 +16,7 @@ public class AllEligibleCouples {
 
     public void handleAction(Action action) {
         if ("createEC".equals(action.type())) {
-            repository.add(new EligibleCouple(action.caseID(), action.get("wife"), action.get("husband"), action.get("ecNumber"), action.get("currentMethod"), action.get("village"), action.get("subcenter")));
+            repository.add(new EligibleCouple(action.caseID(), action.get("wife"), action.get("husband"), action.get("ecNumber"), action.get("currentMethod"), action.get("village"), action.get("subcenter"), new Gson().toJson(action.details())));
         } else if ("deleteEC".equals(action.type())) {
             repository.close(action.caseID());
         } else {

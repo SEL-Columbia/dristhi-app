@@ -12,8 +12,9 @@ public class EligibleCouple {
     private String currentMethod;
     private final String village;
     private final String subcenter;
+    private String details;
 
-    public EligibleCouple(String caseId, String wifeName, String husbandName, String ecNumber, String currentMethod, String village, String subcenter) {
+    public EligibleCouple(String caseId, String wifeName, String husbandName, String ecNumber, String currentMethod, String village, String subcenter, String details) {
         this.caseId = caseId;
         this.wifeName = wifeName;
         this.husbandName = husbandName;
@@ -21,6 +22,7 @@ public class EligibleCouple {
         this.currentMethod = currentMethod;
         this.village = village;
         this.subcenter = subcenter;
+        this.details = details;
     }
 
     public String wifeName() {
@@ -49,6 +51,10 @@ public class EligibleCouple {
 
     public String currentMethod() {
         return currentMethod;
+    }
+
+    public String details() {
+        return details;
     }
 
     @Override

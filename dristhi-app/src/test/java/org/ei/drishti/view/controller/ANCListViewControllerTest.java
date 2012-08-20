@@ -37,10 +37,10 @@ public class ANCListViewControllerTest {
     public void shouldSortBothNormalAndHighANCsByName() throws Exception {
         when(allBeneficiaries.allANCs()).thenReturn(asList(new Mother("Case 3", "EC Case 3", "TC 3", "2032-03-03"), new Mother("Case 1", "EC Case 1", "TC 1", "2012-01-01"),
                 new Mother("Case 4", "EC Case 4", "TC 4", "2032-03-03").withExtraDetails(true, "Bherya DC"), new Mother("Case 2", "EC Case 2", "TC 2", "2022-02-02").withExtraDetails(true, "Bherya DC")));
-        when(allEligibleCouples.findByCaseID("EC Case 2")).thenReturn(new EligibleCouple("EC Case 2", "woman B", "Husband B", "EC Number 2", "IUD", "Bherya", "Bherya SC"));
-        when(allEligibleCouples.findByCaseID("EC Case 3")).thenReturn(new EligibleCouple("EC Case 3", "woman C", "Husband C", "EC Number 3", "IUD", "Bherya", "Bherya SC"));
-        when(allEligibleCouples.findByCaseID("EC Case 4")).thenReturn(new EligibleCouple("EC Case 4", "Woman D", "Husband D", "EC Number 4", "IUD", "Bherya", "Bherya SC"));
-        when(allEligibleCouples.findByCaseID("EC Case 1")).thenReturn(new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "IUD", "Bherya", "Bherya SC"));
+        when(allEligibleCouples.findByCaseID("EC Case 2")).thenReturn(new EligibleCouple("EC Case 2", "woman B", "Husband B", "EC Number 2", "IUD", "Bherya", "Bherya SC", ""));
+        when(allEligibleCouples.findByCaseID("EC Case 3")).thenReturn(new EligibleCouple("EC Case 3", "woman C", "Husband C", "EC Number 3", "IUD", "Bherya", "Bherya SC", ""));
+        when(allEligibleCouples.findByCaseID("EC Case 4")).thenReturn(new EligibleCouple("EC Case 4", "Woman D", "Husband D", "EC Number 4", "IUD", "Bherya", "Bherya SC", ""));
+        when(allEligibleCouples.findByCaseID("EC Case 1")).thenReturn(new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "IUD", "Bherya", "Bherya SC", ""));
 
         ANCListViewController controller = new ANCListViewController(allBeneficiaries, allEligibleCouples, context);
         ANCs ancs = new Gson().fromJson(controller.get(), new TypeToken<ANCs>() { }.getType());
