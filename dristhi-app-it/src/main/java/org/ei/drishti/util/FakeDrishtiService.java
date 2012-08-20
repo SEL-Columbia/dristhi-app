@@ -40,12 +40,12 @@ public class FakeDrishtiService extends DrishtiService {
     }
 
     public Response<List<Action>> actionsFor(String suffix) {
-        Action deleteXAction = new Action("Case X", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        Action deleteYAction = new Action("Case Y", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456");
-        Action firstAction = new Action("Case X", "alert", "createAlert", dataForCreateAction("Theresa 1 " + suffix, "Bherya 1", "Sub Center", "PHC X", "Thaayi 1 " + suffix, "BCG", "due", "2012-01-01"), "123456");
-        Action secondAction = new Action("Case Y", "alert", "createAlert", dataForCreateAction("Theresa 2 " + suffix, "Bherya 2", "Sub Center", "PHC X", "Thaayi 2 " + suffix, "OPV 1", "due", "2100-04-09"), "123456");
-        Action firstCreateEC = new Action("Case A" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 1 " + suffix, "Husband 1", "EC 1" + suffix, "IUD", "SubCenter 1", "Village 1", "PHC X"), "123456");
-        Action secondCreateEC = new Action("Case B" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 2 " + suffix, "Husband 2", "EC 2" + suffix, "IUD", "SubCenter 2", "Village 2", "PHC X"), "123456");
+        Action deleteXAction = new Action("Case X", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456", new HashMap<String, String>());
+        Action deleteYAction = new Action("Case Y", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456", new HashMap<String, String>());
+        Action firstAction = new Action("Case X", "alert", "createAlert", dataForCreateAction("Theresa 1 " + suffix, "Bherya 1", "Sub Center", "PHC X", "Thaayi 1 " + suffix, "BCG", "due", "2012-01-01"), "123456", new HashMap<String, String>());
+        Action secondAction = new Action("Case Y", "alert", "createAlert", dataForCreateAction("Theresa 2 " + suffix, "Bherya 2", "Sub Center", "PHC X", "Thaayi 2 " + suffix, "OPV 1", "due", "2100-04-09"), "123456", new HashMap<String, String>());
+        Action firstCreateEC = new Action("Case A" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 1 " + suffix, "Husband 1", "EC 1" + suffix, "IUD", "SubCenter 1", "Village 1", "PHC X"), "123456", new HashMap<String, String>());
+        Action secondCreateEC = new Action("Case B" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 2 " + suffix, "Husband 2", "EC 2" + suffix, "IUD", "SubCenter 2", "Village 2", "PHC X"), "123456", new HashMap<String, String>());
 
         return new Response<List<Action>>(ResponseStatus.success, new ArrayList<Action>(Arrays.asList(deleteXAction, deleteYAction, firstAction, secondAction, firstCreateEC, secondCreateEC)));
     }
@@ -55,7 +55,7 @@ public class FakeDrishtiService extends DrishtiService {
     }
 
     private Map<String, String> dataForCreateEC(String wifeName, String husbandName, String ecNumber, String currentMethod, String village, String subCenter, String phc) {
-        return createEligibleCouple(wifeName, husbandName, ecNumber, currentMethod, village, subCenter, phc).data();
+        return createEligibleCouple(wifeName, husbandName, ecNumber, currentMethod, village, subCenter, phc, new HashMap<String, String>()).data();
     }
 
     private class Expectation {
