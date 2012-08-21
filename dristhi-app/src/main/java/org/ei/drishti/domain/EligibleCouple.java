@@ -4,6 +4,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.Map;
+
 public class EligibleCouple {
     private String caseId;
     private String wifeName;
@@ -12,9 +14,9 @@ public class EligibleCouple {
     private String currentMethod;
     private final String village;
     private final String subcenter;
-    private String details;
+    private Map<String, String> details;
 
-    public EligibleCouple(String caseId, String wifeName, String husbandName, String ecNumber, String currentMethod, String village, String subcenter, String details) {
+    public EligibleCouple(String caseId, String wifeName, String husbandName, String ecNumber, String currentMethod, String village, String subcenter, Map<String, String> details) {
         this.caseId = caseId;
         this.wifeName = wifeName;
         this.husbandName = husbandName;
@@ -53,7 +55,7 @@ public class EligibleCouple {
         return currentMethod;
     }
 
-    public String details() {
+    public Map<String, String> details() {
         return details;
     }
 

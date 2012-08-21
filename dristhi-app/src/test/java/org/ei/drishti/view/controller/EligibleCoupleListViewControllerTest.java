@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -33,8 +34,8 @@ public class EligibleCoupleListViewControllerTest {
 
     @Test
     public void shouldSortANCsByName() throws Exception {
-        when(allEligibleCouples.all()).thenReturn(asList(new EligibleCouple("EC Case 2", "woman B", "Husband B", "EC Number 2", "IUD", "Bherya", "Bherya SC", ""),
-                new EligibleCouple("EC Case 3", "Woman C", "Husband C", "EC Number 3", "IUD", "Bherya", "Bherya SC", ""), new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "IUD", "Bherya", "Bherya SC", "")));
+        when(allEligibleCouples.all()).thenReturn(asList(new EligibleCouple("EC Case 2", "woman B", "Husband B", "EC Number 2", "IUD", "Bherya", "Bherya SC", new HashMap<String, String>()),
+                new EligibleCouple("EC Case 3", "Woman C", "Husband C", "EC Number 3", "IUD", "Bherya", "Bherya SC", new HashMap<String, String>()), new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "IUD", "Bherya", "Bherya SC", new HashMap<String, String>())));
 
         EligibleCoupleListViewController controller = new EligibleCoupleListViewController(allEligibleCouples, context);
         List<EC> ecs = new Gson().fromJson(controller.get(), new TypeToken<List<EC>>() { }.getType());

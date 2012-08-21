@@ -10,6 +10,7 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
@@ -42,8 +43,8 @@ public class AllEligibleCouplesTest {
         allEligibleCouples.handleAction(secondDeleteAction);
 
         InOrder inOrder = inOrder(eligibleCoupleRepository);
-        inOrder.verify(eligibleCoupleRepository).add(new EligibleCouple("Case X", "Theresa 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", "{}"));
-        inOrder.verify(eligibleCoupleRepository).add(new EligibleCouple("Case Z", "Theresa 2", "Husband 2", "EC Number 2", "IUD", "Village 1", "SubCenter 1", "{}"));
+        inOrder.verify(eligibleCoupleRepository).add(new EligibleCouple("Case X", "Theresa 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", new HashMap<String, String>()));
+        inOrder.verify(eligibleCoupleRepository).add(new EligibleCouple("Case Z", "Theresa 2", "Husband 2", "EC Number 2", "IUD", "Village 1", "SubCenter 1", new HashMap<String, String>()));
         inOrder.verify(eligibleCoupleRepository).close("Case Y");
         inOrder.verify(eligibleCoupleRepository).close("Case B");
         verifyNoMoreInteractions(eligibleCoupleRepository);
@@ -56,8 +57,8 @@ public class AllEligibleCouplesTest {
 
     @Test
     public void shouldFetchAllAlertsFromRepository() throws Exception {
-        List<EligibleCouple> expectedCouples = Arrays.asList(new EligibleCouple("Case X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "village", "subcenter", "{}"),
-                new EligibleCouple("Case Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "village", "subcenter", "{}"));
+        List<EligibleCouple> expectedCouples = Arrays.asList(new EligibleCouple("Case X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "village", "subcenter", new HashMap<String, String>()),
+                new EligibleCouple("Case Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "village", "subcenter", new HashMap<String, String>()));
         when(eligibleCoupleRepository.allEligibleCouples()).thenReturn(expectedCouples);
 
         List<EligibleCouple> couples = allEligibleCouples.all();

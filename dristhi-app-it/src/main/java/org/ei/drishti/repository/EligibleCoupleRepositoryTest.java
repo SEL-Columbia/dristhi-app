@@ -2,11 +2,15 @@ package org.ei.drishti.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-import org.ei.drishti.domain.*;
+import org.ei.drishti.domain.Alert;
+import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.domain.Mother;
+import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.util.Session;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
@@ -30,7 +34,10 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldInsertEligibleCoupleIntoRepository() throws Exception {
-        EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "IUD", "Village 1", "SubCenter 1", "{}");
+        HashMap<String, String> details = new HashMap<String, String>();
+        details.put("Hello", "There");
+        details.put("Also", "This");
+        EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "IUD", "Village 1", "SubCenter 1", details);
 
         repository.add(eligibleCouple);
 
@@ -38,9 +45,9 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteEligibleCoupleFromRepositoryBasedOnCaseID() throws Exception {
-        EligibleCouple eligibleCouple = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", "{}");
+        EligibleCouple eligibleCouple = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", new HashMap<String, String>());
 
-        repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", "{}"));
+        repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", new HashMap<String, String>()));
         repository.add(eligibleCouple);
 
         repository.close("CASE X");
@@ -54,8 +61,8 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteAllEligibleCouplesFromRepository() throws Exception {
-        repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", "{}"));
-        repository.add(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", "{}"));
+        repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", new HashMap<String, String>()));
+        repository.add(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", new HashMap<String, String>()));
 
         repository.deleteAllEligibleCouples();
 
@@ -65,10 +72,10 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     public void testShouldDeleteCorrespondingAlertsWhenDeletingEC() throws Exception {
         Alert alert = new Alert("CASE Y", "Wife 2", "Village 2", "FP 2", "EC Number 2", 1, "2012-01-01");
 
-        repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", "{}"));
+        repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", new HashMap<String, String>()));
         alertRepository.createAlert(new Alert("CASE X", "Wife 1", "Village 1", "FP 1", "EC Number 1", 1, "2012-01-01"));
 
-        repository.add(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", "{}"));
+        repository.add(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", new HashMap<String, String>()));
         alertRepository.createAlert(alert);
 
         repository.close("CASE X");
@@ -79,10 +86,10 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     public void testShouldDeleteCorrespondingTimelineEventsWhenDeletingEC() throws Exception {
         TimelineEvent event = TimelineEvent.forStartOfPregnancy("CASE Y", "2012-01-01");
 
-        repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", "{}"));
+        repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", new HashMap<String, String>()));
         timelineEventRepository.add(TimelineEvent.forStartOfPregnancy("CASE X", "2012-01-01"));
 
-        repository.add(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", "{}"));
+        repository.add(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", new HashMap<String, String>()));
         timelineEventRepository.add(event);
 
         repository.close("CASE X");
@@ -92,14 +99,14 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteCorrespondingChildrenAndTheirDependenciesWhenDeletingAnEC() throws Exception {
-        repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", "{}"));
+        repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", new HashMap<String, String>()));
 
         Mother mother = new Mother("CASE Y", "CASE X", "TC 1", "2012-01-01");
         motherRepository.add(mother);
         motherRepository.add(new Mother("CASE Z", "CASE X", "TC 2", "2012-01-01"));
         childRepository.addChildForMother(mother, "CASE C1", "2012-06-08", "female");
 
-        EligibleCouple ecWhoIsNotClosed = new EligibleCouple("CASE A", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", "{}");
+        EligibleCouple ecWhoIsNotClosed = new EligibleCouple("CASE A", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", new HashMap<String, String>());
         Mother motherWhoIsNotClosed = new Mother("CASE B", "CASE A", "TC 2", "2012-01-01");
         repository.add(ecWhoIsNotClosed);
         motherRepository.add(motherWhoIsNotClosed);
@@ -118,8 +125,8 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     }
 
     public void testFindECByCaseID() throws Exception {
-        EligibleCouple ec = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", "{}");
-        EligibleCouple anotherEC = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", "{}");
+        EligibleCouple ec = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", new HashMap<String, String>());
+        EligibleCouple anotherEC = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", new HashMap<String, String>());
 
         repository.add(ec);
         repository.add(anotherEC);
@@ -129,9 +136,9 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldGetCountOfECsInRepo() throws Exception {
-        EligibleCouple ec = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", "{}");
-        EligibleCouple anotherEC = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", "{}");
-        EligibleCouple yetAnotherEC = new EligibleCouple("CASE Z", "Wife 3", "Husband 3", "EC Number 3", "IUD", "Village 3", "SubCenter 3", "{}");
+        EligibleCouple ec = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", new HashMap<String, String>());
+        EligibleCouple anotherEC = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", new HashMap<String, String>());
+        EligibleCouple yetAnotherEC = new EligibleCouple("CASE Z", "Wife 3", "Husband 3", "EC Number 3", "IUD", "Village 3", "SubCenter 3", new HashMap<String, String>());
 
         repository.add(ec);
         repository.add(anotherEC);
