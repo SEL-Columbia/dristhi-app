@@ -13,8 +13,8 @@
 .navbar .navbar-inner {
     padding-left: 15px;
     zoom: 125%;
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#024565), to(#09405d));
-    background: -webkit-linear-gradient(top, #024565 0%, #09405d 100%)
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#1a93d2), to(#1c83ba));
+    background: -webkit-linear-gradient(top, #1a93d2 0%, #1c83ba 100%)
 }
 
 .menu-button-container {
