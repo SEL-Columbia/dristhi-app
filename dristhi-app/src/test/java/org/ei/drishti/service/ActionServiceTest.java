@@ -5,6 +5,7 @@ import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.dto.Action;
+import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
@@ -86,7 +87,7 @@ public class ActionServiceTest {
         String indexOfLastMessage = "12345";
         setupActions(success, asList(actionForCreateAlert("Case X", "normal", "mother", "ANC 1", "2012-01-01", "2012-01-22", "11111"), actionForCreateAlert("Case Y", "normal", "mother", "ANC 2", "2012-01-01", "2012-01-11", indexOfLastMessage)));
 
-        when(allAlerts.fetchAll()).thenReturn(asList(new Alert("Case X", "mother", "bherya", "ANC 1", "Thaayi 1", 1, "2012-01-01", "2012-01-22"), new Alert("Case Y", "mother", "bherya", "ANC 2", "Thaayi 2", 1, "2012-01-01", "2012-01-11")));
+        when(allAlerts.fetchAll()).thenReturn(asList(new Alert("Case X", "mother", "bherya", "ANC 1", "Thaayi 1", AlertPriority.normal, "2012-01-01", "2012-01-22"), new Alert("Case Y", "mother", "bherya", "ANC 2", "Thaayi 2", AlertPriority.normal, "2012-01-01", "2012-01-11")));
 
         service.fetchNewActions();
 

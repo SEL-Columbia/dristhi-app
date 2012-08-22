@@ -3,6 +3,7 @@ package org.ei.drishti.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.dto.AlertPriority;
 
 public class Alert {
     private String caseID;
@@ -10,11 +11,11 @@ public class Alert {
     private String village;
     private String visitCode;
     private String thaayiCardNumber;
-    private int priority;
+    private AlertPriority priority;
     private String startDate;
     private String expiryDate;
 
-    public Alert(String caseID, String beneficiaryName, String village, String visitCode, String thaayiCardNumber, int priority, String startDate, String expiryDate) {
+    public Alert(String caseID, String beneficiaryName, String village, String visitCode, String thaayiCardNumber, AlertPriority priority, String startDate, String expiryDate) {
         this.caseID = caseID;
         this.beneficiaryName = beneficiaryName;
         this.village = village;
@@ -25,7 +26,7 @@ public class Alert {
         this.expiryDate = expiryDate;
     }
 
-    public int priority() {
+    public AlertPriority priority() {
         return priority;
     }
 

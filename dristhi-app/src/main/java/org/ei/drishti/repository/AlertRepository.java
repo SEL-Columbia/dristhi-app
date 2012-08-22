@@ -5,12 +5,13 @@ import android.database.Cursor;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.VillageAlertSummary;
+import org.ei.drishti.dto.AlertPriority;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AlertRepository extends DrishtiRepository {
-    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, thaayiCardNumber VARCHAR, visitCode VARCHAR, benificiaryName VARCHAR, village VARCHAR, priority INTEGER, startDate VARCHAR, expiryDate VARCHAR)";
+    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, thaayiCardNumber VARCHAR, visitCode VARCHAR, benificiaryName VARCHAR, village VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR)";
     private static final String ALERTS_TABLE_NAME = "alerts";
     public static final String ALERTS_CASEID_COLUMN = "caseID";
     public static final String ALERTS_THAAYI_CARD_COLUMN = "thaayiCardNumber";
@@ -53,7 +54,7 @@ public class AlertRepository extends DrishtiRepository {
         List<Alert> existingAlerts = readAllAlerts(database.query(ALERTS_TABLE_NAME, ALERTS_TABLE_COLUMNS,
                 CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, caseAndVisitCodeColumnValues, null, null, null, null));
 
-        ContentValues values = createValuesFor(alert, existingAlerts);
+        ContentValues values = createValuesFor(alert);
         if (existingAlerts.isEmpty()) {
             database.insert(ALERTS_TABLE_NAME, null, values);
         } else {
@@ -81,7 +82,7 @@ public class AlertRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<Alert> alerts = new ArrayList<Alert>();
         while (!cursor.isAfterLast()) {
-            alerts.add(new Alert(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getInt(5), cursor.getString(6), cursor.getString(7)));
+            alerts.add(new Alert(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), AlertPriority.from(cursor.getString(5)), cursor.getString(6), cursor.getString(7)));
             cursor.moveToNext();
         }
         cursor.close();
@@ -102,21 +103,16 @@ public class AlertRepository extends DrishtiRepository {
         return villageSummaries;
     }
 
-    private ContentValues createValuesFor(Alert alert, List<Alert> existingAlerts) {
+    private ContentValues createValuesFor(Alert alert) {
         ContentValues values = new ContentValues();
         values.put(ALERTS_CASEID_COLUMN, alert.caseId());
         values.put(ALERTS_THAAYI_CARD_COLUMN, alert.thaayiCardNo());
         values.put(ALERTS_VISIT_CODE_COLUMN, alert.visitCode());
         values.put(ALERTS_BENEFICIARY_NAME_COLUMN, alert.beneficiaryName());
         values.put(ALERTS_VILLAGE_COLUMN, alert.village());
-        values.put(ALERTS_PRIORITY_COLUMN, calculatePriority(existingAlerts, alert.priority()));
+        values.put(ALERTS_PRIORITY_COLUMN, alert.priority().value());
         values.put(ALERTS_STARTDATE_COLUMN, alert.startDate());
         values.put(ALERTS_EXPIRYDATE_COLUMN, alert.expiryDate());
         return values;
-    }
-
-    private String calculatePriority(List<Alert> existingAlerts, int priority) {
-        int existingPriority = existingAlerts.isEmpty() ? 0 : existingAlerts.get(0).priority();
-        return String.valueOf(priority + existingPriority);
     }
 }

@@ -6,6 +6,7 @@ import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
+import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.util.Session;
 
 import java.util.ArrayList;
@@ -61,10 +62,10 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteCorrespondingAlertsWhenDeletingEC() throws Exception {
-        Alert alert = new Alert("CASE Y", "Wife 2", "Village 2", "FP 2", "EC Number 2", 1, "2012-01-01", "2012-01-11");
+        Alert alert = new Alert("CASE Y", "Wife 2", "Village 2", "FP 2", "EC Number 2", AlertPriority.normal, "2012-01-01", "2012-01-11");
 
         repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", new HashMap<String, String>()));
-        alertRepository.createAlert(new Alert("CASE X", "Wife 1", "Village 1", "FP 1", "EC Number 1", 1, "2012-01-01", "2012-01-11"));
+        alertRepository.createAlert(new Alert("CASE X", "Wife 1", "Village 1", "FP 1", "EC Number 1", AlertPriority.normal, "2012-01-01", "2012-01-11"));
 
         repository.add(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", new HashMap<String, String>()));
         alertRepository.createAlert(alert);

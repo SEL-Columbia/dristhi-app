@@ -17,6 +17,7 @@ import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 import static org.ei.drishti.dto.AlertPriority.normal;
+import static org.ei.drishti.dto.AlertPriority.urgent;
 import static org.ei.drishti.util.ActionBuilder.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -44,17 +45,17 @@ public class AllAlertsTest {
 
         allAlerts.handleAction(actionForMother);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", 0, "2012-01-01", "2012-01-22"));
+        verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-22"));
         verifyNoMoreInteractions(alertRepository);
     }
 
     @Test
     public void shouldAddAnAlertIntoAlertRepositoryForChildCreateAlertAction() throws Exception {
-        Action actionForMother = setupActionForChildCreateAlert("Case X", normal, "ANC 1", "2012-01-01", "2012-01-22");
+        Action actionForMother = setupActionForChildCreateAlert("Case X", urgent, "ANC 1", "2012-01-01", "2012-01-22");
 
         allAlerts.handleAction(actionForMother);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", 0, "2012-01-01", "2012-01-22"));
+        verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", urgent, "2012-01-01", "2012-01-22"));
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -119,9 +120,9 @@ public class AllAlertsTest {
         allAlerts.handleAction(secondDeleteAction);
 
         InOrder inOrder = inOrder(alertRepository);
-        inOrder.verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", 0, "2012-01-01", "2012-01-11"));
+        inOrder.verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-11"));
         inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase("Case Y", "ANC 2");
-        inOrder.verify(alertRepository).createAlert(new Alert("Case Z", "Theresa Case Z", "Village Case Z", "ANC 2", "Thaayi Case Z", 0, "2012-01-01", "2012-01-22"));
+        inOrder.verify(alertRepository).createAlert(new Alert("Case Z", "Theresa Case Z", "Village Case Z", "ANC 2", "Thaayi Case Z", normal, "2012-01-01", "2012-01-22"));
         inOrder.verify(alertRepository).deleteAllAlertsForCase("Case A");
         inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase("Case B", "ANC 3");
         verifyNoMoreInteractions(alertRepository);
@@ -129,7 +130,7 @@ public class AllAlertsTest {
 
     @Test
     public void shouldFetchAllAlertsFromRepository() throws Exception {
-        List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "bherya", "ANC 1", "Thaayi 1", 1, "2012-01-01", "2012-01-11"), new Alert("Case Y", "Theresa 2", "bherya", "ANC 2", "Thaayi 2", 1, "2012-01-01", "2012-01-22"));
+        List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11"), new Alert("Case Y", "Theresa 2", "bherya", "ANC 2", "Thaayi 2", normal, "2012-01-01", "2012-01-22"));
         when(alertRepository.allAlerts()).thenReturn(expectedAlerts);
 
         List<Alert> alerts = allAlerts.fetchAll();
@@ -139,7 +140,7 @@ public class AllAlertsTest {
 
     @Test
     public void shouldFetchAllAlertsForAVillageFromRepository() throws Exception {
-        List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "bherya1", "ANC 1", "Thaayi 1", 1, "2012-01-01", "2012-01-11"), new Alert("Case Y", "Theresa 2", "bherya1", "ANC 2", "Thaayi 2", 1, "2012-01-01", "2012-01-22"));
+        List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "bherya1", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11"), new Alert("Case Y", "Theresa 2", "bherya1", "ANC 2", "Thaayi 2", normal, "2012-01-01", "2012-01-22"));
         when(alertRepository.allAlertsFor("bherya1")).thenReturn(expectedAlerts);
 
         List<Alert> alerts = allAlerts.fetchAllFor("bherya1");
