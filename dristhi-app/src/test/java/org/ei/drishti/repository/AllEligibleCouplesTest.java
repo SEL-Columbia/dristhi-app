@@ -65,11 +65,4 @@ public class AllEligibleCouplesTest {
 
         assertEquals(expectedCouples, couples);
     }
-
-    @Test
-    public void shouldDeleteAllEligibleCouples() throws Exception {
-        allEligibleCouples.deleteAll();
-
-        verify(eligibleCoupleRepository).deleteAllEligibleCouples();
-    }
 }

@@ -9,5 +9,5 @@ public abstract class DrishtiRepository {
         this.masterRepository = repository;
     }
 
-    abstract public void onCreate(SQLiteDatabase database);
+    abstract protected void onCreate(SQLiteDatabase database);
 }

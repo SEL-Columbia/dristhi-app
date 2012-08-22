@@ -11,16 +11,18 @@ public class Alert {
     private String visitCode;
     private String thaayiCardNumber;
     private int priority;
-    private String dueDate;
+    private String startDate;
+    private String expiryDate;
 
-    public Alert(String caseID, String beneficiaryName, String village, String visitCode, String thaayiCardNumber, int priority, String dueDate) {
+    public Alert(String caseID, String beneficiaryName, String village, String visitCode, String thaayiCardNumber, int priority, String startDate, String expiryDate) {
         this.caseID = caseID;
         this.beneficiaryName = beneficiaryName;
         this.village = village;
         this.visitCode = visitCode;
         this.thaayiCardNumber = thaayiCardNumber;
         this.priority = priority;
-        this.dueDate = dueDate;
+        this.startDate = startDate;
+        this.expiryDate = expiryDate;
     }
 
     public int priority() {
@@ -39,8 +41,12 @@ public class Alert {
         return visitCode;
     }
 
-    public String dueDate() {
-        return dueDate;
+    public String startDate() {
+        return startDate;
+    }
+
+    public String expiryDate() {
+        return expiryDate;
     }
 
     public String location() {

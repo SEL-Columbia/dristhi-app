@@ -27,10 +27,6 @@ public class AllEligibleCouples {
         return repository.allEligibleCouples();
     }
 
-    public void deleteAll() {
-        repository.deleteAllEligibleCouples();
-    }
-
     public EligibleCouple findByCaseID(String caseId) {
         return repository.findByCaseID(caseId);
     }

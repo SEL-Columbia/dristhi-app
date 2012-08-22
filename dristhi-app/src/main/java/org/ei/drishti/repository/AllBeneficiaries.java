@@ -1,5 +1,6 @@
 package org.ei.drishti.repository;
 
+import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.dto.Action;
 
@@ -37,6 +38,10 @@ public class AllBeneficiaries {
 
     public Mother findMother(String caseId) {
         return motherRepository.find(caseId);
+    }
+
+    public Child findChild(String caseId) {
+        return childRepository.find(caseId);
     }
 
     public long ancCount() {

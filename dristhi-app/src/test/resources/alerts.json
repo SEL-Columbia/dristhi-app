@@ -3,14 +3,13 @@
         "anmIdentifier": "ANM 1",
         "caseID": "Case X",
         "data": {
-            "latenessStatus": "due",
-            "beneficiaryName": "Theresa",
+            "alertPriority": "normal",
+            "beneficiaryType": "mother",
             "visitCode": "ANC 1",
-            "thaayiCardNumber": "Thaayi 1",
-            "dueDate": "2012-01-01",
-            "village": "bherya",
-            "subCenter" : "Sub Center",
-            "phc" : "PHC X"
+            "startDate": "2012-01-01",
+            "expiryDate": "2012-01-11"
+        },
+        "details": {
         },
         "actionTarget": "alert",
         "actionType": "createAlert",
@@ -21,6 +20,8 @@
         "caseID": "Case Y",
         "data": {
             "visitCode": "ANC 1"
+        },
+        "details": {
         },
         "actionTarget": "alert",
         "actionType": "deleteAlert",

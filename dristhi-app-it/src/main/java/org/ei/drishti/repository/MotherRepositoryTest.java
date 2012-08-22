@@ -125,13 +125,13 @@ public class MotherRepositoryTest extends AndroidTestCase {
         Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
 
         repository.add(mother1);
-        alertRepository.createAlert(new Alert("CASE X", "Theresa 1", "bherya", "ANC 1", "TC 1", 1, "2012-01-01"));
+        alertRepository.createAlert(new Alert("CASE X", "Theresa 1", "bherya", "ANC 1", "TC 1", 1, "2012-01-01", "2012-01-11"));
         repository.add(mother2);
-        alertRepository.createAlert(new Alert("CASE Y", "Theresa 2", "bherya", "ANC 1", "TC 2", 1, "2012-01-01"));
+        alertRepository.createAlert(new Alert("CASE Y", "Theresa 2", "bherya", "ANC 1", "TC 2", 1, "2012-01-01", "2012-01-11"));
 
         repository.close(mother1.caseId());
 
-        assertEquals(asList(new Alert("CASE Y", "Theresa 2", "bherya", "ANC 1", "TC 2", 1, "2012-01-01")), alertRepository.allAlerts());
+        assertEquals(asList(new Alert("CASE Y", "Theresa 2", "bherya", "ANC 1", "TC 2", 1, "2012-01-01", "2012-01-11")), alertRepository.allAlerts());
     }
 
     public void testShouldRemoveChildrenAndTheirEntitiesWhenMotherIsClosed() throws Exception {
@@ -148,9 +148,9 @@ public class MotherRepositoryTest extends AndroidTestCase {
         repository.close(mother1.caseId());
 
         assertEquals(asList(mother2), repository.allANCs());
-        assertNull(childRepository.findByCaseId("CASE A"));
-        assertNull(childRepository.findByCaseId("CASE B"));
-        assertNotNull(childRepository.findByCaseId("CASE C"));
+        assertNull(childRepository.find("CASE A"));
+        assertNull(childRepository.find("CASE B"));
+        assertNotNull(childRepository.find("CASE C"));
 
         assertTrue(timelineEventRepository.allFor("CASE A").isEmpty());
         assertTrue(timelineEventRepository.allFor("CASE B").isEmpty());

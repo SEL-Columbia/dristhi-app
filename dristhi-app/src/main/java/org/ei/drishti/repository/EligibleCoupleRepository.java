@@ -34,13 +34,20 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         this.timelineEventRepository = timelineEventRepository;
     }
 
-    public void onCreate(SQLiteDatabase database) {
+    @Override
+    protected void onCreate(SQLiteDatabase database) {
         database.execSQL(EC_SQL);
     }
 
     public void add(EligibleCouple eligibleCouple) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(EC_TABLE_NAME, null, createValuesFor(eligibleCouple));
+    }
+
+    public List<EligibleCouple> allEligibleCouples() {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, null, null, null, null, null, null);
+        return readAllEligibleCouples(cursor);
     }
 
     public EligibleCouple findByCaseID(String caseId) {
@@ -58,17 +65,6 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         timelineEventRepository.deleteAllTimelineEventsForCase(caseId);
         motherRepository.closeAllCasesForEC(caseId);
         masterRepository.getWritableDatabase().delete(EC_TABLE_NAME, CASE_ID_COLUMN + " = ?", new String[]{caseId});
-    }
-
-    public void deleteAllEligibleCouples() {
-        SQLiteDatabase database = masterRepository.getWritableDatabase();
-        database.delete(EC_TABLE_NAME, null,null);
-    }
-
-    public List<EligibleCouple> allEligibleCouples() {
-        SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, null, null, null, null, null, null);
-        return readAllEligibleCouples(cursor);
     }
 
     public long count() {

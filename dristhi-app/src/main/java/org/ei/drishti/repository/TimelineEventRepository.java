@@ -21,7 +21,7 @@ public class TimelineEventRepository extends DrishtiRepository {
     private static final String[] TIMELINEEVENT_TABLE_COLUMNS = {CASEID_COLUMN, TYPE_COLUMN, REF_DATE_COLUMN, TITLE_COLUMN, DETAIL1_COLUMN, DETAIL2_COLUMN};
 
     @Override
-    public void onCreate(SQLiteDatabase database) {
+    protected void onCreate(SQLiteDatabase database) {
         database.execSQL(TIMELINEEVENT_SQL);
     }
 

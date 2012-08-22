@@ -2,9 +2,9 @@ package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.apache.commons.io.IOUtils;
-import org.ei.drishti.dto.Action;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
+import org.ei.drishti.dto.Action;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +15,8 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
+import static org.ei.drishti.dto.AlertPriority.normal;
+import static org.ei.drishti.dto.BeneficiaryType.mother;
 import static org.ei.drishti.util.ActionBuilder.actionForCreateAlert;
 import static org.ei.drishti.util.ActionBuilder.actionForDeleteAlert;
 import static org.mockito.Mockito.verify;
@@ -42,7 +44,7 @@ public class DrishtiServiceTest {
         Response<List<Action>> actions = drishtiService.fetchNewActions("anm1", "0");
 
         verify(httpAgent).fetch(EXPECTED_URL);
-        assertEquals(asList(actionForCreateAlert("Case X", "due", "Theresa", "ANC 1", "Thaayi 1", "1333695798583", "bherya", "Sub Center", "PHC X", "2012-01-01"), actionForDeleteAlert("Case Y", "ANC 1", "1333695798644")), actions.payload());
+        assertEquals(asList(actionForCreateAlert("Case X", normal.value(), mother.value(), "ANC 1", "2012-01-01", "2012-01-11", "1333695798583"), actionForDeleteAlert("Case Y", "ANC 1", "1333695798644")), actions.payload());
         assertEquals(ResponseStatus.success, actions.status());
     }
 

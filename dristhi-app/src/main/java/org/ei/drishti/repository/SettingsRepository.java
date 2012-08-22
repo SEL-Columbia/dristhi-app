@@ -34,7 +34,8 @@ public class SettingsRepository extends DrishtiRepository {
         database.replace(SETTINGS_TABLE_NAME, null, values);
     }
 
-    public void onCreate(SQLiteDatabase database) {
+    @Override
+    protected void onCreate(SQLiteDatabase database) {
         database.execSQL(SETTINGS_SQL);
     }
 }

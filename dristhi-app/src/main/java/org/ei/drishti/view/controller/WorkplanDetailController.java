@@ -22,7 +22,7 @@ public class WorkplanDetailController {
         List<Alert> alerts = allAlerts.fetchAllFor(villageName);
         List<WorkplanAlert> workplanAlerts= new ArrayList<WorkplanAlert>();
         for (Alert alert : alerts) {
-            workplanAlerts.add(new WorkplanAlert(alert.beneficiaryName(), alert.dueDate(), alert.visitCode()));
+            workplanAlerts.add(new WorkplanAlert(alert.beneficiaryName(), alert.startDate(), alert.visitCode()));
         }
         return new Gson().toJson(new WorkplanDetailContext(villageName, workplanAlerts));
     }

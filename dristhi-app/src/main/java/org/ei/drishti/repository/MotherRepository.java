@@ -36,7 +36,7 @@ public class MotherRepository extends DrishtiRepository {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase database) {
+    protected void onCreate(SQLiteDatabase database) {
         database.execSQL(MOTHER_SQL);
     }
 

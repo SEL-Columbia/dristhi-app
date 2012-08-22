@@ -1,11 +1,8 @@
 package org.ei.drishti;
 
-import android.app.Activity;
-import android.content.Intent;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
 import org.ei.drishti.util.Session;
-import org.ei.drishti.view.activity.HomeActivity;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
@@ -91,7 +88,7 @@ public class Context {
     public AllAlerts allAlerts() {
         initRepository();
         if (allAlerts == null) {
-            allAlerts = new AllAlerts(alertRepository());
+            allAlerts = new AllAlerts(alertRepository(), allBeneficiaries(), allEligibleCouples());
         }
         return allAlerts;
     }

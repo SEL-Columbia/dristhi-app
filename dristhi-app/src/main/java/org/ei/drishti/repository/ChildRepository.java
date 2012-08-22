@@ -29,7 +29,7 @@ public class ChildRepository extends DrishtiRepository {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase database) {
+    protected void onCreate(SQLiteDatabase database) {
         database.execSQL(CHILD_SQL);
     }
 
@@ -66,7 +66,7 @@ public class ChildRepository extends DrishtiRepository {
         }
     }
 
-    public Child findByCaseId(String caseId) {
+    public Child find(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(CHILD_TABLE_NAME, CHILD_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
         List<Child> children = readAll(cursor);
