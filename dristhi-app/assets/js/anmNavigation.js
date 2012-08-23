@@ -52,6 +52,9 @@ function ANMNavigationPanel(anmNavigationBridge) {
             bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
             bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
             bindToPNCList(callbackToRunBeforeAnyAction, "#pncMenuOption");
+        },
+        repopulate: function(cssIdentifierOfSidePanelElement) {
+            populateDataInto(cssIdentifierOfSidePanelElement);
         }
     };
 }

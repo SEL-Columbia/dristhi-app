@@ -8,12 +8,14 @@ import android.webkit.WebViewClient;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.view.AfterFetchListener;
-import org.ei.drishti.view.NoOpProgressIndicator;
+import org.ei.drishti.view.ProgressIndicator;
 import org.ei.drishti.view.UpdateActionsTask;
 import org.ei.drishti.view.controller.NavigationController;
+import org.ei.drishti.view.controller.UpdateController;
 
 public abstract class SecuredWebActivity extends SecuredActivity {
     protected WebView webView;
+    protected UpdateController updateController;
 
     @Override
     protected void onCreation() {
@@ -24,6 +26,8 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         webView.setWebViewClient(new WebViewClient());
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.addJavascriptInterface(new NavigationController(this, context.anmService()), "navigationContext");
+
+        updateController = new UpdateController(webView);
 
         onInitialization();
     }
@@ -43,15 +47,31 @@ public abstract class SecuredWebActivity extends SecuredActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.updateMenuItem:
-                UpdateActionsTask updateActionsTask = new UpdateActionsTask(this, context.actionService(), new NoOpProgressIndicator());
-                updateActionsTask.updateFromServer(new AfterFetchListener() {
-                    public void afterFetch(FetchStatus status) {
-                    }
-                });
+                updateFromServer();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    protected void updateFromServer() {
+        UpdateActionsTask updateActionsTask = new UpdateActionsTask(this, context.actionService(), new ProgressIndicator() {
+            @Override
+            public void setVisibile() {
+                updateController.startProgressIndicator();
+            }
+
+            @Override
+            public void setInvisible() {
+                updateController.stopProgressIndicator();
+            }
+        });
+
+        updateActionsTask.updateFromServer(new AfterFetchListener() {
+            public void afterFetch(FetchStatus status) {
+                updateController.reload();
+            }
+        });
     }
 
     @Override
