@@ -4,7 +4,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
     };
 
     var bindToWorkplan = function (callbackToRunBeforeAnyAction, identifierOfElement) {
-        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function() {
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             anmNavigationBridge.delegateToWorkplan();
         });
     };
@@ -22,10 +22,10 @@ function ANMNavigationPanel(anmNavigationBridge) {
     };
 
     var bindToPNCList = function (callbackToRunBeforeAnyAction, identifierOfElement) {
-            runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
-                anmNavigationBridge.delegateToPNCList();
-            });
-     };
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
+            anmNavigationBridge.delegateToPNCList();
+        });
+    };
 
     var bindToPage = function (callbackToRunBeforeAnyAction, identifierOfElement, pageToGoTo) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
@@ -41,7 +41,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
     };
 
     return {
-        populateInto: function(cssIdentifierOfSidePanelElement, callbackToRunBeforeAnyAction) {
+        populateInto: function (cssIdentifierOfSidePanelElement, callbackToRunBeforeAnyAction) {
             populateDataInto(cssIdentifierOfSidePanelElement);
 
             bindToWorkplan(callbackToRunBeforeAnyAction, "#workplanButton");
@@ -52,9 +52,6 @@ function ANMNavigationPanel(anmNavigationBridge) {
             bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
             bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
             bindToPNCList(callbackToRunBeforeAnyAction, "#pncMenuOption");
-        },
-        repopulate: function(cssIdentifierOfSidePanelElement) {
-            populateDataInto(cssIdentifierOfSidePanelElement);
         }
     };
 }

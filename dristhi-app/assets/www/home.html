@@ -26,7 +26,7 @@
         }
 
         function reload() {
-            homeNavigation.repopulate("#template-container");
+            homeNavigation.populateInto("#template-container", function() {});
         }
 
         $(document).ready(function () {

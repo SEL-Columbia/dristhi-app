@@ -13,6 +13,8 @@ import org.ei.drishti.view.UpdateActionsTask;
 import org.ei.drishti.view.controller.NavigationController;
 import org.ei.drishti.view.controller.UpdateController;
 
+import static org.ei.drishti.domain.FetchStatus.fetched;
+
 public abstract class SecuredWebActivity extends SecuredActivity {
     protected WebView webView;
     protected UpdateController updateController;
@@ -69,7 +71,9 @@ public abstract class SecuredWebActivity extends SecuredActivity {
 
         updateActionsTask.updateFromServer(new AfterFetchListener() {
             public void afterFetch(FetchStatus status) {
-                updateController.reload();
+                if (status.equals(fetched)) {
+                    updateController.reload();
+                }
             }
         });
     }
