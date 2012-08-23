@@ -46,8 +46,12 @@ public class AllAlerts {
         return repository.summary();
     }
 
-    public List<Alert> fetchAllFor(String villageName) {
-        return repository.allAlertsFor(villageName);
+    public List<Alert> fetchAllForVillage(String villageName) {
+        return repository.allForVillage(villageName);
+    }
+
+    public List<Alert> fetchAllForCase(String caseId) {
+        return repository.allForCase(caseId);
     }
 
     private void createAlert(Action action) {

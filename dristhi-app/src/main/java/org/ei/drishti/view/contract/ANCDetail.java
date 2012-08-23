@@ -16,8 +16,8 @@ public class ANCDetail {
     private final PregnancyDetails pregnancyDetails;
     private final FacilityDetails facilityDetails;
 
-    private List<Reminder> alerts;
-    private List<Reminder> todos;
+    private ArrayList<ProfileTodo> alerts;
+    private ArrayList<ProfileTodo> todos;
     private List<TimelineEvent> timelineEvents;
 
     public ANCDetail(String caseId, String thaayiCardNumber, String womanName, LocationDetails location, PregnancyDetails pregnancyDetails, FacilityDetails facilityDetails) {
@@ -28,13 +28,23 @@ public class ANCDetail {
         this.pregnancyDetails = pregnancyDetails;
         this.facilityDetails = facilityDetails;
 
-        this.alerts = new ArrayList<Reminder>();
-        this.todos = new ArrayList<Reminder>();
+        this.alerts = new ArrayList<ProfileTodo>();
+        this.todos = new ArrayList<ProfileTodo>();
         this.timelineEvents = new ArrayList<TimelineEvent>();
     }
 
     public ANCDetail addTimelineEvents(List<TimelineEvent> events) {
         this.timelineEvents.addAll(events);
+        return this;
+    }
+
+    public ANCDetail addUrgentTodos(List<ProfileTodo> todos) {
+        this.alerts.addAll(todos);
+        return this;
+    }
+
+    public ANCDetail addTodos(List<ProfileTodo> todos) {
+        this.todos.addAll(todos);
         return this;
     }
 

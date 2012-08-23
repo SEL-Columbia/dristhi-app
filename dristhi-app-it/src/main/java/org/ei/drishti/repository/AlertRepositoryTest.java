@@ -70,8 +70,8 @@ public class AlertRepositoryTest extends AndroidTestCase {
         alertRepository.createAlert(alert3);
         alertRepository.createAlert(alert4);
 
-        assertEquals(asList(alert1, alert3), alertRepository.allAlertsFor("bherya1"));
-        assertEquals(asList(alert2, alert4), alertRepository.allAlertsFor("bherya2"));
+        assertEquals(asList(alert1, alert3), alertRepository.allForVillage("bherya1"));
+        assertEquals(asList(alert2, alert4), alertRepository.allForVillage("bherya2"));
     }
 
     public void testShouldFetchSummaryAllUniqueLocations() throws Exception {

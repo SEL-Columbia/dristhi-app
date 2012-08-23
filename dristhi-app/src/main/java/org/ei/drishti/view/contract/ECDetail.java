@@ -11,12 +11,12 @@ public class ECDetail {
     private final boolean highPriority;
     private final String address;
     private final String currentMethod;
-    private final List<Reminder> alerts;
+    private final List<ProfileTodo> alerts;
     private final List<Child> children;
     private final List<TimelineEvent> timelineEvents;
 
     public ECDetail(String caseId, String wifeName, String village, String subcenter, String ecNumber, boolean isHighPriority, String address,
-                    String currentMethod, List<Reminder> alerts, List<Child> children, List<TimelineEvent> timelineEvents) {
+                    String currentMethod, List<ProfileTodo> alerts, List<Child> children, List<TimelineEvent> timelineEvents) {
         this.caseId = caseId;
         this.wifeName = wifeName;
         this.village = village;

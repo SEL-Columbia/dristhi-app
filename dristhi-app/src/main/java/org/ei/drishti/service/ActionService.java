@@ -40,7 +40,7 @@ public class ActionService {
             return nothingFetched;
         }
 
-        handleActions(response);
+            handleActions(response);
         allSettings.savePreviousFetchIndex(response.payload().get(response.payload().size() - 1).index());
         return FetchStatus.fetched;
     }

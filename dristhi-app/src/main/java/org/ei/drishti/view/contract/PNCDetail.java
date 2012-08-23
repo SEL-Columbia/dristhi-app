@@ -14,8 +14,8 @@ public class PNCDetail {
     private final LocationDetails location;
     private final PregnancyOutcomeDetails pncDetails;
 
-    private List<Reminder> alerts;
-    private List<Reminder> todos;
+    private ArrayList<ProfileTodo> alerts;
+    private ArrayList<ProfileTodo> todos;
     private List<TimelineEvent> timelineEvents;
 
     public PNCDetail(String caseId, String thaayiCardNumber, String womanName, LocationDetails location, PregnancyOutcomeDetails pncDetails) {
@@ -25,8 +25,8 @@ public class PNCDetail {
         this.location = location;
         this.pncDetails = pncDetails;
 
-        this.alerts = new ArrayList<Reminder>();
-        this.todos = new ArrayList<Reminder>();
+        this.alerts = new ArrayList<ProfileTodo>();
+        this.todos = new ArrayList<ProfileTodo>();
         this.timelineEvents = new ArrayList<TimelineEvent>();
     }
 

@@ -19,7 +19,7 @@ public class WorkplanDetailController {
     }
 
     public String get() {
-        List<Alert> alerts = allAlerts.fetchAllFor(villageName);
+        List<Alert> alerts = allAlerts.fetchAllForVillage(villageName);
         List<WorkplanAlert> workplanAlerts= new ArrayList<WorkplanAlert>();
         for (Alert alert : alerts) {
             workplanAlerts.add(new WorkplanAlert(alert.beneficiaryName(), alert.startDate(), alert.visitCode()));

@@ -35,9 +35,15 @@ public class AlertRepository extends DrishtiRepository {
         return readAllAlerts(cursor);
     }
 
-    public List<Alert> allAlertsFor(String villageName) {
+    public List<Alert> allForVillage(String villageName) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(ALERTS_TABLE_NAME, ALERTS_TABLE_COLUMNS, ALERTS_VILLAGE_COLUMN + " = ?", new String[] {villageName}, null, null, null, null);
+        return readAllAlerts(cursor);
+    }
+
+    public List<Alert> allForCase(String caseId) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(ALERTS_TABLE_NAME, ALERTS_TABLE_COLUMNS, ALERTS_CASEID_COLUMN + " = ?", new String[] {caseId}, null, null, null, null);
         return readAllAlerts(cursor);
     }
 
