@@ -71,7 +71,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
 
         updateActionsTask.updateFromServer(new AfterFetchListener() {
             public void afterFetch(FetchStatus status) {
-                if (status.equals(fetched)) {
+                if (fetched.equals(status)) {
                     updateController.reload();
                 }
             }
