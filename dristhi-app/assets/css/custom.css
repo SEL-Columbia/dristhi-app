@@ -327,3 +327,12 @@ body {
 .meta-summary-text {
     color: #b4b4b4;
 }
+
+.progress-indicator {
+    height: 28px;
+    margin-top: 8px;
+}
+
+.hidden {
+    display: none;
+}
