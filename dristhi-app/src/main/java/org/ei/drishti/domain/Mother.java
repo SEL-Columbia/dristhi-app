@@ -4,6 +4,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.Map;
+
 public class Mother {
     private final String caseId;
     private final String ecCaseId;
@@ -11,6 +13,7 @@ public class Mother {
     private String referenceDate;
     private boolean isHighRisk;
     private String deliveryPlace;
+    private Map<String, String> details;
 
     public Mother(String caseId, String ecCaseId, String thaayiCardNumber, String referenceDate) {
         this.caseId = caseId;
@@ -42,12 +45,21 @@ public class Mother {
         return this;
     }
 
+    public Mother withDetails(Map<String, String> details) {
+        this.details = details;
+        return this;
+    }
+
     public boolean isHighRisk() {
         return isHighRisk;
     }
 
     public String deliveryPlace() {
         return deliveryPlace;
+    }
+
+    public Map<String, String> details() {
+        return details;
     }
 
     @Override

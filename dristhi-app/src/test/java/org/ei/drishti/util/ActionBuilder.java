@@ -36,7 +36,9 @@ public class ActionBuilder {
     }
 
     public static Action actionForCreateMother(String motherCaseId) {
-        return new Action(motherCaseId, "child", "createBeneficiary", createBeneficiary("ecCaseId", "thaayiCardNumber", LocalDate.now(), true, "Delivery Place").data(), "0", new HashMap<String, String>());
+        HashMap<String, String> details = new HashMap<String, String>();
+        details.put("some-key", "some-field");
+        return new Action(motherCaseId, "child", "createBeneficiary", createBeneficiary("ecCaseId", "thaayiCardNumber", LocalDate.now(), true, "Delivery Place", new HashMap<String, String>()).data(), "0", details);
     }
 
     public static Action actionForCreateChild(String motherCaseId) {

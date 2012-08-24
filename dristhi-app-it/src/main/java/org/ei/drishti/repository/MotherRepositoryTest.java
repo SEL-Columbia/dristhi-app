@@ -12,6 +12,8 @@ import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.util.Arrays.asList;
 
@@ -34,9 +36,13 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldInsertMother() throws Exception {
-        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withExtraDetails(true, "District Hospital"));
+        Map<String, String> details = new HashMap<String, String>();
+        details.put("some-key", "some-value");
+        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withExtraDetails(true, "District Hospital").withDetails(details);
 
-        assertEquals(asList(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withExtraDetails(true, "District Hospital")), repository.allANCs());
+        repository.add(mother);
+
+        assertEquals(asList(mother), repository.allANCs());
         assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE X", "2012-06-08")), timelineEventRepository.allFor("CASE X"));
     }
 

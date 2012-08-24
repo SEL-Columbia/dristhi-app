@@ -60,7 +60,10 @@ public class ANCDetailControllerTest {
         Alert todo = new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11");
         Alert urgentTodo = new Alert("Case X", "Theresa", "bherya", "TT 1", "Thaayi 1", urgent, "2012-02-02", "2012-02-11");
 
-        when(allBeneficiaries.findMother(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withExtraDetails(true, "District Hospital"));
+        HashMap<String, String> details = new HashMap<String, String>();
+        details.put("ashaName", "Shiwani");
+
+        when(allBeneficiaries.findMother(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withExtraDetails(true, "District Hospital").withDetails(details));
         when(allEligibleCouples.findByCaseID("EC CASE 1")).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "Subcenter 1", new HashMap<String, String>()));
         when(allAlerts.fetchAllForCase(caseId)).thenReturn(asList(todo, urgentTodo));
         when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent));

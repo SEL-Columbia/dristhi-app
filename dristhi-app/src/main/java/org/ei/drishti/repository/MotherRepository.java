@@ -2,6 +2,8 @@ package org.ei.drishti.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.Mother;
@@ -9,9 +11,12 @@ import org.ei.drishti.domain.TimelineEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import static java.lang.Boolean.parseBoolean;
 
 public class MotherRepository extends DrishtiRepository {
-    private static final String MOTHER_SQL = "CREATE TABLE mother(caseID VARCHAR, thaayiCardNumber VARCHAR, ecCaseId VARCHAR, type VARCHAR, referenceDate VARCHAR, isHighRisk VARCHAR, deliveryPlace VARCHAR)";
+    private static final String MOTHER_SQL = "CREATE TABLE mother(caseID VARCHAR, thaayiCardNumber VARCHAR, ecCaseId VARCHAR, type VARCHAR, referenceDate VARCHAR, isHighRisk VARCHAR, deliveryPlace VARCHAR, details VARCHAR)";
     private static final String MOTHER_TABLE_NAME = "mother";
     private static final String CASE_ID_COLUMN = "caseID";
     private static final String EC_CASEID_COLUMN = "ecCaseId";
@@ -20,7 +25,8 @@ public class MotherRepository extends DrishtiRepository {
     private static final String REF_DATE_COLUMN = "referenceDate";
     private static final String IS_HIGH_RISK_COLUMN = "isHighRisk";
     private static final String DELIVERY_PLACE_COLUMN = "deliveryPlace";
-    private static final String[] MOTHER_TABLE_COLUMNS = {CASE_ID_COLUMN, EC_CASEID_COLUMN, THAAYI_CARD_COLUMN, TYPE_COLUMN, REF_DATE_COLUMN, IS_HIGH_RISK_COLUMN, DELIVERY_PLACE_COLUMN};
+    private static final String DETAILS_COLUMN = "details";
+    private static final String[] MOTHER_TABLE_COLUMNS = {CASE_ID_COLUMN, EC_CASEID_COLUMN, THAAYI_CARD_COLUMN, TYPE_COLUMN, REF_DATE_COLUMN, IS_HIGH_RISK_COLUMN, DELIVERY_PLACE_COLUMN, DETAILS_COLUMN};
 
     private static final String TYPE_ANC = "ANC";
     private static final String TYPE_PNC = "PNC";
@@ -116,6 +122,7 @@ public class MotherRepository extends DrishtiRepository {
         values.put(REF_DATE_COLUMN, mother.referenceDate());
         values.put(IS_HIGH_RISK_COLUMN, String.valueOf(mother.isHighRisk()));
         values.put(DELIVERY_PLACE_COLUMN, mother.deliveryPlace());
+        values.put(DETAILS_COLUMN, new Gson().toJson(mother.details()));
         return values;
     }
 
@@ -123,7 +130,10 @@ public class MotherRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<Mother> mothers = new ArrayList<Mother>();
         while (!cursor.isAfterLast()) {
-            mothers.add(new Mother(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(4)).withExtraDetails(Boolean.parseBoolean(cursor.getString(5)), cursor.getString(6)));
+            Map<String, String> details = new Gson().fromJson(cursor.getString(7), new TypeToken<Map<String, String>>() { }.getType());
+
+            mothers.add(new Mother(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(4))
+                    .withExtraDetails(parseBoolean(cursor.getString(5)), cursor.getString(6)).withDetails(details));
             cursor.moveToNext();
         }
         cursor.close();

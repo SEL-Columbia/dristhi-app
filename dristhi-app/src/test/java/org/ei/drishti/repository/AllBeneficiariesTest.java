@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
+import java.util.HashMap;
+
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -33,9 +35,12 @@ public class AllBeneficiariesTest {
 
     @Test
     public void shouldHandleDifferentTypesOfActions() throws Exception {
+        HashMap<String, String> details = new HashMap<String, String>();
+        details.put("some-key", "some-field");
+
         Action action = ActionBuilder.actionForCreateMother("Case X");
         allBeneficiaries.handleAction(action);
-        verify(motherRepository).add(new Mother("Case X", "ecCaseId", "thaayiCardNumber", referenceDate).withExtraDetails(true, action.get("deliveryPlace")));
+        verify(motherRepository).add(new Mother("Case X", "ecCaseId", "thaayiCardNumber", referenceDate).withExtraDetails(true, action.get("deliveryPlace")).withDetails(details));
 
         action = ActionBuilder.actionForUpdateBeneficiary();
         allBeneficiaries.handleAction(action);

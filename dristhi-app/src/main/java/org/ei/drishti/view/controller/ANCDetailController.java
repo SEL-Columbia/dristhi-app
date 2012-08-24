@@ -56,7 +56,7 @@ public class ANCDetailController {
         ANCDetail detail = new ANCDetail(caseId, mother.thaayiCardNumber(), couple.wifeName(),
                 new LocationDetails(couple.village(), couple.subCenter()),
                 new PregnancyDetails(mother.isHighRisk(), "Anaemic", String.valueOf(numberOfMonthsPregnant.getMonths()), edd),
-                new FacilityDetails(mother.deliveryPlace(), "----", "Shiwani"))
+                new FacilityDetails(mother.deliveryPlace(), "----", mother.details().get("ashaName")))
                 .addTimelineEvents(getEvents())
                 .addTodos(todosAndUrgentTodos.get(0))
                 .addUrgentTodos(todosAndUrgentTodos.get(1));
