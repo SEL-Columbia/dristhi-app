@@ -21,15 +21,15 @@ public class UpdateController {
     }
 
     public void startProgressIndicator() {
-        loadUrl("javascript:startProgressIndicator()");
+        loadUrl("javascript:pageView.startProgressIndicator()");
     }
 
     public void stopProgressIndicator() {
-        loadUrl("javascript:stopProgressIndicator()");
+        loadUrl("javascript:pageView.stopProgressIndicator()");
     }
 
     public void reload() {
-        loadUrl("javascript:reload()");
+        loadUrl("javascript:pageView.reload()");
     }
 
     private void loadUrl(String url) {

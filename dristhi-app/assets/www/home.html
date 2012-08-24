@@ -12,25 +12,23 @@
     <script type="text/javascript" src="../js/custom.ui.js"></script>
     <script type="text/javascript" src="../template/templates.js"></script>
     <script type="text/javascript" src="../js/anmNavigation.js"></script>
+    <script type="text/javascript" src="../js/page_view.js"></script>
     <script type="text/javascript" src="../js/home.js"></script>
     <script type="text/javascript">
-        var home = new Home(new HomeBridge());
-        var homeNavigation = new ANMNavigationPanel(new ANMNavigationBridge());
-
-        function startProgressIndicator() {
-            $(".menu-option .span9").css('color', 'red');
-        }
-
-        function stopProgressIndicator() {
-            $(".menu-option .span9").css('color', 'blue');
-        }
-
-        function reload() {
-            homeNavigation.populateInto("#template-container", function() {});
-        }
-
         $(document).ready(function () {
-            homeNavigation.populateInto("#template-container", function() {});
+            var home = new Home(new ANMNavigationPanel(new ANMNavigationBridge()), new HomeBridge());
+
+            pageView.onStartProgressIndicator(function() {
+                $(".menu-option .span9").css('color', 'red');
+            });
+            pageView.onStopProgressIndicator(function() {
+                $(".menu-option .span9").css('color', 'blue');
+            });
+            pageView.onReload(function() {
+                home.populateInto("#template-container", function() {});
+            });
+
+            home.populateInto("#template-container", function() {});
             home.pageHasFinishedLoading();
 
             $("html").css("background-color", "#333");

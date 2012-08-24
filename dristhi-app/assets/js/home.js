@@ -1,5 +1,8 @@
-function Home(homeBridge) {
+function Home(anmNavigation, homeBridge) {
     return {
+        populateInto: function (cssIdentifierOfSidePanelElement, callbackToRunBeforeAnyAction) {
+            anmNavigation.populateInto(cssIdentifierOfSidePanelElement, callbackToRunBeforeAnyAction);
+        },
         pageHasFinishedLoading: function () {
             homeBridge.pageHasFinishedLoading();
         }
