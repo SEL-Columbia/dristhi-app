@@ -60,11 +60,11 @@ public class AllAlerts {
         if (mother.equals(type)) {
             Mother mom = allBeneficiaries.findMother(action.caseID());
             EligibleCouple couple = allEligibleCouples.findByCaseID(mom.ecCaseId());
-            repository.createAlert(new Alert(action.caseID(),couple.wifeName(), couple.village(), action.get("visitCode"), mom.thaayiCardNumber(), AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate")));
+            repository.createAlert(new Alert(action.caseID(),couple.wifeName(), couple.village(), action.get("visitCode"), mom.thaayiCardNumber(), AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate"), AlertStatus.open));
         } else if (child.equals(type)) {
             Child kid = allBeneficiaries.findChild(action.caseID());
             EligibleCouple couple = allEligibleCouples.findByCaseID(kid.ecCaseId());
-            repository.createAlert(new Alert(action.caseID(),couple.wifeName(), couple.village(), action.get("visitCode"), kid.thaayiCardNumber(), AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate")));
+            repository.createAlert(new Alert(action.caseID(),couple.wifeName(), couple.village(), action.get("visitCode"), kid.thaayiCardNumber(), AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate"), AlertStatus.open));
         } else {
             Log.logWarn("Unknown beneficiary type to add alert for: " + action);
         }

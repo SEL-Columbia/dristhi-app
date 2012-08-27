@@ -22,6 +22,7 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
+import static org.ei.drishti.domain.AlertStatus.open;
 import static org.ei.drishti.domain.FetchStatus.*;
 import static org.ei.drishti.domain.ResponseStatus.failure;
 import static org.ei.drishti.domain.ResponseStatus.success;
@@ -87,7 +88,7 @@ public class ActionServiceTest {
         String indexOfLastMessage = "12345";
         setupActions(success, asList(actionForCreateAlert("Case X", "normal", "mother", "ANC 1", "2012-01-01", "2012-01-22", "11111"), actionForCreateAlert("Case Y", "normal", "mother", "ANC 2", "2012-01-01", "2012-01-11", indexOfLastMessage)));
 
-        when(allAlerts.fetchAll()).thenReturn(asList(new Alert("Case X", "mother", "bherya", "ANC 1", "Thaayi 1", AlertPriority.normal, "2012-01-01", "2012-01-22"), new Alert("Case Y", "mother", "bherya", "ANC 2", "Thaayi 2", AlertPriority.normal, "2012-01-01", "2012-01-11")));
+        when(allAlerts.fetchAll()).thenReturn(asList(new Alert("Case X", "mother", "bherya", "ANC 1", "Thaayi 1", AlertPriority.normal, "2012-01-01", "2012-01-22", open), new Alert("Case Y", "mother", "bherya", "ANC 2", "Thaayi 2", AlertPriority.normal, "2012-01-01", "2012-01-11", open)));
 
         service.fetchNewActions();
 

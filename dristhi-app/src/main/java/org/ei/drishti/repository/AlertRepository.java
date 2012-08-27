@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.Alert;
+import org.ei.drishti.domain.AlertStatus;
 import org.ei.drishti.domain.VillageAlertSummary;
 import org.ei.drishti.dto.AlertPriority;
 
@@ -88,7 +89,7 @@ public class AlertRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<Alert> alerts = new ArrayList<Alert>();
         while (!cursor.isAfterLast()) {
-            alerts.add(new Alert(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), AlertPriority.from(cursor.getString(5)), cursor.getString(6), cursor.getString(7)));
+            alerts.add(new Alert(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), AlertPriority.from(cursor.getString(5)), cursor.getString(6), cursor.getString(7), AlertStatus.open));
             cursor.moveToNext();
         }
         cursor.close();

@@ -1,16 +1,16 @@
 package org.ei.drishti.view.controller;
 
 import android.content.Context;
-import android.content.Intent;
 import com.google.gson.Gson;
-import org.ei.drishti.domain.VillageAlertSummary;
+import org.ei.drishti.domain.Alert;
 import org.ei.drishti.repository.AllAlerts;
-import org.ei.drishti.view.activity.WorkplanDetailActivity;
 import org.ei.drishti.view.contract.WorkplanContext;
-import org.ei.drishti.view.contract.WorkplanVillageSummary;
+import org.ei.drishti.view.contract.WorkplanTodo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.ei.drishti.dto.AlertPriority.normal;
 
 public class WorkplanController {
     private AllAlerts allAlerts;
@@ -22,19 +22,23 @@ public class WorkplanController {
     }
 
     public String get() {
-        List<VillageAlertSummary> villageAlertSummaries = allAlerts.villageSummary();
-        List<WorkplanVillageSummary> workplanVillageSummaries = new ArrayList<WorkplanVillageSummary>();
-        int totalAlertCount = 0;
-        for (VillageAlertSummary villageAlertSummary : villageAlertSummaries) {
-            workplanVillageSummaries.add(new WorkplanVillageSummary(villageAlertSummary.name(), 0, villageAlertSummary.alertCount()));
-            totalAlertCount += villageAlertSummary.alertCount();
-        }
-        return new Gson().toJson(new WorkplanContext(totalAlertCount, 0, workplanVillageSummaries));
-    }
+        List<Alert> alerts = allAlerts.fetchAll();
+        List<WorkplanTodo> overdue = new ArrayList<WorkplanTodo>();
+        List<WorkplanTodo> upcoming = new ArrayList<WorkplanTodo>();
+        List<WorkplanTodo> completed = new ArrayList<WorkplanTodo>();
 
-    public void startWorkplanDetail(String village) {
-        Intent intent = new Intent(context.getApplicationContext(), WorkplanDetailActivity.class);
-        intent.putExtra("villageName", village);
-        context.startActivity(intent);
+        for (Alert alert : alerts) {
+            WorkplanTodo todo = new WorkplanTodo(alert.beneficiaryName(), alert.visitCode(), alert.expiryDate());
+
+            if (alert.isCompleted()) {
+                completed.add(todo);
+            } else if (normal.equals(alert.priority())) {
+                upcoming.add(todo);
+            } else {
+                overdue.add(todo);
+            }
+        }
+
+        return new Gson().toJson(new WorkplanContext(overdue, upcoming, completed));
     }
 }

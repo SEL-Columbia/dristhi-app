@@ -2,10 +2,7 @@ package org.ei.drishti.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.Child;
-import org.ei.drishti.domain.Mother;
-import org.ei.drishti.domain.TimelineEvent;
+import org.ei.drishti.domain.*;
 import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.util.Session;
 
@@ -13,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static java.util.Arrays.asList;
+import static org.ei.drishti.domain.AlertStatus.open;
 
 public class ChildRepositoryTest extends AndroidTestCase {
     private ChildRepository repository;
@@ -69,14 +67,14 @@ public class ChildRepositoryTest extends AndroidTestCase {
     public void testShouldDeleteCorrespondingAlertsWhenAChildIsDeleted() throws Exception {
         Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-01");
         repository.addChildForMother(mother, "CASE A", "2012-06-09", "female");
-        alertRepository.createAlert(new Alert("CASE A", "Child 1", "Bherya 1", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11"));
+        alertRepository.createAlert(new Alert("CASE A", "Child 1", "Bherya 1", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
 
         repository.addChildForMother(mother, "CASE B", "2012-06-10", "female");
-        alertRepository.createAlert(new Alert("CASE B", "Child 2", "Bherya 1", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11"));
+        alertRepository.createAlert(new Alert("CASE B", "Child 2", "Bherya 1", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
 
         repository.close("CASE A");
 
-        assertEquals(asList(new Alert("CASE B", "Child 2", "Bherya 1", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11")), alertRepository.allAlerts());
+        assertEquals(asList(new Alert("CASE B", "Child 2", "Bherya 1", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open)), alertRepository.allAlerts());
     }
 
     public void testShouldDeleteCorrespondingTimelineEventsWhenAChildIsDeleted() throws Exception {

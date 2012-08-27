@@ -2,10 +2,7 @@ package org.ei.drishti.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
-import org.ei.drishti.domain.TimelineEvent;
+import org.ei.drishti.domain.*;
 import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.util.Session;
 
@@ -15,6 +12,7 @@ import java.util.HashMap;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
+import static org.ei.drishti.domain.AlertStatus.open;
 
 public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     private EligibleCoupleRepository repository;
@@ -62,10 +60,10 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteCorrespondingAlertsWhenDeletingEC() throws Exception {
-        Alert alert = new Alert("CASE Y", "Wife 2", "Village 2", "FP 2", "EC Number 2", AlertPriority.normal, "2012-01-01", "2012-01-11");
+        Alert alert = new Alert("CASE Y", "Wife 2", "Village 2", "FP 2", "EC Number 2", AlertPriority.normal, "2012-01-01", "2012-01-11", open);
 
         repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "SubCenter 1", new HashMap<String, String>()));
-        alertRepository.createAlert(new Alert("CASE X", "Wife 1", "Village 1", "FP 1", "EC Number 1", AlertPriority.normal, "2012-01-01", "2012-01-11"));
+        alertRepository.createAlert(new Alert("CASE X", "Wife 1", "Village 1", "FP 1", "EC Number 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
 
         repository.add(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "IUD", "Village 2", "SubCenter 2", new HashMap<String, String>()));
         alertRepository.createAlert(alert);

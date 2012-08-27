@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
+import static org.ei.drishti.domain.AlertStatus.open;
 
 public class MotherRepositoryTest extends AndroidTestCase {
     private MotherRepository repository;
@@ -132,13 +133,13 @@ public class MotherRepositoryTest extends AndroidTestCase {
         Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
 
         repository.add(mother1);
-        alertRepository.createAlert(new Alert("CASE X", "Theresa 1", "bherya", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11"));
+        alertRepository.createAlert(new Alert("CASE X", "Theresa 1", "bherya", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
         repository.add(mother2);
-        alertRepository.createAlert(new Alert("CASE Y", "Theresa 2", "bherya", "ANC 1", "TC 2", AlertPriority.normal, "2012-01-01", "2012-01-11"));
+        alertRepository.createAlert(new Alert("CASE Y", "Theresa 2", "bherya", "ANC 1", "TC 2", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
 
         repository.close(mother1.caseId());
 
-        assertEquals(asList(new Alert("CASE Y", "Theresa 2", "bherya", "ANC 1", "TC 2", AlertPriority.normal, "2012-01-01", "2012-01-11")), alertRepository.allAlerts());
+        assertEquals(asList(new Alert("CASE Y", "Theresa 2", "bherya", "ANC 1", "TC 2", AlertPriority.normal, "2012-01-01", "2012-01-11", open)), alertRepository.allAlerts());
     }
 
     public void testShouldRemoveChildrenAndTheirEntitiesWhenMotherIsClosed() throws Exception {

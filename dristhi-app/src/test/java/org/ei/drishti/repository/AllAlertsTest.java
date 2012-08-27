@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
+import static org.ei.drishti.domain.AlertStatus.open;
 import static org.ei.drishti.dto.AlertPriority.normal;
 import static org.ei.drishti.dto.AlertPriority.urgent;
 import static org.ei.drishti.util.ActionBuilder.*;
@@ -45,7 +46,7 @@ public class AllAlertsTest {
 
         allAlerts.handleAction(actionForMother);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-22"));
+        verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-22", open));
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -55,7 +56,7 @@ public class AllAlertsTest {
 
         allAlerts.handleAction(actionForMother);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", urgent, "2012-01-01", "2012-01-22"));
+        verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", urgent, "2012-01-01", "2012-01-22", open));
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -120,9 +121,9 @@ public class AllAlertsTest {
         allAlerts.handleAction(secondDeleteAction);
 
         InOrder inOrder = inOrder(alertRepository);
-        inOrder.verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-11"));
+        inOrder.verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-11", open));
         inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase("Case Y", "ANC 2");
-        inOrder.verify(alertRepository).createAlert(new Alert("Case Z", "Theresa Case Z", "Village Case Z", "ANC 2", "Thaayi Case Z", normal, "2012-01-01", "2012-01-22"));
+        inOrder.verify(alertRepository).createAlert(new Alert("Case Z", "Theresa Case Z", "Village Case Z", "ANC 2", "Thaayi Case Z", normal, "2012-01-01", "2012-01-22", open));
         inOrder.verify(alertRepository).deleteAllAlertsForCase("Case A");
         inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase("Case B", "ANC 3");
         verifyNoMoreInteractions(alertRepository);
@@ -130,7 +131,7 @@ public class AllAlertsTest {
 
     @Test
     public void shouldFetchAllAlertsFromRepository() throws Exception {
-        List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11"), new Alert("Case Y", "Theresa 2", "bherya", "ANC 2", "Thaayi 2", normal, "2012-01-01", "2012-01-22"));
+        List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open), new Alert("Case Y", "Theresa 2", "bherya", "ANC 2", "Thaayi 2", normal, "2012-01-01", "2012-01-22", open));
         when(alertRepository.allAlerts()).thenReturn(expectedAlerts);
 
         List<Alert> alerts = allAlerts.fetchAll();
@@ -140,7 +141,7 @@ public class AllAlertsTest {
 
     @Test
     public void shouldFetchAllAlertsForAVillageFromRepository() throws Exception {
-        List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "bherya1", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11"), new Alert("Case Y", "Theresa 2", "bherya1", "ANC 2", "Thaayi 2", normal, "2012-01-01", "2012-01-22"));
+        List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "bherya1", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open), new Alert("Case Y", "Theresa 2", "bherya1", "ANC 2", "Thaayi 2", normal, "2012-01-01", "2012-01-22", open));
         when(alertRepository.allForVillage("bherya1")).thenReturn(expectedAlerts);
 
         List<Alert> alerts = allAlerts.fetchAllForVillage("bherya1");

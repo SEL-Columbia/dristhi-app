@@ -25,8 +25,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var workplan = new Workplan(new WorkplanBridge());
-//            workplan.populateInto("#content");
-            workplan.bindItemToWorkplanDetailView("#workplan-list", ".workplanElement");
+            workplan.populateInto("#content");
 
             var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
             sidePanel.populateInto("#sidePanel");
@@ -50,57 +49,6 @@
             </div>
         </div>
         <div id="content" class="content affected-by-sidepanel">
-            <div class="tabbable">
-                <ul class="nav nav-tabs navbar-fixed-top affected-by-sidepanel">
-                    <li class="active"><a href="#overdue" data-toggle="tab">Overdue (<span id="overdue-count">0</span>)</a></li>
-                    <li><a href="#upcoming" data-toggle="tab">To Do (<span id="upcoming-count">0</span>)</a></li>
-                    <li><a href="#completed" data-toggle="tab">Done (<span id="completed-count">0</span>)</a></li>
-                </ul>
-            </div>
-
-            <div class="tab-content container-fluid container-no-padding">
-                <div class="tab-pane overdue active" id="overdue">
-                    <div class="alert overdue">
-                        <div class="row-fluid">
-                            <div class="span2">
-                                <div class="todo-box-wrapper"><img class="todo-box checked"/></div>
-                            </div>
-                            <div class="span10">
-                                <div class="beneficiaryName">{{beneficiaryName}}</div>
-                                <div class="detail">{{description}} by {{dueDate}} abc abc abc abc</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane upcoming" id="upcoming">
-                    <div class="alert upcoming">
-                        <div class="row-fluid">
-                            <div class="span2">
-                                <div class="todo-box-wrapper"><img class="todo-box checked"/></div>
-                            </div>
-                            <div class="span10">
-                                <div class="beneficiaryName">{{beneficiaryName}}</div>
-                                <div class="detail">{{description}} by {{dueDate}} abc abc abc abc</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane completed" id="completed">
-                    <div class="alert completed">
-                        <div class="row-fluid">
-                            <div class="span2 boo">
-                                <div class="todo-box-wrapper"><img class="todo-box checked"/></div>
-                            </div>
-                            <div class="span10">
-                                <div class="beneficiaryName">{{beneficiaryName}}</div>
-                                <div class="detail">{{description}} by {{dueDate}} abc abc abc abc</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

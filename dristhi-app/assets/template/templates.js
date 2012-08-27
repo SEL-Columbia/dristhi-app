@@ -887,9 +887,120 @@ templates['sidepanel'] = template(function (Handlebars,depth0,helpers,partials,d
   return buffer;});
 templates['workplan'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", foundHelper, self=this;
+  var buffer = "", stack1, stack2, foundHelper, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
 
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n            <div class=\"alert overdue\">\n                <div class=\"row-fluid\">\n                    <div class=\"span2\">\n                        <div class=\"todo-box-wrapper\"><img class=\"todo-box\"/></div>\n                    </div>\n                    <div class=\"span10\">\n                        <div class=\"beneficiaryName\">";
+  foundHelper = helpers.beneficiaryName;
+  stack1 = foundHelper || depth0.beneficiaryName;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "beneficiaryName", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</div>\n                        <div class=\"detail\">";
+  foundHelper = helpers.description;
+  stack1 = foundHelper || depth0.description;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "description", { hash: {} }); }
+  buffer += escapeExpression(stack1) + " by ";
+  foundHelper = helpers.dueDate;
+  stack1 = foundHelper || depth0.dueDate;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "dueDate", { hash: {} }); }
+  buffer += escapeExpression(stack1) + " abc abc abc abc</div>\n                    </div>\n                </div>\n            </div>\n        ";
+  return buffer;}
 
+function program3(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n            <div class=\"alert upcoming\">\n                <div class=\"row-fluid\">\n                    <div class=\"span2\">\n                        <div class=\"todo-box-wrapper\"><img class=\"todo-box\"/></div>\n                    </div>\n                    <div class=\"span10\">\n                        <div class=\"beneficiaryName\">";
+  foundHelper = helpers.beneficiaryName;
+  stack1 = foundHelper || depth0.beneficiaryName;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "beneficiaryName", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</div>\n                        <div class=\"detail\">";
+  foundHelper = helpers.description;
+  stack1 = foundHelper || depth0.description;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "description", { hash: {} }); }
+  buffer += escapeExpression(stack1) + " by ";
+  foundHelper = helpers.dueDate;
+  stack1 = foundHelper || depth0.dueDate;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "dueDate", { hash: {} }); }
+  buffer += escapeExpression(stack1) + " abc abc abc abc</div>\n                    </div>\n                </div>\n            </div>\n        ";
+  return buffer;}
+
+function program5(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\n            <div class=\"alert completed\">\n                <div class=\"row-fluid\">\n                    <div class=\"span2 boo\">\n                        <div class=\"todo-box-wrapper\"><img class=\"todo-box checked\"/></div>\n                    </div>\n                    <div class=\"span10\">\n                        <div class=\"beneficiaryName\">";
+  foundHelper = helpers.beneficiaryName;
+  stack1 = foundHelper || depth0.beneficiaryName;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "beneficiaryName", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</div>\n                        <div class=\"detail\">";
+  foundHelper = helpers.description;
+  stack1 = foundHelper || depth0.description;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "description", { hash: {} }); }
+  buffer += escapeExpression(stack1) + " by ";
+  foundHelper = helpers.dueDate;
+  stack1 = foundHelper || depth0.dueDate;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "dueDate", { hash: {} }); }
+  buffer += escapeExpression(stack1) + " abc abc abc abc</div>\n                    </div>\n                </div>\n            </div>\n        ";
+  return buffer;}
+
+  buffer += "<div class=\"tabbable\">\n    <ul class=\"nav nav-tabs navbar-fixed-top affected-by-sidepanel\">\n        <li class=\"active\"><a href=\"#overdue\" data-toggle=\"tab\">Overdue (<span id=\"overdue-count\">";
+  foundHelper = helpers.overdue;
+  stack1 = foundHelper || depth0.overdue;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.length);
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "overdue.length", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</span>)</a></li>\n        <li><a href=\"#upcoming\" data-toggle=\"tab\">To Do (<span id=\"upcoming-count\">";
+  foundHelper = helpers.upcoming;
+  stack1 = foundHelper || depth0.upcoming;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.length);
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "upcoming.length", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</span>)</a></li>\n        <li><a href=\"#completed\" data-toggle=\"tab\">Done (<span id=\"completed-count\">";
+  foundHelper = helpers.completed;
+  stack1 = foundHelper || depth0.completed;
+  stack1 = (stack1 === null || stack1 === undefined || stack1 === false ? stack1 : stack1.length);
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "completed.length", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "</span>)</a></li>\n    </ul>\n</div>\n\n<div class=\"tab-content container-fluid container-no-padding\">\n    <div class=\"tab-pane overdue active\" id=\"overdue\">\n        ";
+  foundHelper = helpers.overdue;
+  stack1 = foundHelper || depth0.overdue;
+  stack2 = helpers.each;
+  tmp1 = self.program(1, program1, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.noop;
+  stack1 = stack2.call(depth0, stack1, tmp1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </div>\n\n    <div class=\"tab-pane upcoming\" id=\"upcoming\">\n        ";
+  foundHelper = helpers.upcoming;
+  stack1 = foundHelper || depth0.upcoming;
+  stack2 = helpers.each;
+  tmp1 = self.program(3, program3, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.noop;
+  stack1 = stack2.call(depth0, stack1, tmp1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </div>\n\n    <div class=\"tab-pane completed\" id=\"completed\">\n        ";
+  foundHelper = helpers.completed;
+  stack1 = foundHelper || depth0.completed;
+  stack2 = helpers.each;
+  tmp1 = self.program(5, program5, data);
+  tmp1.hash = {};
+  tmp1.fn = tmp1;
+  tmp1.inverse = self.noop;
+  stack1 = stack2.call(depth0, stack1, tmp1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </div>\n</div>\n";
   return buffer;});
 templates['workplan_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;

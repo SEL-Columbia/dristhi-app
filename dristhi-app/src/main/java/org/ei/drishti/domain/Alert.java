@@ -5,6 +5,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.dto.AlertPriority;
 
+import static org.ei.drishti.domain.AlertStatus.closed;
+
 public class Alert {
     private String caseID;
     private String beneficiaryName;
@@ -14,8 +16,9 @@ public class Alert {
     private AlertPriority priority;
     private String startDate;
     private String expiryDate;
+    private AlertStatus status;
 
-    public Alert(String caseID, String beneficiaryName, String village, String visitCode, String thaayiCardNumber, AlertPriority priority, String startDate, String expiryDate) {
+    public Alert(String caseID, String beneficiaryName, String village, String visitCode, String thaayiCardNumber, AlertPriority priority, String startDate, String expiryDate, AlertStatus status) {
         this.caseID = caseID;
         this.beneficiaryName = beneficiaryName;
         this.village = village;
@@ -24,6 +27,7 @@ public class Alert {
         this.priority = priority;
         this.startDate = startDate;
         this.expiryDate = expiryDate;
+        this.status = status;
     }
 
     public AlertPriority priority() {
@@ -60,6 +64,10 @@ public class Alert {
 
     public String village() {
         return village;
+    }
+
+    public boolean isCompleted() {
+        return closed.equals(status);
     }
 
     @Override

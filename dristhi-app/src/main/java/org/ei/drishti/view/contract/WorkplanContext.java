@@ -3,13 +3,13 @@ package org.ei.drishti.view.contract;
 import java.util.List;
 
 public class WorkplanContext {
-    private int totalAlertCount;
-    private int totalReminderCount;
-    private List<WorkplanVillageSummary> villages;
+    private List<WorkplanTodo> overdue;
+    private List<WorkplanTodo> upcoming;
+    private List<WorkplanTodo> completed;
 
-    public WorkplanContext(int totalAlertCount, int totalReminderCount, List<WorkplanVillageSummary> villages) {
-        this.totalAlertCount = totalAlertCount;
-        this.totalReminderCount = totalReminderCount;
-        this.villages = villages;
+    public WorkplanContext(List<WorkplanTodo> overdue, List<WorkplanTodo> upcoming, List<WorkplanTodo> completed) {
+        this.overdue = overdue;
+        this.upcoming = upcoming;
+        this.completed = completed;
     }
 }
