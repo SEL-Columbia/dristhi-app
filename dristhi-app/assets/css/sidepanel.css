@@ -8,6 +8,15 @@
     position: relative;
 }
 
+.tabbable .nav.nav-tabs.sidepanel-active {
+    display: block;
+    overflow: hidden;
+    margin-left: 0px;
+    position: relative;
+    top: -4px;
+    margin-bottom: 4px;
+}
+
 .brand.sidepanel-active .name {
     display: none;
 }

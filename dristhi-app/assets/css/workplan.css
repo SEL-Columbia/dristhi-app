@@ -1,30 +1,25 @@
 .content {
-    padding-bottom: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 105px;
 }
 
-.content .table {
-    width: 92%;
-    margin: auto;
-    margin-top: 10px;
-}
-
-.table .summary-icon {
+.tab-content {
+    margin-left: 10px;
     margin-right: 10px;
 }
 
-.table .summary {
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.village-breakdown {
+.tabbable ul li {
+    font-weight: bold;
     font-size: 14px;
-    font-weight: 600;
 }
 
-.village-header {
-    width: 92%;
-    margin: auto;
-    margin-top: 10px;
-    color: #1b84bb;
+.tabbable ul li a {
+    line-height: 32px;
+}
+
+.tabbable ul {
+    background-color: #d3d3d3;
+    height: 50px;
+    top: 48px;
 }
