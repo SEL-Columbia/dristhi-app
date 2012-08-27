@@ -70,6 +70,10 @@ public class Alert {
         return closed.equals(status);
     }
 
+    public AlertStatus status() {
+        return status;
+    }
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
