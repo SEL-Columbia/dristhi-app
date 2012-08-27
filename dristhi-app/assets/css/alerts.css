@@ -1,0 +1,65 @@
+.alert.overdue, .alert.upcoming, .alert.completed {
+    padding-right: 5px;
+    padding-left: 8px;
+    color: #000;
+    border: 1px solid;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.alert .todo-box-wrapper {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border: 2px solid;
+    float: left;
+}
+
+.alert .todo-box {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+.alert.overdue {
+    background: #f7cbcb;
+    border-color: #d8a8a8;
+}
+
+.alert.upcoming {
+    background: #c4e4f8;
+    border-color: #a7c5d8;
+}
+
+.alert.completed {
+    background: #cde6c1;
+    border-color: #a8d5a7;
+}
+
+.alert.overdue .todo-box-wrapper {
+    border-color: #903b3b;
+}
+
+.alert.upcoming .todo-box-wrapper {
+    border-color: #3b6f90;
+}
+
+.alert.completed .todo-box-wrapper {
+    border-color: #3e9143;
+}
+
+.alert .todo-box:not(.checked) {
+    content: url(../img/checkbox_background.png)
+}
+
+.alert.overdue .todo-box.checked {
+    content: url(../img/checkbox_overdue.png)
+}
+
+.alert.upcoming .todo-box.checked {
+    content: url(../img/checkbox_upcoming.png)
+}
+
+.alert.completed .todo-box.checked {
+    content: url(../img/checkbox_completed.png)
+}

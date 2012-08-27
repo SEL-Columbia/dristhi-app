@@ -4,6 +4,7 @@
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/custom.css" rel="stylesheet">
     <link href="../css/sidepanel.css" rel="stylesheet">
+    <link href="../css/alerts.css" rel="stylesheet">
 
     <link href="../css/workplan.css" rel="stylesheet">
     <link href="../css/workplan_detail.css" rel="stylesheet">
@@ -18,17 +19,21 @@
     <script type="text/javascript" src="../template/templates.js"></script>
     <script type="text/javascript" src="../js/anmNavigation.js"></script>
     <script type="text/javascript" src="../js/sidePanel.js"></script>
+    <script type="text/javascript" src="../js/alerts.js"></script>
 
     <script type="text/javascript" src="../js/workplan.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
             var workplan = new Workplan(new WorkplanBridge());
-            workplan.populateInto("#content");
+//            workplan.populateInto("#content");
             workplan.bindItemToWorkplanDetailView("#workplan-list", ".workplanElement");
 
             var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
             sidePanel.populateInto("#sidePanel");
+
+            var alerts = new Alerts();
+            alerts.bindAllCheckboxes(".todo-box");
         });
     </script>
 <body>
@@ -46,6 +51,41 @@
             </div>
         </div>
         <div id="content" class="content affected-by-sidepanel">
+            <h3 class="priority-header">OVERDUE</h3>
+
+            <div class="alert overdue">
+                <div class="row-fluid">
+                    <div class="span2">
+                        <div class="todo-box-wrapper"><img class="todo-box checked"/></div>
+                    </div>
+                    <div class="span10">
+                        <div class="beneficiaryName">{{beneficiaryName}}</div>
+                        <div class="detail">{{description}} by {{dueDate}} abc abc abc abc</div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert upcoming">
+                <div class="row-fluid">
+                    <div class="span2">
+                        <div class="todo-box-wrapper"><img class="todo-box checked"/></div>
+                    </div>
+                    <div class="span10">
+                        <div class="beneficiaryName">{{beneficiaryName}}</div>
+                        <div class="detail">{{description}} by {{dueDate}} abc abc abc abc</div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert completed">
+                <div class="row-fluid">
+                    <div class="span2 boo">
+                        <div class="todo-box-wrapper"><img class="todo-box checked"/></div>
+                    </div>
+                    <div class="span10">
+                        <div class="beneficiaryName">{{beneficiaryName}}</div>
+                        <div class="detail">{{description}} by {{dueDate}} abc abc abc abc</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

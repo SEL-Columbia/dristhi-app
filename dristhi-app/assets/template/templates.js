@@ -887,87 +887,9 @@ templates['sidepanel'] = template(function (Handlebars,depth0,helpers,partials,d
   return buffer;});
 templates['workplan'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, stack2, foundHelper, tmp1, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression, blockHelperMissing=helpers.blockHelperMissing;
+  var buffer = "", foundHelper, self=this;
 
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, stack2;
-  buffer += "\n        <tr class=\"workplanElement\" data-village=\"";
-  foundHelper = helpers.name;
-  stack1 = foundHelper || depth0.name;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "\">\n            <td><span class=\"summary\">";
-  foundHelper = helpers.name;
-  stack1 = foundHelper || depth0.name;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "name", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "</span><br/><span class=\"village-breakdown\">";
-  foundHelper = helpers.reminderCount;
-  stack1 = foundHelper || depth0.reminderCount;
-  foundHelper = helpers.ifNotZero;
-  stack2 = foundHelper || depth0.ifNotZero;
-  tmp1 = self.program(2, program2, data);
-  tmp1.hash = {};
-  tmp1.fn = tmp1;
-  tmp1.inverse = self.noop;
-  if(foundHelper && typeof stack2 === functionType) { stack1 = stack2.call(depth0, stack1, tmp1); }
-  else { stack1 = blockHelperMissing.call(depth0, stack2, stack1, tmp1); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  foundHelper = helpers.alertCount;
-  stack1 = foundHelper || depth0.alertCount;
-  foundHelper = helpers.ifNotZero;
-  stack2 = foundHelper || depth0.ifNotZero;
-  tmp1 = self.program(4, program4, data);
-  tmp1.hash = {};
-  tmp1.fn = tmp1;
-  tmp1.inverse = self.noop;
-  if(foundHelper && typeof stack2 === functionType) { stack1 = stack2.call(depth0, stack1, tmp1); }
-  else { stack1 = blockHelperMissing.call(depth0, stack2, stack1, tmp1); }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "</span>\n            </td>\n        </tr>\n    ";
-  return buffer;}
-function program2(depth0,data) {
-  
-  var buffer = "", stack1;
-  foundHelper = helpers.reminderCount;
-  stack1 = foundHelper || depth0.reminderCount;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "reminderCount", { hash: {} }); }
-  buffer += escapeExpression(stack1) + " Reminders, ";
-  return buffer;}
 
-function program4(depth0,data) {
-  
-  var buffer = "", stack1;
-  foundHelper = helpers.alertCount;
-  stack1 = foundHelper || depth0.alertCount;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "alertCount", { hash: {} }); }
-  buffer += escapeExpression(stack1) + " Alerts";
-  return buffer;}
-
-  buffer += "<table class=\"table table-bordered\">\n    <tbody>\n    <tr>\n        <td><i class=\"summary-icon icon-user\"></i><span class=\"summary\">";
-  foundHelper = helpers.totalAlertCount;
-  stack1 = foundHelper || depth0.totalAlertCount;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "totalAlertCount", { hash: {} }); }
-  buffer += escapeExpression(stack1) + " New Alerts</span></td>\n    </tr>\n    <tr>\n        <td><i class=\"summary-icon icon-user\"></i><span class=\"summary\">";
-  foundHelper = helpers.totalReminderCount;
-  stack1 = foundHelper || depth0.totalReminderCount;
-  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
-  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "totalReminderCount", { hash: {} }); }
-  buffer += escapeExpression(stack1) + " New Reminder</span></td>\n    </tr>\n    </tbody>\n</table>\n\n<h3 class=\"village-header\">Villages</h3>\n\n<table class=\"table table-bordered\" style=\"-webkit-tap-highlight-color: rgba(0, 0, 0, 0);\">\n    <tbody id=\"workplan-list\">\n    ";
-  foundHelper = helpers.villages;
-  stack1 = foundHelper || depth0.villages;
-  stack2 = helpers.each;
-  tmp1 = self.program(1, program1, data);
-  tmp1.hash = {};
-  tmp1.fn = tmp1;
-  tmp1.inverse = self.noop;
-  stack1 = stack2.call(depth0, stack1, tmp1);
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </tbody>\n</table>\n";
   return buffer;});
 templates['workplan_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
