@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static org.ei.drishti.domain.AlertStatus.closed;
 import static org.ei.drishti.domain.AlertStatus.open;
 import static org.ei.drishti.dto.AlertPriority.normal;
 import static org.ei.drishti.dto.AlertPriority.urgent;
@@ -48,9 +49,9 @@ public class AlertRepositoryTest extends AndroidTestCase {
 
     public void testShouldFetchAllAlerts() throws Exception {
         Alert alert1 = new Alert("Case X", "Theresa 1", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open);
-        Alert alert2 = new Alert("Case Y", "Theresa 2", "bherya", "ANC 2", "Thaayi 2", urgent, "2012-01-01", "2012-01-11", open);
+        Alert alert2 = new Alert("Case Y", "Theresa 2", "bherya", "ANC 2", "Thaayi 2", urgent, "2012-01-01", "2012-01-11", closed);
         Alert alert3 = new Alert("Case X", "Theresa 1", "bherya", "TT 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open);
-        Alert alert4 = new Alert("Case Y", "Theresa 2", "bherya", "IFA 1", "Thaayi 2", urgent, "2012-01-01", "2012-01-11", open);
+        Alert alert4 = new Alert("Case Y", "Theresa 2", "bherya", "IFA 1", "Thaayi 2", urgent, "2012-01-01", "2012-01-11", closed);
 
         alertRepository.createAlert(alert1);
         alertRepository.createAlert(alert2);
