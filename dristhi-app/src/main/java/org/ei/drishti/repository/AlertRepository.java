@@ -7,6 +7,7 @@ import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.AlertStatus;
 import org.ei.drishti.domain.VillageAlertSummary;
 import org.ei.drishti.dto.AlertPriority;
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 import static org.ei.drishti.domain.AlertStatus.closed;
 
 public class AlertRepository extends DrishtiRepository {
-    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, thaayiCardNumber VARCHAR, visitCode VARCHAR, benificiaryName VARCHAR, village VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR, status VARCHAR)";
+    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, thaayiCardNumber VARCHAR, visitCode VARCHAR, benificiaryName VARCHAR, village VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR, status VARCHAR)";
     private static final String ALERTS_TABLE_NAME = "alerts";
     public static final String ALERTS_CASEID_COLUMN = "caseID";
     public static final String ALERTS_THAAYI_CARD_COLUMN = "thaayiCardNumber";
@@ -24,8 +25,10 @@ public class AlertRepository extends DrishtiRepository {
     public static final String ALERTS_PRIORITY_COLUMN = "priority";
     public static final String ALERTS_STARTDATE_COLUMN = "startDate";
     public static final String ALERTS_EXPIRYDATE_COLUMN = "expiryDate";
+    public static final String ALERTS_COMPLETIONDATE_COLUMN = "completionDate";
     private static final String ALERTS_STATUS_COLUMN = "status";
-    private static final String[] ALERTS_TABLE_COLUMNS = new String[]{ALERTS_CASEID_COLUMN, ALERTS_BENEFICIARY_NAME_COLUMN, ALERTS_VILLAGE_COLUMN, ALERTS_VISIT_CODE_COLUMN, ALERTS_THAAYI_CARD_COLUMN, ALERTS_PRIORITY_COLUMN, ALERTS_STARTDATE_COLUMN, ALERTS_EXPIRYDATE_COLUMN, ALERTS_STATUS_COLUMN};
+    private static final String[] ALERTS_TABLE_COLUMNS = new String[]{ALERTS_CASEID_COLUMN, ALERTS_BENEFICIARY_NAME_COLUMN, ALERTS_VILLAGE_COLUMN, ALERTS_VISIT_CODE_COLUMN, ALERTS_THAAYI_CARD_COLUMN,
+            ALERTS_PRIORITY_COLUMN, ALERTS_STARTDATE_COLUMN, ALERTS_EXPIRYDATE_COLUMN, ALERTS_COMPLETIONDATE_COLUMN, ALERTS_STATUS_COLUMN};
     public static final String CASE_AND_VISIT_CODE_COLUMN_SELECTIONS = ALERTS_CASEID_COLUMN + " = ? AND " + ALERTS_VISIT_CODE_COLUMN + " = ?";
 
     @Override
@@ -39,22 +42,10 @@ public class AlertRepository extends DrishtiRepository {
         return readAllAlerts(cursor);
     }
 
-    public List<Alert> allForVillage(String villageName) {
-        SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(ALERTS_TABLE_NAME, ALERTS_TABLE_COLUMNS, ALERTS_VILLAGE_COLUMN + " = ?", new String[]{villageName}, null, null, null, null);
-        return readAllAlerts(cursor);
-    }
-
-    public List<Alert> allForCase(String caseId) {
+    public List<Alert> allActiveAlertsForCase(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(ALERTS_TABLE_NAME, ALERTS_TABLE_COLUMNS, ALERTS_CASEID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
-        return readAllAlerts(cursor);
-    }
-
-    public List<VillageAlertSummary> summary() {
-        SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(ALERTS_TABLE_NAME, new String[]{ALERTS_VILLAGE_COLUMN, "count(*)"}, null, null, ALERTS_VILLAGE_COLUMN, null, null);
-        return readAllVillageSummary(cursor);
+        return filterActiveAlerts(readAllAlerts(cursor));
     }
 
     public void createAlert(Alert alert) {
@@ -78,6 +69,7 @@ public class AlertRepository extends DrishtiRepository {
 
         ContentValues valuesToBeUpdated = new ContentValues();
         valuesToBeUpdated.put(ALERTS_STATUS_COLUMN, closed.value());
+        valuesToBeUpdated.put(ALERTS_COMPLETIONDATE_COLUMN, LocalDate.now().toString());
         database.update(ALERTS_TABLE_NAME, valuesToBeUpdated, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, caseAndVisitCodeColumnValues);
     }
 
@@ -95,7 +87,8 @@ public class AlertRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<Alert> alerts = new ArrayList<Alert>();
         while (!cursor.isAfterLast()) {
-            alerts.add(new Alert(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), AlertPriority.from(cursor.getString(5)), cursor.getString(6), cursor.getString(7), AlertStatus.from(cursor.getString(8))));
+            alerts.add(new Alert(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), AlertPriority.from(cursor.getString(5)),
+                    cursor.getString(6), cursor.getString(7), AlertStatus.from(cursor.getString(9))).withCompletionDate(cursor.getString(8)));
             cursor.moveToNext();
         }
         cursor.close();
@@ -116,6 +109,17 @@ public class AlertRepository extends DrishtiRepository {
         return villageSummaries;
     }
 
+    private List<Alert> filterActiveAlerts(List<Alert> alerts) {
+        List<Alert> activeAlerts = new ArrayList<Alert>();
+        for (Alert alert : alerts) {
+            LocalDate today = LocalDate.now();
+            if (LocalDate.parse(alert.expiryDate()).isAfter(today) || (closed.equals(alert.status()) && LocalDate.parse(alert.completionDate()).isAfter(today.minusDays(3)))) {
+                activeAlerts.add(alert);
+            }
+        }
+        return activeAlerts;
+    }
+
     private ContentValues createValuesFor(Alert alert) {
         ContentValues values = new ContentValues();
         values.put(ALERTS_CASEID_COLUMN, alert.caseId());
@@ -126,6 +130,7 @@ public class AlertRepository extends DrishtiRepository {
         values.put(ALERTS_PRIORITY_COLUMN, alert.priority().value());
         values.put(ALERTS_STARTDATE_COLUMN, alert.startDate());
         values.put(ALERTS_EXPIRYDATE_COLUMN, alert.expiryDate());
+        values.put(ALERTS_COMPLETIONDATE_COLUMN, alert.completionDate());
         values.put(ALERTS_STATUS_COLUMN, alert.status().value());
         return values;
     }

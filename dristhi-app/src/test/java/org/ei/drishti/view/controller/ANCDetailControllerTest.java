@@ -66,7 +66,7 @@ public class ANCDetailControllerTest {
 
         when(allBeneficiaries.findMother(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withExtraDetails(true, "District Hospital").withDetails(details));
         when(allEligibleCouples.findByCaseID("EC CASE 1")).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "IUD", "Village 1", "Subcenter 1", new HashMap<String, String>()));
-        when(allAlerts.fetchAllForCase(caseId)).thenReturn(asList(todo, urgentTodo));
+        when(allAlerts.fetchAllActiveAlertsForCase(caseId)).thenReturn(asList(todo, urgentTodo));
         when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent));
 
         ANCDetail expectedDetail = new ANCDetail(caseId, "TC 1", "Woman 1",

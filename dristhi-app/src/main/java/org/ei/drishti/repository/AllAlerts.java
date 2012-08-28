@@ -42,16 +42,8 @@ public class AllAlerts {
         repository.deleteAllAlerts();
     }
 
-    public List<VillageAlertSummary> villageSummary() {
-        return repository.summary();
-    }
-
-    public List<Alert> fetchAllForVillage(String villageName) {
-        return repository.allForVillage(villageName);
-    }
-
-    public List<Alert> fetchAllForCase(String caseId) {
-        return repository.allForCase(caseId);
+    public List<Alert> fetchAllActiveAlertsForCase(String caseId) {
+        return repository.allActiveAlertsForCase(caseId);
     }
 
     private void createAlert(Action action) {

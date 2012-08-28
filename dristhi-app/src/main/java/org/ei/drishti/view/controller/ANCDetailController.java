@@ -47,7 +47,7 @@ public class ANCDetailController {
     public String get() {
         Mother mother = allBeneficiaries.findMother(caseId);
         EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
-        List<List<ProfileTodo>> todosAndUrgentTodos = classifyTodosBasedOnUrgency(allAlerts.fetchAllForCase(caseId));
+        List<List<ProfileTodo>> todosAndUrgentTodos = classifyTodosBasedOnUrgency(allAlerts.fetchAllActiveAlertsForCase(caseId));
 
         LocalDate lmp = LocalDate.parse(mother.referenceDate());
         String edd = lmp.plusWeeks(40).toString();

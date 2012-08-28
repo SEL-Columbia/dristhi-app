@@ -16,6 +16,7 @@ public class Alert {
     private AlertPriority priority;
     private String startDate;
     private String expiryDate;
+    private String completionDate;
     private AlertStatus status;
 
     public Alert(String caseID, String beneficiaryName, String village, String visitCode, String thaayiCardNumber, AlertPriority priority, String startDate, String expiryDate, AlertStatus status) {
@@ -28,6 +29,11 @@ public class Alert {
         this.startDate = startDate;
         this.expiryDate = expiryDate;
         this.status = status;
+    }
+
+    public Alert withCompletionDate(String completionDate) {
+        this.completionDate = completionDate;
+        return this;
     }
 
     public AlertPriority priority() {
@@ -64,6 +70,10 @@ public class Alert {
 
     public String village() {
         return village;
+    }
+
+    public String completionDate() {
+        return completionDate;
     }
 
     public boolean isCompleted() {

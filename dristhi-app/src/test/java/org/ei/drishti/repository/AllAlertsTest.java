@@ -94,14 +94,6 @@ public class AllAlertsTest {
     }
 
     @Test
-    public void shouldFindUniqueLocationsOfAlertsInDB() {
-        List<VillageAlertSummary> summaries = Arrays.asList(new VillageAlertSummary("Location 1", 1), new VillageAlertSummary("Location 2", 1));
-        when(alertRepository.summary()).thenReturn(summaries);
-
-        assertEquals(summaries, allAlerts.villageSummary());
-    }
-
-    @Test
     public void shouldNotFailIfActionTypeIsNotExpected() throws Exception {
         allAlerts.handleAction(unknownAction("alert"));
     }
@@ -135,16 +127,6 @@ public class AllAlertsTest {
         when(alertRepository.allAlerts()).thenReturn(expectedAlerts);
 
         List<Alert> alerts = allAlerts.fetchAll();
-
-        assertEquals(expectedAlerts, alerts);
-    }
-
-    @Test
-    public void shouldFetchAllAlertsForAVillageFromRepository() throws Exception {
-        List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "bherya1", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open), new Alert("Case Y", "Theresa 2", "bherya1", "ANC 2", "Thaayi 2", normal, "2012-01-01", "2012-01-22", open));
-        when(alertRepository.allForVillage("bherya1")).thenReturn(expectedAlerts);
-
-        List<Alert> alerts = allAlerts.fetchAllForVillage("bherya1");
 
         assertEquals(expectedAlerts, alerts);
     }
