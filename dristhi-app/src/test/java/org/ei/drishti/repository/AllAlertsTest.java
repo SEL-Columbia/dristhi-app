@@ -68,15 +68,15 @@ public class AllAlertsTest {
     }
 
     @Test
-    public void shouldDeleteFromRepositoryForDeleteActions() throws Exception {
-        Action firstAction = actionForDeleteAlert("Case X", "ANC 1", "0");
-        Action secondAction = actionForDeleteAlert("Case Y", "ANC 2", "0");
+    public void shouldMarkAlertAsClosedInRepositoryForCloseActions() throws Exception {
+        Action firstAction = actionForCloseAlert("Case X", "ANC 1", "0");
+        Action secondAction = actionForCloseAlert("Case Y", "ANC 2", "0");
 
         allAlerts.handleAction(firstAction);
         allAlerts.handleAction(secondAction);
 
-        verify(alertRepository).deleteAlertsForVisitCodeOfCase("Case X", "ANC 1");
-        verify(alertRepository).deleteAlertsForVisitCodeOfCase("Case Y", "ANC 2");
+        verify(alertRepository).markAlertAsClosed("Case X", "ANC 1");
+        verify(alertRepository).markAlertAsClosed("Case Y", "ANC 2");
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -109,23 +109,23 @@ public class AllAlertsTest {
     @Test
     public void shouldUpdateDeleteAndDeleteAllAlertActionsBasedOnTheirType() throws Exception {
         Action firstCreateAction = setupActionForMotherCreateAlert("Case X", normal, "ANC 1", "2012-01-01", "2012-01-11");
-        Action firstDeleteAction = actionForDeleteAlert("Case Y", "ANC 2", "0");
+        Action firstCloseAction = actionForCloseAlert("Case Y", "ANC 2", "0");
         Action secondCreateAction = setupActionForMotherCreateAlert("Case Z", normal, "ANC 2", "2012-01-01", "2012-01-22");
         Action deleteAllAction = actionForDeleteAllAlert("Case A");
-        Action secondDeleteAction = actionForDeleteAlert("Case B", "ANC 3", "0");
+        Action secondCloseAction = actionForCloseAlert("Case B", "ANC 3", "0");
 
         allAlerts.handleAction(firstCreateAction);
-        allAlerts.handleAction(firstDeleteAction);
+        allAlerts.handleAction(firstCloseAction);
         allAlerts.handleAction(secondCreateAction);
         allAlerts.handleAction(deleteAllAction);
-        allAlerts.handleAction(secondDeleteAction);
+        allAlerts.handleAction(secondCloseAction);
 
         InOrder inOrder = inOrder(alertRepository);
         inOrder.verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-11", open));
-        inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase("Case Y", "ANC 2");
+        inOrder.verify(alertRepository).markAlertAsClosed("Case Y", "ANC 2");
         inOrder.verify(alertRepository).createAlert(new Alert("Case Z", "Theresa Case Z", "Village Case Z", "ANC 2", "Thaayi Case Z", normal, "2012-01-01", "2012-01-22", open));
         inOrder.verify(alertRepository).deleteAllAlertsForCase("Case A");
-        inOrder.verify(alertRepository).deleteAlertsForVisitCodeOfCase("Case B", "ANC 3");
+        inOrder.verify(alertRepository).markAlertAsClosed("Case B", "ANC 3");
         verifyNoMoreInteractions(alertRepository);
     }
 

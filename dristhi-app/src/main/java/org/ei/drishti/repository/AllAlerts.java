@@ -29,8 +29,8 @@ public class AllAlerts {
     public void handleAction(Action action) {
         if ("createAlert".equals(action.type())) {
             createAlert(action);
-        } else if ("deleteAlert".equals(action.type())) {
-            repository.deleteAlertsForVisitCodeOfCase(action.caseID(), action.get("visitCode"));
+        } else if ("closeAlert".equals(action.type())) {
+            repository.markAlertAsClosed(action.caseID(), action.get("visitCode"));
         } else if ("deleteAllAlerts".equals(action.type())) {
             repository.deleteAllAlertsForCase(action.caseID());
         } else {

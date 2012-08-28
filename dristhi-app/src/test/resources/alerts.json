@@ -24,7 +24,7 @@
         "details": {
         },
         "actionTarget": "alert",
-        "actionType": "deleteAlert",
+        "actionType": "closeAlert",
         "timeStamp": 1333695798644
     }
 ]

@@ -18,7 +18,7 @@ import static junit.framework.Assert.assertTrue;
 import static org.ei.drishti.dto.AlertPriority.normal;
 import static org.ei.drishti.dto.BeneficiaryType.mother;
 import static org.ei.drishti.util.ActionBuilder.actionForCreateAlert;
-import static org.ei.drishti.util.ActionBuilder.actionForDeleteAlert;
+import static org.ei.drishti.util.ActionBuilder.actionForCloseAlert;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -44,7 +44,7 @@ public class DrishtiServiceTest {
         Response<List<Action>> actions = drishtiService.fetchNewActions("anm1", "0");
 
         verify(httpAgent).fetch(EXPECTED_URL);
-        assertEquals(asList(actionForCreateAlert("Case X", normal.value(), mother.value(), "ANC 1", "2012-01-01", "2012-01-11", "1333695798583"), actionForDeleteAlert("Case Y", "ANC 1", "1333695798644")), actions.payload());
+        assertEquals(asList(actionForCreateAlert("Case X", normal.value(), mother.value(), "ANC 1", "2012-01-01", "2012-01-11", "1333695798583"), actionForCloseAlert("Case Y", "ANC 1", "1333695798644")), actions.payload());
         assertEquals(ResponseStatus.success, actions.status());
     }
 

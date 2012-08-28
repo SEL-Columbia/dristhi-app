@@ -85,17 +85,18 @@ public class AlertRepositoryTest extends AndroidTestCase {
         assertEquals(asList(new VillageAlertSummary("Bherya 1", 2), new VillageAlertSummary("Bherya 2", 1), new VillageAlertSummary("Bherya 3", 1)), alertRepository.summary());
     }
 
-    public void testShouldDeleteAlertsBasedOnCaseIDAndVisitCode() throws Exception {
+    public void testShouldMarkAlertsAsClosedBasedOnCaseIDAndVisitCode() throws Exception {
         alertRepository.createAlert(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open));
         alertRepository.createAlert(new Alert("Case Y", "SomeOtherWoman", "bherya", "ANC 2", "Thaayi 2", normal, "2012-01-01", "2012-01-11", open));
 
-        alertRepository.deleteAlertsForVisitCodeOfCase("Case X", "ANC 1");
+        alertRepository.markAlertAsClosed("Case X", "ANC 1");
 
-        assertEquals(asList(new Alert("Case Y", "SomeOtherWoman", "bherya", "ANC 2", "Thaayi 2", normal, "2012-01-01", "2012-01-11", open)), alertRepository.allAlerts());
+        assertEquals(asList(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", closed),
+                new Alert("Case Y", "SomeOtherWoman", "bherya", "ANC 2", "Thaayi 2", normal, "2012-01-01", "2012-01-11", open)), alertRepository.allAlerts());
     }
 
-    public void testShouldNotFailDeletionWhenNothingToDeleteExists() throws Exception {
-        alertRepository.deleteAlertsForVisitCodeOfCase("Case X", "ANC 1");
+    public void testShouldNotFailClosingAlertWhenNoAlertExists() throws Exception {
+        alertRepository.markAlertAsClosed("Case X", "ANC 1");
 
         assertTrue(alertRepository.allAlerts().isEmpty());
     }

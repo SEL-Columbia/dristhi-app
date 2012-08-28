@@ -11,6 +11,8 @@ import org.ei.drishti.dto.AlertPriority;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.ei.drishti.domain.AlertStatus.closed;
+
 public class AlertRepository extends DrishtiRepository {
     private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, thaayiCardNumber VARCHAR, visitCode VARCHAR, benificiaryName VARCHAR, village VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR, status VARCHAR)";
     private static final String ALERTS_TABLE_NAME = "alerts";
@@ -39,13 +41,13 @@ public class AlertRepository extends DrishtiRepository {
 
     public List<Alert> allForVillage(String villageName) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(ALERTS_TABLE_NAME, ALERTS_TABLE_COLUMNS, ALERTS_VILLAGE_COLUMN + " = ?", new String[] {villageName}, null, null, null, null);
+        Cursor cursor = database.query(ALERTS_TABLE_NAME, ALERTS_TABLE_COLUMNS, ALERTS_VILLAGE_COLUMN + " = ?", new String[]{villageName}, null, null, null, null);
         return readAllAlerts(cursor);
     }
 
     public List<Alert> allForCase(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(ALERTS_TABLE_NAME, ALERTS_TABLE_COLUMNS, ALERTS_CASEID_COLUMN + " = ?", new String[] {caseId}, null, null, null, null);
+        Cursor cursor = database.query(ALERTS_TABLE_NAME, ALERTS_TABLE_COLUMNS, ALERTS_CASEID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
         return readAllAlerts(cursor);
     }
 
@@ -70,10 +72,13 @@ public class AlertRepository extends DrishtiRepository {
         }
     }
 
-    public void deleteAlertsForVisitCodeOfCase(String caseId, String visitCode) {
+    public void markAlertAsClosed(String caseId, String visitCode) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
+        String[] caseAndVisitCodeColumnValues = {caseId, visitCode};
 
-        database.delete(ALERTS_TABLE_NAME, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, new String[]{caseId, visitCode});
+        ContentValues valuesToBeUpdated = new ContentValues();
+        valuesToBeUpdated.put(ALERTS_STATUS_COLUMN, closed.value());
+        database.update(ALERTS_TABLE_NAME, valuesToBeUpdated, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, caseAndVisitCodeColumnValues);
     }
 
     public void deleteAllAlertsForCase(String caseId) {
