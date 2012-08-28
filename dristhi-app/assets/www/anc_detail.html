@@ -17,6 +17,7 @@
     <script type="text/javascript" src="../template/templates.js"></script>
     <script type="text/javascript" src="../js/anmNavigation.js"></script>
     <script type="text/javascript" src="../js/sidePanel.js"></script>
+    <script type="text/javascript" src="../js/modal.js"></script>
 
     <script type="text/javascript" src="../js/anc_detail.js"></script>
     <script type="text/javascript">
@@ -29,6 +30,9 @@
 
             var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
             sidePanel.populateInto("#sidePanel");
+
+            var modal = new Modal();
+            modal.bindToClick();
         });
     </script>
 </head>
