@@ -43,6 +43,15 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         database.insert(EC_TABLE_NAME, null, createValuesFor(eligibleCouple));
     }
 
+    public void updateDetails(String caseId, Map<String, String> details) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+
+        ContentValues valuesToUpdate = new ContentValues();
+        valuesToUpdate.put(DETAILS_COLUMN, new Gson().toJson(details));
+
+        database.update(EC_TABLE_NAME, valuesToUpdate, CASE_ID_COLUMN + " = ?", new String[]{caseId});
+    }
+
     public List<EligibleCouple> allEligibleCouples() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, null, null, null, null, null, null);

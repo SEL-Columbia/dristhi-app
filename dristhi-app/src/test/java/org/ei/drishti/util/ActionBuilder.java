@@ -1,12 +1,14 @@
 package org.ei.drishti.util;
 
 import org.ei.drishti.dto.Action;
+import org.ei.drishti.dto.ActionData;
 import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.dto.BeneficiaryType;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.ei.drishti.dto.ActionData.*;
 
@@ -23,8 +25,13 @@ public class ActionBuilder {
         return new Action(caseID, "alert", "deleteAllAlerts", new HashMap<String, String>(), "0", new HashMap<String, String>());
     }
 
-    public static Action actionForCreateEC(String caseID, String wifeName, String husbandName, String ecNumber, String currentMethod, String village, String subCenter, String phc) {
-        return new Action(caseID, "eligibleCouple", "createEC", createEligibleCouple(wifeName, husbandName, ecNumber, currentMethod, village, subCenter, phc, new HashMap<String, String>()).data(), "0", new HashMap<String, String>());
+    public static Action actionForCreateEC(String caseID, String wifeName, String husbandName, String ecNumber, String village, String subCenter, String phc) {
+        return new Action(caseID, "eligibleCouple", "createEC", createEligibleCouple(wifeName, husbandName, ecNumber, village, subCenter, phc, new HashMap<String, String>()).data(), "0", new HashMap<String, String>());
+    }
+
+    public static Action actionForUpdateECDetails(String caseId, Map<String, String> details) {
+        ActionData actionData = updateEligibleCoupleDetails(details);
+        return new Action(caseId, "eligibleCouple", "updateDetails", actionData.data(), "0", actionData.details());
     }
 
     public static Action actionForDeleteEC(String caseID) {
