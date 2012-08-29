@@ -42,7 +42,6 @@ function FakeECContext() {
                     village: "Village 1",
                     subcenter: "SubCenter 1",
                     isHighPriority: true,
-                    currentMethod: "IUD",
                     alerts: [
                         {
                             message: "Alert 1"
@@ -80,7 +79,13 @@ function FakeECContext() {
                             date: "2m 3d ago",
                             status: "done"
                         }
-                    ]
+                    ],
+                    details: {
+                        currentMethod: "Condom",
+                        headOfHousehold: "Head Person",
+                        religion: "Religion X",
+                        pregnancies: "3"
+                    }
                 }
             );
         }

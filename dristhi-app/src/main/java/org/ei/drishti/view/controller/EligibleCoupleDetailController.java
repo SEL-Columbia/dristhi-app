@@ -35,7 +35,8 @@ public class EligibleCoupleDetailController {
         EligibleCouple eligibleCouple = allEligibleCouples.findByCaseID(caseId);
 
         ECDetail ecContext = new ECDetail(caseId, eligibleCouple.wifeName(), eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(),
-                false, null, new ArrayList<ProfileTodo>(), new ArrayList<Child>(), getEvents());
+                false, null, new ArrayList<ProfileTodo>(), new ArrayList<Child>(), getEvents(), eligibleCouple.details());
+
         return new Gson().toJson(ecContext);
     }
 
