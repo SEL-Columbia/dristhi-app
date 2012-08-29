@@ -11,17 +11,15 @@ public class EligibleCouple {
     private String wifeName;
     private String husbandName;
     private String ecNumber;
-    private String currentMethod;
     private final String village;
     private final String subcenter;
     private Map<String, String> details;
 
-    public EligibleCouple(String caseId, String wifeName, String husbandName, String ecNumber, String currentMethod, String village, String subcenter, Map<String, String> details) {
+    public EligibleCouple(String caseId, String wifeName, String husbandName, String ecNumber, String village, String subcenter, Map<String, String> details) {
         this.caseId = caseId;
         this.wifeName = wifeName;
         this.husbandName = husbandName;
         this.ecNumber = ecNumber;
-        this.currentMethod = currentMethod;
         this.village = village;
         this.subcenter = subcenter;
         this.details = details;
@@ -49,10 +47,6 @@ public class EligibleCouple {
 
     public String subCenter() {
         return subcenter;
-    }
-
-    public String currentMethod() {
-        return currentMethod;
     }
 
     public Map<String, String> details() {
