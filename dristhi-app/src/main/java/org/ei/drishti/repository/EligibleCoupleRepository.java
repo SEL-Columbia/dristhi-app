@@ -113,7 +113,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         }
 
         if (details.containsKey("currentMethod")) {
-            timelineEventRepository.add(TimelineEvent.forChangeOfFPMethod(caseId, couple.details().get("currentMethod"), details.get("currentMethod"), details.get("dateOfAcceptingFP")));
+            timelineEventRepository.add(TimelineEvent.forChangeOfFPMethod(caseId, couple.details().get("currentMethod"), details.get("currentMethod"), details.get("familyPlanningMethodChangeDate")));
         }
     }
 }

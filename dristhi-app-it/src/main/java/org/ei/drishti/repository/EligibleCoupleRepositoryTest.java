@@ -47,11 +47,11 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldUpdateDetailsOfEligibleCoupleIntoRepository() throws Exception {
-        Map<String, String> detailsBeforeUpdate = create("Key 1", "Value 1").put("currentMethod", "IUD").put("dateOfAcceptingFP", "2012-01-01").map();
+        Map<String, String> detailsBeforeUpdate = create("Key 1", "Value 1").put("currentMethod", "IUD").map();
         EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsBeforeUpdate);
 
         repository.add(eligibleCouple);
-        Map<String, String> detailsToBeUpdated = create("Key 1", "Value 1").put("currentMethod", "Condom").put("dateOfAcceptingFP", "2012-03-03").put("Key 3", "Value 3").map();
+        Map<String, String> detailsToBeUpdated = create("Key 1", "Value 1").put("currentMethod", "Condom").put("familyPlanningMethodChangeDate", "2012-03-03").put("Key 3", "Value 3").map();
         repository.updateDetails("CASE X", detailsToBeUpdated);
 
         assertEquals(asList(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsToBeUpdated)), repository.allEligibleCouples());
@@ -59,7 +59,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldNotAddATimelineEventForFPMethodChangeWhenItIsNotChanged() throws Exception {
-        Map<String, String> detailsBeforeUpdate = create("Key 1", "Value 1").put("currentMethod", "IUD").put("dateOfAcceptingFP", "2012-01-01").map();
+        Map<String, String> detailsBeforeUpdate = create("Key 1", "Value 1").put("currentMethod", "IUD").put("familyPlanningMethodChangeDate", "2012-01-01").map();
         EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsBeforeUpdate);
 
         repository.add(eligibleCouple);
