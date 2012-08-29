@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.domain.TimelineEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +47,10 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     public void updateDetails(String caseId, Map<String, String> details) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
 
+        addTimelineEventsForChanges(caseId, details);
+
         ContentValues valuesToUpdate = new ContentValues();
         valuesToUpdate.put(DETAILS_COLUMN, new Gson().toJson(details));
-
         database.update(EC_TABLE_NAME, valuesToUpdate, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
@@ -102,5 +104,16 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         }
         cursor.close();
         return eligibleCouples;
+    }
+
+    private void addTimelineEventsForChanges(String caseId, Map<String, String> details) {
+        EligibleCouple couple = findByCaseID(caseId);
+        if (couple == null) {
+            return;
+        }
+
+        if (details.containsKey("currentMethod")) {
+            timelineEventRepository.add(TimelineEvent.forChangeOfFPMethod(caseId, couple.details().get("currentMethod"), details.get("currentMethod"), details.get("dateOfAcceptingFP")));
+        }
     }
 }

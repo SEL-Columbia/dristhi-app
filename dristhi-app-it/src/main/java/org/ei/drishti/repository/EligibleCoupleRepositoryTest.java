@@ -47,14 +47,26 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldUpdateDetailsOfEligibleCoupleIntoRepository() throws Exception {
-        Map<String, String> details = create("Key 1", "Value 1").put("Key 2", "Value 2").map();
-        EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", details);
+        Map<String, String> detailsBeforeUpdate = create("Key 1", "Value 1").put("currentMethod", "IUD").put("dateOfAcceptingFP", "2012-01-01").map();
+        EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsBeforeUpdate);
 
         repository.add(eligibleCouple);
-        Map<String, String> detailsToBeUpdated = create("Key 1", "Value 1").put("Key 2", "Value 2 NEW").put("Key 3", "Value 3").map();
+        Map<String, String> detailsToBeUpdated = create("Key 1", "Value 1").put("currentMethod", "Condom").put("dateOfAcceptingFP", "2012-03-03").put("Key 3", "Value 3").map();
         repository.updateDetails("CASE X", detailsToBeUpdated);
 
         assertEquals(asList(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsToBeUpdated)), repository.allEligibleCouples());
+        assertEquals(asList(TimelineEvent.forChangeOfFPMethod("CASE X", "IUD", "Condom", "2012-03-03")), timelineEventRepository.allFor("CASE X"));
+    }
+
+    public void testShouldNotAddATimelineEventForFPMethodChangeWhenItIsNotChanged() throws Exception {
+        Map<String, String> detailsBeforeUpdate = create("Key 1", "Value 1").put("currentMethod", "IUD").put("dateOfAcceptingFP", "2012-01-01").map();
+        EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsBeforeUpdate);
+
+        repository.add(eligibleCouple);
+        Map<String, String> detailsToBeUpdated = create("Key 1", "Value 1").put("somethingOtherThanCurrentMethod", "Blah").put("Key 3", "Value 3").map();
+        repository.updateDetails("CASE X", detailsToBeUpdated);
+
+        assertEquals(emptyList(), timelineEventRepository.allFor("CASE X"));
     }
 
     public void testShouldDeleteEligibleCoupleFromRepositoryBasedOnCaseID() throws Exception {

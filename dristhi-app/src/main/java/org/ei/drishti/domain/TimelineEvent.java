@@ -35,6 +35,10 @@ public class TimelineEvent {
         return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(referenceDate), "Got pregnant", "On: " + referenceDate, "Thaayi #: " + thaayiCardNumber);
     }
 
+    public static TimelineEvent forChangeOfFPMethod(String caseId, String oldFPMethod, String newFPMethod, String dateOfFPChange) {
+        return new TimelineEvent(caseId, "FPCHANGE", LocalDate.parse(dateOfFPChange), "Changed FP Method", "From: " + oldFPMethod, "To: " + newFPMethod);
+    }
+
     public String type() {
         return type;
     }
