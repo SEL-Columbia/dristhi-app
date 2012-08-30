@@ -104,7 +104,7 @@ public class Context {
     public AllBeneficiaries allBeneficiaries() {
         initRepository();
         if (allBeneficiaries == null) {
-            allBeneficiaries = new AllBeneficiaries(motherRepository(), childRepository());
+            allBeneficiaries = new AllBeneficiaries(motherRepository(), childRepository(), allTimelineEvents());
         }
         return allBeneficiaries;
     }

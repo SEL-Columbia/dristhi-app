@@ -39,6 +39,14 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "FPCHANGE", LocalDate.parse(dateOfFPChange), "Changed FP Method", "From: " + oldFPMethod, "To: " + newFPMethod);
     }
 
+    public static TimelineEvent forANCCareProvided(String caseId, String visitNumber, String visitDate) {
+        return new TimelineEvent(caseId, "ANCVISIT", LocalDate.parse(visitDate), "ANC Visit " + visitNumber, null, null);
+    }
+
+    public static TimelineEvent forIFATabletsProvided(String caseId, String numberOfIFATabletsProvided, String visitDate) {
+        return new TimelineEvent(caseId, "IFAPROVIDED", LocalDate.parse(visitDate), "IFA Provided", numberOfIFATabletsProvided + " tablets", null);
+    }
+
     public String type() {
         return type;
     }

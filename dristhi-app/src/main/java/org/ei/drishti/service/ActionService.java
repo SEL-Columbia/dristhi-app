@@ -40,7 +40,7 @@ public class ActionService {
             return nothingFetched;
         }
 
-            handleActions(response);
+        handleActions(response);
         allSettings.savePreviousFetchIndex(response.payload().get(response.payload().size() - 1).index());
         return FetchStatus.fetched;
     }
@@ -49,8 +49,10 @@ public class ActionService {
         for (Action action : response.payload()) {
             if (action.target().equals("alert")) {
                 allAlerts.handleAction(action);
-            } else if(action.target().equals("child")) {
-                allBeneficiaries.handleAction(action);
+            } else if (action.target().equals("child")) {
+                allBeneficiaries.handleChildAction(action);
+            } else if (action.target().equals("mother")) {
+                allBeneficiaries.handleMotherAction(action);
             } else {
                 allEligibleCouples.handleAction(action);
             }

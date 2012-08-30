@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.ei.drishti.dto.ActionData.*;
+import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class ActionBuilder {
     public static Action actionForCreateAlert(String caseID, String alertPriority, String beneficiaryType, String visitCode, String startDate, String expiryDate, String index) {
@@ -39,20 +40,29 @@ public class ActionBuilder {
     }
 
     public static Action actionForUpdateBeneficiary() {
-        return new Action("Case X", "child", "updateBeneficiary", updateBeneficiary("pregnant").data(), "0", new HashMap<String, String>());
+        return new Action("Case X", "child", "updateBeneficiary", updatePregnancyStatus("pregnant").data(), "0", new HashMap<String, String>());
     }
 
-    public static Action actionForCreateMother(String motherCaseId) {
-        HashMap<String, String> details = new HashMap<String, String>();
-        details.put("some-key", "some-field");
-        return new Action(motherCaseId, "child", "createBeneficiary", createBeneficiary("ecCaseId", "thaayiCardNumber", LocalDate.now(), true, "Delivery Place", new HashMap<String, String>()).data(), "0", details);
+    public static Action actionForRegisterPregnancy(String motherCaseId) {
+        ActionData actionData = registerPregnancy("ecCaseId", "thaayiCardNumber", LocalDate.now(), true, "Delivery Place", mapOf("some-key", "some-field"));
+        return new Action(motherCaseId, "mother", "registerPregnancy", actionData.data(), "0", actionData.details());
     }
 
     public static Action actionForCreateChild(String motherCaseId) {
-        return new Action("Case X", "child", "createChildBeneficiary", registerChildBirth(motherCaseId, LocalDate.now(), "female").data(), "0", new HashMap<String, String>());
+        return new Action("Case X", "child", "register", registerChildBirth(motherCaseId, LocalDate.now(), "female").data(), "0", new HashMap<String, String>());
     }
 
     public static Action unknownAction(String target) {
         return new Action("Case X", target, "UNKNOWN-TYPE", new HashMap<String, String>(), "0", new HashMap<String, String>());
+    }
+
+    public static Action actionForUpdateMotherDetails(String motherCaseId, Map<String, String> details) {
+        ActionData actionData = updateMotherDetails(details);
+        return new Action(motherCaseId, "mother", "updateDetails", actionData.data(), "0", actionData.details());
+    }
+
+    public static Action actionForANCCareProvided(String motherCaseId, int visitNumber, int numberOfIFATabletsProvided, LocalDate visitDate) {
+        ActionData actionData = ancCareProvided(visitNumber, visitDate, numberOfIFATabletsProvided);
+        return new Action(motherCaseId, "mother", "ancCareProvided", actionData.data(), "0", new HashMap<String, String>());
     }
 }

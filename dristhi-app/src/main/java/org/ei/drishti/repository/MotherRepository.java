@@ -82,6 +82,13 @@ public class MotherRepository extends DrishtiRepository {
         return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + MOTHER_TABLE_NAME + " WHERE " + TYPE_COLUMN + " = ? OR date(" + REF_DATE_COLUMN + ", 'start of day', '+280 days') <= date('now')", new String[]{TYPE_PNC});
     }
 
+    public void updateDetails(String caseId, Map<String, String> details) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("details", new Gson().toJson(details));
+        database.update(MOTHER_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
+    }
+
     public Mother find(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);

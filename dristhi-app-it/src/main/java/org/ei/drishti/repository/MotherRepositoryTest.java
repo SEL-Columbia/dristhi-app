@@ -12,11 +12,12 @@ import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.AlertStatus.open;
+import static org.ei.drishti.util.EasyMap.create;
+import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class MotherRepositoryTest extends AndroidTestCase {
     private MotherRepository repository;
@@ -37,14 +38,25 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldInsertMother() throws Exception {
-        Map<String, String> details = new HashMap<String, String>();
-        details.put("some-key", "some-value");
+        Map<String, String> details = mapOf("some-key", "some-value");
         Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withExtraDetails(true, "District Hospital").withDetails(details);
 
         repository.add(mother);
 
         assertEquals(asList(mother), repository.allANCs());
         assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE X", "2012-06-08")), timelineEventRepository.allFor("CASE X"));
+    }
+
+    public void testShouldUpdateMotherDetails() throws Exception {
+        Map<String, String> details = mapOf("some-key", "some-value");
+        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withExtraDetails(true, "District Hospital").withDetails(details);
+        repository.add(mother);
+
+        Map<String, String> newDetails = create("some-key", "some-new-value").put("some-other-key", "blah").map();
+        repository.updateDetails("CASE X", newDetails);
+
+        Mother expectedMotherWithNewDetails = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withExtraDetails(true, "District Hospital").withDetails(newDetails);
+        assertEquals(asList(expectedMotherWithNewDetails), repository.allANCs());
     }
 
     public void testShouldInsertNonHighRiskMother() throws Exception {
