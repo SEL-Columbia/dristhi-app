@@ -60,7 +60,7 @@ function FakeANCContext() {
                         ashaName: "Shiwani",
                         contact: "----"
                     },
-                    alerts: [
+                    urgentTodos: [
                         {
                             message: "Alert 1",
                             formToOpen: "ANC_SERVICES"

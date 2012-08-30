@@ -42,12 +42,24 @@ function FakeECContext() {
                     village: "Village 1",
                     subcenter: "SubCenter 1",
                     isHighPriority: true,
-                    alerts: [
+                    urgentTodos: [
                         {
-                            message: "Alert 1"
+                            message: "Alert 1",
+                            formToOpen: "EC_SERVICES"
                         },
                         {
-                            message: "Alert 2"
+                            message: "Alert 2",
+                            formToOpen: "EC_SERVICES"
+                        }
+                    ],
+                    todos: [
+                        {
+                            message: "Family Planning follow up",
+                            formToOpen: "EC_SERVICES"
+                        },
+                        {
+                            message: "FP Resupply",
+                            formToOpen: "EC_SERVICES"
                         }
                     ],
                     children: [

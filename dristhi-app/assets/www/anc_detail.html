@@ -4,7 +4,7 @@
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/custom.css" rel="stylesheet">
     <link href="../css/sidepanel.css" rel="stylesheet">
-    <link href="../css/ec_detail.css" rel="stylesheet">
+    <link href="../css/alerts.css" rel="stylesheet">
     <link href="../css/timeline.css" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
@@ -18,6 +18,7 @@
     <script type="text/javascript" src="../js/anmNavigation.js"></script>
     <script type="text/javascript" src="../js/sidePanel.js"></script>
     <script type="text/javascript" src="../js/modal.js"></script>
+    <script type="text/javascript" src="../js/alerts.js"></script>
 
     <script type="text/javascript" src="../js/anc_detail.js"></script>
     <script type="text/javascript">
@@ -33,6 +34,9 @@
 
             var modal = new Modal();
             modal.bindToClick();
+
+            var alerts = new Alerts();
+            alerts.bindAllCheckboxes(".todo-box");
         });
     </script>
 </head>

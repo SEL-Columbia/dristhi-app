@@ -2,7 +2,6 @@ package org.ei.drishti.view.controller;
 
 import android.content.Context;
 import com.google.gson.Gson;
-import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllAlerts;
@@ -17,11 +16,9 @@ import org.joda.time.Months;
 import org.ocpsoft.pretty.time.PrettyTime;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-
-import static java.util.Arrays.asList;
-import static org.ei.drishti.dto.AlertPriority.urgent;
 
 public class ANCDetailController {
     private final Context context;
@@ -47,7 +44,7 @@ public class ANCDetailController {
     public String get() {
         Mother mother = allBeneficiaries.findMother(caseId);
         EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
-        List<List<ProfileTodo>> todosAndUrgentTodos = classifyTodosBasedOnUrgency(allAlerts.fetchAllActiveAlertsForCase(caseId));
+        List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 
         LocalDate lmp = LocalDate.parse(mother.referenceDate());
         String edd = lmp.plusWeeks(40).toString();
@@ -75,19 +72,7 @@ public class ANCDetailController {
             String dateOfEvent = prettyTime.format(prettyTime.calculatePreciseDuration(event.referenceDate().toDate()).subList(0, 2)).replaceAll(" _", "");
             timelineEvents.add(new TimelineEvent(event.type(), event.title(), new String[]{event.detail1(), event.detail2()}, dateOfEvent));
         }
+        Collections.reverse(timelineEvents);
         return timelineEvents;
-    }
-
-    private List<List<ProfileTodo>> classifyTodosBasedOnUrgency(List<Alert> alerts) {
-        List<ProfileTodo> todos = new ArrayList<ProfileTodo>();
-        List<ProfileTodo> urgentTodos = new ArrayList<ProfileTodo>();
-        for (Alert alert : alerts) {
-            if (urgent.equals(alert.priority())) {
-                urgentTodos.add(new ProfileTodo(alert));
-            } else {
-                todos.add(new ProfileTodo(alert));
-            }
-        }
-        return asList(todos, urgentTodos);
     }
 }

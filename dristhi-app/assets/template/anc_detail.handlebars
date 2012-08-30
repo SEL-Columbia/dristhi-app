@@ -17,13 +17,6 @@
 
 <div id="content" class="content affected-by-sidepanel">
     <div class="registry-container container-fluid">
-        {{#each alerts}}
-        <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert profile-alert todo">
-            <i class="icon-warning-sign"></i>
-            <strong>{{message}}</strong>
-        </div>
-        {{/each}}
-
         <div class="row-fluid">
             <div id="ec-name" class="span10">
                 <ul class="client-details unstyled">
@@ -44,15 +37,29 @@
 </div>
 
 <div id="todos" class="registry-container container-fluid">
+    {{#each urgentTodos}}
+        <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-todo overdue">
+            <div class="row-fluid">
+                <div class="span2">
+                    <div class="todo-box-wrapper"><img class="todo-box"/></div>
+                </div>
+                <div class="span10 alert-todo-message">
+                    <div class="detail">{{message}}</div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
     {{#each todos}}
-    <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-info todo">
-        <!-- <i class="icon-check"></i> -->
-
-		<label class="checkbox">
-			<input type="checkbox"> 
-	        <strong>{{message}}</strong>
-		</label>
-    </div>
+        <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-todo upcoming">
+            <div class="row-fluid">
+                <div class="span2">
+                    <div class="todo-box-wrapper"><img class="todo-box"/></div>
+                </div>
+                <div class="span10 alert-todo-message">
+                    <div class="detail">{{message}}</div>
+                </div>
+            </div>
+        </div>
     {{/each}}
 
     <div class="divider"></div>

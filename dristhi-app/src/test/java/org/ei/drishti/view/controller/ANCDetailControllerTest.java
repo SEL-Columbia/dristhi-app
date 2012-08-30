@@ -58,24 +58,28 @@ public class ANCDetailControllerTest {
     @Test
     public void shouldGetANCDetailsAsJSON() {
         TimelineEvent pregnancyEvent = TimelineEvent.forStartOfPregnancy(caseId, "2011-10-22");
-        Alert todo = new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open);
-        Alert urgentTodo = new Alert("Case X", "Theresa", "bherya", "TT 1", "Thaayi 1", urgent, "2012-02-02", "2012-02-11", open);
+        TimelineEvent ancEvent = TimelineEvent.forANCCareProvided(caseId, "2", "2011-10-22");
+        ProfileTodo todo = new ProfileTodo(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open));
+        ProfileTodo urgentTodo = new ProfileTodo(new Alert("Case X", "Theresa", "bherya", "TT 1", "Thaayi 1", urgent, "2012-02-02", "2012-02-11", open));
 
         HashMap<String, String> details = new HashMap<String, String>();
         details.put("ashaName", "Shiwani");
 
         when(allBeneficiaries.findMother(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withExtraDetails(true, "District Hospital").withDetails(details));
         when(allEligibleCouples.findByCaseID("EC CASE 1")).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "Village 1", "Subcenter 1", new HashMap<String, String>()));
-        when(allAlerts.fetchAllActiveAlertsForCase(caseId)).thenReturn(asList(todo, urgentTodo));
-        when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent));
+        when(allAlerts.fetchAllActiveAlertsForCase(caseId)).thenReturn(asList(asList(todo), asList(urgentTodo)));
+        when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent, ancEvent));
+
+        org.ei.drishti.view.contract.TimelineEvent pregnancyTimelineEvent = new org.ei.drishti.view.contract.TimelineEvent(pregnancyEvent.type(), pregnancyEvent.title(), new String[]{pregnancyEvent.detail1(), pregnancyEvent.detail2()}, "6m 1m ago");
+        org.ei.drishti.view.contract.TimelineEvent ancTimelineEvent = new org.ei.drishti.view.contract.TimelineEvent(ancEvent.type(), ancEvent.title(), new String[]{ancEvent.detail1(), ancEvent.detail2()}, "6m 1m ago");
 
         ANCDetail expectedDetail = new ANCDetail(caseId, "TC 1", "Woman 1",
                 new LocationDetails("Village 1", "Subcenter 1"),
                 new PregnancyDetails(true, "Anaemic", "7", "2012-07-28"),
                 new FacilityDetails("District Hospital", "----", "Shiwani"))
-                .addTimelineEvents(asList(new org.ei.drishti.view.contract.TimelineEvent(pregnancyEvent.type(), pregnancyEvent.title(), new String[]{pregnancyEvent.detail1(), pregnancyEvent.detail2()}, "6m 1m ago")))
-                .addTodos(asList(new ProfileTodo(todo)))
-                .addUrgentTodos(asList(new ProfileTodo(urgentTodo)));
+                .addTimelineEvents(asList(ancTimelineEvent, pregnancyTimelineEvent))
+                .addTodos(asList(todo))
+                .addUrgentTodos(asList(urgentTodo));
 
         String actualJson = controller.get();
         ANCDetail actualDetail = new Gson().fromJson(actualJson, ANCDetail.class);

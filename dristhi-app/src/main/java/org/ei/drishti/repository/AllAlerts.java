@@ -5,9 +5,13 @@ import org.ei.drishti.dto.Action;
 import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.dto.BeneficiaryType;
 import org.ei.drishti.util.Log;
+import org.ei.drishti.view.contract.ProfileTodo;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.Arrays.asList;
+import static org.ei.drishti.dto.AlertPriority.urgent;
 import static org.ei.drishti.dto.BeneficiaryType.child;
 import static org.ei.drishti.dto.BeneficiaryType.mother;
 
@@ -42,8 +46,8 @@ public class AllAlerts {
         repository.deleteAllAlerts();
     }
 
-    public List<Alert> fetchAllActiveAlertsForCase(String caseId) {
-        return repository.allActiveAlertsForCase(caseId);
+    public List<List<ProfileTodo>> fetchAllActiveAlertsForCase(String caseId) {
+        return classifyTodosBasedOnUrgency(repository.allActiveAlertsForCase(caseId));
     }
 
     private void createAlert(Action action) {
@@ -60,5 +64,18 @@ public class AllAlerts {
         } else {
             Log.logWarn("Unknown beneficiary type to add alert for: " + action);
         }
+    }
+
+    private List<List<ProfileTodo>> classifyTodosBasedOnUrgency(List<Alert> alerts) {
+        List<ProfileTodo> todos = new ArrayList<ProfileTodo>();
+        List<ProfileTodo> urgentTodos = new ArrayList<ProfileTodo>();
+        for (Alert alert : alerts) {
+            if (urgent.equals(alert.priority())) {
+                urgentTodos.add(new ProfileTodo(alert));
+            } else {
+                todos.add(new ProfileTodo(alert));
+            }
+        }
+        return asList(todos, urgentTodos);
     }
 }

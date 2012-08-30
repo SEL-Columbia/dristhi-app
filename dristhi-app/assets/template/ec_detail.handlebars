@@ -26,16 +26,30 @@
     </div>
 
     <div class="registry-container container-fluid">
-        {{#each alerts}}
-            <div class="alert">
-                <i class="icon-warning-sign"></i>
-                <strong>Alert: {{message}}</strong>
-            </div>
-        {{/each}}
-        <div class="alert alert-info">
-            <i class="icon-check"></i>
-            <strong>To do: Follow up on malaria test</strong>
-        </div>
+        {{#each urgentTodos}}
+                <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-todo overdue">
+                    <div class="row-fluid">
+                        <div class="span2">
+                            <div class="todo-box-wrapper"><img class="todo-box"/></div>
+                        </div>
+                        <div class="span10 alert-todo-message">
+                            <div class="detail">{{message}}</div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            {{#each todos}}
+                <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-todo upcoming">
+                    <div class="row-fluid">
+                        <div class="span2">
+                            <div class="todo-box-wrapper"><img class="todo-box"/></div>
+                        </div>
+                        <div class="span10 alert-todo-message">
+                            <div class="detail">{{message}}</div>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
         <div class="divider"></div>
     </div>
 

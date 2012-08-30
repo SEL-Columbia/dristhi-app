@@ -63,3 +63,11 @@
 .alert.completed .todo-box.checked {
     content: url(../img/checkbox_completed.png)
 }
+
+.alert-todo-message {
+    margin-top: 10px;
+}
+
+.alert-todo {
+    margin-bottom: 8px;
+}
