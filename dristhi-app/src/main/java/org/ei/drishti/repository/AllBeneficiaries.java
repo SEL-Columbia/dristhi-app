@@ -29,7 +29,7 @@ public class AllBeneficiaries {
     public void handleMotherAction(Action action) {
         if (action.type().equals("registerPregnancy")) {
             motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate"))
-                    .withExtraDetails(Boolean.parseBoolean(action.get("isHighRisk")), action.get("deliveryPlace")).withDetails(action.details()));
+                    .withDetails(action.details()));
         } else if (action.type().equals("updatePregnancyStatus")) {
             // No action yet.
         } else if (action.type().equals("updateDetails")) {

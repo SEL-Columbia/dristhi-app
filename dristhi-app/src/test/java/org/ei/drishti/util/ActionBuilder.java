@@ -44,7 +44,7 @@ public class ActionBuilder {
     }
 
     public static Action actionForRegisterPregnancy(String motherCaseId) {
-        ActionData actionData = registerPregnancy("ecCaseId", "thaayiCardNumber", LocalDate.now(), true, "Delivery Place", mapOf("some-key", "some-field"));
+        ActionData actionData = registerPregnancy("ecCaseId", "thaayiCardNumber", LocalDate.now(), mapOf("some-key", "some-field"));
         return new Action(motherCaseId, "mother", "registerPregnancy", actionData.data(), "0", actionData.details());
     }
 

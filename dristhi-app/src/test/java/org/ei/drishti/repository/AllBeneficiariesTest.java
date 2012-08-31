@@ -41,7 +41,6 @@ public class AllBeneficiariesTest {
         Action action = ActionBuilder.actionForRegisterPregnancy("Case Mother X");
         allBeneficiaries.handleMotherAction(action);
         verify(motherRepository).add(new Mother("Case Mother X", "ecCaseId", "thaayiCardNumber", LocalDate.now().toString())
-                .withExtraDetails(true, "Delivery Place")
                 .withDetails(mapOf("some-key", "some-field")));
     }
 

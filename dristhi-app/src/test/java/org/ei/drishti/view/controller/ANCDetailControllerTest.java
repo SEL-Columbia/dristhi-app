@@ -13,7 +13,10 @@ import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.contract.ANCDetail;
+import org.ei.drishti.view.contract.LocationDetails;
+import org.ei.drishti.view.contract.PregnancyDetails;
+import org.ei.drishti.view.contract.ProfileTodo;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
@@ -65,7 +68,7 @@ public class ANCDetailControllerTest {
         HashMap<String, String> details = new HashMap<String, String>();
         details.put("ashaName", "Shiwani");
 
-        when(allBeneficiaries.findMother(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withExtraDetails(true, "District Hospital").withDetails(details));
+        when(allBeneficiaries.findMother(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withDetails(details));
         when(allEligibleCouples.findByCaseID("EC CASE 1")).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "Village 1", "Subcenter 1", new HashMap<String, String>()));
         when(allAlerts.fetchAllActiveAlertsForCase(caseId)).thenReturn(asList(asList(todo), asList(urgentTodo)));
         when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent, ancEvent));
@@ -75,11 +78,11 @@ public class ANCDetailControllerTest {
 
         ANCDetail expectedDetail = new ANCDetail(caseId, "TC 1", "Woman 1",
                 new LocationDetails("Village 1", "Subcenter 1"),
-                new PregnancyDetails(true, "Anaemic", "7", "2012-07-28"),
-                new FacilityDetails("District Hospital", "----", "Shiwani"))
+                new PregnancyDetails("7", "2012-07-28"))
                 .addTimelineEvents(asList(ancTimelineEvent, pregnancyTimelineEvent))
                 .addTodos(asList(todo))
-                .addUrgentTodos(asList(urgentTodo));
+                .addUrgentTodos(asList(urgentTodo))
+                .addExtraDetails(details);
 
         String actualJson = controller.get();
         ANCDetail actualDetail = new Gson().fromJson(actualJson, ANCDetail.class);

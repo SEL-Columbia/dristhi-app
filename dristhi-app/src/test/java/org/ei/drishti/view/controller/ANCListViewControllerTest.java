@@ -17,6 +17,7 @@ import org.mockito.Mock;
 import java.util.HashMap;
 
 import static java.util.Arrays.asList;
+import static org.ei.drishti.util.EasyMap.create;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -38,7 +39,8 @@ public class ANCListViewControllerTest {
     @Test
     public void shouldSortBothNormalAndHighANCsByName() throws Exception {
         when(allBeneficiaries.allANCs()).thenReturn(asList(new Mother("Case 3", "EC Case 3", "TC 3", "2032-03-03"), new Mother("Case 1", "EC Case 1", "TC 1", "2012-01-01"),
-                new Mother("Case 4", "EC Case 4", "TC 4", "2032-03-03").withExtraDetails(true, "Bherya DC"), new Mother("Case 2", "EC Case 2", "TC 2", "2022-02-02").withExtraDetails(true, "Bherya DC")));
+                new Mother("Case 4", "EC Case 4", "TC 4", "2032-03-03").withDetails(create("isHighRisk", "yes").put("deliveryPlace", "Bherya DC").map()),
+                new Mother("Case 2", "EC Case 2", "TC 2", "2022-02-02").withDetails(create("isHighRisk", "yes").put("deliveryPlace", "Bherya DC").map())));
         when(allEligibleCouples.findByCaseID("EC Case 2")).thenReturn(new EligibleCouple("EC Case 2", "woman B", "Husband B", "EC Number 2", "Bherya", "Bherya SC", new HashMap<String, String>()));
         when(allEligibleCouples.findByCaseID("EC Case 3")).thenReturn(new EligibleCouple("EC Case 3", "woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", new HashMap<String, String>()));
         when(allEligibleCouples.findByCaseID("EC Case 4")).thenReturn(new EligibleCouple("EC Case 4", "Woman D", "Husband D", "EC Number 4", "Bherya", "Bherya SC", new HashMap<String, String>()));

@@ -6,6 +6,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ANCDetail {
     private String caseId;
@@ -14,19 +15,18 @@ public class ANCDetail {
 
     private final LocationDetails location;
     private final PregnancyDetails pregnancyDetails;
-    private final FacilityDetails facilityDetails;
 
     private ArrayList<ProfileTodo> urgentTodos;
     private ArrayList<ProfileTodo> todos;
     private List<TimelineEvent> timelineEvents;
+    private Map<String, String> details;
 
-    public ANCDetail(String caseId, String thaayiCardNumber, String womanName, LocationDetails location, PregnancyDetails pregnancyDetails, FacilityDetails facilityDetails) {
+    public ANCDetail(String caseId, String thaayiCardNumber, String womanName, LocationDetails location, PregnancyDetails pregnancyDetails) {
         this.caseId = caseId;
         this.thaayiCardNumber = thaayiCardNumber;
         this.womanName = womanName;
         this.location = location;
         this.pregnancyDetails = pregnancyDetails;
-        this.facilityDetails = facilityDetails;
 
         this.urgentTodos = new ArrayList<ProfileTodo>();
         this.todos = new ArrayList<ProfileTodo>();
@@ -45,6 +45,11 @@ public class ANCDetail {
 
     public ANCDetail addTodos(List<ProfileTodo> todos) {
         this.todos.addAll(todos);
+        return this;
+    }
+
+    public ANCDetail addExtraDetails(Map<String, String> details) {
+        this.details = details;
         return this;
     }
 

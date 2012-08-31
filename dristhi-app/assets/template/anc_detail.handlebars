@@ -13,6 +13,8 @@
 </div>
 
 <div id="ancFormModal" class="modal-container">
+    <div style="width=100%">Hello</div>
+    <div class="divider"></div>
 </div>
 
 <div id="content" class="content affected-by-sidepanel">
@@ -73,11 +75,11 @@
         <div class="container-fluid container-no-padding">
             <div class="row-fluid beneficiary-detail-component">
                 <div class="beneficiary-detail-content">
-                        {{#if pregnancyDetails.isHighRisk}}
+                        {{#if details.isHighRisk}}
                             <div class="text-center big-text high-risk">
                                 <i class="icon-circle-arrow-up" style="margin-top: 3px;"></i> High Risk</span>
                             </div>
-                            <div class="beneficiary-detail-footer risk-detail-text">{{pregnancyDetails.riskDetail}}</div>
+                            <div class="beneficiary-detail-footer risk-detail-text">{{details.riskDetail}}</div>
                         {{else}}
                             <div class="text-center big-text normal-risk">Normal Risk</div>
                         {{/if}}
@@ -111,7 +113,7 @@
 				</div>
 				
                 <div class="span3 big-text">Facility</div>
-                <div class="span8">{{facilityDetails.facility}}</div>
+                <div class="span8">{{details.deliveryPlace}}</div>
             </div>
             <div class="row-fluid beneficiary-detail-component">
                 <div class="span1"><!-- <i class="icon-check"></i> -->
@@ -120,7 +122,7 @@
 					</label>
 				</div>
                 <div class="span3 big-text">Contact</div>
-                <div class="span8">{{facilityDetails.contact}}</div>
+                <div class="span8">{{details.ashaPhoneNumber}}</div>
             </div>
             <div class="row-fluid beneficiary-detail-component">
                 <div class="span1"><!-- <i class="icon-check"></i> -->
@@ -129,7 +131,7 @@
 					</label>
 				</div>
                 <div class="span3 big-text">ASHA</div>
-                <div class="span8">{{facilityDetails.ashaName}}</div>
+                <div class="span8">{{details.ashaName}}</div>
             </div>
         </div>
     </div>

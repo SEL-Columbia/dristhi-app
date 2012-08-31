@@ -50,15 +50,15 @@ function FakeANCContext() {
                         subcenter: "SubCenter 1"
                     },
                     pregnancyDetails: {
-                        isHighRisk: true,
-                        riskDetail: "Anaemia (active): 21 months",
                         monthsPregnant: "7",
                         edd: "24/12/12"
                     },
-                    facilityDetails: {
-                        facility: "Broadway",
+                    details: {
+                        deliveryPlace: "Bherya PHC",
                         ashaName: "Shiwani",
-                        contact: "----"
+                        ashaPhoneNumber: "987654321",
+                        isHighRisk: true,
+                        riskDetail: "Anaemia (active): 21 months"
                     },
                     urgentTodos: [
                         {

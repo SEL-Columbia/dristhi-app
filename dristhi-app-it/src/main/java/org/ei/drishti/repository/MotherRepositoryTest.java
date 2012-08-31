@@ -39,7 +39,7 @@ public class MotherRepositoryTest extends AndroidTestCase {
 
     public void testShouldInsertMother() throws Exception {
         Map<String, String> details = mapOf("some-key", "some-value");
-        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withExtraDetails(true, "District Hospital").withDetails(details);
+        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withDetails(details);
 
         repository.add(mother);
 
@@ -49,21 +49,14 @@ public class MotherRepositoryTest extends AndroidTestCase {
 
     public void testShouldUpdateMotherDetails() throws Exception {
         Map<String, String> details = mapOf("some-key", "some-value");
-        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withExtraDetails(true, "District Hospital").withDetails(details);
+        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withDetails(details);
         repository.add(mother);
 
         Map<String, String> newDetails = create("some-key", "some-new-value").put("some-other-key", "blah").map();
         repository.updateDetails("CASE X", newDetails);
 
-        Mother expectedMotherWithNewDetails = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withExtraDetails(true, "District Hospital").withDetails(newDetails);
+        Mother expectedMotherWithNewDetails = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withDetails(newDetails);
         assertEquals(asList(expectedMotherWithNewDetails), repository.allANCs());
-    }
-
-    public void testShouldInsertNonHighRiskMother() throws Exception {
-        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withExtraDetails(false, "District Hospital"));
-
-        assertEquals(asList(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withExtraDetails(false, "District Hospital")), repository.allANCs());
-        assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE X", "2012-06-08")), timelineEventRepository.allFor("CASE X"));
     }
 
     public void testShouldLoadAllANCsBasedOnType() throws Exception {

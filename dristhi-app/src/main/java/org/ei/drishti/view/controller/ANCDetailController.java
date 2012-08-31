@@ -15,10 +15,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.ocpsoft.pretty.time.PrettyTime;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class ANCDetailController {
     private final Context context;
@@ -52,11 +49,11 @@ public class ANCDetailController {
 
         ANCDetail detail = new ANCDetail(caseId, mother.thaayiCardNumber(), couple.wifeName(),
                 new LocationDetails(couple.village(), couple.subCenter()),
-                new PregnancyDetails(mother.isHighRisk(), "Anaemic", String.valueOf(numberOfMonthsPregnant.getMonths()), edd),
-                new FacilityDetails(mother.deliveryPlace(), "----", mother.details().get("ashaName")))
+                new PregnancyDetails(String.valueOf(numberOfMonthsPregnant.getMonths()), edd))
                 .addTimelineEvents(getEvents())
                 .addTodos(todosAndUrgentTodos.get(0))
-                .addUrgentTodos(todosAndUrgentTodos.get(1));
+                .addUrgentTodos(todosAndUrgentTodos.get(1))
+                .addExtraDetails(mother.details());
 
         return new Gson().toJson(detail);
     }
