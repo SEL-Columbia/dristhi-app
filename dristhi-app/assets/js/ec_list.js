@@ -7,6 +7,11 @@ function ECList(ecListBridge) {
             $(cssIdentifierOfRootElement).on("click", cssIdentifierOfEveryListItem, function (event) {
                 ecListBridge.delegateToECDetail($(this).data("caseid"));
             });
+        },
+        bindItemToCommCare: function(cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).click(function () {
+                ecListBridge.delegateToCommCare($(this).data("form"));
+            })
         }
     };
 }
@@ -24,6 +29,9 @@ function ECListBridge() {
         },
         delegateToECDetail: function (caseId) {
             return ecContext.startEC(caseId);
+        },
+        delegateToCommCare: function (formId) {
+            ecContext.startCommCare(formId);
         }
     };
 }
@@ -50,6 +58,9 @@ function FakeECListContext() {
         },
         startEC: function(caseId) {
             window.location.href = "ec_detail.html";
+        },
+        startCommCare: function (formId) {
+            alert("Start CommCare with form " + formId);
         }
     }
 }

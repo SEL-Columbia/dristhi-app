@@ -45,21 +45,25 @@ function FakeECContext() {
                     urgentTodos: [
                         {
                             message: "Alert 1",
-                            formToOpen: "EC_SERVICES"
+                            formToOpen: "EC_SERVICES",
+                            isCompleted: true
                         },
                         {
                             message: "Alert 2",
-                            formToOpen: "EC_SERVICES"
+                            formToOpen: "EC_SERVICES",
+                            isCompleted: false
                         }
                     ],
                     todos: [
                         {
                             message: "Family Planning follow up",
-                            formToOpen: "EC_SERVICES"
+                            formToOpen: "EC_SERVICES",
+                            isCompleted: true
                         },
                         {
                             message: "FP Resupply",
-                            formToOpen: "EC_SERVICES"
+                            formToOpen: "EC_SERVICES",
+                            isCompleted: false
                         }
                     ],
                     children: [

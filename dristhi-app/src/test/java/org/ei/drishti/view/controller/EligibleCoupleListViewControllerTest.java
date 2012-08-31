@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.view.contract.EC;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,6 +27,8 @@ public class EligibleCoupleListViewControllerTest {
     private AllEligibleCouples allEligibleCouples;
     @Mock
     private Context context;
+    @Mock
+    private CommCareClientService commCareClientService;
 
     @Before
     public void setUp() throws Exception {
@@ -37,7 +40,7 @@ public class EligibleCoupleListViewControllerTest {
         when(allEligibleCouples.all()).thenReturn(asList(new EligibleCouple("EC Case 2", "woman B", "Husband B", "EC Number 2", "Bherya", "Bherya SC", new HashMap<String, String>()),
                 new EligibleCouple("EC Case 3", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", new HashMap<String, String>()), new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC", new HashMap<String, String>())));
 
-        EligibleCoupleListViewController controller = new EligibleCoupleListViewController(allEligibleCouples, context);
+        EligibleCoupleListViewController controller = new EligibleCoupleListViewController(allEligibleCouples, context, commCareClientService);
         List<EC> ecs = new Gson().fromJson(controller.get(), new TypeToken<List<EC>>() { }.getType());
 
         assertEquals("Woman A", ecs.get(0).wifeName());

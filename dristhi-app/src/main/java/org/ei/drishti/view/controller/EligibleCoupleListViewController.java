@@ -5,6 +5,7 @@ import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.view.activity.EligibleCoupleDetailActivity;
 import org.ei.drishti.view.contract.EC;
 
@@ -13,10 +14,12 @@ import java.util.*;
 public class EligibleCoupleListViewController {
     private AllEligibleCouples allEligibleCouples;
     private Context context;
+    private CommCareClientService commCareClientService;
 
-    public EligibleCoupleListViewController(AllEligibleCouples allEligibleCouples, Context context) {
+    public EligibleCoupleListViewController(AllEligibleCouples allEligibleCouples, Context context, CommCareClientService commCareClientService) {
         this.allEligibleCouples = allEligibleCouples;
         this.context = context;
+        this.commCareClientService = commCareClientService;
     }
 
     public String get() {
@@ -33,6 +36,10 @@ public class EligibleCoupleListViewController {
             }
         });
         return new Gson().toJson(ecList);
+    }
+
+    public void startCommCare(String formId) {
+        commCareClientService.start(context, formId, "");
     }
 
     public void startEC(String caseId) {

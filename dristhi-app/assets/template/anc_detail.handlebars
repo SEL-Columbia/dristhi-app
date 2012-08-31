@@ -40,28 +40,54 @@
 
 <div id="todos" class="registry-container container-fluid">
     {{#each urgentTodos}}
-        <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-todo overdue">
-            <div class="row-fluid">
-                <div class="span2">
-                    <div class="todo-box-wrapper"><img class="todo-box"/></div>
-                </div>
-                <div class="span10 alert-todo-message">
-                    <div class="detail">{{message}}</div>
+        {{#if isCompleted}}
+            <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-todo completed">
+                <div class="row-fluid">
+                    <div class="span2">
+                        <div class="todo-box-wrapper"><img class="todo-box checked"/></div>
+                    </div>
+                    <div class="span10 alert-todo-message">
+                        <div class="detail">{{message}}</div>
+                    </div>
                 </div>
             </div>
-        </div>
+        {{else}}
+            <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-todo overdue">
+                <div class="row-fluid">
+                    <div class="span2">
+                        <div class="todo-box-wrapper"><img class="todo-box"/></div>
+                    </div>
+                    <div class="span10 alert-todo-message">
+                        <div class="detail">{{message}}</div>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
     {{/each}}
     {{#each todos}}
-        <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-todo upcoming">
-            <div class="row-fluid">
-                <div class="span2">
-                    <div class="todo-box-wrapper"><img class="todo-box"/></div>
-                </div>
-                <div class="span10 alert-todo-message">
-                    <div class="detail">{{message}}</div>
+        {{#if isCompleted}}
+            <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-todo completed">
+                <div class="row-fluid">
+                    <div class="span2">
+                        <div class="todo-box-wrapper"><img class="todo-box checked"/></div>
+                    </div>
+                    <div class="span10 alert-todo-message">
+                        <div class="detail">{{message}}</div>
+                    </div>
                 </div>
             </div>
-        </div>
+        {{else}}
+            <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-todo upcoming">
+                <div class="row-fluid">
+                    <div class="span2">
+                        <div class="todo-box-wrapper"><img class="todo-box"/></div>
+                    </div>
+                    <div class="span10 alert-todo-message">
+                        <div class="detail">{{message}}</div>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
     {{/each}}
 
     <div class="divider"></div>

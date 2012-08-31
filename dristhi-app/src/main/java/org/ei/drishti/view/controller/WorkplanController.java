@@ -30,7 +30,7 @@ public class WorkplanController {
         for (Alert alert : alerts) {
             WorkplanTodo todo = new WorkplanTodo(alert.beneficiaryName(), alert.visitCode(), alert.expiryDate());
 
-            if (alert.isCompleted()) {
+            if (alert.isClosed()) {
                 completed.add(todo);
             } else if (normal.equals(alert.priority())) {
                 upcoming.add(todo);

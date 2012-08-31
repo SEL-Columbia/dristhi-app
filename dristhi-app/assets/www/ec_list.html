@@ -19,9 +19,10 @@
     <script type="text/javascript" src="../js/ec_list.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            var list = new ECList(new ECListBridge());
-            list.populateInto("#ec-list");
-            list.bindEveryItemToECView("#ec-list", ".client-list-item");
+            var ecList = new ECList(new ECListBridge());
+            ecList.populateInto("#ec-list");
+            ecList.bindEveryItemToECView("#ec-list", ".client-list-item");
+            ecList.bindItemToCommCare("#plusButton");
 
             var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
             sidePanel.populateInto("#sidePanel");
@@ -41,9 +42,7 @@
 
                 <ul class="nav pull-right affected-by-sidepanel">
                     <li class="divider-vertical in-navbar"></li>
-                    <li><i class="navbar-icon icon-plus icon-white"></i></li>
-                    <li class="divider-vertical in-navbar"></li>
-                    <li style=""><i class="navbar-icon icon-search icon-white"></i></li>
+                    <li id="plusButton" data-form="EC_ADD"><i class="navbar-icon icon-plus icon-white"></i></li>
                 </ul>
             </div>
         </div>

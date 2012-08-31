@@ -76,7 +76,7 @@ public class Alert {
         return completionDate;
     }
 
-    public boolean isCompleted() {
+    public boolean isClosed() {
         return closed.equals(status);
     }
 

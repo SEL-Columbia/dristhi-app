@@ -9,10 +9,12 @@ import org.ei.drishti.domain.CommCareForm;
 public class ProfileTodo {
     private String message;
     private CommCareForm formToOpen;
+    private boolean isCompleted;
 
     public ProfileTodo(Alert alert) {
         message = messageFor(alert.visitCode());
         formToOpen = formToOpenFor(alert.visitCode());
+        isCompleted = alert.isClosed();
     }
 
     private String messageFor(String visitCode) {

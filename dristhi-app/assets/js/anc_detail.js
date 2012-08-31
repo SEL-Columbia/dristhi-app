@@ -63,21 +63,25 @@ function FakeANCContext() {
                     urgentTodos: [
                         {
                             message: "Alert 1",
-                            formToOpen: "ANC_SERVICES"
+                            formToOpen: "ANC_SERVICES",
+                            isCompleted: true
                         },
                         {
                             message: "Alert 2",
-                            formToOpen: "ANC_SERVICES"
+                            formToOpen: "ANC_SERVICES",
+                            isCompleted: false
                         }
                     ],
                     todos: [
                         {
                             message: "IFA Tablet follow-up",
-                            formToOpen: "ANC_SERVICES"
+                            formToOpen: "ANC_SERVICES",
+                            isCompleted: true
                         },
                         {
                             message: "ANC Visit #3",
-                            formToOpen: "ANC_SERVICES"
+                            formToOpen: "ANC_SERVICES",
+                            isCompleted: false
                         }
                     ],
                     timelineEvents: [
