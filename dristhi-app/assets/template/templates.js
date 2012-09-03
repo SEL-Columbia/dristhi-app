@@ -182,12 +182,22 @@ function program16(depth0,data) {
   buffer += escapeExpression(stack1) + "<br>\n                                            ";
   return buffer;}
 
-  buffer += "<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <a class=\"brand in-navbar affected-by-sidepanel\" href=\"#\">\n            <span class=\"navbar-brand-icon-holder affected-by-sidepanel\"><i class=\"icon-book icon-white navbar-brand-icon\"></i></span>\n            <span class=\"name\">ANC</span>\n        </a>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li class=\"divider-vertical in-navbar\"></li>\n            <li id=\"plusButton\" data-form=\"ANC_SERVICES\" data-caseid=\"";
+  buffer += "<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <a class=\"brand in-navbar affected-by-sidepanel\" href=\"#\">\n            <span class=\"navbar-brand-icon-holder affected-by-sidepanel\"><i class=\"icon-book icon-white navbar-brand-icon\"></i></span>\n            <span class=\"name\">ANC</span>\n        </a>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li class=\"divider-vertical in-navbar\"></li>\n            <li data-modal-target=\"#ancFormModal\"><span class=\"navbar-text\" href=\"#\"><i class=\"icon-plus icon-white\"></i> UPDATE</span></li>\n        </ul>\n    </div>\n</div>\n\n<div id=\"ancFormModal\" class=\"modal-content\">\n    <div class=\"modal-row\" data-form=\"ANC_SERVICES\" data-caseid=\"";
   foundHelper = helpers.caseId;
   stack1 = foundHelper || depth0.caseId;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "caseId", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "\" data-modal-target=\"#ancFormModal\"><span class=\"navbar-text\" href=\"#\"><i class=\"icon-plus icon-white\"></i> UPDATE</span></li>\n        </ul>\n    </div>\n</div>\n\n<div id=\"ancFormModal\" class=\"modal-container\">\n    <div style=\"width=100%\">Hello</div>\n    <div class=\"divider\"></div>\n</div>\n\n<div id=\"content\" class=\"content affected-by-sidepanel\">\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div id=\"ec-name\" class=\"span10\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">";
+  buffer += escapeExpression(stack1) + "\" data-modal-target=\"#ancFormModal\">ANC visit</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"ANC_CLOSE\" data-caseid=\"";
+  foundHelper = helpers.caseId;
+  stack1 = foundHelper || depth0.caseId;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "caseId", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\" data-modal-target=\"#ancFormModal\">Close ANC record</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"ANC_SERVICES\" data-caseid=\"";
+  foundHelper = helpers.caseId;
+  stack1 = foundHelper || depth0.caseId;
+  if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
+  else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "caseId", { hash: {} }); }
+  buffer += escapeExpression(stack1) + "\" data-modal-target=\"#ancFormModal\">Referral</div>\n</div>\n\n<div id=\"content\" class=\"content affected-by-sidepanel\">\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div id=\"ec-name\" class=\"span10\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">";
   foundHelper = helpers.womanName;
   stack1 = foundHelper || depth0.womanName;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }

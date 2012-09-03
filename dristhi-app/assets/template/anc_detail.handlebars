@@ -7,14 +7,17 @@
 
         <ul class="nav pull-right affected-by-sidepanel">
             <li class="divider-vertical in-navbar"></li>
-            <li id="plusButton" data-form="ANC_SERVICES" data-caseid="{{caseId}}" data-modal-target="#ancFormModal"><span class="navbar-text" href="#"><i class="icon-plus icon-white"></i> UPDATE</span></li>
+            <li data-modal-target="#ancFormModal"><span class="navbar-text" href="#"><i class="icon-plus icon-white"></i> UPDATE</span></li>
         </ul>
     </div>
 </div>
 
-<div id="ancFormModal" class="modal-container">
-    <div style="width=100%">Hello</div>
+<div id="ancFormModal" class="modal-content">
+    <div class="modal-row" data-form="ANC_SERVICES" data-caseid="{{caseId}}" data-modal-target="#ancFormModal">ANC visit</div>
     <div class="divider"></div>
+    <div class="modal-row" data-form="ANC_CLOSE" data-caseid="{{caseId}}" data-modal-target="#ancFormModal">Close ANC record</div>
+    <div class="divider"></div>
+    <div class="modal-row" data-form="ANC_SERVICES" data-caseid="{{caseId}}" data-modal-target="#ancFormModal">Referral</div>
 </div>
 
 <div id="content" class="content affected-by-sidepanel">

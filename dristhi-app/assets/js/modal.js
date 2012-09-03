@@ -1,16 +1,17 @@
 function Modal() {
     var hideModal = function (targetModalToShow) {
-        $('#blur').remove();
-        $("body").css("overflow", "auto");
-        $(".page").css("height", "auto");
+        $('#blur').hide();
+        $("#modal-container").hide();
         $(targetModalToShow).hide();
+        $(".page").css("height", "auto").css("overflow", "auto");
     };
 
     var showModal = function (targetModalToShow) {
-        $("body").prepend($('<div id="blur"></div>'));
-        $("body").css("overflow", "hidden");
-        $(".page").css('height', $(window).height());
+        $("#modal-goes-here").append($(targetModalToShow));
+        $("#blur").show();
+        $("#modal-container").show();
         $(targetModalToShow).show();
+        $(".page").css('height', $(window).height()).css("overflow", "hidden");
 
         $("#blur").click(function (event) {
             hideModal(targetModalToShow);
@@ -25,6 +26,11 @@ function Modal() {
         });
     };
 
+    var initializeModalContainer = function () {
+        $("body").prepend($('<div id="blur"></div><div id="modal-container"><img src="../img/triangle.png" class="modal-triangle"/><div id="modal-goes-here"></div></div>'));
+    }
+
+    initializeModalContainer();
     return {
         bindToClick: function () {
             $('body [data-modal-target]').click(function (event) {

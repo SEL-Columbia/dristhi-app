@@ -338,6 +338,7 @@ body {
 }
 
 #blur {
+    display: none;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -347,14 +348,38 @@ body {
     top: 0;
 }
 
-.modal-container {
+#modal-container {
     display: none;
     position: absolute;
     width: 80%;
-    height: 80%;
     opacity: 1;
-    background-color: white;
     z-index: 10001;
     top: 10%;
     left: 10%;
+}
+
+.modal-content {
+    display: none;
+    background-color: white;
+    border-radius: 10px;
+    border: 4px solid #333;
+    width: 100%;
+    z-index: 100;
+}
+
+.modal-triangle {
+    height: 20px;
+    width: 30px;
+    margin-left: 85%;
+    margin-top: 10px;
+    margin-bottom: -4px;
+    z-index: 101;
+}
+
+.modal-row {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    font-size: 22px;
+    font-weight: bold;
 }

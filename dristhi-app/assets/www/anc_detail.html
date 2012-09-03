@@ -27,13 +27,13 @@
             anc.populateInto("#mainpanel");
             anc.bindEveryItemToCommCare("#todos", ".todo");
             anc.bindEveryItemToCommCare("#alerts", ".todo");
-            anc.bindItemToCommCare("#plusButton");
+            anc.bindItemToCommCare(".modal-row");
 
             var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
             sidePanel.populateInto("#sidePanel");
 
             var modal = new Modal();
-            // modal.bindToClick();
+            modal.bindToClick();
 
             var alerts = new Alerts();
             alerts.bindAllCheckboxes(".todo-box");

@@ -7,6 +7,7 @@ public enum CommCareForm {
     ANC_REGISTER("m1", "m0-f4", false),
     PNC_SERVICES("m1", "m1-f1", true),
     ANC_SERVICES("m1", "m1-f0", true),
+    ANC_CLOSE("m1", "m1-f4", true),
     EC_ADD("m0", "m0-f0", false);
 
     private final String moduleId;
