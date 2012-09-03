@@ -2,8 +2,7 @@ package org.ei.drishti.view.controller;
 
 import android.content.Context;
 import com.google.gson.Gson;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
+import org.ei.drishti.domain.*;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
@@ -11,11 +10,15 @@ import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.contract.TimelineEvent;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
+import org.ocpsoft.pretty.time.Duration;
 import org.ocpsoft.pretty.time.PrettyTime;
 
 import java.util.*;
+
+import static java.lang.Math.min;
 
 public class ANCDetailController {
     private final Context context;
@@ -66,10 +69,14 @@ public class ANCDetailController {
         List<org.ei.drishti.domain.TimelineEvent> events = allTimelineEvents.forCase(caseId);
         List<TimelineEvent> timelineEvents = new ArrayList<TimelineEvent>();
         for (org.ei.drishti.domain.TimelineEvent event : events) {
-            String dateOfEvent = prettyTime.format(prettyTime.calculatePreciseDuration(event.referenceDate().toDate()).subList(0, 2)).replaceAll(" _", "");
-            timelineEvents.add(new TimelineEvent(event.type(), event.title(), new String[]{event.detail1(), event.detail2()}, dateOfEvent));
+            timelineEvents.add(new TimelineEvent(event.type(), event.title(), new String[]{event.detail1(), event.detail2()}, formatDate(event)));
         }
         Collections.reverse(timelineEvents);
         return timelineEvents;
+    }
+
+    private String formatDate(org.ei.drishti.domain.TimelineEvent event) {
+        List<Duration> durationComponents = prettyTime.calculatePreciseDuration(event.referenceDate().toDate());
+        return prettyTime.format(durationComponents.subList(0, min(durationComponents.size(), 2))).replaceAll(" _", "");
     }
 }
