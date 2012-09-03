@@ -11,10 +11,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
+import static org.ei.drishti.util.ActionBuilder.actionForUpdateBeneficiary;
 import static org.ei.drishti.util.EasyMap.mapOf;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
@@ -83,5 +82,12 @@ public class AllBeneficiariesTest {
 
         verify(motherRepository).switchToPNC("Case Mom");
         verify(childRepository).addChildForMother(new Mother("Case Mom", "EC Case 1", "TC 1", "2012-06-08"), "Case X", referenceDate, "female");
+    }
+
+    @Test
+    public void shouldCloseANC() throws Exception {
+        allBeneficiaries.handleMotherAction(actionForUpdateBeneficiary());
+
+        verifyZeroInteractions(motherRepository);
     }
 }

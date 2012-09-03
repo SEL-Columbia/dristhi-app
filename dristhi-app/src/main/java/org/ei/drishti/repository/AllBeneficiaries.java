@@ -30,7 +30,7 @@ public class AllBeneficiaries {
         if (action.type().equals("registerPregnancy")) {
             motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate"))
                     .withDetails(action.details()));
-        } else if (action.type().equals("updatePregnancyStatus")) {
+        } else if (action.type().equals("closeANC")) {
             // No action yet.
         } else if (action.type().equals("updateDetails")) {
             motherRepository.updateDetails(action.caseID(), action.details());
