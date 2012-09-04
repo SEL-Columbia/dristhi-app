@@ -7,136 +7,136 @@ templates['anc_detail'] = template(function (Handlebars,depth0,helpers,partials,
 function program1(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n        ";
+  buffer += "\n            ";
   stack1 = depth0.isCompleted;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.programWithDepth(program4, data, depth0),fn:self.programWithDepth(program2, data, depth0)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    ";
+  buffer += "\n        ";
   return buffer;}
 function program2(depth0,data,depth1) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n            <div data-form=\"";
+  buffer += "\n                <div data-form=\"";
   foundHelper = helpers.formToOpen;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth1.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" class=\"alert alert-todo completed\">\n                <div class=\"row-fluid\">\n                    <div class=\"span2\">\n                        <div class=\"todo-box-wrapper\"><img class=\"todo-box checked\"/></div>\n                    </div>\n                    <div class=\"span10 alert-todo-message\">\n                        <div class=\"detail\">";
+  buffer += escapeExpression(stack1) + "\" class=\"alert alert-todo completed\">\n                    <div class=\"row-fluid\">\n                        <div class=\"span2\">\n                            <div class=\"todo-box-wrapper\"><img class=\"todo-box checked\"/></div>\n                        </div>\n                        <div class=\"span10 alert-todo-message\">\n                            <div class=\"detail\">";
   foundHelper = helpers.message;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</div>\n                    </div>\n                </div>\n            </div>\n        ";
+  buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
 function program4(depth0,data,depth1) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n            <div data-form=\"";
+  buffer += "\n                <div data-form=\"";
   foundHelper = helpers.formToOpen;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth1.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" class=\"alert alert-todo overdue\">\n                <div class=\"row-fluid\">\n                    <div class=\"span2\">\n                        <div class=\"todo-box-wrapper\"><img class=\"todo-box\"/></div>\n                    </div>\n                    <div class=\"span10 alert-todo-message\">\n                        <div class=\"detail\">";
+  buffer += escapeExpression(stack1) + "\" class=\"alert alert-todo overdue\">\n                    <div class=\"row-fluid\">\n                        <div class=\"span2\">\n                            <div class=\"todo-box-wrapper\"><img class=\"todo-box\"/></div>\n                        </div>\n                        <div class=\"span10 alert-todo-message\">\n                            <div class=\"detail\">";
   foundHelper = helpers.message;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</div>\n                    </div>\n                </div>\n            </div>\n        ";
+  buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
 function program6(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n        ";
+  buffer += "\n            ";
   stack1 = depth0.isCompleted;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.programWithDepth(program9, data, depth0),fn:self.programWithDepth(program7, data, depth0)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    ";
+  buffer += "\n        ";
   return buffer;}
 function program7(depth0,data,depth1) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n            <div data-form=\"";
+  buffer += "\n                <div data-form=\"";
   foundHelper = helpers.formToOpen;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth1.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" class=\"alert alert-todo completed\">\n                <div class=\"row-fluid\">\n                    <div class=\"span2\">\n                        <div class=\"todo-box-wrapper\"><img class=\"todo-box checked\"/></div>\n                    </div>\n                    <div class=\"span10 alert-todo-message\">\n                        <div class=\"detail\">";
+  buffer += escapeExpression(stack1) + "\" class=\"alert alert-todo completed\">\n                    <div class=\"row-fluid\">\n                        <div class=\"span2\">\n                            <div class=\"todo-box-wrapper\"><img class=\"todo-box checked\"/></div>\n                        </div>\n                        <div class=\"span10 alert-todo-message\">\n                            <div class=\"detail\">";
   foundHelper = helpers.message;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</div>\n                    </div>\n                </div>\n            </div>\n        ";
+  buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
 function program9(depth0,data,depth1) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n            <div data-form=\"";
+  buffer += "\n                <div data-form=\"";
   foundHelper = helpers.formToOpen;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth1.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" class=\"alert alert-todo upcoming\">\n                <div class=\"row-fluid\">\n                    <div class=\"span2\">\n                        <div class=\"todo-box-wrapper\"><img class=\"todo-box\"/></div>\n                    </div>\n                    <div class=\"span10 alert-todo-message\">\n                        <div class=\"detail\">";
+  buffer += escapeExpression(stack1) + "\" class=\"alert alert-todo upcoming\">\n                    <div class=\"row-fluid\">\n                        <div class=\"span2\">\n                            <div class=\"todo-box-wrapper\"><img class=\"todo-box\"/></div>\n                        </div>\n                        <div class=\"span10 alert-todo-message\">\n                            <div class=\"detail\">";
   foundHelper = helpers.message;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</div>\n                    </div>\n                </div>\n            </div>\n        ";
+  buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
 function program11(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                            <div class=\"text-center big-text high-risk\">\n                                <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                            </div>\n                            <div class=\"beneficiary-detail-footer risk-detail-text\">";
+  buffer += "\n                                <div class=\"text-center big-text high-risk\">\n                                    <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                                </div>\n                                <div class=\"beneficiary-detail-footer risk-detail-text\">";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.riskDetail;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</div>\n                        ";
+  buffer += escapeExpression(stack1) + "</div>\n                            ";
   return buffer;}
 
 function program13(depth0,data) {
   
   
-  return "\n                            <div class=\"text-center big-text normal-risk\">Normal Risk</div>\n                        ";}
+  return "\n                                <div class=\"text-center big-text normal-risk\">Normal Risk</div>\n                            ";}
 
 function program15(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                            <div class=\"container-section-component row-fluid\">\n                                    <div class=\"timeline dl\">\n                                        <div class=\"span2 ";
+  buffer += "\n                                <div class=\"container-section-component row-fluid\">\n                                        <div class=\"timeline dl\">\n                                            <div class=\"span2 ";
   stack1 = depth0.status;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + " dt\">\n                                            <i class=\"icon-eye-open\"></i>\n                                        </div>\n                                        <div class=\"span6 details-";
+  buffer += escapeExpression(stack1) + " dt\">\n                                                <i class=\"icon-eye-open\"></i>\n                                            </div>\n                                            <div class=\"span6 details-";
   stack1 = depth0.status;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + " dd\">\n                                            <strong>";
+  buffer += escapeExpression(stack1) + " dd\">\n                                                <strong>";
   foundHelper = helpers.title;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</strong><br>\n                                            ";
+  buffer += escapeExpression(stack1) + "</strong><br>\n                                                ";
   stack1 = depth0.details;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(16, program16, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                                        </div>\n                                        <div class=\"span4 pull-right text-right details-";
+  buffer += "\n                                            </div>\n                                            <div class=\"span4 pull-right text-right details-";
   stack1 = depth0.status;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + " dd\">\n                                            ";
+  buffer += escapeExpression(stack1) + " dd\">\n                                                ";
   foundHelper = helpers.date;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\n                                        </div>\n                                    </div>\n                                </div>\n                        ";
+  buffer += escapeExpression(stack1) + "\n                                            </div>\n                                        </div>\n                                    </div>\n                            ";
   return buffer;}
 function program16(depth0,data) {
   
   var buffer = "";
-  buffer += "\n                                            ";
+  buffer += "\n                                                ";
   depth0 = typeof depth0 === functionType ? depth0() : depth0;
-  buffer += escapeExpression(depth0) + "<br>\n                                            ";
+  buffer += escapeExpression(depth0) + "<br>\n                                                ";
   return buffer;}
 
   buffer += "<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <a class=\"brand in-navbar affected-by-sidepanel\" href=\"#\">\n            <span class=\"navbar-brand-icon-holder affected-by-sidepanel\"><i class=\"icon-book icon-white navbar-brand-icon\"></i></span>\n            <span class=\"name\">ANC</span>\n        </a>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li class=\"divider-vertical in-navbar\"></li>\n            <li data-modal-target=\"#ancFormModal\"><span class=\"navbar-text\" href=\"#\"><i class=\"icon-plus icon-white\"></i> UPDATE</span></li>\n        </ul>\n    </div>\n</div>\n\n<div id=\"ancFormModal\" class=\"modal-content\">\n    <div class=\"modal-row\" data-form=\"ANC_SERVICES\" data-caseid=\"";
@@ -163,44 +163,44 @@ function program16(depth0,data) {
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</li>\n                </ul>\n            </div>\n\n            <div class=\"span2 pull-right\">\n                <a class=\"ec-information-button btn btn-inverse\" href=\"#\">\n                    <i class=\"icon-user icon-white\"></i>\n                    <i class=\"icon-align-justify icon-white\"></i>\n                </a>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div id=\"todos\" class=\"registry-container container-fluid\">\n    ";
+  buffer += escapeExpression(stack1) + "</li>\n                </ul>\n            </div>\n\n            <div class=\"span2 pull-right\">\n                <a class=\"ec-information-button btn btn-inverse\" href=\"#\">\n                    <i class=\"icon-user icon-white\"></i>\n                    <i class=\"icon-align-justify icon-white\"></i>\n                </a>\n            </div>\n        </div>\n    </div>\n\n    <div id=\"todos\" class=\"registry-container container-fluid\">\n        ";
   stack1 = depth0.urgentTodos;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    ";
+  buffer += "\n        ";
   stack1 = depth0.todos;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n    <div class=\"divider\"></div>\n</div>\n\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        ANC Summary\n    </div>\n    <div class=\"well well-for-beneficiary-details\">\n        <div class=\"container-fluid container-no-padding\">\n            <div class=\"row-fluid beneficiary-detail-component\">\n                <div class=\"beneficiary-detail-content\">\n                        ";
+  buffer += "\n\n        <div class=\"divider\"></div>\n    </div>\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            ANC Summary\n        </div>\n        <div class=\"well well-for-beneficiary-details\">\n            <div class=\"container-fluid container-no-padding\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                            ";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isHighRisk;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.program(13, program13, data),fn:self.program(11, program11, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                </div>\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                        <div class=\"span6 text-center\">\n                            <span class=\"big-text\">";
+  buffer += "\n                    </div>\n                    <div class=\"row-fluid beneficiary-detail-component\">\n                        <div class=\"beneficiary-detail-content\">\n                            <div class=\"span6 text-center\">\n                                <span class=\"big-text\">";
   stack1 = depth0.pregnancyDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.monthsPregnant;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">Months Pregnant</span>\n                        </div>\n                        <div class=\"span6 text-center\">\n                            <span class=\"big-text\">";
+  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">Months Pregnant</span>\n                            </div>\n                            <div class=\"span6 text-center\">\n                                <span class=\"big-text\">";
   stack1 = depth0.pregnancyDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.edd;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">EDD</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        Delivery Plan\n    </div>\n    <div class=\"well well-for-beneficiary-details\">\n        <div class=\"container-fluid container-no-padding container-section\">\n            <div class=\"row-fluid beneficiary-detail-component\">\n                <div class=\"span1\"><!-- <i class=\"icon-check\"></i> --> \n					<label class=\"checkbox\">\n						<input type=\"checkbox\">\n					</label>\n				</div>\n				\n                <div class=\"span3 big-text\">Facility</div>\n                <div class=\"span8\">";
+  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">EDD</span>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Delivery Plan\n        </div>\n        <div class=\"well well-for-beneficiary-details\">\n            <div class=\"container-fluid container-no-padding container-section\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span1\"><!-- <i class=\"icon-check\"></i> -->\n                        <label class=\"checkbox\">\n                            <input type=\"checkbox\">\n                        </label>\n                    </div>\n\n                    <div class=\"span3 big-text\">Facility</div>\n                    <div class=\"span8\">";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.deliveryPlace;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</div>\n            </div>\n            <div class=\"row-fluid beneficiary-detail-component\">\n                <div class=\"span1\"><!-- <i class=\"icon-check\"></i> -->\n					<label class=\"checkbox\">\n						<input type=\"checkbox\">\n					</label>\n				</div>\n                <div class=\"span3 big-text\">Contact</div>\n                <div class=\"span8\">";
+  buffer += escapeExpression(stack1) + "</div>\n                </div>\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span1\">\n                        <label class=\"checkbox\">\n                            <input type=\"checkbox\">\n                        </label>\n                    </div>\n                    <div class=\"span3 big-text\">Contact</div>\n                    <div class=\"span8\">";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.ashaPhoneNumber;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</div>\n            </div>\n            <div class=\"row-fluid beneficiary-detail-component\">\n                <div class=\"span1\"><!-- <i class=\"icon-check\"></i> -->\n					<label class=\"checkbox\">\n						<input type=\"checkbox\">\n					</label>\n				</div>\n                <div class=\"span3 big-text\">ASHA</div>\n                <div class=\"span8\">";
+  buffer += escapeExpression(stack1) + "</div>\n                </div>\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span1\">\n                        <label class=\"checkbox\">\n                            <input type=\"checkbox\">\n                        </label>\n                    </div>\n                    <div class=\"span3 big-text\">ASHA</div>\n                    <div class=\"span8\">";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.ashaName;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</div>\n            </div>\n        </div>\n    </div>\n</div>\n\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        Timeline\n    </div>\n    <div class=\"well well-for-beneficiary-details\">\n        <div class=\"container-fluid container-no-padding\">\n            <div class=\"row-fluid beneficiary-detail-component\">\n                <div class=\"beneficiary-detail-content\">\n                    <div class=\"container-section container-fluid\">\n                        ";
+  buffer += escapeExpression(stack1) + "</div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Timeline\n        </div>\n        <div class=\"well well-for-beneficiary-details\">\n            <div class=\"container-fluid container-no-padding\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                        <div class=\"container-section container-fluid\">\n                            ";
   stack1 = depth0.timelineEvents;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(15, program15, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";
+  buffer += "\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";
   return buffer;});
 templates['anc_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
