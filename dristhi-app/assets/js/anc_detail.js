@@ -4,13 +4,13 @@ function ANC(ancBridge) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.anc_detail(ancBridge.getCurrentANC()));
         },
 
-        bindEveryItemToCommCare: function (cssIdentifierOfRootElement, cssClassOfChildElement) {
+        bindEveryChildItemToCommCare: function (cssIdentifierOfRootElement, cssClassOfChildElement) {
             $(cssIdentifierOfRootElement).on("click", cssClassOfChildElement, function (event) {
                 ancBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             });
         },
 
-        bindItemToCommCare: function(cssIdentifierOfElement) {
+        bindEveryItemToCommCare: function(cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 ancBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             })

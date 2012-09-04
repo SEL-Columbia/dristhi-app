@@ -25,9 +25,8 @@
         $(document).ready(function () {
             var anc = new ANC(new ANCBridge());
             anc.populateInto("#mainpanel");
-            anc.bindEveryItemToCommCare("#todos", ".todo");
-            anc.bindEveryItemToCommCare("#alerts", ".todo");
-            anc.bindItemToCommCare(".modal-row");
+            anc.bindEveryChildItemToCommCare("#todos", ".todo");
+            anc.bindEveryItemToCommCare(".modal-row");
 
             var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
             sidePanel.populateInto("#sidePanel");

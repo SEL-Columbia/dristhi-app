@@ -7,9 +7,19 @@
 
         <ul class="nav pull-right affected-by-sidepanel">
             <li class="divider-vertical in-navbar"></li>
-            <li id="plusButton" data-form="EC_SERVICES" data-caseid="{{caseId}}"><span class="navbar-text" href="#"><i class="icon-plus icon-white"></i> UPDATE</span></li>
+            <li data-modal-target="#ecFormModal"><span class="navbar-text" href="#"><i class="icon-plus icon-white"></i> UPDATE</span></li>
         </ul>
     </div>
+</div>
+
+<div id="ecFormModal" class="modal-content">
+    <div class="modal-row" data-form="EC_FP_UPDATE" data-caseid="{{caseId}}">Family planning update</div>
+    <div class="divider"></div>
+    <div class="modal-row" data-form="EC_FP_COMPLICATIONS" data-caseid="{{caseId}}">FP complications</div>
+    <div class="divider"></div>
+    <div class="modal-row" data-form="EC_REGISTER_ANC" data-caseid="{{caseId}}">Register as ANC</div>
+    <div class="divider"></div>
+    <div class="modal-row" data-form="EC_CLOSE" data-caseid="{{caseId}}">Close EC record</div>
 </div>
 
 <div id="content" class="content affected-by-sidepanel">

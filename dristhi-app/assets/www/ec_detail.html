@@ -17,6 +17,7 @@
     <script type="text/javascript" src="../template/templates.js"></script>
     <script type="text/javascript" src="../js/anmNavigation.js"></script>
     <script type="text/javascript" src="../js/sidePanel.js"></script>
+    <script type="text/javascript" src="../js/modal.js"></script>
     <script type="text/javascript" src="../js/alerts.js"></script>
 
     <script type="text/javascript" src="../js/ec_detail.js"></script>
@@ -24,10 +25,13 @@
         $(document).ready(function() {
             var ec = new EC(new ECBridge());
             ec.populateInto("#mainpanel");
-            ec.bindItemToCommCare("#plusButton");
+            ec.bindEveryItemToCommCare(".modal-row");
 
             var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
             sidePanel.populateInto("#sidePanel");
+
+            var modal = new Modal();
+            modal.bindToClick();
 
             var alerts = new Alerts();
             alerts.bindAllCheckboxes(".todo-box");

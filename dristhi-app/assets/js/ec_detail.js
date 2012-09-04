@@ -4,7 +4,7 @@ function EC(ecBridge) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.ec_detail(ecBridge.getCurrentEC()));
         },
 
-        bindItemToCommCare: function(cssIdentifierOfElement) {
+        bindEveryItemToCommCare: function(cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 ecBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             })
