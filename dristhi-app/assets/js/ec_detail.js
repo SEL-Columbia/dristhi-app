@@ -4,6 +4,12 @@ function EC(ecBridge) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.ec_detail(ecBridge.getCurrentEC()));
         },
 
+        bindEveryChildItemToCommCare: function (cssIdentifierOfRootElement, cssClassOfChildElement) {
+            $(cssIdentifierOfRootElement).on("click", cssClassOfChildElement, function (event) {
+                ecBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
+            });
+        },
+
         bindEveryItemToCommCare: function(cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 ecBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));

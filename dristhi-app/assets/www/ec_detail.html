@@ -25,6 +25,7 @@
         $(document).ready(function() {
             var ec = new EC(new ECBridge());
             ec.populateInto("#mainpanel");
+            ec.bindEveryChildItemToCommCare("#todos", ".todo-checkbox");
             ec.bindEveryItemToCommCare(".modal-row");
 
             var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));

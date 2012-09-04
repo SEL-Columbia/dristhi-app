@@ -35,12 +35,12 @@
         </div>
     </div>
 
-    <div class="registry-container container-fluid">
+    <div id="todos" class="registry-container container-fluid">
         {{#each urgentTodos}}
             {{#if isCompleted}}
-                <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-todo completed">
+                <div class="alert alert-todo completed">
                     <div class="row-fluid">
-                        <div class="span2">
+                        <div class="span2 todo-checkbox" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}">
                             <div class="todo-box-wrapper"><img class="todo-box checked"/></div>
                         </div>
                         <div class="span10 alert-todo-message">
@@ -49,9 +49,9 @@
                     </div>
                 </div>
             {{else}}
-                <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-todo overdue">
+                <div class="alert alert-todo overdue">
                     <div class="row-fluid">
-                        <div class="span2">
+                        <div class="span2 todo-checkbox" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}">
                             <div class="todo-box-wrapper"><img class="todo-box"/></div>
                         </div>
                         <div class="span10 alert-todo-message">
@@ -60,32 +60,32 @@
                     </div>
                 </div>
             {{/if}}
-            {{/each}}
-            {{#each todos}}
-                {{#if isCompleted}}
-                    <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-todo completed">
-                        <div class="row-fluid">
-                            <div class="span2">
-                                <div class="todo-box-wrapper"><img class="todo-box checked"/></div>
-                            </div>
-                            <div class="span10 alert-todo-message">
-                                <div class="detail">{{message}}</div>
-                            </div>
+        {{/each}}
+        {{#each todos}}
+            {{#if isCompleted}}
+                <div class="alert alert-todo completed">
+                    <div class="row-fluid">
+                        <div class="span2 todo-checkbox" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}">
+                            <div class="todo-box-wrapper"><img class="todo-box checked"/></div>
+                        </div>
+                        <div class="span10 alert-todo-message">
+                            <div class="detail">{{message}}</div>
                         </div>
                     </div>
-                {{else}}
-                    <div data-form="{{formToOpen}}" data-caseid="{{../caseId}}" class="alert alert-todo upcoming">
-                        <div class="row-fluid">
-                            <div class="span2">
-                                <div class="todo-box-wrapper"><img class="todo-box"/></div>
-                            </div>
-                            <div class="span10 alert-todo-message">
-                                <div class="detail">{{message}}</div>
-                            </div>
+                </div>
+            {{else}}
+                <div class="alert alert-todo upcoming">
+                    <div class="row-fluid">
+                        <div class="span2 todo-checkbox" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}">
+                            <div class="todo-box-wrapper"><img class="todo-box"/></div>
+                        </div>
+                        <div class="span10 alert-todo-message">
+                            <div class="detail">{{message}}</div>
                         </div>
                     </div>
-                {{/if}}
-            {{/each}}
+                </div>
+            {{/if}}
+        {{/each}}
         <div class="divider"></div>
     </div>
 
