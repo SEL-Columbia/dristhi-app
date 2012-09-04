@@ -38,7 +38,7 @@
     <div id="todos" class="registry-container container-fluid">
         {{#each urgentTodos}}
             {{#if isCompleted}}
-                <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitCode="{{visitCode}}">
+                <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
                     <div class="row-fluid">
                         <div class="span2">
                             <div class="todo-box-wrapper"><img class="todo-box checked"/></div>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
             {{else}}
-                <div class="alert alert-todo overdue" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitCode="{{visitCode}}">
+                <div class="alert alert-todo overdue" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
                     <div class="row-fluid">
                         <div class="span2">
                             <div class="todo-box-wrapper"><img class="todo-box"/></div>
@@ -63,7 +63,7 @@
         {{/each}}
         {{#each todos}}
             {{#if isCompleted}}
-                <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitCode="{{visitCode}}">
+                <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
                     <div class="row-fluid">
                         <div class="span2">
                             <div class="todo-box-wrapper"><img class="todo-box checked"/></div>
@@ -74,7 +74,7 @@
                     </div>
                 </div>
             {{else}}
-                <div class="alert alert-todo upcoming" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitCode="{{visitCode}}">
+                <div class="alert alert-todo upcoming" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
                     <div class="row-fluid">
                         <div class="span2">
                             <div class="todo-box-wrapper"><img class="todo-box"/></div>

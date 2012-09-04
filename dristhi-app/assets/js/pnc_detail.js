@@ -4,15 +4,16 @@ function PNC(pncBridge) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.pnc_detail(pncBridge.getCurrentPNC()));
         },
 
-        bindEveryItemToCommCare: function(cssIdentifierOfElement) {
+        bindEveryItemToCommCare: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 pncBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             })
         },
 
-        onAlertCheckboxClick: function(alertWhoseCheckboxWasClicked) {
+        onAlertCheckboxClick: function (alertWhoseCheckboxWasClicked) {
             var alertItem = $(alertWhoseCheckboxWasClicked);
             pncBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
+            pncBridge.markAsCompleted(alertItem.data("caseid"), alertItem.data("visitcode"));
         }
     };
 }
@@ -30,6 +31,10 @@ function PNCBridge() {
 
         delegateToCommCare: function (formId, caseId) {
             pncContext.startCommCare(formId, caseId);
+        },
+
+        markAsCompleted: function (caseId, visitCode) {
+            pncContext.markTodoAsCompleted(caseId, visitCode);
         }
     };
 }
@@ -38,6 +43,9 @@ function FakePNCContext() {
     return {
         startCommCare: function (formId, caseId) {
             alert("Start CommCare with form " + formId + " on case with caseId: " + caseId);
+        },
+        markTodoAsCompleted: function (caseId, visitCode) {
+            console.log("markAsCompleted " + caseId + " " + visitCode);
         },
         get: function () {
             return JSON.stringify({

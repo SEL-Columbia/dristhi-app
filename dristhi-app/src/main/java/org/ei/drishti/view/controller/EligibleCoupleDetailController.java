@@ -54,6 +54,10 @@ public class EligibleCoupleDetailController {
         commCareClientService.start(context, formId, caseId);
     }
 
+    public void markTodoAsCompleted(String caseId, String visitCode) {
+        allAlerts.markAsCompleted(caseId, visitCode);
+    }
+
     private List<TimelineEvent> getEvents() {
         List<org.ei.drishti.domain.TimelineEvent> events = allTimelineEvents.forCase(caseId);
         List<TimelineEvent> ecTimeLines = new ArrayList<TimelineEvent>();

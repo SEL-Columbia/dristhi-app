@@ -23,7 +23,7 @@ function program2(depth0,data,depth2) {
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitCode=\"";
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -44,7 +44,7 @@ function program4(depth0,data,depth2) {
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitCode=\"";
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -74,7 +74,7 @@ function program7(depth0,data,depth2) {
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitCode=\"";
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -95,7 +95,7 @@ function program9(depth0,data,depth2) {
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitCode=\"";
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -335,7 +335,7 @@ function program2(depth0,data,depth2) {
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitCode=\"";
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -356,7 +356,7 @@ function program4(depth0,data,depth2) {
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitCode=\"";
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -386,7 +386,7 @@ function program7(depth0,data,depth2) {
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitCode=\"";
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -407,7 +407,7 @@ function program9(depth0,data,depth2) {
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitCode=\"";
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -656,7 +656,7 @@ function program2(depth0,data,depth2) {
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitCode=\"";
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -677,7 +677,7 @@ function program4(depth0,data,depth2) {
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitCode=\"";
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -707,7 +707,7 @@ function program7(depth0,data,depth2) {
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitCode=\"";
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -728,7 +728,7 @@ function program9(depth0,data,depth2) {
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitCode=\"";
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }

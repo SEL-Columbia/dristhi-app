@@ -4,15 +4,16 @@ function ANC(ancBridge) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.anc_detail(ancBridge.getCurrentANC()));
         },
 
-        bindEveryItemToCommCare: function(cssIdentifierOfElement) {
+        bindEveryItemToCommCare: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 ancBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             })
         },
 
-        onAlertCheckboxClick: function(alertWhoseCheckboxWasClicked) {
+        onAlertCheckboxClick: function (alertWhoseCheckboxWasClicked) {
             var alertItem = $(alertWhoseCheckboxWasClicked);
             ancBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
+            ancBridge.markAsCompleted(alertItem.data("caseid"), alertItem.data("visitcode"));
         }
     };
 }
@@ -30,6 +31,10 @@ function ANCBridge() {
 
         delegateToCommCare: function (formId, caseId) {
             ancContext.startCommCare(formId, caseId);
+        },
+
+        markAsCompleted: function (caseId, visitCode) {
+            ancContext.markTodoAsCompleted(caseId, visitCode);
         }
     };
 }
@@ -38,6 +43,9 @@ function FakeANCContext() {
     return {
         startCommCare: function (formId, caseId) {
             alert("Start CommCare with form " + formId + " on case with caseId: " + caseId);
+        },
+        markTodoAsCompleted: function (caseId, visitCode) {
+            console.log("markAsCompleted " + caseId + " " + visitCode);
         },
         get: function () {
             return JSON.stringify({

@@ -50,6 +50,10 @@ public class AllAlerts {
         return classifyTodosBasedOnUrgency(repository.allActiveAlertsForCase(caseId));
     }
 
+    public void markAsCompleted(String caseId, String visitCode) {
+        repository.markAlertAsClosed(caseId, visitCode);
+    }
+
     private void createAlert(Action action) {
         BeneficiaryType type = BeneficiaryType.from(action.get("beneficiaryType"));
 
