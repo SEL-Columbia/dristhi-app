@@ -4,16 +4,15 @@ function EC(ecBridge) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.ec_detail(ecBridge.getCurrentEC()));
         },
 
-        bindEveryChildItemToCommCare: function (cssIdentifierOfRootElement, cssClassOfChildElement) {
-            $(cssIdentifierOfRootElement).on("click", cssClassOfChildElement, function (event) {
-                ecBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
-            });
-        },
-
         bindEveryItemToCommCare: function(cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 ecBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             })
+        },
+
+        onAlertCheckboxClick: function(alertWhoseCheckboxWasClicked) {
+            var alertItem = $(alertWhoseCheckboxWasClicked);
+            ecBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
         }
     };
 }
@@ -52,24 +51,28 @@ function FakeECContext() {
                         {
                             message: "Alert 1",
                             formToOpen: "EC_FP_UPDATE",
-                            isCompleted: true
+                            isCompleted: true,
+                            visitCode: "VISIT_CODE 1"
                         },
                         {
                             message: "Alert 2",
                             formToOpen: "EC_FP_UPDATE",
-                            isCompleted: false
+                            isCompleted: false,
+                            visitCode: "VISIT_CODE 2"
                         }
                     ],
                     todos: [
                         {
                             message: "Family Planning follow up",
                             formToOpen: "EC_FP_UPDATE",
-                            isCompleted: true
+                            isCompleted: true,
+                            visitCode: "VISIT_CODE 3"
                         },
                         {
                             message: "FP Resupply",
                             formToOpen: "EC_FP_UPDATE",
-                            isCompleted: false
+                            isCompleted: false,
+                            visitCode: "VISIT_CODE 4"
                         }
                     ],
                     children: [

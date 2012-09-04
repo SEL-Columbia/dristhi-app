@@ -35,4 +35,8 @@ public enum CommCareForm {
         }
         return MessageFormat.format("COMMAND_ID {0} {1}COMMAND_ID {2}", moduleId, caseData, formId);
     }
+
+    public String value() {
+        return name();
+    }
 }

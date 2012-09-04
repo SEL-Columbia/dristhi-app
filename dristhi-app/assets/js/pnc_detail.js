@@ -4,16 +4,15 @@ function PNC(pncBridge) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.pnc_detail(pncBridge.getCurrentPNC()));
         },
 
-        bindEveryChildItemToCommCare: function (cssIdentifierOfRootElement, cssClassOfChildElement) {
-            $(cssIdentifierOfRootElement).on("click", cssClassOfChildElement, function (event) {
-                pncBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
-            });
-        },
-
         bindEveryItemToCommCare: function(cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 pncBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             })
+        },
+
+        onAlertCheckboxClick: function(alertWhoseCheckboxWasClicked) {
+            var alertItem = $(alertWhoseCheckboxWasClicked);
+            pncBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
         }
     };
 }
@@ -65,24 +64,28 @@ function FakePNCContext() {
                         {
                             message: "PNC Visit 1",
                             formToOpen: "PNC_SERVICES",
-                            isCompleted: true
+                            isCompleted: true,
+                            visitCode: "PNC 1"
                         },
                         {
                             message: "PNC Visit 2",
                             formToOpen: "PNC_SERVICES",
-                            isCompleted: false
+                            isCompleted: false,
+                            visitCode: "PNC 2"
                         }
                     ],
                     todos: [
                         {
                             message: "Child Immunization 1",
                             formToOpen: "CHILD_IMMUNIZATION",
-                            isCompleted: true
+                            isCompleted: true,
+                            visitCode: "VISIT_CODE 1"
                         },
                         {
                             message: "Child Immunization 2",
                             formToOpen: "CHILD_IMMUNIZATION",
-                            isCompleted: false
+                            isCompleted: false,
+                            visitCode: "VISIT_CODE 2"
                         }
                     ],
                     timelineEvents: [

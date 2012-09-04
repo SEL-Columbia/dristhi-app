@@ -25,17 +25,11 @@
         $(document).ready(function () {
             var anc = new ANC(new ANCBridge());
             anc.populateInto("#mainpanel");
-            anc.bindEveryChildItemToCommCare("#todos", ".todo-checkbox");
             anc.bindEveryItemToCommCare(".modal-row");
 
-            var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
-            sidePanel.populateInto("#sidePanel");
-
-            var modal = new Modal();
-            modal.bindToClick();
-
-            var alerts = new Alerts();
-            alerts.bindAllCheckboxes(".todo-box");
+            new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanel");
+            new Modal().bindToClick();
+            new Alerts().bindAllCheckboxes(".todo-box", anc.onAlertCheckboxClick);
         });
     </script>
 </head>

@@ -4,16 +4,15 @@ function ANC(ancBridge) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.anc_detail(ancBridge.getCurrentANC()));
         },
 
-        bindEveryChildItemToCommCare: function (cssIdentifierOfRootElement, cssClassOfChildElement) {
-            $(cssIdentifierOfRootElement).on("click", cssClassOfChildElement, function (event) {
-                ancBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
-            });
-        },
-
         bindEveryItemToCommCare: function(cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 ancBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             })
+        },
+
+        onAlertCheckboxClick: function(alertWhoseCheckboxWasClicked) {
+            var alertItem = $(alertWhoseCheckboxWasClicked);
+            ancBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
         }
     };
 }
@@ -64,24 +63,28 @@ function FakeANCContext() {
                         {
                             message: "Alert 1",
                             formToOpen: "ANC_SERVICES",
-                            isCompleted: true
+                            isCompleted: true,
+                            visitCode: "ANC 1"
                         },
                         {
                             message: "Alert 2",
                             formToOpen: "ANC_SERVICES",
-                            isCompleted: false
+                            isCompleted: false,
+                            visitCode: "ANC 2"
                         }
                     ],
                     todos: [
                         {
                             message: "IFA Tablet follow-up",
-                            formToOpen: "ANC_SERVICES",
-                            isCompleted: true
+                            formToOpen: "ANC_CLOSE",
+                            isCompleted: true,
+                            visitCode: "IFA 1"
                         },
                         {
                             message: "ANC Visit #3",
                             formToOpen: "ANC_SERVICES",
-                            isCompleted: false
+                            isCompleted: false,
+                            visitCode: "ANC 3"
                         }
                     ],
                     timelineEvents: [

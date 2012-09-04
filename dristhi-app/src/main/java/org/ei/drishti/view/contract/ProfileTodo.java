@@ -10,19 +10,13 @@ public class ProfileTodo {
     private String message;
     private CommCareForm formToOpen;
     private boolean isCompleted;
+    private String visitCode;
 
     public ProfileTodo(Alert alert) {
-        message = messageFor(alert.visitCode());
-        formToOpen = formToOpenFor(alert.visitCode());
+        visitCode = alert.visitCode();
+        message = TodoDetail.from(visitCode).prefix();
+        formToOpen = TodoDetail.from(visitCode).formToOpen();
         isCompleted = alert.isClosed();
-    }
-
-    private String messageFor(String visitCode) {
-        return TodoDetail.from(visitCode).prefix();
-    }
-
-    private CommCareForm formToOpenFor(String visitCode) {
-        return TodoDetail.from(visitCode).formToOpen();
     }
 
     @Override

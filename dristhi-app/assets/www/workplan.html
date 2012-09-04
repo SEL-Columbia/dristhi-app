@@ -27,11 +27,9 @@
             var workplan = new Workplan(new WorkplanBridge());
             workplan.populateInto("#content");
 
-            var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
-            sidePanel.populateInto("#sidePanel");
+            new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanel");
 
-            var alerts = new Alerts();
-            alerts.bindAllCheckboxes(".todo-box");
+            new Alerts().bindAllCheckboxes(".todo-box", function(alertWhoseCheckboxWasClicked) { });
         });
     </script>
 <body>
