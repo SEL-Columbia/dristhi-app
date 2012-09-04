@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.Map;
 
 public class ANCDetail {
-    private String caseId;
-    private String thaayiCardNumber;
-    private String womanName;
+    private final String caseId;
+    private final String thaayiCardNumber;
+    private final String womanName;
 
     private final LocationDetails location;
     private final PregnancyDetails pregnancyDetails;
 
-    private ArrayList<ProfileTodo> urgentTodos;
-    private ArrayList<ProfileTodo> todos;
+    private List<ProfileTodo> todos;
+    private List<ProfileTodo> urgentTodos;
     private List<TimelineEvent> timelineEvents;
     private Map<String, String> details;
 
@@ -28,8 +28,8 @@ public class ANCDetail {
         this.location = location;
         this.pregnancyDetails = pregnancyDetails;
 
-        this.urgentTodos = new ArrayList<ProfileTodo>();
         this.todos = new ArrayList<ProfileTodo>();
+        this.urgentTodos = new ArrayList<ProfileTodo>();
         this.timelineEvents = new ArrayList<TimelineEvent>();
     }
 

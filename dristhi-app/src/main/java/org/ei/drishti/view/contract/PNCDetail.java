@@ -4,19 +4,20 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class PNCDetail {
     private final String caseId;
     private final String thaayiCardNumber;
     private final String womanName;
+
     private final LocationDetails location;
     private final PregnancyOutcomeDetails pncDetails;
 
-    private ArrayList<ProfileTodo> alerts;
-    private ArrayList<ProfileTodo> todos;
+    private List<ProfileTodo> todos;
+    private List<ProfileTodo> urgentTodos;
     private List<TimelineEvent> timelineEvents;
+    private Map<String, String> details;
 
     public PNCDetail(String caseId, String thaayiCardNumber, String womanName, LocationDetails location, PregnancyOutcomeDetails pncDetails) {
         this.caseId = caseId;
@@ -25,13 +26,28 @@ public class PNCDetail {
         this.location = location;
         this.pncDetails = pncDetails;
 
-        this.alerts = new ArrayList<ProfileTodo>();
         this.todos = new ArrayList<ProfileTodo>();
+        this.urgentTodos = new ArrayList<ProfileTodo>();
         this.timelineEvents = new ArrayList<TimelineEvent>();
     }
 
     public PNCDetail addTimelineEvents(List<TimelineEvent> events) {
         this.timelineEvents.addAll(events);
+        return this;
+    }
+
+    public PNCDetail addUrgentTodos(List<ProfileTodo> todos) {
+        this.urgentTodos.addAll(todos);
+        return this;
+    }
+
+    public PNCDetail addTodos(List<ProfileTodo> todos) {
+        this.todos.addAll(todos);
+        return this;
+    }
+
+    public PNCDetail addExtraDetails(Map<String, String> details) {
+        this.details = details;
         return this;
     }
 

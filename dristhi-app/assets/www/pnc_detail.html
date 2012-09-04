@@ -5,6 +5,7 @@
     <link href="../css/custom.css" rel="stylesheet">
     <link href="../css/sidepanel.css" rel="stylesheet">
     <link href="../css/pnc_detail.css" rel="stylesheet">
+    <link href="../css/alerts.css" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
 
@@ -16,18 +17,25 @@
     <script type="text/javascript" src="../template/templates.js"></script>
     <script type="text/javascript" src="../js/anmNavigation.js"></script>
     <script type="text/javascript" src="../js/sidePanel.js"></script>
+    <script type="text/javascript" src="../js/modal.js"></script>
+    <script type="text/javascript" src="../js/alerts.js"></script>
 
     <script type="text/javascript" src="../js/pnc_detail.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             var pnc = new PNC(new PNCBridge());
             pnc.populateInto("#mainpanel");
-            pnc.bindEveryItemToCommCare("#todos", ".todo");
-            pnc.bindEveryItemToCommCare("#alerts", ".todo");
-            pnc.bindItemToCommCare("#plusButton");
+            pnc.bindEveryChildItemToCommCare("#todos", ".todo-checkbox");
+            pnc.bindEveryItemToCommCare(".modal-row");
 
             var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
             sidePanel.populateInto("#sidePanel");
+
+            var modal = new Modal();
+            modal.bindToClick();
+
+            var alerts = new Alerts();
+            alerts.bindAllCheckboxes(".todo-box");
         });
     </script>
 </head>

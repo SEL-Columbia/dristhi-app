@@ -51,24 +51,24 @@ function FakeECContext() {
                     urgentTodos: [
                         {
                             message: "Alert 1",
-                            formToOpen: "EC_SERVICES",
+                            formToOpen: "EC_FP_UPDATE",
                             isCompleted: true
                         },
                         {
                             message: "Alert 2",
-                            formToOpen: "EC_SERVICES",
+                            formToOpen: "EC_FP_UPDATE",
                             isCompleted: false
                         }
                     ],
                     todos: [
                         {
                             message: "Family Planning follow up",
-                            formToOpen: "EC_SERVICES",
+                            formToOpen: "EC_FP_UPDATE",
                             isCompleted: true
                         },
                         {
                             message: "FP Resupply",
-                            formToOpen: "EC_SERVICES",
+                            formToOpen: "EC_FP_UPDATE",
                             isCompleted: false
                         }
                     ],

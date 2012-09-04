@@ -4,13 +4,13 @@ function PNC(pncBridge) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.pnc_detail(pncBridge.getCurrentPNC()));
         },
 
-        bindEveryItemToCommCare: function (cssIdentifierOfRootElement, cssClassOfChildElement) {
+        bindEveryChildItemToCommCare: function (cssIdentifierOfRootElement, cssClassOfChildElement) {
             $(cssIdentifierOfRootElement).on("click", cssClassOfChildElement, function (event) {
                 pncBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             });
         },
 
-        bindItemToCommCare: function(cssIdentifierOfElement) {
+        bindEveryItemToCommCare: function(cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 pncBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             })
@@ -50,30 +50,39 @@ function FakePNCContext() {
                         subcenter: "SubCenter 1"
                     },
                     pncDetails: {
+                        daysPostpartum: "23",
+                        dateOfDelivery: "24/03/12"
+                    },
+                    details: {
+                        deliveryPlace: "Bherya PHC",
+                        ashaName: "Shiwani",
+                        ashaPhoneNumber: "987654321",
                         isHighRisk: true,
                         riskDetail: "Anaemia (active): 21 months",
-                        daysPostpartum: "23",
-                        dateOfDelivery: "24/03/12",
                         deliveryComplications: ["Prolonged Labor"]
                     },
-                    alerts: [
+                    urgentTodos: [
                         {
-                            message: "Alert 1",
-                            formToOpen: "PNC"
+                            message: "PNC Visit 1",
+                            formToOpen: "PNC_SERVICES",
+                            isCompleted: true
                         },
                         {
-                            message: "Alert 2",
-                            formToOpen: "PNC"
+                            message: "PNC Visit 2",
+                            formToOpen: "PNC_SERVICES",
+                            isCompleted: false
                         }
                     ],
                     todos: [
                         {
-                            message: "PNC Task #2",
-                            formToOpen: "PNC"
+                            message: "Child Immunization 1",
+                            formToOpen: "CHILD_IMMUNIZATION",
+                            isCompleted: true
                         },
                         {
-                            message: "PNC Visit #3",
-                            formToOpen: "PNC"
+                            message: "Child Immunization 2",
+                            formToOpen: "CHILD_IMMUNIZATION",
+                            isCompleted: false
                         }
                     ],
                     timelineEvents: [

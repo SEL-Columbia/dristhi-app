@@ -3,16 +3,20 @@ package org.ei.drishti.domain;
 import java.text.MessageFormat;
 
 public enum CommCareForm {
-    EC_SERVICES("m0", "m0-f1", true),
-    ANC_REGISTER("m1", "m0-f4", false),
-    PNC_SERVICES("m1", "m1-f1", true),
+    ANC_REGISTER("m1", "m0-f4", true),
     ANC_SERVICES("m1", "m1-f0", true),
     ANC_CLOSE("m1", "m1-f4", true),
+
     EC_ADD("m0", "m0-f0", false),
     EC_FP_UPDATE("m0", "m0-f1", true),
     EC_FP_COMPLICATIONS("m0", "m0-f2", true),
     EC_CLOSE("m0", "m0-f3", true),
-    EC_REGISTER_ANC("m0", "m0-f4", true);
+    EC_REGISTER_ANC("m0", "m0-f4", true),
+
+    PNC_SERVICES("m1", "m1-f1", true),
+    PNC_CLOSE("m0", "m0-f4", true),
+
+    CHILD_IMMUNIZATION("m2", "m2-f0", true);
 
     private final String moduleId;
     private final String formId;

@@ -4,37 +4,38 @@ import android.content.Context;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
+import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.view.contract.LocationDetails;
-import org.ei.drishti.view.contract.PNCDetail;
-import org.ei.drishti.view.contract.PregnancyOutcomeDetails;
-import org.ei.drishti.view.contract.TimelineEvent;
+import org.ei.drishti.view.contract.*;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
+import org.ocpsoft.pretty.time.Duration;
 import org.ocpsoft.pretty.time.PrettyTime;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
+
+import static java.lang.Math.min;
 
 public class PNCDetailController {
     private final Context context;
     private final String caseId;
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
+    private AllAlerts allAlerts;
     private final AllTimelineEvents allTimelineEvents;
     private CommCareClientService commCareClientService;
     private PrettyTime prettyTime;
 
-    public PNCDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllTimelineEvents allTimelineEvents, CommCareClientService commCareClientService) {
+    public PNCDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllAlerts allAlerts, AllTimelineEvents allTimelineEvents, CommCareClientService commCareClientService) {
         this.context = context;
         this.caseId = caseId;
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
+        this.allAlerts = allAlerts;
         this.allTimelineEvents = allTimelineEvents;
         this.commCareClientService = commCareClientService;
         prettyTime = new PrettyTime(DateUtil.today().toDate(), new Locale("short"));
@@ -43,6 +44,7 @@ public class PNCDetailController {
     public String get() {
         Mother mother = allBeneficiaries.findMother(caseId);
         EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
+        List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 
         LocalDate lmp = LocalDate.parse(mother.referenceDate());
         LocalDate deliveryDate = lmp.plusWeeks(40);
@@ -50,8 +52,11 @@ public class PNCDetailController {
 
         PNCDetail detail = new PNCDetail(caseId, mother.thaayiCardNumber(), couple.wifeName(),
                 new LocationDetails(couple.village(), couple.subCenter()),
-                new PregnancyOutcomeDetails(deliveryDate.toString(), postPartumDuration.getDays(), new ArrayList<String>(), mother.isHighRisk(), "Unknown"))
-                .addTimelineEvents(getEvents());
+                new PregnancyOutcomeDetails(deliveryDate.toString(), postPartumDuration.getDays()))
+                .addTimelineEvents(getEvents())
+                .addTodos(todosAndUrgentTodos.get(0))
+                .addUrgentTodos(todosAndUrgentTodos.get(1))
+                .addExtraDetails(mother.details());
 
         return new Gson().toJson(detail);
     }
@@ -63,10 +68,16 @@ public class PNCDetailController {
     private List<TimelineEvent> getEvents() {
         List<org.ei.drishti.domain.TimelineEvent> events = allTimelineEvents.forCase(caseId);
         List<TimelineEvent> timelineEvents = new ArrayList<TimelineEvent>();
+
         for (org.ei.drishti.domain.TimelineEvent event : events) {
-            String dateOfEvent = prettyTime.format(prettyTime.calculatePreciseDuration(event.referenceDate().toDate()).subList(0, 2)).replaceAll(" _", "");
-            timelineEvents.add(new TimelineEvent(event.type(), event.title(), new String[]{event.detail1(), event.detail2()}, dateOfEvent));
+            timelineEvents.add(new TimelineEvent(event.type(), event.title(), new String[]{event.detail1(), event.detail2()}, formatDate(event.referenceDate())));
         }
+        Collections.reverse(timelineEvents);
         return timelineEvents;
+    }
+
+    private String formatDate(LocalDate date) {
+        List<Duration> durationComponents = prettyTime.calculatePreciseDuration(date.toDate());
+        return prettyTime.format(durationComponents.subList(0, min(durationComponents.size(), 2))).replaceAll(" _", "");
     }
 }

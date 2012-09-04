@@ -1,19 +1,30 @@
 package org.ei.drishti.view.contract;
 
-import java.util.List;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class PregnancyOutcomeDetails {
-    private boolean isHighRisk;
-    private String riskDetail;
     private int daysPostpartum;
     private String dateOfDelivery;
-    private List<String> deliveryComplications;
 
-    public PregnancyOutcomeDetails(String dateOfDelivery, int daysPostpartum, List<String> deliveryComplications, boolean highRisk, String riskDetail) {
+    public PregnancyOutcomeDetails(String dateOfDelivery, int daysPostpartum) {
         this.dateOfDelivery = dateOfDelivery;
         this.daysPostpartum = daysPostpartum;
-        this.deliveryComplications = deliveryComplications;
-        isHighRisk = highRisk;
-        this.riskDetail = riskDetail;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return EqualsBuilder.reflectionEquals(this, o);
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
