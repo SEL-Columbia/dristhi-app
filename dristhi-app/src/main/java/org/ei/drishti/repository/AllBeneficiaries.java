@@ -1,6 +1,7 @@
 package org.ei.drishti.repository;
 
 import org.ei.drishti.domain.Child;
+import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.dto.Action;
@@ -11,11 +12,13 @@ public class AllBeneficiaries {
     private ChildRepository childRepository;
     private MotherRepository motherRepository;
     private AllTimelineEvents allTimelines;
+    private EligibleCoupleRepository eligibleCoupleRepository;
 
-    public AllBeneficiaries(MotherRepository motherRepository, ChildRepository childRepository, AllTimelineEvents allTimelineEvents) {
+    public AllBeneficiaries(MotherRepository motherRepository, ChildRepository childRepository, AllTimelineEvents allTimelineEvents, EligibleCoupleRepository eligibleCoupleRepository) {
         this.childRepository = childRepository;
         this.motherRepository = motherRepository;
         this.allTimelines = allTimelineEvents;
+        this.eligibleCoupleRepository = eligibleCoupleRepository;
     }
 
     public void handleChildAction(Action action) {
@@ -41,6 +44,11 @@ public class AllBeneficiaries {
             if (numberOfIFATabletsProvided != null && Integer.parseInt(numberOfIFATabletsProvided) > 0) {
                 allTimelines.add(TimelineEvent.forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
             }
+        }
+        else if(action.type().equals("registerOutOfAreaANC")){
+            eligibleCoupleRepository.add(new EligibleCouple(action.caseID(), action.get("wife"), action.get("husband"), "", action.get("village"), action.get("subcenter"), action.details()).asOutOfArea());
+            motherRepository.add(new Mother(action.caseID(), action.caseID(), action.get("thaayiCardNumber"), action.get("referenceDate"))
+                    .withDetails(action.details()));
         }
     }
 

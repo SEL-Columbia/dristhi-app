@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class EligibleCoupleRepository extends DrishtiRepository {
-    private static final String EC_SQL = "CREATE TABLE eligible_couple(caseID VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, details VARCHAR)";
+    private static final String EC_SQL = "CREATE TABLE eligible_couple(caseID VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR)";
     private static final String CASE_ID_COLUMN = "caseID";
     private static final String EC_NUMBER_COLUMN = "ecNumber";
     private static final String WIFE_NAME_COLUMN = "wifeName";
@@ -22,8 +22,9 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String EC_TABLE_NAME = "eligible_couple";
     private static final String VILLAGE_NAME_COLUMN = "village";
     private static final String SUBCENTER_NAME_COLUMN = "subCenter";
+    private static final String IS_OUT_OF_AREA_COLUMN = "isOutOfArea";
     private static final String DETAILS_COLUMN = "details";
-    private static final String[] EC_TABLE_COLUMNS = new String[] {CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN, EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, DETAILS_COLUMN};
+    private static final String[] EC_TABLE_COLUMNS = new String[]{CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN, EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN};
     private MotherRepository motherRepository;
     private final AlertRepository alertRepository;
     private final TimelineEventRepository timelineEventRepository;
@@ -60,6 +61,12 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         return readAllEligibleCouples(cursor);
     }
 
+    public List<EligibleCouple> allInAreaEligibleCouples() {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, IS_OUT_OF_AREA_COLUMN + " = ?", new String[]{"false"}, null, null, null, null);
+        return readAllEligibleCouples(cursor);
+    }
+
     public EligibleCouple findByCaseID(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
@@ -78,17 +85,18 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     }
 
     public long count() {
-        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + EC_TABLE_NAME, new String[0]);
+        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + EC_TABLE_NAME + " WHERE " + IS_OUT_OF_AREA_COLUMN + " = 'false'", new String[0]);
     }
 
     private ContentValues createValuesFor(EligibleCouple eligibleCouple) {
         ContentValues values = new ContentValues();
-        values.put(CASE_ID_COLUMN,eligibleCouple.caseId());
+        values.put(CASE_ID_COLUMN, eligibleCouple.caseId());
         values.put(WIFE_NAME_COLUMN, eligibleCouple.wifeName());
         values.put(HUSBAND_NAME_COLUMN, eligibleCouple.husbandName());
         values.put(EC_NUMBER_COLUMN, eligibleCouple.ecNumber());
         values.put(VILLAGE_NAME_COLUMN, eligibleCouple.village());
         values.put(SUBCENTER_NAME_COLUMN, eligibleCouple.subCenter());
+        values.put(IS_OUT_OF_AREA_COLUMN, eligibleCouple.isOutOfArea().toString());
         values.put(DETAILS_COLUMN, new Gson().toJson(eligibleCouple.details()));
         return values;
     }
@@ -97,9 +105,12 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<EligibleCouple> eligibleCouples = new ArrayList<EligibleCouple>();
         while (!cursor.isAfterLast()) {
-            eligibleCouples.add(new EligibleCouple(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5),
-                    new Gson().<Map<String, String>>fromJson(cursor.getString(6), new TypeToken<Map<String, String>>() {
-            }.getType())));
+            EligibleCouple eligibleCouple = new EligibleCouple(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5),
+                    new Gson().<Map<String, String>>fromJson(cursor.getString(7), new TypeToken<Map<String, String>>() {
+                    }.getType()));
+            if (Boolean.valueOf(cursor.getString(6)))
+                eligibleCouple.asOutOfArea();
+            eligibleCouples.add(eligibleCouple);
             cursor.moveToNext();
         }
         cursor.close();

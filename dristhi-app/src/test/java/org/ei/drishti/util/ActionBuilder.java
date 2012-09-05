@@ -52,6 +52,11 @@ public class ActionBuilder {
         return new Action("Case X", "child", "register", registerChildBirth(motherCaseId, LocalDate.now(), "female").data(), "0", new HashMap<String, String>());
     }
 
+    public static Action actionForOutOfAreaANCRegistration(String caseId) {
+        ActionData actionData = ActionData.registerOutOfAreaANC("Wife 1", "Husband 1", "Village X", "SubCenter X", "PHC X", "TC 1", LocalDate.parse("2012-09-17"), new HashMap<String, String>());
+        return new Action(caseId, "mother", "registerOutOfAreaANC", actionData.data(), "0", mapOf("some-key", "some-field"));
+    }
+
     public static Action unknownAction(String target) {
         return new Action("Case X", target, "UNKNOWN-TYPE", new HashMap<String, String>(), "0", new HashMap<String, String>());
     }

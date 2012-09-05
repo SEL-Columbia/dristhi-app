@@ -14,6 +14,7 @@ public class EligibleCouple {
     private final String village;
     private final String subcenter;
     private Map<String, String> details;
+    private Boolean isOutOfArea;
 
     public EligibleCouple(String caseId, String wifeName, String husbandName, String ecNumber, String village, String subcenter, Map<String, String> details) {
         this.caseId = caseId;
@@ -23,6 +24,12 @@ public class EligibleCouple {
         this.village = village;
         this.subcenter = subcenter;
         this.details = details;
+        isOutOfArea = false;
+    }
+
+    public EligibleCouple asOutOfArea() {
+        this.isOutOfArea = true;
+        return this;
     }
 
     public String wifeName() {
@@ -47,6 +54,10 @@ public class EligibleCouple {
 
     public String subCenter() {
         return subcenter;
+    }
+
+    public Boolean isOutOfArea() {
+        return isOutOfArea;
     }
 
     public Map<String, String> details() {

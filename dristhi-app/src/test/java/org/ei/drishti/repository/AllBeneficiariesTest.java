@@ -1,6 +1,7 @@
 package org.ei.drishti.repository;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.dto.Action;
@@ -10,6 +11,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+
+import java.util.Map;
 
 import static org.ei.drishti.util.ActionBuilder.actionForUpdateBeneficiary;
 import static org.ei.drishti.util.EasyMap.mapOf;
@@ -23,6 +26,8 @@ public class AllBeneficiariesTest {
     @Mock
     private MotherRepository motherRepository;
     @Mock
+    private EligibleCoupleRepository eligibleCoupleRepository;
+    @Mock
     private AllTimelineEvents allTimelineEvents;
 
     private AllBeneficiaries allBeneficiaries;
@@ -32,7 +37,7 @@ public class AllBeneficiariesTest {
     public void setUp() throws Exception {
         initMocks(this);
         referenceDate = LocalDate.now().toString();
-        allBeneficiaries = new AllBeneficiaries(motherRepository, childRepository, allTimelineEvents);
+        allBeneficiaries = new AllBeneficiaries(motherRepository, childRepository, allTimelineEvents, eligibleCoupleRepository);
     }
 
     @Test
@@ -41,6 +46,18 @@ public class AllBeneficiariesTest {
         allBeneficiaries.handleMotherAction(action);
         verify(motherRepository).add(new Mother("Case Mother X", "ecCaseId", "thaayiCardNumber", LocalDate.now().toString())
                 .withDetails(mapOf("some-key", "some-field")));
+    }
+
+    @Test
+    public void shouldHandleOutOfAreaANCRegistration() throws Exception {
+        Action action = ActionBuilder.actionForOutOfAreaANCRegistration("Case Mother X");
+        Map<String,String> details = mapOf("some-key", "some-field");
+
+        allBeneficiaries.handleMotherAction(action);
+
+        verify(eligibleCoupleRepository).add(new EligibleCouple("Case Mother X", "Wife 1", "Husband 1", "", "Village X", "SubCenter X", details).asOutOfArea());
+        verify(motherRepository).add(new Mother("Case Mother X", "Case Mother X", "TC 1", "2012-09-17")
+                .withDetails(details));
     }
 
     @Test
