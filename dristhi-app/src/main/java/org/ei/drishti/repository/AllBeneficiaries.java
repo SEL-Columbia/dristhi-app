@@ -46,8 +46,8 @@ public class AllBeneficiaries {
             }
         }
         else if(action.type().equals("registerOutOfAreaANC")){
-            eligibleCoupleRepository.add(new EligibleCouple(action.caseID(), action.get("wife"), action.get("husband"), "", action.get("village"), action.get("subcenter"), action.details()).asOutOfArea());
-            motherRepository.add(new Mother(action.caseID(), action.caseID(), action.get("thaayiCardNumber"), action.get("referenceDate"))
+            eligibleCoupleRepository.add(new EligibleCouple(action.get("ecCaseId"), action.get("wife"), action.get("husband"), "", action.get("village"), action.get("subcenter"), action.details()).asOutOfArea());
+            motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate"))
                     .withDetails(action.details()));
         }
     }

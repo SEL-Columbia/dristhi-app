@@ -53,7 +53,7 @@ public class ActionBuilder {
     }
 
     public static Action actionForOutOfAreaANCRegistration(String caseId) {
-        ActionData actionData = ActionData.registerOutOfAreaANC("Wife 1", "Husband 1", "Village X", "SubCenter X", "PHC X", "TC 1", LocalDate.parse("2012-09-17"), new HashMap<String, String>());
+        ActionData actionData = ActionData.registerOutOfAreaANC("EC Case ID", "Wife 1", "Husband 1", "Village X", "SubCenter X", "PHC X", "TC 1", LocalDate.parse("2012-09-17"), new HashMap<String, String>());
         return new Action(caseId, "mother", "registerOutOfAreaANC", actionData.data(), "0", mapOf("some-key", "some-field"));
     }
 

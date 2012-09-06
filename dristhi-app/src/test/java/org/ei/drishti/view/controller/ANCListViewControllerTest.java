@@ -8,6 +8,7 @@ import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.view.contract.ANC;
 import org.ei.drishti.view.contract.ANCs;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,10 +50,10 @@ public class ANCListViewControllerTest {
         ANCListViewController controller = new ANCListViewController(allBeneficiaries, allEligibleCouples, context);
         ANCs ancs = new Gson().fromJson(controller.get(), new TypeToken<ANCs>() { }.getType());
 
-        assertEquals("Woman A", ancs.normalRisk().get(0).womanName());
-        assertEquals("woman C", ancs.normalRisk().get(1).womanName());
+        assertEquals(new ANC("Case 1", "Woman A", "Bherya", "TC 1", false), ancs.normalRisk().get(0));
+        assertEquals(new ANC("Case 3", "woman C", "Bherya", "TC 3", false), ancs.normalRisk().get(1));
 
-        assertEquals("woman B", ancs.highRisk().get(0).womanName());
-        assertEquals("Woman D", ancs.highRisk().get(1).womanName());
+        assertEquals(new ANC("Case 2", "woman B", "Bherya", "TC 2", true), ancs.highRisk().get(0));
+        assertEquals(new ANC("Case 4", "Woman D", "Bherya", "TC 4", true), ancs.highRisk().get(1));
     }
 }

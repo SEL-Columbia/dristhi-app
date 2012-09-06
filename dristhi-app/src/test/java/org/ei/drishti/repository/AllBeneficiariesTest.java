@@ -55,8 +55,8 @@ public class AllBeneficiariesTest {
 
         allBeneficiaries.handleMotherAction(action);
 
-        verify(eligibleCoupleRepository).add(new EligibleCouple("Case Mother X", "Wife 1", "Husband 1", "", "Village X", "SubCenter X", details).asOutOfArea());
-        verify(motherRepository).add(new Mother("Case Mother X", "Case Mother X", "TC 1", "2012-09-17")
+        verify(eligibleCoupleRepository).add(new EligibleCouple("EC Case ID", "Wife 1", "Husband 1", "", "Village X", "SubCenter X", details).asOutOfArea());
+        verify(motherRepository).add(new Mother("Case Mother X", "EC Case ID", "TC 1", "2012-09-17")
                 .withDetails(details));
     }
 
