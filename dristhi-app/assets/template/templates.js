@@ -780,26 +780,35 @@ function program18(depth0,data) {
 function program20(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                            <div class=\"container-section-component row-fluid\">\n                                <div class=\"span1\">\n                                    <i class=\"icon-filter\"></i>\n                                </div>\n                                <div class=\"span7\">\n                                    <strong>";
+  buffer += "\n                                <div class=\"container-section-component row-fluid\">\n                                        <div class=\"timeline dl\">\n                                            <div class=\"span2 ";
+  stack1 = depth0.status;
+  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  buffer += escapeExpression(stack1) + " dt\">\n                                                <i class=\"icon-eye-open\"></i>\n                                            </div>\n                                            <div class=\"span6 details-";
+  stack1 = depth0.status;
+  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  buffer += escapeExpression(stack1) + " dd\">\n                                                <strong>";
   foundHelper = helpers.title;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</strong><br>\n                                    ";
+  buffer += escapeExpression(stack1) + "</strong><br>\n                                                ";
   stack1 = depth0.details;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(21, program21, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                                </div>\n                                <div class=\"span4 pull-right text-right\">\n                                    ";
+  buffer += "\n                                            </div>\n                                            <div class=\"span4 pull-right text-right details-";
+  stack1 = depth0.status;
+  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  buffer += escapeExpression(stack1) + " dd\">\n                                                ";
   foundHelper = helpers.date;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\n                                </div>\n                            </div>\n                            ";
+  buffer += escapeExpression(stack1) + "\n                                            </div>\n                                        </div>\n                                    </div>\n                            ";
   return buffer;}
 function program21(depth0,data) {
   
   var buffer = "";
-  buffer += "\n                                    ";
+  buffer += "\n                                                ";
   depth0 = typeof depth0 === functionType ? depth0() : depth0;
-  buffer += escapeExpression(depth0) + "<br>\n                                    ";
+  buffer += escapeExpression(depth0) + "<br>\n                                                ";
   return buffer;}
 
   buffer += "<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <a class=\"brand in-navbar affected-by-sidepanel\" href=\"#\">\n            <span class=\"navbar-brand-icon-holder affected-by-sidepanel\"><i class=\"icon-book icon-white navbar-brand-icon\"></i></span>\n            <span class=\"name\">PNC</span>\n        </a>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li class=\"divider-vertical in-navbar\"></li>\n            <li data-modal-target=\"#pncFormModal\"><span class=\"navbar-text\" href=\"#\"><i class=\"icon-plus icon-white\"></i> UPDATE</span></li>\n        </ul>\n    </div>\n</div>\n\n<div id=\"pncFormModal\" class=\"modal-content\">\n    <div class=\"modal-row\" data-form=\"PNC_SERVICES\" data-caseid=\"";
