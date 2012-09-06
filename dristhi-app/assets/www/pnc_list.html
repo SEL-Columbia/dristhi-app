@@ -23,13 +23,12 @@
             list.populateInto("#pnc-list");
             list.bindEveryItemToPNCView("#pnc-list", ".client-list-item");
 
-            var sidePanel = new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge()));
-            sidePanel.populateInto("#sidePanel");
+            new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         });
     </script>
 <body>
 <div class="page affected-by-sidepanel">
-    <div id="sidePanel"></div>
+    <div id="sidePanelContainer"></div>
 
     <div id="mainpanel" class="mainpanel affected-by-sidepanel">
         <div class="navbar navbar-fixed-top affected-by-sidepanel">

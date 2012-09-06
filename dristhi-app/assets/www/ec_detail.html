@@ -27,7 +27,7 @@
             ec.populateInto("#mainpanel");
             ec.bindEveryItemToCommCare(".modal-row");
 
-            new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanel");
+            new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
             new Modal().bindToClick();
             new Alerts().bindAllCheckboxes(".todo-box", ec.onAlertCheckboxClick);
         });
@@ -37,7 +37,7 @@
 <body>
 
 <div class="page affected-by-sidepanel">
-    <div id="sidePanel"></div>
+    <div id="sidePanelContainer"></div>
 
     <div id="mainpanel" class="mainpanel affected-by-sidepanel"></div>
 </div>

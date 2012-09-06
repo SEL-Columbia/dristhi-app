@@ -27,7 +27,7 @@
             var workplan = new Workplan(new WorkplanBridge());
             workplan.populateInto("#content");
 
-            new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanel");
+            new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
 
             new Alerts().bindAllCheckboxes(".todo-box", function(alertWhoseCheckboxWasClicked) { });
         });
@@ -35,7 +35,7 @@
 <body>
 
 <div class="page affected-by-sidepanel">
-    <div id="sidePanel"></div>
+    <div id="sidePanelContainer"></div>
 
     <div id="mainpanel" class="mainpanel affected-by-sidepanel">
         <div class="navbar navbar-fixed-top affected-by-sidepanel">
