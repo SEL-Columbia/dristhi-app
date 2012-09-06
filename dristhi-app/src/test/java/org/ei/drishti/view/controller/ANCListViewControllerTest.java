@@ -50,10 +50,10 @@ public class ANCListViewControllerTest {
         ANCListViewController controller = new ANCListViewController(allBeneficiaries, allEligibleCouples, context);
         ANCs ancs = new Gson().fromJson(controller.get(), new TypeToken<ANCs>() { }.getType());
 
-        assertEquals(new ANC("Case 1", "Woman A", "Bherya", "TC 1", false), ancs.normalRisk().get(0));
-        assertEquals(new ANC("Case 3", "woman C", "Bherya", "TC 3", false), ancs.normalRisk().get(1));
+        assertEquals(new ANC("Case 1", "Woman A", "Husband A", "Bherya", "TC 1", false), ancs.normalRisk().get(0));
+        assertEquals(new ANC("Case 3", "woman C", "Husband C", "Bherya", "TC 3", false), ancs.normalRisk().get(1));
 
-        assertEquals(new ANC("Case 2", "woman B", "Bherya", "TC 2", true), ancs.highRisk().get(0));
-        assertEquals(new ANC("Case 4", "Woman D", "Bherya", "TC 4", true), ancs.highRisk().get(1));
+        assertEquals(new ANC("Case 2", "woman B", "Husband B", "Bherya", "TC 2", true), ancs.highRisk().get(0));
+        assertEquals(new ANC("Case 4", "Woman D", "Husband D", "Bherya", "TC 4", true), ancs.highRisk().get(1));
     }
 }

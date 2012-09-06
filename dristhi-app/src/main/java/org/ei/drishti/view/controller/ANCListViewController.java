@@ -36,7 +36,7 @@ public class ANCListViewController {
             EligibleCouple ec = allEligibleCouples.findByCaseID(mother.ecCaseId());
 
             List<ANC> ancListBasedOnRisk = mother.isHighRisk() ? highRiskAncs : normalRiskAncs;
-            ancListBasedOnRisk.add(new ANC(mother.caseId(), ec.wifeName(), ec.village(), mother.thaayiCardNumber(), mother.isHighRisk()));
+            ancListBasedOnRisk.add(new ANC(mother.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), mother.thaayiCardNumber(), mother.isHighRisk()));
         }
 
         sort(normalRiskAncs);
