@@ -17,12 +17,8 @@
     margin-bottom: 4px;
 }
 
-.brand.sidepanel-active .name {
-    display: none;
-}
-
-.brand.sidepanel-active {
-    text-overflow: clip;
+.sidepanel-icon.sidepanel-active {
+    margin-left: -8px;
 }
 
 .content.sidepanel-active, .content.sidepanel-content {
@@ -78,8 +74,4 @@
 }
 .brand.in-navbar.in-sidepanel {
     color: #0490c2;
-}
-
-.navbar-brand-icon-holder.affected-by-sidepanel.sidepanel-active {
-    margin-left: -5px;
 }

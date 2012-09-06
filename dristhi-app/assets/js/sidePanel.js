@@ -19,7 +19,7 @@ function SidePanel(anmNavigation) {
     var bindToggleSidebar = function() {
         var animationDuration = 250;
 
-        $(".navbar-brand-icon-holder").click(function () {
+        $(".sidepanel-icon").click(function () {
             openSidePanel(animationDuration);
             return false;
         });

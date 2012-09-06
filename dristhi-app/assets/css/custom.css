@@ -58,17 +58,28 @@
     font-weight: 500;
 }
 
-.navbar-brand-icon-holder {
-    background-color: #333;
-    padding-left: 4px;
-    padding-right: 4px;
-    margin-left: 0px;
-    margin-right: 12px;
-    border-radius: 2px;
+.navbar .sidepanel-icon {
+    content: url(../img/icons/sidepanel-icon.png);
+    margin-right: 4px;
 }
 
-.navbar-brand-icon {
-    margin-top: 6px;
+.navbar .separator {
+    content: url(../img/icons/separator.gif);
+    margin-right: 4px;
+}
+
+.navbar .header-text {
+    font-weight: 500;
+    font-size: 20px;
+    color: #E8FDFE;
+}
+
+.navbar .nav .name {
+    font-weight: 500;
+    font-size: 20px;
+    color: #E8FDFE;
+    margin-top: 20px;
+    vertical-align: text-bottom;
 }
 
 .navbar-icon {
