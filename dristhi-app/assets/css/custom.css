@@ -23,15 +23,17 @@
 }
 
 .menu-button-container .menu-button {
-    background: -webkit-gradient(linear, 0 0, 0 100%, from(#555), to(#222));
-    background: -webkit-linear-gradient(top, #555 0%, #222 100%);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#969696), to(#7c7c7c));
+    background: -webkit-linear-gradient(top, #969696 0%, #7c7c7c 100%);
     color: #fff;
-    border-radius: 4px;
+    border-radius: 2px;
     text-align: center;
-    height: 80px;
+    height: 90px;
     min-height: 0px;
-    padding-top: 10px;
-    font-size: 16px;
+    padding-top: 16px;
+    font-size: 17px;
+    text-shadow: 0px 1px 2px #000;
+
 }
 
 .menu-button-row-padding {
@@ -77,9 +79,10 @@
 .navbar .nav .name {
     font-weight: 500;
     font-size: 20px;
-    color: #E8FDFE;
+    color: #fff;
     margin-top: 20px;
     vertical-align: text-bottom;
+    text-shadow: 0 1px 2px #000000;
 }
 
 .navbar-icon {
@@ -112,7 +115,9 @@
 
 .big-text {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 22px;
+    color: #0591d3;
+    line-height: 22px;
 }
 
 .ec-information-button {
@@ -138,7 +143,6 @@
     width: 100%;
     overflow: hidden;
     background-color: #6a6a6a;
-    border-bottom: 1px solid #646464;
 }
 
 .divider.divider-padding-top {
@@ -181,6 +185,7 @@
 .beneficiary-detail-component .beneficiary-detail-footer {
     font-weight: bold;
     margin-top: 4px;
+    font-size: 17px;
 }
 
 .family-planning-button {
@@ -193,9 +198,7 @@
 }
 
 .family-planning-current {
-    font-weight: 500;
     margin-left: 5px;
-    font-size: larger;
 }
 
 .ec-child {
@@ -250,6 +253,7 @@ body {
 
 .client-list-item .high-risk {
     color: red;
+    font-size: 15px;
 }
 
 .pull-text-completely-right {
@@ -274,9 +278,10 @@ body {
 
 .client-list-item .big-text {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 19px;
     margin-bottom: 0px;
     margin-top: -6px;
+    color: #222;
 }
 
 .menu-option div[class*="span"] {

@@ -1,7 +1,7 @@
 .alert.overdue, .alert.upcoming, .alert.completed {
     padding-right: 5px;
     padding-left: 8px;
-    color: #000;
+    color: #222;
     border: 1px solid;
     border-radius: 4px;
     -webkit-border-radius: 4px;

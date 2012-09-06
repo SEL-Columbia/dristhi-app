@@ -158,9 +158,9 @@ textarea {
 body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-  color: #333333;
+  font-size: 16px;
+  line-height: 20px;
+  color: #222222;
   background-color: #ffffff;
 }
 
@@ -542,7 +542,7 @@ ol {
 }
 
 li {
-  line-height: 18px;
+  line-height: 20px;
 }
 
 ul.unstyled,
