@@ -1,21 +1,64 @@
-{{#each ec}}
+<div class="high-risk-header"> HIGH PRIORITY ({{ec.highPriority.length}}) </div>
+<div class="divider divider-padding-both"></div>
+{{#each ec.highPriority}}
     <div class="row-fluid">
         <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
-            <div class="span9">
+            <div class="span8">
                 <ul class="client-details unstyled">
-                    <li class="big-text">{{wifeName}}</li>
-                    <li>{{village}}</li>
-                    <li>EC#: {{ecNumber}}</li>
+                    <li class="big-text">
+                        {{wifeName}}
+                        <span class="high-risk"> HP </span>
+                    </li>
+                    <li>{{husbandName}}</li>
+                    <li>
+                     EC #: {{ecNumber}}
+                    </li>
                 </ul>
             </div>
 
-            <div class="span3 high-risk pull-text-completely-right">
-                    {{#if isHighRisk}}
-                        High Risk
-                    {{/if}}
+            <div class="span4 pull-text-completely-right">
+                {{villageName}}
+                <p>
+                {{#if hasTodos}}
+                <div class = "todo pull-text-completely-right">
+                    <img src="../img/icons/icon-hastodo.png"></img>
+                </div>
+                {{/if}}
             </div>
 
-            <div class="divider divider-padding-bottom"></div>
+            <div class="divider divider-padding-both"></div>
+        </a>
+    </div>
+{{/each}}
+
+<div class="normal-risk-header"> NORMAL PRIORITY ({{ec.normalPriority.length}}) </div>
+<div class="divider divider-padding-both"></div>
+{{#each ec.normalPriority}}
+    <div class="row-fluid">
+        <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
+            <div class="span8">
+                <ul class="client-details unstyled">
+                    <li class="big-text">
+                        {{wifeName}}
+                    </li>
+                    <li>{{husbandName}}</li>
+                    <li>
+                     EC #: {{ecNumber}}
+                    </li>
+                </ul>
+            </div>
+
+            <div class="span4 pull-text-completely-right">
+                {{villageName}}
+                <p>
+                {{#if hasTodos}}
+                <div class = "todo pull-text-completely-right">
+                    <img src="../img/icons/icon-hastodo.png"></img>
+                </div>
+                {{/if}}
+            </div>
+
+            <div class="divider divider-padding-both"></div>
         </a>
     </div>
 {{/each}}

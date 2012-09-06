@@ -39,22 +39,31 @@ function ECListBridge() {
 function FakeECListContext() {
     return {
         get: function() {
-            return JSON.stringify([
-                {
-                    caseId: "12345",
-                    wifeName: "Wife 1",
-                    ecNumber: "EC Number 1",
-                    village: "Village 1",
-                    isHighRisk: true
-                },
-                {
-                    caseId: "11111",
-                    wifeName: "Wife 2",
-                    ecNumber: "EC Number 2",
-                    village: "Village 2",
-                    isHighRisk: false
-                }
-            ]);
+            return JSON.stringify({
+                highPriority: [
+                    {
+                        caseId: "12345",
+                        wifeName: "Wife 1",
+                        husbandName: "Husband 1",
+                        ecNumber: "EC Number 1",
+                        villageName: "Village 1",
+                        isHighPriority: true,
+                        hasTodos: false
+                    }
+                ],
+                normalPriority: [
+                    {
+                        caseId: "11111",
+                        wifeName: "Wife 2",
+                        husbandName: "Husband 2",
+                        ecNumber: "EC Number 2",
+                        villageName: "Village 2",
+                        isHighPriority: false,
+                        hasTodos: true
+
+                    }
+                ]
+            });
         },
         startEC: function(caseId) {
             window.location.href = "ec_detail.html";

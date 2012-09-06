@@ -60,6 +60,10 @@ public class EligibleCouple {
         return isOutOfArea;
     }
 
+    public boolean isHighPriority() {
+        return "1".equals(details.get("isHighPriority"));
+    }
+
     public Map<String, String> details() {
         return details;
     }
