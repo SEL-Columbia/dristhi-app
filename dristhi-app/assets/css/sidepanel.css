@@ -4,7 +4,7 @@
 }
 
 .navbar.sidepanel-active {
-    margin-left: 0px;
+    margin-left: -1px;
     position: relative;
 }
 
