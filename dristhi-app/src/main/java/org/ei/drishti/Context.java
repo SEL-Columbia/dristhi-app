@@ -2,6 +2,7 @@ package org.ei.drishti;
 
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
+import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
@@ -34,6 +35,7 @@ public class Context {
     private CommCareClientService commCareClientService;
 
     private Session session;
+    private Cache<String> listCache;
 
     protected Context() {
     }
@@ -201,4 +203,12 @@ public class Context {
         }
         return navigationService;
     }
+
+    public Cache<String> listCache() {
+        if (listCache == null) {
+            listCache = new Cache<String>();
+        }
+        return listCache;
+    }
+
 }

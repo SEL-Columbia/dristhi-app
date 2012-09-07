@@ -5,8 +5,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.event.Event;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.service.CommCareClientService;
+import org.ei.drishti.util.Cache;
 import org.ei.drishti.view.contract.EC;
 import org.ei.drishti.view.contract.ECs;
 import org.junit.Before;
@@ -14,14 +16,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
+import static org.ei.drishti.domain.FetchStatus.fetched;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
@@ -33,9 +34,12 @@ public class EligibleCoupleListViewControllerTest {
     @Mock
     private CommCareClientService commCareClientService;
 
+    private EligibleCoupleListViewController controller;
+
     @Before
     public void setUp() throws Exception {
         initMocks(this);
+        controller = new EligibleCoupleListViewController(allEligibleCouples, new Cache<String>(), context, commCareClientService);
     }
 
     @Test
@@ -56,11 +60,22 @@ public class EligibleCoupleListViewControllerTest {
 
         when(allEligibleCouples.all()).thenReturn(asList(ecHighPriority3, ecNormalPriority2, ecHighPriority1, ecNormalPriority3, ecNormalPriority1, ecHighPriority2));
 
-        EligibleCoupleListViewController controller = new EligibleCoupleListViewController(allEligibleCouples, context, commCareClientService);
-        ECs ecs = new Gson().fromJson(controller.get(), new TypeToken<ECs>() { }.getType());
+        ECs ecs = new Gson().fromJson(controller.get(), new TypeToken<ECs>() {
+        }.getType());
 
         assertEquals(asList(expectedECNormalPriority1, expectedECNormalPriority2, expectedECNormalPriority3), ecs.normalPriority());
         assertEquals(asList(expectedECHighPriority1, expectedECHighPriority2, expectedECHighPriority3), ecs.highPriority());
+    }
+
+    @Test
+    public void shouldCacheAllECsUntilNewDataIsFetched() throws Exception {
+        controller.get();
+        verify(allEligibleCouples, times(1)).all();
+        controller.get();
+        verify(allEligibleCouples, times(1)).all();
+        Event.ON_DATA_FETCHED.notifyListeners(fetched);
+        controller.get();
+        verify(allEligibleCouples, times(2)).all();
     }
 
     private Map<String, String> normalPriority() {
