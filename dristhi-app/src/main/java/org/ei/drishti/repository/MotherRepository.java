@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MotherRepository extends DrishtiRepository {
-    private static final String MOTHER_SQL = "CREATE TABLE mother(caseID VARCHAR, thaayiCardNumber VARCHAR, ecCaseId VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR)";
+    private static final String MOTHER_SQL = "CREATE TABLE mother(caseID VARCHAR PRIMARY KEY, thaayiCardNumber VARCHAR, ecCaseId VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR)";
     private static final String MOTHER_TABLE_NAME = "mother";
     private static final String CASE_ID_COLUMN = "caseID";
     private static final String EC_CASEID_COLUMN = "ecCaseId";

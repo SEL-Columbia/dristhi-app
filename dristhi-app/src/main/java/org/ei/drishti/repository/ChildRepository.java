@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChildRepository extends DrishtiRepository {
-    private static final String CHILD_SQL = "CREATE TABLE child(caseID VARCHAR, thaayiCardNumber VARCHAR, motherCaseId VARCHAR, referenceDate VARCHAR)";
+    private static final String CHILD_SQL = "CREATE TABLE child(caseID VARCHAR PRIMARY KEY, thaayiCardNumber VARCHAR, motherCaseId VARCHAR, referenceDate VARCHAR)";
     private static final String CHILD_TABLE_NAME = "child";
     private static final String CASE_ID_COLUMN = "caseID";
     private static final String MOTHER_CASEID_COLUMN = "motherCaseId";
