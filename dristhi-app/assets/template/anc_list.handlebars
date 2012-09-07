@@ -1,13 +1,11 @@
-<div class="high-risk-header"> HIGH RISK ({{anc.highRisk.length}}) </div>
-<div class="divider divider-padding-both"></div>
-{{#each anc.highRisk}}
+{{#each this}}
     <div class="row-fluid">
         <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
             <div class="span8">
                 <ul class="client-details unstyled">
                     <li class="big-text">
                         {{womanName}}
-                        <span class="high-risk"> HRP </span>
+                        {{#if isHighRisk}}<span class="high-risk"> HRP </span>{{/if}}
                     </li>
                     <li>{{husbandName}}</li>
                     <li>
@@ -30,36 +28,3 @@
         </a>
     </div>
 {{/each}}
-
-<div class="normal-risk-header"> NORMAL RISK ({{anc.normalRisk.length}}) </div>
-<div class="divider divider-padding-both"></div>
-{{#each anc.normalRisk}}
-    <div class="row-fluid">
-        <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
-            <div class="span8">
-                <ul class="client-details unstyled">
-                    <li class="big-text">
-                        {{womanName}}
-                    </li>
-                    <li>{{husbandName}}</li>
-                    <li>
-                     Thaayi #: {{thaayiCardNumber}}
-					</li>
-                </ul>
-            </div>
-
-            <div class="span4 pull-text-completely-right hide-extra">
-				{{villageName}}
-				<p>
-				{{#if hasTodos}}
-				<div class = "todo pull-text-completely-right">
-					<img src="../img/icons/icon-hastodo.png"> </img>
-                </div>
-				{{/if}}
-			</div>
-
-            <div class="divider divider-padding-both"></div>
-        </a>
-    </div>
-{{/each}}
-

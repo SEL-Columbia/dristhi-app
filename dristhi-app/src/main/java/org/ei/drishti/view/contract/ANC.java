@@ -18,7 +18,7 @@ public class ANC {
         this.husbandName = husbandName;
         this.villageName = villageName;
         this.thaayiCardNumber = thaayiCardNumber;
-        isHighRisk = highRisk;
+        this.isHighRisk = highRisk;
     }
 
     public String womanName() {
