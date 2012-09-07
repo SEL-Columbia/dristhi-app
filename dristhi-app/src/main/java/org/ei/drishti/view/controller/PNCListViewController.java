@@ -9,8 +9,11 @@ import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.view.activity.PNCDetailActivity;
 import org.ei.drishti.view.contract.PNC;
+import org.ei.drishti.view.contract.PNCs;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class PNCListViewController {
@@ -25,18 +28,35 @@ public class PNCListViewController {
     }
 
     public String get() {
-        List<PNC> pncs = new ArrayList<PNC>();
         List<Mother> mothers = allBeneficiaries.allPNCs();
+        List<PNC> highRiskPncs = new ArrayList<PNC>();
+        List<PNC> normalRiskPncs = new ArrayList<PNC>();
+
         for (Mother mother : mothers) {
             EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
-            pncs.add(new PNC(mother.caseId(), couple.wifeName(), mother.thaayiCardNumber(), couple.village(), mother.isHighRisk()));
+            List<PNC> pncListBasedOnRisk = mother.isHighRisk() ? highRiskPncs : normalRiskPncs;
+
+            pncListBasedOnRisk.add(new PNC(mother.caseId(), mother.thaayiCardNumber(), couple.wifeName(), couple.husbandName(), couple.village(), mother.isHighRisk()));
         }
-        return new Gson().toJson(pncs);
+
+        sort(normalRiskPncs);
+        sort(highRiskPncs);
+        return new Gson().toJson(new PNCs(highRiskPncs, normalRiskPncs));
+
     }
 
     public void startPNC(String caseId) {
         Intent intent = new Intent(context.getApplicationContext(), PNCDetailActivity.class);
         intent.putExtra("caseId", caseId);
         context.startActivity(intent);
+    }
+
+    private void sort(List<PNC> pncs) {
+        Collections.sort(pncs, new Comparator<PNC>() {
+            @Override
+            public int compare(PNC onePnc, PNC anotherPNC) {
+                return onePnc.womanName().compareToIgnoreCase(anotherPNC.womanName());
+            }
+        });
     }
 }

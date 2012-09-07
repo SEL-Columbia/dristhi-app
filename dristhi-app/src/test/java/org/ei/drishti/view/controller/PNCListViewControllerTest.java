@@ -8,8 +8,8 @@ import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.view.contract.ANC;
-import org.ei.drishti.view.contract.ANCs;
+import org.ei.drishti.view.contract.PNC;
+import org.ei.drishti.view.contract.PNCs;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
-public class ANCListViewControllerTest {
+public class PNCListViewControllerTest {
     @Mock
     private AllEligibleCouples allEligibleCouples;
     @Mock
@@ -39,20 +39,20 @@ public class ANCListViewControllerTest {
 
     @Test
     public void shouldSortBothNormalAndHighANCsByName() throws Exception {
-        when(allBeneficiaries.allANCs()).thenReturn(asList(
+        when(allBeneficiaries.allPNCs()).thenReturn(asList(
                 new Mother("Case 3", "EC Case 3", "TC 3", "2032-03-03").withDetails(create("isHighRisk", "no").put("deliveryPlace", "Bherya DC").map()),
                 new Mother("Case 4", "EC Case 4", "TC 4", "2032-03-03").withDetails(create("isHighRisk", "yes").put("deliveryPlace", "Bherya DC").map()),
                 new Mother("Case 1", "EC Case 1", "TC 1", "2012-01-01").withDetails(create("isHighRisk", "no").put("deliveryPlace", "Bherya DC").map()),
                 new Mother("Case 2", "EC Case 2", "TC 2", "2022-02-02").withDetails(create("isHighRisk", "yes").put("deliveryPlace", "Bherya DC").map())));
+        when(allEligibleCouples.findByCaseID("EC Case 1")).thenReturn(new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC", new HashMap<String, String>()));
         when(allEligibleCouples.findByCaseID("EC Case 2")).thenReturn(new EligibleCouple("EC Case 2", "woman B", "Husband B", "EC Number 2", "Bherya", "Bherya SC", new HashMap<String, String>()));
         when(allEligibleCouples.findByCaseID("EC Case 3")).thenReturn(new EligibleCouple("EC Case 3", "woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", new HashMap<String, String>()));
         when(allEligibleCouples.findByCaseID("EC Case 4")).thenReturn(new EligibleCouple("EC Case 4", "Woman D", "Husband D", "EC Number 4", "Bherya", "Bherya SC", new HashMap<String, String>()));
-        when(allEligibleCouples.findByCaseID("EC Case 1")).thenReturn(new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC", new HashMap<String, String>()));
 
-        ANCListViewController controller = new ANCListViewController(context, allBeneficiaries, allEligibleCouples);
-        ANCs ancs = new Gson().fromJson(controller.get(), new TypeToken<ANCs>() { }.getType());
+        PNCListViewController controller = new PNCListViewController(context, allBeneficiaries, allEligibleCouples);
+        PNCs pnCs = new Gson().fromJson(controller.get(), new TypeToken<PNCs>() { }.getType());
 
-        assertEquals(asList(new ANC("Case 1", "TC 1", "Woman A", "Husband A", "Bherya", false), new ANC("Case 3", "TC 3", "woman C", "Husband C", "Bherya", false)), ancs.normalRisk());
-        assertEquals(asList(new ANC("Case 2", "TC 2", "woman B", "Husband B", "Bherya", true), new ANC("Case 4", "TC 4", "Woman D", "Husband D", "Bherya", true)), ancs.highRisk());
+        assertEquals(asList(new PNC("Case 1", "TC 1", "Woman A", "Husband A", "Bherya", false), new PNC("Case 3", "TC 3", "woman C", "Husband C", "Bherya", false)), pnCs.normalRisk());
+        assertEquals(asList(new PNC("Case 2", "TC 2", "woman B", "Husband B", "Bherya", true), new PNC("Case 4", "TC 4", "Woman D", "Husband D", "Bherya", true)), pnCs.highRisk());
     }
 }

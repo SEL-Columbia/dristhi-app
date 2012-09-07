@@ -12,7 +12,7 @@ public class ANC {
     private String thaayiCardNumber;
     private boolean isHighRisk;
 
-    public ANC(String caseId, String womanName, String husbandName, String villageName, String thaayiCardNumber, boolean highRisk) {
+    public ANC(String caseId, String thaayiCardNumber, String womanName, String husbandName, String villageName, boolean highRisk) {
         this.caseId = caseId;
         this.womanName = womanName;
         this.husbandName = husbandName;

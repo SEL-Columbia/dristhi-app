@@ -4,6 +4,7 @@
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/custom.css" rel="stylesheet">
     <link href="../css/sidepanel.css" rel="stylesheet">
+    <link href="../css/list.css" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
 
@@ -39,16 +40,25 @@
                 </ul>
 
                 <ul class="nav pull-right affected-by-sidepanel">
-                    <li class="divider-vertical in-navbar"></li>
-                    <li><i class="navbar-icon icon-plus icon-white"></i></li>
-                    <li class="divider-vertical in-navbar"></li>
-                    <li style=""><i class="navbar-icon icon-search icon-white"></i></li>
+                    <li><img class="separator"></li>
+                    <li><img src="../img/icons/icon_plus.png"></li>
+                    <li><img class="separator"></li>
+                    <li><img src="../img/icons/icon_find.png"></li>
                 </ul>
             </div>
         </div>
 
         <div id="content" class="content affected-by-sidepanel">
             <div id="pnc-list" class="registry-container container-fluid">
+                <div id="highRiskContainer">
+                    <div class="high-risk-header"> HIGH RISK (<span class="count"></span>) </div>
+                    <div class="divider divider-padding-both"></div>
+                </div>
+
+                <div id="normalRiskContainer">
+                    <div class="normal-risk-header"> NORMAL RISK (<span class="count"></span>) </div>
+                    <div class="divider divider-padding-both"></div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,19 +1,30 @@
-{{#each pnc}}
+{{#each this}}
     <div class="row-fluid">
         <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
-            <div class="span9">
+            <div class="span8">
                 <ul class="client-details unstyled">
-                    <li class="big-text">{{womanName}}</li>
-                    <li>{{villageName}}</li>
-                    <li>Thaayi #: {{thaayiCardNumber}}</li>
+                    <li class="big-text">
+                        {{womanName}}
+                        {{#if isHighRisk}}<span class="high-risk"> HRP </span>{{/if}}
+                    </li>
+                    <li>{{husbandName}}</li>
+                    <li>
+                     Thaayi #: {{thaayiCardNumber}}
+                    </li>
                 </ul>
             </div>
 
-            <div class="span3 high-risk pull-text-completely-right">
-                {{#if isHighRisk}} High Risk {{/if}}
+            <div class="span4 pull-text-completely-right">
+                {{villageName}}
+                <p>
+                {{#if hasTodos}}
+                <div class = "todo pull-text-completely-right">
+                    <img src="../img/icons/icon-hastodo.png"> </img>
+                </div>
+                {{/if}}
             </div>
 
-            <div class="divider divider-padding-bottom"></div>
+            <div class="divider divider-padding-both"></div>
         </a>
     </div>
 {{/each}}

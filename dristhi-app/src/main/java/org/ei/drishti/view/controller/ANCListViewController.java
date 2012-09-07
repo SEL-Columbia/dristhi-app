@@ -21,7 +21,7 @@ public class ANCListViewController {
     private AllEligibleCouples allEligibleCouples;
     private final Context context;
 
-    public ANCListViewController(AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples, Context context) {
+    public ANCListViewController(Context context, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples) {
         this.allBeneficiaries = allBeneficiaries;
         this.allEligibleCouples = allEligibleCouples;
         this.context = context;
@@ -36,7 +36,7 @@ public class ANCListViewController {
             EligibleCouple ec = allEligibleCouples.findByCaseID(mother.ecCaseId());
 
             List<ANC> ancListBasedOnRisk = mother.isHighRisk() ? highRiskAncs : normalRiskAncs;
-            ancListBasedOnRisk.add(new ANC(mother.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), mother.thaayiCardNumber(), mother.isHighRisk()));
+            ancListBasedOnRisk.add(new ANC(mother.caseId(), mother.thaayiCardNumber(), ec.wifeName(), ec.husbandName(), ec.village(), mother.isHighRisk()));
         }
 
         sort(normalRiskAncs);
