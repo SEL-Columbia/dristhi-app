@@ -1,8 +1,8 @@
 <div class="tabbable">
     <ul class="nav nav-tabs navbar-fixed-top affected-by-sidepanel">
-        <li class="active"><a href="#overdue" data-toggle="tab">Overdue (<span id="overdue-count">{{overdue.length}}</span>)</a></li>
-        <li><a href="#upcoming" data-toggle="tab">To Do (<span id="upcoming-count">{{upcoming.length}}</span>)</a></li>
-        <li><a href="#completed" data-toggle="tab">Done (<span id="completed-count">{{completed.length}}</span>)</a></li>
+        <li class="active overdue"><a href="#overdue" data-toggle="tab">Overdue (<span id="overdue-count">{{overdue.length}}</span>)</a></li>
+        <li class="upcoming"><a href="#upcoming" data-toggle="tab">To Do (<span id="upcoming-count">{{upcoming.length}}</span>)</a></li>
+        <li class="completed"><a href="#completed" data-toggle="tab">Done (<span id="completed-count">{{completed.length}}</span>)</a></li>
     </ul>
 </div>
 
@@ -12,7 +12,7 @@
             <div class="alert overdue">
                 <div class="row-fluid">
                     <div class="span2">
-                        <div class="todo-box-wrapper"><img class="todo-box"/></div>
+                        <img class="todo-box"/>
                     </div>
                     <div class="span10">
                         <div class="beneficiaryName">{{beneficiaryName}}</div>
@@ -28,7 +28,7 @@
             <div class="alert upcoming">
                 <div class="row-fluid">
                     <div class="span2">
-                        <div class="todo-box-wrapper"><img class="todo-box"/></div>
+                        <img class="todo-box"/>
                     </div>
                     <div class="span10">
                         <div class="beneficiaryName">{{beneficiaryName}}</div>
@@ -44,7 +44,7 @@
             <div class="alert completed">
                 <div class="row-fluid">
                     <div class="span2">
-                        <div class="todo-box-wrapper"><img class="todo-box checked"/></div>
+                        <img class="todo-box checked"/>
                     </div>
                     <div class="span10">
                         <div class="beneficiaryName">{{beneficiaryName}}</div>
