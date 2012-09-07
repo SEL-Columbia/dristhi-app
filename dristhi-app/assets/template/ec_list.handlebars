@@ -1,6 +1,6 @@
-<div class="high-risk-header"> HIGH PRIORITY ({{ec.highPriority.length}}) </div>
+<div class="high-risk-header"> HIGH PRIORITY ({{highPriority.length}}) </div>
 <div class="divider divider-padding-both"></div>
-{{#each ec.highPriority}}
+{{#each highPriority}}
     <div class="row-fluid">
         <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
             <div class="span8">
@@ -31,9 +31,9 @@
     </div>
 {{/each}}
 
-<div class="normal-risk-header"> NORMAL PRIORITY ({{ec.normalPriority.length}}) </div>
+<div class="normal-risk-header"> NORMAL PRIORITY ({{normalPriority.length}}) </div>
 <div class="divider divider-padding-both"></div>
-{{#each ec.normalPriority}}
+{{#each normalPriority}}
     <div class="row-fluid">
         <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
             <div class="span8">

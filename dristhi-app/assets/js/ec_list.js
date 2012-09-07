@@ -1,14 +1,26 @@
 function ECList(ecListBridge) {
+    var sliceLength = 20;
+    var populateECsInBatches = function (cssIdentifierOfRootElement, ecs, numberOfBatches, startIndex) {
+        if (startIndex > numberOfBatches) return;
+
+        $(cssIdentifierOfRootElement).append(Handlebars.templates.ec_list({ highPriority: ecs.highPriority.slice(sliceLength * startIndex, sliceLength * (startIndex + 1))}));
+        setTimeout(function () {
+            populateECsInBatches(cssIdentifierOfRootElement, ecs, numberOfBatches, startIndex + 1);
+        }, 1);
+    }
+
     return {
         populateInto: function (cssIdentifierOfRootElement) {
-            $(cssIdentifierOfRootElement).html(Handlebars.templates.ec_list(ecListBridge.getECs()));
+            var ecs = {highPriority: ecListBridge.getECs().highPriority};
+            var numberOfBatches = (ecs.highPriority.length / sliceLength) + 1;
+            populateECsInBatches(cssIdentifierOfRootElement, ecs, numberOfBatches, 0);
         },
         bindEveryItemToECView: function (cssIdentifierOfRootElement, cssIdentifierOfEveryListItem) {
             $(cssIdentifierOfRootElement).on("click", cssIdentifierOfEveryListItem, function (event) {
                 ecListBridge.delegateToECDetail($(this).data("caseid"));
             });
         },
-        bindItemToCommCare: function(cssIdentifierOfElement) {
+        bindItemToCommCare: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 ecListBridge.delegateToCommCare($(this).data("form"));
             })
@@ -24,8 +36,7 @@ function ECListBridge() {
 
     return {
         getECs: function () {
-            var ec = JSON.parse(ecContext.get());
-            return {"ec": ec};
+            return JSON.parse(ecContext.get());
         },
         delegateToECDetail: function (caseId) {
             return ecContext.startEC(caseId);
@@ -65,7 +76,7 @@ function FakeECListContext() {
                 ]
             });
         },
-        startEC: function(caseId) {
+        startEC: function (caseId) {
             window.location.href = "ec_detail.html";
         },
         startCommCare: function (formId) {
