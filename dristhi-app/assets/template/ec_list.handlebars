@@ -1,45 +1,11 @@
-<div class="high-risk-header"> HIGH PRIORITY ({{highPriority.length}}) </div>
-<div class="divider divider-padding-both"></div>
-{{#each highPriority}}
+{{#each this}}
     <div class="row-fluid">
         <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
             <div class="span8">
                 <ul class="client-details unstyled">
                     <li class="big-text">
                         {{wifeName}}
-                        <span class="high-risk"> HP </span>
-                    </li>
-                    <li>{{husbandName}}</li>
-                    <li>
-                     EC #: {{ecNumber}}
-                    </li>
-                </ul>
-            </div>
-
-            <div class="span4 pull-text-completely-right">
-                {{villageName}}
-                <p>
-                {{#if hasTodos}}
-                <div class = "todo pull-text-completely-right">
-                    <img src="../img/icons/icon-hastodo.png"></img>
-                </div>
-                {{/if}}
-            </div>
-
-            <div class="divider divider-padding-both"></div>
-        </a>
-    </div>
-{{/each}}
-
-<div class="normal-risk-header"> NORMAL PRIORITY ({{normalPriority.length}}) </div>
-<div class="divider divider-padding-both"></div>
-{{#each normalPriority}}
-    <div class="row-fluid">
-        <a data-caseId={{caseId}} class="client-list-item" onClick="javascript: return true;">
-            <div class="span8">
-                <ul class="client-details unstyled">
-                    <li class="big-text">
-                        {{wifeName}}
+                        {{#if isHighPriority}}<span class="high-risk"> HP </span>{{/if}}
                     </li>
                     <li>{{husbandName}}</li>
                     <li>

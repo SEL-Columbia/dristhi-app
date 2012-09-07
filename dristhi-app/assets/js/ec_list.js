@@ -1,20 +1,31 @@
 function ECList(ecListBridge) {
     var sliceLength = 20;
-    var populateECsInBatches = function (cssIdentifierOfRootElement, ecs, numberOfBatches, startIndex) {
+
+    var populateECsInBatches = function (cssIdentifierOfContainerOfECS, ecs, numberOfBatches, startIndex) {
         if (startIndex > numberOfBatches) return;
 
-        $(cssIdentifierOfRootElement).append(Handlebars.templates.ec_list({ highPriority: ecs.highPriority.slice(sliceLength * startIndex, sliceLength * (startIndex + 1))}));
+        $(cssIdentifierOfContainerOfECS).append(Handlebars.templates.ec_list(ecs.slice(sliceLength * startIndex, sliceLength * (startIndex + 1))));
         setTimeout(function () {
-            populateECsInBatches(cssIdentifierOfRootElement, ecs, numberOfBatches, startIndex + 1);
+            populateECsInBatches(cssIdentifierOfContainerOfECS, ecs, numberOfBatches, startIndex + 1);
         }, 1);
     }
 
+    var populateECsInSpecificContainer = function(cssIdentifierOfRootElement, cssIdentifierOfContainer, ecsToUse) {
+        var cssIdentifierOfContainerOfECS = cssIdentifierOfRootElement + " " + cssIdentifierOfContainer;
+
+        $(cssIdentifierOfContainerOfECS + " .count").text(ecsToUse.length);
+        var numberOfBatches = (ecsToUse.length / sliceLength) + 1;
+        populateECsInBatches(cssIdentifierOfContainerOfECS, ecsToUse, numberOfBatches, 0);
+    };
+
     return {
         populateInto: function (cssIdentifierOfRootElement) {
-            var ecs = {highPriority: ecListBridge.getECs().highPriority};
-            var numberOfBatches = (ecs.highPriority.length / sliceLength) + 1;
-            populateECsInBatches(cssIdentifierOfRootElement, ecs, numberOfBatches, 0);
+            var ecs = ecListBridge.getECs();
+
+            populateECsInSpecificContainer(cssIdentifierOfRootElement, "#highPriorityContainer", ecs.highPriority);
+            populateECsInSpecificContainer(cssIdentifierOfRootElement, "#normalPriorityContainer", ecs.normalPriority);
         },
+
         bindEveryItemToECView: function (cssIdentifierOfRootElement, cssIdentifierOfEveryListItem) {
             $(cssIdentifierOfRootElement).on("click", cssIdentifierOfEveryListItem, function (event) {
                 ecListBridge.delegateToECDetail($(this).data("caseid"));
