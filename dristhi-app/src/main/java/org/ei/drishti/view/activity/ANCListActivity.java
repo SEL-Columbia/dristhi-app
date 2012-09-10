@@ -8,4 +8,23 @@ public class ANCListActivity extends SecuredWebActivity {
         webView.addJavascriptInterface(new ANCListViewController(this, context.allBeneficiaries(), context.allEligibleCouples()), "context");
         webView.loadUrl("file:///android_asset/www/anc_list.html");
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        webView.destroy();
+        webView = null;
+    }
+
+    @Override
+    protected void onResumption() {
+        if (webView != null) return;
+
+        recreateWebView();
+    }
+
+    private void recreateWebView() {
+        initializeWebView();
+        onInitialization();
+    }
 }
