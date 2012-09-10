@@ -71,5 +71,4 @@ public class PNCListViewControllerTest {
         controller.get();
         verify(allBeneficiaries, times(2)).allPNCs();
     }
-
 }

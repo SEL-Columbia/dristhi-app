@@ -15,6 +15,8 @@ import java.util.Map;
 
 public class MotherRepository extends DrishtiRepository {
     private static final String MOTHER_SQL = "CREATE TABLE mother(caseID VARCHAR PRIMARY KEY, thaayiCardNumber VARCHAR, ecCaseId VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR)";
+    private static final String MOTHER_TYPE_INDEX_SQL = "CREATE INDEX mother_type_index ON mother(type);";
+    private static final String MOTHER_REFERENCE_DATE_INDEX_SQL = "CREATE INDEX mother_referenceDate_index ON mother(referenceDate);";
     private static final String MOTHER_TABLE_NAME = "mother";
     private static final String CASE_ID_COLUMN = "caseID";
     private static final String EC_CASEID_COLUMN = "ecCaseId";
@@ -40,6 +42,8 @@ public class MotherRepository extends DrishtiRepository {
     @Override
     protected void onCreate(SQLiteDatabase database) {
         database.execSQL(MOTHER_SQL);
+        database.execSQL(MOTHER_TYPE_INDEX_SQL);
+        database.execSQL(MOTHER_REFERENCE_DATE_INDEX_SQL);
     }
 
     public void add(Mother mother) {

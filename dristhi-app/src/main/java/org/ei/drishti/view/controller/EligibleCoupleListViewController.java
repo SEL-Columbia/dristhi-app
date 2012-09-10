@@ -47,7 +47,6 @@ public class EligibleCoupleListViewController {
 
                 sort(highPriority);
                 sort(normalPriority);
-                Log.logWarn("EC List Cache created");
                 return new Gson().toJson(new ECs(highPriority, normalPriority));
             }
         });

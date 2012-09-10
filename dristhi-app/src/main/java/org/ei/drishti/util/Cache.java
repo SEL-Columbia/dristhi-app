@@ -18,6 +18,7 @@ public class Cache<T> {
             @Override
             public void onEvent(FetchStatus data) {
                 if (fetched.equals(data)) {
+                    Log.logWarn("List cache invalidated");
                     value.clear();
                 }
             }

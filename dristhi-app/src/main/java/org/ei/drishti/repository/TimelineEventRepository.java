@@ -11,6 +11,7 @@ import java.util.List;
 
 public class TimelineEventRepository extends DrishtiRepository {
     private static final String TIMELINEEVENT_SQL = "CREATE TABLE timelineEvent(caseID VARCHAR, type VARCHAR, referenceDate VARCHAR, title VARCHAR, detail1 VARCHAR, detail2 VARCHAR)";
+    private static final String TIMELINEVENT_CASEID_INDEX_SQL = "CREATE INDEX timelineEvent_caseID_index ON timelineEvent(caseID);";
     private static final String TIMELINEEVENT_TABLE_NAME = "timelineEvent";
     private static final String CASEID_COLUMN = "caseId";
     private static final String TYPE_COLUMN = "type";
@@ -23,6 +24,7 @@ public class TimelineEventRepository extends DrishtiRepository {
     @Override
     protected void onCreate(SQLiteDatabase database) {
         database.execSQL(TIMELINEEVENT_SQL);
+        database.execSQL(TIMELINEVENT_CASEID_INDEX_SQL);
     }
 
     public void add(TimelineEvent timelineEvent) {
