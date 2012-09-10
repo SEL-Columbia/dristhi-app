@@ -1,5 +1,6 @@
 package org.ei.drishti.service;
 
+import com.google.gson.Gson;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.Response;
@@ -7,6 +8,7 @@ import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
+import org.ei.drishti.util.Log;
 
 import java.util.List;
 
@@ -46,16 +48,53 @@ public class ActionService {
     }
 
     private void handleActions(Response<List<Action>> response) {
-        for (Action action : response.payload()) {
-            if (action.target().equals("alert")) {
-                allAlerts.handleAction(action);
-            } else if (action.target().equals("child")) {
-                allBeneficiaries.handleChildAction(action);
-            } else if (action.target().equals("mother")) {
-                allBeneficiaries.handleMotherAction(action);
+        for (Action actionToUse : response.payload()) {
+            if (actionToUse.target().equals("alert")) {
+                runAction(actionToUse, new ActionHandler() {
+                    @Override
+                    public void run(Action action) {
+                        allAlerts.handleAction(action);
+                    }
+                });
+
+            } else if (actionToUse.target().equals("child")) {
+                runAction(actionToUse, new ActionHandler() {
+                    @Override
+                    public void run(Action action) {
+                        allBeneficiaries.handleChildAction(action);
+                    }
+                });
+
+            } else if (actionToUse.target().equals("mother")) {
+                runAction(actionToUse, new ActionHandler() {
+                    @Override
+                    public void run(Action action) {
+                        allBeneficiaries.handleMotherAction(action);
+                    }
+                });
+
             } else {
-                allEligibleCouples.handleAction(action);
+                runAction(actionToUse, new ActionHandler() {
+                    @Override
+                    public void run(Action action) {
+                        allEligibleCouples.handleAction(action);
+                    }
+                });
+
             }
+        }
+    }
+
+    private void runAction(Action action, ActionHandler actionHandler) {
+        try {
+            actionHandler.run(action);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to run action: " + new Gson().toJson(action), e);
+        }
+    }
+
+    private abstract class ActionHandler {
+        public void run(Action action) {
         }
     }
 }
