@@ -3,6 +3,7 @@ package org.ei.drishti.view.controller;
 import android.content.Context;
 import android.content.Intent;
 import com.google.gson.Gson;
+import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
@@ -36,12 +37,14 @@ public class ANCListViewController {
         return ancListCache.get(ANC_LIST, new CacheableData<String>() {
             @Override
             public String fetch() {
-                List<Mother> mothers = allBeneficiaries.allANCs();
+                List<Pair<Mother,EligibleCouple>> mothersWithEC = allBeneficiaries.allANCsWithEC();
+
                 List<ANC> highRiskAncs = new ArrayList<ANC>();
                 List<ANC> normalRiskAncs = new ArrayList<ANC>();
 
-                for (Mother mother : mothers) {
-                    EligibleCouple ec = allEligibleCouples.findByCaseID(mother.ecCaseId());
+                for (Pair<Mother, EligibleCouple> motherWithEC : mothersWithEC) {
+                    Mother mother = motherWithEC.getLeft();
+                    EligibleCouple ec = motherWithEC.getRight();
 
                     List<ANC> ancListBasedOnRisk = mother.isHighRisk() ? highRiskAncs : normalRiskAncs;
                     ancListBasedOnRisk.add(new ANC(mother.caseId(), mother.thaayiCardNumber(), ec.wifeName(), ec.husbandName(), ec.village(), mother.isHighRisk()));

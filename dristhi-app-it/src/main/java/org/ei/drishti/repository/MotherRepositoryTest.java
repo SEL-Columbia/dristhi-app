@@ -2,7 +2,9 @@ package org.ei.drishti.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
+import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.Alert;
+import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.dto.AlertPriority;
@@ -12,6 +14,7 @@ import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
@@ -24,17 +27,22 @@ public class MotherRepositoryTest extends AndroidTestCase {
     private ChildRepository childRepository;
     private TimelineEventRepository timelineEventRepository;
     private AlertRepository alertRepository;
+    private EligibleCoupleRepository eligibleCoupleRepository;
+    private LocalDate today;
 
     @Override
     protected void setUp() throws Exception {
+        today = DateUtil.today();
         timelineEventRepository = new TimelineEventRepository();
         alertRepository = new AlertRepository();
         childRepository = new ChildRepository(timelineEventRepository, alertRepository);
 
         repository = new MotherRepository(childRepository, timelineEventRepository, alertRepository);
 
+        eligibleCoupleRepository = new EligibleCoupleRepository(repository, timelineEventRepository, alertRepository);
+
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
-        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, childRepository, timelineEventRepository, alertRepository);
+        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, childRepository, timelineEventRepository, alertRepository, eligibleCoupleRepository);
     }
 
     public void testShouldInsertMother() throws Exception {
@@ -45,6 +53,22 @@ public class MotherRepositoryTest extends AndroidTestCase {
 
         assertEquals(asList(mother), repository.allANCs());
         assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE X", "2012-06-08")), timelineEventRepository.allFor("CASE X"));
+    }
+
+    public void testShouldFetchANCAndCorrespondingEC() throws Exception {
+        Map<String, String> details = mapOf("some-key", "some-value");
+        EligibleCouple firstEligibleCouple = new EligibleCouple("EC Case 1", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", details);
+        EligibleCouple secondEligibleCouple = new EligibleCouple("EC Case 2", "Wife 2", "Husband 2", "EC Number", "Village 2", "SubCenter 2", details);
+        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withDetails(details);
+        eligibleCoupleRepository.add(firstEligibleCouple);
+        eligibleCoupleRepository.add(secondEligibleCouple);
+        repository.add(mother);
+        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", today.minusDays(300).toString()));
+
+
+        List<Pair<Mother,EligibleCouple>> ancsWithEC = repository.allANCsWithEC();
+
+        assertEquals(asList(Pair.of(mother, firstEligibleCouple)), ancsWithEC);
     }
 
     public void testShouldUpdateMotherDetails() throws Exception {
@@ -60,7 +84,6 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldLoadAllANCsBasedOnType() throws Exception {
-        LocalDate today = DateUtil.today();
         repository.add(new Mother("CASE X", "EC Case 1", "TC 1", today.minusDays(100).toString()));
         repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", today.minusDays(279).toString()));
 
@@ -78,7 +101,6 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldConsiderMothersAsBelongingToPNCAfterEDD() throws Exception {
-        LocalDate today = DateUtil.today();
         repository.add(new Mother("CASE X", "EC Case 1", "TC 1", today.minusDays(279).toString()));
         repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", today.minusDays(280).toString()));
         repository.add(new Mother("CASE Z", "EC Case 3", "TC 3", today.minusDays(281).toString()));
@@ -97,7 +119,6 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldCountANCsAndPNCs() throws Exception {
-        LocalDate today = DateUtil.today();
         repository.add(new Mother("CASE X", "EC Case 1", "TC 1", today.minusDays(100).toString()));
         repository.add(new Mother("CASE Y", "EC Case 1", "TC 2", today.toString()));
         assertEquals(2, repository.ancCount());

@@ -4,6 +4,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.event.Event;
@@ -46,15 +47,15 @@ public class ANCListViewControllerTest {
 
     @Test
     public void shouldSortBothNormalAndHighANCsByName() throws Exception {
-        when(allBeneficiaries.allANCs()).thenReturn(asList(
-                new Mother("Case 3", "EC Case 3", "TC 3", "2032-03-03").withDetails(create("isHighRisk", "no").put("deliveryPlace", "Bherya DC").map()),
-                new Mother("Case 4", "EC Case 4", "TC 4", "2032-03-03").withDetails(create("isHighRisk", "yes").put("deliveryPlace", "Bherya DC").map()),
-                new Mother("Case 1", "EC Case 1", "TC 1", "2012-01-01").withDetails(create("isHighRisk", "no").put("deliveryPlace", "Bherya DC").map()),
-                new Mother("Case 2", "EC Case 2", "TC 2", "2022-02-02").withDetails(create("isHighRisk", "yes").put("deliveryPlace", "Bherya DC").map())));
-        when(allEligibleCouples.findByCaseID("EC Case 2")).thenReturn(new EligibleCouple("EC Case 2", "woman B", "Husband B", "EC Number 2", "Bherya", "Bherya SC", new HashMap<String, String>()));
-        when(allEligibleCouples.findByCaseID("EC Case 3")).thenReturn(new EligibleCouple("EC Case 3", "woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", new HashMap<String, String>()));
-        when(allEligibleCouples.findByCaseID("EC Case 4")).thenReturn(new EligibleCouple("EC Case 4", "Woman D", "Husband D", "EC Number 4", "Bherya", "Bherya SC", new HashMap<String, String>()));
-        when(allEligibleCouples.findByCaseID("EC Case 1")).thenReturn(new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC", new HashMap<String, String>()));
+        when(allBeneficiaries.allANCsWithEC()).thenReturn(asList(
+                Pair.of(new Mother("Case 3", "EC Case 3", "TC 3", "2032-03-03").withDetails(create("isHighRisk", "no").put("deliveryPlace", "Bherya DC").map()),
+                        new EligibleCouple("EC Case 3", "woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", new HashMap<String, String>())),
+                Pair.of(new Mother("Case 4", "EC Case 4", "TC 4", "2032-03-03").withDetails(create("isHighRisk", "yes").put("deliveryPlace", "Bherya DC").map()),
+                        new EligibleCouple("EC Case 4", "Woman D", "Husband D", "EC Number 4", "Bherya", "Bherya SC", new HashMap<String, String>())),
+                Pair.of(new Mother("Case 1", "EC Case 1", "TC 1", "2012-01-01").withDetails(create("isHighRisk", "no").put("deliveryPlace", "Bherya DC").map()),
+                        new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC", new HashMap<String, String>())),
+                Pair.of(new Mother("Case 2", "EC Case 2", "TC 2", "2022-02-02").withDetails(create("isHighRisk", "yes").put("deliveryPlace", "Bherya DC").map()),
+                        new EligibleCouple("EC Case 2", "woman B", "Husband B", "EC Number 2", "Bherya", "Bherya SC", new HashMap<String, String>()))));
 
         ANCs ancs = new Gson().fromJson(controller.get(), new TypeToken<ANCs>() {
         }.getType());
@@ -66,11 +67,11 @@ public class ANCListViewControllerTest {
     @Test
     public void shouldCacheAllECsUntilNewDataIsFetched() throws Exception {
         controller.get();
-        verify(allBeneficiaries, times(1)).allANCs();
+        verify(allBeneficiaries, times(1)).allANCsWithEC();
         controller.get();
-        verify(allBeneficiaries, times(1)).allANCs();
+        verify(allBeneficiaries, times(1)).allANCsWithEC();
         Event.ON_DATA_FETCHED.notifyListeners(fetched);
         controller.get();
-        verify(allBeneficiaries, times(2)).allANCs();
+        verify(allBeneficiaries, times(2)).allANCsWithEC();
     }
 }

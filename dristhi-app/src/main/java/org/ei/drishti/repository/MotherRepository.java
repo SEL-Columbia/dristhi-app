@@ -6,12 +6,18 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
+import org.apache.commons.lang3.tuple.Pair;
+import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static org.apache.commons.lang.StringUtils.join;
+import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_COLUMNS;
+import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_NAME;
 
 public class MotherRepository extends DrishtiRepository {
     private static final String MOTHER_SQL = "CREATE TABLE mother(caseID VARCHAR PRIMARY KEY, thaayiCardNumber VARCHAR, ecCaseId VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR)";
@@ -113,6 +119,16 @@ public class MotherRepository extends DrishtiRepository {
         return readAll(cursor);
     }
 
+    public List<Pair<Mother, EligibleCouple>> allANCsWithEC() {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery("SELECT " + tableColumnsForQuery(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS) + ", " + tableColumnsForQuery(EC_TABLE_NAME, EC_TABLE_COLUMNS) +
+                " FROM " + MOTHER_TABLE_NAME + ", " + EC_TABLE_NAME +
+                " WHERE " + TYPE_COLUMN + "='" + TYPE_ANC +
+                "' AND " + "date(" + REF_DATE_COLUMN + ", 'start of day', '+280 days') > date('now') " +
+                " AND " + MOTHER_TABLE_NAME + "." + EC_CASEID_COLUMN + " = " + EC_TABLE_NAME + "." + EligibleCoupleRepository.CASE_ID_COLUMN, null);
+        return readAllANCsWithEC(cursor);
+    }
+
     public void close(String caseId) {
         childRepository.closeAllCasesForMother(caseId);
         alertRepository.deleteAllAlertsForCase(caseId);
@@ -135,12 +151,43 @@ public class MotherRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<Mother> mothers = new ArrayList<Mother>();
         while (!cursor.isAfterLast()) {
-            Map<String, String> details = new Gson().fromJson(cursor.getString(5), new TypeToken<Map<String, String>>() { }.getType());
+            Map<String, String> details = new Gson().fromJson(cursor.getString(5), new TypeToken<Map<String, String>>() {
+            }.getType());
 
             mothers.add(new Mother(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(4)).withDetails(details));
             cursor.moveToNext();
         }
         cursor.close();
         return mothers;
+    }
+
+    private List<Pair<Mother, EligibleCouple>> readAllANCsWithEC(Cursor cursor) {
+        cursor.moveToFirst();
+        List<Pair<Mother, EligibleCouple>> ancsWithEC = new ArrayList<Pair<Mother, EligibleCouple>>();
+        while (!cursor.isAfterLast()) {
+            Mother mother = new Mother(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(4))
+                    .withDetails(new Gson().<Map<String, String>>fromJson(cursor.getString(5), new TypeToken<Map<String, String>>() {}.getType()));
+            EligibleCouple eligibleCouple = new EligibleCouple(cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11),
+                    new Gson().<Map<String, String>>fromJson(cursor.getString(13), new TypeToken<Map<String, String>>() {}.getType()));
+            if (Boolean.valueOf(cursor.getString(12)))
+                eligibleCouple.asOutOfArea();
+
+            ancsWithEC.add(Pair.of(mother, eligibleCouple));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return ancsWithEC;
+    }
+
+    private String tableColumnsForQuery(String tableName, String[] tableColumns) {
+        return join(prepend(tableColumns, tableName + "."), ", ");
+    }
+
+    private String[] prepend(String[] input, String textToPrepend) {
+        String[] output = new String[input.length];
+        for (int index = 0; index < input.length; index++) {
+            output[index] = textToPrepend + input[index];
+        }
+        return output;
     }
 }

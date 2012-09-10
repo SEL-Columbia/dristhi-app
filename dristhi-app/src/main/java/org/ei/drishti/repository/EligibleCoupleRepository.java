@@ -15,16 +15,16 @@ import java.util.Map;
 
 public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String EC_SQL = "CREATE TABLE eligible_couple(caseID VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR)";
-    private static final String CASE_ID_COLUMN = "caseID";
+    public static final String CASE_ID_COLUMN = "caseID";
     private static final String EC_NUMBER_COLUMN = "ecNumber";
     private static final String WIFE_NAME_COLUMN = "wifeName";
     private static final String HUSBAND_NAME_COLUMN = "husbandName";
-    private static final String EC_TABLE_NAME = "eligible_couple";
+    public static final String EC_TABLE_NAME = "eligible_couple";
     private static final String VILLAGE_NAME_COLUMN = "village";
     private static final String SUBCENTER_NAME_COLUMN = "subCenter";
     private static final String IS_OUT_OF_AREA_COLUMN = "isOutOfArea";
     private static final String DETAILS_COLUMN = "details";
-    private static final String[] EC_TABLE_COLUMNS = new String[]{CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN, EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN};
+    public static final String[] EC_TABLE_COLUMNS = new String[]{CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN, EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN};
     private MotherRepository motherRepository;
     private final AlertRepository alertRepository;
     private final TimelineEventRepository timelineEventRepository;

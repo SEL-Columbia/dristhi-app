@@ -1,5 +1,6 @@
 package org.ei.drishti.repository;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
@@ -52,10 +53,6 @@ public class AllBeneficiaries {
         }
     }
 
-    public List<Mother> allANCs() {
-        return motherRepository.allANCs();
-    }
-
     public List<Mother> allPNCs() {
         return motherRepository.allPNCs();
     }
@@ -78,5 +75,9 @@ public class AllBeneficiaries {
 
     public long childCount() {
         return childRepository.childCount();
+    }
+
+    public List<Pair<Mother, EligibleCouple>> allANCsWithEC() {
+        return motherRepository.allANCsWithEC();
     }
 }
