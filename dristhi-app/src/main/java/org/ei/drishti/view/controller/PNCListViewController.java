@@ -7,6 +7,8 @@ import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.util.Cache;
+import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.activity.PNCDetailActivity;
 import org.ei.drishti.view.contract.PNC;
 import org.ei.drishti.view.contract.PNCs;
@@ -17,32 +19,40 @@ import java.util.Comparator;
 import java.util.List;
 
 public class PNCListViewController {
+    public static final String PNC_LIST = "PNCList";
     private final Context context;
     private final AllBeneficiaries allBeneficiaries;
     private final AllEligibleCouples allEligibleCouples;
+    private Cache<String> pncListCache;
 
-    public PNCListViewController(Context context, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples) {
+    public PNCListViewController(Context context, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples, Cache<String> pncListCache) {
         this.context = context;
         this.allBeneficiaries = allBeneficiaries;
         this.allEligibleCouples = allEligibleCouples;
+        this.pncListCache = pncListCache;
     }
 
     public String get() {
-        List<Mother> mothers = allBeneficiaries.allPNCs();
-        List<PNC> highRiskPncs = new ArrayList<PNC>();
-        List<PNC> normalRiskPncs = new ArrayList<PNC>();
+        return pncListCache.get(PNC_LIST, new CacheableData<String>() {
+            @Override
+            public String fetch() {
+                List<Mother> mothers = allBeneficiaries.allPNCs();
+                List<PNC> highRiskPncs = new ArrayList<PNC>();
+                List<PNC> normalRiskPncs = new ArrayList<PNC>();
 
-        for (Mother mother : mothers) {
-            EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
-            List<PNC> pncListBasedOnRisk = mother.isHighRisk() ? highRiskPncs : normalRiskPncs;
+                for (Mother mother : mothers) {
+                    EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
+                    List<PNC> pncListBasedOnRisk = mother.isHighRisk() ? highRiskPncs : normalRiskPncs;
 
-            pncListBasedOnRisk.add(new PNC(mother.caseId(), mother.thaayiCardNumber(), couple.wifeName(), couple.husbandName(), couple.village(), mother.isHighRisk()));
-        }
+                    pncListBasedOnRisk.add(new PNC(mother.caseId(), mother.thaayiCardNumber(), couple.wifeName(), couple.husbandName(), couple.village(), mother.isHighRisk()));
+                }
 
-        sort(normalRiskPncs);
-        sort(highRiskPncs);
-        return new Gson().toJson(new PNCs(highRiskPncs, normalRiskPncs));
+                sort(normalRiskPncs);
+                sort(highRiskPncs);
+                return new Gson().toJson(new PNCs(highRiskPncs, normalRiskPncs));
 
+            }
+        });
     }
 
     public void startPNC(String caseId) {

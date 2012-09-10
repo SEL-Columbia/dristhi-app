@@ -6,8 +6,10 @@ import com.google.gson.reflect.TypeToken;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
+import org.ei.drishti.event.Event;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.util.Cache;
 import org.ei.drishti.view.contract.ANC;
 import org.ei.drishti.view.contract.ANCs;
 import org.junit.Before;
@@ -18,8 +20,11 @@ import org.mockito.Mock;
 import java.util.HashMap;
 
 import static java.util.Arrays.asList;
+import static org.ei.drishti.domain.FetchStatus.fetched;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -31,10 +36,12 @@ public class ANCListViewControllerTest {
     private AllBeneficiaries allBeneficiaries;
     @Mock
     private Context context;
+    private ANCListViewController controller;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
+        controller = new ANCListViewController(context, allBeneficiaries, allEligibleCouples, new Cache<String>());
     }
 
     @Test
@@ -49,10 +56,21 @@ public class ANCListViewControllerTest {
         when(allEligibleCouples.findByCaseID("EC Case 4")).thenReturn(new EligibleCouple("EC Case 4", "Woman D", "Husband D", "EC Number 4", "Bherya", "Bherya SC", new HashMap<String, String>()));
         when(allEligibleCouples.findByCaseID("EC Case 1")).thenReturn(new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC", new HashMap<String, String>()));
 
-        ANCListViewController controller = new ANCListViewController(context, allBeneficiaries, allEligibleCouples);
-        ANCs ancs = new Gson().fromJson(controller.get(), new TypeToken<ANCs>() { }.getType());
+        ANCs ancs = new Gson().fromJson(controller.get(), new TypeToken<ANCs>() {
+        }.getType());
 
         assertEquals(asList(new ANC("Case 1", "TC 1", "Woman A", "Husband A", "Bherya", false), new ANC("Case 3", "TC 3", "woman C", "Husband C", "Bherya", false)), ancs.normalRisk());
         assertEquals(asList(new ANC("Case 2", "TC 2", "woman B", "Husband B", "Bherya", true), new ANC("Case 4", "TC 4", "Woman D", "Husband D", "Bherya", true)), ancs.highRisk());
+    }
+
+    @Test
+    public void shouldCacheAllECsUntilNewDataIsFetched() throws Exception {
+        controller.get();
+        verify(allBeneficiaries, times(1)).allANCs();
+        controller.get();
+        verify(allBeneficiaries, times(1)).allANCs();
+        Event.ON_DATA_FETCHED.notifyListeners(fetched);
+        controller.get();
+        verify(allBeneficiaries, times(2)).allANCs();
     }
 }
