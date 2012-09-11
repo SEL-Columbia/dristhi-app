@@ -18,8 +18,8 @@ public class ActionBuilder {
         return new Action(caseID, "alert", "createAlert", createAlert(BeneficiaryType.from(beneficiaryType), visitCode, AlertPriority.from(alertPriority), new DateTime(startDate), new DateTime(expiryDate)).data(), index, new HashMap<String, String>());
     }
 
-    public static Action actionForCloseAlert(String caseID, String visitCode, String index) {
-        return new Action(caseID, "alert", "closeAlert", markAlertAsClosed(visitCode).data(), index, new HashMap<String, String>());
+    public static Action actionForCloseAlert(String caseID, String visitCode, String completionDate, String index) {
+        return new Action(caseID, "alert", "closeAlert", markAlertAsClosed(visitCode, completionDate).data(), index, new HashMap<String, String>());
     }
 
     public static Action actionForDeleteAllAlert(String caseID) {

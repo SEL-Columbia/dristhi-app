@@ -82,14 +82,14 @@ public class AlertRepositoryTest extends AndroidTestCase {
         alertRepository.createAlert(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open));
         alertRepository.createAlert(new Alert("Case Y", "SomeOtherWoman", "bherya", "ANC 2", "Thaayi 2", normal, "2012-01-01", "2012-01-11", open));
 
-        alertRepository.markAlertAsClosed("Case X", "ANC 1");
+        alertRepository.markAlertAsClosed("Case X", "ANC 1", "2012-01-01");
 
-        assertEquals(asList(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", closed).withCompletionDate(LocalDate.now().toString()),
+        assertEquals(asList(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", closed).withCompletionDate("2012-01-01"),
                 new Alert("Case Y", "SomeOtherWoman", "bherya", "ANC 2", "Thaayi 2", normal, "2012-01-01", "2012-01-11", open)), alertRepository.allAlerts());
     }
 
     public void testShouldNotFailClosingAlertWhenNoAlertExists() throws Exception {
-        alertRepository.markAlertAsClosed("Case X", "ANC 1");
+        alertRepository.markAlertAsClosed("Case X", "ANC 1", "2012-01-01");
 
         assertTrue(alertRepository.allAlerts().isEmpty());
     }

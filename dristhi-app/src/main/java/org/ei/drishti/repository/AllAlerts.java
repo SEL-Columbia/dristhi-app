@@ -34,7 +34,7 @@ public class AllAlerts {
         if ("createAlert".equals(action.type())) {
             createAlert(action);
         } else if ("closeAlert".equals(action.type())) {
-            repository.markAlertAsClosed(action.caseID(), action.get("visitCode"));
+            repository.markAlertAsClosed(action.caseID(), action.get("visitCode"), action.get("completionDate"));
         } else if ("deleteAllAlerts".equals(action.type())) {
             repository.deleteAllAlertsForCase(action.caseID());
         } else {
@@ -50,8 +50,8 @@ public class AllAlerts {
         return classifyTodosBasedOnUrgency(repository.allActiveAlertsForCase(caseId));
     }
 
-    public void markAsCompleted(String caseId, String visitCode) {
-        repository.markAlertAsClosed(caseId, visitCode);
+    public void markAsCompleted(String caseId, String visitCode, String completionDate) {
+        repository.markAlertAsClosed(caseId, visitCode, completionDate);
     }
 
     private void createAlert(Action action) {

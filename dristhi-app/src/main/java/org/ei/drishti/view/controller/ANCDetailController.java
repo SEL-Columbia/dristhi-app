@@ -66,7 +66,7 @@ public class ANCDetailController {
     }
 
     public void markTodoAsCompleted(String caseId, String visitCode) {
-        allAlerts.markAsCompleted(caseId, visitCode);
+        allAlerts.markAsCompleted(caseId, visitCode, LocalDate.now().toString());
     }
 
     private List<TimelineEvent> getEvents() {

@@ -19,7 +19,8 @@
         "anmIdentifier": "ANM 1",
         "caseID": "Case Y",
         "data": {
-            "visitCode": "ANC 1"
+            "visitCode": "ANC 1",
+            "completionDate": "2012-01-01"
         },
         "details": {
         },

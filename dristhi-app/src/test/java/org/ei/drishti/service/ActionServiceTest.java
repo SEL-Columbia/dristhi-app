@@ -64,7 +64,7 @@ public class ActionServiceTest {
 
     @Test
     public void shouldNotSaveAnythingIfTheDrishtiResponseStatusIsFailure() throws Exception {
-        setupActions(failure, asList(actionForCloseAlert("Case X", "ANC 1", "0")));
+        setupActions(failure, asList(actionForCloseAlert("Case X", "ANC 1", "2012-01-01", "0")));
 
         assertEquals(fetchedFailed, service.fetchNewActions());
 

@@ -63,13 +63,13 @@ public class AlertRepository extends DrishtiRepository {
         }
     }
 
-    public void markAlertAsClosed(String caseId, String visitCode) {
+    public void markAlertAsClosed(String caseId, String visitCode, String completionDate) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         String[] caseAndVisitCodeColumnValues = {caseId, visitCode};
 
         ContentValues valuesToBeUpdated = new ContentValues();
         valuesToBeUpdated.put(ALERTS_STATUS_COLUMN, closed.value());
-        valuesToBeUpdated.put(ALERTS_COMPLETIONDATE_COLUMN, LocalDate.now().toString());
+        valuesToBeUpdated.put(ALERTS_COMPLETIONDATE_COLUMN, completionDate);
         database.update(ALERTS_TABLE_NAME, valuesToBeUpdated, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, caseAndVisitCodeColumnValues);
     }
 

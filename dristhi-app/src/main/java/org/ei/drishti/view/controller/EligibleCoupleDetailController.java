@@ -11,6 +11,7 @@ import org.ei.drishti.view.contract.Child;
 import org.ei.drishti.view.contract.ECDetail;
 import org.ei.drishti.view.contract.ProfileTodo;
 import org.ei.drishti.view.contract.TimelineEvent;
+import org.joda.time.LocalDate;
 import org.ocpsoft.pretty.time.PrettyTime;
 
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class EligibleCoupleDetailController {
     }
 
     public void markTodoAsCompleted(String caseId, String visitCode) {
-        allAlerts.markAsCompleted(caseId, visitCode);
+        allAlerts.markAsCompleted(caseId, visitCode, LocalDate.now().toString());
     }
 
     private List<TimelineEvent> getEvents() {
