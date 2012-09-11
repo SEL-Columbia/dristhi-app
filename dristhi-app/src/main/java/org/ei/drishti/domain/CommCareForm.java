@@ -3,8 +3,8 @@ package org.ei.drishti.domain;
 import java.text.MessageFormat;
 
 public enum CommCareForm {
-    ANC_REGISTER("m1", "m0-f4", true),
-    ANC_SERVICES("m1", "m1-f0", true),
+    ANC_REGISTER("m1", "m1-f4", true),
+    ANC_SERVICES("m1", "m1-f1", true),
     ANC_CLOSE("m1", "m1-f4", true),
 
     EC_ADD("m0", "m0-f0", false),
@@ -13,8 +13,8 @@ public enum CommCareForm {
     EC_CLOSE("m0", "m0-f3", true),
     EC_REGISTER_ANC("m0", "m0-f4", true),
 
-    PNC_SERVICES("m1", "m1-f1", true),
-    PNC_CLOSE("m0", "m0-f4", true),
+    PNC_SERVICES("m1", "m1-f2", true),
+    PNC_CLOSE("m1", "m1-f6", true),
 
     CHILD_IMMUNIZATION("m2", "m2-f0", true);
 
