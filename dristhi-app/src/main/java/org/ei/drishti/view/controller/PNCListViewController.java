@@ -50,7 +50,6 @@ public class PNCListViewController {
                 sort(normalRiskPncs);
                 sort(highRiskPncs);
                 return new Gson().toJson(new PNCs(highRiskPncs, normalRiskPncs));
-
             }
         });
     }

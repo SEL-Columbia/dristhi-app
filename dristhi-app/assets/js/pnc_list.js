@@ -1,21 +1,21 @@
 function PNCList(pncListBridge) {
     var sliceLength = 20;
 
-    var populatePNCsInBatches = function (cssIdentifierOfContainerOfANCs, ancs, numberOfBatches, startIndex) {
+    var populatePNCsInBatches = function (cssIdentifierOfContainerOfPNCs, pncs, numberOfBatches, startIndex) {
         if (startIndex > numberOfBatches) return;
 
-        $(cssIdentifierOfContainerOfANCs).append(Handlebars.templates.anc_list(ancs.slice(sliceLength * startIndex, sliceLength * (startIndex + 1))));
+        $(cssIdentifierOfContainerOfPNCs).append(Handlebars.templates.pnc_list(pncs.slice(sliceLength * startIndex, sliceLength * (startIndex + 1))));
         setTimeout(function () {
-            populateANCsInBatches(cssIdentifierOfContainerOfANCs, ancs, numberOfBatches, startIndex + 1);
+            populatePNCsInBatches(cssIdentifierOfContainerOfPNCs, pncs, numberOfBatches, startIndex + 1);
         }, 1);
     }
 
-    var populatePNCsInSpecificContainer = function(cssIdentifierOfRootElement, cssIdentifierOfContainer, ancsToUse) {
-        var cssIdentifierOfContainerOfANCS = cssIdentifierOfRootElement + " " + cssIdentifierOfContainer;
+    var populatePNCsInSpecificContainer = function(cssIdentifierOfRootElement, cssIdentifierOfContainer, pncsToUse) {
+        var cssIdentifierOfContainerOfPNCS = cssIdentifierOfRootElement + " " + cssIdentifierOfContainer;
 
-        $(cssIdentifierOfContainerOfANCS + " .count").text(ancsToUse.length);
-        var numberOfBatches = (ancsToUse.length / sliceLength) + 1;
-        populatePNCsInBatches(cssIdentifierOfContainerOfANCS, ancsToUse, numberOfBatches, 0);
+        $(cssIdentifierOfContainerOfPNCS + " .count").text(pncsToUse.length);
+        var numberOfBatches = (pncsToUse.length / sliceLength) + 1;
+        populatePNCsInBatches(cssIdentifierOfContainerOfPNCS, pncsToUse, numberOfBatches, 0);
     };
 
     return {
