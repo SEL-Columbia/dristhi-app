@@ -99,18 +99,13 @@
                     <div class="beneficiary-detail-header">Family Planning</div>
                     <div class="beneficiary-detail-content">
                         <i class="icon-ok"></i><span class="family-planning-current">{{details.currentMethod}}</span><br/>
-                        <a class="btn family-planning-button btn-large">Family Planning Tool</a>
                     </div>
-                    <div class="divider divider-padding-top"></div>
                 </div>
 
                 <div class="row-fluid beneficiary-detail-component">
-                    <div class="beneficiary-detail-header">Children</div>
-                    {{#ifequal children.length 0}}
-                        <div class="row-fluid unavailable-data">
-                            No child records available
-                        </div>
-                    {{else}}
+                    {{#ifNotZero children.length}}
+                        <div class="divider divider-padding-top"></div>
+                        <div class="beneficiary-detail-header">Children</div>
                         <div class="beneficiary-detail-content">
                         {{#each children}}
                             {{#if isFemale}}
@@ -130,7 +125,7 @@
                             {{/if}}
                         {{/each}}
                         </div>
-                    {{/ifequal}}
+                    {{/ifNotZero}}
                 </div>
             </div>
         </div>
