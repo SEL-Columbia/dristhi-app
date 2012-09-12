@@ -12,8 +12,11 @@ public class ANCListActivity extends SecuredWebActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        webView.destroy();
-        webView = null;
+
+        if (webView != null) {
+            webView.destroy();
+            webView = null;
+        }
     }
 
     @Override
