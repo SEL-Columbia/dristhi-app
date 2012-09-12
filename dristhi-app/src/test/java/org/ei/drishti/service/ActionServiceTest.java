@@ -84,15 +84,20 @@ public class ActionServiceTest {
     }
 
     @Test
-    public void shouldUpdatePreviousIndexWithIndexOfLatestAlert() throws Exception {
-        String indexOfLastMessage = "12345";
-        setupActions(success, asList(actionForCreateAlert("Case X", "normal", "mother", "ANC 1", "2012-01-01", "2012-01-22", "11111"), actionForCreateAlert("Case Y", "normal", "mother", "ANC 2", "2012-01-01", "2012-01-11", indexOfLastMessage)));
+    public void shouldUpdatePreviousIndexWithIndexOfEachActionThatIsHandled() throws Exception {
 
-        when(allAlerts.fetchAll()).thenReturn(asList(new Alert("Case X", "mother", "bherya", "ANC 1", "Thaayi 1", AlertPriority.normal, "2012-01-01", "2012-01-22", open), new Alert("Case Y", "mother", "bherya", "ANC 2", "Thaayi 2", AlertPriority.normal, "2012-01-01", "2012-01-11", open)));
+        Action firstAction = actionForCreateAlert("Case X", "normal", "mother", "ANC 1", "2012-01-01", "2012-01-22", "11111");
+        Action secondAction = actionForCreateAlert("Case Y", "normal", "mother", "ANC 2", "2012-01-01", "2012-01-11", "12345");
+
+        setupActions(success, asList(firstAction, secondAction));
 
         service.fetchNewActions();
 
-        verify(allSettings).savePreviousFetchIndex(indexOfLastMessage);
+        InOrder inOrder = inOrder(allAlerts, allSettings);
+        inOrder.verify(allAlerts).handleAction(firstAction);
+        inOrder.verify(allSettings).savePreviousFetchIndex("11111");
+        inOrder.verify(allAlerts).handleAction(secondAction);
+        inOrder.verify(allSettings).savePreviousFetchIndex("12345");
     }
 
     @Test

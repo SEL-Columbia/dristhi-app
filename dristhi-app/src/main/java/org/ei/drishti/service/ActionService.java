@@ -43,7 +43,6 @@ public class ActionService {
         }
 
         handleActions(response);
-        allSettings.savePreviousFetchIndex(response.payload().get(response.payload().size() - 1).index());
         return FetchStatus.fetched;
     }
 
@@ -82,6 +81,7 @@ public class ActionService {
                 });
 
             }
+            allSettings.savePreviousFetchIndex(actionToUse.index());
         }
     }
 
