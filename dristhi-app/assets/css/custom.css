@@ -151,11 +151,24 @@
     border-bottom: 1px solid #ffffff;
 }
 
+.divider-with-margin {
+    height: 1px;
+    width: 100%;
+    overflow: hidden;
+    background-color: #b4b4b4;
+    border-bottom: 1px solid #ffffff;
+    margin-top: 8px;
+}
+
 .menu-option-divider {
     height: 1px;
     width: 100%;
     overflow: hidden;
     background-color: #6a6a6a;
+}
+
+.right-border {
+    border-right: 1px solid #b4b4b4;
 }
 
 .divider.divider-padding-top {

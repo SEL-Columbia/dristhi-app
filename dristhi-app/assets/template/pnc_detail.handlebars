@@ -97,26 +97,27 @@
                 <div class="row-fluid beneficiary-detail-component">
                     <div class="beneficiary-detail-content">
                             {{#if details.isHighRisk}}
-                                <div class="text-center big-text high-risk">
+                                <div class="big-text high-risk">
                                     <i class="icon-circle-arrow-up" style="margin-top: 3px;"></i> High Risk</span>
                                 </div>
                                 <div class="beneficiary-detail-footer risk-detail-text">{{details.riskDetail}}</div>
                             {{else}}
                                 <div class="text-center big-text normal-risk">Normal Risk</div>
                             {{/if}}
+                            <div class="divider-with-margin"></div>
                     </div>
                     <div class="row-fluid beneficiary-detail-component">
                         <div class="beneficiary-detail-content">
-                            <div class="span6 text-center">
+                            <div class="span6 text-center right-border">
                                 <span class="big-text">{{pncDetails.daysPostpartum}}</span><br><span class="meta-summary-text">Days Postpartum</span>
                             </div>
                             <div class="span6 text-center">
                                 <span class="big-text">{{pncDetails.dateOfDelivery}}</span><br><span class="meta-summary-text">Date of Delivery</span>
                             </div>
                         </div>
-                        <div class="divider"></div>
                         <div class="row-fluid beneficiary-detail-component">
-                            <b> Delivery Complications </b>
+                            <div class="divider-with-margin"></div>
+                            <b>Delivery Complications</b>
                             {{#if details.deliveryComplications}}
                             <ol>
                                   {{#each details.deliveryComplications}}

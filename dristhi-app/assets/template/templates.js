@@ -109,7 +109,7 @@ function program9(depth0,data,depth2) {
 function program11(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                                <div class=\"text-center big-text high-risk\">\n                                    <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                                </div>\n                                <div class=\"beneficiary-detail-footer risk-detail-text\">";
+  buffer += "\n                                <div class=\"big-text high-risk\">\n                                    <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                                </div>\n                                <div class=\"beneficiary-detail-footer risk-detail-text\">";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.riskDetail;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
@@ -192,7 +192,7 @@ function program16(depth0,data) {
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isHighRisk;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.program(13, program13, data),fn:self.program(11, program11, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                    </div>\n                    <div class=\"row-fluid beneficiary-detail-component\">\n                        <div class=\"beneficiary-detail-content\">\n                            <div class=\"span6 text-center\">\n                                <span class=\"big-text-numbers\">";
+  buffer += "\n                            <div class=\"divider-with-margin\"></div>\n                    </div>\n                    <div class=\"row-fluid beneficiary-detail-component\">\n                        <div class=\"beneficiary-detail-content\">\n                            <div class=\"span6 text-center right-border\">\n                                <span class=\"big-text-numbers\">";
   stack1 = depth0.pregnancyDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.monthsPregnant;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
@@ -679,7 +679,7 @@ function program9(depth0,data,depth2) {
 function program11(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                                <div class=\"text-center big-text high-risk\">\n                                    <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                                </div>\n                                <div class=\"beneficiary-detail-footer risk-detail-text\">";
+  buffer += "\n                                <div class=\"big-text high-risk\">\n                                    <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                                </div>\n                                <div class=\"beneficiary-detail-footer risk-detail-text\">";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.riskDetail;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
@@ -789,7 +789,7 @@ function program21(depth0,data) {
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isHighRisk;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.program(13, program13, data),fn:self.program(11, program11, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                    </div>\n                    <div class=\"row-fluid beneficiary-detail-component\">\n                        <div class=\"beneficiary-detail-content\">\n                            <div class=\"span6 text-center\">\n                                <span class=\"big-text\">";
+  buffer += "\n                            <div class=\"divider-with-margin\"></div>\n                    </div>\n                    <div class=\"row-fluid beneficiary-detail-component\">\n                        <div class=\"beneficiary-detail-content\">\n                            <div class=\"span6 text-center right-border\">\n                                <span class=\"big-text\">";
   stack1 = depth0.pncDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.daysPostpartum;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
@@ -797,7 +797,7 @@ function program21(depth0,data) {
   stack1 = depth0.pncDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.dateOfDelivery;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">Date of Delivery</span>\n                            </div>\n                        </div>\n                        <div class=\"divider\"></div>\n                        <div class=\"row-fluid beneficiary-detail-component\">\n                            <b> Delivery Complications </b>\n                            ";
+  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">Date of Delivery</span>\n                            </div>\n                        </div>\n                        <div class=\"row-fluid beneficiary-detail-component\">\n                            <div class=\"divider-with-margin\"></div>\n                            <b>Delivery Complications</b>\n                            ";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.deliveryComplications;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.program(18, program18, data),fn:self.program(15, program15, data)});
