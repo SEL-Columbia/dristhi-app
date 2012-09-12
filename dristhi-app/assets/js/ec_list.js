@@ -1,29 +1,14 @@
 function ECList(ecListBridge) {
-    var sliceLength = 20;
-
-    var populateECsInBatches = function (cssIdentifierOfContainerOfECS, ecs, numberOfBatches, startIndex) {
-        if (startIndex > numberOfBatches) return;
-
-        $(cssIdentifierOfContainerOfECS).append(Handlebars.templates.ec_list(ecs.slice(sliceLength * startIndex, sliceLength * (startIndex + 1))));
-        setTimeout(function () {
-            populateECsInBatches(cssIdentifierOfContainerOfECS, ecs, numberOfBatches, startIndex + 1);
-        }, 1);
-    }
-
-    var populateECsInSpecificContainer = function(cssIdentifierOfRootElement, cssIdentifierOfContainer, ecsToUse) {
-        var cssIdentifierOfContainerOfECS = cssIdentifierOfRootElement + " " + cssIdentifierOfContainer;
-
-        $(cssIdentifierOfContainerOfECS + " .count").text(ecsToUse.length);
-        var numberOfBatches = (ecsToUse.length / sliceLength) + 1;
-        populateECsInBatches(cssIdentifierOfContainerOfECS, ecsToUse, numberOfBatches, 0);
-    };
-
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             var ecs = ecListBridge.getECs();
+            var highPriorityContainer = cssIdentifierOfRootElement + " #highPriorityContainer";
+            var normalPriorityContainer = cssIdentifierOfRootElement + " #normalPriorityContainer";
 
-            populateECsInSpecificContainer(cssIdentifierOfRootElement, "#highPriorityContainer", ecs.highPriority);
-            populateECsInSpecificContainer(cssIdentifierOfRootElement, "#normalPriorityContainer", ecs.normalPriority);
+            $(highPriorityContainer + " .count").text(ecs.highPriority.length);
+            $(normalPriorityContainer + " .count").text(ecs.normalPriority.length);
+            $(highPriorityContainer).append(Handlebars.templates.ec_list(ecs.highPriority));
+            $(normalPriorityContainer).append(Handlebars.templates.ec_list(ecs.normalPriority));
         },
 
         bindEveryItemToECView: function (cssIdentifierOfRootElement, cssIdentifierOfEveryListItem) {

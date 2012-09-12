@@ -1,29 +1,14 @@
 function PNCList(pncListBridge) {
-    var sliceLength = 20;
-
-    var populatePNCsInBatches = function (cssIdentifierOfContainerOfPNCs, pncs, numberOfBatches, startIndex) {
-        if (startIndex > numberOfBatches) return;
-
-        $(cssIdentifierOfContainerOfPNCs).append(Handlebars.templates.pnc_list(pncs.slice(sliceLength * startIndex, sliceLength * (startIndex + 1))));
-        setTimeout(function () {
-            populatePNCsInBatches(cssIdentifierOfContainerOfPNCs, pncs, numberOfBatches, startIndex + 1);
-        }, 1);
-    }
-
-    var populatePNCsInSpecificContainer = function(cssIdentifierOfRootElement, cssIdentifierOfContainer, pncsToUse) {
-        var cssIdentifierOfContainerOfPNCS = cssIdentifierOfRootElement + " " + cssIdentifierOfContainer;
-
-        $(cssIdentifierOfContainerOfPNCS + " .count").text(pncsToUse.length);
-        var numberOfBatches = (pncsToUse.length / sliceLength) + 1;
-        populatePNCsInBatches(cssIdentifierOfContainerOfPNCS, pncsToUse, numberOfBatches, 0);
-    };
-
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             var pncs = pncListBridge.getPNCs();
+            var highRiskContainer = cssIdentifierOfRootElement + " #highRiskContainer";
+            var normalRiskContainer = cssIdentifierOfRootElement + " #normalRiskContainer";
 
-            populatePNCsInSpecificContainer(cssIdentifierOfRootElement, "#highRiskContainer", pncs.highRisk);
-            populatePNCsInSpecificContainer(cssIdentifierOfRootElement, "#normalRiskContainer", pncs.normalRisk);
+            $(highRiskContainer + " .count").text(pncs.highRisk.length);
+            $(normalRiskContainer + " .count").text(pncs.normalRisk.length);
+            $(highRiskContainer).append(Handlebars.templates.pnc_list(pncs.highRisk));
+            $(normalRiskContainer).append(Handlebars.templates.pnc_list(pncs.normalRisk));
         },
         bindEveryItemToPNCView: function (cssIdentifierOfRootElement, cssIdentifierOfEveryListItem) {
             $(cssIdentifierOfRootElement).on("click", cssIdentifierOfEveryListItem, function (event) {

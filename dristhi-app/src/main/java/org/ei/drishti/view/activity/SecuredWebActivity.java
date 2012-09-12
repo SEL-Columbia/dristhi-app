@@ -21,12 +21,6 @@ public abstract class SecuredWebActivity extends SecuredActivity {
 
     @Override
     protected void onCreation() {
-        initializeWebView();
-
-        onInitialization();
-    }
-
-    protected void initializeWebView() {
         setContentView(R.layout.html);
         webView = (WebView) findViewById(R.id.webview);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -35,6 +29,8 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         webView.addJavascriptInterface(new NavigationController(this, context.anmService()), "navigationContext");
 
         updateController = new UpdateController(webView);
+
+        onInitialization();
     }
 
     protected abstract void onInitialization();

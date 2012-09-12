@@ -1,29 +1,14 @@
 function ANCList(ancListBridge) {
-    var sliceLength = 20;
-
-    var populateANCsInBatches = function (cssIdentifierOfContainerOfANCs, ancs, numberOfBatches, startIndex) {
-        if (startIndex > numberOfBatches) return;
-
-        $(cssIdentifierOfContainerOfANCs).append(Handlebars.templates.anc_list(ancs.slice(sliceLength * startIndex, sliceLength * (startIndex + 1))));
-        setTimeout(function () {
-            populateANCsInBatches(cssIdentifierOfContainerOfANCs, ancs, numberOfBatches, startIndex + 1);
-        }, 1);
-    }
-
-    var populateANCsInSpecificContainer = function(cssIdentifierOfRootElement, cssIdentifierOfContainer, ancsToUse) {
-        var cssIdentifierOfContainerOfANCS = cssIdentifierOfRootElement + " " + cssIdentifierOfContainer;
-
-        $(cssIdentifierOfContainerOfANCS + " .count").text(ancsToUse.length);
-        var numberOfBatches = (ancsToUse.length / sliceLength) + 1;
-        populateANCsInBatches(cssIdentifierOfContainerOfANCS, ancsToUse, numberOfBatches, 0);
-    };
-
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             var ancs = ancListBridge.getANCs();
+            var highRiskContainer = cssIdentifierOfRootElement + " #highRiskContainer";
+            var normalRiskContainer = cssIdentifierOfRootElement + " #normalRiskContainer";
 
-            populateANCsInSpecificContainer(cssIdentifierOfRootElement, "#highRiskContainer", ancs.highRisk);
-            populateANCsInSpecificContainer(cssIdentifierOfRootElement, "#normalRiskContainer", ancs.normalRisk);
+            $(highRiskContainer + " .count").text(ancs.highRisk.length);
+            $(normalRiskContainer + " .count").text(ancs.normalRisk.length);
+            $(highRiskContainer).append(Handlebars.templates.anc_list(ancs.highRisk));
+            $(normalRiskContainer).append(Handlebars.templates.anc_list(ancs.normalRisk));
         },
 
         bindEveryItemToANCView: function (cssIdentifierOfRootElement, cssIdentifierOfEveryListItem) {

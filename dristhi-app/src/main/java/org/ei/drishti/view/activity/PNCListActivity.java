@@ -8,26 +8,4 @@ public class PNCListActivity extends SecuredWebActivity {
         webView.addJavascriptInterface(new PNCListViewController(this, context.allBeneficiaries(), context.allEligibleCouples(), context.listCache()), "context");
         webView.loadUrl("file:///android_asset/www/pnc_list.html");
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        if (webView != null) {
-            webView.destroy();
-            webView = null;
-        }
-    }
-
-    @Override
-    protected void onResumption() {
-        if (webView != null) return;
-
-        recreateWebView();
-    }
-
-    private void recreateWebView() {
-        initializeWebView();
-        onInitialization();
-    }
 }
