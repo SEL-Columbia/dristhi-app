@@ -95,20 +95,6 @@ public class AlertRepository extends DrishtiRepository {
         return alerts;
     }
 
-    private List<VillageAlertSummary> readAllVillageSummary(Cursor cursor) {
-        cursor.moveToFirst();
-        List<VillageAlertSummary> villageSummaries = new ArrayList<VillageAlertSummary>();
-        while (!cursor.isAfterLast()) {
-            String village = cursor.getString(0);
-            if (village != null) {
-                villageSummaries.add(new VillageAlertSummary(village, cursor.getInt(1)));
-            }
-            cursor.moveToNext();
-        }
-        cursor.close();
-        return villageSummaries;
-    }
-
     private List<Alert> filterActiveAlerts(List<Alert> alerts) {
         List<Alert> activeAlerts = new ArrayList<Alert>();
         for (Alert alert : alerts) {
