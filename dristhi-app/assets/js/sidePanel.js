@@ -2,6 +2,7 @@ function SidePanel(anmNavigation) {
     var openSidePanel = function (animationDuration) {
         $(".affected-by-sidepanel").addClass("sidepanel-active");
         $(".mainpanel .container-fluid").addClass("container").addClass("container-affected-by-sidepanel");
+        $(".page").css('height', $(window).height());
         $("#sidepanel .menu-background").css('height', $(window).height() + 2);
 
         $("#mainpanel").animate({"width": "16%"}, {duration: animationDuration, queue: false}).animate({"left": "84%"}, {duration: animationDuration, queue: false});
@@ -13,6 +14,7 @@ function SidePanel(anmNavigation) {
         $("#sidepanel").animate({"width": "84%%"}, {duration: animationDuration, queue: false}).animate({"left": "-84%"}, {duration: animationDuration, queue: false, complete: function () {
             $(".affected-by-sidepanel").removeClass("sidepanel-active");
             $(".mainpanel .container.container-affected-by-sidepanel").removeClass("container").removeClass("container-affected-by-sidepanel");
+            $(".page").css('height', 'auto');
         }});
     };
 
