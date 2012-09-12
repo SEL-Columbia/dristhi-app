@@ -73,13 +73,15 @@ function FakePNCContext() {
                             message: "PNC Visit 1",
                             formToOpen: "PNC_SERVICES",
                             isCompleted: true,
-                            visitCode: "PNC 1"
+                            visitCode: "PNC 1",
+                            todoDate: "2012-10-24"
                         },
                         {
                             message: "PNC Visit 2",
                             formToOpen: "PNC_SERVICES",
                             isCompleted: false,
-                            visitCode: "PNC 2"
+                            visitCode: "PNC 2",
+                            todoDate: "2012-10-24"
                         }
                     ],
                     todos: [
@@ -87,13 +89,15 @@ function FakePNCContext() {
                             message: "Child Immunization 1",
                             formToOpen: "CHILD_IMMUNIZATION",
                             isCompleted: true,
-                            visitCode: "VISIT_CODE 1"
+                            visitCode: "VISIT_CODE 1",
+                            todoDate: "2012-10-24"
                         },
                         {
                             message: "Child Immunization 2",
                             formToOpen: "CHILD_IMMUNIZATION",
                             isCompleted: false,
-                            visitCode: "VISIT_CODE 2"
+                            visitCode: "VISIT_CODE 2",
+                            todoDate: "2012-10-24"
                         }
                     ],
                     timelineEvents: [

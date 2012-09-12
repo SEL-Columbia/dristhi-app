@@ -11,12 +11,18 @@ public class ProfileTodo {
     private CommCareForm formToOpen;
     private boolean isCompleted;
     private String visitCode;
+    private String todoDate;
 
     public ProfileTodo(Alert alert) {
         visitCode = alert.visitCode();
         message = TodoDetail.from(visitCode).prefix();
         formToOpen = TodoDetail.from(visitCode).formToOpen();
         isCompleted = alert.isClosed();
+
+        todoDate = alert.expiryDate();
+        if (isCompleted) {
+            todoDate = alert.completionDate();
+        }
     }
 
     @Override

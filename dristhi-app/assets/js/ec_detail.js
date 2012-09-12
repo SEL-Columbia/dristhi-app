@@ -59,13 +59,15 @@ function FakeECContext() {
                             message: "Alert 1",
                             formToOpen: "EC_FP_UPDATE",
                             isCompleted: true,
-                            visitCode: "VISIT_CODE 1"
+                            visitCode: "VISIT_CODE 1",
+                            todoDate: "2012-10-24"
                         },
                         {
                             message: "Alert 2",
                             formToOpen: "EC_FP_UPDATE",
                             isCompleted: false,
-                            visitCode: "VISIT_CODE 2"
+                            visitCode: "VISIT_CODE 2",
+                            todoDate: "2012-10-24"
                         }
                     ],
                     todos: [
@@ -73,13 +75,15 @@ function FakeECContext() {
                             message: "Family Planning follow up",
                             formToOpen: "EC_FP_UPDATE",
                             isCompleted: true,
-                            visitCode: "VISIT_CODE 3"
+                            visitCode: "VISIT_CODE 3",
+                            todoDate: "2012-10-24"
                         },
                         {
                             message: "FP Resupply",
                             formToOpen: "EC_FP_UPDATE",
                             isCompleted: false,
-                            visitCode: "VISIT_CODE 4"
+                            visitCode: "VISIT_CODE 4",
+                            todoDate: "2012-10-24"
                         }
                     ],
                     children: [

@@ -72,13 +72,15 @@ function FakeANCContext() {
                             message: "Alert 1",
                             formToOpen: "ANC_SERVICES",
                             isCompleted: true,
-                            visitCode: "ANC 1"
+                            visitCode: "ANC 1",
+                            todoDate: "2012-10-24"
                         },
                         {
                             message: "Alert 2",
                             formToOpen: "ANC_SERVICES",
                             isCompleted: false,
-                            visitCode: "ANC 2"
+                            visitCode: "ANC 2",
+                            todoDate: "2012-10-24"
                         }
                     ],
                     todos: [
@@ -86,13 +88,15 @@ function FakeANCContext() {
                             message: "IFA Tablet follow-up",
                             formToOpen: "ANC_CLOSE",
                             isCompleted: true,
-                            visitCode: "IFA 1"
+                            visitCode: "IFA 1",
+                            todoDate: "2012-10-24"
                         },
                         {
                             message: "ANC Visit #3",
                             formToOpen: "ANC_SERVICES",
                             isCompleted: false,
-                            visitCode: "ANC 3"
+                            visitCode: "ANC 3",
+                            todoDate: "2012-10-24"
                         }
                     ],
                     timelineEvents: [
