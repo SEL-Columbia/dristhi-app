@@ -7,6 +7,9 @@ import org.ei.drishti.domain.CommCareForm;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.text.MessageFormat;
+
+import static java.text.MessageFormat.format;
 import static junit.framework.Assert.assertEquals;
 import static org.ei.drishti.domain.AlertStatus.closed;
 import static org.ei.drishti.domain.AlertStatus.open;
@@ -16,24 +19,33 @@ import static org.ei.drishti.dto.AlertPriority.urgent;
 
 @RunWith(RobolectricTestRunner.class)
 public class ProfileTodoTest {
+    private static final String DUE_DATE = "2012-02-11";
+    private static final String COMPLETION_DATE = "2012-02-20";
+
     @Test
     public void shouldProvideProfileTodoDataBasedOnVisitCode() throws Exception {
-        assertData("ANC Visit #1", ANC_SERVICES, new ProfileTodo(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", urgent, "2012-02-02", "2012-02-11", open)), false, "ANC 1");
-        assertData("ANC Visit #2", ANC_SERVICES, new ProfileTodo(new Alert("Case X", "Theresa", "bherya", "ANC 2", "Thaayi 1", normal, "2012-02-02", "2012-02-11", open)), false, "ANC 2");
-        assertData("ANC Visit #3", ANC_SERVICES, new ProfileTodo(new Alert("Case X", "Theresa", "bherya", "ANC 3", "Thaayi 1", normal, "2012-02-02", "2012-02-11", open)), false, "ANC 3");
-        assertData("ANC Visit #4", ANC_SERVICES, new ProfileTodo(new Alert("Case X", "Theresa", "bherya", "ANC 4", "Thaayi 1", urgent, "2012-02-02", "2012-02-11", closed)), true, "ANC 4");
+        assertData(new ProfileTodo(new Alert("Case X", "Theresa", "bherya", "ANC 1", "Thaayi 1", urgent, "2012-02-02", DUE_DATE, open)), "ANC Visit #1", ANC_SERVICES, false, "ANC 1");
+        assertData(new ProfileTodo(new Alert("Case X", "Theresa", "bherya", "ANC 2", "Thaayi 1", normal, "2012-02-02", DUE_DATE, open)), "ANC Visit #2", ANC_SERVICES, false, "ANC 2");
+        assertData(new ProfileTodo(new Alert("Case X", "Theresa", "bherya", "ANC 3", "Thaayi 1", normal, "2012-02-02", DUE_DATE, open)), "ANC Visit #3", ANC_SERVICES, false, "ANC 3");
+        assertData(new ProfileTodo(new Alert("Case X", "Theresa", "bherya", "ANC 4", "Thaayi 1", urgent, "2012-02-02", DUE_DATE, closed).withCompletionDate(COMPLETION_DATE)), "ANC Visit #4", ANC_SERVICES, true, "ANC 4");
     }
 
     @Test
     public void shouldProvideSensibleDefaultsIfAVisitCodeIsNotFound() throws Exception {
-        assertData("UNKNOWN_VISIT_CODE", null, new ProfileTodo(new Alert("Case X", "Theresa", "bherya", "UNKNOWN_VISIT_CODE", "Thaayi 1", urgent, "2012-02-02", "2012-02-11", open)), false, "UNKNOWN_VISIT_CODE");
+        assertData(new ProfileTodo(new Alert("Case X", "Theresa", "bherya", "UNKNOWN_VISIT_CODE", "Thaayi 1", urgent, "2012-02-02", DUE_DATE, open)), "UNKNOWN_VISIT_CODE", null, false, "UNKNOWN_VISIT_CODE");
     }
 
-    private void assertData(String message, CommCareForm formToOpen, ProfileTodo todo, final boolean isCompleted, String visitCode) {
+    private void assertData(ProfileTodo todo, String message, CommCareForm formToOpen, final boolean isCompleted, String visitCode) {
         String formToOpenMessage = "";
         if (formToOpen != null) {
-            formToOpenMessage = ",\"formToOpen\":\"" + formToOpen + "\"";
+            formToOpenMessage = format(",\"formToOpen\":\"{0}\"", formToOpen);
         }
-        assertEquals("{\"message\":\"" + message + "\"" + formToOpenMessage + ",\"isCompleted\":" + isCompleted + ",\"visitCode\":\"" + visitCode +"\"}", new Gson().toJson(todo));
+
+        String todoDatePartOfJSON = format(",\"todoDate\":\"{0}\"", COMPLETION_DATE);
+        if (!isCompleted) {
+            todoDatePartOfJSON = format(",\"todoDate\":\"{0}\"", DUE_DATE);
+        }
+
+        assertEquals("{\"message\":\"" + message + "\"" + formToOpenMessage + ",\"isCompleted\":" + isCompleted + ",\"visitCode\":\"" + visitCode +"\"" + todoDatePartOfJSON + "}", new Gson().toJson(todo));
     }
 }
