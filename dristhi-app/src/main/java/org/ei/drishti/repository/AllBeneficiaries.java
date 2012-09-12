@@ -45,11 +45,13 @@ public class AllBeneficiaries {
             if (numberOfIFATabletsProvided != null && Integer.parseInt(numberOfIFATabletsProvided) > 0) {
                 allTimelines.add(TimelineEvent.forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
             }
-        }
-        else if(action.type().equals("registerOutOfAreaANC")){
+        } else if (action.type().equals("registerOutOfAreaANC")) {
             eligibleCoupleRepository.add(new EligibleCouple(action.get("ecCaseId"), action.get("wife"), action.get("husband"), "", action.get("village"), action.get("subcenter"), action.details()).asOutOfArea());
             motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate"))
                     .withDetails(action.details()));
+        } else if (action.type().equals("updateANCOutcome")) {
+            motherRepository.switchToPNC(action.caseID());
+            motherRepository.updateDetails(action.caseID(), action.details());
         }
     }
 

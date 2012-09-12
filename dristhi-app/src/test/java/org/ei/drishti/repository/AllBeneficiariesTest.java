@@ -107,4 +107,15 @@ public class AllBeneficiariesTest {
 
         verifyZeroInteractions(motherRepository);
     }
+
+    @Test
+    public void shouldHandleUpdateANCOutcomeAction() throws Exception {
+        String caseId = "Case Mother X";
+        Action action = ActionBuilder.actionForUpdateANCOutcome(caseId, mapOf("some-key", "some-value"));
+
+        allBeneficiaries.handleMotherAction(action);
+
+        verify(motherRepository).switchToPNC(caseId);
+        verify(motherRepository).updateDetails(caseId, mapOf("some-key", "some-value"));
+    }
 }
