@@ -30,6 +30,11 @@ function ANCList(ancListBridge) {
             $(cssIdentifierOfRootElement).on("click", cssIdentifierOfEveryListItem, function (event) {
                 ancListBridge.delegateToANCDetail($(this).data("caseid"));
             });
+        },
+        bindItemToCommCare: function (cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).click(function () {
+                ancListBridge.delegateToCommCare($(this).data("form"));
+            })
         }
     };
 }
@@ -47,6 +52,9 @@ function ANCListBridge() {
 
         delegateToANCDetail: function (caseId) {
             return ancContext.startANC(caseId);
+        },
+        delegateToCommCare: function (formId) {
+            ancContext.startCommCare(formId);
         }
     };
 }
@@ -108,6 +116,9 @@ function FakeANCListContext() {
         },
         startANC: function(caseId) {
             window.location.href = "anc_detail.html";
+        },
+        startCommCare: function (formId) {
+            alert("Start CommCare with form " + formId);
         }
     }
 }

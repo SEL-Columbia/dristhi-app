@@ -8,6 +8,7 @@ import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.activity.ANCDetailActivity;
@@ -25,12 +26,14 @@ public class ANCListViewController {
     private AllEligibleCouples allEligibleCouples;
     private final Context context;
     private Cache<String> ancListCache;
+    private CommCareClientService commCareClientService;
 
-    public ANCListViewController(Context context, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples, Cache<String> ancListCache) {
+    public ANCListViewController(Context context, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples, Cache<String> ancListCache, CommCareClientService commCareClientService) {
         this.allBeneficiaries = allBeneficiaries;
         this.allEligibleCouples = allEligibleCouples;
         this.context = context;
         this.ancListCache = ancListCache;
+        this.commCareClientService = commCareClientService;
     }
 
     public String get() {
@@ -56,6 +59,11 @@ public class ANCListViewController {
             }
         });
     }
+
+    public void startCommCare(String formId) {
+        commCareClientService.start(context, formId, "");
+    }
+
 
     public void startANC(String caseId) {
         Intent intent = new Intent(context.getApplicationContext(), ANCDetailActivity.class);
