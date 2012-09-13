@@ -50,7 +50,8 @@ public class PNCDetailController {
         LocalDate deliveryDate = lmp.plusWeeks(40);
         Days postPartumDuration = Days.daysBetween(deliveryDate, DateUtil.today());
 
-        PNCDetail detail = new PNCDetail(caseId, mother.thaayiCardNumber(), couple.wifeName(),
+        PNCDetail detail = new PNCDetail(caseId, mother.thaayiCardNumber(),
+                new CoupleDetails(couple.wifeName(), couple.husbandName()),
                 new LocationDetails(couple.village(), couple.subCenter()),
                 new PregnancyOutcomeDetails(deliveryDate.toString(), postPartumDuration.getDays()))
                 .addTimelineEvents(getEvents())

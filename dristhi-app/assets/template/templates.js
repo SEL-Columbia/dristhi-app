@@ -793,9 +793,13 @@ function program18(depth0,data) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "\">Close PNC record</div>\n</div>\n\n<div id=\"content\" class=\"content affected-by-sidepanel\">\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div id=\"ec-name\" class=\"span12\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">";
-  foundHelper = helpers.womanName;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.womanName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.coupleDetails;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.womanName;
+  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  buffer += escapeExpression(stack1) + "</li>\n                    <li class=\"medium-text\">";
+  stack1 = depth0.coupleDetails;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.husbandName;
+  stack1 = typeof stack1 === functionType ? stack1() : stack1;
   buffer += escapeExpression(stack1) + "</li>\n                    <li>";
   stack1 = depth0.location;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.villageName;
