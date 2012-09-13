@@ -515,13 +515,9 @@ function program21(depth0,data) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.wifeName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "</li>\n                    <li>";
-  foundHelper = helpers.village;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.village; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + ", ";
-  foundHelper = helpers.subcenter;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.subcenter; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.village;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</li>\n                    <li class=\"light-text\">EC: ";
   foundHelper = helpers.ecNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
@@ -605,7 +601,7 @@ function program4(depth0,data) {
   return buffer;});
 templates['pnc_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data,depth1) {
   
@@ -803,11 +799,8 @@ function program18(depth0,data) {
   buffer += escapeExpression(stack1) + "</li>\n                    <li>";
   stack1 = depth0.location;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.villageName;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + ", ";
-  stack1 = depth0.location;
-  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.subcenter;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</li>\n                    <li>Thayi: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }

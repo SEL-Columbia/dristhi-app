@@ -51,7 +51,7 @@ function FakeECContext() {
                     caseId: "CASE X",
                     wifeName: "Wife 1",
                     ecNumber: "EC Number 1",
-                    village: "Village 1",
+                    village: "village 1",
                     subcenter: "SubCenter 1",
                     isHighPriority: true,
                     urgentTodos: [

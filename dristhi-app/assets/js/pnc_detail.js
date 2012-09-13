@@ -53,7 +53,7 @@ function FakePNCContext() {
                     caseId: "1234",
                     thaayiCardNumber: "TC Number 1",
                     location: {
-                        villageName: "Village 1",
+                        villageName: "village 1",
                         subcenter: "SubCenter 1"
                     },
                     pncDetails: {
