@@ -28,7 +28,7 @@
                     <li class="big-text">{{coupleDetails.wifeName}}</li>
                     <li class="medium-text spacing-below">{{coupleDetails.husbandName}}</li>
                     <li>{{capitalize location.villageName}}</li>
-                    <li>TC: {{thaayiCardNumber}}</li>
+                    <li class="light-text">{{#if coupleDetails.isInArea}}EC: {{coupleDetails.ecNumber}}, {{else}}Out of area, {{/if}}TC: {{thaayiCardNumber}}</li>
                 </ul>
             </div>
         </div>

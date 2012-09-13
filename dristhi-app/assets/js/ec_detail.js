@@ -55,7 +55,9 @@ function FakeECContext() {
                     isHighPriority: true,
                     coupleDetails: {
                         wifeName: "Woman 1",
-                        husbandName: "Husband 1"
+                        husbandName: "Husband 1",
+                        ecNumber: "EC Number 1",
+                        isInArea: true
                     },
                     urgentTodos: [
                         {

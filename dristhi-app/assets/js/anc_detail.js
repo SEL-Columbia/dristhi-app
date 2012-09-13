@@ -53,7 +53,9 @@ function FakeANCContext() {
                     thaayiCardNumber: "TC Number 1",
                     coupleDetails: {
                         wifeName: "Woman 1",
-                        husbandName: "Husband 1"
+                        husbandName: "Husband 1",
+                        ecNumber: "EC Number 1",
+                        isInArea: true
                     },
                     location: {
                         villageName: "village 1",
