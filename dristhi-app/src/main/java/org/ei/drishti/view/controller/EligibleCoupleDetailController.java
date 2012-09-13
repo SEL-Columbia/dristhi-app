@@ -7,17 +7,15 @@ import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.service.CommCareClientService;
-import org.ei.drishti.view.contract.Child;
-import org.ei.drishti.view.contract.ECDetail;
-import org.ei.drishti.view.contract.ProfileTodo;
-import org.ei.drishti.view.contract.TimelineEvent;
+import org.ei.drishti.util.DateUtil;
+import org.ei.drishti.view.contract.*;
 import org.joda.time.LocalDate;
+import org.ocpsoft.pretty.time.Duration;
 import org.ocpsoft.pretty.time.PrettyTime;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
+
+import static java.lang.Math.min;
 
 public class EligibleCoupleDetailController {
     private final Context context;
@@ -35,15 +33,15 @@ public class EligibleCoupleDetailController {
         this.allAlerts = allAlerts;
         this.allTimelineEvents = allTimelineEvents;
         this.commCareClientService = commCareClientService;
-        prettyTime = new PrettyTime(new Date(), new Locale("short"));
+        prettyTime = new PrettyTime(DateUtil.today().toDate(), new Locale("short"));
     }
 
     public String get() {
         EligibleCouple eligibleCouple = allEligibleCouples.findByCaseID(caseId);
         List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 
-        ECDetail ecContext = new ECDetail(caseId, eligibleCouple.wifeName(), eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(),
-                false, null, new ArrayList<Child>(), eligibleCouple.details()).
+        ECDetail ecContext = new ECDetail(caseId, eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(), eligibleCouple.isHighPriority(), null, new ArrayList<Child>(), new CoupleDetails(eligibleCouple.wifeName(), eligibleCouple.husbandName()),
+                eligibleCouple.details()).
                 addTodos(todosAndUrgentTodos.get(0)).
                 addUrgentTodos(todosAndUrgentTodos.get(1)).
                 addTimelineEvents(getEvents());
@@ -61,11 +59,16 @@ public class EligibleCoupleDetailController {
 
     private List<TimelineEvent> getEvents() {
         List<org.ei.drishti.domain.TimelineEvent> events = allTimelineEvents.forCase(caseId);
-        List<TimelineEvent> ecTimeLines = new ArrayList<TimelineEvent>();
+        List<TimelineEvent> timelineEvents = new ArrayList<TimelineEvent>();
         for (org.ei.drishti.domain.TimelineEvent event : events) {
-            String dateOfEvent = prettyTime.format(prettyTime.calculatePreciseDuration(event.referenceDate().toDate()).subList(0, 2)).replaceAll(" _", "");
-            ecTimeLines.add(new TimelineEvent(event.type(), event.title(), new String[] { event.detail1(), event.detail2()}, dateOfEvent));
+            timelineEvents.add(new TimelineEvent(event.type(), event.title(), new String[]{event.detail1(), event.detail2()}, formatDate(event.referenceDate())));
         }
-        return ecTimeLines;
+        Collections.reverse(timelineEvents);
+        return timelineEvents;
+    }
+
+    private String formatDate(LocalDate date) {
+        List<Duration> durationComponents = prettyTime.calculatePreciseDuration(date.toDate());
+        return prettyTime.format(durationComponents.subList(0, min(durationComponents.size(), 2))).replaceAll(" _", "");
     }
 }

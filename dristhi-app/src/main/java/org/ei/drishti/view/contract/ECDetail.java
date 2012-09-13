@@ -1,12 +1,16 @@
 package org.ei.drishti.view.contract;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class ECDetail {
     private String caseId;
-    private String wifeName;
+    private CoupleDetails coupleDetails;
     private String village;
     private String subcenter;
     private String ecNumber;
@@ -18,10 +22,10 @@ public class ECDetail {
     private List<TimelineEvent> timelineEvents;
     private Map<String, String> details;
 
-    public ECDetail(String caseId, String wifeName, String village, String subcenter, String ecNumber, boolean isHighPriority, String address,
-                    List<Child> children, Map<String, String> details) {
+    public ECDetail(String caseId, String village, String subcenter, String ecNumber, boolean isHighPriority, String address, List<Child> children, CoupleDetails coupleDetails,
+                    Map<String, String> details) {
         this.caseId = caseId;
-        this.wifeName = wifeName;
+        this.coupleDetails = coupleDetails;
         this.village = village;
         this.subcenter = subcenter;
         this.ecNumber = ecNumber;
@@ -48,5 +52,20 @@ public class ECDetail {
     public ECDetail addTimelineEvents(List<TimelineEvent> events) {
         this.timelineEvents = events;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return EqualsBuilder.reflectionEquals(this, o);
+    }
+
+    @Override
+    public int hashCode() {
+        return HashCodeBuilder.reflectionHashCode(this);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }

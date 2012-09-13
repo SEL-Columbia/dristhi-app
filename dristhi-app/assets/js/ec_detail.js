@@ -49,11 +49,14 @@ function FakeECContext() {
         get: function () {
             return JSON.stringify({
                     caseId: "CASE X",
-                    wifeName: "Wife 1",
                     ecNumber: "EC Number 1",
                     village: "village 1",
                     subcenter: "SubCenter 1",
                     isHighPriority: true,
+                    coupleDetails: {
+                        womanName: "Woman 1",
+                        husbandName: "Husband 1"
+                    },
                     urgentTodos: [
                         {
                             message: "Alert 1",
