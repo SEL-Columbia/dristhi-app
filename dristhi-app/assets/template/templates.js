@@ -2,7 +2,7 @@
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['anc_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data,depth1) {
   
@@ -32,9 +32,9 @@ function program2(depth0,data,depth2) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " done on ";
-  foundHelper = helpers.todoDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.todoDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.todoDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
@@ -57,9 +57,9 @@ function program4(depth0,data,depth2) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " due by ";
-  foundHelper = helpers.todoDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.todoDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.todoDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
@@ -91,9 +91,9 @@ function program7(depth0,data,depth2) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " done on ";
-  foundHelper = helpers.todoDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.todoDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.todoDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
@@ -116,9 +116,9 @@ function program9(depth0,data,depth2) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " due by ";
-  foundHelper = helpers.todoDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.todoDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.todoDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
@@ -216,7 +216,8 @@ function program16(depth0,data) {
   buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">Months Pregnant</span>\n                            </div>\n                            <div class=\"span6 text-center\">\n                                <span class=\"big-text-numbers\">";
   stack1 = depth0.pregnancyDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.edd;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">EDD</span>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Delivery Plan\n        </div>\n        <div class=\"well well-for-beneficiary-details\">\n            <div class=\"container-fluid container-no-padding container-section\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span1\"><!-- <i class=\"icon-check\"></i> -->\n                        <label class=\"checkbox\">\n                            <input type=\"checkbox\">\n                        </label>\n                    </div>\n\n                    <div class=\"span3\">Facility</div>\n                    <div class=\"span8\">";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.deliveryPlace;
@@ -288,7 +289,7 @@ function program4(depth0,data) {
   return buffer;});
 templates['ec_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data,depth1) {
   
@@ -318,9 +319,9 @@ function program2(depth0,data,depth2) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " <span class=\"done-or-due\"></span> on ";
-  foundHelper = helpers.todoDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.todoDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.todoDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
@@ -343,9 +344,9 @@ function program4(depth0,data,depth2) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " due by ";
-  foundHelper = helpers.todoDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.todoDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.todoDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
@@ -377,9 +378,9 @@ function program7(depth0,data,depth2) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " done on ";
-  foundHelper = helpers.todoDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.todoDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.todoDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
@@ -402,9 +403,9 @@ function program9(depth0,data,depth2) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " due by ";
-  foundHelper = helpers.todoDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.todoDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.todoDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
@@ -601,7 +602,7 @@ function program4(depth0,data) {
   return buffer;});
 templates['pnc_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data,depth1) {
   
@@ -631,9 +632,9 @@ function program2(depth0,data,depth2) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " done on ";
-  foundHelper = helpers.todoDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.todoDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.todoDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
@@ -656,9 +657,9 @@ function program4(depth0,data,depth2) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " due by ";
-  foundHelper = helpers.todoDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.todoDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.todoDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
@@ -690,9 +691,9 @@ function program7(depth0,data,depth2) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " done on ";
-  foundHelper = helpers.todoDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.todoDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.todoDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
@@ -715,9 +716,9 @@ function program9(depth0,data,depth2) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " due by ";
-  foundHelper = helpers.todoDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.todoDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.todoDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
   return buffer;}
 
@@ -829,7 +830,8 @@ function program18(depth0,data) {
   buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">Days Postpartum</span>\n                            </div>\n                            <div class=\"span6 text-center\">\n                                <span class=\"big-text\">";
   stack1 = depth0.pncDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.dateOfDelivery;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">Date of Delivery</span>\n                            </div>\n                        </div>\n                        ";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.deliveryComplications;
@@ -917,7 +919,7 @@ templates['sidepanel'] = template(function (Handlebars,depth0,helpers,partials,d
   return buffer;});
 templates['workplan'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
   
@@ -931,9 +933,9 @@ function program1(depth0,data) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " by ";
-  foundHelper = helpers.dueDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.dueDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.dueDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                    </div>\n                </div>\n            </div>\n        ";
   return buffer;}
 
@@ -949,9 +951,9 @@ function program3(depth0,data) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " by ";
-  foundHelper = helpers.dueDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.dueDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.dueDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                    </div>\n                </div>\n            </div>\n        ";
   return buffer;}
 
@@ -967,9 +969,9 @@ function program5(depth0,data) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " by ";
-  foundHelper = helpers.dueDate;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.dueDate; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.dueDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                    </div>\n                </div>\n            </div>\n        ";
   return buffer;}
 

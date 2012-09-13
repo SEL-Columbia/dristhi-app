@@ -42,7 +42,7 @@
                             <img class="todo-box checked"/>
                         </div>
                         <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} done on {{todoDate}}</div>
+                            <div class="detail">{{message}} done on {{formatDate todoDate}}</div>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                             <img class="todo-box"/>
                         </div>
                         <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} due by {{todoDate}}</div>
+                            <div class="detail">{{message}} due by {{formatDate todoDate}}</div>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                             <img class="todo-box checked"/>
                         </div>
                         <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} done on {{todoDate}}</div>
+                            <div class="detail">{{message}} done on {{formatDate todoDate}}</div>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                             <img class="todo-box"/>
                         </div>
                         <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} due by {{todoDate}}</div>
+                            <div class="detail">{{message}} due by {{formatDate todoDate}}</div>
                         </div>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                                 <span class="big-text-numbers">{{pregnancyDetails.monthsPregnant}}</span><br><span class="meta-summary-text">Months Pregnant</span>
                             </div>
                             <div class="span6 text-center">
-                                <span class="big-text-numbers">{{pregnancyDetails.edd}}</span><br><span class="meta-summary-text">EDD</span>
+                                <span class="big-text-numbers">{{formatDate pregnancyDetails.edd}}</span><br><span class="meta-summary-text">EDD</span>
                             </div>
                         </div>
                     </div>

@@ -44,7 +44,7 @@
                             <img class="todo-box checked"/>
                         </div>
                         <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} <span class="done-or-due"></span> on {{todoDate}}</div>
+                            <div class="detail">{{message}} <span class="done-or-due"></span> on {{formatDate todoDate}}</div>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                             <img class="todo-box"/>
                         </div>
                         <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} due by {{todoDate}}</div>
+                            <div class="detail">{{message}} due by {{formatDate todoDate}}</div>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                             <img class="todo-box checked"/>
                         </div>
                         <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} done on {{todoDate}}</div>
+                            <div class="detail">{{message}} done on {{formatDate todoDate}}</div>
                         </div>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
                             <img class="todo-box"/>
                         </div>
                         <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} due by {{todoDate}}</div>
+                            <div class="detail">{{message}} due by {{formatDate todoDate}}</div>
                         </div>
                     </div>
                 </div>

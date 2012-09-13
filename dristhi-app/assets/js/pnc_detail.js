@@ -61,7 +61,7 @@ function FakePNCContext() {
                     },
                     pncDetails: {
                         daysPostpartum: "23",
-                        dateOfDelivery: "24/03/12"
+                        dateOfDelivery: "2012-10-24"
                     },
                     details: {
                         deliveryPlace: "Bherya PHC",

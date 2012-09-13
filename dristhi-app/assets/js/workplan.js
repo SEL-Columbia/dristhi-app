@@ -24,16 +24,16 @@ function FakeWorkplanContext() {
         get: function () {
             return JSON.stringify({
                 overdue: [
-                    {beneficiaryName: "Napa", description: "OPV due", dueDate: "01/08/2012"},
-                    {beneficiaryName: "Salinas", description: "ANC due", dueDate: "01/08/2012"}
+                    {beneficiaryName: "Napa", description: "OPV due", dueDate: "2012-10-24"},
+                    {beneficiaryName: "Salinas", description: "ANC due", dueDate: "2012-10-24"}
                 ],
                 upcoming: [
-                    {beneficiaryName: "Balboa", description: "TT 1 due", dueDate: "01/08/2012"}
+                    {beneficiaryName: "Balboa", description: "TT 1 due", dueDate: "2012-10-24"}
                 ],
                 completed: [
-                    {beneficiaryName: "Balboa", description: "IFA due", dueDate: "01/08/2012"},
-                    {beneficiaryName: "Karishma", description: "HEP B1 due", dueDate: "01/08/2012"},
-                    {beneficiaryName: "Nethravati", description: "IFA follow up due", dueDate: "01/08/2012"}
+                    {beneficiaryName: "Balboa", description: "IFA due", dueDate: "2012-10-24"},
+                    {beneficiaryName: "Karishma", description: "HEP B1 due", dueDate: "2012-10-24"},
+                    {beneficiaryName: "Nethravati", description: "IFA follow up due", dueDate: "2012-10-24"}
                 ]
             });
         }

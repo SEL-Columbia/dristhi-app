@@ -58,7 +58,7 @@ function FakeANCContext() {
                     },
                     pregnancyDetails: {
                         monthsPregnant: "7",
-                        edd: "24/12/12"
+                        edd: "2012-10-24"
                     },
                     details: {
                         deliveryPlace: "Bherya PHC",

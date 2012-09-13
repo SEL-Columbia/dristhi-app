@@ -43,7 +43,7 @@
                             <img class="todo-box checked"/>
                         </div>
                         <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} done on {{todoDate}}</div>
+                            <div class="detail">{{message}} done on {{formatDate todoDate}}</div>
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                             <img class="todo-box"/>
                         </div>
                         <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} due by {{todoDate}}</div>
+                            <div class="detail">{{message}} due by {{formatDate todoDate}}</div>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                             <img class="todo-box checked"/>
                         </div>
                         <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} done on {{todoDate}}</div>
+                            <div class="detail">{{message}} done on {{formatDate todoDate}}</div>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                             <img class="todo-box"/>
                         </div>
                         <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} due by {{todoDate}}</div>
+                            <div class="detail">{{message}} due by {{formatDate todoDate}}</div>
                         </div>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                                 <span class="big-text">{{pncDetails.daysPostpartum}}</span><br><span class="meta-summary-text">Days Postpartum</span>
                             </div>
                             <div class="span6 text-center">
-                                <span class="big-text">{{pncDetails.dateOfDelivery}}</span><br><span class="meta-summary-text">Date of Delivery</span>
+                                <span class="big-text">{{formatDate pncDetails.dateOfDelivery}}</span><br><span class="meta-summary-text">Date of Delivery</span>
                             </div>
                         </div>
                         {{#if details.deliveryComplications}}
