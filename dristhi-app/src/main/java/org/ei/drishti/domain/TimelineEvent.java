@@ -6,6 +6,8 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.joda.time.LocalDate;
 
+import static org.ei.drishti.util.DateUtil.formatDate;
+
 public class TimelineEvent {
     private String caseId;
     private String type;
@@ -28,11 +30,12 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forStartOfPregnancy(String caseId, String referenceDate) {
-        return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC registered", "On: " + referenceDate, null);
+        return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC registered", "On: " + formatDate(referenceDate), null);
     }
 
     public static TimelineEvent forStartOfPregnancyForEC(String ecCaseId, String thaayiCardNumber, String referenceDate) {
-        return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC registered", "On: " + referenceDate, "Thaayi #: " + thaayiCardNumber);
+        return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC registered", "On: " + formatDate(referenceDate),
+                "Thaayi #: " + thaayiCardNumber);
     }
 
     public static TimelineEvent forChangeOfFPMethod(String caseId, String oldFPMethod, String newFPMethod, String dateOfFPChange) {

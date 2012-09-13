@@ -2,10 +2,6 @@ package org.ei.drishti.util;
 
 import org.joda.time.LocalDate;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class DateUtil {
     private static DateUtility dateUtility = new RealDate();
 
@@ -15,6 +11,10 @@ public class DateUtil {
 
     public static LocalDate today() {
         return dateUtility.today();
+    }
+
+    public static String formatDate(String unformattedDate) {
+        return LocalDate.parse(unformattedDate).toString("dd-MM-yyyy");
     }
 }
 
