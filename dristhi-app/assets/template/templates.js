@@ -175,7 +175,11 @@ function program16(depth0,data) {
   foundHelper = helpers.caseId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\">ANC visit</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"ANC_CLOSE\" data-caseid=\"";
+  buffer += escapeExpression(stack1) + "\">ANC visit</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"ANC_DELIVERY_OUTCOME\" data-caseid=\"";
+  foundHelper = helpers.caseId;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\">Delivery outcome</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"ANC_CLOSE\" data-caseid=\"";
   foundHelper = helpers.caseId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -742,22 +746,14 @@ function program13(depth0,data) {
 function program15(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                            <div class=\"row-fluid beneficiary-detail-component\">\n                                <div class=\"divider-with-margin\"></div>\n                            </div>\n                            <div class=\"row-fluid beneficiary-detail-component\">\n                                <b>Delivery Complications</b>\n                                <ol>\n                                      ";
+  buffer += "\n                            <div class=\"row-fluid beneficiary-detail-component\">\n                                <div class=\"divider-with-margin\"></div>\n                            </div>\n                            <div class=\"row-fluid beneficiary-detail-component\">\n                                <b>Delivery Complications</b><br/>\n                                ";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.deliveryComplications;
-  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(16, program16, data)});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                                </ol>\n                            </div>\n                        ";
-  return buffer;}
-function program16(depth0,data) {
-  
-  var buffer = "";
-  buffer += "\n                                        <li>\n                                        ";
-  depth0 = typeof depth0 === functionType ? depth0() : depth0;
-  buffer += escapeExpression(depth0) + "\n                                        </li>\n                                      ";
+  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  buffer += escapeExpression(stack1) + "\n                            </div>\n                        ";
   return buffer;}
 
-function program18(depth0,data) {
+function program17(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
   buffer += "\n                                <div class=\"container-section-component row-fluid\">\n                                        <div class=\"timeline dl\">\n                                            <div class=\"span2 ";
@@ -772,7 +768,7 @@ function program18(depth0,data) {
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "</strong><br>\n                                                ";
   stack1 = depth0.details;
-  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(19, program19, data)});
+  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(18, program18, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                                            </div>\n                                            <div class=\"span4 pull-right text-right details-";
   stack1 = depth0.status;
@@ -783,7 +779,7 @@ function program18(depth0,data) {
   else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "\n                                            </div>\n                                        </div>\n                                    </div>\n                            ";
   return buffer;}
-function program19(depth0,data) {
+function program18(depth0,data) {
   
   var buffer = "";
   buffer += "\n                                                ";
@@ -847,7 +843,7 @@ function program19(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            PNC Plan\n        </div>\n        <div class=\"well well-for-beneficiary-details\">\n            <div class=\"container-section container-fluid\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    42 day checklist\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Timeline\n        </div>\n        <div class=\"well well-for-beneficiary-details\">\n            <div class=\"container-fluid container-no-padding\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                        <div class=\"container-section container-fluid\">\n                            ";
   stack1 = depth0.timelineEvents;
-  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(18, program18, data)});
+  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(17, program17, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";
   return buffer;});

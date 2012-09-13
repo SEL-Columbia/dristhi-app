@@ -120,14 +120,8 @@
                                 <div class="divider-with-margin"></div>
                             </div>
                             <div class="row-fluid beneficiary-detail-component">
-                                <b>Delivery Complications</b>
-                                <ol>
-                                      {{#each details.deliveryComplications}}
-                                        <li>
-                                        {{this}}
-                                        </li>
-                                      {{/each}}
-                                </ol>
+                                <b>Delivery Complications</b><br/>
+                                {{details.deliveryComplications}}
                             </div>
                         {{/if}}
                     </div>
