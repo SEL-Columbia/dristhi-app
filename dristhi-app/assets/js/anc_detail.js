@@ -53,8 +53,8 @@ function FakeANCContext() {
                     caseId: "1234",
                     thaayiCardNumber: "TC Number 1",
                     location: {
-                        villageName: "Village 1",
-                        subcenter: "SubCenter 1"
+                        villageName: "village 1",
+                        subcenter: "subCenter 1"
                     },
                     pregnancyDetails: {
                         monthsPregnant: "7",

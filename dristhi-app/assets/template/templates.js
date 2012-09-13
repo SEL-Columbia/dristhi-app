@@ -2,7 +2,7 @@
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['anc_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
 
 function program1(depth0,data,depth1) {
   
@@ -190,11 +190,8 @@ function program16(depth0,data) {
   buffer += escapeExpression(stack1) + "</li>\n                    <li>";
   stack1 = depth0.location;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.villageName;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + ", ";
-  stack1 = depth0.location;
-  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.subcenter;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</li>\n                    <li class=\"light-text\">TC: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }

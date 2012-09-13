@@ -28,11 +28,11 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forStartOfPregnancy(String caseId, String referenceDate) {
-        return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(referenceDate), "Got pregnant", "On: " + referenceDate, null);
+        return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC registered", "On: " + referenceDate, null);
     }
 
     public static TimelineEvent forStartOfPregnancyForEC(String ecCaseId, String thaayiCardNumber, String referenceDate) {
-        return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(referenceDate), "Got pregnant", "On: " + referenceDate, "Thaayi #: " + thaayiCardNumber);
+        return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC registered", "On: " + referenceDate, "Thaayi #: " + thaayiCardNumber);
     }
 
     public static TimelineEvent forChangeOfFPMethod(String caseId, String oldFPMethod, String newFPMethod, String dateOfFPChange) {

@@ -12,3 +12,7 @@ Handlebars.registerHelper('ifequal', function (val1, val2, options) {
         return options.inverse(this);
     }
 });
+
+Handlebars.registerHelper('capitalize', function(text) {
+  return text.slice(0, 1).toUpperCase() + text.slice(1);
+});
