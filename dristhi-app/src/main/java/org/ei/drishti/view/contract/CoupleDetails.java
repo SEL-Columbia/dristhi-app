@@ -7,10 +7,14 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class CoupleDetails {
     private String wifeName;
     private String husbandName;
+    private final String ecNumber;
+    private final boolean isInArea;
 
-    public CoupleDetails(String wifeName, String husbandName) {
+    public CoupleDetails(String wifeName, String husbandName, String ecNumber, boolean outOfArea) {
         this.wifeName = wifeName;
         this.husbandName = husbandName;
+        this.ecNumber = ecNumber;
+        this.isInArea = !outOfArea;
     }
 
     @Override

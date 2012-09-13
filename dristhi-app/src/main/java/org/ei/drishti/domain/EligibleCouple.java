@@ -56,7 +56,7 @@ public class EligibleCouple {
         return subcenter;
     }
 
-    public Boolean isOutOfArea() {
+    public boolean isOutOfArea() {
         return isOutOfArea;
     }
 

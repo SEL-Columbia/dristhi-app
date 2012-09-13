@@ -96,7 +96,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         values.put(EC_NUMBER_COLUMN, eligibleCouple.ecNumber());
         values.put(VILLAGE_NAME_COLUMN, eligibleCouple.village());
         values.put(SUBCENTER_NAME_COLUMN, eligibleCouple.subCenter());
-        values.put(IS_OUT_OF_AREA_COLUMN, eligibleCouple.isOutOfArea().toString());
+        values.put(IS_OUT_OF_AREA_COLUMN, Boolean.toString(eligibleCouple.isOutOfArea()));
         values.put(DETAILS_COLUMN, new Gson().toJson(eligibleCouple.details()));
         return values;
     }

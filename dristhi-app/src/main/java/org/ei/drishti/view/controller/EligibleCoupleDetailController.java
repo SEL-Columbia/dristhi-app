@@ -40,7 +40,8 @@ public class EligibleCoupleDetailController {
         EligibleCouple eligibleCouple = allEligibleCouples.findByCaseID(caseId);
         List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 
-        ECDetail ecContext = new ECDetail(caseId, eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(), eligibleCouple.isHighPriority(), null, new ArrayList<Child>(), new CoupleDetails(eligibleCouple.wifeName(), eligibleCouple.husbandName()),
+        ECDetail ecContext = new ECDetail(caseId, eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(), eligibleCouple.isHighPriority(), null, new ArrayList<Child>(),
+                new CoupleDetails(eligibleCouple.wifeName(), eligibleCouple.husbandName(), eligibleCouple.ecNumber(), eligibleCouple.isOutOfArea()),
                 eligibleCouple.details()).
                 addTodos(todosAndUrgentTodos.get(0)).
                 addUrgentTodos(todosAndUrgentTodos.get(1)).

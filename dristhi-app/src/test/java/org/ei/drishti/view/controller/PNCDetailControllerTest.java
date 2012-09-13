@@ -74,7 +74,7 @@ public class PNCDetailControllerTest {
         when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent, ancEvent, eventVeryCloseToCurrentDate));
 
         PNCDetail expectedDetail = new PNCDetail(caseId, "TC 1",
-                new CoupleDetails("Woman 1", "Husband 1"),
+                new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false),
                 new LocationDetails("Village 1", "Subcenter 1"),
                 new PregnancyOutcomeDetails("2012-07-28", 4))
                 .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "9m 1w ago"), eventFor(pregnancyEvent, "9m 1w ago")))

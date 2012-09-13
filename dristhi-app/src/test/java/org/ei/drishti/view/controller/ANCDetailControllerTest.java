@@ -72,7 +72,7 @@ public class ANCDetailControllerTest {
         when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent, ancEvent, eventVeryCloseToCurrentDate));
 
         ANCDetail expectedDetail = new ANCDetail(caseId, "TC 1",
-                new CoupleDetails("Woman 1", "Husband 1"),
+                new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false),
                 new LocationDetails("Village 1", "Subcenter 1"),
                 new PregnancyDetails("7", "2012-07-28"))
                 .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "6m 1m ago"), eventFor(pregnancyEvent, "6m 1m ago")))

@@ -196,7 +196,7 @@ function program16(depth0,data) {
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.villageName;
   foundHelper = helpers.capitalize;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</li>\n                    <li class=\"light-text\">Thayi: ";
+  buffer += escapeExpression(stack1) + "</li>\n                    <li class=\"light-text\">TC: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -814,7 +814,7 @@ function program18(depth0,data) {
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.villageName;
   foundHelper = helpers.capitalize;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</li>\n                    <li>Thayi: ";
+  buffer += escapeExpression(stack1) + "</li>\n                    <li>TC: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
