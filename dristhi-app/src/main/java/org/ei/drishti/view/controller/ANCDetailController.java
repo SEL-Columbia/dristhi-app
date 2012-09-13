@@ -50,7 +50,8 @@ public class ANCDetailController {
         String edd = lmp.plusWeeks(40).toString();
         Months numberOfMonthsPregnant = Months.monthsBetween(lmp, DateUtil.today());
 
-        ANCDetail detail = new ANCDetail(caseId, mother.thaayiCardNumber(), couple.wifeName(),
+        ANCDetail detail = new ANCDetail(caseId, mother.thaayiCardNumber(),
+                new CoupleDetails(couple.wifeName(), couple.husbandName()),
                 new LocationDetails(couple.village(), couple.subCenter()),
                 new PregnancyDetails(String.valueOf(numberOfMonthsPregnant.getMonths()), edd))
                 .addTimelineEvents(getEvents())

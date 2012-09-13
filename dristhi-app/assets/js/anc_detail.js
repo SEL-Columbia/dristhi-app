@@ -49,9 +49,12 @@ function FakeANCContext() {
         },
         get: function () {
             return JSON.stringify({
-                    womanName: "Wife 1",
                     caseId: "1234",
                     thaayiCardNumber: "TC Number 1",
+                    coupleDetails: {
+                        womanName: "Woman 1",
+                        husbandName: "Husband 1"
+                    },
                     location: {
                         villageName: "village 1",
                         subcenter: "subCenter 1"

@@ -13,10 +13,7 @@ import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.view.contract.ANCDetail;
-import org.ei.drishti.view.contract.LocationDetails;
-import org.ei.drishti.view.contract.PregnancyDetails;
-import org.ei.drishti.view.contract.ProfileTodo;
+import org.ei.drishti.view.contract.*;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
@@ -74,7 +71,8 @@ public class ANCDetailControllerTest {
         when(allAlerts.fetchAllActiveAlertsForCase(caseId)).thenReturn(asList(asList(todo), asList(urgentTodo)));
         when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent, ancEvent, eventVeryCloseToCurrentDate));
 
-        ANCDetail expectedDetail = new ANCDetail(caseId, "TC 1", "Woman 1",
+        ANCDetail expectedDetail = new ANCDetail(caseId, "TC 1",
+                new CoupleDetails("Woman 1", "Husband 1"),
                 new LocationDetails("Village 1", "Subcenter 1"),
                 new PregnancyDetails("7", "2012-07-28"))
                 .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "6m 1m ago"), eventFor(pregnancyEvent, "6m 1m ago")))
