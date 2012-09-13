@@ -54,7 +54,7 @@ function FakeECContext() {
                     subcenter: "SubCenter 1",
                     isHighPriority: true,
                     coupleDetails: {
-                        womanName: "Woman 1",
+                        wifeName: "Woman 1",
                         husbandName: "Husband 1"
                     },
                     urgentTodos: [

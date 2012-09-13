@@ -52,7 +52,7 @@ function FakePNCContext() {
                     caseId: "1234",
                     thaayiCardNumber: "TC Number 1",
                     coupleDetails: {
-                        womanName: "Woman 1",
+                        wifeName: "Woman 1",
                         husbandName: "Husband 1"
                     },
                     location: {
