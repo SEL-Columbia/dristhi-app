@@ -13,8 +13,12 @@ Handlebars.registerHelper('ifequal', function (val1, val2, options) {
     }
 });
 
-Handlebars.registerHelper('capitalize', function(text) {
-  return text.slice(0, 1).toUpperCase() + text.slice(1);
+var capitalize = function(text) { return text.slice(0, 1).toUpperCase() + text.slice(1); };
+
+Handlebars.registerHelper('capitalize', capitalize);
+
+Handlebars.registerHelper('camelCaseAndConvertToListItems', function(textWithSpacesAndUnderscores) {
+    return new Handlebars.SafeString($(textWithSpacesAndUnderscores.split(" ")).map(function(index, element) { return "<li>" + capitalize(element).replace(/_/g, " ") + "</li>"; }).get().join(" "));
 });
 
 Handlebars.registerHelper('formatDate', function (unformattedDate) {

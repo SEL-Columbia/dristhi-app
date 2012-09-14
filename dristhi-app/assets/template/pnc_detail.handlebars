@@ -122,7 +122,7 @@
                             </div>
                             <div class="row-fluid beneficiary-detail-component">
                                 <b>Delivery Complications</b><br/>
-                                {{details.deliveryComplications}}
+                                <ul>{{camelCaseAndConvertToListItems details.deliveryComplications}}</ul>
                             </div>
                         {{/if}}
                     </div>

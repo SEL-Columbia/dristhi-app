@@ -786,12 +786,13 @@ function program17(depth0,data) {
 
 function program19(depth0,data) {
   
-  var buffer = "", stack1;
-  buffer += "\n                            <div class=\"row-fluid beneficiary-detail-component\">\n                                <div class=\"divider-with-margin\"></div>\n                            </div>\n                            <div class=\"row-fluid beneficiary-detail-component\">\n                                <b>Delivery Complications</b><br/>\n                                ";
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n                            <div class=\"row-fluid beneficiary-detail-component\">\n                                <div class=\"divider-with-margin\"></div>\n                            </div>\n                            <div class=\"row-fluid beneficiary-detail-component\">\n                                <b>Delivery Complications</b><br/>\n                                <ul>";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.deliveryComplications;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\n                            </div>\n                        ";
+  foundHelper = helpers.camelCaseAndConvertToListItems;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "camelCaseAndConvertToListItems", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "</ul>\n                            </div>\n                        ";
   return buffer;}
 
 function program21(depth0,data) {
