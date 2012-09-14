@@ -139,12 +139,13 @@ function program13(depth0,data,depth2) {
 
 function program15(depth0,data) {
   
-  var buffer = "", stack1;
-  buffer += "\n                                <div class=\"big-text high-risk\">\n                                    <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                                </div>\n                                <div class=\"beneficiary-detail-footer risk-detail-text\">";
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n                                <div class=\"big-text high-risk\">\n                                    <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                                </div>\n                                <div class=\"beneficiary-detail-footer risk-detail-text\"><ul>";
   stack1 = depth0.details;
-  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.riskDetail;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</div>\n                            ";
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.highRiskReason;
+  foundHelper = helpers.camelCaseAndConvertToListItems;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "camelCaseAndConvertToListItems", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "</ul></div>\n                            ";
   return buffer;}
 
 function program17(depth0,data) {
@@ -771,12 +772,13 @@ function program13(depth0,data,depth2) {
 
 function program15(depth0,data) {
   
-  var buffer = "", stack1;
-  buffer += "\n                                <div class=\"big-text high-risk\">\n                                    <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                                </div>\n                                <div class=\"beneficiary-detail-footer risk-detail-text\">";
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n                                <div class=\"big-text high-risk\">\n                                    <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                                </div>\n                                <div class=\"beneficiary-detail-footer risk-detail-text\"><ul>";
   stack1 = depth0.details;
-  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.riskDetail;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</div>\n                            ";
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.highRiskReason;
+  foundHelper = helpers.camelCaseAndConvertToListItems;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "camelCaseAndConvertToListItems", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "</ul></div>\n                            ";
   return buffer;}
 
 function program17(depth0,data) {

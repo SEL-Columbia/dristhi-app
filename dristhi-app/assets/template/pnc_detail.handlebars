@@ -101,7 +101,7 @@
                                 <div class="big-text high-risk">
                                     <i class="icon-circle-arrow-up" style="margin-top: 3px;"></i> High Risk</span>
                                 </div>
-                                <div class="beneficiary-detail-footer risk-detail-text">{{details.riskDetail}}</div>
+                                <div class="beneficiary-detail-footer risk-detail-text"><ul>{{camelCaseAndConvertToListItems details.highRiskReason}}</ul></div>
                             {{else}}
                                 <div class="text-center big-text normal-risk">Normal Risk</div>
                             {{/if}}

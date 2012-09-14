@@ -70,7 +70,7 @@ function FakePNCContext() {
                         ashaName: "Shiwani",
                         ashaPhoneNumber: "987654321",
                         isHighRisk: true,
-                        riskDetail: "Anaemia (active): 21 months",
+                        highRiskReason: "    obstructed_labor     eclampsia spontaneous_abortion     ",
                         deliveryComplications: "prolonged_labour something_bad"
                     },
                     urgentTodos: [

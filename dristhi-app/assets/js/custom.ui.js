@@ -18,7 +18,7 @@ var capitalize = function(text) { return text.slice(0, 1).toUpperCase() + text.s
 Handlebars.registerHelper('capitalize', capitalize);
 
 Handlebars.registerHelper('camelCaseAndConvertToListItems', function(textWithSpacesAndUnderscores) {
-    return new Handlebars.SafeString($(textWithSpacesAndUnderscores.split(" ")).map(function(index, element) { return "<li>" + capitalize(element).replace(/_/g, " ") + "</li>"; }).get().join(" "));
+    return new Handlebars.SafeString($(textWithSpacesAndUnderscores.trim().split(" ")).map(function(index, element) { if (element.trim() !== "") { return "<li>" + capitalize(element.trim()).replace(/_/g, " ") + "</li>"; }}).get().join(" "));
 });
 
 Handlebars.registerHelper('formatDate', function (unformattedDate) {
