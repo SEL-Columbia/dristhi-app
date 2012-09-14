@@ -294,7 +294,7 @@ function program1(depth0,data) {
   foundHelper = helpers.husbandName;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.husbandName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</li>\n                    <li>\n                     Thaayi #: ";
+  buffer += escapeExpression(stack1) + "</li>\n                    <li>\n                     Thayi #: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -931,7 +931,7 @@ function program1(depth0,data) {
   foundHelper = helpers.husbandName;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.husbandName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</li>\n                    <li>\n                     Thaayi #: ";
+  buffer += escapeExpression(stack1) + "</li>\n                    <li>\n                     Thayi #: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
