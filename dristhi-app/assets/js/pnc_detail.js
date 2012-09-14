@@ -109,19 +109,19 @@ function FakePNCContext() {
                         {
                             title: "Event 1",
                             details: ["Detail 1", "Detail 2"],
-                            status: "upcoming",
+                            type: "PREGNANCY",
                             date: "1y 2m ago"
                         },
                         {
                             title: "Event 2",
-                            details: ["Detail 3", "Detail 4"],
-                            status: "overdue",
-                            date: "2m 3d ago"
+                            details: ["Detail 1", "Detail 2"],
+                            type: "FPCHANGE",
+                            date: "1y 2m ago"
                         },
                         {
                             title: "Event 3",
-                            details: ["Detail 5", "Detail 6"],
-                            status: "done",
+                            details: ["Detail 3", "Detail 4"],
+                            type: "ANCVISIT",
                             date: "2m 3d ago"
                         }
                     ]

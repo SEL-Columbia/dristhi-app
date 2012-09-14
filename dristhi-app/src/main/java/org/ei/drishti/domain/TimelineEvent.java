@@ -35,7 +35,7 @@ public class TimelineEvent {
 
     public static TimelineEvent forStartOfPregnancyForEC(String ecCaseId, String thaayiCardNumber, String referenceDate) {
         return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC registered", "On: " + formatDate(referenceDate),
-                "Thaayi #: " + thaayiCardNumber);
+                "Thayi #: " + thaayiCardNumber);
     }
 
     public static TimelineEvent forChangeOfFPMethod(String caseId, String oldFPMethod, String newFPMethod, String dateOfFPChange) {

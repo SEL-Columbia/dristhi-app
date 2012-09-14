@@ -150,30 +150,34 @@
         </div>
         <div class="well well-for-beneficiary-details">
             <div class="container-fluid container-no-padding">
-                <div class="row-fluid beneficiary-detail-component">
-                    <div class="beneficiary-detail-content">
-                        <div class="container-section container-fluid">
-                            {{#each timelineEvents}}
-                                <div class="container-section-component row-fluid">
-                                        <div class="timeline dl">
-                                            <div class="span2 {{this.status}} dt">
-                                                <i class="icon-eye-open"></i>
-                                            </div>
-                                            <div class="span6 details-{{this.status}} dd">
-                                                <strong>{{title}}</strong><br>
-                                                {{#each details}}
-                                                {{this}}<br>
-                                                {{/each}}
-                                            </div>
-                                            <div class="span4 pull-right text-right details-{{this.status}} dd">
-                                                {{date}}
+                {{#ifequal timelineEvents.length 0}}
+                    <div class="row-fluid unavailable-data">
+                        No timeline data available
+                    </div>
+                {{else}}
+                    <div class="row-fluid beneficiary-detail-component">
+                        <div class="beneficiary-detail-content">
+                            <div class="container-section container-fluid">
+                                {{#each timelineEvents}}
+                                    <div class="container-section-component row-fluid">
+                                            <div class="timeline">
+                                                <div class="span2 type {{this.type}}"></div>
+                                                <div class="span6">
+                                                    <strong>{{title}}</strong><br>
+                                                    {{#each details}}
+                                                        {{this}}<br>
+                                                    {{/each}}
+                                                </div>
+                                                <div class="span4 pull-right text-right">
+                                                    {{date}}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                            {{/each}}
+                                {{/each}}
+                            </div>
                         </div>
                     </div>
-                </div>
+                {{/ifequal}}
             </div>
         </div>
     </div>

@@ -1,37 +1,26 @@
-.timeline .dt {
+.timeline .type {
     width: 35px;
     height: 35px;
-    overflow: hidden;
-    border: 0px;
-    border-radius: 18px;
-    display: inline-block;
+    margin: 10px 7px 0 12px;
     vertical-align: auto;
 }
 
-.timeline .dd {
-    display: inline-block;
-    }
-
-.timeline.dl .upcoming {
-    background-color: #c3e4f7;
+.timeline .type.PREGNANCY {
+    content: url(../img/icons/update-data.png);
 }
 
-.timeline.dl .overdue {
-    background-color: #f7cbca;
+.timeline .type.FPCHANGE {
+    content: url(../img/icons/update-data.png);
 }
 
-.timeline.dl .not-done {
-    background-color: #e6e6e6;
+.timeline .type.ANCVISIT {
+    content: url(../img/icons/update-data.png);
 }
 
-.timeline .details-upcoming {
-    color: #0691d2;
+.timeline .type.IFAPROVIDED {
+    content: url(../img/icons/update-data.png);
 }
 
-.timeline .details-overdue {
-    color: #d90e11;
-}
-
-.timeline i {
-    margin: 10px 7px 0 12px;
+.timeline .type.CHILD-BIRTH {
+    content: url(../img/icons/update-data.png);
 }

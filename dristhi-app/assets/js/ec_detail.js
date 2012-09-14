@@ -59,6 +59,12 @@ function FakeECContext() {
                         ecNumber: "EC Number 1",
                         isInArea: true
                     },
+                    details: {
+                        currentMethod: "Condom",
+                        headOfHousehold: "Head Person",
+                        religion: "Religion X",
+                        pregnancies: "3"
+                    },
                     urgentTodos: [
                         {
                             message: "Alert 1",
@@ -105,28 +111,22 @@ function FakeECContext() {
                         {
                             title: "Event 1",
                             details: ["Detail 1", "Detail 2"],
-                            date: "1y 2m ago",
-                            status: "overdue"
+                            type: "PREGNANCY",
+                            date: "1y 2m ago"
                         },
                         {
                             title: "Event 2",
-                            details: ["Detail 3", "Detail 4"],
-                            date: "2m 3d ago",
-                            status: "upcoming"
+                            details: ["Detail 1", "Detail 2"],
+                            type: "FPCHANGE",
+                            date: "1y 2m ago"
                         },
                         {
                             title: "Event 3",
-                            details: ["Detail 4", "Detail 5"],
-                            date: "2m 3d ago",
-                            status: "done"
+                            details: ["Detail 3", "Detail 4"],
+                            type: "ANCVISIT",
+                            date: "2m 3d ago"
                         }
-                    ],
-                    details: {
-                        currentMethod: "Condom",
-                        headOfHousehold: "Head Person",
-                        religion: "Religion X",
-                        pregnancies: "3"
-                    }
+                    ]
                 }
             );
         }
