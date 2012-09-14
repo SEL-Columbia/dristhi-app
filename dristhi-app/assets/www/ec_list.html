@@ -5,6 +5,7 @@
     <link href="../css/custom.css" rel="stylesheet">
     <link href="../css/sidepanel.css" rel="stylesheet">
     <link href="../css/list.css" rel="stylesheet">
+    <link href="../css/alerts.css" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
 
@@ -15,15 +16,21 @@
     <script type="text/javascript" src="../js/custom.ui.js"></script>
     <script type="text/javascript" src="../template/templates.js"></script>
     <script type="text/javascript" src="../js/anmNavigation.js"></script>
+    <script type="text/javascript" src="../js/modal.js"></script>
     <script type="text/javascript" src="../js/sidePanel.js"></script>
 
     <script type="text/javascript" src="../js/ec_list.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             var ecList = new ECList(new ECListBridge());
             ecList.populateInto("#ec-list");
             ecList.bindEveryItemToECView("#ec-list", ".client-list-item");
             ecList.bindItemToCommCare("#plusButton");
+
+            new Modal('filter').bindToClick();
+
+            ecList.populateVillageFilter('#ecFilterModal');
+            ecList.bindToVillageFilter('.modal-row.village');
 
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         });
@@ -45,9 +52,13 @@
                     <li><img class="separator"></li>
                     <li id="plusButton" data-form="EC_ADD"><img src="../img/icons/icon_plus.png"></li>
                     <li><img class="separator"></li>
-                    <li><img src="../img/icons/icon_find.png"></li>
+                    <li data-modal-target="#ecFilterModal"><img src="../img/icons/icon_find.png"></li>
                 </ul>
             </div>
+        </div>
+
+        <div id="ecFilterModal" class="modal-filter-content">
+            <div class="modal-filter-top">Filter by village</div>
         </div>
 
         <div id="content" class="content affected-by-sidepanel">

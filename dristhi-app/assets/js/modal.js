@@ -1,4 +1,5 @@
-function Modal() {
+function Modal(type) {
+
     var hideModal = function (targetModalToShow) {
         $('#blur').hide();
         $("#modal-container").hide();
@@ -27,7 +28,11 @@ function Modal() {
     };
 
     var initializeModalContainer = function () {
-        $("body").prepend($('<div id="blur"></div><div id="modal-container"><img src="../img/triangle.png" class="modal-triangle"/><div id="modal-goes-here"></div></div>'));
+        if (type === 'filter') {
+            $("body").prepend($('<div id="blur"></div><div id="modal-container"><div id="modal-goes-here"></div></div>'));
+        } else {
+            $("body").prepend($('<div id="blur"></div><div id="modal-container"><img src="../img/triangle.png" class="modal-triangle"/><div id="modal-goes-here"></div></div>'));
+        }
     }
 
     initializeModalContainer();

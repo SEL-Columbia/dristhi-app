@@ -1,4 +1,8 @@
 function ECList(ecListBridge) {
+    var ecListRow = ".ec";
+    var allVillagesFilterOption = "all";
+    var villageFilterOption = "village";
+
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             var ecs = ecListBridge.getECs();
@@ -20,6 +24,19 @@ function ECList(ecListBridge) {
             $(cssIdentifierOfElement).click(function () {
                 ecListBridge.delegateToCommCare($(this).data("form"));
             })
+        },
+        populateVillageFilter: function (cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).append(Handlebars.templates.filter_by_village(ecListBridge.getVillages()));
+        },
+        bindToVillageFilter: function (cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).click(function () {
+                if ($(this).data(villageFilterOption) === allVillagesFilterOption) {
+                    $(ecListRow).show();
+                    return;
+                }
+                $(ecListRow).hide();
+                $('.' + $(this).data(villageFilterOption)).show();
+            });
         }
     };
 }
@@ -39,13 +56,16 @@ function ECListBridge() {
         },
         delegateToCommCare: function (formId) {
             ecContext.startCommCare(formId);
+        },
+        getVillages: function () {
+            return JSON.parse(ecContext.villages());
         }
     };
 }
 
 function FakeECListContext() {
     return {
-        get: function() {
+        get: function () {
             return JSON.stringify({
                 highPriority: [
                     {
@@ -53,7 +73,7 @@ function FakeECListContext() {
                         wifeName: "Wife 1",
                         husbandName: "Husband 1",
                         ecNumber: "EC Number 1",
-                        villageName: "Village 1",
+                        villageName: "munjanahalli",
                         isHighPriority: true,
                         hasTodos: false
                     }
@@ -64,7 +84,7 @@ function FakeECListContext() {
                         wifeName: "Wife 2",
                         husbandName: "Husband 2",
                         ecNumber: "EC Number 2",
-                        villageName: "Village 2",
+                        villageName: "chikkabheriya",
                         isHighPriority: false,
                         hasTodos: true
 
@@ -77,6 +97,15 @@ function FakeECListContext() {
         },
         startCommCare: function (formId) {
             alert("Start CommCare with form " + formId);
+        },
+        villages: function () {
+            return JSON.stringify(
+                [
+                    {name: "all"},
+                    {name: "munjanahalli"},
+                    {name: "chikkabheriya"}
+                ]
+            )
         }
-    }
+    };
 }

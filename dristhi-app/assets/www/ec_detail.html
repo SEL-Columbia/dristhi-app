@@ -23,7 +23,7 @@
 
     <script type="text/javascript" src="../js/ec_detail.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             var ec = new EC(new ECBridge());
             ec.populateInto("#mainpanel");
             ec.bindEveryItemToCommCare(".modal-row");
@@ -31,6 +31,7 @@
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
             new Modal().bindToClick();
             new Alerts().bindAllCheckboxes(".todo-box", ec.onAlertCheckboxClick);
+            $('#modal').hide();
         });
     </script>
 </head>
