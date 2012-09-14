@@ -61,10 +61,12 @@ public class EligibleCoupleDetailController {
     private List<TimelineEvent> getEvents() {
         List<org.ei.drishti.domain.TimelineEvent> events = allTimelineEvents.forCase(caseId);
         List<TimelineEvent> timelineEvents = new ArrayList<TimelineEvent>();
+
         for (org.ei.drishti.domain.TimelineEvent event : events) {
             timelineEvents.add(new TimelineEvent(event.type(), event.title(), new String[]{event.detail1(), event.detail2()}, formatDate(event.referenceDate())));
         }
         Collections.reverse(timelineEvents);
+
         return timelineEvents;
     }
 

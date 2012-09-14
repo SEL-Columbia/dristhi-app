@@ -78,6 +78,7 @@ public class PNCDetailController {
             timelineEvents.add(new TimelineEvent(event.type(), event.title(), new String[]{event.detail1(), event.detail2()}, formatDate(event.referenceDate())));
         }
         Collections.reverse(timelineEvents);
+
         return timelineEvents;
     }
 
