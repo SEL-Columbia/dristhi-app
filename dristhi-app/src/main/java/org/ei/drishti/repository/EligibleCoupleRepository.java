@@ -77,6 +77,19 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         return couples.get(0);
     }
 
+    public List<String> villages() {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(true, EC_TABLE_NAME, new String[]{VILLAGE_NAME_COLUMN}, IS_OUT_OF_AREA_COLUMN + " = ?", new String[]{"false"}, null, null, null, null);
+        cursor.moveToFirst();
+        List<String> villages = new ArrayList<String>();
+        while (!cursor.isAfterLast()) {
+            villages.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return villages;
+    }
+
     public void close(String caseId) {
         alertRepository.deleteAllAlertsForCase(caseId);
         timelineEventRepository.deleteAllTimelineEventsForCase(caseId);

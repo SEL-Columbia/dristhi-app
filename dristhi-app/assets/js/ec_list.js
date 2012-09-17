@@ -1,6 +1,6 @@
 function ECList(ecListBridge) {
     var ecListRow = ".ec";
-    var allVillagesFilterOption = "all";
+    var allVillagesFilterOption = "All";
     var villageFilterOption = "village";
 
     return {

@@ -36,4 +36,8 @@ public class AllEligibleCouples {
     public long count() {
         return repository.count();
     }
+
+    public List<String> villages() {
+        return repository.villages();
+    }
 }

@@ -9,10 +9,7 @@ import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.util.Session;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
@@ -179,6 +176,22 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
 
         repository.add(outOfAreaEC);
         assertEquals(2, repository.count());
+    }
+
+    public void testShouldFetchUniqueVillagesInRepo() throws Exception {
+        EligibleCouple ec = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "Village1", "SubCenter 1", new HashMap<String, String>());
+        EligibleCouple anotherEC = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "Village2", "SubCenter 2", new HashMap<String, String>());
+        EligibleCouple yetAnotherEC = new EligibleCouple("CASE Z", "Wife 3", "Husband 3", "EC Number 3", "Village2", "SubCenter 3", new HashMap<String, String>());
+        EligibleCouple outOfAreaEC = new EligibleCouple("CASE A", "Wife 4", "Husband 4", "", "Village4", "SubCenter 4", new HashMap<String, String>()).asOutOfArea();
+
+        repository.add(ec);
+        repository.add(anotherEC);
+        repository.add(yetAnotherEC);
+        repository.add(outOfAreaEC);
+
+        List<String> villages = repository.villages();
+
+        assertEquals(asList("Village1", "Village2"), villages);
     }
 
     public void testShouldNotFetchOutOfAreaECsWhenFetchingAllInAreaECs() throws Exception {
