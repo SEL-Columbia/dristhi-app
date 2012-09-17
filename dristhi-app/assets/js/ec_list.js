@@ -1,13 +1,27 @@
 function ECList(ecListBridge) {
-    var ecListRow = ".ec";
-    var allVillagesFilterOption = "All";
+    var ecListRow = "ec";
+    var showECsFromAllVillages = "All";
     var villageFilterOption = "village";
+    var highPriorityContainer;
+    var normalPriorityContainer;
+
+    var showEcsAndUpdateCount = function (cssIdentifierOfEachRow) {
+        var highPriorityECs = $(highPriorityContainer + " ." + cssIdentifierOfEachRow);
+        var normalPriorityECs = $(normalPriorityContainer + " ." + cssIdentifierOfEachRow);
+
+        highPriorityECs.show();
+        normalPriorityECs.show();
+
+        $(highPriorityContainer + " .count").text(highPriorityECs.length);
+        $(normalPriorityContainer + " .count").text(normalPriorityECs.length);
+
+    }
 
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             var ecs = ecListBridge.getECs();
-            var highPriorityContainer = cssIdentifierOfRootElement + " #highPriorityContainer";
-            var normalPriorityContainer = cssIdentifierOfRootElement + " #normalPriorityContainer";
+            highPriorityContainer = cssIdentifierOfRootElement + " #highPriorityContainer";
+            normalPriorityContainer = cssIdentifierOfRootElement + " #normalPriorityContainer";
 
             $(highPriorityContainer + " .count").text(ecs.highPriority.length);
             $(normalPriorityContainer + " .count").text(ecs.normalPriority.length);
@@ -30,12 +44,12 @@ function ECList(ecListBridge) {
         },
         bindToVillageFilter: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
-                if ($(this).data(villageFilterOption) === allVillagesFilterOption) {
-                    $(ecListRow).show();
+                if ($(this).data(villageFilterOption) === showECsFromAllVillages) {
+                    showEcsAndUpdateCount("ec");
                     return;
                 }
-                $(ecListRow).hide();
-                $('.' + $(this).data(villageFilterOption)).show();
+                $("." + ecListRow).hide();
+                showEcsAndUpdateCount($(this).data(villageFilterOption));
             });
         }
     };
@@ -101,7 +115,7 @@ function FakeECListContext() {
         villages: function () {
             return JSON.stringify(
                 [
-                    {name: "all"},
+                    {name: "All"},
                     {name: "munjanahalli"},
                     {name: "chikkabheriya"}
                 ]
