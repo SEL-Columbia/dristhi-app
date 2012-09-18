@@ -4,10 +4,12 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
-import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.dto.Action;
 
 import java.util.List;
+
+import static org.ei.drishti.domain.TimelineEvent.forANCCareProvided;
+import static org.ei.drishti.domain.TimelineEvent.forIFATabletsProvided;
 
 public class AllBeneficiaries {
     private ChildRepository childRepository;
@@ -39,11 +41,11 @@ public class AllBeneficiaries {
         } else if (action.type().equals("updateDetails")) {
             motherRepository.updateDetails(action.caseID(), action.details());
         } else if (action.type().equals("ancCareProvided")) {
-            allTimelines.add(TimelineEvent.forANCCareProvided(action.caseID(), action.get("visitNumber"), action.get("visitDate")));
+            allTimelines.add(forANCCareProvided(action.caseID(), action.get("visitNumber"), action.get("visitDate")));
 
             String numberOfIFATabletsProvided = action.get("numberOfIFATabletsProvided");
             if (numberOfIFATabletsProvided != null && Integer.parseInt(numberOfIFATabletsProvided) > 0) {
-                allTimelines.add(TimelineEvent.forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
+                allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
             }
         } else if (action.type().equals("registerOutOfAreaANC")) {
             eligibleCoupleRepository.add(new EligibleCouple(action.get("ecCaseId"), action.get("wife"), action.get("husband"), "", action.get("village"), action.get("subcenter"), action.details()).asOutOfArea());
