@@ -1,9 +1,27 @@
 function ANCList(ancListBridge) {
+    var ancListRow = "anc";
+    var showANCsFromAllVillages = "All";
+    var villageFilterOption = "village";
+    var highRiskContainer;
+    var normalRiskContainer;
+
+    var showANCsAndUpdateCount = function (cssIdentifierOfEachRow) {
+        var highRiskANCs = $(highRiskContainer + " ." + cssIdentifierOfEachRow);
+        var normalRiskANCs = $(normalRiskContainer + " ." + cssIdentifierOfEachRow);
+
+        highRiskANCs.show();
+        normalRiskANCs.show();
+
+        $(highRiskContainer + " .count").text(highRiskANCs.length);
+        $(normalRiskContainer + " .count").text(normalRiskANCs.length);
+
+    }
+
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             var ancs = ancListBridge.getANCs();
-            var highRiskContainer = cssIdentifierOfRootElement + " #highRiskContainer";
-            var normalRiskContainer = cssIdentifierOfRootElement + " #normalRiskContainer";
+            highRiskContainer = cssIdentifierOfRootElement + " #highRiskContainer";
+            normalRiskContainer = cssIdentifierOfRootElement + " #normalRiskContainer";
 
             $(highRiskContainer + " .count").text(ancs.highRisk.length);
             $(normalRiskContainer + " .count").text(ancs.normalRisk.length);
@@ -20,6 +38,21 @@ function ANCList(ancListBridge) {
             $(cssIdentifierOfElement).click(function () {
                 ancListBridge.delegateToCommCare($(this).data("form"));
             })
+        },
+        populateVillageFilter: function (cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).append(Handlebars.templates.filter_by_village(ancListBridge.getVillages()));
+        },
+        bindToVillageFilter: function (cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).click(function () {
+                var text = 'Show: '+ $(this).text();
+                $(this).closest('.dropdown').children('a.dropdown-toggle').text(text);
+                if ($(this).data(villageFilterOption) === showANCsFromAllVillages) {
+                    showANCsAndUpdateCount(ancListRow);
+                    return;
+                }
+                $("." + ancListRow).hide();
+                showANCsAndUpdateCount($(this).data(villageFilterOption));
+            });
         }
     };
 }
@@ -40,6 +73,9 @@ function ANCListBridge() {
         },
         delegateToCommCare: function (formId) {
             ancContext.startCommCare(formId);
+        },
+        getVillages: function () {
+            return JSON.parse(ancContext.villages());
         }
     };
 }
@@ -54,7 +90,7 @@ function FakeANCListContext() {
                         womanName: "Wife 1",
                         husbandName: "Husband 1",
                         thaayiCardNumber: "TC Number 1",
-                        villageName: "Village 1",
+                        villageName: "chikkabheriya",
                         hasTodos: true,
                         isHighRisk: true
                     },
@@ -63,7 +99,7 @@ function FakeANCListContext() {
                         womanName: "Wife 2",
                         husbandName: "Husband 2",
                         thaayiCardNumber: "TC Number 2",
-                        villageName: "Village 2",
+                        villageName: "munjanahalli",
                         hasTodos: false,
                         isHighRisk: true
                     }
@@ -74,7 +110,7 @@ function FakeANCListContext() {
                         womanName: "Wife 4",
                         husbandName: "Husband 4",
                         thaayiCardNumber: "TC Number 4",
-                        villageName: "Village 1",
+                        villageName: "chikkabheriya",
                         hasTodos: true,
                         isHighRisk: false
                     },
@@ -83,7 +119,7 @@ function FakeANCListContext() {
                         womanName: "Wife 5",
                         husbandName: "Husband 5",
                         thaayiCardNumber: "TC Number 5",
-                        villageName: "Village 1",
+                        villageName: "munjanahalli",
                         hasTodos: false,
                         isHighRisk: false
                     },
@@ -92,7 +128,7 @@ function FakeANCListContext() {
                         womanName: "Wife 6",
                         husbandName: "Husband 6",
                         thaayiCardNumber: "TC Number 6",
-                        villageName: "Village 2",
+                        villageName: "munjanahalli",
                         hasTodos: true,
                         isHighRisk: false
                     }
@@ -104,6 +140,15 @@ function FakeANCListContext() {
         },
         startCommCare: function (formId) {
             alert("Start CommCare with form " + formId);
+        },
+        villages: function () {
+            return JSON.stringify(
+                [
+                    {name: "All"},
+                    {name: "munjanahalli"},
+                    {name: "chikkabheriya"}
+                ]
+            )
         }
     }
 }

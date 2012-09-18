@@ -279,7 +279,11 @@ templates['anc_list'] = template(function (Handlebars,depth0,helpers,partials,da
 function program1(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n    <div class=\"row-fluid\">\n        <a data-caseId=";
+  buffer += "\n    <div class=\"row-fluid anc ";
+  foundHelper = helpers.villageName;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.villageName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\">\n        <a data-caseId=";
   foundHelper = helpers.caseId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }

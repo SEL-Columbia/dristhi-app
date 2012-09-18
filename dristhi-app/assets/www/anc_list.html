@@ -25,6 +25,9 @@
             list.bindEveryItemToANCView("#anc-list", ".client-list-item");
             list.bindItemToCommCare("#plusButton");
 
+            list.populateVillageFilter('#menu-village');
+            list.bindToVillageFilter('.dropdown-option');
+
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         });
     </script>
@@ -50,7 +53,16 @@
         </div>
 
         <div id="content" class="content affected-by-sidepanel">
-            <div id="anc-list" class="registry-container container-fluid">
+            <div class="container-fluid dropdown dropdown-filter">
+                <a class="btn dropdown-toggle toggle-filter" data-toggle="dropdown" href="#">
+                    Show: All
+                    <span class="caret pull-right"></span>
+                </a>
+                <ul id="menu-village" class="dropdown-menu dropdown-menu-filter">
+                </ul>
+            </div>
+        </div>
+        <div id="anc-list" class="registry-container container-fluid">
                 <div id="highRiskContainer">
                     <div class="high-risk-header"> HIGH RISK (<span class="count"></span>) </div>
                     <div class="divider divider-padding-both"></div>
