@@ -65,6 +65,7 @@ public class PNCDetailControllerTest {
 
         HashMap<String, String> details = new HashMap<String, String>();
         details.put("ashaName", "Shiwani");
+        details.put("dateOfDelivery", "2012-07-28");
         details.put("isHighRisk", "yes");
         details.put("highRiskReason", "Anaemia");
 

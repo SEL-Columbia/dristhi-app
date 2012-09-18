@@ -1,4 +1,4 @@
-Handlebars.registerHelper('ifNotZero', function(context, options) {
+Handlebars.registerHelper('ifNotZero', function (context, options) {
     if (context != 0) {
         return options.fn(this);
     }
@@ -13,12 +13,38 @@ Handlebars.registerHelper('ifequal', function (val1, val2, options) {
     }
 });
 
-var capitalize = function(text) { return text.slice(0, 1).toUpperCase() + text.slice(1); };
+Handlebars.registerHelper('ifFalse', function (val, options) {
+    if (typeof val === "undefined") {
+        return options.inverse(this);
+    } else if (val === false) {
+        return options.inverse(this);
+    } else if (val === "no") {
+        return options.inverse(this);
+    } else if (val === "") {
+        return options.inverse(this);
+    } else if (val === "0") {
+        return options.inverse(this);
+    }
+    else {
+        return options.fn(this);
+    }
+});
+
+var capitalize = function (text) {
+    return text.slice(0, 1).toUpperCase() + text.slice(1);
+};
 
 Handlebars.registerHelper('capitalize', capitalize);
 
-Handlebars.registerHelper('camelCaseAndConvertToListItems', function(textWithSpacesAndUnderscores) {
-    return new Handlebars.SafeString($(textWithSpacesAndUnderscores.trim().split(" ")).map(function(index, element) { if (element.trim() !== "") { return "<li>" + capitalize(element.trim()).replace(/_/g, " ") + "</li>"; }}).get().join(" "));
+Handlebars.registerHelper('camelCaseAndConvertToListItems', function (textWithSpacesAndUnderscores) {
+    if (typeof textWithSpacesAndUnderscores === "undefined") {
+        return "";
+    }
+    return new Handlebars.SafeString($(textWithSpacesAndUnderscores.trim().split(" ")).map(function (index, element) {
+        if (element.trim() !== "") {
+            return "<li>" + capitalize(element.trim()).replace(/_/g, " ") + "</li>";
+        }
+    }).get().join(" "));
 });
 
 Handlebars.registerHelper('formatDate', function (unformattedDate) {

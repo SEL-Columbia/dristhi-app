@@ -16,7 +16,10 @@ import org.joda.time.LocalDate;
 import org.ocpsoft.pretty.time.Duration;
 import org.ocpsoft.pretty.time.PrettyTime;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
 
 import static java.lang.Math.min;
 
@@ -46,8 +49,7 @@ public class PNCDetailController {
         EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
         List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 
-        LocalDate lmp = LocalDate.parse(mother.referenceDate());
-        LocalDate deliveryDate = lmp.plusWeeks(40);
+        LocalDate deliveryDate = LocalDate.parse(mother.details().get("dateOfDelivery"));
         Days postPartumDuration = Days.daysBetween(deliveryDate, DateUtil.today());
 
         PNCDetail detail = new PNCDetail(caseId, mother.thaayiCardNumber(),
