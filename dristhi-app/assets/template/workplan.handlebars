@@ -9,7 +9,7 @@
 <div class="tab-content container-fluid container-no-padding">
     <div class="tab-pane overdue active" id="overdue">
         {{#each overdue}}
-            <div class="alert overdue">
+            <div class="alert overdue" data-form="{{formToOpen}}" data-caseid="{{caseId}}" data-visitcode="{{visitCode}}">
                 <div class="row-fluid">
                     <div class="span2">
                         <img class="todo-box"/>
@@ -25,7 +25,7 @@
 
     <div class="tab-pane upcoming" id="upcoming">
         {{#each upcoming}}
-            <div class="alert upcoming">
+            <div class="alert upcoming" data-form="{{formToOpen}}" data-caseid="{{caseId}}" data-visitcode="{{visitCode}}">
                 <div class="row-fluid">
                     <div class="span2">
                         <img class="todo-box"/>
@@ -41,7 +41,7 @@
 
     <div class="tab-pane completed" id="completed">
         {{#each completed}}
-            <div class="alert completed">
+            <div class="alert completed" data-form="{{formToOpen}}" data-caseid="{{caseId}}" data-visitcode="{{visitCode}}">
                 <div class="row-fluid">
                     <div class="span2">
                         <img class="todo-box checked"/>

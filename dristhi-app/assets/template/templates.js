@@ -1012,7 +1012,19 @@ templates['workplan'] = template(function (Handlebars,depth0,helpers,partials,da
 function program1(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n            <div class=\"alert overdue\">\n                <div class=\"row-fluid\">\n                    <div class=\"span2\">\n                        <img class=\"todo-box\"/>\n                    </div>\n                    <div class=\"span10\">\n                        <div class=\"beneficiaryName\">";
+  buffer += "\n            <div class=\"alert overdue\" data-form=\"";
+  foundHelper = helpers.formToOpen;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\" data-caseid=\"";
+  foundHelper = helpers.caseId;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
+  foundHelper = helpers.visitCode;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\">\n                <div class=\"row-fluid\">\n                    <div class=\"span2\">\n                        <img class=\"todo-box\"/>\n                    </div>\n                    <div class=\"span10\">\n                        <div class=\"beneficiaryName\">";
   foundHelper = helpers.beneficiaryName;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.beneficiaryName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -1030,7 +1042,19 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n            <div class=\"alert upcoming\">\n                <div class=\"row-fluid\">\n                    <div class=\"span2\">\n                        <img class=\"todo-box\"/>\n                    </div>\n                    <div class=\"span10\">\n                        <div class=\"beneficiaryName\">";
+  buffer += "\n            <div class=\"alert upcoming\" data-form=\"";
+  foundHelper = helpers.formToOpen;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\" data-caseid=\"";
+  foundHelper = helpers.caseId;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
+  foundHelper = helpers.visitCode;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\">\n                <div class=\"row-fluid\">\n                    <div class=\"span2\">\n                        <img class=\"todo-box\"/>\n                    </div>\n                    <div class=\"span10\">\n                        <div class=\"beneficiaryName\">";
   foundHelper = helpers.beneficiaryName;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.beneficiaryName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -1048,7 +1072,19 @@ function program3(depth0,data) {
 function program5(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n            <div class=\"alert completed\">\n                <div class=\"row-fluid\">\n                    <div class=\"span2\">\n                        <img class=\"todo-box checked\"/>\n                    </div>\n                    <div class=\"span10\">\n                        <div class=\"beneficiaryName\">";
+  buffer += "\n            <div class=\"alert completed\" data-form=\"";
+  foundHelper = helpers.formToOpen;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\" data-caseid=\"";
+  foundHelper = helpers.caseId;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
+  foundHelper = helpers.visitCode;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\">\n                <div class=\"row-fluid\">\n                    <div class=\"span2\">\n                        <img class=\"todo-box checked\"/>\n                    </div>\n                    <div class=\"span10\">\n                        <div class=\"beneficiaryName\">";
   foundHelper = helpers.beneficiaryName;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.beneficiaryName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }

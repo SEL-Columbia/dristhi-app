@@ -30,7 +30,7 @@
 
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
 
-            new Alerts().bindAllCheckboxes(".todo-box", function(alertWhoseCheckboxWasClicked) { });
+            new Alerts().bindAllCheckboxes(".todo-box", workplan.onAlertCheckboxClick);
         });
     </script>
 <body>
