@@ -44,6 +44,8 @@ function ECList(ecListBridge) {
         },
         bindToVillageFilter: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
+                var text = 'Show: '+ $(this).text();
+                $(this).closest('.dropdown').children('a.dropdown-toggle').text(text);
                 if ($(this).data(villageFilterOption) === showECsFromAllVillages) {
                     showEcsAndUpdateCount("ec");
                     return;

@@ -484,3 +484,34 @@ body {
 .spacing-below {
     margin-bottom: 12px;
 }
+
+.dropdown-filter {
+    margin-left: -20px;
+    margin-right: 2px;
+}
+
+.toggle-filter {
+    padding-top: 10px;
+    width: 100%;
+    height: 30px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.dropdown-option {
+    text-align: center;
+    width: 90%;
+    height: 40px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.dropdown-option-text {
+    padding-top: 10px;
+}
+
+.dropdown-menu-filter {
+    width: 92%;
+    margin-left: 24px;
+}

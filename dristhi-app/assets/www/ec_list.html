@@ -16,7 +16,6 @@
     <script type="text/javascript" src="../js/custom.ui.js"></script>
     <script type="text/javascript" src="../template/templates.js"></script>
     <script type="text/javascript" src="../js/anmNavigation.js"></script>
-    <script type="text/javascript" src="../js/modal.js"></script>
     <script type="text/javascript" src="../js/sidePanel.js"></script>
 
     <script type="text/javascript" src="../js/ec_list.js"></script>
@@ -27,10 +26,8 @@
             ecList.bindEveryItemToECView("#ec-list", ".client-list-item");
             ecList.bindItemToCommCare("#plusButton");
 
-            new Modal('filter').bindToClick();
-
-            ecList.populateVillageFilter('#ecFilterModal');
-            ecList.bindToVillageFilter('.modal-row.village');
+            ecList.populateVillageFilter('#menu-village');
+            ecList.bindToVillageFilter('.dropdown-option');
 
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         });
@@ -52,29 +49,33 @@
                     <li><img class="separator"></li>
                     <li id="plusButton" data-form="EC_ADD"><img src="../img/icons/icon_plus.png"></li>
                     <li><img class="separator"></li>
-                    <li data-modal-target="#ecFilterModal"><img src="../img/icons/icon_find.png"></li>
+                    <li><img src="../img/icons/icon_find.png"></li>
                 </ul>
             </div>
         </div>
-
-        <div id="ecFilterModal" class="modal-filter-content">
-            <div class="modal-filter-top">Filter by village</div>
-        </div>
-
         <div id="content" class="content affected-by-sidepanel">
-            <div id="ec-list" class="registry-container container-fluid">
-                <div id="highPriorityContainer">
-                    <div class="high-risk-header"> HIGH PRIORITY (<span class="count"></span>)</div>
-                    <div class="divider divider-padding-both"></div>
-                </div>
+            <div class="container-fluid dropdown dropdown-filter">
+                <a class="btn dropdown-toggle toggle-filter" data-toggle="dropdown" href="#">
+                    Show: All
+                    <span class="caret pull-right"></span>
+                </a>
+                <ul id="menu-village" class="dropdown-menu dropdown-menu-filter">
+                </ul>
+            </div>
+        </div>
+        <div id="ec-list" class="registry-container container-fluid">
+            <div id="highPriorityContainer">
+                <div class="high-risk-header"> HIGH PRIORITY (<span class="count"></span>)</div>
+                <div class="divider divider-padding-both"></div>
+            </div>
 
-                <div id="normalPriorityContainer">
-                    <div class="normal-risk-header"> NORMAL PRIORITY (<span class="count"></span>)</div>
-                    <div class="divider divider-padding-both"></div>
-                </div>
+            <div id="normalPriorityContainer">
+                <div class="normal-risk-header"> NORMAL PRIORITY (<span class="count"></span>)</div>
+                <div class="divider divider-padding-both"></div>
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

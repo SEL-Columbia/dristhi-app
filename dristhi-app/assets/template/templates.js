@@ -644,15 +644,15 @@ templates['filter_by_village'] = template(function (Handlebars,depth0,helpers,pa
 function program1(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n    <div class=\"modal-row filter village\" data-village=\"";
+  buffer += "\n    <li><a href=\"#\" class=\"dropdown-option\" data-village=\"";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\">";
+  buffer += escapeExpression(stack1) + "\"><div class=\"dropdown-option-text\">";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</div>\n    <div class=\"divider\"></div>\n";
+  buffer += escapeExpression(stack1) + "</div></a></li>\n";
   return buffer;}
 
   stack1 = helpers.each.call(depth0, depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
