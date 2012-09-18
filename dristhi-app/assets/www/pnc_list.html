@@ -24,6 +24,9 @@
             list.populateInto("#pnc-list");
             list.bindEveryItemToPNCView("#pnc-list", ".client-list-item");
 
+            list.populateVillageFilter('#menu-village');
+            list.bindToVillageFilter('.dropdown-option');
+
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         });
     </script>
@@ -47,14 +50,22 @@
         </div>
 
         <div id="content" class="content affected-by-sidepanel">
+            <div class="container-fluid dropdown dropdown-filter">
+                <a class="btn dropdown-toggle toggle-filter" data-toggle="dropdown">
+                    Show: All
+                    <span class="caret pull-right"></span>
+                </a>
+                <ul id="menu-village" class="dropdown-menu dropdown-menu-filter">
+                </ul>
+            </div>
             <div id="pnc-list" class="registry-container container-fluid">
                 <div id="highRiskContainer">
-                    <div class="high-risk-header"> HIGH RISK (<span class="count"></span>) </div>
+                    <div class="high-risk-header"> HIGH RISK (<span class="count"></span>)</div>
                     <div class="divider divider-padding-both"></div>
                 </div>
 
                 <div id="normalRiskContainer">
-                    <div class="normal-risk-header"> NORMAL RISK (<span class="count"></span>) </div>
+                    <div class="normal-risk-header"> NORMAL RISK (<span class="count"></span>)</div>
                     <div class="divider divider-padding-both"></div>
                 </div>
             </div>

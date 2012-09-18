@@ -649,7 +649,7 @@ templates['filter_by_village'] = template(function (Handlebars,depth0,helpers,pa
 function program1(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n    <li><a href=\"#\" class=\"dropdown-option\" data-village=\"";
+  buffer += "\n    <li><a class=\"dropdown-option\" data-village=\"";
   foundHelper = helpers.name;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.name; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -946,7 +946,11 @@ templates['pnc_list'] = template(function (Handlebars,depth0,helpers,partials,da
 function program1(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n    <div class=\"row-fluid\">\n        <a data-caseId=";
+  buffer += "\n    <div class=\"row-fluid pnc ";
+  foundHelper = helpers.villageName;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.villageName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\">\n        <a data-caseId=";
   foundHelper = helpers.caseId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }

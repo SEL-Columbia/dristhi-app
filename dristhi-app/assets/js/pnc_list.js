@@ -1,9 +1,27 @@
 function PNCList(pncListBridge) {
+    var pncListRow = "pnc";
+    var showPNCsFromAllVillages = "All";
+    var villageFilterOption = "village";
+    var highRiskContainer;
+    var normalRiskContainer;
+
+    var showPNCsAndUpdateCount = function (cssIdentifierOfEachRow) {
+        var highRiskPNCs = $(highRiskContainer + " ." + cssIdentifierOfEachRow);
+        var normalRiskPNCs = $(normalRiskContainer + " ." + cssIdentifierOfEachRow);
+
+        highRiskPNCs.show();
+        normalRiskPNCs.show();
+
+        $(highRiskContainer + " .count").text(highRiskPNCs.length);
+        $(normalRiskContainer + " .count").text(normalRiskPNCs.length);
+
+    }
+
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             var pncs = pncListBridge.getPNCs();
-            var highRiskContainer = cssIdentifierOfRootElement + " #highRiskContainer";
-            var normalRiskContainer = cssIdentifierOfRootElement + " #normalRiskContainer";
+            highRiskContainer = cssIdentifierOfRootElement + " #highRiskContainer";
+            normalRiskContainer = cssIdentifierOfRootElement + " #normalRiskContainer";
 
             $(highRiskContainer + " .count").text(pncs.highRisk.length);
             $(normalRiskContainer + " .count").text(pncs.normalRisk.length);
@@ -13,6 +31,21 @@ function PNCList(pncListBridge) {
         bindEveryItemToPNCView: function (cssIdentifierOfRootElement, cssIdentifierOfEveryListItem) {
             $(cssIdentifierOfRootElement).on("click", cssIdentifierOfEveryListItem, function (event) {
                 pncListBridge.delegateToPNCDetail($(this).data("caseid"));
+            });
+        },
+        populateVillageFilter: function (cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).append(Handlebars.templates.filter_by_village(pncListBridge.getVillages()));
+        },
+        bindToVillageFilter: function (cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).click(function () {
+                var text = 'Show: ' + $(this).text();
+                $(this).closest('.dropdown').children('a.dropdown-toggle').text(text);
+                if ($(this).data(villageFilterOption) === showPNCsFromAllVillages) {
+                    showPNCsAndUpdateCount(pncListRow);
+                    return;
+                }
+                $("." + pncListRow).hide();
+                showPNCsAndUpdateCount($(this).data(villageFilterOption));
             });
         }
     };
@@ -30,13 +63,16 @@ function PNCListBridge() {
         },
         delegateToPNCDetail: function (caseId) {
             return pncContext.startPNC(caseId);
+        },
+        getVillages: function () {
+            return JSON.parse(pncContext.villages());
         }
     };
 }
 
 function FakePNCListContext() {
     return {
-        get: function() {
+        get: function () {
             return JSON.stringify({
                 highRisk: [
                     {
@@ -44,7 +80,7 @@ function FakePNCListContext() {
                         womanName: "Wife 1",
                         husbandName: "Husband 1",
                         thaayiCardNumber: "TC Number 1",
-                        villageName: "Village 1",
+                        villageName: "chikkabheriya",
                         hasTodos: true,
                         isHighRisk: true
                     },
@@ -53,7 +89,7 @@ function FakePNCListContext() {
                         womanName: "Wife 2",
                         husbandName: "Husband 2",
                         thaayiCardNumber: "TC Number 2",
-                        villageName: "Village 2",
+                        villageName: "munjanahalli",
                         hasTodos: false,
                         isHighRisk: true
                     }
@@ -64,16 +100,16 @@ function FakePNCListContext() {
                         womanName: "Wife 4",
                         husbandName: "Husband 4",
                         thaayiCardNumber: "TC Number 4",
-                        villageName: "Village 1",
+                        villageName: "chikkabheriya",
                         hasTodos: true,
                         isHighRisk: false
                     },
-					{
+                    {
                         caseId: "12355",
                         womanName: "Wife 5",
                         husbandName: "Husband 5",
                         thaayiCardNumber: "TC Number 5",
-                        villageName: "Village 1",
+                        villageName: "munjanahalli",
                         hasTodos: false,
                         isHighRisk: false
                     },
@@ -82,15 +118,24 @@ function FakePNCListContext() {
                         womanName: "Wife 6",
                         husbandName: "Husband 6",
                         thaayiCardNumber: "TC Number 6",
-                        villageName: "Village 2",
+                        villageName: "chikkabheriya",
                         hasTodos: true,
                         isHighRisk: false
                     }
                 ]
             });
         },
-        startPNC: function(caseId) {
+        startPNC: function (caseId) {
             window.location.href = "pnc_detail.html";
+        },
+        villages: function () {
+            return JSON.stringify(
+                [
+                    {name: "All"},
+                    {name: "munjanahalli"},
+                    {name: "chikkabheriya"}
+                ]
+            )
         }
     }
 }
