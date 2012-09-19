@@ -470,21 +470,21 @@ function program12(depth0,data) {
 function program13(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                                <div class=\"ec-child girl\">\n                                    <div style=\"text-align: center;\">\n                                        <span style=\"font-weight: bold\">";
+  buffer += "\n                                <div class=\"ec-child girl\">\n                                    <div style=\"text-align: center;\">\n                                        <span style=\"font-weight: bold\">Girl</span><br>\n                                        ";
   foundHelper = helpers.age;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.age; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</span><br>\n                                        Girl\n                                    </div>\n                                </div>\n                            ";
+  buffer += escapeExpression(stack1) + "\n                                    </div>\n                                </div>\n                            ";
   return buffer;}
 
 function program15(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                                <div class=\"ec-child boy\">\n                                    <div style=\"text-align: center;\">\n                                        <span style=\"font-weight: bold;\">";
+  buffer += "\n                                <div class=\"ec-child boy\">\n                                    <div style=\"text-align: center;\">\n                                        <span style=\"font-weight: bold;\">Boy</span><br>\n                                        ";
   foundHelper = helpers.age;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.age; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</span><br>\n                                        Boy\n                                    </div>\n                                </div>\n                            ";
+  buffer += escapeExpression(stack1) + "\n                                    </div>\n                                </div>\n                            ";
   return buffer;}
 
 function program17(depth0,data) {
