@@ -72,6 +72,8 @@
 .navbar .update-data {
     content: url(../img/icons/update-data.png);
     margin-right: 4px;
+    height: 40px;
+    width: 65px;
 }
 
 .navbar .header-text {

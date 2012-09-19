@@ -1,26 +1,27 @@
 .timeline .type {
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    width: 36px;
     margin: 10px 7px 0 12px;
     vertical-align: auto;
 }
 
 .timeline .type.PREGNANCY {
-    content: url(../img/icons/icon-event.png);
+    content: url(../img/icons/icon-event-anc.png);
+
 }
 
 .timeline .type.FPCHANGE {
-    content: url(../img/icons/icon-event.png);
+    content: url(../img/icons/icon-event-fp.png);
 }
 
 .timeline .type.ANCVISIT {
-    content: url(../img/icons/icon-event.png);
+    content: url(../img/icons/icon-event-anc.png);
 }
 
 .timeline .type.IFAPROVIDED {
-    content: url(../img/icons/icon-event.png);
+    content: url(../img/icons/icon-event-ifa.png);
 }
 
 .timeline .type.CHILD-BIRTH {
-    content: url(../img/icons/icon-event.png);
+    content: url(../img/icons/icon-event-birth.png);
 }
