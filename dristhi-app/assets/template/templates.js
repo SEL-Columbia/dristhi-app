@@ -1020,7 +1020,11 @@ templates['workplan'] = template(function (Handlebars,depth0,helpers,partials,da
 function program1(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n            <div class=\"alert overdue\" data-form=\"";
+  buffer += "\n            <div class=\"alert overdue alert-row ";
+  foundHelper = helpers.villageName;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.villageName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\" data-form=\"";
   foundHelper = helpers.formToOpen;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -1050,7 +1054,11 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n            <div class=\"alert upcoming\" data-form=\"";
+  buffer += "\n            <div class=\"alert upcoming alert-row ";
+  foundHelper = helpers.villageName;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.villageName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\" data-form=\"";
   foundHelper = helpers.formToOpen;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -1080,7 +1088,11 @@ function program3(depth0,data) {
 function program5(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n            <div class=\"alert completed\" data-form=\"";
+  buffer += "\n            <div class=\"alert completed alert-row ";
+  foundHelper = helpers.villageName;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.villageName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\" data-form=\"";
   foundHelper = helpers.formToOpen;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -1107,7 +1119,7 @@ function program5(depth0,data) {
   buffer += escapeExpression(stack1) + "</div>\n                    </div>\n                </div>\n            </div>\n        ";
   return buffer;}
 
-  buffer += "<div class=\"tabbable\">\n    <ul class=\"nav nav-tabs navbar-fixed-top affected-by-sidepanel\">\n        <li class=\"active overdue\"><a href=\"#overdue\" data-toggle=\"tab\">Overdue (<span id=\"overdue-count\">";
+  buffer += "<div class=\"container-fluid dropdown dropdown-filter\">\n    <a class=\"btn dropdown-toggle toggle-filter\" data-toggle=\"dropdown\">\n        Show: All\n        <span class=\"caret pull-right\"></span>\n    </a>\n    <ul id=\"menu-village\" class=\"dropdown-menu dropdown-menu-filter\">\n    </ul>\n</div>\n<div class=\"tabbable\">\n    <ul class=\"nav nav-tabs navbar-fixed-top affected-by-sidepanel\">\n        <li class=\"active overdue\"><a href=\"#overdue\" data-toggle=\"tab\">Overdue (<span id=\"overdue-count\">";
   stack1 = depth0.overdue;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.length;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;

@@ -6,6 +6,7 @@ import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.repository.AllAlerts;
+import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.view.contract.WorkplanContext;
 import org.ei.drishti.view.contract.WorkplanTodo;
@@ -30,6 +31,8 @@ public class WorkplanControllerTest {
     private Context context;
     @Mock
     private CommCareClientService commCareClientService;
+    @Mock
+    private AllEligibleCouples allEligibleCouples;
 
     @Before
     public void setUp() throws Exception {
@@ -46,15 +49,15 @@ public class WorkplanControllerTest {
         Alert alert6 = new Alert("Case 6", "Nethravati", "Village 2", "IFA follow up", "Thaayi Card 4", AlertPriority.normal, today().minusDays(1).toString(), "06/08/2012", closed);
         when(allAlerts.fetchAll()).thenReturn(asList(alert1, alert2, alert3, alert4, alert5, alert6));
 
-        WorkplanTodo todo1 = new WorkplanTodo("Case 1", "Napa", "OPV", "01/08/2012");
-        WorkplanTodo todo2 = new WorkplanTodo("Case 2", "Salinas", "ANC 1", "02/08/2012");
-        WorkplanTodo todo3 = new WorkplanTodo("Case 3", "Balboa", "TT 1", "03/08/2012");
-        WorkplanTodo todo4 = new WorkplanTodo("Case 4", "Balboa", "IFA", "04/08/2012");
-        WorkplanTodo todo5 = new WorkplanTodo("Case 5", "Karishma", "HEP B1", "05/08/2012");
-        WorkplanTodo todo6 = new WorkplanTodo("Case 6", "Nethravati", "IFA follow up", "06/08/2012");
+        WorkplanTodo todo1 = new WorkplanTodo("Case 1", "Napa", "OPV", "01/08/2012", "Village 1");
+        WorkplanTodo todo2 = new WorkplanTodo("Case 2", "Salinas", "ANC 1", "02/08/2012", "Village 2");
+        WorkplanTodo todo3 = new WorkplanTodo("Case 3", "Balboa", "TT 1", "03/08/2012", "Village 1");
+        WorkplanTodo todo4 = new WorkplanTodo("Case 4", "Balboa", "IFA", "04/08/2012", "Village 2");
+        WorkplanTodo todo5 = new WorkplanTodo("Case 5", "Karishma", "HEP B1", "05/08/2012", "Village 2");
+        WorkplanTodo todo6 = new WorkplanTodo("Case 6", "Nethravati", "IFA follow up", "06/08/2012", "Village 2");
         WorkplanContext expectedContext = new WorkplanContext(asList(todo1, todo2), asList(todo3), asList(todo4, todo5, todo6));
 
-        WorkplanController workplanController = new WorkplanController(allAlerts, commCareClientService, context);
+        WorkplanController workplanController = new WorkplanController(allAlerts, commCareClientService, allEligibleCouples, context);
         String actualContext = workplanController.get();
 
         assertEquals(new Gson().toJson(expectedContext), actualContext);

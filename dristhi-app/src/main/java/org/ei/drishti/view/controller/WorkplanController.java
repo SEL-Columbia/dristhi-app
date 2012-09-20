@@ -4,7 +4,9 @@ import android.content.Context;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.repository.AllAlerts;
+import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.service.CommCareClientService;
+import org.ei.drishti.view.contract.Village;
 import org.ei.drishti.view.contract.WorkplanContext;
 import org.ei.drishti.view.contract.WorkplanTodo;
 import org.joda.time.LocalDate;
@@ -16,11 +18,13 @@ import static org.ei.drishti.dto.AlertPriority.normal;
 
 public class WorkplanController {
     private AllAlerts allAlerts;
+    private AllEligibleCouples allEligibleCouples;
     private Context context;
     private CommCareClientService commCareClientService;
 
-    public WorkplanController(AllAlerts allAlerts, CommCareClientService commCareClientService, Context context) {
+    public WorkplanController(AllAlerts allAlerts, CommCareClientService commCareClientService, AllEligibleCouples allEligibleCouples, Context context) {
         this.allAlerts = allAlerts;
+        this.allEligibleCouples = allEligibleCouples;
         this.context = context;
         this.commCareClientService = commCareClientService;
     }
@@ -32,7 +36,7 @@ public class WorkplanController {
         List<WorkplanTodo> completed = new ArrayList<WorkplanTodo>();
 
         for (Alert alert : alerts) {
-            WorkplanTodo todo = new WorkplanTodo(alert.caseId(), alert.beneficiaryName(), alert.visitCode(), alert.expiryDate());
+            WorkplanTodo todo = new WorkplanTodo(alert.caseId(), alert.beneficiaryName(), alert.visitCode(), alert.expiryDate(), alert.village());
 
             if (alert.isClosed()) {
                 completed.add(todo);
@@ -48,6 +52,17 @@ public class WorkplanController {
 
     public void startCommCare(String formId, String caseId) {
         commCareClientService.start(context, formId, caseId);
+    }
+
+    public String villages() {
+        List<Village> villagesList = new ArrayList<Village>();
+        List<String> villages = allEligibleCouples.villages();
+        villagesList.add(new Village("All"));
+        for (String village : villages) {
+            villagesList.add(new Village(village));
+        }
+
+        return new Gson().toJson(villagesList);
     }
 
     public void markTodoAsCompleted(String caseId, String visitCode) {

@@ -1,3 +1,11 @@
+<div class="container-fluid dropdown dropdown-filter">
+    <a class="btn dropdown-toggle toggle-filter" data-toggle="dropdown">
+        Show: All
+        <span class="caret pull-right"></span>
+    </a>
+    <ul id="menu-village" class="dropdown-menu dropdown-menu-filter">
+    </ul>
+</div>
 <div class="tabbable">
     <ul class="nav nav-tabs navbar-fixed-top affected-by-sidepanel">
         <li class="active overdue"><a href="#overdue" data-toggle="tab">Overdue (<span id="overdue-count">{{overdue.length}}</span>)</a></li>
@@ -9,7 +17,7 @@
 <div class="tab-content container-fluid container-no-padding">
     <div class="tab-pane overdue active" id="overdue">
         {{#each overdue}}
-            <div class="alert overdue" data-form="{{formToOpen}}" data-caseid="{{caseId}}" data-visitcode="{{visitCode}}">
+            <div class="alert overdue alert-row {{villageName}}" data-form="{{formToOpen}}" data-caseid="{{caseId}}" data-visitcode="{{visitCode}}">
                 <div class="row-fluid">
                     <div class="span2">
                         <img class="todo-box"/>
@@ -25,7 +33,7 @@
 
     <div class="tab-pane upcoming" id="upcoming">
         {{#each upcoming}}
-            <div class="alert upcoming" data-form="{{formToOpen}}" data-caseid="{{caseId}}" data-visitcode="{{visitCode}}">
+            <div class="alert upcoming alert-row {{villageName}}" data-form="{{formToOpen}}" data-caseid="{{caseId}}" data-visitcode="{{visitCode}}">
                 <div class="row-fluid">
                     <div class="span2">
                         <img class="todo-box"/>
@@ -41,7 +49,7 @@
 
     <div class="tab-pane completed" id="completed">
         {{#each completed}}
-            <div class="alert completed" data-form="{{formToOpen}}" data-caseid="{{caseId}}" data-visitcode="{{visitCode}}">
+            <div class="alert completed alert-row {{villageName}}" data-form="{{formToOpen}}" data-caseid="{{caseId}}" data-visitcode="{{visitCode}}">
                 <div class="row-fluid">
                     <div class="span2">
                         <img class="todo-box checked"/>

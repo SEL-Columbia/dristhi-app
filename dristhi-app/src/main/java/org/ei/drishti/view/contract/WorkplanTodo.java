@@ -8,13 +8,15 @@ public class WorkplanTodo {
     private String beneficiaryName;
     private String description;
     private String dueDate;
+    private String villageName;
     private CommCareForm formToOpen;
 
 
-    public WorkplanTodo(String caseId, String beneficiaryName, String visitCode, String dueDate) {
+    public WorkplanTodo(String caseId, String beneficiaryName, String visitCode, String dueDate, String villageName) {
         this.caseId = caseId;
         this.beneficiaryName = beneficiaryName;
         this.visitCode = visitCode;
+        this.villageName = villageName;
         this.description = TodoDetail.from(visitCode).prefix() + " due";
         this.dueDate = dueDate;
         this.formToOpen = TodoDetail.from(visitCode).formToOpen();

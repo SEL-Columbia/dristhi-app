@@ -28,6 +28,10 @@
             var workplan = new Workplan(new WorkplanBridge());
             workplan.populateInto("#content");
 
+            workplan.populateVillageFilter('#menu-village');
+            workplan.bindToVillageFilter('.dropdown-option');
+
+
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
 
             new Alerts().bindAllCheckboxes(".todo-box", workplan.onAlertCheckboxClick);
