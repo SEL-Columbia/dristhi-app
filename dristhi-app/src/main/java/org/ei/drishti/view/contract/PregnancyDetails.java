@@ -7,10 +7,12 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 public class PregnancyDetails {
     private String monthsPregnant;
     private String edd;
+    private boolean isEDDPassed;
 
-    public PregnancyDetails(String monthsPregnant, String edd) {
+    public PregnancyDetails(String monthsPregnant, String edd, boolean eddPassed) {
         this.monthsPregnant = monthsPregnant;
         this.edd = edd;
+        isEDDPassed = eddPassed;
     }
 
     @Override

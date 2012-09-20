@@ -63,6 +63,7 @@ function FakeANCContext() {
                     },
                     pregnancyDetails: {
                         monthsPregnant: "7",
+                        isEDDPassed: true,
                         edd: "2012-10-24"
                     },
                     details: {
