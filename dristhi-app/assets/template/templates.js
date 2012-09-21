@@ -7,7 +7,7 @@ templates['anc_detail'] = template(function (Handlebars,depth0,helpers,partials,
 function program1(depth0,data) {
   
   
-  return "\n   <div id=\"warning\"></div>\n   <div id=\"modal-container\" style=\"display: block; \"><div id=\"modal-goes-here\"><div id=\"ancFormModal\" class=\"modal-content\" style=\"display: block; \">\n       <div class=\"modal-row\">EDD Passed! Please fill delivery Outcome form.</div>\n       <div class=\"divider\"></div>\n       <div class=\"modal-row\" data-form=\"ANC_DELIVERY_OUTCOME\" data-caseid=\"1234\">Click here to fill delivery outcome Form.</div>\n   </div></div></div>\n    </div>\n";}
+  return "\n    <div id=\"warning\"></div>\n    <div id=\"warning-modal-container\" class=\"modal-container\" style=\"display: block; \">\n        <div id=\"modal-goes-here\">\n            <div id=\"ancFormModal\" class=\"modal-content\" style=\"display: block; \">\n                <div class=\"modal-row\">EDD Passed! Please fill delivery Outcome form.</div>\n                <div class=\"divider\"></div>\n                <div class=\"modal-row\" data-form=\"ANC_DELIVERY_OUTCOME\" data-caseid=\"1234\">Click here to fill delivery outcome Form.</div>\n            </div>\n        </div>\n    </div>\n";}
 
 function program3(depth0,data) {
   

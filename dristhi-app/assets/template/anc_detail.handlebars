@@ -1,10 +1,13 @@
 {{#if pregnancyDetails.isEDDPassed}}
-   <div id="warning"></div>
-   <div id="modal-container" style="display: block; "><div id="modal-goes-here"><div id="ancFormModal" class="modal-content" style="display: block; ">
-       <div class="modal-row">EDD Passed! Please fill delivery Outcome form.</div>
-       <div class="divider"></div>
-       <div class="modal-row" data-form="ANC_DELIVERY_OUTCOME" data-caseid="1234">Click here to fill delivery outcome Form.</div>
-   </div></div></div>
+    <div id="warning"></div>
+    <div id="warning-modal-container" class="modal-container" style="display: block; ">
+        <div id="modal-goes-here">
+            <div id="ancFormModal" class="modal-content" style="display: block; ">
+                <div class="modal-row">EDD Passed! Please fill delivery Outcome form.</div>
+                <div class="divider"></div>
+                <div class="modal-row" data-form="ANC_DELIVERY_OUTCOME" data-caseid="1234">Click here to fill delivery outcome Form.</div>
+            </div>
+        </div>
     </div>
 {{/if}}
 <div class="navbar navbar-fixed-top affected-by-sidepanel">

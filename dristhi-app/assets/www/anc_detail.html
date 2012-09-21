@@ -32,6 +32,12 @@
             new Modal().bindToClick();
 
             new Alerts().bindAllCheckboxes(".todo-box", anc.onAlertCheckboxClick);
+            $("#warning").click(function (event) {
+                $('#warning').hide();
+                $("#warning-modal-container").hide();
+                event.stopPropagation();
+                return true;
+            });
         });
     </script>
 </head>

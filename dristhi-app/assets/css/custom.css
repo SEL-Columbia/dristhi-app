@@ -416,7 +416,7 @@ body {
     top: 0;
 }
 
-#modal-container {
+.modal-container {
     display: none;
     position: absolute;
     width: 80%;
