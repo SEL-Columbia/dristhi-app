@@ -17,16 +17,25 @@ function PNCList(pncListBridge) {
 
     }
 
+    var populatePNCs = function (pncs, container) {
+        if(pncs.length == 0)
+            $(container).hide();
+        else
+        {
+            $(container + " .count").text(pncs.length);
+            $(container).append(Handlebars.templates.pnc_list(pncs));
+        }
+    }
+
+
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             var pncs = pncListBridge.getPNCs();
             highRiskContainer = cssIdentifierOfRootElement + " #highRiskContainer";
             normalRiskContainer = cssIdentifierOfRootElement + " #normalRiskContainer";
 
-            $(highRiskContainer + " .count").text(pncs.highRisk.length);
-            $(normalRiskContainer + " .count").text(pncs.normalRisk.length);
-            $(highRiskContainer).append(Handlebars.templates.pnc_list(pncs.highRisk));
-            $(normalRiskContainer).append(Handlebars.templates.pnc_list(pncs.normalRisk));
+            populatePNCs(pncs.highRisk, highRiskContainer);
+            populatePNCs(pncs.normalRisk, normalRiskContainer);
         },
         bindEveryItemToPNCView: function (cssIdentifierOfRootElement, cssIdentifierOfEveryListItem) {
             $(cssIdentifierOfRootElement).on("click", cssIdentifierOfEveryListItem, function (event) {
