@@ -17,16 +17,24 @@ function ANCList(ancListBridge) {
 
     }
 
+    var populateANCs = function (ancs, container) {
+        if(ancs.length == 0)
+            $(container).hide();
+        else
+        {
+            $(container + " .count").text(ancs.length);
+            $(container).append(Handlebars.templates.anc_list(ancs));
+        }
+    }
+
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             var ancs = ancListBridge.getANCs();
             highRiskContainer = cssIdentifierOfRootElement + " #highRiskContainer";
             normalRiskContainer = cssIdentifierOfRootElement + " #normalRiskContainer";
 
-            $(highRiskContainer + " .count").text(ancs.highRisk.length);
-            $(normalRiskContainer + " .count").text(ancs.normalRisk.length);
-            $(highRiskContainer).append(Handlebars.templates.anc_list(ancs.highRisk));
-            $(normalRiskContainer).append(Handlebars.templates.anc_list(ancs.normalRisk));
+            populateANCs(ancs.highRisk, highRiskContainer);
+            populateANCs(ancs.normalRisk, normalRiskContainer);
         },
 
         bindEveryItemToANCView: function (cssIdentifierOfRootElement, cssIdentifierOfEveryListItem) {
