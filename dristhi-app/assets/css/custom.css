@@ -51,7 +51,7 @@
 
 .brand.in-navbar {
     margin-top: 2px;
-    
+
 }
 
 .nav .navbar-text {
@@ -527,4 +527,9 @@ body {
 .dropdown-menu-filter {
     width: 92%;
     margin-left: 24px;
+}
+
+.family-planning-label {
+    font-weight: bold;
+    margin-left: 5px;
 }

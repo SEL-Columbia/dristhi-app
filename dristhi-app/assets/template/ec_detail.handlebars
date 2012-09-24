@@ -143,9 +143,12 @@
         <div class="well well-for-beneficiary-details">
             <div class="container-fluid container-no-padding">
                 <div class="row-fluid beneficiary-detail-component">
-                    <div class="beneficiary-detail-header">Family Planning</div>
                     <div class="beneficiary-detail-content">
-                        <i class="icon-ok"></i><span class="family-planning-current">{{details.currentMethod}}</span><br/>
+                        {{#ifequal details.currentMethod "none"}}
+                        <i class="icon-remove"></i><span class="family-planning-label">Current</span><span class="family-planning-current">None</span><br/>
+                        {{else}}
+                        <i class="icon-ok"></i><span class="family-planning-label">Current</span><span class="family-planning-current">{{details.currentMethod}}</span><br/>
+                        {{/ifequal}}
                     </div>
                 </div>
             </div>
