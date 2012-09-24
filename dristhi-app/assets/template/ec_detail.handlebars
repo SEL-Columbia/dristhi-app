@@ -92,20 +92,24 @@
 
     <div class="registry-container container-fluid">
         <div class="big-text row-fluid detail-section-header">
-            EC Summary
+            Summary
         </div>
         <div class="well well-for-beneficiary-details">
             <div class="container-fluid container-no-padding">
                 <div class="row-fluid beneficiary-detail-component">
-                    <div class="beneficiary-detail-header">Family Planning</div>
                     <div class="beneficiary-detail-content">
-                        <i class="icon-ok"></i><span class="family-planning-current">{{details.currentMethod}}</span><br/>
+                    {{#ifFalse isHighPriority}}
+                        <div class="text-center big-text normal-risk">Normal Priority</div>
+                    {{else}}
+                        <div class="text-center big-text high-risk">High Priority</div>
+                    {{/ifFalse}}
                     </div>
                 </div>
-
+            </div>
+            <div class="container-fluid container-no-padding">
                 <div class="row-fluid beneficiary-detail-component">
                     {{#ifNotZero children.length}}
-                        <div class="divider divider-padding-top"></div>
+                        <div class="divider divider-padding-bottom"></div>
                         <div class="beneficiary-detail-header">Children</div>
                         <div class="beneficiary-detail-content">
                         {{#each children}}
@@ -127,6 +131,22 @@
                         {{/each}}
                         </div>
                     {{/ifNotZero}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="registry-container container-fluid">
+        <div class="big-text row-fluid detail-section-header">
+            Family Planning
+        </div>
+        <div class="well well-for-beneficiary-details">
+            <div class="container-fluid container-no-padding">
+                <div class="row-fluid beneficiary-detail-component">
+                    <div class="beneficiary-detail-header">Family Planning</div>
+                    <div class="beneficiary-detail-content">
+                        <i class="icon-ok"></i><span class="family-planning-current">{{details.currentMethod}}</span><br/>
+                    </div>
                 </div>
             </div>
         </div>

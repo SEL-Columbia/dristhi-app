@@ -30,7 +30,7 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forStartOfPregnancy(String caseId, String referenceDate) {
-        return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC registered", "On: " + formatDate(referenceDate), null);
+        return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC registered", "LMP: " + formatDate(referenceDate), null);
     }
 
     public static TimelineEvent forStartOfPregnancyForEC(String ecCaseId, String thaayiCardNumber, String referenceDate) {
