@@ -17,16 +17,24 @@ function ECList(ecListBridge) {
 
     }
 
+    var populateECs = function (ecs, container) {
+        if(ecs.length == 0)
+            $(container).hide();
+        else
+        {
+            $(container + " .count").text(ecs.length);
+            $(container).append(Handlebars.templates.ec_list(ecs));
+        }
+    }
+
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             var ecs = ecListBridge.getECs();
             highPriorityContainer = cssIdentifierOfRootElement + " #highPriorityContainer";
             normalPriorityContainer = cssIdentifierOfRootElement + " #normalPriorityContainer";
 
-            $(highPriorityContainer + " .count").text(ecs.highPriority.length);
-            $(normalPriorityContainer + " .count").text(ecs.normalPriority.length);
-            $(highPriorityContainer).append(Handlebars.templates.ec_list(ecs.highPriority));
-            $(normalPriorityContainer).append(Handlebars.templates.ec_list(ecs.normalPriority));
+            populateECs(ecs.highPriority, highPriorityContainer);
+            populateECs(ecs.normalPriority, normalPriorityContainer);
         },
 
         bindEveryItemToECView: function (cssIdentifierOfRootElement, cssIdentifierOfEveryListItem) {
