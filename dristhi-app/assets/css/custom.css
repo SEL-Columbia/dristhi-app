@@ -156,6 +156,11 @@
     padding-top: 2px;
 }
 
+.content-detail {
+    margin-top: 72px;
+    padding-top: 4px;
+}
+
 .divider {
     height: 1px;
     width: 100%;
@@ -533,4 +538,27 @@ body {
 .family-planning-label {
     font-weight: bold;
     margin-left: 5px;
+}
+
+.status-bar {
+    width: 100%;
+    height: 30px;
+    background-color: #1d1d1d;
+    top: 0;
+    position: fixed;
+    margin-top: 48px;
+}
+
+.status-bar .left-text {
+    color: #d8d8d8;
+    padding-top: 5px;
+    padding-left: 10px;
+    float: left;
+}
+
+.status-bar .right-text {
+    color: #da0e0e;
+    padding-top: 5px;
+    padding-right: 10px;
+    float: right;
 }

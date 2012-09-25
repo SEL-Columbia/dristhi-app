@@ -55,7 +55,7 @@ function FakeANCContext() {
                         wifeName: "Woman 1",
                         husbandName: "Husband 1",
                         ecNumber: "EC Number 1",
-                        isInArea: true
+                        isInArea: false
                     },
                     location: {
                         villageName: "village 1",
