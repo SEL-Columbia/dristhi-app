@@ -4,13 +4,13 @@ function EC(ecBridge) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.ec_detail(ecBridge.getCurrentEC()));
         },
 
-        bindEveryItemToCommCare: function(cssIdentifierOfElement) {
+        bindEveryItemToCommCare: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 ecBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
             })
         },
 
-        onAlertCheckboxClick: function(alertWhoseCheckboxWasClicked) {
+        onAlertCheckboxClick: function (alertWhoseCheckboxWasClicked) {
             var alertItem = $(alertWhoseCheckboxWasClicked);
             ecBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
             ecBridge.markAsCompleted(alertItem.data("caseid"), alertItem.data("visitcode"));
@@ -41,7 +41,7 @@ function ECBridge() {
 function FakeECContext() {
     return {
         startCommCare: function (formId, caseId) {
-            alert("Start CommCare for case " + caseId + " with form "+ formId);
+            alert("Start CommCare for case " + caseId + " with form " + formId);
         },
         markTodoAsCompleted: function (caseId, visitCode) {
             console.log("markAsCompleted " + caseId + " " + visitCode);
@@ -61,6 +61,7 @@ function FakeECContext() {
                     },
                     details: {
                         currentMethod: "Condom",
+                        familyPlanningMethodChangeDate: "2012-10-22",
                         headOfHousehold: "Head Person",
                         religion: "Religion X",
                         pregnancies: "3"

@@ -513,11 +513,17 @@ function program21(depth0,data) {
 
 function program23(depth0,data) {
   
-  var buffer = "", stack1;
+  var buffer = "", stack1, foundHelper;
   buffer += "\n                        <i class=\"icon-ok\"></i><span class=\"family-planning-label\">Current</span><span class=\"family-planning-current\">";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.currentMethod;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + " since ";
+  stack1 = depth0.details;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.familyPlanningMethodChangeDate;
+  foundHelper = helpers.formatDate;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</span><br/>\n                        ";
   return buffer;}
 
