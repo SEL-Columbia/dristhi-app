@@ -161,7 +161,7 @@ function program19(depth0,data) {
 function program21(depth0,data) {
   
   
-  return "\n                    <div class=\"row-fluid unavailable-data\">\n                        No timeline data available\n                    </div>\n                ";}
+  return "\n                    <div class=\"row-fluid unavailable-data\">\n                        No medical history data available\n                    </div>\n                ";}
 
 function program23(depth0,data) {
   
@@ -530,7 +530,7 @@ function program23(depth0,data) {
 function program25(depth0,data) {
   
   
-  return "\n                    <div class=\"row-fluid unavailable-data\">\n                        No timeline data available\n                    </div>\n                ";}
+  return "\n                    <div class=\"row-fluid unavailable-data\">\n                        No medical history data available\n                    </div>\n                ";}
 
 function program27(depth0,data) {
   
@@ -878,7 +878,7 @@ function program19(depth0,data) {
 function program21(depth0,data) {
   
   
-  return "\n                    <div class=\"row-fluid unavailable-data\">\n                        No timeline data available\n                    </div>\n                ";}
+  return "\n                    <div class=\"row-fluid unavailable-data\">\n                        No medical history data available\n                    </div>\n                ";}
 
 function program23(depth0,data) {
   
