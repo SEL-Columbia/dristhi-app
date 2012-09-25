@@ -74,7 +74,7 @@ public class ANCDetailControllerTest {
         ANCDetail expectedDetail = new ANCDetail(caseId, "TC 1",
                 new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false),
                 new LocationDetails("Village 1", "Subcenter 1"),
-                new PregnancyDetails("7", "2012-07-28", false))
+                new PregnancyDetails("7", "2012-07-28"))
                 .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "6m 1m ago"), eventFor(pregnancyEvent, "6m 1m ago")))
                 .addTodos(asList(todo))
                 .addUrgentTodos(asList(urgentTodo))

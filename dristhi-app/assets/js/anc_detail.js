@@ -62,9 +62,10 @@ function FakeANCContext() {
                         subcenter: "subCenter 1"
                     },
                     pregnancyDetails: {
-                        monthsPregnant: "7",
+                        monthsPregnant: "8",
                         isEDDPassed: true,
-                        edd: "2012-10-24"
+                        edd: "2012-10-24",
+                        isLastMonthOfPregnancy: true
                     },
                     details: {
                         deliveryPlace: "Bherya PHC",

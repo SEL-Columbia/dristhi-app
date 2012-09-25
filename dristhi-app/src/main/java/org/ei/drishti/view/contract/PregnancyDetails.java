@@ -8,11 +8,13 @@ public class PregnancyDetails {
     private String monthsPregnant;
     private String edd;
     private boolean isEDDPassed;
+    private boolean isLastMonthOfPregnancy;
 
-    public PregnancyDetails(String monthsPregnant, String edd, boolean eddPassed) {
+    public PregnancyDetails(String monthsPregnant, String edd) {
         this.monthsPregnant = monthsPregnant;
         this.edd = edd;
-        isEDDPassed = eddPassed;
+        isEDDPassed = (Integer.valueOf(monthsPregnant) >= 9) ? true : false;
+        isLastMonthOfPregnancy = Integer.valueOf(monthsPregnant) >= 8;
     }
 
     @Override
@@ -28,5 +30,9 @@ public class PregnancyDetails {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
+    }
+
+    public boolean isLastMonthOfPregnancy() {
+        return isLastMonthOfPregnancy;
     }
 }
