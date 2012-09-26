@@ -48,6 +48,9 @@ Handlebars.registerHelper('camelCaseAndConvertToListItems', function (textWithSp
 });
 
 Handlebars.registerHelper('formatDate', function (unformattedDate) {
+    if (typeof unformattedDate === "undefined") {
+        return "";
+    }
     var parsedDate = $.datepicker.parseDate('yy-mm-dd', unformattedDate);
     return $.datepicker.formatDate('dd-mm-yy', parsedDate);
 });

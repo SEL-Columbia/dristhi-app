@@ -19,9 +19,9 @@ function ANC(ancBridge) {
         bindTimelineEventToShowMoreButton: function (timeLineEventListItem, showMoreButton, minNumberToShow) {
             $(timeLineEventListItem + ':gt(' + (minNumberToShow - 1) + ')').hide().last().after(
                 $(showMoreButton).css('display', 'block').click(function () {
-                    var a = this;
+                    var button = this;
                     $(timeLineEventListItem + ':not(:visible):lt(' + minNumberToShow + ')').fadeIn(function () {
-                        if ($(timeLineEventListItem + ':not(:visible)').length == 0) $(a).remove();
+                        if ($(timeLineEventListItem + ':not(:visible)').length == 0) $(button).remove();
                     });
                     return false;
                 })

@@ -60,7 +60,7 @@ function FakeECContext() {
                         isInArea: true
                     },
                     details: {
-                        currentMethod: "Condom",
+                        currentMethod: "female_sterilization",
                         familyPlanningMethodChangeDate: "2012-10-22",
                         headOfHousehold: "Head Person",
                         religion: "Religion X",

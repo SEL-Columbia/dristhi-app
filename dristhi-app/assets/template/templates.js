@@ -656,7 +656,7 @@ function program33(depth0,data) {
   foundHelper = helpers.caseId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\">Close EC record</div>\n</div>\n\n<div id=\"content\" class=\"content-detail affected-by-sidepanel\">\n    <div class=\"status-bar\">\n        ";
+  buffer += escapeExpression(stack1) + "\">Close EC record</div>\n</div>\n\n<div id=\"content\" class=\"content-detail affected-by-sidepanel\">\n    <div class=\"status-bar\">\n        <span class=\"left-text\">EC</span>\n        ";
   stack1 = depth0.isHighPriority;
   foundHelper = helpers.ifFalse;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data)}) : helperMissing.call(depth0, "ifFalse", stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data)});
