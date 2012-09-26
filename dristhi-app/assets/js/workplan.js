@@ -84,15 +84,17 @@ function FakeWorkplanContext() {
                     {
                         caseId : "CASE-X",
                         beneficiaryName: "Napa",
+                        husbandName: "Husband 1",
                         formToOpen: "PNC_SERVICES",
                         visitCode: "PNC 1",
                         description: "OPV due",
                         dueDate: "2012-10-24",
-                        villageName: "chikkabheriya",
+                        villageName: "chikkabheriya"
                     },
                     {
                         caseId : "CASE-Y",
                         beneficiaryName: "Salinas",
+                        husbandName: "Husband 2",
                         formToOpen: "ANC_SERVICES",
                         visitCode: "ANC 1",
                         villageName: "munjanahalli",
@@ -104,6 +106,7 @@ function FakeWorkplanContext() {
                     {
                         caseId : "CASE-Z",
                         beneficiaryName: "Balboa",
+                        husbandName: "Husband 3",
                         formToOpen: "ANC_SERVICES",
                         visitCode: "PNC 1",
                         description: "TT 1 due",
@@ -115,6 +118,7 @@ function FakeWorkplanContext() {
                     {
                         caseId : "CASE-X",
                         beneficiaryName: "Balboa",
+                        husbandName: "Husband 4",
                         formToOpen: "PNC_SERVICES",
                         villageName: "munjanahalli",
                         visitCode: "PNC 1",
@@ -124,6 +128,7 @@ function FakeWorkplanContext() {
                     {
                         caseId : "CASE-X",
                         beneficiaryName: "Karishma",
+                        husbandName: "Husband 5",
                         formToOpen: "PNC_SERVICES",
                         description: "HEP B1 due",
                         villageName: "chikkabheriya",
@@ -133,6 +138,7 @@ function FakeWorkplanContext() {
                     {
                         caseId : "CASE-X",
                         beneficiaryName: "Nethravati",
+                        husbandName: "Husband 6",
                         formToOpen: "PNC_SERVICES",
                         visitCode: "PNC 1",
                         villageName: "munjanahalli",

@@ -5,7 +5,6 @@ import android.database.Cursor;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.AlertStatus;
-import org.ei.drishti.domain.VillageAlertSummary;
 import org.ei.drishti.dto.AlertPriority;
 import org.joda.time.LocalDate;
 
@@ -15,19 +14,20 @@ import java.util.List;
 import static org.ei.drishti.domain.AlertStatus.closed;
 
 public class AlertRepository extends DrishtiRepository {
-    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, thaayiCardNumber VARCHAR, visitCode VARCHAR, benificiaryName VARCHAR, village VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR, status VARCHAR)";
+    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, thaayiCardNumber VARCHAR, visitCode VARCHAR, benificiaryName VARCHAR, husbandName VARCHAR, village VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR, status VARCHAR)";
     private static final String ALERTS_TABLE_NAME = "alerts";
     public static final String ALERTS_CASEID_COLUMN = "caseID";
     public static final String ALERTS_THAAYI_CARD_COLUMN = "thaayiCardNumber";
     public static final String ALERTS_VISIT_CODE_COLUMN = "visitCode";
     public static final String ALERTS_BENEFICIARY_NAME_COLUMN = "benificiaryName";
+    public static final String ALERTS_HUSBAND_NAME_COLUMN = "husbandName";
     private static final String ALERTS_VILLAGE_COLUMN = "village";
     public static final String ALERTS_PRIORITY_COLUMN = "priority";
     public static final String ALERTS_STARTDATE_COLUMN = "startDate";
     public static final String ALERTS_EXPIRYDATE_COLUMN = "expiryDate";
     public static final String ALERTS_COMPLETIONDATE_COLUMN = "completionDate";
     private static final String ALERTS_STATUS_COLUMN = "status";
-    private static final String[] ALERTS_TABLE_COLUMNS = new String[]{ALERTS_CASEID_COLUMN, ALERTS_BENEFICIARY_NAME_COLUMN, ALERTS_VILLAGE_COLUMN, ALERTS_VISIT_CODE_COLUMN, ALERTS_THAAYI_CARD_COLUMN,
+    private static final String[] ALERTS_TABLE_COLUMNS = new String[]{ALERTS_CASEID_COLUMN, ALERTS_BENEFICIARY_NAME_COLUMN, ALERTS_HUSBAND_NAME_COLUMN, ALERTS_VILLAGE_COLUMN, ALERTS_VISIT_CODE_COLUMN, ALERTS_THAAYI_CARD_COLUMN,
             ALERTS_PRIORITY_COLUMN, ALERTS_STARTDATE_COLUMN, ALERTS_EXPIRYDATE_COLUMN, ALERTS_COMPLETIONDATE_COLUMN, ALERTS_STATUS_COLUMN};
     public static final String CASE_AND_VISIT_CODE_COLUMN_SELECTIONS = ALERTS_CASEID_COLUMN + " = ? AND " + ALERTS_VISIT_CODE_COLUMN + " = ?";
 
@@ -87,8 +87,8 @@ public class AlertRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<Alert> alerts = new ArrayList<Alert>();
         while (!cursor.isAfterLast()) {
-            alerts.add(new Alert(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), AlertPriority.from(cursor.getString(5)),
-                    cursor.getString(6), cursor.getString(7), AlertStatus.from(cursor.getString(9))).withCompletionDate(cursor.getString(8)));
+            alerts.add(new Alert(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), AlertPriority.from(cursor.getString(6)),
+                    cursor.getString(7), cursor.getString(8), AlertStatus.from(cursor.getString(10))).withCompletionDate(cursor.getString(9)));
             cursor.moveToNext();
         }
         cursor.close();
@@ -112,6 +112,7 @@ public class AlertRepository extends DrishtiRepository {
         values.put(ALERTS_THAAYI_CARD_COLUMN, alert.thaayiCardNo());
         values.put(ALERTS_VISIT_CODE_COLUMN, alert.visitCode());
         values.put(ALERTS_BENEFICIARY_NAME_COLUMN, alert.beneficiaryName());
+        values.put(ALERTS_HUSBAND_NAME_COLUMN, alert.husbandName());
         values.put(ALERTS_VILLAGE_COLUMN, alert.village());
         values.put(ALERTS_PRIORITY_COLUMN, alert.priority().value());
         values.put(ALERTS_STARTDATE_COLUMN, alert.startDate());

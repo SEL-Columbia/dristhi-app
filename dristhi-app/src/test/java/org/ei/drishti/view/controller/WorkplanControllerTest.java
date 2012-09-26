@@ -41,20 +41,20 @@ public class WorkplanControllerTest {
 
     @Test
     public void shouldGetWorkplan() throws Exception {
-        Alert alert1 = new Alert("Case 1", "Napa", "Village 1", "OPV", "Thaayi Card 1", AlertPriority.urgent, today().minusDays(1).toString(), "01/08/2012", open);
-        Alert alert2 = new Alert("Case 2", "Salinas", "Village 2", "ANC 1", "Thaayi Card 2", AlertPriority.urgent, today().minusDays(1).toString(), "02/08/2012", open);
-        Alert alert3 = new Alert("Case 3", "Balboa", "Village 1", "TT 1", "Thaayi Card 3", AlertPriority.normal, today().minusDays(1).toString(), "03/08/2012", open);
-        Alert alert4 = new Alert("Case 4", "Balboa", "Village 2", "IFA", "Thaayi Card 4", AlertPriority.normal, today().minusDays(1).toString(), "04/08/2012", closed);
-        Alert alert5 = new Alert("Case 5", "Karishma", "Village 2", "HEP B1", "Thaayi Card 4", AlertPriority.normal, today().minusDays(1).toString(), "05/08/2012", closed);
-        Alert alert6 = new Alert("Case 6", "Nethravati", "Village 2", "IFA follow up", "Thaayi Card 4", AlertPriority.normal, today().minusDays(1).toString(), "06/08/2012", closed);
+        Alert alert1 = new Alert("Case 1", "Napa", "Husband 1", "Village 1", "OPV", "Thaayi Card 1", AlertPriority.urgent, today().minusDays(1).toString(), "01/08/2012", open);
+        Alert alert2 = new Alert("Case 2", "Salinas", "Husband 2", "Village 2", "ANC 1", "Thaayi Card 2", AlertPriority.urgent, today().minusDays(1).toString(), "02/08/2012", open);
+        Alert alert3 = new Alert("Case 3", "Balboa", "Husband 3", "Village 1", "TT 1", "Thaayi Card 3", AlertPriority.normal, today().minusDays(1).toString(), "03/08/2012", open);
+        Alert alert4 = new Alert("Case 4", "Balboa", "Husband 4", "Village 2", "IFA", "Thaayi Card 4", AlertPriority.normal, today().minusDays(1).toString(), "04/08/2012", closed);
+        Alert alert5 = new Alert("Case 5", "Karishma", "Husband 5", "Village 2", "HEP B1", "Thaayi Card 4", AlertPriority.normal, today().minusDays(1).toString(), "05/08/2012", closed);
+        Alert alert6 = new Alert("Case 6", "Nethravati", "Husband 6", "Village 2", "IFA follow up", "Thaayi Card 4", AlertPriority.normal, today().minusDays(1).toString(), "06/08/2012", closed);
         when(allAlerts.fetchAll()).thenReturn(asList(alert1, alert2, alert3, alert4, alert5, alert6));
 
-        WorkplanTodo todo1 = new WorkplanTodo("Case 1", "Napa", "OPV", "01/08/2012", "Village 1");
-        WorkplanTodo todo2 = new WorkplanTodo("Case 2", "Salinas", "ANC 1", "02/08/2012", "Village 2");
-        WorkplanTodo todo3 = new WorkplanTodo("Case 3", "Balboa", "TT 1", "03/08/2012", "Village 1");
-        WorkplanTodo todo4 = new WorkplanTodo("Case 4", "Balboa", "IFA", "04/08/2012", "Village 2");
-        WorkplanTodo todo5 = new WorkplanTodo("Case 5", "Karishma", "HEP B1", "05/08/2012", "Village 2");
-        WorkplanTodo todo6 = new WorkplanTodo("Case 6", "Nethravati", "IFA follow up", "06/08/2012", "Village 2");
+        WorkplanTodo todo1 = new WorkplanTodo("Case 1", "Napa", "Husband 1", "OPV", "01/08/2012", "Village 1");
+        WorkplanTodo todo2 = new WorkplanTodo("Case 2", "Salinas", "Husband 2", "ANC 1", "02/08/2012", "Village 2");
+        WorkplanTodo todo3 = new WorkplanTodo("Case 3", "Balboa", "Husband 3", "TT 1", "03/08/2012", "Village 1");
+        WorkplanTodo todo4 = new WorkplanTodo("Case 4", "Balboa", "Husband 4", "IFA", "04/08/2012", "Village 2");
+        WorkplanTodo todo5 = new WorkplanTodo("Case 5", "Karishma", "Husband 5", "HEP B1", "05/08/2012", "Village 2");
+        WorkplanTodo todo6 = new WorkplanTodo("Case 6", "Nethravati", "Husband 6", "IFA follow up", "06/08/2012", "Village 2");
         WorkplanContext expectedContext = new WorkplanContext(asList(todo1, todo2), asList(todo3), asList(todo4, todo5, todo6));
 
         WorkplanController workplanController = new WorkplanController(allAlerts, commCareClientService, allEligibleCouples, context);

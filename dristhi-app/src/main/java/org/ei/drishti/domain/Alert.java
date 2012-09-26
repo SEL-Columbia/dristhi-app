@@ -10,6 +10,7 @@ import static org.ei.drishti.domain.AlertStatus.closed;
 public class Alert {
     private String caseID;
     private String beneficiaryName;
+    private String husbandName;
     private String village;
     private String visitCode;
     private String thaayiCardNumber;
@@ -19,9 +20,10 @@ public class Alert {
     private String completionDate;
     private AlertStatus status;
 
-    public Alert(String caseID, String beneficiaryName, String village, String visitCode, String thaayiCardNumber, AlertPriority priority, String startDate, String expiryDate, AlertStatus status) {
+    public Alert(String caseID, String beneficiaryName, String husbandName, String village, String visitCode, String thaayiCardNumber, AlertPriority priority, String startDate, String expiryDate, AlertStatus status) {
         this.caseID = caseID;
         this.beneficiaryName = beneficiaryName;
+        this.husbandName = husbandName;
         this.village = village;
         this.visitCode = visitCode;
         this.thaayiCardNumber = thaayiCardNumber;
@@ -42,6 +44,10 @@ public class Alert {
 
     public String beneficiaryName() {
         return beneficiaryName;
+    }
+
+    public String husbandName() {
+        return husbandName;
     }
 
     public String thaayiCardNo() {

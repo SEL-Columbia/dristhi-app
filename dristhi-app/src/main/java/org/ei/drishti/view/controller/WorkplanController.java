@@ -36,7 +36,7 @@ public class WorkplanController {
         List<WorkplanTodo> completed = new ArrayList<WorkplanTodo>();
 
         for (Alert alert : alerts) {
-            WorkplanTodo todo = new WorkplanTodo(alert.caseId(), alert.beneficiaryName(), alert.visitCode(), alert.expiryDate(), alert.village());
+            WorkplanTodo todo = new WorkplanTodo(alert.caseId(), alert.beneficiaryName(), alert.husbandName(), alert.visitCode(), alert.expiryDate(), alert.village());
 
             if (alert.isClosed()) {
                 completed.add(todo);

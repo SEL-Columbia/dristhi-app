@@ -46,7 +46,7 @@ public class AllAlertsTest {
 
         allAlerts.handleAction(actionForMother);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-22", open));
+        verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Husband 1", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-22", open));
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -56,7 +56,7 @@ public class AllAlertsTest {
 
         allAlerts.handleAction(actionForMother);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", urgent, "2012-01-01", "2012-01-22", open));
+        verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Husband 1", "Village Case X", "ANC 1", "Thaayi Case X", urgent, "2012-01-01", "2012-01-22", open));
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -113,9 +113,9 @@ public class AllAlertsTest {
         allAlerts.handleAction(secondCloseAction);
 
         InOrder inOrder = inOrder(alertRepository);
-        inOrder.verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-11", open));
+        inOrder.verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Husband 1", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-11", open));
         inOrder.verify(alertRepository).markAlertAsClosed("Case Y", "ANC 2", "2012-01-01");
-        inOrder.verify(alertRepository).createAlert(new Alert("Case Z", "Theresa Case Z", "Village Case Z", "ANC 2", "Thaayi Case Z", normal, "2012-01-01", "2012-01-22", open));
+        inOrder.verify(alertRepository).createAlert(new Alert("Case Z", "Theresa Case Z", "Husband 2", "Village Case Z", "ANC 2", "Thaayi Case Z", normal, "2012-01-01", "2012-01-22", open));
         inOrder.verify(alertRepository).deleteAllAlertsForCase("Case A");
         inOrder.verify(alertRepository).markAlertAsClosed("Case B", "ANC 3", "2012-01-01");
         verifyNoMoreInteractions(alertRepository);
@@ -123,7 +123,7 @@ public class AllAlertsTest {
 
     @Test
     public void shouldFetchAllAlertsFromRepository() throws Exception {
-        List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open), new Alert("Case Y", "Theresa 2", "bherya", "ANC 2", "Thaayi 2", normal, "2012-01-01", "2012-01-22", open));
+        List<Alert> expectedAlerts = Arrays.asList(new Alert("Case X", "Theresa 1", "Husband 1", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open), new Alert("Case Y", "Theresa 2", "Husband 2", "bherya", "ANC 2", "Thaayi 2", normal, "2012-01-01", "2012-01-22", open));
         when(alertRepository.allAlerts()).thenReturn(expectedAlerts);
 
         List<Alert> alerts = allAlerts.fetchAll();

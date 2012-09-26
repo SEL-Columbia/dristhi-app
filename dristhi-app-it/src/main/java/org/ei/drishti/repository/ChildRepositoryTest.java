@@ -67,14 +67,14 @@ public class ChildRepositoryTest extends AndroidTestCase {
     public void testShouldDeleteCorrespondingAlertsWhenAChildIsDeleted() throws Exception {
         Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-01");
         repository.addChildForMother(mother, "CASE A", "2012-06-09", "female");
-        alertRepository.createAlert(new Alert("CASE A", "Child 1", "Bherya 1", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
+        alertRepository.createAlert(new Alert("CASE A", "Child 1", "Husband 1", "Bherya 1", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
 
         repository.addChildForMother(mother, "CASE B", "2012-06-10", "female");
-        alertRepository.createAlert(new Alert("CASE B", "Child 2", "Bherya 1", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
+        alertRepository.createAlert(new Alert("CASE B", "Child 2", "Husband 2", "Bherya 1", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
 
         repository.close("CASE A");
 
-        assertEquals(asList(new Alert("CASE B", "Child 2", "Bherya 1", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open)), alertRepository.allAlerts());
+        assertEquals(asList(new Alert("CASE B", "Child 2", "Husband 2", "Bherya 1", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open)), alertRepository.allAlerts());
     }
 
     public void testShouldDeleteCorrespondingTimelineEventsWhenAChildIsDeleted() throws Exception {
