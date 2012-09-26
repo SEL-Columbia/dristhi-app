@@ -42,7 +42,7 @@ public class AllAlertsTest {
 
     @Test
     public void shouldAddAnAlertIntoAlertRepositoryForMotherCreateAlertAction() throws Exception {
-        Action actionForMother = setupActionForMotherCreateAlert("Case X", normal, "ANC 1", "2012-01-01", "2012-01-22");
+        Action actionForMother = setupActionForMotherCreateAlert("Case X", normal, "ANC 1", "2012-01-01", "2012-01-22", "Husband 1");
 
         allAlerts.handleAction(actionForMother);
 
@@ -100,9 +100,9 @@ public class AllAlertsTest {
 
     @Test
     public void shouldUpdateDeleteAndDeleteAllAlertActionsBasedOnTheirType() throws Exception {
-        Action firstCreateAction = setupActionForMotherCreateAlert("Case X", normal, "ANC 1", "2012-01-01", "2012-01-11");
+        Action firstCreateAction = setupActionForMotherCreateAlert("Case X", normal, "ANC 1", "2012-01-01", "2012-01-11", "Husband 1");
         Action firstCloseAction = actionForCloseAlert("Case Y", "ANC 2", "2012-01-01", "0");
-        Action secondCreateAction = setupActionForMotherCreateAlert("Case Z", normal, "ANC 2", "2012-01-01", "2012-01-22");
+        Action secondCreateAction = setupActionForMotherCreateAlert("Case Z", normal, "ANC 2", "2012-01-01", "2012-01-22", "Husband 2");
         Action deleteAllAction = actionForDeleteAllAlert("Case A");
         Action secondCloseAction = actionForCloseAlert("Case B", "ANC 3", "2012-01-01", "0");
 
@@ -131,10 +131,10 @@ public class AllAlertsTest {
         assertEquals(expectedAlerts, alerts);
     }
 
-    private Action setupActionForMotherCreateAlert(String caseID, AlertPriority priority, String visitCode, String startDate, String expiryDate) {
+    private Action setupActionForMotherCreateAlert(String caseID, AlertPriority priority, String visitCode, String startDate, String expiryDate, String husbandName) {
         Action action = actionForCreateAlert(caseID, priority.value(), BeneficiaryType.mother.value(), visitCode, startDate, expiryDate, "0");
         when(allBeneficiaries.findMother(caseID)).thenReturn(new Mother(caseID, "EC " + caseID, "Thaayi " + caseID, "2012-05-05"));
-        when(allEligibleCouples.findByCaseID("EC " + caseID)).thenReturn(new EligibleCouple("EC " + caseID, "Theresa " + caseID, "Husband 1", "EC Number 1", "Village " + caseID, "SubCenter", new HashMap<String, String>()));
+        when(allEligibleCouples.findByCaseID("EC " + caseID)).thenReturn(new EligibleCouple("EC " + caseID, "Theresa " + caseID, husbandName, "EC Number 1", "Village " + caseID, "SubCenter", new HashMap<String, String>()));
         return action;
     }
 
