@@ -6,7 +6,7 @@ public class HomeActivity extends SecuredWebActivity {
     @Override
     protected void onInitialization() {
         webView.loadUrl("file:///android_asset/www/home.html");
-        webView.addJavascriptInterface(new HomeController(updateController), "context");
+        webView.addJavascriptInterface(new HomeController(this, updateController), "context");
     }
 
     @Override

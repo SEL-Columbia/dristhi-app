@@ -55,7 +55,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         }
     }
 
-    protected void updateFromServer() {
+    public void updateFromServer() {
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(this, context.actionService(), new ProgressIndicator() {
             @Override
             public void setVisibile() {

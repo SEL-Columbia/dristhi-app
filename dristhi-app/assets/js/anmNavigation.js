@@ -1,8 +1,4 @@
 function ANMNavigationPanel(anmNavigationBridge) {
-    var populateDataInto = function (cssIdentifierOfRootElement) {
-        $(cssIdentifierOfRootElement).html(Handlebars.templates.sidepanel(anmNavigationBridge.getANMInformation()));
-    };
-
     var bindToWorkplan = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             anmNavigationBridge.delegateToWorkplan();
@@ -42,8 +38,6 @@ function ANMNavigationPanel(anmNavigationBridge) {
 
     return {
         populateInto: function (cssIdentifierOfSidePanelElement, callbackToRunBeforeAnyAction) {
-            populateDataInto(cssIdentifierOfSidePanelElement);
-
             bindToWorkplan(callbackToRunBeforeAnyAction, "#workplanButton");
             bindToPage(callbackToRunBeforeAnyAction, "#myStatsButton", "my-stats.html");
             bindToPage(callbackToRunBeforeAnyAction, "#inboxButton", "inbox.html");
@@ -52,6 +46,9 @@ function ANMNavigationPanel(anmNavigationBridge) {
             bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
             bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
             bindToPNCList(callbackToRunBeforeAnyAction, "#pncMenuOption");
+        },
+        getANMInformation: function(){
+            return anmNavigationBridge.getANMInformation();
         }
     };
 }

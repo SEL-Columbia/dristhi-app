@@ -3,6 +3,7 @@
 <head>
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/custom.css" rel="stylesheet">
+    <link href="../css/home.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
 
     <script type="text/javascript" src="../js/jquery.min.js"></script>
@@ -20,9 +21,11 @@
 
             pageView.onStartProgressIndicator(function() {
                 $(".progress-indicator").removeClass("hidden");
+                $("#manualSync").hide();
             });
             pageView.onStopProgressIndicator(function() {
                 $(".progress-indicator").addClass("hidden");
+                $("#manualSync").show();
             });
             pageView.onReload(function() {
                 home.populateInto("#template-container", function() {});

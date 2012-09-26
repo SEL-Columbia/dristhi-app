@@ -1,4 +1,10 @@
 function SidePanel(anmNavigation) {
+
+    var populateDataInto = function (cssIdentifierOfRootElement) {
+        Handlebars.registerPartial("anm_navigation", Handlebars.templates.anm_navigation);
+        $(cssIdentifierOfRootElement).html(Handlebars.templates.sidepanel(anmNavigation.getANMInformation()));
+    };
+
     var openSidePanel = function (animationDuration) {
         $(".affected-by-sidepanel").addClass("sidepanel-active");
         $(".mainpanel .container-fluid").addClass("container").addClass("container-affected-by-sidepanel");
@@ -33,6 +39,7 @@ function SidePanel(anmNavigation) {
 
     return {
         populateInto: function (cssIdentifierOfSidePanelElement) {
+            populateDataInto(cssIdentifierOfSidePanelElement);
             anmNavigation.populateInto(cssIdentifierOfSidePanelElement, function () {
                 closeSidePanel(5);
             });
