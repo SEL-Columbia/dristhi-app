@@ -1,4 +1,10 @@
 function ANMNavigationPanel(anmNavigationBridge) {
+
+    var populateDataInto = function (cssIdentifierOfRootElement, displayTemplate) {
+        Handlebars.registerPartial("anm_navigation", Handlebars.templates.anm_navigation);
+        $(cssIdentifierOfRootElement).html(displayTemplate(anmNavigationBridge.getANMInformation()));
+    };
+
     var bindToWorkplan = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             anmNavigationBridge.delegateToWorkplan();
@@ -37,7 +43,8 @@ function ANMNavigationPanel(anmNavigationBridge) {
     };
 
     return {
-        populateInto: function (cssIdentifierOfSidePanelElement, callbackToRunBeforeAnyAction) {
+        populateInto: function (cssIdentifierOfSidePanelElement, displayTemplate, callbackToRunBeforeAnyAction) {
+            populateDataInto(cssIdentifierOfSidePanelElement, displayTemplate);
             bindToWorkplan(callbackToRunBeforeAnyAction, "#workplanButton");
             bindToPage(callbackToRunBeforeAnyAction, "#myStatsButton", "my-stats.html");
             bindToPage(callbackToRunBeforeAnyAction, "#inboxButton", "inbox.html");
@@ -46,9 +53,6 @@ function ANMNavigationPanel(anmNavigationBridge) {
             bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
             bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
             bindToPNCList(callbackToRunBeforeAnyAction, "#pncMenuOption");
-        },
-        getANMInformation: function(){
-            return anmNavigationBridge.getANMInformation();
         }
     };
 }

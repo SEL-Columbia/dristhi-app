@@ -1,17 +1,11 @@
 function Home(anmNavigation, homeBridge) {
-    var populateDataInto = function (cssIdentifierOfRootElement) {
-        Handlebars.registerPartial("anm_navigation", Handlebars.templates.anm_navigation);
-        $(cssIdentifierOfRootElement).html(Handlebars.templates.home(anmNavigation.getANMInformation()));
-    };
-
     var bindToManualSync = function (identifierOfElement) {
         $(identifierOfElement).click(homeBridge.manualSync);
     };
 
     return {
         populateInto: function (cssIdentifierOfSidePanelElement, callbackToRunBeforeAnyAction) {
-            populateDataInto(cssIdentifierOfSidePanelElement);
-            anmNavigation.populateInto(cssIdentifierOfSidePanelElement, callbackToRunBeforeAnyAction);
+            anmNavigation.populateInto(cssIdentifierOfSidePanelElement, Handlebars.templates.home, callbackToRunBeforeAnyAction);
             bindToManualSync("#manualSync");
         },
         pageHasFinishedLoading: function () {
