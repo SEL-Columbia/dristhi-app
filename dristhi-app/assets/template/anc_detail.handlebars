@@ -33,16 +33,18 @@
 </div>
 
 <div id="content" class="content-detail affected-by-sidepanel">
-<div class="status-bar">
-    {{#if coupleDetails.isInArea}}
-        <span class="left-text">ANC</span>
-    {{else}}
-        <span class="left-text">Out of Area ANC</span>
-    {{/if}}
-    {{#ifFalse details.isHighRisk}}
-        <span class="right-text">High Risk</span>
-    {{/ifFalse}}
-</div>
+    <div class="status-bar">
+        {{#if coupleDetails.isInArea}}
+            <span class="left-text">ANC</span>
+        {{else}}
+            <span class="left-text">Out of Area ANC</span>
+        {{/if}}
+        {{#ifFalse details.isHighRisk}}
+            <span class="right-text high-risk">High Risk</span>
+        {{else}}
+            <span class="right-text normal-risk">Normal Risk</span>
+        {{/ifFalse}}
+    </div>
     <div class="registry-container container-fluid">
         <div class="row-fluid">
             <div class="span12">

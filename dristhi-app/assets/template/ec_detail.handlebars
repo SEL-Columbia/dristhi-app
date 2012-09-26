@@ -22,7 +22,14 @@
     <div class="modal-row" data-form="EC_CLOSE" data-caseid="{{caseId}}">Close EC record</div>
 </div>
 
-<div id="content" class="content affected-by-sidepanel">
+<div id="content" class="content-detail affected-by-sidepanel">
+    <div class="status-bar">
+        {{#ifFalse isHighPriority}}
+            <span class="right-text high-risk">High Priority</span>
+        {{else}}
+            <span class="right-text normal-risk">Normal Priority</span>
+        {{/ifFalse}}
+    </div>
     <div class="registry-container container-fluid">
         <div class="row-fluid">
             <div class="span12">
@@ -99,9 +106,9 @@
                 <div class="row-fluid beneficiary-detail-component">
                     <div class="beneficiary-detail-content">
                     {{#ifFalse isHighPriority}}
-                        <div class="text-center big-text normal-risk">Normal Priority</div>
-                    {{else}}
                         <div class="text-center big-text high-risk">High Priority</div>
+                    {{else}}
+                        <div class="text-center big-text normal-risk">Normal Priority</div>
                     {{/ifFalse}}
                     </div>
                 </div>
