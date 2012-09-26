@@ -87,7 +87,7 @@ function FakeWorkplanContext() {
                         husbandName: "Husband 1",
                         formToOpen: "PNC_SERVICES",
                         visitCode: "PNC 1",
-                        description: "OPV due",
+                        description: "OPV",
                         dueDate: "2012-10-24",
                         villageName: "chikkabheriya"
                     },
@@ -98,7 +98,7 @@ function FakeWorkplanContext() {
                         formToOpen: "ANC_SERVICES",
                         visitCode: "ANC 1",
                         villageName: "munjanahalli",
-                        description: "ANC due",
+                        description: "ANC",
                         dueDate: "2012-10-24"
                     }
                 ],
@@ -109,7 +109,7 @@ function FakeWorkplanContext() {
                         husbandName: "Husband 3",
                         formToOpen: "ANC_SERVICES",
                         visitCode: "PNC 1",
-                        description: "TT 1 due",
+                        description: "TT 1",
                         dueDate: "2012-10-24",
                         villageName: "chikkabheriya"
                     }
@@ -122,7 +122,7 @@ function FakeWorkplanContext() {
                         formToOpen: "PNC_SERVICES",
                         villageName: "munjanahalli",
                         visitCode: "PNC 1",
-                        description: "IFA due",
+                        description: "IFA",
                         dueDate: "2012-10-24"
                     },
                     {
@@ -130,7 +130,7 @@ function FakeWorkplanContext() {
                         beneficiaryName: "Karishma",
                         husbandName: "Husband 5",
                         formToOpen: "PNC_SERVICES",
-                        description: "HEP B1 due",
+                        description: "HEP B1",
                         villageName: "chikkabheriya",
                         visitCode: "PNC 1",
                         dueDate: "2012-10-24"
@@ -142,7 +142,7 @@ function FakeWorkplanContext() {
                         formToOpen: "PNC_SERVICES",
                         visitCode: "PNC 1",
                         villageName: "munjanahalli",
-                        description: "IFA follow up due",
+                        description: "IFA follow up",
                         dueDate: "2012-10-24"
                     }
                 ]

@@ -19,7 +19,7 @@ public class WorkplanTodo {
         this.husbandName = husbandName;
         this.visitCode = visitCode;
         this.villageName = villageName;
-        this.description = TodoDetail.from(visitCode).prefix() + " due";
+        this.description = TodoDetail.from(visitCode).prefix();
         this.dueDate = dueDate;
         this.formToOpen = TodoDetail.from(visitCode).formToOpen();
     }
