@@ -14,6 +14,18 @@ function ANC(ancBridge) {
             var alertItem = $(alertWhoseCheckboxWasClicked);
             ancBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
             ancBridge.markAsCompleted(alertItem.data("caseid"), alertItem.data("visitcode"));
+        },
+
+        bindTimelineEventToShowMoreButton: function (timeLineEventListItem, showMoreButton, minNumberToShow) {
+            $(timeLineEventListItem + ':gt(' + (minNumberToShow - 1) + ')').hide().last().after(
+                $(showMoreButton).css('display', 'block').click(function () {
+                    var a = this;
+                    $(timeLineEventListItem + ':not(:visible):lt(' + minNumberToShow + ')').fadeIn(function () {
+                        if ($(timeLineEventListItem + ':not(:visible)').length == 0) $(a).remove();
+                    });
+                    return false;
+                })
+            );
         }
     };
 }
@@ -107,6 +119,96 @@ function FakeANCContext() {
                         }
                     ],
                     timelineEvents: [
+                        {
+                            title: "Event 1",
+                            details: ["Detail 1", "Detail 2"],
+                            type: "PREGNANCY",
+                            date: "1y 2m ago"
+                        },
+                        {
+                            title: "Event 2",
+                            details: ["Detail 1", "Detail 2"],
+                            type: "FPCHANGE",
+                            date: "1y 2m ago"
+                        },
+                        {
+                            title: "Event 3",
+                            details: ["Detail 3", "Detail 4"],
+                            type: "ANCVISIT",
+                            date: "2m 3d ago"
+                        },
+                        {
+                            title: "Event 1",
+                            details: ["Detail 1", "Detail 2"],
+                            type: "PREGNANCY",
+                            date: "1y 2m ago"
+                        },
+                        {
+                            title: "Event 2",
+                            details: ["Detail 1", "Detail 2"],
+                            type: "FPCHANGE",
+                            date: "1y 2m ago"
+                        },
+                        {
+                            title: "Event 3",
+                            details: ["Detail 3", "Detail 4"],
+                            type: "ANCVISIT",
+                            date: "2m 3d ago"
+                        },
+                        {
+                            title: "Event 1",
+                            details: ["Detail 1", "Detail 2"],
+                            type: "PREGNANCY",
+                            date: "1y 2m ago"
+                        },
+                        {
+                            title: "Event 2",
+                            details: ["Detail 1", "Detail 2"],
+                            type: "FPCHANGE",
+                            date: "1y 2m ago"
+                        },
+                        {
+                            title: "Event 3",
+                            details: ["Detail 3", "Detail 4"],
+                            type: "ANCVISIT",
+                            date: "2m 3d ago"
+                        },
+                        {
+                            title: "Event 1",
+                            details: ["Detail 1", "Detail 2"],
+                            type: "PREGNANCY",
+                            date: "1y 2m ago"
+                        },
+                        {
+                            title: "Event 2",
+                            details: ["Detail 1", "Detail 2"],
+                            type: "FPCHANGE",
+                            date: "1y 2m ago"
+                        },
+                        {
+                            title: "Event 3",
+                            details: ["Detail 3", "Detail 4"],
+                            type: "ANCVISIT",
+                            date: "2m 3d ago"
+                        },
+                        {
+                            title: "Event 1",
+                            details: ["Detail 1", "Detail 2"],
+                            type: "PREGNANCY",
+                            date: "1y 2m ago"
+                        },
+                        {
+                            title: "Event 2",
+                            details: ["Detail 1", "Detail 2"],
+                            type: "FPCHANGE",
+                            date: "1y 2m ago"
+                        },
+                        {
+                            title: "Event 3",
+                            details: ["Detail 3", "Detail 4"],
+                            type: "ANCVISIT",
+                            date: "2m 3d ago"
+                        },
                         {
                             title: "Event 1",
                             details: ["Detail 1", "Detail 2"],

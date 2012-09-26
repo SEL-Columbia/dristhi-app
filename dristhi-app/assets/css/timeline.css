@@ -25,3 +25,7 @@
 .timeline .type.CHILD-BIRTH {
     content: url(../img/icons/icon-event-birth.png);
 }
+
+.show-more-button {
+    display: none;
+}

@@ -208,12 +208,12 @@ function program33(depth0,data) {
   stack1 = depth0.timelineEvents;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(34, program34, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                            </div>\n                        </div>\n                    </div>\n                ";
+  buffer += "\n                                <div class=\"container-section-component row-fluid show-more-button\">\n                                    <div class=\"btn span12\">\n                                    Show More\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                ";
   return buffer;}
 function program34(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                                    <div class=\"container-section-component row-fluid\">\n                                            <div class=\"timeline\">\n                                                <div class=\"span3 type ";
+  buffer += "\n                                    <div class=\"container-section-component row-fluid timelineEvent\">\n                                            <div class=\"timeline\">\n                                                <div class=\"span3 type ";
   stack1 = depth0.type;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
   buffer += escapeExpression(stack1) + "\"></div>\n                                                <div class=\"span5\">\n                                                    <strong>";

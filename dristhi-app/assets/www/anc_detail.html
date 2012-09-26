@@ -27,6 +27,7 @@
             var anc = new ANC(new ANCBridge());
             anc.populateInto("#mainpanel");
             anc.bindEveryItemToCommCare(".modal-row");
+            anc.bindTimelineEventToShowMoreButton(".timelineEvent", ".show-more-button", 5);
 
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
             new Modal().bindToClick();

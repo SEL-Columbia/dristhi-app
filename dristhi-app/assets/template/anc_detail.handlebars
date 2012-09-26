@@ -201,7 +201,7 @@
                         <div class="beneficiary-detail-content">
                             <div class="container-section container-fluid">
                                 {{#each timelineEvents}}
-                                    <div class="container-section-component row-fluid">
+                                    <div class="container-section-component row-fluid timelineEvent">
                                             <div class="timeline">
                                                 <div class="span3 type {{this.type}}"></div>
                                                 <div class="span5">
@@ -216,6 +216,11 @@
                                             </div>
                                         </div>
                                 {{/each}}
+                                <div class="container-section-component row-fluid show-more-button">
+                                    <div class="btn span12">
+                                    Show More
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
