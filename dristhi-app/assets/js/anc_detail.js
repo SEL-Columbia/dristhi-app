@@ -17,15 +17,14 @@ function ANC(ancBridge) {
         },
 
         bindTimelineEventToShowMoreButton: function (timeLineEventListItem, showMoreButton, minNumberToShow) {
-            $(timeLineEventListItem + ':gt(' + (minNumberToShow - 1) + ')').hide().last().after(
-                $(showMoreButton).css('display', 'block').click(function () {
-                    var button = this;
-                    $(timeLineEventListItem + ':not(:visible):lt(' + minNumberToShow + ')').fadeIn(function () {
-                        if ($(timeLineEventListItem + ':not(:visible)').length == 0) $(button).remove();
-                    });
-                    return false;
-                })
-            );
+            $(timeLineEventListItem + ':gt(' + (minNumberToShow - 1) + ')').hide();
+            if ($(timeLineEventListItem + ':not(:visible)').length == 0) return;
+            $(showMoreButton).css('display', 'block').click(function () {
+                var button = this;
+                $(timeLineEventListItem + ':not(:visible):lt(' + minNumberToShow + ')').fadeIn(function () {
+                    if ($(timeLineEventListItem + ':not(:visible)').length == 0) $(button).remove();
+                });
+            })
         }
     };
 }
