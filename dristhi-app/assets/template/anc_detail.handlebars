@@ -5,7 +5,7 @@
             <div id="ancWarningModal" class="modal-content" style="display: block; ">
                 <div class="modal-row">EDD Passed! Please fill delivery Outcome form.</div>
                 <div class="divider"></div>
-                <div class="modal-row" data-form="ANC_DELIVERY_OUTCOME" data-caseid="1234">Click here to fill delivery outcome Form.</div>
+                <div class="modal-row" data-form="ANC_DELIVERY_OUTCOME" data-caseid="{{caseId}}">Click here to fill delivery outcome Form.</div>
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
                     <li class="big-text">{{coupleDetails.wifeName}}</li>
                     <li class="medium-text spacing-below">{{coupleDetails.husbandName}}</li>
                     <li>{{capitalize location.villageName}}</li>
-                    <li class="light-text">{{#if coupleDetails.isInArea}}EC: {{coupleDetails.ecNumber}}, {{else}}Out of area, {{/if}}TC: {{thaayiCardNumber}}</li>
+                    <li class="light-text">{{#if coupleDetails.isInArea}}EC No: {{coupleDetails.ecNumber}}, {{/if}}TC No: {{thaayiCardNumber}}</li>
                 </ul>
             </div>
         </div>
@@ -207,7 +207,7 @@
                                                 <div class="span5">
                                                     <strong>{{title}}</strong><br>
                                                     {{#each details}}
-                                                        {{formatText this}}<br>
+                                                        {{this}}<br>
                                                     {{/each}}
                                                 </div>
                                                 <div class="span4 pull-right text-right">

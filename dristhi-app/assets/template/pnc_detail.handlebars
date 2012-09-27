@@ -28,7 +28,7 @@
                     <li class="big-text">{{coupleDetails.wifeName}}</li>
                     <li class="medium-text spacing-below">{{coupleDetails.husbandName}}</li>
                     <li>{{capitalize location.villageName}}</li>
-                    <li class="light-text">{{#if coupleDetails.isInArea}}EC: {{coupleDetails.ecNumber}}, {{else}}Out of area, {{/if}}TC: {{thaayiCardNumber}}</li>
+                    <li class="light-text">{{#if coupleDetails.isInArea}}EC No: {{coupleDetails.ecNumber}}, {{else}}Out of area, {{/if}}TC No: {{thaayiCardNumber}}</li>
                 </ul>
             </div>
         </div>
@@ -152,7 +152,7 @@
                                                 <div class="span5">
                                                     <strong>{{title}}</strong><br>
                                                     {{#each details}}
-                                                        {{formatText this}}<br>
+                                                        {{this}}<br>
                                                     {{/each}}
                                                 </div>
                                                 <div class="span4 pull-right text-right">
