@@ -232,10 +232,11 @@ function program34(depth0,data) {
   return buffer;}
 function program35(depth0,data) {
   
-  var buffer = "";
+  var buffer = "", stack1, foundHelper;
   buffer += "\n                                                        ";
-  depth0 = typeof depth0 === functionType ? depth0() : depth0;
-  buffer += escapeExpression(depth0) + "<br>\n                                                    ";
+  foundHelper = helpers.formatText;
+  stack1 = foundHelper ? foundHelper.call(depth0, depth0, {hash:{}}) : helperMissing.call(depth0, "formatText", depth0, {hash:{}});
+  buffer += escapeExpression(stack1) + "<br>\n                                                    ";
   return buffer;}
 
   stack1 = depth0.pregnancyDetails;
@@ -588,13 +589,8 @@ function program27(depth0,data) {
   buffer += "\n                        <i class=\"icon-ok\"></i><span class=\"family-planning-label\">Current</span><span class=\"family-planning-current\">";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.currentMethod;
-  foundHelper = helpers.capitalize;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + " since ";
-  stack1 = depth0.details;
-  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.familyPlanningMethodChangeDate;
-  foundHelper = helpers.formatDate;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
+  foundHelper = helpers.formatText;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</span><br/>\n                        ";
   return buffer;}
 
@@ -634,10 +630,11 @@ function program32(depth0,data) {
   return buffer;}
 function program33(depth0,data) {
   
-  var buffer = "";
+  var buffer = "", stack1, foundHelper;
   buffer += "\n                                                        ";
-  depth0 = typeof depth0 === functionType ? depth0() : depth0;
-  buffer += escapeExpression(depth0) + "<br>\n                                                    ";
+  foundHelper = helpers.formatText;
+  stack1 = foundHelper ? foundHelper.call(depth0, depth0, {hash:{}}) : helperMissing.call(depth0, "formatText", depth0, {hash:{}});
+  buffer += escapeExpression(stack1) + "<br>\n                                                    ";
   return buffer;}
 
   buffer += "<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <ul class=\"nav pull-left\">\n            <img class=\"sidepanel-icon affected-by-sidepanel\"><img class=\"separator\">\n            <span class=\"name\">EC</span>\n        </ul>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li><img class=\"separator\"></li>\n            <li data-modal-target=\"#ecFormModal\"><img class=\"update-data\"></li>\n        </ul>\n    </div>\n</div>\n\n<div id=\"ecFormModal\" class=\"modal-content\">\n    <div class=\"modal-row\" data-form=\"EC_FP_UPDATE\" data-caseid=\"";
@@ -998,10 +995,11 @@ function program24(depth0,data) {
   return buffer;}
 function program25(depth0,data) {
   
-  var buffer = "";
+  var buffer = "", stack1, foundHelper;
   buffer += "\n                                                        ";
-  depth0 = typeof depth0 === functionType ? depth0() : depth0;
-  buffer += escapeExpression(depth0) + "<br>\n                                                    ";
+  foundHelper = helpers.formatText;
+  stack1 = foundHelper ? foundHelper.call(depth0, depth0, {hash:{}}) : helperMissing.call(depth0, "formatText", depth0, {hash:{}});
+  buffer += escapeExpression(stack1) + "<br>\n                                                    ";
   return buffer;}
 
   buffer += "<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <ul class=\"nav pull-left\">\n            <img class=\"sidepanel-icon affected-by-sidepanel\"><img class=\"separator\">\n            <span class=\"name\">PNC</span>\n        </ul>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li><img class=\"separator\"></li>\n            <li data-modal-target=\"#pncFormModal\"><img class=\"update-data\"></li>\n        </ul>\n    </div>\n</div>\n\n<div id=\"pncFormModal\" class=\"modal-content\">\n    <div class=\"modal-row\" data-form=\"PNC_SERVICES\" data-caseid=\"";

@@ -155,7 +155,7 @@
                         {{#ifequal details.currentMethod "none"}}
                         <i class="icon-remove"></i><span class="family-planning-label">Current</span><span class="family-planning-current">None</span><br/>
                         {{else}}
-                        <i class="icon-ok"></i><span class="family-planning-label">Current</span><span class="family-planning-current">{{capitalize details.currentMethod}} since {{formatDate details.familyPlanningMethodChangeDate}}</span><br/>
+                        <i class="icon-ok"></i><span class="family-planning-label">Current</span><span class="family-planning-current">{{formatText details.currentMethod}}</span><br/>
                         {{/ifequal}}
                     </div>
                 </div>
@@ -184,7 +184,7 @@
                                                 <div class="span5">
                                                     <strong>{{title}}</strong><br>
                                                     {{#each details}}
-                                                        {{this}}<br>
+                                                        {{formatText this}}<br>
                                                     {{/each}}
                                                 </div>
                                                 <div class="span4 pull-right text-right">

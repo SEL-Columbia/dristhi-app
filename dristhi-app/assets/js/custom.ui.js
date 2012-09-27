@@ -47,6 +47,13 @@ Handlebars.registerHelper('camelCaseAndConvertToListItems', function (textWithSp
     }).get().join(" "));
 });
 
+Handlebars.registerHelper('formatText', function (unformattedText) {
+    if (typeof unformattedText === "undefined") {
+        return "";
+    }
+    return capitalize(unformattedText.trim()).replace(/_/g, " ");
+});
+
 Handlebars.registerHelper('formatDate', function (unformattedDate) {
     if (typeof unformattedDate === "undefined") {
         return "";
