@@ -61,7 +61,8 @@ public class EligibleCouple {
     }
 
     public boolean isHighPriority() {
-        return "1".equals(details.get("isHighPriority"));
+        String isHighPriority = details.get("isHighPriority");
+        return "1".equals(isHighPriority) || "yes".equals(isHighPriority);
     }
 
     public Map<String, String> details() {
