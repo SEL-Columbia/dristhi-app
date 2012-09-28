@@ -49,7 +49,6 @@ public class AllBeneficiaries {
             if (numberOfIFATabletsProvided != null && Integer.parseInt(numberOfIFATabletsProvided) > 0) {
                 allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
             }
-            Log.logWarn("TT shot details " + action.get("wasTTShotProvided") + " " + action.get("ttDose"));
             if (action.get("wasTTShotProvided") != null && Boolean.valueOf(action.get("ttDose"))) {
                 allTimelines.add(forTTShotProvided(action.caseID(), action.get("ttDose"), action.get("visitDate")));
             }
