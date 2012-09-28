@@ -22,6 +22,10 @@
     content: url(../img/icons/icon-event-ifa.png);
 }
 
+.timeline .type.TTSHOTPROVIDED {
+    content: url(../img/icons/icon-event-ifa.png);
+}
+
 .timeline .type.CHILD-BIRTH {
     content: url(../img/icons/icon-event-birth.png);
 }

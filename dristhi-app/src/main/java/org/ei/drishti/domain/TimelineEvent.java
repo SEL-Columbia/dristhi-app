@@ -51,7 +51,7 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forTTShotProvided(String caseId, String ttDose, String visitDate) {
-        return new TimelineEvent(caseId, "TTSHOTPROVIDED", LocalDate.parse(visitDate), "", ttDose, null);
+        return new TimelineEvent(caseId, "TTSHOTPROVIDED", LocalDate.parse(visitDate), "TT Injection Given", ttDose, null);
     }
 
     public String type() {

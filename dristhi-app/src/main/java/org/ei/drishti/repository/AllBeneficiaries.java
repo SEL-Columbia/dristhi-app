@@ -1,5 +1,6 @@
 package org.ei.drishti.repository;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
@@ -49,7 +50,7 @@ public class AllBeneficiaries {
             if (numberOfIFATabletsProvided != null && Integer.parseInt(numberOfIFATabletsProvided) > 0) {
                 allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
             }
-            if (action.get("wasTTShotProvided") != null && Boolean.valueOf(action.get("wasTTShotProvided"))) {
+            if (StringUtils.isNotBlank(action.get("ttDose"))) {
                 allTimelines.add(forTTShotProvided(action.caseID(), action.get("ttDose"), action.get("visitDate")));
             }
         } else if (action.type().equals("registerOutOfAreaANC")) {
