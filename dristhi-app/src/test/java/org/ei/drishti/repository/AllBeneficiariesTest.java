@@ -51,7 +51,7 @@ public class AllBeneficiariesTest {
     @Test
     public void shouldHandleOutOfAreaANCRegistration() throws Exception {
         Action action = ActionBuilder.actionForOutOfAreaANCRegistration("Case Mother X");
-        Map<String,String> details = mapOf("some-key", "some-field");
+        Map<String, String> details = mapOf("some-key", "some-field");
 
         allBeneficiaries.handleMotherAction(action);
 
@@ -84,7 +84,7 @@ public class AllBeneficiariesTest {
     @Test
     public void shouldNotAddTimelineEventForServicesNotProvidedForMother() throws Exception {
         LocalDate visitDate = LocalDate.now().minusDays(1);
-        Action action = ActionBuilder.actionForANCCareProvided("Case Mother X", 1, 0, visitDate, true, "TT 1");
+        Action action = ActionBuilder.actionForANCCareProvided("Case Mother X", 1, 0, visitDate, false, "");
 
         allBeneficiaries.handleMotherAction(action);
 

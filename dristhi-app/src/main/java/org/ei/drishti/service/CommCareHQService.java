@@ -12,6 +12,9 @@ public class CommCareHQService {
     }
 
     public boolean isValidUser(String userName, String password) {
-        return true;
+        String url = baseURL + "/a/" + domain + "/phone/restore";
+        String userNameWithDomain = userName + "@" + domain + ".commcarehq.org";
+
+        return agent.urlCanBeAccessWithGivenCredentials(url, userNameWithDomain, password);
     }
 }

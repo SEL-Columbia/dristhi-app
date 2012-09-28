@@ -49,7 +49,7 @@ public class AllBeneficiaries {
             if (numberOfIFATabletsProvided != null && Integer.parseInt(numberOfIFATabletsProvided) > 0) {
                 allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
             }
-            if (action.get("wasTTShotProvided") != null && Boolean.valueOf(action.get("ttDose"))) {
+            if (action.get("wasTTShotProvided") != null && Boolean.valueOf(action.get("wasTTShotProvided"))) {
                 allTimelines.add(forTTShotProvided(action.caseID(), action.get("ttDose"), action.get("visitDate")));
             }
         } else if (action.type().equals("registerOutOfAreaANC")) {
