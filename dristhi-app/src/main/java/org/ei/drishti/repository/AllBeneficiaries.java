@@ -5,11 +5,13 @@ import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.dto.Action;
+import org.ei.drishti.util.Log;
 
 import java.util.List;
 
 import static org.ei.drishti.domain.TimelineEvent.forANCCareProvided;
 import static org.ei.drishti.domain.TimelineEvent.forIFATabletsProvided;
+import static org.ei.drishti.domain.TimelineEvent.forTTShotProvided;
 
 public class AllBeneficiaries {
     private ChildRepository childRepository;
@@ -46,6 +48,10 @@ public class AllBeneficiaries {
             String numberOfIFATabletsProvided = action.get("numberOfIFATabletsProvided");
             if (numberOfIFATabletsProvided != null && Integer.parseInt(numberOfIFATabletsProvided) > 0) {
                 allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
+            }
+            Log.logWarn("TT shot details " + action.get("wasTTShotProvided") + " " + action.get("ttDose"));
+            if (action.get("wasTTShotProvided") != null && Boolean.valueOf(action.get("ttDose"))) {
+                allTimelines.add(forTTShotProvided(action.caseID(), action.get("ttDose"), action.get("visitDate")));
             }
         } else if (action.type().equals("registerOutOfAreaANC")) {
             eligibleCoupleRepository.add(new EligibleCouple(action.get("ecCaseId"), action.get("wife"), action.get("husband"), "", action.get("village"), action.get("subcenter"), action.details()).asOutOfArea());

@@ -72,18 +72,19 @@ public class AllBeneficiariesTest {
     @Test
     public void shouldHandleANCCareProvidedForMother() throws Exception {
         LocalDate visitDate = LocalDate.now().minusDays(1);
-        Action action = ActionBuilder.actionForANCCareProvided("Case Mother X", 1, 10, visitDate);
+        Action action = ActionBuilder.actionForANCCareProvided("Case Mother X", 1, 10, visitDate, true, "TT 1");
 
         allBeneficiaries.handleMotherAction(action);
 
         verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("Case Mother X", "1", visitDate.toString()));
         verify(allTimelineEvents).add(TimelineEvent.forIFATabletsProvided(action.caseID(), "10", visitDate.toString()));
+        verify(allTimelineEvents).add(TimelineEvent.forTTShotProvided(action.caseID(), "TT 1", visitDate.toString()));
     }
 
     @Test
     public void shouldNotAddTimelineEventForServicesNotProvidedForMother() throws Exception {
         LocalDate visitDate = LocalDate.now().minusDays(1);
-        Action action = ActionBuilder.actionForANCCareProvided("Case Mother X", 1, 0, visitDate);
+        Action action = ActionBuilder.actionForANCCareProvided("Case Mother X", 1, 0, visitDate, true, "TT 1");
 
         allBeneficiaries.handleMotherAction(action);
 

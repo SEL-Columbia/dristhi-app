@@ -50,6 +50,10 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "IFAPROVIDED", LocalDate.parse(visitDate), "IFA Provided", numberOfIFATabletsProvided + " tablets", null);
     }
 
+    public static TimelineEvent forTTShotProvided(String caseId, String ttDose, String visitDate) {
+        return new TimelineEvent(caseId, "TTSHOTPROVIDED", LocalDate.parse(visitDate), "", ttDose, null);
+    }
+
     public String type() {
         return type;
     }

@@ -66,7 +66,7 @@ public class ActionBuilder {
         return new Action(motherCaseId, "mother", "updateDetails", actionData.data(), "0", actionData.details());
     }
 
-    public static Action actionForANCCareProvided(String motherCaseId, int visitNumber, int numberOfIFATabletsProvided, LocalDate visitDate) {
+    public static Action actionForANCCareProvided(String motherCaseId, int visitNumber, int numberOfIFATabletsProvided, LocalDate visitDate, boolean wasTTShotProvided, String ttDose) {
         ActionData actionData = ancCareProvided(visitNumber, visitDate, numberOfIFATabletsProvided);
         return new Action(motherCaseId, "mother", "ancCareProvided", actionData.data(), "0", new HashMap<String, String>());
     }
