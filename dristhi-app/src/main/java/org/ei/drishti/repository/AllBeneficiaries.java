@@ -6,7 +6,6 @@ import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.dto.Action;
-import org.ei.drishti.util.Log;
 
 import java.util.List;
 
