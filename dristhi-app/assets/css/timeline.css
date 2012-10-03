@@ -30,6 +30,10 @@
     content: url(../img/icons/icon-event-birth.png);
 }
 
+.timeline .type.ECREGISTERED {
+    content: url(../img/icons/icon-event-ecregistered.png);
+}
+
 .show-more-button {
     display: none;
 }

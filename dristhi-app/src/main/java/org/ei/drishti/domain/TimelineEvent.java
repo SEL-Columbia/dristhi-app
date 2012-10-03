@@ -4,6 +4,7 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import static org.ei.drishti.util.DateUtil.formatDate;
@@ -30,12 +31,12 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forStartOfPregnancy(String caseId, String referenceDate) {
-        return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC registered", "LMP: " + formatDate(referenceDate), null);
+        return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC Registered", "LMP: " + formatDate(referenceDate), null);
     }
 
     public static TimelineEvent forStartOfPregnancyForEC(String ecCaseId, String thaayiCardNumber, String referenceDate) {
-        return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC registered", "On: " + formatDate(referenceDate),
-                "Thayi #: " + thaayiCardNumber);
+        return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC Registered", "LMP: " + formatDate(referenceDate),
+                "Thayi No: " + thaayiCardNumber);
     }
 
     public static TimelineEvent forChangeOfFPMethod(String caseId, String oldFPMethod, String newFPMethod, String dateOfFPChange) {
@@ -52,6 +53,11 @@ public class TimelineEvent {
 
     public static TimelineEvent forTTShotProvided(String caseId, String ttDose, String visitDate) {
         return new TimelineEvent(caseId, "TTSHOTPROVIDED", LocalDate.parse(visitDate), "TT Injection Given", ttDose, null);
+    }
+
+    public static TimelineEvent forECRegistered(String caseId, String registrationDate) {
+        LocalDate registrationDate1 = DateTime.parse(registrationDate).toLocalDate();
+        return new TimelineEvent(caseId, "ECREGISTERED", registrationDate1, "EC Registered", null, null);
     }
 
     public String type() {

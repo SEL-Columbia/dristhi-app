@@ -48,7 +48,7 @@ Handlebars.registerHelper('camelCaseAndConvertToListItems', function (textWithSp
 });
 
 Handlebars.registerHelper('formatText', function (unformattedText) {
-    if (typeof unformattedText === "undefined") {
+    if (typeof unformattedText === "undefined" || unformattedText === null) {
         return "";
     }
     return capitalize(unformattedText.trim()).replace(/_/g, " ");

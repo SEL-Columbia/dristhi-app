@@ -232,10 +232,11 @@ function program32(depth0,data) {
   return buffer;}
 function program33(depth0,data) {
   
-  var buffer = "";
+  var buffer = "", stack1, foundHelper;
   buffer += "\n                                                        ";
-  depth0 = typeof depth0 === functionType ? depth0() : depth0;
-  buffer += escapeExpression(depth0) + "<br>\n                                                    ";
+  foundHelper = helpers.formatText;
+  stack1 = foundHelper ? foundHelper.call(depth0, depth0, {hash:{}}) : helperMissing.call(depth0, "formatText", depth0, {hash:{}});
+  buffer += escapeExpression(stack1) + "<br>\n                                                    ";
   return buffer;}
 
   stack1 = depth0.pregnancyDetails;

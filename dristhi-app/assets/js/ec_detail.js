@@ -111,7 +111,7 @@ function FakeECContext() {
                     timelineEvents: [
                         {
                             title: "Event 1",
-                            details: ["Detail 1", "Detail 2"],
+                            details: [null, "Detail 2"],
                             type: "PREGNANCY",
                             date: "1y 2m ago"
                         },

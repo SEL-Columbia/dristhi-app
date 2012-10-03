@@ -43,6 +43,9 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     public void add(EligibleCouple eligibleCouple) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(EC_TABLE_NAME, null, createValuesFor(eligibleCouple));
+        if (eligibleCouple.details().get("submissionDate") != null) {
+            timelineEventRepository.add(TimelineEvent.forECRegistered(eligibleCouple.caseId(), eligibleCouple.details().get("submissionDate")));
+        }
     }
 
     public void updateDetails(String caseId, Map<String, String> details) {
