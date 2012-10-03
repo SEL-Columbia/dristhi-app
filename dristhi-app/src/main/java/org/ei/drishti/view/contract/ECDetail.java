@@ -14,7 +14,7 @@ public class ECDetail {
     private String village;
     private String subcenter;
     private String ecNumber;
-    private boolean highPriority;
+    private boolean isHighPriority;
     private String address;
     private List<ProfileTodo> todos;
     private List<ProfileTodo> urgentTodos;
@@ -29,7 +29,7 @@ public class ECDetail {
         this.village = village;
         this.subcenter = subcenter;
         this.ecNumber = ecNumber;
-        highPriority = isHighPriority;
+        this.isHighPriority = isHighPriority;
         this.address = address;
         this.children = children;
         this.details = details;
