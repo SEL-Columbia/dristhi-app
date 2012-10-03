@@ -269,11 +269,13 @@ function program33(depth0,data) {
   buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span12\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.wifeName;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</li>\n                    <li class=\"medium-text spacing-below\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.husbandName;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</li>\n                    <li>";
   stack1 = depth0.location;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.villageName;
@@ -326,7 +328,7 @@ function program33(depth0,data) {
   return buffer;});
 templates['anc_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
   
@@ -340,17 +342,17 @@ function program1(depth0,data) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " class=\"client-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span8\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">\n                        ";
-  foundHelper = helpers.womanName;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.womanName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.womanName;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "\n                        ";
   stack1 = depth0.isHighRisk;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                    </li>\n                    <li>";
-  foundHelper = helpers.husbandName;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.husbandName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.husbandName;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</li>\n                    <li>\n                     Thayi No: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
@@ -661,11 +663,13 @@ function program33(depth0,data) {
   buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span12\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.wifeName;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</li>\n                    <li class=\"medium-text spacing-below\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.husbandName;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</li>\n                    <li>";
   stack1 = depth0.village;
   foundHelper = helpers.formatText;
@@ -709,7 +713,7 @@ function program33(depth0,data) {
   return buffer;});
 templates['ec_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
   
@@ -723,9 +727,9 @@ function program1(depth0,data) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " class=\"client-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span8\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">\n                        ";
-  foundHelper = helpers.wifeName;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.wifeName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.wifeName;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "\n                        ";
   stack1 = depth0.isHighPriority;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)});
@@ -1016,11 +1020,13 @@ function program25(depth0,data) {
   buffer += escapeExpression(stack1) + "\">Close PNC record</div>\n</div>\n\n<div id=\"content\" class=\"content affected-by-sidepanel\">\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span12\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.wifeName;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</li>\n                    <li class=\"medium-text spacing-below\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.husbandName;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</li>\n                    <li>";
   stack1 = depth0.location;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.villageName;
@@ -1072,7 +1078,7 @@ function program25(depth0,data) {
   return buffer;});
 templates['pnc_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this, helperMissing=helpers.helperMissing;
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
   
@@ -1086,17 +1092,17 @@ function program1(depth0,data) {
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + " class=\"client-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span8\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">\n                        ";
-  foundHelper = helpers.womanName;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.womanName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.womanName;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "\n                        ";
   stack1 = depth0.isHighRisk;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                    </li>\n                    <li>";
-  foundHelper = helpers.husbandName;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.husbandName; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  stack1 = depth0.husbandName;
+  foundHelper = helpers.capitalize;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</li>\n                    <li>\n                     Thayi No: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
