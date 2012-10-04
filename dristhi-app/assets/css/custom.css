@@ -229,6 +229,15 @@
     padding-top: 8px;
 }
 
+.beneficiary-detail-content{
+    padding-left: 8px;
+}
+
+.beneficiary-detail-content .info{
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
 .beneficiary-detail-component .beneficiary-detail-header {
     font-weight: bold;
     margin-bottom: 4px;

@@ -299,22 +299,22 @@ function program33(depth0,data) {
   stack1 = depth0.todos;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.programWithDepth(program18, data, depth0)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n\n        <div class=\"divider\"></div>\n    </div>\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Summary\n        </div>\n        <div class=\"well well-for-beneficiary-summary\">\n            <div class=\"container-fluid container-no-padding\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                            ";
+  buffer += "\n    </div>\n\n    <div class=\"divider\"></div>\n\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Summary\n        </div>\n        <div class=\"well well-for-beneficiary-summary\">\n            <div class=\"container-fluid container-no-padding\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                            ";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isHighRisk;
   foundHelper = helpers.ifFalse;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.program(25, program25, data),fn:self.program(23, program23, data)}) : helperMissing.call(depth0, "ifFalse", stack1, {hash:{},inverse:self.program(25, program25, data),fn:self.program(23, program23, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                            <div class=\"divider-with-margin\"></div>\n                    </div>\n                    <div class=\"row-fluid beneficiary-detail-component\">\n                        <div class=\"beneficiary-detail-content\">\n                            <div class=\"span6 text-center right-border\">\n                                <span class=\"big-text-numbers\">";
+  buffer += "\n                    </div>\n                    <div class=\"divider-with-margin\"></div>\n                        <div class=\"beneficiary-detail-content\">\n                                <div class=\"span6 text-center right-border info\">\n                                    <span class=\"big-text-numbers\">";
   stack1 = depth0.pregnancyDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.monthsPregnant;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">Months Pregnant</span>\n                            </div>\n                            <div class=\"span6 text-center\">\n                                <span class=\"big-text-numbers\">";
+  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">Months Pregnant</span>\n                                </div>\n                                <div class=\"span6 text-center info\">\n                                    <span class=\"big-text-numbers\">";
   stack1 = depth0.pregnancyDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.edd;
   foundHelper = helpers.formatDate;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">EDD</span>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    ";
+  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">EDD</span>\n                                </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    ";
   stack1 = depth0.pregnancyDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isLastMonthOfPregnancy;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(27, program27, data)});
