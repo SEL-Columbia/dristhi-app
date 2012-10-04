@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.ei.drishti.util.ActionBuilder.actionForUpdateBeneficiary;
@@ -76,7 +77,7 @@ public class AllBeneficiariesTest {
 
         allBeneficiaries.handleMotherAction(action);
 
-        verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("Case Mother X", "1", visitDate.toString()));
+        verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("Case Mother X", "1", visitDate.toString(), new HashMap<String, String>()));
         verify(allTimelineEvents).add(TimelineEvent.forIFATabletsProvided(action.caseID(), "10", visitDate.toString()));
         verify(allTimelineEvents).add(TimelineEvent.forTTShotProvided(action.caseID(), "TT 1", visitDate.toString()));
     }
@@ -88,7 +89,7 @@ public class AllBeneficiariesTest {
 
         allBeneficiaries.handleMotherAction(action);
 
-        verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("Case Mother X", "1", visitDate.toString()));
+        verify(allTimelineEvents).add(TimelineEvent .forANCCareProvided("Case Mother X", "1", visitDate.toString(), new HashMap<String, String>()));
         verifyNoMoreInteractions(allTimelineEvents);
     }
 

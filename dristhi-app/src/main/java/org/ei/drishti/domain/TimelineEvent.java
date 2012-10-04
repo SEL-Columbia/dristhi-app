@@ -7,6 +7,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
+import java.util.Map;
+
 import static org.ei.drishti.util.DateUtil.formatDate;
 
 public class TimelineEvent {
@@ -43,13 +45,24 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "FPCHANGE", LocalDate.parse(dateOfFPChange), "Changed FP Method", "From: " + oldFPMethod, "To: " + newFPMethod);
     }
 
-    public static TimelineEvent forANCCareProvided(String caseId, String visitNumber, String visitDate) {
-        return new TimelineEvent(caseId, "ANCVISIT", LocalDate.parse(visitDate), "ANC Visit " + visitNumber, null, null);
+    public static TimelineEvent forANCCareProvided(String caseId, String visitNumber, String visitDate, Map<String, String> details) {
+        String bp = "BP: " + details.get("bpDiastolic") + "/" + details.get("bpSystolic") + "<br />";
+        String temperature = "Temp: " + details.get("temperature") + " °F<br />";
+        String weight = "Weight: " + details.get("weight") + " kg<br />";
+        String hbLevel = "Hb Level: " + details.get("hbLevel");
+        String detailsString = new StringBuilder()
+                .append(checkEmptyField(bp, details.get("bpDiastolic")))
+                .append(checkEmptyField(temperature, details.get("temperature")))
+                .append(checkEmptyField(weight, details.get("weight")))
+                .append(checkEmptyField(hbLevel, details.get("hbLevel")))
+                .toString();
+        return new TimelineEvent(caseId, "ANCVISIT", LocalDate.parse(visitDate), "ANC Visit " + visitNumber, detailsString, null);
     }
 
     public static TimelineEvent forIFATabletsProvided(String caseId, String numberOfIFATabletsProvided, String visitDate) {
         return new TimelineEvent(caseId, "IFAPROVIDED", LocalDate.parse(visitDate), "IFA Provided", numberOfIFATabletsProvided + " tablets", null);
     }
+
 
     public static TimelineEvent forTTShotProvided(String caseId, String ttDose, String visitDate) {
         return new TimelineEvent(caseId, "TTSHOTPROVIDED", LocalDate.parse(visitDate), "TT Injection Given", ttDose, null);
@@ -97,5 +110,12 @@ public class TimelineEvent {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
+    }
+
+    private static String checkEmptyField(String msg, String condition) {
+        if (StringUtils.isBlank(condition)) {
+            return "";
+        }
+        return msg;
     }
 }

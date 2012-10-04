@@ -43,7 +43,7 @@ public class AllBeneficiaries {
         } else if (action.type().equals("updateDetails")) {
             motherRepository.updateDetails(action.caseID(), action.details());
         } else if (action.type().equals("ancCareProvided")) {
-            allTimelines.add(forANCCareProvided(action.caseID(), action.get("visitNumber"), action.get("visitDate")));
+            allTimelines.add(forANCCareProvided(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
 
             String numberOfIFATabletsProvided = action.get("numberOfIFATabletsProvided");
             if (numberOfIFATabletsProvided != null && Integer.parseInt(numberOfIFATabletsProvided) > 0) {

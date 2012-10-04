@@ -236,7 +236,8 @@ function program33(depth0,data) {
   buffer += "\n                                                        ";
   foundHelper = helpers.formatText;
   stack1 = foundHelper ? foundHelper.call(depth0, depth0, {hash:{}}) : helperMissing.call(depth0, "formatText", depth0, {hash:{}});
-  buffer += escapeExpression(stack1) + "<br>\n                                                    ";
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "<br>\n                                                    ";
   return buffer;}
 
   stack1 = depth0.pregnancyDetails;
