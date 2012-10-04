@@ -1,7 +1,7 @@
 .timeline .type {
     width: 36px;
-    width: 36px;
-    margin: 10px 7px 0 12px;
+    height: 36px;
+    margin-right: 3px;
     vertical-align: auto;
 }
 

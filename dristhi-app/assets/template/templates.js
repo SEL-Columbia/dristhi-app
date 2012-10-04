@@ -213,10 +213,10 @@ function program31(depth0,data) {
 function program32(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                                    <div class=\"container-section-component row-fluid timelineEvent\">\n                                            <div class=\"timeline\">\n                                                <div class=\"span3 type ";
+  buffer += "\n                                    <div class=\"container-section-component row-fluid timelineEvent\">\n                                            <div class=\"timeline\">\n                                                <div class=\"span2 type ";
   stack1 = depth0.type;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\"></div>\n                                                <div class=\"span5\">\n                                                    <strong>";
+  buffer += escapeExpression(stack1) + "\"></div>\n                                                <div class=\"span6\">\n                                                    <strong>";
   foundHelper = helpers.title;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -613,10 +613,10 @@ function program31(depth0,data) {
 function program32(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                                    <div class=\"container-section-component row-fluid\">\n                                            <div class=\"timeline\">\n                                                <div class=\"span3 type ";
+  buffer += "\n                                    <div class=\"container-section-component row-fluid\">\n                                            <div class=\"timeline\">\n                                                <div class=\"span2 type ";
   stack1 = depth0.type;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\"></div>\n                                                <div class=\"span5\">\n                                                    <strong>";
+  buffer += escapeExpression(stack1) + "\"></div>\n                                                <div class=\"span6\">\n                                                    <strong>";
   foundHelper = helpers.title;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -980,10 +980,10 @@ function program23(depth0,data) {
 function program24(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                                    <div class=\"container-section-component row-fluid\">\n                                            <div class=\"timeline\">\n                                                <div class=\"span3 type ";
+  buffer += "\n                                    <div class=\"container-section-component row-fluid\">\n                                            <div class=\"timeline\">\n                                                <div class=\"span2 type ";
   stack1 = depth0.type;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\"></div>\n                                                <div class=\"span5\">\n                                                    <strong>";
+  buffer += escapeExpression(stack1) + "\"></div>\n                                                <div class=\"span6\">\n                                                    <strong>";
   foundHelper = helpers.title;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -999,10 +999,11 @@ function program24(depth0,data) {
   return buffer;}
 function program25(depth0,data) {
   
-  var buffer = "";
+  var buffer = "", stack1, foundHelper;
   buffer += "\n                                                        ";
-  depth0 = typeof depth0 === functionType ? depth0() : depth0;
-  buffer += escapeExpression(depth0) + "<br>\n                                                    ";
+  foundHelper = helpers.formatText;
+  stack1 = foundHelper ? foundHelper.call(depth0, depth0, {hash:{}}) : helperMissing.call(depth0, "formatText", depth0, {hash:{}});
+  buffer += escapeExpression(stack1) + "<br>\n                                                    ";
   return buffer;}
 
   buffer += "<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <ul class=\"nav pull-left\">\n            <img class=\"sidepanel-icon affected-by-sidepanel\"><img class=\"separator\">\n            <span class=\"name\">PNC</span>\n        </ul>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li><img class=\"separator\"></li>\n            <li data-modal-target=\"#pncFormModal\"><img class=\"update-data\"></li>\n        </ul>\n    </div>\n</div>\n\n<div id=\"pncFormModal\" class=\"modal-content\">\n    <div class=\"modal-row\" data-form=\"PNC_SERVICES\" data-caseid=\"";
