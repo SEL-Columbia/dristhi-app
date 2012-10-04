@@ -217,6 +217,14 @@
     border: 1px solid #ccc;
 }
 
+.well-for-beneficiary-summary{
+    padding: 0px;
+    background-color: #ffffff;
+    box-shadow: 2px 2px 3px 1px #ccc;
+    -webkit-box-shadow: 2px 2px 3px 1px #ccc;
+    border: 1px solid #ccc;
+}
+
 .beneficiary-detail-component {
     padding-top: 8px;
 }
