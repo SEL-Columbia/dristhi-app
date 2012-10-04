@@ -51,15 +51,15 @@ public class ANCDetailControllerTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        DateUtil.fakeIt(new LocalDate(2012, 5, 22));
+        DateUtil.fakeIt(new LocalDate(2012, 8, 1));
         controller = new ANCDetailController(context, caseId, allEligibleCouples, allBeneficiaries, allAlerts, allTimelineEvents, commCareClientService);
     }
 
     @Test
     public void shouldGetANCDetailsAsJSON() {
-        TimelineEvent pregnancyEvent = TimelineEvent.forStartOfPregnancy(caseId, "2011-10-22");
-        TimelineEvent ancEvent = TimelineEvent.forANCCareProvided(caseId, "2", "2011-10-22", new HashMap<String, String>());
-        TimelineEvent eventVeryCloseToCurrentDate = TimelineEvent.forANCCareProvided(caseId, "2", "2012-05-19", new HashMap<String, String>());
+        TimelineEvent pregnancyEvent = TimelineEvent.forStartOfPregnancy(caseId, "2011-10-21");
+        TimelineEvent ancEvent = TimelineEvent.forANCCareProvided(caseId, "2", "2011-12-22", new HashMap<String, String>());
+        TimelineEvent eventVeryCloseToCurrentDate = TimelineEvent.forANCCareProvided(caseId, "2", "2012-07-29", new HashMap<String, String>());
         ProfileTodo todo = new ProfileTodo(new Alert("Case X", "Theresa", "Husband 1", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open));
         ProfileTodo urgentTodo = new ProfileTodo(new Alert("Case X", "Theresa", "Husband 1", "bherya", "TT 1", "Thaayi 1", urgent, "2012-02-02", "2012-02-11", open));
 
@@ -74,8 +74,8 @@ public class ANCDetailControllerTest {
         ANCDetail expectedDetail = new ANCDetail(caseId, "TC 1",
                 new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false),
                 new LocationDetails("Village 1", "Subcenter 1"),
-                new PregnancyDetails("7", "2012-07-28"))
-                .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "6m 1m ago"), eventFor(pregnancyEvent, "6m 1m ago")))
+                new PregnancyDetails("9", "2012-07-28"))
+                .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "7m 1w ago"), eventFor(pregnancyEvent, "9m 2w ago")))
                 .addTodos(asList(todo))
                 .addUrgentTodos(asList(urgentTodo))
                 .addExtraDetails(details);

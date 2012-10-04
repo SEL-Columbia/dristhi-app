@@ -11,8 +11,8 @@ public class AllTimelineEvents {
         this.repository = repository;
     }
 
-    public List<TimelineEvent> forCase(String ecCaseId) {
-        return repository.allFor(ecCaseId);
+    public List<TimelineEvent> forCase(String caseId) {
+        return repository.allFor(caseId);
     }
 
     public void add(TimelineEvent timelineEvent) {

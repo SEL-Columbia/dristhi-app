@@ -46,7 +46,7 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forANCCareProvided(String caseId, String visitNumber, String visitDate, Map<String, String> details) {
-        String bp = "BP: " + details.get("bpDiastolic") + "/" + details.get("bpSystolic") + "<br />";
+        String bp = "BP: " + details.get("bpSystolic") + "/" + details.get("bpDiastolic") + "<br />";
         String temperature = "Temp: " + details.get("temperature") + " °F<br />";
         String weight = "Weight: " + details.get("weight") + " kg<br />";
         String hbLevel = "Hb Level: " + details.get("hbLevel");

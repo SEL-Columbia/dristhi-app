@@ -9,6 +9,7 @@ import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
+import org.ei.drishti.util.TimelineEventComparator;
 import org.ei.drishti.view.contract.*;
 import org.ei.drishti.view.contract.TimelineEvent;
 import org.joda.time.LocalDate;
@@ -75,10 +76,11 @@ public class ANCDetailController {
         List<org.ei.drishti.domain.TimelineEvent> events = allTimelineEvents.forCase(caseId);
         List<TimelineEvent> timelineEvents = new ArrayList<TimelineEvent>();
 
+        Collections.sort(events, new TimelineEventComparator());
+
         for (org.ei.drishti.domain.TimelineEvent event : events) {
             timelineEvents.add(new TimelineEvent(event.type(), event.title(), new String[]{event.detail1(), event.detail2()}, formatDate(event.referenceDate())));
         }
-        Collections.reverse(timelineEvents);
 
         return timelineEvents;
     }
@@ -87,4 +89,5 @@ public class ANCDetailController {
         List<Duration> durationComponents = prettyTime.calculatePreciseDuration(date.toDate());
         return prettyTime.format(durationComponents.subList(0, min(durationComponents.size(), 2))).replaceAll(" _", "");
     }
+
 }

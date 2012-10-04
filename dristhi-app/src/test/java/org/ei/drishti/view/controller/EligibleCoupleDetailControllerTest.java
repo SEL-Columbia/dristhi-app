@@ -48,15 +48,15 @@ public class EligibleCoupleDetailControllerTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        DateUtil.fakeIt(new LocalDate(2012, 5, 22));
+        DateUtil.fakeIt(new LocalDate(2012, 8, 1));
         controller = new EligibleCoupleDetailController(context, caseId, allEligibleCouples, allAlerts, allTimelineEvents, commCareClientService);
     }
 
     @Test
     public void shouldGetANCDetailsAsJSON() {
-        TimelineEvent pregnancyEvent = TimelineEvent.forStartOfPregnancyForEC(caseId, "TC 1", "2011-10-22");
-        TimelineEvent ancEvent = TimelineEvent.forChangeOfFPMethod(caseId, "condom", "iud", "2011-10-22");
-        TimelineEvent eventVeryCloseToCurrentDate = TimelineEvent.forChangeOfFPMethod(caseId, "iud", "condom", "2012-05-19");
+        TimelineEvent pregnancyEvent = TimelineEvent.forStartOfPregnancyForEC(caseId, "TC 1", "2011-10-21");
+        TimelineEvent fpEvent = TimelineEvent.forChangeOfFPMethod(caseId, "condom", "iud", "2011-12-22");
+        TimelineEvent eventVeryCloseToCurrentDate = TimelineEvent.forChangeOfFPMethod(caseId, "iud", "condom", "2012-07-29");
         ProfileTodo todo = new ProfileTodo(new Alert("Case X", "Theresa", "Husband 1", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open));
         ProfileTodo urgentTodo = new ProfileTodo(new Alert("Case X", "Theresa", "Husband 1", "bherya", "TT 1", "Thaayi 1", urgent, "2012-02-02", "2012-02-11", open));
 
@@ -66,12 +66,12 @@ public class EligibleCoupleDetailControllerTest {
 
         when(allEligibleCouples.findByCaseID(caseId)).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "Village 1", "Subcenter 1", details));
         when(allAlerts.fetchAllActiveAlertsForCase(caseId)).thenReturn(asList(asList(todo), asList(urgentTodo)));
-        when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent, ancEvent, eventVeryCloseToCurrentDate));
+        when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent, fpEvent, eventVeryCloseToCurrentDate));
 
         ECDetail expectedDetail = new ECDetail(caseId, "Village 1", "Subcenter 1", "EC Number 1", true, null, new ArrayList<Child>(), new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false), details)
             .addTodos(asList(todo))
             .addUrgentTodos(asList(urgentTodo))
-            .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "6m 1m ago"), eventFor(pregnancyEvent, "6m 1m ago")));
+            .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(fpEvent, "7m 1w ago"), eventFor(pregnancyEvent, "9m 2w ago")));
 
         String actualJson = controller.get();
         ECDetail actualDetail = new Gson().fromJson(actualJson, ECDetail.class);
