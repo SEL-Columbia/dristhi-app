@@ -11,14 +11,20 @@
 
 .alert.overdue {
     background: #f7cbcb;
+    border-color: #da0e0e;
+    border-width: 1px;
 }
 
 .alert.upcoming {
     background: #c4e4f8;
+    border-color: #3b6f90;
+    border-width: 1px;
 }
 
 .alert.completed {
     background: #cde6c1;
+    border-color: #3e9143;
+    border-width: 1px;
 }
 
 .alert.overdue .todo-box.checked {
