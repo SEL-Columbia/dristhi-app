@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.domain.Mother;
+import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
@@ -21,12 +23,14 @@ import java.util.List;
 public class EligibleCoupleListViewController {
     public static final String ELIGIBLE_COUPLE_LIST = "EligibleCoupleList";
     private AllEligibleCouples allEligibleCouples;
+    private AllBeneficiaries allBeneficiaries;
     private Context context;
     private CommCareClientService commCareClientService;
     private Cache<String> eligibleCoupleListCache;
 
-    public EligibleCoupleListViewController(AllEligibleCouples allEligibleCouples, Cache<String> eligibleCoupleListCache, Context context, CommCareClientService commCareClientService) {
+    public EligibleCoupleListViewController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, Cache<String> eligibleCoupleListCache, Context context, CommCareClientService commCareClientService) {
         this.allEligibleCouples = allEligibleCouples;
+        this.allBeneficiaries = allBeneficiaries;
         this.context = context;
         this.commCareClientService = commCareClientService;
         this.eligibleCoupleListCache = eligibleCoupleListCache;
@@ -42,7 +46,9 @@ public class EligibleCoupleListViewController {
 
                 for (EligibleCouple couple : couples) {
                     List<EC> ecListBasedOnPriority = couple.isHighPriority() ? highPriority : normalPriority;
-                    ecListBasedOnPriority.add(new EC(couple.caseId(), couple.wifeName(), couple.husbandName(), couple.village(), couple.ecNumber(), couple.isHighPriority(), false));
+                    Mother mother = allBeneficiaries.findMotherByECCaseId(couple.caseId());
+                    String thayiCardNumber = mother == null ? "" : mother.thaayiCardNumber();
+                    ecListBasedOnPriority.add(new EC(couple.caseId(), couple.wifeName(), couple.husbandName(), couple.village(), couple.ecNumber(), thayiCardNumber, couple.isHighPriority(), false));
                 }
 
                 sort(highPriority);

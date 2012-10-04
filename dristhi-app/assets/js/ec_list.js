@@ -99,7 +99,8 @@ function FakeECListContext() {
                         ecNumber: "EC Number 1",
                         villageName: "munjanahalli",
                         isHighPriority: true,
-                        hasTodos: false
+                        hasTodos: false,
+                        thayiCardNumber: ""
                     }
                 ],
                 normalPriority: [
@@ -110,7 +111,8 @@ function FakeECListContext() {
                         ecNumber: "EC Number 2",
                         villageName: "chikkabheriya",
                         isHighPriority: false,
-                        hasTodos: true
+                        hasTodos: true,
+                        thayiCardNumber: "12345"
 
                     }
                 ]

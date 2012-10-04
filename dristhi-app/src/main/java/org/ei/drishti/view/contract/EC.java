@@ -10,15 +10,17 @@ public class EC {
     private String husbandName;
     private String ecNumber;
     private String villageName;
+    private String thayiCardNumber;
     private boolean isHighPriority;
     private boolean hasTodos;
 
-    public EC(String caseId, String wifeName, String husbandName, String villageName, String ecNumber, boolean isHighPriority, boolean hasTodos) {
+    public EC(String caseId, String wifeName, String husbandName, String villageName, String ecNumber, String thayiCardNumber, boolean isHighPriority, boolean hasTodos) {
         this.caseId = caseId;
         this.wifeName = wifeName;
         this.husbandName = husbandName;
         this.villageName = villageName;
         this.ecNumber = ecNumber;
+        this.thayiCardNumber = thayiCardNumber;
         this.isHighPriority = isHighPriority;
         this.hasTodos = hasTodos;
     }

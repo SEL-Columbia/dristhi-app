@@ -89,4 +89,11 @@ public class AllBeneficiaries {
     public List<Pair<Mother, EligibleCouple>> allANCsWithEC() {
         return motherRepository.allANCsWithEC();
     }
+
+    public Mother findMotherByECCaseId(String ecCaseId) {
+        List<Mother> mothers = motherRepository.findAllCasesForEC(ecCaseId);
+        if (mothers.isEmpty())
+            return null;
+        return mothers.get(0);
+    }
 }

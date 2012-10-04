@@ -113,7 +113,7 @@ public class MotherRepository extends DrishtiRepository {
         }
     }
 
-    private List<Mother> findAllCasesForEC(String ecCaseId) {
+    public List<Mother> findAllCasesForEC(String ecCaseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, EC_CASEID_COLUMN + " = ?", new String[]{ecCaseId}, null, null, null, null);
         return readAll(cursor);

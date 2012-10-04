@@ -744,13 +744,17 @@ function program1(depth0,data) {
   foundHelper = helpers.ecNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.ecNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\n                    </li>\n                </ul>\n            </div>\n\n            <div class=\"span4 pull-text-completely-right\">\n                ";
+  buffer += escapeExpression(stack1);
+  stack1 = depth0.thayiCardNumber;
+  stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n                    </li>\n                </ul>\n            </div>\n\n            <div class=\"span4 pull-text-completely-right\">\n                ";
   stack1 = depth0.villageName;
   foundHelper = helpers.formatText;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "\n                <p>\n                ";
   stack1 = depth0.hasTodos;
-  stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)});
+  stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </div>\n\n            <div class=\"divider divider-padding-both\"></div>\n        </a>\n    </div>\n";
   return buffer;}
@@ -760,6 +764,16 @@ function program2(depth0,data) {
   return "<span class=\"high-risk\"> HP </span>";}
 
 function program4(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += ", TC No: ";
+  foundHelper = helpers.thayiCardNumber;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.thayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1);
+  return buffer;}
+
+function program6(depth0,data) {
   
   
   return "\n                <div class = \"todo pull-text-completely-right\">\n                    <img src=\"../img/icons/icon-hastodo.png\"></img>\n                </div>\n                ";}
