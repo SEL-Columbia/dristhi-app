@@ -45,7 +45,7 @@ public class PNCListViewController {
                     EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
                     List<PNC> pncListBasedOnRisk = mother.isHighRisk() ? highRiskPncs : normalRiskPncs;
 
-                    pncListBasedOnRisk.add(new PNC(mother.caseId(), mother.thaayiCardNumber(), couple.wifeName(), couple.husbandName(), couple.village(), mother.isHighRisk()));
+                    pncListBasedOnRisk.add(new PNC(mother.caseId(), mother.thaayiCardNumber(), couple.wifeName(), couple.husbandName(), couple.ecNumber(), couple.village(), mother.isHighRisk()));
                 }
 
                 sort(normalRiskPncs);

@@ -57,8 +57,8 @@ public class PNCListViewControllerTest {
         PNCs pnCs = new Gson().fromJson(controller.get(), new TypeToken<PNCs>() {
         }.getType());
 
-        assertEquals(asList(new PNC("Case 1", "TC 1", "Woman A", "Husband A", "Bherya", false), new PNC("Case 3", "TC 3", "woman C", "Husband C", "Bherya", false)), pnCs.normalRisk());
-        assertEquals(asList(new PNC("Case 2", "TC 2", "woman B", "Husband B", "Bherya", true), new PNC("Case 4", "TC 4", "Woman D", "Husband D", "Bherya", true)), pnCs.highRisk());
+        assertEquals(asList(new PNC("Case 1", "TC 1", "Woman A", "Husband A", "EC Number 1", "Bherya", false), new PNC("Case 3", "TC 3", "woman C", "Husband C", "EC Number 3", "Bherya", false)), pnCs.normalRisk());
+        assertEquals(asList(new PNC("Case 2", "TC 2", "woman B", "Husband B", "EC Number 2", "Bherya", true), new PNC("Case 4", "TC 4", "Woman D", "Husband D", "EC Number 4", "Bherya", true)), pnCs.highRisk());
     }
 
     @Test

@@ -98,6 +98,7 @@ function FakeANCListContext() {
                         womanName: "Wife 1",
                         husbandName: "Husband 1",
                         thaayiCardNumber: "TC Number 1",
+                        ecNumber: "EC 1",
                         villageName: "chikkabheriya",
                         hasTodos: true,
                         isHighRisk: true
@@ -107,6 +108,7 @@ function FakeANCListContext() {
                         womanName: "Wife 2",
                         husbandName: "Husband 2",
                         thaayiCardNumber: "TC Number 2",
+                        ecNumber: "EC 2",
                         villageName: "munjanahalli",
                         hasTodos: false,
                         isHighRisk: true
@@ -118,6 +120,7 @@ function FakeANCListContext() {
                         womanName: "Wife 4",
                         husbandName: "Husband 4",
                         thaayiCardNumber: "TC Number 4",
+                        ecNumber: "EC 3",
                         villageName: "chikkabheriya",
                         hasTodos: true,
                         isHighRisk: false
@@ -127,6 +130,7 @@ function FakeANCListContext() {
                         womanName: "Wife 5",
                         husbandName: "Husband 5",
                         thaayiCardNumber: "TC Number 5",
+                        ecNumber: "EC 4",
                         villageName: "munjanahalli",
                         hasTodos: false,
                         isHighRisk: false
@@ -136,6 +140,7 @@ function FakeANCListContext() {
                         womanName: "Wife 6",
                         husbandName: "Husband 6",
                         thaayiCardNumber: "TC Number 6",
+                        ecNumber: "EC 5",
                         villageName: "munjanahalli",
                         hasTodos: true,
                         isHighRisk: false

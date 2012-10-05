@@ -91,6 +91,7 @@ function FakePNCListContext() {
                         thaayiCardNumber: "TC Number 1",
                         villageName: "chikkabheriya",
                         hasTodos: true,
+                        ecNumber: "EC 1",
                         isHighRisk: true
                     },
                     {
@@ -99,6 +100,7 @@ function FakePNCListContext() {
                         husbandName: "Husband 2",
                         thaayiCardNumber: "TC Number 2",
                         villageName: "munjanahalli",
+                        ecNumber: "EC 2",
                         hasTodos: false,
                         isHighRisk: true
                     }
@@ -110,6 +112,7 @@ function FakePNCListContext() {
                         husbandName: "Husband 4",
                         thaayiCardNumber: "TC Number 4",
                         villageName: "chikkabheriya",
+                        ecNumber: "EC 3",
                         hasTodos: true,
                         isHighRisk: false
                     },
@@ -119,6 +122,7 @@ function FakePNCListContext() {
                         husbandName: "Husband 5",
                         thaayiCardNumber: "TC Number 5",
                         villageName: "munjanahalli",
+                        ecNumber: "EC 4",
                         hasTodos: false,
                         isHighRisk: false
                     },
@@ -127,6 +131,7 @@ function FakePNCListContext() {
                         womanName: "Wife 6",
                         husbandName: "Husband 6",
                         thaayiCardNumber: "TC Number 6",
+                        ecNumber: "EC 5",
                         villageName: "chikkabheriya",
                         hasTodos: true,
                         isHighRisk: false
