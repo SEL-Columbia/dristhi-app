@@ -1,8 +1,11 @@
 package org.ei.drishti.view.activity;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import org.ei.drishti.R;
@@ -18,11 +21,29 @@ import static org.ei.drishti.domain.FetchStatus.fetched;
 public abstract class SecuredWebActivity extends SecuredActivity {
     protected WebView webView;
     protected UpdateController updateController;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreation() {
         setContentView(R.layout.html);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Please wait");
+        progressDialog.setTitle("Loading ...");
+        progressDialog.show();
         webView = (WebView) findViewById(R.id.webview);
+
+        final Activity activity = this;
+        webView.setWebChromeClient(new WebChromeClient() {
+            public void onProgressChanged(WebView view, int progress) {
+                activity.setProgress(progress * 1000);
+
+                if(progress == 100 && progressDialog.isShowing())
+                    progressDialog.dismiss();
+            }
+        });
+
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
