@@ -84,12 +84,11 @@
 
 .navbar .nav .name {
     font-weight: 500;
-    font-size: 20px;
+    font-size: 19px;
     color: #fff;
-    margin-top: 12px;
+    margin-top: 20px;
     vertical-align: text-bottom;
     text-shadow: 0 1px 2px #000000;
-    width: 105px;
 }
 
 .navbar-icon {
@@ -213,16 +212,18 @@
     padding-top: 0px;
     margin-bottom: 0px;
     background-color: #ffffff;
-    box-shadow: 2px 2px 3px 1px #ccc;
-    -webkit-box-shadow: 2px 2px 3px 1px #ccc;
+    -webkit-box-shadow: 0px 3px 6px rgba(29, 17, 0, 0.25);
+	-moz-box-shadow:    0px 3px 6px rgba(29, 17, 0, 0.25);
+	box-shadow:         0px 3px 6px rgba(29, 17, 0, 0.25);
     border: 1px solid #ccc;
 }
 
-.well-for-beneficiary-summary{
+.well-for-beneficiary-details-no-padding{
     padding: 0px;
     background-color: #ffffff;
-    box-shadow: 2px 2px 3px 1px #ccc;
-    -webkit-box-shadow: 2px 2px 3px 1px #ccc;
+    -webkit-box-shadow: 0px 3px 6px rgba(29, 17, 0, 0.25);
+	-moz-box-shadow:    0px 3px 6px rgba(29, 17, 0, 0.25);
+	box-shadow:         0px 3px 6px rgba(29, 17, 0, 0.25);
     border: 1px solid #ccc;
 }
 
@@ -369,6 +370,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    width: 100%;
 }
 
 .profile-alert {
@@ -384,6 +386,7 @@ body {
 .detail-section-header {
     color: #999999;
     margin-bottom: 6px;
+	margin-left: 10px;
     font-size: 17px;
     letter-spacing: -.5px;
 }
@@ -402,6 +405,14 @@ body {
 
 .text-right {
     text-align: right;
+}
+
+.expand{
+	text-align: center;
+	font-size: 18px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	color: #0591D3;
 }
 
 .meta-summary-text {
