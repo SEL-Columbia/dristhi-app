@@ -49,7 +49,7 @@ public class ActionBuilder {
     }
 
     public static Action actionForCreateChild(String motherCaseId) {
-        return new Action("Case X", "child", "register", registerChildBirth(motherCaseId, LocalDate.now(), "female").data(), "0", new HashMap<String, String>());
+        return new Action("Case X", "child", "register", registerChildBirth(motherCaseId, LocalDate.now(), "female", new HashMap<String, String>()).data(), "0", new HashMap<String, String>());
     }
 
     public static Action actionForOutOfAreaANCRegistration(String caseId) {
