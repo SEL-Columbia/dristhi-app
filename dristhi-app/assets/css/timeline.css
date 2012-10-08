@@ -1,13 +1,24 @@
+.timeline{
+	padding-left: 8px;
+	padding-right: 8px;
+	background-image:url('../img/spine.png');
+	background-repeat:repeat-y;
+	background-position: 25px 55px;
+}
+
+.timeline .timeline-component{
+	margin-top: 15px;
+}
+
 .timeline .type {
     width: 36px;
     height: 36px;
-    margin-right: 3px;
+    margin-right: 12px;
     vertical-align: auto;
 }
 
 .timeline .type.PREGNANCY {
     content: url(../img/icons/icon-event-anc.png);
-
 }
 
 .timeline .type.FPCHANGE {
@@ -15,7 +26,7 @@
 }
 
 .timeline .type.ANCVISIT {
-    content: url(../img/icons/icon-event-anc.png);
+    content: url(../img/icons/icon-event-anc.png);	
 }
 
 .timeline .type.IFAPROVIDED {
@@ -28,6 +39,10 @@
 
 .timeline .type.CHILD-BIRTH {
     content: url(../img/icons/icon-event-birth.png);
+}
+
+.timeline .CHILD-BIRTH-detail{
+	color: #58A356;
 }
 
 .timeline .type.ECREGISTERED {

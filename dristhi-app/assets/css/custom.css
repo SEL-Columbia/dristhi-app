@@ -84,7 +84,7 @@
 
 .navbar .nav .name {
     font-weight: 500;
-    font-size: 20px;
+    font-size: 19px;
     color: #fff;
     margin-top: 20px;
     vertical-align: text-bottom;
@@ -213,17 +213,17 @@
     margin-bottom: 0px;
     background-color: #ffffff;
     -webkit-box-shadow: 0px 3px 6px rgba(29, 17, 0, 0.25);
--moz-box-shadow:    0px 3px 6px rgba(29, 17, 0, 0.25);
-box-shadow:         0px 3px 6px rgba(29, 17, 0, 0.25);
+	-moz-box-shadow:    0px 3px 6px rgba(29, 17, 0, 0.25);
+	box-shadow:         0px 3px 6px rgba(29, 17, 0, 0.25);
     border: 1px solid #ccc;
 }
 
-.well-for-beneficiary-summary{
+.well-for-beneficiary-details-no-padding{
     padding: 0px;
     background-color: #ffffff;
     -webkit-box-shadow: 0px 3px 6px rgba(29, 17, 0, 0.25);
--moz-box-shadow:    0px 3px 6px rgba(29, 17, 0, 0.25);
-box-shadow:         0px 3px 6px rgba(29, 17, 0, 0.25);
+	-moz-box-shadow:    0px 3px 6px rgba(29, 17, 0, 0.25);
+	box-shadow:         0px 3px 6px rgba(29, 17, 0, 0.25);
     border: 1px solid #ccc;
 }
 
@@ -386,6 +386,7 @@ body {
 .detail-section-header {
     color: #999999;
     margin-bottom: 6px;
+	margin-left: 10px;
     font-size: 17px;
     letter-spacing: -.5px;
 }
@@ -404,6 +405,14 @@ body {
 
 .text-right {
     text-align: right;
+}
+
+.expand{
+	text-align: center;
+	font-size: 18px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	color: #0591D3;
 }
 
 .meta-summary-text {
