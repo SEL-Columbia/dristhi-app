@@ -11,14 +11,20 @@
 
 .alert.overdue {
     background: #f7cbcb;
+    border-color: #da0e0e;
+    border-width: 1px;
 }
 
 .alert.upcoming {
     background: #c4e4f8;
+    border-color: #3b6f90;
+    border-width: 1px;
 }
 
 .alert.completed {
     background: #cde6c1;
+    border-color: #3e9143;
+    border-width: 1px;
 }
 
 .alert.overdue .todo-box.checked {
@@ -26,7 +32,7 @@
 }
 
 .alert.overdue .todo-box:not(.checked) {
-    content: url(../img/checkbox_overdue_unchecked.png)
+    content: url(../img/checkbox_overdue_unchecked@3x.png)
 }
 
 .alert.upcoming .todo-box.checked {
@@ -34,15 +40,15 @@
 }
 
 .alert.upcoming .todo-box:not(.checked) {
-    content: url(../img/checkbox_upcoming_unchecked.png)
+    content: url(../img/checkbox_upcoming_unchecked@3x.png)
 }
 
 .alert.completed .todo-box.checked {
-    content: url(../img/checkbox_completed.png)
+    content: url(../img/checkbox_completed@3x.png)
 }
 
 .alert.completed .todo-box:not(.checked) {
-    content: url(../img/checkbox_completed_unchecked.png)
+    content: url(../img/checkbox_completed_unchecked@3x.png)
 }
 
 .alert-todo-message {
