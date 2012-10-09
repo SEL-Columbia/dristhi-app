@@ -1,20 +1,27 @@
 package org.ei.drishti.domain;
 
+import com.google.gson.Gson;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.util.Map;
 
 public class Child {
     private final String caseId;
     private final String ecCaseId;
     private final String thaayiCardNumber;
-    private String referenceDate;
+    private String dateOfBirth;
+    private final String gender;
+    private final Map<String, String> details;
 
-    public Child(String caseId, String ecCaseId, String thaayiCardNumber, String referenceDate) {
+    public Child(String caseId, String motherCaseId, String thaayiCardNumber, String dateOfBirth, String gender, Map<String, String> details) {
         this.caseId = caseId;
-        this.ecCaseId = ecCaseId;
+        this.ecCaseId = motherCaseId;
         this.thaayiCardNumber = thaayiCardNumber;
-        this.referenceDate = referenceDate;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.details = details;
     }
 
     public String caseId() {
@@ -29,8 +36,16 @@ public class Child {
         return thaayiCardNumber;
     }
 
-    public String referenceDate() {
-        return referenceDate;
+    public String dateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String gender() {
+        return gender;
+    }
+
+    public String details() {
+        return new Gson().toJson(details);
     }
 
     @Override

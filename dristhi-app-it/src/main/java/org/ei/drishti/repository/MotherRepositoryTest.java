@@ -3,19 +3,13 @@ package org.ei.drishti.repository;
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 import org.apache.commons.lang3.tuple.Pair;
-import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
-import org.ei.drishti.domain.TimelineEvent;
+import org.ei.drishti.domain.*;
 import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.Session;
 import org.joda.time.LocalDate;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.AlertStatus.open;
@@ -163,11 +157,11 @@ public class MotherRepositoryTest extends AndroidTestCase {
         Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
 
         repository.add(mother1);
-        childRepository.addChildForMother(mother1, "CASE A", "2012-06-09", "female");
-        childRepository.addChildForMother(mother1, "CASE B", "2012-06-09", "male");
+        childRepository.addChildForMother(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", new HashMap<String, String>()));
+        childRepository.addChildForMother(new Child("CASE B", "CASE X", "TC 1", "2012-06-09", "male", new HashMap<String, String>()));
 
         repository.add(mother2);
-        childRepository.addChildForMother(mother2, "CASE C", "2012-06-10", "female");
+        childRepository.addChildForMother(new Child("CASE C", "CASE Y", "TC 2", "2012-06-09", "female", new HashMap<String, String>()));
 
         repository.close(mother1.caseId());
 

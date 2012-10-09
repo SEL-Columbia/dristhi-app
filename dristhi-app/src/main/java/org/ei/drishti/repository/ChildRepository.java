@@ -2,6 +2,8 @@ package org.ei.drishti.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.Child;
@@ -10,15 +12,18 @@ import org.ei.drishti.domain.TimelineEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ChildRepository extends DrishtiRepository {
-    private static final String CHILD_SQL = "CREATE TABLE child(caseID VARCHAR PRIMARY KEY, thaayiCardNumber VARCHAR, motherCaseId VARCHAR, referenceDate VARCHAR)";
+    private static final String CHILD_SQL = "CREATE TABLE child(caseID VARCHAR PRIMARY KEY, thaayiCardNumber VARCHAR, motherCaseId VARCHAR, dateOfBirth VARCHAR, gender VARCHAR, details VARCHAR)";
     private static final String CHILD_TABLE_NAME = "child";
     private static final String CASE_ID_COLUMN = "caseID";
     private static final String MOTHER_CASEID_COLUMN = "motherCaseId";
     private static final String THAAYI_CARD_COLUMN = "thaayiCardNumber";
-    private static final String REF_DATE_COLUMN = "referenceDate";
-    private static final String[] CHILD_TABLE_COLUMNS = {CASE_ID_COLUMN, MOTHER_CASEID_COLUMN, THAAYI_CARD_COLUMN, REF_DATE_COLUMN};
+    private static final String DATE_OF_BIRTH_COLUMN = "dateOfBirth";
+    private static final String GENDER_COLUMN = "gender";
+    private static final String DETAILS_COLUMN = "details";
+    private static final String[] CHILD_TABLE_COLUMNS = {CASE_ID_COLUMN, MOTHER_CASEID_COLUMN, THAAYI_CARD_COLUMN, DATE_OF_BIRTH_COLUMN, GENDER_COLUMN, DETAILS_COLUMN};
 
     private TimelineEventRepository timelineEventRepository;
     private AlertRepository alertRepository;
@@ -33,14 +38,15 @@ public class ChildRepository extends DrishtiRepository {
         database.execSQL(CHILD_SQL);
     }
 
-    public void addChildForMother(Mother mother, String caseId, String referenceDate, String gender) {
-        if (mother == null) {
-            return;
-        }
+    public void addChildForMother(Mother mother, String caseId, String dateOfBirth, String gender, Map<String, String> details) {
+        Child child = new Child(caseId, mother.caseId(), mother.thaayiCardNumber(), dateOfBirth, gender, details);
+        addChildForMother(child);
+    }
 
+    public void addChildForMother(Child child) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
-        database.insert(CHILD_TABLE_NAME, null, createValuesFor(new Child(caseId, mother.caseId(), mother.thaayiCardNumber(), referenceDate)));
-        timelineEventRepository.add(TimelineEvent.forChildBirth(caseId, referenceDate, gender));
+        database.insert(CHILD_TABLE_NAME, null, createValuesFor(child));
+        timelineEventRepository.add(TimelineEvent.forChildBirth(child.caseId(), child.dateOfBirth(), child.gender()));
     }
 
     public List<Child> all() {
@@ -88,7 +94,9 @@ public class ChildRepository extends DrishtiRepository {
         values.put(CASE_ID_COLUMN, child.caseId());
         values.put(MOTHER_CASEID_COLUMN, child.ecCaseId());
         values.put(THAAYI_CARD_COLUMN, child.thaayiCardNumber());
-        values.put(REF_DATE_COLUMN, child.referenceDate());
+        values.put(DATE_OF_BIRTH_COLUMN, child.dateOfBirth());
+        values.put(GENDER_COLUMN, child.gender());
+        values.put(DETAILS_COLUMN, child.details());
         return values;
     }
 
@@ -96,7 +104,8 @@ public class ChildRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<Child> children = new ArrayList<Child>();
         while (!cursor.isAfterLast()) {
-            children.add(new Child(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)));
+            children.add(new Child(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                    new Gson().<Map<String, String>>fromJson(cursor.getString(5), new TypeToken<Map<String, String>>() {}.getType())));
             cursor.moveToNext();
         }
         cursor.close();

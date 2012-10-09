@@ -1,6 +1,7 @@
 package org.ei.drishti.repository;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
@@ -94,16 +95,6 @@ public class AllBeneficiariesTest {
     }
 
     @Test
-    public void shouldSwitchMotherToPNCWhenChildIsAdded() throws Exception {
-        when(motherRepository.find("Case Mom")).thenReturn(new Mother("Case Mom", "EC Case 1", "TC 1", "2012-06-08"));
-        Action childAction = ActionBuilder.actionForCreateChild("Case Mom");
-        allBeneficiaries.handleChildAction(childAction);
-
-        verify(motherRepository).switchToPNC("Case Mom");
-        verify(childRepository).addChildForMother(new Mother("Case Mom", "EC Case 1", "TC 1", "2012-06-08"), "Case X", referenceDate, "female");
-    }
-
-    @Test
     public void shouldCloseANC() throws Exception {
         allBeneficiaries.handleMotherAction(actionForUpdateBeneficiary());
 
@@ -119,5 +110,25 @@ public class AllBeneficiariesTest {
 
         verify(motherRepository).switchToPNC(caseId);
         verify(motherRepository).updateDetails(caseId, mapOf("some-key", "some-value"));
+    }
+
+    @Test
+    public void shouldRegisterChildWhenMotherIsFound() throws Exception {
+        Action action = ActionBuilder.actionForCreateChild("Case Mother X");
+        when(motherRepository.find("Case Mother X")).thenReturn(new Mother("Case Mother X", "EC CASE 1", "TC 1", "2012-01-01"));
+
+        allBeneficiaries.handleChildAction(action);
+
+        verify(childRepository).addChildForMother(new Child("Case X", "Case Mother X", "TC 1", LocalDate.now().toString(), "female", new HashMap<String, String>()));
+    }
+
+    @Test
+    public void shouldNotRegisterChildWhenMotherIsNotFound() throws Exception {
+        Action action = ActionBuilder.actionForCreateChild("Case Mother X");
+        when(motherRepository.find("Case Mother X")).thenReturn(null);
+
+        allBeneficiaries.handleChildAction(action);
+
+        verifyZeroInteractions(childRepository);
     }
 }

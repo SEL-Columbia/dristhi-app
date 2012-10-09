@@ -29,8 +29,10 @@ public class AllBeneficiaries {
     public void handleChildAction(Action action) {
         if (action.type().equals("register")) {
             Mother mother = motherRepository.find(action.get("motherCaseId"));
-            motherRepository.switchToPNC(mother.caseId());
-            childRepository.addChildForMother(mother, action.caseID(), action.get("referenceDate"), action.get("gender"));
+            if (mother == null) {
+                return;
+            }
+            childRepository.addChildForMother(new Child(action.caseID(), action.get("motherCaseId"), action.get("thaayiCardNumber"), action.get("dateOfBirth"), action.get("gender"), action.details()));
         }
     }
 
