@@ -102,7 +102,7 @@
         <div class="big-text row-fluid detail-section-header">
             Summary
         </div>
-        <div class="well well-for-beneficiary-details">
+        <div class="well well-for-beneficiary-details-no-padding">
             <div class="container-fluid container-no-padding">
                 <div class="row-fluid beneficiary-detail-component">
                     <div class="beneficiary-detail-content">
@@ -167,7 +167,7 @@
         <div class="big-text row-fluid detail-section-header">
             Timeline
         </div>
-        <div class="well well-for-beneficiary-details">
+        <div class="well well-for-beneficiary-details-no-padding">
             <div class="container-fluid container-no-padding">
                 {{#ifequal timelineEvents.length 0}}
                     <div class="row-fluid unavailable-data">
@@ -176,23 +176,25 @@
                 {{else}}
                     <div class="row-fluid beneficiary-detail-component">
                         <div class="beneficiary-detail-content">
-                            <div class="container-section container-fluid">
+                            <div class="timeline">
                                 {{#each timelineEvents}}
-                                    <div class="container-section-component row-fluid">
-                                            <div class="timeline">
-                                                <div class="span2 type {{this.type}}"></div>
-                                                <div class="span6">
-                                                    <strong>{{title}}</strong><br>
-                                                    {{#each details}}
-                                                        {{{formatText this}}}<br>
-                                                    {{/each}}
-                                                </div>
-                                                <div class="span4 pull-right text-right">
-                                                    {{date}}
-                                                </div>
-                                            </div>
+                                    <div class="timeline-component row-fluid timelineEvent">
+                                        <div class="span2 type {{this.type}}"></div>
+                                        <div class="span6">
+                                            <strong>{{title}}</strong><br>
+                                            {{#each details}}
+                                                {{{formatText this}}}<br>
+                                            {{/each}}
                                         </div>
+                                        <div class="span4 pull-right text-right">
+                                            {{date}}
+                                        </div>
+                                    </div>
                                 {{/each}}
+                            </div>
+                            <div class="container-section-component row-fluid show-more-button">
+                                <div class = "divider"></div>
+                                <div class = "expand"> Show more </div>
                             </div>
                         </div>
                     </div>
