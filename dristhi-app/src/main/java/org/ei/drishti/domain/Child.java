@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Child {
     private final String caseId;
-    private final String ecCaseId;
+    private final String motherCaseId;
     private final String thaayiCardNumber;
     private String dateOfBirth;
     private final String gender;
@@ -17,7 +17,7 @@ public class Child {
 
     public Child(String caseId, String motherCaseId, String thaayiCardNumber, String dateOfBirth, String gender, Map<String, String> details) {
         this.caseId = caseId;
-        this.ecCaseId = motherCaseId;
+        this.motherCaseId = motherCaseId;
         this.thaayiCardNumber = thaayiCardNumber;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
@@ -28,8 +28,8 @@ public class Child {
         return caseId;
     }
 
-    public String ecCaseId() {
-        return ecCaseId;
+    public String motherCaseId() {
+        return motherCaseId;
     }
 
     public String thaayiCardNumber() {
@@ -46,6 +46,10 @@ public class Child {
 
     public String details() {
         return new Gson().toJson(details);
+    }
+
+    public boolean isHighRisk() {
+        return "yes".equals(details.get("isHighRisk"));
     }
 
     @Override

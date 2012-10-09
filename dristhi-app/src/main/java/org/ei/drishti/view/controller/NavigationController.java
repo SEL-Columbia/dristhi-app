@@ -3,12 +3,8 @@ package org.ei.drishti.view.controller;
 import android.content.Context;
 import android.content.Intent;
 import com.google.gson.Gson;
-import org.apache.commons.lang.NotImplementedException;
 import org.ei.drishti.service.ANMService;
-import org.ei.drishti.view.activity.ANCListActivity;
-import org.ei.drishti.view.activity.EligibleCoupleListActivity;
-import org.ei.drishti.view.activity.PNCListActivity;
-import org.ei.drishti.view.activity.WorkplanActivity;
+import org.ei.drishti.view.activity.*;
 import org.ei.drishti.view.contract.HomeContext;
 
 public class NavigationController {
@@ -30,6 +26,10 @@ public class NavigationController {
 
     public void startPNCList() {
         context.startActivity(new Intent(context, PNCListActivity.class));
+    }
+
+    public void startChildList() {
+        context.startActivity(new Intent(context, ChildListActivity.class));
     }
 
     public String get() {

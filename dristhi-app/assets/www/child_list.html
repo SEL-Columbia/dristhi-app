@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
+    <link href="../css/sidepanel.css" rel="stylesheet">
+    <link href="../css/list.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/handlebars-1.0.0.beta.6.js"></script>
+
+    <script type="text/javascript" src="../js/custom.ui.js"></script>
+    <script type="text/javascript" src="../template/templates.js"></script>
+    <script type="text/javascript" src="../js/anmNavigation.js"></script>
+    <script type="text/javascript" src="../js/sidePanel.js"></script>
+
+    <script type="text/javascript" src="../js/child_list.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var list = new ChildList(new ChildListBridge());
+            list.populateInto("#child-list");
+            list.bindEveryItemToChildView("#child-list", ".client-list-item");
+
+            list.populateVillageFilter('#menu-village');
+            list.bindToVillageFilter('.dropdown-option');
+
+            new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
+        });
+    </script>
+<body>
+<div class="page affected-by-sidepanel">
+    <div id="sidePanelContainer"></div>
+
+    <div id="mainpanel" class="mainpanel affected-by-sidepanel">
+        <div class="navbar navbar-fixed-top affected-by-sidepanel">
+            <div class="navbar-inner">
+                <ul class="nav pull-left">
+                    <li><img class="sidepanel-icon affected-by-sidepanel"><img class="separator"></li>
+                    <li><div class="name">Child</div></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="content" class="content affected-by-sidepanel">
+            <div class="container-fluid dropdown dropdown-filter">
+                <a class="btn dropdown-toggle toggle-filter" data-toggle="dropdown">
+                    Show: All
+                    <span class="caret pull-right"></span>
+                </a>
+                <ul id="menu-village" class="dropdown-menu dropdown-menu-filter">
+                </ul>
+            </div>
+            <div id="child-list" class="registry-container container-fluid">
+                <div id="highRiskContainer" class="high-risk-container">
+                    <div class="high-risk-header"> HIGH RISK (<span class="count"></span>)</div>
+                    <div class="divider divider-padding-both"></div>
+                </div>
+
+                <div id="normalRiskContainer">
+                    <div class="normal-risk-header"> NORMAL RISK (<span class="count"></span>)</div>
+                    <div class="divider divider-padding-both"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

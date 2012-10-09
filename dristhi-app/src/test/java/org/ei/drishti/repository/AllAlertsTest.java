@@ -140,7 +140,8 @@ public class AllAlertsTest {
 
     private Action setupActionForChildCreateAlert(String caseID, AlertPriority priority, String visitCode, String startDate, String expiryDate) {
         Action action = actionForCreateAlert(caseID, priority.value(), BeneficiaryType.child.value(), visitCode, startDate, expiryDate, "0");
-        when(allBeneficiaries.findChild(caseID)).thenReturn(new Child(caseID, "EC " + caseID, "Thaayi " + caseID, "2012-05-05", "female", new HashMap<String, String>()));
+        when(allBeneficiaries.findChild(caseID)).thenReturn(new Child(caseID, "Mother " + caseID, "Thaayi " + caseID, "2012-05-05", "female", new HashMap<String, String>()));
+        when(allBeneficiaries.findMother("Mother " + caseID)).thenReturn(new Mother("Mother " + caseID, "EC " + caseID, "Thaayi " + caseID, "2012-05-05"));
         when(allEligibleCouples.findByCaseID("EC " + caseID)).thenReturn(new EligibleCouple("EC " + caseID, "Theresa " + caseID, "Husband 1", "EC Number 1", "Village " + caseID, "SubCenter", new HashMap<String, String>()));
         return action;
     }

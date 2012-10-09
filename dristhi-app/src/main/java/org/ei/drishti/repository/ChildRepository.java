@@ -55,7 +55,7 @@ public class ChildRepository extends DrishtiRepository {
         return readAll(cursor);
     }
 
-    public long childCount() {
+    public long count() {
         return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + CHILD_TABLE_NAME, new String[0]);
     }
 
@@ -92,7 +92,7 @@ public class ChildRepository extends DrishtiRepository {
     private ContentValues createValuesFor(Child child) {
         ContentValues values = new ContentValues();
         values.put(CASE_ID_COLUMN, child.caseId());
-        values.put(MOTHER_CASEID_COLUMN, child.ecCaseId());
+        values.put(MOTHER_CASEID_COLUMN, child.motherCaseId());
         values.put(THAAYI_CARD_COLUMN, child.thaayiCardNumber());
         values.put(DATE_OF_BIRTH_COLUMN, child.dateOfBirth());
         values.put(GENDER_COLUMN, child.gender());

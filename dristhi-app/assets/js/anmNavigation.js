@@ -29,6 +29,12 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
+    var bindToChildList = function (callbackToRunBeforeAnyAction, identifierOfElement) {
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
+            anmNavigationBridge.delegateToChildList();
+        });
+    };
+
     var bindToPage = function (callbackToRunBeforeAnyAction, identifierOfElement, pageToGoTo) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             window.location.href = pageToGoTo;
@@ -53,6 +59,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
             bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
             bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
             bindToPNCList(callbackToRunBeforeAnyAction, "#pncMenuOption");
+            bindToChildList(callbackToRunBeforeAnyAction, "#childMenuOption");
         }
     };
 }
@@ -76,6 +83,9 @@ function ANMNavigationBridge() {
         delegateToPNCList: function () {
             return anmNavigationContext.startPNCList();
         },
+        delegateToChildList: function () {
+            return anmNavigationContext.startChildList();
+        },
         delegateToWorkplan: function () {
             return anmNavigationContext.startWorkplan();
         }
@@ -85,7 +95,13 @@ function ANMNavigationBridge() {
 function FakeANMNavigationContext() {
     return {
         get: function () {
-            return "{\"anmName\": \"ANM X\", \"pncCount\": \"4\", \"ancCount\": \"5\", \"childCount\": \"6\", \"eligibleCoupleCount\": \"7\"}";
+            return JSON.stringify({
+                anmName: "ANM X",
+                pncCount: "4",
+                ancCount: "5",
+                childCount: "6",
+                eligibleCoupleCount: "7"
+            });
         },
         startECList: function () {
             window.location.href = "ec_list.html";
@@ -95,6 +111,9 @@ function FakeANMNavigationContext() {
         },
         startPNCList: function () {
             window.location.href = "pnc_list.html";
+        },
+        startChildList: function () {
+            window.location.href = "child_list.html";
         },
         startWorkplan: function () {
             window.location.href = "workplan.html";

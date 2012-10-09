@@ -48,16 +48,16 @@ public class ChildRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldCountChildren() throws Exception {
-        assertEquals(0, repository.childCount());
+        assertEquals(0, repository.count());
 
         repository.addChildForMother(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
-        assertEquals(1, repository.childCount());
+        assertEquals(1, repository.count());
 
         repository.addChildForMother(new Child("CASE B", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
-        assertEquals(2, repository.childCount());
+        assertEquals(2, repository.count());
 
         repository.close("CASE B");
-        assertEquals(1, repository.childCount());
+        assertEquals(1, repository.count());
     }
 
     public void testShouldDeleteCorrespondingAlertsWhenAChildIsDeleted() throws Exception {

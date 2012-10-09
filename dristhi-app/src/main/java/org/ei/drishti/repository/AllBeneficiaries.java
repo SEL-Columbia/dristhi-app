@@ -68,6 +68,10 @@ public class AllBeneficiaries {
         return motherRepository.allPNCs();
     }
 
+    public List<Child> allChildren() {
+        return childRepository.all();
+    }
+
     public Mother findMother(String caseId) {
         return motherRepository.find(caseId);
     }
@@ -85,7 +89,7 @@ public class AllBeneficiaries {
     }
 
     public long childCount() {
-        return childRepository.childCount();
+        return childRepository.count();
     }
 
     public List<Pair<Mother, EligibleCouple>> allANCsWithEC() {
