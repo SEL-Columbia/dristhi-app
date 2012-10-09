@@ -106,28 +106,26 @@
                             <div class="text-center big-text normal-risk">Normal Risk</div>
                         {{/if}}
                     </div>
-                    <div class="divider-with-margin"></div>
-                    <div class="row-fluid beneficiary-detail-component">
-                        <div class="beneficiary-detail-content">
-                            <div class="span6 text-center right-border">
-                                <span class="big-text">{{pncDetails.daysPostpartum}}</span><br><span class="meta-summary-text">Days Postpartum</span>
-                            </div>
-                            <div class="span6 text-center">
-                                <span class="big-text">{{formatDate pncDetails.dateOfDelivery}}</span><br><span class="meta-summary-text">Date of Delivery</span>
+                    <div class="divider"></div>
+                    <div class="beneficiary-detail-content">
+                        <div class="span6 text-center right-border">
+                            <span class="big-text">{{pncDetails.daysPostpartum}}</span><br><span class="meta-summary-text">Days Postpartum</span>
+                        </div>
+                        <div class="span6 text-center">
+                            <span class="big-text">{{formatDate pncDetails.dateOfDelivery}}</span><br><span class="meta-summary-text">Date of Delivery</span>
+                        </div>
+                    </div>
+                    {{#if details.deliveryComplications}}
+                        <div class="row-fluid beneficiary-detail-component">
+                            <div class="divider"></div>
+                        </div>
+                        <div class="row-fluid beneficiary-detail-component">
+                            <div class="beneficiary-detail-content">
+                                <b>Delivery Complications</b><br/>
+                                <ul>{{camelCaseAndConvertToListItems details.deliveryComplications}}</ul>
                             </div>
                         </div>
-                        {{#if details.deliveryComplications}}
-                            <div class="row-fluid beneficiary-detail-component">
-                                <div class="divider-with-margin"></div>
-                            </div>
-                            <div class="row-fluid beneficiary-detail-component">
-                                <div class="beneficiary-detail-content">
-                                    <b>Delivery Complications</b><br/>
-                                    <ul>{{camelCaseAndConvertToListItems details.deliveryComplications}}</ul>
-                                </div>
-                            </div>
-                        {{/if}}
-                    </div>
+                    {{/if}}
                 </div>
             </div>
         </div>
