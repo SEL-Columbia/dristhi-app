@@ -213,10 +213,10 @@ function program31(depth0,data) {
 function program32(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n									<div class=\"timeline-component row-fluid timelineEvent\">\n                                        <div class=\"span2 type ";
+  buffer += "\n									<div class=\"timeline-component row-fluid timelineEvent\">\n                                        <div class=\"span3 type ";
   stack1 = depth0.type;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\"></div>\n                                        <div class=\"span6\">\n                                            <strong>";
+  buffer += escapeExpression(stack1) + "\"></div>\n                                        <div class=\"span5\">\n                                            <strong>";
   foundHelper = helpers.title;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -614,10 +614,10 @@ function program29(depth0,data) {
 function program30(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                                    <div class=\"timeline-component row-fluid timelineEvent\">\n                                        <div class=\"span2 type ";
+  buffer += "\n                                    <div class=\"timeline-component row-fluid timelineEvent\">\n                                        <div class=\"span3 type ";
   stack1 = depth0.type;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\"></div>\n                                        <div class=\"span6\">\n                                            <strong>";
+  buffer += escapeExpression(stack1) + "\"></div>\n                                        <div class=\"span5\">\n                                            <strong>";
   foundHelper = helpers.title;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -1006,10 +1006,10 @@ function program31(depth0,data) {
 function program32(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                                    <div class=\"timeline-component row-fluid timelineEvent\">\n                                        <div class=\"span2 type ";
+  buffer += "\n                                    <div class=\"timeline-component row-fluid timelineEvent\">\n                                        <div class=\"span3 type ";
   stack1 = depth0.type;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\"></div>\n                                        <div class=\"span6\">\n                                            <strong>";
+  buffer += escapeExpression(stack1) + "\"></div>\n                                        <div class=\"span5\">\n                                            <strong>";
   foundHelper = helpers.title;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -1393,10 +1393,10 @@ function program23(depth0,data) {
 function program24(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                                    <div class=\"timeline-component row-fluid timelineEvent\">\n                                        <div class=\"span2 type ";
+  buffer += "\n                                    <div class=\"timeline-component row-fluid timelineEvent\">\n                                        <div class=\"span3 type ";
   stack1 = depth0.type;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\"></div>\n                                        <div class=\"span6\">\n                                            <strong>";
+  buffer += escapeExpression(stack1) + "\"></div>\n                                        <div class=\"span5\">\n                                            <strong>";
   foundHelper = helpers.title;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
