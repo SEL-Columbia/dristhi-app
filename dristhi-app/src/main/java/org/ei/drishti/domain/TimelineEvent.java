@@ -73,6 +73,10 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "ECREGISTERED", registrationDate1, "EC Registered", null, null);
     }
 
+    public static TimelineEvent forPNCVisit(String caseId, String visitNumber, String visitDate, Map<String,String> details) {
+        return new TimelineEvent(caseId, "PNCVISIT", LocalDate.parse(visitDate), "PNC Visit " + visitNumber, null, null);
+    }
+
     public String type() {
         return type;
     }
