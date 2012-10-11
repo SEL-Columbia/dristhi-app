@@ -2,7 +2,9 @@
     <div class="navbar-inner">
         <ul class="nav pull-left">
             <li><img class="sidepanel-icon affected-by-sidepanel"><img class="separator"></li>
-            <li><div class="name ellipsis">B/O {{formatText coupleDetails.wifeName}}</div></li>
+            <li>
+                <div class="name ellipsis">B/O {{formatText coupleDetails.wifeName}}</div>
+            </li>
         </ul>
 
         <ul class="nav pull-right affected-by-sidepanel">
@@ -57,54 +59,54 @@
     </div>
     <div id="todos" class="registry-container container-fluid">
         {{#each urgentTodos}}
-            {{#if isCompleted}}
-                <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
-                    <div class="row-fluid">
-                        <div class="span2">
-                            <img class="todo-box checked"/>
-                        </div>
-                        <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} done on {{formatDate todoDate}}</div>
-                        </div>
-                    </div>
+        {{#if isCompleted}}
+        <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
+            <div class="row-fluid">
+                <div class="span2">
+                    <img class="todo-box checked"/>
                 </div>
-            {{else}}
-                <div class="alert alert-todo overdue" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
-                    <div class="row-fluid">
-                        <div class="span2">
-                            <img class="todo-box"/>
-                        </div>
-                        <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} due by {{formatDate todoDate}}</div>
-                        </div>
-                    </div>
+                <div class="span10 alert-todo-message">
+                    <div class="detail">{{message}} done on {{formatDate todoDate}}</div>
                 </div>
-            {{/if}}
+            </div>
+        </div>
+        {{else}}
+        <div class="alert alert-todo overdue" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
+            <div class="row-fluid">
+                <div class="span2">
+                    <img class="todo-box"/>
+                </div>
+                <div class="span10 alert-todo-message">
+                    <div class="detail">{{message}} due by {{formatDate todoDate}}</div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
         {{/each}}
         {{#each todos}}
-            {{#if isCompleted}}
-                <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
-                    <div class="row-fluid">
-                        <div class="span2">
-                            <img class="todo-box checked"/>
-                        </div>
-                        <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} done on {{formatDate todoDate}}</div>
-                        </div>
-                    </div>
+        {{#if isCompleted}}
+        <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
+            <div class="row-fluid">
+                <div class="span2">
+                    <img class="todo-box checked"/>
                 </div>
-            {{else}}
-                <div class="alert alert-todo upcoming" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
-                    <div class="row-fluid">
-                        <div class="span2">
-                            <img class="todo-box"/>
-                        </div>
-                        <div class="span10 alert-todo-message">
-                            <div class="detail">{{message}} due by {{formatDate todoDate}}</div>
-                        </div>
-                    </div>
+                <div class="span10 alert-todo-message">
+                    <div class="detail">{{message}} done on {{formatDate todoDate}}</div>
                 </div>
-            {{/if}}
+            </div>
+        </div>
+        {{else}}
+        <div class="alert alert-todo upcoming" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
+            <div class="row-fluid">
+                <div class="span2">
+                    <img class="todo-box"/>
+                </div>
+                <div class="span10 alert-todo-message">
+                    <div class="detail">{{message}} due by {{formatDate todoDate}}</div>
+                </div>
+            </div>
+        </div>
+        {{/if}}
         {{/each}}
 
         <div class="divider"></div>
@@ -119,12 +121,14 @@
                 <div class="row-fluid beneficiary-detail-component">
                     <div class="beneficiary-detail-content">
                         {{#if details.isHighRisk}}
-                            <div class="big-text high-risk">
-                                <i class="icon-circle-arrow-up" style="margin-top: 3px;"></i> High Risk</span>
-                            </div>
-                            <div class="beneficiary-detail-footer risk-detail-text"><ul>{{camelCaseAndConvertToListItems details.highRiskReason}}</ul></div>
+                        <div class="big-text high-risk">
+                            <i class="icon-circle-arrow-up" style="margin-top: 3px;"></i> High Risk</span>
+                        </div>
+                        <div class="beneficiary-detail-footer risk-detail-text">
+                            <ul>{{camelCaseAndConvertToListItems details.highRiskReason}}</ul>
+                        </div>
                         {{else}}
-                            <div class="big-text normal-risk">Normal Risk</div>
+                        <div class="big-text normal-risk">Normal Risk</div>
                         {{/if}}
                     </div>
                     <div class="divider"></div>
@@ -136,47 +140,54 @@
                             <span class="big-text">{{formatDate childDetails.dateOfBirth}}</span><br><span class="meta-summary-text">Date of Birth</span>
                         </div>
                     </div>
+                    <div class="divider"></div>
+                    <div class="beneficiary-detail-content">
+                        <div class="row-fluid beneficiary-detail-component">
+                            <span class="big-text">Growth monitoring</span>
+                            <div class="summary-text">{{details.childWeight}} kg on {{formatDate childDetails.dateOfBirth}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="registry-container container-fluid">
-        <div class="big-text row-fluid detail-section-header">
-            Timeline
-        </div>
-        <div class="well well-for-beneficiary-details-no-padding">
-            <div class="container-fluid container-no-padding">
-                {{#ifequal timelineEvents.length 0}}
+        <div class="registry-container container-fluid">
+            <div class="big-text row-fluid detail-section-header">
+                Timeline
+            </div>
+            <div class="well well-for-beneficiary-details-no-padding">
+                <div class="container-fluid container-no-padding">
+                    {{#ifequal timelineEvents.length 0}}
                     <div class="row-fluid unavailable-data">
                         No medical history data available
                     </div>
-                {{else}}
+                    {{else}}
                     <div class="row-fluid beneficiary-detail-component">
                         <div class="beneficiary-detail-content">
                             <div class="timeline">
                                 {{#each timelineEvents}}
-                                    <div class="timeline-component row-fluid timelineEvent">
-                                        <div class="span3 type {{this.type}}"></div>
-                                        <div class="span5">
-                                            <strong>{{title}}</strong><br>
-                                            {{#each details}}
-                                                {{{formatText this}}}<br>
-                                            {{/each}}
-                                        </div>
-                                        <div class="span4 pull-right text-right">
-                                            {{date}}
-                                        </div>
+                                <div class="timeline-component row-fluid timelineEvent">
+                                    <div class="span3 type {{this.type}}"></div>
+                                    <div class="span5">
+                                        <strong>{{title}}</strong><br>
+                                        {{#each details}}
+                                        {{{formatText this}}}<br>
+                                        {{/each}}
                                     </div>
+                                    <div class="span4 pull-right text-right">
+                                        {{date}}
+                                    </div>
+                                </div>
                                 {{/each}}
                             </div>
                             <div class="container-section-component row-fluid show-more-button">
-                                <div class = "divider"></div>
-                                <div class = "expand"> Show more </div>
+                                <div class="divider"></div>
+                                <div class="expand"> Show more</div>
                             </div>
                         </div>
                     </div>
-                {{/ifequal}}
+                    {{/ifequal}}
+                </div>
             </div>
         </div>
     </div>

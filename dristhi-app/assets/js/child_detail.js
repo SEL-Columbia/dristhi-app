@@ -71,7 +71,8 @@ function FakeChildContext() {
                         ashaName: "Shiwani",
                         ashaPhoneNumber: "987654321",
                         isHighRisk: true,
-                        highRiskReason: "    obstructed_labor     eclampsia spontaneous_abortion     "
+                        highRiskReason: "    obstructed_labor     eclampsia spontaneous_abortion     ",
+                        childWeight: "4.3"
                     },
                     urgentTodos: [
                         {

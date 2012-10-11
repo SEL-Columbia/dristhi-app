@@ -207,6 +207,13 @@
     padding: 5px;
 }
 
+.summary-text {
+    margin-bottom: 8px;
+    font-size: 20px;
+    margin-top: 4px;
+    margin-left: 4px;
+}
+
 .divider.divider-padding-top {
     margin-top: 10px;
 }

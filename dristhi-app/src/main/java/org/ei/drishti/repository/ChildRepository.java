@@ -7,7 +7,6 @@ import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.Child;
-import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
 
 import java.util.ArrayList;
@@ -36,11 +35,6 @@ public class ChildRepository extends DrishtiRepository {
     @Override
     protected void onCreate(SQLiteDatabase database) {
         database.execSQL(CHILD_SQL);
-    }
-
-    public void addChildForMother(Mother mother, String caseId, String dateOfBirth, String gender, Map<String, String> details) {
-        Child child = new Child(caseId, mother.caseId(), mother.thaayiCardNumber(), dateOfBirth, gender, details);
-        addChildForMother(child);
     }
 
     public void addChildForMother(Child child) {
