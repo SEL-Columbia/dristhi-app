@@ -21,9 +21,9 @@ public class TimelineEventRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldInsertTimelineEvents() throws Exception {
-        TimelineEvent event1 = TimelineEvent.forChildBirth("CASE X", "2012-12-12", "female");
-        TimelineEvent event2 = TimelineEvent.forChildBirth("CASE X", "2012-01-01", "male");
-        TimelineEvent event3 = TimelineEvent.forChildBirth("CASE Y", "2012-12-1", "female");
+        TimelineEvent event1 = TimelineEvent.forChildBirthInChildProfile("CASE X", "2012-12-12", "female");
+        TimelineEvent event2 = TimelineEvent.forChildBirthInChildProfile("CASE X", "2012-01-01", "male");
+        TimelineEvent event3 = TimelineEvent.forChildBirthInChildProfile("CASE Y", "2012-12-1", "female");
         repository.add(event1);
         repository.add(event2);
         repository.add(event3);
@@ -32,9 +32,9 @@ public class TimelineEventRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteTimelineEventsByCaseId() throws Exception {
-        TimelineEvent event1 = TimelineEvent.forChildBirth("CASE X", "2012-12-12", "female");
-        TimelineEvent event2 = TimelineEvent.forChildBirth("CASE X", "2012-01-01", "male");
-        TimelineEvent event3 = TimelineEvent.forChildBirth("CASE Y", "2012-12-1", "female");
+        TimelineEvent event1 = TimelineEvent.forChildBirthInChildProfile("CASE X", "2012-12-12", "female");
+        TimelineEvent event2 = TimelineEvent.forChildBirthInChildProfile("CASE X", "2012-01-01", "male");
+        TimelineEvent event3 = TimelineEvent.forChildBirthInChildProfile("CASE Y", "2012-12-1", "female");
         repository.add(event1);
         repository.add(event2);
         repository.add(event3);

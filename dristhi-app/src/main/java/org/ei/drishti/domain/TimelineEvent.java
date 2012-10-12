@@ -28,8 +28,14 @@ public class TimelineEvent {
         this.detail2 = detail2;
     }
 
-    public static TimelineEvent forChildBirth(String caseId, String dateOfBirth, String gender) {
+    public static TimelineEvent forChildBirthInChildProfile(String caseId, String dateOfBirth, String gender) {
         return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), "Child Born", StringUtils.capitalize(gender), "DOB: " + formatDate(dateOfBirth));
+    }
+
+    public static TimelineEvent forChildBirthInMotherProfile(String caseId, String dateOfBirth, String gender, Map<String, String> details) {
+        String detailsString = new DetailBuilder(details).withDateOfDelivery("dateOfDelivery").withPlaceOfDelivery("placeOfDelivery").value();
+        String title = gender.equals("male") ? "Boy" : "Girl" + " Delivered";
+        return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), title, detailsString, null);
     }
 
     public static TimelineEvent forStartOfPregnancy(String caseId, String referenceDate) {
@@ -129,6 +135,20 @@ public class TimelineEvent {
         private DetailBuilder withBP(String bpSystolic, String bpDiastolic) {
             String bp = "BP: " + details.get(bpSystolic) + "/" + details.get(bpDiastolic) + "<br />";
             this.stringBuilder.append(checkEmptyField(bp, details.get(bpSystolic)));
+            return this;
+        }
+
+        public DetailBuilder withDateOfDelivery(String dateOfDelivery) {
+            if (StringUtils.isBlank(details.get(dateOfDelivery))) {
+                return this;
+            }
+            this.stringBuilder.append("On: " + formatDate(details.get(dateOfDelivery)) + "<br />");
+            return this;
+        }
+
+        public DetailBuilder withPlaceOfDelivery(String placeOfDelivery) {
+            String place = "At: " + details.get(placeOfDelivery) + "<br />";
+            this.stringBuilder.append(checkEmptyField(place, details.get(placeOfDelivery)));
             return this;
         }
 

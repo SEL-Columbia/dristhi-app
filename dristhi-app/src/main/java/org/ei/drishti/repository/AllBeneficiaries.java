@@ -30,6 +30,7 @@ public class AllBeneficiaries {
             if (mother == null) {
                 return;
             }
+            allTimelines.add(forChildBirthInMotherProfile(action.get("motherCaseId"), action.get("dateOfBirth"), action.get("gender"), action.details()));
             childRepository.addChild(new Child(action.caseID(), action.get("motherCaseId"), action.get("thaayiCardNumber"), action.get("dateOfBirth"), action.get("gender"), action.details()));
         } else if (action.type().equals("pncVisitHappened")) {
             allTimelines.add(forChildPNCVisit(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));

@@ -25,6 +25,8 @@ public class TimelineEventTest {
         detailsWithData.put("motherTemperature", "98");
         detailsWithData.put("childTemperature", "98");
         detailsWithData.put("childWeight", "4");
+        detailsWithData.put("dateOfDelivery", "2012-08-01");
+        detailsWithData.put("placeOfDelivery", "Govt Hospital");
 
         detailsWithoutData = new HashMap<String, String>();
     }
@@ -81,5 +83,21 @@ public class TimelineEventTest {
 
         assertFalse(timelineEvent.detail1().contains("Temp:"));
         assertFalse(timelineEvent.detail1().contains("Weight:"));
+    }
+
+    @Test
+    public void shouldCreateTimelineEventForANCOutcomeWithDetails() throws Exception {
+        TimelineEvent timelineEvent = TimelineEvent.forChildBirthInMotherProfile("CASE A", "2012-08-01", "male", detailsWithData);
+
+        assertTrue(timelineEvent.detail1().contains("On: 01-08-2012"));
+        assertTrue(timelineEvent.detail1().contains("At: Govt Hospital"));
+    }
+
+    @Test
+    public void shouldCreateTimelineEventForANCOutcomeExcludingThoseDetailsWhichDoNotHaveValue() throws Exception {
+        TimelineEvent timelineEvent = TimelineEvent.forChildBirthInMotherProfile("CASE A","2012-01-01","male", detailsWithoutData);
+
+        assertFalse(timelineEvent.detail1().contains("On:"));
+        assertFalse(timelineEvent.detail1().contains("At:"));
     }
 }
