@@ -29,7 +29,7 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forChildBirth(String caseId, String dateOfBirth, String gender) {
-        return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), "Child Born", StringUtils.capitalize(gender), "DOB: " + dateOfBirth);
+        return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), "Child Born", StringUtils.capitalize(gender), "DOB: " + formatDate(dateOfBirth));
     }
 
     public static TimelineEvent forStartOfPregnancy(String caseId, String referenceDate) {

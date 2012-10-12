@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
+import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.TimelineEvent;
 
@@ -43,7 +44,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     public void add(EligibleCouple eligibleCouple) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(EC_TABLE_NAME, null, createValuesFor(eligibleCouple));
-        if (eligibleCouple.details().get("submissionDate") != null && !eligibleCouple.details().get("submissionDate").equals("")) {
+        if (StringUtils.isNotBlank(eligibleCouple.details().get("submissionDate"))) {
             timelineEventRepository.add(TimelineEvent.forECRegistered(eligibleCouple.caseId(), eligibleCouple.details().get("submissionDate")));
         }
     }
