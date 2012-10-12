@@ -49,7 +49,7 @@ public class Child {
     }
 
     public boolean isHighRisk() {
-        return "yes".equals(details.get("isHighRisk"));
+        return "yes".equals(details.get("isHighRiskChild"));
     }
 
     @Override

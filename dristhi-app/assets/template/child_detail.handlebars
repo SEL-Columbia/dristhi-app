@@ -25,7 +25,7 @@
 <div id="content" class="content-detail affected-by-sidepanel">
     <div class="status-bar">
         <span class="left-text">Child</span>
-        {{#ifFalse details.isHighRisk}}
+        {{#ifFalse details.isHighRiskChild}}
         <span class="right-text high-risk">High Risk</span>
         {{else}}
         <span class="right-text normal-risk">Normal Risk</span>
@@ -120,12 +120,12 @@
             <div class="container-fluid container-no-padding">
                 <div class="row-fluid beneficiary-detail-component">
                     <div class="beneficiary-detail-content">
-                        {{#ifFalse details.isHighRisk}}
+                        {{#ifFalse details.isHighRiskChild}}
                         <div class="big-text high-risk">
                             <i class="icon-circle-arrow-up" style="margin-top: 3px;"></i> High Risk</span>
                         </div>
                         <div class="beneficiary-detail-footer risk-detail-text">
-                            <ul>{{camelCaseAndConvertToListItems details.highRiskReason}}</ul>
+                            <ul>{{camelCaseAndConvertToListItems details.highRiskReasonChild}}</ul>
                         </div>
                         {{else}}
                         <div class="big-text normal-risk">Normal Risk</div>

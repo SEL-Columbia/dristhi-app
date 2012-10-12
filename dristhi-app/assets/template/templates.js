@@ -586,7 +586,7 @@ function program23(depth0,data) {
   var buffer = "", stack1, foundHelper;
   buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\">\n                            <ul>";
   stack1 = depth0.details;
-  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.highRiskReason;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.highRiskReasonChild;
   foundHelper = helpers.camelCaseAndConvertToListItems;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "camelCaseAndConvertToListItems", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</ul>\n                        </div>\n                        ";
@@ -660,7 +660,7 @@ function program31(depth0,data) {
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "\">Close PNC record</div>\n</div>\n\n<div id=\"content\" class=\"content-detail affected-by-sidepanel\">\n    <div class=\"status-bar\">\n        <span class=\"left-text\">Child</span>\n        ";
   stack1 = depth0.details;
-  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isHighRisk;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isHighRiskChild;
   foundHelper = helpers.ifFalse;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data)}) : helperMissing.call(depth0, "ifFalse", stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -704,7 +704,7 @@ function program31(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n        <div class=\"divider\"></div>\n    </div>\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Summary\n        </div>\n        <div class=\"well well-for-beneficiary-details-no-padding\">\n            <div class=\"container-fluid container-no-padding\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                        ";
   stack1 = depth0.details;
-  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isHighRisk;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isHighRiskChild;
   foundHelper = helpers.ifFalse;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.program(25, program25, data),fn:self.program(23, program23, data)}) : helperMissing.call(depth0, "ifFalse", stack1, {hash:{},inverse:self.program(25, program25, data),fn:self.program(23, program23, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
