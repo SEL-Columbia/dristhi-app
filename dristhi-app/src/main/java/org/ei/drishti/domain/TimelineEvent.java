@@ -46,16 +46,7 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forANCCareProvided(String caseId, String visitNumber, String visitDate, Map<String, String> details) {
-        String bp = "BP: " + details.get("bpSystolic") + "/" + details.get("bpDiastolic") + "<br />";
-        String temperature = "Temp: " + details.get("temperature") + " °F<br />";
-        String weight = "Weight: " + details.get("weight") + " kg<br />";
-        String hbLevel = "Hb Level: " + details.get("hbLevel");
-        String detailsString = new StringBuilder()
-                .append(checkEmptyField(bp, details.get("bpDiastolic")))
-                .append(checkEmptyField(temperature, details.get("temperature")))
-                .append(checkEmptyField(weight, details.get("weight")))
-                .append(checkEmptyField(hbLevel, details.get("hbLevel")))
-                .toString();
+        String detailsString = new DetailBuilder(details).withBP("bpSystolic", "bpDiastolic").withTemperature("temperature").withWeight("weight").withHbLevel("hbLevel").value();
         return new TimelineEvent(caseId, "ANCVISIT", LocalDate.parse(visitDate), "ANC Visit " + visitNumber, detailsString, null);
     }
 
@@ -73,8 +64,15 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "ECREGISTERED", registrationDate1, "EC Registered", null, null);
     }
 
-    public static TimelineEvent forPNCVisit(String caseId, String visitNumber, String visitDate, Map<String,String> details) {
-        return new TimelineEvent(caseId, "PNCVISIT", LocalDate.parse(visitDate), "PNC Visit " + visitNumber, null, null);
+    public static TimelineEvent forMotherPNCVisit(String caseId, String visitNumber, String visitDate, Map<String, String> details) {
+        String detailsString = new DetailBuilder(details).withBP("bpSystolic", "bpDiastolic").withTemperature("motherTemperature").withHbLevel("hbLevel").value();
+        return new TimelineEvent(caseId, "PNCVISIT", LocalDate.parse(visitDate), "PNC Visit " + visitNumber, detailsString, null);
+    }
+
+    public static TimelineEvent forChildPNCVisit(String caseId, String visitNumber, String visitDate, Map<String, String> details) {
+        String detailsString = new DetailBuilder(details).withTemperature("childTemperature").withWeight("childWeight").value();
+
+        return new TimelineEvent(caseId, "PNCVISIT", LocalDate.parse(visitDate), "PNC Visit " + visitNumber, detailsString, null);
     }
 
     public String type() {
@@ -101,6 +99,51 @@ public class TimelineEvent {
         return title;
     }
 
+    private static class DetailBuilder {
+        private Map<String, String> details;
+        private final StringBuilder stringBuilder;
+
+        private DetailBuilder(Map<String, String> details) {
+            this.details = details;
+            stringBuilder = new StringBuilder();
+        }
+
+        private DetailBuilder withTemperature(String temperature) {
+            String temp = "Temp: " + details.get(temperature) + " °F<br />";
+            this.stringBuilder.append(checkEmptyField(temp, details.get(temperature)));
+            return this;
+        }
+
+        private DetailBuilder withWeight(String weight) {
+            String wt = "Weight: " + details.get(weight) + " kg<br />";
+            this.stringBuilder.append(checkEmptyField(wt, details.get(weight)));
+            return this;
+        }
+
+        private DetailBuilder withHbLevel(String hbLevel) {
+            String hb = "Hb Level: " + details.get(hbLevel) + "<br />";
+            this.stringBuilder.append(checkEmptyField(hb, details.get(hbLevel)));
+            return this;
+        }
+
+        private DetailBuilder withBP(String bpSystolic, String bpDiastolic) {
+            String bp = "BP: " + details.get(bpSystolic) + "/" + details.get(bpDiastolic) + "<br />";
+            this.stringBuilder.append(checkEmptyField(bp, details.get(bpSystolic)));
+            return this;
+        }
+
+        private String value() {
+            return this.stringBuilder.toString();
+        }
+
+        private String checkEmptyField(String msg, String condition) {
+            if (StringUtils.isBlank(condition)) {
+                return "";
+            }
+            return msg;
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(o, this);
@@ -116,10 +159,4 @@ public class TimelineEvent {
         return ToStringBuilder.reflectionToString(this);
     }
 
-    private static String checkEmptyField(String msg, String condition) {
-        if (StringUtils.isBlank(condition)) {
-            return "";
-        }
-        return msg;
-    }
 }

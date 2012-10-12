@@ -49,6 +49,10 @@
     content: url(../img/icons/icon-event-ecregistered.png);
 }
 
+.timeline .type.PNCVISIT {
+    content: url(../img/icons/icon-event-pnc.png);
+}
+
 .show-more-button {
     display: none;
 }

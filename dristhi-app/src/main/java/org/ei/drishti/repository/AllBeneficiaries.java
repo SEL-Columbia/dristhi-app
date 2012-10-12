@@ -9,9 +9,7 @@ import org.ei.drishti.dto.Action;
 
 import java.util.List;
 
-import static org.ei.drishti.domain.TimelineEvent.forANCCareProvided;
-import static org.ei.drishti.domain.TimelineEvent.forIFATabletsProvided;
-import static org.ei.drishti.domain.TimelineEvent.forTTShotProvided;
+import static org.ei.drishti.domain.TimelineEvent.*;
 
 public class AllBeneficiaries {
     private ChildRepository childRepository;
@@ -32,7 +30,10 @@ public class AllBeneficiaries {
             if (mother == null) {
                 return;
             }
-            childRepository.addChildForMother(new Child(action.caseID(), action.get("motherCaseId"), action.get("thaayiCardNumber"), action.get("dateOfBirth"), action.get("gender"), action.details()));
+            childRepository.addChild(new Child(action.caseID(), action.get("motherCaseId"), action.get("thaayiCardNumber"), action.get("dateOfBirth"), action.get("gender"), action.details()));
+        } else if (action.type().equals("pncVisitHappened")) {
+            allTimelines.add(forChildPNCVisit(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
+            childRepository.updateDetails(action.caseID(), action.details());
         }
     }
 
@@ -60,6 +61,9 @@ public class AllBeneficiaries {
                     .withDetails(action.details()));
         } else if (action.type().equals("updateANCOutcome")) {
             motherRepository.switchToPNC(action.caseID());
+            motherRepository.updateDetails(action.caseID(), action.details());
+        } else if (action.type().equals("pncVisitHappened")) {
+            allTimelines.add(forMotherPNCVisit(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
             motherRepository.updateDetails(action.caseID(), action.details());
         }
     }

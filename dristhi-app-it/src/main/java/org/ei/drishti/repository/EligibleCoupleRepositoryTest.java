@@ -123,7 +123,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         Mother mother = new Mother("CASE Y", "CASE X", "TC 1", "2012-01-01");
         motherRepository.add(mother);
         motherRepository.add(new Mother("CASE Z", "CASE X", "TC 2", "2012-01-01"));
-        childRepository.addChildForMother(new Child("CASE C1", "CASE Y", "TC 1", "2012-06-08", "female", new HashMap<String, String>()));
+        childRepository.addChild(new Child("CASE C1", "CASE Y", "TC 1", "2012-06-08", "female", new HashMap<String, String>()));
 
         EligibleCouple ecWhoIsNotClosed = new EligibleCouple("CASE A", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", new HashMap<String, String>());
         Mother motherWhoIsNotClosed = new Mother("CASE B", "CASE A", "TC 2", "2012-01-01");

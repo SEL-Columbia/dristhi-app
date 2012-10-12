@@ -37,7 +37,7 @@ public class ChildRepository extends DrishtiRepository {
         database.execSQL(CHILD_SQL);
     }
 
-    public void addChildForMother(Child child) {
+    public void addChild(Child child) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(CHILD_TABLE_NAME, null, createValuesFor(child));
         timelineEventRepository.add(TimelineEvent.forChildBirth(child.caseId(), child.dateOfBirth(), child.gender()));
@@ -75,6 +75,13 @@ public class ChildRepository extends DrishtiRepository {
             return null;
         }
         return children.get(0);
+    }
+
+    public void updateDetails(String caseId, Map<String, String> details) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DETAILS_COLUMN, new Gson().toJson(details));
+        database.update(CHILD_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
     private List<Child> findByMotherCaseId(String caseId) {

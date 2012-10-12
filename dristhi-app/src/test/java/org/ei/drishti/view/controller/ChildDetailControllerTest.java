@@ -53,8 +53,8 @@ public class ChildDetailControllerTest {
     @Test
     public void shouldGetChildDetailsAsJSON() throws Exception {
         TimelineEvent birthEvent = TimelineEvent.forChildBirth(caseId, "2011-10-21", "male");
-        TimelineEvent ancEvent = TimelineEvent.forPNCVisit(caseId, "2", "2011-12-22", new HashMap<String, String>());
-        TimelineEvent eventVeryCloseToCurrentDate = TimelineEvent.forPNCVisit(caseId, "2", "2012-07-29", new HashMap<String, String>());
+        TimelineEvent ancEvent = TimelineEvent.forMotherPNCVisit(caseId, "2", "2011-12-22", new HashMap<String, String>());
+        TimelineEvent eventVeryCloseToCurrentDate = TimelineEvent.forMotherPNCVisit(caseId, "2", "2012-07-29", new HashMap<String, String>());
         ProfileTodo todo = new ProfileTodo(new Alert("Case X", "Theresa", "Husband 1", "bherya", "PNC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open));
         ProfileTodo urgentTodo = new ProfileTodo(new Alert("Case X", "Theresa", "Husband 1", "bherya", "TT 1", "Thaayi 1", urgent, "2012-02-02", "2012-02-11", open));
 

@@ -14,6 +14,7 @@ import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.AlertStatus.open;
+import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class ChildRepositoryTest extends AndroidTestCase {
@@ -22,6 +23,7 @@ public class ChildRepositoryTest extends AndroidTestCase {
     private AlertRepository alertRepository;
 
     private static final Map<String, String> EXTRA_DETAILS = mapOf("some-key", "some-value");
+
     @Override
     protected void setUp() throws Exception {
         timelineEventRepository = new TimelineEventRepository();
@@ -33,15 +35,15 @@ public class ChildRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldInsertChildForExistingMother() throws Exception {
-        repository.addChildForMother(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
+        repository.addChild(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
 
         assertEquals(asList(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS)), repository.all());
         assertEquals(asList(TimelineEvent.forChildBirth("CASE A", "2012-06-09", "female")), timelineEventRepository.allFor("CASE A"));
     }
 
     public void testShouldFetchChildrenByTheirOwnCaseId() throws Exception {
-        repository.addChildForMother(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
-        repository.addChildForMother(new Child("CASE B", "CASE X", "TC 1", "2012-06-10", "female", EXTRA_DETAILS));
+        repository.addChild(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
+        repository.addChild(new Child("CASE B", "CASE X", "TC 1", "2012-06-10", "female", EXTRA_DETAILS));
 
         assertEquals(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS), repository.find("CASE A"));
         assertEquals(new Child("CASE B", "CASE X", "TC 1", "2012-06-10", "female", EXTRA_DETAILS), repository.find("CASE B"));
@@ -50,10 +52,10 @@ public class ChildRepositoryTest extends AndroidTestCase {
     public void testShouldCountChildren() throws Exception {
         assertEquals(0, repository.count());
 
-        repository.addChildForMother(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
+        repository.addChild(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
         assertEquals(1, repository.count());
 
-        repository.addChildForMother(new Child("CASE B", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
+        repository.addChild(new Child("CASE B", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
         assertEquals(2, repository.count());
 
         repository.close("CASE B");
@@ -61,11 +63,11 @@ public class ChildRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteCorrespondingAlertsWhenAChildIsDeleted() throws Exception {
-        repository.addChildForMother(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
+        repository.addChild(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
 
         alertRepository.createAlert(new Alert("CASE A", "Child 1", "Husband 1", "Bherya 1", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
 
-        repository.addChildForMother(new Child("CASE B", "CASE X", "TC 1", "2012-06-10", "female", EXTRA_DETAILS));
+        repository.addChild(new Child("CASE B", "CASE X", "TC 1", "2012-06-10", "female", EXTRA_DETAILS));
         alertRepository.createAlert(new Alert("CASE B", "Child 2", "Husband 2", "Bherya 1", "ANC 1", "TC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
 
         repository.close("CASE A");
@@ -74,8 +76,8 @@ public class ChildRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteCorrespondingTimelineEventsWhenAChildIsDeleted() throws Exception {
-        repository.addChildForMother(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
-        repository.addChildForMother(new Child("CASE B", "CASE X", "TC 1", "2012-06-10", "female", EXTRA_DETAILS));
+        repository.addChild(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
+        repository.addChild(new Child("CASE B", "CASE X", "TC 1", "2012-06-10", "female", EXTRA_DETAILS));
 
         repository.close("CASE A");
 
@@ -84,9 +86,9 @@ public class ChildRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteAllChildrenAndTheirDependentEntitiesForAGivenMother() throws Exception {
-        repository.addChildForMother(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
-        repository.addChildForMother(new Child("CASE B", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
-        repository.addChildForMother(new Child("CASE C", "CASE Y", "TC 2", "2012-06-09", "female", EXTRA_DETAILS));
+        repository.addChild(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
+        repository.addChild(new Child("CASE B", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
+        repository.addChild(new Child("CASE C", "CASE Y", "TC 2", "2012-06-09", "female", EXTRA_DETAILS));
 
         repository.closeAllCasesForMother("CASE X");
 
@@ -96,4 +98,17 @@ public class ChildRepositoryTest extends AndroidTestCase {
         assertEquals(new ArrayList<TimelineEvent>(), timelineEventRepository.allFor("CASE B"));
         assertEquals(asList(TimelineEvent.forChildBirth("CASE C", "2012-06-09", "female")), timelineEventRepository.allFor("CASE C"));
     }
+
+    public void testShouldUpdateMotherDetails() throws Exception {
+        Map<String, String> details = mapOf("some-key", "some-value");
+        Child child = new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", details);
+        repository.addChild(child);
+
+        Map<String, String> newDetails = create("some-key", "some-new-value").put("some-other-key", "blah").map();
+        repository.updateDetails("CASE A", newDetails);
+
+        Child expectedChildWithNewDetails = new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", newDetails);
+        assertEquals(asList(expectedChildWithNewDetails), repository.all());
+    }
+
 }

@@ -90,7 +90,7 @@ public class AllBeneficiariesTest {
 
         allBeneficiaries.handleMotherAction(action);
 
-        verify(allTimelineEvents).add(TimelineEvent .forANCCareProvided("Case Mother X", "1", visitDate.toString(), new HashMap<String, String>()));
+        verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("Case Mother X", "1", visitDate.toString(), new HashMap<String, String>()));
         verifyNoMoreInteractions(allTimelineEvents);
     }
 
@@ -113,13 +113,35 @@ public class AllBeneficiariesTest {
     }
 
     @Test
+    public void shouldHandlePNCVisitActionForMother() throws Exception {
+        String caseId = "Case Mother X";
+        Action action = ActionBuilder.actionForMotherPNCVisit(caseId, mapOf("some-key", "some-value"));
+
+        allBeneficiaries.handleMotherAction(action);
+
+        verify(allTimelineEvents).add(TimelineEvent.forMotherPNCVisit(caseId, "1", "2012-01-01", mapOf("some-key", "some-value")));
+        verify(motherRepository).updateDetails(caseId, mapOf("some-key", "some-value"));
+    }
+
+    @Test
+    public void shouldHandlePNCVisitActionForChild() throws Exception {
+        String caseId = "Case Child X";
+        Action action = ActionBuilder.actionForChildPNCVisit(caseId, mapOf("some-key", "some-value"));
+
+        allBeneficiaries.handleChildAction(action);
+
+        verify(allTimelineEvents).add(TimelineEvent.forChildPNCVisit(caseId, "1", "2012-01-01", mapOf("some-key", "some-value")));
+        verify(childRepository).updateDetails(caseId, mapOf("some-key", "some-value"));
+    }
+
+    @Test
     public void shouldRegisterChildWhenMotherIsFound() throws Exception {
         Action action = ActionBuilder.actionForCreateChild("Case Mother X");
         when(motherRepository.find("Case Mother X")).thenReturn(new Mother("Case Mother X", "EC CASE 1", "TC 1", "2012-01-01"));
 
         allBeneficiaries.handleChildAction(action);
 
-        verify(childRepository).addChildForMother(new Child("Case X", "Case Mother X", "TC 1", LocalDate.now().toString(), "female", new HashMap<String, String>()));
+        verify(childRepository).addChild(new Child("Case X", "Case Mother X", "TC 1", LocalDate.now().toString(), "female", new HashMap<String, String>()));
     }
 
     @Test

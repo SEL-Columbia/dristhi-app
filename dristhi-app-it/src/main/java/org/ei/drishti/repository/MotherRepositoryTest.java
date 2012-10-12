@@ -157,11 +157,11 @@ public class MotherRepositoryTest extends AndroidTestCase {
         Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
 
         repository.add(mother1);
-        childRepository.addChildForMother(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", new HashMap<String, String>()));
-        childRepository.addChildForMother(new Child("CASE B", "CASE X", "TC 1", "2012-06-09", "male", new HashMap<String, String>()));
+        childRepository.addChild(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", new HashMap<String, String>()));
+        childRepository.addChild(new Child("CASE B", "CASE X", "TC 1", "2012-06-09", "male", new HashMap<String, String>()));
 
         repository.add(mother2);
-        childRepository.addChildForMother(new Child("CASE C", "CASE Y", "TC 2", "2012-06-09", "female", new HashMap<String, String>()));
+        childRepository.addChild(new Child("CASE C", "CASE Y", "TC 2", "2012-06-09", "female", new HashMap<String, String>()));
 
         repository.close(mother1.caseId());
 

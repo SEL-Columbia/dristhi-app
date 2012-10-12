@@ -91,7 +91,7 @@ public class MotherRepository extends DrishtiRepository {
     public void updateDetails(String caseId, Map<String, String> details) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("details", new Gson().toJson(details));
+        values.put(DETAILS_COLUMN, new Gson().toJson(details));
         database.update(MOTHER_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 

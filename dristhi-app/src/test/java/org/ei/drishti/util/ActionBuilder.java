@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.ei.drishti.dto.ActionData.*;
+import static org.ei.drishti.dto.BeneficiaryType.child;
+import static org.ei.drishti.dto.BeneficiaryType.mother;
 import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class ActionBuilder {
@@ -74,5 +76,15 @@ public class ActionBuilder {
     public static Action actionForUpdateANCOutcome(String caseId, Map<String, String> details) {
         ActionData actionData = updateANCOutcome(details);
         return new Action(caseId, "mother", "updateANCOutcome", actionData.data(), "0", actionData.details());
+    }
+
+    public static Action actionForMotherPNCVisit(String caseId, Map<String, String> details) {
+        ActionData actionData = pncVisitHappened(mother, LocalDate.parse("2012-01-01"), 1, 10, details);
+        return new Action(caseId, "mother", "pncVisitHappened", actionData.data(), "0", actionData.details());
+    }
+
+    public static Action actionForChildPNCVisit(String caseId, Map<String, String> details) {
+        ActionData actionData = pncVisitHappened(child, LocalDate.parse("2012-01-01"), 1, 10, details);
+        return new Action(caseId, "child", "pncVisitHappened", actionData.data(), "0", actionData.details());
     }
 }
