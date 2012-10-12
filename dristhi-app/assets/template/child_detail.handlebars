@@ -120,7 +120,7 @@
             <div class="container-fluid container-no-padding">
                 <div class="row-fluid beneficiary-detail-component">
                     <div class="beneficiary-detail-content">
-                        {{#if details.isHighRisk}}
+                        {{#ifFalse details.isHighRisk}}
                         <div class="big-text high-risk">
                             <i class="icon-circle-arrow-up" style="margin-top: 3px;"></i> High Risk</span>
                         </div>
@@ -129,7 +129,7 @@
                         </div>
                         {{else}}
                         <div class="big-text normal-risk">Normal Risk</div>
-                        {{/if}}
+                        {{/ifFalse}}
                     </div>
                     <div class="divider"></div>
                     <div class="beneficiary-detail-content">
