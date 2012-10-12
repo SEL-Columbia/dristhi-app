@@ -65,6 +65,11 @@ public class AllBeneficiaries {
         } else if (action.type().equals("pncVisitHappened")) {
             allTimelines.add(forMotherPNCVisit(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
             motherRepository.updateDetails(action.caseID(), action.details());
+
+            String numberOfIFATabletsProvided = action.get("numberOfIFATabletsProvided");
+            if (numberOfIFATabletsProvided != null && Integer.parseInt(numberOfIFATabletsProvided) > 0) {
+                allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
+            }
         }
     }
 
