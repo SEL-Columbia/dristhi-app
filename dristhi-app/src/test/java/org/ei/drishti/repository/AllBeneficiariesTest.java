@@ -16,6 +16,8 @@ import org.mockito.Mock;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.ei.drishti.domain.TimelineEvent.forChildBirthInECProfile;
+import static org.ei.drishti.domain.TimelineEvent.forChildBirthInMotherProfile;
 import static org.ei.drishti.util.ActionBuilder.actionForUpdateBeneficiary;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.mockito.Mockito.*;
@@ -140,7 +142,8 @@ public class AllBeneficiariesTest {
         when(motherRepository.find("Case Mother X")).thenReturn(new Mother("Case Mother X", "EC CASE 1", "TC 1", "2012-01-01"));
 
         allBeneficiaries.handleChildAction(action);
-        verify(allTimelineEvents).add(TimelineEvent.forChildBirthInMotherProfile("Case Mother X", action.get("dateOfBirth"), action.get("gender"),action.details()));
+        verify(allTimelineEvents).add(forChildBirthInMotherProfile("Case Mother X", action.get("dateOfBirth"), action.get("gender"), action.details()));
+        verify(allTimelineEvents).add(forChildBirthInECProfile("EC CASE 1", action.get("dateOfBirth"), action.get("gender"), action.details()));
         verify(childRepository).addChild(new Child("Case X", "Case Mother X", "TC 1", LocalDate.now().toString(), "female", new HashMap<String, String>()));
     }
 

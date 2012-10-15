@@ -14,8 +14,7 @@ function ChildList(childListBridge) {
 
         $(highRiskContainer + " .count").text(highRiskChildren.length);
         $(normalRiskContainer + " .count").text(normalRiskChildren.length);
-
-    }
+    };
 
     var populateChildren = function (children, container) {
         if(children.length == 0)
@@ -25,7 +24,7 @@ function ChildList(childListBridge) {
             $(container + " .count").text(children.length);
             $(container).append(Handlebars.templates.child_list(children));
         }
-    }
+    };
 
 
     return {
@@ -38,7 +37,7 @@ function ChildList(childListBridge) {
             populateChildren(children.normalRisk, normalRiskContainer);
         },
         bindEveryItemToChildView: function (cssIdentifierOfRootElement, cssIdentifierOfEveryListItem) {
-            $(cssIdentifierOfRootElement).on("click", cssIdentifierOfEveryListItem, function (event) {
+            $(cssIdentifierOfRootElement).on("click", cssIdentifierOfEveryListItem, function () {
                 childListBridge.delegateToChildDetail($(this).data("caseid"));
             });
         },

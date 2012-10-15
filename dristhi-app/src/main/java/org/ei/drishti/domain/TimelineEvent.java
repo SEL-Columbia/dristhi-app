@@ -38,6 +38,12 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), title, detailsString, null);
     }
 
+    public static TimelineEvent forChildBirthInECProfile(String caseId, String dateOfBirth, String gender, Map<String, String> details) {
+        String detailsString = new DetailBuilder(details).withDateOfDelivery("dateOfDelivery").value();
+        String title = gender.equals("male") ? "Boy" : "Girl" + " Delivered";
+        return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), title, detailsString, null);
+    }
+
     public static TimelineEvent forStartOfPregnancy(String caseId, String referenceDate) {
         return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC Registered", "LMP: " + formatDate(referenceDate), null);
     }
@@ -56,10 +62,10 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "ANCVISIT", LocalDate.parse(visitDate), "ANC Visit " + visitNumber, detailsString, null);
     }
 
+
     public static TimelineEvent forIFATabletsProvided(String caseId, String numberOfIFATabletsProvided, String visitDate) {
         return new TimelineEvent(caseId, "IFAPROVIDED", LocalDate.parse(visitDate), "IFA Provided", numberOfIFATabletsProvided + " tablets", null);
     }
-
 
     public static TimelineEvent forTTShotProvided(String caseId, String ttDose, String visitDate) {
         return new TimelineEvent(caseId, "TTSHOTPROVIDED", LocalDate.parse(visitDate), "TT Injection Given", ttDose, null);
@@ -142,7 +148,7 @@ public class TimelineEvent {
             if (StringUtils.isBlank(details.get(dateOfDelivery))) {
                 return this;
             }
-            this.stringBuilder.append("On: " + formatDate(details.get(dateOfDelivery)) + "<br />");
+            this.stringBuilder.append("On: ").append(formatDate(details.get(dateOfDelivery))).append("<br />");
             return this;
         }
 

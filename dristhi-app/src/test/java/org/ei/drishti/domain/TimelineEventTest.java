@@ -8,6 +8,8 @@ import java.util.Map;
 
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
+import static org.ei.drishti.domain.TimelineEvent.forChildBirthInECProfile;
+import static org.ei.drishti.domain.TimelineEvent.forChildBirthInMotherProfile;
 
 public class TimelineEventTest {
 
@@ -86,18 +88,32 @@ public class TimelineEventTest {
     }
 
     @Test
-    public void shouldCreateTimelineEventForANCOutcomeWithDetails() throws Exception {
-        TimelineEvent timelineEvent = TimelineEvent.forChildBirthInMotherProfile("CASE A", "2012-08-01", "male", detailsWithData);
+    public void shouldCreateTimelineEventForChildBirthInMotherProfileWithDetails() throws Exception {
+        TimelineEvent timelineEvent = forChildBirthInMotherProfile("CASE A", "2012-08-01", "male", detailsWithData);
 
         assertTrue(timelineEvent.detail1().contains("On: 01-08-2012"));
         assertTrue(timelineEvent.detail1().contains("At: Govt Hospital"));
     }
 
     @Test
-    public void shouldCreateTimelineEventForANCOutcomeExcludingThoseDetailsWhichDoNotHaveValue() throws Exception {
-        TimelineEvent timelineEvent = TimelineEvent.forChildBirthInMotherProfile("CASE A","2012-01-01","male", detailsWithoutData);
+    public void shouldCreateTimelineEventForChildBirthInMotherProfileExcludingThoseDetailsWhichDoNotHaveValue() throws Exception {
+        TimelineEvent timelineEvent = forChildBirthInMotherProfile("CASE A", "2012-01-01", "male", detailsWithoutData);
 
         assertFalse(timelineEvent.detail1().contains("On:"));
         assertFalse(timelineEvent.detail1().contains("At:"));
+    }
+
+    @Test
+    public void shouldCreateTimelineEventForChildBirthInECProfileWithDetails() throws Exception {
+        TimelineEvent timelineEvent = forChildBirthInECProfile("CASE A", "2012-08-01", "male", detailsWithData);
+
+        assertTrue(timelineEvent.detail1().contains("On: 01-08-2012"));
+    }
+
+    @Test
+    public void shouldCreateTimelineEventForChildBirthInECProfileExcludingThoseDetailsWhichDoNotHaveValue() throws Exception {
+        TimelineEvent timelineEvent = forChildBirthInMotherProfile("CASE A", "2012-01-01", "male", detailsWithoutData);
+
+        assertFalse(timelineEvent.detail1().contains("On:"));
     }
 }
