@@ -279,7 +279,8 @@
 
 .beneficiary-detail-component .beneficiary-detail-header {
     font-weight: bold;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
+	margin-left: 10px;
 }
 
 .beneficiary-detail-component .beneficiary-detail-footer {
@@ -308,6 +309,7 @@
     width: 60px;
     border-radius: 4px;
     margin-right: 5px;
+	margin-bottom: 10px;
 }
 
 .ec-child.boy {
