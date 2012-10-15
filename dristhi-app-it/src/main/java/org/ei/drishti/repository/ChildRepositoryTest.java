@@ -10,6 +10,7 @@ import org.ei.drishti.util.Session;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
@@ -38,7 +39,7 @@ public class ChildRepositoryTest extends AndroidTestCase {
         repository.addChild(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
 
         assertEquals(asList(new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS)), repository.all());
-        assertEquals(asList(TimelineEvent.forChildBirthInChildProfile("CASE A", "2012-06-09", "female")), timelineEventRepository.allFor("CASE A"));
+        assertEquals(asList(TimelineEvent.forChildBirthInChildProfile("CASE A", "2012-06-09", new HashMap<String, String>())), timelineEventRepository.allFor("CASE A"));
     }
 
     public void testShouldFetchChildrenByTheirOwnCaseId() throws Exception {
@@ -82,7 +83,7 @@ public class ChildRepositoryTest extends AndroidTestCase {
         repository.close("CASE A");
 
         assertEquals(new ArrayList<TimelineEvent>(), timelineEventRepository.allFor("CASE A"));
-        assertEquals(asList(TimelineEvent.forChildBirthInChildProfile("CASE B", "2012-06-10", "female")), timelineEventRepository.allFor("CASE B"));
+        assertEquals(asList(TimelineEvent.forChildBirthInChildProfile("CASE B", "2012-06-10", new HashMap<String, String>())), timelineEventRepository.allFor("CASE B"));
     }
 
     public void testShouldDeleteAllChildrenAndTheirDependentEntitiesForAGivenMother() throws Exception {
@@ -96,7 +97,7 @@ public class ChildRepositoryTest extends AndroidTestCase {
 
         assertEquals(new ArrayList<TimelineEvent>(), timelineEventRepository.allFor("CASE A"));
         assertEquals(new ArrayList<TimelineEvent>(), timelineEventRepository.allFor("CASE B"));
-        assertEquals(asList(TimelineEvent.forChildBirthInChildProfile("CASE C", "2012-06-09", "female")), timelineEventRepository.allFor("CASE C"));
+        assertEquals(asList(TimelineEvent.forChildBirthInChildProfile("CASE C", "2012-06-09", new HashMap<String, String>())), timelineEventRepository.allFor("CASE C"));
     }
 
     public void testShouldUpdateMotherDetails() throws Exception {

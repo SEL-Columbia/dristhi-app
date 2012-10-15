@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
+import static org.ei.drishti.domain.TimelineEvent.forChildBirthInChildProfile;
 import static org.ei.drishti.domain.TimelineEvent.forChildBirthInECProfile;
 import static org.ei.drishti.domain.TimelineEvent.forChildBirthInMotherProfile;
 
@@ -29,6 +30,7 @@ public class TimelineEventTest {
         detailsWithData.put("childWeight", "4");
         detailsWithData.put("dateOfDelivery", "2012-08-01");
         detailsWithData.put("placeOfDelivery", "Govt Hospital");
+        detailsWithData.put("immunizationsProvided", "bcg opv_0 hepb_0");
 
         detailsWithoutData = new HashMap<String, String>();
     }
@@ -115,5 +117,21 @@ public class TimelineEventTest {
         TimelineEvent timelineEvent = forChildBirthInMotherProfile("CASE A", "2012-01-01", "male", detailsWithoutData);
 
         assertFalse(timelineEvent.detail1().contains("On:"));
+    }
+
+    @Test
+    public void shouldCreateTimelineEventForChildBirthInChildProfileWithDetails() throws Exception {
+        TimelineEvent timelineEvent = forChildBirthInChildProfile("CASE A", "2012-08-01", detailsWithData);
+
+        assertTrue(timelineEvent.detail1().contains("Weight: 4 kg"));
+        assertTrue(timelineEvent.detail1().contains("Immunizations: BCG, OPV 0, HepB 0"));
+    }
+
+    @Test
+    public void shouldCreateTimelineEventForChildBirthInChildProfileExcludingThoseDetailsWhichDoNotHaveValue() throws Exception {
+        TimelineEvent timelineEvent = forChildBirthInChildProfile("CASE A", "2012-01-01", detailsWithoutData);
+
+        assertFalse(timelineEvent.detail1().contains("Weight:"));
+        assertFalse(timelineEvent.detail1().contains("Immunizations:"));
     }
 }

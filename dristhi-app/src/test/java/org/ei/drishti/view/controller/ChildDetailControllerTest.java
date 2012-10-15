@@ -50,9 +50,10 @@ public class ChildDetailControllerTest {
         DateUtil.fakeIt(new LocalDate(2012, 8, 1));
         controller = new ChildDetailController(context, caseId, allEligibleCouples, allBeneficiaries, allAlerts, allTimelineEvents, commCareClientService);
     }
+
     @Test
     public void shouldGetChildDetailsAsJSON() throws Exception {
-        TimelineEvent birthEvent = TimelineEvent.forChildBirthInChildProfile(caseId, "2011-10-21", "male");
+        TimelineEvent birthEvent = TimelineEvent.forChildBirthInChildProfile(caseId, "2011-10-21", new HashMap<String, String>());
         TimelineEvent ancEvent = TimelineEvent.forMotherPNCVisit(caseId, "2", "2011-12-22", new HashMap<String, String>());
         TimelineEvent eventVeryCloseToCurrentDate = TimelineEvent.forMotherPNCVisit(caseId, "2", "2012-07-29", new HashMap<String, String>());
         ProfileTodo todo = new ProfileTodo(new Alert("Case X", "Theresa", "Husband 1", "bherya", "PNC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open));

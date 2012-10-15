@@ -28,8 +28,10 @@ public class TimelineEvent {
         this.detail2 = detail2;
     }
 
-    public static TimelineEvent forChildBirthInChildProfile(String caseId, String dateOfBirth, String gender) {
-        return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), "Child Born", StringUtils.capitalize(gender), "DOB: " + formatDate(dateOfBirth));
+    public static TimelineEvent forChildBirthInChildProfile(String caseId, String dateOfBirth, Map<String, String> details) {
+        String detailsString = new DetailBuilder(details).withWeight("childWeight").withImmunizations("immunizationsProvided").value();
+
+        return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), "Birth Date: " + formatDate(dateOfBirth), detailsString, null);
     }
 
     public static TimelineEvent forChildBirthInMotherProfile(String caseId, String dateOfBirth, String gender, Map<String, String> details) {
@@ -155,6 +157,26 @@ public class TimelineEvent {
         public DetailBuilder withPlaceOfDelivery(String placeOfDelivery) {
             String place = "At: " + details.get(placeOfDelivery) + "<br />";
             this.stringBuilder.append(checkEmptyField(place, details.get(placeOfDelivery)));
+            return this;
+        }
+
+        public DetailBuilder withImmunizations(String immunizationsProvided) {
+            String immunizationString = details.get(immunizationsProvided);
+            if (immunizationString == null) {
+                return this;
+            }
+            String[] immunizations = immunizationString.split(" ");
+            StringBuilder builder = new StringBuilder();
+            for (String immunization : immunizations) {
+                Immunizations value = Immunizations.value(immunization);
+                if (value == null) {
+                    continue;
+                }
+                builder.append(value.displayValue()).append(", ");
+            }
+            String finalString = builder.toString().replaceAll(", $", "");
+            String formattedImmunization = "Immunizations: " + finalString + "<br />";
+            this.stringBuilder.append(checkEmptyField(formattedImmunization, finalString));
             return this;
         }
 

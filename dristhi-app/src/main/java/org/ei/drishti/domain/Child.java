@@ -48,6 +48,10 @@ public class Child {
         return new Gson().toJson(details);
     }
 
+    public Map<String, String> detailsAsMap() {
+        return details;
+    }
+
     public boolean isHighRisk() {
         return "yes".equals(details.get("isHighRiskChild"));
     }
