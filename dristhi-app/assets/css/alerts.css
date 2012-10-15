@@ -5,8 +5,8 @@
 }
 
 .alert .todo-box {
-    width: 55px;
-    height: 55px;
+    width: 41px;
+    height: 41px;
 }
 
 .alert.overdue {
@@ -52,9 +52,13 @@
 }
 
 .alert-todo-message {
-    margin-top: 10px;
+    margin-top: auto;
 }
 
+.alert-todo-message .detail {
+	display: inline-block;
+	vertical-align: -50%;
+}
 .alert-todo {
     margin-bottom: 8px;
 }
