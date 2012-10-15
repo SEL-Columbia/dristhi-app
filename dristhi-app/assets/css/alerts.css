@@ -66,16 +66,13 @@
 .beneficiaryName {
     font-weight: bold;
     font-size: 19px;
-    margin-top: 3px;
 }
 
 .husbandName {
     font-weight: bold;
-    margin-bottom: 8px;
     font-size: 17px;
 }
 
 .dueDate {
-    margin-top: 5px;
     float: right;
 }
