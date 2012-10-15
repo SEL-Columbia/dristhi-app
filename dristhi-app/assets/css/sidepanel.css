@@ -8,6 +8,12 @@
     position: relative;
 }
 
+.status-bar.sidepanel-active {
+    margin-left: -1px;
+    position: relative;
+    margin-top: -5px;
+}
+
 .tabbable .nav.nav-tabs.sidepanel-active {
     display: block;
     overflow: hidden;
@@ -21,7 +27,7 @@
     margin-left: -8px;
 }
 
-.content.sidepanel-active, .content.sidepanel-content {
+.content.sidepanel-active, .content-detail.sidepanel-active, .content.sidepanel-content {
     margin-top: 0px;
 }
 
@@ -55,11 +61,15 @@
     display: none;
 }
 
+.sidepanel-active .right-text {
+    display: none;
+}
+
 #mainpanel-overlay.sidepanel-active {
     float: right;
     left: 84%;
     width: 16%;
-    z-index: 5000 ;
+    z-index: 5000;
     height: 100%;
     position: absolute;
 }
@@ -72,6 +82,7 @@
     background-color: #5e5e5e;
     border-right-color: #353535;
 }
+
 .brand.in-navbar.in-sidepanel {
     color: #0490c2;
 }
