@@ -12,7 +12,6 @@ Handlebars.registerHelper('formatBooleanToYesOrNo', function (val, options) {
         return "No";
 });
 
-
 Handlebars.registerHelper('imageForDeliveryFacility', function (val, options) {
     const SUB_DISTRICT_HOSPITAL = "sdh";
     const DISTRICT_HOSPITAL = "dh";
@@ -24,4 +23,29 @@ Handlebars.registerHelper('imageForDeliveryFacility', function (val, options) {
         return '<img class="no" />';
     }
     else return '<img class="yes" />';
+});
+
+Handlebars.registerHelper('imageForContactNo', function (val, options) {
+    if (val === "")
+        return '<img class="no" />';
+    else
+        return '<img class="yes" />';
+});
+
+Handlebars.registerHelper('formatDeliveryFacilityType', function (val, options) {
+    const DEFAULT_KEY = "";
+
+    var mapOfDeliveryFacilityType = {
+        "sub_center":"Sub Center",
+        "phc":"PHC",
+        "chc":"CHC",
+        "sdh":"SDH",
+        "dh":"DH",
+        "private_facility":"Private Facility",
+        "home":"Home"
+    };
+    var deliveryFacilityType = mapOfDeliveryFacilityType[val.deliveryFacilityType];
+    if (val.deliveryFacility !== "")
+        return val.deliveryFacility + (deliveryFacilityType === undefined ? "" : ", " + deliveryFacilityType);
+    return deliveryFacilityType;
 });

@@ -82,15 +82,16 @@ function FakeANCContext() {
                     details: {
                         deliveryPlace: "Bherya PHC",
                         ashaName: "Shiwani",
-                        ashaPhoneNumber: "987654321",
+                        ashaPhoneNumber: "9876543210",
                         isHighRisk: true,
                         highRiskReason: "    obstructed_labor     eclampsia spontaneous_abortion     ",
-                        isTransportationPlanAvailable: "Yes",
+                        isTransportationPlanAvailable: "",
                         transportPlan: "home",
                         deliveryFacility: "Bherya",
                         deliveryFacilityType: "phc",
                         contactNumber: "9999999999",
-                        isThereABirthCompanion: "yes"
+                        isThereABirthCompanion: "yes",
+                        isHighRiskStatusReviewed: "yes"
                     },
                     urgentTodos: [
                         {

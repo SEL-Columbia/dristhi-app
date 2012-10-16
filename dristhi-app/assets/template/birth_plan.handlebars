@@ -5,18 +5,21 @@
     <div class="well well-for-beneficiary-details-no-padding">
         <div class="container-fluid container-no-padding">
             <div class="delivery-plan">
+
                 <div class="row-fluid beneficiary-detail-component">
                     <div class="span2">
-                        {{{imageBasedOnYesOrNo details.isThereABirthCompanion}}}
+                        {{{imageForDeliveryFacility details}}}
                     </div>
                     <div class="span6 big-text-black">
-                        Birth companion
+                        Facility
                     </div>
                     <div class="span4 meta-summary-text-with-margin">
-                        {{formatBooleanToYesOrNo details.isThereABirthCompanion}}
+                        {{formatDeliveryFacilityType details}}
                     </div>
                 </div>
+
                 <div class="divider"></div>
+
 
                 <div class="row-fluid beneficiary-detail-component">
                     <div class="span2">
@@ -29,24 +32,41 @@
                         {{formatBooleanToYesOrNo details.isTransportationPlanAvailable}}
                     </div>
                 </div>
+
                 <div class="divider"></div>
+
+                {{#if details.isHighRisk}}
+                    <div class="row-fluid beneficiary-detail-component">
+                        <div class="span2">
+                            {{{imageBasedOnYesOrNo details.isHighRiskStatusReviewed}}}
+                        </div>
+                        <div class="span6 big-text-black">
+                            Reviewed HRP Status
+                        </div>
+                        <div class="span4 meta-summary-text-with-margin">
+                            {{formatBooleanToYesOrNo details.isHighRiskStatusReviewed}}
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                {{/if}}
 
                 <div class="row-fluid beneficiary-detail-component">
                     <div class="span2">
-                        {{{imageForDeliveryFacility details}}}
+                        {{{imageBasedOnYesOrNo details.isThereABirthCompanion}}}
                     </div>
                     <div class="span6 big-text-black">
-                        Facility
+                        Birth companion
                     </div>
                     <div class="span4 meta-summary-text-with-margin">
-                        {{formatText details.deliveryFacility}}, {{formatText details.deliveryFacilityType}}
+                        {{formatBooleanToYesOrNo details.isThereABirthCompanion}}
                     </div>
                 </div>
+
                 <div class="divider"></div>
 
                 <div class="row-fluid beneficiary-detail-component">
                     <div class="span2">
-                        <img class="yes" />
+                        {{{imageForContactNo details.contactNumber}}}
                     </div>
                     <div class="span6 big-text-black">
                         Contact No.
@@ -55,10 +75,12 @@
                         {{formatText details.contactNumber}}
                     </div>
                 </div>
+
                 <div class="divider"></div>
+
                 <div class="row-fluid beneficiary-detail-component">
                     <div class="span2">
-                        <img class="yes" />
+                        {{{imageForContactNo details.ashaPhoneNumber}}}
                     </div>
                     <div class="span6 big-text-black">
                         ASHA
