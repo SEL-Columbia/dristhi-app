@@ -18,7 +18,7 @@ Handlebars.registerHelper('ifFalse', function (val, options) {
         return options.inverse(this);
     } else if (val === false) {
         return options.inverse(this);
-    } else if (val === "no") {
+    } else if (val.toString().toUpperCase() === "no".toUpperCase()) {
         return options.inverse(this);
     } else if (val === "") {
         return options.inverse(this);

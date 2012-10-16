@@ -156,4 +156,13 @@ public class AllBeneficiariesTest {
 
         verifyZeroInteractions(childRepository);
     }
+
+    @Test
+    public void shouldHandleUpdateBirthPlanningForMother() throws Exception {
+        Action action = ActionBuilder.updateBirthPlanning("Case Mother X", mapOf("aKey", "aValue"));
+
+        allBeneficiaries.handleMotherAction(action);
+
+        verify(motherRepository).updateDetails("Case Mother X", mapOf("aKey", "aValue"));
+    }
 }

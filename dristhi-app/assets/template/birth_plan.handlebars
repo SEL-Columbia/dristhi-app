@@ -1,0 +1,73 @@
+<div class="registry-container container-fluid">
+    <div class="big-text row-fluid detail-section-header">
+        Delivery Plan
+    </div>
+    <div class="well well-for-beneficiary-details-no-padding">
+        <div class="container-fluid container-no-padding">
+            <div class="delivery-plan">
+                <div class="row-fluid beneficiary-detail-component">
+                    <div class="span2">
+                        {{{imageBasedOnYesOrNo details.isThereABirthCompanion}}}
+                    </div>
+                    <div class="span6 big-text-black">
+                        Birth companion
+                    </div>
+                    <div class="span4 meta-summary-text-with-margin">
+                        {{formatBooleanToYesOrNo details.isThereABirthCompanion}}
+                    </div>
+                </div>
+                <div class="divider"></div>
+
+                <div class="row-fluid beneficiary-detail-component">
+                    <div class="span2">
+                        {{{imageBasedOnYesOrNo details.isTransportationPlanAvailable}}}
+                    </div>
+                    <div class="span6 big-text-black">
+                        Transportation
+                    </div>
+                    <div class="span4 meta-summary-text-with-margin">
+                        {{formatBooleanToYesOrNo details.isTransportationPlanAvailable}}
+                    </div>
+                </div>
+                <div class="divider"></div>
+
+                <div class="row-fluid beneficiary-detail-component">
+                    <div class="span2">
+                        {{{imageForDeliveryFacility details}}}
+                    </div>
+                    <div class="span6 big-text-black">
+                        Facility
+                    </div>
+                    <div class="span4 meta-summary-text-with-margin">
+                        {{formatText details.deliveryFacility}}, {{formatText details.deliveryFacilityType}}
+                    </div>
+                </div>
+                <div class="divider"></div>
+
+                <div class="row-fluid beneficiary-detail-component">
+                    <div class="span2">
+                        <img class="yes" />
+                    </div>
+                    <div class="span6 big-text-black">
+                        Contact No.
+                    </div>
+                    <div class="span4 meta-summary-text-with-margin">
+                        {{formatText details.contactNumber}}
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="row-fluid beneficiary-detail-component">
+                    <div class="span2">
+                        <img class="yes" />
+                    </div>
+                    <div class="span6 big-text-black">
+                        ASHA
+                    </div>
+                    <div class="span4 meta-summary-text-with-margin">
+                        {{formatText details.ashaPhoneNumber}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

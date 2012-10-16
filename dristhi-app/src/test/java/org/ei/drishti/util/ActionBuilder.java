@@ -87,4 +87,9 @@ public class ActionBuilder {
         ActionData actionData = pncVisitHappened(child, LocalDate.parse("2012-01-01"), 1, 10, details);
         return new Action(caseId, "child", "pncVisitHappened", actionData.data(), "0", actionData.details());
     }
+
+    public static Action updateBirthPlanning(String caseId, Map<String, String> details) {
+        ActionData actionData = ActionData.updateBirthPlanning(details);
+        return new Action(caseId, "mother", "updateBirthPlanning", actionData.data(), "2012-01-01", details);
+    }
 }

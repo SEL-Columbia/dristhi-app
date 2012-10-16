@@ -1,6 +1,7 @@
 function ANC(ancBridge) {
     return {
         populateInto: function (cssIdentifierOfRootElement) {
+            Handlebars.registerPartial("birth_plan", Handlebars.templates.birth_plan);
             $(cssIdentifierOfRootElement).html(Handlebars.templates.anc_detail(ancBridge.getCurrentANC()));
         },
 
@@ -83,7 +84,13 @@ function FakeANCContext() {
                         ashaName: "Shiwani",
                         ashaPhoneNumber: "987654321",
                         isHighRisk: true,
-                        highRiskReason: "    obstructed_labor     eclampsia spontaneous_abortion     "
+                        highRiskReason: "    obstructed_labor     eclampsia spontaneous_abortion     ",
+                        isTransportationPlanAvailable: "Yes",
+                        transportPlan: "home",
+                        deliveryFacility: "Bherya",
+                        deliveryFacilityType: "phc",
+                        contactNumber: "9999999999",
+                        isThereABirthCompanion: "yes"
                     },
                     urgentTodos: [
                         {

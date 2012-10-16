@@ -45,7 +45,7 @@ public class AllBeneficiaries {
                     .withDetails(action.details()));
         } else if (action.type().equals("closeANC")) {
             // No action yet.
-        } else if (action.type().equals("updateDetails")) {
+        } else if (action.type().equals("updateDetails") || action.type().equals("updateBirthPlanning")) {
             motherRepository.updateDetails(action.caseID(), action.details());
         } else if (action.type().equals("ancCareProvided")) {
             allTimelines.add(forANCCareProvided(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));

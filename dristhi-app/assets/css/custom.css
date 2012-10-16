@@ -76,6 +76,16 @@
     margin-right: 4px;
 }
 
+.delivery-plan .yes {
+    content: url(../img/icons/icon-deliveryplan-yes.png);
+    margin-right: 4px;
+}
+
+.delivery-plan .no {
+    content: url(../img/icons/icon-deliveryplan-no.png);
+    margin-right: 4px;
+}
+
 .navbar .separator {
     content: url(../img/icons/separator.gif);
     margin-right: 4px;
@@ -137,6 +147,15 @@
     font-size: 20px;
     color: #0591d3;
     line-height: 22px;
+    margin-bottom: 3px;
+}
+
+.big-text-black {
+    font-weight: bold;
+    font-size: 19px;
+    color: #000000;
+    line-height: 22px;
+    margin-top: 2px;
     margin-bottom: 3px;
 }
 
@@ -456,6 +475,12 @@ body {
 
 .meta-summary-text {
     color: #b4b4b4;
+}
+
+.meta-summary-text-with-margin {
+    color: #b4b4b4;
+    margin-top: 3px;
+    margin-left: 2px;
 }
 
 .progress-indicator {

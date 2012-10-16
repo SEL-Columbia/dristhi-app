@@ -1,17 +1,17 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['anc_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
+  helpers = helpers || Handlebars.helpers; partials = partials || Handlebars.partials;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n    <div id=\"warning\"></div>\n    <div id=\"warning-modal-container\" class=\"modal-container\" style=\"display: block; \">\n        <div id=\"modal-goes-here\">\n            <div id=\"ancWarningModal\" class=\"modal-content\" style=\"display: block; \">\n                <div class=\"modal-row\">EDD Passed! Please fill delivery Outcome form.</div>\n                <div class=\"divider\"></div>\n                <div class=\"modal-row\" data-form=\"ANC_DELIVERY_OUTCOME\" data-caseid=\"";
+  buffer += "\n<div id=\"warning\"></div>\n<div id=\"warning-modal-container\" class=\"modal-container\" style=\"display: block; \">\n    <div id=\"modal-goes-here\">\n        <div id=\"ancWarningModal\" class=\"modal-content\" style=\"display: block; \">\n            <div class=\"modal-row\">EDD Passed! Please fill delivery Outcome form.</div>\n            <div class=\"divider\"></div>\n            <div class=\"modal-row\" data-form=\"ANC_DELIVERY_OUTCOME\" data-caseid=\"";
   foundHelper = helpers.caseId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\">Click here to fill delivery outcome Form.</div>\n            </div>\n        </div>\n    </div>\n";
+  buffer += escapeExpression(stack1) + "\">Click here to fill delivery\n                outcome Form.\n            </div>\n        </div>\n    </div>\n</div>\n";
   return buffer;}
 
 function program3(depth0,data) {
@@ -47,7 +47,7 @@ function program11(depth0,data) {
 function program13(depth0,data,depth1) {
   
   var buffer = "", stack1;
-  buffer += "\n            ";
+  buffer += "\n        ";
   stack1 = depth0.isCompleted;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.programWithDepth(program16, data, depth1),fn:self.programWithDepth(program14, data, depth1)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -56,18 +56,18 @@ function program13(depth0,data,depth1) {
 function program14(depth0,data,depth2) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                <div class=\"alert alert-todo completed\" data-form=\"";
+  buffer += "\n        <div class=\"alert alert-todo completed\" data-form=\"";
   foundHelper = helpers.formToOpen;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
+  buffer += escapeExpression(stack1) + "\"\n             data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                    <div class=\"row-fluid\">\n                        <div class=\"span2\">\n                            <img class=\"todo-box checked\"/>\n                        </div>\n                        <div class=\"span10 alert-todo-message\">\n                            <div class=\"detail\">";
+  buffer += escapeExpression(stack1) + "\">\n            <div class=\"row-fluid\">\n                <div class=\"span2\">\n                    <img class=\"todo-box checked\"/>\n                </div>\n                <div class=\"span10 alert-todo-message\">\n                    <div class=\"detail\">";
   foundHelper = helpers.message;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -75,24 +75,24 @@ function program14(depth0,data,depth2) {
   stack1 = depth0.todoDate;
   foundHelper = helpers.formatDate;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
+  buffer += escapeExpression(stack1) + "</div>\n                </div>\n            </div>\n        </div>\n        ";
   return buffer;}
 
 function program16(depth0,data,depth2) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                <div class=\"alert alert-todo overdue\" data-form=\"";
+  buffer += "\n        <div class=\"alert alert-todo overdue\" data-form=\"";
   foundHelper = helpers.formToOpen;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
+  buffer += escapeExpression(stack1) + "\"\n             data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                    <div class=\"row-fluid\">\n                        <div class=\"span2\">\n                            <img class=\"todo-box\"/>\n                        </div>\n                        <div class=\"span10 alert-todo-message\">\n                            <div class=\"detail\">";
+  buffer += escapeExpression(stack1) + "\">\n            <div class=\"row-fluid\">\n                <div class=\"span2\">\n                    <img class=\"todo-box\"/>\n                </div>\n                <div class=\"span10 alert-todo-message\">\n                    <div class=\"detail\">";
   foundHelper = helpers.message;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -100,13 +100,13 @@ function program16(depth0,data,depth2) {
   stack1 = depth0.todoDate;
   foundHelper = helpers.formatDate;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
+  buffer += escapeExpression(stack1) + "</div>\n                </div>\n            </div>\n        </div>\n        ";
   return buffer;}
 
 function program18(depth0,data,depth1) {
   
   var buffer = "", stack1;
-  buffer += "\n            ";
+  buffer += "\n        ";
   stack1 = depth0.isCompleted;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.programWithDepth(program21, data, depth1),fn:self.programWithDepth(program19, data, depth1)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -115,18 +115,18 @@ function program18(depth0,data,depth1) {
 function program19(depth0,data,depth2) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                <div class=\"alert alert-todo completed\" data-form=\"";
+  buffer += "\n        <div class=\"alert alert-todo completed\" data-form=\"";
   foundHelper = helpers.formToOpen;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
+  buffer += escapeExpression(stack1) + "\"\n             data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                    <div class=\"row-fluid\">\n                        <div class=\"span2\">\n                            <img class=\"todo-box checked\"/>\n                        </div>\n                        <div class=\"span10 alert-todo-message\">\n                            <div class=\"detail\">";
+  buffer += escapeExpression(stack1) + "\">\n            <div class=\"row-fluid\">\n                <div class=\"span2\">\n                    <img class=\"todo-box checked\"/>\n                </div>\n                <div class=\"span10 alert-todo-message\">\n                    <div class=\"detail\">";
   foundHelper = helpers.message;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -134,24 +134,24 @@ function program19(depth0,data,depth2) {
   stack1 = depth0.todoDate;
   foundHelper = helpers.formatDate;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
+  buffer += escapeExpression(stack1) + "</div>\n                </div>\n            </div>\n        </div>\n        ";
   return buffer;}
 
 function program21(depth0,data,depth2) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                <div class=\"alert alert-todo upcoming\" data-form=\"";
+  buffer += "\n        <div class=\"alert alert-todo upcoming\" data-form=\"";
   foundHelper = helpers.formToOpen;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "\" data-caseid=\"";
   stack1 = depth2.caseId;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\" data-visitcode=\"";
+  buffer += escapeExpression(stack1) + "\"\n             data-visitcode=\"";
   foundHelper = helpers.visitCode;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                    <div class=\"row-fluid\">\n                        <div class=\"span2\">\n                            <img class=\"todo-box\"/>\n                        </div>\n                        <div class=\"span10 alert-todo-message\">\n                            <div class=\"detail\">";
+  buffer += escapeExpression(stack1) + "\">\n            <div class=\"row-fluid\">\n                <div class=\"span2\">\n                    <img class=\"todo-box\"/>\n                </div>\n                <div class=\"span10 alert-todo-message\">\n                    <div class=\"detail\">";
   foundHelper = helpers.message;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.message; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -159,97 +159,89 @@ function program21(depth0,data,depth2) {
   stack1 = depth0.todoDate;
   foundHelper = helpers.formatDate;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </div>\n                </div>\n            ";
+  buffer += escapeExpression(stack1) + "</div>\n                </div>\n            </div>\n        </div>\n        ";
   return buffer;}
 
 function program23(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                            <div class=\"big-text high-risk\">\n                                <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                            </div>\n                            <div class=\"beneficiary-detail-footer risk-detail-text\"><ul>";
+  buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\">\n                            <ul>";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.highRiskReason;
   foundHelper = helpers.camelCaseAndConvertToListItems;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "camelCaseAndConvertToListItems", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</ul></div>\n                        ";
+  buffer += escapeExpression(stack1) + "</ul>\n                        </div>\n                        ";
   return buffer;}
 
 function program25(depth0,data) {
   
   
-  return "\n                            <div class=\"text-center big-text normal-risk\">Normal Risk</div>\n                        ";}
+  return "\n                        <div class=\"text-center big-text normal-risk\">Normal Risk</div>\n                        ";}
 
 function program27(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Delivery Plan\n        </div>\n        <div class=\"well well-for-beneficiary-details\">\n            <div class=\"container-fluid container-no-padding container-section\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span1\">\n                        <label class=\"checkbox\">\n                            <input type=\"checkbox\">\n                        </label>\n                    </div>\n                    <div class=\"span3\">Facility</div>\n                    <div class=\"span8\">";
-  stack1 = depth0.details;
-  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.deliveryPlace;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</div>\n                </div>\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span1\">\n                        <label class=\"checkbox\">\n                            <input type=\"checkbox\">\n                        </label>\n                    </div>\n                    <div class=\"span3\">Contact</div>\n                    <div class=\"span8\">";
-  stack1 = depth0.details;
-  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.ashaPhoneNumber;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</div>\n                </div>\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span1\">\n                        <label class=\"checkbox\">\n                            <input type=\"checkbox\">\n                        </label>\n                    </div>\n                    <div class=\"span3\">ASHA</div>\n                    <div class=\"span8\">";
-  stack1 = depth0.details;
-  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.ashaName;
-  stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</div>\n                </div>\n            </div>\n        </div>\n    </div>\n    ";
+  buffer += "\n        ";
+  stack1 = depth0;
+  stack1 = self.invokePartial(partials.birth_plan, 'birth_plan', stack1, helpers, partials);;
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    ";
   return buffer;}
 
 function program29(depth0,data) {
   
   
-  return "\n                    <div class=\"row-fluid unavailable-data\">\n                        No medical history data available\n                    </div>\n                ";}
+  return "\n                <div class=\"row-fluid unavailable-data\">\n                    No medical history data available\n                </div>\n                ";}
 
 function program31(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                    <div class=\"row-fluid beneficiary-detail-component\">\n                        <div class=\"beneficiary-detail-content\">\n                            <div class=\"timeline\">\n                                ";
+  buffer += "\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                        <div class=\"timeline\">\n                            ";
   stack1 = depth0.timelineEvents;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(32, program32, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                            </div>\n						    <div class=\"container-section-component row-fluid show-more-button\">\n						        <div class = \"divider\"></div>\n							    <div class = \"expand\"> Show more </div>\n						    </div>\n                        </div>\n                    </div>\n                ";
+  buffer += "\n                        </div>\n                        <div class=\"container-section-component row-fluid show-more-button\">\n                            <div class=\"divider\"></div>\n                            <div class=\"expand\"> Show more</div>\n                        </div>\n                    </div>\n                </div>\n                ";
   return buffer;}
 function program32(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n									<div class=\"timeline-component row-fluid timelineEvent\">\n                                        <div class=\"span3 type ";
+  buffer += "\n                            <div class=\"timeline-component row-fluid timelineEvent\">\n                                <div class=\"span3 type ";
   stack1 = depth0.type;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "\"></div>\n                                        <div class=\"span5\">\n                                            <strong>";
+  buffer += escapeExpression(stack1) + "\"></div>\n                                <div class=\"span5\">\n                                    <strong>";
   foundHelper = helpers.title;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.title; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</strong><br>\n                                            ";
+  buffer += escapeExpression(stack1) + "</strong><br>\n                                    ";
   stack1 = depth0.details;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(33, program33, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n                                        </div>\n                                        <div class=\"span4 pull-right text-right\">\n                                            ";
+  buffer += "\n                                </div>\n                                <div class=\"span4 pull-right text-right\">\n                                    ";
   foundHelper = helpers.date;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.date; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\n                                        </div>\n                            		</div>\n                                ";
+  buffer += escapeExpression(stack1) + "\n                                </div>\n                            </div>\n                            ";
   return buffer;}
 function program33(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                                                ";
+  buffer += "\n                                    ";
   foundHelper = helpers.formatText;
   stack1 = foundHelper ? foundHelper.call(depth0, depth0, {hash:{}}) : helperMissing.call(depth0, "formatText", depth0, {hash:{}});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "<br>\n                                            ";
+  buffer += "<br>\n                                    ";
   return buffer;}
 
   stack1 = depth0.pregnancyDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isEDDPassed;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <ul class=\"nav pull-left\">\n             <li><img class=\"sidepanel-icon affected-by-sidepanel\"><img class=\"separator\"></li>\n             <li><div class=\"name ellipsis\">";
+  buffer += "\n<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <ul class=\"nav pull-left\">\n            <li><img class=\"sidepanel-icon affected-by-sidepanel\"><img class=\"separator\"></li>\n            <li>\n                <div class=\"name ellipsis\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.wifeName;
   foundHelper = helpers.formatText;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</div></li>\n        </ul>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li><img class=\"separator\"></li>\n            <li data-modal-target=\"#ancFormModal\"><img class=\"update-data\"></li>\n        </ul>\n    </div>\n</div>\n\n<div id=\"ancFormModal\" class=\"modal-content\">\n    <div class=\"modal-row\" data-form=\"ANC_SERVICES\" data-caseid=\"";
+  buffer += escapeExpression(stack1) + "</div>\n            </li>\n        </ul>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li><img class=\"separator\"></li>\n            <li data-modal-target=\"#ancFormModal\"><img class=\"update-data\"></li>\n        </ul>\n    </div>\n</div>\n\n<div id=\"ancFormModal\" class=\"modal-content\">\n    <div class=\"modal-row\" data-form=\"ANC_SERVICES\" data-caseid=\"";
   foundHelper = helpers.caseId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -292,11 +284,11 @@ function program33(depth0,data) {
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isInArea;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "TC No: ";
+  buffer += "TC\n                        No: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</li>\n                </ul>\n            </div>\n        </div>\n    </div>\n\n    <div id=\"todos\" class=\"registry-container container-fluid\">\n        ";
+  buffer += escapeExpression(stack1) + "\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n\n    <div id=\"todos\" class=\"registry-container container-fluid\">\n        ";
   stack1 = depth0.urgentTodos;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.programWithDepth(program13, data, depth0)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
@@ -304,7 +296,7 @@ function program33(depth0,data) {
   stack1 = depth0.todos;
   stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.programWithDepth(program18, data, depth0)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n\n    <div class=\"divider\"></div>\n\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Summary\n        </div>\n        <div class=\"well well-for-beneficiary-details-no-padding\">\n            <div class=\"container-fluid container-no-padding\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                        ";
+  buffer += "\n    </div>\n\n    <div class=\"divid0er\"></div>\n\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Summary\n        </div>\n        <div class=\"well well-for-beneficiary-details-no-padding\">\n            <div class=\"container-fluid container-no-padding\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                        ";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isHighRisk;
   foundHelper = helpers.ifFalse;
@@ -314,12 +306,12 @@ function program33(depth0,data) {
   stack1 = depth0.pregnancyDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.monthsPregnant;
   stack1 = typeof stack1 === functionType ? stack1() : stack1;
-  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">Months Pregnant</span>\n                        </div>\n                        <div class=\"span6 text-center info\">\n                            <span class=\"big-text-numbers\">";
+  buffer += escapeExpression(stack1) + "</span><br><span\n                                class=\"meta-summary-text\">Months Pregnant</span>\n                        </div>\n                        <div class=\"span6 text-center info\">\n                            <span class=\"big-text-numbers\">";
   stack1 = depth0.pregnancyDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.edd;
   foundHelper = helpers.formatDate;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDate", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</span><br><span class=\"meta-summary-text\">EDD</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    ";
+  buffer += escapeExpression(stack1) + "</span><br><span\n                                class=\"meta-summary-text\">EDD</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    ";
   stack1 = depth0.pregnancyDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isLastMonthOfPregnancy;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(27, program27, data)});
@@ -423,6 +415,60 @@ templates['anm_navigation'] = template(function (Handlebars,depth0,helpers,parti
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.childCount; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
   buffer += escapeExpression(stack1) + "</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n    </div>\n</div>\n";
+  return buffer;});
+templates['birth_plan'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        Delivery Plan\n    </div>\n    <div class=\"well well-for-beneficiary-details-no-padding\">\n        <div class=\"container-fluid container-no-padding\">\n            <div class=\"delivery-plan\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span2\">\n                        ";
+  stack1 = depth0.details;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isThereABirthCompanion;
+  foundHelper = helpers.imageBasedOnYesOrNo;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "imageBasedOnYesOrNo", stack1, {hash:{}});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n                    </div>\n                    <div class=\"span6 big-text-black\">\n                        Birth companion\n                    </div>\n                    <div class=\"span4 meta-summary-text-with-margin\">\n                        ";
+  stack1 = depth0.details;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isThereABirthCompanion;
+  foundHelper = helpers.formatBooleanToYesOrNo;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatBooleanToYesOrNo", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "\n                    </div>\n                </div>\n                <div class=\"divider\"></div>\n\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span2\">\n                        ";
+  stack1 = depth0.details;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isTransportationPlanAvailable;
+  foundHelper = helpers.imageBasedOnYesOrNo;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "imageBasedOnYesOrNo", stack1, {hash:{}});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n                    </div>\n                    <div class=\"span6 big-text-black\">\n                        Transportation\n                    </div>\n                    <div class=\"span4 meta-summary-text-with-margin\">\n                        ";
+  stack1 = depth0.details;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isTransportationPlanAvailable;
+  foundHelper = helpers.formatBooleanToYesOrNo;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatBooleanToYesOrNo", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "\n                    </div>\n                </div>\n                <div class=\"divider\"></div>\n\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span2\">\n                        ";
+  stack1 = depth0.details;
+  foundHelper = helpers.imageForDeliveryFacility;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "imageForDeliveryFacility", stack1, {hash:{}});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n                    </div>\n                    <div class=\"span6 big-text-black\">\n                        Facility\n                    </div>\n                    <div class=\"span4 meta-summary-text-with-margin\">\n                        ";
+  stack1 = depth0.details;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.deliveryFacility;
+  foundHelper = helpers.formatText;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + ", ";
+  stack1 = depth0.details;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.deliveryFacilityType;
+  foundHelper = helpers.formatText;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "\n                    </div>\n                </div>\n                <div class=\"divider\"></div>\n\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span2\">\n                        <img class=\"yes\" />\n                    </div>\n                    <div class=\"span6 big-text-black\">\n                        Contact No.\n                    </div>\n                    <div class=\"span4 meta-summary-text-with-margin\">\n                        ";
+  stack1 = depth0.details;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.contactNumber;
+  foundHelper = helpers.formatText;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "\n                    </div>\n                </div>\n                <div class=\"divider\"></div>\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span2\">\n                        <img class=\"yes\" />\n                    </div>\n                    <div class=\"span6 big-text-black\">\n                        ASHA\n                    </div>\n                    <div class=\"span4 meta-summary-text-with-margin\">\n                        ";
+  stack1 = depth0.details;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.ashaPhoneNumber;
+  foundHelper = helpers.formatText;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>";
   return buffer;});
 templates['child_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
