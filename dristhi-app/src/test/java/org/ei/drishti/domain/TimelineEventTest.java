@@ -8,9 +8,7 @@ import java.util.Map;
 
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
-import static org.ei.drishti.domain.TimelineEvent.forChildBirthInChildProfile;
-import static org.ei.drishti.domain.TimelineEvent.forChildBirthInECProfile;
-import static org.ei.drishti.domain.TimelineEvent.forChildBirthInMotherProfile;
+import static org.ei.drishti.domain.TimelineEvent.*;
 
 public class TimelineEventTest {
 
@@ -133,5 +131,13 @@ public class TimelineEventTest {
 
         assertFalse(timelineEvent.detail1().contains("Weight:"));
         assertFalse(timelineEvent.detail1().contains("Immunizations:"));
+    }
+
+    @Test
+    public void shouldCreateTimelineEventForUpdateImmunization() throws Exception {
+        TimelineEvent timelineEvent = forChildImmunization("CASE A", "bcg opv_0", "2012-08-01", "1");
+
+        assertTrue(timelineEvent.detail1().contains("BCG, OPV 0"));
+        assertTrue(timelineEvent.detail1().contains("Vitamin A Dose 1"));
     }
 }

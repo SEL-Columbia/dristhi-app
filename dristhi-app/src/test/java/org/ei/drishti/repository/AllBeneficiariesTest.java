@@ -165,4 +165,15 @@ public class AllBeneficiariesTest {
 
         verify(motherRepository).updateDetails("Case Mother X", mapOf("aKey", "aValue"));
     }
+
+    @Test
+    public void shouldHandleUpdateImmunizationsForChild() throws Exception {
+        Action action = ActionBuilder.updateImmunizations("Case X", mapOf("aKey", "aValue"));
+
+        allBeneficiaries.handleChildAction(action);
+
+        verify(allTimelineEvents).add(TimelineEvent.forChildImmunization("Case X", action.get("immunizationsProvided"), action.get("immunizationsProvidedDate")
+                , action.get("vitaminADose")));
+        verify(childRepository).updateDetails("Case X", mapOf("aKey", "aValue"));
+    }
 }

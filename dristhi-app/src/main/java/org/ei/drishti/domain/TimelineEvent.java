@@ -1,6 +1,5 @@
 package org.ei.drishti.domain;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -9,6 +8,7 @@ import org.joda.time.LocalDate;
 
 import java.util.Map;
 
+import static org.apache.commons.lang.StringUtils.isBlank;
 import static org.ei.drishti.util.DateUtil.formatDate;
 
 public class TimelineEvent {
@@ -89,6 +89,12 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "PNCVISIT", LocalDate.parse(visitDate), "PNC Visit " + visitNumber, detailsString, null);
     }
 
+    public static TimelineEvent forChildImmunization(String caseId, String immunizationsProvided, String immunizationsProvidedDate, String vitaminADose) {
+        String detailString = new DetailBuilder(null).withVaccinations(immunizationsProvided).withVitaminADose(vitaminADose).value();
+
+        return new TimelineEvent(caseId, "IMMUNIZATIONSGIVEN", LocalDate.parse(immunizationsProvidedDate), "Immunization Date: " + formatDate(immunizationsProvidedDate), detailString, null);
+    }
+
     public String type() {
         return type;
     }
@@ -147,7 +153,7 @@ public class TimelineEvent {
         }
 
         public DetailBuilder withDateOfDelivery(String dateOfDelivery) {
-            if (StringUtils.isBlank(details.get(dateOfDelivery))) {
+            if (isBlank(details.get(dateOfDelivery))) {
                 return this;
             }
             this.stringBuilder.append("On: ").append(formatDate(details.get(dateOfDelivery))).append("<br />");
@@ -165,16 +171,7 @@ public class TimelineEvent {
             if (immunizationString == null) {
                 return this;
             }
-            String[] immunizations = immunizationString.split(" ");
-            StringBuilder builder = new StringBuilder();
-            for (String immunization : immunizations) {
-                Immunizations value = Immunizations.value(immunization);
-                if (value == null) {
-                    continue;
-                }
-                builder.append(value.displayValue()).append(", ");
-            }
-            String finalString = builder.toString().replaceAll(", $", "");
+            String finalString = immunizationFormatter(immunizationString);
             String formattedImmunization = "Immunizations: " + finalString + "<br />";
             this.stringBuilder.append(checkEmptyField(formattedImmunization, finalString));
             return this;
@@ -185,10 +182,39 @@ public class TimelineEvent {
         }
 
         private String checkEmptyField(String msg, String condition) {
-            if (StringUtils.isBlank(condition)) {
+            if (isBlank(condition)) {
                 return "";
             }
             return msg;
+        }
+
+        public DetailBuilder withVaccinations(String immunizationsProvided) {
+            if (isBlank(immunizationsProvided)) {
+                return this;
+            }
+            this.stringBuilder.append(immunizationFormatter(immunizationsProvided));
+            return this;
+        }
+
+        public DetailBuilder withVitaminADose(String vitaminADose) {
+            if (isBlank(vitaminADose)) {
+                return this;
+            }
+            this.stringBuilder.append(", Vitamin A Dose ").append(vitaminADose);
+            return this;
+        }
+
+        private String immunizationFormatter(String immunizationString) {
+            String[] immunizations = immunizationString.split(" ");
+            StringBuilder builder = new StringBuilder();
+            for (String immunization : immunizations) {
+                Immunizations value = Immunizations.value(immunization);
+                if (value == null) {
+                    continue;
+                }
+                builder.append(value.displayValue()).append(", ");
+            }
+            return builder.toString().replaceAll(", $", "");
         }
     }
 

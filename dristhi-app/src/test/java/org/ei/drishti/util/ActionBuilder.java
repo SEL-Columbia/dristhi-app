@@ -92,4 +92,9 @@ public class ActionBuilder {
         ActionData actionData = ActionData.updateBirthPlanning(details);
         return new Action(caseId, "mother", "updateBirthPlanning", actionData.data(), "2012-01-01", details);
     }
+
+    public static Action updateImmunizations(String caseId, Map<String, String> details) {
+        ActionData actionData = ActionData.updateImmunizations("bcg opv_0", LocalDate.parse("2012-01-01"), "1", details);
+        return new Action(caseId, "child", "updateImmunizations", actionData.data(), "2012-01-01", details);
+    }
 }

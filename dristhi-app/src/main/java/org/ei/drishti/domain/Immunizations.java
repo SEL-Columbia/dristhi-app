@@ -1,7 +1,7 @@
 package org.ei.drishti.domain;
 
 public enum Immunizations implements Displayable {
-    bcg("BCG"), opv_0("OPV 0"), hepb_0("HepB 0"), opv_1("OPV 1"), opv_2("OPV 2");
+    bcg("BCG"), opv_0("OPV 0"), hepb_0("HepB 0"), opv_1("OPV 1"), opv_2("OPV 2"), measles("Measles");
     private String displayValue;
 
     Immunizations(String displayValue) {

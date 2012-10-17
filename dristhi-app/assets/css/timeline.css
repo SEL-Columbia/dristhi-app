@@ -37,6 +37,10 @@
     content: url(../img/icons/icon-event-inject.png);
 }
 
+.timeline .type.IMMUNIZATIONSGIVEN {
+    content: url(../img/icons/icon-event-inject.png);
+}
+
 .timeline .type.CHILD-BIRTH {
     content: url(../img/icons/icon-event-birth.png);
 }
