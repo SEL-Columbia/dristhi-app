@@ -5,9 +5,7 @@
         <div id="ancWarningModal" class="modal-content" style="display: block; ">
             <div class="modal-row">EDD Passed! Please fill delivery Outcome form.</div>
             <div class="divider"></div>
-            <div class="modal-row" data-form="ANC_DELIVERY_OUTCOME" data-caseid="{{caseId}}">Click here to fill delivery
-                outcome Form.
-            </div>
+            <div class="modal-row" data-form="ANC_DELIVERY_OUTCOME" data-caseid="{{caseId}}">Click here to fill delivery outcome Form.</div>
         </div>
     </div>
 </div>
@@ -16,9 +14,7 @@
     <div class="navbar-inner">
         <ul class="nav pull-left">
             <li><img class="sidepanel-icon affected-by-sidepanel"><img class="separator"></li>
-            <li>
-                <div class="name ellipsis">{{formatText coupleDetails.wifeName}}</div>
-            </li>
+            <li><div class="name ellipsis">{{formatText coupleDetails.wifeName}}</div></li>
         </ul>
 
         <ul class="nav pull-right affected-by-sidepanel">
@@ -56,9 +52,7 @@
                     <li class="big-text">{{formatText coupleDetails.wifeName}}</li>
                     <li class="medium-text spacing-below">{{capitalize coupleDetails.husbandName}}</li>
                     <li>{{formatText location.villageName}}</li>
-                    <li class="light-text">{{#if coupleDetails.isInArea}}EC No: {{coupleDetails.ecNumber}}, {{/if}}TC
-                        No: {{thaayiCardNumber}}
-                    </li>
+                    <li class="light-text">{{#if coupleDetails.isInArea}}EC No: {{coupleDetails.ecNumber}}, {{/if}}TC No: {{thaayiCardNumber}}</li>
                 </ul>
             </div>
         </div>
@@ -67,8 +61,7 @@
     <div id="todos" class="registry-container container-fluid">
         {{#each urgentTodos}}
         {{#if isCompleted}}
-        <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}"
-             data-visitcode="{{visitCode}}">
+        <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
             <div class="row-fluid">
                 <div class="span2">
                     <img class="todo-box checked"/>
@@ -79,8 +72,7 @@
             </div>
         </div>
         {{else}}
-        <div class="alert alert-todo overdue" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}"
-             data-visitcode="{{visitCode}}">
+        <div class="alert alert-todo overdue" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
             <div class="row-fluid">
                 <div class="span2">
                     <img class="todo-box"/>
@@ -94,8 +86,7 @@
         {{/each}}
         {{#each todos}}
         {{#if isCompleted}}
-        <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}"
-             data-visitcode="{{visitCode}}">
+        <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
             <div class="row-fluid">
                 <div class="span2">
                     <img class="todo-box checked"/>
@@ -106,8 +97,7 @@
             </div>
         </div>
         {{else}}
-        <div class="alert alert-todo upcoming" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}"
-             data-visitcode="{{visitCode}}">
+        <div class="alert alert-todo upcoming" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
             <div class="row-fluid">
                 <div class="span2">
                     <img class="todo-box"/>
@@ -121,7 +111,7 @@
         {{/each}}
     </div>
 
-    <div class="divid0er"></div>
+    <div class="divider"></div>
 
 
     <div class="registry-container container-fluid">
@@ -136,9 +126,7 @@
                         <div class="big-text high-risk">
                             <i class="icon-circle-arrow-up" style="margin-top: 3px;"></i> High Risk</span>
                         </div>
-                        <div class="beneficiary-detail-footer risk-detail-text">
-                            <ul>{{camelCaseAndConvertToListItems details.highRiskReason}}</ul>
-                        </div>
+                        <div class="beneficiary-detail-footer risk-detail-text"><ul>{{camelCaseAndConvertToListItems details.highRiskReason}}</ul></div>
                         {{else}}
                         <div class="text-center big-text normal-risk">Normal Risk</div>
                         {{/ifFalse}}
@@ -146,12 +134,10 @@
                     <div class="divider"></div>
                     <div class="beneficiary-detail-content">
                         <div class="span6 text-center right-border info">
-                            <span class="big-text-numbers">{{pregnancyDetails.monthsPregnant}}</span><br><span
-                                class="meta-summary-text">Months Pregnant</span>
+                            <span class="big-text-numbers">{{pregnancyDetails.monthsPregnant}}</span><br><span class="meta-summary-text">Months Pregnant</span>
                         </div>
                         <div class="span6 text-center info">
-                            <span class="big-text-numbers">{{formatDate pregnancyDetails.edd}}</span><br><span
-                                class="meta-summary-text">EDD</span>
+                            <span class="big-text-numbers">{{formatDate pregnancyDetails.edd}}</span><br><span class="meta-summary-text">EDD</span>
                         </div>
                     </div>
                 </div>
@@ -193,8 +179,8 @@
                             {{/each}}
                         </div>
                         <div class="container-section-component row-fluid show-more-button">
-                            <div class="divider"></div>
-                            <div class="expand"> Show more</div>
+                            <div class = "divider"></div>
+                            <div class = "expand"> Show more </div>
                         </div>
                     </div>
                 </div>
