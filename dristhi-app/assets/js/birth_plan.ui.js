@@ -61,9 +61,13 @@ Handlebars.registerHelper('formatTransportPlan', function (val, options) {
 });
 
 Handlebars.registerHelper('shouldDisplayBirthPlan', function (val, options) {
-    if (val.details.deliveryFacilityType !== "") {
+    if (val.details.deliveryFacilityType === undefined || val.details.deliveryFacilityType === "") {
+        if (val.pregnancyDetails.isLastMonthOfPregnancy) {
+            return options.inverse(this);
+        }
+        else return null;
+    }
+    else if (val.details.deliveryFacilityType !== "") {
         return options.fn(this);
-    } else if (val.pregnancyDetails.isLastMonthOfPregnancy) {
-        return options.inverse(this);
-    } else return null;
+    }
 });
