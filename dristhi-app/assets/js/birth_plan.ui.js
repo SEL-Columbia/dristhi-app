@@ -25,7 +25,7 @@ Handlebars.registerHelper('imageForDeliveryFacility', function (val, options) {
     else return '<img class="yes" />';
 });
 
-Handlebars.registerHelper('imageForContactNo', function (val, options) {
+Handlebars.registerHelper('imageBasedOnValueIsEmptyOrNot', function (val, options) {
     if (val === "")
         return '<img class="no" />';
     else
@@ -33,8 +33,6 @@ Handlebars.registerHelper('imageForContactNo', function (val, options) {
 });
 
 Handlebars.registerHelper('formatDeliveryFacilityType', function (val, options) {
-    const DEFAULT_KEY = "";
-
     var mapOfDeliveryFacilityType = {
         "sub_center":"Sub Center",
         "phc":"PHC",
@@ -48,4 +46,16 @@ Handlebars.registerHelper('formatDeliveryFacilityType', function (val, options) 
     if (val.deliveryFacility !== "")
         return val.deliveryFacility + (deliveryFacilityType === undefined ? "" : ", " + deliveryFacilityType);
     return deliveryFacilityType;
+});
+
+Handlebars.registerHelper('formatTransportPlan', function (val, options) {
+    var mapOfDeliveryTransportPlan = {
+        "family_vehicle":"Family vehicle",
+        "borrowed_vehicle":"Borrowed vehicle",
+        "hired_vehicle":"Hired vehicle",
+        "ambulance":"Ambulance (108)",
+        "others":"Others",
+        "": ""
+    };
+    return mapOfDeliveryTransportPlan[val];
 });

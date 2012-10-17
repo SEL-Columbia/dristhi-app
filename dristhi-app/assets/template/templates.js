@@ -446,17 +446,17 @@ function program1(depth0,data) {
   stack1 = depth0.details;
   foundHelper = helpers.formatDeliveryFacilityType;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatDeliveryFacilityType", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "\n                    </div>\n                </div>\n\n                <div class=\"divider\"></div>\n\n\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span2\">\n                        ";
+  buffer += escapeExpression(stack1) + "\n                    </div>\n                </div>\n\n                <div class=\"divider\"></div>\n\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span2\">\n                        ";
   stack1 = depth0.details;
-  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isTransportationPlanAvailable;
-  foundHelper = helpers.imageBasedOnYesOrNo;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "imageBasedOnYesOrNo", stack1, {hash:{}});
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.transportPlan;
+  foundHelper = helpers.imageBasedOnValueIsEmptyOrNot;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "imageBasedOnValueIsEmptyOrNot", stack1, {hash:{}});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                    </div>\n                    <div class=\"span6 big-text-black\">\n                        Transportation\n                    </div>\n                    <div class=\"span4 meta-summary-text-with-margin\">\n                        ";
   stack1 = depth0.details;
-  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isTransportationPlanAvailable;
-  foundHelper = helpers.formatBooleanToYesOrNo;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatBooleanToYesOrNo", stack1, {hash:{}});
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.transportPlan;
+  foundHelper = helpers.formatTransportPlan;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatTransportPlan", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "\n                    </div>\n                </div>\n\n                <div class=\"divider\"></div>\n\n                ";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isHighRisk;
@@ -476,8 +476,8 @@ function program1(depth0,data) {
   buffer += escapeExpression(stack1) + "\n                    </div>\n                </div>\n\n                <div class=\"divider\"></div>\n\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span2\">\n                        ";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.contactNumber;
-  foundHelper = helpers.imageForContactNo;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "imageForContactNo", stack1, {hash:{}});
+  foundHelper = helpers.imageBasedOnValueIsEmptyOrNot;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "imageBasedOnValueIsEmptyOrNot", stack1, {hash:{}});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                    </div>\n                    <div class=\"span6 big-text-black\">\n                        Contact No.\n                    </div>\n                    <div class=\"span4 meta-summary-text-with-margin\">\n                        ";
   stack1 = depth0.details;
@@ -487,8 +487,8 @@ function program1(depth0,data) {
   buffer += escapeExpression(stack1) + "\n                    </div>\n                </div>\n\n                <div class=\"divider\"></div>\n\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span2\">\n                        ";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.ashaPhoneNumber;
-  foundHelper = helpers.imageForContactNo;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "imageForContactNo", stack1, {hash:{}});
+  foundHelper = helpers.imageBasedOnValueIsEmptyOrNot;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "imageBasedOnValueIsEmptyOrNot", stack1, {hash:{}});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                    </div>\n                    <div class=\"span6 big-text-black\">\n                        ASHA\n                    </div>\n                    <div class=\"span4 meta-summary-text-with-margin\">\n                        ";
   stack1 = depth0.details;
