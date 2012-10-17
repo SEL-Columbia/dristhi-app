@@ -1,15 +1,13 @@
 Handlebars.registerHelper('imageBasedOnYesOrNo', function (val, options) {
-    if (val.toString().toUpperCase() === "yes".toUpperCase())
-        return '<img class="yes" />';
-    else
+    if (!val || val.toString().toUpperCase() !== "yes".toUpperCase())
         return '<img class="no" />';
+    return '<img class="yes" />';
 });
 
 Handlebars.registerHelper('formatBooleanToYesOrNo', function (val, options) {
-    if (val.toString().toUpperCase() === "yes".toUpperCase())
-        return "Yes";
-    else
+    if (!val || val.toString().toUpperCase() !== "yes".toUpperCase())
         return "No";
+    return "Yes";
 });
 
 Handlebars.registerHelper('imageForDeliveryFacility', function (val, options) {
@@ -26,10 +24,9 @@ Handlebars.registerHelper('imageForDeliveryFacility', function (val, options) {
 });
 
 Handlebars.registerHelper('imageBasedOnValueIsEmptyOrNot', function (val, options) {
-    if (val === "")
-        return '<img class="no" />';
-    else
+    if (val) {
         return '<img class="yes" />';
+    } else return '<img class="no" />';
 });
 
 Handlebars.registerHelper('formatDeliveryFacilityType', function (val, options) {
@@ -43,7 +40,7 @@ Handlebars.registerHelper('formatDeliveryFacilityType', function (val, options) 
         "home":"Home"
     };
     var deliveryFacilityType = mapOfDeliveryFacilityType[val.deliveryFacilityType];
-    if (val.deliveryFacility !== "")
+    if (val.deliveryFacility)
         return val.deliveryFacility + (deliveryFacilityType === undefined ? "" : ", " + deliveryFacilityType);
     return deliveryFacilityType;
 });
@@ -61,13 +58,14 @@ Handlebars.registerHelper('formatTransportPlan', function (val, options) {
 });
 
 Handlebars.registerHelper('shouldDisplayBirthPlan', function (val, options) {
-    if (val.details.deliveryFacilityType === undefined || val.details.deliveryFacilityType === "") {
+    if (val.details.deliveryFacilityType) {
+        if (val.details.deliveryFacilityType !== "") {
+            return options.fn(this);
+        }
+    } else {
         if (val.pregnancyDetails.isLastMonthOfPregnancy) {
             return options.inverse(this);
         }
         else return null;
-    }
-    else if (val.details.deliveryFacilityType !== "") {
-        return options.fn(this);
     }
 });
