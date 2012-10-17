@@ -55,7 +55,15 @@ Handlebars.registerHelper('formatTransportPlan', function (val, options) {
         "hired_vehicle":"Hired vehicle",
         "ambulance":"Ambulance (108)",
         "others":"Others",
-        "": ""
+        "":""
     };
     return mapOfDeliveryTransportPlan[val];
+});
+
+Handlebars.registerHelper('shouldDisplayBirthPlan', function (val, options) {
+    if (val.details.deliveryFacilityType !== "") {
+        return options.fn(this);
+    } else if (val.pregnancyDetails.isLastMonthOfPregnancy) {
+        return options.inverse(this);
+    } else return null;
 });

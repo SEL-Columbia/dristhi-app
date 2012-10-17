@@ -1,3 +1,4 @@
+{{#shouldDisplayBirthPlan this}}
 <div class="registry-container container-fluid">
     <div class="big-text row-fluid detail-section-header">
         Delivery Plan
@@ -46,6 +47,7 @@
                             {{formatBooleanToYesOrNo details.isHighRiskStatusReviewed}}
                         </div>
                     </div>
+
                     <div class="divider"></div>
                 {{/if}}
 
@@ -92,3 +94,22 @@
         </div>
     </div>
 </div>
+{{else}}
+<div class="registry-container container-fluid">
+    <div class="big-text row-fluid detail-section-header">
+        Delivery Plan
+    </div>
+    <div class="well well-for-beneficiary-details-no-padding">
+        <div class="container-fluid container-no-padding">
+            <div class="delivery-plan">
+                <div class="row-fluid beneficiary-detail-component">
+                    <div class="span2">
+                        <img class="no"/>
+                    </div>
+                    <div class="span10" style="">Please discuss delivery plan</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/shouldDisplayBirthPlan}}
