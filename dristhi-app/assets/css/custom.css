@@ -86,6 +86,10 @@
     margin-right: 4px;
 }
 
+.edit-birth-plan {
+    margin-right: 15px;
+}
+
 .navbar .separator {
     content: url(../img/icons/separator.gif);
     margin-right: 4px;

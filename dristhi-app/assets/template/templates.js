@@ -407,12 +407,16 @@ templates['anm_navigation'] = template(function (Handlebars,depth0,helpers,parti
   return buffer;});
 templates['birth_plan'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var stack1, foundHelper, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+  var stack1, foundHelper, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this;
 
 function program1(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        Delivery Plan\n    </div>\n    <div class=\"well well-for-beneficiary-details-no-padding\">\n        <div class=\"container-fluid container-no-padding\">\n            <div class=\"delivery-plan\">\n\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span2\">\n                        ";
+  buffer += "\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        Delivery Plan\n        <div class=\"edit-birth-plan btn btn-primary pull-right\" data-form=\"BIRTH_PLANNING\" data-caseid=\"";
+  foundHelper = helpers.caseId;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\">Edit</div>\n    </div>\n    <div class=\"well well-for-beneficiary-details-no-padding\">\n        <div class=\"container-fluid container-no-padding\">\n            <div class=\"delivery-plan\">\n\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span2\">\n                        ";
   stack1 = depth0.details;
   foundHelper = helpers.imageForDeliveryFacility;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "imageForDeliveryFacility", stack1, {hash:{}});
@@ -491,8 +495,13 @@ function program2(depth0,data) {
 
 function program4(depth0,data) {
   
-  
-  return "\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        Delivery Plan\n    </div>\n    <div class=\"well well-for-beneficiary-details-no-padding\">\n        <div class=\"container-fluid container-no-padding\">\n            <div class=\"delivery-plan\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span2\">\n                        <img class=\"no\"/>\n                    </div>\n                    <div class=\"span10\" style=\"\">Please discuss delivery plan</div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";}
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        Delivery Plan\n        <div class=\"edit-birth-plan btn btn-primary pull-right\" data-form=\"BIRTH_PLANNING\" data-caseid=\"";
+  foundHelper = helpers.caseId;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\">Edit</div>\n    </div>\n    <div class=\"well well-for-beneficiary-details-no-padding\">\n        <div class=\"container-fluid container-no-padding\">\n            <div class=\"delivery-plan\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span2\">\n                        <img class=\"no\"/>\n                    </div>\n                    <div class=\"span10\" style=\"\">Please discuss delivery plan</div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";
+  return buffer;}
 
   foundHelper = helpers.shouldDisplayBirthPlan;
   stack1 = foundHelper ? foundHelper.call(depth0, depth0, {hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data)}) : helperMissing.call(depth0, "shouldDisplayBirthPlan", depth0, {hash:{},inverse:self.program(4, program4, data),fn:self.program(1, program1, data)});
