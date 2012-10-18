@@ -27,7 +27,7 @@
         $(document).ready(function () {
             var anc = new ANC(new ANCBridge());
             anc.populateInto("#mainpanel");
-            anc.bindEveryItemToCommCare(".modal-row");
+            anc.bindEveryItemToCommCare("#deliveryOutcomeFormButton");
             anc.bindEveryItemToCommCare(".edit-birth-plan");
             anc.bindTimelineEventToShowMoreButton(".timelineEvent", ".show-more-button", 5);
 
@@ -35,7 +35,7 @@
             new Modal().bindToClick();
 
             new Alerts().bindAllCheckboxes(".todo-box", anc.onAlertCheckboxClick);
-            $("#warning").click(function (event) {
+            $("#goToProfileButton").click(function (event) {
                 $('#warning').hide();
                 $("#warning-modal-container").hide();
                 event.stopPropagation();

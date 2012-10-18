@@ -77,7 +77,8 @@ function FakeANCContext() {
                         monthsPregnant: "8",
                         isEDDPassed: true,
                         edd: "2012-10-24",
-                        isLastMonthOfPregnancy: true
+                        isLastMonthOfPregnancy: true,
+                        daysPastEdd: "23"
                     },
                     details: {
                         deliveryPlace: "Bherya PHC",

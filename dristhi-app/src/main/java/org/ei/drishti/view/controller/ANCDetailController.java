@@ -12,6 +12,7 @@ import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.TimelineEventComparator;
 import org.ei.drishti.view.contract.*;
 import org.ei.drishti.view.contract.TimelineEvent;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.ocpsoft.pretty.time.Duration;
@@ -52,10 +53,12 @@ public class ANCDetailController {
         Months numberOfMonthsPregnant = Months.monthsBetween(lmp, DateUtil.today());
 
         int months = numberOfMonthsPregnant.getMonths();
+        LocalDate eddDate = LocalDate.parse(edd);
+        Days daysPastEdd = Days.daysBetween(eddDate, DateUtil.today());
         ANCDetail detail = new ANCDetail(caseId, mother.thaayiCardNumber(),
                 new CoupleDetails(couple.wifeName(), couple.husbandName(), couple.ecNumber(), couple.isOutOfArea()),
                 new LocationDetails(couple.village(), couple.subCenter()),
-                new PregnancyDetails(String.valueOf(months), edd))
+                new PregnancyDetails(String.valueOf(months), edd, daysPastEdd.getDays()))
                 .addTimelineEvents(getEvents())
                 .addTodos(todosAndUrgentTodos.get(0))
                 .addUrgentTodos(todosAndUrgentTodos.get(1))

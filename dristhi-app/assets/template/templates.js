@@ -7,11 +7,15 @@ templates['anc_detail'] = template(function (Handlebars,depth0,helpers,partials,
 function program1(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n<div id=\"warning\"></div>\n<div id=\"warning-modal-container\" class=\"modal-container\" style=\"display: block; \">\n    <div id=\"modal-goes-here\">\n        <div id=\"ancWarningModal\" class=\"modal-content\" style=\"display: block; \">\n            <div class=\"modal-row\">EDD Passed! Please fill delivery Outcome form.</div>\n            <div class=\"divider\"></div>\n            <div class=\"modal-row\" data-form=\"ANC_DELIVERY_OUTCOME\" data-caseid=\"";
+  buffer += "\n<div id=\"warning\"></div>\n<div id=\"warning-modal-container\" class=\"modal-container\" style=\"display: block; \">\n    <div id=\"modal-goes-here\">\n        <div id=\"ancWarningModal\" class=\"edd-modal-content\" style=\"display: block; \">\n            <div style=\"margin-top: 20px\"><img class=\"edd-popup-image\"></div>\n            <div class=\"big-text-black edd-modal-text\">EDD ";
+  stack1 = depth0.pregnancyDetails;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.daysPastEdd;
+  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  buffer += escapeExpression(stack1) + " days past due!</div>\n            <div class=\"edd-modal-button\">\n                <button id=\"deliveryOutcomeFormButton\" class=\"btn btn-large btn-primary\" type=\"button\" data-form=\"ANC_DELIVERY_OUTCOME\" data-caseid=\"";
   foundHelper = helpers.caseId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\">Click here to fill delivery outcome Form.</div>\n        </div>\n    </div>\n</div>\n";
+  buffer += escapeExpression(stack1) + "\">\n                    Delivery Outcome Form\n                </button>\n            </div>\n            <div class=\"edd-modal-button\">\n                <button id=\"goToProfileButton\" class=\"btn edd-modal-row\" type=\"button\">\n                    Go To Profile\n                </button>\n            </div>\n        </div>\n    </div>\n</div>\n";
   return buffer;}
 
 function program3(depth0,data) {

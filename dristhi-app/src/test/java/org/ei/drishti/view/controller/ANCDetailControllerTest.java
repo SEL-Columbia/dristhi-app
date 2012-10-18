@@ -14,6 +14,7 @@ import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.view.contract.*;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
@@ -74,7 +75,7 @@ public class ANCDetailControllerTest {
         ANCDetail expectedDetail = new ANCDetail(caseId, "TC 1",
                 new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false),
                 new LocationDetails("Village 1", "Subcenter 1"),
-                new PregnancyDetails("9", "2012-07-28"))
+                new PregnancyDetails("9", "2012-07-28", 4))
                 .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "7m 1w ago"), eventFor(pregnancyEvent, "9m 2w ago")))
                 .addTodos(asList(todo))
                 .addUrgentTodos(asList(urgentTodo))
