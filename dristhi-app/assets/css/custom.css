@@ -668,6 +668,11 @@ body {
     margin-bottom: 15px;
 }
 
+.edd-modal-button-text{
+    padding: 5px;
+    font-size: 17px;
+}
+
 .edd-modal-text{
     text-align: center;
     margin-bottom: 30px;

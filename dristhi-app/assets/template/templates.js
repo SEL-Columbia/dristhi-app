@@ -15,7 +15,7 @@ function program1(depth0,data) {
   foundHelper = helpers.caseId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\">\n                    Delivery Outcome Form\n                </button>\n            </div>\n            <div class=\"edd-modal-button\">\n                <button id=\"goToProfileButton\" class=\"btn edd-modal-row\" type=\"button\">\n                    Go To Profile\n                </button>\n            </div>\n        </div>\n    </div>\n</div>\n";
+  buffer += escapeExpression(stack1) + "\">\n                    <div class=\"edd-modal-button-text\">Delivery Outcome Form</div>\n                </button>\n            </div>\n            <div class=\"edd-modal-button\">\n                <button id=\"goToProfileButton\" class=\"btn edd-modal-row\" type=\"button\">\n                    <div class=\"edd-modal-button-text\">Go To Profile</div>\n                </button>\n            </div>\n        </div>\n    </div>\n</div>\n";
   return buffer;}
 
 function program3(depth0,data) {
