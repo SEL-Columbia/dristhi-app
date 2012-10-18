@@ -171,7 +171,7 @@ public class Context {
 
     private CommCareHQService commCareService() {
         if (commCareService == null) {
-            commCareService = new CommCareHQService(new HTTPAgent(applicationContext), "https://www.commcarehq.org", "frhs-who-columbia");
+            commCareService = new CommCareHQService(new HTTPAgent(applicationContext), "https://india.commcarehq.org", "dristhi");
         }
         return commCareService;
     }

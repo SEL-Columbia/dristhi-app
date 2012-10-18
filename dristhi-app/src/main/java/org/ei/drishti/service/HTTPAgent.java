@@ -62,7 +62,7 @@ public class HTTPAgent {
     }
 
     public boolean urlCanBeAccessWithGivenCredentials(String requestURL, String userName, String password) {
-        httpClient.getCredentialsProvider().setCredentials(new AuthScope("www.commcarehq.org", 443, "DJANGO", "digest"),
+        httpClient.getCredentialsProvider().setCredentials(new AuthScope("india.commcarehq.org", 443, "DJANGO", "digest"),
                 new UsernamePasswordCredentials(userName, password));
         try {
             HttpResponse response = httpClient.execute(new HttpHead(requestURL));
