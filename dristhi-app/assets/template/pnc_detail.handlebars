@@ -21,6 +21,18 @@
 </div>
 
 <div id="content" class="content affected-by-sidepanel">
+    <div class="status-bar affected-by-sidepanel">
+        {{#if coupleDetails.isInArea}}
+        <span class="left-text">PNC</span>
+        {{else}}
+        <span class="left-text">Out of Area PNC</span>
+        {{/if}}
+        {{#ifFalse details.isHighRisk}}
+        <span class="right-text high-risk">High Risk</span>
+        {{else}}
+        <span class="right-text normal-risk">Normal Risk</span>
+        {{/ifFalse}}
+    </div>
     <div class="registry-container container-fluid">
         <div class="row-fluid">
             <div class="span12">
