@@ -18,7 +18,8 @@ public enum CommCareForm {
     PNC_CLOSE("m1", "m1-f6", true),
 
     CHILD_IMMUNIZATION("m2", "m2-f0", true),
-    BIRTH_PLANNING("m1", "m1-f8", true);
+    BIRTH_PLANNING("m1", "m1-f8", true),
+    CHILD_CLOSE("m2", "m2-f2", true);
 
     private final String moduleId;
     private final String formId;
