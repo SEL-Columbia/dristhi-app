@@ -16,6 +16,12 @@ class TodoDetail {
         map.put("ANC 2", new TodoDetail("ANC Visit #2", CommCareForm.ANC_SERVICES));
         map.put("ANC 3", new TodoDetail("ANC Visit #3", CommCareForm.ANC_SERVICES));
         map.put("ANC 4", new TodoDetail("ANC Visit #4", CommCareForm.ANC_SERVICES));
+        map.put("EDD", new TodoDetail("EDD", CommCareForm.ANC_DELIVERY_OUTCOME));
+        map.put("OPV 0", new TodoDetail("OPV 0", CommCareForm.CHILD_IMMUNIZATION));
+        map.put("HEP B0", new TodoDetail("HEP B0", CommCareForm.CHILD_IMMUNIZATION));
+        map.put("DPT 0", new TodoDetail("DPT 0", CommCareForm.CHILD_IMMUNIZATION));
+        map.put("Hepatitis B1", new TodoDetail("Hepatitis B1", CommCareForm.CHILD_IMMUNIZATION));
+        map.put("BCG", new TodoDetail("BCG", CommCareForm.CHILD_IMMUNIZATION));
     }
 
     public static TodoDetail from(String visitCode) {
