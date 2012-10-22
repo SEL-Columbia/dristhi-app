@@ -109,8 +109,15 @@
                 <div class="row-fluid beneficiary-detail-component">
                     <div class="beneficiary-detail-content">
                         {{#ifFalse isHighPriority}}
-                        <div class="text-center big-text high-risk">High Priority</div>
+                        <div class="big-text high-risk">
+                            <i class="icon-circle-arrow-up" style="margin-top: 3px;"></i> High Priority1</span>
+                        </div>
+                        <div class="beneficiary-detail-footer risk-detail-text">
+                            <ul>{{camelCaseAndConvertToListItems details.highPriorityReason}}</ul>
+                        </div>
                         {{else}}
+
+
                         <div class="text-center big-text normal-risk">Normal Priority</div>
                         {{/ifFalse}}
                     </div>

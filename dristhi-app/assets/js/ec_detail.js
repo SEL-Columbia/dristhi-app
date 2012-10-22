@@ -64,7 +64,8 @@ function FakeECContext() {
                         familyPlanningMethodChangeDate: "2012-10-22",
                         headOfHousehold: "Head Person",
                         religion: "Religion X",
-                        pregnancies: "3"
+                        pregnancies: "3",
+                        highPriorityReason: "Child_under_2 Parity_3_or_more Age"
                     },
                     urgentTodos: [
                         {

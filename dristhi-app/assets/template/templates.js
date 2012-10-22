@@ -169,12 +169,12 @@ function program21(depth0,data,depth2) {
 function program23(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\"><ul>";
+  buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Risk</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\">\n                            <ul>";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.highRiskReason;
   foundHelper = helpers.camelCaseAndConvertToListItems;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "camelCaseAndConvertToListItems", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</ul></div>\n                        ";
+  buffer += escapeExpression(stack1) + "</ul>\n                        </div>\n                        ";
   return buffer;}
 
 function program25(depth0,data) {
@@ -1024,13 +1024,19 @@ function program13(depth0,data,depth2) {
 
 function program15(depth0,data) {
   
-  
-  return "\n                        <div class=\"text-center big-text high-risk\">High Priority</div>\n                        ";}
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Priority1</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\">\n                            <ul>";
+  stack1 = depth0.details;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.highPriorityReason;
+  foundHelper = helpers.camelCaseAndConvertToListItems;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "camelCaseAndConvertToListItems", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "</ul>\n                        </div>\n                        ";
+  return buffer;}
 
 function program17(depth0,data) {
   
   
-  return "\n                        <div class=\"text-center big-text normal-risk\">Normal Priority</div>\n                        ";}
+  return "\n\n\n                        <div class=\"text-center big-text normal-risk\">Normal Priority</div>\n                        ";}
 
 function program19(depth0,data) {
   
