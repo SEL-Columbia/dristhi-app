@@ -443,7 +443,8 @@ function program1(depth0,data) {
   buffer += escapeExpression(stack1) + "\n                    </div>\n                </div>\n\n                <div class=\"divider\"></div>\n\n                ";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isHighRisk;
-  stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)});
+  foundHelper = helpers.ifFalse;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)}) : helperMissing.call(depth0, "ifFalse", stack1, {hash:{},inverse:self.noop,fn:self.program(2, program2, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"span2\">\n                        ";
   stack1 = depth0.details;

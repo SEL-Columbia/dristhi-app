@@ -36,7 +36,7 @@
 
                 <div class="divider"></div>
 
-                {{#if details.isHighRisk}}
+                {{#ifFalse details.isHighRisk}}
                     <div class="row-fluid beneficiary-detail-component">
                         <div class="span2">
                             {{{imageBasedOnYesOrNo details.isHighRiskStatusReviewed}}}
@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="divider"></div>
-                {{/if}}
+                {{/ifFalse}}
 
                 <div class="row-fluid beneficiary-detail-component">
                     <div class="span2">
