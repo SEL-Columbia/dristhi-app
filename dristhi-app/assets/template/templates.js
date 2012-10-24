@@ -278,7 +278,7 @@ function program31(depth0,data) {
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isInArea;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(11, program11, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "TC No: ";
+  buffer += "Thayi No: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -344,7 +344,7 @@ function program1(depth0,data) {
   stack1 = depth0.husbandName;
   foundHelper = helpers.capitalize;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</li>\n                    <li>\n                     TC No: ";
+  buffer += escapeExpression(stack1) + "</li>\n                    <li>\n                        Thayi No: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -772,7 +772,7 @@ function program31(depth0,data) {
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isInArea;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.program(7, program7, data),fn:self.program(5, program5, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "TC No: ";
+  buffer += "Thayi No: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -849,7 +849,7 @@ function program1(depth0,data) {
   stack1 = depth0.fatherName;
   foundHelper = helpers.formatText;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</li>\n                    <li>\n                     TC No: ";
+  buffer += escapeExpression(stack1) + "</li>\n                    <li>\n                        Thayi No: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -1267,7 +1267,7 @@ function program2(depth0,data) {
 function program4(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += ", TC No: ";
+  buffer += ", Thayi No: ";
   foundHelper = helpers.thayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.thayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -1592,7 +1592,7 @@ function program33(depth0,data) {
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isInArea;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.program(11, program11, data),fn:self.program(9, program9, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "TC No: ";
+  buffer += "Thayi No: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -1659,7 +1659,7 @@ function program1(depth0,data) {
   stack1 = depth0.husbandName;
   foundHelper = helpers.capitalize;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</li>\n                    <li>\n                     TC No: ";
+  buffer += escapeExpression(stack1) + "</li>\n                    <li>\n                        Thayi No: ";
   foundHelper = helpers.thaayiCardNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
