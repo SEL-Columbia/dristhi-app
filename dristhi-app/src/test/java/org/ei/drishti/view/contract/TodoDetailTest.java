@@ -15,6 +15,8 @@ public class TodoDetailTest {
         assertEquals(CommCareForm.CHILD_IMMUNIZATION, TodoDetail.from("Hepatitis B1").formToOpen());
         assertEquals(CommCareForm.CHILD_IMMUNIZATION, TodoDetail.from("DPT 0").formToOpen());
         assertEquals(CommCareForm.CHILD_IMMUNIZATION, TodoDetail.from("BCG").formToOpen());
+        assertEquals(CommCareForm.SHORTCUT, TodoDetail.from("IFA 1").formToOpen());
+        assertEquals(CommCareForm.SHORTCUT, TodoDetail.from("TT 1").formToOpen());
     }
 
 }
