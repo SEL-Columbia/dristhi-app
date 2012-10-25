@@ -12,6 +12,7 @@ import org.ei.drishti.util.Log;
 
 import java.util.List;
 
+import static java.lang.String.format;
 import static org.ei.drishti.domain.FetchStatus.fetchedFailed;
 import static org.ei.drishti.domain.FetchStatus.nothingFetched;
 
@@ -48,41 +49,49 @@ public class ActionService {
 
     private void handleActions(Response<List<Action>> response) {
         for (Action actionToUse : response.payload()) {
-            if (actionToUse.target().equals("alert")) {
-                runAction(actionToUse, new ActionHandler() {
-                    @Override
-                    public void run(Action action) {
-                        allAlerts.handleAction(action);
-                    }
-                });
-
-            } else if (actionToUse.target().equals("child")) {
-                runAction(actionToUse, new ActionHandler() {
-                    @Override
-                    public void run(Action action) {
-                        allBeneficiaries.handleChildAction(action);
-                    }
-                });
-
-            } else if (actionToUse.target().equals("mother")) {
-                runAction(actionToUse, new ActionHandler() {
-                    @Override
-                    public void run(Action action) {
-                        allBeneficiaries.handleMotherAction(action);
-                    }
-                });
-
-            } else {
-                runAction(actionToUse, new ActionHandler() {
-                    @Override
-                    public void run(Action action) {
-                        allEligibleCouples.handleAction(action);
-                    }
-                });
-
+            try {
+                handleAction(actionToUse);
+            } catch (Exception e) {
+                Log.logError(format("Failed while handling action : {0} ..... Exception {1}", actionToUse, e));
             }
-            allSettings.savePreviousFetchIndex(actionToUse.index());
         }
+    }
+
+    private void handleAction(Action actionToUse) {
+        if (actionToUse.target().equals("alert")) {
+            runAction(actionToUse, new ActionHandler() {
+                @Override
+                public void run(Action action) {
+                    allAlerts.handleAction(action);
+                }
+            });
+
+        } else if (actionToUse.target().equals("child")) {
+            runAction(actionToUse, new ActionHandler() {
+                @Override
+                public void run(Action action) {
+                    allBeneficiaries.handleChildAction(action);
+                }
+            });
+
+        } else if (actionToUse.target().equals("mother")) {
+            runAction(actionToUse, new ActionHandler() {
+                @Override
+                public void run(Action action) {
+                    allBeneficiaries.handleMotherAction(action);
+                }
+            });
+
+        } else {
+            runAction(actionToUse, new ActionHandler() {
+                @Override
+                public void run(Action action) {
+                    allEligibleCouples.handleAction(action);
+                }
+            });
+
+        }
+        allSettings.savePreviousFetchIndex(actionToUse.index());
     }
 
     private void runAction(Action action, ActionHandler actionHandler) {

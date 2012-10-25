@@ -176,4 +176,13 @@ public class AllBeneficiariesTest {
                 , action.get("vitaminADose")));
         verify(childRepository).updateDetails("Case X", mapOf("aKey", "aValue"));
     }
+
+    @Test
+    public void shouldCloseChildRecordForDeleteChildAction() throws Exception {
+        Action action = ActionBuilder.closeChild("Case X");
+
+        allBeneficiaries.handleChildAction(action);
+
+        verify(childRepository).close("Case X");
+    }
 }

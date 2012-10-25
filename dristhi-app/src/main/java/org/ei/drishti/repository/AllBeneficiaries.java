@@ -40,6 +40,8 @@ public class AllBeneficiaries {
         } else if (action.type().equals("updateImmunizations")) {
             allTimelines.add(forChildImmunization(action.caseID(), action.get("immunizationsProvided"), action.get("immunizationsProvidedDate"), action.get("vitaminADose")));
             childRepository.updateDetails(action.caseID(), action.details());
+        } else if(action.type().equals("deleteChild")){
+            childRepository.close(action.caseID());
         }
     }
 
