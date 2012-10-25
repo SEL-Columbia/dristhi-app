@@ -73,18 +73,27 @@
 
 .navbar .sidepanel-icon {
     content: url(../img/icons/sidepanel-icon.png);
-    margin-right: 4px;
+    margin-right:4px;
 }
 
 .delivery-plan .yes {
     content: url(../img/icons/icon-deliveryplan-yes.png);
-    margin-right: 4px;
+    margin-right:4px;
+	margin-left:8px;
+	width: 30px;
 }
 
 .delivery-plan .no {
     content: url(../img/icons/icon-deliveryplan-no.png);
-    margin-right: 4px;
+    margin-right:4px;
+	margin-left:8px;
+	width:30px;
 }
+
+.delivery-plan .big-text-black{
+  font-size: 16px;
+}
+
 
 .edit-birth-plan {
     margin-right: 15px;
