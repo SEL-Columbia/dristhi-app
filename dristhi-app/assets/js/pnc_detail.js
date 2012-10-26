@@ -71,7 +71,9 @@ function FakePNCContext() {
                         ashaPhoneNumber: "987654321",
                         isHighRisk: true,
                         highRiskReason: "    obstructed_labor     eclampsia spontaneous_abortion     ",
-                        deliveryComplications: "prolonged_labour something_bad"
+                        deliveryComplications: "prolonged_labour something_bad",
+                        caste: "st",
+                        economic_status: "bpl"
                     },
                     urgentTodos: [
                         {

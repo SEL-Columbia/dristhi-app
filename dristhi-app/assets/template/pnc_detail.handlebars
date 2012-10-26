@@ -18,7 +18,7 @@
     <div class="modal-row" data-form="PNC_CLOSE" data-caseid="{{caseId}}">Close PNC record</div>
 </div>
 
-<div id="content" class="content affected-by-sidepanel">
+<div id="content" class="content-detail affected-by-sidepanel">
     <div class="status-bar affected-by-sidepanel">
         {{#if coupleDetails.isInArea}}
         <span class="left-text">PNC</span>
@@ -35,7 +35,12 @@
         <div class="row-fluid">
             <div class="span12">
                 <ul class="client-details unstyled">
-                    <li class="big-text">{{formatText coupleDetails.wifeName}}</li>
+                    <li>
+                        <div class="row-fluid">
+                            <div class="span9 big-text">{{formatText coupleDetails.wifeName}}</div>
+                            <div class="span3 social-vulnerability text-right" style="float: right">{{formatSocialVulnerability details}}</div>
+                        </div>
+                    </li>
                     <li class="medium-text spacing-below">{{capitalize coupleDetails.husbandName}}</li>
                     <li>{{formatText location.villageName}}</li>
                     <li class="light-text">{{#if coupleDetails.isInArea}}EC No: {{coupleDetails.ecNumber}}, {{else}}Out of area, {{/if}}Thayi No: {{thaayiCardNumber}}</li>

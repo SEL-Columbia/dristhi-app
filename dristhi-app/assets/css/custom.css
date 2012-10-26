@@ -163,6 +163,10 @@
     margin-bottom: 3px;
 }
 
+.social-vulnerability {
+    color: #d7c17b;
+}
+
 .big-text-black {
     font-weight: bold;
     font-size: 19px;

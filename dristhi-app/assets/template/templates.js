@@ -258,12 +258,16 @@ function program31(depth0,data) {
   foundHelper = helpers.ifFalse;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.program(9, program9, data),fn:self.program(7, program7, data)}) : helperMissing.call(depth0, "ifFalse", stack1, {hash:{},inverse:self.program(9, program9, data),fn:self.program(7, program7, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span12\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">";
+  buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span12\">\n                <ul class=\"client-details unstyled\">\n                    <li>\n                        <div class=\"row-fluid\">\n                            <div class=\"span9 big-text\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.wifeName;
   foundHelper = helpers.formatText;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</li>\n                    <li class=\"medium-text spacing-below\">";
+  buffer += escapeExpression(stack1) + "</div>\n                            <div class=\"span3 social-vulnerability text-right\" style=\"float: right\">";
+  stack1 = depth0.details;
+  foundHelper = helpers.formatSocialVulnerability;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatSocialVulnerability", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </li>\n                    <li class=\"medium-text spacing-below\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.husbandName;
   foundHelper = helpers.capitalize;
@@ -1163,12 +1167,16 @@ function program33(depth0,data) {
   foundHelper = helpers.ifFalse;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data)}) : helperMissing.call(depth0, "ifFalse", stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span12\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">";
+  buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span12\">\n                <ul class=\"client-details unstyled\">\n                    <li>\n                        <div class=\"row-fluid\">\n                            <div class=\"span9 big-text\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.wifeName;
   foundHelper = helpers.formatText;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</li>\n                    <li class=\"medium-text spacing-below\">";
+  buffer += escapeExpression(stack1) + "</div>\n                            <div class=\"span3 social-vulnerability text-right\" style=\"float: right\">";
+  stack1 = depth0.details;
+  foundHelper = helpers.formatSocialVulnerability;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatSocialVulnerability", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </li>\n                    <li class=\"medium-text spacing-below\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.husbandName;
   foundHelper = helpers.capitalize;
@@ -1557,7 +1565,7 @@ function program33(depth0,data) {
   foundHelper = helpers.caseId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "\">Close PNC record</div>\n</div>\n\n<div id=\"content\" class=\"content affected-by-sidepanel\">\n    <div class=\"status-bar affected-by-sidepanel\">\n        ";
+  buffer += escapeExpression(stack1) + "\">Close PNC record</div>\n</div>\n\n<div id=\"content\" class=\"content-detail affected-by-sidepanel\">\n    <div class=\"status-bar affected-by-sidepanel\">\n        ";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.isInArea;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data)});
@@ -1568,12 +1576,16 @@ function program33(depth0,data) {
   foundHelper = helpers.ifFalse;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{},inverse:self.program(7, program7, data),fn:self.program(5, program5, data)}) : helperMissing.call(depth0, "ifFalse", stack1, {hash:{},inverse:self.program(7, program7, data),fn:self.program(5, program5, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span12\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">";
+  buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span12\">\n                <ul class=\"client-details unstyled\">\n                    <li>\n                        <div class=\"row-fluid\">\n                            <div class=\"span9 big-text\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.wifeName;
   foundHelper = helpers.formatText;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</li>\n                    <li class=\"medium-text spacing-below\">";
+  buffer += escapeExpression(stack1) + "</div>\n                            <div class=\"span3 social-vulnerability text-right\" style=\"float: right\">";
+  stack1 = depth0.details;
+  foundHelper = helpers.formatSocialVulnerability;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatSocialVulnerability", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </li>\n                    <li class=\"medium-text spacing-below\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.husbandName;
   foundHelper = helpers.capitalize;

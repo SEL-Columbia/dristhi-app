@@ -91,7 +91,9 @@ function FakeANCContext() {
                         deliveryFacilityType: "chc",
                         contactNumber: "9999999999",
                         isThereABirthCompanion: "yes",
-                        isHighRiskStatusReviewed: "yes"
+                        isHighRiskStatusReviewed: "yes",
+                        caste: "st",
+                        economic_status: "bpl"
                     },
                     urgentTodos: [
                         {

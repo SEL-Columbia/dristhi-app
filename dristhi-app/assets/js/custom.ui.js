@@ -61,3 +61,16 @@ Handlebars.registerHelper('formatDate', function (unformattedDate) {
     var parsedDate = $.datepicker.parseDate('yy-mm-dd', unformattedDate);
     return $.datepicker.formatDate('dd-mm-yy', parsedDate);
 });
+
+Handlebars.registerHelper('formatSocialVulnerability', function (details) {
+    var formattedText = "";
+    if (details.caste && (details.caste.toUpperCase() == "SC" || details.caste.toUpperCase() == "ST")) {
+        formattedText += details.caste.toUpperCase();
+        if (details.economic_status && details.economic_status.toUpperCase() == "BPL")
+            formattedText += ", " + details.economic_status.toUpperCase();
+    }
+    else if (details.economic_status && details.economic_status.toUpperCase() == "BPL")
+        formattedText += details.economic_status.toUpperCase();
+
+    return formattedText;
+});
