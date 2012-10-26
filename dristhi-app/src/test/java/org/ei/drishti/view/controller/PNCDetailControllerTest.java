@@ -70,12 +70,15 @@ public class PNCDetailControllerTest {
         details.put("highRiskReason", "Anaemia");
 
         when(allBeneficiaries.findMother(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withDetails(details));
-        when(allEligibleCouples.findByCaseID("EC CASE 1")).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "Village 1", "Subcenter 1", new HashMap<String, String>()));
+        HashMap<String, String> ecDetails = new HashMap<String, String>();
+        ecDetails.put("caste", "c_others");
+        ecDetails.put("economicStatus", "apl");
+        when(allEligibleCouples.findByCaseID("EC CASE 1")).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "Village 1", "Subcenter 1", ecDetails));
         when(allAlerts.fetchAllActiveAlertsForCase(caseId)).thenReturn(asList(asList(todo), asList(urgentTodo)));
         when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent, ancEvent, eventVeryCloseToCurrentDate));
 
         PNCDetail expectedDetail = new PNCDetail(caseId, "TC 1",
-                new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false),
+                new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false).withCaste("c_others").withEconomicStatus("apl"),
                 new LocationDetails("Village 1", "Subcenter 1"),
                 new PregnancyOutcomeDetails("2012-07-28", 4))
                 .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "7m 1w ago"), eventFor(pregnancyEvent, "9m 2w ago")))

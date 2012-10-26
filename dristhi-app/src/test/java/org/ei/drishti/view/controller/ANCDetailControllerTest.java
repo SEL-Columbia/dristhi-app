@@ -13,6 +13,7 @@ import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
+import org.ei.drishti.util.EasyMap;
 import org.ei.drishti.view.contract.*;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
@@ -22,6 +23,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.AlertStatus.open;
@@ -30,6 +32,7 @@ import static org.ei.drishti.dto.AlertPriority.urgent;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
+import static org.ei.drishti.util.EasyMap.mapOf;
 
 @RunWith(RobolectricTestRunner.class)
 public class ANCDetailControllerTest {
@@ -68,12 +71,14 @@ public class ANCDetailControllerTest {
         details.put("ashaName", "Shiwani");
 
         when(allBeneficiaries.findMother(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withDetails(details));
-        when(allEligibleCouples.findByCaseID("EC CASE 1")).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "Village 1", "Subcenter 1", new HashMap<String, String>()));
+        Map<String,String> ecDetails = mapOf("caste", "st");
+        ecDetails.put("economicStatus", "bpl");
+        when(allEligibleCouples.findByCaseID("EC CASE 1")).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "Village 1", "Subcenter 1", ecDetails));
         when(allAlerts.fetchAllActiveAlertsForCase(caseId)).thenReturn(asList(asList(todo), asList(urgentTodo)));
         when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent, ancEvent, eventVeryCloseToCurrentDate));
 
         ANCDetail expectedDetail = new ANCDetail(caseId, "TC 1",
-                new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false),
+                new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false).withCaste("st").withEconomicStatus("bpl"),
                 new LocationDetails("Village 1", "Subcenter 1"),
                 new PregnancyDetails("9", "2012-07-28", 4))
                 .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "7m 1w ago"), eventFor(pregnancyEvent, "9m 2w ago")))

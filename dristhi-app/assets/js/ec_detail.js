@@ -67,7 +67,7 @@ function FakeECContext() {
                         pregnancies: "3",
                         highPriorityReason: "Child_under_2 Parity_3_or_more Age",
                         caste: "st",
-                        economic_status: "bpl"
+                        economicStatus: "bpl"
                     },
                     urgentTodos: [
                         {

@@ -55,7 +55,9 @@ function FakePNCContext() {
                         wifeName: "Woman 1",
                         husbandName: "Husband 1",
                         ecNumber: "EC Number 1",
-                        isInArea: true
+                        isInArea: true,
+                        caste: "st",
+                        economicStatus: "bpl"
                     },
                     location: {
                         villageName: "village 1",
@@ -71,9 +73,7 @@ function FakePNCContext() {
                         ashaPhoneNumber: "987654321",
                         isHighRisk: true,
                         highRiskReason: "    obstructed_labor     eclampsia spontaneous_abortion     ",
-                        deliveryComplications: "prolonged_labour something_bad",
-                        caste: "st",
-                        economic_status: "bpl"
+                        deliveryComplications: "prolonged_labour something_bad"
                     },
                     urgentTodos: [
                         {

@@ -56,7 +56,7 @@ public class ANCDetailController {
         LocalDate eddDate = LocalDate.parse(edd);
         Days daysPastEdd = Days.daysBetween(eddDate, DateUtil.today());
         ANCDetail detail = new ANCDetail(caseId, mother.thaayiCardNumber(),
-                new CoupleDetails(couple.wifeName(), couple.husbandName(), couple.ecNumber(), couple.isOutOfArea()),
+                new CoupleDetails(couple.wifeName(), couple.husbandName(), couple.ecNumber(), couple.isOutOfArea()).withCaste(couple.details().get("caste")).withEconomicStatus(couple.details().get("economicStatus")),
                 new LocationDetails(couple.village(), couple.subCenter()),
                 new PregnancyDetails(String.valueOf(months), edd, daysPastEdd.getDays()))
                 .addTimelineEvents(getEvents())

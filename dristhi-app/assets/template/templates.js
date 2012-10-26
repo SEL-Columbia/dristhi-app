@@ -264,7 +264,7 @@ function program31(depth0,data) {
   foundHelper = helpers.formatText;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                            <div class=\"span3 social-vulnerability text-right\" style=\"float: right\">";
-  stack1 = depth0.details;
+  stack1 = depth0.coupleDetails;
   foundHelper = helpers.formatSocialVulnerability;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatSocialVulnerability", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </li>\n                    <li class=\"medium-text spacing-below\">";
@@ -1582,7 +1582,7 @@ function program33(depth0,data) {
   foundHelper = helpers.formatText;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                            <div class=\"span3 social-vulnerability text-right\" style=\"float: right\">";
-  stack1 = depth0.details;
+  stack1 = depth0.coupleDetails;
   foundHelper = helpers.formatSocialVulnerability;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatSocialVulnerability", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </li>\n                    <li class=\"medium-text spacing-below\">";

@@ -66,11 +66,11 @@ Handlebars.registerHelper('formatSocialVulnerability', function (details) {
     var formattedText = "";
     if (details.caste && (details.caste.toUpperCase() == "SC" || details.caste.toUpperCase() == "ST")) {
         formattedText += details.caste.toUpperCase();
-        if (details.economic_status && details.economic_status.toUpperCase() == "BPL")
-            formattedText += ", " + details.economic_status.toUpperCase();
+        if (details.economicStatus && details.economicStatus.toUpperCase() == "BPL")
+            formattedText += ", " + details.economicStatus.toUpperCase();
     }
-    else if (details.economic_status && details.economic_status.toUpperCase() == "BPL")
-        formattedText += details.economic_status.toUpperCase();
+    else if (details.economicStatus && details.economicStatus.toUpperCase() == "BPL")
+        formattedText += details.economicStatus.toUpperCase();
 
     return formattedText;
 });

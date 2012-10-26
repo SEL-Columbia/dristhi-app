@@ -67,7 +67,9 @@ function FakeANCContext() {
                         wifeName: "Woman 1",
                         husbandName: "Husband 1",
                         ecNumber: "EC Number 1",
-                        isInArea: false
+                        isInArea: false,
+                        caste: "st",
+                        economicStatus: "bpl"
                     },
                     location: {
                         villageName: "village 1",
@@ -91,9 +93,7 @@ function FakeANCContext() {
                         deliveryFacilityType: "chc",
                         contactNumber: "9999999999",
                         isThereABirthCompanion: "yes",
-                        isHighRiskStatusReviewed: "yes",
-                        caste: "st",
-                        economic_status: "bpl"
+                        isHighRiskStatusReviewed: "yes"
                     },
                     urgentTodos: [
                         {
