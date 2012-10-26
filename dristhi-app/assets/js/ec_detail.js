@@ -129,6 +129,12 @@ function FakeECContext() {
                             details: ["Detail 3", "Detail 4"],
                             type: "ANCVISIT",
                             date: "2m 3d ago"
+                        },
+                        {
+                            title: "Event 4",
+                            details: ["Detail 5", "Detail 6"],
+                            type: "ECREGISTERED",
+                            date: "3m 3d ago"
                         }
                     ]
                 }
