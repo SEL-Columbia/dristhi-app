@@ -844,7 +844,7 @@ function program1(depth0,data) {
   foundHelper = helpers.caseId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + " class=\"client-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span8\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">\n                        ";
+  buffer += escapeExpression(stack1) + " class=\"client-list-item\" onClick=\"javascript: return true;\">\n            <div class=\"span8\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">\n                        B/O ";
   stack1 = depth0.motherName;
   foundHelper = helpers.formatText;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});

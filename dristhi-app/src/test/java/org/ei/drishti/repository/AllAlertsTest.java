@@ -56,7 +56,7 @@ public class AllAlertsTest {
 
         allAlerts.handleAction(actionForMother);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Husband 1", "Village Case X", "ANC 1", "Thaayi Case X", urgent, "2012-01-01", "2012-01-22", open));
+        verify(alertRepository).createAlert(new Alert("Case X", "B/O Theresa Case X", "Husband 1", "Village Case X", "ANC 1", "Thaayi Case X", urgent, "2012-01-01", "2012-01-22", open));
         verifyNoMoreInteractions(alertRepository);
     }
 

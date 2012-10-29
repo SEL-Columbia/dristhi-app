@@ -65,7 +65,7 @@ public class AllAlerts {
             Child kid = allBeneficiaries.findChild(action.caseID());
             Mother mom = allBeneficiaries.findMother(kid.motherCaseId());
             EligibleCouple momDad = allEligibleCouples.findByCaseID(mom.ecCaseId());
-            repository.createAlert(new Alert(action.caseID(),momDad.wifeName(), momDad.husbandName(), momDad.village(), action.get("visitCode"), kid.thaayiCardNumber(), AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate"), AlertStatus.open));
+            repository.createAlert(new Alert(action.caseID(), "B/O " + momDad.wifeName(), momDad.husbandName(), momDad.village(), action.get("visitCode"), kid.thaayiCardNumber(), AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate"), AlertStatus.open));
         } else {
             Log.logWarn("Unknown beneficiary type to add alert for: " + action);
         }
