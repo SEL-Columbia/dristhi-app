@@ -23,6 +23,7 @@ import java.util.*;
 import static java.lang.Math.min;
 
 public class ANCDetailController {
+    public static final int PREGNANCY_DURATION_IN_DAYS = 274;
     private final Context context;
     private final String caseId;
     private final AllEligibleCouples allEligibleCouples;
@@ -49,7 +50,7 @@ public class ANCDetailController {
         List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 
         LocalDate lmp = LocalDate.parse(mother.referenceDate());
-        String edd = lmp.plusWeeks(40).toString();
+        String edd = lmp.plusDays(PREGNANCY_DURATION_IN_DAYS).toString();
         Months numberOfMonthsPregnant = Months.monthsBetween(lmp, DateUtil.today());
 
         int months = numberOfMonthsPregnant.getMonths();
