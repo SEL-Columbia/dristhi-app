@@ -2,7 +2,7 @@
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['anc_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; partials = partials || Handlebars.partials;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+  var buffer = "", stack1, stack2, foundHelper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
   
@@ -265,8 +265,11 @@ function program31(depth0,data) {
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                            <div class=\"span3 social-vulnerability text-right\" style=\"float: right\">";
   stack1 = depth0.coupleDetails;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.economicStatus;
+  stack2 = depth0.coupleDetails;
+  stack2 = stack2 == null || stack2 === false ? stack2 : stack2.caste;
   foundHelper = helpers.formatSocialVulnerability;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatSocialVulnerability", stack1, {hash:{}});
+  stack1 = foundHelper ? foundHelper.call(depth0, stack2, stack1, {hash:{}}) : helperMissing.call(depth0, "formatSocialVulnerability", stack2, stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </li>\n                    <li class=\"medium-text spacing-below\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.husbandName;
@@ -897,7 +900,7 @@ function program6(depth0,data) {
   return buffer;});
 templates['ec_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+  var buffer = "", stack1, stack2, foundHelper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
   
@@ -1174,8 +1177,11 @@ function program33(depth0,data) {
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                            <div class=\"span3 social-vulnerability text-right\" style=\"float: right\">";
   stack1 = depth0.details;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.economicStatus;
+  stack2 = depth0.details;
+  stack2 = stack2 == null || stack2 === false ? stack2 : stack2.caste;
   foundHelper = helpers.formatSocialVulnerability;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatSocialVulnerability", stack1, {hash:{}});
+  stack1 = foundHelper ? foundHelper.call(depth0, stack2, stack1, {hash:{}}) : helperMissing.call(depth0, "formatSocialVulnerability", stack2, stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </li>\n                    <li class=\"medium-text spacing-below\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.husbandName;
@@ -1326,7 +1332,7 @@ templates['home'] = template(function (Handlebars,depth0,helpers,partials,data) 
   return buffer;});
 templates['pnc_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
-  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+  var buffer = "", stack1, stack2, foundHelper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
   
@@ -1583,8 +1589,11 @@ function program33(depth0,data) {
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatText", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                            <div class=\"span3 social-vulnerability text-right\" style=\"float: right\">";
   stack1 = depth0.coupleDetails;
+  stack1 = stack1 == null || stack1 === false ? stack1 : stack1.economicStatus;
+  stack2 = depth0.coupleDetails;
+  stack2 = stack2 == null || stack2 === false ? stack2 : stack2.caste;
   foundHelper = helpers.formatSocialVulnerability;
-  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "formatSocialVulnerability", stack1, {hash:{}});
+  stack1 = foundHelper ? foundHelper.call(depth0, stack2, stack1, {hash:{}}) : helperMissing.call(depth0, "formatSocialVulnerability", stack2, stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                        </div>\n                    </li>\n                    <li class=\"medium-text spacing-below\">";
   stack1 = depth0.coupleDetails;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.husbandName;

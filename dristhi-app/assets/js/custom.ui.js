@@ -62,15 +62,15 @@ Handlebars.registerHelper('formatDate', function (unformattedDate) {
     return $.datepicker.formatDate('dd-mm-yy', parsedDate);
 });
 
-Handlebars.registerHelper('formatSocialVulnerability', function (details) {
+Handlebars.registerHelper('formatSocialVulnerability', function (caste, economicStatus) {
     var formattedText = "";
-    if (details.caste && (details.caste.toUpperCase() == "SC" || details.caste.toUpperCase() == "ST")) {
-        formattedText += details.caste.toUpperCase();
-        if (details.economicStatus && details.economicStatus.toUpperCase() == "BPL")
-            formattedText += ", " + details.economicStatus.toUpperCase();
+    if (caste && (caste.toUpperCase() == "SC" || caste.toUpperCase() == "ST")) {
+        formattedText += caste.toUpperCase();
+        if (economicStatus && economicStatus.toUpperCase() == "BPL")
+            formattedText += ", " + economicStatus.toUpperCase();
     }
-    else if (details.economicStatus && details.economicStatus.toUpperCase() == "BPL")
-        formattedText += details.economicStatus.toUpperCase();
+    else if (economicStatus && economicStatus.toUpperCase() == "BPL")
+        formattedText += economicStatus.toUpperCase();
 
     return formattedText;
 });
