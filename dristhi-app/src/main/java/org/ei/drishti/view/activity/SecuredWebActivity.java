@@ -39,7 +39,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
             public void onProgressChanged(WebView view, int progress) {
                 activity.setProgress(progress * 1000);
 
-                if(progress == 100 && progressDialog.isShowing())
+                if (progress == 100 && progressDialog.isShowing())
                     progressDialog.dismiss();
             }
         });
@@ -102,13 +102,15 @@ public abstract class SecuredWebActivity extends SecuredActivity {
     protected void onResumption() {
     }
 
-//    Added to fix the memory leak caused due to bug in android which stops activities with webview to be GCed.
-//    Refer to this link for more details - http://code.google.com/p/android/issues/detail?id=9375
+    //    Added to fix the memory leak caused due to bug in android which stops activities with webview to be GCed.
+    //    Refer to this link for more details - http://code.google.com/p/android/issues/detail?id=9375
     @Override
     protected void onDestroy() {
         super.onDestroy();
 
-        webView.destroy();
-        webView = null;
+        if (webView != null) {
+            webView.destroy();
+            webView = null;
+        }
     }
 }
