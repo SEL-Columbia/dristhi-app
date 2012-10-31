@@ -63,4 +63,11 @@ public class AllSettingsTest {
 
         assertEquals("1234", actual);
     }
+
+    @Test
+    public void shouldSaveAppliedVillageFilter() throws Exception {
+        allSettings.saveAppliedVillageFilter("munjanahalli");
+
+        verify(settingsRepository).updateSetting("appliedVillageFilter", "munjanahalli");
+    }
 }

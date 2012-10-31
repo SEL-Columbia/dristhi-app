@@ -26,4 +26,8 @@ public class AllSettings {
     public String fetchPreviousFetchIndex() {
         return settingsRepository.querySetting("previousFetchIndex", "0");
     }
+
+    public void saveAppliedVillageFilter(String village) {
+        settingsRepository.updateSetting("appliedVillageFilter", village);
+    }
 }

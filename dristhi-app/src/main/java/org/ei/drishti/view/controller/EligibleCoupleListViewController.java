@@ -7,6 +7,7 @@ import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
@@ -24,13 +25,15 @@ public class EligibleCoupleListViewController {
     public static final String ELIGIBLE_COUPLE_LIST = "EligibleCoupleList";
     private AllEligibleCouples allEligibleCouples;
     private AllBeneficiaries allBeneficiaries;
+    private AllSettings allSettings;
     private Context context;
     private CommCareClientService commCareClientService;
     private Cache<String> eligibleCoupleListCache;
 
-    public EligibleCoupleListViewController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, Cache<String> eligibleCoupleListCache, Context context, CommCareClientService commCareClientService) {
+    public EligibleCoupleListViewController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllSettings allSettings, Cache<String> eligibleCoupleListCache, Context context, CommCareClientService commCareClientService) {
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
+        this.allSettings = allSettings;
         this.context = context;
         this.commCareClientService = commCareClientService;
         this.eligibleCoupleListCache = eligibleCoupleListCache;
@@ -87,4 +90,9 @@ public class EligibleCoupleListViewController {
             }
         });
     }
+
+    public void saveAppliedVillageFilter(String village) {
+        allSettings.saveAppliedVillageFilter(village);
+    }
+
 }

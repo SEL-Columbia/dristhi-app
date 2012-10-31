@@ -1,6 +1,6 @@
 function ECList(ecListBridge) {
     var ecListRow = "ec";
-    var showECsFromAllVillages = "All";
+    var AllVillagesFilterOption = "All";
     var villageFilterOption = "village";
     var highPriorityContainer;
     var normalPriorityContainer;
@@ -53,13 +53,16 @@ function ECList(ecListBridge) {
         bindToVillageFilter: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 var text = 'Show: '+ $(this).text();
+                var filterToApply = $(this).data(villageFilterOption);
+
                 $(this).closest('.dropdown').children('a.dropdown-toggle').text(text);
-                if ($(this).data(villageFilterOption) === showECsFromAllVillages) {
+                if (filterToApply === AllVillagesFilterOption) {
                     showEcsAndUpdateCount(ecListRow);
                     return;
                 }
                 $("." + ecListRow).hide();
-                showEcsAndUpdateCount($(this).data(villageFilterOption));
+                showEcsAndUpdateCount(filterToApply);
+                ecListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
             });
         }
     };
@@ -83,6 +86,9 @@ function ECListBridge() {
         },
         getVillages: function () {
             return JSON.parse(ecContext.villages());
+        },
+        delegateToSaveAppliedVillageFilter: function (village) {
+            return ecContext.saveAppliedVillageFilter(village);
         }
     };
 }
@@ -132,6 +138,8 @@ function FakeECListContext() {
                     {name: "chikkabheriya"}
                 ]
             )
+        },
+        saveAppliedVillageFilter: function (village) {
         }
     };
 }

@@ -9,6 +9,7 @@ import org.ei.drishti.domain.Mother;
 import org.ei.drishti.event.Event;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.view.contract.EC;
@@ -34,6 +35,8 @@ public class EligibleCoupleListViewControllerTest {
     @Mock
     private AllBeneficiaries allBeneficiaries;
     @Mock
+    private AllSettings allSettings;
+    @Mock
     private Context context;
     @Mock
     private CommCareClientService commCareClientService;
@@ -43,7 +46,7 @@ public class EligibleCoupleListViewControllerTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new EligibleCoupleListViewController(allEligibleCouples, allBeneficiaries, new Cache<String>(), context, commCareClientService);
+        controller = new EligibleCoupleListViewController(allEligibleCouples, allBeneficiaries, allSettings, new Cache<String>(), context, commCareClientService);
     }
 
     @Test
@@ -82,6 +85,13 @@ public class EligibleCoupleListViewControllerTest {
         Event.ON_DATA_FETCHED.notifyListeners(fetched);
         controller.get();
         verify(allEligibleCouples, times(2)).all();
+    }
+
+    @Test
+    public void shouldSaveAppliedVillageFilter() throws Exception {
+        controller.saveAppliedVillageFilter("munjanahalli");
+
+        verify(allSettings).saveAppliedVillageFilter("munjanahalli");
     }
 
     private Map<String, String> normalPriority() {
