@@ -7,7 +7,8 @@
     <link href="../css/list.css" rel="stylesheet">
     <link href="../css/alerts.css" rel="stylesheet">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;">
 
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
@@ -21,13 +22,26 @@
     <script type="text/javascript" src="../js/ec_list.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var ecList = new ECList(new ECListBridge());
-            ecList.populateInto("#ec-list");
-            ecList.bindEveryItemToECView("#ec-list", ".client-list-item");
-            ecList.bindItemToCommCare("#plusButton");
+            var cssIdOf = {
+                rootElement:"#ec-list",
+                everyListItem: ".client-list-item",
+                highPriorityContainer: "#highPriorityContainer",
+                highPriorityListContainer: ".high-priority-list",
+                normalPriorityContainer: "#normalPriorityContainer",
+                normalPriorityListContainer : ".normal-priority-list",
+                ecCount : ".count",
+                commCareItems: "#plusButton",
+                villageFilter:"#menu-village",
+                villageFilterOptions:".dropdown-option",
+                appliedFilterIndicator: ".filter-by-village"
+            };
+            var ecList = new ECList(new ECListBridge(), cssIdOf);
+            ecList.populateInto();
+            ecList.bindEveryItemToECView();
+            ecList.bindItemToCommCare();
 
-            ecList.populateVillageFilter('#menu-village');
-            ecList.bindToVillageFilter('.dropdown-option');
+            ecList.populateVillageFilter();
+            ecList.bindToVillageFilter();
 
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         });
@@ -42,7 +56,9 @@
             <div class="navbar-inner">
                 <ul class="nav pull-left">
                     <li><img class="sidepanel-icon affected-by-sidepanel"><img class="separator"></li>
-                    <li><div class="name">EC</div></li>
+                    <li>
+                        <div class="name">EC</div>
+                    </li>
                 </ul>
 
                 <ul class="nav pull-right affected-by-sidepanel">
@@ -53,7 +69,7 @@
         </div>
         <div id="content" class="content affected-by-sidepanel">
             <div class="container-fluid dropdown dropdown-filter">
-                <a class="btn dropdown-toggle toggle-filter" data-toggle="dropdown">
+                <a class="btn dropdown-toggle toggle-filter filter-by-village" data-toggle="dropdown">
                     Show: All
                     <span class="caret pull-right"></span>
                 </a>
@@ -64,11 +80,13 @@
                 <div id="highPriorityContainer" class="high-risk-container">
                     <div class="high-risk-header"> HIGH PRIORITY (<span class="count"></span>)</div>
                     <div class="divider divider-padding-both"></div>
+                    <div class="high-priority-list"></div>
                 </div>
 
                 <div id="normalPriorityContainer">
                     <div class="normal-risk-header"> NORMAL PRIORITY (<span class="count"></span>)</div>
                     <div class="divider divider-padding-both"></div>
+                    <div class="normal-priority-list"></div>
                 </div>
             </div>
         </div>

@@ -70,4 +70,11 @@ public class AllSettingsTest {
 
         verify(settingsRepository).updateSetting("appliedVillageFilter", "munjanahalli");
     }
+
+    @Test
+    public void shouldGetAppliedVillageFilter() throws Exception {
+        allSettings.appliedVillageFilter("All");
+
+        verify(settingsRepository).querySetting("appliedVillageFilter", "All");
+    }
 }

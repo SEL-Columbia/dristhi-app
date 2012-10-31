@@ -95,4 +95,7 @@ public class EligibleCoupleListViewController {
         allSettings.saveAppliedVillageFilter(village);
     }
 
+    public String appliedVillageFilter(String defaultFilterValue) {
+        return allSettings.appliedVillageFilter(defaultFilterValue);
+    }
 }

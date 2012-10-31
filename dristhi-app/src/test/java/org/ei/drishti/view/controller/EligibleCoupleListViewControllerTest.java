@@ -25,6 +25,7 @@ import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.FetchStatus.fetched;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -92,6 +93,16 @@ public class EligibleCoupleListViewControllerTest {
         controller.saveAppliedVillageFilter("munjanahalli");
 
         verify(allSettings).saveAppliedVillageFilter("munjanahalli");
+    }
+
+    @Test
+    public void shouldGetAppliedVillageFilter() throws Exception {
+        when(allSettings.appliedVillageFilter("All")).thenReturn("munjanahalli");
+
+        String villageFilter = controller.appliedVillageFilter("All");
+
+        assertEquals(villageFilter, "munjanahalli");
+
     }
 
     private Map<String, String> normalPriority() {
