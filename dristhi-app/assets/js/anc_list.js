@@ -2,6 +2,7 @@ function ANCList(ancListBridge, cssIdOf) {
     var ALL_VILLAGES_FILTER_OPTION = "All";
     var VILLAGE_FILTER_OPTION = "village";
     var allANCs;
+    var appliedVillageFilter;
 
     var showANCsAndUpdateCount = function (appliedVillageFilter) {
         var filteredHighRiskANCs;
@@ -42,10 +43,13 @@ function ANCList(ancListBridge, cssIdOf) {
     };
 
     var filterByVillage = function () {
-        updateFilterIndicator($(this).text());
-
         var filterToApply = $(this).data(VILLAGE_FILTER_OPTION);
+        if (filterToApply === appliedVillageFilter)
+            return;
+
         showANCsAndUpdateCount(filterToApply);
+        updateFilterIndicator($(this).text());
+        appliedVillageFilter = filterToApply;
         ancListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
     };
 
@@ -53,7 +57,7 @@ function ANCList(ancListBridge, cssIdOf) {
     return {
         populateInto:function () {
             allANCs = ancListBridge.getANCs();
-            var appliedVillageFilter = ancListBridge.getAppliedVillageFilter(ALL_VILLAGES_FILTER_OPTION);
+            appliedVillageFilter = ancListBridge.getAppliedVillageFilter(ALL_VILLAGES_FILTER_OPTION);
             showANCsAndUpdateCount(appliedVillageFilter);
             updateFilterIndicator(formatText(appliedVillageFilter));
         },

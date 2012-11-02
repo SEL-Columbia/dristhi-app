@@ -3,6 +3,7 @@ function PNCList(pncListBridge, cssIdOf) {
     var ALL_VILLAGES_FILTER_OPTION = "All";
     var VILLAGE_FILTER_OPTION = "village";
     var allPNCs;
+    var appliedVillageFilter;
 
     var showPNCsAndUpdateCount = function (appliedVillageFilter) {
         var filteredHighRiskPNCs;
@@ -43,17 +44,21 @@ function PNCList(pncListBridge, cssIdOf) {
     };
 
     var filterByVillage = function () {
-        updateFilterIndicator($(this).text());
-
         var filterToApply = $(this).data(VILLAGE_FILTER_OPTION);
+        if (filterToApply === appliedVillageFilter)
+            return;
+
         showPNCsAndUpdateCount(filterToApply);
+        updateFilterIndicator($(this).text());
+        appliedVillageFilter = filterToApply;
         pncListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
     };
+
 
     return {
         populateInto:function () {
             allPNCs = pncListBridge.getPNCs();
-            var appliedVillageFilter = pncListBridge.getAppliedVillageFilter(ALL_VILLAGES_FILTER_OPTION);
+            appliedVillageFilter = pncListBridge.getAppliedVillageFilter(ALL_VILLAGES_FILTER_OPTION);
             showPNCsAndUpdateCount(appliedVillageFilter);
             updateFilterIndicator(formatText(appliedVillageFilter));
         },

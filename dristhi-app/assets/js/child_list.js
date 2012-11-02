@@ -3,6 +3,7 @@ function ChildList(childListBridge, cssIdOf) {
     var ALL_VILLAGES_FILTER_OPTION = "All";
     var VILLAGE_FILTER_OPTION = "village";
     var allChildren;
+    var appliedVillageFilter;
 
     var showChildrenAndUpdateCount = function (appliedVillageFilter) {
         var filteredHighRiskChildren;
@@ -43,10 +44,13 @@ function ChildList(childListBridge, cssIdOf) {
     };
 
     var filterByVillage = function () {
-        updateFilterIndicator($(this).text());
-
         var filterToApply = $(this).data(VILLAGE_FILTER_OPTION);
+        if (filterToApply === appliedVillageFilter)
+            return;
+
         showChildrenAndUpdateCount(filterToApply);
+        updateFilterIndicator($(this).text());
+        appliedVillageFilter = filterToApply;
         childListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
     };
 
@@ -54,7 +58,7 @@ function ChildList(childListBridge, cssIdOf) {
     return {
         populateInto:function () {
             allChildren = childListBridge.getChildren();
-            var appliedVillageFilter = childListBridge.getAppliedVillageFilter(ALL_VILLAGES_FILTER_OPTION);
+            appliedVillageFilter = childListBridge.getAppliedVillageFilter(ALL_VILLAGES_FILTER_OPTION);
             showChildrenAndUpdateCount(appliedVillageFilter);
             updateFilterIndicator(formatText(appliedVillageFilter));
         },

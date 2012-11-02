@@ -2,6 +2,7 @@ function ECList(ecListBridge, cssIdOf) {
     var ALL_VILLAGES_FILTER_OPTION = "All";
     var VILLAGE_FILTER_OPTION = "village";
     var allECs;
+    var appliedVillageFilter;
 
     var showECsAndUpdateCount = function (appliedVillageFilter) {
         var filteredHighPriorityECs;
@@ -42,17 +43,21 @@ function ECList(ecListBridge, cssIdOf) {
     };
 
     var filterByVillage = function () {
-        updateFilterIndicator($(this).text());
-
         var filterToApply = $(this).data(VILLAGE_FILTER_OPTION);
+        if (filterToApply === appliedVillageFilter)
+            return;
+
         showECsAndUpdateCount(filterToApply);
+        updateFilterIndicator($(this).text());
+        appliedVillageFilter = filterToApply;
         ecListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
     };
 
     return {
         populateInto:function () {
             allECs = ecListBridge.getECs();
-            var appliedVillageFilter = ecListBridge.getAppliedVillageFilter(ecListBridge.getVillages()[1].name);
+            appliedVillageFilter = ecListBridge.getAppliedVillageFilter(ecListBridge.getVillages()[1].name);
+
             showECsAndUpdateCount(appliedVillageFilter);
             updateFilterIndicator(formatText(appliedVillageFilter));
         },
