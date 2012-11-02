@@ -21,17 +21,17 @@ function ANCList(ancListBridge, cssIdOf) {
             filteredNormalRiskANCs = getANCsBelongingToVillage(allANCs.normalRisk, appliedVillageFilter);
         }
 
-        populateANCs(filteredHighRiskANCs, highRiskContainer, highRiskListContainer);
-        populateANCs(filteredNormalRiskANCs, normalRiskContainer, normalRiskListContainer);
+        populateANCs(filteredHighRiskANCs, cssIdOf.highRiskContainer, cssIdOf.highRiskListContainer, cssIdOf.highRiskANCsCount);
+        populateANCs(filteredNormalRiskANCs, cssIdOf.normalRiskContainer, cssIdOf.normalRiskListContainer, cssIdOf.normalRiskANCsCount);
     };
 
-    var populateANCs = function (ancs, listContainer, listItemsContainer) {
+    var populateANCs = function (ancs, cssIdOfListContainer, cssIdOfListItemsContainer, cssIdOfANCsCount) {
         if (ancs.length === 0)
-            $(listContainer).hide();
+            $(cssIdOfListContainer).hide();
         else {
-            $(listItemsContainer).html(Handlebars.templates.anc_list(ancs));
-            $(listContainer + " " + cssIdOf.ancCount).text(ancs.length);
-            $(listContainer).show();
+            $(cssIdOfListItemsContainer).html(Handlebars.templates.anc_list(ancs));
+            $(cssIdOfANCsCount).text(ancs.length);
+            $(cssIdOfListContainer).show();
         }
     };
 
@@ -57,11 +57,6 @@ function ANCList(ancListBridge, cssIdOf) {
 
     return {
         populateInto:function () {
-            highRiskContainer = cssIdOf.rootElement + " " + cssIdOf.highRiskContainer;
-            highRiskListContainer = highRiskContainer + " " + cssIdOf.highRiskListContainer;
-            normalRiskContainer = cssIdOf.rootElement + " " + cssIdOf.normalRiskContainer;
-            normalRiskListContainer = normalRiskContainer + " " + cssIdOf.normalRiskListContainer;
-
             allANCs = ancListBridge.getANCs();
             var appliedVillageFilter = ancListBridge.getAppliedVillageFilter(ALL_VILLAGES_FILTER_OPTION);
             showANCsAndUpdateCount(appliedVillageFilter);
