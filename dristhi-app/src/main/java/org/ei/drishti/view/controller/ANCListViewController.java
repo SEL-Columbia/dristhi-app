@@ -8,6 +8,7 @@ import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
@@ -26,13 +27,15 @@ public class ANCListViewController {
     private final AllBeneficiaries allBeneficiaries;
     private AllEligibleCouples allEligibleCouples;
     private final Context context;
+    private final AllSettings allSettings;
     private Cache<String> ancListCache;
     private CommCareClientService commCareClientService;
 
-    public ANCListViewController(Context context, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples, Cache<String> ancListCache, CommCareClientService commCareClientService) {
+    public ANCListViewController(Context context, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples, AllSettings allSettings, Cache<String> ancListCache, CommCareClientService commCareClientService) {
         this.allBeneficiaries = allBeneficiaries;
         this.allEligibleCouples = allEligibleCouples;
         this.context = context;
+        this.allSettings = allSettings;
         this.ancListCache = ancListCache;
         this.commCareClientService = commCareClientService;
     }
@@ -90,5 +93,9 @@ public class ANCListViewController {
                 return oneAnc.womanName().compareToIgnoreCase(anotherANC.womanName());
             }
         });
+    }
+
+    public void saveAppliedVillageFilter(String village) {
+        allSettings.saveAppliedVillageFilter(village);
     }
 }

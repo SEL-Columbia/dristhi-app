@@ -10,6 +10,7 @@ import org.ei.drishti.domain.Mother;
 import org.ei.drishti.event.Event;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.view.contract.ANC;
@@ -37,6 +38,8 @@ public class ANCListViewControllerTest {
     @Mock
     private AllBeneficiaries allBeneficiaries;
     @Mock
+    private AllSettings allSettings;
+    @Mock
     private CommCareClientService commCareClientService;
     @Mock
     private Context context;
@@ -46,7 +49,7 @@ public class ANCListViewControllerTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new ANCListViewController(context, allBeneficiaries, allEligibleCouples, new Cache<String>(), commCareClientService);
+        controller = new ANCListViewController(context, allBeneficiaries, allEligibleCouples, allSettings, new Cache<String>(), commCareClientService);
     }
 
     @Test
@@ -77,5 +80,12 @@ public class ANCListViewControllerTest {
         Event.ON_DATA_FETCHED.notifyListeners(fetched);
         controller.get();
         verify(allBeneficiaries, times(2)).allANCsWithEC();
+    }
+
+    @Test
+    public void shouldSaveAppliedVillageFilter() throws Exception {
+        controller.saveAppliedVillageFilter("munjanahalli");
+
+        verify(allSettings).saveAppliedVillageFilter("munjanahalli");
     }
 }
