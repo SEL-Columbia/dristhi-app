@@ -47,7 +47,11 @@
     <div class="registry-container container-fluid">
         <div class="row-fluid">
             <div class="span3">
+            {{#ifequal childDetails.gender "male"}}
                 <img src="../img/icons/child-infant@3x.png">
+            {{else}}
+                <img src="../img/icons/child-girlinfant@3x.png">
+            {{/ifequal}}
             </div>
             <div class="span9">
                 <ul class="client-details unstyled">
