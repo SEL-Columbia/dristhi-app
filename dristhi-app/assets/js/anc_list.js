@@ -1,68 +1,87 @@
-function ANCList(ancListBridge) {
-    var ancListRow = "anc";
-    var showANCsFromAllVillages = "All";
-    var villageFilterOption = "village";
+function ANCList(ancListBridge, cssIdOf) {
+    var ALL_VILLAGES_FILTER_OPTION = "All";
+    var VILLAGE_FILTER_OPTION = "village";
+
     var highRiskContainer;
+    var highRiskListContainer;
     var normalRiskContainer;
+    var normalRiskListContainer;
+    var allANCs;
 
-    var showANCsAndUpdateCount = function (cssIdentifierOfEachRow) {
-        var highRiskANCs = $(highRiskContainer + " ." + cssIdentifierOfEachRow);
-        var normalRiskANCs = $(normalRiskContainer + " ." + cssIdentifierOfEachRow);
+    var showANCsAndUpdateCount = function (appliedVillageFilter) {
+        var filteredHighRiskANCs;
+        var filteredNormalRiskANCs;
 
-        highRiskANCs.show();
-        normalRiskANCs.show();
-
-        $(highRiskContainer + " .count").text(highRiskANCs.length);
-        $(normalRiskContainer + " .count").text(normalRiskANCs.length);
-
-    }
-
-    var populateANCs = function (ancs, container) {
-        if (ancs.length == 0)
-            $(container).hide();
-        else {
-            $(container + " .count").text(ancs.length);
-            $(container).append(Handlebars.templates.anc_list(ancs));
+        if (appliedVillageFilter === ALL_VILLAGES_FILTER_OPTION) {
+            filteredHighRiskANCs = allANCs.highRisk;
+            filteredNormalRiskANCs = allANCs.normalRisk;
         }
-    }
+        else {
+            filteredHighRiskANCs = getANCsBelongingToVillage(allANCs.highRisk, appliedVillageFilter);
+            filteredNormalRiskANCs = getANCsBelongingToVillage(allANCs.normalRisk, appliedVillageFilter);
+        }
+
+        populateANCs(filteredHighRiskANCs, highRiskContainer, highRiskListContainer);
+        populateANCs(filteredNormalRiskANCs, normalRiskContainer, normalRiskListContainer);
+    };
+
+    var populateANCs = function (ancs, listContainer, listItemsContainer) {
+        if (ancs.length === 0)
+            $(listContainer).hide();
+        else {
+            $(listItemsContainer).html(Handlebars.templates.anc_list(ancs));
+            $(listContainer + " " + cssIdOf.ancCount).text(ancs.length);
+            $(listContainer).show();
+        }
+    };
+
+    var getANCsBelongingToVillage = function (ancs, village) {
+        return jQuery.grep(ancs, function (anc, index) {
+            return anc.villageName === village;
+        });
+    };
+
+    var updateFilterIndicator = function (appliedFilter) {
+        var text = "Show: " + appliedFilter;
+        $(cssIdOf.appliedFilterIndicator).text(text);
+    };
+
+    var filterByVillage = function () {
+        updateFilterIndicator($(this).text());
+
+        var filterToApply = $(this).data(VILLAGE_FILTER_OPTION);
+        showANCsAndUpdateCount(filterToApply);
+        ancListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
+    };
+
 
     return {
-        populateInto:function (cssIdentifierOfRootElement) {
-            var ancs = ancListBridge.getANCs();
-            highRiskContainer = cssIdentifierOfRootElement + " #highRiskContainer";
-            normalRiskContainer = cssIdentifierOfRootElement + " #normalRiskContainer";
+        populateInto:function () {
+            highRiskContainer = cssIdOf.rootElement + " " + cssIdOf.highRiskContainer;
+            highRiskListContainer = highRiskContainer + " " + cssIdOf.highRiskListContainer;
+            normalRiskContainer = cssIdOf.rootElement + " " + cssIdOf.normalRiskContainer;
+            normalRiskListContainer = normalRiskContainer + " " + cssIdOf.normalRiskListContainer;
 
-            populateANCs(ancs.highRisk, highRiskContainer);
-            populateANCs(ancs.normalRisk, normalRiskContainer);
+            allANCs = ancListBridge.getANCs();
+            var appliedVillageFilter = ancListBridge.getAppliedVillageFilter(ALL_VILLAGES_FILTER_OPTION);
+            showANCsAndUpdateCount(appliedVillageFilter);
+            updateFilterIndicator(formatText(appliedVillageFilter));
         },
-
-        bindEveryItemToANCView:function (cssIdentifierOfRootElement, cssIdentifierOfEveryListItem) {
-            $(cssIdentifierOfRootElement).on("click", cssIdentifierOfEveryListItem, function (event) {
+        bindEveryItemToANCView:function () {
+            $(cssIdOf.rootElement).on("click", cssIdOf.everyListItem, function (event) {
                 ancListBridge.delegateToANCDetail($(this).data("caseid"));
             });
         },
-        bindItemToCommCare:function (cssIdentifierOfElement) {
-            $(cssIdentifierOfElement).click(function () {
+        bindItemToCommCare:function () {
+            $(cssIdOf.commCareItems).click(function () {
                 ancListBridge.delegateToCommCare($(this).data("form"));
             })
         },
-        populateVillageFilter:function (cssIdentifierOfElement) {
-            $(cssIdentifierOfElement).append(Handlebars.templates.filter_by_village(ancListBridge.getVillages()));
+        populateVillageFilter:function () {
+            $(cssIdOf.villageFilter).html(Handlebars.templates.filter_by_village(ancListBridge.getVillages()));
         },
-        bindToVillageFilter:function (cssIdentifierOfElement) {
-            $(cssIdentifierOfElement).click(function () {
-                var text = 'Show: ' + $(this).text();
-                var filterToApply = $(this).data(villageFilterOption);
-
-                $(this).closest('.dropdown').children('a.dropdown-toggle').text(text);
-                if (filterToApply === showANCsFromAllVillages) {
-                    showANCsAndUpdateCount(ancListRow);
-                    return;
-                }
-                $("." + ancListRow).hide();
-                showANCsAndUpdateCount(filterToApply);
-                ancListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
-            });
+        bindToVillageFilter:function () {
+            $(cssIdOf.villageFilterOptions).click(filterByVillage);
         }
     };
 }
@@ -89,6 +108,9 @@ function ANCListBridge() {
         },
         delegateToSaveAppliedVillageFilter:function (village) {
             return ancContext.saveAppliedVillageFilter(village);
+        },
+        getAppliedVillageFilter:function (defaultFilterValue) {
+            return ancContext.appliedVillageFilter(defaultFilterValue);
         }
     };
 }
@@ -169,6 +191,9 @@ function FakeANCListContext() {
             )
         },
         saveAppliedVillageFilter:function (village) {
+        },
+        appliedVillageFilter:function (defaultFilterValue) {
+            return defaultFilterValue;
         }
     }
 }

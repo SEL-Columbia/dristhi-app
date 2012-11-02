@@ -23,7 +23,7 @@ function ECList(ecListBridge, cssIdOf) {
 
         populateECs(filteredHighPriorityECs, highPriorityContainer, highPriorityListContainer);
         populateECs(filteredNormalPriorityECs, normalPriorityContainer, normalPriorityListContainer);
-    }
+    };
 
     var populateECs = function (ecs, listContainer, listItemsContainer) {
         if (ecs.length === 0)
@@ -33,26 +33,26 @@ function ECList(ecListBridge, cssIdOf) {
             $(listContainer + " " + cssIdOf.ecCount).text(ecs.length);
             $(listContainer).show();
         }
-    }
+    };
 
     var getECsBelongingToVillage = function (ecs, village) {
         return jQuery.grep(ecs, function (ec, index) {
             return ec.villageName === village;
         });
-    }
+    };
 
     var updateFilterIndicator = function (appliedFilter) {
         var text = "Show: " + appliedFilter;
         $(cssIdOf.appliedFilterIndicator).text(text);
-    }
+    };
 
-    var filterByVillage = function (filteredBy) {
+    var filterByVillage = function () {
         updateFilterIndicator($(this).text());
 
         var filterToApply = $(this).data(VILLAGE_FILTER_OPTION);
         showECsAndUpdateCount(filterToApply);
         ecListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
-    }
+    };
 
     return {
         populateInto:function () {
@@ -64,9 +64,8 @@ function ECList(ecListBridge, cssIdOf) {
             allECs = ecListBridge.getECs();
             var appliedVillageFilter = ecListBridge.getAppliedVillageFilter(ecListBridge.getVillages()[1].name);
             showECsAndUpdateCount(appliedVillageFilter);
-            updateFilterIndicator(capitalize(appliedVillageFilter));
+            updateFilterIndicator(formatText(appliedVillageFilter));
         },
-
         bindEveryItemToECView:function () {
             $(cssIdOf.rootElement).on("click", cssIdOf.everyListItem, function (event) {
                 ecListBridge.delegateToECDetail($(this).data("caseid"));
@@ -78,7 +77,7 @@ function ECList(ecListBridge, cssIdOf) {
             })
         },
         populateVillageFilter:function () {
-            $(cssIdOf.villageFilter).append(Handlebars.templates.filter_by_village(ecListBridge.getVillages()));
+            $(cssIdOf.villageFilter).html(Handlebars.templates.filter_by_village(ecListBridge.getVillages()));
         },
         bindToVillageFilter:function () {
             $(cssIdOf.villageFilterOptions).click(filterByVillage);

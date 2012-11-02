@@ -98,4 +98,8 @@ public class ANCListViewController {
     public void saveAppliedVillageFilter(String village) {
         allSettings.saveAppliedVillageFilter(village);
     }
+
+    public String appliedVillageFilter(String defaultFilterValue) {
+        return allSettings.appliedVillageFilter(defaultFilterValue);
+    }
 }

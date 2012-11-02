@@ -34,6 +34,13 @@ var capitalize = function (text) {
     return text.slice(0, 1).toUpperCase() + text.slice(1);
 };
 
+var formatText = function (unformattedText) {
+    if (typeof unformattedText === "undefined" || unformattedText === null) {
+        return "";
+    }
+    return capitalize(unformattedText.trim()).replace(/_/g, " ");
+};
+
 Handlebars.registerHelper('capitalize', capitalize);
 
 Handlebars.registerHelper('camelCaseAndConvertToListItems', function (textWithSpacesAndUnderscores) {

@@ -88,4 +88,14 @@ public class ANCListViewControllerTest {
 
         verify(allSettings).saveAppliedVillageFilter("munjanahalli");
     }
+
+    @Test
+    public void shouldGetAppliedVillageFilter() throws Exception {
+        when(allSettings.appliedVillageFilter("All")).thenReturn("munjanahalli");
+
+        String villageFilter = controller.appliedVillageFilter("All");
+
+        assertEquals(villageFilter, "munjanahalli");
+
+    }
 }
