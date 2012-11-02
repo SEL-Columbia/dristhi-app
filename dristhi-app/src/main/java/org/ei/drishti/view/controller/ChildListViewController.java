@@ -8,6 +8,7 @@ import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.activity.ChildDetailActivity;
@@ -24,12 +25,14 @@ public class ChildListViewController {
     private final Context context;
     private final AllBeneficiaries allBeneficiaries;
     private final AllEligibleCouples allEligibleCouples;
+    private final AllSettings allSettings;
     private Cache<String> childListCache;
 
-    public ChildListViewController(Context context, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples, Cache<String> childListCache) {
+    public ChildListViewController(Context context, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples, AllSettings allSettings, Cache<String> childListCache) {
         this.context = context;
         this.allBeneficiaries = allBeneficiaries;
         this.allEligibleCouples = allEligibleCouples;
+        this.allSettings = allSettings;
         this.childListCache = childListCache;
     }
 
@@ -81,5 +84,13 @@ public class ChildListViewController {
                 return oneChild.motherName().compareToIgnoreCase(anotherChild.motherName());
             }
         });
+    }
+
+    public void saveAppliedVillageFilter(String village) {
+        allSettings.saveAppliedVillageFilter(village);
+    }
+
+    public String appliedVillageFilter(String defaultFilterValue) {
+        return allSettings.appliedVillageFilter(defaultFilterValue);
     }
 }

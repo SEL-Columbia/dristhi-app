@@ -10,6 +10,7 @@ import org.ei.drishti.domain.Mother;
 import org.ei.drishti.event.Event;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.view.contract.Children;
 import org.junit.Before;
@@ -33,13 +34,15 @@ public class ChildListViewControllerTest {
     @Mock
     private AllBeneficiaries allBeneficiaries;
     @Mock
+    private AllSettings allSettings;
+    @Mock
     private Context context;
     private ChildListViewController controller;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new ChildListViewController(context, allBeneficiaries, allEligibleCouples, new Cache<String>());
+        controller = new ChildListViewController(context, allBeneficiaries, allEligibleCouples, allSettings, new Cache<String>());
     }
 
     @Test
@@ -68,5 +71,21 @@ public class ChildListViewControllerTest {
         Event.ON_DATA_FETCHED.notifyListeners(fetched);
         controller.get();
         verify(allBeneficiaries, times(2)).allChildren();
+    }
+
+    @Test
+    public void shouldSaveAppliedVillageFilter() throws Exception {
+        controller.saveAppliedVillageFilter("munjanahalli");
+
+        verify(allSettings).saveAppliedVillageFilter("munjanahalli");
+    }
+
+    @Test
+    public void shouldGetAppliedVillageFilter() throws Exception {
+        when(allSettings.appliedVillageFilter("All")).thenReturn("munjanahalli");
+
+        String villageFilter = controller.appliedVillageFilter("All");
+
+        assertEquals(villageFilter, "munjanahalli");
     }
 }

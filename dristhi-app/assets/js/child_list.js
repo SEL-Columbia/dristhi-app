@@ -1,60 +1,73 @@
-function ChildList(childListBridge) {
-    var childListRow = "child";
-    var showChildrenFromAllVillages = "All";
-    var villageFilterOption = "village";
-    var highRiskContainer;
-    var normalRiskContainer;
+function ChildList(childListBridge, cssIdOf) {
 
-    var showChildrenAndUpdateCount = function (cssIdentifierOfEachRow) {
-        var highRiskChildren = $(highRiskContainer + " ." + cssIdentifierOfEachRow);
-        var normalRiskChildren = $(normalRiskContainer + " ." + cssIdentifierOfEachRow);
+    var ALL_VILLAGES_FILTER_OPTION = "All";
+    var VILLAGE_FILTER_OPTION = "village";
+    var allChildren;
 
-        highRiskChildren.show();
-        normalRiskChildren.show();
+    var showChildrenAndUpdateCount = function (appliedVillageFilter) {
+        var filteredHighRiskChildren;
+        var filteredNormalRiskChildren;
 
-        $(highRiskContainer + " .count").text(highRiskChildren.length);
-        $(normalRiskContainer + " .count").text(normalRiskChildren.length);
+        if (appliedVillageFilter === ALL_VILLAGES_FILTER_OPTION) {
+            filteredHighRiskChildren = allChildren.highRisk;
+            filteredNormalRiskChildren = allChildren.normalRisk;
+        }
+        else {
+            filteredHighRiskChildren = getChildrenBelongingToVillage(allChildren.highRisk, appliedVillageFilter);
+            filteredNormalRiskChildren = getChildrenBelongingToVillage(allChildren.normalRisk, appliedVillageFilter);
+        }
+
+        populateChildren(filteredHighRiskChildren, cssIdOf.highRiskContainer, cssIdOf.highRiskListContainer, cssIdOf.highRiskChildrenCount);
+        populateChildren(filteredNormalRiskChildren, cssIdOf.normalRiskContainer, cssIdOf.normalRiskListContainer, cssIdOf.normalRiskChildrenCount);
     };
 
-    var populateChildren = function (children, container) {
-        if(children.length == 0)
-            $(container).hide();
-        else
-        {
-            $(container + " .count").text(children.length);
-            $(container).append(Handlebars.templates.child_list(children));
+    var populateChildren = function (children, cssIdOfListContainer, cssIdOfListItemsContainer, idOfChildrenCount) {
+        if (children.length === 0)
+            $(cssIdOfListContainer).hide();
+        else {
+            $(cssIdOfListItemsContainer).html(Handlebars.templates.child_list(children));
+            $(idOfChildrenCount).text(children.length);
+            $(cssIdOfListContainer).show();
         }
+    };
+
+    var getChildrenBelongingToVillage = function (children, village) {
+        return jQuery.grep(children, function (child, index) {
+            return child.villageName === village;
+        });
+    };
+
+    var updateFilterIndicator = function (appliedFilter) {
+        var text = "Show: " + appliedFilter;
+        $(cssIdOf.appliedFilterIndicator).text(text);
+    };
+
+    var filterByVillage = function () {
+        updateFilterIndicator($(this).text());
+
+        var filterToApply = $(this).data(VILLAGE_FILTER_OPTION);
+        showChildrenAndUpdateCount(filterToApply);
+        childListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
     };
 
 
     return {
-        populateInto: function (cssIdentifierOfRootElement) {
-            var children = childListBridge.getChildren();
-            highRiskContainer = cssIdentifierOfRootElement + " #highRiskContainer";
-            normalRiskContainer = cssIdentifierOfRootElement + " #normalRiskContainer";
-
-            populateChildren(children.highRisk, highRiskContainer);
-            populateChildren(children.normalRisk, normalRiskContainer);
+        populateInto:function () {
+            allChildren = childListBridge.getChildren();
+            var appliedVillageFilter = childListBridge.getAppliedVillageFilter(ALL_VILLAGES_FILTER_OPTION);
+            showChildrenAndUpdateCount(appliedVillageFilter);
+            updateFilterIndicator(formatText(appliedVillageFilter));
         },
-        bindEveryItemToChildView: function (cssIdentifierOfRootElement, cssIdentifierOfEveryListItem) {
-            $(cssIdentifierOfRootElement).on("click", cssIdentifierOfEveryListItem, function () {
+        bindEveryItemToChildView:function () {
+            $(cssIdOf.rootElement).on("click", cssIdOf.everyListItem, function (event) {
                 childListBridge.delegateToChildDetail($(this).data("caseid"));
             });
         },
-        populateVillageFilter: function (cssIdentifierOfElement) {
-            $(cssIdentifierOfElement).append(Handlebars.templates.filter_by_village(childListBridge.getVillages()));
+        populateVillageFilter:function () {
+            $(cssIdOf.villageFilter).html(Handlebars.templates.filter_by_village(childListBridge.getVillages()));
         },
-        bindToVillageFilter: function (cssIdentifierOfElement) {
-            $(cssIdentifierOfElement).click(function () {
-                var text = 'Show: ' + $(this).text();
-                $(this).closest('.dropdown').children('a.dropdown-toggle').text(text);
-                if ($(this).data(villageFilterOption) === showChildrenFromAllVillages) {
-                    showChildrenAndUpdateCount(childListRow);
-                    return;
-                }
-                $("." + childListRow).hide();
-                showChildrenAndUpdateCount($(this).data(villageFilterOption));
-            });
+        bindToVillageFilter:function () {
+            $(cssIdOf.villageFilterOptions).click(filterByVillage);
         }
     };
 }
@@ -74,6 +87,12 @@ function ChildListBridge() {
         },
         getVillages: function () {
             return JSON.parse(childContext.villages());
+        },
+        delegateToSaveAppliedVillageFilter:function (village) {
+            return childContext.saveAppliedVillageFilter(village);
+        },
+        getAppliedVillageFilter:function (defaultFilterValue) {
+            return childContext.appliedVillageFilter(defaultFilterValue);
         }
     };
 }
@@ -149,6 +168,11 @@ function FakeChildListContext() {
                     {name: "chikkabheriya"}
                 ]
             )
+        },
+        saveAppliedVillageFilter:function (village) {
+        },
+        appliedVillageFilter:function (defaultFilterValue) {
+            return defaultFilterValue;
         }
     }
 }

@@ -36,12 +36,12 @@
             };
 
             var list = new ANCList(new ANCListBridge(), cssIdOf);
-            list.populateInto("#anc-list");
-            list.bindEveryItemToANCView("#anc-list", ".client-list-item");
-            list.bindItemToCommCare("#plusButton");
+            list.populateInto();
+            list.bindEveryItemToANCView();
+            list.bindItemToCommCare();
 
-            list.populateVillageFilter('#menu-village');
-            list.bindToVillageFilter('.dropdown-option');
+            list.populateVillageFilter();
+            list.bindToVillageFilter();
 
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         });

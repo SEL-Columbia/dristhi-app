@@ -36,7 +36,7 @@
             };
 
             var list = new PNCList(new PNCListBridge(), cssIdOf);
-            list.populateInto("#pnc-list");
+            list.populateInto();
             list.bindEveryItemToPNCView("#pnc-list", ".client-list-item");
 
             list.populateVillageFilter('#menu-village');

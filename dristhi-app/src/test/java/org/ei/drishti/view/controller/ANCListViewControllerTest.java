@@ -96,6 +96,5 @@ public class ANCListViewControllerTest {
         String villageFilter = controller.appliedVillageFilter("All");
 
         assertEquals(villageFilter, "munjanahalli");
-
     }
 }

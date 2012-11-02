@@ -20,12 +20,27 @@
     <script type="text/javascript" src="../js/child_list.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var list = new ChildList(new ChildListBridge());
-            list.populateInto("#child-list");
-            list.bindEveryItemToChildView("#child-list", ".client-list-item");
+            var cssIdOf = {
+                rootElement:"#child-list",
+                everyListItem: ".client-list-item",
+                highRiskContainer: "#child-list #highRiskContainer",
+                highRiskListContainer: "#child-list #highRiskContainer .high-risk-list",
+                highRiskChildrenCount : "#child-list #highRiskContainer .count",
+                normalRiskContainer: "#child-list #normalRiskContainer",
+                normalRiskListContainer : "#child-list #normalRiskContainer .normal-risk-list",
+                normalRiskChildrenCount : "#child-list #normalRiskContainer .count",
+                commCareItems: "#plusButton",
+                villageFilter:"#menu-village",
+                villageFilterOptions:".dropdown-option",
+                appliedFilterIndicator: ".filter-by-village"
+            };
 
-            list.populateVillageFilter('#menu-village');
-            list.bindToVillageFilter('.dropdown-option');
+            var list = new ChildList(new ChildListBridge(), cssIdOf);
+            list.populateInto();
+            list.bindEveryItemToChildView();
+
+            list.populateVillageFilter();
+            list.bindToVillageFilter();
 
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         });
@@ -46,7 +61,7 @@
 
         <div id="content" class="content affected-by-sidepanel">
             <div class="container-fluid dropdown dropdown-filter">
-                <a class="btn dropdown-toggle toggle-filter" data-toggle="dropdown">
+                <a class="btn dropdown-toggle toggle-filter filter-by-village" data-toggle="dropdown">
                     Show: All
                     <span class="caret pull-right"></span>
                 </a>
@@ -57,11 +72,13 @@
                 <div id="highRiskContainer" class="high-risk-container">
                     <div class="high-risk-header"> HIGH RISK (<span class="count"></span>)</div>
                     <div class="divider divider-padding-both"></div>
+                    <div class="high-risk-list"></div>
                 </div>
 
                 <div id="normalRiskContainer">
                     <div class="normal-risk-header"> NORMAL RISK (<span class="count"></span>)</div>
                     <div class="divider divider-padding-both"></div>
+                    <div class="normal-risk-list"></div>
                 </div>
             </div>
         </div>
