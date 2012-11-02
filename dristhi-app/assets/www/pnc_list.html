@@ -20,7 +20,22 @@
     <script type="text/javascript" src="../js/pnc_list.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var list = new PNCList(new PNCListBridge());
+            var cssIdOf = {
+                rootElement:"#pnc-list",
+                everyListItem: ".client-list-item",
+                highRiskContainer: "#pnc-list #highRiskContainer",
+                highRiskListContainer: "#pnc-list #highRiskContainer .high-risk-list",
+                highRiskPNCsCount : "#pnc-list #highRiskContainer .count",
+                normalRiskContainer: "#pnc-list #normalRiskContainer",
+                normalRiskListContainer : "#pnc-list #normalRiskContainer .normal-risk-list",
+                normalRiskPNCsCount : "#pnc-list #normalRiskContainer .count",
+                commCareItems: "#plusButton",
+                villageFilter:"#menu-village",
+                villageFilterOptions:".dropdown-option",
+                appliedFilterIndicator: ".filter-by-village"
+            };
+
+            var list = new PNCList(new PNCListBridge(), cssIdOf);
             list.populateInto("#pnc-list");
             list.bindEveryItemToPNCView("#pnc-list", ".client-list-item");
 
@@ -46,7 +61,7 @@
 
         <div id="content" class="content affected-by-sidepanel">
             <div class="container-fluid dropdown dropdown-filter">
-                <a class="btn dropdown-toggle toggle-filter" data-toggle="dropdown">
+                <a class="btn dropdown-toggle toggle-filter filter-by-village" data-toggle="dropdown">
                     Show: All
                     <span class="caret pull-right"></span>
                 </a>
@@ -57,11 +72,13 @@
                 <div id="highRiskContainer" class="high-risk-container">
                     <div class="high-risk-header"> HIGH RISK (<span class="count"></span>)</div>
                     <div class="divider divider-padding-both"></div>
+                    <div class="high-risk-list"></div>
                 </div>
 
                 <div id="normalRiskContainer">
                     <div class="normal-risk-header"> NORMAL RISK (<span class="count"></span>)</div>
                     <div class="divider divider-padding-both"></div>
+                    <div class="normal-risk-list"></div>
                 </div>
             </div>
         </div>

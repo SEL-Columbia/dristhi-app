@@ -1,11 +1,6 @@
 function ANCList(ancListBridge, cssIdOf) {
     var ALL_VILLAGES_FILTER_OPTION = "All";
     var VILLAGE_FILTER_OPTION = "village";
-
-    var highRiskContainer;
-    var highRiskListContainer;
-    var normalRiskContainer;
-    var normalRiskListContainer;
     var allANCs;
 
     var showANCsAndUpdateCount = function (appliedVillageFilter) {

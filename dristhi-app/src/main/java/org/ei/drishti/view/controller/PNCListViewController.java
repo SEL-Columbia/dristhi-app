@@ -7,6 +7,7 @@ import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.activity.PNCDetailActivity;
@@ -24,12 +25,14 @@ public class PNCListViewController {
     private final Context context;
     private final AllBeneficiaries allBeneficiaries;
     private final AllEligibleCouples allEligibleCouples;
+    private final AllSettings allSettings;
     private Cache<String> pncListCache;
 
-    public PNCListViewController(Context context, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples, Cache<String> pncListCache) {
+    public PNCListViewController(Context context, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples, AllSettings allSettings, Cache<String> pncListCache) {
         this.context = context;
         this.allBeneficiaries = allBeneficiaries;
         this.allEligibleCouples = allEligibleCouples;
+        this.allSettings = allSettings;
         this.pncListCache = pncListCache;
     }
 
@@ -79,5 +82,13 @@ public class PNCListViewController {
                 return onePnc.womanName().compareToIgnoreCase(anotherPNC.womanName());
             }
         });
+    }
+
+    public void saveAppliedVillageFilter(String village) {
+        allSettings.saveAppliedVillageFilter(village);
+    }
+
+    public String appliedVillageFilter(String defaultFilterValue) {
+        return allSettings.appliedVillageFilter(defaultFilterValue);
     }
 }

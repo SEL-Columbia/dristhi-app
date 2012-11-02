@@ -5,7 +5,7 @@ import org.ei.drishti.view.controller.PNCListViewController;
 public class PNCListActivity extends SecuredWebActivity {
     @Override
     protected void onInitialization() {
-        webView.addJavascriptInterface(new PNCListViewController(this, context.allBeneficiaries(), context.allEligibleCouples(), context.listCache()), "context");
+        webView.addJavascriptInterface(new PNCListViewController(this, context.allBeneficiaries(), context.allEligibleCouples(), context.allSettings(), context.listCache()), "context");
         webView.loadUrl("file:///android_asset/www/pnc_list.html");
     }
 }
