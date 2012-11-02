@@ -1,11 +1,6 @@
 function ECList(ecListBridge, cssIdOf) {
     var ALL_VILLAGES_FILTER_OPTION = "All";
     var VILLAGE_FILTER_OPTION = "village";
-
-    var highPriorityContainer;
-    var highPriorityListContainer;
-    var normalPriorityContainer;
-    var normalPriorityListContainer;
     var allECs;
 
     var showECsAndUpdateCount = function (appliedVillageFilter) {
@@ -21,17 +16,17 @@ function ECList(ecListBridge, cssIdOf) {
             filteredNormalPriorityECs = getECsBelongingToVillage(allECs.normalPriority, appliedVillageFilter);
         }
 
-        populateECs(filteredHighPriorityECs, highPriorityContainer, highPriorityListContainer);
-        populateECs(filteredNormalPriorityECs, normalPriorityContainer, normalPriorityListContainer);
+        populateECs(filteredHighPriorityECs, cssIdOf.highPriorityContainer, cssIdOf.highPriorityListContainer, cssIdOf.highPriorityECsCount);
+        populateECs(filteredNormalPriorityECs, cssIdOf.normalPriorityContainer, cssIdOf.normalPriorityListContainer, cssIdOf.normalPriorityECsCount);
     };
 
-    var populateECs = function (ecs, listContainer, listItemsContainer) {
+    var populateECs = function (ecs, cssIdOfListContainer, cssIdOfListItemsContainer, idOfECsCount) {
         if (ecs.length === 0)
-            $(listContainer).hide();
+            $(cssIdOfListContainer).hide();
         else {
-            $(listItemsContainer).html(Handlebars.templates.ec_list(ecs));
-            $(listContainer + " " + cssIdOf.ecCount).text(ecs.length);
-            $(listContainer).show();
+            $(cssIdOfListItemsContainer).html(Handlebars.templates.ec_list(ecs));
+            $(idOfECsCount).text(ecs.length);
+            $(cssIdOfListContainer).show();
         }
     };
 
@@ -56,11 +51,6 @@ function ECList(ecListBridge, cssIdOf) {
 
     return {
         populateInto:function () {
-            highPriorityContainer = cssIdOf.rootElement + " " + cssIdOf.highPriorityContainer;
-            highPriorityListContainer = highPriorityContainer + " " + cssIdOf.highPriorityListContainer;
-            normalPriorityContainer = cssIdOf.rootElement + " " + cssIdOf.normalPriorityContainer;
-            normalPriorityListContainer = normalPriorityContainer + " " + cssIdOf.normalPriorityListContainer;
-
             allECs = ecListBridge.getECs();
             var appliedVillageFilter = ecListBridge.getAppliedVillageFilter(ecListBridge.getVillages()[1].name);
             showECsAndUpdateCount(appliedVillageFilter);
