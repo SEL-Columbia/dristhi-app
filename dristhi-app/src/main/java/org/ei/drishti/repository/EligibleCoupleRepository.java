@@ -8,11 +8,14 @@ import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.domain.TimelineEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static org.ei.drishti.domain.TimelineEvent.forChangeOfFPMethod;
 
 public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String EC_SQL = "CREATE TABLE eligible_couple(caseID VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR)";
@@ -26,6 +29,13 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String IS_OUT_OF_AREA_COLUMN = "isOutOfArea";
     private static final String DETAILS_COLUMN = "details";
     public static final String[] EC_TABLE_COLUMNS = new String[]{CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN, EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN};
+
+    public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
+    public static final String FP_UPDATE_FIELD_NAME = "fpUpdate";
+    public static final String CHANGE_FP_METHOD_FIELD_NAME = "change_fp_method";
+    public static final String RENEW_FP_PRODUCT_FIELD_NAME = "renew_fp_product";
+    public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME = "familyPlanningMethodChangeDate";
+
     private MotherRepository motherRepository;
     private final AlertRepository alertRepository;
     private final TimelineEventRepository timelineEventRepository;
@@ -52,7 +62,12 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     public void updateDetails(String caseId, Map<String, String> details) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
 
-        addTimelineEventsForChanges(caseId, details);
+        EligibleCouple couple = findByCaseID(caseId);
+        if (couple == null) {
+            return;
+        }
+
+        addTimelineEventsForFPRelatedChanges(couple, details);
 
         ContentValues valuesToUpdate = new ContentValues();
         valuesToUpdate.put(DETAILS_COLUMN, new Gson().toJson(details));
@@ -134,14 +149,22 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         return eligibleCouples;
     }
 
-    private void addTimelineEventsForChanges(String caseId, Map<String, String> details) {
-        EligibleCouple couple = findByCaseID(caseId);
-        if (couple == null) {
-            return;
-        }
-
-        if (details.containsKey("currentMethod")) {
-            timelineEventRepository.add(TimelineEvent.forChangeOfFPMethod(caseId, couple.details().get("currentMethod"), details.get("currentMethod"), details.get("familyPlanningMethodChangeDate")));
+    private void addTimelineEventsForFPRelatedChanges(EligibleCouple couple, Map<String, String> details) {
+        if (wasFPMethodChanged(details)) {
+            timelineEventRepository.add(forChangeOfFPMethod(couple.caseId(), couple.details().get(CURRENT_FP_METHOD_FIELD_NAME), details.get(CURRENT_FP_METHOD_FIELD_NAME), details.get(FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME)));
+        } else if (wasFPproductRenewed(details)) {
+            TimelineEvent timelineEventForRenew = FPMethod.tryParse(details.get(CURRENT_FP_METHOD_FIELD_NAME), FPMethod.NONE).getTimelineEventForRenew(couple.caseId(), details);
+            if(timelineEventForRenew != null)
+                timelineEventRepository.add(timelineEventForRenew);
         }
     }
+
+    private boolean wasFPproductRenewed(Map<String, String> details) {
+        return details.containsKey(FP_UPDATE_FIELD_NAME) && details.get(FP_UPDATE_FIELD_NAME).equals(RENEW_FP_PRODUCT_FIELD_NAME);
+    }
+
+    private boolean wasFPMethodChanged(Map<String, String> details) {
+        return details.containsKey(FP_UPDATE_FIELD_NAME) && details.get(FP_UPDATE_FIELD_NAME).equals(CHANGE_FP_METHOD_FIELD_NAME);
+    }
 }
+

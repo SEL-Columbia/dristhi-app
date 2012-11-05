@@ -54,11 +54,47 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsBeforeUpdate);
 
         repository.add(eligibleCouple);
-        Map<String, String> detailsToBeUpdated = create("Key 1", "Value 1").put("currentMethod", "Condom").put("familyPlanningMethodChangeDate", "2012-03-03").put("Key 3", "Value 3").map();
+        Map<String, String> detailsToBeUpdated = create("Key 1", "Value 1")
+                .put("fpUpdate", "change_fp_method")
+                .put("currentMethod", "Condom")
+                .put("familyPlanningMethodChangeDate", "2012-03-03")
+                .put("Key 3", "Value 3")
+                .map();
         repository.updateDetails("CASE X", detailsToBeUpdated);
 
         assertEquals(asList(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsToBeUpdated)), repository.allInAreaEligibleCouples());
         assertEquals(asList(TimelineEvent.forChangeOfFPMethod("CASE X", "IUD", "Condom", "2012-03-03")), timelineEventRepository.allFor("CASE X"));
+    }
+
+    public void testShouldAddATimelineEventForWhenFPProductIsRenewed() throws Exception {
+        Map<String, String> detailsBeforeUpdate = create("Key 1", "Value 1").put("currentMethod", "condom").map();
+        EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsBeforeUpdate);
+        repository.add(eligibleCouple);
+        Map<String, String> detailsToBeUpdated = create("Key 1", "Value 1")
+                .put("currentMethod", "condom")
+                .put("familyPlanningMethodChangeDate", "2012-03-03")
+                .put("fpUpdate", "renew_fp_product")
+                .put("numberOfCondomsDelivered", "30")
+                .map();
+
+        repository.updateDetails("CASE X", detailsToBeUpdated);
+
+        assertEquals(asList(TimelineEvent.forFPCondomRenew("CASE X", detailsToBeUpdated)), timelineEventRepository.allFor("CASE X"));
+    }
+
+    public void testShouldNotAddATimelineEventWhenNoFPMethodIsBeingUsed() throws Exception {
+        Map<String, String> detailsBeforeUpdate = create("Key 1", "Value 1").put("currentMethod", "none").map();
+        EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsBeforeUpdate);
+        repository.add(eligibleCouple);
+        Map<String, String> detailsToBeUpdated = create("Key 1", "Value 1")
+                .put("currentMethod", "none")
+                .put("familyPlanningMethodChangeDate", "2012-03-03")
+                .put("fpUpdate", "renew_fp_product")
+                .map();
+
+        repository.updateDetails("CASE X", detailsToBeUpdated);
+
+        assertTrue(timelineEventRepository.allFor("CASE X").isEmpty());
     }
 
     public void testShouldNotAddATimelineEventForFPMethodChangeWhenItIsNotChanged() throws Exception {

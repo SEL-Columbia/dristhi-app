@@ -4,12 +4,10 @@ import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
+import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.dto.AlertPriority;
-import org.ei.drishti.repository.AllAlerts;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.repository.AllSettings;
+import org.ei.drishti.repository.*;
 import org.ei.drishti.util.ActionBuilder;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +17,7 @@ import org.mockito.Mock;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
@@ -27,6 +26,7 @@ import static org.ei.drishti.domain.FetchStatus.*;
 import static org.ei.drishti.domain.ResponseStatus.failure;
 import static org.ei.drishti.domain.ResponseStatus.success;
 import static org.ei.drishti.util.ActionBuilder.*;
+import static org.ei.drishti.util.EasyMap.create;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 

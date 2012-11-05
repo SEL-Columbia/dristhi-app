@@ -64,7 +64,6 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "ANCVISIT", LocalDate.parse(visitDate), "ANC Visit " + visitNumber, detailsString, null);
     }
 
-
     public static TimelineEvent forIFATabletsProvided(String caseId, String numberOfIFATabletsProvided, String visitDate) {
         return new TimelineEvent(caseId, "IFAPROVIDED", LocalDate.parse(visitDate), "IFA Provided", numberOfIFATabletsProvided + " tablets", null);
     }
@@ -93,6 +92,30 @@ public class TimelineEvent {
         String detailString = new DetailBuilder(null).withVaccinations(immunizationsProvided).withVitaminADose(vitaminADose).value();
 
         return new TimelineEvent(caseId, "IMMUNIZATIONSGIVEN", LocalDate.parse(immunizationsProvidedDate), "Immunization Date: " + formatDate(immunizationsProvidedDate), detailString, null);
+    }
+
+    public static TimelineEvent forFPCondomRenew(String caseId, Map<String, String> details) {
+        String detailString = new DetailBuilder(details).withNumberOfCondomsDelivered("numberOfCondomsDelivered").value();
+
+        return new TimelineEvent(caseId, "FPRENEW", LocalDate.parse(details.get("familyPlanningMethodChangeDate")), "FP Renewed", detailString, null);
+    }
+
+    public static TimelineEvent forFPOCPRenew(String caseId, Map<String, String> details) {
+        String detailString = new DetailBuilder(details).withNumberOfOCPDelivered("numberOfOCPDelivered").value();
+
+        return new TimelineEvent(caseId, "FPRENEW", LocalDate.parse(details.get("familyPlanningMethodChangeDate")), "FP Renewed", detailString, null);
+    }
+
+    public static TimelineEvent forFPIUDRenew(String caseId, Map<String, String> details) {
+        String detailString = new DetailBuilder(details).withNewIUDInsertionDate("familyPlanningMethodChangeDate").value();
+
+        return new TimelineEvent(caseId, "FPRENEW", LocalDate.parse(details.get("familyPlanningMethodChangeDate")), "FP Renewed", detailString, null);
+    }
+
+    public static TimelineEvent forFPDMPARenew(String caseId, Map<String,String> details) {
+        String detailString = new DetailBuilder(details).withDMPAInjectionDate("familyPlanningMethodChangeDate").value();
+
+        return new TimelineEvent(caseId, "FPRENEW", LocalDate.parse(details.get("familyPlanningMethodChangeDate")), "FP Renewed", detailString, null);
     }
 
     public String type() {
@@ -201,6 +224,30 @@ public class TimelineEvent {
                 return this;
             }
             this.stringBuilder.append(", Vitamin A Dose ").append(vitaminADose);
+            return this;
+        }
+
+        public DetailBuilder withNumberOfCondomsDelivered(String numberOfCondomsDelivered) {
+            String condomsGiven = "Condoms given: " + details.get(numberOfCondomsDelivered) + "<br />";
+            this.stringBuilder.append(checkEmptyField(condomsGiven, details.get(numberOfCondomsDelivered)));
+            return this;
+        }
+
+        public DetailBuilder withNumberOfOCPDelivered(String numberOfOCPDelivered) {
+            String ocpCyclesGiven = "OCP cycles given: " + details.get(numberOfOCPDelivered) + "<br />";
+            this.stringBuilder.append(checkEmptyField(ocpCyclesGiven, details.get(numberOfOCPDelivered)));
+            return this;
+        }
+
+        public DetailBuilder withNewIUDInsertionDate(String iudInsertionDate) {
+            String newIUDInsertionDate = "New IUD insertion date: " + details.get(iudInsertionDate) + "<br />";
+            this.stringBuilder.append(checkEmptyField(newIUDInsertionDate, details.get(iudInsertionDate)));
+            return this;
+        }
+
+        public DetailBuilder withDMPAInjectionDate(String dmpaInjectionDate) {
+            String dmpaInjectionDateMessage = "DMPA injection date: " + details.get(dmpaInjectionDate) + "<br />";
+            this.stringBuilder.append(checkEmptyField(dmpaInjectionDateMessage, details.get(dmpaInjectionDate)));
             return this;
         }
 

@@ -25,6 +25,10 @@
     content: url(../img/icons/icon-event-fp.png);
 }
 
+.timeline .type.FPRENEW {
+    content: url(../img/icons/icon-event-fp.png);
+}
+
 .timeline .type.ANCVISIT {
     content: url(../img/icons/icon-event-anc.png);
 }

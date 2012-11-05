@@ -9,6 +9,7 @@ import java.util.Map;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 import static org.ei.drishti.domain.TimelineEvent.*;
+import static org.ei.drishti.util.EasyMap.create;
 
 public class TimelineEventTest {
 
@@ -139,5 +140,61 @@ public class TimelineEventTest {
 
         assertTrue(timelineEvent.detail1().contains("BCG, OPV 0"));
         assertTrue(timelineEvent.detail1().contains("Vitamin A Dose 1"));
+    }
+
+    @Test
+    public void shouldCreateTimelineEventForFPCondomRenew() throws Exception {
+        Map<String, String> details = create("Key 1", "Value 1")
+                .put("currentMethod", "condom")
+                .put("familyPlanningMethodChangeDate", "2012-03-03")
+                .put("fpUpdate", "renew_fp_product")
+                .put("numberOfCondomsDelivered", "30")
+                .map();
+
+        TimelineEvent timelineEvent = forFPCondomRenew("CASE A", details);
+
+        assertTrue(timelineEvent.detail1().contains("Condoms given: 30"));
+    }
+
+    @Test
+    public void shouldCreateTimelineEventForFPOCPRenew() throws Exception {
+        Map<String, String> details = create("Key 1", "Value 1")
+                .put("currentMethod", "ocp")
+                .put("familyPlanningMethodChangeDate", "2012-03-03")
+                .put("fpUpdate", "renew_fp_product")
+                .put("numberOfOCPDelivered", "2")
+                .map();
+
+        TimelineEvent timelineEvent = forFPOCPRenew("CASE A", details);
+
+        assertTrue(timelineEvent.detail1().contains("OCP cycles given: 2"));
+    }
+
+    @Test
+    public void shouldCreateTimelineEventForFPIUDRenew() throws Exception {
+        Map<String, String> details = create("Key 1", "Value 1")
+                .put("currentMethod", "iud")
+                .put("familyPlanningMethodChangeDate", "2012-03-03")
+                .put("fpUpdate", "renew_fp_product")
+                .map();
+
+
+        TimelineEvent timelineEvent = forFPIUDRenew("CASE A", details);
+
+        assertTrue(timelineEvent.detail1().contains("New IUD insertion date: 2012-03-03"));
+    }
+
+    @Test
+    public void shouldCreateTimelineEventForFPDMPARenew() throws Exception {
+        Map<String, String> details = create("Key 1", "Value 1")
+                .put("currentMethod", "dmpa")
+                .put("familyPlanningMethodChangeDate", "2012-03-03")
+                .put("fpUpdate", "renew_fp_product")
+                .map();
+
+
+        TimelineEvent timelineEvent = forFPDMPARenew("CASE A", details);
+
+        assertTrue(timelineEvent.detail1().contains("DMPA injection date: 2012-03-03"));
     }
 }
