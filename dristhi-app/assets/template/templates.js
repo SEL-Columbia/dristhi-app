@@ -1049,7 +1049,7 @@ function program13(depth0,data,depth2) {
 function program15(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Priority1</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\">\n                            <ul>";
+  buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up\" style=\"margin-top: 3px;\"></i> High Priority</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\">\n                            <ul>";
   stack1 = depth0.details;
   stack1 = stack1 == null || stack1 === false ? stack1 : stack1.highPriorityReason;
   foundHelper = helpers.camelCaseAndConvertToListItems;
