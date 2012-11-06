@@ -36,7 +36,7 @@ public class TimelineEvent {
 
     public static TimelineEvent forChildBirthInMotherProfile(String caseId, String dateOfBirth, String gender, Map<String, String> details) {
         String detailsString = new DetailBuilder(details).withDateOfDelivery("dateOfDelivery").withPlaceOfDelivery("placeOfDelivery").value();
-        String title = gender.equals("male") ? "Boy" : "Girl" + " Delivered";
+        String title = (gender.equals("male") ? "Boy" : "Girl") + " Delivered";
         return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), title, detailsString, null);
     }
 

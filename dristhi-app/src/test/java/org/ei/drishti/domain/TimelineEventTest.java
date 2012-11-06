@@ -97,6 +97,17 @@ public class TimelineEventTest {
     }
 
     @Test
+    public void shouldCreateTimelineEventWithTitleBasedOnSex() throws Exception {
+        TimelineEvent timelineEvent = forChildBirthInMotherProfile("CASE A", "2012-08-01", "male", detailsWithData);
+
+        assertTrue(timelineEvent.title().contains("Boy Delivered"));
+
+        timelineEvent = forChildBirthInMotherProfile("CASE A", "2012-08-01", "female", detailsWithData);
+
+        assertTrue(timelineEvent.title().contains("Girl Delivered"));
+    }
+
+    @Test
     public void shouldCreateTimelineEventForChildBirthInMotherProfileExcludingThoseDetailsWhichDoNotHaveValue() throws Exception {
         TimelineEvent timelineEvent = forChildBirthInMotherProfile("CASE A", "2012-01-01", "male", detailsWithoutData);
 
