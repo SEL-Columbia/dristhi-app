@@ -79,12 +79,12 @@ public class ActionBuilder {
     }
 
     public static Action actionForMotherPNCVisit(String caseId, Map<String, String> details) {
-        ActionData actionData = pncVisitHappened(mother, LocalDate.parse("2012-01-01"), 1, 10, details);
+        ActionData actionData = pncVisitHappened(mother, LocalDate.parse("2012-01-01"), 1, "10", details);
         return new Action(caseId, "mother", "pncVisitHappened", actionData.data(), "0", actionData.details());
     }
 
     public static Action actionForChildPNCVisit(String caseId, Map<String, String> details) {
-        ActionData actionData = pncVisitHappened(child, LocalDate.parse("2012-01-01"), 1, 10, details);
+        ActionData actionData = pncVisitHappened(child, LocalDate.parse("2012-01-01"), 1, "10", details);
         return new Action(caseId, "child", "pncVisitHappened", actionData.data(), "0", actionData.details());
     }
 
