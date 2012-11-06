@@ -6,6 +6,7 @@ import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.dto.Action;
+import org.ei.drishti.util.IntegerUtil;
 
 import java.util.List;
 
@@ -75,7 +76,7 @@ public class AllBeneficiaries {
             motherRepository.updateDetails(action.caseID(), action.details());
 
             String numberOfIFATabletsProvided = action.get("numberOfIFATabletsProvided");
-            if (numberOfIFATabletsProvided != null && Integer.parseInt(numberOfIFATabletsProvided) > 0) {
+            if (numberOfIFATabletsProvided != null && IntegerUtil.tryParse(numberOfIFATabletsProvided, 0) > 0) {
                 allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
             }
         }
