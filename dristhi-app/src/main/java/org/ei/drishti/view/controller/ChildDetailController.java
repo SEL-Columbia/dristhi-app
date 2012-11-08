@@ -60,7 +60,7 @@ public class ChildDetailController {
                 .addTimelineEvents(getEvents())
                 .addTodos(todosAndUrgentTodos.get(0))
                 .addUrgentTodos(todosAndUrgentTodos.get(1))
-                .addExtraDetails(mother.details());
+                .addExtraDetails(child.details());
 
         return new Gson().toJson(detail);
     }

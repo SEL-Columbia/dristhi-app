@@ -1,6 +1,5 @@
 package org.ei.drishti.domain;
 
-import com.google.gson.Gson;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -44,8 +43,8 @@ public class Child {
         return gender;
     }
 
-    public String details() {
-        return new Gson().toJson(details);
+    public Map<String, String> details() {
+        return details;
     }
 
     public Map<String, String> detailsAsMap() {

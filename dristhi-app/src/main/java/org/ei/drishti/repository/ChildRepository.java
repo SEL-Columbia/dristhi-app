@@ -97,7 +97,7 @@ public class ChildRepository extends DrishtiRepository {
         values.put(THAAYI_CARD_COLUMN, child.thaayiCardNumber());
         values.put(DATE_OF_BIRTH_COLUMN, child.dateOfBirth());
         values.put(GENDER_COLUMN, child.gender());
-        values.put(DETAILS_COLUMN, child.details());
+        values.put(DETAILS_COLUMN, new Gson().toJson(child.details()));
         return values;
     }
 
