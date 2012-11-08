@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.view.contract.Village;
 import org.ei.drishti.view.contract.WorkplanContext;
@@ -21,9 +22,11 @@ public class WorkplanController {
     private AllEligibleCouples allEligibleCouples;
     private Context context;
     private CommCareClientService commCareClientService;
+    private AllSettings allSettings;
 
-    public WorkplanController(AllAlerts allAlerts, CommCareClientService commCareClientService, AllEligibleCouples allEligibleCouples, Context context) {
+    public WorkplanController(AllAlerts allAlerts, AllSettings allSettings, CommCareClientService commCareClientService, AllEligibleCouples allEligibleCouples, Context context) {
         this.allAlerts = allAlerts;
+        this.allSettings = allSettings;
         this.allEligibleCouples = allEligibleCouples;
         this.context = context;
         this.commCareClientService = commCareClientService;
@@ -67,5 +70,13 @@ public class WorkplanController {
 
     public void markTodoAsCompleted(String caseId, String visitCode) {
         allAlerts.markAsCompleted(caseId, visitCode, LocalDate.now().toString());
+    }
+
+    public void saveAppliedVillageFilter(String village) {
+        allSettings.saveAppliedVillageFilter(village);
+    }
+
+    public String appliedVillageFilter(String defaultFilterValue) {
+        return allSettings.appliedVillageFilter(defaultFilterValue);
     }
 }

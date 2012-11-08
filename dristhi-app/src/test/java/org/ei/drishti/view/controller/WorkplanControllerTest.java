@@ -7,6 +7,7 @@ import org.ei.drishti.domain.Alert;
 import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.view.contract.WorkplanContext;
 import org.ei.drishti.view.contract.WorkplanTodo;
@@ -20,6 +21,7 @@ import static org.ei.drishti.domain.AlertStatus.closed;
 import static org.ei.drishti.domain.AlertStatus.open;
 import static org.ei.drishti.util.DateUtil.today;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -28,15 +30,19 @@ public class WorkplanControllerTest {
     @Mock
     AllAlerts allAlerts;
     @Mock
+    private AllSettings allSettings;
+    @Mock
     private Context context;
     @Mock
     private CommCareClientService commCareClientService;
     @Mock
     private AllEligibleCouples allEligibleCouples;
+    private WorkplanController controller;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
+        controller = new WorkplanController(allAlerts, allSettings, commCareClientService, allEligibleCouples, context);
     }
 
     @Test
@@ -57,9 +63,25 @@ public class WorkplanControllerTest {
         WorkplanTodo todo6 = new WorkplanTodo("Case 6", "Nethravati", "Husband 6", "IFA follow up", "06/08/2012", "Village 2");
         WorkplanContext expectedContext = new WorkplanContext(asList(todo1, todo2), asList(todo3), asList(todo4, todo5, todo6));
 
-        WorkplanController workplanController = new WorkplanController(allAlerts, commCareClientService, allEligibleCouples, context);
-        String actualContext = workplanController.get();
+        String actualContext = controller.get();
 
         assertEquals(new Gson().toJson(expectedContext), actualContext);
+    }
+
+    @Test
+    public void shouldSaveAppliedVillageFilter() throws Exception {
+        controller.saveAppliedVillageFilter("munjanahalli");
+
+        verify(allSettings).saveAppliedVillageFilter("munjanahalli");
+    }
+
+    @Test
+    public void shouldGetAppliedVillageFilter() throws Exception {
+        when(allSettings.appliedVillageFilter("All")).thenReturn("munjanahalli");
+
+        String villageFilter = controller.appliedVillageFilter("All");
+
+        assertEquals(villageFilter, "munjanahalli");
+
     }
 }

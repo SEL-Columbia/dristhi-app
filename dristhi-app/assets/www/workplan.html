@@ -25,12 +25,23 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var workplan = new Workplan(new WorkplanBridge());
+            var cssIdOf = {
+                rootElement:"#content",
+                villageFilter:"#menu-village",
+                villageFilterOptions:".dropdown-option",
+                appliedFilterIndicator: ".filter-by-village",
+                overdueContainer: "#overdue",
+                upcomingContainer: "#upcoming",
+                completedContainer: "#completed",
+                overdueTodosCount: "#overdue-count",
+                upcomingTodosCount: "#upcoming-count",
+                completedTodosCount: "#completed-count"
+            };
+
+            var workplan = new Workplan(new WorkplanBridge(), cssIdOf);
             workplan.populateInto("#content");
-
-            workplan.populateVillageFilter('#menu-village');
-            workplan.bindToVillageFilter('.dropdown-option');
-
+            workplan.populateVillageFilter();
+            workplan.bindToVillageFilter();
 
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
 
@@ -52,6 +63,14 @@
             </div>
         </div>
         <div id="content" class="content affected-by-sidepanel">
+            <div class="container-fluid dropdown dropdown-filter">
+                <a class="btn dropdown-toggle toggle-filter filter-by-village" data-toggle="dropdown">
+                    Show: All
+                    <span class="caret pull-right"></span>
+                </a>
+                <ul id="menu-village" class="dropdown-menu dropdown-menu-filter">
+                </ul>
+            </div>
         </div>
     </div>
 </div>
