@@ -44,8 +44,13 @@ public class UpdateController {
     private void flushUrlLoads() {
         if (pageHasFinishedLoading) {
             for (String url : urlsToLoad) {
-                webView.loadUrl(url);
+                if (webView != null)
+                    webView.loadUrl(url);
             }
         }
+    }
+
+    public void destroy() {
+        webView = null;
     }
 }
