@@ -45,8 +45,9 @@ function ChildList(childListBridge, cssIdOf) {
 
     var filterByVillage = function () {
         var filterToApply = $(this).data(VILLAGE_FILTER_OPTION);
-        if (filterToApply === appliedVillageFilter)
+        if (filterToApply === appliedVillageFilter) {
             return;
+        }
 
         showChildrenAndUpdateCount(filterToApply);
         updateFilterIndicator($(this).text());
@@ -56,21 +57,21 @@ function ChildList(childListBridge, cssIdOf) {
 
 
     return {
-        populateInto:function () {
+        populateInto: function () {
             allChildren = childListBridge.getChildren();
             appliedVillageFilter = childListBridge.getAppliedVillageFilter(ALL_VILLAGES_FILTER_OPTION);
             showChildrenAndUpdateCount(appliedVillageFilter);
             updateFilterIndicator(formatText(appliedVillageFilter));
         },
-        bindEveryItemToChildView:function () {
+        bindEveryItemToChildView: function () {
             $(cssIdOf.rootElement).on("click", cssIdOf.everyListItem, function (event) {
                 childListBridge.delegateToChildDetail($(this).data("caseid"));
             });
         },
-        populateVillageFilter:function () {
+        populateVillageFilter: function () {
             $(cssIdOf.villageFilter).html(Handlebars.templates.filter_by_village(childListBridge.getVillages()));
         },
-        bindToVillageFilter:function () {
+        bindToVillageFilter: function () {
             $(cssIdOf.villageFilterOptions).click(filterByVillage);
         }
     };
@@ -92,10 +93,10 @@ function ChildListBridge() {
         getVillages: function () {
             return JSON.parse(childContext.villages());
         },
-        delegateToSaveAppliedVillageFilter:function (village) {
+        delegateToSaveAppliedVillageFilter: function (village) {
             return childContext.saveAppliedVillageFilter(village);
         },
-        getAppliedVillageFilter:function (defaultFilterValue) {
+        getAppliedVillageFilter: function (defaultFilterValue) {
             return childContext.appliedVillageFilter(defaultFilterValue);
         }
     };
@@ -173,9 +174,9 @@ function FakeChildListContext() {
                 ]
             )
         },
-        saveAppliedVillageFilter:function (village) {
+        saveAppliedVillageFilter: function (village) {
         },
-        appliedVillageFilter:function (defaultFilterValue) {
+        appliedVillageFilter: function (defaultFilterValue) {
             return defaultFilterValue;
         }
     }

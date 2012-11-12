@@ -1353,7 +1353,7 @@ function program4(depth0,data) {
 function program6(depth0,data) {
   
   
-  return "\n                <div class = \"todo pull-text-completely-right\">\n                    <img src=\"../img/icons/icon-hastodo.png\"></img>\n                </div>\n                ";}
+  return "\n                <div class = \"todo pull-text-completely-right\">\n                    <img src=\"../img/icons/icon-hastodo.png\">\n                </div>\n                ";}
 
   stack1 = helpers.each.call(depth0, depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }

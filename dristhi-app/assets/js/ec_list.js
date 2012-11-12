@@ -54,27 +54,31 @@ function ECList(ecListBridge, cssIdOf) {
     };
 
     return {
-        populateInto:function () {
+        populateInto: function () {
             allECs = ecListBridge.getECs();
-            appliedVillageFilter = ecListBridge.getAppliedVillageFilter(ecListBridge.getVillages()[1].name);
+            var defaultOption = 0;
+            if (ecListBridge.length > 1) {
+                defaultOption = 1;
+            }
 
+            appliedVillageFilter = ecListBridge.getAppliedVillageFilter(ecListBridge.getVillages()[defaultOption].name);
             showECsAndUpdateCount(appliedVillageFilter);
             updateFilterIndicator(formatText(appliedVillageFilter));
         },
-        bindEveryItemToECView:function () {
+        bindEveryItemToECView: function () {
             $(cssIdOf.rootElement).on("click", cssIdOf.everyListItem, function (event) {
                 ecListBridge.delegateToECDetail($(this).data("caseid"));
             });
         },
-        bindItemToCommCare:function () {
+        bindItemToCommCare: function () {
             $(cssIdOf.commCareItems).click(function () {
                 ecListBridge.delegateToCommCare($(this).data("form"));
             })
         },
-        populateVillageFilter:function () {
+        populateVillageFilter: function () {
             $(cssIdOf.villageFilter).html(Handlebars.templates.filter_by_village(ecListBridge.getVillages()));
         },
-        bindToVillageFilter:function () {
+        bindToVillageFilter: function () {
             $(cssIdOf.villageFilterOptions).click(filterByVillage);
         }
     };
@@ -87,22 +91,22 @@ function ECListBridge() {
     }
 
     return {
-        getECs:function () {
+        getECs: function () {
             return JSON.parse(ecContext.get());
         },
-        delegateToECDetail:function (caseId) {
+        delegateToECDetail: function (caseId) {
             return ecContext.startEC(caseId);
         },
-        delegateToCommCare:function (formId) {
+        delegateToCommCare: function (formId) {
             ecContext.startCommCare(formId);
         },
-        getVillages:function () {
+        getVillages: function () {
             return JSON.parse(ecContext.villages());
         },
-        delegateToSaveAppliedVillageFilter:function (village) {
+        delegateToSaveAppliedVillageFilter: function (village) {
             return ecContext.saveAppliedVillageFilter(village);
         },
-        getAppliedVillageFilter:function (defaultFilterValue) {
+        getAppliedVillageFilter: function (defaultFilterValue) {
             return ecContext.appliedVillageFilter(defaultFilterValue);
         }
     };
@@ -110,53 +114,53 @@ function ECListBridge() {
 
 function FakeECListContext() {
     return {
-        get:function () {
+        get: function () {
             return JSON.stringify({
-                highPriority:[
+                highPriority: [
                     {
-                        caseId:"12345",
-                        wifeName:"Wife 1",
-                        husbandName:"Husband 1",
-                        ecNumber:"EC Number 1",
-                        villageName:"munjanahalli",
-                        isHighPriority:true,
-                        hasTodos:false,
-                        thayiCardNumber:""
+                        caseId: "12345",
+                        wifeName: "Wife 1",
+                        husbandName: "Husband 1",
+                        ecNumber: "EC Number 1",
+                        villageName: "munjanahalli",
+                        isHighPriority: true,
+                        hasTodos: false,
+                        thayiCardNumber: ""
                     }
                 ],
-                normalPriority:[
+                normalPriority: [
                     {
-                        caseId:"11111",
-                        wifeName:"Wife 2",
-                        husbandName:"Husband 2",
-                        ecNumber:"EC Number 2",
-                        villageName:"chikkabheriya",
-                        isHighPriority:false,
-                        hasTodos:true,
-                        thayiCardNumber:"12345"
+                        caseId: "11111",
+                        wifeName: "Wife 2",
+                        husbandName: "Husband 2",
+                        ecNumber: "EC Number 2",
+                        villageName: "chikkabheriya",
+                        isHighPriority: false,
+                        hasTodos: true,
+                        thayiCardNumber: "12345"
 
                     }
                 ]
             });
         },
-        startEC:function (caseId) {
+        startEC: function (caseId) {
             window.location.href = "ec_detail.html";
         },
-        startCommCare:function (formId) {
+        startCommCare: function (formId) {
             alert("Start CommCare with form " + formId);
         },
-        villages:function () {
+        villages: function () {
             return JSON.stringify(
                 [
-                    {name:"All"},
-                    {name:"munjanahalli"},
-                    {name:"chikkabheriya"}
+                    {name: "All"},
+                    {name: "munjanahalli"},
+                    {name: "chikkabheriya"}
                 ]
             )
         },
-        saveAppliedVillageFilter:function (village) {
+        saveAppliedVillageFilter: function (village) {
         },
-        appliedVillageFilter:function (defaultFilterValue) {
+        appliedVillageFilter: function (defaultFilterValue) {
             return defaultFilterValue;
         }
     };
