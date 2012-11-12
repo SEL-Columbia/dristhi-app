@@ -14,3 +14,4 @@ classes/
 tmp/
 project.properties
 .DS_Store
+test_servers/

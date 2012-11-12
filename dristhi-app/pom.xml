@@ -16,7 +16,7 @@
     <name>dristhi-app - Application</name>
 
     <properties>
-      <main.basedir>${project.basedir}/..</main.basedir>
+        <main.basedir>${project.basedir}/..</main.basedir>
     </properties>
 
     <dependencies>
@@ -67,40 +67,40 @@
             <version>3.1</version>
         </dependency>
         <dependency>
-          <groupId>com.google.guava</groupId>
-          <artifactId>guava</artifactId>
-          <version>r09</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>r09</version>
         </dependency>
         <dependency>
-          <groupId>info.guardianproject</groupId>
-          <artifactId>sqlcipher</artifactId>
-          <version>1.1.0</version>
+            <groupId>info.guardianproject</groupId>
+            <artifactId>sqlcipher</artifactId>
+            <version>1.1.0</version>
         </dependency>
         <dependency>
-          <groupId>org.acra</groupId>
-          <artifactId>acra</artifactId>
-          <version>4.2.3</version>
+            <groupId>org.acra</groupId>
+            <artifactId>acra</artifactId>
+            <version>4.2.3</version>
         </dependency>
         <dependency>
-          <groupId>info.guardianproject</groupId>
-          <artifactId>libdatabase_sqlcipher</artifactId>
-          <version>1.1.0</version>
-          <scope>runtime</scope>
-          <type>so</type>
+            <groupId>info.guardianproject</groupId>
+            <artifactId>libdatabase_sqlcipher</artifactId>
+            <version>1.1.0</version>
+            <scope>runtime</scope>
+            <type>so</type>
         </dependency>
         <dependency>
-          <groupId>info.guardianproject</groupId>
-          <artifactId>libsqlcipher_android</artifactId>
-          <version>1.1.0</version>
-          <scope>runtime</scope>
-          <type>so</type>
+            <groupId>info.guardianproject</groupId>
+            <artifactId>libsqlcipher_android</artifactId>
+            <version>1.1.0</version>
+            <scope>runtime</scope>
+            <type>so</type>
         </dependency>
         <dependency>
-          <groupId>info.guardianproject</groupId>
-          <artifactId>libstlport_shared</artifactId>
-          <version>1.1.0</version>
-          <scope>runtime</scope>
-          <type>so</type>
+            <groupId>info.guardianproject</groupId>
+            <artifactId>libstlport_shared</artifactId>
+            <version>1.1.0</version>
+            <scope>runtime</scope>
+            <type>so</type>
         </dependency>
         <dependency>
             <groupId>org.ei.drishti</groupId>

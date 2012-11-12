@@ -16,7 +16,7 @@
     <name>dristhi-app-it - Integration tests</name>
 
     <properties>
-      <main.basedir>${project.basedir}/..</main.basedir>
+        <main.basedir>${project.basedir}/..</main.basedir>
     </properties>
 
     <dependencies>
@@ -80,6 +80,29 @@
                     <source>1.6</source>
                     <target>1.6</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>Run Calabash functional tests</id>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <echo message="Executing Calabash test: START"/>
+                                <exec dir="tests/" failonerror="true" executable="calabash-android" append="true">
+                                    <arg value="run"/>
+                                    <arg value="../../dristhi-app/target/dristhi-app-0.1-SNAPSHOT.apk"/>
+                                </exec>
+                                <echo message="Done executing tests"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
