@@ -25,7 +25,6 @@ import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.FetchStatus.fetched;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -70,8 +69,7 @@ public class EligibleCoupleListViewControllerTest {
         when(allBeneficiaries.findMotherByECCaseId("EC Case 1")).thenReturn(new Mother("MOTHER Case 1", "EC Case 1", "12345", "2012-12-12"));
         when(allBeneficiaries.findMotherByECCaseId("EC Case 4")).thenReturn(new Mother("MOTHER Case 4", "EC Case 4", "4444", "2012-12-22"));
 
-        ECs ecs = new Gson().fromJson(controller.get(), new TypeToken<ECs>() {
-        }.getType());
+        ECs ecs = new Gson().fromJson(controller.get(), TypeToken.get(ECs.class).getType());
 
         assertEquals(asList(expectedECNormalPriority1, expectedECNormalPriority2, expectedECNormalPriority3), ecs.normalPriority());
         assertEquals(asList(expectedECHighPriority1, expectedECHighPriority2, expectedECHighPriority3), ecs.highPriority());

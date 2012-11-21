@@ -18,6 +18,7 @@ public class Context {
     private ChildRepository childRepository;
     private MotherRepository motherRepository;
     private TimelineEventRepository timelineEventRepository;
+    private ReportRepository reportRepository;
 
     private AllSettings allSettings;
     private AllAlerts allAlerts;
@@ -25,15 +26,16 @@ public class Context {
     private AllBeneficiaries allBeneficiaries;
     private AllTimelineEvents allTimelineEvents;
 
+    private AllReports allReports;
     private DrishtiService drishtiService;
     private ActionService actionService;
     private UserService userService;
+
     private ANMService anmService;
     private NavigationService navigationService;
 
     private CommCareHQService commCareService;
     private CommCareClientService commCareClientService;
-
     private Session session;
     private Cache<String> listCache;
 
@@ -66,7 +68,7 @@ public class Context {
 
     public ActionService actionService() {
         if (actionService == null) {
-            actionService = new ActionService(drishtiService(), allSettings(), allAlerts(), allEligibleCouples(), allBeneficiaries());
+            actionService = new ActionService(drishtiService(), allSettings(), allAlerts(), allEligibleCouples(), allBeneficiaries(), allReports());
         }
         return actionService;
     }
@@ -74,7 +76,7 @@ public class Context {
     private Repository initRepository() {
         if (repository == null) {
             repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(),
-                    eligibleCoupleRepository(), childRepository(), timelineEventRepository(), motherRepository());
+                    eligibleCoupleRepository(), childRepository(), timelineEventRepository(), motherRepository(), reportRepository());
         }
         return repository;
     }
@@ -119,6 +121,14 @@ public class Context {
         return allTimelineEvents;
     }
 
+    public AllReports allReports() {
+        initRepository();
+        if (allReports == null) {
+            allReports = new AllReports(reportRepository());
+        }
+        return allReports;
+    }
+
     private EligibleCoupleRepository eligibleCoupleRepository() {
         if (eligibleCoupleRepository == null) {
             eligibleCoupleRepository = new EligibleCoupleRepository(motherRepository(), timelineEventRepository(), alertRepository());
@@ -159,6 +169,13 @@ public class Context {
             timelineEventRepository = new TimelineEventRepository();
         }
         return timelineEventRepository;
+    }
+
+    private ReportRepository reportRepository() {
+        if (reportRepository == null) {
+            reportRepository = new ReportRepository();
+        }
+        return reportRepository;
     }
 
     public UserService userService() {

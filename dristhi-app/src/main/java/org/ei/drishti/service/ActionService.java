@@ -1,13 +1,10 @@
 package org.ei.drishti.service;
 
 import com.google.gson.Gson;
-import org.ei.drishti.dto.Action;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.Response;
-import org.ei.drishti.repository.AllAlerts;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.repository.AllSettings;
+import org.ei.drishti.dto.Action;
+import org.ei.drishti.repository.*;
 import org.ei.drishti.util.Log;
 
 import java.util.List;
@@ -22,13 +19,15 @@ public class ActionService {
     private final AllAlerts allAlerts;
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
+    private final AllReports allReports;
 
-    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllAlerts allAlerts, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries) {
+    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllAlerts allAlerts, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllReports allReports) {
         this.drishtiService = drishtiService;
         this.allSettings = allSettings;
         this.allAlerts = allAlerts;
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
+        this.allReports = allReports;
     }
 
     public FetchStatus fetchNewActions() {
@@ -52,7 +51,7 @@ public class ActionService {
             try {
                 handleAction(actionToUse);
             } catch (Exception e) {
-                Log.logError(format("Failed while handling action : {0} ..... Exception {1}", actionToUse, e));
+                Log.logError(format("Failed while handling action with target: " + actionToUse.target()));
             }
         }
     }
@@ -82,7 +81,15 @@ public class ActionService {
                 }
             });
 
-        } else {
+        } else if (actionToUse.target().equals("report")) {
+            runAction(actionToUse, new ActionHandler() {
+                @Override
+                public void run(Action action) {
+                    allReports.handleAction(action);
+                }
+            });
+
+        } else if (actionToUse.target().equals("eligibleCouple")) {
             runAction(actionToUse, new ActionHandler() {
                 @Override
                 public void run(Action action) {
@@ -90,6 +97,8 @@ public class ActionService {
                 }
             });
 
+        } else {
+            Log.logWarn("Unknown action " + actionToUse.target());
         }
         allSettings.savePreviousFetchIndex(actionToUse.index());
     }
