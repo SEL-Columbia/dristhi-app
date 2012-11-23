@@ -7,9 +7,10 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.dto.MonthSummaryDatum;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Report {
+public class Report implements Serializable {
     private final String indicator;
     private final String annualTarget;
     private final String monthlySummaries;

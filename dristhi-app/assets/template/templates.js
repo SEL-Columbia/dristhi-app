@@ -1826,18 +1826,70 @@ function program6(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n";
   return buffer;});
+templates['report_indicator_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+
+function program1(depth0,data,depth1) {
+  
+  var buffer = "", stack1, stack2, foundHelper;
+  buffer += "\n            <tr>\n                <td>\n                    <div class=\"report-medium\">";
+  stack1 = depth1.annualTarget;
+  stack1 = typeof stack1 === functionType ? stack1() : stack1;
+  buffer += escapeExpression(stack1) + "</div>\n                    <div class=\"meta-summary-text\">Target</div>\n                </td>\n                <td>\n                    <div class=\"report-medium text-blue\">";
+  foundHelper = helpers.currentProgress;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.currentProgress; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</div>\n                    <div class=\"meta-summary-text\">";
+  stack1 = depth0.month;
+  foundHelper = helpers.monthName;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "monthName", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + " '";
+  stack1 = depth0.year;
+  foundHelper = helpers.shortYear;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "shortYear", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "</div>\n                </td>\n                <td>\n                    <div class=\"report-medium text-blue\">";
+  foundHelper = helpers.aggregatedProgress;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.aggregatedProgress; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</div>\n                    <div class=\"meta-summary-text\">Total</div>\n                </td>\n                <td>\n                    <div class=\"report-medium text-green\">";
+  stack1 = depth1.annualTarget;
+  stack2 = depth0.aggregatedProgress;
+  foundHelper = helpers.percentage;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack2, stack1, {hash:{}}) : helperMissing.call(depth0, "percentage", stack2, stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "</div>\n                    <div class=\"meta-summary-text\">Percent</div>\n                </td>\n            </tr>\n            ";
+  return buffer;}
+
+  buffer += "<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <ul class=\"nav pull-left\">\n            <img class=\"sidepanel-icon affected-by-sidepanel\"><img class=\"separator\">\n            <span class=\"name\">";
+  foundHelper = helpers.categoryDescription;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.categoryDescription; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\n        </ul>\n    </div>\n</div>\n\n<div class=\"content affected-by-sidepanel\">\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text-black\">";
+  foundHelper = helpers.description;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</div>\n        <table class=\"table table-bordered indicator-report\">\n            <tbody>\n            ";
+  stack1 = depth0.monthlySummaries;
+  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.programWithDepth(program1, data, depth0)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n            </tbody>\n        </table>\n    </div>\n</div>\n";
+  return buffer;});
 templates['report_indicator_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers;
   var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, foundHelper;
+  var buffer = "", stack1, stack2, foundHelper;
   buffer += "\n        <div class=\"big-text-black\">";
   foundHelper = helpers.description;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "</div>\n        <table class=\"table table-bordered indicator-report\">\n            <tbody>\n            <tr>\n                <td>\n                    <div class=\"report-medium\">";
+  buffer += escapeExpression(stack1) + "</div>\n        <table class=\"table table-bordered indicator-report\" data-indicator=\"";
+  foundHelper = helpers.indicatorIdentifier;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.indicatorIdentifier; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "\">\n            <tbody>\n            <tr>\n                <td>\n                    <div class=\"report-medium\">";
   foundHelper = helpers.annualTarget;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.annualTarget; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -1858,10 +1910,11 @@ function program1(depth0,data) {
   foundHelper = helpers.monthName;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "monthName", stack1, {hash:{}});
   buffer += escapeExpression(stack1) + "</div>\n                </td>\n                <td>\n                    <div class=\"report-medium text-green\">";
-  foundHelper = helpers.percentageOfTargetAchieved;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.percentageOfTargetAchieved; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1) + "%</div>\n                    <div class=\"meta-summary-text\">Percent of Target</div>\n                </td>\n            </tr>\n            </tbody>\n        </table>\n        ";
+  stack1 = depth0.annualTarget;
+  stack2 = depth0.aggregatedProgress;
+  foundHelper = helpers.percentage;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack2, stack1, {hash:{}}) : helperMissing.call(depth0, "percentage", stack2, stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "</div>\n                    <div class=\"meta-summary-text\">Percent of Target</div>\n                </td>\n            </tr>\n            </tbody>\n        </table>\n        ";
   return buffer;}
 
   buffer += "<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <ul class=\"nav pull-left\">\n            <img class=\"sidepanel-icon affected-by-sidepanel\"><img class=\"separator\">\n            <span class=\"name\">";

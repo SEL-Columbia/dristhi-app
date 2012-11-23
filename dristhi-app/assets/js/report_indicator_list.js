@@ -39,8 +39,8 @@ function ReportIndicatorListContext() {
                             annualTarget: "60",
                             currentProgress: "10",
                             currentMonth: "4",
-                            aggregatedProgress: "40",
-                            percentageOfTargetAchieved: "67"
+                            year: "2012",
+                            aggregatedProgress: "40"
                         },
                         {
                             indicatorIdentifier: "IUD",
@@ -49,8 +49,8 @@ function ReportIndicatorListContext() {
                             currentProgress: "10",
                             currentMonth: "4",
                             aggregatedProgress: "22",
-                            percentageOfTargetAchieved: "55"
-                        },
+                            year: "2012"
+                        }
                     ]}
             );
         },

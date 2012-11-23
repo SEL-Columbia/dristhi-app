@@ -10,18 +10,18 @@ public class IndicatorReport {
     private String annualTarget;
     private String currentProgress;
     private String currentMonth;
+    private String year;
     private String aggregatedProgress;
-    private String percentageOfTargetAchieved;
 
     public IndicatorReport(String indicatorIdentifier, String description, String annualTarget, String currentProgress, String currentMonth,
-                           String aggregatedProgress, String percentageOfTargetAchieved) {
+                           String year, String aggregatedProgress) {
         this.indicatorIdentifier = indicatorIdentifier;
         this.description = description;
         this.annualTarget = annualTarget;
         this.currentProgress = currentProgress;
         this.currentMonth = currentMonth;
+        this.year = year;
         this.aggregatedProgress = aggregatedProgress;
-        this.percentageOfTargetAchieved = percentageOfTargetAchieved;
     }
 
     @Override

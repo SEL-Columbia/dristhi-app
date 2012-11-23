@@ -47,8 +47,8 @@ public class ReportIndicatorListViewControllerTest {
 
         String indicatorReports = controller.get();
 
-        IndicatorReport iud = new IndicatorReport("IUD", "IUD Adoption", "40", "2", "10", "2", "5");
-        IndicatorReport condom = new IndicatorReport("CONDOM", "Condom Usage", "30", "2", "10", "2", "6");
+        IndicatorReport iud = new IndicatorReport("IUD", "IUD Adoption", "40", "2", "10", "2012", "2");
+        IndicatorReport condom = new IndicatorReport("CONDOM", "Condom Usage", "30", "2", "10", "2012", "2");
         String expectedIndicatorReports = new Gson().toJson(new CategoryReports("Family Planning", asList(iud, condom)));
         assertEquals(expectedIndicatorReports, indicatorReports);
     }
@@ -62,7 +62,7 @@ public class ReportIndicatorListViewControllerTest {
 
         String indicatorReports = controller.get();
 
-        IndicatorReport iud = new IndicatorReport("IUD", "IUD Adoption", "40", "2", "10", "4", "10");
+        IndicatorReport iud = new IndicatorReport("IUD", "IUD Adoption", "40", "2", "10", "2012", "4");
         String expectedIndicatorReports = new Gson().toJson(new CategoryReports("Family Planning", asList(iud)));
         assertEquals(expectedIndicatorReports, indicatorReports);
     }
@@ -76,7 +76,7 @@ public class ReportIndicatorListViewControllerTest {
 
         String indicatorReports = controller.get();
 
-        IndicatorReport iud = new IndicatorReport("IUD", "IUD Adoption", "40", "0", "10", "4", "10");
+        IndicatorReport iud = new IndicatorReport("IUD", "IUD Adoption", "40", "0", "10", "2012", "4");
         String expectedIndicatorReports = new Gson().toJson(new CategoryReports("Family Planning", asList(iud)));
         assertEquals(expectedIndicatorReports, indicatorReports);
     }
@@ -90,7 +90,7 @@ public class ReportIndicatorListViewControllerTest {
 
         String indicatorReports = controller.get();
 
-        IndicatorReport iud = new IndicatorReport("IUD", "IUD Adoption", "NA", "0", "10", "4", "NA");
+        IndicatorReport iud = new IndicatorReport("IUD", "IUD Adoption", "NA", "0", "10", "2012", "4");
         String expectedIndicatorReports = new Gson().toJson(new CategoryReports("Family Planning", asList(iud)));
         assertEquals(expectedIndicatorReports, indicatorReports);
     }

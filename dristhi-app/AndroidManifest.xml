@@ -23,6 +23,8 @@
                   android:screenOrientation="portrait"/>
         <activity android:name=".view.activity.ReportIndicatorListViewActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
                   android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.ReportIndicatorDetailActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
+                  android:screenOrientation="portrait"/>
         <activity android:name=".view.activity.EligibleCoupleListActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
                   android:screenOrientation="portrait"/>
         <activity android:name=".view.activity.EligibleCoupleDetailActivity" android:theme="@android:style/Theme.Light.NoTitleBar"

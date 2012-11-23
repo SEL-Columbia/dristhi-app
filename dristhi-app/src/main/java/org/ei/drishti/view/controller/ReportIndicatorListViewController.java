@@ -20,12 +20,15 @@ import java.util.List;
 
 import static java.lang.Integer.parseInt;
 import static org.apache.commons.lang.StringUtils.isBlank;
+import static org.ei.drishti.AllConstants.CATEGORY_DESCRIPTION;
+import static org.ei.drishti.AllConstants.INDICATOR_DETAIL;
 
 public class ReportIndicatorListViewController {
     private final Context context;
     private final AllReports allReports;
     private final String category;
     private List<Report> reports;
+    private ReportsCategory reportsCategory;
 
     public ReportIndicatorListViewController(Context context, AllReports allReports, String category) {
         this.context = context;
@@ -34,7 +37,7 @@ public class ReportIndicatorListViewController {
     }
 
     public String get() {
-        ReportsCategory reportsCategory = ReportsCategory.valueOf(category);
+        reportsCategory = ReportsCategory.valueOf(category);
 
         reports = allReports.allFor(reportsCategory.indicators());
 
@@ -50,18 +53,11 @@ public class ReportIndicatorListViewController {
             String annualTarget = (isBlank(report.annualTarget())) ? "NA" : report.annualTarget();
 
             indicatorReports.add(new IndicatorReport(indicator.name(), indicator.description(), annualTarget,
-                    currentProgress, currentMonth, currentMonthSummary.aggregatedProgress(),
-                    percentageOfTargetAchieved(currentMonthSummary.aggregatedProgress(), annualTarget)));
+                    currentProgress, currentMonth, currentMonthSummary.year(), currentMonthSummary.aggregatedProgress()
+            ));
         }
 
         return new Gson().toJson(new CategoryReports(reportsCategory.description(), indicatorReports));
-    }
-
-    private String percentageOfTargetAchieved(String aggregatedProgress, String annualTarget) {
-        if (annualTarget.equals("NA")) {
-            return annualTarget;
-        }
-        return String.valueOf((parseInt(aggregatedProgress) * 100) / parseInt(annualTarget));
     }
 
     public void sortMonthlySummaries(List<MonthSummaryDatum> monthSummaryData) {
@@ -77,7 +73,8 @@ public class ReportIndicatorListViewController {
         for (Report report : reports) {
             if (report.indicator().equals(indicator)) {
                 Intent intent = new Intent(context.getApplicationContext(), ReportIndicatorDetailActivity.class);
-                intent.putExtra("indicatorDetail", new Gson().toJson(report));
+                intent.putExtra(INDICATOR_DETAIL, report);
+                intent.putExtra(CATEGORY_DESCRIPTION, reportsCategory.description());
                 context.startActivity(intent);
             }
         }

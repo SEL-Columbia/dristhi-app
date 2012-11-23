@@ -75,7 +75,14 @@ Handlebars.registerHelper('monthName', function (monthNumber) {
     if (!monthNumber) {
         return "";
     }
-    return months[monthNumber-1];
+    return months[monthNumber - 1];
+});
+
+Handlebars.registerHelper('shortYear', function (year) {
+    if (!year) {
+        return "";
+    }
+    return year.substr(2, 2);
 });
 
 Handlebars.registerHelper('formatSocialVulnerability', function (caste, economicStatus) {
@@ -89,4 +96,11 @@ Handlebars.registerHelper('formatSocialVulnerability', function (caste, economic
         formattedText += economicStatus.toUpperCase();
 
     return formattedText;
+});
+
+Handlebars.registerHelper('percentage', function (value1, value2) {
+    if (value2 == "NA") {
+        return "NA";
+    }
+    return (Math.round((parseInt(value1) * 100)/parseInt(value2))).toString() + "%";
 });
