@@ -3,9 +3,9 @@ function ReportIndicatorDetail(reportIndicatorDetailBridge, cssIdOf) {
         populateInto: function () {
             $(cssIdOf.rootElement).html(Handlebars.templates.report_indicator_detail(reportIndicatorDetailBridge.getReportIndicatorDetail()));
         },
-        bindEveryItemToIndicatorCaseDetailView: function () {
+        bindEveryItemToIndicatorCaseListView: function () {
             $(cssIdOf.indicator).click(function () {
-                reportIndicatorDetailBridge.delegateToReportIndicatorDetail($(this).data("indicator"));
+                reportIndicatorDetailBridge.delegateToReportIndicatorCaseList($(this).data("month"));
             });
         }
     };
@@ -21,8 +21,8 @@ function ReportIndicatorDetailBridge() {
         getReportIndicatorDetail: function () {
             return JSON.parse(reportIndicatorDetailContext.get());
         },
-        delegateToReportIndicatorDetail: function (indicator) {
-            return reportIndicatorDetailContext.startReportIndicatorCaseDetail(indicator);
+        delegateToReportIndicatorCaseList: function (month) {
+            return reportIndicatorDetailContext.startReportIndicatorCaseList(month);
         }
     };
 }
@@ -40,28 +40,25 @@ function ReportIndicatorDetailContext() {
                             currentProgress: "14",
                             month: "3",
                             aggregatedProgress: "14",
-                            year: "2012",
-                            percentageOfTargetAchieved: "35"
+                            year: "2012"
                         },
                         {
                             currentProgress: "8",
                             month: "4",
                             aggregatedProgress: "22",
-                            year: "2012",
-                            percentageOfTargetAchieved: "55"
+                            year: "2012"
                         },
                         {
                             currentProgress: "3",
                             month: "5",
                             aggregatedProgress: "25",
-                            year: "2012",
-                            percentageOfTargetAchieved: "63"
+                            year: "2012"
                         }
                     ]}
             );
         },
-        startReportIndicatorCaseDetail: function (indicator) {
-            window.location.href = "report_indicator_case_detail.html";
+        startReportIndicatorCaseList: function (month) {
+            window.location.href = "report_indicator_case_list.html";
         }
     }
 }

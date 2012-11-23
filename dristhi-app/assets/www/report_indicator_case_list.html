@@ -14,7 +14,7 @@
     <script type="text/javascript" src="../template/templates.js"></script>
     <script type="text/javascript" src="../js/anmNavigation.js"></script>
     <script type="text/javascript" src="../js/sidePanel.js"></script>
-    <script type="text/javascript" src="../js/report_indicator_detail.js"></script>
+    <script type="text/javascript" src="../js/report_indicator_case_list.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -22,9 +22,9 @@
                 rootElement : "#mainpanel",
                 indicator : ".indicator-report"
             };
-            var reportIndicatorDetail = new ReportIndicatorDetail(new ReportIndicatorDetailBridge(), cssIdOf);
-            reportIndicatorDetail.populateInto();
-            reportIndicatorDetail.bindEveryItemToIndicatorCaseListView();
+            var reportIndicatorCaseList = new ReportIndicatorCaseList(new ReportIndicatorCaseListBridge(), cssIdOf);
+            reportIndicatorCaseList.populateInto();
+            reportIndicatorCaseList.bindEveryItemToIndicatorCaseDetailView();
 
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         });
@@ -36,6 +36,5 @@
 
     <div id="mainpanel" class="mainpanel affected-by-sidepanel">
     </div>
-</div>
 </body>
 </html>

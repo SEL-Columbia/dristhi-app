@@ -1,0 +1,36 @@
+<div class="navbar navbar-fixed-top affected-by-sidepanel">
+    <div class="navbar-inner">
+        <ul class="nav pull-left">
+            <img class="sidepanel-icon affected-by-sidepanel"><img class="separator">
+            <span class="name">{{monthName month}}</span>
+        </ul>
+    </div>
+</div>
+
+<div class="content affected-by-sidepanel">
+    <div class="registry-container container-fluid">
+        {{#each beneficiaries}}
+        <div class="row-fluid">
+            <a data-caseId={{caseId}} class="client-list-item">
+                <div class="span8">
+                    <ul class="client-details unstyled">
+                        <li class="big-text">
+                            {{capitalize womanName}}
+                            {{#if isHighRisk}}<span class="high-risk"> HRP </span>{{/if}}
+                        </li>
+                        <li>{{capitalize husbandName}}</li>
+                        <li>
+                            Thayi No: {{thaayiCardNumber}}{{#if ecNumber}}, EC No: {{ecNumber}}{{/if}}
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="span4 pull-text-completely-right">
+                    {{formatText villageName}}
+                </div>
+                <div class="divider divider-padding-both"></div>
+            </a>
+        </div>
+        {{/each}}
+    </div>
+</div>

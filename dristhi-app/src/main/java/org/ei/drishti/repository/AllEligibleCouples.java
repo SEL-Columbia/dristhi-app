@@ -40,4 +40,8 @@ public class AllEligibleCouples {
     public List<String> villages() {
         return repository.villages();
     }
+
+    public List<EligibleCouple> findByCaseIDs(List<String> caseIds) {
+        return repository.findByCaseIDs(caseIds.toArray(new String[caseIds.size()]));
+    }
 }

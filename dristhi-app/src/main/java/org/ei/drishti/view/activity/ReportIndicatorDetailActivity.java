@@ -4,8 +4,7 @@ import android.os.Bundle;
 import org.ei.drishti.domain.Report;
 import org.ei.drishti.view.controller.ReportIndicatorDetailViewController;
 
-import static org.ei.drishti.AllConstants.CATEGORY_DESCRIPTION;
-import static org.ei.drishti.AllConstants.INDICATOR_DETAIL;
+import static org.ei.drishti.AllConstants.*;
 
 public class ReportIndicatorDetailActivity extends SecuredWebActivity{
 

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static org.apache.commons.lang.StringUtils.repeat;
 import static org.ei.drishti.domain.TimelineEvent.forChangeOfFPMethod;
 
 public class EligibleCoupleRepository extends DrishtiRepository {
@@ -77,6 +78,12 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     public List<EligibleCouple> allEligibleCouples() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, null, null, null, null, null, null);
+        return readAllEligibleCouples(cursor);
+    }
+
+    public List<EligibleCouple> findByCaseIDs(String... caseIds) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)", EC_TABLE_NAME, CASE_ID_COLUMN, insertPlaceholdersForInClause(caseIds.length)), caseIds);
         return readAllEligibleCouples(cursor);
     }
 
@@ -165,6 +172,10 @@ public class EligibleCoupleRepository extends DrishtiRepository {
 
     private boolean wasFPMethodChanged(Map<String, String> details) {
         return details.containsKey(FP_UPDATE_FIELD_NAME) && details.get(FP_UPDATE_FIELD_NAME).equals(CHANGE_FP_METHOD_FIELD_NAME);
+    }
+
+    private String insertPlaceholdersForInClause(int length) {
+        return repeat("?", ",", length);
     }
 }
 
