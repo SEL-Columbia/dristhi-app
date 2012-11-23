@@ -1,8 +1,13 @@
 package org.ei.drishti.domain;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.dto.MonthSummaryDatum;
+
+import java.util.List;
 
 public class Report {
     private final String indicator;
@@ -23,8 +28,13 @@ public class Report {
         return annualTarget;
     }
 
-    public String monthlySummaries() {
+    public String monthlySummariesJSON() {
         return monthlySummaries;
+    }
+
+    public List<MonthSummaryDatum> monthlySummaries() {
+        return new Gson().fromJson(monthlySummaries, new TypeToken<List<MonthSummaryDatum>>() {
+        }.getType());
     }
 
     @Override

@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class ANC {
-    private  String caseId;
+    private String caseId;
     private String womanName;
     private String husbandName;
     private String villageName;

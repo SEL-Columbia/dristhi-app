@@ -14,9 +14,18 @@
     <script type="text/javascript" src="../template/templates.js"></script>
     <script type="text/javascript" src="../js/anmNavigation.js"></script>
     <script type="text/javascript" src="../js/sidePanel.js"></script>
+    <script type="text/javascript" src="../js/report_indicator_list.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
+            var cssIdOf = {
+                rootElement : "#mainpanel",
+                indicator : ".indicator-report"
+            };
+            var reportIndicatorList = new ReportIndicatorList(new ReportIndicatorListBridge(), cssIdOf);
+            reportIndicatorList.populateInto();
+            reportIndicatorList.bindEveryItemToIndicatorDetailView();
+
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         });
     </script>
@@ -26,24 +35,6 @@
     <div id="sidePanelContainer"></div>
 
     <div id="mainpanel" class="mainpanel affected-by-sidepanel">
-
-        <div class="navbar navbar-fixed-top affected-by-sidepanel">
-            <div class="navbar-inner">
-                <ul class="nav pull-left">
-                    <img class="sidepanel-icon affected-by-sidepanel"><img class="separator">
-                    <span class="name">Reports</span>
-                </ul>
-            </div>
-        </div>
-
-        <div class="content affected-by-sidepanel">
-
-            <ul class="unstyled">
-                <li>
-                    <img src="../img/reporting/04-delivery-outcomes-detail.png">
-                </li>
-            </ul>
-        </div>
     </div>
 </div>
 </body>

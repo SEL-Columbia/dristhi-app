@@ -31,6 +31,20 @@ public class ReportRepositoryTest extends AndroidTestCase{
         assertEquals(asList(iudReport), repository.all());
     }
 
+    public void testShouldFetchByIndicator() throws Exception {
+        List<MonthSummaryDatum> monthlySummaries = asList(new MonthSummaryDatum("1", "2012", "2", "2", asList("123", "456")));
+        Report iudReport = new Report("IUD", "40", new Gson().toJson(monthlySummaries));
+        Report condomReport = new Report("CONDOM", "30", new Gson().toJson(monthlySummaries));
+        Report ancReport = new Report("ANC", "20", new Gson().toJson(monthlySummaries));
+        repository.update(iudReport);
+        repository.update(condomReport);
+        repository.update(ancReport);
+
+        List<Report> reportsForIndicators = repository.allFor("CONDOM", "IUD");
+
+        assertTrue(reportsForIndicators.containsAll(asList(iudReport, condomReport)));
+    }
+
     public void testShouldUpdateIfSameIndicatorReportExists() throws Exception {
         List<MonthSummaryDatum> monthlySummaries = asList(new MonthSummaryDatum("1", "2012", "2", "2", asList("123", "456")));
         Report oldIUDReport = new Report("IUD", "40", new Gson().toJson(monthlySummaries));

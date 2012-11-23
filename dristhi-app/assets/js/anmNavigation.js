@@ -11,6 +11,12 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
+    var bindToReports = function (callbackToRunBeforeAnyAction, identifierOfElement) {
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
+            anmNavigationBridge.delegateToReports();
+        });
+    };
+
     var bindToEligibleCoupleList = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             anmNavigationBridge.delegateToECList();
@@ -35,12 +41,6 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
-    var bindToPage = function (callbackToRunBeforeAnyAction, identifierOfElement, pageToGoTo) {
-        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
-            window.location.href = pageToGoTo;
-        });
-    };
-
     var runWithCallBack = function (callbackToRunBeforeAnyAction, identifierOfElement, action) {
         $(identifierOfElement).click(function () {
             callbackToRunBeforeAnyAction();
@@ -52,9 +52,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
         populateInto: function (cssIdentifierOfSidePanelElement, displayTemplate, callbackToRunBeforeAnyAction) {
             populateDataInto(cssIdentifierOfSidePanelElement, displayTemplate);
             bindToWorkplan(callbackToRunBeforeAnyAction, "#workplanButton");
-            bindToPage(callbackToRunBeforeAnyAction, "#myStatsButton", "my-stats.html");
-            bindToPage(callbackToRunBeforeAnyAction, "#inboxButton", "inbox.html");
-            bindToPage(callbackToRunBeforeAnyAction, "#reportsButton", "reports.html");
+            bindToReports(callbackToRunBeforeAnyAction, "#reportsButton");
 
             bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
             bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
@@ -88,6 +86,9 @@ function ANMNavigationBridge() {
         },
         delegateToWorkplan: function () {
             return anmNavigationContext.startWorkplan();
+        },
+        delegateToReports: function () {
+            return anmNavigationContext.startReports();
         }
     };
 }
@@ -117,6 +118,9 @@ function FakeANMNavigationContext() {
         },
         startWorkplan: function () {
             window.location.href = "workplan.html";
+        },
+        startReports: function () {
+            window.location.href = "reports.html";
         }
     }
 }

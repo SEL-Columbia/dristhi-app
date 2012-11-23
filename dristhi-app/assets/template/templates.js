@@ -1826,6 +1826,54 @@ function program6(depth0,data) {
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n";
   return buffer;});
+templates['report_indicator_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  helpers = helpers || Handlebars.helpers;
+  var buffer = "", stack1, foundHelper, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += "\n        <div class=\"big-text-black\">";
+  foundHelper = helpers.description;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</div>\n        <table class=\"table table-bordered indicator-report\">\n            <tbody>\n            <tr>\n                <td>\n                    <div class=\"report-medium\">";
+  foundHelper = helpers.annualTarget;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.annualTarget; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</div>\n                    <div class=\"meta-summary-text\">Annual Target</div>\n                </td>\n                <td>\n                    <div class=\"report-medium text-blue\">";
+  foundHelper = helpers.currentProgress;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.currentProgress; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</div>\n                    <div class=\"meta-summary-text\">in ";
+  stack1 = depth0.currentMonth;
+  foundHelper = helpers.monthName;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "monthName", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "</div>\n                </td>\n                <td>\n                    <div class=\"report-medium text-blue\">";
+  foundHelper = helpers.aggregatedProgress;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.aggregatedProgress; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</div>\n                    <div class=\"meta-summary-text\">Total to ";
+  stack1 = depth0.currentMonth;
+  foundHelper = helpers.monthName;
+  stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "monthName", stack1, {hash:{}});
+  buffer += escapeExpression(stack1) + "</div>\n                </td>\n                <td>\n                    <div class=\"report-medium text-green\">";
+  foundHelper = helpers.percentageOfTargetAchieved;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.percentageOfTargetAchieved; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "%</div>\n                    <div class=\"meta-summary-text\">Percent of Target</div>\n                </td>\n            </tr>\n            </tbody>\n        </table>\n        ";
+  return buffer;}
+
+  buffer += "<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <ul class=\"nav pull-left\">\n            <img class=\"sidepanel-icon affected-by-sidepanel\"><img class=\"separator\">\n            <span class=\"name\">";
+  foundHelper = helpers.description;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1) + "</span>\n        </ul>\n    </div>\n</div>\n\n<div class=\"content affected-by-sidepanel\">\n    <div class=\"registry-container container-fluid\">\n        ";
+  stack1 = depth0.indicatorReports;
+  stack1 = helpers.each.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </div>\n</div>\n";
+  return buffer;});
 templates['sidepanel'] = template(function (Handlebars,depth0,helpers,partials,data) {
   helpers = helpers || Handlebars.helpers; partials = partials || Handlebars.partials;
   var buffer = "", stack1, self=this;

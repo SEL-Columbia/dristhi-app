@@ -14,9 +14,12 @@
     <script type="text/javascript" src="../template/templates.js"></script>
     <script type="text/javascript" src="../js/anmNavigation.js"></script>
     <script type="text/javascript" src="../js/sidePanel.js"></script>
+    <script type="text/javascript" src="../js/reports.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
+            var reports = new Reports(new ReportsBridge());
+            reports.bindEveryItemToItsIndicatorListView(".report-category");
             new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         });
     </script>
@@ -36,27 +39,26 @@
         </div>
 
         <div class="content affected-by-sidepanel">
-
             <ul class="unstyled">
                 <li>
-                    <a id="showFpSummary" href="fp_summary.html">
+                    <div class="report-category" data-target="FP">
                         <img src="../img/reporting/01-family-planning.png">
-                    </a>
+                    </div>
                 </li>
                 <li>
-                    <a href="mch_summary.html">
+                    <div data-target="MCH">
                         <img src="../img/reporting/02-mchealth.png">
-                    </a>
+                    </div>
                 </li>
                 <li>
-                    <a href="deliveryDetails_summary.html">
+                    <div data-target="MCD">
                         <img src="../img/reporting/03-delivery-details.png">
-                    </a>
+                    </div>
                 </li>
                 <li>
-                    <a href="deliveryOutcome_summary.html">
+                    <div data-target="DO">
                         <img src="../img/reporting/04-delivery-outcomes.png">
-                    </a>
+                    </div>
                 </li>
             </ul>
         </div>

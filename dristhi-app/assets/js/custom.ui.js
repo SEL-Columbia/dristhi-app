@@ -1,3 +1,5 @@
+var months = [ "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ];
+
 Handlebars.registerHelper('ifNotZero', function (context, options) {
     if (context != 0) {
         return options.fn(this);
@@ -67,6 +69,13 @@ Handlebars.registerHelper('formatDate', function (unformattedDate) {
     }
     var parsedDate = $.datepicker.parseDate('yy-mm-dd', unformattedDate);
     return $.datepicker.formatDate('dd-mm-yy', parsedDate);
+});
+
+Handlebars.registerHelper('monthName', function (monthNumber) {
+    if (!monthNumber) {
+        return "";
+    }
+    return months[monthNumber-1];
 });
 
 Handlebars.registerHelper('formatSocialVulnerability', function (caste, economicStatus) {

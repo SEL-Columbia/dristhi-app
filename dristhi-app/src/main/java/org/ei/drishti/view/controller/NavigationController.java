@@ -32,11 +32,15 @@ public class NavigationController {
         context.startActivity(new Intent(context, ChildListActivity.class));
     }
 
-    public String get() {
-        return new Gson().toJson(new HomeContext(anmService.fetchDetails()));
-    }
-
     public void startWorkplan() {
         context.startActivity(new Intent(context, WorkplanActivity.class));
+    }
+
+    public void startReports() {
+        context.startActivity(new Intent(context, ReportsActivity.class));
+    }
+
+    public String get() {
+        return new Gson().toJson(new HomeContext(anmService.fetchDetails()));
     }
 }
