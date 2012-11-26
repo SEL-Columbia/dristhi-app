@@ -76,6 +76,7 @@ public class ReportIndicatorListViewController {
                 intent.putExtra(INDICATOR_DETAIL, report);
                 intent.putExtra(CATEGORY_DESCRIPTION, reportsCategory.description());
                 context.startActivity(intent);
+                return;
             }
         }
     }

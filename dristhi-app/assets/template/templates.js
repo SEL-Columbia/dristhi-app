@@ -1849,13 +1849,13 @@ function program1(depth0,data) {
   stack1 = depth0.husbandName;
   foundHelper = helpers.capitalize;
   stack1 = foundHelper ? foundHelper.call(depth0, stack1, {hash:{}}) : helperMissing.call(depth0, "capitalize", stack1, {hash:{}});
-  buffer += escapeExpression(stack1) + "</li>\n                        <li>\n                            Thayi No: ";
-  foundHelper = helpers.thaayiCardNumber;
-  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
-  else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
-  buffer += escapeExpression(stack1);
-  stack1 = depth0.ecNumber;
+  buffer += escapeExpression(stack1) + "</li>\n                        <li>\n                            ";
+  stack1 = depth0.thaayiCardNumber;
   stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(4, program4, data)});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " ";
+  stack1 = depth0.ecNumber;
+  stack1 = helpers['if'].call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(6, program6, data)});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n                        </li>\n                    </ul>\n                </div>\n\n                <div class=\"span4 pull-text-completely-right\">\n                    ";
   stack1 = depth0.villageName;
@@ -1871,7 +1871,17 @@ function program2(depth0,data) {
 function program4(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += ", EC No: ";
+  buffer += "Thayi No: ";
+  foundHelper = helpers.thaayiCardNumber;
+  if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
+  else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
+  buffer += escapeExpression(stack1);
+  return buffer;}
+
+function program6(depth0,data) {
+  
+  var buffer = "", stack1, foundHelper;
+  buffer += " EC No: ";
   foundHelper = helpers.ecNumber;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.ecNumber; stack1 = typeof stack1 === functionType ? stack1() : stack1; }
@@ -1895,7 +1905,7 @@ templates['report_indicator_detail'] = template(function (Handlebars,depth0,help
 function program1(depth0,data,depth1) {
   
   var buffer = "", stack1, stack2, foundHelper;
-  buffer += "\n            <tr class=\"indicator-reporting\" data-month=\"";
+  buffer += "\n            <tr class=\"indicator-monthly-report\" data-month=\"";
   foundHelper = helpers.month;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.month; stack1 = typeof stack1 === functionType ? stack1() : stack1; }

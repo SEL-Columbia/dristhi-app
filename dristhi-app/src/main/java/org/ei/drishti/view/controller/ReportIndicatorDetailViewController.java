@@ -38,8 +38,9 @@ public class ReportIndicatorDetailViewController {
                 Intent intent = new Intent(context.getApplicationContext(), ReportIndicatorCaseListActivity.class);
                 intent.putExtra(MONTH, month);
                 intent.putExtra(INDICATOR, indicatorDetails.indicator());
-                intent.putStringArrayListExtra(CASE_IDS, (ArrayList<String>) summary.externalIDs());
+                intent.putStringArrayListExtra(CASE_IDS, new ArrayList<String>(summary.externalIDs()));
                 context.startActivity(intent);
+                return;
             }
         }
     }
