@@ -18,8 +18,7 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
-import static org.ei.drishti.domain.ReportIndicator.CONDOM;
-import static org.ei.drishti.domain.ReportIndicator.IUD;
+import static org.mockito.Matchers.anyList;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -43,7 +42,7 @@ public class ReportIndicatorListViewControllerTest {
         List<MonthSummaryDatum> monthlySummaries = asList(new MonthSummaryDatum("10", "2012", "2", "2", asList("123", "456")));
         Report iudReport = new Report("IUD", "40", new Gson().toJson(monthlySummaries));
         Report condomReport = new Report("CONDOM", "30", new Gson().toJson(monthlySummaries));
-        when(allReports.allFor(asList(IUD, CONDOM))).thenReturn(asList(iudReport, condomReport));
+        when(allReports.allFor(anyList())).thenReturn(asList(iudReport, condomReport));
 
         String indicatorReports = controller.get();
 
