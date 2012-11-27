@@ -38,6 +38,7 @@ public class Context {
     private CommCareClientService commCareClientService;
     private Session session;
     private Cache<String> listCache;
+    private BeneficiaryService beneficiaryService;
 
     protected Context() {
     }
@@ -52,6 +53,13 @@ public class Context {
     public static Context setInstance(Context context) {
         Context.context = context;
         return context;
+    }
+
+    public BeneficiaryService beneficiaryService() {
+        if (beneficiaryService == null) {
+            beneficiaryService = new BeneficiaryService(allEligibleCouples(), allBeneficiaries());
+        }
+        return beneficiaryService;
     }
 
     public Context updateApplicationContext(android.content.Context applicationContext) {

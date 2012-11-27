@@ -1,4 +1,4 @@
-package org.ei.drishti.view.contract.mapper;
+package org.ei.drishti.service;
 
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
@@ -10,37 +10,40 @@ import org.ei.drishti.view.contract.Beneficiary;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BeneficiaryMapper {
-    private final AllEligibleCouples ecRepository;
-    private final AllBeneficiaries motherRepository;
+public class BeneficiaryService {
+    private final AllEligibleCouples allEligibleCouples;
+    private final AllBeneficiaries allBeneficiaries;
 
-    public BeneficiaryMapper(AllEligibleCouples ecRepository, AllBeneficiaries motherRepository) {
-        this.ecRepository = ecRepository;
-        this.motherRepository = motherRepository;
+    public BeneficiaryService(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries) {
+        this.allEligibleCouples = allEligibleCouples;
+        this.allBeneficiaries = allBeneficiaries;
     }
 
-    public static List<Beneficiary> mapFromECs(List<EligibleCouple> ecs) {
+    public List<Beneficiary> fetchFromEcCaseIds(List<String> caseIds) {
         List<Beneficiary> beneficiaries = new ArrayList<Beneficiary>();
-        for (EligibleCouple ec : ecs) {
+        List<EligibleCouple> eligibleCouples = allEligibleCouples.findByCaseIDs(caseIds);
+        for (EligibleCouple ec : eligibleCouples) {
             beneficiaries.add(new Beneficiary(ec.caseId(), ec.wifeName(), ec.husbandName(), "", ec.ecNumber(), ec.village(), ec.isHighPriority()));
         }
         return beneficiaries;
     }
 
-    public List<Beneficiary> mapFromChildren(List<Child> children) {
+    public List<Beneficiary> fetchFromChildCaseIds(List<String> caseIds) {
         List<Beneficiary> beneficiaries = new ArrayList<Beneficiary>();
+        List<Child> children = allBeneficiaries.findAllChildrenByCaseIDs(caseIds);
         for (Child child : children) {
-            Mother mother = motherRepository.findMother(child.motherCaseId());
-            EligibleCouple parents = ecRepository.findByCaseID(mother.ecCaseId());
+            Mother mother = allBeneficiaries.findMother(child.motherCaseId());
+            EligibleCouple parents = allEligibleCouples.findByCaseID(mother.ecCaseId());
             beneficiaries.add(new Beneficiary(child.caseId(), parents.wifeName(), parents.husbandName(), child.thaayiCardNumber(), parents.ecNumber(), parents.village(), child.isHighRisk()));
         }
         return beneficiaries;
     }
 
-    public List<Beneficiary> mapFromMothers(List<Mother> mothers) {
+    public List<Beneficiary> fetchFromMotherCaseIds(List<String> caseIds) {
         List<Beneficiary> beneficiaries = new ArrayList<Beneficiary>();
+        List<Mother> mothers = allBeneficiaries.findAllMothersByCaseIDs(caseIds);
         for (Mother mother : mothers) {
-            EligibleCouple ec = ecRepository.findByCaseID(mother.ecCaseId());
+            EligibleCouple ec = allEligibleCouples.findByCaseID(mother.ecCaseId());
             beneficiaries.add(new Beneficiary(mother.caseId(), ec.wifeName(), ec.husbandName(), mother.thaayiCardNumber(), ec.ecNumber(), ec.village(), mother.isHighRisk()));
         }
         return beneficiaries;

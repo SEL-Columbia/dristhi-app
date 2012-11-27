@@ -2,11 +2,8 @@ package org.ei.drishti.domain;
 
 import org.ei.drishti.Context;
 import org.ei.drishti.view.contract.Beneficiary;
-import org.ei.drishti.view.contract.mapper.BeneficiaryMapper;
 
 import java.util.List;
-
-import static org.ei.drishti.view.contract.mapper.BeneficiaryMapper.*;
 
 public enum ReportIndicator {
     IUD("IUD", "IUD Adoption") {
@@ -102,17 +99,15 @@ public enum ReportIndicator {
     public abstract List<Beneficiary> fetchCaseList(List<String> caseIds);
 
     private static List<Beneficiary> fetchECCaseList(List<String> caseIds) {
-        return mapFromECs(Context.getInstance().allEligibleCouples().findByCaseIDs(caseIds));
+        return Context.getInstance().beneficiaryService().fetchFromEcCaseIds(caseIds);
     }
 
     private static List<Beneficiary> fetchMotherCaseList(List<String> caseIds) {
-        BeneficiaryMapper mapper = new BeneficiaryMapper(Context.getInstance().allEligibleCouples(), Context.getInstance().allBeneficiaries());
-        return mapper.mapFromMothers(Context.getInstance().allBeneficiaries().findAllMothersByCaseIDs(caseIds));
+        return Context.getInstance().beneficiaryService().fetchFromMotherCaseIds(caseIds);
     }
 
     private static List<Beneficiary> fetchChildCaseList(List<String> caseIds) {
-        BeneficiaryMapper mapper = new BeneficiaryMapper(Context.getInstance().allEligibleCouples(), Context.getInstance().allBeneficiaries());
-        return mapper.mapFromChildren(Context.getInstance().allBeneficiaries().findAllChildrenByCaseIDs(caseIds));
+        return Context.getInstance().beneficiaryService().fetchFromChildCaseIds(caseIds);
     }
 
     public static ReportIndicator parseToReportIndicator(String indicator) {
