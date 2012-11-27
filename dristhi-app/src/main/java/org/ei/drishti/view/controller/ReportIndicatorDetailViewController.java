@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.Report;
-import org.ei.drishti.domain.ReportIndicator;
 import org.ei.drishti.dto.MonthSummaryDatum;
 import org.ei.drishti.view.activity.ReportIndicatorCaseListActivity;
 import org.ei.drishti.view.contract.IndicatorReportDetail;
@@ -28,8 +27,8 @@ public class ReportIndicatorDetailViewController {
     public String get() {
         String annualTarget = (isBlank(indicatorDetails.annualTarget())) ? "NA" : indicatorDetails.annualTarget();
 
-        return new Gson().toJson(new IndicatorReportDetail(categoryDescription, ReportIndicator.valueOf(indicatorDetails.indicator()).description(),
-                indicatorDetails.indicator(), annualTarget, indicatorDetails.monthlySummaries()));
+        return new Gson().toJson(new IndicatorReportDetail(categoryDescription, indicatorDetails.reportIndicator().description(),
+                indicatorDetails.reportIndicator().name(), annualTarget, indicatorDetails.monthlySummaries()));
     }
 
     public void startReportIndicatorCaseList(String month) {
@@ -37,7 +36,7 @@ public class ReportIndicatorDetailViewController {
             if (summary.month().equals(month)) {
                 Intent intent = new Intent(context.getApplicationContext(), ReportIndicatorCaseListActivity.class);
                 intent.putExtra(MONTH, month);
-                intent.putExtra(INDICATOR, indicatorDetails.indicator());
+                intent.putExtra(INDICATOR, indicatorDetails.reportIndicator().name());
                 intent.putStringArrayListExtra(CASE_IDS, new ArrayList<String>(summary.externalIDs()));
                 context.startActivity(intent);
                 return;

@@ -66,6 +66,5 @@ public enum FPMethod {
             logWarn("Unknown current FP method : " + method + " Exception : " + e);
             return defaultMethod;
         }
-
     }
 }

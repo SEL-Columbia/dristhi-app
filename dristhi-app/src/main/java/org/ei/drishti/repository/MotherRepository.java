@@ -16,11 +16,12 @@ import java.util.List;
 import java.util.Map;
 
 import static org.apache.commons.lang.StringUtils.join;
+import static org.apache.commons.lang.StringUtils.repeat;
 import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_COLUMNS;
 import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_NAME;
 
 public class MotherRepository extends DrishtiRepository {
-    private static final String MOTHER_SQL = "CREATE TABLE mother(caseID VARCHAR PRIMARY KEY, thaayiCardNumber VARCHAR, ecCaseId VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR)";
+    private static final String MOTHER_SQL = "CREATE TABLE mother(caseID VARCHAR PRIMARY KEY, ecCaseId VARCHAR, thaayiCardNumber VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR)";
     private static final String MOTHER_TYPE_INDEX_SQL = "CREATE INDEX mother_type_index ON mother(type);";
     private static final String MOTHER_REFERENCE_DATE_INDEX_SQL = "CREATE INDEX mother_referenceDate_index ON mother(referenceDate);";
     private static final String MOTHER_TABLE_NAME = "mother";
@@ -165,9 +166,11 @@ public class MotherRepository extends DrishtiRepository {
         List<Pair<Mother, EligibleCouple>> ancsWithEC = new ArrayList<Pair<Mother, EligibleCouple>>();
         while (!cursor.isAfterLast()) {
             Mother mother = new Mother(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(4))
-                    .withDetails(new Gson().<Map<String, String>>fromJson(cursor.getString(5), new TypeToken<Map<String, String>>() {}.getType()));
+                    .withDetails(new Gson().<Map<String, String>>fromJson(cursor.getString(5), new TypeToken<Map<String, String>>() {
+                    }.getType()));
             EligibleCouple eligibleCouple = new EligibleCouple(cursor.getString(6), cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11),
-                    new Gson().<Map<String, String>>fromJson(cursor.getString(13), new TypeToken<Map<String, String>>() {}.getType()));
+                    new Gson().<Map<String, String>>fromJson(cursor.getString(13), new TypeToken<Map<String, String>>() {
+                    }.getType()));
             if (Boolean.valueOf(cursor.getString(12)))
                 eligibleCouple.asOutOfArea();
 
@@ -189,4 +192,15 @@ public class MotherRepository extends DrishtiRepository {
         }
         return output;
     }
+
+    public List<Mother> findByCaseIds(String... caseIds) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)", MOTHER_TABLE_NAME, CASE_ID_COLUMN, insertPlaceholdersForInClause(caseIds.length)), caseIds);
+        return readAll(cursor);
+    }
+
+    private String insertPlaceholdersForInClause(int length) {
+        return repeat("?", ",", length);
+    }
+
 }

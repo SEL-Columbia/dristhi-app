@@ -43,7 +43,7 @@ public class ReportIndicatorListViewController {
 
         List<IndicatorReport> indicatorReports = new ArrayList<IndicatorReport>();
         for (Report report : reports) {
-            ReportIndicator indicator = ReportIndicator.valueOf(report.indicator());
+            ReportIndicator indicator = report.reportIndicator();
             List<MonthSummaryDatum> monthSummaryData = report.monthlySummaries();
             sortMonthlySummaries(monthSummaryData);
             MonthSummaryDatum currentMonthSummary = monthSummaryData.get(0);
@@ -71,7 +71,7 @@ public class ReportIndicatorListViewController {
 
     public void startReportIndicatorDetail(String indicator) {
         for (Report report : reports) {
-            if (report.indicator().equals(indicator)) {
+            if (report.reportIndicator().name().equals(indicator)) {
                 Intent intent = new Intent(context.getApplicationContext(), ReportIndicatorDetailActivity.class);
                 intent.putExtra(INDICATOR_DETAIL, report);
                 intent.putExtra(CATEGORY_DESCRIPTION, reportsCategory.description());

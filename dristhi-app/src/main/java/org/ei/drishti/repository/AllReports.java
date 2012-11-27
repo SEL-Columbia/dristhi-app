@@ -21,7 +21,7 @@ public class AllReports {
     public List<Report> allFor(List<ReportIndicator> indicators){
         List<String> indicatorList = new ArrayList<String>();
         for (ReportIndicator indicator : indicators) {
-            indicatorList.add(indicator.name());
+            indicatorList.add(indicator.value());
         }
         return repository.allFor(indicatorList.toArray(new String[indicatorList.size()]));
     }

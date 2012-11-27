@@ -124,4 +124,8 @@ public class AllBeneficiaries {
     public List<Child> findAllChildrenByCaseIDs(List<String> caseIds) {
         return childRepository.findChildrenByCaseIds(caseIds.toArray(new String[caseIds.size()]));
     }
+
+    public List<Mother> findAllMothersByCaseIDs(List<String> caseIds) {
+        return motherRepository.findByCaseIds(caseIds.toArray(new String[caseIds.size()]));
+    }
 }

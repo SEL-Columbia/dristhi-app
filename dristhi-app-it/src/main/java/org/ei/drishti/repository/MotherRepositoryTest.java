@@ -188,4 +188,17 @@ public class MotherRepositoryTest extends AndroidTestCase {
 
         assertEquals(asList(mother3), repository.allANCs());
     }
+
+    public void testShouldFindAllChildrenByCaseIds(){
+        Mother mother1 = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
+        Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
+        Mother mother3 = new Mother("CASE Z", "EC Case 2", "TC 3", "2012-06-08");
+        repository.add(mother1);
+        repository.add(mother2);
+        repository.add(mother3);
+
+        List<Mother> mothers = repository.findByCaseIds("CASE X", "CASE Z");
+
+        assertEquals(asList(mother1,mother3), mothers);
+    }
 }

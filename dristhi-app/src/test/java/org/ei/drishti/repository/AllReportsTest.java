@@ -13,8 +13,7 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
-import static org.ei.drishti.domain.ReportIndicator.CONDOM;
-import static org.ei.drishti.domain.ReportIndicator.IUD;
+import static org.ei.drishti.domain.ReportIndicator.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -42,10 +41,10 @@ public class AllReportsTest {
 
     @Test
     public void shouldGetReportsForGivenIndicators() throws Exception {
-        List<Report> expectedReports = asList(new Report("IUD", "40", "some-month-summary-json"));
-        when(repository.allFor("IUD", "CONDOM")).thenReturn(expectedReports);
+        List<Report> expectedReports = asList(new Report("IUD", "40", "some-month-summary-json"), new Report("ANC>12", "30", "some-month-summary-json"));
+        when(repository.allFor("IUD", "CONDOM", "ANC>12")).thenReturn(expectedReports);
 
-        List<Report> reports = allReports.allFor(asList(IUD, CONDOM));
+        List<Report> reports = allReports.allFor(asList(IUD, CONDOM, LATE_ANC_REGISTRATIONS));
 
         assertEquals(expectedReports, reports);
     }

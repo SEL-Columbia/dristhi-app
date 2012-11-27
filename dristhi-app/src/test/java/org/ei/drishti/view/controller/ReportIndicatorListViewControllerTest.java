@@ -56,14 +56,15 @@ public class ReportIndicatorListViewControllerTest {
     public void shouldUseCurrentMonthDataForIndicatorReport() throws Exception {
         List<MonthSummaryDatum> monthlySummaries = asList(new MonthSummaryDatum("1", "2012", "2", "2", asList("123", "456")),
                 new MonthSummaryDatum("10", "2012", "2", "4", asList("321", "654")));
-        Report iudReport = new Report("IUD", "40", new Gson().toJson(monthlySummaries));
-        when(allReports.allFor(ReportsCategory.FP.indicators())).thenReturn(asList(iudReport));
+        Report earlyANCRegistrationReport = new Report("ANC<12", "40", new Gson().toJson(monthlySummaries));
+        when(allReports.allFor(ReportsCategory.MOTHER_CHILD_HEALTH.indicators())).thenReturn(asList(earlyANCRegistrationReport));
 
-        String indicatorReports = controller.get();
+        controller = new ReportIndicatorListViewController(context, allReports, ReportsCategory.MOTHER_CHILD_HEALTH.value());
+        String reports = controller.get();
 
-        IndicatorReport iud = new IndicatorReport("IUD", "IUD Adoption", "40", "2", "10", "2012", "4");
-        String expectedIndicatorReports = new Gson().toJson(new CategoryReports("Family Planning", asList(iud)));
-        assertEquals(expectedIndicatorReports, indicatorReports);
+        IndicatorReport earlyANCRegistration = new IndicatorReport("EARLY_ANC_REGISTRATIONS", "Early ANC Registration", "40", "2", "10", "2012", "4");
+        String expectedIndicatorReports = new Gson().toJson(new CategoryReports("Mother Child Health", asList(earlyANCRegistration)));
+        assertEquals(expectedIndicatorReports, reports);
     }
 
     @Test

@@ -10,6 +10,8 @@ import org.ei.drishti.dto.MonthSummaryDatum;
 import java.io.Serializable;
 import java.util.List;
 
+import static org.ei.drishti.domain.ReportIndicator.parseToReportIndicator;
+
 public class Report implements Serializable {
     private final String indicator;
     private final String annualTarget;
@@ -23,6 +25,10 @@ public class Report implements Serializable {
 
     public String indicator() {
         return indicator;
+    }
+
+    public ReportIndicator reportIndicator() {
+        return parseToReportIndicator(indicator);
     }
 
     public String annualTarget() {
