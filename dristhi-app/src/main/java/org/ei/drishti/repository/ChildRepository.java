@@ -13,8 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static org.apache.commons.lang.StringUtils.repeat;
+
 public class ChildRepository extends DrishtiRepository {
-    private static final String CHILD_SQL = "CREATE TABLE child(caseID VARCHAR PRIMARY KEY, thaayiCardNumber VARCHAR, motherCaseId VARCHAR, dateOfBirth VARCHAR, gender VARCHAR, details VARCHAR)";
+    private static final String CHILD_SQL = "CREATE TABLE child(caseID VARCHAR PRIMARY KEY, motherCaseId VARCHAR, thaayiCardNumber VARCHAR, dateOfBirth VARCHAR, gender VARCHAR, details VARCHAR)";
     private static final String CHILD_TABLE_NAME = "child";
     private static final String CASE_ID_COLUMN = "caseID";
     private static final String MOTHER_CASEID_COLUMN = "motherCaseId";
@@ -77,6 +79,12 @@ public class ChildRepository extends DrishtiRepository {
         return children.get(0);
     }
 
+    public List<Child> findChildrenByCaseIds(String... caseIds) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)" ,CHILD_TABLE_NAME, CASE_ID_COLUMN, insertPlaceholdersForInClause(caseIds.length)), caseIds);
+        return readAll(cursor);
+    }
+
     public void updateDetails(String caseId, Map<String, String> details) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -111,5 +119,9 @@ public class ChildRepository extends DrishtiRepository {
         }
         cursor.close();
         return children;
+    }
+
+    private String insertPlaceholdersForInClause(int length) {
+        return repeat("?", ",", length);
     }
 }

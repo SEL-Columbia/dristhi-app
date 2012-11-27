@@ -120,4 +120,8 @@ public class AllBeneficiaries {
             return null;
         return mothers.get(0);
     }
+
+    public List<Child> findAllChildrenByCaseIDs(List<String> caseIds) {
+        return childRepository.findChildrenByCaseIds(caseIds.toArray(new String[caseIds.size()]));
+    }
 }

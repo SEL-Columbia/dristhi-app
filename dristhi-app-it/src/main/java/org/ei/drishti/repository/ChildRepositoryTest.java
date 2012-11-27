@@ -8,10 +8,7 @@ import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.util.Session;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.AlertStatus.open;
@@ -112,4 +109,16 @@ public class ChildRepositoryTest extends AndroidTestCase {
         assertEquals(asList(expectedChildWithNewDetails), repository.all());
     }
 
+    public void testShouldFindAllChildrenByCaseIds(){
+        Child child1 = new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS);
+        Child child2 = new Child("CASE B", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS);
+        Child child3 = new Child("CASE C", "CASE Y", "TC 2", "2012-06-09", "female", EXTRA_DETAILS);
+        repository.addChild(child1);
+        repository.addChild(child2);
+        repository.addChild(child3);
+
+        List<Child> childrenByCaseIds = repository.findChildrenByCaseIds("CASE A", "CASE C");
+
+        assertEquals(asList(child1,child3), childrenByCaseIds);
+    }
 }

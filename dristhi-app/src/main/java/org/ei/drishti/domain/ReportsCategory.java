@@ -6,7 +6,8 @@ import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.ReportIndicator.*;
 
 public enum ReportsCategory {
-    FP("Family Planning", asList(IUD, CONDOM, OCP, MALE_STERILIZATION, FEMALE_STERILIZATION));
+    FP("Family Planning", asList(IUD, CONDOM, OCP, MALE_STERILIZATION, FEMALE_STERILIZATION)),
+    VACCINE_PROGRAM_CHILD("Child Vaccination", asList(DPT, HEP, OPV, MEASLES, BCG));
 
     private String description;
     private List<ReportIndicator> indicators;
