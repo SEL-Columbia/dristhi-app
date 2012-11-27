@@ -102,5 +102,5 @@ Handlebars.registerHelper('percentage', function (value1, value2) {
     if (value2 == "NA") {
         return "NA";
     }
-    return (Math.round((parseInt(value1) * 100)/parseInt(value2))).toString() + "%";
+    return (Math.floor((parseInt(value1) * 100)/parseInt(value2))).toString() + "%";
 });
