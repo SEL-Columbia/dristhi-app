@@ -1,7 +1,6 @@
 package org.ei.drishti.view.controller;
 
 import android.content.Context;
-import android.content.Intent;
 import com.google.gson.Gson;
 import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.EligibleCouple;
@@ -12,7 +11,6 @@ import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.activity.ANCDetailActivity;
 import org.ei.drishti.view.contract.ANC;
 import org.ei.drishti.view.contract.ANCs;
 import org.ei.drishti.view.contract.Village;
@@ -21,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import static org.ei.drishti.view.controller.ProfileNavigationController.navigationToANCProfile;
 
 public class ANCListViewController {
     public static final String ANC_LIST = "ANCList";
@@ -70,9 +70,7 @@ public class ANCListViewController {
 
 
     public void startANC(String caseId) {
-        Intent intent = new Intent(context.getApplicationContext(), ANCDetailActivity.class);
-        intent.putExtra("caseId", caseId);
-        context.startActivity(intent);
+        navigationToANCProfile(context, caseId);
     }
 
     public String villages() {

@@ -2,6 +2,7 @@ package org.ei.drishti.view.controller;
 
 import android.content.Context;
 import com.google.gson.Gson;
+import org.ei.drishti.domain.ReportIndicator;
 import org.ei.drishti.view.contract.Beneficiary;
 import org.ei.drishti.view.contract.IndicatorReportCases;
 
@@ -25,5 +26,9 @@ public class ReportIndicatorCaseListViewController {
     public String get() {
         List<Beneficiary> beneficiaries = valueOf(indicator).fetchCaseList(caseIds);
         return new Gson().toJson(new IndicatorReportCases(month, beneficiaries));
+    }
+
+    public void startReportIndicatorCaseDetail(String caseId){
+        ReportIndicator.valueOf(indicator).startCaseDetailActivity(context, caseId);
     }
 }

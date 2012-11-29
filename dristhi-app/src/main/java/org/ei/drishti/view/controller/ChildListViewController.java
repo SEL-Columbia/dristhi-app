@@ -1,7 +1,6 @@
 package org.ei.drishti.view.controller;
 
 import android.content.Context;
-import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
@@ -11,7 +10,6 @@ import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.activity.ChildDetailActivity;
 import org.ei.drishti.view.contract.Children;
 import org.ei.drishti.view.contract.Village;
 
@@ -19,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import static org.ei.drishti.view.controller.ProfileNavigationController.navigationToChildProfile;
 
 public class ChildListViewController {
     public static final String CHILD_LIST = "ChildList";
@@ -61,9 +61,7 @@ public class ChildListViewController {
     }
 
     public void startChild(String caseId) {
-        Intent intent = new Intent(context.getApplicationContext(), ChildDetailActivity.class);
-        intent.putExtra("caseId", caseId);
-        context.startActivity(intent);
+        navigationToChildProfile(context, caseId);
     }
 
     public String villages() {

@@ -1,7 +1,6 @@
 package org.ei.drishti.view.controller;
 
 import android.content.Context;
-import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
@@ -11,7 +10,6 @@ import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.activity.EligibleCoupleDetailActivity;
 import org.ei.drishti.view.contract.EC;
 import org.ei.drishti.view.contract.ECs;
 import org.ei.drishti.view.contract.Village;
@@ -20,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import static org.ei.drishti.view.controller.ProfileNavigationController.navigateToECProfile;
 
 public class EligibleCoupleListViewController {
     public static final String ELIGIBLE_COUPLE_LIST = "EligibleCoupleList";
@@ -66,9 +66,7 @@ public class EligibleCoupleListViewController {
     }
 
     public void startEC(String caseId) {
-        Intent intent = new Intent(context.getApplicationContext(), EligibleCoupleDetailActivity.class);
-        intent.putExtra("caseId", caseId);
-        context.startActivity(intent);
+        navigateToECProfile(context, caseId);
     }
 
     public String villages() {

@@ -5,8 +5,15 @@ import org.ei.drishti.view.contract.Beneficiary;
 
 import java.util.List;
 
+import static org.ei.drishti.view.controller.ProfileNavigationController.*;
+
 public enum ReportIndicator {
     IUD("IUD", "IUD Adoption") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToECProfile(context, caseId);
+        }
+
         @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchECCaseList(caseIds);
@@ -14,11 +21,21 @@ public enum ReportIndicator {
     },
     CONDOM("CONDOM", "Condom Usage") {
         @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToECProfile(context, caseId);
+        }
+
+        @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchECCaseList(caseIds);
         }
     },
     OCP("OCP", "Oral Pills") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToECProfile(context, caseId);
+        }
+
         @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchECCaseList(caseIds);
@@ -26,11 +43,21 @@ public enum ReportIndicator {
     },
     MALE_STERILIZATION("MALE_STERILIZATION", "Male Sterilization") {
         @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToECProfile(context, caseId);
+        }
+
+        @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchECCaseList(caseIds);
         }
     },
     FEMALE_STERILIZATION("FEMALE_STERILIZATION", "Female Sterilization") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToECProfile(context, caseId);
+        }
+
         @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchECCaseList(caseIds);
@@ -38,11 +65,21 @@ public enum ReportIndicator {
     },
     DPT("DPT", "DPT") {
         @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
+        @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchChildCaseList(caseIds);
         }
     },
     HEP("HEP", "HEP") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
         @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchChildCaseList(caseIds);
@@ -50,11 +87,22 @@ public enum ReportIndicator {
     },
     OPV("OPV", "OPV") {
         @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
+
+        @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchChildCaseList(caseIds);
         }
     },
     MEASLES("MEASLES", "MEASLES") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
         @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchChildCaseList(caseIds);
@@ -62,17 +110,32 @@ public enum ReportIndicator {
     },
     BCG("BCG", "BCG") {
         @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
+        @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchChildCaseList(caseIds);
         }
     },
     EARLY_ANC_REGISTRATIONS("ANC<12", "Early ANC Registration") {
         @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToANCProfile(context, caseId);
+        }
+
+        @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchMotherCaseList(caseIds);
         }
     },
     LATE_ANC_REGISTRATIONS("ANC>12", "Late ANC Registration") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToANCProfile(context, caseId);
+        }
+
         @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchMotherCaseList(caseIds);
@@ -110,6 +173,8 @@ public enum ReportIndicator {
 
     public abstract List<Beneficiary> fetchCaseList(List<String> caseIds);
 
+    public abstract void startCaseDetailActivity(android.content.Context context, String caseId);
+
     private static List<Beneficiary> fetchECCaseList(List<String> caseIds) {
         return Context.getInstance().beneficiaryService().fetchFromEcCaseIds(caseIds);
     }
@@ -124,9 +189,10 @@ public enum ReportIndicator {
 
     public static ReportIndicator parseToReportIndicator(String indicator) {
         for (ReportIndicator reportIndicator : values()) {
-            if(reportIndicator.value().equalsIgnoreCase(indicator))
+            if (reportIndicator.value().equalsIgnoreCase(indicator))
                 return reportIndicator;
         }
         throw new IllegalArgumentException("Could not find ReportIndicator for value: " + indicator);
     }
+
 }

@@ -1833,7 +1833,7 @@ templates['report_indicator_case_list'] = template(function (Handlebars,depth0,h
 function program1(depth0,data) {
   
   var buffer = "", stack1, foundHelper;
-  buffer += "\n        <div class=\"row-fluid\">\n            <a data-caseId=";
+  buffer += "\n        <div class=\"row-fluid\">\n            <a data-caseid=";
   foundHelper = helpers.caseId;
   if (foundHelper) { stack1 = foundHelper.call(depth0, {hash:{}}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1() : stack1; }

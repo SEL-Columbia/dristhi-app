@@ -5,7 +5,7 @@ function ReportIndicatorCaseList(reportIndicatorCaseListBridge, cssIdOf) {
         },
         bindEveryItemToIndicatorCaseDetailView: function () {
             $(cssIdOf.indicator).click(function () {
-                reportIndicatorCaseListBridge.delegateToReportIndicatorCaseDetail($(this).data("caseId"));
+                reportIndicatorCaseListBridge.delegateToReportIndicatorCaseDetail($(this).data("caseid"));
             });
         }
     };
@@ -21,7 +21,7 @@ function ReportIndicatorCaseListBridge() {
         getReportIndicatorCaseList: function () {
             return JSON.parse(reportIndicatorListContext.get());
         },
-        delegateToReportIndicatorCaseList: function (caseId) {
+        delegateToReportIndicatorCaseDetail: function (caseId) {
             return reportIndicatorListContext.startReportIndicatorCaseDetail(caseId);
         }
     };
@@ -56,7 +56,7 @@ function ReportIndicatorListContext() {
             );
         },
         startReportIndicatorCaseDetail: function (caseId) {
-            window.location.href = "report_indicator_case_detail.html";
+            window.location.href = "ec_detail.html";
         }
     }
 }
