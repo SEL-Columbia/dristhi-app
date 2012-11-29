@@ -8,7 +8,8 @@ import static org.ei.drishti.domain.ReportIndicator.*;
 public enum ReportsCategory {
     FP("Family Planning", asList(IUD, CONDOM, OCP, MALE_STERILIZATION, FEMALE_STERILIZATION)),
     VACCINE_PROGRAM_CHILD("Child Vaccination", asList(DPT, HEP, OPV, MEASLES, BCG)),
-    MOTHER_CHILD_HEALTH("Mother Child Health", asList(EARLY_ANC_REGISTRATIONS, LATE_ANC_REGISTRATIONS));
+    MOTHER_CHILD_HEALTH("Mother Child Health", asList(EARLY_ANC_REGISTRATIONS, LATE_ANC_REGISTRATIONS, TT)),
+    MOTHER_CHILD_DELIVERY("Mother Child Delivery", asList(CHILD_MORTALITY));
 
     private String description;
     private List<ReportIndicator> indicators;

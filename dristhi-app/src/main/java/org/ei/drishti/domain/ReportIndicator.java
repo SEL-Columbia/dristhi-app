@@ -77,6 +77,18 @@ public enum ReportIndicator {
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchMotherCaseList(caseIds);
         }
+    },
+    TT("TT","TT"){
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
+    CHILD_MORTALITY("MORT_C","Infant Mortality"){
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
     };
 
     private String value;
