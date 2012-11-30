@@ -141,13 +141,23 @@ public enum ReportIndicator {
             return fetchMotherCaseList(caseIds);
         }
     },
-    TT("TT","TT"){
+    TT("TT", "TT") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToANCProfile(context, caseId);
+        }
+
         @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchMotherCaseList(caseIds);
         }
     },
-    CHILD_MORTALITY("MORT_C","Infant Mortality"){
+    CHILD_MORTALITY("MORT_C", "Infant Mortality") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
         @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchChildCaseList(caseIds);
