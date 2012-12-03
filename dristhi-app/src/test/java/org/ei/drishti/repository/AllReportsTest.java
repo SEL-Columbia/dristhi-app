@@ -41,10 +41,10 @@ public class AllReportsTest {
 
     @Test
     public void shouldGetReportsForGivenIndicators() throws Exception {
-        List<Report> expectedReports = asList(new Report("IUD", "40", "some-month-summary-json"), new Report("ANC>12", "30", "some-month-summary-json"));
-        when(repository.allFor("IUD", "CONDOM", "ANC>12")).thenReturn(expectedReports);
+        List<Report> expectedReports = asList(new Report("IUD", "40", "some-month-summary-json"), new Report("ANC<12", "30", "some-month-summary-json"));
+        when(repository.allFor("IUD", "CONDOM", "ANC<12")).thenReturn(expectedReports);
 
-        List<Report> reports = allReports.allFor(asList(IUD, CONDOM, LATE_ANC_REGISTRATIONS));
+        List<Report> reports = allReports.allFor(asList(IUD, CONDOM, EARLY_ANC_REGISTRATIONS));
 
         assertEquals(expectedReports, reports);
     }
