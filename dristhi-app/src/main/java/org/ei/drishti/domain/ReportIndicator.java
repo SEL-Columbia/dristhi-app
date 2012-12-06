@@ -162,6 +162,28 @@ public enum ReportIndicator {
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchChildCaseList(caseIds);
         }
+    },
+    LIVE_BIRTH("LIVE_BIRTH", "Live Birth") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToANCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
+    STILL_BIRTH("STILL_BIRTH", "Still Birth") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToANCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
     };
 
     private String value;
