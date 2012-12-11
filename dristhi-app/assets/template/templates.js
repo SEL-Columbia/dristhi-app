@@ -893,7 +893,7 @@ function program1(depth0,data) {
 function program2(depth0,data) {
   
   
-  return "<span class=\"high-risk\"> HRP </span>";}
+  return "<span class=\"high-risk\"> HR </span>";}
 
 function program4(depth0,data) {
   
@@ -1805,7 +1805,7 @@ function program1(depth0,data) {
 function program2(depth0,data) {
   
   
-  return "<span class=\"high-risk\"> HRP </span>";}
+  return "<span class=\"high-risk\"> HR </span>";}
 
 function program4(depth0,data) {
   
@@ -1866,7 +1866,7 @@ function program1(depth0,data) {
 function program2(depth0,data) {
   
   
-  return "<span class=\"high-risk\"> HRP </span>";}
+  return "<span class=\"high-risk\"> HR </span>";}
 
 function program4(depth0,data) {
   
