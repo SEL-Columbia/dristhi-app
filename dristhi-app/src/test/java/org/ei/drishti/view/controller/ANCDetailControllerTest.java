@@ -80,7 +80,7 @@ public class ANCDetailControllerTest {
         ANCDetail expectedDetail = new ANCDetail(caseId, "TC 1",
                 new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false).withCaste("st").withEconomicStatus("bpl"),
                 new LocationDetails("Village 1", "Subcenter 1"),
-                new PregnancyDetails("9", "2012-07-22", 10))
+                new PregnancyDetails("9", "2012-07-28", 4))
                 .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "7m 1w ago"), eventFor(pregnancyEvent, "9m 2w ago")))
                 .addTodos(asList(todo))
                 .addUrgentTodos(asList(urgentTodo))
