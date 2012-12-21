@@ -3,7 +3,6 @@ package org.ei.drishti.view.controller;
 import android.content.Context;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.Report;
-import org.ei.drishti.domain.ReportsCategory;
 import org.ei.drishti.dto.MonthSummaryDatum;
 import org.ei.drishti.repository.AllReports;
 import org.ei.drishti.util.DateUtil;
@@ -18,6 +17,8 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
+import static org.ei.drishti.domain.ReportsCategory.ANC_SERVICES;
+import static org.ei.drishti.domain.ReportsCategory.FPS;
 import static org.mockito.Matchers.anyList;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -34,7 +35,7 @@ public class ReportIndicatorListViewControllerTest {
     public void setUp() throws Exception {
         initMocks(this);
         DateUtil.fakeIt(LocalDate.parse("2012-10-10"));
-        controller = new ReportIndicatorListViewController(context, allReports, ReportsCategory.FP.value());
+        controller = new ReportIndicatorListViewController(context, allReports, FPS.value());
     }
 
     @Test
@@ -48,7 +49,7 @@ public class ReportIndicatorListViewControllerTest {
 
         IndicatorReport iud = new IndicatorReport("IUD", "IUD Adoption", "40", "2", "10", "2012", "2");
         IndicatorReport condom = new IndicatorReport("CONDOM", "Condom Usage", "30", "2", "10", "2012", "2");
-        String expectedIndicatorReports = new Gson().toJson(new CategoryReports("Family Planning", asList(iud, condom)));
+        String expectedIndicatorReports = new Gson().toJson(new CategoryReports("Family Planning Services", asList(iud, condom)));
         assertEquals(expectedIndicatorReports, indicatorReports);
     }
 
@@ -57,13 +58,13 @@ public class ReportIndicatorListViewControllerTest {
         List<MonthSummaryDatum> monthlySummaries = asList(new MonthSummaryDatum("1", "2012", "2", "2", asList("123", "456")),
                 new MonthSummaryDatum("10", "2012", "2", "4", asList("321", "654")));
         Report earlyANCRegistrationReport = new Report("ANC<12", "40", new Gson().toJson(monthlySummaries));
-        when(allReports.allFor(ReportsCategory.MOTHER_CHILD_HEALTH.indicators())).thenReturn(asList(earlyANCRegistrationReport));
+        when(allReports.allFor(ANC_SERVICES.indicators())).thenReturn(asList(earlyANCRegistrationReport));
 
-        controller = new ReportIndicatorListViewController(context, allReports, ReportsCategory.MOTHER_CHILD_HEALTH.value());
+        controller = new ReportIndicatorListViewController(context, allReports, ANC_SERVICES.value());
         String reports = controller.get();
 
         IndicatorReport earlyANCRegistration = new IndicatorReport("EARLY_ANC_REGISTRATIONS", "Early ANC Registration", "40", "2", "10", "2012", "4");
-        String expectedIndicatorReports = new Gson().toJson(new CategoryReports("Mother Child Health", asList(earlyANCRegistration)));
+        String expectedIndicatorReports = new Gson().toJson(new CategoryReports("ANC Services", asList(earlyANCRegistration)));
         assertEquals(expectedIndicatorReports, reports);
     }
 
@@ -72,12 +73,12 @@ public class ReportIndicatorListViewControllerTest {
         List<MonthSummaryDatum> monthlySummaries = asList(new MonthSummaryDatum("6", "2012", "2", "2", asList("123", "456")),
                 new MonthSummaryDatum("8", "2012", "2", "4", asList("321", "654")));
         Report iudReport = new Report("IUD", "40", new Gson().toJson(monthlySummaries));
-        when(allReports.allFor(ReportsCategory.FP.indicators())).thenReturn(asList(iudReport));
+        when(allReports.allFor(FPS.indicators())).thenReturn(asList(iudReport));
 
         String indicatorReports = controller.get();
 
         IndicatorReport iud = new IndicatorReport("IUD", "IUD Adoption", "40", "0", "10", "2012", "4");
-        String expectedIndicatorReports = new Gson().toJson(new CategoryReports("Family Planning", asList(iud)));
+        String expectedIndicatorReports = new Gson().toJson(new CategoryReports("Family Planning Services", asList(iud)));
         assertEquals(expectedIndicatorReports, indicatorReports);
     }
 
@@ -86,12 +87,12 @@ public class ReportIndicatorListViewControllerTest {
         List<MonthSummaryDatum> monthlySummaries = asList(new MonthSummaryDatum("6", "2012", "2", "2", asList("123", "456")),
                 new MonthSummaryDatum("8", "2012", "2", "4", asList("321", "654")));
         Report iudReport = new Report("IUD", null, new Gson().toJson(monthlySummaries));
-        when(allReports.allFor(ReportsCategory.FP.indicators())).thenReturn(asList(iudReport));
+        when(allReports.allFor(FPS.indicators())).thenReturn(asList(iudReport));
 
         String indicatorReports = controller.get();
 
         IndicatorReport iud = new IndicatorReport("IUD", "IUD Adoption", "NA", "0", "10", "2012", "4");
-        String expectedIndicatorReports = new Gson().toJson(new CategoryReports("Family Planning", asList(iud)));
+        String expectedIndicatorReports = new Gson().toJson(new CategoryReports("Family Planning Services", asList(iud)));
         assertEquals(expectedIndicatorReports, indicatorReports);
     }
 }

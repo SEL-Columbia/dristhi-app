@@ -6,7 +6,8 @@
             <div style="margin-top: 20px"><img class="edd-popup-image"></div>
             <div class="big-text-black edd-modal-text">EDD {{pregnancyDetails.daysPastEdd}} days past due!</div>
             <div class="edd-modal-button">
-                <button id="deliveryOutcomeFormButton" class="btn btn-large btn-primary" type="button" data-form="ANC_DELIVERY_OUTCOME" data-caseid="{{caseId}}">
+                <button id="deliveryOutcomeFormButton" class="btn btn-large btn-primary" type="button"
+                        data-form="ANC_DELIVERY_OUTCOME" data-caseid="{{caseId}}">
                     <div class="edd-modal-button-text">Delivery Outcome Form</div>
                 </button>
             </div>
@@ -21,9 +22,11 @@
 {{/if}}
 <div class="navbar navbar-fixed-top affected-by-sidepanel">
     <div class="navbar-inner">
-        <ul class="nav pull-left">
+        <ul class="area-6_5 nav pull-left">
             <li><img class="sidepanel-icon affected-by-sidepanel"><img class="separator"></li>
-            <li><div class="name ellipsis">{{formatText coupleDetails.wifeName}}</div></li>
+            <li class="area-7_5">
+                <div class="navbar-header affected-by-sidepanel ellipsis">{{formatText coupleDetails.wifeName}}</div>
+            </li>
         </ul>
 
         <ul class="nav pull-right affected-by-sidepanel">
@@ -61,12 +64,16 @@
                     <li>
                         <div class="row-fluid">
                             <div class="span9 big-text">{{formatText coupleDetails.wifeName}}</div>
-                            <div class="span3 social-vulnerability text-right" style="float: right">{{formatSocialVulnerability coupleDetails.caste coupleDetails.economicStatus}}</div>
+                            <div class="span3 social-vulnerability text-right" style="float: right">
+                                {{formatSocialVulnerability coupleDetails.caste coupleDetails.economicStatus}}
+                            </div>
                         </div>
                     </li>
                     <li class="medium-text spacing-below">{{capitalize coupleDetails.husbandName}}</li>
                     <li>{{formatText location.villageName}}</li>
-                    <li class="light-text">{{#if coupleDetails.isInArea}}EC No: {{coupleDetails.ecNumber}}, {{/if}}Thayi No: {{thaayiCardNumber}}</li>
+                    <li class="light-text">{{#if coupleDetails.isInArea}}EC No: {{coupleDetails.ecNumber}}, {{/if}}Thayi
+                        No: {{thaayiCardNumber}}
+                    </li>
                 </ul>
             </div>
         </div>
@@ -75,7 +82,8 @@
     <div id="todos" class="registry-container container-fluid">
         {{#each urgentTodos}}
         {{#if isCompleted}}
-        <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
+        <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}"
+             data-visitcode="{{visitCode}}">
             <div class="row-fluid">
                 <div class="span2">
                     <img class="todo-box checked"/>
@@ -86,7 +94,8 @@
             </div>
         </div>
         {{else}}
-        <div class="alert alert-todo overdue" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
+        <div class="alert alert-todo overdue" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}"
+             data-visitcode="{{visitCode}}">
             <div class="row-fluid">
                 <div class="span2">
                     <img class="todo-box"/>
@@ -100,7 +109,8 @@
         {{/each}}
         {{#each todos}}
         {{#if isCompleted}}
-        <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
+        <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}"
+             data-visitcode="{{visitCode}}">
             <div class="row-fluid">
                 <div class="span2">
                     <img class="todo-box checked"/>
@@ -111,7 +121,8 @@
             </div>
         </div>
         {{else}}
-        <div class="alert alert-todo upcoming" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}" data-visitcode="{{visitCode}}">
+        <div class="alert alert-todo upcoming" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}"
+             data-visitcode="{{visitCode}}">
             <div class="row-fluid">
                 <div class="span2">
                     <img class="todo-box"/>
@@ -150,10 +161,12 @@
                     <div class="divider"></div>
                     <div class="beneficiary-detail-content">
                         <div class="span6 text-center right-border info">
-                            <span class="big-text-numbers">{{pregnancyDetails.monthsPregnant}}</span><br><span class="meta-summary-text">Months Pregnant</span>
+                            <span class="big-text-numbers">{{pregnancyDetails.monthsPregnant}}</span><br><span
+                                class="meta-summary-text">Months Pregnant</span>
                         </div>
                         <div class="span6 text-center info">
-                            <span class="big-text-numbers">{{formatDate pregnancyDetails.edd}}</span><br><span class="meta-summary-text">EDD</span>
+                            <span class="big-text-numbers">{{formatDate pregnancyDetails.edd}}</span><br><span
+                                class="meta-summary-text">EDD</span>
                         </div>
                     </div>
                 </div>
@@ -193,8 +206,8 @@
                             {{/each}}
                         </div>
                         <div class="container-section-component row-fluid show-more-button">
-                            <div class = "divider"></div>
-                            <div class = "expand"> Show more </div>
+                            <div class="divider"></div>
+                            <div class="expand"> Show more</div>
                         </div>
                     </div>
                 </div>

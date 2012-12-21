@@ -8,6 +8,10 @@
     position: relative;
 }
 
+.sidepanel-active.navbar-header {
+    display: none;
+}
+
 .status-bar.sidepanel-active {
     margin-left: -1px;
     position: relative;
@@ -17,7 +21,7 @@
 .tabbable .nav.nav-tabs.sidepanel-active {
     display: block;
     overflow: hidden;
-    margin-left: 0px;
+    margin-left: 0;
     position: relative;
     top: -4px;
     margin-bottom: 4px;
@@ -28,7 +32,7 @@
 }
 
 .content.sidepanel-active, .content-detail.sidepanel-active, .content.sidepanel-content {
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .sidepanel {
@@ -38,7 +42,7 @@
 }
 
 .mainpanel {
-    left: 0%;
+    left: 0;
     width: 100%;
 }
 

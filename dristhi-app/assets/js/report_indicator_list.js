@@ -31,7 +31,7 @@ function ReportIndicatorListContext() {
     return {
         get: function () {
             return JSON.stringify({
-                    description: "Family Planning",
+                    description: "Family Planning Services",
                     indicatorReports: [
                         {
                             indicatorIdentifier: "OCP",

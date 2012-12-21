@@ -117,13 +117,37 @@
 }
 
 .navbar .nav .name {
+    width: 105px;
+}
+
+.navbar-header {
     font-weight: 500;
     font-size: 20px;
     color: #fff;
     margin-top: 12px;
     vertical-align: text-bottom;
     text-shadow: 0 1px 2px #000000;
-    width: 105px;
+    width: 100%;
+}
+
+.area-full {
+    width: 100%;
+}
+
+.area-7_5 {
+    width: 75%;
+}
+
+.area-8_0 {
+    width: 80%;
+}
+
+.area-6_5 {
+    width: 65%;
+}
+
+.navbar .navbar-inner .nav {
+    margin: 0 0 0 0;
 }
 
 .navbar-icon {
