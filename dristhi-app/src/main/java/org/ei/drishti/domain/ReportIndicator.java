@@ -108,6 +108,17 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
+    BF_POST_BIRTH("BF_POST_BIRTH", "Exclusively BF within 1 hr of birth") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
     BCG("BCG", "BCG") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
