@@ -232,7 +232,18 @@ public enum ReportIndicator {
     DELIVERY("DELIVERY", "Total Deliveries") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToANCProfile(context, caseId);
+            navigationToPNCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
+    INSTITUTIONAL_DELIVERY("INSTITUTIONAL_DELIVERY", "Institutional Deliveries") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToPNCProfile(context, caseId);
         }
 
         @Override
@@ -281,5 +292,4 @@ public enum ReportIndicator {
         }
         throw new IllegalArgumentException("Could not find ReportIndicator for value: " + indicator);
     }
-
 }
