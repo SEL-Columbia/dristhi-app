@@ -113,7 +113,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
             webView = null;
         }
 
-        if(updateController != null)
+        if (updateController != null)
             updateController.destroy();
     }
 }

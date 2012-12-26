@@ -1,5 +1,4 @@
 function SidePanel(anmNavigation) {
-
     var openSidePanel = function (animationDuration) {
         $(".affected-by-sidepanel").addClass("sidepanel-active");
         $(".mainpanel .container-fluid").addClass("container-affected-by-sidepanel").css('width', $(window).width() - 24);

@@ -44,7 +44,7 @@ public class ANCListViewController {
         return ancListCache.get(ANC_LIST, new CacheableData<String>() {
             @Override
             public String fetch() {
-                List<Pair<Mother,EligibleCouple>> mothersWithEC = allBeneficiaries.allANCsWithEC();
+                List<Pair<Mother, EligibleCouple>> mothersWithEC = allBeneficiaries.allANCsWithEC();
 
                 List<ANC> highRiskAncs = new ArrayList<ANC>();
                 List<ANC> normalRiskAncs = new ArrayList<ANC>();

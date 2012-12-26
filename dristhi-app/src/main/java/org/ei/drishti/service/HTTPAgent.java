@@ -92,7 +92,7 @@ public class HTTPAgent {
                 @Override
                 public void verify(String host, String[] cns, String[] subjectAlts) throws SSLException {
                     for (String cn : cns) {
-                        if (host.equals(cn)){
+                        if (host.equals(cn)) {
                             return;
                         }
                     }

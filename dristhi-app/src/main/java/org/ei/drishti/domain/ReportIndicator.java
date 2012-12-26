@@ -185,7 +185,7 @@ public enum ReportIndicator {
             return fetchMotherCaseList(caseIds);
         }
     },
-    LBW("LBW","Low Birth Weight") {
+    LBW("LBW", "Low Birth Weight") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigationToChildProfile(context, caseId);
@@ -196,7 +196,7 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
-    EARLY_ABORTIONS("MTP<12", "Abortions before 12 weeks"){
+    EARLY_ABORTIONS("MTP<12", "Abortions before 12 weeks") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigationToANCProfile(context, caseId);
@@ -207,7 +207,7 @@ public enum ReportIndicator {
             return fetchMotherCaseList(caseIds);
         }
     },
-    LATE_ABORTIONS("MTP>12", "Abortions after 12 weeks"){
+    LATE_ABORTIONS("MTP>12", "Abortions after 12 weeks") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigationToANCProfile(context, caseId);

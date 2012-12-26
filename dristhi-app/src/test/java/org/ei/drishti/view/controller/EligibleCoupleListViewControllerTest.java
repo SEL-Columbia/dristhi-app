@@ -100,7 +100,6 @@ public class EligibleCoupleListViewControllerTest {
         String villageFilter = controller.appliedVillageFilter("All");
 
         assertEquals(villageFilter, "munjanahalli");
-
     }
 
     private Map<String, String> normalPriority() {

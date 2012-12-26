@@ -28,7 +28,7 @@ public class ReportIndicatorCaseListViewController {
         return new Gson().toJson(new IndicatorReportCases(month, beneficiaries));
     }
 
-    public void startReportIndicatorCaseDetail(String caseId){
+    public void startReportIndicatorCaseDetail(String caseId) {
         ReportIndicator.valueOf(indicator).startCaseDetailActivity(context, caseId);
     }
 }

@@ -161,7 +161,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
             timelineEventRepository.add(forChangeOfFPMethod(couple.caseId(), couple.details().get(CURRENT_FP_METHOD_FIELD_NAME), details.get(CURRENT_FP_METHOD_FIELD_NAME), details.get(FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME)));
         } else if (wasFPproductRenewed(details)) {
             TimelineEvent timelineEventForRenew = FPMethod.tryParse(details.get(CURRENT_FP_METHOD_FIELD_NAME), FPMethod.NONE).getTimelineEventForRenew(couple.caseId(), details);
-            if(timelineEventForRenew != null)
+            if (timelineEventForRenew != null)
                 timelineEventRepository.add(timelineEventForRenew);
         }
     }

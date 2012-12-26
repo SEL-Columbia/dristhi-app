@@ -6,7 +6,6 @@ import org.junit.Test;
 import static junit.framework.Assert.assertEquals;
 
 public class TodoDetailTest {
-
     @Test
     public void shouldOpenCommCareFormsBasedOnTodoType() {
         assertEquals(CommCareForm.ANC_DELIVERY_OUTCOME, TodoDetail.from("EDD").formToOpen());
@@ -18,5 +17,4 @@ public class TodoDetailTest {
         assertEquals(CommCareForm.SHORTCUT, TodoDetail.from("IFA 1").formToOpen());
         assertEquals(CommCareForm.SHORTCUT, TodoDetail.from("TT 1").formToOpen());
     }
-
 }

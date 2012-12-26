@@ -13,7 +13,7 @@ public class PregnancyDetailsTest {
 
     @Test
     public void isLastMonthOfPregnancy() throws Exception {
-        PregnancyDetails pregnancyDetails = new PregnancyDetails("8", "2012-09-17",0);
+        PregnancyDetails pregnancyDetails = new PregnancyDetails("8", "2012-09-17", 0);
         assertTrue(pregnancyDetails.isLastMonthOfPregnancy());
 
         pregnancyDetails = new PregnancyDetails("7", "2012-09-17", 0);

@@ -60,7 +60,7 @@ public class AllAlerts {
         if (mother.equals(type)) {
             Mother mom = allBeneficiaries.findMother(action.caseID());
             EligibleCouple couple = allEligibleCouples.findByCaseID(mom.ecCaseId());
-            repository.createAlert(new Alert(action.caseID(),couple.wifeName(), couple.husbandName(), couple.village(), action.get("visitCode"), mom.thaayiCardNumber(), AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate"), AlertStatus.open));
+            repository.createAlert(new Alert(action.caseID(), couple.wifeName(), couple.husbandName(), couple.village(), action.get("visitCode"), mom.thaayiCardNumber(), AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate"), AlertStatus.open));
         } else if (child.equals(type)) {
             Child kid = allBeneficiaries.findChild(action.caseID());
             Mother mom = allBeneficiaries.findMother(kid.motherCaseId());

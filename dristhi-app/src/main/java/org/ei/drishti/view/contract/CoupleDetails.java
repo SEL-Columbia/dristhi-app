@@ -34,12 +34,12 @@ public class CoupleDetails {
         return ToStringBuilder.reflectionToString(this);
     }
 
-    public CoupleDetails withCaste(String caste){
+    public CoupleDetails withCaste(String caste) {
         this.caste = caste;
         return this;
     }
 
-    public CoupleDetails withEconomicStatus(String economicStatus){
+    public CoupleDetails withEconomicStatus(String economicStatus) {
         this.economicStatus = economicStatus;
         return this;
     }

@@ -50,8 +50,7 @@ public class LoginActivity extends Activity {
 
         if (context.userService().hasARegisteredUser()) {
             localLogin(view, userName, password);
-        }
-        else {
+        } else {
             remoteLogin(view, userName, password);
         }
     }

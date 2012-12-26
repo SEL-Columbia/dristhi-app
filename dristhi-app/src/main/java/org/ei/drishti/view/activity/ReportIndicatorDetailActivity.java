@@ -6,7 +6,7 @@ import org.ei.drishti.view.controller.ReportIndicatorDetailViewController;
 
 import static org.ei.drishti.AllConstants.*;
 
-public class ReportIndicatorDetailActivity extends SecuredWebActivity{
+public class ReportIndicatorDetailActivity extends SecuredWebActivity {
 
     @Override
     protected void onInitialization() {

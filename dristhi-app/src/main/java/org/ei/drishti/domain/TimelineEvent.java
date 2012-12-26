@@ -112,7 +112,7 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "FPRENEW", LocalDate.parse(details.get("familyPlanningMethodChangeDate")), "FP Renewed", detailString, null);
     }
 
-    public static TimelineEvent forFPDMPARenew(String caseId, Map<String,String> details) {
+    public static TimelineEvent forFPDMPARenew(String caseId, Map<String, String> details) {
         String detailString = new DetailBuilder(details).withDMPAInjectionDate("familyPlanningMethodChangeDate").value();
 
         return new TimelineEvent(caseId, "FPRENEW", LocalDate.parse(details.get("familyPlanningMethodChangeDate")), "FP Renewed", detailString, null);

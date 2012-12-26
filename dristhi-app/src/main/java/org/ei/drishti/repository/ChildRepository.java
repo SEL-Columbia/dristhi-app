@@ -81,7 +81,7 @@ public class ChildRepository extends DrishtiRepository {
 
     public List<Child> findChildrenByCaseIds(String... caseIds) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)" ,CHILD_TABLE_NAME, CASE_ID_COLUMN, insertPlaceholdersForInClause(caseIds.length)), caseIds);
+        Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)", CHILD_TABLE_NAME, CASE_ID_COLUMN, insertPlaceholdersForInClause(caseIds.length)), caseIds);
         return readAll(cursor);
     }
 

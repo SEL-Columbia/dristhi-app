@@ -44,6 +44,6 @@ public class ProfileTodoTest {
             todoDatePartOfJSON = format(",\"todoDate\":\"{0}\"", DUE_DATE);
         }
 
-        assertEquals("{\"message\":\"" + message + "\"" + formToOpenMessage + ",\"isCompleted\":" + isCompleted + ",\"visitCode\":\"" + visitCode +"\"" + todoDatePartOfJSON + "}", new Gson().toJson(todo));
+        assertEquals("{\"message\":\"" + message + "\"" + formToOpenMessage + ",\"isCompleted\":" + isCompleted + ",\"visitCode\":\"" + visitCode + "\"" + todoDatePartOfJSON + "}", new Gson().toJson(todo));
     }
 }

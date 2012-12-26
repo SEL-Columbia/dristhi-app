@@ -25,7 +25,8 @@ public class DrishtiService {
     public Response<List<Action>> fetchNewActions(String anmIdentifier, String previouslyFetchedIndex) {
         String anmID = URLEncoder.encode(anmIdentifier);
         Response<String> response = agent.fetch(drishtiBaseURL + "/actions?anmIdentifier=" + anmID + "&timeStamp=" + previouslyFetchedIndex);
-        Type collectionType = new TypeToken<List<Action>>() { }.getType();
+        Type collectionType = new TypeToken<List<Action>>() {
+        }.getType();
         List<Action> actions;
         try {
             actions = new Gson().fromJson(response.payload(), collectionType);

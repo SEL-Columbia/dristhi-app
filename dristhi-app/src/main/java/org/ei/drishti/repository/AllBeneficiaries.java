@@ -41,7 +41,7 @@ public class AllBeneficiaries {
         } else if (action.type().equals("updateImmunizations")) {
             allTimelines.add(forChildImmunization(action.caseID(), action.get("immunizationsProvided"), action.get("immunizationsProvidedDate"), action.get("vitaminADose")));
             childRepository.updateDetails(action.caseID(), action.details());
-        } else if(action.type().equals("deleteChild")){
+        } else if (action.type().equals("deleteChild")) {
             childRepository.close(action.caseID());
         }
     }
@@ -51,7 +51,7 @@ public class AllBeneficiaries {
             motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate"))
                     .withDetails(action.details()));
         } else if (action.type().equals("closeANC")) {
-                // No action yet.
+            // No action yet.
         } else if (action.type().equals("updateDetails") || action.type().equals("updateBirthPlanning")) {
             motherRepository.updateDetails(action.caseID(), action.details());
         } else if (action.type().equals("ancCareProvided")) {

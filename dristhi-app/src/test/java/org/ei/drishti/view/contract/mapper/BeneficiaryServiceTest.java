@@ -36,7 +36,7 @@ public class BeneficiaryServiceTest {
     public void shouldFetchEcsFromEcCaseIds() throws Exception {
         EligibleCouple ec1 = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC 1", "Village 1", "SC 1", mapOf("isHighPriority", "yes"));
         EligibleCouple ec2 = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC 2", "Village 2", "SC 2", mapOf("some-key", "some-value"));
-        when(allEligibleCouples.findByCaseIDs(asList("CASE X","CASE Y"))).thenReturn(asList(ec1,ec2));
+        when(allEligibleCouples.findByCaseIDs(asList("CASE X", "CASE Y"))).thenReturn(asList(ec1, ec2));
         when(allEligibleCouples.findByCaseID("EC CASE X")).thenReturn(ec1);
         when(allEligibleCouples.findByCaseID("EC CASE Y")).thenReturn(ec2);
 

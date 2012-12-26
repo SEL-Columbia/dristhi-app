@@ -20,6 +20,7 @@ public class TimelineEventComparatorTest {
 
         assertEquals(1, result);
     }
+
     @Test
     public void shouldReturnZeroWhenFirstTimeLineEventOccurAtSameTime() throws Exception {
         int result = compareTimelineEvents(LocalDate.now(), LocalDate.now());
