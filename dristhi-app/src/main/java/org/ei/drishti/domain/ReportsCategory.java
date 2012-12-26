@@ -8,7 +8,7 @@ import static org.ei.drishti.domain.ReportIndicator.*;
 public enum ReportsCategory {
     FPS("Family Planning Services", asList(IUD, CONDOM, OCP, MALE_STERILIZATION, FEMALE_STERILIZATION)),
     ANC_SERVICES("ANC Services", asList(EARLY_ANC_REGISTRATIONS, ANC_REGISTRATIONS, TT)),
-    PREGNANCY_OUTCOMES("Pregnancy Outcomes", asList(LIVE_BIRTH, STILL_BIRTH, CHILD_MORTALITY, EARLY_ABORTIONS, LATE_ABORTIONS)),
+    PREGNANCY_OUTCOMES("Pregnancy Outcomes", asList(LIVE_BIRTH, STILL_BIRTH, CHILD_MORTALITY, EARLY_ABORTIONS, LATE_ABORTIONS, SPONTANEOUS_ABORTION, DELIVERY)),
     CHILD_SERVICES("Child Services", asList(DPT, HEP, OPV, MEASLES, BCG, LBW));
 
     private String description;
