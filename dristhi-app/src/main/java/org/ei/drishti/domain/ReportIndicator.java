@@ -218,6 +218,28 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
+    ENM("ENM", "Early Neonatal mortality") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    NM("NM", "Neonatal mortality") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
     LIVE_BIRTH("LIVE_BIRTH", "Live Birth") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
