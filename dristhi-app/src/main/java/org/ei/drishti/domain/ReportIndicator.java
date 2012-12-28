@@ -240,6 +240,17 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
+    LNM("LNM", "29 days to 1 year of birth") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
     LIVE_BIRTH("LIVE_BIRTH", "Live Birth") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {

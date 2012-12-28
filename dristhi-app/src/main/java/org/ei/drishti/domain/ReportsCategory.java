@@ -10,7 +10,7 @@ public enum ReportsCategory {
     ANC_SERVICES("ANC Services", asList(EARLY_ANC_REGISTRATIONS, ANC_REGISTRATIONS, TT)),
     PREGNANCY_OUTCOMES("Pregnancy Outcomes", asList(LIVE_BIRTH, STILL_BIRTH, EARLY_ABORTIONS, LATE_ABORTIONS, SPONTANEOUS_ABORTION, DELIVERY, INSTITUTIONAL_DELIVERY)),
     CHILD_SERVICES("Child Services", asList(DPT1, DPT2, DPT2, DPT3, DPT_BOOSTER2, HEP, OPV, MEASLES, BCG, LBW, BF_POST_BIRTH, WEIGHED_AT_BIRTH)),
-    MORTALITY("Mortality", asList(ENM, NM, CHILD_MORTALITY));
+    MORTALITY("Mortality", asList(ENM, NM, LNM, CHILD_MORTALITY));
 
     private String description;
     private List<ReportIndicator> indicators;
