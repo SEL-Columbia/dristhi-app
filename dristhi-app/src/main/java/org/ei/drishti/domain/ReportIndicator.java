@@ -207,7 +207,7 @@ public enum ReportIndicator {
             return fetchMotherCaseList(caseIds);
         }
     },
-    CHILD_MORTALITY("MORT_C", "Infant Mortality") {
+    INFANT_MORTALITY("IM", "Infant Mortality") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigationToChildProfile(context, caseId);
@@ -241,6 +241,17 @@ public enum ReportIndicator {
         }
     },
     LNM("LNM", "29 days to 1 year of birth") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    CHILD_MORTALITY("UFM", "Under 5 mortality") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigationToChildProfile(context, caseId);
