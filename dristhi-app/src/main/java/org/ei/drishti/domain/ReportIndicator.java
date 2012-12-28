@@ -339,6 +339,17 @@ public enum ReportIndicator {
             return fetchMotherCaseList(caseIds);
         }
     },
+    MMA("MMA", "Mother mortality (during ANC)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToPNCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
     INSTITUTIONAL_DELIVERY("INSTITUTIONAL_DELIVERY", "Institutional Deliveries") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
