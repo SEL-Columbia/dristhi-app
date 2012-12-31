@@ -350,7 +350,29 @@ public enum ReportIndicator {
             return fetchMotherCaseList(caseIds);
         }
     },
-    MMD("MMD", "Mother mortality (during Delivery") {
+    MMD("MMD", "Mother mortality (during Delivery)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToPNCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
+    MMP("MMP", "Mother mortality (during PNC)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToPNCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
+    MM("MM", "Total Mother Mortality ") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigationToPNCProfile(context, caseId);
