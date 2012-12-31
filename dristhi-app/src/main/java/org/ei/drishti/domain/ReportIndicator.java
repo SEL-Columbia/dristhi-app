@@ -141,6 +141,28 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
+    VIT_A_1("VIT_A_1", "First Dose of Vitamin A") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    VIT_A_2("VIT_A_1", "Second Dose of Vitamin A") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
     WEIGHED_AT_BIRTH("WEIGHED_AT_BIRTH", "Number of infants weighed at birth") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
