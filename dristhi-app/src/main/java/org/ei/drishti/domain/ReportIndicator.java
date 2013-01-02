@@ -229,7 +229,40 @@ public enum ReportIndicator {
             return fetchMotherCaseList(caseIds);
         }
     },
-    TT("TT", "TT") {
+    SUB_TT("SUB_TT", "TT2 and TT Booster (Pregnant Women)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToANCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
+    TT1("TT1", "TT1") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToANCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
+    TT2("TT2", "TT2") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToANCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
+    TTB("TTB", "TT Booster") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigationToANCProfile(context, caseId);
