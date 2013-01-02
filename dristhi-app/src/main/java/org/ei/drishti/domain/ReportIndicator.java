@@ -218,6 +218,17 @@ public enum ReportIndicator {
             return fetchMotherCaseList(caseIds);
         }
     },
+    ANC4("ANC4", "Minimum 4 ANC Visits") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToANCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
     TT("TT", "TT") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
