@@ -459,6 +459,17 @@ public enum ReportIndicator {
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchMotherCaseList(caseIds);
         }
+    },
+    PNC3("PNC3", "No. of PNC women who received 3 visits") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToPNCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
     };
 
     private String value;
