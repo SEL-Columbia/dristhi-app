@@ -96,6 +96,28 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
+    DPT3_OR_OPV3("DPT3_OPV3", "DPT 3 / OPV 3") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    DPT_BOOSTER_OR_OPV_BOOSTER("DPTB_OPVB", "DPT Booster / OPV Booster") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigationToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
     DPT_BOOSTER2("DPT_BOOSTER_2", "DPT Booster 2") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
