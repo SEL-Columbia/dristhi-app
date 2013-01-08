@@ -29,8 +29,8 @@ public abstract class SecuredWebActivity extends SecuredActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
-        progressDialog.setMessage("Please wait");
         progressDialog.setTitle("Loading ...");
+        progressDialog.setMessage("Please wait");
         progressDialog.show();
         webView = (WebView) findViewById(R.id.webview);
 
@@ -79,7 +79,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
     public void updateFromServer() {
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(this, context.actionService(), new ProgressIndicator() {
             @Override
-            public void setVisibile() {
+            public void setVisible() {
                 updateController.startProgressIndicator();
             }
 

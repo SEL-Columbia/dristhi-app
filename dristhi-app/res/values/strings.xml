@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Dristhi</string>
+    <string name="userNameEditText">Enter user name</string>
+    <string name="passwordEditText">Enter password</string>
+    <string name="login_text">Log In</string>
+    <string name="image_description">logo</string>
+    <string name="spacer">spacer</string>
+    <string name="buildNumber">Build 1.5</string>
+    <string name="loggin_in_dialog_title">Logging in…</string>
+    <string name="loggin_in_dialog_message">Please wait</string>
+    <string name="login_failed_dialog_title">Log in failed</string>
+    <string name="login_failed_dialog_message">Please check the credentials</string>
 </resources>

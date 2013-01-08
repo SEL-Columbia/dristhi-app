@@ -1,24 +1,28 @@
 package org.ei.drishti.view.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
-import org.ei.drishti.view.AndroidProgressIndicator;
 import org.ei.drishti.view.BackgroundAction;
 import org.ei.drishti.view.LockingBackgroundTask;
+import org.ei.drishti.view.ProgressIndicator;
 
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
 import static org.ei.drishti.util.Log.logVerbose;
 
 public class LoginActivity extends Activity {
     private Context context;
+    private EditText userNameEditText;
+    private EditText passwordEditText;
+    private ProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,8 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.login);
 
         context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+        initializeLoginFields();
+        initializeProgressDialog();
     }
 
     @Override
@@ -41,12 +47,11 @@ public class LoginActivity extends Activity {
     }
 
     public void login(final View view) {
-        showMessage("");
         hideKeyboard();
         view.setClickable(false);
 
-        final String userName = userNameEditText().getText().toString();
-        final String password = ((EditText) findViewById(R.id.login_passwordText)).getText().toString();
+        final String userName = userNameEditText.getText().toString();
+        final String password = passwordEditText.getText().toString();
 
         if (context.userService().hasARegisteredUser()) {
             localLogin(view, userName, password);
@@ -55,17 +60,28 @@ public class LoginActivity extends Activity {
         }
     }
 
+    private void initializeLoginFields() {
+        userNameEditText = ((EditText) findViewById(R.id.login_userNameText));
+        passwordEditText = ((EditText) findViewById(R.id.login_passwordText));
+    }
+
+    private void initializeProgressDialog() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle(getString(R.string.loggin_in_dialog_title));
+        progressDialog.setMessage(getString(R.string.loggin_in_dialog_message));
+    }
+
     private void localLogin(View view, String userName, String password) {
         if (context.userService().isValidLocalLogin(userName, password)) {
             loginWith(userName, password);
         } else {
-            showMessage("Local login failed. Please check the credentials.");
+            showErrorDialog();
             view.setClickable(true);
         }
     }
 
     private void remoteLogin(final View view, final String userName, final String password) {
-        showMessage("Logging in using CommCare ...");
         tryRemoteLogin(userName, password, new Listener<Boolean>() {
             public void onEvent(Boolean isLoginSuccessful) {
                 if (isLoginSuccessful == null) {
@@ -75,15 +91,38 @@ public class LoginActivity extends Activity {
                 if (isLoginSuccessful) {
                     loginWith(userName, password);
                 } else {
-                    showMessage("Remote login failed. Please check the credentials.");
+                    showErrorDialog();
                     view.setClickable(true);
                 }
             }
         });
     }
 
+    private void showErrorDialog() {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.login_failed_dialog_title))
+                .setMessage(getString(R.string.login_failed_dialog_message))
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                })
+                .create();
+        dialog.show();
+    }
+
     private void tryRemoteLogin(final String userName, final String password, final Listener<Boolean> afterLoginCheck) {
-        LockingBackgroundTask task = new LockingBackgroundTask(new AndroidProgressIndicator(((ProgressBar) findViewById(R.id.login_progressBar))));
+        LockingBackgroundTask task = new LockingBackgroundTask(new ProgressIndicator() {
+            @Override
+            public void setVisible() {
+                progressDialog.show();
+            }
+
+            @Override
+            public void setInvisible() {
+                progressDialog.dismiss();
+            }
+        });
 
         task.doActionInBackground(new BackgroundAction<Boolean>() {
             public Boolean actionToDoInBackgroundThread() {
@@ -98,8 +137,8 @@ public class LoginActivity extends Activity {
 
     private void fillUserIfExists() {
         if (context.userService().hasARegisteredUser()) {
-            userNameEditText().setText(context.allSettings().fetchRegisteredANM());
-            userNameEditText().setEnabled(false);
+            userNameEditText.setText(context.allSettings().fetchRegisteredANM());
+            userNameEditText.setEnabled(false);
         }
     }
 
@@ -115,13 +154,5 @@ public class LoginActivity extends Activity {
 
     private void goToHome() {
         context.navigationService().goHome(this);
-    }
-
-    private void showMessage(String message) {
-        ((TextView) findViewById(R.id.login_status)).setText(message);
-    }
-
-    private EditText userNameEditText() {
-        return ((EditText) findViewById(R.id.login_userNameText));
     }
 }

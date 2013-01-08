@@ -1,33 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:gravity="center_horizontal|center_vertical"
-              android:orientation="vertical">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:id="@+id/login_layout"
+    android:orientation="vertical"
+    android:background="@drawable/login_background">
 
-    <ImageView android:id="@+id/login_headerSpacer" android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="0.33"
-               android:contentDescription="Spacer"/>
+    <ImageView
+        android:id="@+id/login_logo"
+        android:contentDescription="@string/image_description"
+        android:src="@drawable/login_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="2"/>
 
-    <EditText android:id="@+id/login_userNameText" android:inputType="textNoSuggestions|textFilter|textVisiblePassword"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:hint="Enter username" android:ems="10" />
+    <EditText
+        android:id="@+id/login_userNameText"
+        android:inputType="textNoSuggestions|textFilter|textVisiblePassword"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:hint="@string/userNameEditText"
+        android:ems="10"
+        android:typeface="sans"
+        android:singleLine="true"
+        android:background="@drawable/rounded_corner_edittext"
+        android:paddingLeft="8dp"
+        android:width="260dp"
+        android:editable="true"
+        android:layout_gravity="center"
+        android:textColorHint="#bfbfbf"
+        android:textColor="#666666"/>
 
-    <EditText android:id="@+id/login_passwordText" android:inputType="textPassword"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:hint="Enter password" android:ems="10" />
+    <EditText
+        android:id="@+id/login_passwordText"
+        android:inputType="textNoSuggestions|textFilter|textVisiblePassword"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:hint="@string/passwordEditText"
+        android:ems="10"
+        android:background="@drawable/rounded_corner_edittext"
+        android:paddingLeft="8dp"
+        android:typeface="sans"
+        android:singleLine="true"
+        android:width="260dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:textColorHint="#bfbfbf"
+        android:textColor="#666666"/>
 
-    <ImageView android:id="@+id/login_spacerBetweenFieldsAndButton" android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="0.1"
-               android:contentDescription="Spacer"/>
+    <Button
+        android:id="@+id/login_loginButton"
+        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:text="@string/login_text"
+        android:onClick="login"
+        android:ems="10"
+        android:width="260dp"
+        android:background="@drawable/login_button"
+        android:shadowColor="#ffffff"
+        android:shadowDx="0"
+        android:shadowDy="1"
+        android:shadowRadius="0.5"
+        android:textColor="#666666"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:layout_weight="0"/>
 
-    <Button android:id="@+id/login_loginButton" android:layout_height="wrap_content" android:layout_width="wrap_content"
-            android:text="Login to Dristhi" android:onClick="login" android:ems="10"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_spacer"
+        android:layout_weight="1"
+        android:contentDescription="@string/spacer"/>
 
-    <ImageView android:id="@+id/login_spacerBetweenButtonAndStatus" android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="0.1"
-               android:contentDescription="Spacer"/>
-
-    <TextView android:id="@+id/login_status" android:layout_height="wrap_content" android:layout_width="wrap_content" />
-    <ProgressBar android:id="@+id/login_progressBar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:visibility="invisible"/>
-
-    <ImageView android:id="@+id/login_footerSpacer" android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1"
-               android:contentDescription="Spacer"/>
+    <TextView
+        android:id="@+id/login_build"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textColor="#90c4dc"
+        android:text="@string/buildNumber"
+        android:textSize="16dp"
+        android:typeface="sans"
+        android:layout_marginBottom="5dp"
+        android:layout_weight="0"
+        android:layout_gravity="center"/>
 </LinearLayout>

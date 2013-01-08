@@ -31,7 +31,7 @@ public class LockingBackgroundTask {
 
             @Override
             protected void onPreExecute() {
-                indicator.setVisibile();
+                indicator.setVisible();
             }
 
             @Override

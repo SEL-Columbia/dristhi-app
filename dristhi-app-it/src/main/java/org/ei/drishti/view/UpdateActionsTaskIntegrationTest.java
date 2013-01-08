@@ -88,7 +88,7 @@ public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTes
         private int currentStatus;
 
         @Override
-        public void setVisibile() {
+        public void setVisible() {
             this.currentStatus = View.VISIBLE;
         }
 
