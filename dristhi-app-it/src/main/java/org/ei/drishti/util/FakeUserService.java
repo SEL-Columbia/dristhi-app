@@ -1,5 +1,6 @@
 package org.ei.drishti.util;
 
+import org.ei.drishti.domain.LoginResponse;
 import org.ei.drishti.service.UserService;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import static java.util.Arrays.asList;
 
 public class FakeUserService extends UserService {
     private boolean shouldSucceedLocalLogin;
-    private boolean shouldSucceedRemoteLogin;
+    private LoginResponse shouldSucceedRemoteLogin;
     private String expectedUserName = "";
     private String expectedPassword = "";
     private List<String> actualCalls = new ArrayList<String>();
@@ -28,7 +29,7 @@ public class FakeUserService extends UserService {
     }
 
     @Override
-    public boolean isValidRemoteLogin(String userName, String password) {
+    public LoginResponse isValidRemoteLogin(String userName, String password) {
         assertExpectedCredentials(userName, password);
         actualCalls.add("remote");
         return shouldSucceedRemoteLogin;
@@ -66,7 +67,7 @@ public class FakeUserService extends UserService {
         }
     }
 
-    public void setupFor(String userName, String password, boolean hasARegisteredUser, boolean shouldSucceedLocalLogin, boolean shouldSucceedRemoteLogin) {
+    public void setupFor(String userName, String password, boolean hasARegisteredUser, boolean shouldSucceedLocalLogin, LoginResponse shouldSucceedRemoteLogin) {
         this.expectedUserName = userName;
         this.expectedPassword = password;
         this.hasARegisteredUser = hasARegisteredUser;

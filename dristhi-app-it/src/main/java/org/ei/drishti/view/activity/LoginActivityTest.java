@@ -9,6 +9,8 @@ import org.ei.drishti.util.FakeUserService;
 
 import java.util.Date;
 
+import static org.ei.drishti.domain.LoginResponse.UNKNOWN_RESPONSE;
+import static org.ei.drishti.domain.LoginResponse.SUCCESS;
 import static org.ei.drishti.util.FakeContext.setupService;
 import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
 import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
@@ -35,7 +37,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
     }
 
     public void testShouldAllowLoginWithoutCheckingRemoteLoginWhenLocalLoginSucceeds() throws Exception {
-        userService.setupFor("user", "password", true, true, false);
+        userService.setupFor("user", "password", true, true, UNKNOWN_RESPONSE);
 
         solo.assertCanLogin(navigationService, "user", "password");
 
@@ -43,7 +45,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
     }
 
     public void testShouldTryRemoteLoginWhenThereIsNoRegisteredUser() throws Exception {
-        userService.setupFor("user", "password", false, false, true);
+        userService.setupFor("user", "password", false, false, SUCCESS);
 
         solo.assertCanLogin(navigationService, "user", "password");
 
@@ -51,7 +53,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
     }
 
     public void testShouldFailToLoginWhenBothLoginMethodsFail() throws Exception {
-        userService.setupFor("user", "password", false, false, false);
+        userService.setupFor("user", "password", false, false, UNKNOWN_RESPONSE);
 
         solo.assertCannotLogin("user", "password");
 
@@ -59,14 +61,14 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
     }
 
     public void testShouldNotTryRemoteLoginWhenRegisteredUserExistsEvenIfLocalLoginFails() throws Exception {
-        userService.setupFor("user", "password", true, false, true);
+        userService.setupFor("user", "password", true, false, SUCCESS);
 
         solo.assertCannotLogin("user", "password");
         userService.assertOrderOfCalls("local");
     }
 
     public void testShouldNotTryLocalLoginWhenRegisteredUserDoesNotExist() throws Exception {
-        userService.setupFor("user", "password", false, true, true);
+        userService.setupFor("user", "password", false, true, SUCCESS);
 
         solo.assertCanLogin(navigationService, "user", "password");
         userService.assertOrderOfCalls("remote", "login");

@@ -9,6 +9,7 @@ import org.ei.drishti.util.FakeUserService;
 
 import java.util.Date;
 
+import static org.ei.drishti.domain.LoginResponse.SUCCESS;
 import static org.ei.drishti.util.FakeContext.setupService;
 import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
 import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
@@ -36,12 +37,12 @@ public class HomeActivityTest extends ActivityInstrumentationTestCase2<HomeActiv
 
     /* Bug in Android. Cannot run webview with emulator: http://code.google.com/p/android/issues/detail?id=12987 */
     public void ignoringTestShouldGoBackToLoginScreenWhenLoggedOutWithAbilityToLogBackIn() throws Exception {
-        userService.setupFor("user", "password", false, false, true);
+        userService.setupFor("user", "password", false, false, SUCCESS);
 
         solo.logout();
         solo.assertCurrentActivity("Should be in Login screen.", LoginActivity.class);
 
-        userService.setupFor("user", "password", false, false, true);
+        userService.setupFor("user", "password", false, false, SUCCESS);
         solo.assertCanLogin(navigationService, "user", "password");
     }
 

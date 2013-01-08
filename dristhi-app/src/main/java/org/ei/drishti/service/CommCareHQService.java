@@ -1,5 +1,7 @@
 package org.ei.drishti.service;
 
+import org.ei.drishti.domain.LoginResponse;
+
 public class CommCareHQService {
     private final HTTPAgent agent;
     private final String baseURL;
@@ -11,7 +13,7 @@ public class CommCareHQService {
         this.domain = domain;
     }
 
-    public boolean isValidUser(String userName, String password) {
+    public LoginResponse isValidUser(String userName, String password) {
         String url = baseURL + "/a/" + domain + "/phone/restore";
         String userNameWithDomain = userName + "@" + domain + ".commcarehq.org";
 

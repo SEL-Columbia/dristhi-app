@@ -1,5 +1,6 @@
 package org.ei.drishti.service;
 
+import org.ei.drishti.domain.LoginResponse;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.Repository;
 import org.ei.drishti.util.Session;
@@ -23,7 +24,7 @@ public class UserService {
         return allSettings.fetchRegisteredANM().equals(userName) && repository.canUseThisPassword(password);
     }
 
-    public boolean isValidRemoteLogin(String userName, String password) {
+    public LoginResponse isValidRemoteLogin(String userName, String password) {
         return commCareService.isValidUser(userName, password);
     }
 

@@ -1,12 +1,14 @@
 package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.domain.LoginResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import static org.junit.Assert.assertTrue;
+import static org.ei.drishti.domain.LoginResponse.SUCCESS;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -28,11 +30,11 @@ public class CommCareHQServiceTest {
     public void shouldAskAgentWhetherCredentialsAreValid() {
         String expectedURL = "http://base-url.org/a/domainX/phone/restore";
         String expectedUserName = "user@domainX.commcarehq.org";
-        when(agent.urlCanBeAccessWithGivenCredentials(expectedURL, expectedUserName, "password")).thenReturn(true);
+        when(agent.urlCanBeAccessWithGivenCredentials(expectedURL, expectedUserName, "password")).thenReturn(SUCCESS);
 
-        boolean isValidUser = service.isValidUser("user", "password");
+        LoginResponse isValidUser = service.isValidUser("user", "password");
 
-        assertTrue(isValidUser);
+        assertEquals(SUCCESS, isValidUser);
         verify(agent).urlCanBeAccessWithGivenCredentials(expectedURL, expectedUserName, "password");
     }
 }

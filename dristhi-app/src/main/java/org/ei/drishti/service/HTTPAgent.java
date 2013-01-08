@@ -20,6 +20,7 @@ import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.ei.drishti.client.GZipEncodingHttpClient;
+import org.ei.drishti.domain.LoginResponse;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.util.Log;
@@ -29,6 +30,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
 
+import static org.ei.drishti.domain.LoginResponse.*;
 import static org.ei.drishti.util.Log.logWarn;
 
 public class HTTPAgent {
@@ -61,19 +63,24 @@ public class HTTPAgent {
         }
     }
 
-    public boolean urlCanBeAccessWithGivenCredentials(String requestURL, String userName, String password) {
+    public LoginResponse urlCanBeAccessWithGivenCredentials(String requestURL, String userName, String password) {
         httpClient.getCredentialsProvider().setCredentials(new AuthScope("india.commcarehq.org", 443, "DJANGO", "digest"),
                 new UsernamePasswordCredentials(userName, password));
         try {
             HttpResponse response = httpClient.execute(new HttpHead(requestURL));
-            boolean isValidUser = response.getStatusLine().getStatusCode() == HttpStatus.SC_OK;
-            if (!isValidUser) {
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == HttpStatus.SC_OK) {
+                return SUCCESS;
+            } else if (statusCode == HttpStatus.SC_UNAUTHORIZED) {
                 Log.logError("Invalid credentials for: " + userName + " using " + requestURL);
+                return UNAUTHORIZED;
+            } else {
+                Log.logError("Bad response from CommCare. Status code:  " + statusCode + " username: " + userName + " using " + requestURL);
+                return UNKNOWN_RESPONSE;
             }
-            return isValidUser;
         } catch (IOException e) {
             Log.logError("Failed to check credentials of: " + userName + " using " + requestURL + ". Error: " + e.toString());
-            return false;
+            return NO_INTERNET_CONNECTIVITY;
         }
     }
 

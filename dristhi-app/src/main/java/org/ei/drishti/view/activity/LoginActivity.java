@@ -11,11 +11,13 @@ import android.widget.EditText;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
+import org.ei.drishti.domain.LoginResponse;
 import org.ei.drishti.view.BackgroundAction;
 import org.ei.drishti.view.LockingBackgroundTask;
 import org.ei.drishti.view.ProgressIndicator;
 
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
+import static org.ei.drishti.domain.LoginResponse.SUCCESS;
 import static org.ei.drishti.util.Log.logVerbose;
 
 public class LoginActivity extends Activity {
@@ -76,32 +78,28 @@ public class LoginActivity extends Activity {
         if (context.userService().isValidLocalLogin(userName, password)) {
             loginWith(userName, password);
         } else {
-            showErrorDialog();
+            showErrorDialog(getString(R.string.login_failed_dialog_message));
             view.setClickable(true);
         }
     }
 
     private void remoteLogin(final View view, final String userName, final String password) {
-        tryRemoteLogin(userName, password, new Listener<Boolean>() {
-            public void onEvent(Boolean isLoginSuccessful) {
-                if (isLoginSuccessful == null) {
-                    return;
-                }
-
-                if (isLoginSuccessful) {
+        tryRemoteLogin(userName, password, new Listener<LoginResponse>() {
+            public void onEvent(LoginResponse loginResponse) {
+                if (loginResponse == SUCCESS) {
                     loginWith(userName, password);
                 } else {
-                    showErrorDialog();
+                    showErrorDialog(loginResponse.message());
                     view.setClickable(true);
                 }
             }
         });
     }
 
-    private void showErrorDialog() {
+    private void showErrorDialog(String message) {
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle(getString(R.string.login_failed_dialog_title))
-                .setMessage(getString(R.string.login_failed_dialog_message))
+                .setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -111,7 +109,7 @@ public class LoginActivity extends Activity {
         dialog.show();
     }
 
-    private void tryRemoteLogin(final String userName, final String password, final Listener<Boolean> afterLoginCheck) {
+    private void tryRemoteLogin(final String userName, final String password, final Listener<LoginResponse> afterLoginCheck) {
         LockingBackgroundTask task = new LockingBackgroundTask(new ProgressIndicator() {
             @Override
             public void setVisible() {
@@ -124,12 +122,12 @@ public class LoginActivity extends Activity {
             }
         });
 
-        task.doActionInBackground(new BackgroundAction<Boolean>() {
-            public Boolean actionToDoInBackgroundThread() {
+        task.doActionInBackground(new BackgroundAction<LoginResponse>() {
+            public LoginResponse actionToDoInBackgroundThread() {
                 return context.userService().isValidRemoteLogin(userName, password);
             }
 
-            public void postExecuteInUIThread(Boolean result) {
+            public void postExecuteInUIThread(LoginResponse result) {
                 afterLoginCheck.onEvent(result);
             }
         });
