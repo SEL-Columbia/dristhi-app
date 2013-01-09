@@ -144,7 +144,7 @@ public class AllBeneficiariesTest {
         allBeneficiaries.handleChildAction(action);
         verify(allTimelineEvents).add(forChildBirthInMotherProfile("Case Mother X", action.get("dateOfBirth"), action.get("gender"), action.details()));
         verify(allTimelineEvents).add(forChildBirthInECProfile("EC CASE 1", action.get("dateOfBirth"), action.get("gender"), action.details()));
-        verify(childRepository).addChild(new Child("Case X", "Case Mother X", "TC 1", LocalDate.now().toString(), "female", new HashMap<String, String>()));
+        verify(childRepository).add(new Child("Case X", "Case Mother X", "TC 1", LocalDate.now().toString(), "female", new HashMap<String, String>()));
     }
 
     @Test

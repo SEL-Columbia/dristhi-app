@@ -26,7 +26,7 @@ public class AllEligibleCouples {
     }
 
     public List<EligibleCouple> all() {
-        return repository.allInAreaEligibleCouples();
+        return repository.allEligibleCouples();
     }
 
     public EligibleCouple findByCaseID(String caseId) {

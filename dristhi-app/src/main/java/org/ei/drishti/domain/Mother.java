@@ -13,6 +13,7 @@ public class Mother {
     private final String thaayiCardNumber;
     private String referenceDate;
     private Map<String, String> details;
+    private boolean isClosed;
 
     public Mother(String caseId, String ecCaseId, String thaayiCardNumber, String referenceDate) {
         this.caseId = caseId;
@@ -20,6 +21,7 @@ public class Mother {
         this.thaayiCardNumber = thaayiCardNumber;
         this.referenceDate = referenceDate;
         this.details = new HashMap<String, String>();
+        this.isClosed = false;
     }
 
     public String caseId() {
@@ -49,6 +51,15 @@ public class Mother {
 
     public Map<String, String> details() {
         return details;
+    }
+
+    public boolean isClosed() {
+        return isClosed;
+    }
+
+    public Mother setIsClosed(boolean isClosed) {
+        this.isClosed = isClosed;
+        return this;
     }
 
     @Override

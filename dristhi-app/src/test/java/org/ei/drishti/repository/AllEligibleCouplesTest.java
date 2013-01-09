@@ -66,7 +66,7 @@ public class AllEligibleCouplesTest {
     public void shouldFetchAllAlertsFromRepository() throws Exception {
         List<EligibleCouple> expectedCouples = Arrays.asList(new EligibleCouple("Case X", "Wife 1", "Husband 1", "EC Number 1", "village", "subcenter", new HashMap<String, String>()),
                 new EligibleCouple("Case Y", "Wife 2", "Husband 2", "EC Number 2", "village", "subcenter", new HashMap<String, String>()));
-        when(eligibleCoupleRepository.allInAreaEligibleCouples()).thenReturn(expectedCouples);
+        when(eligibleCoupleRepository.allEligibleCouples()).thenReturn(expectedCouples);
 
         List<EligibleCouple> couples = allEligibleCouples.all();
 

@@ -19,7 +19,7 @@ import static org.apache.commons.lang.StringUtils.repeat;
 import static org.ei.drishti.domain.TimelineEvent.forChangeOfFPMethod;
 
 public class EligibleCoupleRepository extends DrishtiRepository {
-    private static final String EC_SQL = "CREATE TABLE eligible_couple(caseID VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR)";
+    private static final String EC_SQL = "CREATE TABLE eligible_couple(caseID VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR, isClosed INTEGER)";
     public static final String CASE_ID_COLUMN = "caseID";
     private static final String EC_NUMBER_COLUMN = "ecNumber";
     private static final String WIFE_NAME_COLUMN = "wifeName";
@@ -29,13 +29,15 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String SUBCENTER_NAME_COLUMN = "subCenter";
     private static final String IS_OUT_OF_AREA_COLUMN = "isOutOfArea";
     private static final String DETAILS_COLUMN = "details";
-    public static final String[] EC_TABLE_COLUMNS = new String[]{CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN, EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN};
+    private static final String IS_CLOSED_COLUMN = "isClosed";
+    public static final String[] EC_TABLE_COLUMNS = new String[]{CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN, EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN, IS_CLOSED_COLUMN};
 
     public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
     public static final String FP_UPDATE_FIELD_NAME = "fpUpdate";
     public static final String CHANGE_FP_METHOD_FIELD_NAME = "change_fp_method";
     public static final String RENEW_FP_PRODUCT_FIELD_NAME = "renew_fp_product";
     public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME = "familyPlanningMethodChangeDate";
+    public static final String NOT_CLOSED = "0";
 
     private MotherRepository motherRepository;
     private final AlertRepository alertRepository;
@@ -77,19 +79,13 @@ public class EligibleCoupleRepository extends DrishtiRepository {
 
     public List<EligibleCouple> allEligibleCouples() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, null, null, null, null, null, null);
+        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, IS_OUT_OF_AREA_COLUMN + " = ? AND " + IS_CLOSED_COLUMN + " = ?", new String[]{"false", NOT_CLOSED}, null, null, null, null);
         return readAllEligibleCouples(cursor);
     }
 
     public List<EligibleCouple> findByCaseIDs(String... caseIds) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)", EC_TABLE_NAME, CASE_ID_COLUMN, insertPlaceholdersForInClause(caseIds.length)), caseIds);
-        return readAllEligibleCouples(cursor);
-    }
-
-    public List<EligibleCouple> allInAreaEligibleCouples() {
-        SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, IS_OUT_OF_AREA_COLUMN + " = ?", new String[]{"false"}, null, null, null, null);
         return readAllEligibleCouples(cursor);
     }
 
@@ -103,9 +99,14 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         return couples.get(0);
     }
 
+    public long count() {
+        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + EC_TABLE_NAME + " WHERE " + IS_OUT_OF_AREA_COLUMN + " = 'false' and " +
+                IS_CLOSED_COLUMN + " = " + NOT_CLOSED, new String[0]);
+    }
+
     public List<String> villages() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(true, EC_TABLE_NAME, new String[]{VILLAGE_NAME_COLUMN}, IS_OUT_OF_AREA_COLUMN + " = ?", new String[]{"false"}, null, null, null, null);
+        Cursor cursor = database.query(true, EC_TABLE_NAME, new String[]{VILLAGE_NAME_COLUMN}, IS_OUT_OF_AREA_COLUMN + " = ? AND " + IS_CLOSED_COLUMN + " = ?", new String[]{"false", NOT_CLOSED}, null, null, null, null);
         cursor.moveToFirst();
         List<String> villages = new ArrayList<String>();
         while (!cursor.isAfterLast()) {
@@ -120,11 +121,13 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         alertRepository.deleteAllAlertsForCase(caseId);
         timelineEventRepository.deleteAllTimelineEventsForCase(caseId);
         motherRepository.closeAllCasesForEC(caseId);
-        masterRepository.getWritableDatabase().delete(EC_TABLE_NAME, CASE_ID_COLUMN + " = ?", new String[]{caseId});
+        markAsClosed(caseId);
     }
 
-    public long count() {
-        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + EC_TABLE_NAME + " WHERE " + IS_OUT_OF_AREA_COLUMN + " = 'false'", new String[0]);
+    private void markAsClosed(String caseId) {
+        ContentValues values = new ContentValues();
+        values.put(IS_CLOSED_COLUMN, true);
+        masterRepository.getWritableDatabase().update(EC_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
     private ContentValues createValuesFor(EligibleCouple eligibleCouple) {
@@ -137,6 +140,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         values.put(SUBCENTER_NAME_COLUMN, eligibleCouple.subCenter());
         values.put(IS_OUT_OF_AREA_COLUMN, Boolean.toString(eligibleCouple.isOutOfArea()));
         values.put(DETAILS_COLUMN, new Gson().toJson(eligibleCouple.details()));
+        values.put(IS_CLOSED_COLUMN, eligibleCouple.isClosed());
         return values;
     }
 
@@ -146,7 +150,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         while (!cursor.isAfterLast()) {
             EligibleCouple eligibleCouple = new EligibleCouple(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5),
                     new Gson().<Map<String, String>>fromJson(cursor.getString(7), new TypeToken<Map<String, String>>() {
-                    }.getType()));
+                    }.getType())).setIsClosed(cursor.getInt(8) != 0);
             if (Boolean.valueOf(cursor.getString(6)))
                 eligibleCouple.asOutOfArea();
             eligibleCouples.add(eligibleCouple);
@@ -178,4 +182,3 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         return repeat("?", ",", length);
     }
 }
-

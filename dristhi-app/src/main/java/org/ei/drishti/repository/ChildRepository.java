@@ -16,7 +16,7 @@ import java.util.Map;
 import static org.apache.commons.lang.StringUtils.repeat;
 
 public class ChildRepository extends DrishtiRepository {
-    private static final String CHILD_SQL = "CREATE TABLE child(caseID VARCHAR PRIMARY KEY, motherCaseId VARCHAR, thaayiCardNumber VARCHAR, dateOfBirth VARCHAR, gender VARCHAR, details VARCHAR)";
+    private static final String CHILD_SQL = "CREATE TABLE child(caseID VARCHAR PRIMARY KEY, motherCaseId VARCHAR, thaayiCardNumber VARCHAR, dateOfBirth VARCHAR, gender VARCHAR, details VARCHAR, isClosed INTEGER)";
     private static final String CHILD_TABLE_NAME = "child";
     private static final String CASE_ID_COLUMN = "caseID";
     private static final String MOTHER_CASEID_COLUMN = "motherCaseId";
@@ -24,7 +24,9 @@ public class ChildRepository extends DrishtiRepository {
     private static final String DATE_OF_BIRTH_COLUMN = "dateOfBirth";
     private static final String GENDER_COLUMN = "gender";
     private static final String DETAILS_COLUMN = "details";
-    private static final String[] CHILD_TABLE_COLUMNS = {CASE_ID_COLUMN, MOTHER_CASEID_COLUMN, THAAYI_CARD_COLUMN, DATE_OF_BIRTH_COLUMN, GENDER_COLUMN, DETAILS_COLUMN};
+    private static final String IS_CLOSED_COLUMN = "isClosed";
+    private static final String[] CHILD_TABLE_COLUMNS = {CASE_ID_COLUMN, MOTHER_CASEID_COLUMN, THAAYI_CARD_COLUMN, DATE_OF_BIRTH_COLUMN, GENDER_COLUMN, DETAILS_COLUMN, IS_CLOSED_COLUMN};
+    public static final String NOT_CLOSED = "0";
 
     private TimelineEventRepository timelineEventRepository;
     private AlertRepository alertRepository;
@@ -39,7 +41,7 @@ public class ChildRepository extends DrishtiRepository {
         database.execSQL(CHILD_SQL);
     }
 
-    public void addChild(Child child) {
+    public void add(Child child) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(CHILD_TABLE_NAME, null, createValuesFor(child));
         timelineEventRepository.add(TimelineEvent.forChildBirthInChildProfile(child.caseId(), child.dateOfBirth(), child.detailsAsMap()));
@@ -47,25 +49,8 @@ public class ChildRepository extends DrishtiRepository {
 
     public List<Child> all() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(CHILD_TABLE_NAME, CHILD_TABLE_COLUMNS, null, null, null, null, null, null);
+        Cursor cursor = database.query(CHILD_TABLE_NAME, CHILD_TABLE_COLUMNS, IS_CLOSED_COLUMN + " = ?", new String[]{NOT_CLOSED}, null, null, null, null);
         return readAll(cursor);
-    }
-
-    public long count() {
-        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + CHILD_TABLE_NAME, new String[0]);
-    }
-
-    public void close(String caseId) {
-        SQLiteDatabase database = masterRepository.getWritableDatabase();
-        alertRepository.deleteAllAlertsForCase(caseId);
-        timelineEventRepository.deleteAllTimelineEventsForCase(caseId);
-        database.delete(CHILD_TABLE_NAME, CASE_ID_COLUMN + " = ?", new String[]{caseId});
-    }
-
-    public void closeAllCasesForMother(String motherCaseId) {
-        for (Child child : findByMotherCaseId(motherCaseId)) {
-            close(child.caseId());
-        }
     }
 
     public Child find(String caseId) {
@@ -92,6 +77,28 @@ public class ChildRepository extends DrishtiRepository {
         database.update(CHILD_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
+    public long count() {
+        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + CHILD_TABLE_NAME + " WHERE " + IS_CLOSED_COLUMN + " = " + NOT_CLOSED, new String[0]);
+    }
+
+    public void close(String caseId) {
+        alertRepository.deleteAllAlertsForCase(caseId);
+        timelineEventRepository.deleteAllTimelineEventsForCase(caseId);
+        markAsClosed(caseId);
+    }
+
+    public void closeAllCasesForMother(String motherCaseId) {
+        for (Child child : findByMotherCaseId(motherCaseId)) {
+            close(child.caseId());
+        }
+    }
+
+    private void markAsClosed(String caseId) {
+        ContentValues values = new ContentValues();
+        values.put(IS_CLOSED_COLUMN, true);
+        masterRepository.getWritableDatabase().update(CHILD_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
+    }
+
     private List<Child> findByMotherCaseId(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(CHILD_TABLE_NAME, CHILD_TABLE_COLUMNS, MOTHER_CASEID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
@@ -106,6 +113,7 @@ public class ChildRepository extends DrishtiRepository {
         values.put(DATE_OF_BIRTH_COLUMN, child.dateOfBirth());
         values.put(GENDER_COLUMN, child.gender());
         values.put(DETAILS_COLUMN, new Gson().toJson(child.details()));
+        values.put(IS_CLOSED_COLUMN, child.isClosed());
         return values;
     }
 
@@ -114,7 +122,8 @@ public class ChildRepository extends DrishtiRepository {
         List<Child> children = new ArrayList<Child>();
         while (!cursor.isAfterLast()) {
             children.add(new Child(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
-                    new Gson().<Map<String, String>>fromJson(cursor.getString(5), new TypeToken<Map<String, String>>() {}.getType())));
+                    new Gson().<Map<String, String>>fromJson(cursor.getString(5), new TypeToken<Map<String, String>>() {
+                    }.getType())).setIsClosed(cursor.getInt(6) != 0));
             cursor.moveToNext();
         }
         cursor.close();

@@ -13,6 +13,7 @@ public class Child {
     private String dateOfBirth;
     private final String gender;
     private final Map<String, String> details;
+    private boolean isClosed;
 
     public Child(String caseId, String motherCaseId, String thaayiCardNumber, String dateOfBirth, String gender, Map<String, String> details) {
         this.caseId = caseId;
@@ -21,6 +22,7 @@ public class Child {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.details = details;
+        this.isClosed = false;
     }
 
     public String caseId() {
@@ -53,6 +55,15 @@ public class Child {
 
     public boolean isHighRisk() {
         return "yes".equals(details.get("isHighRiskChild"));
+    }
+
+    public boolean isClosed() {
+        return isClosed;
+    }
+
+    public Child setIsClosed(boolean isClosed) {
+        this.isClosed = isClosed;
+        return this;
     }
 
     @Override

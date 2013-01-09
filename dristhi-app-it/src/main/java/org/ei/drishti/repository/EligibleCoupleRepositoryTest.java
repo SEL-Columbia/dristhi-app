@@ -37,15 +37,6 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
 
         repository.add(eligibleCouple);
 
-        assertEquals(asList(eligibleCouple), repository.allInAreaEligibleCouples());
-    }
-
-    public void testShouldInsertOutOfAreaEligibleCoupleIntoRepository() throws Exception {
-        Map<String, String> details = create("Hello", "There").put("Also", "This").map();
-        EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", details).asOutOfArea();
-
-        repository.add(eligibleCouple);
-
         assertEquals(asList(eligibleCouple), repository.allEligibleCouples());
     }
 
@@ -62,7 +53,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
                 .map();
         repository.updateDetails("CASE X", detailsToBeUpdated);
 
-        assertEquals(asList(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsToBeUpdated)), repository.allInAreaEligibleCouples());
+        assertEquals(asList(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsToBeUpdated)), repository.allEligibleCouples());
         assertEquals(asList(TimelineEvent.forChangeOfFPMethod("CASE X", "IUD", "Condom", "2012-03-03")), timelineEventRepository.allFor("CASE X"));
     }
 
@@ -108,20 +99,24 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         assertEquals(emptyList(), timelineEventRepository.allFor("CASE X"));
     }
 
-    public void testShouldDeleteEligibleCoupleFromRepositoryBasedOnCaseID() throws Exception {
-        EligibleCouple eligibleCouple = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", new HashMap<String, String>());
+    public void testShouldMarkAsCloseEligibleCoupleFromRepositoryBasedOnCaseID() throws Exception {
+        EligibleCouple firstEligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", new HashMap<String, String>());
+        EligibleCouple secondEligibleCouple = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", new HashMap<String, String>());
 
-        repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", new HashMap<String, String>()));
-        repository.add(eligibleCouple);
+        repository.add(firstEligibleCouple);
+        repository.add(secondEligibleCouple);
 
         repository.close("CASE X");
-        assertEquals(asList(eligibleCouple), repository.allInAreaEligibleCouples());
+        assertEquals(firstEligibleCouple.setIsClosed(true), repository.findByCaseID(firstEligibleCouple.caseId()));
+        assertEquals(secondEligibleCouple, repository.findByCaseID(secondEligibleCouple.caseId()));
 
         repository.close("CASE DOES NOT MATCH");
-        assertEquals(asList(eligibleCouple), repository.allInAreaEligibleCouples());
+        assertEquals(firstEligibleCouple.setIsClosed(true), repository.findByCaseID(firstEligibleCouple.caseId()));
+        assertEquals(secondEligibleCouple, repository.findByCaseID(secondEligibleCouple.caseId()));
 
         repository.close("CASE Y");
-        assertEquals(new ArrayList<EligibleCouple>(), repository.allInAreaEligibleCouples());
+        assertEquals(firstEligibleCouple.setIsClosed(true), repository.findByCaseID(firstEligibleCouple.caseId()));
+        assertEquals(secondEligibleCouple.setIsClosed(true), repository.findByCaseID(secondEligibleCouple.caseId()));
     }
 
     public void testShouldDeleteCorrespondingAlertsWhenDeletingEC() throws Exception {
@@ -159,7 +154,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         Mother mother = new Mother("CASE Y", "CASE X", "TC 1", "2012-01-01");
         motherRepository.add(mother);
         motherRepository.add(new Mother("CASE Z", "CASE X", "TC 2", "2012-01-01"));
-        childRepository.addChild(new Child("CASE C1", "CASE Y", "TC 1", "2012-06-08", "female", new HashMap<String, String>()));
+        childRepository.add(new Child("CASE C1", "CASE Y", "TC 1", "2012-06-08", "female", new HashMap<String, String>()));
 
         EligibleCouple ecWhoIsNotClosed = new EligibleCouple("CASE A", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", new HashMap<String, String>());
         Mother motherWhoIsNotClosed = new Mother("CASE B", "CASE A", "TC 2", "2012-01-01");
@@ -168,7 +163,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
 
         repository.close("CASE X");
 
-        assertEquals(asList(ecWhoIsNotClosed), repository.allInAreaEligibleCouples());
+        assertEquals(asList(ecWhoIsNotClosed), repository.allEligibleCouples());
         assertEquals(asList(motherWhoIsNotClosed), motherRepository.allANCs());
         assertEquals(emptyList(), childRepository.all());
         assertEquals(emptyList(), timelineEventRepository.allFor("CASE X"));
@@ -194,12 +189,17 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         EligibleCouple ec = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", new HashMap<String, String>());
         EligibleCouple anotherEC = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", new HashMap<String, String>());
         EligibleCouple yetAnotherEC = new EligibleCouple("CASE Z", "Wife 3", "Husband 3", "EC Number 3", "Village 3", "SubCenter 3", new HashMap<String, String>());
+        EligibleCouple closedEC = new EligibleCouple("CASE B", "Wife 5", "Husband 5", "", "Village 5", "SubCenter 5", new HashMap<String, String>()).setIsClosed(true);
 
         repository.add(ec);
         repository.add(anotherEC);
         repository.add(yetAnotherEC);
+        repository.add(closedEC);
 
-        assertEquals(asList(ec, yetAnotherEC), repository.findByCaseIDs("CASE X", "CASE Z"));
+        List<EligibleCouple> fetchedLists = repository.findByCaseIDs("CASE X", "CASE Z", "CASE B");
+        assertTrue(fetchedLists.contains(ec));
+        assertTrue(fetchedLists.contains(yetAnotherEC));
+        assertTrue(fetchedLists.contains(closedEC));
     }
 
     public void testShouldGetCountOfECsInRepo() throws Exception {
@@ -207,9 +207,11 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         EligibleCouple anotherEC = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", new HashMap<String, String>());
         EligibleCouple yetAnotherEC = new EligibleCouple("CASE Z", "Wife 3", "Husband 3", "EC Number 3", "Village 3", "SubCenter 3", new HashMap<String, String>());
         EligibleCouple outOfAreaEC = new EligibleCouple("CASE A", "Wife 4", "Husband 4", "", "Village 4", "SubCenter 4", new HashMap<String, String>()).asOutOfArea();
+        EligibleCouple closedEC = new EligibleCouple("CASE B", "Wife 5", "Husband 5", "", "Village 5", "SubCenter 5", new HashMap<String, String>()).setIsClosed(true);
 
         repository.add(ec);
         repository.add(anotherEC);
+        repository.add(closedEC);
 
         assertEquals(2, repository.count());
 
@@ -228,11 +230,13 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         EligibleCouple anotherEC = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "Village2", "SubCenter 2", new HashMap<String, String>());
         EligibleCouple yetAnotherEC = new EligibleCouple("CASE Z", "Wife 3", "Husband 3", "EC Number 3", "Village2", "SubCenter 3", new HashMap<String, String>());
         EligibleCouple outOfAreaEC = new EligibleCouple("CASE A", "Wife 4", "Husband 4", "", "Village4", "SubCenter 4", new HashMap<String, String>()).asOutOfArea();
+        EligibleCouple closedEC = new EligibleCouple("CASE B", "Wife 5", "Husband 5", "", "Village 5", "SubCenter 5", new HashMap<String, String>()).setIsClosed(true);
 
         repository.add(ec);
         repository.add(anotherEC);
         repository.add(yetAnotherEC);
         repository.add(outOfAreaEC);
+        repository.add(closedEC);
 
         List<String> villages = repository.villages();
 
@@ -246,7 +250,16 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         repository.add(outOfAreaEC);
         repository.add(eligibleCouple);
 
-        assertEquals(asList(eligibleCouple), repository.allInAreaEligibleCouples());
+        assertEquals(asList(eligibleCouple), repository.allEligibleCouples());
     }
 
+    public void testShouldNotFetchClosedECsWhenFetchingAllInAreaECs() throws Exception {
+        EligibleCouple closedEC = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "", "Village 1", "SubCenter 1", new HashMap<String, String>()).setIsClosed(true);
+        EligibleCouple eligibleCouple = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", new HashMap<String, String>());
+
+        repository.add(closedEC);
+        repository.add(eligibleCouple);
+
+        assertEquals(asList(eligibleCouple), repository.allEligibleCouples());
+    }
 }
