@@ -298,7 +298,6 @@ public enum ReportIndicator {
     INFANT_MORTALITY("IM", "Infant Mortality") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
         }
 
         @Override
@@ -309,7 +308,6 @@ public enum ReportIndicator {
     ENM("ENM", "Early Neonatal mortality") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
         }
 
         @Override
@@ -320,7 +318,6 @@ public enum ReportIndicator {
     NM("NM", "Neonatal mortality") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
         }
 
         @Override
@@ -331,7 +328,6 @@ public enum ReportIndicator {
     LNM("LNM", "29 days to 1 year of birth") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
         }
 
         @Override
@@ -342,7 +338,6 @@ public enum ReportIndicator {
     CHILD_MORTALITY("UFM", "Under 5 mortality") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
         }
 
         @Override
@@ -430,7 +425,6 @@ public enum ReportIndicator {
     MMA("MMA", "Mother mortality (during ANC)") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
         }
 
         @Override
@@ -441,7 +435,6 @@ public enum ReportIndicator {
     MMD("MMD", "Mother mortality (during Delivery)") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
         }
 
         @Override
@@ -452,7 +445,6 @@ public enum ReportIndicator {
     MMP("MMP", "Mother mortality (during PNC)") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
         }
 
         @Override
@@ -463,7 +455,6 @@ public enum ReportIndicator {
     MM("MM", "Total Mother Mortality ") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
         }
 
         @Override
