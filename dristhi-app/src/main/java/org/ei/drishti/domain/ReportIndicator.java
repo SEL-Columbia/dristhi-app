@@ -348,7 +348,7 @@ public enum ReportIndicator {
     LIVE_BIRTH("LIVE_BIRTH", "Live Birth") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToANCProfile(context, caseId);
+            navigationToPNCProfile(context, caseId);
         }
 
         @Override
@@ -359,7 +359,7 @@ public enum ReportIndicator {
     STILL_BIRTH("STILL_BIRTH", "Still Birth") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToANCProfile(context, caseId);
+            navigationToPNCProfile(context, caseId);
         }
 
         @Override
@@ -381,7 +381,7 @@ public enum ReportIndicator {
     EARLY_ABORTIONS("MTP<12", "Abortions before 12 weeks") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToANCProfile(context, caseId);
+            navigationToPNCProfile(context, caseId);
         }
 
         @Override
@@ -392,7 +392,7 @@ public enum ReportIndicator {
     LATE_ABORTIONS("MTP>12", "Abortions after 12 weeks") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToANCProfile(context, caseId);
+            navigationToPNCProfile(context, caseId);
         }
 
         @Override
@@ -403,7 +403,7 @@ public enum ReportIndicator {
     SPONTANEOUS_ABORTION("SPONTANEOUS_ABORTION", "Spontaneous abortions") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToANCProfile(context, caseId);
+            navigationToPNCProfile(context, caseId);
         }
 
         @Override
