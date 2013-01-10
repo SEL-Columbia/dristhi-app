@@ -50,8 +50,8 @@ public class AllBeneficiaries {
         if (action.type().equals("registerPregnancy")) {
             motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate"))
                     .withDetails(action.details()));
-        } else if (action.type().equals("closeANC")) {
-            // No action yet.
+        } else if (action.type().equals("close")) {
+            motherRepository.close(action.caseID());
         } else if (action.type().equals("updateDetails") || action.type().equals("updateBirthPlanning")) {
             motherRepository.updateDetails(action.caseID(), action.details());
         } else if (action.type().equals("ancCareProvided")) {

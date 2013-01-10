@@ -42,7 +42,7 @@ public class ActionBuilder {
     }
 
     public static Action actionForUpdateBeneficiary() {
-        return new Action("Case X", "mother", "closeANC", closeANC("death").data(), "0", new HashMap<String, String>());
+        return new Action("Case X", "mother", "closeANC", closeMother("death").data(), "0", new HashMap<String, String>());
     }
 
     public static Action actionForRegisterPregnancy(String motherCaseId) {
