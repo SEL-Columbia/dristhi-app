@@ -1,5 +1,6 @@
 package org.ei.drishti.service;
 
+import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
@@ -11,6 +12,7 @@ import org.ei.drishti.util.ActionBuilder;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import java.util.HashMap;
@@ -21,6 +23,7 @@ import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+@RunWith(RobolectricTestRunner.class)
 public class MotherServiceTest {
     @Mock
     private MotherRepository motherRepository;

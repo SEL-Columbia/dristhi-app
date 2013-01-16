@@ -31,6 +31,7 @@ public class Context {
     private ActionService actionService;
     private UserService userService;
     private AlertService alertService;
+    private EligibleCoupleService eligibleCoupleService;
     private MotherService motherService;
     private ChildService childService;
 
@@ -79,7 +80,7 @@ public class Context {
 
     public ActionService actionService() {
         if (actionService == null) {
-            actionService = new ActionService(drishtiService(), allSettings(), allEligibleCouples(), allReports(), alertService(), motherService(), childService());
+            actionService = new ActionService(drishtiService(), allSettings(), allReports(), alertService(), eligibleCoupleService(), motherService(), childService());
         }
         return actionService;
     }
@@ -202,6 +203,13 @@ public class Context {
             alertService = new AlertService(alertRepository(), allBeneficiaries(), allEligibleCouples());
         }
         return alertService;
+    }
+
+    public EligibleCoupleService eligibleCoupleService() {
+        if (eligibleCoupleService == null) {
+            eligibleCoupleService = new EligibleCoupleService(eligibleCoupleRepository());
+        }
+        return eligibleCoupleService;
     }
 
     public MotherService motherService() {
