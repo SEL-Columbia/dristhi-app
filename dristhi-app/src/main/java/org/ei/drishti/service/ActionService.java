@@ -20,14 +20,17 @@ public class ActionService {
     private final AllBeneficiaries allBeneficiaries;
     private final AllReports allReports;
     private AlertService alertService;
+    private ChildService childService;
 
-    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllReports allReports, AlertService alertService) {
+    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllEligibleCouples allEligibleCouples,
+                         AllBeneficiaries allBeneficiaries, AllReports allReports, AlertService alertService, ChildService childService) {
         this.drishtiService = drishtiService;
         this.allSettings = allSettings;
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.allReports = allReports;
         this.alertService = alertService;
+        this.childService = childService;
     }
 
     public FetchStatus fetchNewActions() {
@@ -69,7 +72,7 @@ public class ActionService {
             runAction(actionToUse, new ActionHandler() {
                 @Override
                 public void run(Action action) {
-                    allBeneficiaries.handleChildAction(action);
+                    childService.handleAction(action);
                 }
             });
 

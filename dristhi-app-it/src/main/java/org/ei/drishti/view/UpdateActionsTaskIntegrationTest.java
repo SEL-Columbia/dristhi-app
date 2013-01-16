@@ -64,7 +64,7 @@ public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTes
 
         private int counter = 0;
         public ActionServiceWithSimulatedLongRunningTask() {
-            super(null, null, null, null, null, null);
+            super(null, null, null, null, null, null, null);
         }
 
         @Override

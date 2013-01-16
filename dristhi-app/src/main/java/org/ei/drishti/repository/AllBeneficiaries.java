@@ -25,26 +25,6 @@ public class AllBeneficiaries {
         this.eligibleCoupleRepository = eligibleCoupleRepository;
     }
 
-    public void handleChildAction(Action action) {
-        if (action.type().equals("register")) {
-            Mother mother = motherRepository.find(action.get("motherCaseId"));
-            if (mother == null) {
-                return;
-            }
-            allTimelines.add(forChildBirthInMotherProfile(action.get("motherCaseId"), action.get("dateOfBirth"), action.get("gender"), action.details()));
-            allTimelines.add(forChildBirthInECProfile(mother.ecCaseId(), action.get("dateOfBirth"), action.get("gender"), action.details()));
-            childRepository.add(new Child(action.caseID(), action.get("motherCaseId"), action.get("thaayiCardNumber"), action.get("dateOfBirth"), action.get("gender"), action.details()));
-        } else if (action.type().equals("pncVisitHappened")) {
-            allTimelines.add(forChildPNCVisit(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
-            childRepository.updateDetails(action.caseID(), action.details());
-        } else if (action.type().equals("updateImmunizations")) {
-            allTimelines.add(forChildImmunization(action.caseID(), action.get("immunizationsProvided"), action.get("immunizationsProvidedDate"), action.get("vitaminADose")));
-            childRepository.updateDetails(action.caseID(), action.details());
-        } else if (action.type().equals("deleteChild")) {
-            childRepository.close(action.caseID());
-        }
-    }
-
     public void handleMotherAction(Action action) {
         if (action.type().equals("registerPregnancy")) {
             motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate"))

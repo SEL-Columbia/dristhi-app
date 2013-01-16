@@ -31,6 +31,7 @@ public class Context {
     private ActionService actionService;
     private UserService userService;
     private AlertService alertService;
+    private ChildService childService;
 
     private ANMService anmService;
     private NavigationService navigationService;
@@ -77,7 +78,7 @@ public class Context {
 
     public ActionService actionService() {
         if (actionService == null) {
-            actionService = new ActionService(drishtiService(), allSettings(), allEligibleCouples(), allBeneficiaries(), allReports(), alertService());
+            actionService = new ActionService(drishtiService(), allSettings(), allEligibleCouples(), allBeneficiaries(), allReports(), alertService(), childService());
         }
         return actionService;
     }
@@ -200,6 +201,13 @@ public class Context {
             alertService = new AlertService(alertRepository(), allBeneficiaries(), allEligibleCouples());
         }
         return alertService;
+    }
+
+    public ChildService childService() {
+        if (childService == null) {
+            childService = new ChildService(motherRepository(), childRepository(), allTimelineEvents());
+        }
+        return childService;
     }
 
     private CommCareHQService commCareService() {

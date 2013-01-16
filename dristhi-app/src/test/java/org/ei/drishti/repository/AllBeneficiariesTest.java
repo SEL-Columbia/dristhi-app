@@ -1,7 +1,6 @@
 package org.ei.drishti.repository;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
@@ -16,8 +15,6 @@ import org.mockito.Mock;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.ei.drishti.domain.TimelineEvent.forChildBirthInECProfile;
-import static org.ei.drishti.domain.TimelineEvent.forChildBirthInMotherProfile;
 import static org.ei.drishti.util.ActionBuilder.actionForUpdateBeneficiary;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.mockito.Mockito.*;
@@ -35,12 +32,10 @@ public class AllBeneficiariesTest {
     private AllTimelineEvents allTimelineEvents;
 
     private AllBeneficiaries allBeneficiaries;
-    private String referenceDate;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        referenceDate = LocalDate.now().toString();
         allBeneficiaries = new AllBeneficiaries(motherRepository, childRepository, allTimelineEvents, eligibleCoupleRepository);
     }
 
@@ -126,63 +121,11 @@ public class AllBeneficiariesTest {
     }
 
     @Test
-    public void shouldHandlePNCVisitActionForChild() throws Exception {
-        String caseId = "Case Child X";
-        Action action = ActionBuilder.actionForChildPNCVisit(caseId, mapOf("some-key", "some-value"));
-
-        allBeneficiaries.handleChildAction(action);
-
-        verify(allTimelineEvents).add(TimelineEvent.forChildPNCVisit(caseId, "1", "2012-01-01", mapOf("some-key", "some-value")));
-        verify(childRepository).updateDetails(caseId, mapOf("some-key", "some-value"));
-    }
-
-    @Test
-    public void shouldRegisterChildWhenMotherIsFound() throws Exception {
-        Action action = ActionBuilder.actionForCreateChild("Case Mother X");
-        when(motherRepository.find("Case Mother X")).thenReturn(new Mother("Case Mother X", "EC CASE 1", "TC 1", "2012-01-01"));
-
-        allBeneficiaries.handleChildAction(action);
-        verify(allTimelineEvents).add(forChildBirthInMotherProfile("Case Mother X", action.get("dateOfBirth"), action.get("gender"), action.details()));
-        verify(allTimelineEvents).add(forChildBirthInECProfile("EC CASE 1", action.get("dateOfBirth"), action.get("gender"), action.details()));
-        verify(childRepository).add(new Child("Case X", "Case Mother X", "TC 1", LocalDate.now().toString(), "female", new HashMap<String, String>()));
-    }
-
-    @Test
-    public void shouldNotRegisterChildWhenMotherIsNotFound() throws Exception {
-        Action action = ActionBuilder.actionForCreateChild("Case Mother X");
-        when(motherRepository.find("Case Mother X")).thenReturn(null);
-
-        allBeneficiaries.handleChildAction(action);
-
-        verifyZeroInteractions(childRepository);
-    }
-
-    @Test
     public void shouldHandleUpdateBirthPlanningForMother() throws Exception {
         Action action = ActionBuilder.updateBirthPlanning("Case Mother X", mapOf("aKey", "aValue"));
 
         allBeneficiaries.handleMotherAction(action);
 
         verify(motherRepository).updateDetails("Case Mother X", mapOf("aKey", "aValue"));
-    }
-
-    @Test
-    public void shouldHandleUpdateImmunizationsForChild() throws Exception {
-        Action action = ActionBuilder.updateImmunizations("Case X", mapOf("aKey", "aValue"));
-
-        allBeneficiaries.handleChildAction(action);
-
-        verify(allTimelineEvents).add(TimelineEvent.forChildImmunization("Case X", action.get("immunizationsProvided"), action.get("immunizationsProvidedDate")
-                , action.get("vitaminADose")));
-        verify(childRepository).updateDetails("Case X", mapOf("aKey", "aValue"));
-    }
-
-    @Test
-    public void shouldCloseChildRecordForDeleteChildAction() throws Exception {
-        Action action = ActionBuilder.closeChild("Case X");
-
-        allBeneficiaries.handleChildAction(action);
-
-        verify(childRepository).close("Case X");
     }
 }
