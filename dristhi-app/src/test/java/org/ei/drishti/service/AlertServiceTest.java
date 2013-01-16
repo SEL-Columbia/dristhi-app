@@ -35,19 +35,19 @@ public class AlertServiceTest {
     @Mock
     private AllEligibleCouples allEligibleCouples;
 
-    private AlertService alertService;
+    private AlertService service;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        alertService = new AlertService(alertRepository, allBeneficiaries, allEligibleCouples);
+        service = new AlertService(alertRepository, allBeneficiaries, allEligibleCouples);
     }
 
     @Test
     public void shouldAddAnAlertIntoAlertRepositoryForMotherCreateAlertAction() throws Exception {
         Action actionForMother = setupActionForMotherCreateAlert("Case X", normal, "ANC 1", "2012-01-01", "2012-01-22", "Husband 1");
 
-        alertService.handleAction(actionForMother);
+        service.handleAction(actionForMother);
 
         verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Husband 1", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-22", open));
         verifyNoMoreInteractions(alertRepository);
@@ -57,7 +57,7 @@ public class AlertServiceTest {
     public void shouldNotDoAnythingIfActionIsInactive() throws Exception {
         Action actionForMother = new Action("Case X", "alert", "createAlert", new HashMap<String, String>(), "0", false, new HashMap<String, String>());
 
-        alertService.handleAction(actionForMother);
+        service.handleAction(actionForMother);
 
         verifyZeroInteractions(alertRepository);
     }
@@ -66,7 +66,7 @@ public class AlertServiceTest {
     public void shouldAddAnAlertIntoAlertRepositoryForChildCreateAlertAction() throws Exception {
         Action actionForMother = setupActionForChildCreateAlert("Case X", urgent, "ANC 1", "2012-01-01", "2012-01-22");
 
-        alertService.handleAction(actionForMother);
+        service.handleAction(actionForMother);
 
         verify(alertRepository).createAlert(new Alert("Case X", "B/O Theresa Case X", "Husband 1", "Village Case X", "ANC 1", "Thaayi Case X", urgent, "2012-01-01", "2012-01-22", open));
         verifyNoMoreInteractions(alertRepository);
@@ -77,8 +77,8 @@ public class AlertServiceTest {
         Action firstAction = actionForCloseAlert("Case X", "ANC 1", "2012-01-01", "0");
         Action secondAction = actionForCloseAlert("Case Y", "ANC 2", "2012-01-01", "0");
 
-        alertService.handleAction(firstAction);
-        alertService.handleAction(secondAction);
+        service.handleAction(firstAction);
+        service.handleAction(secondAction);
 
         verify(alertRepository).markAlertAsClosed("Case X", "ANC 1", "2012-01-01");
         verify(alertRepository).markAlertAsClosed("Case Y", "ANC 2", "2012-01-01");
@@ -90,8 +90,8 @@ public class AlertServiceTest {
         Action firstAction = actionForDeleteAllAlert("Case X");
         Action secondAction = actionForDeleteAllAlert("Case Y");
 
-        alertService.handleAction(firstAction);
-        alertService.handleAction(secondAction);
+        service.handleAction(firstAction);
+        service.handleAction(secondAction);
 
         verify(alertRepository).deleteAllAlertsForCase("Case X");
         verify(alertRepository).deleteAllAlertsForCase("Case Y");
@@ -100,7 +100,7 @@ public class AlertServiceTest {
 
     @Test
     public void shouldNotFailIfActionTypeIsNotExpected() throws Exception {
-        alertService.handleAction(unknownAction("alert"));
+        service.handleAction(unknownAction("alert"));
     }
 
     @Test
@@ -111,11 +111,11 @@ public class AlertServiceTest {
         Action deleteAllAction = actionForDeleteAllAlert("Case A");
         Action secondCloseAction = actionForCloseAlert("Case B", "ANC 3", "2012-01-01", "0");
 
-        alertService.handleAction(firstCreateAction);
-        alertService.handleAction(firstCloseAction);
-        alertService.handleAction(secondCreateAction);
-        alertService.handleAction(deleteAllAction);
-        alertService.handleAction(secondCloseAction);
+        service.handleAction(firstCreateAction);
+        service.handleAction(firstCloseAction);
+        service.handleAction(secondCreateAction);
+        service.handleAction(deleteAllAction);
+        service.handleAction(secondCloseAction);
 
         InOrder inOrder = inOrder(alertRepository);
         inOrder.verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Husband 1", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-11", open));

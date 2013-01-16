@@ -14,22 +14,22 @@ import static org.ei.drishti.domain.FetchStatus.fetchedFailed;
 import static org.ei.drishti.domain.FetchStatus.nothingFetched;
 
 public class ActionService {
-    private final DrishtiService drishtiService;
-    private final AllSettings allSettings;
-    private final AllEligibleCouples allEligibleCouples;
-    private final AllBeneficiaries allBeneficiaries;
-    private final AllReports allReports;
+    private DrishtiService drishtiService;
+    private AllSettings allSettings;
+    private AllEligibleCouples allEligibleCouples;
+    private AllReports allReports;
     private AlertService alertService;
+    private MotherService motherService;
     private ChildService childService;
 
     public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllEligibleCouples allEligibleCouples,
-                         AllBeneficiaries allBeneficiaries, AllReports allReports, AlertService alertService, ChildService childService) {
+                         AllReports allReports, AlertService alertService, MotherService motherService, ChildService childService) {
         this.drishtiService = drishtiService;
         this.allSettings = allSettings;
         this.allEligibleCouples = allEligibleCouples;
-        this.allBeneficiaries = allBeneficiaries;
         this.allReports = allReports;
         this.alertService = alertService;
+        this.motherService = motherService;
         this.childService = childService;
     }
 
@@ -80,7 +80,7 @@ public class ActionService {
             runAction(actionToUse, new ActionHandler() {
                 @Override
                 public void run(Action action) {
-                    allBeneficiaries.handleMotherAction(action);
+                    motherService.handleAction(action);
                 }
             });
 

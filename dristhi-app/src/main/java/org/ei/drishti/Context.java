@@ -31,6 +31,7 @@ public class Context {
     private ActionService actionService;
     private UserService userService;
     private AlertService alertService;
+    private MotherService motherService;
     private ChildService childService;
 
     private ANMService anmService;
@@ -78,7 +79,7 @@ public class Context {
 
     public ActionService actionService() {
         if (actionService == null) {
-            actionService = new ActionService(drishtiService(), allSettings(), allEligibleCouples(), allBeneficiaries(), allReports(), alertService(), childService());
+            actionService = new ActionService(drishtiService(), allSettings(), allEligibleCouples(), allReports(), alertService(), motherService(), childService());
         }
         return actionService;
     }
@@ -118,7 +119,7 @@ public class Context {
     public AllBeneficiaries allBeneficiaries() {
         initRepository();
         if (allBeneficiaries == null) {
-            allBeneficiaries = new AllBeneficiaries(motherRepository(), childRepository(), allTimelineEvents(), eligibleCoupleRepository);
+            allBeneficiaries = new AllBeneficiaries(motherRepository(), childRepository());
         }
         return allBeneficiaries;
     }
@@ -201,6 +202,13 @@ public class Context {
             alertService = new AlertService(alertRepository(), allBeneficiaries(), allEligibleCouples());
         }
         return alertService;
+    }
+
+    public MotherService motherService() {
+        if (motherService == null) {
+            motherService = new MotherService(motherRepository(), allTimelineEvents(), eligibleCoupleRepository());
+        }
+        return motherService;
     }
 
     public ChildService childService() {
