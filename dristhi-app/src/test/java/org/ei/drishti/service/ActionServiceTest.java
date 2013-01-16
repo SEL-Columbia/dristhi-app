@@ -31,20 +31,20 @@ public class ActionServiceTest {
     @Mock
     private AllSettings allSettings;
     @Mock
-    private AllAlerts allAlerts;
-    @Mock
     private AllEligibleCouples allEligibleCouples;
     @Mock
     private AllBeneficiaries allPregnancies;
     @Mock
     private AllReports allReports;
+    @Mock
+    private AlertService alertService;
 
     private ActionService service;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new ActionService(drishtiService, allSettings, allAlerts, allEligibleCouples, allPregnancies, allReports);
+        service = new ActionService(drishtiService, allSettings, allEligibleCouples, allPregnancies, allReports, alertService);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class ActionServiceTest {
 
         verify(drishtiService).fetchNewActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
-        verifyNoMoreInteractions(allAlerts);
+        verifyNoMoreInteractions(alertService);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class ActionServiceTest {
 
         verify(drishtiService).fetchNewActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
-        verifyNoMoreInteractions(allAlerts);
+        verifyNoMoreInteractions(alertService);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class ActionServiceTest {
         assertEquals(fetched, service.fetchNewActions());
 
         verify(drishtiService).fetchNewActions("ANM X", "1234");
-        verify(allAlerts).handleAction(ActionBuilder.actionForCreateAlert("Case X", "normal", "mother", "ANC 1", "2012-01-01", null, "0"));
+        verify(alertService).handleAction(ActionBuilder.actionForCreateAlert("Case X", "normal", "mother", "ANC 1", "2012-01-01", null, "0"));
     }
 
     @Test
@@ -89,10 +89,10 @@ public class ActionServiceTest {
 
         service.fetchNewActions();
 
-        InOrder inOrder = inOrder(allAlerts, allSettings);
-        inOrder.verify(allAlerts).handleAction(firstAction);
+        InOrder inOrder = inOrder(alertService, allSettings);
+        inOrder.verify(alertService).handleAction(firstAction);
         inOrder.verify(allSettings).savePreviousFetchIndex("11111");
-        inOrder.verify(allAlerts).handleAction(secondAction);
+        inOrder.verify(alertService).handleAction(secondAction);
         inOrder.verify(allSettings).savePreviousFetchIndex("12345");
     }
 
@@ -114,9 +114,9 @@ public class ActionServiceTest {
 
         service.fetchNewActions();
 
-        InOrder inOrder = inOrder(allEligibleCouples, allAlerts);
+        InOrder inOrder = inOrder(allEligibleCouples, alertService);
         inOrder.verify(allEligibleCouples).handleAction(ecAction);
-        inOrder.verify(allAlerts).handleAction(alertAction);
+        inOrder.verify(alertService).handleAction(alertAction);
     }
 
     private void setupActions(ResponseStatus status, List<Action> list) {

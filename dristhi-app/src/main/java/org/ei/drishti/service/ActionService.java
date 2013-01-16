@@ -16,18 +16,18 @@ import static org.ei.drishti.domain.FetchStatus.nothingFetched;
 public class ActionService {
     private final DrishtiService drishtiService;
     private final AllSettings allSettings;
-    private final AllAlerts allAlerts;
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
     private final AllReports allReports;
+    private AlertService alertService;
 
-    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllAlerts allAlerts, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllReports allReports) {
+    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllReports allReports, AlertService alertService) {
         this.drishtiService = drishtiService;
         this.allSettings = allSettings;
-        this.allAlerts = allAlerts;
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.allReports = allReports;
+        this.alertService = alertService;
     }
 
     public FetchStatus fetchNewActions() {
@@ -61,7 +61,7 @@ public class ActionService {
             runAction(actionToUse, new ActionHandler() {
                 @Override
                 public void run(Action action) {
-                    allAlerts.handleAction(action);
+                    alertService.handleAction(action);
                 }
             });
 

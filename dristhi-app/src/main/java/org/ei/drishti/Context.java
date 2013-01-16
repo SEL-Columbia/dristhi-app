@@ -30,6 +30,7 @@ public class Context {
     private DrishtiService drishtiService;
     private ActionService actionService;
     private UserService userService;
+    private AlertService alertService;
 
     private ANMService anmService;
     private NavigationService navigationService;
@@ -76,7 +77,7 @@ public class Context {
 
     public ActionService actionService() {
         if (actionService == null) {
-            actionService = new ActionService(drishtiService(), allSettings(), allAlerts(), allEligibleCouples(), allBeneficiaries(), allReports());
+            actionService = new ActionService(drishtiService(), allSettings(), allEligibleCouples(), allBeneficiaries(), allReports(), alertService());
         }
         return actionService;
     }
@@ -100,7 +101,7 @@ public class Context {
     public AllAlerts allAlerts() {
         initRepository();
         if (allAlerts == null) {
-            allAlerts = new AllAlerts(alertRepository(), allBeneficiaries(), allEligibleCouples());
+            allAlerts = new AllAlerts(alertRepository());
         }
         return allAlerts;
     }
@@ -192,6 +193,13 @@ public class Context {
             userService = new UserService(commCareService(), repo, allSettings(), session());
         }
         return userService;
+    }
+
+    public AlertService alertService() {
+        if (alertService == null) {
+            alertService = new AlertService(alertRepository(), allBeneficiaries(), allEligibleCouples());
+        }
+        return alertService;
     }
 
     private CommCareHQService commCareService() {
