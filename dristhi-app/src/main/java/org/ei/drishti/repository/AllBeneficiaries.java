@@ -31,7 +31,6 @@ public class AllBeneficiaries {
             if (mother == null) {
                 return;
             }
-
             allTimelines.add(forChildBirthInMotherProfile(action.get("motherCaseId"), action.get("dateOfBirth"), action.get("gender"), action.details()));
             allTimelines.add(forChildBirthInECProfile(mother.ecCaseId(), action.get("dateOfBirth"), action.get("gender"), action.details()));
             childRepository.add(new Child(action.caseID(), action.get("motherCaseId"), action.get("thaayiCardNumber"), action.get("dateOfBirth"), action.get("gender"), action.details()));

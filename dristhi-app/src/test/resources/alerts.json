@@ -13,7 +13,8 @@
         },
         "actionTarget": "alert",
         "actionType": "createAlert",
-        "timeStamp": 1333695798583
+        "timeStamp": 1333695798583,
+        "isActionActive": true
     },
     {
         "anmIdentifier": "ANM 1",
@@ -26,6 +27,7 @@
         },
         "actionTarget": "alert",
         "actionType": "closeAlert",
-        "timeStamp": 1333695798644
+        "timeStamp": 1333695798644,
+        "isActionActive": true
     }
 ]

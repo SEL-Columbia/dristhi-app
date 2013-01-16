@@ -51,6 +51,15 @@ public class AllAlertsTest {
     }
 
     @Test
+    public void shouldNotDoAnythingIfActionIsInactive() throws Exception {
+        Action actionForMother = new Action("Case X", "alert", "create", new HashMap<String, String>(), "0", false, new HashMap<String, String>());
+
+        allAlerts.handleAction(actionForMother);
+
+        verifyZeroInteractions(alertRepository);
+    }
+
+    @Test
     public void shouldAddAnAlertIntoAlertRepositoryForChildCreateAlertAction() throws Exception {
         Action actionForMother = setupActionForChildCreateAlert("Case X", urgent, "ANC 1", "2012-01-01", "2012-01-22");
 

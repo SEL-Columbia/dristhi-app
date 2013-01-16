@@ -31,6 +31,9 @@ public class AllAlerts {
     }
 
     public void handleAction(Action action) {
+        if (!action.isActionActive()) {
+            return;
+        }
         if ("createAlert".equals(action.type())) {
             createAlert(action);
         } else if ("closeAlert".equals(action.type())) {

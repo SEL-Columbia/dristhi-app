@@ -26,10 +26,10 @@ import static org.mockito.MockitoAnnotations.initMocks;
 @RunWith(RobolectricTestRunner.class)
 public class DrishtiServiceTest {
     @Mock
-    HTTPAgent httpAgent;
+    private HTTPAgent httpAgent;
 
-    public static final String EXPECTED_URL = "http://base.drishti.url/actions?anmIdentifier=anm1&timeStamp=0";
     private DrishtiService drishtiService;
+    public static final String EXPECTED_URL = "http://base.drishti.url/actions?anmIdentifier=anm1&timeStamp=0";
 
     @Before
     public void setUp() throws Exception {
