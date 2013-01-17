@@ -18,25 +18,22 @@ public class ActionService {
     private DrishtiService drishtiService;
     private AllSettings allSettings;
     private AllReports allReports;
-    private EligibleCoupleService eligibleCoupleService;
     private MotherService motherService;
 
     public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllReports allReports,
-                         EligibleCoupleService eligibleCoupleService, MotherService motherService) {
+                         MotherService motherService) {
         this.drishtiService = drishtiService;
         this.allSettings = allSettings;
         this.allReports = allReports;
-        this.eligibleCoupleService = eligibleCoupleService;
         this.motherService = motherService;
         this.actionRouter = new ActionRouter();
     }
 
     public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllReports allReports,
-                         EligibleCoupleService eligibleCoupleService, MotherService motherService, ActionRouter actionRouter) {
+                         MotherService motherService, ActionRouter actionRouter) {
         this.drishtiService = drishtiService;
         this.allSettings = allSettings;
         this.allReports = allReports;
-        this.eligibleCoupleService = eligibleCoupleService;
         this.motherService = motherService;
         this.actionRouter = actionRouter;
     }
@@ -104,7 +101,7 @@ public class ActionService {
             runAction(actionToUse, new ActionHandler() {
                 @Override
                 public void run(Action action) {
-                    eligibleCoupleService.handleAction(action);
+                    actionRouter.directECAction(action);
                 }
             });
 

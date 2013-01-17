@@ -32,7 +32,7 @@ public class EligibleCoupleServiceTest {
     }
 
     @Test
-    public void shouldInsertUpdateAndDeleteECActionsBasedOnTheirType() throws Exception {
+    public void shouldInsertUpdateAndDeleteECActions() throws Exception {
         Action firstCreateAction = actionForCreateEC("Case X", "Theresa 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", "PHC X");
         Action firstUpdateAction = actionForUpdateECDetails("Case X", mapOf("key", "value"));
         Action firstDeleteAction = actionForDeleteEC("Case Y");
@@ -40,12 +40,12 @@ public class EligibleCoupleServiceTest {
         Action secondCreateAction = actionForCreateEC("Case Z", "Theresa 2", "Husband 2", "EC Number 2", "Village 1", "SubCenter 1", "PHC X");
         Action secondDeleteAction = actionForDeleteEC("Case B");
 
-        service.handleAction(firstCreateAction);
-        service.handleAction(firstUpdateAction);
-        service.handleAction(secondCreateAction);
-        service.handleAction(secondUpdateAction);
-        service.handleAction(firstDeleteAction);
-        service.handleAction(secondDeleteAction);
+        service.register(firstCreateAction);
+        service.updateDetails(firstUpdateAction);
+        service.register(secondCreateAction);
+        service.updateDetails(secondUpdateAction);
+        service.delete(firstDeleteAction);
+        service.delete(secondDeleteAction);
 
         InOrder inOrder = inOrder(eligibleCoupleRepository);
         inOrder.verify(eligibleCoupleRepository).add(new EligibleCouple("Case X", "Theresa 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", new HashMap<String, String>()));
@@ -55,10 +55,5 @@ public class EligibleCoupleServiceTest {
         inOrder.verify(eligibleCoupleRepository).close("Case Y");
         inOrder.verify(eligibleCoupleRepository).close("Case B");
         verifyNoMoreInteractions(eligibleCoupleRepository);
-    }
-
-    @Test
-    public void shouldNotFailIfActionTypeIsNotExpected() throws Exception {
-        service.handleAction(unknownAction("eligibleCouple"));
     }
 }

@@ -38,8 +38,6 @@ public class ActionServiceTest {
     @Mock
     private AllReports allReports;
     @Mock
-    private EligibleCoupleService eligibleCoupleService;
-    @Mock
     private MotherService motherService;
     @Mock
     private ActionRouter actionRouter;
@@ -49,7 +47,7 @@ public class ActionServiceTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new ActionService(drishtiService, allSettings, allReports, eligibleCoupleService, motherService, actionRouter);
+        service = new ActionService(drishtiService, allSettings, allReports, motherService, actionRouter);
     }
 
     @Test
@@ -109,7 +107,7 @@ public class ActionServiceTest {
         assertEquals(fetched, service.fetchNewActions());
 
         verify(drishtiService).fetchNewActions("ANM X", "1234");
-        eligibleCoupleService.handleAction(actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", "PHC X"));
+        verify(actionRouter).directECAction(actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", "PHC X"));
     }
 
     @Test
@@ -121,7 +119,7 @@ public class ActionServiceTest {
         service.fetchNewActions();
 
         InOrder inOrder = inOrder(allEligibleCouples, actionRouter);
-        eligibleCoupleService.handleAction(ecAction);
+        inOrder.verify(actionRouter).directECAction(ecAction);
         inOrder.verify(actionRouter).directAlertAction(alertAction);
     }
 
