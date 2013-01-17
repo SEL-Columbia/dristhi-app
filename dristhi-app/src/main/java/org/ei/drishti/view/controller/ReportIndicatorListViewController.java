@@ -12,6 +12,7 @@ import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.view.activity.ReportIndicatorDetailActivity;
 import org.ei.drishti.view.contract.CategoryReports;
 import org.ei.drishti.view.contract.IndicatorReport;
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,7 +65,9 @@ public class ReportIndicatorListViewController {
         Collections.sort(monthSummaryData, new Comparator<MonthSummaryDatum>() {
             @Override
             public int compare(MonthSummaryDatum monthSummaryDatum, MonthSummaryDatum anotherMonthSummaryDatum) {
-                return parseInt(anotherMonthSummaryDatum.month()) - parseInt(monthSummaryDatum.month());
+                LocalDate date = new LocalDate().withYear(parseInt(anotherMonthSummaryDatum.year())).withMonthOfYear(parseInt(anotherMonthSummaryDatum.month()));
+                LocalDate anotherDate = new LocalDate().withYear(parseInt(monthSummaryDatum.year())).withMonthOfYear(parseInt(monthSummaryDatum.month()));
+                return date.compareTo(anotherDate);
             }
         });
     }
