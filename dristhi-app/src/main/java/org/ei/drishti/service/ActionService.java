@@ -18,23 +18,18 @@ public class ActionService {
     private DrishtiService drishtiService;
     private AllSettings allSettings;
     private AllReports allReports;
-    private MotherService motherService;
 
-    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllReports allReports,
-                         MotherService motherService) {
+    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllReports allReports) {
         this.drishtiService = drishtiService;
         this.allSettings = allSettings;
         this.allReports = allReports;
-        this.motherService = motherService;
         this.actionRouter = new ActionRouter();
     }
 
-    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllReports allReports,
-                         MotherService motherService, ActionRouter actionRouter) {
+    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllReports allReports, ActionRouter actionRouter) {
         this.drishtiService = drishtiService;
         this.allSettings = allSettings;
         this.allReports = allReports;
-        this.motherService = motherService;
         this.actionRouter = actionRouter;
     }
 
@@ -65,39 +60,7 @@ public class ActionService {
     }
 
     private void handleAction(Action actionToUse) {
-        if (actionToUse.target().equals("alert")) {
-            runAction(actionToUse, new ActionHandler() {
-                @Override
-                public void run(Action action) {
-                    actionRouter.directAlertAction(action);
-                }
-            });
-
-        } else if (actionToUse.target().equals("child")) {
-            runAction(actionToUse, new ActionHandler() {
-                @Override
-                public void run(Action action) {
-                    actionRouter.directChildAction(action);
-                }
-            });
-
-        } else if (actionToUse.target().equals("mother")) {
-            runAction(actionToUse, new ActionHandler() {
-                @Override
-                public void run(Action action) {
-                    motherService.handleAction(action);
-                }
-            });
-
-        } else if (actionToUse.target().equals("report")) {
-            runAction(actionToUse, new ActionHandler() {
-                @Override
-                public void run(Action action) {
-                    allReports.handleAction(action);
-                }
-            });
-
-        } else if (actionToUse.target().equals("eligibleCouple")) {
+        if ("eligibleCouple".equals(actionToUse.target())) {
             runAction(actionToUse, new ActionHandler() {
                 @Override
                 public void run(Action action) {
@@ -105,9 +68,42 @@ public class ActionService {
                 }
             });
 
+        } else if ("mother".equals(actionToUse.target())) {
+            runAction(actionToUse, new ActionHandler() {
+                @Override
+                public void run(Action action) {
+                    actionRouter.directMotherAction(action);
+                }
+            });
+
+        } else if ("child".equals(actionToUse.target())) {
+            runAction(actionToUse, new ActionHandler() {
+                @Override
+                public void run(Action action) {
+                    actionRouter.directChildAction(action);
+                }
+            });
+
+        } else if ("report".equals(actionToUse.target())) {
+            runAction(actionToUse, new ActionHandler() {
+                @Override
+                public void run(Action action) {
+                    allReports.handleAction(action);
+                }
+            });
+
+        } else if ("alert".equals(actionToUse.target())) {
+            runAction(actionToUse, new ActionHandler() {
+                @Override
+                public void run(Action action) {
+                    actionRouter.directAlertAction(action);
+                }
+            });
+
         } else {
             Log.logWarn("Unknown action " + actionToUse.target());
         }
+
         allSettings.savePreviousFetchIndex(actionToUse.index());
     }
 

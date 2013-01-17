@@ -59,10 +59,6 @@ public class ActionBuilder {
         return new Action(caseId, "mother", "registerOutOfAreaANC", actionData.data(), "0", true, mapOf("some-key", "some-field"));
     }
 
-    public static Action unknownAction(String target) {
-        return new Action("Case X", target, "UNKNOWN-TYPE", new HashMap<String, String>(), "0", true, new HashMap<String, String>());
-    }
-
     public static Action actionForUpdateMotherDetails(String motherCaseId, Map<String, String> details) {
         ActionData actionData = updateMotherDetails(details);
         return new Action(motherCaseId, "mother", "updateDetails", actionData.data(), "0", true, actionData.details());
@@ -71,6 +67,11 @@ public class ActionBuilder {
     public static Action actionForANCCareProvided(String motherCaseId, int visitNumber, int numberOfIFATabletsProvided, LocalDate visitDate, String ttDose) {
         ActionData actionData = ancCareProvided(visitNumber, visitDate, numberOfIFATabletsProvided, ttDose, new HashMap<String, String>());
         return new Action(motherCaseId, "mother", "ancCareProvided", actionData.data(), "0", true, new HashMap<String, String>());
+    }
+
+    public static Action actionForCloseMother(String caseId) {
+        ActionData actionData = closeMother("death");
+        return new Action(caseId, "mother", "close", actionData.data(), "0", false, new HashMap<String, String>());
     }
 
     public static Action actionForUpdateANCOutcome(String caseId, Map<String, String> details) {

@@ -18,9 +18,11 @@ import org.mockito.Mock;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.ei.drishti.util.ActionBuilder.actionForUpdateBeneficiary;
+import static org.ei.drishti.util.ActionBuilder.actionForANCCareProvided;
+import static org.ei.drishti.util.ActionBuilder.actionForCloseMother;
 import static org.ei.drishti.util.EasyMap.mapOf;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
@@ -43,7 +45,7 @@ public class MotherServiceTest {
     @Test
     public void shouldHandleRegisterPregnancyForMother() throws Exception {
         Action action = ActionBuilder.actionForRegisterPregnancy("Case Mother X");
-        service.handleAction(action);
+        service.registerANC(action);
         verify(motherRepository).add(new Mother("Case Mother X", "ecCaseId", "thaayiCardNumber", LocalDate.now().toString())
                 .withDetails(mapOf("some-key", "some-field")));
     }
@@ -53,7 +55,7 @@ public class MotherServiceTest {
         Action action = ActionBuilder.actionForOutOfAreaANCRegistration("Case Mother X");
         Map<String, String> details = mapOf("some-key", "some-field");
 
-        service.handleAction(action);
+        service.registerOutOfAreaANC(action);
 
         verify(eligibleCoupleRepository).add(new EligibleCouple("EC Case ID", "Wife 1", "Husband 1", "", "Village X", "SubCenter X", details).asOutOfArea());
         verify(motherRepository).add(new Mother("Case Mother X", "EC Case ID", "TC 1", "2012-09-17")
@@ -64,7 +66,7 @@ public class MotherServiceTest {
     public void shouldHandleUpdateDetailsForMother() throws Exception {
         Action action = ActionBuilder.actionForUpdateMotherDetails("Case Mother X", mapOf("some-key", "some-value"));
 
-        service.handleAction(action);
+        service.update(action);
 
         verify(motherRepository).updateDetails("Case Mother X", mapOf("some-key", "some-value"));
     }
@@ -72,9 +74,9 @@ public class MotherServiceTest {
     @Test
     public void shouldHandleANCCareProvidedForMother() throws Exception {
         LocalDate visitDate = LocalDate.now().minusDays(1);
-        Action action = ActionBuilder.actionForANCCareProvided("Case Mother X", 1, 10, visitDate, "TT 1");
+        Action action = actionForANCCareProvided("Case Mother X", 1, 10, visitDate, "TT 1");
 
-        service.handleAction(action);
+        service.ancCareProvided(action);
 
         verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("Case Mother X", "1", visitDate.toString(), new HashMap<String, String>()));
         verify(allTimelineEvents).add(TimelineEvent.forIFATabletsProvided(action.caseID(), "10", visitDate.toString()));
@@ -84,9 +86,9 @@ public class MotherServiceTest {
     @Test
     public void shouldNotAddTimelineEventForServicesNotProvidedForMother() throws Exception {
         LocalDate visitDate = LocalDate.now().minusDays(1);
-        Action action = ActionBuilder.actionForANCCareProvided("Case Mother X", 1, 0, visitDate, "");
+        Action action = actionForANCCareProvided("Case Mother X", 1, 0, visitDate, "");
 
-        service.handleAction(action);
+        service.ancCareProvided(action);
 
         verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("Case Mother X", "1", visitDate.toString(), new HashMap<String, String>()));
         verifyNoMoreInteractions(allTimelineEvents);
@@ -94,9 +96,9 @@ public class MotherServiceTest {
 
     @Test
     public void shouldCloseANC() throws Exception {
-        service.handleAction(actionForUpdateBeneficiary());
+        service.close(actionForCloseMother("Case X"));
 
-        verifyZeroInteractions(motherRepository);
+        verify(motherRepository).close("Case X");
     }
 
     @Test
@@ -104,7 +106,7 @@ public class MotherServiceTest {
         String caseId = "Case Mother X";
         Action action = ActionBuilder.actionForUpdateANCOutcome(caseId, mapOf("some-key", "some-value"));
 
-        service.handleAction(action);
+        service.updateANCOutcome(action);
 
         verify(motherRepository).switchToPNC(caseId);
         verify(motherRepository).updateDetails(caseId, mapOf("some-key", "some-value"));
@@ -115,7 +117,7 @@ public class MotherServiceTest {
         String caseId = "Case Mother X";
         Action action = ActionBuilder.actionForMotherPNCVisit(caseId, mapOf("some-key", "some-value"));
 
-        service.handleAction(action);
+        service.pncVisitHappened(action);
 
         verify(allTimelineEvents).add(TimelineEvent.forMotherPNCVisit(caseId, "1", "2012-01-01", mapOf("some-key", "some-value")));
         verify(motherRepository).updateDetails(caseId, mapOf("some-key", "some-value"));
@@ -125,7 +127,7 @@ public class MotherServiceTest {
     public void shouldHandleUpdateBirthPlanningForMother() throws Exception {
         Action action = ActionBuilder.updateBirthPlanning("Case Mother X", mapOf("aKey", "aValue"));
 
-        service.handleAction(action);
+        service.update(action);
 
         verify(motherRepository).updateDetails("Case Mother X", mapOf("aKey", "aValue"));
     }

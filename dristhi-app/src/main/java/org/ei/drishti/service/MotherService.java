@@ -22,39 +22,49 @@ public class MotherService {
         this.eligibleCoupleRepository = eligibleCoupleRepository;
     }
 
-    public void handleAction(Action action) {
-        if (action.type().equals("registerPregnancy")) {
-            motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate"))
-                    .withDetails(action.details()));
-        } else if (action.type().equals("close")) {
-            motherRepository.close(action.caseID());
-        } else if (action.type().equals("updateDetails") || action.type().equals("updateBirthPlanning")) {
-            motherRepository.updateDetails(action.caseID(), action.details());
-        } else if (action.type().equals("ancCareProvided")) {
-            allTimelines.add(forANCCareProvided(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
+    public void registerANC(Action action) {
+        motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate"))
+                .withDetails(action.details()));
+    }
 
-            String numberOfIFATabletsProvided = action.get("numberOfIFATabletsProvided");
-            if (numberOfIFATabletsProvided != null && Integer.parseInt(numberOfIFATabletsProvided) > 0) {
-                allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
-            }
-            if (StringUtils.isNotBlank(action.get("ttDose"))) {
-                allTimelines.add(forTTShotProvided(action.caseID(), action.get("ttDose"), action.get("visitDate")));
-            }
-        } else if (action.type().equals("registerOutOfAreaANC")) {
-            eligibleCoupleRepository.add(new EligibleCouple(action.get("ecCaseId"), action.get("wife"), action.get("husband"), "", action.get("village"), action.get("subcenter"), action.details()).asOutOfArea());
-            motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate"))
-                    .withDetails(action.details()));
-        } else if (action.type().equals("updateANCOutcome")) {
-            motherRepository.switchToPNC(action.caseID());
-            motherRepository.updateDetails(action.caseID(), action.details());
-        } else if (action.type().equals("pncVisitHappened")) {
-            allTimelines.add(forMotherPNCVisit(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
-            motherRepository.updateDetails(action.caseID(), action.details());
+    public void update(Action action) {
+        motherRepository.updateDetails(action.caseID(), action.details());
+    }
 
-            String numberOfIFATabletsProvided = action.get("numberOfIFATabletsProvided");
-            if (numberOfIFATabletsProvided != null && IntegerUtil.tryParse(numberOfIFATabletsProvided, 0) > 0) {
-                allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
-            }
+    public void ancCareProvided(Action action) {
+        allTimelines.add(forANCCareProvided(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
+
+        String numberOfIFATabletsProvided = action.get("numberOfIFATabletsProvided");
+        if (numberOfIFATabletsProvided != null && Integer.parseInt(numberOfIFATabletsProvided) > 0) {
+            allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
         }
+        if (StringUtils.isNotBlank(action.get("ttDose"))) {
+            allTimelines.add(forTTShotProvided(action.caseID(), action.get("ttDose"), action.get("visitDate")));
+        }
+    }
+
+    public void registerOutOfAreaANC(Action action) {
+        eligibleCoupleRepository.add(new EligibleCouple(action.get("ecCaseId"), action.get("wife"), action.get("husband"), "", action.get("village"), action.get("subcenter"), action.details()).asOutOfArea());
+        motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate"))
+                .withDetails(action.details()));
+    }
+
+    public void updateANCOutcome(Action action) {
+        motherRepository.switchToPNC(action.caseID());
+        motherRepository.updateDetails(action.caseID(), action.details());
+    }
+
+    public void pncVisitHappened(Action action) {
+        allTimelines.add(forMotherPNCVisit(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
+        motherRepository.updateDetails(action.caseID(), action.details());
+
+        String numberOfIFATabletsProvided = action.get("numberOfIFATabletsProvided");
+        if (numberOfIFATabletsProvided != null && IntegerUtil.tryParse(numberOfIFATabletsProvided, 0) > 0) {
+            allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
+        }
+    }
+
+    public void close(Action action) {
+        motherRepository.close(action.caseID());
     }
 }

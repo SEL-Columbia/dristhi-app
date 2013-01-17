@@ -38,8 +38,6 @@ public class ActionServiceTest {
     @Mock
     private AllReports allReports;
     @Mock
-    private MotherService motherService;
-    @Mock
     private ActionRouter actionRouter;
 
     private ActionService service;
@@ -47,7 +45,7 @@ public class ActionServiceTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new ActionService(drishtiService, allSettings, allReports, motherService, actionRouter);
+        service = new ActionService(drishtiService, allSettings, allReports, actionRouter);
     }
 
     @Test
