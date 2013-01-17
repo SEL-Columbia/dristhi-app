@@ -80,7 +80,7 @@ public class Context {
 
     public ActionService actionService() {
         if (actionService == null) {
-            actionService = new ActionService(drishtiService(), allSettings(), allReports(), alertService(), eligibleCoupleService(), motherService(), childService());
+            actionService = new ActionService(drishtiService(), allSettings(), allReports(), alertService(), eligibleCoupleService(), motherService());
         }
         return actionService;
     }

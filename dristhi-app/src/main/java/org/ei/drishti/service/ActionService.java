@@ -1,6 +1,7 @@
 package org.ei.drishti.service;
 
 import com.google.gson.Gson;
+import org.ei.drishti.domain.ChildActionRoute;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.dto.Action;
@@ -20,17 +21,15 @@ public class ActionService {
     private AlertService alertService;
     private EligibleCoupleService eligibleCoupleService;
     private MotherService motherService;
-    private ChildService childService;
 
     public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllReports allReports, AlertService alertService,
-                         EligibleCoupleService eligibleCoupleService, MotherService motherService, ChildService childService) {
+                         EligibleCoupleService eligibleCoupleService, MotherService motherService) {
         this.drishtiService = drishtiService;
         this.allSettings = allSettings;
         this.allReports = allReports;
         this.alertService = alertService;
         this.eligibleCoupleService = eligibleCoupleService;
         this.motherService = motherService;
-        this.childService = childService;
     }
 
     public FetchStatus fetchNewActions() {
@@ -72,7 +71,7 @@ public class ActionService {
             runAction(actionToUse, new ActionHandler() {
                 @Override
                 public void run(Action action) {
-                    childService.handleAction(action);
+                    ChildActionRoute.directAction(action);
                 }
             });
 

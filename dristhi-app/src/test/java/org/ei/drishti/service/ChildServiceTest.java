@@ -45,7 +45,7 @@ public class ChildServiceTest {
         String caseId = "Case Child X";
         Action action = ActionBuilder.actionForChildPNCVisit(caseId, mapOf("some-key", "some-value"));
 
-        service.handleAction(action);
+        service.pncVisit(action);
 
         verify(allTimelineEvents).add(TimelineEvent.forChildPNCVisit(caseId, "1", "2012-01-01", mapOf("some-key", "some-value")));
         verify(childRepository).updateDetails(caseId, mapOf("some-key", "some-value"));
@@ -56,7 +56,7 @@ public class ChildServiceTest {
         Action action = ActionBuilder.actionForCreateChild("Case Mother X");
         when(motherRepository.find("Case Mother X")).thenReturn(new Mother("Case Mother X", "EC CASE 1", "TC 1", "2012-01-01"));
 
-        service.handleAction(action);
+        service.register(action);
         verify(allTimelineEvents).add(forChildBirthInMotherProfile("Case Mother X", action.get("dateOfBirth"), action.get("gender"), action.details()));
         verify(allTimelineEvents).add(forChildBirthInECProfile("EC CASE 1", action.get("dateOfBirth"), action.get("gender"), action.details()));
         verify(childRepository).add(new Child("Case X", "Case Mother X", "TC 1", LocalDate.now().toString(), "female", new HashMap<String, String>()));
@@ -67,7 +67,7 @@ public class ChildServiceTest {
         Action action = ActionBuilder.actionForCreateChild("Case Mother X");
         when(motherRepository.find("Case Mother X")).thenReturn(null);
 
-        service.handleAction(action);
+        service.register(action);
 
         verifyZeroInteractions(childRepository);
     }
@@ -76,7 +76,7 @@ public class ChildServiceTest {
     public void shouldHandleUpdateImmunizationsForChild() throws Exception {
         Action action = ActionBuilder.updateImmunizations("Case X", mapOf("aKey", "aValue"));
 
-        service.handleAction(action);
+        service.updateImmunizations(action);
 
         verify(allTimelineEvents).add(TimelineEvent.forChildImmunization("Case X", action.get("immunizationsProvided"), action.get("immunizationsProvidedDate")
                 , action.get("vitaminADose")));
@@ -87,7 +87,7 @@ public class ChildServiceTest {
     public void shouldCloseChildRecordForDeleteChildAction() throws Exception {
         Action action = ActionBuilder.closeChild("Case X");
 
-        service.handleAction(action);
+        service.delete(action);
 
         verify(childRepository).close("Case X");
     }
