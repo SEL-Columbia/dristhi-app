@@ -1,10 +1,13 @@
 package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.router.ActionRouter;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.dto.Action;
-import org.ei.drishti.repository.*;
+import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.repository.AllReports;
+import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.util.ActionBuilder;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,22 +36,20 @@ public class ActionServiceTest {
     @Mock
     private AllEligibleCouples allEligibleCouples;
     @Mock
-    private AllBeneficiaries allPregnancies;
-    @Mock
     private AllReports allReports;
-    @Mock
-    private AlertService alertService;
     @Mock
     private EligibleCoupleService eligibleCoupleService;
     @Mock
     private MotherService motherService;
+    @Mock
+    private ActionRouter actionRouter;
 
     private ActionService service;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new ActionService(drishtiService, allSettings, allReports, alertService, eligibleCoupleService, motherService);
+        service = new ActionService(drishtiService, allSettings, allReports, eligibleCoupleService, motherService, actionRouter);
     }
 
     @Test
@@ -59,7 +60,7 @@ public class ActionServiceTest {
 
         verify(drishtiService).fetchNewActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
-        verifyNoMoreInteractions(alertService);
+        verifyNoMoreInteractions(actionRouter);
     }
 
     @Test
@@ -70,17 +71,18 @@ public class ActionServiceTest {
 
         verify(drishtiService).fetchNewActions("ANM X", "1234");
         verifyNoMoreInteractions(drishtiService);
-        verifyNoMoreInteractions(alertService);
+        verifyNoMoreInteractions(actionRouter);
     }
 
     @Test
     public void shouldFetchAlertActionsAndSaveThemToRepository() throws Exception {
-        setupActions(success, asList(ActionBuilder.actionForCreateAlert("Case X", "normal", "mother", "ANC 1", "2012-01-01", null, "0")));
+        Action action = ActionBuilder.actionForCreateAlert("Case X", "normal", "mother", "ANC 1", "2012-01-01", null, "0");
+        setupActions(success, asList(action));
 
         assertEquals(fetched, service.fetchNewActions());
 
         verify(drishtiService).fetchNewActions("ANM X", "1234");
-        verify(alertService).handleAction(ActionBuilder.actionForCreateAlert("Case X", "normal", "mother", "ANC 1", "2012-01-01", null, "0"));
+        verify(actionRouter).directAlertAction(action);
     }
 
     @Test
@@ -93,10 +95,10 @@ public class ActionServiceTest {
 
         service.fetchNewActions();
 
-        InOrder inOrder = inOrder(alertService, allSettings);
-        inOrder.verify(alertService).handleAction(firstAction);
+        InOrder inOrder = inOrder(actionRouter, allSettings);
+        inOrder.verify(actionRouter).directAlertAction(firstAction);
         inOrder.verify(allSettings).savePreviousFetchIndex("11111");
-        inOrder.verify(alertService).handleAction(secondAction);
+        inOrder.verify(actionRouter).directAlertAction(secondAction);
         inOrder.verify(allSettings).savePreviousFetchIndex("12345");
     }
 
@@ -118,9 +120,9 @@ public class ActionServiceTest {
 
         service.fetchNewActions();
 
-        InOrder inOrder = inOrder(allEligibleCouples, alertService);
+        InOrder inOrder = inOrder(allEligibleCouples, actionRouter);
         eligibleCoupleService.handleAction(ecAction);
-        inOrder.verify(alertService).handleAction(alertAction);
+        inOrder.verify(actionRouter).directAlertAction(alertAction);
     }
 
     private void setupActions(ResponseStatus status, List<Action> list) {

@@ -23,20 +23,20 @@ public class AlertService {
         this.allEligibleCouples = allEligibleCouples;
     }
 
-    public void handleAction(Action action) {
+    public void create(Action action) {
         if (!action.isActionActive()) {
             return;
         }
 
-        if ("createAlert".equals(action.type())) {
-            createAlert(action);
-        } else if ("closeAlert".equals(action.type())) {
-            repository.markAlertAsClosed(action.caseID(), action.get("visitCode"), action.get("completionDate"));
-        } else if ("deleteAllAlerts".equals(action.type())) {
-            repository.deleteAllAlertsForCase(action.caseID());
-        } else {
-            Log.logWarn("Unknown type in alert action: " + action);
-        }
+        createAlert(action);
+    }
+
+    public void close(Action action) {
+        repository.markAlertAsClosed(action.caseID(), action.get("visitCode"), action.get("completionDate"));
+    }
+
+    public void deleteAll(Action action) {
+        repository.deleteAllAlertsForCase(action.caseID());
     }
 
     private void createAlert(Action action) {

@@ -1,11 +1,10 @@
 package org.ei.drishti.service;
 
 import com.google.gson.Gson;
-import org.ei.drishti.domain.ChildActionRoute;
-import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.domain.Response;
+import org.ei.drishti.domain.*;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.repository.*;
+import org.ei.drishti.router.ActionRouter;
 import org.ei.drishti.util.Log;
 
 import java.util.List;
@@ -15,21 +14,31 @@ import static org.ei.drishti.domain.FetchStatus.fetchedFailed;
 import static org.ei.drishti.domain.FetchStatus.nothingFetched;
 
 public class ActionService {
+    private final ActionRouter actionRouter;
     private DrishtiService drishtiService;
     private AllSettings allSettings;
     private AllReports allReports;
-    private AlertService alertService;
     private EligibleCoupleService eligibleCoupleService;
     private MotherService motherService;
 
-    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllReports allReports, AlertService alertService,
+    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllReports allReports,
                          EligibleCoupleService eligibleCoupleService, MotherService motherService) {
         this.drishtiService = drishtiService;
         this.allSettings = allSettings;
         this.allReports = allReports;
-        this.alertService = alertService;
         this.eligibleCoupleService = eligibleCoupleService;
         this.motherService = motherService;
+        this.actionRouter = new ActionRouter();
+    }
+
+    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllReports allReports,
+                         EligibleCoupleService eligibleCoupleService, MotherService motherService, ActionRouter actionRouter) {
+        this.drishtiService = drishtiService;
+        this.allSettings = allSettings;
+        this.allReports = allReports;
+        this.eligibleCoupleService = eligibleCoupleService;
+        this.motherService = motherService;
+        this.actionRouter = actionRouter;
     }
 
     public FetchStatus fetchNewActions() {
@@ -63,7 +72,7 @@ public class ActionService {
             runAction(actionToUse, new ActionHandler() {
                 @Override
                 public void run(Action action) {
-                    alertService.handleAction(action);
+                    actionRouter.directAlertAction(action);
                 }
             });
 
@@ -71,7 +80,7 @@ public class ActionService {
             runAction(actionToUse, new ActionHandler() {
                 @Override
                 public void run(Action action) {
-                    ChildActionRoute.directAction(action);
+                    actionRouter.directChildAction(action);
                 }
             });
 

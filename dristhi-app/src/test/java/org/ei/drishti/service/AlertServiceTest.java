@@ -14,7 +14,6 @@ import org.ei.drishti.repository.AllEligibleCouples;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InOrder;
 import org.mockito.Mock;
 
 import java.util.HashMap;
@@ -47,17 +46,17 @@ public class AlertServiceTest {
     public void shouldAddAnAlertIntoAlertRepositoryForMotherCreateAlertAction() throws Exception {
         Action actionForMother = setupActionForMotherCreateAlert("Case X", normal, "ANC 1", "2012-01-01", "2012-01-22", "Husband 1");
 
-        service.handleAction(actionForMother);
+        service.create(actionForMother);
 
         verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Husband 1", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-22", open));
         verifyNoMoreInteractions(alertRepository);
     }
 
     @Test
-    public void shouldNotDoAnythingIfActionIsInactive() throws Exception {
+    public void shouldNotCreateIfActionIsInactive() throws Exception {
         Action actionForMother = new Action("Case X", "alert", "createAlert", new HashMap<String, String>(), "0", false, new HashMap<String, String>());
 
-        service.handleAction(actionForMother);
+        service.create(actionForMother);
 
         verifyZeroInteractions(alertRepository);
     }
@@ -66,7 +65,7 @@ public class AlertServiceTest {
     public void shouldAddAnAlertIntoAlertRepositoryForChildCreateAlertAction() throws Exception {
         Action actionForMother = setupActionForChildCreateAlert("Case X", urgent, "ANC 1", "2012-01-01", "2012-01-22");
 
-        service.handleAction(actionForMother);
+        service.create(actionForMother);
 
         verify(alertRepository).createAlert(new Alert("Case X", "B/O Theresa Case X", "Husband 1", "Village Case X", "ANC 1", "Thaayi Case X", urgent, "2012-01-01", "2012-01-22", open));
         verifyNoMoreInteractions(alertRepository);
@@ -77,8 +76,8 @@ public class AlertServiceTest {
         Action firstAction = actionForCloseAlert("Case X", "ANC 1", "2012-01-01", "0");
         Action secondAction = actionForCloseAlert("Case Y", "ANC 2", "2012-01-01", "0");
 
-        service.handleAction(firstAction);
-        service.handleAction(secondAction);
+        service.close(firstAction);
+        service.close(secondAction);
 
         verify(alertRepository).markAlertAsClosed("Case X", "ANC 1", "2012-01-01");
         verify(alertRepository).markAlertAsClosed("Case Y", "ANC 2", "2012-01-01");
@@ -90,39 +89,11 @@ public class AlertServiceTest {
         Action firstAction = actionForDeleteAllAlert("Case X");
         Action secondAction = actionForDeleteAllAlert("Case Y");
 
-        service.handleAction(firstAction);
-        service.handleAction(secondAction);
+        service.deleteAll(firstAction);
+        service.deleteAll(secondAction);
 
         verify(alertRepository).deleteAllAlertsForCase("Case X");
         verify(alertRepository).deleteAllAlertsForCase("Case Y");
-        verifyNoMoreInteractions(alertRepository);
-    }
-
-    @Test
-    public void shouldNotFailIfActionTypeIsNotExpected() throws Exception {
-        service.handleAction(unknownAction("alert"));
-    }
-
-    @Test
-    public void shouldUpdateDeleteAndDeleteAllAlertActionsBasedOnTheirType() throws Exception {
-        Action firstCreateAction = setupActionForMotherCreateAlert("Case X", normal, "ANC 1", "2012-01-01", "2012-01-11", "Husband 1");
-        Action firstCloseAction = actionForCloseAlert("Case Y", "ANC 2", "2012-01-01", "0");
-        Action secondCreateAction = setupActionForMotherCreateAlert("Case Z", normal, "ANC 2", "2012-01-01", "2012-01-22", "Husband 2");
-        Action deleteAllAction = actionForDeleteAllAlert("Case A");
-        Action secondCloseAction = actionForCloseAlert("Case B", "ANC 3", "2012-01-01", "0");
-
-        service.handleAction(firstCreateAction);
-        service.handleAction(firstCloseAction);
-        service.handleAction(secondCreateAction);
-        service.handleAction(deleteAllAction);
-        service.handleAction(secondCloseAction);
-
-        InOrder inOrder = inOrder(alertRepository);
-        inOrder.verify(alertRepository).createAlert(new Alert("Case X", "Theresa Case X", "Husband 1", "Village Case X", "ANC 1", "Thaayi Case X", normal, "2012-01-01", "2012-01-11", open));
-        inOrder.verify(alertRepository).markAlertAsClosed("Case Y", "ANC 2", "2012-01-01");
-        inOrder.verify(alertRepository).createAlert(new Alert("Case Z", "Theresa Case Z", "Husband 2", "Village Case Z", "ANC 2", "Thaayi Case Z", normal, "2012-01-01", "2012-01-22", open));
-        inOrder.verify(alertRepository).deleteAllAlertsForCase("Case A");
-        inOrder.verify(alertRepository).markAlertAsClosed("Case B", "ANC 3", "2012-01-01");
         verifyNoMoreInteractions(alertRepository);
     }
 
