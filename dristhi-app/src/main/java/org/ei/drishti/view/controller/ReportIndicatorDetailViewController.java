@@ -10,7 +10,7 @@ import org.ei.drishti.view.contract.IndicatorReportDetail;
 
 import java.util.ArrayList;
 
-import static org.apache.commons.lang.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.*;
 
 public class ReportIndicatorDetailViewController {

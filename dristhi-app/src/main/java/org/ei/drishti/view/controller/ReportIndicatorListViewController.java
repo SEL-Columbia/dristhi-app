@@ -20,7 +20,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
-import static org.apache.commons.lang.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.CATEGORY_DESCRIPTION;
 import static org.ei.drishti.AllConstants.INDICATOR_DETAIL;
 

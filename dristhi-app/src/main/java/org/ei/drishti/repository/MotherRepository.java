@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.apache.commons.lang.StringUtils.join;
-import static org.apache.commons.lang.StringUtils.repeat;
+import static org.apache.commons.lang3.StringUtils.join;
+import static org.apache.commons.lang3.StringUtils.repeat;
 import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_COLUMNS;
 import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_NAME;
 

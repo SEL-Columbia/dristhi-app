@@ -8,7 +8,7 @@ import org.ei.drishti.domain.Report;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.apache.commons.lang.StringUtils.repeat;
+import static org.apache.commons.lang3.StringUtils.repeat;
 
 public class ReportRepository extends DrishtiRepository {
     private static final String REPORT_SQL = "CREATE TABLE report(indicator VARCHAR PRIMARY KEY, annualTarget VARCHAR, monthlySummaries VARCHAR)";
