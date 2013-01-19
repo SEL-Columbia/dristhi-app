@@ -89,7 +89,11 @@ public class LoginActivity extends Activity {
                 if (loginResponse == SUCCESS) {
                     loginWith(userName, password);
                 } else {
-                    showErrorDialog(loginResponse.message());
+                    if (loginResponse == null) {
+                        showErrorDialog("Login failed. Unknown reason. Try Again");
+                    } else {
+                        showErrorDialog(loginResponse.message());
+                    }
                     view.setClickable(true);
                 }
             }
