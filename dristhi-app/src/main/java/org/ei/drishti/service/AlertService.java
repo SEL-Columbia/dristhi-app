@@ -24,11 +24,9 @@ public class AlertService {
     }
 
     public void create(Action action) {
-        if (!action.isActionActive()) {
-            return;
+        if (action.isActionActive() == null || action.isActionActive()) {
+            createAlert(action);
         }
-
-        createAlert(action);
     }
 
     public void close(Action action) {
