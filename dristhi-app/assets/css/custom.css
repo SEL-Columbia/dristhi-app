@@ -23,10 +23,11 @@
 }
 
 .navbar .navbar-inner {
-    padding-left: 15px;
     zoom: 125%;
+    padding-left: 15px;
+    border: 0;
+    background: -webkit-linear-gradient(top, #1a93d2 0%, #1c83ba 100%);
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#1a93d2), to(#1c83ba));
-    background: -webkit-linear-gradient(top, #1a93d2 0%, #1c83ba 100%)
 }
 
 .menu-button-container {
@@ -45,7 +46,6 @@
     padding-top: 16px;
     font-size: 17px;
     text-shadow: 0px 1px 2px #000;
-
 }
 
 .menu-button-row-padding {
@@ -658,6 +658,7 @@ body {
     height: 30px;
     font-weight: bold;
     font-size: 20px;
+    padding-right: 8px;
 }
 
 .dropdown-option {

@@ -16,6 +16,7 @@ function SidePanel(anmNavigation) {
             $(".mainpanel .container-sidepanel.container-affected-by-sidepanel").removeClass("container-affected-by-sidepanel");
             $(".page").css('height', 'auto');
         }});
+
     };
 
     var bindToggleSidebar = function () {
