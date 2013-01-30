@@ -734,3 +734,13 @@ body {
     width: 100%;
     z-index: 100;
 }
+
+.search-container {
+    width: 50%;
+}
+
+.search-box {
+    width: 75%;
+    margin-left: 10px;
+    margin-top: 2px;
+}
