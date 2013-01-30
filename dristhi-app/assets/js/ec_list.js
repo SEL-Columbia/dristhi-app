@@ -53,6 +53,20 @@ function ECList(ecListBridge, cssIdOf) {
         ecListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
     };
 
+    var expandSearchBox = function () {
+        $(cssIdOf.sidePanelButton).hide();
+        $(cssIdOf.registerECButton).hide();
+        $(cssIdOf.cancelSearchButton).show();
+        $(cssIdOf.searchContainer).addClass(cssIdOf.expandedSearchContainerClass);
+    };
+
+    var cancelSearchBox = function () {
+        $(cssIdOf.sidePanelButton).show();
+        $(cssIdOf.cancelSearchButton).hide();
+        $(cssIdOf.registerECButton).show();
+        $(cssIdOf.searchContainer).removeClass(cssIdOf.expandedSearchContainerClass);
+    };
+
     return {
         populateInto: function () {
             allECs = ecListBridge.getECs();
@@ -80,6 +94,10 @@ function ECList(ecListBridge, cssIdOf) {
         },
         bindToVillageFilter: function () {
             $(cssIdOf.villageFilterOptions).click(filterByVillage);
+        },
+        bindToSearchBox: function () {
+            $(cssIdOf.searchBox).click(expandSearchBox);
+            $(cssIdOf.cancelSearchButton).click(cancelSearchBox);
         }
     };
 }

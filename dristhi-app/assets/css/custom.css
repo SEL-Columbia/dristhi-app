@@ -744,3 +744,18 @@ body {
     margin-left: 10px;
     margin-top: 2px;
 }
+
+.cancel-search {
+    color: #fff;
+    margin-top: 12px;
+    vertical-align: text-bottom;
+    text-shadow: 0 1px 2px #000000;
+}
+
+.expanded-search-container {
+    width: 70%;
+}
+
+.match-parents-width {
+    width: 100%;
+}
