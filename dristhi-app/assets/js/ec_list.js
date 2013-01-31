@@ -85,6 +85,14 @@ function ECList(ecListBridge, cssIdOf) {
         populateECs(normalPriorityListItems, cssIdOf.normalPriorityContainer, cssIdOf.normalPriorityListContainer, cssIdOf.normalPriorityECsCount);
     };
 
+    var matcher = function (ecList, searchString) {
+        return jQuery.grep(ecList, function (ec) {
+            return (ec.wifeName.toUpperCase().indexOf(searchString) == 0
+                || ec.ecNumber.toUpperCase().indexOf(searchString) == 0
+                || ec.thayiCardNumber.toUpperCase().indexOf(searchString) == 0);
+        });
+    };
+
     var search = function (e) {
         var searchString = e.target.value.toUpperCase();
 
@@ -93,12 +101,8 @@ function ECList(ecListBridge, cssIdOf) {
             return
         }
 
-        var hpSearchResults = jQuery.grep(filteredHighPriorityECs, function (ec) {
-            return (ec.wifeName.toUpperCase().indexOf(searchString)) == 0;
-        });
-        var npSearchResults = jQuery.grep(filteredNormalPriorityECs, function (ec) {
-            return (ec.wifeName.toUpperCase().indexOf(searchString)) == 0;
-        });
+        var hpSearchResults = matcher(filteredHighPriorityECs, searchString);
+        var npSearchResults = matcher(filteredNormalPriorityECs, searchString);
 
         populateList(hpSearchResults, npSearchResults);
     };
