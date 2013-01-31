@@ -3,11 +3,10 @@ function ECList(ecListBridge, cssIdOf) {
     var VILLAGE_FILTER_OPTION = "village";
     var allECs;
     var appliedVillageFilter;
+    var filteredHighPriorityECs;
+    var filteredNormalPriorityECs;
 
     var showECsAndUpdateCount = function (appliedVillageFilter) {
-        var filteredHighPriorityECs;
-        var filteredNormalPriorityECs;
-
         if (appliedVillageFilter === ALL_VILLAGES_FILTER_OPTION) {
             filteredHighPriorityECs = allECs.highPriority;
             filteredNormalPriorityECs = allECs.normalPriority;
@@ -17,8 +16,7 @@ function ECList(ecListBridge, cssIdOf) {
             filteredNormalPriorityECs = getECsBelongingToVillage(allECs.normalPriority, appliedVillageFilter);
         }
 
-        populateECs(filteredHighPriorityECs, cssIdOf.highPriorityContainer, cssIdOf.highPriorityListContainer, cssIdOf.highPriorityECsCount);
-        populateECs(filteredNormalPriorityECs, cssIdOf.normalPriorityContainer, cssIdOf.normalPriorityListContainer, cssIdOf.normalPriorityECsCount);
+        populateList(filteredHighPriorityECs, filteredNormalPriorityECs);
     };
 
     var populateECs = function (ecs, cssIdOfListContainer, cssIdOfListItemsContainer, idOfECsCount) {
@@ -58,6 +56,16 @@ function ECList(ecListBridge, cssIdOf) {
         $(cssIdOf.registerECButton).hide();
         $(cssIdOf.cancelSearchButton).show();
         $(cssIdOf.searchContainer).addClass(cssIdOf.expandedSearchContainerClass);
+
+        setTimeout(clearListItems, 50);
+    };
+
+    var clearListItems = function () {
+        $(cssIdOf.highPriorityListContainer).empty();
+        $(cssIdOf.highPriorityContainer).hide();
+
+        $(cssIdOf.normalPriorityListContainer).empty();
+        $(cssIdOf.normalPriorityContainer).hide();
     };
 
     var cancelSearchBox = function () {
@@ -65,11 +73,42 @@ function ECList(ecListBridge, cssIdOf) {
         $(cssIdOf.cancelSearchButton).hide();
         $(cssIdOf.registerECButton).show();
         $(cssIdOf.searchContainer).removeClass(cssIdOf.expandedSearchContainerClass);
+        $(cssIdOf.searchBox).val('');
+
+        setTimeout(function () {
+            populateList(filteredHighPriorityECs, filteredNormalPriorityECs);
+        }, 50);
+    };
+
+    var populateList = function (highPriorityListItems, normalPriorityListItems) {
+        populateECs(highPriorityListItems, cssIdOf.highPriorityContainer, cssIdOf.highPriorityListContainer, cssIdOf.highPriorityECsCount);
+        populateECs(normalPriorityListItems, cssIdOf.normalPriorityContainer, cssIdOf.normalPriorityListContainer, cssIdOf.normalPriorityECsCount);
+    };
+
+    var search = function (e) {
+        var searchString = e.target.value.toUpperCase();
+
+        if (!searchString) {
+            clearListItems();
+            return
+        }
+
+        var hpSearchResults = jQuery.grep(filteredHighPriorityECs, function (ec) {
+            return (ec.wifeName.toUpperCase().indexOf(searchString)) == 0;
+        });
+        var npSearchResults = jQuery.grep(filteredNormalPriorityECs, function (ec) {
+            return (ec.wifeName.toUpperCase().indexOf(searchString)) == 0;
+        });
+
+        populateList(hpSearchResults, npSearchResults);
     };
 
     return {
         populateInto: function () {
             allECs = ecListBridge.getECs();
+            filteredHighPriorityECs = allECs.highPriority;
+            filteredNormalPriorityECs = allECs.normalPriority;
+
             var defaultOption = 0;
             if (ecListBridge.length > 1) {
                 defaultOption = 1;
@@ -97,6 +136,7 @@ function ECList(ecListBridge, cssIdOf) {
         },
         bindToSearchBox: function () {
             $(cssIdOf.searchBox).click(expandSearchBox);
+            $(cssIdOf.searchBox).keyup(search);
             $(cssIdOf.cancelSearchButton).click(cancelSearchBox);
         }
     };
