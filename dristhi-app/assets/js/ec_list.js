@@ -45,6 +45,15 @@ function ECList(ecListBridge, cssIdOf) {
         }, 50);
     };
 
+    var setDisplayStatusOfNoItemIndicator = function (highPriorityListItems, normalPriorityListItems) {
+        if (highPriorityListItems.length === 0 && normalPriorityListItems.length === 0) {
+            $(cssIdOf.noItemIndicator).show();
+        }
+        else {
+            $(cssIdOf.noItemIndicator).hide();
+        }
+    };
+
     var populateListBasedOnAppliedFilters = function () {
         var searchString = $(cssIdOf.searchBox).val().toUpperCase();
         var highPriorityListItems = filterListBy(allECs.highPriority, searchString);
@@ -52,11 +61,14 @@ function ECList(ecListBridge, cssIdOf) {
 
         populateECs(highPriorityListItems, cssIdOf.highPriorityContainer, cssIdOf.highPriorityListContainer, cssIdOf.highPriorityECsCount);
         populateECs(normalPriorityListItems, cssIdOf.normalPriorityContainer, cssIdOf.normalPriorityListContainer, cssIdOf.normalPriorityECsCount);
+        setDisplayStatusOfNoItemIndicator(highPriorityListItems, normalPriorityListItems);
     };
 
     var populateECs = function (ecs, cssIdOfListContainer, cssIdOfListItemsContainer, idOfECsCount) {
-        if (ecs.length === 0)
+        if (ecs.length === 0) {
             $(cssIdOfListContainer).hide();
+
+        }
         else {
             $(cssIdOfListItemsContainer).html(Handlebars.templates.ec_list(ecs));
             $(idOfECsCount).text(ecs.length);

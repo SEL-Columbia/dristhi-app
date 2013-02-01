@@ -759,3 +759,9 @@ body {
 .match-parents-width {
     width: 100%;
 }
+
+.text-on-list {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 10px;
+}

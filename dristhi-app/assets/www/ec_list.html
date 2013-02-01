@@ -41,7 +41,8 @@
                 registerECButton: "#plusButton",
                 cancelSearchButton: "#cancel-search",
                 searchContainer: "#search-container",
-                expandedSearchContainerClass: "expanded-search-container"
+                expandedSearchContainerClass: "expanded-search-container",
+                noItemIndicator: "#noItemIndicator"
             };
             var ecList = new ECList(new ECListBridge(), cssIdOf);
             ecList.populateInto();
@@ -92,6 +93,9 @@
                 <ul id="menu-village" class="dropdown-menu dropdown-menu-filter">
                 </ul>
             </div>
+            <p id="noItemIndicator" class="text-info text-on-list hidden">
+                No items to display
+            </p>
             <div id="ec-list" class="registry-container container-fluid">
                 <div id="highPriorityContainer" class="high-risk-container">
                     <div class="high-risk-header"> HIGH PRIORITY (<span class="count"></span>)</div>
