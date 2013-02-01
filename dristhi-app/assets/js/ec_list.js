@@ -11,7 +11,7 @@ function ECList(ecListBridge, cssIdOf) {
             return;
 
         appliedVillageFilter = filterToApply;
-        populateList();
+        populateListBasedOnAppliedFilters();
         if (inSearchMode) {
             $(cssIdOf.searchBox).focus();
         }
@@ -24,33 +24,12 @@ function ECList(ecListBridge, cssIdOf) {
         $(cssIdOf.appliedFilterIndicator).text(text);
     };
 
-    var search = function () {
-        var searchString = $(cssIdOf.searchBox).val().toUpperCase();
-
-        if (!searchString) {
-            clearListItems();
-            return
-        }
-
-        populateList();
-    };
-
     var expandSearchBox = function () {
         $(cssIdOf.sidePanelButton).hide();
         $(cssIdOf.registerECButton).hide();
         $(cssIdOf.cancelSearchButton).show();
         $(cssIdOf.searchContainer).addClass(cssIdOf.expandedSearchContainerClass);
         inSearchMode = true;
-
-        setTimeout(clearListItems, 50);
-    };
-
-    var clearListItems = function () {
-        $(cssIdOf.highPriorityListContainer).empty();
-        $(cssIdOf.highPriorityContainer).hide();
-
-        $(cssIdOf.normalPriorityListContainer).empty();
-        $(cssIdOf.normalPriorityContainer).hide();
     };
 
     var cancelSearchBox = function () {
@@ -62,11 +41,11 @@ function ECList(ecListBridge, cssIdOf) {
         inSearchMode = false;
 
         setTimeout(function () {
-            populateList();
+            populateListBasedOnAppliedFilters();
         }, 50);
     };
 
-    var populateList = function () {
+    var populateListBasedOnAppliedFilters = function () {
         var searchString = $(cssIdOf.searchBox).val().toUpperCase();
         var highPriorityListItems = filterListBy(allECs.highPriority, searchString);
         var normalPriorityListItems = filterListBy(allECs.normalPriority, searchString);
@@ -115,7 +94,7 @@ function ECList(ecListBridge, cssIdOf) {
             }
 
             appliedVillageFilter = ecListBridge.getAppliedVillageFilter(ecListBridge.getVillages()[defaultOption].name);
-            populateList();
+            populateListBasedOnAppliedFilters();
             updateFilterIndicator(formatText(appliedVillageFilter));
         },
         bindEveryItemToECView: function () {
@@ -136,7 +115,7 @@ function ECList(ecListBridge, cssIdOf) {
         },
         bindToSearchBox: function () {
             $(cssIdOf.searchBox).click(expandSearchBox);
-            $(cssIdOf.searchBox).keyup(search);
+            $(cssIdOf.searchBox).keyup(populateListBasedOnAppliedFilters);
             $(cssIdOf.cancelSearchButton).click(cancelSearchBox);
         }
     };
