@@ -12,6 +12,9 @@ function ECList(ecListBridge, cssIdOf) {
 
         appliedVillageFilter = filterToApply;
         populateList();
+        if (inSearchMode) {
+            $(cssIdOf.searchBox).focus();
+        }
         updateFilterIndicator($(this).text());
         ecListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
     };
