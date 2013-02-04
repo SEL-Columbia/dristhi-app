@@ -10,54 +10,6 @@
 
     <meta name="viewport" charset="utf-8"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/handlebars-1.0.rc.1.min.js"></script>
-
-    <script type="text/javascript" src="../js/custom.ui.js"></script>
-    <script type="text/javascript" src="../template/templates.js"></script>
-    <script type="text/javascript" src="../js/anmNavigation.js"></script>
-    <script type="text/javascript" src="../js/sidePanel.js"></script>
-
-    <script type="text/javascript" src="../js/ec_list.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var cssIdOf = {
-                rootElement: "#ec-list",
-                everyListItem: ".client-list-item",
-                highPriorityContainer: "#ec-list #highPriorityContainer",
-                highPriorityListContainer: "#ec-list #highPriorityContainer .high-priority-list",
-                highPriorityECsCount: "#ec-list #highPriorityContainer .count",
-                normalPriorityContainer: "#ec-list #normalPriorityContainer",
-                normalPriorityListContainer: "#ec-list #normalPriorityContainer .normal-priority-list",
-                normalPriorityECsCount: "#ec-list #normalPriorityContainer .count",
-                ecCount: ".count",
-                commCareItems: "#plusButton",
-                villageFilter: "#menu-village",
-                villageFilterOptions: ".dropdown-option",
-                appliedFilterIndicator: ".filter-by-village",
-                searchBox: "#search-box",
-                sidePanelButton: "#sidepanel-button",
-                registerECButton: "#plusButton",
-                cancelSearchButton: "#cancel-search",
-                searchContainer: "#search-container",
-                expandedSearchContainerClass: "expanded-search-container",
-                noItemIndicator: "#noItemIndicator",
-                searchForm: "#search-form"
-            };
-            var ecList = new ECList(new ECListBridge(), cssIdOf);
-            ecList.populateInto();
-            ecList.bindEveryItemToECView();
-            ecList.bindItemToCommCare();
-
-            ecList.populateVillageFilter();
-            ecList.bindToVillageFilter();
-            ecList.bindToSearchBox();
-
-            new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
-        });
-    </script>
 </head>
 <body>
 <div class="page affected-by-sidepanel">
@@ -117,4 +69,52 @@
     </div>
 </div>
 </body>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/handlebars-1.0.rc.1.min.js"></script>
+
+<script src="../js/custom.ui.js"></script>
+<script src="../template/templates.js"></script>
+<script src="../js/anmNavigation.js"></script>
+<script src="../js/sidePanel.js"></script>
+
+<script src="../js/ec_list.js"></script>
+<script>
+    $(document).ready(function () {
+        var cssIdOf = {
+            rootElement: "#ec-list",
+            everyListItem: ".client-list-item",
+            highPriorityContainer: "#ec-list #highPriorityContainer",
+            highPriorityListContainer: "#ec-list #highPriorityContainer .high-priority-list",
+            highPriorityECsCount: "#ec-list #highPriorityContainer .count",
+            normalPriorityContainer: "#ec-list #normalPriorityContainer",
+            normalPriorityListContainer: "#ec-list #normalPriorityContainer .normal-priority-list",
+            normalPriorityECsCount: "#ec-list #normalPriorityContainer .count",
+            ecCount: ".count",
+            commCareItems: "#plusButton",
+            villageFilter: "#menu-village",
+            villageFilterOptions: ".dropdown-option",
+            appliedFilterIndicator: ".filter-by-village",
+            searchBox: "#search-box",
+            sidePanelButton: "#sidepanel-button",
+            registerECButton: "#plusButton",
+            cancelSearchButton: "#cancel-search",
+            searchContainer: "#search-container",
+            expandedSearchContainerClass: "expanded-search-container",
+            noItemIndicator: "#noItemIndicator",
+            searchForm: "#search-form"
+        };
+        var ecList = new ECList(new ECListBridge(), cssIdOf);
+        ecList.populateInto();
+        ecList.bindEveryItemToECView();
+        ecList.bindItemToCommCare();
+
+        ecList.populateVillageFilter();
+        ecList.bindToVillageFilter();
+        ecList.bindToSearchBox();
+
+        new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
+    });
+</script>
 </html>
