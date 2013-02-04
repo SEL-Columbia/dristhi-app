@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html>
 <head>
     <link href="../css/bootstrap.css" rel="stylesheet">
@@ -42,7 +43,8 @@
                 cancelSearchButton: "#cancel-search",
                 searchContainer: "#search-container",
                 expandedSearchContainerClass: "expanded-search-container",
-                noItemIndicator: "#noItemIndicator"
+                noItemIndicator: "#noItemIndicator",
+                searchForm: "#search-form"
             };
             var ecList = new ECList(new ECListBridge(), cssIdOf);
             ecList.populateInto();
@@ -74,7 +76,7 @@
                 </ul>
                 <ul id="search-container" class="nav search-container affected-by-sidepanel">
                     <li class="match-parents-width">
-                        <form class="navbar-search match-parents-width">
+                        <form id="search-form" class="navbar-search match-parents-width">
                             <input id="search-box" type="text" class="search-query search-box" placeholder="Search">
                         </form>
                     </li>

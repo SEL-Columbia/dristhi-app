@@ -45,6 +45,10 @@ function ECList(ecListBridge, cssIdOf) {
         }, 50);
     };
 
+    var searchSubmitHandler = function () {
+        return false;
+    };
+
     var setDisplayStatusOfNoItemIndicator = function (highPriorityListItems, normalPriorityListItems) {
         if (highPriorityListItems.length === 0 && normalPriorityListItems.length === 0) {
             $(cssIdOf.noItemIndicator).show();
@@ -128,6 +132,7 @@ function ECList(ecListBridge, cssIdOf) {
         bindToSearchBox: function () {
             $(cssIdOf.searchBox).click(expandSearchBox);
             $(cssIdOf.searchBox).keyup(populateListBasedOnAppliedFilters);
+            $(cssIdOf.searchForm).submit(searchSubmitHandler);
             $(cssIdOf.cancelSearchButton).click(cancelSearchBox);
         }
     };
