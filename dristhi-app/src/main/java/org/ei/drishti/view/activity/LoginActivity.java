@@ -5,13 +5,16 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
-import org.ei.drishti.event.Listener;
 import org.ei.drishti.domain.LoginResponse;
+import org.ei.drishti.event.Listener;
 import org.ei.drishti.view.BackgroundAction;
 import org.ei.drishti.view.LockingBackgroundTask;
 import org.ei.drishti.view.ProgressIndicator;
@@ -34,6 +37,7 @@ public class LoginActivity extends Activity {
 
         context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
         initializeLoginFields();
+        setDoneActionHandlerOnPasswordField();
         initializeProgressDialog();
     }
 
@@ -65,6 +69,18 @@ public class LoginActivity extends Activity {
     private void initializeLoginFields() {
         userNameEditText = ((EditText) findViewById(R.id.login_userNameText));
         passwordEditText = ((EditText) findViewById(R.id.login_passwordText));
+    }
+
+    private void setDoneActionHandlerOnPasswordField() {
+        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    login(findViewById(R.id.login_loginButton));
+                }
+                return false;
+            }
+        });
     }
 
     private void initializeProgressDialog() {
