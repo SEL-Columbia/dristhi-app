@@ -1,69 +1,25 @@
 function ANCList(ancListBridge, cssIdOf) {
-    var ALL_VILLAGES_FILTER_OPTION = "All";
-    var VILLAGE_FILTER_OPTION = "village";
-    var allANCs;
-    var appliedVillageFilter;
+    var listView;
 
-    var showANCsAndUpdateCount = function (appliedVillageFilter) {
-        var filteredHighRiskANCs;
-        var filteredNormalRiskANCs;
+    var searchCriteria = function (anc, searchString) {
+        return (anc.womanName.toUpperCase().indexOf(searchString) == 0
+            || anc.ecNumber.toUpperCase().indexOf(searchString) == 0
+            || anc.thaayiCardNumber.toUpperCase().indexOf(searchString) == 0);
+    }
 
-        if (appliedVillageFilter === ALL_VILLAGES_FILTER_OPTION) {
-            filteredHighRiskANCs = allANCs.highRisk;
-            filteredNormalRiskANCs = allANCs.normalRisk;
-        }
-        else {
-            filteredHighRiskANCs = getANCsBelongingToVillage(allANCs.highRisk, appliedVillageFilter);
-            filteredNormalRiskANCs = getANCsBelongingToVillage(allANCs.normalRisk, appliedVillageFilter);
-        }
-
-        populateANCs(filteredHighRiskANCs, cssIdOf.highRiskContainer, cssIdOf.highRiskListContainer, cssIdOf.highRiskANCsCount);
-        populateANCs(filteredNormalRiskANCs, cssIdOf.normalRiskContainer, cssIdOf.normalRiskListContainer, cssIdOf.normalRiskANCsCount);
-    };
-
-    var populateANCs = function (ancs, cssIdOfListContainer, cssIdOfListItemsContainer, cssIdOfANCsCount) {
-        if (ancs.length === 0)
-            $(cssIdOfListContainer).hide();
-        else {
-            $(cssIdOfListItemsContainer).html(Handlebars.templates.anc_list(ancs));
-            $(cssIdOfANCsCount).text(ancs.length);
-            $(cssIdOfListContainer).show();
-        }
-    };
-
-    var getANCsBelongingToVillage = function (ancs, village) {
-        return jQuery.grep(ancs, function (anc, index) {
-            return anc.villageName === village;
-        });
-    };
-
-    var updateFilterIndicator = function (appliedFilter) {
-        var text = "Show: " + appliedFilter;
-        $(cssIdOf.appliedFilterIndicator).text(text);
-    };
-
-    var filterByVillage = function () {
-        var filterToApply = $(this).data(VILLAGE_FILTER_OPTION);
-        if (filterToApply === appliedVillageFilter) {
-            return;
-        }
-
-        showANCsAndUpdateCount(filterToApply);
-        updateFilterIndicator($(this).text());
-        appliedVillageFilter = filterToApply;
-        ancListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
-    };
-
+    var villageFilterCriteria = function (anc, appliedVillageFilter) {
+        return anc.villageName === appliedVillageFilter;
+    }
 
     return {
         populateInto: function () {
-            allANCs = ancListBridge.getANCs();
-            appliedVillageFilter = ancListBridge.getAppliedVillageFilter(ALL_VILLAGES_FILTER_OPTION);
-            showANCsAndUpdateCount(appliedVillageFilter);
-            updateFilterIndicator(formatText(appliedVillageFilter));
+            listView = new ListView(cssIdOf, Handlebars.templates.anc_list, ancListBridge.getANCs(), searchCriteria, villageFilterCriteria);
+
+            var appliedVillageFilter = ancListBridge.getAppliedVillageFilter(listView.ALL_VILLAGES_FILTER_OPTION);
+            listView.filterByVillage(appliedVillageFilter, appliedVillageFilter);
         },
         bindEveryItemToANCView: function () {
-            $(cssIdOf.rootElement).on("click", cssIdOf.everyListItem, function (event) {
+            $(cssIdOf.rootElement).on("click", cssIdOf.everyListItem, function () {
                 ancListBridge.delegateToANCDetail($(this).data("caseid"));
             });
         },
@@ -73,10 +29,13 @@ function ANCList(ancListBridge, cssIdOf) {
             })
         },
         populateVillageFilter: function () {
-            $(cssIdOf.villageFilter).html(Handlebars.templates.filter_by_village(ancListBridge.getVillages()));
+            listView.populateVillageFilter(ancListBridge.getVillages());
         },
-        bindToVillageFilter: function () {
-            $(cssIdOf.villageFilterOptions).click(filterByVillage);
+        bindVillageFilterOptions: function () {
+            listView.bindVillageFilterOptions();
+        },
+        bindSearchEvents: function () {
+            listView.bindSearchEvents();
         }
     };
 }
@@ -114,7 +73,7 @@ function FakeANCListContext() {
     return {
         get: function () {
             return JSON.stringify({
-                highRisk: [
+                priority: [
                     {
                         caseId: "12345",
                         womanName: "Wife 1",
@@ -136,7 +95,7 @@ function FakeANCListContext() {
                         isHighRisk: true
                     }
                 ],
-                normalRisk: [
+                normal: [
                     {
                         caseId: "12355",
                         womanName: "Wife 4",

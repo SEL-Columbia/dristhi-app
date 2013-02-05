@@ -28,27 +28,27 @@
 }
 
 .alert.overdue .todo-box.checked {
-    content: url(../img/checkbox_overdue.png)
+    content: url(../img/checkbox_overdue.png);
 }
 
 .alert.overdue .todo-box:not(.checked) {
-    content: url(../img/checkbox_overdue_unchecked@3x.png)
+    content: url(../img/checkbox_overdue_unchecked@3x.png);
 }
 
 .alert.upcoming .todo-box.checked {
-    content: url(../img/checkbox_upcoming.png)
+    content: url(../img/checkbox_upcoming.png);
 }
 
 .alert.upcoming .todo-box:not(.checked) {
-    content: url(../img/checkbox_upcoming_unchecked@3x.png)
+    content: url(../img/checkbox_upcoming_unchecked@3x.png);
 }
 
 .alert.completed .todo-box.checked {
-    content: url(../img/checkbox_completed@3x.png)
+    content: url(../img/checkbox_completed@3x.png);
 }
 
 .alert.completed .todo-box:not(.checked) {
-    content: url(../img/checkbox_completed_unchecked@3x.png)
+    content: url(../img/checkbox_completed_unchecked.png);
 }
 
 .alert-todo-message {
@@ -56,9 +56,10 @@
 }
 
 .alert-todo-message .detail {
-	display: inline-block;
-	vertical-align: -50%;
+    display: inline-block;
+    vertical-align: -50%;
 }
+
 .alert-todo {
     margin-bottom: 8px;
 }

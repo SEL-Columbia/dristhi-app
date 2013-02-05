@@ -1,9 +1,19 @@
 function ECList(ecListBridge, cssIdOf) {
     var listView;
 
+    var searchCriteria = function (ec, searchString) {
+        return (ec.wifeName.toUpperCase().indexOf(searchString) == 0
+            || ec.ecNumber.toUpperCase().indexOf(searchString) == 0
+            || ec.thayiCardNumber.toUpperCase().indexOf(searchString) == 0);
+    }
+
+    var villageFilterCriteria = function (ec, appliedVillageFilter) {
+        return ec.villageName === appliedVillageFilter;
+    }
+
     return {
         populateInto: function () {
-            listView = new ListView(ecListBridge, cssIdOf, Handlebars.templates.ec_list, ecListBridge.getECs());
+            listView = new ListView(cssIdOf, Handlebars.templates.ec_list, ecListBridge.getECs(), searchCriteria, villageFilterCriteria);
 
             var defaultOption = 0;
             if (ecListBridge.length > 1) {
@@ -24,10 +34,13 @@ function ECList(ecListBridge, cssIdOf) {
             })
         },
         populateVillageFilter: function () {
-            listView.populateVillageFilter();
+            listView.populateVillageFilter(ecListBridge.getVillages());
         },
         bindVillageFilterOptions: function () {
-            listView.bindVillageFilterOptions()
+            listView.bindVillageFilterOptions();
+            $(cssIdOf.villageFilterOptions).click(function () {
+                ecListBridge.delegateToSaveAppliedVillageFilter($(this).data(listView.VILLAGE_FILTER_OPTION));
+            });
         },
         bindSearchEvents: function () {
             listView.bindSearchEvents();

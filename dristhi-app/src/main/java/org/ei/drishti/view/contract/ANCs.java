@@ -3,19 +3,19 @@ package org.ei.drishti.view.contract;
 import java.util.List;
 
 public class ANCs {
-    private final List<ANC> highRisk;
-    private final List<ANC> normalRisk;
+    private final List<ANC> priority;
+    private final List<ANC> normal;
 
-    public ANCs(List<ANC> highRiskAncs, List<ANC> normalRiskAncs) {
-        this.highRisk = highRiskAncs;
-        this.normalRisk = normalRiskAncs;
+    public ANCs(List<ANC> priorityANCs, List<ANC> normalANCs) {
+        this.priority = priorityANCs;
+        this.normal = normalANCs;
     }
 
-    public List<ANC> highRisk() {
-        return highRisk;
+    public List<ANC> priority() {
+        return priority;
     }
 
-    public List<ANC> normalRisk() {
-        return normalRisk;
+    public List<ANC> normal() {
+        return normal;
     }
 }

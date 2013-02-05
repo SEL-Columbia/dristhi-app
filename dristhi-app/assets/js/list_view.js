@@ -1,4 +1,4 @@
-function ListView(ecListBridge, cssIdOf, listTemplate, beneficiaryLists) {
+function ListView(cssIdOf, listTemplate, beneficiaryLists, searchCriteria, villageFilterCriteria) {
     var VILLAGE_FILTER_OPTION = "village";
     var ALL_VILLAGES_FILTER_OPTION = "All";
     var appliedVillageFilter = "NONE";
@@ -9,18 +9,18 @@ function ListView(ecListBridge, cssIdOf, listTemplate, beneficiaryLists) {
         var priorityListItems = filterListBy(beneficiaryLists.priority, searchString);
         var normalListItems = filterListBy(beneficiaryLists.normal, searchString);
 
-        populateECs(priorityListItems, cssIdOf.priorityContainer, cssIdOf.priorityListContainer, cssIdOf.priorityECsCount);
-        populateECs(normalListItems, cssIdOf.normalContainer, cssIdOf.normalListContainer, cssIdOf.normalECsCount);
+        populateBeneficiaries(priorityListItems, cssIdOf.priorityContainer, cssIdOf.priorityListContainer, cssIdOf.priorityBeneficiaryCount);
+        populateBeneficiaries(normalListItems, cssIdOf.normalContainer, cssIdOf.normalListContainer, cssIdOf.normalBeneficiaryCount);
         setDisplayStatusOfNoItemIndicator(priorityListItems, normalListItems);
     };
 
-    var populateECs = function (ecs, cssIdOfListContainer, cssIdOfListItemsContainer, idOfECsCount) {
-        if (ecs.length === 0) {
+    var populateBeneficiaries = function (beneficiaries, cssIdOfListContainer, cssIdOfListItemsContainer, idOfBeneficiariesCount) {
+        if (beneficiaries.length === 0) {
             $(cssIdOfListContainer).hide();
         }
         else {
-            $(cssIdOfListItemsContainer).html(listTemplate(ecs));
-            $(idOfECsCount).text(ecs.length);
+            $(cssIdOfListItemsContainer).html(listTemplate(beneficiaries));
+            $(idOfBeneficiariesCount).text(beneficiaries.length);
             $(cssIdOfListContainer).show();
         }
     };
@@ -43,7 +43,6 @@ function ListView(ecListBridge, cssIdOf, listTemplate, beneficiaryLists) {
         appliedVillageFilter = filterToApply;
         populateListBasedOnAppliedFilters();
         updateFilterIndicator(displayText);
-        ecListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
     };
 
     var updateFilterIndicator = function (appliedFilter) {
@@ -53,7 +52,7 @@ function ListView(ecListBridge, cssIdOf, listTemplate, beneficiaryLists) {
 
     var expandSearchBox = function () {
         $(cssIdOf.sidePanelButton).hide();
-        $(cssIdOf.registerECButton).hide();
+        $(cssIdOf.addButton).hide();
         $(cssIdOf.cancelSearchButton).show();
         $(cssIdOf.searchContainer).addClass(cssIdOf.expandedSearchContainerClass);
         inSearchMode = true;
@@ -62,7 +61,7 @@ function ListView(ecListBridge, cssIdOf, listTemplate, beneficiaryLists) {
     var cancelSearchBox = function () {
         $(cssIdOf.sidePanelButton).show();
         $(cssIdOf.cancelSearchButton).hide();
-        $(cssIdOf.registerECButton).show();
+        $(cssIdOf.addButton).show();
         $(cssIdOf.searchContainer).removeClass(cssIdOf.expandedSearchContainerClass);
         $(cssIdOf.searchBox).val('');
         inSearchMode = false;
@@ -72,20 +71,18 @@ function ListView(ecListBridge, cssIdOf, listTemplate, beneficiaryLists) {
         }, 50);
     };
 
-    var filterListBy = function (ecs, searchString) {
-        var searchResults = ecs;
+    var filterListBy = function (beneficiaries, searchString) {
+        var searchResults = beneficiaries;
 
         if (searchString) {
-            searchResults = jQuery.grep(ecs, function (ec) {
-                return (ec.wifeName.toUpperCase().indexOf(searchString) == 0
-                    || ec.ecNumber.toUpperCase().indexOf(searchString) == 0
-                    || ec.thayiCardNumber.toUpperCase().indexOf(searchString) == 0);
+            searchResults = jQuery.grep(beneficiaries, function (beneficiary) {
+                return searchCriteria(beneficiary, searchString);
             });
         }
 
         if (appliedVillageFilter != ALL_VILLAGES_FILTER_OPTION) {
-            searchResults = jQuery.grep(searchResults, function (ec) {
-                return ec.villageName === appliedVillageFilter;
+            searchResults = jQuery.grep(searchResults, function (beneficiary) {
+                return villageFilterCriteria(beneficiary, appliedVillageFilter);
             });
         }
 
@@ -102,6 +99,8 @@ function ListView(ecListBridge, cssIdOf, listTemplate, beneficiaryLists) {
     };
 
     return {
+        VILLAGE_FILTER_OPTION: VILLAGE_FILTER_OPTION,
+        ALL_VILLAGES_FILTER_OPTION: ALL_VILLAGES_FILTER_OPTION,
         filterByVillage: function (filterToApply, displayText) {
             filterByVillage(filterToApply, displayText);
         },
@@ -113,10 +112,10 @@ function ListView(ecListBridge, cssIdOf, listTemplate, beneficiaryLists) {
             });
             $(cssIdOf.cancelSearchButton).click(cancelSearchBox);
         },
-        populateVillageFilter: function () {
-            $(cssIdOf.villageFilter).html(Handlebars.templates.filter_by_village(ecListBridge.getVillages()));
+        populateVillageFilter: function (villages) {
+            $(cssIdOf.villageFilter).html(Handlebars.templates.filter_by_village(villages));
         },
-        bindVillageFilterOptions : function () {
+        bindVillageFilterOptions: function () {
             $(cssIdOf.villageFilterOptions).click(filterByVillageHandler);
         }
     }
