@@ -102,7 +102,7 @@ function ListView(cssIdOf, listTemplate, beneficiaryLists, searchCriteria, villa
         VILLAGE_FILTER_OPTION: VILLAGE_FILTER_OPTION,
         ALL_VILLAGES_FILTER_OPTION: ALL_VILLAGES_FILTER_OPTION,
         filterByVillage: function (filterToApply, displayText) {
-            filterByVillage(filterToApply, displayText);
+            filterByVillage(filterToApply, formatText(displayText));
         },
         bindSearchEvents: function () {
             $(cssIdOf.searchBox).click(expandSearchBox);
