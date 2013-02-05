@@ -11,7 +11,7 @@ import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.contract.EC;
-import org.ei.drishti.view.contract.ECs;
+import org.ei.drishti.view.contract.Beneficiaries;
 import org.ei.drishti.view.contract.Village;
 
 import java.util.ArrayList;
@@ -56,7 +56,7 @@ public class EligibleCoupleListViewController {
 
                 sort(highPriority);
                 sort(normalPriority);
-                return new Gson().toJson(new ECs(highPriority, normalPriority));
+                return new Gson().toJson(new Beneficiaries<EC>(highPriority, normalPriority));
             }
         });
     }

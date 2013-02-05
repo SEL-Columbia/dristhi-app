@@ -14,7 +14,7 @@ import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.view.contract.ANC;
-import org.ei.drishti.view.contract.ANCs;
+import org.ei.drishti.view.contract.Beneficiaries;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,9 +26,7 @@ import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.FetchStatus.fetched;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
@@ -64,7 +62,7 @@ public class ANCListViewControllerTest {
                 Pair.of(new Mother("Case 2", "EC Case 2", "TC 2", "2022-02-02").withDetails(create("isHighRisk", "yes").put("deliveryPlace", "Bherya DC").map()),
                         new EligibleCouple("EC Case 2", "woman B", "Husband B", "EC Number 2", "Bherya", "Bherya SC", new HashMap<String, String>()))));
 
-        ANCs ancs = new Gson().fromJson(controller.get(), new TypeToken<ANCs>() {
+        Beneficiaries<ANC> ancs = new Gson().fromJson(controller.get(), new TypeToken<Beneficiaries<ANC>>() {
         }.getType());
 
         assertEquals(asList(new ANC("Case 1", "TC 1", "Woman A", "Husband A", "Bherya", "EC Number 1", false), new ANC("Case 3", "TC 3", "woman C", "Husband C", "Bherya", "EC Number 3", false)), ancs.normal());

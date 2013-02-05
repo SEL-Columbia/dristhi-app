@@ -12,8 +12,8 @@ import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
+import org.ei.drishti.view.contract.Beneficiaries;
 import org.ei.drishti.view.contract.EC;
-import org.ei.drishti.view.contract.ECs;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -69,7 +69,8 @@ public class EligibleCoupleListViewControllerTest {
         when(allBeneficiaries.findMotherByECCaseId("EC Case 1")).thenReturn(new Mother("MOTHER Case 1", "EC Case 1", "12345", "2012-12-12"));
         when(allBeneficiaries.findMotherByECCaseId("EC Case 4")).thenReturn(new Mother("MOTHER Case 4", "EC Case 4", "4444", "2012-12-22"));
 
-        ECs ecs = new Gson().fromJson(controller.get(), TypeToken.get(ECs.class).getType());
+        Beneficiaries<EC> ecs = new Gson().fromJson(controller.get(), new TypeToken<Beneficiaries<EC>>() {
+        }.getType());
 
         assertEquals(asList(expectedECNormalPriority1, expectedECNormalPriority2, expectedECNormalPriority3), ecs.normal());
         assertEquals(asList(expectedECHighPriority1, expectedECHighPriority2, expectedECHighPriority3), ecs.priority());

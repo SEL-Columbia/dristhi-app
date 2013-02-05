@@ -12,7 +12,7 @@ import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.contract.ANC;
-import org.ei.drishti.view.contract.ANCs;
+import org.ei.drishti.view.contract.Beneficiaries;
 import org.ei.drishti.view.contract.Village;
 
 import java.util.ArrayList;
@@ -59,7 +59,7 @@ public class ANCListViewController {
 
                 sort(normalRiskAncs);
                 sort(highRiskAncs);
-                return new Gson().toJson(new ANCs(highRiskAncs, normalRiskAncs));
+                return new Gson().toJson(new Beneficiaries<ANC>(highRiskAncs, normalRiskAncs));
             }
         });
     }
