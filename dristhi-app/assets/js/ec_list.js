@@ -1,117 +1,17 @@
 function ECList(ecListBridge, cssIdOf) {
-    var ALL_VILLAGES_FILTER_OPTION = "All";
-    var VILLAGE_FILTER_OPTION = "village";
-    var allECs;
-    var appliedVillageFilter;
-    var inSearchMode = false;
-
-    var filterByVillage = function () {
-        var filterToApply = $(this).data(VILLAGE_FILTER_OPTION);
-        if (filterToApply === appliedVillageFilter)
-            return;
-
-        appliedVillageFilter = filterToApply;
-        populateListBasedOnAppliedFilters();
-        if (inSearchMode) {
-            $(cssIdOf.searchBox).focus();
-        }
-        updateFilterIndicator($(this).text());
-        ecListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
-    };
-
-    var updateFilterIndicator = function (appliedFilter) {
-        var text = "Show: " + appliedFilter;
-        $(cssIdOf.appliedFilterIndicator).text(text);
-    };
-
-    var expandSearchBox = function () {
-        $(cssIdOf.sidePanelButton).hide();
-        $(cssIdOf.registerECButton).hide();
-        $(cssIdOf.cancelSearchButton).show();
-        $(cssIdOf.searchContainer).addClass(cssIdOf.expandedSearchContainerClass);
-        inSearchMode = true;
-    };
-
-    var cancelSearchBox = function () {
-        $(cssIdOf.sidePanelButton).show();
-        $(cssIdOf.cancelSearchButton).hide();
-        $(cssIdOf.registerECButton).show();
-        $(cssIdOf.searchContainer).removeClass(cssIdOf.expandedSearchContainerClass);
-        $(cssIdOf.searchBox).val('');
-        inSearchMode = false;
-
-        setTimeout(function () {
-            populateListBasedOnAppliedFilters();
-        }, 50);
-    };
-
-    var searchSubmitHandler = function () {
-        return false;
-    };
-
-    var setDisplayStatusOfNoItemIndicator = function (highPriorityListItems, normalPriorityListItems) {
-        if (highPriorityListItems.length === 0 && normalPriorityListItems.length === 0) {
-            $(cssIdOf.noItemIndicator).show();
-        }
-        else {
-            $(cssIdOf.noItemIndicator).hide();
-        }
-    };
-
-    var populateListBasedOnAppliedFilters = function () {
-        var searchString = $(cssIdOf.searchBox).val().toUpperCase();
-        var highPriorityListItems = filterListBy(allECs.highPriority, searchString);
-        var normalPriorityListItems = filterListBy(allECs.normalPriority, searchString);
-
-        populateECs(highPriorityListItems, cssIdOf.highPriorityContainer, cssIdOf.highPriorityListContainer, cssIdOf.highPriorityECsCount);
-        populateECs(normalPriorityListItems, cssIdOf.normalPriorityContainer, cssIdOf.normalPriorityListContainer, cssIdOf.normalPriorityECsCount);
-        setDisplayStatusOfNoItemIndicator(highPriorityListItems, normalPriorityListItems);
-    };
-
-    var populateECs = function (ecs, cssIdOfListContainer, cssIdOfListItemsContainer, idOfECsCount) {
-        if (ecs.length === 0) {
-            $(cssIdOfListContainer).hide();
-
-        }
-        else {
-            $(cssIdOfListItemsContainer).html(Handlebars.templates.ec_list(ecs));
-            $(idOfECsCount).text(ecs.length);
-            $(cssIdOfListContainer).show();
-        }
-    };
-
-    var filterListBy = function (ecs, searchString) {
-        var searchResults = ecs;
-
-        if (searchString) {
-            searchResults = jQuery.grep(ecs, function (ec) {
-                return (ec.wifeName.toUpperCase().indexOf(searchString) == 0
-                    || ec.ecNumber.toUpperCase().indexOf(searchString) == 0
-                    || ec.thayiCardNumber.toUpperCase().indexOf(searchString) == 0);
-            });
-        }
-
-        if (appliedVillageFilter != ALL_VILLAGES_FILTER_OPTION) {
-            searchResults = jQuery.grep(searchResults, function (ec) {
-                return ec.villageName === appliedVillageFilter;
-            });
-        }
-
-        return searchResults;
-    };
+    var listView;
 
     return {
         populateInto: function () {
-            allECs = ecListBridge.getECs();
+            listView = new ListView(ecListBridge, cssIdOf, Handlebars.templates.ec_list, ecListBridge.getECs());
 
             var defaultOption = 0;
             if (ecListBridge.length > 1) {
                 defaultOption = 1;
             }
 
-            appliedVillageFilter = ecListBridge.getAppliedVillageFilter(ecListBridge.getVillages()[defaultOption].name);
-            populateListBasedOnAppliedFilters();
-            updateFilterIndicator(formatText(appliedVillageFilter));
+            var appliedVillageFilter = ecListBridge.getAppliedVillageFilter(ecListBridge.getVillages()[defaultOption].name);
+            listView.filterByVillage(appliedVillageFilter, appliedVillageFilter);
         },
         bindEveryItemToECView: function () {
             $(cssIdOf.rootElement).on("click", cssIdOf.everyListItem, function () {
@@ -124,16 +24,13 @@ function ECList(ecListBridge, cssIdOf) {
             })
         },
         populateVillageFilter: function () {
-            $(cssIdOf.villageFilter).html(Handlebars.templates.filter_by_village(ecListBridge.getVillages()));
+            listView.populateVillageFilter();
         },
-        bindToVillageFilter: function () {
-            $(cssIdOf.villageFilterOptions).click(filterByVillage);
+        bindVillageFilterOptions: function () {
+            listView.bindVillageFilterOptions()
         },
-        bindToSearchBox: function () {
-            $(cssIdOf.searchBox).click(expandSearchBox);
-            $(cssIdOf.searchBox).keyup(populateListBasedOnAppliedFilters);
-            $(cssIdOf.searchForm).submit(searchSubmitHandler);
-            $(cssIdOf.cancelSearchButton).click(cancelSearchBox);
+        bindSearchEvents: function () {
+            listView.bindSearchEvents();
         }
     };
 }
@@ -170,7 +67,7 @@ function FakeECListContext() {
     return {
         get: function () {
             return JSON.stringify({
-                highPriority: [
+                priority: [
                     {
                         caseId: "12345",
                         wifeName: "Wife 1",
@@ -182,7 +79,7 @@ function FakeECListContext() {
                         thayiCardNumber: ""
                     }
                 ],
-                normalPriority: [
+                normal: [
                     {
                         caseId: "11111",
                         wifeName: "Wife 2",

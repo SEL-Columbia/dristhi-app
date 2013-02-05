@@ -3,19 +3,19 @@ package org.ei.drishti.view.contract;
 import java.util.List;
 
 public class ECs {
-    private final List<EC> highPriority;
-    private final List<EC> normalPriority;
+    private final List<EC> priority;
+    private final List<EC> normal;
 
-    public ECs(List<EC> highPriority, List<EC> normalPriority) {
-        this.highPriority = highPriority;
-        this.normalPriority = normalPriority;
+    public ECs(List<EC> priority, List<EC> normal) {
+        this.priority = priority;
+        this.normal = normal;
     }
 
-    public List<EC> highPriority() {
-        return highPriority;
+    public List<EC> priority() {
+        return priority;
     }
 
-    public List<EC> normalPriority() {
-        return normalPriority;
+    public List<EC> normal() {
+        return normal;
     }
 }

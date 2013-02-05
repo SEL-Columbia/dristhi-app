@@ -71,8 +71,8 @@ public class EligibleCoupleListViewControllerTest {
 
         ECs ecs = new Gson().fromJson(controller.get(), TypeToken.get(ECs.class).getType());
 
-        assertEquals(asList(expectedECNormalPriority1, expectedECNormalPriority2, expectedECNormalPriority3), ecs.normalPriority());
-        assertEquals(asList(expectedECHighPriority1, expectedECHighPriority2, expectedECHighPriority3), ecs.highPriority());
+        assertEquals(asList(expectedECNormalPriority1, expectedECNormalPriority2, expectedECNormalPriority3), ecs.normal());
+        assertEquals(asList(expectedECHighPriority1, expectedECHighPriority2, expectedECHighPriority3), ecs.priority());
     }
 
     @Test

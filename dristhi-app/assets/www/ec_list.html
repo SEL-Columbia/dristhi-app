@@ -80,17 +80,18 @@
 <script src="../js/sidePanel.js"></script>
 
 <script src="../js/ec_list.js"></script>
+<script src="../js/list_view.js"></script>
 <script>
     $(document).ready(function () {
         var cssIdOf = {
             rootElement: "#ec-list",
             everyListItem: ".client-list-item",
-            highPriorityContainer: "#ec-list #highPriorityContainer",
-            highPriorityListContainer: "#ec-list #highPriorityContainer .high-priority-list",
-            highPriorityECsCount: "#ec-list #highPriorityContainer .count",
-            normalPriorityContainer: "#ec-list #normalPriorityContainer",
-            normalPriorityListContainer: "#ec-list #normalPriorityContainer .normal-priority-list",
-            normalPriorityECsCount: "#ec-list #normalPriorityContainer .count",
+            priorityContainer: "#ec-list #highPriorityContainer",
+            priorityListContainer: "#ec-list #highPriorityContainer .high-priority-list",
+            priorityECsCount: "#ec-list #highPriorityContainer .count",
+            normalContainer: "#ec-list #normalPriorityContainer",
+            normalListContainer: "#ec-list #normalPriorityContainer .normal-priority-list",
+            normalECsCount: "#ec-list #normalPriorityContainer .count",
             ecCount: ".count",
             commCareItems: "#plusButton",
             villageFilter: "#menu-village",
@@ -111,8 +112,8 @@
         ecList.bindItemToCommCare();
 
         ecList.populateVillageFilter();
-        ecList.bindToVillageFilter();
-        ecList.bindToSearchBox();
+        ecList.bindVillageFilterOptions();
+        ecList.bindSearchEvents();
 
         new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
     });
