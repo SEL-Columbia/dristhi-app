@@ -8,7 +8,6 @@ import org.ei.drishti.domain.ReportIndicator;
 import org.ei.drishti.domain.ReportsCategory;
 import org.ei.drishti.dto.MonthSummaryDatum;
 import org.ei.drishti.repository.AllReports;
-import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.view.activity.ReportIndicatorDetailActivity;
 import org.ei.drishti.view.contract.CategoryReports;
 import org.ei.drishti.view.contract.IndicatorReport;
@@ -23,6 +22,7 @@ import static java.lang.Integer.parseInt;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.CATEGORY_DESCRIPTION;
 import static org.ei.drishti.AllConstants.INDICATOR_DETAIL;
+import static org.ei.drishti.util.DateUtil.today;
 
 public class ReportIndicatorListViewController {
     private final Context context;
@@ -46,10 +46,11 @@ public class ReportIndicatorListViewController {
         for (Report report : reports) {
             ReportIndicator indicator = report.reportIndicator();
             List<MonthSummaryDatum> monthSummaryData = report.monthlySummaries();
+            if (monthSummaryData.size() == 0) continue;
             sortMonthlySummaries(monthSummaryData);
             MonthSummaryDatum currentMonthSummary = monthSummaryData.get(0);
 
-            String currentMonth = DateUtil.today().monthOfYear().getAsString();
+            String currentMonth = today().monthOfYear().getAsString();
             String currentProgress = currentMonthSummary.month().equals(currentMonth) ? currentMonthSummary.currentProgress() : "0";
             String annualTarget = (isBlank(report.annualTarget())) ? "NA" : report.annualTarget();
 

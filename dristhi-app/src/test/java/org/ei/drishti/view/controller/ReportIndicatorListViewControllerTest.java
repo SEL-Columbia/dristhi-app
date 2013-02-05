@@ -54,6 +54,20 @@ public class ReportIndicatorListViewControllerTest {
     }
 
     @Test
+    public void shouldIgnoreThoseReportsWhichHaveEmptyMonthlySummary() throws Exception {
+        List<MonthSummaryDatum> monthlySummaries = asList(new MonthSummaryDatum("10", "2012", "2", "2", asList("123", "456")));
+        Report iudReport = new Report("IUD", "40", new Gson().toJson(monthlySummaries));
+        Report condomReport = new Report("CONDOM", "30", "[]");
+        when(allReports.allFor(anyList())).thenReturn(asList(iudReport, condomReport));
+
+        String indicatorReports = controller.get();
+
+        IndicatorReport iud = new IndicatorReport("IUD", "IUD Adoption", "40", "2", "10", "2012", "2");
+        String expectedIndicatorReports = new Gson().toJson(new CategoryReports("Family Planning Services", asList(iud)));
+        assertEquals(expectedIndicatorReports, indicatorReports);
+    }
+
+    @Test
     public void shouldUseCurrentMonthDataForIndicatorReport() throws Exception {
         List<MonthSummaryDatum> monthlySummaries = asList(new MonthSummaryDatum("1", "2012", "2", "2", asList("123", "456")),
                 new MonthSummaryDatum("10", "2012", "2", "4", asList("321", "654")));
