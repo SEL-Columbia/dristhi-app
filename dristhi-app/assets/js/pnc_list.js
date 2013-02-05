@@ -1,77 +1,36 @@
 function PNCList(pncListBridge, cssIdOf) {
+    var listView;
 
-    var ALL_VILLAGES_FILTER_OPTION = "All";
-    var VILLAGE_FILTER_OPTION = "village";
-    var allPNCs;
-    var appliedVillageFilter;
+    var searchCriteria = function (pnc, searchString) {
+        return (pnc.womanName.toUpperCase().indexOf(searchString) == 0
+            || pnc.ecNumber.toUpperCase().indexOf(searchString) == 0
+            || pnc.thaayiCardNumber.toUpperCase().indexOf(searchString) == 0);
+    }
 
-    var showPNCsAndUpdateCount = function (appliedVillageFilter) {
-        var filteredHighRiskPNCs;
-        var filteredNormalRiskPNCs;
-
-        if (appliedVillageFilter === ALL_VILLAGES_FILTER_OPTION) {
-            filteredHighRiskPNCs = allPNCs.highRisk;
-            filteredNormalRiskPNCs = allPNCs.normalRisk;
-        }
-        else {
-            filteredHighRiskPNCs = getPNCsBelongingToVillage(allPNCs.highRisk, appliedVillageFilter);
-            filteredNormalRiskPNCs = getPNCsBelongingToVillage(allPNCs.normalRisk, appliedVillageFilter);
-        }
-
-        populatePNCs(filteredHighRiskPNCs, cssIdOf.highRiskContainer, cssIdOf.highRiskListContainer, cssIdOf.highRiskPNCsCount);
-        populatePNCs(filteredNormalRiskPNCs, cssIdOf.normalRiskContainer, cssIdOf.normalRiskListContainer, cssIdOf.normalRiskPNCsCount);
-    };
-
-    var populatePNCs = function (pncs, cssIdOfListContainer, cssIdOfListItemsContainer, cssIdOfPNCsCount) {
-        if (pncs.length === 0)
-            $(cssIdOfListContainer).hide();
-        else {
-            $(cssIdOfListItemsContainer).html(Handlebars.templates.pnc_list(pncs));
-            $(cssIdOfPNCsCount).text(pncs.length);
-            $(cssIdOfListContainer).show();
-        }
-    };
-
-    var getPNCsBelongingToVillage = function (pncs, village) {
-        return jQuery.grep(pncs, function (pnc, index) {
-            return pnc.villageName === village;
-        });
-    };
-
-    var updateFilterIndicator = function (appliedFilter) {
-        var text = "Show: " + appliedFilter;
-        $(cssIdOf.appliedFilterIndicator).text(text);
-    };
-
-    var filterByVillage = function () {
-        var filterToApply = $(this).data(VILLAGE_FILTER_OPTION);
-        if (filterToApply === appliedVillageFilter)
-            return;
-
-        showPNCsAndUpdateCount(filterToApply);
-        updateFilterIndicator($(this).text());
-        appliedVillageFilter = filterToApply;
-        pncListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
-    };
-
+    var villageFilterCriteria = function (pnc, appliedVillageFilter) {
+        return pnc.villageName === appliedVillageFilter;
+    }
 
     return {
-        populateInto:function () {
-            allPNCs = pncListBridge.getPNCs();
-            appliedVillageFilter = pncListBridge.getAppliedVillageFilter(ALL_VILLAGES_FILTER_OPTION);
-            showPNCsAndUpdateCount(appliedVillageFilter);
-            updateFilterIndicator(formatText(appliedVillageFilter));
+        populateInto: function () {
+            listView = new ListView(cssIdOf, Handlebars.templates.pnc_list, pncListBridge.getPNCs(), searchCriteria, villageFilterCriteria);
+
+            var appliedVillageFilter = pncListBridge.getAppliedVillageFilter(listView.ALL_VILLAGES_FILTER_OPTION);
+            listView.filterByVillage(appliedVillageFilter, appliedVillageFilter);
         },
-        bindEveryItemToPNCView:function () {
-            $(cssIdOf.rootElement).on("click", cssIdOf.everyListItem, function (event) {
+        bindEveryItemToPNCView: function () {
+            $(cssIdOf.rootElement).on("click", cssIdOf.everyListItem, function () {
                 pncListBridge.delegateToPNCDetail($(this).data("caseid"));
             });
         },
-        populateVillageFilter:function () {
-            $(cssIdOf.villageFilter).html(Handlebars.templates.filter_by_village(pncListBridge.getVillages()));
+        populateVillageFilter: function () {
+            listView.populateVillageFilter(pncListBridge.getVillages());
         },
-        bindToVillageFilter:function () {
-            $(cssIdOf.villageFilterOptions).click(filterByVillage);
+        bindToVillageFilter: function () {
+            listView.bindVillageFilterOptions();
+        },
+        bindSearchEvents: function () {
+            listView.bindSearchEvents();
         }
     };
 }
@@ -83,19 +42,19 @@ function PNCListBridge() {
     }
 
     return {
-        getPNCs:function () {
+        getPNCs: function () {
             return JSON.parse(pncContext.get());
         },
-        delegateToPNCDetail:function (caseId) {
+        delegateToPNCDetail: function (caseId) {
             return pncContext.startPNC(caseId);
         },
-        getVillages:function () {
+        getVillages: function () {
             return JSON.parse(pncContext.villages());
         },
-        delegateToSaveAppliedVillageFilter:function (village) {
+        delegateToSaveAppliedVillageFilter: function (village) {
             return pncContext.saveAppliedVillageFilter(village);
         },
-        getAppliedVillageFilter:function (defaultFilterValue) {
+        getAppliedVillageFilter: function (defaultFilterValue) {
             return pncContext.appliedVillageFilter(defaultFilterValue);
         }
     };
@@ -103,79 +62,79 @@ function PNCListBridge() {
 
 function FakePNCListContext() {
     return {
-        get:function () {
+        get: function () {
             return JSON.stringify({
-                highRisk:[
+                priority: [
                     {
-                        caseId:"12345",
-                        womanName:"Wife 1",
-                        husbandName:"Husband 1",
-                        thaayiCardNumber:"TC Number 1",
-                        villageName:"chikkabheriya",
-                        hasTodos:true,
-                        ecNumber:"EC 1",
-                        isHighRisk:true
+                        caseId: "12345",
+                        womanName: "Wife 1",
+                        husbandName: "Husband 1",
+                        thaayiCardNumber: "TC Number 1",
+                        villageName: "chikkabheriya",
+                        hasTodos: true,
+                        ecNumber: "EC 1",
+                        isHighRisk: true
                     },
                     {
-                        caseId:"11111",
-                        womanName:"Wife 2",
-                        husbandName:"Husband 2",
-                        thaayiCardNumber:"TC Number 2",
-                        villageName:"munjanahalli",
-                        ecNumber:"EC 2",
-                        hasTodos:false,
-                        isHighRisk:true
+                        caseId: "11111",
+                        womanName: "Wife 2",
+                        husbandName: "Husband 2",
+                        thaayiCardNumber: "TC Number 2",
+                        villageName: "munjanahalli",
+                        ecNumber: "EC 2",
+                        hasTodos: false,
+                        isHighRisk: true
                     }
                 ],
-                normalRisk:[
+                normal: [
                     {
-                        caseId:"12355",
-                        womanName:"Wife 4",
-                        husbandName:"Husband 4",
-                        thaayiCardNumber:"TC Number 4",
-                        villageName:"chikkabheriya",
-                        ecNumber:"EC 3",
-                        hasTodos:true,
-                        isHighRisk:false
+                        caseId: "12355",
+                        womanName: "Wife 4",
+                        husbandName: "Husband 4",
+                        thaayiCardNumber: "TC Number 4",
+                        villageName: "chikkabheriya",
+                        ecNumber: "EC 3",
+                        hasTodos: true,
+                        isHighRisk: false
                     },
                     {
-                        caseId:"12355",
-                        womanName:"Wife 5",
-                        husbandName:"Husband 5",
-                        thaayiCardNumber:"TC Number 5",
-                        villageName:"munjanahalli",
-                        ecNumber:"EC 4",
-                        hasTodos:false,
-                        isHighRisk:false
+                        caseId: "12355",
+                        womanName: "Wife 5",
+                        husbandName: "Husband 5",
+                        thaayiCardNumber: "TC Number 5",
+                        villageName: "munjanahalli",
+                        ecNumber: "EC 4",
+                        hasTodos: false,
+                        isHighRisk: false
                     },
                     {
-                        caseId:"11121",
-                        womanName:"Wife 6",
-                        husbandName:"Husband 6",
-                        thaayiCardNumber:"TC Number 6",
-                        ecNumber:"EC 5",
-                        villageName:"chikkabheriya",
-                        hasTodos:true,
-                        isHighRisk:false
+                        caseId: "11121",
+                        womanName: "Wife 6",
+                        husbandName: "Husband 6",
+                        thaayiCardNumber: "TC Number 6",
+                        ecNumber: "EC 5",
+                        villageName: "chikkabheriya",
+                        hasTodos: true,
+                        isHighRisk: false
                     }
                 ]
             });
         },
-        startPNC:function (caseId) {
+        startPNC: function (caseId) {
             window.location.href = "pnc_detail.html";
         },
-        villages:function () {
+        villages: function () {
             return JSON.stringify(
                 [
-                    {name:"All"},
-                    {name:"munjanahalli"},
-                    {name:"chikkabheriya"}
+                    {name: "All"},
+                    {name: "munjanahalli"},
+                    {name: "chikkabheriya"}
                 ]
             )
         },
-        saveAppliedVillageFilter:function (village) {
+        saveAppliedVillageFilter: function (village) {
         },
-        appliedVillageFilter:function (defaultFilterValue) {
+        appliedVillageFilter: function (defaultFilterValue) {
             return defaultFilterValue;
         }
     }

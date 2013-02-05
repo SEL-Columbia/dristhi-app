@@ -11,8 +11,8 @@ import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.util.Cache;
+import org.ei.drishti.view.contract.Beneficiaries;
 import org.ei.drishti.view.contract.PNC;
-import org.ei.drishti.view.contract.PNCs;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,11 +57,11 @@ public class PNCListViewControllerTest {
         when(allEligibleCouples.findByCaseID("EC Case 3")).thenReturn(new EligibleCouple("EC Case 3", "woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", new HashMap<String, String>()));
         when(allEligibleCouples.findByCaseID("EC Case 4")).thenReturn(new EligibleCouple("EC Case 4", "Woman D", "Husband D", "EC Number 4", "Bherya", "Bherya SC", new HashMap<String, String>()));
 
-        PNCs pnCs = new Gson().fromJson(controller.get(), new TypeToken<PNCs>() {
+        Beneficiaries<PNC> pnCs = new Gson().fromJson(controller.get(), new TypeToken<Beneficiaries<PNC>>() {
         }.getType());
 
-        assertEquals(asList(new PNC("Case 1", "TC 1", "Woman A", "Husband A", "EC Number 1", "Bherya", false), new PNC("Case 3", "TC 3", "woman C", "Husband C", "EC Number 3", "Bherya", false)), pnCs.normalRisk());
-        assertEquals(asList(new PNC("Case 2", "TC 2", "woman B", "Husband B", "EC Number 2", "Bherya", true), new PNC("Case 4", "TC 4", "Woman D", "Husband D", "EC Number 4", "Bherya", true)), pnCs.highRisk());
+        assertEquals(asList(new PNC("Case 1", "TC 1", "Woman A", "Husband A", "EC Number 1", "Bherya", false), new PNC("Case 3", "TC 3", "woman C", "Husband C", "EC Number 3", "Bherya", false)), pnCs.normal());
+        assertEquals(asList(new PNC("Case 2", "TC 2", "woman B", "Husband B", "EC Number 2", "Bherya", true), new PNC("Case 4", "TC 4", "Woman D", "Husband D", "EC Number 4", "Bherya", true)), pnCs.priority());
     }
 
     @Test

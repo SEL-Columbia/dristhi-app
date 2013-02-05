@@ -46,20 +46,20 @@ public class ANCListViewController {
             public String fetch() {
                 List<Pair<Mother, EligibleCouple>> mothersWithEC = allBeneficiaries.allANCsWithEC();
 
-                List<ANC> highRiskAncs = new ArrayList<ANC>();
-                List<ANC> normalRiskAncs = new ArrayList<ANC>();
+                List<ANC> highRiskANCs = new ArrayList<ANC>();
+                List<ANC> normalRiskANCs = new ArrayList<ANC>();
 
                 for (Pair<Mother, EligibleCouple> motherWithEC : mothersWithEC) {
                     Mother mother = motherWithEC.getLeft();
                     EligibleCouple ec = motherWithEC.getRight();
 
-                    List<ANC> ancListBasedOnRisk = mother.isHighRisk() ? highRiskAncs : normalRiskAncs;
+                    List<ANC> ancListBasedOnRisk = mother.isHighRisk() ? highRiskANCs : normalRiskANCs;
                     ancListBasedOnRisk.add(new ANC(mother.caseId(), mother.thaayiCardNumber(), ec.wifeName(), ec.husbandName(), ec.village(), ec.ecNumber(), mother.isHighRisk()));
                 }
 
-                sort(normalRiskAncs);
-                sort(highRiskAncs);
-                return new Gson().toJson(new Beneficiaries<ANC>(highRiskAncs, normalRiskAncs));
+                sort(normalRiskANCs);
+                sort(highRiskANCs);
+                return new Gson().toJson(new Beneficiaries<ANC>(highRiskANCs, normalRiskANCs));
             }
         });
     }

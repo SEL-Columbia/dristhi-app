@@ -11,8 +11,8 @@ import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.activity.PNCDetailActivity;
+import org.ei.drishti.view.contract.Beneficiaries;
 import org.ei.drishti.view.contract.PNC;
-import org.ei.drishti.view.contract.PNCs;
 import org.ei.drishti.view.contract.Village;
 
 import java.util.ArrayList;
@@ -53,7 +53,7 @@ public class PNCListViewController {
 
                 sort(normalRiskPncs);
                 sort(highRiskPncs);
-                return new Gson().toJson(new PNCs(highRiskPncs, normalRiskPncs));
+                return new Gson().toJson(new Beneficiaries<PNC>(highRiskPncs, normalRiskPncs));
             }
         });
     }
