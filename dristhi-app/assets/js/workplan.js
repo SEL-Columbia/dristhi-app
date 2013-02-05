@@ -35,8 +35,8 @@ function Workplan(workplanBridge, cssIdOf) {
     };
 
     var updateFilterIndicator = function (appliedFilter) {
-        var text = "Show: " + appliedFilter;
-        $(cssIdOf.appliedFilterIndicator).text(formatText(text));
+        var text = "Show: " + formatText(appliedFilter);
+        $(cssIdOf.appliedFilterIndicator).text(text);
     };
 
     var filterByVillage = function () {
