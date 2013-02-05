@@ -10,7 +10,7 @@ import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.contract.Children;
+import org.ei.drishti.view.contract.Beneficiaries;
 import org.ei.drishti.view.contract.Village;
 
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class ChildListViewController {
 
                 sort(normalRiskChildren);
                 sort(highRiskChildren);
-                return new Gson().toJson(new Children(highRiskChildren, normalRiskChildren));
+                return new Gson().toJson(new Beneficiaries<org.ei.drishti.view.contract.Child>(highRiskChildren, normalRiskChildren));
             }
         });
     }

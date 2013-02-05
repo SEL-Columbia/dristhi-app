@@ -1,78 +1,36 @@
 function ChildList(childListBridge, cssIdOf) {
+    var listView;
 
-    var ALL_VILLAGES_FILTER_OPTION = "All";
-    var VILLAGE_FILTER_OPTION = "village";
-    var allChildren;
-    var appliedVillageFilter;
-
-    var showChildrenAndUpdateCount = function (appliedVillageFilter) {
-        var filteredHighRiskChildren;
-        var filteredNormalRiskChildren;
-
-        if (appliedVillageFilter === ALL_VILLAGES_FILTER_OPTION) {
-            filteredHighRiskChildren = allChildren.highRisk;
-            filteredNormalRiskChildren = allChildren.normalRisk;
-        }
-        else {
-            filteredHighRiskChildren = getChildrenBelongingToVillage(allChildren.highRisk, appliedVillageFilter);
-            filteredNormalRiskChildren = getChildrenBelongingToVillage(allChildren.normalRisk, appliedVillageFilter);
-        }
-
-        populateChildren(filteredHighRiskChildren, cssIdOf.highRiskContainer, cssIdOf.highRiskListContainer, cssIdOf.highRiskChildrenCount);
-        populateChildren(filteredNormalRiskChildren, cssIdOf.normalRiskContainer, cssIdOf.normalRiskListContainer, cssIdOf.normalRiskChildrenCount);
+    var searchCriteria = function (child, searchString) {
+        return (child.motherName.toUpperCase().indexOf(searchString) == 0
+            || child.ecNumber.toUpperCase().indexOf(searchString) == 0
+            || child.thaayiCardNumber.toUpperCase().indexOf(searchString) == 0);
     };
 
-    var populateChildren = function (children, cssIdOfListContainer, cssIdOfListItemsContainer, idOfChildrenCount) {
-        if (children.length === 0)
-            $(cssIdOfListContainer).hide();
-        else {
-            $(cssIdOfListItemsContainer).html(Handlebars.templates.child_list(children));
-            $(idOfChildrenCount).text(children.length);
-            $(cssIdOfListContainer).show();
-        }
+    var villageFilterCriteria = function (child, appliedVillageFilter) {
+        return child.villageName === appliedVillageFilter;
     };
-
-    var getChildrenBelongingToVillage = function (children, village) {
-        return jQuery.grep(children, function (child, index) {
-            return child.villageName === village;
-        });
-    };
-
-    var updateFilterIndicator = function (appliedFilter) {
-        var text = "Show: " + appliedFilter;
-        $(cssIdOf.appliedFilterIndicator).text(text);
-    };
-
-    var filterByVillage = function () {
-        var filterToApply = $(this).data(VILLAGE_FILTER_OPTION);
-        if (filterToApply === appliedVillageFilter) {
-            return;
-        }
-
-        showChildrenAndUpdateCount(filterToApply);
-        updateFilterIndicator($(this).text());
-        appliedVillageFilter = filterToApply;
-        childListBridge.delegateToSaveAppliedVillageFilter(filterToApply);
-    };
-
 
     return {
         populateInto: function () {
-            allChildren = childListBridge.getChildren();
-            appliedVillageFilter = childListBridge.getAppliedVillageFilter(ALL_VILLAGES_FILTER_OPTION);
-            showChildrenAndUpdateCount(appliedVillageFilter);
-            updateFilterIndicator(formatText(appliedVillageFilter));
+            listView = new ListView(cssIdOf, Handlebars.templates.child_list, childListBridge.getChildren(), searchCriteria, villageFilterCriteria);
+
+            var appliedVillageFilter = childListBridge.getAppliedVillageFilter(listView.ALL_VILLAGES_FILTER_OPTION);
+            listView.filterByVillage(appliedVillageFilter, appliedVillageFilter);
         },
         bindEveryItemToChildView: function () {
-            $(cssIdOf.rootElement).on("click", cssIdOf.everyListItem, function (event) {
+            $(cssIdOf.rootElement).on("click", cssIdOf.everyListItem, function () {
                 childListBridge.delegateToChildDetail($(this).data("caseid"));
             });
         },
         populateVillageFilter: function () {
-            $(cssIdOf.villageFilter).html(Handlebars.templates.filter_by_village(childListBridge.getVillages()));
+            listView.populateVillageFilter(childListBridge.getVillages());
         },
-        bindToVillageFilter: function () {
-            $(cssIdOf.villageFilterOptions).click(filterByVillage);
+        bindVillageFilterOptions: function () {
+            listView.bindVillageFilterOptions();
+        },
+        bindSearchEvents: function () {
+            listView.bindSearchEvents();
         }
     };
 }
@@ -106,7 +64,7 @@ function FakeChildListContext() {
     return {
         get: function () {
             return JSON.stringify({
-                highRisk: [
+                priority: [
                     {
                         caseId: "12345",
                         motherName: "Mother 1",
@@ -128,7 +86,7 @@ function FakeChildListContext() {
                         isHighRisk: true
                     }
                 ],
-                normalRisk: [
+                normal: [
                     {
                         caseId: "12355",
                         motherName: "Mother 4",

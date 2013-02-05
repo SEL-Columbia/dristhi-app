@@ -5,11 +5,11 @@ function ECList(ecListBridge, cssIdOf) {
         return (ec.wifeName.toUpperCase().indexOf(searchString) == 0
             || ec.ecNumber.toUpperCase().indexOf(searchString) == 0
             || ec.thayiCardNumber.toUpperCase().indexOf(searchString) == 0);
-    }
+    };
 
     var villageFilterCriteria = function (ec, appliedVillageFilter) {
         return ec.villageName === appliedVillageFilter;
-    }
+    };
 
     return {
         populateInto: function () {

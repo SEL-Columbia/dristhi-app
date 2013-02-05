@@ -6,45 +6,9 @@
     <link href="../css/sidepanel.css" rel="stylesheet">
     <link href="../css/list.css" rel="stylesheet">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/handlebars-1.0.rc.1.min.js"></script>
-
-    <script type="text/javascript" src="../js/custom.ui.js"></script>
-    <script type="text/javascript" src="../template/templates.js"></script>
-    <script type="text/javascript" src="../js/anmNavigation.js"></script>
-    <script type="text/javascript" src="../js/sidePanel.js"></script>
-
-    <script type="text/javascript" src="../js/child_list.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var cssIdOf = {
-                rootElement:"#child-list",
-                everyListItem: ".client-list-item",
-                highRiskContainer: "#child-list #highRiskContainer",
-                highRiskListContainer: "#child-list #highRiskContainer .high-risk-list",
-                highRiskChildrenCount : "#child-list #highRiskContainer .count",
-                normalRiskContainer: "#child-list #normalRiskContainer",
-                normalRiskListContainer : "#child-list #normalRiskContainer .normal-risk-list",
-                normalRiskChildrenCount : "#child-list #normalRiskContainer .count",
-                commCareItems: "#plusButton",
-                villageFilter:"#menu-village",
-                villageFilterOptions:".dropdown-option",
-                appliedFilterIndicator: ".filter-by-village"
-            };
-
-            var list = new ChildList(new ChildListBridge(), cssIdOf);
-            list.populateInto();
-            list.bindEveryItemToChildView();
-
-            list.populateVillageFilter();
-            list.bindToVillageFilter();
-
-            new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
-        });
-    </script>
 <body>
 <div class="page affected-by-sidepanel">
     <div id="sidePanelContainer"></div>
@@ -53,9 +17,27 @@
         <div class="navbar navbar-fixed-top affected-by-sidepanel">
             <div class="navbar-inner">
                 <ul class="nav pull-left">
-                    <li><img class="sidepanel-icon affected-by-sidepanel" /><img class="separator" /></li>
-                    <li><div class="navbar-header">Child</div></li>
+                    <li id="sidepanel-button">
+                        <img class="sidepanel-icon affected-by-sidepanel"/><img class="separator"/>
+                    </li>
+                    <li>
+                        <div class="navbar-header">Child</div>
+                    </li>
                 </ul>
+                <ul id="search-container" class="nav search-container affected-by-sidepanel">
+                    <li class="match-parents-width">
+                        <form id="search-form" class="navbar-search match-parents-width">
+                            <input id="search-box" type="text" class="search-query search-box" placeholder="Search">
+                        </form>
+                    </li>
+                </ul>
+                <ul class="nav pull-right affected-by-sidepanel">
+                    <li><img class="separator"></li>
+                    <li id="cancel-search" class="cancel-search hidden">
+                        Cancel
+                    </li>
+                </ul>
+
             </div>
         </div>
 
@@ -68,6 +50,9 @@
                 <ul id="menu-village" class="dropdown-menu dropdown-menu-filter">
                 </ul>
             </div>
+            <p id="noItemIndicator" class="text-info text-on-list hidden">
+                No items to display
+            </p>
             <div id="child-list" class="registry-container container-fluid">
                 <div id="highRiskContainer" class="high-risk-container">
                     <div class="high-risk-header"> HIGH RISK (<span class="count"></span>)</div>
@@ -85,4 +70,51 @@
     </div>
 </div>
 </body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/handlebars-1.0.rc.1.min.js"></script>
+
+<script src="../js/custom.ui.js"></script>
+<script src="../template/templates.js"></script>
+<script src="../js/anmNavigation.js"></script>
+<script src="../js/sidePanel.js"></script>
+<script src="../js/list_view.js"></script>
+
+<script src="../js/child_list.js"></script>
+<script>
+    $(document).ready(function () {
+        var cssIdOf = {
+            rootElement: "#child-list",
+            everyListItem: ".client-list-item",
+            priorityContainer: "#child-list #highRiskContainer",
+            priorityListContainer: "#child-list #highRiskContainer .high-risk-list",
+            priorityBeneficiaryCount: "#child-list #highRiskContainer .count",
+            normalContainer: "#child-list #normalRiskContainer",
+            normalListContainer: "#child-list #normalRiskContainer .normal-risk-list",
+            normalBeneficiaryCount: "#child-list #normalRiskContainer .count",
+            commCareItems: "#plusButton",
+            villageFilter: "#menu-village",
+            villageFilterOptions: ".dropdown-option",
+            appliedFilterIndicator: ".filter-by-village",
+            searchBox: "#search-box",
+            sidePanelButton: "#sidepanel-button",
+            addButton: "#plusButton",
+            cancelSearchButton: "#cancel-search",
+            searchContainer: "#search-container",
+            expandedSearchContainerClass: "expanded-search-container",
+            noItemIndicator: "#noItemIndicator",
+            searchForm: "#search-form"
+        };
+
+        var list = new ChildList(new ChildListBridge(), cssIdOf);
+        list.populateInto();
+        list.bindEveryItemToChildView();
+
+        list.populateVillageFilter();
+        list.bindVillageFilterOptions();
+        list.bindSearchEvents();
+
+        new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
+    });
+</script>
 </html>

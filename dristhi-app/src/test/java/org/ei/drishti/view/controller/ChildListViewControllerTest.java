@@ -12,7 +12,7 @@ import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.util.Cache;
-import org.ei.drishti.view.contract.Children;
+import org.ei.drishti.view.contract.Beneficiaries;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,11 +55,11 @@ public class ChildListViewControllerTest {
         when(allBeneficiaries.findMother("Mother Case 1")).thenReturn(new Mother("Mother Case 1", "EC Case 1", "TC 1", "2031-12-12"));
         when(allBeneficiaries.findMother("Mother Case 2")).thenReturn(new Mother("Mother Case 2", "EC Case 2", "TC 2", "2031-11-12"));
 
-        Children children = new Gson().fromJson(controller.get(), new TypeToken<Children>() {
+        Beneficiaries<org.ei.drishti.view.contract.Child> children = new Gson().fromJson(controller.get(), new TypeToken<Beneficiaries<org.ei.drishti.view.contract.Child>>() {
         }.getType());
 
-        assertEquals(asList(new org.ei.drishti.view.contract.Child("Case 1", "TC 1", "Woman A", "Husband A", "EC Number 1", "Bherya", false)), children.normalRisk());
-        assertEquals(asList(new org.ei.drishti.view.contract.Child("Case 2", "TC 2", "woman B", "Husband B", "EC Number 2", "Bherya", true)), children.highRisk());
+        assertEquals(asList(new org.ei.drishti.view.contract.Child("Case 1", "TC 1", "Woman A", "Husband A", "EC Number 1", "Bherya", false)), children.normal());
+        assertEquals(asList(new org.ei.drishti.view.contract.Child("Case 2", "TC 2", "woman B", "Husband B", "EC Number 2", "Bherya", true)), children.priority());
     }
 
     @Test
