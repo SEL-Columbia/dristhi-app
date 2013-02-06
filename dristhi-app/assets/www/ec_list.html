@@ -51,6 +51,7 @@
             <p id="noItemIndicator" class="text-info text-on-list hidden">
                 No items to display
             </p>
+
             <div id="ec-list" class="registry-container container-fluid">
                 <div id="highPriorityContainer" class="high-risk-container">
                     <div class="high-risk-header"> HIGH PRIORITY (<span class="count"></span>)</div>
@@ -63,6 +64,12 @@
                     <div class="divider divider-padding-both"></div>
                     <div class="normal-priority-list"></div>
                 </div>
+            </div>
+            <div id="loadAllButton" class="registry-container container-fluid">
+                <button class="btn btn-large match-parents-width">Load All</button>
+            </div>
+            <div id="loadingButton" class="registry-container container-fluid hidden">
+                <button class="btn btn-large btn-info match-parents-width">Loading...</button>
             </div>
         </div>
     </div>
@@ -103,7 +110,9 @@
             searchContainer: "#search-container",
             expandedSearchContainerClass: "expanded-search-container",
             noItemIndicator: "#noItemIndicator",
-            searchForm: "#search-form"
+            searchForm: "#search-form",
+            loadAllButton: "#loadAllButton",
+            loadingButton: "#loadingButton"
         };
         var ecList = new ECList(new ECListBridge(), cssIdOf);
         ecList.populateInto();
@@ -113,6 +122,7 @@
         ecList.populateVillageFilter();
         ecList.bindVillageFilterOptions();
         ecList.bindSearchEvents();
+        ecList.bindLoadAll();
 
         new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
     });

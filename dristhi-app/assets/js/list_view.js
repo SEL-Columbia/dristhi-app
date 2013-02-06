@@ -1,26 +1,51 @@
 function ListView(cssIdOf, listTemplate, beneficiaryLists, searchCriteria, villageFilterCriteria) {
+    var NUMBER_OF_BENEFICIARIES_TO_SHOW_INITIALLY = 50;
+    var LOAD_ALL_BENEFICIARIES = -1;
     var VILLAGE_FILTER_OPTION = "village";
     var ALL_VILLAGES_FILTER_OPTION = "All";
     var appliedVillageFilter = "NONE";
     var inSearchMode = false;
 
-    var populateListBasedOnAppliedFilters = function () {
+    var populateListBasedOnAppliedFilters = function (numberOfBeneficiariesToShow) {
         var searchString = $(cssIdOf.searchBox).val().toUpperCase();
+
         var priorityListItems = filterListBy(beneficiaryLists.priority, searchString);
         var normalListItems = filterListBy(beneficiaryLists.normal, searchString);
+        var priorityBeneficiariesToBeShown = priorityListItems;
+        var normalBeneficiariesToBeShown = normalListItems;
 
-        populateBeneficiaries(priorityListItems, cssIdOf.priorityContainer, cssIdOf.priorityListContainer, cssIdOf.priorityBeneficiaryCount);
-        populateBeneficiaries(normalListItems, cssIdOf.normalContainer, cssIdOf.normalListContainer, cssIdOf.normalBeneficiaryCount);
+        numberOfBeneficiariesToShow = numberOfBeneficiariesToShow || NUMBER_OF_BENEFICIARIES_TO_SHOW_INITIALLY;
+
+        if (numberOfBeneficiariesToShow === NUMBER_OF_BENEFICIARIES_TO_SHOW_INITIALLY) {
+            priorityBeneficiariesToBeShown = priorityListItems.slice(0, NUMBER_OF_BENEFICIARIES_TO_SHOW_INITIALLY);
+            normalBeneficiariesToBeShown = normalListItems.slice(0, NUMBER_OF_BENEFICIARIES_TO_SHOW_INITIALLY);
+        }
+
+        populateBeneficiaries(priorityBeneficiariesToBeShown, cssIdOf.priorityContainer, cssIdOf.priorityListContainer, cssIdOf.priorityBeneficiaryCount, priorityListItems.length);
+        populateBeneficiaries(normalBeneficiariesToBeShown, cssIdOf.normalContainer, cssIdOf.normalListContainer, cssIdOf.normalBeneficiaryCount, normalListItems.length);
+
         setDisplayStatusOfNoItemIndicator(priorityListItems, normalListItems);
+        setDisplayStatusOfListLoadIndicator(numberOfBeneficiariesToShow, priorityListItems, normalListItems);
     };
 
-    var populateBeneficiaries = function (beneficiaries, cssIdOfListContainer, cssIdOfListItemsContainer, idOfBeneficiariesCount) {
+    var setDisplayStatusOfListLoadIndicator = function (numberOfBeneficiariesToShow, priorityListItems, normalListItems) {
+        if (numberOfBeneficiariesToShow == LOAD_ALL_BENEFICIARIES ||
+            (numberOfBeneficiariesToShow >= priorityListItems.length && numberOfBeneficiariesToShow >= normalListItems.length)) {
+            $(cssIdOf.loadAllButton).hide();
+            $(cssIdOf.loadingButton).hide();
+        } else {
+            $(cssIdOf.loadAllButton).show();
+        }
+    };
+
+
+    var populateBeneficiaries = function (beneficiaries, cssIdOfListContainer, cssIdOfListItemsContainer, idOfBeneficiariesCount, numberOfItems) {
         if (beneficiaries.length === 0) {
             $(cssIdOfListContainer).hide();
         }
         else {
             $(cssIdOfListItemsContainer).html(listTemplate(beneficiaries));
-            $(idOfBeneficiariesCount).text(beneficiaries.length);
+            $(idOfBeneficiariesCount).text(numberOfItems);
             $(cssIdOfListContainer).show();
         }
     };
@@ -104,9 +129,20 @@ function ListView(cssIdOf, listTemplate, beneficiaryLists, searchCriteria, villa
         filterByVillage: function (filterToApply, displayText) {
             filterByVillage(filterToApply, formatText(displayText));
         },
+        bindLoadAll: function () {
+            $(cssIdOf.loadAllButton).click(function () {
+                $(cssIdOf.loadAllButton).hide();
+                $(cssIdOf.loadingButton).show();
+                setTimeout(function () {
+                    populateListBasedOnAppliedFilters(LOAD_ALL_BENEFICIARIES);
+                }, 50);
+            });
+        },
         bindSearchEvents: function () {
             $(cssIdOf.searchBox).click(expandSearchBox);
-            $(cssIdOf.searchBox).keyup(populateListBasedOnAppliedFilters);
+            $(cssIdOf.searchBox).keyup(function () {
+                populateListBasedOnAppliedFilters();
+            });
             $(cssIdOf.searchForm).submit(function () {
                 return false;
             });

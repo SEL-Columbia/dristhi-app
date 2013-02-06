@@ -44,6 +44,9 @@ function ECList(ecListBridge, cssIdOf) {
         },
         bindSearchEvents: function () {
             listView.bindSearchEvents();
+        },
+        bindLoadAll: function () {
+            listView.bindLoadAll();
         }
     };
 }
@@ -90,6 +93,16 @@ function FakeECListContext() {
                         isHighPriority: true,
                         hasTodos: false,
                         thayiCardNumber: ""
+                    },
+                    {
+                        caseId: "12345777",
+                        wifeName: "Wife 2",
+                        husbandName: "Husband 2",
+                        ecNumber: "EC Number 2",
+                        villageName: "munjanahalli",
+                        isHighPriority: true,
+                        hasTodos: false,
+                        thayiCardNumber: ""
                     }
                 ],
                 normal: [
@@ -98,6 +111,17 @@ function FakeECListContext() {
                         wifeName: "Wife 2",
                         husbandName: "Husband 2",
                         ecNumber: "EC Number 2",
+                        villageName: "chikkabheriya",
+                        isHighPriority: false,
+                        hasTodos: true,
+                        thayiCardNumber: "12345"
+
+                    },
+                    {
+                        caseId: "1112323",
+                        wifeName: "Wife 4",
+                        husbandName: "Husband 4",
+                        ecNumber: "EC Number 4",
                         villageName: "chikkabheriya",
                         isHighPriority: false,
                         hasTodos: true,
