@@ -66,6 +66,13 @@
                     <div class="normal-risk-list"></div>
                 </div>
             </div>
+            <div id="loadAllButton" class="registry-container container-fluid">
+                <button class="btn btn-large match-parents-width">Load All</button>
+            </div>
+            <div id="loadingButton" class="registry-container container-fluid hidden">
+                <button class="btn btn-large btn-info match-parents-width">Loading...</button>
+            </div>
+
         </div>
     </div>
 </div>
@@ -103,7 +110,9 @@
             searchContainer: "#search-container",
             expandedSearchContainerClass: "expanded-search-container",
             noItemIndicator: "#noItemIndicator",
-            searchForm: "#search-form"
+            searchForm: "#search-form",
+            loadAllButton: "#loadAllButton",
+            loadingButton: "#loadingButton"
         };
 
         var list = new ChildList(new ChildListBridge(), cssIdOf);
@@ -113,6 +122,7 @@
         list.populateVillageFilter();
         list.bindVillageFilterOptions();
         list.bindSearchEvents();
+        list.bindLoadAll();
 
         new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
     });

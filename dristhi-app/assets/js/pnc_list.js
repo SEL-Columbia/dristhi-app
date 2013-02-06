@@ -31,6 +31,9 @@ function PNCList(pncListBridge, cssIdOf) {
         },
         bindSearchEvents: function () {
             listView.bindSearchEvents();
+        },
+        bindLoadAll: function () {
+            listView.bindLoadAll();
         }
     };
 }

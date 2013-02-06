@@ -31,6 +31,9 @@ function ChildList(childListBridge, cssIdOf) {
         },
         bindSearchEvents: function () {
             listView.bindSearchEvents();
+        },
+        bindLoadAll: function () {
+            listView.bindLoadAll();
         }
     };
 }
