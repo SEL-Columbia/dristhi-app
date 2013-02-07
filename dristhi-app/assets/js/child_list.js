@@ -28,6 +28,9 @@ function ChildList(childListBridge, cssIdOf) {
         },
         bindVillageFilterOptions: function () {
             listView.bindVillageFilterOptions();
+            $(cssIdOf.villageFilterOptions).click(function () {
+                childListBridge.delegateToSaveAppliedVillageFilter($(this).data(listView.VILLAGE_FILTER_OPTION));
+            });
         },
         bindSearchEvents: function () {
             listView.bindSearchEvents();

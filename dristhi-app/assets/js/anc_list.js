@@ -33,6 +33,9 @@ function ANCList(ancListBridge, cssIdOf) {
         },
         bindVillageFilterOptions: function () {
             listView.bindVillageFilterOptions();
+            $(cssIdOf.villageFilterOptions).click(function () {
+                ancListBridge.delegateToSaveAppliedVillageFilter($(this).data(listView.VILLAGE_FILTER_OPTION));
+            });
         },
         bindSearchEvents: function () {
             listView.bindSearchEvents();

@@ -28,6 +28,9 @@ function PNCList(pncListBridge, cssIdOf) {
         },
         bindToVillageFilter: function () {
             listView.bindVillageFilterOptions();
+            $(cssIdOf.villageFilterOptions).click(function () {
+                pncListBridge.delegateToSaveAppliedVillageFilter($(this).data(listView.VILLAGE_FILTER_OPTION));
+            });
         },
         bindSearchEvents: function () {
             listView.bindSearchEvents();
