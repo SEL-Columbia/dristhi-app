@@ -6,7 +6,7 @@
     <string name="login_text">Log In</string>
     <string name="image_description">logo</string>
     <string name="spacer">spacer</string>
-    <string name="buildNumber">v1.5.1, built on 22-01-13</string>
+    <string name="buildNumber">v1.5.2, built on 8th Feb 13</string>
     <string name="loggin_in_dialog_title">Logging in…</string>
     <string name="loggin_in_dialog_message">Please wait</string>
     <string name="login_failed_dialog_title">Log in failed</string>
