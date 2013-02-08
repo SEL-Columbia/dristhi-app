@@ -8,15 +8,14 @@
 
     <application android:label="@string/app_name" android:icon="@drawable/icon_eye" android:clearTaskOnLaunch="true" android:name=".view.activity.DrishtiApplication">
         <activity android:name=".view.activity.LoginActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
-                  android:screenOrientation="portrait" android:clearTaskOnLaunch="true" android:windowSoftInputMode="adjustResize|stateHidden">
+                  android:clearTaskOnLaunch="true" android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.activity.HomeActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
-                  android:screenOrientation="portrait"/>
+        <activity android:name=".view.activity.HomeActivity" android:theme="@android:style/Theme.Light.NoTitleBar"/>
         <activity android:name=".view.activity.WorkplanActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
                   android:screenOrientation="portrait"/>
         <activity android:name=".view.activity.ReportsActivity" android:theme="@android:style/Theme.Light.NoTitleBar"
