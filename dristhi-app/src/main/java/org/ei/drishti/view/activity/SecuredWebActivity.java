@@ -27,27 +27,8 @@ public abstract class SecuredWebActivity extends SecuredActivity {
     protected void onCreation() {
         setContentView(R.layout.html);
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
-        progressDialog.setTitle("Loading ...");
-        progressDialog.setMessage("Please wait");
-        progressDialog.show();
-        webView = (WebView) findViewById(R.id.webview);
-
-        final Activity activity = this;
-        webView.setWebChromeClient(new WebChromeClient() {
-            public void onProgressChanged(WebView view, int progress) {
-                activity.setProgress(progress * 1000);
-
-                if (progress == 100 && progressDialog.isShowing())
-                    progressDialog.dismiss();
-            }
-        });
-
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient());
-        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        webView.addJavascriptInterface(new NavigationController(this, context.anmService()), "navigationContext");
+        progressDialogInitialization();
+        webViewInitialization(this);
 
         updateController = new UpdateController(webView);
 
@@ -115,5 +96,37 @@ public abstract class SecuredWebActivity extends SecuredActivity {
 
         if (updateController != null)
             updateController.destroy();
+    }
+
+    private void progressDialogInitialization() {
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setTitle("Loading ...");
+        progressDialog.setMessage("Please wait");
+        progressDialog.show();
+    }
+
+    private void webViewInitialization(final Activity activity) {
+        webView = (WebView) findViewById(R.id.webview);
+
+        webView.setWebChromeClient(new WebChromeClient() {
+            public void onProgressChanged(WebView view, int progress) {
+                activity.setProgress(progress * 1000);
+
+                if (progress == 100 && progressDialog.isShowing())
+                    progressDialog.dismiss();
+            }
+        });
+
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebViewClient(new WebViewClient());
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+        webView.addJavascriptInterface(new NavigationController(this, context.anmService()), "navigationContext");
+        webView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                return true;
+            }
+        });
     }
 }
