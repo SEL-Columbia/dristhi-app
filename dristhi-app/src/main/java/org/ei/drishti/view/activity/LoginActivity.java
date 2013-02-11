@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.LoginResponse;
@@ -20,10 +22,13 @@ import org.ei.drishti.view.LockingBackgroundTask;
 import org.ei.drishti.view.ProgressIndicator;
 
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
+import static org.ei.drishti.AllConstants.CC_KEY_EXCHANGE_API_REQUEST_CODE;
 import static org.ei.drishti.domain.LoginResponse.SUCCESS;
+import static org.ei.drishti.util.Log.logError;
 import static org.ei.drishti.util.Log.logVerbose;
 
 public class LoginActivity extends Activity {
+    public static final String COMMCARE_SHARING_KEY_PAYLOAD = "commcare_sharing_key_payload";
     private Context context;
     private EditText userNameEditText;
     private EditText passwordEditText;
@@ -63,6 +68,20 @@ public class LoginActivity extends Activity {
             localLogin(view, userName, password);
         } else {
             remoteLogin(view, userName, password);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CC_KEY_EXCHANGE_API_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                context.commCareClientService().handleCommCareKeyExchangeResponse(this,
+                        data.getStringExtra(AllConstants.COMMCARE_SHARING_KEY_ID),
+                        data.getByteArrayExtra(COMMCARE_SHARING_KEY_PAYLOAD));
+            } else {
+                logError("User denied key access!");
+            }
         }
     }
 
@@ -167,6 +186,7 @@ public class LoginActivity extends Activity {
 
     private void loginWith(String userName, String password) {
         context.userService().loginWith(userName, password);
+        context.commCareClientService().establishConnection(this);
         goToHome();
     }
 

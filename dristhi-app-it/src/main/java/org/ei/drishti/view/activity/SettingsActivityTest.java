@@ -5,6 +5,7 @@ import org.ei.drishti.Context;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.service.NavigationService;
 import org.ei.drishti.util.DrishtiSolo;
+import org.ei.drishti.util.FakeCommCareClientService;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.util.FakeUserService;
 
@@ -16,6 +17,7 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<HomeA
     private DrishtiSolo solo;
     private FakeDrishtiService drishtiService;
     private FakeUserService userService;
+    private FakeCommCareClientService commCareClientService;
 
     public SettingsActivityTest() {
         super("org.ei.drishti.test", HomeActivity.class);
@@ -25,7 +27,8 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<HomeA
 
     @Override
     public void setUp() throws Exception {
-        setupService(drishtiService, userService, 1000000, new NavigationService()).updateApplicationContext(getActivity().getApplicationContext());
+        setupService(drishtiService, userService, 1000000,
+                new NavigationService(), commCareClientService).updateApplicationContext(getActivity().getApplicationContext());
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
     }
@@ -33,7 +36,7 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<HomeA
     public void testShouldRegisterANM() throws Exception {
         AllSettings settings = Context.getInstance().allSettings();
 
-        settings.registerANM("XYZ");
+        settings.registerANM("XYZ", "password Y");
 
         assertEquals("XYZ", settings.fetchRegisteredANM());
     }

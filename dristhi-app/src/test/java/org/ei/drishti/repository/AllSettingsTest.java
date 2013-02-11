@@ -38,6 +38,16 @@ public class AllSettingsTest {
     }
 
     @Test
+    public void shouldFetchANMPasswordFromPreferences() throws Exception {
+        when(preferences.getString("anmPassword", "")).thenReturn("actual password");
+
+        String actual = allSettings.fetchANMPassword();
+        verify(preferences).getString("anmPassword", "");
+
+        assertEquals("actual password", actual);
+    }
+
+    @Test
     public void shouldTrimANMIdentifier() throws Exception {
         when(preferences.getString("anmIdentifier", "")).thenReturn("  1234 ");
 
@@ -76,5 +86,35 @@ public class AllSettingsTest {
         allSettings.appliedVillageFilter("All");
 
         verify(settingsRepository).querySetting("appliedVillageFilter", "All");
+    }
+
+    @Test
+    public void shouldSaveCommCareKeyID() throws Exception {
+        allSettings.saveCommCareKeyID("key code");
+
+        verify(settingsRepository).updateSetting("commCareKeyID", "key code");
+    }
+
+    @Test
+    public void shouldSaveCommCarePublicKey() throws Exception {
+        byte[] publicKey = {1, 2};
+        allSettings.saveCommCarePublicKey(publicKey);
+
+        verify(settingsRepository).updateBLOB("commCarePublicKey", publicKey);
+    }
+
+    @Test
+    public void shouldFetchCommCareKeyID() throws Exception {
+        when(settingsRepository.querySetting("commCareKeyID", null)).thenReturn("key id");
+
+        assertEquals("key id", allSettings.fetchCommCareKeyID());
+    }
+
+    @Test
+    public void shouldFetchCommCarePublicKey() throws Exception {
+        byte[] expectedPublicKey = {1, 2};
+        when(settingsRepository.queryBLOB("commCarePublicKey")).thenReturn(expectedPublicKey);
+
+        assertEquals(expectedPublicKey, allSettings.fetchCommCarePublicKey());
     }
 }

@@ -235,7 +235,7 @@ public class Context {
 
     public CommCareClientService commCareClientService() {
         if (commCareClientService == null) {
-            commCareClientService = new CommCareClientService();
+            commCareClientService = new CommCareClientService(allSettings(), navigationService());
         }
         return commCareClientService;
     }

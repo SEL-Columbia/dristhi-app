@@ -30,7 +30,7 @@ public class UserService {
 
     public void loginWith(String userName, String password) {
         setupContextForLogin(userName, password);
-        allSettings.registerANM(userName);
+        allSettings.registerANM(userName, password);
     }
 
     public boolean hasARegisteredUser() {
@@ -39,7 +39,7 @@ public class UserService {
 
     public void logout() {
         logoutSession();
-        allSettings.registerANM("");
+        allSettings.registerANM("", "");
         allSettings.savePreviousFetchIndex("0");
         repository.deleteRepository();
     }

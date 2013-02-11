@@ -2,10 +2,7 @@ package org.ei.drishti.view.activity;
 
 import android.test.ActivityInstrumentationTestCase2;
 import org.ei.drishti.Context;
-import org.ei.drishti.util.DrishtiSolo;
-import org.ei.drishti.util.FakeDrishtiService;
-import org.ei.drishti.util.FakeNavigationService;
-import org.ei.drishti.util.FakeUserService;
+import org.ei.drishti.util.*;
 
 import java.util.Date;
 
@@ -18,6 +15,7 @@ public class HomeActivityTest extends ActivityInstrumentationTestCase2<HomeActiv
     private DrishtiSolo solo;
     private FakeUserService userService;
     private FakeNavigationService navigationService;
+    private FakeCommCareClientService commCareClientService;
 
     public HomeActivityTest() {
         super(HomeActivity.class);
@@ -28,8 +26,9 @@ public class HomeActivityTest extends ActivityInstrumentationTestCase2<HomeActiv
         FakeDrishtiService drishtiService = new FakeDrishtiService(String.valueOf(new Date().getTime() - 1));
         userService = new FakeUserService();
         navigationService = new FakeNavigationService();
+        commCareClientService = new FakeCommCareClientService();
 
-        setupService(drishtiService, userService, 100000, navigationService).updateApplicationContext(getActivity());
+        setupService(drishtiService, userService, 100000, navigationService, commCareClientService).updateApplicationContext(getActivity());
         Context.getInstance().session().setPassword("password");
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());

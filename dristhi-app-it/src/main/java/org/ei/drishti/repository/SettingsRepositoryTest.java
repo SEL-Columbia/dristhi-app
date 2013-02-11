@@ -4,6 +4,7 @@ import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 import org.ei.drishti.util.Session;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class SettingsRepositoryTest extends AndroidTestCase {
@@ -26,6 +27,15 @@ public class SettingsRepositoryTest extends AndroidTestCase {
         assertEquals("def", settingsRepository.querySetting("abc", "someDefaultValue"));
     }
 
+    public void testSettingsFetchAndSaveAsBLOB() throws Exception {
+        byte[] expected = new byte[]{1, 2, 3};
+        settingsRepository.updateBLOB("abc", expected);
+
+        byte[] actual = settingsRepository.queryBLOB("abc");
+
+        assertTrue(Arrays.equals(expected, actual));
+    }
+
     public void testShouldGiveDefaultValueIfThereHasBeenNoSetValue() throws Exception {
         assertEquals("someDefaultValue", settingsRepository.querySetting("SOMETHING_WHICH_DOES_NOT_EXIST", "someDefaultValue"));
     }
@@ -36,5 +46,4 @@ public class SettingsRepositoryTest extends AndroidTestCase {
 
         assertEquals("ghi", settingsRepository.querySetting("abc", "someDefaultValue"));
     }
-
 }

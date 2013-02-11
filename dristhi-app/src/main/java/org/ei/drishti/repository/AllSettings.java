@@ -6,6 +6,9 @@ public class AllSettings {
     public static final String APPLIED_VILLAGE_FILTER_SETTING_KEY = "appliedVillageFilter";
     public static final String PREVIOUS_FETCH_INDEX_SETTING_KEY = "previousFetchIndex";
     public static final String ANM_IDENTIFIER_PREFERENCE_KEY = "anmIdentifier";
+    private static final String COMMCARE_KEY_ID = "commCareKeyID";
+    private static final String COMMCARE_PUBLIC_KEY = "commCarePublicKey";
+    private static final String ANM_PASSWORD_PREFERENCE_KEY = "anmPassword";
     private SharedPreferences preferences;
     private SettingsRepository settingsRepository;
 
@@ -14,8 +17,9 @@ public class AllSettings {
         this.settingsRepository = settingsRepository;
     }
 
-    public void registerANM(String userName) {
+    public void registerANM(String userName, String password) {
         preferences.edit().putString(ANM_IDENTIFIER_PREFERENCE_KEY, userName).commit();
+        preferences.edit().putString(ANM_PASSWORD_PREFERENCE_KEY, password).commit();
     }
 
     public String fetchRegisteredANM() {
@@ -36,5 +40,25 @@ public class AllSettings {
 
     public String appliedVillageFilter(String defaultFilterValue) {
         return settingsRepository.querySetting(APPLIED_VILLAGE_FILTER_SETTING_KEY, defaultFilterValue);
+    }
+
+    public void saveCommCareKeyID(String keyId) {
+        settingsRepository.updateSetting(COMMCARE_KEY_ID, keyId);
+    }
+
+    public void saveCommCarePublicKey(byte[] publicKey) {
+        settingsRepository.updateBLOB(COMMCARE_PUBLIC_KEY, publicKey);
+    }
+
+    public String fetchCommCareKeyID() {
+        return settingsRepository.querySetting(COMMCARE_KEY_ID, null);
+    }
+
+    public byte[] fetchCommCarePublicKey() {
+        return settingsRepository.queryBLOB(COMMCARE_PUBLIC_KEY);
+    }
+
+    public String fetchANMPassword() {
+        return preferences.getString(ANM_PASSWORD_PREFERENCE_KEY, "").trim();
     }
 }

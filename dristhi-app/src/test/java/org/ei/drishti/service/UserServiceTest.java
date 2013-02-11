@@ -82,7 +82,7 @@ public class UserServiceTest {
     public void shouldRegisterANewUser() {
         userService.loginWith("user X", "password Y");
 
-        verify(allSettings).registerANM("user X");
+        verify(allSettings).registerANM("user X", "password Y");
         verify(session).setPassword("password Y");
     }
 
@@ -92,6 +92,6 @@ public class UserServiceTest {
 
         verify(repository).deleteRepository();
         verify(allSettings).savePreviousFetchIndex("0");
-        verify(allSettings).registerANM("");
+        verify(allSettings).registerANM("", "");
     }
 }

@@ -8,4 +8,7 @@ public class AllConstants {
     public static final String CASE_IDS = "caseIds";
     public static final String INDICATOR = "indicator";
     public static final String CASE_ID = "caseId";
+    public static final int CC_KEY_EXCHANGE_API_REQUEST_CODE = 1;
+    public static final String CC_KEY_EXCHANGE_API_REQUEST_ACTION = "org.commcare.dalvik.action.CommCareKeyAccessRequest";
+    public static final String COMMCARE_SHARING_KEY_ID = "commcare_sharing_key_id";
 }
