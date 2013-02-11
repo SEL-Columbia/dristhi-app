@@ -5,8 +5,11 @@ import android.content.Context;
 import org.ei.drishti.service.CommCareClientService;
 
 public class FakeCommCareClientService extends CommCareClientService {
-    public FakeCommCareClientService() {
-        super(null, null);
+    private FakeNavigationService navigationService;
+
+    public FakeCommCareClientService(FakeNavigationService navigationService) {
+        super(null, navigationService);
+        this.navigationService = navigationService;
     }
 
     @Override
@@ -15,5 +18,6 @@ public class FakeCommCareClientService extends CommCareClientService {
 
     @Override
     public void establishConnection(Activity activity) {
+        navigationService.goHome(activity);
     }
 }

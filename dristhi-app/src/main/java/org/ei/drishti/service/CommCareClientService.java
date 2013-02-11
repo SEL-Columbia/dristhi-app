@@ -109,6 +109,7 @@ public class CommCareClientService {
             navigationService.requestKeyAccessFromCommCare(activity);
         } else {
             tryCommCareLogin(activity);
+            navigationService.goHome(activity);
         }
     }
 

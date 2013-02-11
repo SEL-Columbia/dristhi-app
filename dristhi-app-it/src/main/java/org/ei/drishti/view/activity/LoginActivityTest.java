@@ -27,7 +27,7 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
         FakeDrishtiService drishtiService = new FakeDrishtiService(String.valueOf(new Date().getTime() - 1));
         userService = new FakeUserService();
         navigationService = new FakeNavigationService();
-        commCareClientService = new FakeCommCareClientService();
+        commCareClientService = new FakeCommCareClientService(navigationService);
 
         setupService(drishtiService, userService, -1000, navigationService, commCareClientService).updateApplicationContext(getActivity());
         Context.getInstance().session().setPassword(null);
