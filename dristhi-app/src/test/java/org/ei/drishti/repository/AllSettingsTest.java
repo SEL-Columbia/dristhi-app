@@ -38,11 +38,11 @@ public class AllSettingsTest {
     }
 
     @Test
-    public void shouldFetchANMPasswordFromPreferences() throws Exception {
-        when(preferences.getString("anmPassword", "")).thenReturn("actual password");
+    public void shouldFetchANMPassword() throws Exception {
+        when(settingsRepository.querySetting("anmPassword", "")).thenReturn("actual password");
 
         String actual = allSettings.fetchANMPassword();
-        verify(preferences).getString("anmPassword", "");
+        verify(settingsRepository).querySetting("anmPassword", "");
 
         assertEquals("actual password", actual);
     }

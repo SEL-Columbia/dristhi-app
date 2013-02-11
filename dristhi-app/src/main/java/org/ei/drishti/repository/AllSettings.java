@@ -19,7 +19,7 @@ public class AllSettings {
 
     public void registerANM(String userName, String password) {
         preferences.edit().putString(ANM_IDENTIFIER_PREFERENCE_KEY, userName).commit();
-        preferences.edit().putString(ANM_PASSWORD_PREFERENCE_KEY, password).commit();
+        settingsRepository.updateSetting(ANM_PASSWORD_PREFERENCE_KEY, password.trim());
     }
 
     public String fetchRegisteredANM() {
@@ -59,6 +59,6 @@ public class AllSettings {
     }
 
     public String fetchANMPassword() {
-        return preferences.getString(ANM_PASSWORD_PREFERENCE_KEY, "").trim();
+        return settingsRepository.querySetting(ANM_PASSWORD_PREFERENCE_KEY, "");
     }
 }
