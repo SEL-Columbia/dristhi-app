@@ -57,50 +57,50 @@ public class CommCareClientService {
     }
 
     public void tryCommCareLogin(Context applicationContext) {
-        Intent intent = new Intent(REMOTE_SIGNALLING_ACTION);
-        intent.putExtra(AllConstants.COMMCARE_SHARING_KEY_ID, allSettings.fetchCommCareKeyID());
-        Bundle action = new Bundle();
-        action.putString(COMMCARE_ACTION, CC_LOGIN_ACTION);
-        action.putString(USERNAME_PARAM, allSettings.fetchRegisteredANM());
-        action.putString(PASSWORD_PARAM, allSettings.fetchANMPassword());
-        Pair<byte[], byte[]> serializedBundle = serializeBundle(action);
+        try {
+            Intent intent = new Intent(REMOTE_SIGNALLING_ACTION);
+            intent.putExtra(AllConstants.COMMCARE_SHARING_KEY_ID, allSettings.fetchCommCareKeyID());
+            Bundle action = new Bundle();
+            action.putString(COMMCARE_ACTION, CC_LOGIN_ACTION);
+            action.putString(USERNAME_PARAM, allSettings.fetchRegisteredANM());
+            action.putString(PASSWORD_PARAM, allSettings.fetchANMPassword());
+            Pair<byte[], byte[]> serializedBundle = serializeBundle(action);
 
-        intent.putExtra(COMMCARE_SHARING_KEY_SYMETRIC, serializedBundle.first);
-        intent.putExtra(COMMCARE_SHARING_KEY_CALLOUT, serializedBundle.second);
+            intent.putExtra(COMMCARE_SHARING_KEY_SYMETRIC, serializedBundle.first);
+            intent.putExtra(COMMCARE_SHARING_KEY_CALLOUT, serializedBundle.second);
 
-        applicationContext.sendBroadcast(intent);
+            applicationContext.sendBroadcast(intent);
+        } catch (Exception e) {
+            logError("Could not login CC ODK. " + e);
+        }
+
     }
 
-    private Pair<byte[], byte[]> serializeBundle(Bundle b) {
+    private Pair<byte[], byte[]> serializeBundle(Bundle b) throws Exception {
         Parcel p = Parcel.obtain();
         p.setDataPosition(0);
         p.writeBundle(b);
         return encrypt(p.marshall());
     }
 
-    private Pair<byte[], byte[]> encrypt(byte[] input) {
-        try {
-            KeyGenerator generator = KeyGenerator.getInstance("AES");
-            generator.init(256, new SecureRandom());
-            SecretKey aesKey = generator.generateKey();
+    private Pair<byte[], byte[]> encrypt(byte[] input) throws Exception {
+        KeyGenerator generator = KeyGenerator.getInstance("AES");
+        generator.init(256, new SecureRandom());
+        SecretKey aesKey = generator.generateKey();
 
-            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            KeySpec ks = new X509EncodedKeySpec(allSettings.fetchCommCarePublicKey());
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        KeySpec ks = new X509EncodedKeySpec(allSettings.fetchCommCarePublicKey());
 
-            RSAPublicKey pubKey = (RSAPublicKey) keyFactory.generatePublic(ks);
+        RSAPublicKey pubKey = (RSAPublicKey) keyFactory.generatePublic(ks);
 
-            Cipher keyCipher = Cipher.getInstance("RSA");
-            keyCipher.init(Cipher.ENCRYPT_MODE, pubKey);
-            byte[] encryptedAesKey = keyCipher.doFinal(aesKey.getEncoded());
+        Cipher keyCipher = Cipher.getInstance("RSA");
+        keyCipher.init(Cipher.ENCRYPT_MODE, pubKey);
+        byte[] encryptedAesKey = keyCipher.doFinal(aesKey.getEncoded());
 
-            Cipher dataCipher = Cipher.getInstance("AES");
-            dataCipher.init(Cipher.ENCRYPT_MODE, aesKey);
+        Cipher dataCipher = Cipher.getInstance("AES");
+        dataCipher.init(Cipher.ENCRYPT_MODE, aesKey);
 
-            return new Pair<byte[], byte[]>(encryptedAesKey, dataCipher.doFinal(input));
-        } catch (Exception e) {
-            logError("Failed while encrypting CC login API bundle! " + e);
-            return null;
-        }
+        return new Pair<byte[], byte[]>(encryptedAesKey, dataCipher.doFinal(input));
     }
 
     public void establishConnection(Activity activity) {

@@ -25,14 +25,16 @@ import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
 import static org.ei.drishti.AllConstants.CC_KEY_EXCHANGE_API_REQUEST_CODE;
 import static org.ei.drishti.domain.LoginResponse.SUCCESS;
 import static org.ei.drishti.util.Log.logError;
+import static org.ei.drishti.util.Log.logInfo;
 import static org.ei.drishti.util.Log.logVerbose;
 
 public class LoginActivity extends Activity {
-    public static final String COMMCARE_SHARING_KEY_PAYLOAD = "commcare_sharing_key_payload";
+    private static final String COMMCARE_SHARING_KEY_PAYLOAD = "commcare_sharing_key_payload";
     private Context context;
     private EditText userNameEditText;
     private EditText passwordEditText;
     private ProgressDialog progressDialog;
+    private boolean establishingConnectionWithCC = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class LoginActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        if (!context.userService().hasSessionExpired()) {
+        if (!context.userService().hasSessionExpired() && !establishingConnectionWithCC) {
             goToHome();
         }
 
@@ -76,13 +78,32 @@ public class LoginActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CC_KEY_EXCHANGE_API_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
+                logInfo("User granted key access to CC ODK!");
+                establishingConnectionWithCC = false;
                 context.commCareClientService().handleCommCareKeyExchangeResponse(this,
                         data.getStringExtra(AllConstants.COMMCARE_SHARING_KEY_ID),
                         data.getByteArrayExtra(COMMCARE_SHARING_KEY_PAYLOAD));
             } else {
-                logError("User denied key access!");
+                logError("User denied key access to CC ODK!");
+                establishingConnectionWithCC = true;
+                showTryAgainToEstablishConnectionWithCCDialog();
             }
         }
+    }
+
+    private void showTryAgainToEstablishConnectionWithCCDialog() {
+        final LoginActivity activity = this;
+        AlertDialog tryAgainDialog = new AlertDialog.Builder(this)
+                .setTitle("Try again.")
+                .setMessage("Please grant access in CommCare.")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        context.commCareClientService().establishConnection(activity);
+                    }
+                })
+                .create();
+        tryAgainDialog.show();
     }
 
     private void initializeLoginFields() {
