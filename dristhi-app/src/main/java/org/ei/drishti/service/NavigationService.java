@@ -11,6 +11,7 @@ import org.ei.drishti.view.activity.HomeActivity;
 import static android.widget.Toast.LENGTH_SHORT;
 import static org.ei.drishti.AllConstants.CC_KEY_EXCHANGE_API_REQUEST_ACTION;
 import static org.ei.drishti.AllConstants.CC_KEY_EXCHANGE_API_REQUEST_CODE;
+import static org.ei.drishti.util.Log.logError;
 
 public class NavigationService {
     private static final String WORKFLOW_INTENT_ACTION = "org.commcare.dalvik.action.CommCareSession";
@@ -23,8 +24,12 @@ public class NavigationService {
     }
 
     public void requestKeyAccessFromCommCare(Activity activity) {
-        Intent intent = new Intent(CC_KEY_EXCHANGE_API_REQUEST_ACTION);
-        activity.startActivityForResult(intent, CC_KEY_EXCHANGE_API_REQUEST_CODE);
+        try {
+            Intent intent = new Intent(CC_KEY_EXCHANGE_API_REQUEST_ACTION);
+            activity.startActivityForResult(intent, CC_KEY_EXCHANGE_API_REQUEST_CODE);
+        } catch (ActivityNotFoundException e) {
+            logError("CC ODK version mismatch. Cannot request for keys! " + e);
+        }
     }
 
     public void openCommCareForm(Context context, String formInformation) {

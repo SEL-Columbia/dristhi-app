@@ -13,7 +13,6 @@ import org.ei.drishti.repository.AllSettings;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.security.GeneralSecurityException;
 import java.security.KeyFactory;
 import java.security.SecureRandom;
 import java.security.interfaces.RSAPublicKey;
@@ -98,8 +97,8 @@ public class CommCareClientService {
             dataCipher.init(Cipher.ENCRYPT_MODE, aesKey);
 
             return new Pair<byte[], byte[]>(encryptedAesKey, dataCipher.doFinal(input));
-        } catch (GeneralSecurityException gse) {
-            logError("Problem with keys! Check log " + gse);
+        } catch (Exception e) {
+            logError("Failed while encrypting CC login API bundle! " + e);
             return null;
         }
     }
