@@ -1,3 +1,5 @@
+[[dristhi-app/res/drawable-xhdpi/icon.png|align=center]]
+
 To run this project, you need to do this:
 ========================================
 
