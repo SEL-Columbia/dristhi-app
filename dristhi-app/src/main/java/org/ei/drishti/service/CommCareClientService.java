@@ -20,6 +20,7 @@ import java.security.spec.KeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
 import static org.ei.drishti.util.Log.logError;
+import static org.ei.drishti.util.Log.logInfo;
 
 public class CommCareClientService {
     private static final String REMOTE_SIGNALLING_ACTION = "org.commcare.dalvik.api.action.ExternalAction";
@@ -56,6 +57,21 @@ public class CommCareClientService {
         return false;
     }
 
+    public void establishConnection(Activity activity) {
+        if (allSettings.fetchCommCareKeyID() == null) {
+            navigationService.requestKeyAccessFromCommCare(activity);
+        } else {
+            tryCommCareLogin(activity);
+            navigationService.goHome(activity);
+        }
+    }
+
+    public void handleCommCareKeyExchangeResponse(Context context, String keyID, byte[] publicKey) {
+        allSettings.saveCommCareKeyID(keyID);
+        allSettings.saveCommCarePublicKey(publicKey);
+        tryCommCareLogin(context);
+    }
+
     public void tryCommCareLogin(Context applicationContext) {
         try {
             Intent intent = new Intent(REMOTE_SIGNALLING_ACTION);
@@ -70,6 +86,7 @@ public class CommCareClientService {
             intent.putExtra(COMMCARE_SHARING_KEY_CALLOUT, serializedBundle.second);
 
             applicationContext.sendBroadcast(intent);
+            logInfo("Requested CC ODK to log in user!");
         } catch (Exception e) {
             logError("Could not login CC ODK. " + e);
         }
@@ -101,20 +118,5 @@ public class CommCareClientService {
         dataCipher.init(Cipher.ENCRYPT_MODE, aesKey);
 
         return new Pair<byte[], byte[]>(encryptedAesKey, dataCipher.doFinal(input));
-    }
-
-    public void establishConnection(Activity activity) {
-        if (allSettings.fetchCommCareKeyID() == null) {
-            navigationService.requestKeyAccessFromCommCare(activity);
-        } else {
-            tryCommCareLogin(activity);
-            navigationService.goHome(activity);
-        }
-    }
-
-    public void handleCommCareKeyExchangeResponse(Context context, String keyID, byte[] publicKey) {
-        allSettings.saveCommCareKeyID(keyID);
-        allSettings.saveCommCarePublicKey(publicKey);
-        tryCommCareLogin(context);
     }
 }

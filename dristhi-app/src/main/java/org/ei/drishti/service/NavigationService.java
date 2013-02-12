@@ -12,6 +12,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 import static org.ei.drishti.AllConstants.CC_KEY_EXCHANGE_API_REQUEST_ACTION;
 import static org.ei.drishti.AllConstants.CC_KEY_EXCHANGE_API_REQUEST_CODE;
 import static org.ei.drishti.util.Log.logError;
+import static org.ei.drishti.util.Log.logInfo;
 
 public class NavigationService {
     private static final String WORKFLOW_INTENT_ACTION = "org.commcare.dalvik.action.CommCareSession";
@@ -25,6 +26,7 @@ public class NavigationService {
 
     public void requestKeyAccessFromCommCare(Activity activity) {
         try {
+            logInfo("Requesting Key access from CC!");
             Intent intent = new Intent(CC_KEY_EXCHANGE_API_REQUEST_ACTION);
             activity.startActivityForResult(intent, CC_KEY_EXCHANGE_API_REQUEST_CODE);
         } catch (ActivityNotFoundException e) {
