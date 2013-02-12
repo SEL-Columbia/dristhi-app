@@ -1,4 +1,4 @@
-[[dristhi-app/res/drawable-xhdpi/icon.png|align=center]]
+![Dristhi](dristhi-app/res/drawable-xhdpi/icon.png)
 
 To run this project, you need to do this:
 ========================================
