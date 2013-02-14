@@ -16,7 +16,7 @@
     <name>dristhi-app - Application</name>
 
     <properties>
-      <main.basedir>${project.basedir}/..</main.basedir>
+        <main.basedir>${project.basedir}/..</main.basedir>
     </properties>
 
     <dependencies>
@@ -67,40 +67,40 @@
             <version>3.1</version>
         </dependency>
         <dependency>
-          <groupId>com.google.guava</groupId>
-          <artifactId>guava</artifactId>
-          <version>r09</version>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>r09</version>
         </dependency>
         <dependency>
-          <groupId>info.guardianproject</groupId>
-          <artifactId>sqlcipher</artifactId>
-          <version>1.1.0</version>
+            <groupId>info.guardianproject</groupId>
+            <artifactId>sqlcipher</artifactId>
+            <version>1.1.0</version>
         </dependency>
         <dependency>
-          <groupId>org.acra</groupId>
-          <artifactId>acra</artifactId>
-          <version>4.2.3</version>
+            <groupId>org.acra</groupId>
+            <artifactId>acra</artifactId>
+            <version>4.2.3</version>
         </dependency>
         <dependency>
-          <groupId>info.guardianproject</groupId>
-          <artifactId>libdatabase_sqlcipher</artifactId>
-          <version>1.1.0</version>
-          <scope>runtime</scope>
-          <type>so</type>
+            <groupId>info.guardianproject</groupId>
+            <artifactId>libdatabase_sqlcipher</artifactId>
+            <version>1.1.0</version>
+            <scope>runtime</scope>
+            <type>so</type>
         </dependency>
         <dependency>
-          <groupId>info.guardianproject</groupId>
-          <artifactId>libsqlcipher_android</artifactId>
-          <version>1.1.0</version>
-          <scope>runtime</scope>
-          <type>so</type>
+            <groupId>info.guardianproject</groupId>
+            <artifactId>libsqlcipher_android</artifactId>
+            <version>1.1.0</version>
+            <scope>runtime</scope>
+            <type>so</type>
         </dependency>
         <dependency>
-          <groupId>info.guardianproject</groupId>
-          <artifactId>libstlport_shared</artifactId>
-          <version>1.1.0</version>
-          <scope>runtime</scope>
-          <type>so</type>
+            <groupId>info.guardianproject</groupId>
+            <artifactId>libstlport_shared</artifactId>
+            <version>1.1.0</version>
+            <scope>runtime</scope>
+            <type>so</type>
         </dependency>
         <dependency>
             <groupId>org.ei.drishti</groupId>
@@ -141,4 +141,64 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>sign</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jarsigner-plugin</artifactId>
+                        <version>1.2</version>
+                        <executions>
+                            <execution>
+                                <id>signing</id>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <inherited>true</inherited>
+                                <configuration>
+                                    <includes>
+                                        <include>target/*.apk</include>
+                                    </includes>
+                                    <keystore>../assets/security/dristhi.keystore</keystore>
+                                    <alias>dristhi</alias>
+                                    <arguments>
+                                        <argument>-sigalg</argument>
+                                        <argument>MD5withRSA</argument>
+                                        <argument>-digestalg</argument>
+                                        <argument>SHA1</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                        <artifactId>android-maven-plugin</artifactId>
+                        <inherited>true</inherited>
+                        <executions>
+                            <execution>
+                                <id>alignApk</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>zipalign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <sign>
+                                <debug>false</debug>
+                            </sign>
+                            <zipalign>
+                                <verbose>true</verbose>
+                                <skip>false</skip>
+                            </zipalign>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
