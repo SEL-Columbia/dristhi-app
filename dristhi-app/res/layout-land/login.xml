@@ -36,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:textColor="#90c4dc"
-            android:text="@string/buildNumber"
             android:textSize="16dp"
             android:typeface="sans"
             android:layout_marginBottom="5dp"
@@ -55,8 +54,7 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:layout_alignRight="@+id/login_form_layout">
+        android:layout_weight="1">
 
         <ImageView
             android:layout_width="wrap_content"

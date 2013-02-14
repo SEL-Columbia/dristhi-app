@@ -5,6 +5,9 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,12 +24,15 @@ import org.ei.drishti.view.BackgroundAction;
 import org.ei.drishti.view.LockingBackgroundTask;
 import org.ei.drishti.view.ProgressIndicator;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
 import static org.ei.drishti.AllConstants.CC_KEY_EXCHANGE_API_REQUEST_CODE;
 import static org.ei.drishti.domain.LoginResponse.SUCCESS;
-import static org.ei.drishti.util.Log.logError;
-import static org.ei.drishti.util.Log.logInfo;
-import static org.ei.drishti.util.Log.logVerbose;
+import static org.ei.drishti.util.Log.*;
 
 public class LoginActivity extends Activity {
     private static final String COMMCARE_SHARING_KEY_PAYLOAD = "commcare_sharing_key_payload";
@@ -44,8 +50,18 @@ public class LoginActivity extends Activity {
 
         context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
         initializeLoginFields();
+        initializeBuildDetails();
         setDoneActionHandlerOnPasswordField();
         initializeProgressDialog();
+    }
+
+    private void initializeBuildDetails() {
+        TextView buildDetailsTextView = (TextView) findViewById(R.id.login_build);
+        try {
+            buildDetailsTextView.setText("Version " + getVersion() + ", Built on: " + getBuildDate());
+        } catch (Exception e) {
+            logError("Error fetching build details: " + e);
+        }
     }
 
     @Override
@@ -212,5 +228,17 @@ public class LoginActivity extends Activity {
 
     private void goToHome() {
         context.navigationService().goHome(this);
+    }
+
+    private String getVersion() throws PackageManager.NameNotFoundException {
+        PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+        return packageInfo.versionName;
+    }
+
+    private String getBuildDate() throws PackageManager.NameNotFoundException, IOException {
+        ApplicationInfo applicationInfo = getPackageManager().getApplicationInfo(getPackageName(), 0);
+        ZipFile zf = new ZipFile(applicationInfo.sourceDir);
+        ZipEntry ze = zf.getEntry("classes.dex");
+        return new SimpleDateFormat("dd MMM yyyy").format(new java.util.Date(ze.getTime()));
     }
 }

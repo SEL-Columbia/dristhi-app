@@ -81,7 +81,6 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:textColor="#90c4dc"
-        android:text="@string/buildNumber"
         android:textSize="16dp"
         android:typeface="sans"
         android:layout_marginBottom="5dp"
