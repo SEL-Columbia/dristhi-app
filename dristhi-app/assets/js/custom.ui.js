@@ -104,3 +104,7 @@ Handlebars.registerHelper('percentage', function (value1, value2) {
     }
     return (Math.floor((parseInt(value1) * 100)/parseInt(value2))).toString() + "%";
 });
+
+Handlebars.registerHelper('internationalize', function (key) {
+    return drishti.it.getValue(key);
+});

@@ -5,6 +5,7 @@ import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.Repository;
 import org.ei.drishti.util.Session;
 
+import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.event.Event.ON_LOGOUT;
 
 public class UserService {
@@ -62,4 +63,14 @@ public class UserService {
         return session;
     }
 
+    public String switchLanguagePreference() {
+        String preferredLocale = allSettings.fetchLanguagePreference();
+        if (ENGLISH_LOCALE.equals(preferredLocale)) {
+            allSettings.saveLanguagePreference(KANNADA_LOCALE);
+            return KANNADA_LANGUAGE;
+        } else {
+            allSettings.saveLanguagePreference(ENGLISH_LOCALE);
+            return ENGLISH_LANGUAGE;
+        }
+    }
 }

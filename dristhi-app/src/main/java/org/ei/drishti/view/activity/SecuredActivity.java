@@ -2,14 +2,18 @@ package org.ei.drishti.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
 
+import static android.widget.Toast.LENGTH_SHORT;
 import static org.ei.drishti.event.Event.ON_LOGOUT;
 
 public abstract class SecuredActivity extends Activity {
@@ -57,6 +61,9 @@ public abstract class SecuredActivity extends Activity {
                 context.userService().logout();
                 startActivity(new Intent(this, LoginActivity.class));
                 return true;
+            case R.id.switchLanguageMenuItem:
+                String newLanguagePreference = context.userService().switchLanguagePreference();
+                Toast.makeText(this, "Language preference set to " + newLanguagePreference + ". Please restart the application.", LENGTH_SHORT).show();
             default:
                 return super.onOptionsItemSelected(item);
         }

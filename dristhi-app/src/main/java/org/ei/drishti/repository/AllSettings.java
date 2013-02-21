@@ -2,6 +2,9 @@ package org.ei.drishti.repository;
 
 import android.content.SharedPreferences;
 
+import static org.ei.drishti.AllConstants.DEFAULT_LOCALE;
+import static org.ei.drishti.AllConstants.LANGUAGE_PREFERENCE_KEY;
+
 public class AllSettings {
     public static final String APPLIED_VILLAGE_FILTER_SETTING_KEY = "appliedVillageFilter";
     public static final String PREVIOUS_FETCH_INDEX_SETTING_KEY = "previousFetchIndex";
@@ -60,5 +63,13 @@ public class AllSettings {
 
     public String fetchANMPassword() {
         return settingsRepository.querySetting(ANM_PASSWORD_PREFERENCE_KEY, "");
+    }
+
+    public String fetchLanguagePreference() {
+        return preferences.getString(LANGUAGE_PREFERENCE_KEY, DEFAULT_LOCALE).trim();
+    }
+
+    public void saveLanguagePreference(String languagePreference) {
+        preferences.edit().putString(LANGUAGE_PREFERENCE_KEY, languagePreference).commit();
     }
 }

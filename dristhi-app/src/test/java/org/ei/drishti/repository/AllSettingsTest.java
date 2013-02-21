@@ -2,12 +2,14 @@ package org.ei.drishti.repository;
 
 import android.content.SharedPreferences;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.AllConstants;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import static junit.framework.Assert.assertEquals;
+import static org.ei.drishti.AllConstants.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -116,5 +118,12 @@ public class AllSettingsTest {
         when(settingsRepository.queryBLOB("commCarePublicKey")).thenReturn(expectedPublicKey);
 
         assertEquals(expectedPublicKey, allSettings.fetchCommCarePublicKey());
+    }
+
+    @Test
+    public void shouldFetchLanguagePreference() throws Exception {
+        when(preferences.getString(LANGUAGE_PREFERENCE_KEY, DEFAULT_LOCALE)).thenReturn(ENGLISH_LANGUAGE);
+
+        assertEquals(ENGLISH_LANGUAGE, allSettings.fetchLanguagePreference());
     }
 }

@@ -11,4 +11,11 @@ public class AllConstants {
     public static final int CC_KEY_EXCHANGE_API_REQUEST_CODE = 1;
     public static final String CC_KEY_EXCHANGE_API_REQUEST_ACTION = "org.commcare.dalvik.action.CommCareKeyAccessRequest";
     public static final String COMMCARE_SHARING_KEY_ID = "commcare_sharing_key_id";
+
+    public static final String LANGUAGE_PREFERENCE_KEY = "locale";
+    public static final String ENGLISH_LOCALE = "en";
+    public static final String KANNADA_LOCALE = "kn";
+    public static final String DEFAULT_LOCALE = ENGLISH_LOCALE;
+    public static final String ENGLISH_LANGUAGE = "English";
+    public static final String KANNADA_LANGUAGE = "Kannada";
 }

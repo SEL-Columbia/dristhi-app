@@ -1,6 +1,7 @@
 package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
+import static org.ei.drishti.AllConstants.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
@@ -93,5 +95,23 @@ public class UserServiceTest {
         verify(repository).deleteRepository();
         verify(allSettings).savePreviousFetchIndex("0");
         verify(allSettings).registerANM("", "");
+    }
+
+    @Test
+    public void shouldSwitchLanguageToKannada() throws Exception {
+        when(allSettings.fetchLanguagePreference()).thenReturn(ENGLISH_LOCALE);
+
+        userService.switchLanguagePreference();
+
+        verify(allSettings).saveLanguagePreference(KANNADA_LOCALE);
+    }
+
+    @Test
+    public void shouldSwitchLanguageToEnglish() throws Exception {
+        when(allSettings.fetchLanguagePreference()).thenReturn(KANNADA_LOCALE);
+
+        userService.switchLanguagePreference();
+
+        verify(allSettings).saveLanguagePreference(ENGLISH_LOCALE);
     }
 }
