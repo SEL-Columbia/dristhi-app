@@ -11,6 +11,7 @@ import android.webkit.WebViewClient;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.view.AfterFetchListener;
+import org.ei.drishti.view.InternationalizationContext;
 import org.ei.drishti.view.ProgressIndicator;
 import org.ei.drishti.view.UpdateActionsTask;
 import org.ei.drishti.view.controller.NavigationController;
@@ -122,6 +123,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         webView.setWebViewClient(new WebViewClient());
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.addJavascriptInterface(new NavigationController(this, context.anmService()), "navigationContext");
+        webView.addJavascriptInterface(new InternationalizationContext(getResources()), "internationalizationContext");
         webView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {

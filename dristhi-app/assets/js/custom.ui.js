@@ -106,5 +106,5 @@ Handlebars.registerHelper('percentage', function (value1, value2) {
 });
 
 Handlebars.registerHelper('internationalize', function (key) {
-    return drishti.it.getValue(key);
+    return drishti.it.getLabel(key);
 });

@@ -17,6 +17,10 @@ public class DrishtiApplication extends Application {
         ACRA.init(this);
         super.onCreate();
 
+        applyUserLanguagePreference();
+    }
+
+    private void applyUserLanguagePreference() {
         Context context = Context.getInstance();
         context.updateApplicationContext(getApplicationContext());
 
@@ -26,14 +30,6 @@ public class DrishtiApplication extends Application {
         if (!"".equals(lang) && !config.locale.getLanguage().equals(lang)) {
             locale = new Locale(lang);
             updateConfiguration(config);
-        }
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        if (locale != null) {
-            updateConfiguration(newConfig);
         }
     }
 

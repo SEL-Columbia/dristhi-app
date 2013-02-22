@@ -6,35 +6,38 @@
     <link href="../css/sidepanel.css" rel="stylesheet">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/handlebars-1.0.rc.1.min.js"></script>
-    <script type="text/javascript" src="../js/custom.ui.js"></script>
-    <script type="text/javascript" src="../template/templates.js"></script>
-    <script type="text/javascript" src="../js/anmNavigation.js"></script>
-    <script type="text/javascript" src="../js/sidePanel.js"></script>
-    <script type="text/javascript" src="../js/report_indicator_case_list.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var cssIdOf = {
-                rootElement : "#mainpanel",
-                indicator : ".client-list-item"
-            };
-            var reportIndicatorCaseList = new ReportIndicatorCaseList(new ReportIndicatorCaseListBridge(), cssIdOf);
-            reportIndicatorCaseList.populateInto();
-            reportIndicatorCaseList.bindEveryItemToIndicatorCaseDetailView();
-
-            new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
-        });
-    </script>
-
+</head>
 <body>
 <div class="page affected-by-sidepanel">
     <div id="sidePanelContainer"></div>
 
     <div id="mainpanel" class="mainpanel affected-by-sidepanel">
     </div>
+</div>
 </body>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/handlebars-1.0.rc.1.min.js"></script>
+<script src="../js/custom.ui.js"></script>
+<script src="../template/templates.js"></script>
+<script src="../js/anmNavigation.js"></script>
+<script src="../js/sidePanel.js"></script>
+<script src="../js/international_text.js"></script>
+
+<script src="../js/report_indicator_case_list.js"></script>
+<script>
+    $(document).ready(function () {
+        var cssIdOf = {
+            rootElement: "#mainpanel",
+            indicator: ".client-list-item"
+        };
+        var reportIndicatorCaseList = new ReportIndicatorCaseList(new ReportIndicatorCaseListBridge(), cssIdOf);
+        reportIndicatorCaseList.populateInto();
+        reportIndicatorCaseList.bindEveryItemToIndicatorCaseDetailView();
+
+        new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
+    });
+</script>
+
 </html>

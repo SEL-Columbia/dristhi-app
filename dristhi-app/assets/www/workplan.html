@@ -10,45 +10,8 @@
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
 
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-ui-1.8.23.custom.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/handlebars-1.0.rc.1.min.js"></script>
-
-    <script type="text/javascript" src="../js/custom.ui.js"></script>
-    <script type="text/javascript" src="../template/templates.js"></script>
-    <script type="text/javascript" src="../js/anmNavigation.js"></script>
-    <script type="text/javascript" src="../js/sidePanel.js"></script>
-    <script type="text/javascript" src="../js/alerts.js"></script>
-
-    <script type="text/javascript" src="../js/workplan.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var cssIdOf = {
-                rootElement: "#content",
-                villageFilter: "#menu-village",
-                villageFilterOptions: ".dropdown-option",
-                appliedFilterIndicator: ".filter-by-village",
-                overdueContainer: "#overdue",
-                upcomingContainer: "#upcoming",
-                completedContainer: "#completed",
-                overdueTodosCount: "#overdue-count",
-                upcomingTodosCount: "#upcoming-count",
-                completedTodosCount: "#completed-count"
-            };
-
-            var workplan = new Workplan(new WorkplanBridge(), cssIdOf);
-            workplan.populateInto("#content");
-            workplan.populateVillageFilter();
-            workplan.bindToVillageFilter();
-
-            new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
-
-            new Alerts().bindAllCheckboxes(".todo-box", workplan.onAlertCheckboxClick);
-        });
-    </script>
 <body>
 
 <div class="page affected-by-sidepanel">
@@ -77,4 +40,44 @@
 </div>
 
 </body>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery-ui-1.8.23.custom.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/handlebars-1.0.rc.1.min.js"></script>
+
+<script src="../js/custom.ui.js"></script>
+<script src="../template/templates.js"></script>
+<script src="../js/anmNavigation.js"></script>
+<script src="../js/sidePanel.js"></script>
+<script src="../js/alerts.js"></script>
+<script src="../js/international_text.js"></script>
+
+<script src="../js/workplan.js"></script>
+<script>
+    $(document).ready(function () {
+        var cssIdOf = {
+            rootElement: "#content",
+            villageFilter: "#menu-village",
+            villageFilterOptions: ".dropdown-option",
+            appliedFilterIndicator: ".filter-by-village",
+            overdueContainer: "#overdue",
+            upcomingContainer: "#upcoming",
+            completedContainer: "#completed",
+            overdueTodosCount: "#overdue-count",
+            upcomingTodosCount: "#upcoming-count",
+            completedTodosCount: "#completed-count"
+        };
+
+        var workplan = new Workplan(new WorkplanBridge(), cssIdOf);
+        workplan.populateInto("#content");
+        workplan.populateVillageFilter();
+        workplan.bindToVillageFilter();
+
+        new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
+
+        new Alerts().bindAllCheckboxes(".todo-box", workplan.onAlertCheckboxClick);
+    });
+</script>
+
 </html>

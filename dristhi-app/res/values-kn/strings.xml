@@ -14,6 +14,6 @@
     <string name="home_anc_label">ಎಎನ್ ಸಿ</string>
     <string name="home_pnc_label">ಪಿಎನ್ ಸಿ</string>
     <string name="home_child_label">ಮಗು</string>
-    <string name="home_report_label">ವರದಿ</string>
     <string name="home_workplan_label">ಕಾರ್ಯ ಯೋಜನೆ</string>
+    <string name="home_report_label">ವರದಿ</string>
 </resources>

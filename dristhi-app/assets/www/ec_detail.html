@@ -8,32 +8,6 @@
     <link href="../css/timeline.css" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <script type="text/javascript" src="../js/jquery.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-ui-1.8.23.custom.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../js/handlebars-1.0.rc.1.min.js"></script>
-
-    <script type="text/javascript" src="../js/custom.ui.js"></script>
-    <script type="text/javascript" src="../template/templates.js"></script>
-    <script type="text/javascript" src="../js/anmNavigation.js"></script>
-    <script type="text/javascript" src="../js/sidePanel.js"></script>
-    <script type="text/javascript" src="../js/modal.js"></script>
-    <script type="text/javascript" src="../js/alerts.js"></script>
-
-    <script type="text/javascript" src="../js/ec_detail.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var ec = new EC(new ECBridge());
-            ec.populateInto("#mainpanel");
-            ec.bindEveryItemToCommCare(".modal-row");
-
-            new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
-            new Modal().bindToClick();
-            new Alerts().bindAllCheckboxes(".todo-box", ec.onAlertCheckboxClick);
-            $('#modal').hide();
-        });
-    </script>
 </head>
 
 <body>
@@ -45,4 +19,32 @@
 </div>
 
 </body>
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery-ui-1.8.23.custom.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/handlebars-1.0.rc.1.min.js"></script>
+
+<script src="../js/custom.ui.js"></script>
+<script src="../template/templates.js"></script>
+<script src="../js/anmNavigation.js"></script>
+<script src="../js/sidePanel.js"></script>
+<script src="../js/modal.js"></script>
+<script src="../js/alerts.js"></script>
+<script src="../js/international_text.js"></script>
+
+<script src="../js/ec_detail.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var ec = new EC(new ECBridge());
+        ec.populateInto("#mainpanel");
+        ec.bindEveryItemToCommCare(".modal-row");
+
+        new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
+        new Modal().bindToClick();
+        new Alerts().bindAllCheckboxes(".todo-box", ec.onAlertCheckboxClick);
+        $('#modal').hide();
+    });
+</script>
+
 </html>

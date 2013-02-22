@@ -3,27 +3,27 @@ if (!drishti)
 drishti.it = new InternationalText(new InternationalTextBridge());
 
 function InternationalText(bridge) {
-    var resourceStrings;
+    var internationalizedLabels;
 
     return {
-        getValue: function (key) {
-            if (!resourceStrings)
-                resourceStrings = JSON.parse(bridge.getResourceStrings());
+        getLabel: function (key) {
+            if (!internationalizedLabels)
+                internationalizedLabels = JSON.parse(bridge.getInternationalizedLabels());
 
-            return resourceStrings[key];
+            return internationalizedLabels[key];
         }
     };
 }
 
 function InternationalTextBridge() {
-    var context = window.context;
+    var context = window.internationalizationContext;
     if (typeof context === "undefined" && typeof FakeInternationalisationContext() !== "undefined") {
         context = new FakeInternationalisationContext();
     }
 
     return {
-        getResourceStrings: function () {
-            return context.getResourceStrings();
+        getInternationalizedLabels: function () {
+            return context.getInternationalizedLabels();
         }
 
     };
@@ -31,16 +31,28 @@ function InternationalTextBridge() {
 
 
 function FakeInternationalisationContext() {
+    var language = "en";
+
     return {
-        getResourceStrings: function () {
-            return JSON.stringify({
-                "home_ec_label": "Eligible Couple",
-                "home_anc_label": "ANC",
-                "home_pnc_label": "PNC",
-                "home_child_label": "Child",
-                "home_workplan_label" : "Workplan",
-                "home_report_label": "Reporting"
-            });
+        getInternationalizedLabels: function () {
+            if (language === "en")
+                return JSON.stringify({
+                    "home_ec_label": "Eligible Couple",
+                    "home_anc_label": "ANC",
+                    "home_pnc_label": "PNC",
+                    "home_child_label": "Child",
+                    "home_workplan_label": "Workplan",
+                    "home_report_label": "Reporting"
+                });
+            else
+                return JSON.stringify({
+                    "home_ec_label": "ಅರ್ಹ ದಂಪತಿಗಳು",
+                    "home_anc_label": "ಎಎನ್ ಸಿ",
+                    "home_pnc_label": "ಪಿಎನ್",
+                    "home_child_label": "ಮಗು",
+                    "home_workplan_label": "ಕಾರ್ಯ ಯೋಜನೆ",
+                    "home_report_label": "ವರದಿ"
+                });
         }
     }
 }
