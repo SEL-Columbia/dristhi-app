@@ -11,7 +11,7 @@
 
     <groupId>org.ei.drishti</groupId>
     <artifactId>dristhi-app</artifactId>
-    <version>1.5.3</version>
+    <version>1.5.4</version>
     <packaging>apk</packaging>
     <name>dristhi-app - Application</name>
 
