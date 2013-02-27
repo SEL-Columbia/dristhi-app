@@ -6,12 +6,12 @@
     <parent>
         <groupId>org.ei.drishti</groupId>
         <artifactId>dristhi-app-parent</artifactId>
-        <version>${app.version}</version>
+        <version>0.1-SNAPSHOT</version>
     </parent>
 
     <groupId>org.ei.drishti</groupId>
     <artifactId>dristhi-app</artifactId>
-    <version>${app.version}</version>
+    <version>1.5.4</version>
     <packaging>apk</packaging>
     <name>dristhi-app - Application</name>
 
