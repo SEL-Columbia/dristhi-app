@@ -41,10 +41,16 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
+    var bindToLaunchForm = function (callbackToRunBeforeAnyAction, identifierOfElement) {
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function (e) {
+            anmNavigationBridge.delegateToFormLaunchView($(e.currentTarget).data("formname"));
+        });
+    };
+
     var runWithCallBack = function (callbackToRunBeforeAnyAction, identifierOfElement, action) {
-        $(identifierOfElement).click(function () {
+        $(identifierOfElement).click(function (e) {
             callbackToRunBeforeAnyAction();
-            action();
+            action(e);
         });
     };
 
@@ -58,6 +64,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
             bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
             bindToPNCList(callbackToRunBeforeAnyAction, "#pncMenuOption");
             bindToChildList(callbackToRunBeforeAnyAction, "#childMenuOption");
+            bindToLaunchForm(callbackToRunBeforeAnyAction, "#ecRegistration");
         }
     };
 }
@@ -89,6 +96,9 @@ function ANMNavigationBridge() {
         },
         delegateToReports: function () {
             return anmNavigationContext.startReports();
+        },
+        delegateToFormLaunchView: function (formName) {
+            return anmNavigationContext.startFormActivity(formName);
         }
     };
 }
@@ -121,6 +131,9 @@ function FakeANMNavigationContext() {
         },
         startReports: function () {
             window.location.href = "reports.html";
+        },
+        startFormActivity: function (formName) {
+            alert("Launching form: " + formName);
         }
     }
 }

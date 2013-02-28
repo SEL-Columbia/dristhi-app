@@ -1,0 +1,675 @@
+<form class="jr" autocomplete="off" id="EC_Registration_v7-01_Copy">
+    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">EC_Registration_v7-01_Copy</h3>
+    <select id="form-languages" style="display:none;" data-default-lang="default">
+        <option value="default">default</option>
+    </select>
+    <fieldset id="jr-preload-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
+
+
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">PHC</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('phc')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/ec_village_phc" data-type-xml="select1"
+                       value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-phc-0">Bherya</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-phc-1">Keelanapura</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Sub Center</span>
+            </legend>
+            <label class="itemset-template"
+                   data-items-path="instance('subcenter')/root/item[phc=/EC_Registration_v7-01_Copy/ec_village_phc]">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/ec_village_subcenter" data-type-xml="select1"
+                       value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-0">Bherya - A</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-1">Bherya - B</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-2">Hosa Agrahara
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-3">Munjanahalli</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-4">G.A.Guppe</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-5">Vajamangala</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-6">Keelanapura - A
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-7">Keelanapura - B
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-8">Puttegowdanahundi
+                </span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Village</span>
+            </legend>
+            <label class="itemset-template"
+                   data-items-path="instance('village')/root/item[phc=/EC_Registration_v7-01_Copy/ec_village_phc and subcenter=/EC_Registration_v7-01_Copy/ec_village_subcenter]">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/ec_village" data-type-xml="select1" value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-village-0">Basavanapura</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-1">Somanahalli Colony
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-2">Sambaravalli</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-3">Geradada</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-4">Ardha Bherya</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-5">Sugganahalli</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-6">Battiganahalli</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-7">Half Bherya</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-8">Hosa Agrahara</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-9">Mandiganahalli</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-10">Harambanahalli
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-11">Harambanahalli
+                    Koppalu
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-12">Boregowdanakoppalu
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-13">Munjanahalli</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-14">Kavalu Hosur</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-15">Chikkabherya</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-16">G.A.Guppe</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-17">Udayagiri</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-18">Arakere</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-19">Chikkahalli</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-20">Vajamangala</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-21">Halagayanahundi
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-22">Keelanapura</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-23">M.C.Hundi</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-24">Inam Uttanahalli
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-25">Megalapura</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-26">Madhavagere</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-27">Hosahalli</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-28">Gurukarapura</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-29">Puttegowdanahundi
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-30">Lakshmipura</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-31">Mahadevi Colony
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-32">Duddagere</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-33">Chattanahallipalya
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-village-34">Chattanahalli</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <label class="">
+        <span lang="" class=" active">Household Number</span>
+        <input autocomplete="off" type="number" name="/EC_Registration_v7-01_Copy/hh_number" data-type-xml="int"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Household Address</span>
+        <input autocomplete="off" type="text" name="/EC_Registration_v7-01_Copy/hh_address" data-type-xml="string"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Head of Household's Name</span>
+        <input autocomplete="off" type="text" name="/EC_Registration_v7-01_Copy/headofhousehold"
+               data-type-xml="string"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">EC Number</span>
+        <input autocomplete="off" type="number" name="/EC_Registration_v7-01_Copy/ec_number" required="required"
+               data-type-xml="int"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Woman's Name</span>
+        <input autocomplete="off" type="text" name="/EC_Registration_v7-01_Copy/woman_name" required="required"
+               data-type-xml="string"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Woman's Aadhaar / Enrollment Number</span>
+        <input autocomplete="off" type="text" name="/EC_Registration_v7-01_Copy/aadhaar_number"
+               data-type-xml="string"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Woman's Age</span>
+        <input autocomplete="off" type="number" name="/EC_Registration_v7-01_Copy/woman_age" required="required"
+               data-constraint=".&gt;=15 and .&lt;=49" data-type-xml="int"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Woman's Date of Birth</span>
+        <input autocomplete="off" type="date" name="/EC_Registration_v7-01_Copy/woman_date_of_birth"
+               required="required" data-type-xml="date"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Husband's Name</span>
+        <input autocomplete="off" type="text" name="/EC_Registration_v7-01_Copy/husband_name" required="required"
+               data-type-xml="string"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Contact Phone Number</span>
+        <input autocomplete="off" type="text" name="/EC_Registration_v7-01_Copy/phone_no" data-type-xml="string"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends jr-branch ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Who owns this phone?</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('phone_owner')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/phone_owner"
+                       data-relevant="/EC_Registration_v7-01_Copy/phone_no != ''" data-type-xml="select1" value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-phone_owner-0">Wife</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-phone_owner-1">Husband</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-phone_owner-2">Relative</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-phone_owner-3">Neighbor</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-phone_owner-4">Others</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <label class="jr-branch ">
+        <span lang="" class=" active">Alternative Phone Number</span>
+        <input autocomplete="off" type="text" name="/EC_Registration_v7-01_Copy/phone_no2"
+               data-relevant="/EC_Registration_v7-01_Copy/phone_no != ''" data-type-xml="string"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends jr-branch ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Who owns this phone?</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('phone_owner')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/phone_owner2"
+                       data-relevant="/EC_Registration_v7-01_Copy/phone_no2 != ''" data-type-xml="select1"
+                       value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-phone_owner-0">Wife</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-phone_owner-1">Husband</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-phone_owner-2">Relative</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-phone_owner-3">Neighbor</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-phone_owner-4">Others</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Economic Status</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('economic_status')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/economic_status" data-type-xml="select1"
+                       value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-economic_status-0">APL</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-economic_status-1">BPL</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <label class="jr-branch ">
+        <span lang="" class=" active">BPL Card Number</span>
+        <input autocomplete="off" type="text" name="/EC_Registration_v7-01_Copy/bpl_card_number"
+               data-relevant="/EC_Registration_v7-01_Copy/economic_status = 'bpl'" data-type-xml="string"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Religion</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('w_religion')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/religion" data-type-xml="select1" value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-w_religion-0">Hindu</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-w_religion-1">Muslim</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-w_religion-2">Christian</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-w_religion-3">Jain</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-w_religion-4">Sikh</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-w_religion-5">Buddist</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-w_religion-6">Others</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Category / Caste</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('w_caste')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/caste" data-type-xml="select1" value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-w_caste-0">SC</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-w_caste-1">ST</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-w_caste-2">Others</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Woman's education level?</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('w_education')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/education_level" data-type-xml="select1"
+                       value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-w_education-0">Illiterate</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-w_education-1">Primary School
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-w_education-2">Middle School
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-w_education-3">High School
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-w_education-4">PUC</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-w_education-5">Graduate</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-w_education-6">Post Graduate
+                </span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Number of times woman has been pregnant?</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('noofprg')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/num_pregnancies" required="required"
+                       data-type-xml="select1" value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-0">0</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-1">1</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-2">2</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-3">3</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-4">4</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-5">5</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-6">6</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-7">7</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-8">8</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-9">More than 8</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends jr-branch ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Number of live births?</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('noofprg')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/num_livebirths"
+                       data-constraint=".&lt;=(/EC_Registration_v7-01_Copy/num_pregnancies)"
+                       data-relevant="/EC_Registration_v7-01_Copy/num_pregnancies &gt; 0" data-type-xml="select1"
+                       value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-0">0</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-1">1</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-2">2</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-3">3</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-4">4</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-5">5</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-6">6</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-7">7</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-8">8</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-9">More than 8</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends jr-branch ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Number of abortions?</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('noofprg')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/num_abortions"
+                       data-constraint=".&lt;=(/EC_Registration_v7-01_Copy/num_pregnancies - /EC_Registration_v7-01_Copy/num_livebirths)"
+                       data-relevant="(/EC_Registration_v7-01_Copy/num_pregnancies - /EC_Registration_v7-01_Copy/num_livebirths) &gt; 0"
+                       data-type-xml="select1" value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-0">0</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-1">1</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-2">2</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-3">3</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-4">4</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-5">5</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-6">6</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-7">7</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-8">8</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-9">More than 8</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends jr-branch ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Number of spontaneous abortions?</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('noofprg')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/num_abortions_spontaneous"
+                       data-constraint=".&lt;= /EC_Registration_v7-01_Copy/num_abortions"
+                       data-relevant="/EC_Registration_v7-01_Copy/num_abortions &gt; 0" data-type-xml="select1"
+                       value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-0">0</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-1">1</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-2">2</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-3">3</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-4">4</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-5">5</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-6">6</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-7">7</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-8">8</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-9">More than 8</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends jr-branch ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Number of still births?</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('noofprg')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/num_stillbirths"
+                       data-constraint=".&lt;=(/EC_Registration_v7-01_Copy/num_pregnancies - /EC_Registration_v7-01_Copy/num_livebirths - /EC_Registration_v7-01_Copy/num_abortions)"
+                       data-relevant="(/EC_Registration_v7-01_Copy/num_pregnancies - /EC_Registration_v7-01_Copy/num_livebirths - /EC_Registration_v7-01_Copy/num_abortions) &gt; 0"
+                       data-type-xml="select1" value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-0">0</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-1">1</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-2">2</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-3">3</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-4">4</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-5">5</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-6">6</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-7">7</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-8">8</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-9">More than 8</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends jr-branch ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Number of living children?</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('noofprg')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/num_livingchildren"
+                       data-constraint=".&lt;=(/EC_Registration_v7-01_Copy/num_livebirths)"
+                       data-relevant="/EC_Registration_v7-01_Copy/num_livebirths &gt; 0" data-type-xml="select1"
+                       value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-0">0</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-1">1</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-2">2</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-3">3</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-4">4</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-5">5</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-6">6</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-7">7</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-8">8</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-9">More than 8</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends jr-branch ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Number of male living children?</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('noofprg')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/num_livingchildren_male"
+                       data-constraint=".&lt;=(/EC_Registration_v7-01_Copy/num_livingchildren)"
+                       data-relevant="/EC_Registration_v7-01_Copy/num_livingchildren &gt; 0" data-type-xml="select1"
+                       value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-0">0</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-1">1</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-2">2</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-3">3</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-4">4</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-5">5</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-6">6</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-7">7</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-8">8</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-noofprg-9">More than 8</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends jr-branch ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Is the youngest child less than 2 years old?</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('yes_no')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/youngestchild_under2"
+                       data-relevant="/EC_Registration_v7-01_Copy/num_livingchildren &gt; 0" data-type-xml="select1"
+                       value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-yes_no-0">Yes</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-yes_no-1">No</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <label class="jr-branch ">
+        <span lang="" class=" active">Age of the youngest child (in months)?</span>
+        <input autocomplete="off" type="number" name="/EC_Registration_v7-01_Copy/age_youngestchild"
+               data-constraint=".&gt;=1 and .&lt;24"
+               data-relevant="/EC_Registration_v7-01_Copy/youngestchild_under2 = 'yes'" data-type-xml="int"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Which FP method is the couple using?</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('fp_method')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/familyplanning_method_1" required="required"
+                       data-type-xml="select1" value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-fp_method-0">OCP</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-fp_method-1">IUD</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-fp_method-2">Condom</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-fp_method-3">Male
+                    Sterilization
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-fp_method-4">Female
+                    Sterilization
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-fp_method-5">Others</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-fp_method-6">None</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends jr-branch ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Which other method is the couple using?</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('fp_method_other')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/familyplanning_method_other"
+                       required="required"
+                       data-relevant="/EC_Registration_v7-01_Copy/familyplanning_method_1 = 'others'"
+                       data-type-xml="select1" value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-fp_method_other-0">DMPA</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-fp_method_other-1">Centchroman
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-fp_method_other-2">Traditional
+                    Methods
+                </span>
+                <span lang="default" class=" active" data-itext-id="static_instance-fp_method_other-3">LAM</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends jr-branch ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Place where IUD was given?</span>
+            </legend>
+            <label class="itemset-template" data-items-path="instance('iud_place')/root/item">
+                <input type="radio" name="/EC_Registration_v7-01_Copy/iud_place"
+                       data-relevant="/EC_Registration_v7-01_Copy/familyplanning_method = 'iud'"
+                       data-type-xml="select1" value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-iud_place-0">Sub Center</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-iud_place-1">PHC</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-iud_place-2">Elsewhere</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <label class="jr-branch ">
+        <span lang="" class=" active">Date on which FP started?</span>
+        <input autocomplete="off" type="date" name="/EC_Registration_v7-01_Copy/date_familyplanningstart"
+               required="required" data-constraint=".&lt;=/EC_Registration_v7-01_Copy/today"
+               data-relevant="/EC_Registration_v7-01_Copy/familyplanning_method != 'none'" data-type-xml="date"/>
+    </label>
+    <fieldset class="jr-branch " name="/EC_Registration_v7-01_Copy/male_sterilizaton_group"
+              data-relevant="/EC_Registration_v7-01_Copy/familyplanning_method = 'male_sterilization'">
+        <fieldset class="trigger jr-branch"
+                  name="/EC_Registration_v7-01_Copy/male_sterilizaton_group/male_sterilization_message"
+                  data-relevant="/EC_Registration_v7-01_Copy/today - /EC_Registration_v7-01_Copy/date_familyplanningstart &lt; 90">
+            <span lang="" class=" active">Instructions:
+                Pregnancy can still happen up to 3 mos. after male sterilization. Tell the couple to use back-up FP
+                method until 3 mos. from sterilization date:
+                <span class="jr-output"
+                      data-value="/EC_Registration_v7-01_Copy/male_sterilizaton_group/threemonths_from_sterilization_date">
+                </span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <!--end of group -->
+    <label class="jr-branch ">
+        <span lang="" class=" active">Number of condoms given?</span>
+        <input autocomplete="off" type="number" name="/EC_Registration_v7-01_Copy/num_condoms" required="required"
+               data-relevant="/EC_Registration_v7-01_Copy/familyplanning_method = 'condom'" data-type-xml="int"/>
+    </label>
+    <label class="jr-branch ">
+        <span lang="" class=" active">Number of OCP strips given?</span>
+        <input autocomplete="off" type="number" name="/EC_Registration_v7-01_Copy/num_ocp_cycles"
+               required="required" data-relevant="/EC_Registration_v7-01_Copy/familyplanning_method = 'ocp'"
+               data-type-xml="int"/>
+    </label>
+    <label class="jr-branch ">
+        <span lang="" class=" active">Number of Centchroman strips given?</span>
+        <input autocomplete="off" type="number" name="/EC_Registration_v7-01_Copy/num_centchroman_pills"
+               required="required" data-relevant="/EC_Registration_v7-01_Copy/familyplanning_method = 'centchroman'"
+               data-type-xml="int"/>
+    </label>
+    <fieldset class="trigger jr-branch" name="/EC_Registration_v7-01_Copy/message2"
+              data-relevant="/EC_Registration_v7-01_Copy/would_be_high_risk = 'yes' and (/EC_Registration_v7-01_Copy/familyplanning_method != 'male_sterilization' and /EC_Registration_v7-01_Copy/familyplanning_method != 'female_sterilization')">
+        <span lang="" class=" active">When pregnant,
+            <span class="jr-output" data-value="/EC_Registration_v7-01_Copy/woman_name">
+            </span>
+            will be high risk because of:
+            <span class="jr-output" data-value="/EC_Registration_v7-01_Copy/would_be_high_risk_reason">
+            </span>
+        </span>
+    </fieldset>
+    <fieldset class="trigger jr-branch" name="/EC_Registration_v7-01_Copy/message3"
+              data-relevant="/EC_Registration_v7-01_Copy/is_high_priority = 'yes'">
+        <span lang="" class=" active">
+            <span class="jr-output" data-value="/EC_Registration_v7-01_Copy/woman_name2">
+            </span>is high priority because of:
+            <span class="jr-output" data-value="/EC_Registration_v7-01_Copy/high_priority_reason">
+            </span>
+        </span>
+    </fieldset>
+
+    <fieldset id="jr-calculated-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/formhub/uuid"
+                   data-calculate="'5f684ce1034648eebfb8eab761a3a312'" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/woman_name2"
+                   data-calculate="concat(/EC_Registration_v7-01_Copy/woman_name, ' ')" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/num_abortions_induced"
+                   data-calculate="/EC_Registration_v7-01_Copy/num_abortions - /EC_Registration_v7-01_Copy/num_abortions_spontaneous"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/num_livingchildren_female"
+                   data-relevant="(/EC_Registration_v7-01_Copy/num_livingchildren - /EC_Registration_v7-01_Copy/num_livingchildren_male) &gt; 0"
+                   data-calculate="/EC_Registration_v7-01_Copy/num_livingchildren - /EC_Registration_v7-01_Copy/num_livingchildren_male"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/familyplanning_method"
+                   data-calculate="if(/EC_Registration_v7-01_Copy/familyplanning_method_1 = 'others', /EC_Registration_v7-01_Copy/familyplanning_method_other, /EC_Registration_v7-01_Copy/familyplanning_method_1)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_Registration_v7-01_Copy/male_sterilizaton_group/threemonths_from_sterilization_date"
+                   data-calculate="date(/EC_Registration_v7-01_Copy/date_familyplanningstart + 90)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/abortion_risk"
+                   data-calculate="if(/EC_Registration_v7-01_Copy/num_abortions &gt;= 3, 'Abortion_history','')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/parity_risk_priority"
+                   data-calculate="if(/EC_Registration_v7-01_Copy/num_livebirths &gt;= 3, 'Parity_3_or_more', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/age_risk_priority"
+                   data-calculate="if(/EC_Registration_v7-01_Copy/woman_age &lt; 18 or /EC_Registration_v7-01_Copy/woman_age &gt;=35, 'Age', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/youngchild_risk_priority"
+                   data-calculate="if(/EC_Registration_v7-01_Copy/youngestchild_under2 = 'yes', 'Child_under_2', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/would_be_high_risk"
+                   data-calculate="if(/EC_Registration_v7-01_Copy/youngchild_risk_priority != '' or /EC_Registration_v7-01_Copy/parity_risk_priority != '' or /EC_Registration_v7-01_Copy/age_risk_priority != '' or /EC_Registration_v7-01_Copy/abortion_risk != '', 'yes', 'no')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/would_be_high_risk_reason"
+                   data-calculate="concat(/EC_Registration_v7-01_Copy/youngchild_risk_priority, ' ', /EC_Registration_v7-01_Copy/parity_risk_priority , ' ', /EC_Registration_v7-01_Copy/age_risk_priority, ' ', /EC_Registration_v7-01_Copy/abortion_risk)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/is_high_priority"
+                   data-calculate="if((/EC_Registration_v7-01_Copy/youngchild_risk_priority != '' or /EC_Registration_v7-01_Copy/parity_risk_priority != '' or /EC_Registration_v7-01_Copy/age_risk_priority != '') and (/EC_Registration_v7-01_Copy/familyplanning_method != 'male_sterilization' and /EC_Registration_v7-01_Copy/familyplanning_method != 'female_sterilization'), 'yes', 'no')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/high_priority_reason"
+                   data-calculate="concat(/EC_Registration_v7-01_Copy/youngchild_risk_priority, ' ', /EC_Registration_v7-01_Copy/parity_risk_priority, ' ', /EC_Registration_v7-01_Copy/age_risk_priority)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_v7-01_Copy/meta/instanceID"
+                   data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+        </label>
+    </fieldset>
+</form>
