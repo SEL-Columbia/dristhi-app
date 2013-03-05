@@ -3,6 +3,8 @@ package org.ei.drishti.view;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.service.ActionService;
+import org.ei.drishti.sync.AfterFetchListener;
+import org.ei.drishti.sync.UpdateActionsTask;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

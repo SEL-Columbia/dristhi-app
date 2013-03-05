@@ -1,4 +1,4 @@
-package org.ei.drishti.view;
+package org.ei.drishti.sync;
 
 import org.ei.drishti.domain.FetchStatus;
 

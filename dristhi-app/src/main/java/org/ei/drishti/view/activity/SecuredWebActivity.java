@@ -9,15 +9,12 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import org.ei.drishti.R;
-import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.view.AfterFetchListener;
 import org.ei.drishti.view.InternationalizationContext;
-import org.ei.drishti.view.ProgressIndicator;
-import org.ei.drishti.view.UpdateActionsTask;
+import org.ei.drishti.sync.SyncAfterFetchListener;
+import org.ei.drishti.sync.SyncProgressIndicator;
+import org.ei.drishti.sync.UpdateActionsTask;
 import org.ei.drishti.view.controller.NavigationController;
 import org.ei.drishti.view.controller.UpdateController;
-
-import static org.ei.drishti.domain.FetchStatus.fetched;
 
 public abstract class SecuredWebActivity extends SecuredActivity {
     protected WebView webView;
@@ -59,25 +56,9 @@ public abstract class SecuredWebActivity extends SecuredActivity {
     }
 
     public void updateFromServer() {
-        UpdateActionsTask updateActionsTask = new UpdateActionsTask(this, context.actionService(), new ProgressIndicator() {
-            @Override
-            public void setVisible() {
-                updateController.startProgressIndicator();
-            }
+        UpdateActionsTask updateActionsTask = new UpdateActionsTask(this, context.actionService(), new SyncProgressIndicator());
 
-            @Override
-            public void setInvisible() {
-                updateController.stopProgressIndicator();
-            }
-        });
-
-        updateActionsTask.updateFromServer(new AfterFetchListener() {
-            public void afterFetch(FetchStatus status) {
-                if (fetched.equals(status)) {
-                    updateController.reload();
-                }
-            }
-        });
+        updateActionsTask.updateFromServer(new SyncAfterFetchListener());
     }
 
     @Override
