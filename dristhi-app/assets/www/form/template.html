@@ -10,6 +10,7 @@
     <link href="../../css/form/styles_drishti.css" media="all" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="../../js/form/libraries-all-min.js"></script>
     <script type="text/javascript" src="../../js/form/webform-drishti-all-min.js"></script>
+    <script type="text/javascript" src="../../js/form/repository.js"></script>
     <script type="text/javascript">
         var settings = {};
         settings['mapsDynamicAPIKey'] = 'AIzaSyDF5xYZfxN7r5SsNPGstjAeTzwa6dVU4Ik';
@@ -19,6 +20,7 @@
 
         /*****  Paste the complete <model> node as the value for jrDataStr, remove linebreaks *****/
         var jrDataStr = androidContext.getModel();
+        var repository = Repository();
     </script>
 </head>
 <body>

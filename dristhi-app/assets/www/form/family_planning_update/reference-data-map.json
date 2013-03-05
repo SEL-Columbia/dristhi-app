@@ -1,0 +1,19 @@
+{
+    "dataStatement": "select ec.wifeName as wifeName, ec.details as ecDetails from eligible_couple ec where ec.caseID = :caseID",
+    "fields": [
+        {
+            "name": "wifeName",
+            "bind": "/instance/family_planning_update/wifeName"
+        },
+        {
+            "name": "currentFpMethod",
+            "source": "ecDetails.currentMethod",
+            "bind": "/instance/family_planning_update/currentFpMethod"
+        },
+        {
+            "name": "wifeAge",
+            "source": "ecDetails.wifeAge",
+            "bind": "/instance/family_planning_update/woman_age"
+        }
+    ]
+}

@@ -1,0 +1,1157 @@
+<form class="jr" autocomplete="off" id="EC_New_Family_Planning_v7_01_Copy">
+    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">EC_New_Family_Planning_v7_01_Copy</h3>
+    <fieldset id="jr-preload-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_New_Family_Planning_v7_01_Copy/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
+
+
+    <label class="jr-branch ">
+        <span lang="" class=" active">Woman's name?</span>
+        <input autocomplete="off" type="text" name="/EC_New_Family_Planning_v7_01_Copy/woman_name1" required="required"
+               data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_woman_name = ''" data-type-xml="string"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Select FP update you want to make.</span>
+            </legend>
+            <label class="">
+                <input autocomplete="off" type="radio" name="/EC_New_Family_Planning_v7_01_Copy/fp_update"
+                       value="change_fp_method" required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Change FP method</span>
+            </label>
+            <label class="">
+                <input autocomplete="off" type="radio" name="/EC_New_Family_Planning_v7_01_Copy/fp_update"
+                       value="renew_fp_product" required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Renew FP product</span>
+            </label>
+            <label class="">
+                <input autocomplete="off" type="radio" name="/EC_New_Family_Planning_v7_01_Copy/fp_update"
+                       value="record_ecp" required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Record ECPs given</span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <fieldset class="jr-branch " name="/EC_New_Family_Planning_v7_01_Copy/ecp_group"
+              data-relevant="/EC_New_Family_Planning_v7_01_Copy/fp_update = 'record_ecp'">
+        <label class="">
+            <span lang="" class=" active">Number of ECPs given?</span>
+            <input autocomplete="off" type="number" name="/EC_New_Family_Planning_v7_01_Copy/ecp_group/ecp_pills"
+                   data-type-xml="int"/>
+        </label>
+        <label class="">
+            <span lang="" class=" active">ECP date?</span>
+            <input autocomplete="off" type="date" name="/EC_New_Family_Planning_v7_01_Copy/ecp_group/ecp_date"
+                   data-constraint=".&lt;=/EC_New_Family_Planning_v7_01_Copy/today" data-type-xml="date"/>
+        </label>
+        <fieldset class="trigger " name="/EC_New_Family_Planning_v7_01_Copy/ecp_group/ecp_message">
+            <span lang="" class=" active">Instructions:
+                Tell the couple to select a long-lasting FP method. When couple is ready, open a new Family Planning
+                form.
+            </span>
+        </fieldset>
+    </fieldset>
+    <!--end of group -->
+    <fieldset class="jr-branch " name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group"
+              data-relevant="/EC_New_Family_Planning_v7_01_Copy/fp_update = 'change_fp_method'">
+        <fieldset class="restoring-sanity-to-legends ">
+            <fieldset>
+                <legend>
+                    <span lang="" class=" active">You are at the start of MEC family planning wheel.</span>
+                </legend>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel" value="continue"
+                           required="required" data-type-xml="select1"/>
+                    <span lang="" class=" active">Continue</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel" value="skip"
+                           required="required" data-type-xml="select1"/>
+                    <span lang="" class=" active">Skip</span>
+                </label>
+            </fieldset>
+        </fieldset>
+        <fieldset class="jr-branch " name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group"
+                  data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel = 'continue'">
+            <label class="jr-branch ">
+                <span lang="" class=" active">Woman's age?</span>
+                <input autocomplete="off" type="number"
+                       name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/woman_age2"
+                       required="required"
+                       data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/case_woman_age = ''"
+                       data-type-xml="int"/>
+            </label>
+            <label class="jr-branch ">
+                <span lang="" class=" active">Number of live births?</span>
+                <input autocomplete="off" type="number"
+                       name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/num_livebirths"
+                       required="required"
+                       data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/case_num_pregnancies = ''"
+                       data-type-xml="int"/>
+            </label>
+            <fieldset class="restoring-sanity-to-legends jr-branch ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Delivered in past 6 months?</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/delivered_in_past_6mos"
+                               value="yes" required="required"
+                               data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/case_delivery_date = ''"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">Yes</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/delivered_in_past_6mos"
+                               value="no" required="required"
+                               data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/case_delivery_date = ''"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">No</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends jr-branch ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Currently breastfeeding?</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/currently_breastfeeding"
+                               value="yes" required="required"
+                               data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/sixmos_from_delivery_date != ''"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">Yes</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/currently_breastfeeding"
+                               value="no" required="required"
+                               data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/sixmos_from_delivery_date != ''"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">No</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Does the couple want more children?</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/preference_future_children"
+                               value="yes" required="required" data-type-xml="select1"/>
+                        <span lang="" class=" active">Yes</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/preference_future_children"
+                               value="no" required="required" data-type-xml="select1"/>
+                        <span lang="" class=" active">No</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Headaches:</span>
+                        <span lang="" class="jr-hint active">To check if migraine has aura, ask this question: 'Do you
+                            see bright spot in your vision before bad headaches?'
+                        </span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/head"
+                               value="non_migraine" data-type-xml="select1"/>
+                        <span lang="" class=" active">Non Migraine</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/head"
+                               value="migraine_aura" data-type-xml="select1"/>
+                        <span lang="" class=" active">Migraine with Aura</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/head"
+                               value="migraine_no_aura" data-type-xml="select1"/>
+                        <span lang="" class=" active">Migraine without Aura</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Heart conditions:</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood"
+                               value="hypertension_140_90" data-type-xml="select"/>
+                        <span lang="" class=" active">Hypertension (140/90 or above)</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood"
+                               value="hypertension_160_100" data-type-xml="select"/>
+                        <span lang="" class=" active">Hypertension (160/100 or above)</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood"
+                               value="cardiovascular_disease" data-type-xml="select"/>
+                        <span lang="" class=" active">Cardiovascular Disease</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood"
+                               value="deep_vein_thrombosis" data-type-xml="select"/>
+                        <span lang="" class=" active">Deep Vein Thrombosis</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood"
+                               value="obese" data-type-xml="select"/>
+                        <span lang="" class=" active">Obese</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood"
+                               value="smokes_tobacco" data-type-xml="select"/>
+                        <span lang="" class=" active">Smokes Tobacco</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends jr-branch ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Cardiovascular diseases:</span>
+                        <span lang="" class="jr-hint active">Multiple risk factors include older age, smoking, diabetes,
+                            and hypertension
+                        </span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/cardiovascular_diseases"
+                               value="stroke"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'cardiovascular_disease')"
+                               data-type-xml="select"/>
+                        <span lang="" class=" active">Stroke</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/cardiovascular_diseases"
+                               value="ischaemic_heart_disease"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'cardiovascular_disease')"
+                               data-type-xml="select"/>
+                        <span lang="" class=" active">Ischaemic Heart Disease</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/cardiovascular_diseases"
+                               value="multiple_risk_factors"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'cardiovascular_disease')"
+                               data-type-xml="select"/>
+                        <span lang="" class=" active">Multiple Risk Factors</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends jr-branch ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Deep vein thrombosis:</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/deep_vein_thrombosis"
+                               value="history"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'deep_vein_thrombosis')"
+                               data-type-xml="select"/>
+                        <span lang="" class=" active">History of</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/deep_vein_thrombosis"
+                               value="acute"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'deep_vein_thrombosis')"
+                               data-type-xml="select"/>
+                        <span lang="" class=" active">Acute</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/deep_vein_thrombosis"
+                               value="prolonged_immobilization_surgery"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'deep_vein_thrombosis')"
+                               data-type-xml="select"/>
+                        <span lang="" class=" active">Prolonged immobilization after surgery</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends jr-branch ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Using anticoagulant therapy?</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/acute_deep_vein_thrombosis"
+                               value="yes"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/deep_vein_thrombosis, 'acute')"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">Yes</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/acute_deep_vein_thrombosis"
+                               value="no"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/deep_vein_thrombosis, 'acute')"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">No</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Urinary or reproductive:</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/urinary_reproductive"
+                               value="uterine_fibroids" data-type-xml="select"/>
+                        <span lang="" class=" active">Uterine Fibroids</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/urinary_reproductive"
+                               value="unexplained_vaginal_bleeding" data-type-xml="select"/>
+                        <span lang="" class=" active">Unexplained Vaginal Bleeding</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/urinary_reproductive"
+                               value="cervical_intraepithelial_neoplasia" data-type-xml="select"/>
+                        <span lang="" class=" active">Cervical Intraepithelial Neoplasia (CIN)</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Sexually transmitted infections:</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/stis"
+                               value="pid" data-type-xml="select"/>
+                        <span lang="" class=" active">Pelvic Inflammatory Disease (PID)</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/stis"
+                               value="gonorrhea_or_chlamydia" data-type-xml="select"/>
+                        <span lang="" class=" active">Gonorrhea or Chlamydia</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/stis"
+                               value="hiv_aids" data-type-xml="select"/>
+                        <span lang="" class=" active">HIV/AIDS</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/stis"
+                               value="other_stis_and_vaginitis" data-type-xml="select"/>
+                        <span lang="" class=" active">Other STIs and Vaginitis</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/stis"
+                               value="increased_risk_of_stis" data-type-xml="select"/>
+                        <span lang="" class=" active">Increased Risk of STIs</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends jr-branch ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">You selected HIV/AIDS. Is the woman sickly or doing well?</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/hiv_aids_clinically_well"
+                               value="sickly"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/stis, 'hiv_aids')"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">Sickly</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/hiv_aids_clinically_well"
+                               value="well"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/stis, 'hiv_aids')"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">Well</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends jr-branch ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Pelvic Inflammatory Disease:</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/pid"
+                               value="current"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/stis, 'pid')"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">Current</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/pid"
+                               value="past"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/stis, 'pid')"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">Past</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Diseases:</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diseases"
+                               value="diabetes" data-type-xml="select"/>
+                        <span lang="" class=" active">Diabetes</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diseases"
+                               value="liver_disease" data-type-xml="select"/>
+                        <span lang="" class=" active">Liver Disease</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diseases"
+                               value="post_abortion_sepsis" data-type-xml="select"/>
+                        <span lang="" class=" active">Post-Abortion Sepsis</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends jr-branch ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Has woman had diabetes for &gt; 20 years or has a complicated case
+                            of diabetes?
+                        </span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diabetes_complications"
+                               value="yes"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diseases, 'diabetes')"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">Yes</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diabetes_complications"
+                               value="no"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diseases, 'diabetes')"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">No</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends jr-branch ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Liver Disease:</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/liver_disease"
+                               value="tumor"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diseases, 'liver_disease')"
+                               data-type-xml="select"/>
+                        <span lang="" class=" active">Liver Tumor</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/liver_disease"
+                               value="hepatitis"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diseases, 'liver_disease')"
+                               data-type-xml="select"/>
+                        <span lang="" class=" active">Acute Hepatitis</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Cancers:</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/cancers"
+                               value="breast" data-type-xml="select"/>
+                        <span lang="" class=" active">Breast Cancer</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/cancers"
+                               value="cervical" data-type-xml="select"/>
+                        <span lang="" class=" active">Cervical Cancer</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Drug interactions:</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/drug_interactions"
+                               value="rifampicin_rifabutin" data-type-xml="select"/>
+                        <span lang="" class=" active">Rifampicin / Rifabutin</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/drug_interactions"
+                               value="anticonvulsants" data-type-xml="select"/>
+                        <span lang="" class=" active">Anticonvulsants</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="checkbox"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/drug_interactions"
+                               value="antiretroviral_therapy" data-type-xml="select"/>
+                        <span lang="" class=" active">Antiretroviral Therapy</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="restoring-sanity-to-legends jr-branch ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Does her Antiretroviral Therapy contain the drug ritonavir?</span>
+                        <span lang="" class="jr-hint active">If unsure, ask to see the drug packaging.</span>
+                    </legend>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/arv_therapy"
+                               value="yes"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/drug_interactions, 'antiretroviral_therapy')"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">Yes</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/arv_therapy"
+                               value="no"
+                               data-relevant="selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/drug_interactions, 'antiretroviral_therapy')"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">No</span>
+                    </label>
+                </fieldset>
+            </fieldset>
+            <fieldset class="trigger jr-branch"
+                      name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/use_message"
+                      data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/female_sterilization_use != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/male_sterilization_use != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_use != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_use != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_use != ''">
+                <span lang="" class=" active">Instructions:
+                    <span class="jr-output" data-value="/EC_New_Family_Planning_v7_01_Copy/woman_name">
+                    </span>
+                    can use following methods: Condom
+                    <span class="jr-output"
+                          data-value="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/use">
+                    </span>
+                </span>
+            </fieldset>
+            <fieldset class="trigger jr-branch"
+                      name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/generally_use_message"
+                      data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_generally_use != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_generally_use != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_generally_use != ''">
+                <span lang="" class=" active">Instructions:
+                    If other methods are not appropriate,
+                    <span class="jr-output" data-value="/EC_New_Family_Planning_v7_01_Copy/woman_name">
+                    </span>
+                    can use following methods:
+                    <span class="jr-output"
+                          data-value="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/generally_use">
+                    </span>
+                </span>
+            </fieldset>
+            <fieldset class="trigger jr-branch"
+                      name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/not_recommended_message"
+                      data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_not_recommended != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_not_recommended != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_not_recommended != ''">
+                <span lang="" class=" active">Instructions:
+                    <span class="jr-output" data-value="/EC_New_Family_Planning_v7_01_Copy/woman_name">
+                    </span>
+                    should not use following methods, unless no other options are available:
+                    <span class="jr-output"
+                          data-value="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/not_recommended">
+                    </span>
+                </span>
+            </fieldset>
+            <fieldset class="trigger jr-branch"
+                      name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dont_use_message"
+                      data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/female_sterilization_dont_use != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/male_sterilization_dont_use != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_dont_use != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_dont_use != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_dont_use != ''">
+                <span lang="" class=" active">Instructions:
+                    <span class="jr-output" data-value="/EC_New_Family_Planning_v7_01_Copy/woman_name">
+                    </span>
+                    should not use following methods:
+                    <span class="jr-output"
+                          data-value="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dont_use">
+                    </span>
+                </span>
+            </fieldset>
+        </fieldset>
+        <!--end of group -->
+        <fieldset class="restoring-sanity-to-legends ">
+            <fieldset>
+                <legend>
+                    <span lang="" class=" active">Which method will the couple accept?</span>
+                </legend>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2"
+                           value="ocp" required="required" data-type-xml="select1"/>
+                    <span lang="" class=" active">OCP</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2"
+                           value="iud" required="required" data-type-xml="select1"/>
+                    <span lang="" class=" active">IUD</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2"
+                           value="male_sterilization" required="required" data-type-xml="select1"/>
+                    <span lang="" class=" active">Male Sterilization</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2"
+                           value="female_sterilization" required="required" data-type-xml="select1"/>
+                    <span lang="" class=" active">Female Sterilization</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2"
+                           value="condom" required="required" data-type-xml="select1"/>
+                    <span lang="" class=" active">Condom</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2"
+                           value="dmpa" required="required" data-type-xml="select1"/>
+                    <span lang="" class=" active">DMPA</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2"
+                           value="centchroman" required="required" data-type-xml="select1"/>
+                    <span lang="" class=" active">Centchroman</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2"
+                           value="traditional_methods" required="required" data-type-xml="select1"/>
+                    <span lang="" class=" active">Traditional Methods</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2"
+                           value="lam" required="required" data-type-xml="select1"/>
+                    <span lang="" class=" active">LAM</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2"
+                           value="none" required="required" data-type-xml="select1"/>
+                    <span lang="" class=" active">None</span>
+                </label>
+            </fieldset>
+        </fieldset>
+        <label class="jr-branch ">
+            <span lang="" class=" active">IUD removal date?</span>
+            <input autocomplete="off" type="date"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/iud_removal_date1"
+                   data-constraint=".&lt;=/EC_New_Family_Planning_v7_01_Copy/today"
+                   data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'iud'"
+                   data-type-xml="date"/>
+        </label>
+        <fieldset class="restoring-sanity-to-legends jr-branch ">
+            <fieldset>
+                <legend>
+                    <span lang="" class=" active">Place of IUD removal?</span>
+                </legend>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/iud_removal_place1"
+                           value="home"
+                           data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'iud'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">Home</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/iud_removal_place1"
+                           value="sub_center"
+                           data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'iud'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">Sub Center</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/iud_removal_place1"
+                           value="phc"
+                           data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'iud'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">PHC</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/iud_removal_place1"
+                           value="elsewhere"
+                           data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'iud'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">Elsewhere</span>
+                </label>
+            </fieldset>
+        </fieldset>
+        <fieldset class="restoring-sanity-to-legends jr-branch ">
+            <fieldset>
+                <legend>
+                    <span lang="" class=" active">Place where IUD was given?</span>
+                </legend>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/iud_place1"
+                           value="sub_center"
+                           data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2 = 'iud'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">Sub Center</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/iud_place1" value="phc"
+                           data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2 = 'iud'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">PHC</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/iud_place1" value="elsewhere"
+                           data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2 = 'iud'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">Elsewhere</span>
+                </label>
+            </fieldset>
+        </fieldset>
+        <label class="jr-branch ">
+            <span lang="" class=" active">Date FP method started?</span>
+            <input autocomplete="off" type="date"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/date_familyplanningstart1"
+                   required="required" data-constraint=".&lt;=/EC_New_Family_Planning_v7_01_Copy/today"
+                   data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2 != 'none'"
+                   data-type-xml="date"/>
+        </label>
+        <fieldset class="jr-branch "
+                  name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/male_sterilizaton_group"
+                  data-relevant="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2 = 'male_sterilization'">
+            <fieldset class="trigger jr-branch"
+                      name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/male_sterilizaton_group/male_sterilization_message"
+                      data-relevant="/EC_New_Family_Planning_v7_01_Copy/today - /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/date_familyplanningstart1 &lt; 90">
+                <span lang="" class=" active">Instructions:
+                    Pregnancy can still happen up to 3 mos. after male sterilization. Tell couple to use back-up FP
+                    method until 3 mos. from sterilization date:
+                    <span class="jr-output"
+                          data-value="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/male_sterilizaton_group/threemonths_from_sterilization_date">
+                    </span>
+                </span>
+            </fieldset>
+        </fieldset>
+        <!--end of group -->
+    </fieldset>
+    <!--end of group -->
+    <fieldset class="jr-branch " name="/EC_New_Family_Planning_v7_01_Copy/renew_fp_group"
+              data-relevant="/EC_New_Family_Planning_v7_01_Copy/fp_update = 'renew_fp_product'">
+        <fieldset class="trigger " name="/EC_New_Family_Planning_v7_01_Copy/renew_fp_group/case_fp_method_message">
+            <span lang="" class=" active">Current FP method is:
+                <span class="jr-output" data-value="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method">
+                </span>
+            </span>
+        </fieldset>
+        <label class="jr-branch ">
+            <span lang="" class=" active">Date of IUD removal?</span>
+            <input autocomplete="off" type="date"
+                   name="/EC_New_Family_Planning_v7_01_Copy/renew_fp_group/iud_removal_date2"
+                   data-constraint=".&lt;=/EC_New_Family_Planning_v7_01_Copy/today"
+                   data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'iud'"
+                   data-type-xml="date"/>
+        </label>
+        <fieldset class="restoring-sanity-to-legends jr-branch ">
+            <fieldset>
+                <legend>
+                    <span lang="" class=" active">Place of IUD removal?</span>
+                </legend>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/renew_fp_group/iud_removal_place2" value="home"
+                           data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'iud'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">Home</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/renew_fp_group/iud_removal_place2"
+                           value="sub_center"
+                           data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'iud'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">Sub Center</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/renew_fp_group/iud_removal_place2" value="phc"
+                           data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'iud'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">PHC</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/renew_fp_group/iud_removal_place2" value="elsewhere"
+                           data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'iud'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">Elsewhere</span>
+                </label>
+            </fieldset>
+        </fieldset>
+        <label class="jr-branch ">
+            <span lang="" class=" active">New IUD insertion date?</span>
+            <input autocomplete="off" type="date" name="/EC_New_Family_Planning_v7_01_Copy/renew_fp_group/iud_date"
+                   required="required" data-constraint=".&lt;=/EC_New_Family_Planning_v7_01_Copy/today"
+                   data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'iud'"
+                   data-type-xml="date"/>
+        </label>
+        <fieldset class="restoring-sanity-to-legends jr-branch ">
+            <fieldset>
+                <legend>
+                    <span lang="" class=" active">Place where IUD was given?</span>
+                </legend>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/renew_fp_group/iud_place2" value="sub_center"
+                           data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'iud'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">Sub Center</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/renew_fp_group/iud_place2" value="phc"
+                           data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'iud'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">PHC</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/EC_New_Family_Planning_v7_01_Copy/renew_fp_group/iud_place2" value="elsewhere"
+                           data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'iud'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">Elsewhere</span>
+                </label>
+            </fieldset>
+        </fieldset>
+        <label class="jr-branch ">
+            <span lang="" class=" active">DMPA injection date?</span>
+            <input autocomplete="off" type="date"
+                   name="/EC_New_Family_Planning_v7_01_Copy/renew_fp_group/injectable_date" required="required"
+                   data-constraint=".&lt;=/EC_New_Family_Planning_v7_01_Copy/today"
+                   data-relevant="/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'dmpa'"
+                   data-type-xml="date"/>
+        </label>
+    </fieldset>
+    <!--end of group -->
+    <label class="jr-branch ">
+        <span lang="" class=" active">Number of condoms given?</span>
+        <input autocomplete="off" type="number" name="/EC_New_Family_Planning_v7_01_Copy/num_condomsdelivered"
+               required="required"
+               data-relevant="(/EC_New_Family_Planning_v7_01_Copy/fp_update = 'change_fp_method' and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2 = 'condom') or (/EC_New_Family_Planning_v7_01_Copy/fp_update = 'renew_fp_product' and /EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'condom')"
+               data-type-xml="int"/>
+    </label>
+    <label class="jr-branch ">
+        <span lang="" class=" active">Number of OCP strips given?</span>
+        <input autocomplete="off" type="number" name="/EC_New_Family_Planning_v7_01_Copy/num_ocpdelivered"
+               required="required"
+               data-relevant="(/EC_New_Family_Planning_v7_01_Copy/fp_update = 'change_fp_method' and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2 = 'ocp') or (/EC_New_Family_Planning_v7_01_Copy/fp_update = 'renew_fp_product' and /EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'ocp')"
+               data-type-xml="int"/>
+    </label>
+    <label class="jr-branch ">
+        <span lang="" class=" active">Number of Centchroman strips given?</span>
+        <input autocomplete="off" type="number" name="/EC_New_Family_Planning_v7_01_Copy/num_centchroman_pills"
+               required="required"
+               data-relevant="(/EC_New_Family_Planning_v7_01_Copy/fp_update = 'change_fp_method' and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2 = 'centchroman') or (/EC_New_Family_Planning_v7_01_Copy/fp_update = 'renew_fp_product' and /EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'centchroman')"
+               data-type-xml="int"/>
+    </label>
+    <label class="jr-branch ">
+        <span lang="" class=" active">Date the couple will start new supply?</span>
+        <input autocomplete="off" type="date" name="/EC_New_Family_Planning_v7_01_Copy/renew_date" required="required"
+               data-relevant="/EC_New_Family_Planning_v7_01_Copy/fp_update = 'renew_fp_product' and (/EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'ocp' or /EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'condom' or /EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method = 'centchroman')"
+               data-type-xml="date"/>
+    </label>
+
+    <fieldset id="jr-calculated-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_New_Family_Planning_v7_01_Copy/formhub/uuid"
+                   data-calculate="'47987befd6ee4afd898475095fbd6550'" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_New_Family_Planning_v7_01_Copy/woman_name2"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/case_woman_name = '', /EC_New_Family_Planning_v7_01_Copy/woman_name1, /EC_New_Family_Planning_v7_01_Copy/case_woman_name)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_New_Family_Planning_v7_01_Copy/woman_name"
+                   data-calculate="concat(/EC_New_Family_Planning_v7_01_Copy/woman_name2, ' ')" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/woman_age"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/case_woman_age = '', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/woman_age2, /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/case_woman_age)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/under_18"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/woman_age &lt; 18, 'yes', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/forty_or_over"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/woman_age &gt;= 40, 'yes', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/fortyfive_or_over"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/woman_age &gt; 45, 'yes', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/nulliparous"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/num_livebirths = 0 or (/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/case_num_pregnancies != '' and (/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/case_num_livebirths = '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/case_num_livebirths = 0)), 'yes', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/sixmos_from_delivery_date"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/delivered_in_past_6mos = 'yes' or (/EC_New_Family_Planning_v7_01_Copy/today - /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/case_delivery_date &lt; 180), 'yes', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/no_aura_under_35"
+                   data-calculate="if(selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/head, 'migraine_no_aura') and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/woman_age &lt; 35, 'yes', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/no_aura_over_35"
+                   data-calculate="if(selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/head, 'migraine_no_aura') and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/woman_age &gt;= 35, 'yes', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/smokes_tobacco_under_35"
+                   data-calculate="if(selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'smokes_tobacco') and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/woman_age &lt; 35, 'yes', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/smokes_tobacco_over_35"
+                   data-calculate="if(selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'smokes_tobacco') and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/woman_age &gt;= 35, 'yes', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/female_sterilization_use"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/preference_future_children = 'no', 'Female_Sterilization', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/female_sterilization_dont_use"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/preference_future_children = 'yes', 'Female_Sterilization', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/male_sterilization_use"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/preference_future_children = 'no', 'Male_Sterilization', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/male_sterilization_dont_use"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/preference_future_children = 'yes', 'Male_Sterilization', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_dont_use"
+                   data-calculate="if(selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/cancers, 'breast') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'hypertension_160_100') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'deep_vein_thrombosis') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'cardiovascular_disease') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/head, 'migraine_aura') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diseases, 'liver_disease') or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diabetes_complications = 'yes' or (/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/sixmos_from_delivery_date = 'yes' and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/currently_breastfeeding = 'yes'), 'OCP', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_not_recommended"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_dont_use = '' and (/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/smokes_tobacco_over_35 != '' or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'hypertension_140_90') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/drug_interactions, 'rifampicin_rifabutin') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/drug_interactions, 'anticonvulsants') or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/no_aura_over_35 != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/arv_therapy = 'yes'), 'OCP', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_generally_use"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_dont_use = '' and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_not_recommended = '' and (selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/cancers, 'cervical') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/urinary_reproductive, 'cervical_intraepithelial_neoplasia') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/urinary_reproductive, 'unexplained_vaginal_bleeding') or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/smokes_tobacco_under_35 != '' or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diseases, 'diabetes') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/drug_interactions, 'arv_therapy') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'obese') or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/forty_or_over != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/no_aura_under_35 != ''), 'OCP', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_use"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_dont_use = '' and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_not_recommended = '' and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_generally_use = '', 'OCP', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_dont_use"
+                   data-calculate="if(selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/cancers, 'breast') or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diabetes_complications = 'yes', 'DMPA', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_not_recommended"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_dont_use = '' and (selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/deep_vein_thrombosis, 'acute') or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/acute_deep_vein_thrombosis = 'no' or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'cardiovascular_disease') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/liver_disease, 'tumor') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/urinary_reproductive, 'unexplained_vaginal_bleeding') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'hypertension_160_100')), 'DMPA', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_generally_use"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_dont_use = '' and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_not_recommended = '' and (selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/deep_vein_thrombosis, 'history') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/deep_vein_thrombosis, 'prolonged_immobilization_surgery') or (selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/deep_vein_thrombosis, 'acute') and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/acute_deep_vein_thrombosis = 'yes') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/head, 'migraine_aura') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diseases, 'diabetes') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/drug_interactions, 'arv_therapy') or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/under_18 != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/fortyfive_or_over != '' or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/cancers, 'cervical') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/urinary_reproductive, 'cervical_intraepithelial_neoplasia') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/heart_blood, 'hypertension_140_90')), 'DMPA', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_use"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_dont_use = '' and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_not_recommended = '' and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_generally_use = '', 'DMPA', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_dont_use"
+                   data-calculate="if(selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/diseases, 'post_abortion_sepsis') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/cancers, 'cervical') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/urinary_reproductive, 'unexplained_vaginal_bleeding') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/pid, 'current') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/stis, 'gonorrhea_or_chlamydia'), 'IUD', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_not_recommended"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_dont_use = '' and (selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/stis, 'increased_risk_of_stis') or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/hiv_aids_clinically_well = 'sickly'), 'IUD', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_generally_use"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_dont_use = '' and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_not_recommended = '' and (selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/drug_interactions, 'arv_therapy') or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/under_18 != '' or /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/nulliparous != '' or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/stis, 'other_stis_and_vaginitis') or selected(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/stis, 'hiv_aids')), 'IUD', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_use"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_dont_use = '' and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_not_recommended = '' and /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_generally_use = '', 'IUD', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/use"
+                   data-calculate="concat(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/female_sterilization_use, ' ', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/male_sterilization_use, ' ', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_use, ' ', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_use, ' ', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_use)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/generally_use"
+                   data-calculate="concat(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_generally_use, ' ', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_generally_use, ' ', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_generally_use)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/not_recommended"
+                   data-calculate="concat(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_not_recommended, ' ', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_not_recommended, ' ', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_not_recommended)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dont_use"
+                   data-calculate="concat(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/female_sterilization_dont_use, ' ', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/male_sterilization_dont_use, ' ', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/ocp_dont_use, ' ', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/dmpa_dont_use, ' ', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/mec_wheel_group/iud_dont_use)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/male_sterilizaton_group/threemonths_from_sterilization_date"
+                   data-calculate="date(/EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/date_familyplanningstart1 + 90)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_New_Family_Planning_v7_01_Copy/date_familyplanningstart2"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/renew_fp_group/iud_date != '', /EC_New_Family_Planning_v7_01_Copy/renew_fp_group/iud_date, /EC_New_Family_Planning_v7_01_Copy/renew_fp_group/injectable_date)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_New_Family_Planning_v7_01_Copy/date_familyplanningstart3"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/date_familyplanningstart2 != '', /EC_New_Family_Planning_v7_01_Copy/date_familyplanningstart2, /EC_New_Family_Planning_v7_01_Copy/renew_date)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_New_Family_Planning_v7_01_Copy/familyplanning_method"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/fp_update = 'change_fp_method', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/familyplanning_method2, /EC_New_Family_Planning_v7_01_Copy/case_familyplanning_method)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_New_Family_Planning_v7_01_Copy/date_familyplanningstart"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/fp_update = 'change_fp_method', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/date_familyplanningstart1, /EC_New_Family_Planning_v7_01_Copy/date_familyplanningstart3)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_New_Family_Planning_v7_01_Copy/iud_removal_date"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/fp_update = 'change_fp_method', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/iud_removal_date1, /EC_New_Family_Planning_v7_01_Copy/renew_fp_group/iud_removal_date2)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_New_Family_Planning_v7_01_Copy/iud_place"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/fp_update = 'change_fp_method', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/iud_place1, /EC_New_Family_Planning_v7_01_Copy/renew_fp_group/iud_place2)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_New_Family_Planning_v7_01_Copy/iud_removal_place"
+                   data-calculate="if(/EC_New_Family_Planning_v7_01_Copy/fp_update = 'change_fp_method', /EC_New_Family_Planning_v7_01_Copy/change_fp_method_group/iud_removal_place1, /EC_New_Family_Planning_v7_01_Copy/renew_fp_group/iud_removal_place2)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_New_Family_Planning_v7_01_Copy/meta/instanceID"
+                   data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+        </label>
+    </fieldset>
+</form>
