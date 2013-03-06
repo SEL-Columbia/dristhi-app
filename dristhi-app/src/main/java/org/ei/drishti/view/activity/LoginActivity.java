@@ -225,7 +225,7 @@ public class LoginActivity extends Activity {
     private void loginWith(String userName, String password) {
         context.userService().loginWith(userName, password);
         context.commCareClientService().establishConnection(this);
-        DrishtiSyncScheduler.start(getApplicationContext());
+        DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
     private void goToHome() {

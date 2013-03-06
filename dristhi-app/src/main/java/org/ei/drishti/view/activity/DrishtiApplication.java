@@ -9,6 +9,8 @@ import org.ei.drishti.sync.DrishtiSyncScheduler;
 
 import java.util.Locale;
 
+import static org.ei.drishti.util.Log.logInfo;
+
 @ReportsCrashes(formKey = "dFdKSGVjdDJ4ZThpRHQ0bm50VkdDeGc6MQ")
 public class DrishtiApplication extends Application {
     private Locale locale = null;
@@ -32,6 +34,7 @@ public class DrishtiApplication extends Application {
 
     @Override
     public void onTerminate() {
+        logInfo("Application is terminating. Stopping Dristhi Sync scheduler and resetting isSyncInProgress setting.");
         cleanUpSyncState();
     }
 

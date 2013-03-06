@@ -4,51 +4,67 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.SystemClock;
-import android.widget.Toast;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import org.ei.drishti.event.Listener;
 import org.ei.drishti.view.receiver.SyncBroadcastReceiver;
 
-import static android.widget.Toast.LENGTH_SHORT;
 import static java.text.MessageFormat.format;
 import static org.ei.drishti.event.Event.ON_LOGOUT;
 import static org.ei.drishti.util.Log.logInfo;
 import static org.joda.time.DateTimeConstants.MILLIS_PER_MINUTE;
+import static org.joda.time.DateTimeConstants.MILLIS_PER_SECOND;
 
 public class DrishtiSyncScheduler {
 
     public static final int SYNC_INTERVAL = MILLIS_PER_MINUTE;
-    //This has to be a field despite what Idea suggests as the ON_LOGOUT event holds a weak reference to this object to send a notification when user logs out.
+    public static final int SYNC_START_DELAY = 5 * MILLIS_PER_SECOND;
+    //"logoutListener" has to be a field despite what Idea suggests as the ON_LOGOUT event holds a weak reference to this object to send a notification when user logs out.
     private static Listener<Boolean> logoutListener;
 
     public static void start(final Context context) {
-        PendingIntent triggerSyncActivity = PendingIntent.getBroadcast(context, 0,
-                new Intent(context, SyncBroadcastReceiver.class), 0);
+        if (org.ei.drishti.Context.getInstance().userService().hasSessionExpired()) {
+            return;
+        }
+
+        PendingIntent syncBroadcastReceiverIntent = PendingIntent.getBroadcast(context, 0, new Intent(context, SyncBroadcastReceiver.class), 0);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC,
-                SystemClock.elapsedRealtime() + 2 * MILLIS_PER_MINUTE, SYNC_INTERVAL,
-                triggerSyncActivity);
+        alarmManager.setRepeating(
+                AlarmManager.RTC,
+                System.currentTimeMillis() + SYNC_START_DELAY,
+                SYNC_INTERVAL,
+                syncBroadcastReceiverIntent);
 
-        logInfo(format("Scheduled to sync every {0} seconds.", SYNC_INTERVAL / 1000));
-        Toast.makeText(context, format("Scheduled to sync every {0} seconds.", SYNC_INTERVAL / 1000), LENGTH_SHORT).show();
+        logInfo(format("Scheduled to sync from server every {0} seconds.", SYNC_INTERVAL / 1000));
 
         logoutListener = new Listener<Boolean>() {
             public void onEvent(Boolean data) {
+                logInfo("User is logged out. Stopping Dristhi Sync scheduler.");
                 stop(context);
             }
         };
         ON_LOGOUT.addListener(logoutListener);
     }
 
+    public static void startOnlyIfConnectedToNetwork(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            start(context);
+        } else {
+            logInfo("Device not connected to network so not starting sync scheduler.");
+        }
+    }
+
     public static void stop(Context context) {
-        PendingIntent triggerSyncActivity = PendingIntent.getBroadcast(context, 0,
-                new Intent(context, SyncBroadcastReceiver.class), 0);
+        PendingIntent syncBroadcastReceiverIntent = PendingIntent.getBroadcast(context, 0, new Intent(context, SyncBroadcastReceiver.class), 0);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.cancel(triggerSyncActivity);
+        alarmManager.cancel(syncBroadcastReceiverIntent);
+
+        ON_LOGOUT.removeListener(logoutListener);
 
         logInfo("Unscheduled sync.");
-        Toast.makeText(context, "Unscheduled sync.", LENGTH_SHORT).show();
     }
 }
