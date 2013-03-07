@@ -8,6 +8,8 @@ import org.ei.drishti.view.BackgroundAction;
 import org.ei.drishti.view.LockingBackgroundTask;
 import org.ei.drishti.view.ProgressIndicator;
 
+import static org.ei.drishti.util.Log.logInfo;
+
 public class UpdateActionsTask {
     private final LockingBackgroundTask task;
     private ActionService actionService;
@@ -20,6 +22,11 @@ public class UpdateActionsTask {
     }
 
     public void updateFromServer(final AfterFetchListener afterFetchListener) {
+        if (org.ei.drishti.Context.getInstance().IsUserLoggedOut()) {
+            logInfo("Not updating from server as user is not logged in.");
+            return;
+        }
+
         task.doActionInBackground(new BackgroundAction<FetchStatus>() {
             public FetchStatus actionToDoInBackgroundThread() {
                 return actionService.fetchNewActions();

@@ -31,7 +31,7 @@ public abstract class SecuredActivity extends Activity {
         };
         ON_LOGOUT.addListener(logoutListener);
 
-        if (context.userService().hasSessionExpired()) {
+        if (context.IsUserLoggedOut()) {
             startActivity(new Intent(this, LoginActivity.class));
             context.userService().logoutSession();
             return;
@@ -43,7 +43,7 @@ public abstract class SecuredActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (context.userService().hasSessionExpired()) {
+        if (context.IsUserLoggedOut()) {
             context.userService().logoutSession();
             startActivity(new Intent(this, LoginActivity.class));
             return;

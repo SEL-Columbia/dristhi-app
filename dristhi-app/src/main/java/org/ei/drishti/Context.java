@@ -267,4 +267,8 @@ public class Context {
         }
         return listCache;
     }
+
+    public Boolean IsUserLoggedOut() {
+        return userService().hasSessionExpired();
+    }
 }

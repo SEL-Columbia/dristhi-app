@@ -69,7 +69,7 @@ public class LoginActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        if (!context.userService().hasSessionExpired() && !establishingConnectionWithCC) {
+        if (!context.IsUserLoggedOut() && !establishingConnectionWithCC) {
             goToHome();
         }
 

@@ -23,7 +23,7 @@ public class DrishtiSyncScheduler {
     private static Listener<Boolean> logoutListener;
 
     public static void start(final Context context) {
-        if (org.ei.drishti.Context.getInstance().userService().hasSessionExpired()) {
+        if (org.ei.drishti.Context.getInstance().IsUserLoggedOut()) {
             return;
         }
 
