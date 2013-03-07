@@ -4,6 +4,8 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.view.View;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.service.ActionService;
+import org.ei.drishti.sync.AfterFetchListener;
+import org.ei.drishti.sync.UpdateActionsTask;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.util.FakeNavigationService;
 import org.ei.drishti.view.activity.LoginActivity;
@@ -31,7 +33,7 @@ public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTes
 
         ActionServiceWithSimulatedLongRunningTask service = new ActionServiceWithSimulatedLongRunningTask();
         FakeProgressIndicator progressIndicator = new FakeProgressIndicator();
-        final UpdateActionsTask updateAlertsTask = new UpdateActionsTask(null, service, progressIndicator);
+        final UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, service, progressIndicator);
 
         for (int i = 0; i < 40; i++) {
             if (progressIndicator.currentStatus == View.VISIBLE) {
@@ -48,7 +50,7 @@ public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTes
             }
 
             private void updateFromServer() {
-                updateAlertsTask.updateFromServer(new AfterFetchListener() {
+                updateActionsTask.updateFromServer(new AfterFetchListener() {
                     public void afterFetch(FetchStatus status) {
                     }
                 });
