@@ -40,7 +40,7 @@
                     <li>
                         <div class="row-fluid">
                             <div class="span9 big-text">{{formatText coupleDetails.wifeName}}</div>
-                            <div class="span3 social-vulnerability text-right" style="float: right">{{formatSocialVulnerability details.caste details.economicStatus}}</div>
+                            <div class="span3 social-vulnerability text-right">{{formatSocialVulnerability details.caste details.economicStatus}}</div>
                         </div>
                     </li>
                     <li class="medium-text spacing-below">{{capitalize coupleDetails.husbandName}}</li>
@@ -115,7 +115,7 @@
                     <div class="beneficiary-detail-content">
                         {{#ifFalse isHighPriority}}
                         <div class="big-text high-risk">
-                            <i class="icon-circle-arrow-up" style="margin-top: 3px;"></i> High Priority</span>
+                            <i class="icon-circle-arrow-up priority-indicator-text"></i> High Priority</span>
                         </div>
                         <div class="beneficiary-detail-footer risk-detail-text">
                             <ul>{{camelCaseAndConvertToListItems details.highPriorityReason}}</ul>
