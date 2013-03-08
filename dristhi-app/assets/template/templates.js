@@ -912,7 +912,7 @@ function program15(depth0,data) {
 function program16(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                        <div class=\"ec-child girl\">\n                            <div style=\"text-align: center;\">\n                                <span style=\"font-weight: bold\">Girl</span><br>\n                                ";
+  buffer += "\n                        <div class=\"ec-child girl\">\n                            <div>\n                                <span class=\"gender-text\">Girl</span><br>\n                                ";
   if (stack1 = helpers.age) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.age; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -923,7 +923,7 @@ function program16(depth0,data) {
 function program18(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n                        <div class=\"ec-child boy\">\n                            <div style=\"text-align: center;\">\n                                <span style=\"font-weight: bold;\">Boy</span><br>\n                                ";
+  buffer += "\n                        <div class=\"ec-child boy\">\n                            <div>\n                                <span class=\"gender-text\">Boy</span><br>\n                                ";
   if (stack1 = helpers.age) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.age; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)

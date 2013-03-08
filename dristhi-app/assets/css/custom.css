@@ -380,6 +380,7 @@
     border-radius: 4px;
     margin-right: 5px;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .ec-child.boy {
@@ -388,6 +389,10 @@
 
 .ec-child.girl {
     background-color: #f5dcf3;
+}
+
+.gender-text{
+    font-weight: bold;
 }
 
 body {
