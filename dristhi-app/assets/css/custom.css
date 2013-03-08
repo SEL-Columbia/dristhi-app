@@ -572,7 +572,7 @@ body {
 }
 
 .modal-container {
-    display: block;
+    display: none;
     position: absolute;
     width: 80%;
     opacity: 1;
@@ -776,6 +776,6 @@ body {
     margin-top: 10px;
 }
 
-.priority-indicator-text{
+.priority-indicator-icon {
     margin-top: 3px;
 }

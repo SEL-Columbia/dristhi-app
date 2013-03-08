@@ -8,7 +8,7 @@ helpers = helpers || Handlebars.helpers; partials = partials || Handlebars.parti
 function program1(depth0,data) {
   
   var buffer = "", stack1, stack2;
-  buffer += "\n<div id=\"warning\"></div>\n<div id=\"warning-modal-container\" class=\"modal-container\">\n    <div id=\"modal-goes-here\">\n        <div id=\"ancWarningModal\" class=\"edd-modal-content\">\n            <div class=\"edd-popup\"><img class=\"edd-popup-image\"></div>\n            <div class=\"big-text-black edd-modal-text\">EDD "
+  buffer += "\n<div id=\"warning\"></div>\n<div id=\"warning-modal-container\" class=\"modal-container\" style=\"display: block;\">\n    <div id=\"modal-goes-here\">\n        <div id=\"ancWarningModal\" class=\"edd-modal-content\">\n            <div class=\"edd-popup\"><img class=\"edd-popup-image\"></div>\n            <div class=\"big-text-black edd-modal-text\">EDD "
     + escapeExpression(((stack1 = ((stack1 = depth0.pregnancyDetails),stack1 == null || stack1 === false ? stack1 : stack1.daysPastEdd)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " days past due!</div>\n            <div class=\"edd-modal-button\">\n                <button id=\"deliveryOutcomeFormButton\" class=\"btn btn-large btn-primary\" type=\"button\"\n                        data-form=\"ANC_DELIVERY_OUTCOME\" data-caseid=\"";
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
@@ -111,7 +111,7 @@ function program16(depth0,data,depth2) {
 function program18(depth0,data) {
   
   var buffer = "", stack1, options;
-  buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up priority-indicator-text\"></i> High Risk</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\">\n                            <ul>";
+  buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up priority-indicator-icon\"></i> High Risk</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\">\n                            <ul>";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.camelCaseAndConvertToListItems),stack1 ? stack1.call(depth0, ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.highRiskReason), options) : helperMissing.call(depth0, "camelCaseAndConvertToListItems", ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.highRiskReason), options)))
     + "</ul>\n                        </div>\n                        ";
@@ -547,7 +547,7 @@ function program20(depth0,data,depth2) {
 function program22(depth0,data) {
   
   var buffer = "", stack1, options;
-  buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up priority-indicator-text\"></i> High Risk</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\">\n                            <ul>";
+  buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up priority-indicator-icon\"></i> High Risk</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\">\n                            <ul>";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.camelCaseAndConvertToListItems),stack1 ? stack1.call(depth0, ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.highRiskReasonChild), options) : helperMissing.call(depth0, "camelCaseAndConvertToListItems", ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.highRiskReasonChild), options)))
     + "</ul>\n                        </div>\n                        ";
@@ -878,7 +878,7 @@ function program8(depth0,data,depth2) {
 function program10(depth0,data) {
   
   var buffer = "", stack1, options;
-  buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up priority-indicator-text\"></i> High Priority</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\">\n                            <ul>";
+  buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up priority-indicator-icon\"></i> High Priority</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\">\n                            <ul>";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.camelCaseAndConvertToListItems),stack1 ? stack1.call(depth0, ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.highPriorityReason), options) : helperMissing.call(depth0, "camelCaseAndConvertToListItems", ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.highPriorityReason), options)))
     + "</ul>\n                        </div>\n                        ";
@@ -1312,7 +1312,7 @@ function program16(depth0,data,depth2) {
 function program18(depth0,data) {
   
   var buffer = "", stack1, options;
-  buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up priority-indicator-text\"></i> High Risk</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\">\n                            <ul>";
+  buffer += "\n                        <div class=\"big-text high-risk\">\n                            <i class=\"icon-circle-arrow-up priority-indicator-icon\"></i> High Risk</span>\n                        </div>\n                        <div class=\"beneficiary-detail-footer risk-detail-text\">\n                            <ul>";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.camelCaseAndConvertToListItems),stack1 ? stack1.call(depth0, ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.highRiskReason), options) : helperMissing.call(depth0, "camelCaseAndConvertToListItems", ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.highRiskReason), options)))
     + "</ul>\n                        </div>\n                        ";
