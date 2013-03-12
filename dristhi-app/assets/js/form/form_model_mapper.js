@@ -12,6 +12,9 @@ enketo.FormModelMapper = function (formDataRepository) {
             if (!enketo.hasValue(entityRelationship)) {
                 return formDefinition;
             }
+            if (!enketo.hasValue(params.entityId)) {
+                return formDefinition;
+            }
 
             /*
              check if there is a from instance with given id
@@ -38,8 +41,4 @@ enketo.FormModelMapper = function (formDataRepository) {
 
         }
     };
-};
-
-enketo.hasValue = function (object) {
-    return !(typeof object == "undefined" || !object);
 };

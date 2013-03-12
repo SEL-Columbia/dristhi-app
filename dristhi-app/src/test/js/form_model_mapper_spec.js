@@ -65,12 +65,26 @@ describe("Form Model Mapper", function () {
         expect(formDataRepository.getFormInstanceByFormTypeAndId).toHaveBeenCalledWith(params.id, params.formName);
     });
 
-    it("should get form model with empty field values for a given form type from when there is no saved form instance and no entity", function () {
+    it("should get form model with empty field values for a given form type when there is no saved form instance and no entity", function () {
         spyOn(formDataRepository, 'getFormInstanceByFormTypeAndId').andReturn(null);
         var entityRelationship = null;
         var params = {
             "id": "id 1",
             "formName": "entity-registration"
+        };
+
+        var formModel = formModelMapper.mapToFormModel(entityRelationship, formDefinition, params);
+
+        expect(formModel).toBe(formDefinition);
+    });
+
+    it("should get form model with empty field values for a given form type when there is no saved form instance, no entity but entity relationship exists", function () {
+        spyOn(formDataRepository, 'getFormInstanceByFormTypeAndId').andReturn(null);
+        var entityRelationship = [];
+        var params = {
+            "id": "id 1",
+            "formName": "entity-registration",
+            "entityId": ""
         };
 
         var formModel = formModelMapper.mapToFormModel(entityRelationship, formDefinition, params);

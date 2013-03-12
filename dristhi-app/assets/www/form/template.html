@@ -25,7 +25,7 @@
 
         /*****  Paste the complete <model> node as the value for jrDataStr, remove linebreaks *****/
         var jrDataStr = androidContext.getModel();
-        var repository = new enketo.FormDataController(
+        var controller = new enketo.FormDataController(
                 new enketo.EntityRelationshipLoader(),
                 new enketo.FormDefinitionLoader(),
                 new enketo.FormModelMapper(new enketo.FormDataRepository()))
