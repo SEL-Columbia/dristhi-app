@@ -2,7 +2,7 @@ if (typeof enketo == "undefined" || !enketo) {
     var enketo = {};
 }
 
-enketo.FormModelMapper = function (formDataRepository) {
+enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
     return {
         mapToFormModel: function (entityRelationship, formDefinition, params) {
             var savedFormInstance = formDataRepository.getFormInstanceByFormTypeAndId(params.id, params.formName);
@@ -16,29 +16,22 @@ enketo.FormModelMapper = function (formDataRepository) {
                 return formDefinition;
             }
 
-            /*
-             check if there is a from instance with given id
-             if instance exists create a model from that
-             return submission
-             else
-             load the entity relation map
-             if entity map does not exist
-             return empty values
-             else
-             fetch bind.type
-             write query for that bind from entity relation mapping
-             run query to get values
-             prepare form model object with values
-             return transformed form model
-             */
+            var query = queryBuilder.getQueryFor(entityRelationship, formDefinition.bind_type, params.entityId);
+            var fieldValues = formDataRepository.getFieldValues(query);
+            formDefinition.form.fields.forEach(function (field) {
+                var value;
+                if (enketo.hasValue(field.source)) {
+                    var sourceArray = field.source.split(".");
+                    value = fieldValues[sourceArray[0]][sourceArray[1]];
+                } else {
+                    value = fieldValues[formDefinition.form.bind_type][field.name];
+                }
+                if (enketo.hasValue(value)) {
+                    field.value = value;
+                }
+            });
 
-            //            var refData = eval(dataSource.get(instanceId));
-//            var fields = this.getDataDefinition().fields;
-//            for (f in fields) {
-//                f.value = refData[f];
-//            }
-//            return redData;
-
+            return formDefinition;
         }
     };
 };

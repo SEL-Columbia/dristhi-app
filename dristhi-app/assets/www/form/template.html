@@ -28,7 +28,7 @@
         var controller = new enketo.FormDataController(
                 new enketo.EntityRelationshipLoader(),
                 new enketo.FormDefinitionLoader(),
-                new enketo.FormModelMapper(new enketo.FormDataRepository()))
+                new enketo.FormModelMapper(new enketo.FormDataRepository(), new enketo.SQLQueryBuilder()))
                 .get("id");
     </script>
 </head>

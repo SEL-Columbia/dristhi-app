@@ -8,6 +8,9 @@ enketo.FormDataRepository = function () {
     return {
         getFormInstanceByFormTypeAndId : function(formID, formName) {
 
+        },
+        getFieldValues : function(query) {
+
         }
     };
 };
