@@ -10,7 +10,12 @@
     <link href="../../css/form/styles_drishti.css" media="all" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="../../js/form/libraries-all-min.js"></script>
     <script type="text/javascript" src="../../js/form/webform-drishti-all-min.js"></script>
-    <script type="text/javascript" src="../../js/form/repository.js"></script>
+    <script type="text/javascript" src="../../js/form/form_data_controller.js"></script>
+    <script type="text/javascript" src="../../js/form/form_model_mapper.js"></script>
+    <script type="text/javascript" src="../../js/form/form_data_repository.js"></script>
+    <script type="text/javascript" src="../../js/form/entity_relationship_loader.js"></script>
+    <script type="text/javascript" src="../../js/form/form_definition_loader.js"></script>
+    <script type="text/javascript" src="../../js/form/util.js"></script>
     <script type="text/javascript">
         var settings = {};
         settings['mapsDynamicAPIKey'] = 'AIzaSyDF5xYZfxN7r5SsNPGstjAeTzwa6dVU4Ik';
@@ -20,7 +25,11 @@
 
         /*****  Paste the complete <model> node as the value for jrDataStr, remove linebreaks *****/
         var jrDataStr = androidContext.getModel();
-        var repository = Repository();
+        var repository = new enketo.FormDataController(
+                new enketo.EntityRelationshipLoader(),
+                new enketo.FormDefinitionLoader(),
+                new enketo.FormModelMapper(new enketo.FormDataRepository()))
+                .get("id");
     </script>
 </head>
 <body>

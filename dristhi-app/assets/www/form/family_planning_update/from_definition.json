@@ -1,0 +1,60 @@
+{
+    "form": {
+        "type": "mother",
+        "bind": "/instance/mother/",
+        "fields": [
+            {
+                "name": "wifeName"
+            },
+            {
+                "name": "hbLevel",
+                "source": "mother.hb_level",
+                "bind": "/instance/mother/hb_level"
+            },
+            {
+                "name": "wifeAge",
+                "source": "ecDetails.wifeAge",
+                "bind": "/instance/ec/woman_age"
+            }
+        ],
+        "subEntities": [
+            {
+                "type": "child",
+                "bind": "/instance/child/",
+                "ref": {
+                    "name": "mother_id",
+                    "parent": "mother.id"
+                },
+                "fields": [
+                    {
+                        "name": "childName"
+                    },
+                    {
+                        "name": "childWeight",
+                        "bind": "/instance/child/child_weight"
+                    }
+                ]
+            },
+            {
+                "type": "husband",
+                "bind": "/instance/husband/",
+                "ref": [
+                    {
+                        "name": "couple_id",
+                        "parent": "mother.couple_id"
+                    }
+                ],
+                "fields": [
+                    {
+                        "name": "husbandName",
+                        "bind": "/instance/husband/husband_name"
+                    },
+                    {
+                        "name": "husbandWeight",
+                        "source": "husband.husband_weight"
+                    }
+                ]
+            }
+        ]
+    }
+}

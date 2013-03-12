@@ -139,6 +139,33 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.github.searls</groupId>
+                <artifactId>jasmine-maven-plugin</artifactId>
+                <version>1.2.0.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <jsSrcDir>assets/js</jsSrcDir>
+                    <sourceIncludes>
+                        <include>**/*.js</include>
+                    </sourceIncludes>
+                    <sourceExcludes>
+                        <exclude>/jquery-ui-1.8.23.custom.min.js</exclude>
+                        <exclude>/jquery.min.js</exclude>
+                        <exclude>/bootstrap.js</exclude>
+                        <exclude>/bootstrap.min.js</exclude>
+                        <exclude>/handlebars-1.0.rc.1.min.js</exclude>
+                    </sourceExcludes>
+                    <jsTestSrcDir>src/test/js</jsTestSrcDir>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <profiles>

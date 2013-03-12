@@ -1,0 +1,171 @@
+{
+    "form": {
+        "bind_type": "eligible_couple",
+        "default_bind_path": "/EC_Registration_v7-01_Copy/",
+        "fields": [
+            {
+                "name": "phc",
+                "bind": "ec_village_phc"
+            },
+            {
+                "name": "sc",
+                "bind": "ec_village_subcenter"
+            },
+            {
+                "name": "village",
+                "bind": "ec_village"
+            },
+            {
+                "name": "household_number",
+                "bind": "hh_number"
+            },
+            {
+                "name": "household_address",
+                "bind": "hh_address"
+            },
+            {
+                "name": "head_of_household",
+                "bind": "headofhousehold"
+            },
+            {
+                "name": "ec_number"
+            },
+            {
+                "name": "woman_name"
+            },
+            {
+                "name": "woman_name",
+                "bind": "woman_name2"
+            },
+            {
+                "name": "aadhar_number"
+            },
+            {
+                "name": "woman_age"
+            },
+            {
+                "name": "woman_dob",
+                "bind": "woman_date_of_birth"
+            },
+            {
+                "name": "husband_name"
+            },
+            {
+                "name": "phone_number",
+                "bind": "phone_no"
+            },
+            {
+                "name": "phone_owner"
+            },
+            {
+                "name": "alternate_phone_number",
+                "bind": "phone_no2"
+            },
+            {
+                "name": "alternate_phone_owner",
+                "bind": "phone_owner2"
+            },
+            {
+                "name": "economic_status"
+            },
+            {
+                "name": "bpl_card_number"
+            },
+            {
+                "name": "religion"
+            },
+            {
+                "name": "caste"
+            },
+            {
+                "name": "educational_level"
+            },
+            {
+                "name": "number_of_pregnancies",
+                "bind": "num_pregnancies"
+            },
+            {
+                "name": "number_of_live_births",
+                "bind": "num_livebirths"
+            },
+            {
+                "name": "number_of_abortions",
+                "bind": "num_abortions"
+            },
+            {
+                "name": "number_of_spontaneous_abortions",
+                "bind": "num_abortions_spontaneous"
+            },
+            {
+                "name": "number_of_induced_abortions",
+                "bind": "num_abortions_induced"
+            },
+            {
+                "name": "number_of_stillbirths",
+                "bind": "num_stillbirths"
+            },
+            {
+                "name": "number_of_living_children",
+                "bind": "num_livingchildren"
+            },
+            {
+                "name": "number_of_living_male_children",
+                "bind": "num_livingchildren_male"
+            },
+            {
+                "name": "number_of_living_female_children",
+                "bind": "num_livingchildren_female"
+            },
+            {
+                "name": "is_youngest_under_two",
+                "bind": "youngestchild_under2"
+            },
+            {
+                "name": "youngest_childs_dob",
+                "bind": "child_under2_birthdate"
+            },
+            {
+                "name": "fp_method",
+                "bind": "familyplanning_method"
+            },
+            {
+                "name": "fp_method",
+                "bind": "familyplanning_method_1"
+            },
+            {
+                "name": "fp_method",
+                "bind": "familyplanning_method_other"
+            },
+            {
+                "name": "place_where_iud_given",
+                "bind": "iud_place"
+            },
+            {
+                "name": "fp_start_date",
+                "bind": "date_familyplanningstart"
+            },
+            {
+                "name": "fp_start_date",
+                "bind": "date_familyplanningstart"
+            },
+            {
+                "name": "number_of_condoms_supplied",
+                "bind": "num_condoms"
+            },
+            {
+                "name": "number_of_ocp_strips_supplied",
+                "bind": "num_ocp_cycles"
+            },
+            {
+                "name": "number_of_centchroman_strips_supplied",
+                "bind": "num_centchroman_pills"
+            },
+            {
+                "name": "is_high_priority"
+            },
+            {
+                "name": "high_priority_reason"
+            }
+        ]
+    }
+}

@@ -15,6 +15,7 @@ import org.ei.drishti.R;
 import java.io.IOException;
 
 import static java.lang.String.format;
+import static org.ei.drishti.AllConstants.ENTITY_ID_PARAMETER;
 import static org.ei.drishti.AllConstants.FORM_NAME_PARAMETER;
 import static org.ei.drishti.util.Log.logError;
 
@@ -46,8 +47,6 @@ public class FormActivity extends Activity {
         formName = intent.getStringExtra(FORM_NAME_PARAMETER);
         model = IOUtils.toString(getAssets().open("www/form/" + formName + "/model.xml"));
         form = IOUtils.toString(getAssets().open("www/form/" + formName + "/form.xml"));
-        String map = IOUtils.toString(getAssets().open("www/form/" + formName + "/reference-data-map.json"));
-
     }
 
     private void progressDialogInitialization() {
@@ -75,7 +74,6 @@ public class FormActivity extends Activity {
         webView.setWebViewClient(new WebViewClient());
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.addJavascriptInterface(new FormWebInterface(model, form), "androidContext");
-        webView.addJavascriptInterface(new FormDataSource(), "dataSource");
         webView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -84,6 +82,6 @@ public class FormActivity extends Activity {
         });
         webViewSettings.setDatabaseEnabled(true);
         webViewSettings.setDomStorageEnabled(true);
-        webView.loadUrl(format("file:///android_asset/www/form/template.html&%s=%s", FORM_NAME_PARAMETER, formName));
+        webView.loadUrl(format("file:///android_asset/www/form/template.html?%s=%s&%s=%s", FORM_NAME_PARAMETER, formName, ENTITY_ID_PARAMETER, null));
     }
 }

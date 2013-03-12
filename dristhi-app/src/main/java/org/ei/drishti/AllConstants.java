@@ -19,4 +19,5 @@ public class AllConstants {
     public static final String ENGLISH_LANGUAGE = "English";
     public static final String KANNADA_LANGUAGE = "Kannada";
     public static final String FORM_NAME_PARAMETER = "formName";
+    public static final String ENTITY_ID_PARAMETER = "entityID";
 }
