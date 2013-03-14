@@ -1015,7 +1015,7 @@ function program28(depth0,data) {
   options = {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data};
   stack2 = ((stack1 = helpers.ifFalse),stack1 ? stack1.call(depth0, depth0.isHighPriority, options) : helperMissing.call(depth0, "ifFalse", depth0.isHighPriority, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span12\">\n                <ul class=\"client-details unstyled\">\n                    <li>\n                        <div class=\"row-fluid\">\n                            <div class=\"span9 big-text\">";
+  buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div id=\"womanPhoto\" class=\"span4\">\n                <img src=\"../img/woman-avatar.png\">\n            </div>\n            <div class=\"span8\">\n                <ul class=\"client-details unstyled\">\n                    <li>\n                        <div class=\"row-fluid\">\n                            <div class=\"span9 big-text\">";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.formatText),stack1 ? stack1.call(depth0, ((stack1 = depth0.coupleDetails),stack1 == null || stack1 === false ? stack1 : stack1.wifeName), options) : helperMissing.call(depth0, "formatText", ((stack1 = depth0.coupleDetails),stack1 == null || stack1 === false ? stack1 : stack1.wifeName), options)))
     + "</div>\n                            <div class=\"span3 social-vulnerability text-right\">";
@@ -1398,7 +1398,7 @@ function program28(depth0,data) {
   options = {hash:{},inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data};
   stack2 = ((stack1 = helpers.ifFalse),stack1 ? stack1.call(depth0, ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.isHighRisk), options) : helperMissing.call(depth0, "ifFalse", ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.isHighRisk), options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span12\">\n                <ul class=\"client-details unstyled\">\n                    <li>\n                        <div class=\"row-fluid\">\n                            <div class=\"span9 big-text\">";
+  buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n\n            <div class=\"span12\">\n                <ul class=\"client-details unstyled\">\n                    <li>\n                        <div class=\"row-fluid\">\n                            <div class=\"span9 big-text\">";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.formatText),stack1 ? stack1.call(depth0, ((stack1 = depth0.coupleDetails),stack1 == null || stack1 === false ? stack1 : stack1.wifeName), options) : helperMissing.call(depth0, "formatText", ((stack1 = depth0.coupleDetails),stack1 == null || stack1 === false ? stack1 : stack1.wifeName), options)))
     + "</div>\n                            <div class=\"span3 social-vulnerability text-right\">\n                                ";

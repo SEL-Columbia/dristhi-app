@@ -1,4 +1,4 @@
-function EC(ecBridge) {
+function EC(ecBridge, cameraBridge) {
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.ec_detail(ecBridge.getCurrentEC()));
@@ -14,6 +14,12 @@ function EC(ecBridge) {
             var alertItem = $(alertWhoseCheckboxWasClicked);
             ecBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
             ecBridge.markAsCompleted(alertItem.data("caseid"), alertItem.data("visitcode"));
+        },
+
+        bindToCamera: function (cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).click(function () {
+                cameraBridge.takePhoto();
+            });
         }
     };
 }
