@@ -32,12 +32,11 @@
 <script src="../js/modal.js"></script>
 <script src="../js/alerts.js"></script>
 <script src="../js/international_text.js"></script>
-<script src="../js/camera-bridge.js"></script>
 
 <script src="../js/ec_detail.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var ec = new EC(new ECBridge(), new CameraBridge());
+        var ec = new EC(new ECBridge());
         ec.populateInto("#mainpanel");
         ec.bindEveryItemToCommCare(".modal-row");
         ec.bindToCamera("#womanPhoto");

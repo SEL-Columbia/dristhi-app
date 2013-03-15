@@ -1,4 +1,4 @@
-function EC(ecBridge, cameraBridge) {
+function EC(ecBridge) {
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.ec_detail(ecBridge.getCurrentEC()));
@@ -18,7 +18,7 @@ function EC(ecBridge, cameraBridge) {
 
         bindToCamera: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
-                cameraBridge.takePhoto();
+                ecBridge.takePhoto();
             });
         }
     };
@@ -40,6 +40,9 @@ function ECBridge() {
         },
         markAsCompleted: function (caseId, visitCode) {
             ecContext.markTodoAsCompleted(caseId, visitCode);
+        },
+        takePhoto: function () {
+            ecContext.takePhoto();
         }
     };
 }
@@ -145,6 +148,9 @@ function FakeECContext() {
                     ]
                 }
             );
+        },
+        takePhoto: function () {
+            alert("launching camera app.");
         }
     }
 }

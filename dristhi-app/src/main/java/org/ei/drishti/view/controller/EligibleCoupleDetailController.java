@@ -1,6 +1,7 @@
 package org.ei.drishti.view.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.AllAlerts;
@@ -9,6 +10,7 @@ import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.TimelineEventComparator;
+import org.ei.drishti.view.activity.CameraLaunchActivity;
 import org.ei.drishti.view.contract.*;
 import org.joda.time.LocalDate;
 import org.ocpsoft.pretty.time.Duration;
@@ -57,6 +59,11 @@ public class EligibleCoupleDetailController {
 
     public void markTodoAsCompleted(String caseId, String visitCode) {
         allAlerts.markAsCompleted(caseId, visitCode, LocalDate.now().toString());
+    }
+
+    public void takePhoto() {
+        Intent intent = new Intent(context, CameraLaunchActivity.class);
+        context.startActivity(intent);
     }
 
     private List<TimelineEvent> getEvents() {
