@@ -25,11 +25,16 @@
 
         /*****  Paste the complete <model> node as the value for jrDataStr, remove linebreaks *****/
         var jrDataStr = androidContext.getModel();
+        function getFormParams() {
+            //to be parsed from query params
+            return {"id": "", "formName": "form_name", "bind_type" : "form_name"};
+        }
         var controller = new enketo.FormDataController(
                 new enketo.EntityRelationshipLoader(),
                 new enketo.FormDefinitionLoader(),
-                new enketo.FormModelMapper(new enketo.FormDataRepository(), new enketo.SQLQueryBuilder()))
-                .get("id");
+                new enketo.FormModelMapper(new enketo.FormDataRepository(), new enketo.SQLQueryBuilder(new enketo.FormDataRepository())),
+                getFormParams());
+        controller.get();
     </script>
 </head>
 <body>

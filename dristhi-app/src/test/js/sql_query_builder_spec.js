@@ -1,93 +1,285 @@
-describe("Form Model Mapper", function () {
+describe("SQL query builder", function () {
     var sqlQueryBuilder;
+    var formDataRepository;
 
     beforeEach(function () {
-        sqlQueryBuilder = new enketo.SQLQueryBuilder();
+        formDataRepository = new enketo.FormDataRepository();
+        sqlQueryBuilder = new enketo.SQLQueryBuilder(formDataRepository);
     });
 
-    it("should generate a query when there is empty entity relation", function () {
-        var entityRelationship = [];
-
-        var queries = sqlQueryBuilder.getQueryFor(entityRelationship, "entity", "entity id 1");
-
-        expect(JSON.stringify(queries)).toBe(JSON.stringify(["select * from entity where entity.entity_id = 'entity id 1'"]));
-    });
-
-    it("should generate a query when there is a single child for the given entity", function () {
-        var entityRelationship = [
-            {
-                "parent": "entity",
-                "child": "child_entity",
-                "field": "child",
-                "type": "one_to_one",
-                "from_column": "child_entity.parent_entity_id",
-                "to_column": "entity.entity_id"
+    it("should load a simple entity without any relations", function () {
+        var expectedEntity = {
+            "entity": {
+                "id": "id 1",
+                "name": "name 1"
             }
-        ];
+        };
+        spyOn(formDataRepository, "query").andReturn(expectedEntity);
 
-        var queries = sqlQueryBuilder.getQueryFor(entityRelationship, "entity", "entity id 1");
+        var entityTypes = [{
+            "type": "entity"
+        }];
 
-        expect(JSON.stringify(queries)).toBe(JSON.stringify(
-            [
-                "select * from entity where entity.entity_id = 'entity id 1'",
-                "select * from child_entity, entity where child_entity.parent_entity_id = entity.entity_id " +
-                    "and entity.entity_id = 'entity id 1'"
-            ]
-        ));
+        var entities = sqlQueryBuilder.loadEntityHierarchy(entityTypes, "entity", "entity id 1");
+
+        expect(JSON.stringify(entities)).toBe(JSON.stringify(expectedEntity));
     });
 
-    it("should generate a query when there is a single parent for the given entity", function () {
-        var entityRelationship = [
+    it("should load entity with all its children", function () {
+        var entities = [
             {
-                "parent": "parent_entity",
-                "child": "entity",
-                "field": "child",
-                "type": "one_to_one",
-                "from_column": "entity.parent_entity_id",
-                "to_column": "parent_entity.entity_id"
-            }
-        ];
-
-        var queries = sqlQueryBuilder.getQueryFor(entityRelationship, "entity", "child id 1");
-
-        expect(JSON.stringify(queries)).toBe(JSON.stringify(
-            [
-                "select * from entity where entity.entity_id = 'child id 1'",
-                "select * from parent_entity, entity where entity.parent_entity_id = parent_entity.entity_id " +
-                    "and entity.entity_id = 'child id 1'"
-            ]
-        ));
-    });
-
-    it("should generate a query for a given entity by loading all its children recursively", function () {
-        var entityRelationship = [
-            {
-                "parent": "entity",
-                "child": "child_entity",
-                "field": "child",
-                "type": "one_to_one",
-                "from_column": "child_entity.parent_entity_id",
-                "to_column": "entity.entity_id"
+                "type": "ec",
+                "relations": [
+                    {
+                        "type": "mother",
+                        "kind": "one_to_one",
+                        "from": "ec.id",
+                        "to": "mother.ec_id"
+                    }
+                ]
             },
             {
-                "parent": "child_entity",
-                "child": "grand_child_entity",
-                "field": "grand_child",
-                "type": "one_to_many",
-                "from_column": "grand_child_entity.parent_entity_id",
-                "to_column": "child_entity.entity_id"
+                "type": "mother",
+                "relations": [
+                    {
+                        "type": "ec",
+                        "kind": "one_to_one",
+                        "from": "mother.ec_id",
+                        "to": "ec.id"
+                    },
+                    {
+                        "type": "child",
+                        "kind": "one_to_many",
+                        "from": "mother.id",
+                        "to": "child.mother_id"
+                    }
+                ]
+            },
+            {
+                "type": "child",
+                "relations": [
+                    {
+                        "type": "mother",
+                        "kind": "many_to_one",
+                        "from": "child.mother_id",
+                        "to": "mother.id"
+                    }
+                ]
+
             }
         ];
-        var queries = sqlQueryBuilder.getQueryFor(entityRelationship, "entity", "entity id 1");
+        var expectedEntity = {
+            "ec": {
+                "id": "ec id 1",
+                "wifeName": "asha",
+                "mother": {
+                    "id": "mother id 1",
+                    "ec_id": "ec id 1",
+                    "thayiCardNumber": "12345",
+                    "child": {
+                        "id": "child id 1",
+                        "mother_id": "mother id 1",
+                        "name": "putta"
+                    }
+                }
+            }
+        };
 
-        expect(JSON.stringify(queries)).toBe(JSON.stringify(
-            [
-                "select * from entity where entity.entity_id = 'child id 1'",
-                "select * from child_entity, entity where child_entity.parent_entity_id = entity.entity_id " +
-                    "and entity.entity_id = 'entity id 1'",
-                "select * from grand_child_entity c, child_entity where grand_child_entity.parent_entity_id = child_entity.entity_id " +
-                    "and child_entity.entity_id = 'child id 1'"
-            ]
-        ));
+        spyOn(formDataRepository, 'query').andCallFake(function (query) {
+            if (query === "select * from ec where id = 'ec id 1'")
+                return {
+                    "id": "ec id 1",
+                    "wifeName": "asha"
+                };
+            if (query === "select * from mother where mother.ec_id = 'ec id 1'")
+                return {
+                    "id": "mother id 1",
+                    "ec_id": "ec id 1",
+                    "thayiCardNumber": "12345"
+                };
+            if (query === "select * from child where child.mother_id = 'mother id 1'")
+                return {
+                    "id": "child id 1",
+                    "mother_id": "mother id 1",
+                    "name": "putta"
+                };
+            return null;
+        });
+
+        var ec = sqlQueryBuilder.loadEntityHierarchy(entities, "ec", "ec id 1");
+
+        expect(JSON.stringify(ec)).toBe(JSON.stringify(expectedEntity));
+    });
+
+    it("should load entity with all its parent", function () {
+        var entities = [
+            {
+                "type": "ec",
+                "relations": [
+                    {
+                        "type": "mother",
+                        "kind": "one_to_one",
+                        "from": "ec.id",
+                        "to": "mother.ec_id"
+                    }
+                ]
+            },
+            {
+                "type": "mother",
+                "relations": [
+                    {
+                        "type": "ec",
+                        "kind": "one_to_one",
+                        "from": "mother.ec_id",
+                        "to": "ec.id"
+                    },
+                    {
+                        "type": "child",
+                        "kind": "one_to_many",
+                        "from": "mother.id",
+                        "to": "child.mother_id"
+                    }
+                ]
+            },
+            {
+                "type": "child",
+                "relations": [
+                    {
+                        "type": "mother",
+                        "kind": "many_to_one",
+                        "from": "child.mother_id",
+                        "to": "mother.id"
+                    }
+                ]
+
+            }
+        ];
+        var expectedEntity = {
+            "child": {
+                "id": "child id 1",
+                "mother_id": "mother id 1",
+                "name": "putta",
+                "mother": {
+                    "id": "mother id 1",
+                    "ec_id": "ec id 1",
+                    "thayiCardNumber": "12345",
+                    "ec": {
+                        "id": "ec id 1",
+                        "wifeName": "maanu"
+                    }
+                }
+            }
+        };
+
+        spyOn(formDataRepository, 'query').andCallFake(function (query) {
+            if (query === "select * from child where id = 'child id 1'")
+                return {
+                    "id": "child id 1",
+                    "mother_id": "mother id 1",
+                    "name": "putta"
+                };
+            if (query === "select * from mother where mother.id = 'mother id 1'")
+                return {
+                    "id": "mother id 1",
+                    "ec_id": "ec id 1",
+                    "thayiCardNumber": "12345"
+                };
+            if (query === "select * from ec where ec.id = 'ec id 1'")
+                return {
+                    "id": "ec id 1",
+                    "wifeName": "maanu"
+                };
+            return null;
+        });
+
+        var child = sqlQueryBuilder.loadEntityHierarchy(entities, "child", "child id 1");
+
+        expect(JSON.stringify(child)).toBe(JSON.stringify(expectedEntity));
+    });
+
+    it("should load entity with both its parents and children", function () {
+        var entities = [
+            {
+                "type": "ec",
+                "relations": [
+                    {
+                        "type": "mother",
+                        "kind": "one_to_one",
+                        "from": "ec.id",
+                        "to": "mother.ec_id"
+                    }
+                ]
+            },
+            {
+                "type": "mother",
+                "relations": [
+                    {
+                        "type": "ec",
+                        "kind": "one_to_one",
+                        "from": "mother.ec_id",
+                        "to": "ec.id"
+                    },
+                    {
+                        "type": "child",
+                        "kind": "one_to_many",
+                        "from": "mother.id",
+                        "to": "child.mother_id"
+                    }
+                ]
+            },
+            {
+                "type": "child",
+                "relations": [
+                    {
+                        "type": "mother",
+                        "kind": "many_to_one",
+                        "from": "child.mother_id",
+                        "to": "mother.id"
+                    }
+                ]
+
+            }
+        ];
+        var expectedEntity = {
+            "mother": {
+                "id": "mother id 1",
+                "ec_id": "ec id 1",
+                "thayiCardNumber": "12345",
+                "ec": {
+                    "id": "ec id 1",
+                    "wifeName": "maanu"
+                },
+                "child": {
+                    "id": "child id 1",
+                    "mother_id": "mother id 1",
+                    "name": "putta"
+                }
+            }
+        };
+
+        spyOn(formDataRepository, 'query').andCallFake(function (query) {
+            if (query === "select * from mother where id = 'mother id 1'")
+                return {
+                    "id": "mother id 1",
+                    "ec_id": "ec id 1",
+                    "thayiCardNumber": "12345"
+                };
+            if (query === "select * from ec where ec.id = 'ec id 1'")
+                return {
+                    "id": "ec id 1",
+                    "wifeName": "maanu"
+                };
+            if (query === "select * from child where child.mother_id = 'mother id 1'")
+                return {
+                    "id": "child id 1",
+                    "mother_id": "mother id 1",
+                    "name": "putta"
+                };
+            return null;
+        });
+
+        var child = sqlQueryBuilder.loadEntityHierarchy(entities, "mother", "mother id 1");
+
+        expect(JSON.stringify(child)).toBe(JSON.stringify(expectedEntity));
     });
 });

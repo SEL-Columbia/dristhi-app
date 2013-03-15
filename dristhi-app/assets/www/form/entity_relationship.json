@@ -1,0 +1,18 @@
+[
+    {
+        "parent": "ec",
+        "child": "mother",
+        "field": "wife",
+        "type": "one_to_one",
+        "from_column": "mother.ec_id",
+        "to_column": "ec.id"
+    },
+    {
+        "parent": "mother",
+        "child": "child",
+        "field": "children",
+        "type": "one_to_many",
+        "from_column": "child.mother_id",
+        "to_column": "mother.id"
+    }
+]

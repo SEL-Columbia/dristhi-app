@@ -7,7 +7,7 @@ enketo.EntityRelationshipLoader = function () {
         load: function () {
             return $.parseJSON($.ajax({
                 type: "GET",
-                url: "entity_relationship_map.json",
+                url: "entity_relationship.json",
                 async: false
             }).responseText);
         }

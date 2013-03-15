@@ -63,7 +63,7 @@ describe("Form Data Controller", function () {
         spyOn(formModelMapper, 'mapToFormModel').andReturn(expectedFormModel);
 
         formDataController = new enketo.FormDataController(entityRelationshipLoader, formDefinitionLoader, formModelMapper, params);
-        var actualFormModel = formDataController.get("Entity 1");
+        var actualFormModel = formDataController.get();
 
         expect(actualFormModel).toBe(expectedFormModel);
         expect(formDefinitionLoader.load).toHaveBeenCalledWith("entity registration");

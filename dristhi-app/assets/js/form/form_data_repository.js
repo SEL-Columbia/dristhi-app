@@ -6,10 +6,10 @@ enketo.FormDataRepository = function () {
     var repository = window.formDataRepositoryContext;
 
     return {
-        getFormInstanceByFormTypeAndId : function(formID, formName) {
+        getFormInstanceByFormTypeAndId: function (formID, formName) {
 
         },
-        getFieldValues : function(query) {
+        query: function (query) {
 
         }
     };

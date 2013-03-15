@@ -6,7 +6,6 @@ describe("Form Model Mapper", function () {
     var queryBuilder;
 
     beforeEach(function () {
-        formDataRepository = new enketo.FormDataRepository();
         savedFormInstance = {
             "form": {
                 "bind_type": "entity",
@@ -49,19 +48,20 @@ describe("Form Model Mapper", function () {
                 ]
             }
         };
-        queryBuilder = new enketo.SQLQueryBuilder();
+        formDataRepository = new enketo.FormDataRepository();
+        queryBuilder = new enketo.SQLQueryBuilder(formDataRepository);
         formModelMapper = new enketo.FormModelMapper(formDataRepository, queryBuilder);
     });
 
     it("should get form model for a given form type from the saved form instance when it exists", function () {
         spyOn(formDataRepository, 'getFormInstanceByFormTypeAndId').andReturn(savedFormInstance);
-        var entityRelationship = null;
+        var entities = null;
         var params = {
             "id": "id 1",
             "formName": "entity-registration"
         };
 
-        var formModel = formModelMapper.mapToFormModel(entityRelationship, formDefinition, params);
+        var formModel = formModelMapper.mapToFormModel(entities, formDefinition, params);
 
         expect(formModel).toBe(savedFormInstance);
         expect(formDataRepository.getFormInstanceByFormTypeAndId).toHaveBeenCalledWith(params.id, params.formName);
@@ -69,27 +69,27 @@ describe("Form Model Mapper", function () {
 
     it("should get form model with empty field values for a given form type when there is no saved form instance and no entity", function () {
         spyOn(formDataRepository, 'getFormInstanceByFormTypeAndId').andReturn(null);
-        var entityRelationship = null;
+        var entities = null;
         var params = {
             "id": "id 1",
             "formName": "entity-registration"
         };
 
-        var formModel = formModelMapper.mapToFormModel(entityRelationship, formDefinition, params);
+        var formModel = formModelMapper.mapToFormModel(entities, formDefinition, params);
 
         expect(formModel).toBe(formDefinition);
     });
 
     it("should get form model with empty field values for a given form type when there is no saved form instance, no entity but entity relationship exists", function () {
         spyOn(formDataRepository, 'getFormInstanceByFormTypeAndId').andReturn(null);
-        var entityRelationship = [];
+        var entities = [];
         var params = {
             "id": "id 1",
             "formName": "entity-registration",
             "entityId": ""
         };
 
-        var formModel = formModelMapper.mapToFormModel(entityRelationship, formDefinition, params);
+        var formModel = formModelMapper.mapToFormModel(entities, formDefinition, params);
 
         expect(formModel).toBe(formDefinition);
     });
@@ -101,8 +101,7 @@ describe("Form Model Mapper", function () {
                 field2: "value2"
             }
         };
-        var query = "query";
-        var entityRelationship = [];
+        var entities = [];
         var params = {
             "id": "id 1",
             "formName": "entity-registration",
@@ -131,13 +130,11 @@ describe("Form Model Mapper", function () {
             }
         };
         spyOn(formDataRepository, 'getFormInstanceByFormTypeAndId').andReturn(null);
-        spyOn(queryBuilder, 'getQueryFor').andReturn(query);
-        spyOn(formDataRepository, 'getFieldValues').andReturn(entityValues);
+        spyOn(queryBuilder, 'loadEntityHierarchy').andReturn(entityValues);
 
-        var formModel = formModelMapper.mapToFormModel(entityRelationship, formDefinition, params);
+        var formModel = formModelMapper.mapToFormModel(entities, formDefinition, params);
 
         expect(JSON.stringify(formModel)).toBe(JSON.stringify(expectedFormModel));
-        expect(queryBuilder.getQueryFor).toHaveBeenCalledWith(entityRelationship, formDefinition.bind_type, "123");
-        expect(formDataRepository.getFieldValues).toHaveBeenCalledWith(query);
+        expect(queryBuilder.loadEntityHierarchy).toHaveBeenCalledWith(entities, formDefinition.bind_type, "123");
     });
 });
