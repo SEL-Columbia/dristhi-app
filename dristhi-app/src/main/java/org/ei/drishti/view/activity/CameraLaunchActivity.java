@@ -2,6 +2,8 @@ package org.ei.drishti.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -9,6 +11,7 @@ import android.widget.Toast;
 import org.ei.drishti.util.Log;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -52,12 +55,39 @@ public class CameraLaunchActivity extends Activity {
         if (requestCode != TAKE_PHOTO_REQUEST_CODE)
             return;
         if (imageFile.exists()) {
-            Intent intent = new Intent();
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.setDataAndType(Uri.fromFile(imageFile), "image/*");
-            startActivity(intent);
+            setPic(imageFile.getAbsolutePath());
             Toast.makeText(this, imageFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
         }
         super.onBackPressed();
+    }
+
+    private void setPic(String mCurrentPhotoPath) {
+        int targetWidth = 100;
+        int targetHeight = 100;
+
+        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+        bitmapOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(mCurrentPhotoPath, bitmapOptions);
+        int originalWidth = bitmapOptions.outWidth;
+        int originalHeight = bitmapOptions.outHeight;
+
+        int scaleFactor = Math.min(originalWidth / targetWidth, originalHeight / targetHeight);
+        bitmapOptions.inJustDecodeBounds = false;
+        bitmapOptions.inSampleSize = scaleFactor;
+        bitmapOptions.inPurgeable = true;
+
+        Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bitmapOptions);
+        saveBitmap(bitmap, mCurrentPhotoPath);
+    }
+
+    private void saveBitmap(Bitmap bitmap, String location) {
+        try {
+            FileOutputStream out = new FileOutputStream(location);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            out.flush();
+            out.close();
+        } catch (Exception e) {
+            Log.logError("Could not save resized image.");
+        }
     }
 }
