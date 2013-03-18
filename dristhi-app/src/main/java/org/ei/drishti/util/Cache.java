@@ -7,11 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.ei.drishti.domain.FetchStatus.fetched;
+import static org.ei.drishti.event.Event.ON_DATA_CHANGE;
 import static org.ei.drishti.event.Event.ON_DATA_FETCHED;
 
 public class Cache<T> {
     private Map<String, T> value = new HashMap<String, T>();
     private final Listener<FetchStatus> actionsFetchedListener;
+    private final Listener<Boolean> dataChangedListener;
 
     public Cache() {
         actionsFetchedListener = new Listener<FetchStatus>() {
@@ -23,7 +25,16 @@ public class Cache<T> {
                 }
             }
         };
+        dataChangedListener = new Listener<Boolean>() {
+            @Override
+            public void onEvent(Boolean data) {
+                if (data) {
+                    value.clear();
+                }
+            }
+        };
         ON_DATA_FETCHED.addListener(actionsFetchedListener);
+        ON_DATA_CHANGE.addListener(dataChangedListener);
     }
 
     public T get(String key, CacheableData<T> cacheableData) {

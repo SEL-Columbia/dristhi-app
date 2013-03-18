@@ -18,6 +18,7 @@ import static android.os.Environment.DIRECTORY_PICTURES;
 import static android.os.Environment.getExternalStoragePublicDirectory;
 import static org.ei.drishti.AllConstants.CASE_ID;
 import static org.ei.drishti.AllConstants.WOMAN_TYPE;
+import static org.ei.drishti.event.Event.ON_DATA_CHANGE;
 
 public class CameraLaunchActivity extends SecuredActivity {
     private static final int TAKE_PHOTO_REQUEST_CODE = 111;
@@ -72,12 +73,6 @@ public class CameraLaunchActivity extends SecuredActivity {
         super.onBackPressed();
     }
 
-    private void updateEntity(String imagePath) {
-        if(WOMAN_TYPE.equals(entityType)) {
-            context.allEligibleCouples().updatePhotoPath(caseId, imagePath);
-        }
-    }
-
     private void setPic(String mCurrentPhotoPath) {
         int targetWidth = 100;
         int targetHeight = 100;
@@ -95,6 +90,13 @@ public class CameraLaunchActivity extends SecuredActivity {
 
         Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bitmapOptions);
         saveBitmap(bitmap, mCurrentPhotoPath);
+    }
+
+    private void updateEntity(String imagePath) {
+        if (WOMAN_TYPE.equals(entityType)) {
+            context.allEligibleCouples().updatePhotoPath(caseId, imagePath);
+            ON_DATA_CHANGE.notifyListeners(true);
+        }
     }
 
     private void saveBitmap(Bitmap bitmap, String location) {

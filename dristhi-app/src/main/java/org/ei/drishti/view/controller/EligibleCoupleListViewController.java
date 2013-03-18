@@ -30,7 +30,9 @@ public class EligibleCoupleListViewController {
     private CommCareClientService commCareClientService;
     private Cache<String> eligibleCoupleListCache;
 
-    public EligibleCoupleListViewController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllSettings allSettings, Cache<String> eligibleCoupleListCache, Context context, CommCareClientService commCareClientService) {
+    public EligibleCoupleListViewController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries,
+                                            AllSettings allSettings, Cache<String> eligibleCoupleListCache, Context context,
+                                            CommCareClientService commCareClientService) {
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.allSettings = allSettings;
@@ -51,7 +53,8 @@ public class EligibleCoupleListViewController {
                     List<EC> ecListBasedOnPriority = couple.isHighPriority() ? highPriority : normalPriority;
                     Mother mother = allBeneficiaries.findMotherByECCaseId(couple.caseId());
                     String thayiCardNumber = mother == null ? "" : mother.thaayiCardNumber();
-                    ecListBasedOnPriority.add(new EC(couple.caseId(), couple.wifeName(), couple.husbandName(), couple.village(), couple.ecNumber(), thayiCardNumber, couple.isHighPriority(), false));
+                    ecListBasedOnPriority.add(new EC(couple.caseId(), couple.wifeName(), couple.husbandName(), couple.village(),
+                            couple.ecNumber(), thayiCardNumber, couple.photoPath(), couple.isHighPriority(), false));
                 }
 
                 sort(highPriority);

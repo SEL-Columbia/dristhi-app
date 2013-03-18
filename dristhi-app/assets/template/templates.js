@@ -1199,7 +1199,11 @@ function program1(depth0,data) {
   if (stack1 = helpers.caseId) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + ">\n    <div class=\"row-fluid\" onClick=\"javascript: return true;\">\n        <div class=\"span8\">\n            <ul class=\"client-details unstyled\">\n                <li class=\"big-text\">\n                    ";
+    + ">\n    <div class=\"row-fluid\" onClick=\"javascript: return true;\">\n        <div id=\"womanPhoto\" class=\"span2\">\n            <img src=\"file://";
+  if (stack1 = helpers.photoPath) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.photoPath; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "\" onerror=\"this.src='../img/woman-avatar.png';\">\n        </div>\n        <div class=\"span6\">\n            <ul class=\"client-details unstyled\">\n                <li class=\"big-text\">\n                    ";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.capitalize),stack1 ? stack1.call(depth0, depth0.wifeName, options) : helperMissing.call(depth0, "capitalize", depth0.wifeName, options)))
     + "\n                    ";

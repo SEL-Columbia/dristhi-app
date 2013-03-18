@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Event<CallbackType> {
     public static final Event<FetchStatus> ON_DATA_FETCHED = new Event<FetchStatus>();
+    public static final Event<Boolean> ON_DATA_CHANGE = new Event<Boolean>();
     public static final Event<Boolean> ON_LOGOUT = new Event<Boolean>();
     public static final Event<Boolean> SYNC_STARTED = new Event<Boolean>();
     public static final Event<Boolean> SYNC_COMPLETED = new Event<Boolean>();

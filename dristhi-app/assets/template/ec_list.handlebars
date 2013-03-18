@@ -1,7 +1,10 @@
 {{#each this}}
 <div class="ec {{villageName}} client-list-item" data-caseId={{caseId}}>
     <div class="row-fluid" onClick="javascript: return true;">
-        <div class="span8">
+        <div id="womanPhoto" class="span2">
+            <img src="file://{{photoPath}}" onerror="this.src='../img/woman-avatar.png';">
+        </div>
+        <div class="span6">
             <ul class="client-details unstyled">
                 <li class="big-text">
                     {{capitalize wifeName}}
