@@ -16,14 +16,15 @@ public class ECDetail {
     private String ecNumber;
     private boolean isHighPriority;
     private String address;
+    private String photoPath;
     private List<ProfileTodo> todos;
     private List<ProfileTodo> urgentTodos;
     private List<Child> children;
     private List<TimelineEvent> timelineEvents;
     private Map<String, String> details;
 
-    public ECDetail(String caseId, String village, String subcenter, String ecNumber, boolean isHighPriority, String address, List<Child> children, CoupleDetails coupleDetails,
-                    Map<String, String> details) {
+    public ECDetail(String caseId, String village, String subcenter, String ecNumber, boolean isHighPriority, String address,
+                    String photoPath, List<Child> children, CoupleDetails coupleDetails, Map<String, String> details) {
         this.caseId = caseId;
         this.coupleDetails = coupleDetails;
         this.village = village;
@@ -31,6 +32,7 @@ public class ECDetail {
         this.ecNumber = ecNumber;
         this.isHighPriority = isHighPriority;
         this.address = address;
+        this.photoPath = photoPath;
         this.children = children;
         this.details = details;
 

@@ -1,13 +1,12 @@
 package org.ei.drishti.view.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.Toast;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.util.Log;
 
 import java.io.File;
@@ -17,17 +16,27 @@ import java.util.UUID;
 
 import static android.os.Environment.DIRECTORY_PICTURES;
 import static android.os.Environment.getExternalStoragePublicDirectory;
+import static org.ei.drishti.AllConstants.CASE_ID;
+import static org.ei.drishti.AllConstants.WOMAN_TYPE;
 
-public class CameraLaunchActivity extends Activity {
+public class CameraLaunchActivity extends SecuredActivity {
     private static final int TAKE_PHOTO_REQUEST_CODE = 111;
     private static final String JPG_FILE_SUFFIX = ".jpg";
     private static final String DRISTHI_DIRECTORY_NAME = "Dristhi";
     private File imageFile;
+    private String entityType;
+    private String caseId;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreation() {
+        Intent intent = getIntent();
+        caseId = intent.getStringExtra(CASE_ID);
+        entityType = intent.getStringExtra(AllConstants.TYPE);
         startCamera();
+    }
+
+    @Override
+    protected void onResumption() {
     }
 
     public void startCamera() {
@@ -55,10 +64,18 @@ public class CameraLaunchActivity extends Activity {
         if (requestCode != TAKE_PHOTO_REQUEST_CODE)
             return;
         if (imageFile.exists()) {
-            setPic(imageFile.getAbsolutePath());
-            Toast.makeText(this, imageFile.getAbsolutePath(), Toast.LENGTH_SHORT).show();
+            String imageFilePath = imageFile.getAbsolutePath();
+            setPic(imageFilePath);
+            updateEntity(imageFilePath);
+            Toast.makeText(this, imageFilePath, Toast.LENGTH_SHORT).show();
         }
         super.onBackPressed();
+    }
+
+    private void updateEntity(String imagePath) {
+        if(WOMAN_TYPE.equals(entityType)) {
+            context.allEligibleCouples().updatePhotoPath(caseId, imagePath);
+        }
     }
 
     private void setPic(String mCurrentPhotoPath) {

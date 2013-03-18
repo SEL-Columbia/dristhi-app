@@ -16,6 +16,7 @@ public class EligibleCouple {
     private Map<String, String> details;
     private Boolean isOutOfArea;
     private Boolean isClosed;
+    private String photoPath;
 
     public EligibleCouple(String caseId, String wifeName, String husbandName, String ecNumber, String village, String subcenter, Map<String, String> details) {
         this.caseId = caseId;
@@ -27,10 +28,16 @@ public class EligibleCouple {
         this.details = details;
         this.isOutOfArea = false;
         this.isClosed = false;
+        this.photoPath = null;
     }
 
     public EligibleCouple asOutOfArea() {
         this.isOutOfArea = true;
+        return this;
+    }
+
+    public EligibleCouple withPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
         return this;
     }
 
@@ -73,6 +80,10 @@ public class EligibleCouple {
 
     public boolean isClosed() {
         return isClosed;
+    }
+
+    public String photoPath() {
+        return photoPath;
     }
 
     public EligibleCouple setIsClosed(boolean isClosed) {

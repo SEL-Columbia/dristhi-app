@@ -19,4 +19,7 @@ public class AllConstants {
     public static final String ENGLISH_LANGUAGE = "English";
     public static final String KANNADA_LANGUAGE = "Kannada";
     public static final String IS_SYNC_IN_PROGRESS_PREFERENCE_KEY = "isSyncInProgress";
+
+    public static final String TYPE = "type";
+    public static final String WOMAN_TYPE = "woman";
 }
