@@ -42,7 +42,11 @@
         ec.populateInto("#mainpanel");
         ec.bindEveryItemToCommCare(".modal-row");
         ec.bindToCamera("#womanPhoto");
-        pageView.onReloadPhoto(ec.reloadPhoto);
+        ec.bindToDefaultPhoto("#womanPhoto", "../img/woman-avatar.png");
+
+        pageView.onReloadPhoto(function (caseId, photoPath) {
+            ec.reloadPhoto("#womanPhoto", caseId, photoPath);
+        });
 
         new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         new Modal().bindToClick();

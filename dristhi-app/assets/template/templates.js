@@ -1142,7 +1142,7 @@ function program33(depth0,data) {
   if (stack2 = helpers.photoPath) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.photoPath; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "\" onerror=\"this.src='../img/woman-avatar.png';\">\n            </div>\n            <div class=\"span8\">\n                <ul class=\"client-details unstyled\">\n                    <li>\n                        <div class=\"row-fluid\">\n                            <div class=\"span9 big-text\">";
+    + "\">\n            </div>\n            <div class=\"span8\">\n                <ul class=\"client-details unstyled\">\n                    <li>\n                        <div class=\"row-fluid\">\n                            <div class=\"span9 big-text\">";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.formatText),stack1 ? stack1.call(depth0, ((stack1 = depth0.coupleDetails),stack1 == null || stack1 === false ? stack1 : stack1.wifeName), options) : helperMissing.call(depth0, "formatText", ((stack1 = depth0.coupleDetails),stack1 == null || stack1 === false ? stack1 : stack1.wifeName), options)))
     + "</div>\n                            <div class=\"span3 social-vulnerability text-right\">";
@@ -1199,11 +1199,11 @@ function program1(depth0,data) {
   if (stack1 = helpers.caseId) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + ">\n    <div class=\"row-fluid\" onClick=\"javascript: return true;\">\n        <div class=\"span2\">\n            <img id=\"womanPhoto\" src=\"file://";
+    + ">\n    <div class=\"row-fluid\" onClick=\"javascript: return true;\">\n        <div class=\"span2\">\n            <img class=\"womanPhoto\" src=\"file://";
   if (stack1 = helpers.photoPath) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.photoPath; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + "\" onerror=\"this.src='../img/woman-avatar.png';\">\n        </div>\n        <div class=\"span6\">\n            <ul class=\"client-details unstyled\">\n                <li class=\"big-text\">\n                    ";
+    + "\">\n        </div>\n        <div class=\"span6\">\n            <ul class=\"client-details unstyled\">\n                <li class=\"big-text\">\n                    ";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.capitalize),stack1 ? stack1.call(depth0, depth0.wifeName, options) : helperMissing.call(depth0, "capitalize", depth0.wifeName, options)))
     + "\n                    ";

@@ -21,8 +21,15 @@ function EC(ecBridge) {
                 ecBridge.takePhoto();
             });
         },
-        reloadPhoto: function (caseId, photoPath) {
-            $("#womanPhoto").attr('src', photoPath);
+
+        bindToDefaultPhoto: function (cssIdentifierOfElement, defaultPhotoPath) {
+            $(cssIdentifierOfElement).on('error', function (e) {
+                e.currentTarget.src = defaultPhotoPath;
+            });
+        },
+
+        reloadPhoto: function (cssIdentifierOfElement, caseId, photoPath) {
+            $(cssIdentifierOfElement).attr('src', photoPath);
         }
     };
 }
