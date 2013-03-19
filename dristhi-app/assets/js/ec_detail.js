@@ -20,6 +20,9 @@ function EC(ecBridge) {
             $(cssIdentifierOfElement).click(function () {
                 ecBridge.takePhoto();
             });
+        },
+        reloadPhoto: function (caseId, photoPath) {
+            $("#womanPhoto").attr('src', photoPath);
         }
     };
 }

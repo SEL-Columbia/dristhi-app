@@ -1138,7 +1138,7 @@ function program33(depth0,data) {
   options = {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data};
   stack2 = ((stack1 = helpers.ifFalse),stack1 ? stack1.call(depth0, depth0.isHighPriority, options) : helperMissing.call(depth0, "ifFalse", depth0.isHighPriority, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div id=\"womanPhoto\" class=\"span4\">\n                <img src=\"file://";
+  buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span4\">\n                <img id=\"womanPhoto\" src=\"file://";
   if (stack2 = helpers.photoPath) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.photoPath; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
@@ -1199,7 +1199,7 @@ function program1(depth0,data) {
   if (stack1 = helpers.caseId) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
-    + ">\n    <div class=\"row-fluid\" onClick=\"javascript: return true;\">\n        <div id=\"womanPhoto\" class=\"span2\">\n            <img src=\"file://";
+    + ">\n    <div class=\"row-fluid\" onClick=\"javascript: return true;\">\n        <div class=\"span2\">\n            <img id=\"womanPhoto\" src=\"file://";
   if (stack1 = helpers.photoPath) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.photoPath; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)

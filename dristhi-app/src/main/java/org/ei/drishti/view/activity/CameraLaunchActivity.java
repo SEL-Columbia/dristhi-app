@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.widget.Toast;
 import org.ei.drishti.AllConstants;
+import org.ei.drishti.event.CapturedPhotoInformation;
 import org.ei.drishti.util.Log;
 
 import java.io.File;
@@ -18,7 +19,7 @@ import static android.os.Environment.DIRECTORY_PICTURES;
 import static android.os.Environment.getExternalStoragePublicDirectory;
 import static org.ei.drishti.AllConstants.CASE_ID;
 import static org.ei.drishti.AllConstants.WOMAN_TYPE;
-import static org.ei.drishti.event.Event.ON_DATA_CHANGE;
+import static org.ei.drishti.event.Event.ON_PHOTO_CAPTURED;
 
 public class CameraLaunchActivity extends SecuredActivity {
     private static final int TAKE_PHOTO_REQUEST_CODE = 111;
@@ -68,7 +69,7 @@ public class CameraLaunchActivity extends SecuredActivity {
             String imageFilePath = imageFile.getAbsolutePath();
             setPic(imageFilePath);
             updateEntity(imageFilePath);
-            Toast.makeText(this, imageFilePath, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Photo captured", Toast.LENGTH_SHORT).show();
         }
         super.onBackPressed();
     }
@@ -95,7 +96,7 @@ public class CameraLaunchActivity extends SecuredActivity {
     private void updateEntity(String imagePath) {
         if (WOMAN_TYPE.equals(entityType)) {
             context.allEligibleCouples().updatePhotoPath(caseId, imagePath);
-            ON_DATA_CHANGE.notifyListeners(true);
+            ON_PHOTO_CAPTURED.notifyListeners(new CapturedPhotoInformation(caseId, imagePath));
         }
     }
 

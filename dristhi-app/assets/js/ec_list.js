@@ -47,6 +47,9 @@ function ECList(ecListBridge, cssIdOf) {
         },
         bindLoadAll: function () {
             listView.bindLoadAll();
+        },
+        reloadPhoto: function (caseId, photoPath) {
+            $('div[data-caseId="' + caseId + '"] img').attr('src', photoPath);
         }
     };
 }

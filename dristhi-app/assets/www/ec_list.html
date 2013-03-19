@@ -86,6 +86,7 @@
 <script src="../js/sidePanel.js"></script>
 <script src="../js/list_view.js"></script>
 <script src="../js/international_text.js"></script>
+<script src="../js/page_view.js"></script>
 
 <script src="../js/ec_list.js"></script>
 <script>
@@ -126,6 +127,8 @@
         ecList.bindLoadAll();
 
         new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
+
+        pageView.onReloadPhoto(ecList.reloadPhoto);
     });
 </script>
 </html>

@@ -1,12 +1,13 @@
 package org.ei.drishti.view.activity;
 
+import org.ei.drishti.event.CapturedPhotoInformation;
 import org.ei.drishti.event.Listener;
 import org.ei.drishti.view.controller.EligibleCoupleDetailController;
 
-import static org.ei.drishti.event.Event.ON_DATA_CHANGE;
+import static org.ei.drishti.event.Event.ON_PHOTO_CAPTURED;
 
 public class EligibleCoupleDetailActivity extends SecuredWebActivity {
-    private Listener<Boolean> dataChangeListener;
+    private Listener<CapturedPhotoInformation> photoCaptureListener;
 
     @Override
     protected void onInitialization() {
@@ -16,16 +17,14 @@ public class EligibleCoupleDetailActivity extends SecuredWebActivity {
                 context.allAlerts(), context.allTimelineEvents(), context.commCareClientService()), "context");
         webView.loadUrl("file:///android_asset/www/ec_detail.html");
 
-        dataChangeListener = new Listener<Boolean>() {
+        photoCaptureListener = new Listener<CapturedPhotoInformation>() {
             @Override
-            public void onEvent(Boolean data) {
-                if (data) {
-                    if (webView != null) {
-                        webView.reload();
-                    }
+            public void onEvent(CapturedPhotoInformation data) {
+                if (webView != null) {
+                    webView.loadUrl("javascript:pageView.reloadPhoto('" + data.caseId() + "', '" + data.photoPath() + "')");
                 }
             }
         };
-        ON_DATA_CHANGE.addListener(dataChangeListener);
+        ON_PHOTO_CAPTURED.addListener(photoCaptureListener);
     }
 }
