@@ -3,15 +3,6 @@ if (typeof enketo == "undefined" || !enketo) {
 }
 
 enketo.EntityRelationships = function (jsonDefinition) {
-    var inverseOfKind = function (relationKind) {
-        var kindMap = {
-            "one_to_one": "one_to_one",
-            "one_to_many": "many_to_one",
-            "many_to_one": "one_to_many"
-        };
-        return kindMap[relationKind];
-    };
-
     var findEntityByType = function (entities, type) {
         for (var index = 0; index < entities.length; index++) {
             if (entities[index].type === type) {
@@ -59,7 +50,7 @@ enketo.EntityRelationships = function (jsonDefinition) {
                 childEntity.relations.push(
                     {
                         "type": relation.parent,
-                        "kind": inverseOfKind(relation.kind),
+                        "kind": enketo.RelationKind[relation.kind].inverse.type,
                         "from": relation.to,
                         "to": relation.from
                     });

@@ -15,7 +15,7 @@ public class FormDataRepository extends DrishtiRepository {
     protected void onCreate(SQLiteDatabase database) {
     }
 
-    public String rawQuery(String sql) {
+    public String queryUniqueResult(String sql) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         Cursor cursor = database.rawQuery(sql, new String[]{});
 

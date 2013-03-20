@@ -14,11 +14,13 @@ describe("SQL query builder", function () {
                 "name": "name 1"
             }
         };
-        spyOn(formDataRepository, "rawQuery").andReturn(expectedEntity);
+        spyOn(formDataRepository, "queryUniqueResult").andReturn(expectedEntity);
 
-        var entityTypes = [{
-            "type": "entity"
-        }];
+        var entityTypes = [
+            {
+                "type": "entity"
+            }
+        ];
 
         var entities = sqlQueryBuilder.loadEntityHierarchy(entityTypes, "entity", "entity id 1");
 
@@ -76,16 +78,23 @@ describe("SQL query builder", function () {
                     "id": "mother id 1",
                     "ec_id": "ec id 1",
                     "thayiCardNumber": "12345",
-                    "child": {
-                        "id": "child id 1",
-                        "mother_id": "mother id 1",
-                        "name": "putta"
-                    }
+                    "child": [
+                        {
+                            "id": "child id 1",
+                            "mother_id": "mother id 1",
+                            "name": "putta"
+                        },
+                        {
+                            "id": "child id 2",
+                            "mother_id": "mother id 1",
+                            "name": "chinni"
+                        }
+                    ]
                 }
             }
         };
 
-        spyOn(formDataRepository, 'rawQuery').andCallFake(function (query) {
+        spyOn(formDataRepository, "queryUniqueResult").andCallFake(function (query) {
             if (query === "select * from ec where id = 'ec id 1'")
                 return {
                     "id": "ec id 1",
@@ -97,12 +106,22 @@ describe("SQL query builder", function () {
                     "ec_id": "ec id 1",
                     "thayiCardNumber": "12345"
                 };
+            return null;
+        });
+        spyOn(formDataRepository, "queryList").andCallFake(function (query) {
             if (query === "select * from child where child.mother_id = 'mother id 1'")
-                return {
-                    "id": "child id 1",
-                    "mother_id": "mother id 1",
-                    "name": "putta"
-                };
+                return [
+                    {
+                        "id": "child id 1",
+                        "mother_id": "mother id 1",
+                        "name": "putta"
+                    },
+                    {
+                        "id": "child id 2",
+                        "mother_id": "mother id 1",
+                        "name": "chinni"
+                    }
+                ];
             return null;
         });
 
@@ -151,7 +170,6 @@ describe("SQL query builder", function () {
                         "to": "mother.id"
                     }
                 ]
-
             }
         ];
         var expectedEntity = {
@@ -171,7 +189,7 @@ describe("SQL query builder", function () {
             }
         };
 
-        spyOn(formDataRepository, 'rawQuery').andCallFake(function (query) {
+        spyOn(formDataRepository, "queryUniqueResult").andCallFake(function (query) {
             if (query === "select * from child where id = 'child id 1'")
                 return {
                     "id": "child id 1",
@@ -189,7 +207,6 @@ describe("SQL query builder", function () {
                     "id": "ec id 1",
                     "wifeName": "maanu"
                 };
-            return null;
         });
 
         var child = sqlQueryBuilder.loadEntityHierarchy(entities, "child", "child id 1");
@@ -249,15 +266,16 @@ describe("SQL query builder", function () {
                     "id": "ec id 1",
                     "wifeName": "maanu"
                 },
-                "child": {
-                    "id": "child id 1",
-                    "mother_id": "mother id 1",
-                    "name": "putta"
-                }
+                "child": [
+                    {
+                        "id": "child id 1",
+                        "mother_id": "mother id 1",
+                        "name": "putta"
+                    }
+                ]
             }
         };
-
-        spyOn(formDataRepository, 'rawQuery').andCallFake(function (query) {
+        spyOn(formDataRepository, "queryUniqueResult").andCallFake(function (query) {
             if (query === "select * from mother where id = 'mother id 1'")
                 return {
                     "id": "mother id 1",
@@ -269,12 +287,17 @@ describe("SQL query builder", function () {
                     "id": "ec id 1",
                     "wifeName": "maanu"
                 };
+            return null;
+        });
+        spyOn(formDataRepository, 'queryList').andCallFake(function (query) {
             if (query === "select * from child where child.mother_id = 'mother id 1'")
-                return {
-                    "id": "child id 1",
-                    "mother_id": "mother id 1",
-                    "name": "putta"
-                };
+                return [
+                    {
+                        "id": "child id 1",
+                        "mother_id": "mother id 1",
+                        "name": "putta"
+                    }
+                ];
             return null;
         });
 

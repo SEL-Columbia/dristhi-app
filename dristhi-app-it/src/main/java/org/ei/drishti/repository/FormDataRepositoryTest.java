@@ -31,13 +31,13 @@ public class FormDataRepositoryTest extends AndroidTestCase {
                 repository, eligibleCoupleRepository, alertRepository, timelineEventRepository, childRepository, motherRepository);
     }
 
-    public void testShouldRunRawQueryAndGet() throws Exception {
+    public void testShouldRunQueryAndGetUniqueResult() throws Exception {
         Map<String, String> details = create("Hello", "There").put("Also", "This").put("someKey", "someValue").map();
         EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", details);
         eligibleCoupleRepository.add(eligibleCouple);
         String sql = MessageFormat.format("select * from eligible_couple where eligible_couple.caseID = ''{0}''", eligibleCouple.caseId());
 
-        String results = repository.rawQuery(sql);
+        String results = repository.queryUniqueResult(sql);
 
         Map<String, String> fieldValues = new Gson().fromJson(results, new TypeToken<Map<String, String>>() {}.getType());
         assertEquals(eligibleCouple.caseId(), fieldValues.get("caseID"));
