@@ -7,7 +7,7 @@ enketo.FormDataRepository = function () {
 
     return {
         getFormInstanceByFormTypeAndId: function (formID, formName) {
-
+            return undefined;
         },
         queryUniqueResult: function (sql) {
             return repository.queryUniqueResult(sql);

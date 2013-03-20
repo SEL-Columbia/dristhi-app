@@ -5,7 +5,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FormDataRepository extends DrishtiRepository {
@@ -20,6 +22,26 @@ public class FormDataRepository extends DrishtiRepository {
         Cursor cursor = database.rawQuery(sql, new String[]{});
 
         cursor.moveToFirst();
+        Map<String, String> result = readARow(cursor);
+        cursor.close();
+
+        return new Gson().toJson(result);
+    }
+
+    public String queryList(String sql) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        Cursor cursor = database.rawQuery(sql, new String[]{});
+        List<Map<String, String>> results = new ArrayList<Map<String, String>>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            results.add(readARow(cursor));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return new Gson().toJson(results);
+    }
+
+    private Map<String, String> readARow(Cursor cursor) {
         Map<String, String> columnValues = new HashMap<String, String>();
         String[] columns = cursor.getColumnNames();
         for (int index = 0; index < columns.length; index++) {
@@ -31,7 +53,6 @@ public class FormDataRepository extends DrishtiRepository {
                 columnValues.put(columns[index], cursor.getString(index));
             }
         }
-        cursor.close();
-        return new Gson().toJson(columnValues);
+        return columnValues;
     }
 }
