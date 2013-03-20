@@ -19,6 +19,7 @@ public class Context {
     private MotherRepository motherRepository;
     private TimelineEventRepository timelineEventRepository;
     private ReportRepository reportRepository;
+    private FormDataRepository formDataRepository;
 
     private AllSettings allSettings;
     private AllAlerts allAlerts;
@@ -88,7 +89,8 @@ public class Context {
     private Repository initRepository() {
         if (repository == null) {
             repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(),
-                    eligibleCoupleRepository(), childRepository(), timelineEventRepository(), motherRepository(), reportRepository());
+                    eligibleCoupleRepository(), childRepository(), timelineEventRepository(), motherRepository(), reportRepository(),
+                    formDataRepository());
         }
         return repository;
     }
@@ -188,6 +190,13 @@ public class Context {
             reportRepository = new ReportRepository();
         }
         return reportRepository;
+    }
+
+    private FormDataRepository formDataRepository() {
+        if (formDataRepository == null) {
+            formDataRepository = new FormDataRepository();
+        }
+        return formDataRepository;
     }
 
     public UserService userService() {

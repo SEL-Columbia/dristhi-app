@@ -15,8 +15,8 @@ enketo.SQLQueryBuilder = function (formDataRepository) {
     var loadEntityObjectAndItsRelatives = function (entitiesDefn, parentInstance, parentType, contextRelation) {
         var baseEntity = findEntityByType(entitiesDefn, contextRelation.type);
         var column = contextRelation.from.split(".")[1];
-        var query = "select * from {0} where {1} = '{2}'".format(contextRelation.type, contextRelation.to, parentInstance[column]);
-        var baseInstance = formDataRepository.query(query);
+        var sql = "select * from {0} where {1} = '{2}'".format(contextRelation.type, contextRelation.to, parentInstance[column]);
+        var baseInstance = formDataRepository.rawQuery(sql);
 
         if (!enketo.hasValue(baseInstance)) return null;
         if (!enketo.hasValue(baseEntity.relations) || baseEntity.relations.length === 0) {
@@ -36,9 +36,9 @@ enketo.SQLQueryBuilder = function (formDataRepository) {
     return {
         loadEntityHierarchy: function (entitiesDefn, baseEntityType, baseEntityId) {
             var baseEntityDefn = findEntityByType(entitiesDefn, baseEntityType);
-            //TODO : Need to format the query as per the data type
-            var query = "select * from {0} where id = '{1}'".format(baseEntityDefn.type, baseEntityId);
-            var baseEntity = formDataRepository.query(query);
+            //TODO : Need to format the sql as per the data type
+            var sql = "select * from {0} where id = '{1}'".format(baseEntityType, baseEntityId);
+            var baseEntity = formDataRepository.rawQuery(sql);
             if (!enketo.hasValue(baseEntityDefn.relations) || baseEntityDefn.relations.length === 0) {
                 return baseEntity;
             }

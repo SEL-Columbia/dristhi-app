@@ -9,8 +9,8 @@ enketo.FormDataRepository = function () {
         getFormInstanceByFormTypeAndId: function (formID, formName) {
 
         },
-        query: function (query) {
-
+        rawQuery: function (sql) {
+            return repository.rawQuery(sql);
         }
     };
 };

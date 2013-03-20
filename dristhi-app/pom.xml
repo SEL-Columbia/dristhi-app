@@ -145,18 +145,18 @@
                 <version>1.2.0.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <jsSrcDir>assets/js</jsSrcDir>
+                    <jsSrcDir>assets/js/form</jsSrcDir>
                     <sourceIncludes>
                         <include>**/*.js</include>
                     </sourceIncludes>
                     <sourceExcludes>
-                        <exclude>/jquery-ui-1.8.23.custom.min.js</exclude>
-                        <exclude>/jquery.min.js</exclude>
-                        <exclude>/bootstrap.js</exclude>
-                        <exclude>/bootstrap.min.js</exclude>
-                        <exclude>/handlebars-1.0.rc.1.min.js</exclude>
+                        <exclude>libraries-all-min.js</exclude>
+                        <exclude>webform-drishti-all-min.js</exclude>
                     </sourceExcludes>
                     <jsTestSrcDir>src/test/js</jsTestSrcDir>
+                    <specExcludes>
+                        <exclude>lib/*.js</exclude>
+                    </specExcludes>
                 </configuration>
                 <executions>
                     <execution>

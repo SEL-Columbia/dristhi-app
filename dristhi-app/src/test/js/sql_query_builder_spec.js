@@ -14,7 +14,7 @@ describe("SQL query builder", function () {
                 "name": "name 1"
             }
         };
-        spyOn(formDataRepository, "query").andReturn(expectedEntity);
+        spyOn(formDataRepository, "rawQuery").andReturn(expectedEntity);
 
         var entityTypes = [{
             "type": "entity"
@@ -85,7 +85,7 @@ describe("SQL query builder", function () {
             }
         };
 
-        spyOn(formDataRepository, 'query').andCallFake(function (query) {
+        spyOn(formDataRepository, 'rawQuery').andCallFake(function (query) {
             if (query === "select * from ec where id = 'ec id 1'")
                 return {
                     "id": "ec id 1",
@@ -171,7 +171,7 @@ describe("SQL query builder", function () {
             }
         };
 
-        spyOn(formDataRepository, 'query').andCallFake(function (query) {
+        spyOn(formDataRepository, 'rawQuery').andCallFake(function (query) {
             if (query === "select * from child where id = 'child id 1'")
                 return {
                     "id": "child id 1",
@@ -257,7 +257,7 @@ describe("SQL query builder", function () {
             }
         };
 
-        spyOn(formDataRepository, 'query').andCallFake(function (query) {
+        spyOn(formDataRepository, 'rawQuery').andCallFake(function (query) {
             if (query === "select * from mother where id = 'mother id 1'")
                 return {
                     "id": "mother id 1",

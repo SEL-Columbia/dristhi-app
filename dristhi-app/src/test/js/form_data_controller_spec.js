@@ -7,7 +7,8 @@ describe("Form Data Controller", function () {
     beforeEach(function () {
         entityRelationshipLoader = new enketo.EntityRelationshipLoader();
         formDefinitionLoader = new enketo.FormDefinitionLoader();
-        formModelMapper = new enketo.FormModelMapper(new enketo.FormDataRepository(), new enketo.SQLQueryBuilder());
+        var formDataRepository = new enketo.FormDataRepository();
+        formModelMapper = new enketo.FormModelMapper(formDataRepository, new enketo.SQLQueryBuilder(formDataRepository));
     });
 
     it("should get form model for given a form type when there is no instance id", function () {

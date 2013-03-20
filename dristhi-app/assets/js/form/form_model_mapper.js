@@ -12,12 +12,12 @@ enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
             if (!enketo.hasValue(entities)) {
                 return formDefinition;
             }
-            //TODO: not everycase entityId maybe applicable.
+            //TODO: not every case entityId maybe applicable.
             if (!enketo.hasValue(params.entityId)) {
                 return formDefinition;
             }
 
-            //todo: pass all the params to the query builder and let it decide what it wants to use for querying.
+            //TODO: pass all the params to the query builder and let it decide what it wants to use for querying.
             var entityHierarchy = queryBuilder.loadEntityHierarchy(entities, formDefinition.bind_type, params.entityId);
             formDefinition.form.fields.forEach(function (field) {
                 var fieldValue;

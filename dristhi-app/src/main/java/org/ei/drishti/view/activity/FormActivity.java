@@ -11,6 +11,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import org.apache.commons.io.IOUtils;
 import org.ei.drishti.R;
+import org.ei.drishti.repository.FormDataRepository;
 
 import java.io.IOException;
 
@@ -74,6 +75,7 @@ public class FormActivity extends Activity {
         webView.setWebViewClient(new WebViewClient());
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.addJavascriptInterface(new FormWebInterface(model, form), "androidContext");
+        webView.addJavascriptInterface(new FormDataRepository(), "formDataRepositoryContext");
         webView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {

@@ -7,7 +7,6 @@ enketo.FormDataController = function (entityRelationshipLoader, formDefinitionLo
 
     var init = function () {
         self.entityRelationshipsJsonDefinition = entityRelationshipLoader.load();
-        //TODO: inject EntityRelationships for testing purpose
         self.entities = enketo.EntityRelationships(self.entityRelationshipsJsonDefinition).determineEntitiesAndRelations();
         self.params = params;
         //TODO: if entities if null, consider taking bind_type from params, or formName

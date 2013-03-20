@@ -29,10 +29,11 @@
             //to be parsed from query params
             return {"id": "", "formName": "form_name", "bind_type" : "form_name"};
         }
+        var formDataRepository = new enketo.FormDataRepository();
         var controller = new enketo.FormDataController(
                 new enketo.EntityRelationshipLoader(),
                 new enketo.FormDefinitionLoader(),
-                new enketo.FormModelMapper(new enketo.FormDataRepository(), new enketo.SQLQueryBuilder(new enketo.FormDataRepository())),
+                new enketo.FormModelMapper(formDataRepository, new enketo.SQLQueryBuilder(formDataRepository)),
                 getFormParams());
         controller.get();
     </script>
