@@ -1,18 +1,18 @@
 [
     {
-        "parent": "ec",
+        "parent": "eligible_couple",
         "child": "mother",
         "field": "wife",
-        "type": "one_to_one",
-        "from_column": "mother.ec_id",
-        "to_column": "ec.id"
+        "kind": "one_to_one",
+        "from": "eligible_couple.id",
+        "to": "mother.ec_id"
     },
     {
         "parent": "mother",
         "child": "child",
         "field": "children",
-        "type": "one_to_many",
-        "from_column": "child.mother_id",
-        "to_column": "mother.id"
+        "kind": "one_to_many",
+        "from": "mother.id",
+        "to": "child.mother_id"
     }
 ]

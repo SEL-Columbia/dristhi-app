@@ -36,13 +36,13 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         Map<String, String> details = create("Hello", "There").put("Also", "This").put("someKey", "someValue").map();
         EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", details);
         eligibleCoupleRepository.add(eligibleCouple);
-        String sql = MessageFormat.format("select * from eligible_couple where eligible_couple.caseID = ''{0}''", eligibleCouple.caseId());
+        String sql = MessageFormat.format("select * from eligible_couple where eligible_couple.id = ''{0}''", eligibleCouple.caseId());
 
         String result = repository.queryUniqueResult(sql);
 
         Map<String, String> fieldValues = new Gson().fromJson(result, new TypeToken<Map<String, String>>() {
         }.getType());
-        assertEquals(eligibleCouple.caseId(), fieldValues.get("caseID"));
+        assertEquals(eligibleCouple.caseId(), fieldValues.get("id"));
         assertEquals(eligibleCouple.wifeName(), fieldValues.get("wifeName"));
         assertEquals("someValue", fieldValues.get("someKey"));
     }
@@ -59,7 +59,7 @@ public class FormDataRepositoryTest extends AndroidTestCase {
 
         List<Map<String, String>> fieldValues = new Gson().fromJson(results, new TypeToken<List<Map<String, String>>>() {
         }.getType());
-        assertEquals(firstEligibleCouple.caseId(), fieldValues.get(0).get("caseID"));
-        assertEquals(secondEligibleCouple.caseId(), fieldValues.get(1).get("caseID"));
+        assertEquals(firstEligibleCouple.caseId(), fieldValues.get(0).get("id"));
+        assertEquals(secondEligibleCouple.caseId(), fieldValues.get(1).get("id"));
     }
 }
