@@ -24,10 +24,10 @@
         settings['returnURL'] = '';
 
         /*****  Paste the complete <model> node as the value for jrDataStr, remove linebreaks *****/
-        var jrDataStr = androidContext.getModel();
+        var modelStr = androidContext.getModel();
         function getFormParams() {
             //to be parsed from query params
-            return {"id": "", "formName": "form_name", "bind_type" : "form_name"};
+            return {"id": "", "formName": "form_name", "bind_type": "form_name"};
         }
         var formDataRepository = new enketo.FormDataRepository();
         var controller = new enketo.FormDataController(
@@ -41,22 +41,28 @@
 <body>
 <header class="navbar navbar-inverse navbar-fixed-top" style="height: 0;"></header>
 <div id="feedback-bar" class="alert">
-    <a href="#" class="close">×</a>
+    <i class="icon-info-sign"></i>
+    <a href="#" class="close">&times;</a>
 </div>
-<div id="dialog-alert" class="modal hide fade">
+
+<div id="dialog-alert" class="modal hide fade ">
     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3></h3>
     </div>
     <div class="modal-body">
         <p class="alert alert-block alert-error"></p>
     </div>
     <div class="modal-footer">
+        <span class="self-destruct-timer"></span>
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
     </div>
 </div>
+
 <div id="dialog-confirm" class="modal hide fade">
     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3></h3>
     </div>
     <div class="modal-body">
         <p class="alert alert-block alert-error"></p>
@@ -64,18 +70,23 @@
         <p class="msg"></p>
     </div>
     <div class="modal-footer">
+        <span class="self-destruct-timer"></span>
         <button class="negative btn">Close</button>
         <button class="positive btn btn-primary">Confirm</button>
     </div>
 </div>
+
 <div id="dialog-save" class="dialog" style="display: none;">
     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3></h3>
     </div>
     <div class="modal-body">
         <form onsubmit="return false;">
-            <label>name:<input name="record-name" type="text"></label> <label><input name="record-final" type="checkbox"
-                                                                                     value="true"><span>final</span></label>
+            <span class="dialog-msg"></span>
+            <span class="dialog-error ui-state-error"></span>
+            <label>name:<input name="record-name" type="text"/></label>
+            <label><input name="record-final" type="checkbox" value="true"/><span>final</span></label>
         </form>
     </div>
     <div class="modal-footer">
@@ -86,13 +97,10 @@
     <article class="paper">
         <div class="form-header clearfix"><span class="form-language-selector"><span>Choose Language</span></span></div>
 
-        <!--*****  Paste the complete <form> node below *****-->
-
-
-        <!--************************************************-->
         <script>
             document.write(androidContext.getForm());
         </script>
+
         <button id="validate-form" class="btn btn-primary btn-large"> Validate</button>
         <div class="enketo-power">
             Powered by <a href="http://enketo.org" title="enketo.org website">enketo</a>

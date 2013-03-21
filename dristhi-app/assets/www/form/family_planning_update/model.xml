@@ -1,6 +1,9 @@
 <model>
     <instance xmlns="http://www.w3.org/2002/xforms">
-        <EC_New_Family_Planning_v7_01_Copy id="EC_New_Family_Planning_v7_01_Copy"><formhub><uuid/></formhub>
+        <EC_New_Family_Planning_EngKan_Final id="EC_New_Family_Planning_EngKan_Final">
+            <formhub>
+                <uuid/>
+            </formhub>
             <today/>
             <case_woman_name/>
             <woman_name1/>
@@ -107,6 +110,6 @@
             <meta>
                 <instanceID/>
             </meta>
-        </EC_New_Family_Planning_v7_01_Copy>
+        </EC_New_Family_Planning_EngKan_Final>
     </instance>
 </model>

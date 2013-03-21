@@ -6129,9 +6129,16 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
     height: 16px;
 }
 
+/*@font-face{
+  font-family: 'Open Sans';
+  src: local('☺'),
+        url('fonts/OpenSans-Regular.ttf') format('truetype');
+}*/
 @font-face {
-    font-family: 'Open Sans';
-    src: local("☺"), url("fonts/OpenSans-Regular.ttf") format("truetype");
+    font-family: 'OpenSansRegular';
+    src: url("fonts/OpenSans-Regular-webfont.woff") format("woff"), url("fonts/OpenSans-Regular-webfont.ttf") format("truetype"), url("fonts/http://widgets.enketo-dev.formhub.org/webformOpenSans-Regular-webfont.svg#OpenSansRegular") format("svg");
+    font-weight: normal;
+    font-style: normal;
 }
 
 .icon-crosshairs {
@@ -6139,11 +6146,8 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
     background-position: -5px -5px;
 }
 
-/****************************
- ****     GENERAL GUI    ****
- ****************************/
 body {
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-family: "OpenSansRegular", Helvetica, Arial, sans-serif;
     background: #dddddd url(../images/tex2res2.png) repeat;
     font-size: 16px;
     line-height: 20px;
@@ -6201,26 +6205,7 @@ body .form-header {
 
     body {
         background: none;
-        font-size: 16.8px;
         line-height: 21px;
-    }
-    body h1 {
-        font-size: 46.2px;
-    }
-    body h2 {
-        font-size: 37.8px;
-    }
-    body h3 {
-        font-size: 29.4px;
-    }
-    body h4 {
-        font-size: 21px;
-    }
-    body h5 {
-        font-size: 16.8px;
-    }
-    body h6 {
-        font-size: 14.28px;
     }
     body .main {
         margin: 0;
@@ -6246,26 +6231,7 @@ body .form-header {
 
     body {
         background: none;
-        font-size: 17.44px;
         line-height: 21.8px;
-    }
-    body h1 {
-        font-size: 47.96px;
-    }
-    body h2 {
-        font-size: 39.24px;
-    }
-    body h3 {
-        font-size: 30.52px;
-    }
-    body h4 {
-        font-size: 21.8px;
-    }
-    body h5 {
-        font-size: 17.44px;
-    }
-    body h6 {
-        font-size: 14.824px;
     }
     body .main {
         margin: 0;
@@ -6309,26 +6275,6 @@ progress {
     text-decoration: underline;
 }
 
-.navbar.navbar-fixed-top {
-    margin-bottom: 0;
-}
-.navbar .brand {
-    font-size: 2em;
-}
-.navbar .brand .component {
-    font-size: 0.4em;
-}
-.navbar nav {
-    float: right;
-}
-.navbar nav a {
-    text-align: right;
-}
-.navbar nav img {
-    width: 1em;
-    height: 1em;
-}
-
 .overlay {
     position: absolute;
     top: 0;
@@ -6365,77 +6311,6 @@ progress {
 }
 .main ul.nav-tabs li a {
     background: none;
-}
-
-textarea.source {
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    width: 100%;
-    height: 500px;
-    font-size: .8em;
-    padding: 5px;
-}
-
-label#data-template-show {
-    float: right;
-}
-
-#upload form {
-    margin-top: 2em;
-    text-align: center;
-}
-#upload form #input-switcher {
-    margin-top: 5em;
-    text-align: center;
-}
-#upload form fieldset {
-    position: relative;
-    height: 70px;
-}
-#upload form fieldset label {
-    text-align: center;
-    margin-top: 20px;
-    padding: 0 5%;
-    display: block;
-    z-index: 0;
-    width: 80%;
-}
-#upload form fieldset label > span {
-    display: block;
-}
-#upload form fieldset .fakefileinput span {
-    vertical-align: middle;
-}
-#upload form fieldset input, #upload form fieldset .fakefileinput {
-    position: absolute;
-    box-sizing: border-box;
-    top: 0;
-    left: 0px;
-    display: block;
-    width: 100%;
-    margin: 10px 0 10px 0;
-    height: 100%;
-    text-align: center;
-}
-#upload form fieldset input span, #upload form fieldset .fakefileinput span {
-    line-height: 60px;
-}
-#upload form fieldset input[type=file] {
-    z-index: 5;
-    opacity: 0;
-}
-#upload form .hurry {
-    font-size: .8em;
-    margin: 5em 0 3em 0;
-}
-#upload #form-list {
-    margin-top: 4em;
-}
-#upload #form-list ul {
-    width: 100%;
-    list-style-type: none;
 }
 
 .formlist ul {
@@ -6487,13 +6362,6 @@ label#data-template-show {
     display: none;
 }
 
-/*#launch form{
-  margin-top: 20px; 
-  input{
-    width: 300px; } }*/
-/***************************
- ** FEEDBACK BAR & PAGE **
- ***************************/
 #feedback-bar {
     -webkit-transition: all 1s ease-out;
     -moz-transition: all 1s ease-out;
@@ -6536,74 +6404,6 @@ label#data-template-show {
     right: 20px;
 }
 
-.page {
-    display: none;
-}
-
-#page {
-    -webkit-transition: all 1s ease-out;
-    -moz-transition: all 1s ease-out;
-    -o-transition: all 1s ease-out;
-    transition: all 1s ease-out;
-    position: fixed;
-    line-height: 30px;
-    z-index: 12;
-    top: -320px;
-    width: 100%;
-    background-color: white;
-    border: none;
-    border-top: 1px solid #888888;
-    border-bottom: 1px solid #888888;
-}
-#page #settings .btn-toolbar {
-    margin-top: 70px;
-}
-#page input, #page .input-append {
-    text-align: center;
-}
-#page .input-append {
-    margin-top: 30px;
-    width: 100%;
-}
-#page input {
-    width: 80%;
-}
-#page hr {
-    position: absolute;
-    margin: 0;
-    bottom: 1px;
-    height: 1px;
-    width: 100%;
-    border: none;
-    border-top: 1px solid #888888;
-}
-#page .content {
-    position: relative;
-    min-height: 15em;
-    margin: 2em;
-}
-#page .content p:first-child {
-    margin-top: 0;
-}
-#page .content p:last-child {
-    margin-bottom: 0;
-}
-#page .close {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    opacity: 1;
-    text-shadow: none;
-}
-#page .column {
-    width: 50%;
-    float: left;
-    height: 100%;
-}
-
-/**************************
-****    SURVEY FORM    ****
-**************************/
 .paper {
     position: relative;
 }
@@ -6673,12 +6473,6 @@ label#data-template-show {
     margin: 0 0 0 1em;
     font-size: 0.9em;
 }
-.paper.tab-pane .form-language-selector {
-    padding-right: 0;
-    border-right: 0;
-    margin-top: -30px;
-    margin-right: -25px;
-}
 .paper #submit-form, .paper #submit-edited-data, .paper #validate-form, .paper #launch-form {
     position: relative;
     width: 150px;
@@ -6694,11 +6488,6 @@ label#data-template-show {
 }
 .paper .enketo-power a {
     font-style: italic;
-}
-.paper #refresh-list {
-    float: right;
-    margin: -2px -14px 0 14px;
-    width: 60px;
 }
 
 .jr [lang]:not(.active), .jr-hint, .jr-option-translations, .jr-appearance-page-break, .jr-constraint-msg, .jr-required-msg {
@@ -6727,19 +6516,6 @@ html.touch .jr legend .jr-hint.active {
     padding-bottom: .6em;
 }
 
-.jr {
-    /*.jr-constraint-msg.alert-error {
-   @include transition-fast; }*/
-    /*fieldset{
-    padding: 0;
-    margin: 0;}
-  th{
-    input{
-      display: none;} }
-  td{
-    label>span.active{
-      display: none; } }*/
-}
 .jr .form-logo img {
     position: relative;
     float: none;
@@ -6751,8 +6527,7 @@ html.touch .jr legend .jr-hint.active {
 .jr h3 {
     padding: 5px 0 15px 0;
     font-weight: bolder;
-    /*border-top: solid 9px #000;*/
-    /*border-bottom: $line;*/
+    word-wrap: break-word;
 }
 .jr h4 {
     text-align: left;
@@ -6809,6 +6584,10 @@ html.touch .jr legend .jr-hint.active {
     text-align: left;
     margin-bottom: .4em;
 }
+.jr legend ~ label .active {
+    display: block;
+    margin-left: 2.2em;
+}
 .jr label, .jr legend, .jr .trigger {
     font-size: 1em;
 }
@@ -6831,6 +6610,7 @@ html.touch .jr legend .jr-hint.active {
     width: 144px;
 }
 .jr input[type=radio], .jr input[type=checkbox] {
+    float: left;
     margin: 0 10px 1px 10px;
 }
 .jr textarea {
@@ -6933,6 +6713,9 @@ html.touch .jr legend .jr-hint.active {
     display: inline-block;
     margin-right: 10px;
 }
+.jr .mobileselect {
+    margin-left: 10px;
+}
 .jr .geopoint {
     margin-top: 25px;
 }
@@ -6963,6 +6746,9 @@ html.touch .jr legend .jr-hint.active {
 .jr .geopoint .map-canvas-wrapper img, .jr .geopoint .search-bar img {
     width: 100%;
     height: 100%;
+}
+.jr .geopoint .search-bar .input-append {
+    width: 85%;
 }
 .jr .geopoint button {
     height: 40px;
@@ -7012,9 +6798,6 @@ html.touch .jr legend .jr-hint.active {
     line-height: 45px;
     font-size: 12px;
 }
-.jr .geopoint input[name="search"] {
-    width: 70%;
-}
 .jr .geopoint input[name="lat"], .jr .geopoint input[name="long"] {
     float: none;
     -moz-box-sizing: border-box;
@@ -7044,7 +6827,6 @@ html.touch .jr legend .jr-hint.active {
 }
 .jr .geopoint .map-canvas img {
     max-width: none;
-    /*correction*/
 }
 .jr .bootstrap-select {
     margin-top: 15px;
@@ -7084,19 +6866,22 @@ html.touch .jr legend .jr-hint.active {
     display: block;
     text-align: center;
 }
+.jr .restoring-sanity-to-legends .jr-appearance-list-nolabel label .active, .jr .restoring-sanity-to-legends .jr-appearance-label label .active {
+    margin: 0 auto;
+}
 .jr .restoring-sanity-to-legends .jr-appearance-list-nolabel input, .jr .restoring-sanity-to-legends .jr-appearance-label input {
     text-align: center;
 }
-.jr .jr-appearance-list-nolabel label span.active, .jr .jr-appearance-list-nolabel img {
-    display: none;
+.jr .jr-appearance-list-nolabel label .active {
+    display: none !important;
     float: none;
 }
-.jr .jr-appearance-label label:hover {
-    background: none;
+.jr .jr-appearance-label legend ~ label:hover {
+    background-color: transparent;
 }
 .jr .jr-appearance-label input {
     float: none;
-    display: none;
+    display: none !important;
 }
 .jr .jr-appearance-label img {
     display: inline-block;
@@ -7109,20 +6894,21 @@ html.touch .jr legend .jr-hint.active {
 .jr .jr-appearance-compact legend, .jr .jr-appearance-quickcompact legend {
     border: none;
 }
-.jr .jr-appearance-compact label, .jr .jr-appearance-quickcompact label {
+.jr .jr-appearance-compact legend ~ label, .jr .jr-appearance-quickcompact legend ~ label {
     float: left;
-    /*width: 120px; */
 }
-.jr .jr-appearance-compact label:hover, .jr .jr-appearance-quickcompact label:hover {
+.jr .jr-appearance-compact legend ~ label:hover, .jr .jr-appearance-quickcompact legend ~ label:hover {
     background: none;
 }
-.jr .jr-appearance-compact label span.active:not(.jr-hint):not(.jr-constraint-msg), .jr .jr-appearance-quickcompact label span.active:not(.jr-hint):not(.jr-constraint-msg) {
+.jr .jr-appearance-compact legend ~ label span.active:not(.jr-hint):not(.jr-constraint-msg), .jr .jr-appearance-quickcompact legend ~ label span.active:not(.jr-hint):not(.jr-constraint-msg) {
+    margin-left: 0;
     display: none;
 }
 .jr .jr-appearance-compact input, .jr .jr-appearance-quickcompact input {
     display: none;
 }
-.jr .jr-appearance-compact input ~ img, .jr .jr-appearance-quickcompact input ~ img {
+.jr .jr-appearance-compact input ~ img.active, .jr .jr-appearance-quickcompact input ~ img.active {
+    margin-left: 0;
     max-width: 150px;
     max-height: 150px;
     border: 2px solid transparent;
@@ -7132,9 +6918,6 @@ html.touch .jr legend .jr-hint.active {
 }
 .jr .jr-appearance-compact input:checked ~ img, .jr .jr-appearance-compact input:checked ~ img:hover, .jr .jr-appearance-quickcompact input:checked ~ img, .jr .jr-appearance-quickcompact input:checked ~ img:hover {
     border-color: #ce4f07;
-}
-.jr label > input[type="radio"] + img, .jr label > input[type="checkbox"] + img {
-    /*margin-top: -25px;*/
 }
 
 .paper .form-language-selector {
