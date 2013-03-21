@@ -86,6 +86,7 @@ public class FormActivity extends Activity {
         });
         webViewSettings.setDatabaseEnabled(true);
         webViewSettings.setDomStorageEnabled(true);
-        webView.loadUrl(format("file:///android_asset/www/form/template.html?%s=%s&%s=%s", FORM_NAME_PARAMETER, formName, ENTITY_ID_PARAMETER, "19be5dab-3b71-4ef6-bec1-4cc4cb21ca5a"));
+        //19be5dab-3b71-4ef6-bec1-4cc4cb21ca5a
+        webView.loadUrl(format("file:///android_asset/www/form/template.html?%s=%s&%s=%s", FORM_NAME_PARAMETER, formName, ENTITY_ID_PARAMETER, "df8e94dd-91bd-40d2-a82a-fb7402e97f30"));
     }
 }

@@ -16,9 +16,9 @@ import java.util.Map;
 import static org.apache.commons.lang3.StringUtils.repeat;
 
 public class ChildRepository extends DrishtiRepository {
-    private static final String CHILD_SQL = "CREATE TABLE child(caseID VARCHAR PRIMARY KEY, motherCaseId VARCHAR, thaayiCardNumber VARCHAR, dateOfBirth VARCHAR, gender VARCHAR, details VARCHAR, isClosed INTEGER)";
+    private static final String CHILD_SQL = "CREATE TABLE child(id VARCHAR PRIMARY KEY, motherCaseId VARCHAR, thaayiCardNumber VARCHAR, dateOfBirth VARCHAR, gender VARCHAR, details VARCHAR, isClosed INTEGER)";
     private static final String CHILD_TABLE_NAME = "child";
-    private static final String CASE_ID_COLUMN = "caseID";
+    private static final String CASE_ID_COLUMN = "id";
     private static final String MOTHER_CASEID_COLUMN = "motherCaseId";
     private static final String THAAYI_CARD_COLUMN = "thaayiCardNumber";
     private static final String DATE_OF_BIRTH_COLUMN = "dateOfBirth";

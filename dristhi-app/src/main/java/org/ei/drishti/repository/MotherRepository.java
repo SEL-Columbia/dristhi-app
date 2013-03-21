@@ -21,11 +21,11 @@ import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_COLUMN
 import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_NAME;
 
 public class MotherRepository extends DrishtiRepository {
-    private static final String MOTHER_SQL = "CREATE TABLE mother(caseID VARCHAR PRIMARY KEY, ecCaseId VARCHAR, thaayiCardNumber VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR, isClosed INTEGER)";
+    private static final String MOTHER_SQL = "CREATE TABLE mother(id VARCHAR PRIMARY KEY, ecCaseId VARCHAR, thaayiCardNumber VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR, isClosed INTEGER)";
     private static final String MOTHER_TYPE_INDEX_SQL = "CREATE INDEX mother_type_index ON mother(type);";
     private static final String MOTHER_REFERENCE_DATE_INDEX_SQL = "CREATE INDEX mother_referenceDate_index ON mother(referenceDate);";
     private static final String MOTHER_TABLE_NAME = "mother";
-    private static final String CASE_ID_COLUMN = "caseID";
+    private static final String CASE_ID_COLUMN = "id";
     private static final String EC_CASEID_COLUMN = "ecCaseId";
     private static final String THAAYI_CARD_COLUMN = "thaayiCardNumber";
     private static final String TYPE_COLUMN = "type";
