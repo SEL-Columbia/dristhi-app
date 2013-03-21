@@ -249,6 +249,11 @@ public class Context {
         return commCareClientService;
     }
 
+    public FormDataRepository formDataService() {
+        initRepository();
+        return formDataRepository();
+    }
+
     public Session session() {
         if (session == null) {
             session = new Session();

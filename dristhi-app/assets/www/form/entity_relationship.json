@@ -5,7 +5,7 @@
         "field": "wife",
         "kind": "one_to_one",
         "from": "eligible_couple.id",
-        "to": "mother.ec_id"
+        "to": "mother.ecCaseId"
     },
     {
         "parent": "mother",
@@ -13,6 +13,6 @@
         "field": "children",
         "kind": "one_to_many",
         "from": "mother.id",
-        "to": "child.mother_id"
+        "to": "child.motherCaseId"
     }
 ]

@@ -11,7 +11,6 @@ enketo.FormDataController = function (entityRelationshipLoader, formDefinitionLo
         self.params = params;
         //TODO: if entities if null, consider taking bind_type from params, or formName
         self.formDefinition = formDefinitionLoader.load(params.formName);
-
     };
 
     this.get = function () {

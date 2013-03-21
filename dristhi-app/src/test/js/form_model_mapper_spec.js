@@ -6,7 +6,7 @@ describe("Form Model Mapper", function () {
     var queryBuilder;
 
     beforeEach(function () {
-        savedFormInstance = {
+        savedFormInstance = JSON.stringify({
             "form": {
                 "bind_type": "entity",
                 "default_bind_path": "/Entity registration/",
@@ -27,7 +27,7 @@ describe("Form Model Mapper", function () {
                     }
                 ]
             }
-        };
+        });
         formDefinition = {
             "form": {
                 "bind_type": "entity",
@@ -63,7 +63,7 @@ describe("Form Model Mapper", function () {
 
         var formModel = formModelMapper.mapToFormModel(entities, formDefinition, params);
 
-        expect(formModel).toBe(savedFormInstance);
+        expect(JSON.stringify(formModel)).toBe(savedFormInstance);
         expect(formDataRepository.getFormInstanceByFormTypeAndId).toHaveBeenCalledWith(params.id, params.formName);
     });
 
@@ -135,6 +135,6 @@ describe("Form Model Mapper", function () {
         var formModel = formModelMapper.mapToFormModel(entities, formDefinition, params);
 
         expect(JSON.stringify(formModel)).toBe(JSON.stringify(expectedFormModel));
-        expect(queryBuilder.loadEntityHierarchy).toHaveBeenCalledWith(entities, formDefinition.bind_type, "123");
+        expect(queryBuilder.loadEntityHierarchy).toHaveBeenCalledWith(entities, "entity", "123");
     });
 });

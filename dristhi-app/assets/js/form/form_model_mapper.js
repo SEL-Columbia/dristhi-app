@@ -5,7 +5,8 @@ if (typeof enketo == "undefined" || !enketo) {
 enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
     return {
         mapToFormModel: function (entities, formDefinition, params) {
-            var savedFormInstance = formDataRepository.getFormInstanceByFormTypeAndId(params.id, params.formName);
+            //TODO: Handle errors, savedFormInstance could be null!
+            var savedFormInstance = JSON.parse(formDataRepository.getFormInstanceByFormTypeAndId(params.id, params.formName));
             if (enketo.hasValue(savedFormInstance)) {
                 return savedFormInstance;
             }
@@ -16,9 +17,8 @@ enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
             if (!enketo.hasValue(params.entityId)) {
                 return formDefinition;
             }
-
             //TODO: pass all the params to the query builder and let it decide what it wants to use for querying.
-            var entityHierarchy = queryBuilder.loadEntityHierarchy(entities, formDefinition.bind_type, params.entityId);
+            var entityHierarchy = queryBuilder.loadEntityHierarchy(entities, formDefinition.form.bind_type, params.entityId);
             formDefinition.form.fields.forEach(function (field) {
                 var fieldValue;
                 var entity;

@@ -10,8 +10,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import org.apache.commons.io.IOUtils;
+import org.ei.drishti.Context;
 import org.ei.drishti.R;
-import org.ei.drishti.repository.FormDataRepository;
+import org.ei.drishti.util.LogContext;
 
 import java.io.IOException;
 
@@ -75,7 +76,8 @@ public class FormActivity extends Activity {
         webView.setWebViewClient(new WebViewClient());
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.addJavascriptInterface(new FormWebInterface(model, form), "androidContext");
-        webView.addJavascriptInterface(new FormDataRepository(), "formDataRepositoryContext");
+        webView.addJavascriptInterface(Context.getInstance().formDataService(), "formDataRepositoryContext");
+        webView.addJavascriptInterface(new LogContext(), "logContext");
         webView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -84,6 +86,6 @@ public class FormActivity extends Activity {
         });
         webViewSettings.setDatabaseEnabled(true);
         webViewSettings.setDomStorageEnabled(true);
-        webView.loadUrl(format("file:///android_asset/www/form/template.html?%s=%s&%s=%s", FORM_NAME_PARAMETER, formName, ENTITY_ID_PARAMETER, null));
+        webView.loadUrl(format("file:///android_asset/www/form/template.html?%s=%s&%s=%s", FORM_NAME_PARAMETER, formName, ENTITY_ID_PARAMETER, "19be5dab-3b71-4ef6-bec1-4cc4cb21ca5a"));
     }
 }

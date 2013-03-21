@@ -10,12 +10,16 @@
     <link href="../../css/form/styles_drishti.css" media="all" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="../../js/form/libraries-all-min.js"></script>
     <script type="text/javascript" src="../../js/form/webform-drishti-all-min.js"></script>
-    <script type="text/javascript" src="../../js/form/form_data_controller.js"></script>
-    <script type="text/javascript" src="../../js/form/form_model_mapper.js"></script>
-    <script type="text/javascript" src="../../js/form/form_data_repository.js"></script>
-    <script type="text/javascript" src="../../js/form/entity_relationship_loader.js"></script>
-    <script type="text/javascript" src="../../js/form/form_definition_loader.js"></script>
     <script type="text/javascript" src="../../js/form/util.js"></script>
+    <script type="text/javascript" src="../../js/form/form_model_mapper.js"></script>
+    <script type="text/javascript" src="../../js/form/entity_relationship_loader.js"></script>
+    <script type="text/javascript" src="../../js/form/entity.js"></script>
+    <script type="text/javascript" src="../../js/form/relation_kind.js"></script>
+    <script type="text/javascript" src="../../js/form/entity_relationships.js"></script>
+    <script type="text/javascript" src="../../js/form/form_definition_loader.js"></script>
+    <script type="text/javascript" src="../../js/form/sql_query_builder.js"></script>
+    <script type="text/javascript" src="../../js/form/form_data_repository.js"></script>
+    <script type="text/javascript" src="../../js/form/form_data_controller.js"></script>
     <script type="text/javascript">
         var settings = {};
         settings['mapsDynamicAPIKey'] = 'AIzaSyDF5xYZfxN7r5SsNPGstjAeTzwa6dVU4Ik';
@@ -25,9 +29,19 @@
 
         /*****  Paste the complete <model> node as the value for jrDataStr, remove linebreaks *****/
         var modelStr = androidContext.getModel();
+        function getQueryStringParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regexS = "[\\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(window.location.search);
+            if (results == null)
+                return "";
+            else
+                return decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
         function getFormParams() {
             //to be parsed from query params
-            return {"id": "", "formName": "form_name", "bind_type": "form_name"};
+            return {id: "", formName: getQueryStringParameterByName("formName"), entityId: getQueryStringParameterByName("entityId")};
         }
         var formDataRepository = new enketo.FormDataRepository();
         var controller = new enketo.FormDataController(
@@ -35,7 +49,8 @@
                 new enketo.FormDefinitionLoader(),
                 new enketo.FormModelMapper(formDataRepository, new enketo.SQLQueryBuilder(formDataRepository)),
                 getFormParams());
-        controller.get();
+        var formDefnValues = controller.get();
+        logContext.logError("formDefinition with values: " + JSON.stringify(formDefnValues));
     </script>
 </head>
 <body>
