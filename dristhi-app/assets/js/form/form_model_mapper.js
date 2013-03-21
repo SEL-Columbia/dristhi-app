@@ -24,14 +24,22 @@ enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
                 var entity;
                 var fieldName;
                 if (enketo.hasValue(field.source)) {
-                    var source = field.source.split(".");
-                    entity = source[0];
-                    fieldName = source[1];
+                    var pathVariables = field.source.split(".");
+                    fieldValue = entityHierarchy;
+                    for (var index in pathVariables) {
+                        var pathVariable = pathVariables[index];
+                        if (enketo.hasValue(fieldValue[pathVariable])) {
+                            fieldValue = fieldValue[pathVariable];
+                        } else {
+                            fieldValue = undefined;
+                            break;
+                        }
+                    }
                 } else {
-                    entity= formDefinition.form.bind_type;
-                    fieldName=field.name;
+                    entity = formDefinition.form.bind_type;
+                    fieldName = field.name;
+                    fieldValue = entityHierarchy[entity][fieldName];
                 }
-                fieldValue = entityHierarchy[entity][fieldName];
                 if (enketo.hasValue(fieldValue)) {
                     field.value = fieldValue;
                 }

@@ -98,7 +98,13 @@ describe("Form Model Mapper", function () {
         var entityValues = {
             entity: {
                 field1: "value1",
-                field2: "value2"
+                field2: "value2",
+                childEntity: {
+                    field3: "value3",
+                    grandChildEntity: {
+                        field4: "value4"
+                    }
+                }
             }
         };
         var entities = [];
@@ -106,6 +112,36 @@ describe("Form Model Mapper", function () {
             "id": "id 1",
             "formName": "entity-registration",
             "entityId": "123"
+        };
+        formDefinition = {
+            "form": {
+                "bind_type": "entity",
+                "default_bind_path": "/Entity registration/",
+                "fields": [
+                    {
+                        "name": "field1"
+                    },
+                    {
+                        "name": "field2",
+                        "bind": "field2_bind"
+                    },
+                    {
+                        "name": "field3",
+                        "bind": "field3_bind",
+                        "source": "entity.childEntity.field3"
+                    },
+                    {
+                        "name": "field4",
+                        "bind": "field4_bind",
+                        "source": "entity.childEntity.grandChildEntity.field4"
+                    },
+                    {
+                        "name": "field5",
+                        "bind": "field4_bind",
+                        "source": "entity.childEntity.field5"
+                    }
+                ]
+            }
         };
         var expectedFormModel = {
             "form": {
@@ -124,7 +160,19 @@ describe("Form Model Mapper", function () {
                     {
                         "name": "field3",
                         "bind": "field3_bind",
-                        "source": "entity.field3_source"
+                        "source": "entity.childEntity.field3",
+                        "value": "value3"
+                    },
+                    {
+                        "name": "field4",
+                        "bind": "field4_bind",
+                        "source": "entity.childEntity.grandChildEntity.field4",
+                        "value": "value4"
+                    },
+                    {
+                        "name": "field5",
+                        "bind": "field4_bind",
+                        "source": "entity.childEntity.field5"
                     }
                 ]
             }
