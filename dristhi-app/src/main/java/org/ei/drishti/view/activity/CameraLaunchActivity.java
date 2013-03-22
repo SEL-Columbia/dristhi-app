@@ -46,7 +46,7 @@ public class CameraLaunchActivity extends SecuredActivity {
         try {
             imageFile = createImageFile();
         } catch (IOException e) {
-            Log.logError("Could not create temp file for storing image. Not taking photo.");
+            Log.logError("Could not create temp file for storing image. Not taking photo. " + e);
             return;
         }
         takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
@@ -57,7 +57,10 @@ public class CameraLaunchActivity extends SecuredActivity {
     private File createImageFile() throws IOException {
         String imageFileName = UUID.randomUUID().toString();
         File directory = new File(getExternalStoragePublicDirectory(DIRECTORY_PICTURES), DRISTHI_DIRECTORY_NAME);
-        return File.createTempFile(imageFileName, JPG_FILE_SUFFIX, directory);
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        return new File(directory, imageFileName + JPG_FILE_SUFFIX);
     }
 
     @Override
@@ -107,7 +110,7 @@ public class CameraLaunchActivity extends SecuredActivity {
             out.flush();
             out.close();
         } catch (Exception e) {
-            Log.logError("Could not save resized image.");
+            Log.logError("Could not save resized image. " + e);
         }
     }
 }

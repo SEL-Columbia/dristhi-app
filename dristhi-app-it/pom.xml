@@ -6,12 +6,12 @@
     <parent>
         <groupId>org.ei.drishti</groupId>
         <artifactId>dristhi-app-parent</artifactId>
-        <version>1.5.4</version>
+        <version>1.5.5</version>
     </parent>
 
     <groupId>org.ei.drishti</groupId>
     <artifactId>dristhi-app-it</artifactId>
-    <version>1.5.4</version>
+    <version>1.5.5</version>
     <packaging>apk</packaging>
     <name>dristhi-app-it - Integration tests</name>
 
@@ -32,14 +32,14 @@
             <groupId>org.ei.drishti</groupId>
             <artifactId>dristhi-app</artifactId>
             <type>apk</type>
-            <version>1.5.4</version>
+            <version>1.5.5</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.ei.drishti</groupId>
             <artifactId>dristhi-app</artifactId>
             <type>jar</type>
-            <version>1.5.4</version>
+            <version>1.5.5</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
