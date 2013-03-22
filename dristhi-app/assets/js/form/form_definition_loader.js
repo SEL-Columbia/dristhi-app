@@ -5,7 +5,7 @@ if (typeof enketo == "undefined" || !enketo) {
 enketo.FormDefinitionLoader = function () {
     return {
         load: function (formName) {
-            return $.parseJSON($.ajax({
+            return JSON.parse($.ajax({
                 type: "GET",
                 url: formName + "/form_definition.json",
                 async: false
