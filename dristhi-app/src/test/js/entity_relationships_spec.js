@@ -178,4 +178,14 @@ describe("Entity Relationships", function () {
 
         expect(JSON.stringify(rel)).toBe(JSON.stringify(expectedEntity));
     });
+
+    it("should return empty entities list when there are no entities", function () {
+        var entityRelationshipJSONDefinition = null;
+        var expectedEntities = [];
+
+        var entities = new enketo.EntityRelationships(entityRelationshipJSONDefinition)
+            .determineEntitiesAndRelations();
+
+        expect(JSON.stringify(entities)).toBe(JSON.stringify(expectedEntities));
+    });
 });

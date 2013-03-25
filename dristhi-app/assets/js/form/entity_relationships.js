@@ -29,6 +29,9 @@ enketo.EntityRelationships = function (jsonDefinition) {
 
     return {
         determineEntitiesAndRelations: function () {
+            if (!enketo.hasValue(jsonDefinition)) {
+                return [];
+            }
             var entities = determineEntities();
             jsonDefinition.forEach(function (relation) {
                 var parentEntity = findEntityByType(entities, relation.parent);

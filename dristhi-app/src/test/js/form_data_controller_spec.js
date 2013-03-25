@@ -20,8 +20,8 @@ describe("Form Data Controller", function () {
             "formName": "entity registration",
             "entityId": "entity 1 id"
         };
-        var entities = [];
-        spyOn(entityRelationshipLoader, 'load').andReturn(entities);
+        var entityRelationshipJSON = [];
+        spyOn(entityRelationshipLoader, 'load').andReturn(entityRelationshipJSON);
         spyOn(formDefinitionLoader, 'load').andReturn(formDefinition);
         spyOn(formModelMapper, 'mapToFormModel').andReturn(expectedFormModel);
 
@@ -30,16 +30,49 @@ describe("Form Data Controller", function () {
 
         expect(actualFormModel).toBe(expectedFormModel);
         expect(formDefinitionLoader.load).toHaveBeenCalledWith("entity registration");
-        expect(formModelMapper.mapToFormModel).toHaveBeenCalledWith(entities, formDefinition, params);
+        expect(formModelMapper.mapToFormModel).toHaveBeenCalledWith(entityRelationshipJSON, formDefinition, params);
     });
 
     it("should save form submission.", function () {
-        var entities = [];
+        var entityRelationshipJSON = [
+            {
+                "parent": "ec",
+                "child": "mother",
+                "field": "wife",
+                "kind": "one_to_one",
+                "from": "ec.id",
+                "to": "mother.ec_id"
+            }
+        ];
+        var entities = [
+            {
+                type: 'ec',
+                relations: [
+                    {
+                        type: 'mother',
+                        kind: 'one_to_one',
+                        from: 'ec.id',
+                        to: 'mother.ec_id'
+                    }
+                ]
+            },
+            {
+                type: 'mother',
+                relations: [
+                    {
+                        type: 'ec',
+                        kind: 'one_to_one',
+                        from: 'mother.ec_id',
+                        to: 'ec.id'
+                    }
+                ]
+            }
+        ];
         var formDefinition = {};
         var formModel = {};
         var params = {};
-        spyOn(entityRelationshipLoader, 'load').andReturn([]);
-        spyOn(formDefinitionLoader, 'load').andReturn({});
+        spyOn(entityRelationshipLoader, 'load').andReturn(entityRelationshipJSON);
+        spyOn(formDefinitionLoader, 'load').andReturn(formDefinition);
         spyOn(formDataRepository, 'saveFormSubmission');
         spyOn(formModelMapper, 'mapToEntityAndSave');
 
@@ -48,5 +81,22 @@ describe("Form Data Controller", function () {
 
         expect(formDataRepository.saveFormSubmission).toHaveBeenCalledWith(formModel, params);
         expect(formModelMapper.mapToEntityAndSave).toHaveBeenCalledWith(entities, formDefinition, formModel, params);
+    });
+
+    it("should not try to map and save entities when there is no entity defined.", function () {
+        var entityRelationshipJSON = [];
+        var formDefinition = {};
+        var formModel = {};
+        var params = {};
+        spyOn(entityRelationshipLoader, 'load').andReturn(entityRelationshipJSON);
+        spyOn(formDefinitionLoader, 'load').andReturn(formDefinition);
+        spyOn(formDataRepository, 'saveFormSubmission');
+        spyOn(formModelMapper, 'mapToEntityAndSave');
+
+        formDataController = new enketo.FormDataController(entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository);
+        formDataController.save(params, formModel);
+
+        expect(formDataRepository.saveFormSubmission).toHaveBeenCalledWith(formModel, params);
+        expect(formModelMapper.mapToEntityAndSave).not.toHaveBeenCalled();
     });
 });
