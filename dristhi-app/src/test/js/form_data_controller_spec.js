@@ -44,30 +44,6 @@ describe("Form Data Controller", function () {
                 "to": "mother.ec_id"
             }
         ];
-        var entities = [
-            {
-                type: 'ec',
-                relations: [
-                    {
-                        type: 'mother',
-                        kind: 'one_to_one',
-                        from: 'ec.id',
-                        to: 'mother.ec_id'
-                    }
-                ]
-            },
-            {
-                type: 'mother',
-                relations: [
-                    {
-                        type: 'ec',
-                        kind: 'one_to_one',
-                        from: 'mother.ec_id',
-                        to: 'ec.id'
-                    }
-                ]
-            }
-        ];
         var formDefinition = {};
         var formModel = {};
         var params = {};
@@ -80,7 +56,7 @@ describe("Form Data Controller", function () {
         formDataController.save(params, formModel);
 
         expect(formDataRepository.saveFormSubmission).toHaveBeenCalledWith(formModel, params);
-        expect(formModelMapper.mapToEntityAndSave).toHaveBeenCalledWith(entities, formDefinition, formModel, params);
+        expect(formModelMapper.mapToEntityAndSave).toHaveBeenCalledWith(formModel);
     });
 
     it("should not try to map and save entities when there is no entity defined.", function () {

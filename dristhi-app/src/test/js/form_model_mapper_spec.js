@@ -185,4 +185,69 @@ describe("Form Model Mapper", function () {
         expect(JSON.stringify(formModel)).toBe(JSON.stringify(expectedFormModel));
         expect(queryBuilder.loadEntityHierarchy).toHaveBeenCalledWith(entities, "entity", "123");
     });
+
+    it("should map form model into entities and save them.", function () {
+        var formModel = {
+            "form": {
+                "bind_type": "entity",
+                "default_bind_path": "/Entity registration/",
+                "fields": [
+                    {
+                        "name": "field1",
+                        "source": "entity.f1",
+                        "value": "value1"
+                    },
+                    {
+                        "name": "field2",
+                        "source": "entity.field2",
+                        "bind": "field2_bind",
+                        "value": "value2"
+                    },
+                    {
+                        "name": "field3",
+                        "bind": "field3_bind",
+                        "source": "entity.child_entity.field3",
+                        "value": "value3"
+                    },
+                    {
+                        "name": "field4",
+                        "bind": "field4_bind",
+                        "source": "entity.child_entity.super_child.field4",
+                        "value": "value4"
+                    },
+                    {
+                        "name": "field5",
+                        "bind": "field5_bind",
+                        "source": "entity.child_entity.field5",
+                        "value": "value5"
+                    },
+                    {
+                        "name": "field6",
+                        "bind": "field6_bind",
+                        "source": "entity.field6",
+                        "value": "value6"
+                    }
+                ]
+            }
+        };
+        var expectedEntityInstance = {
+            "entity": {
+                "f1": "value1",
+                "field2": "value2",
+                "child_entity": {
+                    "field3": "value3",
+                    "super_child": {
+                        "field4": "value4"
+                    },
+                    "field5": "value5"
+                },
+                "field6": "value6"
+            }
+        };
+        spyOn(formDataRepository, "saveEntity");
+
+        formModelMapper.mapToEntityAndSave(formModel);
+
+        expect(formDataRepository.saveEntity).toHaveBeenCalledWith(expectedEntityInstance);
+    });
 });

@@ -3,6 +3,21 @@ if (typeof enketo == "undefined" || !enketo) {
 }
 
 enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
+    var addFieldToEntityInstance = function (source, value, entityInstance) {
+        var newVar = source.split(".");
+        var base = newVar[0];
+        if (!enketo.hasValue(entityInstance[base])) {
+            entityInstance[base] = {};
+        }
+        if (newVar.length > 2) {
+            newVar.shift();
+            entityInstance[base] = addFieldToEntityInstance(newVar.join("."), value, entityInstance[base]);
+        } else {
+            entityInstance[base][newVar[1]] = value;
+        }
+        return entityInstance;
+    }
+
     return {
         mapToFormModel: function (entities, formDefinition, params) {
             //TODO: Handle errors, savedFormInstance could be null!
@@ -18,6 +33,7 @@ enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
                 return formDefinition;
             }
             //TODO: pass all the params to the query builder and let it decide what it wants to use for querying.
+            //TODO: Add source to each field explicitly.
             var entityHierarchy = queryBuilder.loadEntityHierarchy(entities, formDefinition.form.bind_type, params.entityId);
             formDefinition.form.fields.forEach(function (field) {
                 var fieldValue;
@@ -47,7 +63,13 @@ enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
 
             return formDefinition;
         },
-        mapToEntityAndSave: function (entities, formDefinition, formModel, params) {
+        mapToEntityAndSave: function (formModel) {
+            var entityInstance = {};
+            formModel.form.fields.forEach(function (field) {
+                entityInstance = addFieldToEntityInstance(field.source, field.value, entityInstance);
+            });
+
+            formDataRepository.saveEntity(entityInstance);
         }
     };
 };
