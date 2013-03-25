@@ -46,6 +46,8 @@ enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
             });
 
             return formDefinition;
+        },
+        mapToEntityAndSave: function (entities, formDefinition, formModel, params) {
         }
     };
 };
