@@ -2,27 +2,32 @@ if (typeof enketo == "undefined" || !enketo) {
     var enketo = {};
 }
 
-enketo.FormDataController = function (entityRelationshipLoader, formDefinitionLoader, formModelMapper, params) {
+enketo.FormDataController = function (entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository) {
     var self = this;
 
-    var init = function () {
-        self.entityRelationshipsJsonDefinition = entityRelationshipLoader.load();
-        self.entities = enketo.EntityRelationships(self.entityRelationshipsJsonDefinition).determineEntitiesAndRelations();
-        self.params = params;
+    var init = function (params) {
+        if (!enketo.hasValue(self.entityRelationshipsJsonDefinition)) {
+            self.entityRelationshipsJsonDefinition = entityRelationshipLoader.load();
+        }
+        if (!enketo.hasValue(self.entities)) {
+            self.entities = enketo.EntityRelationships(self.entityRelationshipsJsonDefinition).determineEntitiesAndRelations();
+        }
         //TODO: if entities if null, consider taking bind_type from params, or formName
-        self.formDefinition = formDefinitionLoader.load(params.formName);
+        if (!enketo.hasValue(self.formDefinition)) {
+            self.formDefinition = formDefinitionLoader.load(params.formName);
+        }
     };
 
-    this.get = function () {
-        return formModelMapper.mapToFormModel(self.entities, self.formDefinition, self.params);
+    this.get = function (params) {
+        init(params);
+        return formModelMapper.mapToFormModel(self.entities, self.formDefinition, params);
     };
-    this.save = function (instanceId, data) {
-        //dataSource.save(instanceId, data);
+    this.save = function (params, data) {
+        init(params);
+        formDataRepository.saveFormSubmission(params, data);
     };
-
-    this.delete = function (instanceId) {
+    this.delete = function (params) {
+        init(params);
         //dataSource.remove(instanceId);
     };
-
-    init();
 };

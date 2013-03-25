@@ -48,8 +48,8 @@
                 new enketo.EntityRelationshipLoader(),
                 new enketo.FormDefinitionLoader(),
                 new enketo.FormModelMapper(formDataRepository, new enketo.SQLQueryBuilder(formDataRepository)),
-                getFormParams());
-        var formDefnValues = controller.get();
+                formDataRepository);
+        var formDefnValues = controller.get(getFormParams());
         logContext.logError("formDefinition with values: " + JSON.stringify(formDefnValues));
     </script>
 </head>

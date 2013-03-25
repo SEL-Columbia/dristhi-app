@@ -14,6 +14,8 @@ enketo.FormDataRepository = function () {
         },
         queryList: function (sql) {
             return repository.queryList(sql);
+        },
+        saveFormSubmission: function (params, data) {
         }
     };
 };
