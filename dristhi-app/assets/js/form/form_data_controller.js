@@ -24,7 +24,7 @@ enketo.FormDataController = function (entityRelationshipLoader, formDefinitionLo
     };
     this.save = function (params, data) {
         init(params);
-        formDataRepository.saveFormSubmission(data, params);
+        formDataRepository.saveFormSubmission(params, data);
         if (!enketo.hasValue(self.entities) || self.entities.length == 0) {
             return;
         }

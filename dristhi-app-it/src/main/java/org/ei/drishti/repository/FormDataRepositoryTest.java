@@ -62,4 +62,15 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         assertEquals(firstEligibleCouple.caseId(), fieldValues.get(0).get("id"));
         assertEquals(secondEligibleCouple.caseId(), fieldValues.get(1).get("id"));
     }
+
+    public void testShouldSaveFormSubmission() throws Exception {
+        Map<String, String> params = create("id", "id 1").put("formName", "form name").put("entityId", "entity id 1").map();
+        String paramsJSON = new Gson().toJson(params, new TypeToken<Map<String, String>>() {
+        }.getType());
+
+        repository.saveFormSubmission(paramsJSON, "data");
+
+        String actualFormSubmission = repository.fetchFromSubmission("id 1");
+        assertEquals("data", actualFormSubmission);
+    }
 }

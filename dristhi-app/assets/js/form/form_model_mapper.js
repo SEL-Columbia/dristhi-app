@@ -3,17 +3,18 @@ if (typeof enketo == "undefined" || !enketo) {
 }
 
 enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
+
     var addFieldToEntityInstance = function (source, value, entityInstance) {
-        var newVar = source.split(".");
-        var base = newVar[0];
+        var pathVariables = source.split(".");
+        var base = pathVariables[0];
         if (!enketo.hasValue(entityInstance[base])) {
             entityInstance[base] = {};
         }
-        if (newVar.length > 2) {
-            newVar.shift();
-            entityInstance[base] = addFieldToEntityInstance(newVar.join("."), value, entityInstance[base]);
+        if (pathVariables.length > 2) {
+            pathVariables.shift();
+            entityInstance[base] = addFieldToEntityInstance(pathVariables.join("."), value, entityInstance[base]);
         } else {
-            entityInstance[base][newVar[1]] = value;
+            entityInstance[base][pathVariables[1]] = value;
         }
         return entityInstance;
     }

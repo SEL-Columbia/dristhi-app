@@ -55,7 +55,7 @@ describe("Form Data Controller", function () {
         formDataController = new enketo.FormDataController(entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository);
         formDataController.save(params, formModel);
 
-        expect(formDataRepository.saveFormSubmission).toHaveBeenCalledWith(formModel, params);
+        expect(formDataRepository.saveFormSubmission).toHaveBeenCalledWith(params, formModel);
         expect(formModelMapper.mapToEntityAndSave).toHaveBeenCalledWith(formModel);
     });
 
@@ -72,7 +72,7 @@ describe("Form Data Controller", function () {
         formDataController = new enketo.FormDataController(entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository);
         formDataController.save(params, formModel);
 
-        expect(formDataRepository.saveFormSubmission).toHaveBeenCalledWith(formModel, params);
+        expect(formDataRepository.saveFormSubmission).toHaveBeenCalledWith(params, formModel);
         expect(formModelMapper.mapToEntityAndSave).not.toHaveBeenCalled();
     });
 });
