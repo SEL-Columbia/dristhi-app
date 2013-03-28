@@ -9,8 +9,8 @@ enketo.FormDataController = function (entityRelationshipLoader, formDefinitionLo
         if (!enketo.hasValue(self.entityRelationshipsJsonDefinition)) {
             self.entityRelationshipsJsonDefinition = entityRelationshipLoader.load();
         }
-        if (!enketo.hasValue(self.entities)) {
-            self.entities = enketo.EntityRelationships(self.entityRelationshipsJsonDefinition).determineEntitiesAndRelations();
+        if (!enketo.hasValue(self.entitiesDef)) {
+            self.entitiesDef = enketo.EntityRelationships(self.entityRelationshipsJsonDefinition).determineEntitiesAndRelations();
         }
         //TODO: if entities if null, consider taking bind_type from params, or formName
         if (!enketo.hasValue(self.formDefinition)) {
@@ -20,15 +20,15 @@ enketo.FormDataController = function (entityRelationshipLoader, formDefinitionLo
 
     this.get = function (params) {
         init(params);
-        return formModelMapper.mapToFormModel(self.entities, self.formDefinition, params);
+        return formModelMapper.mapToFormModel(self.entitiesDef, self.formDefinition, params);
     };
     this.save = function (params, data) {
         init(params);
         formDataRepository.saveFormSubmission(params, data);
-        if (!enketo.hasValue(self.entities) || self.entities.length == 0) {
+        if (!enketo.hasValue(self.entitiesDef) || self.entitiesDef.length == 0) {
             return;
         }
-        formModelMapper.mapToEntityAndSave(data);
+        formModelMapper.mapToEntityAndSave(self.entitiesDef, data);
     };
     this.delete = function (params) {
         init(params);

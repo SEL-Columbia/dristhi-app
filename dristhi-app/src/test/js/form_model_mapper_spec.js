@@ -4,6 +4,7 @@ describe("Form Model Mapper", function () {
     var formDefinition;
     var savedFormInstance;
     var queryBuilder;
+    var entitiesDef;
 
     beforeEach(function () {
         savedFormInstance = JSON.stringify({
@@ -48,6 +49,34 @@ describe("Form Model Mapper", function () {
                 ]
             }
         };
+        entitiesDef = [
+            new enketo.EntityDef(
+                "ec").addRelation(new enketo.RelationDef(
+                    "mother",
+                    "one_to_one",
+                    "parent",
+                    "ec.id",
+                    "mother.ec_id")),
+            new enketo.EntityDef(
+                "mother").addRelation(new enketo.RelationDef(
+                    "ec",
+                    "one_to_one",
+                    "child",
+                    "mother.ec_id",
+                    "ec.id")).addRelation(new enketo.RelationDef(
+                    "child",
+                    "one_to_many",
+                    "parent",
+                    "mother.id",
+                    "child.mother_id")),
+            new enketo.EntityDef(
+                "child").addRelation(new enketo.RelationDef(
+                    "mother",
+                    "many_to_one",
+                    "child",
+                    "child.mother_id",
+                    "mother.id"))
+        ];
         formDataRepository = new enketo.FormDataRepository();
         queryBuilder = new enketo.SQLQueryBuilder(formDataRepository);
         formModelMapper = new enketo.FormModelMapper(formDataRepository, queryBuilder);
@@ -186,68 +215,237 @@ describe("Form Model Mapper", function () {
         expect(queryBuilder.loadEntityHierarchy).toHaveBeenCalledWith(entities, "entity", "123");
     });
 
-    it("should map form model into entities and save them.", function () {
+    it("should map form model into entities and save self, child and grand child.", function () {
         var formModel = {
             "form": {
-                "bind_type": "entity",
-                "default_bind_path": "/Entity registration/",
+                "bind_type": "ec",
+                "default_bind_path": "/EC registration/",
                 "fields": [
                     {
-                        "name": "field1",
-                        "source": "entity.f1",
-                        "value": "value1"
+                        "name": "id",
+                        "source": "ec.id",
+                        "value": "ec id 1"
                     },
                     {
                         "name": "field2",
-                        "source": "entity.field2",
+                        "source": "ec.field2",
                         "bind": "field2_bind",
                         "value": "value2"
                     },
                     {
                         "name": "field3",
                         "bind": "field3_bind",
-                        "source": "entity.child_entity.field3",
+                        "source": "ec.mother.field3",
                         "value": "value3"
                     },
                     {
                         "name": "field4",
                         "bind": "field4_bind",
-                        "source": "entity.child_entity.super_child.field4",
+                        "source": "ec.mother.child.field4",
                         "value": "value4"
                     },
                     {
                         "name": "field5",
                         "bind": "field5_bind",
-                        "source": "entity.child_entity.field5",
+                        "source": "ec.mother.field5",
                         "value": "value5"
                     },
                     {
                         "name": "field6",
                         "bind": "field6_bind",
-                        "source": "entity.field6",
+                        "source": "ec.field6",
                         "value": "value6"
                     }
                 ]
             }
         };
-        var expectedEntityInstance = {
-            "entity": {
-                "f1": "value1",
-                "field2": "value2",
-                "child_entity": {
-                    "field3": "value3",
-                    "super_child": {
-                        "field4": "value4"
+        var expectedECInstance = {
+            "id": "ec id 1",
+            "field2": "value2",
+            "field6": "value6"
+        };
+        var expectedMotherInstance = {
+            "field3": "value3",
+            "field5": "value5",
+            "ec_id": "ec id 1"
+        };
+        var expectedChildInstance = {
+            "field4": "value4",
+            "mother_id": "mother id 1"
+        };
+        spyOn(formDataRepository, "saveEntity").andCallFake(function (entityType, entity) {
+            if (entityType === "ec" && JSON.stringify(expectedECInstance) === JSON.stringify(entity)) {
+                return "ec id 1";
+            }
+            if (entityType === "mother" && JSON.stringify(expectedMotherInstance) === JSON.stringify(entity)) {
+                return "mother id 1";
+            }
+            if (entityType === "child" && JSON.stringify(expectedChildInstance) === JSON.stringify(entity)) {
+                return "child id 1";
+            }
+            return null;
+        });
+
+        formModelMapper.mapToEntityAndSave(entitiesDef, formModel);
+
+        expect(formDataRepository.saveEntity).toHaveBeenCalledWith("ec", expectedECInstance);
+        expect(formDataRepository.saveEntity).toHaveBeenCalledWith("mother", expectedMotherInstance);
+        expect(formDataRepository.saveEntity).toHaveBeenCalledWith("child", expectedChildInstance);
+    });
+
+    it("should map form model into entities and save self, parent and child.", function () {
+        var formModel = {
+            "form": {
+                "bind_type": "mother",
+                "default_bind_path": "/Mother registration/",
+                "fields": [
+                    {
+                        "name": "id",
+                        "source": "mother.id",
+                        "value": "mother id 1"
                     },
-                    "field5": "value5"
-                },
-                "field6": "value6"
+                    {
+                        "name": "field2",
+                        "source": "mother.field2",
+                        "bind": "field2_bind",
+                        "value": "value2"
+                    },
+                    {
+                        "name": "field3",
+                        "bind": "field3_bind",
+                        "source": "mother.ec.field3",
+                        "value": "value3"
+                    },
+                    {
+                        "name": "field4",
+                        "bind": "field4_bind",
+                        "source": "mother.child.field4",
+                        "value": "value4"
+                    },
+                    {
+                        "name": "field5",
+                        "bind": "field5_bind",
+                        "source": "mother.ec.field5",
+                        "value": "value5"
+                    },
+                    {
+                        "name": "field6",
+                        "bind": "field6_bind",
+                        "source": "mother.field6",
+                        "value": "value6"
+                    }
+                ]
             }
         };
-        spyOn(formDataRepository, "saveEntity");
+        var expectedECInstance = {
+            "field3": "value3",
+            "field5": "value5"
+        };
+        var expectedMotherInstance = {
+            "id": "mother id 1",
+            "field2": "value2",
+            "field6": "value6",
+            "ec_id": "ec id 1"
+        };
+        var expectedChildInstance = {
+            "field4": "value4",
+            "mother_id": "mother id 1"
+        };
+        spyOn(formDataRepository, "saveEntity").andCallFake(function (entityType, entity) {
+            if (entityType === "ec" && JSON.stringify(expectedECInstance) === JSON.stringify(entity)) {
+                return "ec id 1";
+            }
+            if (entityType === "mother" && JSON.stringify(expectedMotherInstance) === JSON.stringify(entity)) {
+                return "mother id 1";
+            }
+            if (entityType === "child" && JSON.stringify(expectedChildInstance) === JSON.stringify(entity)) {
+                return "child id 1";
+            }
+            return null;
+        });
 
-        formModelMapper.mapToEntityAndSave(formModel);
+        formModelMapper.mapToEntityAndSave(entitiesDef, formModel);
 
-        expect(formDataRepository.saveEntity).toHaveBeenCalledWith(expectedEntityInstance);
+        expect(formDataRepository.saveEntity).toHaveBeenCalledWith("ec", expectedECInstance);
+        expect(formDataRepository.saveEntity).toHaveBeenCalledWith("mother", expectedMotherInstance);
+        expect(formDataRepository.saveEntity).toHaveBeenCalledWith("child", expectedChildInstance);
+    });
+
+    it("should map form model into entities and save self, parent and grand parent.", function () {
+        var formModel = {
+            "form": {
+                "bind_type": "child",
+                "default_bind_path": "/Child immunization/",
+                "fields": [
+                    {
+                        "name": "id",
+                        "source": "child.id",
+                        "value": ""
+                    },
+                    {
+                        "name": "field2",
+                        "source": "child.mother.field2",
+                        "bind": "field2_bind",
+                        "value": "value2"
+                    },
+                    {
+                        "name": "field3",
+                        "bind": "field3_bind",
+                        "source": "child.mother.ec.field3",
+                        "value": "value3"
+                    },
+                    {
+                        "name": "field4",
+                        "bind": "field4_bind",
+                        "source": "child.field4",
+                        "value": "value4"
+                    },
+                    {
+                        "name": "field5",
+                        "bind": "field5_bind",
+                        "source": "child.mother.ec.field5",
+                        "value": "value5"
+                    },
+                    {
+                        "name": "field6",
+                        "bind": "field6_bind",
+                        "source": "child.field6",
+                        "value": "value6"
+                    }
+                ]
+            }
+        };
+        var expectedECInstance = {
+            "field3": "value3",
+            "field5": "value5"
+        };
+        var expectedMotherInstance = {
+            "field2": "value2",
+            "ec_id": "ec id 1"
+        };
+        var expectedChildInstance = {
+            "id": "",
+            "field4": "value4",
+            "field6": "value6",
+            "mother_id": "mother id 1"
+        };
+        spyOn(formDataRepository, "saveEntity").andCallFake(function (entityType, entity) {
+            if (entityType === "ec" && JSON.stringify(expectedECInstance) === JSON.stringify(entity)) {
+                return "ec id 1";
+            }
+            if (entityType === "mother" && JSON.stringify(expectedMotherInstance) === JSON.stringify(entity)) {
+                return "mother id 1";
+            }
+            if (entityType === "child" && JSON.stringify(expectedChildInstance) === JSON.stringify(entity)) {
+                return "child id 1";
+            }
+            return null;
+        });
+
+        formModelMapper.mapToEntityAndSave(entitiesDef, formModel);
+
+        expect(formDataRepository.saveEntity).toHaveBeenCalledWith("ec", expectedECInstance);
+        expect(formDataRepository.saveEntity).toHaveBeenCalledWith("mother", expectedMotherInstance);
+        expect(formDataRepository.saveEntity).toHaveBeenCalledWith("child", expectedChildInstance);
     });
 });

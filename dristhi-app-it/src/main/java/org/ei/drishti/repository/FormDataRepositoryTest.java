@@ -65,8 +65,7 @@ public class FormDataRepositoryTest extends AndroidTestCase {
 
     public void testShouldSaveFormSubmission() throws Exception {
         Map<String, String> params = create("id", "id 1").put("formName", "form name").put("entityId", "entity id 1").map();
-        String paramsJSON = new Gson().toJson(params, new TypeToken<Map<String, String>>() {
-        }.getType());
+        String paramsJSON = new Gson().toJson(params);
 
         repository.saveFormSubmission(paramsJSON, "data");
 

@@ -17,11 +17,11 @@ enketo.EntityRelationships = function (jsonDefinition) {
         jsonDefinition.forEach(function (relation) {
             var entity = findEntityByType(entities, relation.parent);
             if (!enketo.hasValue(entity)) {
-                entities.push(new enketo.Entity(relation.parent));
+                entities.push(new enketo.EntityDef(relation.parent));
             }
             entity = findEntityByType(entities, relation.child);
             if (!enketo.hasValue(entity)) {
-                entities.push(new enketo.Entity(relation.child));
+                entities.push(new enketo.EntityDef(relation.child));
             }
         });
         return entities;
@@ -36,27 +36,15 @@ enketo.EntityRelationships = function (jsonDefinition) {
             jsonDefinition.forEach(function (relation) {
                 var parentEntity = findEntityByType(entities, relation.parent);
                 if (!enketo.hasValue(parentEntity.relations)) {
-                    parentEntity.relations = [];
+                    parentEntity.removeAllRelations();
                 }
-                parentEntity.relations.push(
-                    {
-                        "type": relation.child,
-                        "kind": relation.kind,
-                        "from": relation.from,
-                        "to": relation.to
-                    });
+                parentEntity.addRelation(new enketo.RelationDef(relation.child, relation.kind, "parent", relation.from, relation.to));
 
                 var childEntity = findEntityByType(entities, relation.child);
                 if (!enketo.hasValue(childEntity.relations)) {
-                    childEntity.relations = [];
+                    childEntity.removeAllRelations();
                 }
-                childEntity.relations.push(
-                    {
-                        "type": relation.parent,
-                        "kind": enketo.RelationKind[relation.kind].inverse.type,
-                        "from": relation.to,
-                        "to": relation.from
-                    });
+                childEntity.addRelation(new enketo.RelationDef(relation.parent, enketo.RelationKind[relation.kind].inverse.type, "child", relation.to, relation.from));
             });
             return entities;
         }

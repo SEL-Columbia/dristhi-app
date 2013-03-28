@@ -25,6 +25,7 @@ describe("Entity Relationships", function () {
                     {
                         "type": "mother",
                         "kind": "one_to_one",
+                        "as": "parent",
                         "from": "ec.id",
                         "to": "mother.ec_id"
                     }
@@ -36,12 +37,14 @@ describe("Entity Relationships", function () {
                     {
                         "type": "ec",
                         "kind": "one_to_one",
+                        "as": "child",
                         "from": "mother.ec_id",
                         "to": "ec.id"
                     },
                     {
                         "type": "child",
                         "kind": "one_to_many",
+                        "as": "parent",
                         "from": "mother.id",
                         "to": "child.mother_id"
                     }
@@ -53,6 +56,7 @@ describe("Entity Relationships", function () {
                     {
                         "type": "mother",
                         "kind": "many_to_one",
+                        "as": "child",
                         "from": "child.mother_id",
                         "to": "mother.id"
                     }
@@ -109,12 +113,14 @@ describe("Entity Relationships", function () {
                     {
                         "type": "mother",
                         "kind": "one_to_one",
+                        "as": "parent",
                         "from": "ec.id",
                         "to": "mother.ec_id"
                     },
                     {
                         "type": "father",
                         "kind": "one_to_one",
+                        "as": "parent",
                         "from": "ec.id",
                         "to": "father.ec_id"
                     }
@@ -126,12 +132,14 @@ describe("Entity Relationships", function () {
                     {
                         "type": "ec",
                         "kind": "one_to_one",
+                        "as": "child",
                         "from": "mother.ec_id",
                         "to": "ec.id"
                     },
                     {
                         "type": "child",
                         "kind": "one_to_many",
+                        "as": "parent",
                         "from": "mother.id",
                         "to": "child.mother_id"
                     }
@@ -143,12 +151,14 @@ describe("Entity Relationships", function () {
                     {
                         "type": "ec",
                         "kind": "one_to_one",
+                        "as": "child",
                         "from": "father.ec_id",
                         "to": "ec.id"
                     },
                     {
                         "type": "child",
                         "kind": "one_to_many",
+                        "as": "parent",
                         "from": "father.id",
                         "to": "child.father_id"
                     }
@@ -160,12 +170,14 @@ describe("Entity Relationships", function () {
                     {
                         "type": "mother",
                         "kind": "many_to_one",
+                        "as": "child",
                         "from": "child.mother_id",
                         "to": "mother.id"
                     },
                     {
                         "type": "father",
                         "kind": "many_to_one",
+                        "as": "child",
                         "from": "child.father_id",
                         "to": "father.id"
                     }

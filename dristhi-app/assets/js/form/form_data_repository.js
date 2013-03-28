@@ -18,7 +18,8 @@ enketo.FormDataRepository = function () {
         saveFormSubmission: function (params, data) {
             repository.saveFormSubmission(params, data);
         },
-        saveEntity: function (entity) {
+        saveEntity: function (entityType, entity) {
+            return repository.saveEntity(entityType, entity);
         }
     };
 };

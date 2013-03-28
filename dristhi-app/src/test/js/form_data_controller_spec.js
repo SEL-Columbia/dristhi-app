@@ -56,7 +56,7 @@ describe("Form Data Controller", function () {
         formDataController.save(params, formModel);
 
         expect(formDataRepository.saveFormSubmission).toHaveBeenCalledWith(params, formModel);
-        expect(formModelMapper.mapToEntityAndSave).toHaveBeenCalledWith(formModel);
+        expect(formModelMapper.mapToEntityAndSave).toHaveBeenCalledWith(jasmine.any(Array), formModel);
     });
 
     it("should not try to map and save entities when there is no entity defined.", function () {

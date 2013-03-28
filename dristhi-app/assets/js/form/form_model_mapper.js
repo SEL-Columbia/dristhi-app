@@ -4,6 +4,15 @@ if (typeof enketo == "undefined" || !enketo) {
 
 enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
 
+    var findEntityByType = function (entitiesDef, type) {
+        for (var index = 0; index < entitiesDef.length; index++) {
+            if (entitiesDef[index].type === type) {
+                return entitiesDef[index];
+            }
+        }
+        return null;
+    };
+
     var addFieldToEntityInstance = function (source, value, entityInstance) {
         var pathVariables = source.split(".");
         var base = pathVariables[0];
@@ -17,7 +26,52 @@ enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
             entityInstance[base][pathVariables[1]] = value;
         }
         return entityInstance;
-    }
+    };
+
+    var findParents = function (entityType) {
+        return findRelativesWhoAre(entityType, "child");
+    };
+
+    var findChildren = function (entityType) {
+        return findRelativesWhoAre(entityType, "parent");
+    };
+
+    var findRelativesWhoAre = function (entityType, relationAs) {
+        return entityType.relations.filter(function (relation) {
+            return relation.as === relationAs;
+        });
+    };
+
+    var persist = function (entitiesDef, entityType, entitiesToSave, updatedEntities) {
+        var entityTypeDef = findEntityByType(entitiesDef, entityType);
+        var parentRelations = findParents(entityTypeDef);
+        parentRelations.forEach(function (parentRelation) {
+            var parentEntityToSave = findEntityByType(entitiesToSave, parentRelation.type);
+            var isParentAlreadySaved = enketo.hasValue(findEntityByType(updatedEntities, parentRelation.type));
+            if (enketo.hasValue(parentEntityToSave) && !isParentAlreadySaved) {
+                persist(entitiesDef, parentRelation.type, entitiesToSave, updatedEntities);
+            }
+        });
+
+        var entityToSave = findEntityByType(entitiesToSave, entityType);
+        var isEntityAlreadySaved = enketo.hasValue(findEntityByType(updatedEntities, entityType));
+        var entityId;
+        if (enketo.hasValue(entityToSave) && !isEntityAlreadySaved) {
+            entityId = formDataRepository.saveEntity(entityType, entityToSave.fields);
+            updatedEntities.push(entityToSave);
+        }
+
+        var childRelations = findChildren(entityTypeDef);
+        childRelations.forEach(function (childRelation) {
+            var childEntityToSave = findEntityByType(entitiesToSave, childRelation.type);
+            var isChildAlreadySaved = enketo.hasValue(findEntityByType(updatedEntities, childRelation.type));
+            if (enketo.hasValue(childEntityToSave) && !isChildAlreadySaved) {
+                var parentReferenceField = childRelation.to.split(".")[1];
+                childEntityToSave.fields[parentReferenceField] = entityId;
+                persist(entitiesDef, childRelation.type, entitiesToSave, updatedEntities);
+            }
+        });
+    };
 
     return {
         mapToFormModel: function (entities, formDefinition, params) {
@@ -64,13 +118,23 @@ enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
 
             return formDefinition;
         },
-        mapToEntityAndSave: function (formModel) {
-            var entityInstance = {};
+        mapToEntityAndSave: function (entitiesDef, formModel) {
+            var entitiesToSave = [];
             formModel.form.fields.forEach(function (field) {
-                entityInstance = addFieldToEntityInstance(field.source, field.value, entityInstance);
+                var pathVariables = field.source.split(".");
+                var entityTypeOfField = pathVariables[pathVariables.length - 2];
+                var entityInstance = findEntityByType(entitiesToSave, entityTypeOfField);
+                if (!enketo.hasValue(entityInstance)) {
+                    entityInstance = findEntityByType(entitiesDef, entityTypeOfField).createInstance();
+                    entitiesToSave.push(entityInstance);
+                }
+                if (!enketo.hasValue(entityInstance.fields)) {
+                    entityInstance.fields = {};
+                }
+                entityInstance.fields[pathVariables[pathVariables.length - 1]] = field.value;
             });
-
-            formDataRepository.saveEntity(entityInstance);
+            var updatedEntities = [];
+            persist(entitiesDef, formModel.form.bind_type, entitiesToSave, updatedEntities);
         }
     };
 };
