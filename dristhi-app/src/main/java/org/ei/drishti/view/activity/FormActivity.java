@@ -21,7 +21,6 @@ import static org.ei.drishti.AllConstants.ENTITY_ID_PARAMETER;
 import static org.ei.drishti.AllConstants.FORM_NAME_PARAMETER;
 import static org.ei.drishti.util.Log.logError;
 
-
 public class FormActivity extends Activity {
     private ProgressDialog progressDialog;
     private String model;

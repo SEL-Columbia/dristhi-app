@@ -21,6 +21,12 @@
     <script type="text/javascript" src="../../js/form/form_data_repository.js"></script>
     <script type="text/javascript" src="../../js/form/form_data_controller.js"></script>
     <script type="text/javascript">
+        logContext.logError("Initialising enketo template.");
+        window.onerror = function (m, u, l) {
+            logContext.logError("Javascript Error: , msg: {0}, url: {1}, line: {2}, window: {3}".format(m, u, l, window.location.href));
+            return true
+        };
+
         var settings = {};
         settings['mapsDynamicAPIKey'] = 'AIzaSyDF5xYZfxN7r5SsNPGstjAeTzwa6dVU4Ik';
         settings['mapsStaticAPIKey'] = 'AIzaSyDF5xYZfxN7r5SsNPGstjAeTzwa6dVU4Ik';
@@ -51,6 +57,7 @@
                 formDataRepository);
         var formDefnValues = controller.get(getFormParams());
         logContext.logError("formDefinition with values: " + JSON.stringify(formDefnValues));
+        controller.save(getFormParams(), formDefnValues);
     </script>
 </head>
 <body>

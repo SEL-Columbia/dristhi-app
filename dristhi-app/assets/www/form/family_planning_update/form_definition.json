@@ -4,6 +4,9 @@
         "default_bind_path": "/model/instance/EC_New_Family_Planning_EngKan_Final/",
         "fields": [
             {
+                "name": "id"
+            },
+            {
                 "name": "case_woman_name",
                 "source": "eligible_couple.wifeName"
             },
@@ -18,6 +21,18 @@
             {
                 "name": "dateOfBirth",
                 "source": "eligible_couple.mother.child.dateOfBirth"
+            },
+            {
+                "name": "ecIsClosed",
+                "source": "eligible_couple.isClosed"
+            },
+            {
+                "name": "motherIsClosed",
+                "source": "eligible_couple.mother.isClosed"
+            },
+            {
+                "name": "childIsClosed",
+                "source": "eligible_couple.mother.child.isClosed"
             }
         ]
     }

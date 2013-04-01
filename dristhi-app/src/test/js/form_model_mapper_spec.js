@@ -179,11 +179,13 @@ describe("Form Model Mapper", function () {
                 "fields": [
                     {
                         "name": "field1",
+                        "source": "entity.field1",
                         "value": "value1"
                     },
                     {
                         "name": "field2",
                         "bind": "field2_bind",
+                        "source": "entity.field2",
                         "value": "value2"
                     },
                     {

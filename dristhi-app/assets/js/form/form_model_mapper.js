@@ -116,6 +116,7 @@ enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
                     entity = formDefinition.form.bind_type;
                     fieldName = field.name;
                     fieldValue = entityHierarchy[entity][fieldName];
+                    field["source"] = entity + "." + fieldName;
                 }
                 if (enketo.hasValue(fieldValue)) {
                     field.value = fieldValue;

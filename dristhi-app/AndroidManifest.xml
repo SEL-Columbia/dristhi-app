@@ -92,6 +92,10 @@
             android:name=".view.activity.CameraLaunchActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.FormActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:screenOrientation="portrait"/>
 
         <receiver android:name=".view.receiver.SyncBroadcastReceiver"/>
         <receiver android:name=".view.receiver.ConnectivityChangeReceiver">
