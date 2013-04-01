@@ -21,7 +21,7 @@ public class ChildService {
     }
 
     public void register(Action action) {
-        Mother mother = motherRepository.find(action.get("motherCaseId"));
+        Mother mother = motherRepository.findOpenCaseByCaseID(action.get("motherCaseId"));
         if (mother == null) {
             return;
         }

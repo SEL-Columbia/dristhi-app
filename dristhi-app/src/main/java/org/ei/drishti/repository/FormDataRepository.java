@@ -6,10 +6,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import static java.util.Arrays.asList;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
 public class FormDataRepository extends DrishtiRepository {
     private static final String FORM_SUBMISSION_SQL = "CREATE TABLE form_submission(id VARCHAR PRIMARY KEY, formName VARCHAR, data VARCHAR)";
@@ -21,6 +21,14 @@ public class FormDataRepository extends DrishtiRepository {
     private static final String DETAILS_COLUMN_NAME = "details";
     private static final String ID_PARAM = "id";
     private static final String FORM_NAME_PARAM = "formName";
+    private Map<String, String[]> TABLE_COLUMN_MAP;
+
+    public FormDataRepository() {
+        TABLE_COLUMN_MAP = new HashMap<String, String[]>();
+        TABLE_COLUMN_MAP.put(EligibleCoupleRepository.EC_TABLE_NAME, EligibleCoupleRepository.EC_TABLE_COLUMNS);
+        TABLE_COLUMN_MAP.put(MotherRepository.MOTHER_TABLE_NAME, MotherRepository.MOTHER_TABLE_COLUMNS);
+        TABLE_COLUMN_MAP.put(ChildRepository.CHILD_TABLE_NAME, ChildRepository.CHILD_TABLE_COLUMNS);
+    }
 
     @Override
     protected void onCreate(SQLiteDatabase database) {
@@ -90,5 +98,52 @@ public class FormDataRepository extends DrishtiRepository {
             }
         }
         return columnValues;
+    }
+
+    public String saveEntity(String entityType, String fields) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        Map<String, String> fieldsMap = new Gson().fromJson(fields, new TypeToken<Map<String, String>>() {
+        }.getType());
+        Map<String, String> details;
+        String entityId = fieldsMap.get(ID_PARAM);
+        if (isBlank(entityId)) {
+            entityId = UUID.randomUUID().toString();
+            fieldsMap.put(ID_PARAM, entityId);
+            details = new HashMap<String, String>();
+        } else {
+            details = getDetailsForEntity(entityType, database, entityId);
+        }
+        ContentValues contentValues = getContentValues(fieldsMap, details, entityType);
+        database.replace(entityType, null, contentValues);
+        return entityId;
+    }
+
+    private ContentValues getContentValues(Map<String, String> fieldsMap, Map<String, String> details, String entityType) {
+        List<String> columns = asList(TABLE_COLUMN_MAP.get(entityType));
+        ContentValues contentValues = new ContentValues();
+        for (String fieldName : fieldsMap.keySet()) {
+            if (columns.contains(fieldName)) {
+                contentValues.put(fieldName, fieldsMap.get(fieldName));
+            } else {
+                details.put(fieldName, fieldsMap.get(fieldName));
+            }
+        }
+        contentValues.put(DETAILS_COLUMN_NAME, new Gson().toJson(details));
+        return contentValues;
+    }
+
+    private Map<String, String> getDetailsForEntity(String entityType, SQLiteDatabase database, String entityId) {
+        Map<String, String> details;
+        Cursor cursor = database.query(entityType,
+                new String[]{DETAILS_COLUMN_NAME}, ID_COLUMN + " =?", new String[]{entityId}, null, null, null);
+        if (cursor.isAfterLast()) {
+            details = new HashMap<String, String>();
+        } else {
+            cursor.moveToFirst();
+            details = new Gson().fromJson(cursor.getString(0), new TypeToken<Map<String, String>>() {
+            }.getType());
+        }
+        cursor.close();
+        return details;
     }
 }

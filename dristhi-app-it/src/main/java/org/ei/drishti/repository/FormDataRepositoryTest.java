@@ -6,6 +6,7 @@ import android.test.RenamingDelegatingContext;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.domain.Mother;
 import org.ei.drishti.util.Session;
 
 import java.text.MessageFormat;
@@ -14,10 +15,12 @@ import java.util.List;
 import java.util.Map;
 
 import static org.ei.drishti.util.EasyMap.create;
+import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class FormDataRepositoryTest extends AndroidTestCase {
     private FormDataRepository repository;
     private EligibleCoupleRepository eligibleCoupleRepository;
+    private MotherRepository motherRepository;
 
     @Override
     protected void setUp() throws Exception {
@@ -25,7 +28,7 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         AlertRepository alertRepository = new AlertRepository();
         TimelineEventRepository timelineEventRepository = new TimelineEventRepository();
         ChildRepository childRepository = new ChildRepository(timelineEventRepository, alertRepository);
-        MotherRepository motherRepository = new MotherRepository(childRepository, timelineEventRepository, alertRepository);
+        motherRepository = new MotherRepository(childRepository, timelineEventRepository, alertRepository);
         eligibleCoupleRepository = new EligibleCoupleRepository(motherRepository, timelineEventRepository, alertRepository);
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
         new Repository(new RenamingDelegatingContext(getContext(), "test_"), session,
@@ -71,5 +74,73 @@ public class FormDataRepositoryTest extends AndroidTestCase {
 
         String actualFormSubmission = repository.fetchFromSubmission("id 1");
         assertEquals("data", actualFormSubmission);
+    }
+
+    public void testShouldSaveNewEC() throws Exception {
+        Map<String, String> fields =
+                create("wifeName", "asha")
+                        .put("husbandName", "raja")
+                        .put("ecNumber", "ec 123")
+                        .put("currentMethod", "ocp")
+                        .put("isHighPriority", "no")
+                        .map();
+        String fieldsJSON = new Gson().toJson(fields);
+
+        String entityId = repository.saveEntity("eligible_couple", fieldsJSON);
+
+        EligibleCouple savedEC = eligibleCoupleRepository.findByCaseID(entityId);
+        Map<String, String> expectedDetails = create("currentMethod", "ocp").put("isHighPriority", "no").map();
+        EligibleCouple expectedEligibleCouple = new EligibleCouple(entityId, "asha", "raja", "ec 123", null, null, expectedDetails);
+        assertEquals(expectedEligibleCouple, savedEC);
+    }
+
+    public void testShouldUpdateEC() throws Exception {
+        Map<String, String> fields =
+                create("id", "entity id 1")
+                        .put("husbandName", "raja")
+                        .put("ecNumber", "ec 123")
+                        .put("wifeName", "asha").put("village", "")
+                        .put("currentMethod", "ocp")
+                        .put("isHighPriority", "no")
+                        .map();
+        String fieldsJSON = new Gson().toJson(fields);
+        Map<String, String> oldDetails = create("currentMethod", "condom")
+                .put("isHighPriority", "yes")
+                .put("bloodGroup", "o-ve")
+                .map();
+        EligibleCouple oldEC = new EligibleCouple("entity id 1", "old wife name", "old husband name", "ec 123", "old village", null, oldDetails);
+        eligibleCoupleRepository.add(oldEC);
+
+        String entityId = repository.saveEntity("eligible_couple", fieldsJSON);
+
+        assertEquals(entityId, "entity id 1");
+        EligibleCouple savedEC = eligibleCoupleRepository.findByCaseID(entityId);
+        Map<String, String> expectedDetails = create("currentMethod", "ocp")
+                .put("isHighPriority", "no")
+                .put("bloodGroup", "o-ve")
+                .map();
+        EligibleCouple expectedEligibleCouple = new EligibleCouple("entity id 1", "asha", "raja", "ec 123", "", null, expectedDetails);
+        assertEquals(expectedEligibleCouple, savedEC);
+    }
+
+    public void testShouldUpdateMotherEntity() throws Exception {
+        Map<String, String> fields =
+                create("id", "entity id 1")
+                        .put("thaayiCardNumber", "thaayi1")
+                        .put("referenceDate", "2013-01-05")
+                        .put("ecCaseId", "ec 123")
+                        .put("isHighPriority", "no")
+                        .map();
+        String fieldsJSON = new Gson().toJson(fields);
+        Mother oldMother = new Mother("entity id 1", "ec 123", "thaayi2", "2013-01-01");
+        motherRepository.add(oldMother);
+
+        String entityId = repository.saveEntity("mother", fieldsJSON);
+
+        assertEquals(entityId, "entity id 1");
+        Mother savedMother = motherRepository.findById(entityId);
+        Map<String, String> expectedDetails = mapOf("isHighPriority", "no");
+        Mother expectedMother = new Mother("entity id 1", "ec 123", "thaayi1", "2013-01-05").withDetails(expectedDetails);
+        assertEquals(expectedMother, savedMother);
     }
 }

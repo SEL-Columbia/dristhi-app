@@ -24,7 +24,7 @@ public class MotherRepository extends DrishtiRepository {
     private static final String MOTHER_SQL = "CREATE TABLE mother(id VARCHAR PRIMARY KEY, ecCaseId VARCHAR, thaayiCardNumber VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR, isClosed INTEGER)";
     private static final String MOTHER_TYPE_INDEX_SQL = "CREATE INDEX mother_type_index ON mother(type);";
     private static final String MOTHER_REFERENCE_DATE_INDEX_SQL = "CREATE INDEX mother_referenceDate_index ON mother(referenceDate);";
-    private static final String MOTHER_TABLE_NAME = "mother";
+    public static final String MOTHER_TABLE_NAME = "mother";
     private static final String CASE_ID_COLUMN = "id";
     private static final String EC_CASEID_COLUMN = "ecCaseId";
     private static final String THAAYI_CARD_COLUMN = "thaayiCardNumber";
@@ -32,7 +32,7 @@ public class MotherRepository extends DrishtiRepository {
     private static final String REF_DATE_COLUMN = "referenceDate";
     private static final String DETAILS_COLUMN = "details";
     private static final String IS_CLOSED_COLUMN = "isClosed";
-    private static final String[] MOTHER_TABLE_COLUMNS = {CASE_ID_COLUMN, EC_CASEID_COLUMN, THAAYI_CARD_COLUMN, TYPE_COLUMN, REF_DATE_COLUMN, DETAILS_COLUMN, IS_CLOSED_COLUMN};
+    public static final String[] MOTHER_TABLE_COLUMNS = {CASE_ID_COLUMN, EC_CASEID_COLUMN, THAAYI_CARD_COLUMN, TYPE_COLUMN, REF_DATE_COLUMN, DETAILS_COLUMN, IS_CLOSED_COLUMN};
 
     private static final String TYPE_ANC = "ANC";
     private static final String TYPE_PNC = "PNC";
@@ -77,6 +77,12 @@ public class MotherRepository extends DrishtiRepository {
         return readAll(cursor);
     }
 
+    public Mother findById(String entityId) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{entityId}, null, null, null, null);
+        return readAll(cursor).get(0);
+    }
+
     public List<Mother> allPNCs() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, TYPE_COLUMN + " = ? AND " + IS_CLOSED_COLUMN + " = ?", new String[]{TYPE_PNC, NOT_CLOSED}, null, null, null, null);
@@ -98,7 +104,7 @@ public class MotherRepository extends DrishtiRepository {
         database.update(MOTHER_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
-    public Mother find(String caseId) {
+    public Mother findOpenCaseByCaseID(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, CASE_ID_COLUMN + " = ? AND " + IS_CLOSED_COLUMN + " = ?", new String[]{caseId, NOT_CLOSED}, null, null, null, null);
         List<Mother> mothers = readAll(cursor);

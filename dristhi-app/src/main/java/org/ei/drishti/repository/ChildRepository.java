@@ -17,7 +17,7 @@ import static org.apache.commons.lang3.StringUtils.repeat;
 
 public class ChildRepository extends DrishtiRepository {
     private static final String CHILD_SQL = "CREATE TABLE child(id VARCHAR PRIMARY KEY, motherCaseId VARCHAR, thaayiCardNumber VARCHAR, dateOfBirth VARCHAR, gender VARCHAR, details VARCHAR, isClosed INTEGER)";
-    private static final String CHILD_TABLE_NAME = "child";
+    public static final String CHILD_TABLE_NAME = "child";
     private static final String CASE_ID_COLUMN = "id";
     private static final String MOTHER_CASEID_COLUMN = "motherCaseId";
     private static final String THAAYI_CARD_COLUMN = "thaayiCardNumber";
@@ -25,7 +25,7 @@ public class ChildRepository extends DrishtiRepository {
     private static final String GENDER_COLUMN = "gender";
     private static final String DETAILS_COLUMN = "details";
     private static final String IS_CLOSED_COLUMN = "isClosed";
-    private static final String[] CHILD_TABLE_COLUMNS = {CASE_ID_COLUMN, MOTHER_CASEID_COLUMN, THAAYI_CARD_COLUMN, DATE_OF_BIRTH_COLUMN, GENDER_COLUMN, DETAILS_COLUMN, IS_CLOSED_COLUMN};
+    public static final String[] CHILD_TABLE_COLUMNS = {CASE_ID_COLUMN, MOTHER_CASEID_COLUMN, THAAYI_CARD_COLUMN, DATE_OF_BIRTH_COLUMN, GENDER_COLUMN, DETAILS_COLUMN, IS_CLOSED_COLUMN};
     public static final String NOT_CLOSED = "0";
 
     private TimelineEventRepository timelineEventRepository;
