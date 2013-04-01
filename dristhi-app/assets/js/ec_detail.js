@@ -14,6 +14,22 @@ function EC(ecBridge) {
             var alertItem = $(alertWhoseCheckboxWasClicked);
             ecBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
             ecBridge.markAsCompleted(alertItem.data("caseid"), alertItem.data("visitcode"));
+        },
+
+        bindToCamera: function (cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).click(function () {
+                ecBridge.takePhoto();
+            });
+        },
+
+        bindToDefaultPhoto: function (cssIdentifierOfElement, defaultPhotoPath) {
+            $(cssIdentifierOfElement).on('error', function (e) {
+                e.currentTarget.src = defaultPhotoPath;
+            });
+        },
+
+        reloadPhoto: function (cssIdentifierOfElement, caseId, photoPath) {
+            $(cssIdentifierOfElement).attr('src', photoPath);
         }
     };
 }
@@ -34,6 +50,9 @@ function ECBridge() {
         },
         markAsCompleted: function (caseId, visitCode) {
             ecContext.markTodoAsCompleted(caseId, visitCode);
+        },
+        takePhoto: function () {
+            ecContext.takePhoto();
         }
     };
 }
@@ -139,6 +158,9 @@ function FakeECContext() {
                     ]
                 }
             );
+        },
+        takePhoto: function () {
+            alert("launching camera app.");
         }
     }
 }

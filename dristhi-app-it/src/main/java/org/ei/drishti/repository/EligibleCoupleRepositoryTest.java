@@ -28,7 +28,8 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         motherRepository = new MotherRepository(childRepository, timelineEventRepository, alertRepository);
         repository = new EligibleCoupleRepository(motherRepository, timelineEventRepository, alertRepository);
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
-        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, alertRepository, timelineEventRepository, childRepository, motherRepository);
+        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, alertRepository,
+                timelineEventRepository, childRepository, motherRepository);
     }
 
     public void testShouldInsertEligibleCoupleIntoRepository() throws Exception {
@@ -53,7 +54,8 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
                 .map();
         repository.updateDetails("CASE X", detailsToBeUpdated);
 
-        assertEquals(asList(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsToBeUpdated)), repository.allEligibleCouples());
+        assertEquals(asList(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsToBeUpdated)),
+                repository.allEligibleCouples());
         assertEquals(asList(TimelineEvent.forChangeOfFPMethod("CASE X", "IUD", "Condom", "2012-03-03")), timelineEventRepository.allFor("CASE X"));
     }
 
@@ -183,6 +185,18 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
 
         assertEquals(ec, repository.findByCaseID("CASE X"));
         assertEquals(null, repository.findByCaseID("CASE NOTFOUND"));
+    }
+
+    public void testShouldUpdatePhotoPathCase() throws Exception {
+        EligibleCouple ec = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", new HashMap<String, String>());
+        EligibleCouple anotherEC = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", new HashMap<String, String>());
+        repository.add(ec);
+        repository.add(anotherEC);
+
+        repository.updatePhotoPath("CASE X", "photo/path/");
+
+        assertEquals("photo/path/", repository.findByCaseID("CASE X").photoPath());
+        assertEquals(null, repository.findByCaseID("CASE Y").photoPath());
     }
 
     public void testFindECByCaseIDs() throws Exception {

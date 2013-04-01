@@ -86,6 +86,7 @@
 <script src="../js/sidePanel.js"></script>
 <script src="../js/list_view.js"></script>
 <script src="../js/international_text.js"></script>
+<script src="../js/page_view.js"></script>
 
 <script src="../js/ec_list.js"></script>
 <script>
@@ -113,7 +114,8 @@
             noItemIndicator: "#noItemIndicator",
             searchForm: "#search-form",
             loadAllButton: "#loadAllButton",
-            loadingButton: "#loadingButton"
+            loadingButton: "#loadingButton",
+            womanPhoto: ".womanPhoto"
         };
         var ecList = new ECList(new ECListBridge(), cssIdOf);
         ecList.populateInto();
@@ -124,8 +126,11 @@
         ecList.bindVillageFilterOptions();
         ecList.bindSearchEvents();
         ecList.bindLoadAll();
+        ecList.bindToDefaultPhoto('../img/kid-matt.png');
 
         new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
+
+        pageView.onReloadPhoto(ecList.reloadPhoto);
     });
 </script>
 </html>

@@ -11,16 +11,19 @@ public class EC {
     private String ecNumber;
     private String villageName;
     private String thayiCardNumber;
+    private String photoPath;
     private boolean isHighPriority;
     private boolean hasTodos;
 
-    public EC(String caseId, String wifeName, String husbandName, String villageName, String ecNumber, String thayiCardNumber, boolean isHighPriority, boolean hasTodos) {
+    public EC(String caseId, String wifeName, String husbandName, String villageName, String ecNumber, String thayiCardNumber,
+              String photoPath, boolean isHighPriority, boolean hasTodos) {
         this.caseId = caseId;
         this.wifeName = wifeName;
         this.husbandName = husbandName;
         this.villageName = villageName;
         this.ecNumber = ecNumber;
         this.thayiCardNumber = thayiCardNumber;
+        this.photoPath = photoPath;
         this.isHighPriority = isHighPriority;
         this.hasTodos = hasTodos;
     }

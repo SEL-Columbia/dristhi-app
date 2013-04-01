@@ -20,9 +20,11 @@ public class LockingBackgroundTask {
             protected T doInBackground(Void... params) {
                 if (!lock.tryLock()) {
                     logVerbose("Going away. Something else is holding the lock.");
+                    cancel(true);
                     return null;
                 }
                 try {
+                    publishProgress();
                     return backgroundAction.actionToDoInBackgroundThread();
                 } finally {
                     lock.unlock();
@@ -30,7 +32,8 @@ public class LockingBackgroundTask {
             }
 
             @Override
-            protected void onPreExecute() {
+            protected void onProgressUpdate(Void... values) {
+                super.onProgressUpdate(values);
                 indicator.setVisible();
             }
 

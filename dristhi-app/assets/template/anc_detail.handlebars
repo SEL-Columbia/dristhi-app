@@ -1,9 +1,9 @@
 {{#if pregnancyDetails.isEDDPassed}}
 <div id="warning"></div>
-<div id="warning-modal-container" class="modal-container" style="display: block; ">
+<div id="warning-modal-container" class="modal-container" style="display: block;">
     <div id="modal-goes-here">
-        <div id="ancWarningModal" class="edd-modal-content" style="display: block; ">
-            <div style="margin-top: 20px"><img class="edd-popup-image"></div>
+        <div id="ancWarningModal" class="edd-modal-content">
+            <div class="edd-popup"><img class="edd-popup-image"></div>
             <div class="big-text-black edd-modal-text">EDD {{pregnancyDetails.daysPastEdd}} days past due!</div>
             <div class="edd-modal-button">
                 <button id="deliveryOutcomeFormButton" class="btn btn-large btn-primary" type="button"
@@ -64,7 +64,7 @@
                     <li>
                         <div class="row-fluid">
                             <div class="span9 big-text">{{formatText coupleDetails.wifeName}}</div>
-                            <div class="span3 social-vulnerability text-right" style="float: right">
+                            <div class="span3 social-vulnerability text-right">
                                 {{formatSocialVulnerability coupleDetails.caste coupleDetails.economicStatus}}
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                     <div class="beneficiary-detail-content">
                         {{#ifFalse details.isHighRisk}}
                         <div class="big-text high-risk">
-                            <i class="icon-circle-arrow-up" style="margin-top: 3px;"></i> High Risk</span>
+                            <i class="icon-circle-arrow-up priority-indicator-icon"></i> High Risk</span>
                         </div>
                         <div class="beneficiary-detail-footer risk-detail-text">
                             <ul>{{camelCaseAndConvertToListItems details.highRiskReason}}</ul>

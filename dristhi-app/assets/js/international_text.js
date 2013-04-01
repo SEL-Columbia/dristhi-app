@@ -17,7 +17,7 @@ function InternationalText(bridge) {
 
 function InternationalTextBridge() {
     var context = window.internationalizationContext;
-    if (typeof context === "undefined" && typeof FakeInternationalisationContext() !== "undefined") {
+    if (typeof context === "undefined" && typeof FakeInternationalisationContext !== "undefined") {
         context = new FakeInternationalisationContext();
     }
 

@@ -56,14 +56,15 @@ public class EligibleCoupleListViewControllerTest {
         EligibleCouple ecNormalPriority3 = new EligibleCouple("EC Case 3", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", normalPriority());
         EligibleCouple ecHighPriority1 = new EligibleCouple("EC Case 4", "Woman D", "Husband D", "EC Number 4", "Bherya", "Bherya SC", highPriority());
         EligibleCouple ecHighPriority2 = new EligibleCouple("EC Case 5", "WOMAN E", "Husband E", "EC Number 5", "Bherya", "Bherya SC", highPriority());
-        EligibleCouple ecHighPriority3 = new EligibleCouple("EC Case 6", "Woman F", "Husband F", "EC Number 6", "Bherya", "Bherya SC", highPriority());
+        EligibleCouple ecHighPriority3 = new EligibleCouple("EC Case 6", "Woman F", "Husband F", "EC Number 6", "Bherya", "Bherya SC", highPriority())
+                .withPhotoPath("photo/path/");
 
-        EC expectedECNormalPriority1 = new EC("EC Case 1", "Woman A", "Husband A", "Bherya", "EC Number 1", "12345", false, false);
-        EC expectedECNormalPriority2 = new EC("EC Case 2", "woman b", "Husband B", "Bherya", "EC Number 2", "", false, false);
-        EC expectedECNormalPriority3 = new EC("EC Case 3", "Woman C", "Husband C", "Bherya", "EC Number 3", "", false, false);
-        EC expectedECHighPriority1 = new EC("EC Case 4", "Woman D", "Husband D", "Bherya", "EC Number 4", "4444", true, false);
-        EC expectedECHighPriority2 = new EC("EC Case 5", "WOMAN E", "Husband E", "Bherya", "EC Number 5", "", true, false);
-        EC expectedECHighPriority3 = new EC("EC Case 6", "Woman F", "Husband F", "Bherya", "EC Number 6", "", true, false);
+        EC expectedECNormalPriority1 = new EC("EC Case 1", "Woman A", "Husband A", "Bherya", "EC Number 1", "12345", null, false, false);
+        EC expectedECNormalPriority2 = new EC("EC Case 2", "woman b", "Husband B", "Bherya", "EC Number 2", "", null, false, false);
+        EC expectedECNormalPriority3 = new EC("EC Case 3", "Woman C", "Husband C", "Bherya", "EC Number 3", "", null, false, false);
+        EC expectedECHighPriority1 = new EC("EC Case 4", "Woman D", "Husband D", "Bherya", "EC Number 4", "4444", null, true, false);
+        EC expectedECHighPriority2 = new EC("EC Case 5", "WOMAN E", "Husband E", "Bherya", "EC Number 5", "", null, true, false);
+        EC expectedECHighPriority3 = new EC("EC Case 6", "Woman F", "Husband F", "Bherya", "EC Number 6", "", "photo/path/", true, false);
 
         when(allEligibleCouples.all()).thenReturn(asList(ecHighPriority3, ecNormalPriority2, ecHighPriority1, ecNormalPriority3, ecNormalPriority1, ecHighPriority2));
         when(allBeneficiaries.findMotherByECCaseId("EC Case 1")).thenReturn(new Mother("MOTHER Case 1", "EC Case 1", "12345", "2012-12-12"));

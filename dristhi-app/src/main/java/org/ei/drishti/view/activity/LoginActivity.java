@@ -20,6 +20,7 @@ import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.LoginResponse;
 import org.ei.drishti.event.Listener;
+import org.ei.drishti.sync.DrishtiSyncScheduler;
 import org.ei.drishti.view.BackgroundAction;
 import org.ei.drishti.view.LockingBackgroundTask;
 import org.ei.drishti.view.ProgressIndicator;
@@ -68,7 +69,7 @@ public class LoginActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        if (!context.userService().hasSessionExpired() && !establishingConnectionWithCC) {
+        if (!context.IsUserLoggedOut() && !establishingConnectionWithCC) {
             goToHome();
         }
 
@@ -224,6 +225,7 @@ public class LoginActivity extends Activity {
     private void loginWith(String userName, String password) {
         context.userService().loginWith(userName, password);
         context.commCareClientService().establishConnection(this);
+        DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
     private void goToHome() {

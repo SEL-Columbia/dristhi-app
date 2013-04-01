@@ -47,6 +47,14 @@ function ECList(ecListBridge, cssIdOf) {
         },
         bindLoadAll: function () {
             listView.bindLoadAll();
+        },
+        bindToDefaultPhoto: function (defaultPhotoPath) {
+            $(cssIdOf.womanPhoto).on('error', function (e) {
+                e.currentTarget.src = defaultPhotoPath;
+            });
+        },
+        reloadPhoto: function (caseId, photoPath) {
+            $('div[data-caseId="' + caseId + '"] ' + cssIdOf.womanPhoto).attr('src', photoPath);
         }
     };
 }

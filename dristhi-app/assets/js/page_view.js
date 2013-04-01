@@ -1,26 +1,37 @@
 var pageView = (function () {
-    var callbackForReload = function() {};
-    var callbackForStartProgressIndicator = function() {};
-    var callbackForStopProgressIndicator = function() {};
+    var callbackForReload = function () {
+    };
+    var callbackForReloadPhoto = function (caseId, photoPath) {
+    };
+    var callbackForStartProgressIndicator = function () {
+    };
+    var callbackForStopProgressIndicator = function () {
+    };
 
     return {
-        reload: function() {
+        reload: function () {
             callbackForReload();
         },
-        startProgressIndicator: function() {
+        reloadPhoto: function (caseId, photoPath) {
+            callbackForReloadPhoto(caseId, photoPath);
+        },
+        startProgressIndicator: function () {
             callbackForStartProgressIndicator();
         },
-        stopProgressIndicator: function() {
+        stopProgressIndicator: function () {
             callbackForStopProgressIndicator();
         },
 
-        onReload: function(callBack) {
+        onReload: function (callBack) {
             callbackForReload = callBack;
         },
-        onStartProgressIndicator: function(callBack) {
+        onReloadPhoto: function (callBack) {
+            callbackForReloadPhoto = callBack;
+        },
+        onStartProgressIndicator: function (callBack) {
             callbackForStartProgressIndicator = callBack;
         },
-        onStopProgressIndicator: function(callBack) {
+        onStopProgressIndicator: function (callBack) {
             callbackForStopProgressIndicator = callBack;
         }
     }

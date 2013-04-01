@@ -30,4 +30,8 @@ public class AllEligibleCouples {
     public List<EligibleCouple> findByCaseIDs(List<String> caseIds) {
         return repository.findByCaseIDs(caseIds.toArray(new String[caseIds.size()]));
     }
+
+    public void updatePhotoPath(String caseId, String imagePath) {
+        repository.updatePhotoPath(caseId, imagePath);
+    }
 }

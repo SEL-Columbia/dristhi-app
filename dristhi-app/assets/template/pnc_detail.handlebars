@@ -35,12 +35,13 @@
     </div>
     <div class="registry-container container-fluid">
         <div class="row-fluid">
+
             <div class="span12">
                 <ul class="client-details unstyled">
                     <li>
                         <div class="row-fluid">
                             <div class="span9 big-text">{{formatText coupleDetails.wifeName}}</div>
-                            <div class="span3 social-vulnerability text-right" style="float: right">
+                            <div class="span3 social-vulnerability text-right">
                                 {{formatSocialVulnerability coupleDetails.caste coupleDetails.economicStatus}}
                             </div>
                         </div>
@@ -124,7 +125,7 @@
                     <div class="beneficiary-detail-content">
                         {{#ifFalse details.isHighRisk}}
                         <div class="big-text high-risk">
-                            <i class="icon-circle-arrow-up" style="margin-top: 3px;"></i> High Risk</span>
+                            <i class="icon-circle-arrow-up priority-indicator-icon"></i> High Risk</span>
                         </div>
                         <div class="beneficiary-detail-footer risk-detail-text">
                             <ul>{{camelCaseAndConvertToListItems details.highRiskReason}}</ul>

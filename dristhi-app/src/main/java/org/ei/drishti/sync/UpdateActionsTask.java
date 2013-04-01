@@ -1,10 +1,14 @@
-package org.ei.drishti.view;
+package org.ei.drishti.sync;
 
 import android.content.Context;
 import android.widget.Toast;
 import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.event.Event;
 import org.ei.drishti.service.ActionService;
+import org.ei.drishti.view.BackgroundAction;
+import org.ei.drishti.view.LockingBackgroundTask;
+import org.ei.drishti.view.ProgressIndicator;
+
+import static org.ei.drishti.util.Log.logInfo;
 
 public class UpdateActionsTask {
     private final LockingBackgroundTask task;
@@ -18,6 +22,11 @@ public class UpdateActionsTask {
     }
 
     public void updateFromServer(final AfterFetchListener afterFetchListener) {
+        if (org.ei.drishti.Context.getInstance().IsUserLoggedOut()) {
+            logInfo("Not updating from server as user is not logged in.");
+            return;
+        }
+
         task.doActionInBackground(new BackgroundAction<FetchStatus>() {
             public FetchStatus actionToDoInBackgroundThread() {
                 return actionService.fetchNewActions();
@@ -28,7 +37,6 @@ public class UpdateActionsTask {
                     Toast.makeText(context, result.displayValue(), Toast.LENGTH_SHORT).show();
                 }
                 afterFetchListener.afterFetch(result);
-                Event.ON_DATA_FETCHED.notifyListeners(result);
             }
         });
     }

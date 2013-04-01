@@ -8,7 +8,10 @@ import java.util.List;
 
 public class Event<CallbackType> {
     public static final Event<FetchStatus> ON_DATA_FETCHED = new Event<FetchStatus>();
+    public static final Event<CapturedPhotoInformation> ON_PHOTO_CAPTURED = new Event<CapturedPhotoInformation>();
     public static final Event<Boolean> ON_LOGOUT = new Event<Boolean>();
+    public static final Event<Boolean> SYNC_STARTED = new Event<Boolean>();
+    public static final Event<Boolean> SYNC_COMPLETED = new Event<Boolean>();
 
     List<WeakReference<Listener<CallbackType>>> listeners;
 
@@ -18,6 +21,16 @@ public class Event<CallbackType> {
 
     public void addListener(Listener<CallbackType> listener) {
         listeners.add(new WeakReference<Listener<CallbackType>>(listener));
+    }
+
+    public void removeListener(Listener<CallbackType> listener) {
+        WeakReference<Listener<CallbackType>> listenerToRemove = null;
+        for (WeakReference<Listener<CallbackType>> l : listeners) {
+            if (listener.equals(l.get())) {
+                listenerToRemove = l;
+            }
+        }
+        listeners.remove(listenerToRemove);
     }
 
     public void notifyListeners(CallbackType data) {

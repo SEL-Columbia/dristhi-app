@@ -2,8 +2,7 @@ package org.ei.drishti.repository;
 
 import android.content.SharedPreferences;
 
-import static org.ei.drishti.AllConstants.DEFAULT_LOCALE;
-import static org.ei.drishti.AllConstants.LANGUAGE_PREFERENCE_KEY;
+import static org.ei.drishti.AllConstants.*;
 
 public class AllSettings {
     public static final String APPLIED_VILLAGE_FILTER_SETTING_KEY = "appliedVillageFilter";
@@ -71,5 +70,13 @@ public class AllSettings {
 
     public void saveLanguagePreference(String languagePreference) {
         preferences.edit().putString(LANGUAGE_PREFERENCE_KEY, languagePreference).commit();
+    }
+
+    public Boolean fetchIsSyncInProgress() {
+        return preferences.getBoolean(IS_SYNC_IN_PROGRESS_PREFERENCE_KEY, false);
+    }
+
+    public void saveIsSyncInProgress(Boolean isSyncInProgress) {
+        preferences.edit().putBoolean(IS_SYNC_IN_PROGRESS_PREFERENCE_KEY, isSyncInProgress).commit();
     }
 }

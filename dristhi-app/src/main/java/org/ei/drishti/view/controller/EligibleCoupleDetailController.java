@@ -1,7 +1,9 @@
 package org.ei.drishti.view.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import com.google.gson.Gson;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
@@ -9,6 +11,7 @@ import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.TimelineEventComparator;
+import org.ei.drishti.view.activity.CameraLaunchActivity;
 import org.ei.drishti.view.contract.*;
 import org.joda.time.LocalDate;
 import org.ocpsoft.pretty.time.Duration;
@@ -17,6 +20,8 @@ import org.ocpsoft.pretty.time.PrettyTime;
 import java.util.*;
 
 import static java.lang.Math.min;
+import static org.ei.drishti.AllConstants.CASE_ID;
+import static org.ei.drishti.AllConstants.WOMAN_TYPE;
 
 public class EligibleCoupleDetailController {
     private final Context context;
@@ -27,22 +32,24 @@ public class EligibleCoupleDetailController {
     private PrettyTime prettyTime;
     private CommCareClientService commCareClientService;
 
-    public EligibleCoupleDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllAlerts allAlerts, AllTimelineEvents allTimelineEvents, CommCareClientService commCareClientService) {
+    public EligibleCoupleDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllAlerts allAlerts,
+                                          AllTimelineEvents allTimelineEvents, CommCareClientService commCareClientService) {
         this.context = context;
         this.caseId = caseId;
         this.allEligibleCouples = allEligibleCouples;
         this.allAlerts = allAlerts;
         this.allTimelineEvents = allTimelineEvents;
         this.commCareClientService = commCareClientService;
-        prettyTime = new PrettyTime(DateUtil.today().toDate(), new Locale("short"));
+        this.prettyTime = new PrettyTime(DateUtil.today().toDate(), new Locale("short"));
     }
 
     public String get() {
         EligibleCouple eligibleCouple = allEligibleCouples.findByCaseID(caseId);
         List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 
-        ECDetail ecContext = new ECDetail(caseId, eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(), eligibleCouple.isHighPriority(), null, new ArrayList<Child>(),
-                new CoupleDetails(eligibleCouple.wifeName(), eligibleCouple.husbandName(), eligibleCouple.ecNumber(), eligibleCouple.isOutOfArea()),
+        ECDetail ecContext = new ECDetail(caseId, eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(),
+                eligibleCouple.isHighPriority(), null, eligibleCouple.photoPath(), new ArrayList<Child>(), new CoupleDetails(eligibleCouple.wifeName(),
+                eligibleCouple.husbandName(), eligibleCouple.ecNumber(), eligibleCouple.isOutOfArea()),
                 eligibleCouple.details()).
                 addTodos(todosAndUrgentTodos.get(0)).
                 addUrgentTodos(todosAndUrgentTodos.get(1)).
@@ -57,6 +64,13 @@ public class EligibleCoupleDetailController {
 
     public void markTodoAsCompleted(String caseId, String visitCode) {
         allAlerts.markAsCompleted(caseId, visitCode, LocalDate.now().toString());
+    }
+
+    public void takePhoto() {
+        Intent intent = new Intent(context, CameraLaunchActivity.class);
+        intent.putExtra(AllConstants.TYPE, WOMAN_TYPE);
+        intent.putExtra(CASE_ID, caseId);
+        context.startActivity(intent);
     }
 
     private List<TimelineEvent> getEvents() {

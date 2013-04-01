@@ -19,18 +19,22 @@ import static org.apache.commons.lang3.StringUtils.repeat;
 import static org.ei.drishti.domain.TimelineEvent.forChangeOfFPMethod;
 
 public class EligibleCoupleRepository extends DrishtiRepository {
-    private static final String EC_SQL = "CREATE TABLE eligible_couple(id VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR, isClosed INTEGER)";
+    private static final String EC_SQL = "CREATE TABLE eligible_couple(id VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, " +
+            "ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR, isClosed INTEGER)";
     public static final String CASE_ID_COLUMN = "id";
     private static final String EC_NUMBER_COLUMN = "ecNumber";
     private static final String WIFE_NAME_COLUMN = "wifeName";
     private static final String HUSBAND_NAME_COLUMN = "husbandName";
-    public static final String EC_TABLE_NAME = "eligible_couple";
     private static final String VILLAGE_NAME_COLUMN = "village";
     private static final String SUBCENTER_NAME_COLUMN = "subCenter";
     private static final String IS_OUT_OF_AREA_COLUMN = "isOutOfArea";
     private static final String DETAILS_COLUMN = "details";
     private static final String IS_CLOSED_COLUMN = "isClosed";
-    public static final String[] EC_TABLE_COLUMNS = new String[]{CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN, EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN, IS_CLOSED_COLUMN};
+    private static final String PHOTO_PATH_COLUMN = "photoPath";
+    public static final String EC_TABLE_NAME = "eligible_couple";
+    public static final String[] EC_TABLE_COLUMNS = new String[]{CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN,
+            EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN,
+            IS_CLOSED_COLUMN, PHOTO_PATH_COLUMN};
 
     public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
     public static final String FP_UPDATE_FIELD_NAME = "fpUpdate";
@@ -43,7 +47,8 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     private final AlertRepository alertRepository;
     private final TimelineEventRepository timelineEventRepository;
 
-    public EligibleCoupleRepository(MotherRepository motherRepository, TimelineEventRepository timelineEventRepository, AlertRepository alertRepository) {
+    public EligibleCoupleRepository(MotherRepository motherRepository, TimelineEventRepository timelineEventRepository,
+                                    AlertRepository alertRepository) {
         this.motherRepository = motherRepository;
         this.alertRepository = alertRepository;
         this.timelineEventRepository = timelineEventRepository;
@@ -79,19 +84,22 @@ public class EligibleCoupleRepository extends DrishtiRepository {
 
     public List<EligibleCouple> allEligibleCouples() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, IS_OUT_OF_AREA_COLUMN + " = ? AND " + IS_CLOSED_COLUMN + " = ?", new String[]{"false", NOT_CLOSED}, null, null, null, null);
+        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, IS_OUT_OF_AREA_COLUMN + " = ? AND " +
+                IS_CLOSED_COLUMN + " = ?", new String[]{"false", NOT_CLOSED}, null, null, null, null);
         return readAllEligibleCouples(cursor);
     }
 
     public List<EligibleCouple> findByCaseIDs(String... caseIds) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)", EC_TABLE_NAME, CASE_ID_COLUMN, insertPlaceholdersForInClause(caseIds.length)), caseIds);
+        Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)", EC_TABLE_NAME, CASE_ID_COLUMN,
+                insertPlaceholdersForInClause(caseIds.length)), caseIds);
         return readAllEligibleCouples(cursor);
     }
 
     public EligibleCouple findByCaseID(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
+        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId},
+                null, null, null, null);
         List<EligibleCouple> couples = readAllEligibleCouples(cursor);
         if (couples.isEmpty()) {
             return null;
@@ -100,13 +108,15 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     }
 
     public long count() {
-        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + EC_TABLE_NAME + " WHERE " + IS_OUT_OF_AREA_COLUMN + " = 'false' and " +
+        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + EC_TABLE_NAME
+                + " WHERE " + IS_OUT_OF_AREA_COLUMN + " = 'false' and " +
                 IS_CLOSED_COLUMN + " = " + NOT_CLOSED, new String[0]);
     }
 
     public List<String> villages() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(true, EC_TABLE_NAME, new String[]{VILLAGE_NAME_COLUMN}, IS_OUT_OF_AREA_COLUMN + " = ? AND " + IS_CLOSED_COLUMN + " = ?", new String[]{"false", NOT_CLOSED}, null, null, null, null);
+        Cursor cursor = database.query(true, EC_TABLE_NAME, new String[]{VILLAGE_NAME_COLUMN}, IS_OUT_OF_AREA_COLUMN +
+                " = ? AND " + IS_CLOSED_COLUMN + " = ?", new String[]{"false", NOT_CLOSED}, null, null, null, null);
         cursor.moveToFirst();
         List<String> villages = new ArrayList<String>();
         while (!cursor.isAfterLast()) {
@@ -115,6 +125,13 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         }
         cursor.close();
         return villages;
+    }
+
+    public void updatePhotoPath(String caseId, String imagePath) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(PHOTO_PATH_COLUMN, imagePath);
+        database.update(EC_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
     public void close(String caseId) {
@@ -148,11 +165,13 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<EligibleCouple> eligibleCouples = new ArrayList<EligibleCouple>();
         while (!cursor.isAfterLast()) {
-            EligibleCouple eligibleCouple = new EligibleCouple(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5),
+            EligibleCouple eligibleCouple = new EligibleCouple(cursor.getString(0), cursor.getString(1), cursor.getString(2),
+                    cursor.getString(3), cursor.getString(4), cursor.getString(5),
                     new Gson().<Map<String, String>>fromJson(cursor.getString(7), new TypeToken<Map<String, String>>() {
                     }.getType())).setIsClosed(cursor.getInt(8) != 0);
             if (Boolean.valueOf(cursor.getString(6)))
                 eligibleCouple.asOutOfArea();
+            eligibleCouple.withPhotoPath(cursor.getString(9));
             eligibleCouples.add(eligibleCouple);
             cursor.moveToNext();
         }
@@ -162,15 +181,17 @@ public class EligibleCoupleRepository extends DrishtiRepository {
 
     private void addTimelineEventsForFPRelatedChanges(EligibleCouple couple, Map<String, String> details) {
         if (wasFPMethodChanged(details)) {
-            timelineEventRepository.add(forChangeOfFPMethod(couple.caseId(), couple.details().get(CURRENT_FP_METHOD_FIELD_NAME), details.get(CURRENT_FP_METHOD_FIELD_NAME), details.get(FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME)));
-        } else if (wasFPproductRenewed(details)) {
-            TimelineEvent timelineEventForRenew = FPMethod.tryParse(details.get(CURRENT_FP_METHOD_FIELD_NAME), FPMethod.NONE).getTimelineEventForRenew(couple.caseId(), details);
+            timelineEventRepository.add(forChangeOfFPMethod(couple.caseId(), couple.details().get(CURRENT_FP_METHOD_FIELD_NAME),
+                    details.get(CURRENT_FP_METHOD_FIELD_NAME), details.get(FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME)));
+        } else if (wasFPProductRenewed(details)) {
+            TimelineEvent timelineEventForRenew = FPMethod.tryParse(details.get(CURRENT_FP_METHOD_FIELD_NAME),
+                    FPMethod.NONE).getTimelineEventForRenew(couple.caseId(), details);
             if (timelineEventForRenew != null)
                 timelineEventRepository.add(timelineEventForRenew);
         }
     }
 
-    private boolean wasFPproductRenewed(Map<String, String> details) {
+    private boolean wasFPProductRenewed(Map<String, String> details) {
         return details.containsKey(FP_UPDATE_FIELD_NAME) && details.get(FP_UPDATE_FIELD_NAME).equals(RENEW_FP_PRODUCT_FIELD_NAME);
     }
 
