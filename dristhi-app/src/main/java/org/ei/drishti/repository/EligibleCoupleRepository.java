@@ -20,7 +20,7 @@ import static org.ei.drishti.domain.TimelineEvent.forChangeOfFPMethod;
 
 public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String EC_SQL = "CREATE TABLE eligible_couple(id VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, " +
-            "ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR, isClosed INTEGER)";
+            "ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR, isClosed INTEGER, photoPath VARCHAR)";
     public static final String CASE_ID_COLUMN = "id";
     private static final String EC_NUMBER_COLUMN = "ecNumber";
     private static final String WIFE_NAME_COLUMN = "wifeName";
