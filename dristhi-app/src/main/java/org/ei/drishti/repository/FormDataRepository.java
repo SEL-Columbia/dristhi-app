@@ -102,48 +102,72 @@ public class FormDataRepository extends DrishtiRepository {
 
     public String saveEntity(String entityType, String fields) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
-        Map<String, String> fieldsMap = new Gson().fromJson(fields, new TypeToken<Map<String, String>>() {
+        Map<String, String> updatedFieldsMap = new Gson().fromJson(fields, new TypeToken<Map<String, String>>() {
         }.getType());
-        Map<String, String> details;
-        String entityId = fieldsMap.get(ID_PARAM);
+        String entityId = updatedFieldsMap.get(ID_PARAM);
+        Map<String, String> entityMap;
         if (isBlank(entityId)) {
             entityId = UUID.randomUUID().toString();
-            fieldsMap.put(ID_PARAM, entityId);
-            details = new HashMap<String, String>();
+            updatedFieldsMap.put(ID_PARAM, entityId);
+            entityMap = new HashMap<String, String>();
         } else {
-            details = getDetailsForEntity(entityType, database, entityId);
+            entityMap = loadEntityMap(entityType, database, entityId);
         }
-        ContentValues contentValues = getContentValues(fieldsMap, details, entityType);
+        ContentValues contentValues = getContentValues(updatedFieldsMap, entityType, entityMap);
         database.replace(entityType, null, contentValues);
         return entityId;
     }
 
-    private ContentValues getContentValues(Map<String, String> fieldsMap, Map<String, String> details, String entityType) {
+    private ContentValues getContentValues(Map<String, String> updatedFieldsMap, String entityType, Map<String, String> entityMap) {
         List<String> columns = asList(TABLE_COLUMN_MAP.get(entityType));
-        ContentValues contentValues = new ContentValues();
-        for (String fieldName : fieldsMap.keySet()) {
+        ContentValues contentValues = initializeContentValuesBasedExistingValues(entityMap);
+        Map<String, String> details = initializeDetailsBasedOnExistingValues(entityMap);
+
+        for (String fieldName : updatedFieldsMap.keySet()) {
             if (columns.contains(fieldName)) {
-                contentValues.put(fieldName, fieldsMap.get(fieldName));
+                contentValues.put(fieldName, updatedFieldsMap.get(fieldName));
             } else {
-                details.put(fieldName, fieldsMap.get(fieldName));
+                details.put(fieldName, updatedFieldsMap.get(fieldName));
             }
         }
         contentValues.put(DETAILS_COLUMN_NAME, new Gson().toJson(details));
+
         return contentValues;
     }
 
-    private Map<String, String> getDetailsForEntity(String entityType, SQLiteDatabase database, String entityId) {
+    private Map<String, String> initializeDetailsBasedOnExistingValues(Map<String, String> entityMap) {
         Map<String, String> details;
-        Cursor cursor = database.query(entityType,
-                new String[]{DETAILS_COLUMN_NAME}, ID_COLUMN + " =?", new String[]{entityId}, null, null, null);
-        if (cursor.isAfterLast()) {
+        String detailsJSON = entityMap.get(DETAILS_COLUMN_NAME);
+        if (detailsJSON == null) {
             details = new HashMap<String, String>();
         } else {
-            cursor.moveToFirst();
-            details = new Gson().fromJson(cursor.getString(0), new TypeToken<Map<String, String>>() {
+            details = new Gson().fromJson(detailsJSON, new TypeToken<Map<String, String>>() {
             }.getType());
         }
-        cursor.close();
         return details;
+    }
+
+    private ContentValues initializeContentValuesBasedExistingValues(Map<String, String> entityMap) {
+        ContentValues contentValues = new ContentValues();
+        for (String column : entityMap.keySet()) {
+            contentValues.put(column, entityMap.get(column));
+        }
+        return contentValues;
+    }
+
+    private Map<String, String> loadEntityMap(String entityType, SQLiteDatabase database, String entityId) {
+        Map<String, String> entityMap = new HashMap<String, String>();
+        Cursor cursor = database.query(entityType,
+                TABLE_COLUMN_MAP.get(entityType), ID_COLUMN + " =?", new String[]{entityId}, null, null, null);
+        if (cursor.isAfterLast()) {
+            return entityMap;
+        } else {
+            cursor.moveToFirst();
+            for (String column : cursor.getColumnNames()) {
+                entityMap.put(column, cursor.getString(cursor.getColumnIndex(column)));
+            }
+        }
+        cursor.close();
+        return entityMap;
     }
 }

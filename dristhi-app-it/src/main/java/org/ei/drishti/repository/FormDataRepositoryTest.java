@@ -108,7 +108,7 @@ public class FormDataRepositoryTest extends AndroidTestCase {
                 .put("isHighPriority", "yes")
                 .put("bloodGroup", "o-ve")
                 .map();
-        EligibleCouple oldEC = new EligibleCouple("entity id 1", "old wife name", "old husband name", "ec 123", "old village", null, oldDetails);
+        EligibleCouple oldEC = new EligibleCouple("entity id 1", "old wife name", "old husband name", "ec 123", "old village", "sub center", oldDetails);
         eligibleCoupleRepository.add(oldEC);
 
         String entityId = repository.saveEntity("eligible_couple", fieldsJSON);
@@ -119,7 +119,7 @@ public class FormDataRepositoryTest extends AndroidTestCase {
                 .put("isHighPriority", "no")
                 .put("bloodGroup", "o-ve")
                 .map();
-        EligibleCouple expectedEligibleCouple = new EligibleCouple("entity id 1", "asha", "raja", "ec 123", "", null, expectedDetails);
+        EligibleCouple expectedEligibleCouple = new EligibleCouple("entity id 1", "asha", "raja", "ec 123", "", "sub center", expectedDetails);
         assertEquals(expectedEligibleCouple, savedEC);
     }
 

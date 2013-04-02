@@ -1,15 +1,17 @@
 package org.ei.drishti.service;
 
 import com.google.gson.Gson;
-import org.ei.drishti.domain.*;
+import org.ei.drishti.domain.FetchStatus;
+import org.ei.drishti.domain.Response;
 import org.ei.drishti.dto.Action;
-import org.ei.drishti.repository.*;
+import org.ei.drishti.repository.AllReports;
+import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.router.ActionRouter;
 import org.ei.drishti.util.Log;
 
 import java.util.List;
 
-import static java.lang.String.format;
+import static java.text.MessageFormat.format;
 import static org.ei.drishti.domain.FetchStatus.fetchedFailed;
 import static org.ei.drishti.domain.FetchStatus.nothingFetched;
 
@@ -54,7 +56,7 @@ public class ActionService {
             try {
                 handleAction(actionToUse);
             } catch (Exception e) {
-                Log.logError(format("Failed while handling action with target: " + actionToUse.target()));
+                Log.logError(format("Failed while handling action with target: {0} and exception: {1}", actionToUse.target(), e));
             }
         }
     }
