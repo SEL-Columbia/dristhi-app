@@ -94,7 +94,6 @@ enketo.FormModelMapper = function (formDataRepository, queryBuilder) {
                 return formDefinition;
             }
             //TODO: pass all the params to the query builder and let it decide what it wants to use for querying.
-            //TODO: Add source to each field explicitly.
             var entityHierarchy = queryBuilder.loadEntityHierarchy(entities, formDefinition.form.bind_type, params.entityId);
             formDefinition.form.fields.forEach(function (field) {
                 var fieldValue;
