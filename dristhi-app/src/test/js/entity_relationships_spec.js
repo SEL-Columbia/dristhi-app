@@ -29,7 +29,8 @@ describe("Entity Relationships", function () {
                         "from": "ec.id",
                         "to": "mother.ec_id"
                     }
-                ]
+                ],
+                "fields": []
             },
             {
                 "type": "mother",
@@ -48,7 +49,8 @@ describe("Entity Relationships", function () {
                         "from": "mother.id",
                         "to": "child.mother_id"
                     }
-                ]
+                ],
+                "fields": []
             },
             {
                 "type": "child",
@@ -60,8 +62,8 @@ describe("Entity Relationships", function () {
                         "from": "child.mother_id",
                         "to": "mother.id"
                     }
-                ]
-
+                ],
+                "fields": []
             }
         ];
 
@@ -124,7 +126,8 @@ describe("Entity Relationships", function () {
                         "from": "ec.id",
                         "to": "father.ec_id"
                     }
-                ]
+                ],
+                "fields": []
             },
             {
                 "type": "mother",
@@ -143,7 +146,8 @@ describe("Entity Relationships", function () {
                         "from": "mother.id",
                         "to": "child.mother_id"
                     }
-                ]
+                ],
+                "fields": []
             },
             {
                 "type": "father",
@@ -162,7 +166,8 @@ describe("Entity Relationships", function () {
                         "from": "father.id",
                         "to": "child.father_id"
                     }
-                ]
+                ],
+                "fields": []
             },
             {
                 "type": "child",
@@ -181,7 +186,8 @@ describe("Entity Relationships", function () {
                         "from": "child.father_id",
                         "to": "father.id"
                     }
-                ]
+                ],
+                "fields": []
             }
         ];
 
