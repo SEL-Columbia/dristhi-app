@@ -24,11 +24,10 @@ enketo.FormDataController = function (entityRelationshipLoader, formDefinitionLo
     };
     this.save = function (params, data) {
         init(params);
-        formDataRepository.saveFormSubmission(params, data);
-        if (!enketo.hasValue(self.entitiesDef) || self.entitiesDef.length == 0) {
-            return;
+        if (enketo.hasValue(self.entitiesDef) && self.entitiesDef.length != 0) {
+            formModelMapper.mapToEntityAndSave(self.entitiesDef, data);
         }
-        formModelMapper.mapToEntityAndSave(self.entitiesDef, data);
+        formDataRepository.saveFormSubmission(params, data);
     };
     this.delete = function (params) {
         init(params);

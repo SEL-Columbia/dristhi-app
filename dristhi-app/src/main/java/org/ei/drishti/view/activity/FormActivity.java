@@ -15,10 +15,10 @@ import org.ei.drishti.R;
 import org.ei.drishti.util.LogContext;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 
-import static java.lang.String.format;
-import static org.ei.drishti.AllConstants.ENTITY_ID_PARAMETER;
-import static org.ei.drishti.AllConstants.FORM_NAME_PARAMETER;
+import static java.util.UUID.randomUUID;
+import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.util.Log.logError;
 
 public class FormActivity extends Activity {
@@ -85,7 +85,6 @@ public class FormActivity extends Activity {
         });
         webViewSettings.setDatabaseEnabled(true);
         webViewSettings.setDomStorageEnabled(true);
-        //19be5dab-3b71-4ef6-bec1-4cc4cb21ca5a
-        webView.loadUrl(format("file:///android_asset/www/form/template.html?%s=%s&%s=%s", FORM_NAME_PARAMETER, formName, ENTITY_ID_PARAMETER, "df8e94dd-91bd-40d2-a82a-fb7402e97f30"));
+        webView.loadUrl(MessageFormat.format("file:///android_asset/www/form/template.html?{0}={1}&{2}={3}&{4}={5}", FORM_NAME_PARAMETER, formName, ENTITY_ID_PARAMETER, "df8e94dd-91bd-40d2-a82a-fb7402e97f30", ID_PARAM, randomUUID()));
     }
 }

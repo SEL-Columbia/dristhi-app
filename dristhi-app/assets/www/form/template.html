@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../../js/form/libraries-all-min.js"></script>
     <script type="text/javascript" src="../../js/form/webform-drishti-all-min.js"></script>
     <script type="text/javascript" src="../../js/form/util.js"></script>
+    <script type="text/javascript" src="../../js/form/id_factory.js"></script>
     <script type="text/javascript" src="../../js/form/form_model_mapper.js"></script>
     <script type="text/javascript" src="../../js/form/entity_relationship_loader.js"></script>
     <script type="text/javascript" src="../../js/form/entity.js"></script>
@@ -47,13 +48,13 @@
         }
         function getFormParams() {
             //to be parsed from query params
-            return {id: "", formName: getQueryStringParameterByName("formName"), entityId: getQueryStringParameterByName("entityId")};
+            return {id: getQueryStringParameterByName("id"), formName: getQueryStringParameterByName("formName"), entityId: getQueryStringParameterByName("entityId")};
         }
         var formDataRepository = new enketo.FormDataRepository();
         var controller = new enketo.FormDataController(
                 new enketo.EntityRelationshipLoader(),
                 new enketo.FormDefinitionLoader(),
-                new enketo.FormModelMapper(formDataRepository, new enketo.SQLQueryBuilder(formDataRepository)),
+                new enketo.FormModelMapper(formDataRepository, new enketo.SQLQueryBuilder(formDataRepository), new enketo.IdFactory(new enketo.IdFactoryBridge())),
                 formDataRepository);
         var formDefnValues = controller.get(getFormParams());
         logContext.logError("formDefinition with values: " + JSON.stringify(formDefnValues));

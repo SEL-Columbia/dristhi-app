@@ -79,7 +79,7 @@ describe("Form Model Mapper", function () {
         ];
         formDataRepository = new enketo.FormDataRepository();
         queryBuilder = new enketo.SQLQueryBuilder(formDataRepository);
-        formModelMapper = new enketo.FormModelMapper(formDataRepository, queryBuilder);
+        formModelMapper = new enketo.FormModelMapper(formDataRepository, queryBuilder, new enketo.IdFactory(new enketo.IdFactoryBridge()));
     });
 
     it("should get form model for a given form type from the saved form instance when it exists", function () {
@@ -269,30 +269,26 @@ describe("Form Model Mapper", function () {
         var expectedMotherInstance = {
             "field3": "value3",
             "field5": "value5",
+            "id": "new uuid : mother",
             "ec_id": "ec id 1"
         };
         var expectedChildInstance = {
             "field4": "value4",
-            "mother_id": "mother id 1"
+            "id": "new uuid : child",
+            "mother_id": "new uuid : mother"
         };
-        spyOn(formDataRepository, "saveEntity").andCallFake(function (entityType, entity) {
-            if (entityType === "ec" && JSON.stringify(expectedECInstance) === JSON.stringify(entity)) {
-                return "ec id 1";
-            }
-            if (entityType === "mother" && JSON.stringify(expectedMotherInstance) === JSON.stringify(entity)) {
-                return "mother id 1";
-            }
-            if (entityType === "child" && JSON.stringify(expectedChildInstance) === JSON.stringify(entity)) {
-                return "child id 1";
-            }
-            return null;
-        });
+        spyOn(formDataRepository, "saveEntity");
 
         formModelMapper.mapToEntityAndSave(entitiesDef, formModel);
 
         expect(formDataRepository.saveEntity).toHaveBeenCalledWith("ec", expectedECInstance);
         expect(formDataRepository.saveEntity).toHaveBeenCalledWith("mother", expectedMotherInstance);
         expect(formDataRepository.saveEntity).toHaveBeenCalledWith("child", expectedChildInstance);
+        var motherId = formModel.form.fields.filter(function (field) {
+            return field.source === "ec.mother.id";
+        })[0];
+        expect(motherId).toBeDefined();
+        expect(motherId.value).not.toBeNull();
     });
 
     it("should map form model into entities and save self, parent and child.", function () {
@@ -341,30 +337,21 @@ describe("Form Model Mapper", function () {
         };
         var expectedECInstance = {
             "field3": "value3",
-            "field5": "value5"
+            "field5": "value5",
+            "id": "new uuid : ec"
         };
         var expectedMotherInstance = {
             "id": "mother id 1",
             "field2": "value2",
             "field6": "value6",
-            "ec_id": "ec id 1"
+            "ec_id": "new uuid : ec"
         };
         var expectedChildInstance = {
             "field4": "value4",
+            "id": "new uuid : child",
             "mother_id": "mother id 1"
         };
-        spyOn(formDataRepository, "saveEntity").andCallFake(function (entityType, entity) {
-            if (entityType === "ec" && JSON.stringify(expectedECInstance) === JSON.stringify(entity)) {
-                return "ec id 1";
-            }
-            if (entityType === "mother" && JSON.stringify(expectedMotherInstance) === JSON.stringify(entity)) {
-                return "mother id 1";
-            }
-            if (entityType === "child" && JSON.stringify(expectedChildInstance) === JSON.stringify(entity)) {
-                return "child id 1";
-            }
-            return null;
-        });
+        spyOn(formDataRepository, "saveEntity");
 
         formModelMapper.mapToEntityAndSave(entitiesDef, formModel);
 
@@ -419,30 +406,21 @@ describe("Form Model Mapper", function () {
         };
         var expectedECInstance = {
             "field3": "value3",
-            "field5": "value5"
+            "field5": "value5",
+            "id": "new uuid : ec"
         };
         var expectedMotherInstance = {
             "field2": "value2",
-            "ec_id": "ec id 1"
+            "id": "new uuid : mother",
+            "ec_id": "new uuid : ec"
         };
         var expectedChildInstance = {
-            "id": "",
             "field4": "value4",
             "field6": "value6",
-            "mother_id": "mother id 1"
+            "mother_id": "new uuid : mother",
+            "id": "new uuid : child"
         };
-        spyOn(formDataRepository, "saveEntity").andCallFake(function (entityType, entity) {
-            if (entityType === "ec" && JSON.stringify(expectedECInstance) === JSON.stringify(entity)) {
-                return "ec id 1";
-            }
-            if (entityType === "mother" && JSON.stringify(expectedMotherInstance) === JSON.stringify(entity)) {
-                return "mother id 1";
-            }
-            if (entityType === "child" && JSON.stringify(expectedChildInstance) === JSON.stringify(entity)) {
-                return "child id 1";
-            }
-            return null;
-        });
+        spyOn(formDataRepository, "saveEntity");
 
         formModelMapper.mapToEntityAndSave(entitiesDef, formModel);
 

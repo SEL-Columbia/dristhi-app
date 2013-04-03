@@ -5,10 +5,13 @@ import android.database.Cursor;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
+import org.ei.drishti.util.Log;
 
+import java.text.MessageFormat;
 import java.util.*;
 
 import static java.util.Arrays.asList;
+import static java.util.UUID.randomUUID;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 public class FormDataRepository extends DrishtiRepository {
@@ -101,13 +104,14 @@ public class FormDataRepository extends DrishtiRepository {
     }
 
     public String saveEntity(String entityType, String fields) {
+        Log.logError(MessageFormat.format("entityType: {0}, entityFields: {1}", entityType, fields));
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         Map<String, String> updatedFieldsMap = new Gson().fromJson(fields, new TypeToken<Map<String, String>>() {
         }.getType());
         String entityId = updatedFieldsMap.get(ID_PARAM);
         Map<String, String> entityMap;
         if (isBlank(entityId)) {
-            entityId = UUID.randomUUID().toString();
+            entityId = randomUUID().toString();
             updatedFieldsMap.put(ID_PARAM, entityId);
             entityMap = new HashMap<String, String>();
         } else {
@@ -159,9 +163,7 @@ public class FormDataRepository extends DrishtiRepository {
         Map<String, String> entityMap = new HashMap<String, String>();
         Cursor cursor = database.query(entityType,
                 TABLE_COLUMN_MAP.get(entityType), ID_COLUMN + " =?", new String[]{entityId}, null, null, null);
-        if (cursor.isAfterLast()) {
-            return entityMap;
-        } else {
+        if (!cursor.isAfterLast()) {
             cursor.moveToFirst();
             for (String column : cursor.getColumnNames()) {
                 entityMap.put(column, cursor.getString(cursor.getColumnIndex(column)));
@@ -169,5 +171,9 @@ public class FormDataRepository extends DrishtiRepository {
         }
         cursor.close();
         return entityMap;
+    }
+
+    public String generateIdFor(String entityType) {
+        return randomUUID().toString();
     }
 }
