@@ -7,9 +7,15 @@
     <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <link href="../../css/form/styles_drishti.css" media="all" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="../../js/form/libraries-all-min.js"></script>
-    <script type="text/javascript" src="../../js/form/webform-drishti-all-min.js"></script>
+
+    <link href="../../css/form/drishti.css" media="all" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../../js/form/enketo/libraries-all-min.js"></script>
+    <script type="text/javascript" src="../../js/form/enketo/helpers.js"></script>
+    <script type="text/javascript" src="../../js/form/enketo/gui.js"></script>
+    <script type="text/javascript" src="../../js/form/enketo/storage_drishti.js"></script>
+    <script type="text/javascript" src="../../js/form/enketo/form.js"></script>
+    <script type="text/javascript" src="../../js/form/enketo/widgets.js"></script>
+    <script type="text/javascript" src="../../js/form/enketo/webform_drishti.js"></script>
     <script type="text/javascript" src="../../js/form/util.js"></script>
     <script type="text/javascript" src="../../js/form/id_factory.js"></script>
     <script type="text/javascript" src="../../js/form/form_model_mapper.js"></script>
@@ -21,11 +27,12 @@
     <script type="text/javascript" src="../../js/form/sql_query_builder.js"></script>
     <script type="text/javascript" src="../../js/form/form_data_repository.js"></script>
     <script type="text/javascript" src="../../js/form/form_data_controller.js"></script>
+
     <script type="text/javascript">
         logContext.logError("Initialising enketo template.");
         window.onerror = function (m, u, l) {
-            logContext.logError("Javascript Error: , msg: {0}, url: {1}, line: {2}, window: {3}".format(m, u, l, window.location.href));
-            return true
+            logContext.logError("Javascript Error: , msg: {0}, url: {1}, line: {2}".format(m, u, l));
+            return true;
         };
 
         var settings = {};
@@ -34,31 +41,8 @@
         settings['supportEmail'] = '';
         settings['returnURL'] = '';
 
-        /*****  Paste the complete <model> node as the value for jrDataStr, remove linebreaks *****/
         var modelStr = androidContext.getModel();
-        function getQueryStringParameterByName(name) {
-            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-            var regexS = "[\\?&]" + name + "=([^&#]*)";
-            var regex = new RegExp(regexS);
-            var results = regex.exec(window.location.search);
-            if (results == null)
-                return "";
-            else
-                return decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
-        function getFormParams() {
-            //to be parsed from query params
-            return {id: getQueryStringParameterByName("id"), formName: getQueryStringParameterByName("formName"), entityId: getQueryStringParameterByName("entityId")};
-        }
-        var formDataRepository = new enketo.FormDataRepository();
-        var controller = new enketo.FormDataController(
-                new enketo.EntityRelationshipLoader(),
-                new enketo.FormDefinitionLoader(),
-                new enketo.FormModelMapper(formDataRepository, new enketo.SQLQueryBuilder(formDataRepository), new enketo.IdFactory(new enketo.IdFactoryBridge())),
-                formDataRepository);
-        var formDefnValues = controller.get(getFormParams());
-        logContext.logError("formDefinition with values: " + JSON.stringify(formDefnValues));
-        controller.save(getFormParams(), formDefnValues);
+        logContext.logError("Got Model.");
     </script>
 </head>
 <body>
