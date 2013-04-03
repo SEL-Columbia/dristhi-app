@@ -1,0 +1,100 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <link href="../../css/smart_registry/reset.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="../../css/smart_registry/styles.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="../../css/smart_registry/smart_registry.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <script src="../../js/lib/angular.min.js" type="text/javascript"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/smart_registry/fp_register_app.js" type="text/javascript"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+</head>
+<body ng-controller="fpRegisterController">
+<a name"top"></a>
+<div class="header">
+    <div class="headcontainer">
+					<span id="menu"><a href="#">
+                        <img src="../../img/smart_registry/homestacks.png"></a></span>
+        <ul>
+            <li><a class='link' href="#top">Family Planning Register: March 2013</a></li>
+            <li><a id='button' href="#"><img src="../../img/smart_registry/addnew.png" style="margin-top:9px;"> Add new</a>
+            </li>
+            <li><a id='search' href="#">Search</a></li>
+        </ul>
+    </div>
+    <div class="headcontainer2">
+        <ul>
+            <li><a class='sublink' ng-click="openModal(sortOptions)">Sort: <span id="dropchoice">{{currentSortOption.label}}</span><img
+                    src="../../img/smart_registry/subnav-arrow.png" style="float: right; margin-right:10px;"></a></li>
+            <li><a class='sublink' ng-click="openModal(villageOptions)">Village: <span
+                    id="dropchoice">{{villageFilterOption.label}}</span><img
+                    src="../../img/smart_registry/subnav-arrow.png" style="float: right; margin-right:10px;"></a></li>
+            <li><a class='sublink' ng-click="openModal(fpMethodOptions)">FP Method: <span id="dropchoice">{{fpMethodFilterOption.label}}</span><img
+                    src="../../img/smart_registry/subnav-arrow.png" style="float: right; margin-right:10px;"></a></li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+    <div class="tableheaders">
+        <div id="header-name">NAME</div>
+        <div id="header-id">ID NO.</div>
+        <div id="header-due">DUE</div>
+        <div id="header-gplsa">GPLSA</div>
+        <div id="header-method">METHOD</div>
+        <div id="header-sideeffects">SIDE EFFECTS</div>
+    </div>
+</div>
+<div class="content modal-content">
+    <div ng-show="isModalOpen" class="modal" style="margin-top: 100px;">
+
+        <div class="modal-body modal-row">
+            <ul>
+                <li ng-repeat="option in currentOptions.options">
+                    <div ng-click="onModalOptionClick(option, currentOptions.type)">{{option.label}}</div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="table">
+        <div class="row" ng-repeat="patient in patients | filter:filterList | orderBy:sortList">
+            <div id="name">
+                <div id="pic">
+                    <img src="../../img/smart_registry/profile-rounded-pic.png">
+                </div>
+                <div id="names">
+                    <span style="font-size:18px; font-weight: bold;"
+                          ng-class="{'high-priority':patient.isHighPriority}">{{patient.name}}</span>
+                    <span style="font-size: 16px; font-weight: bold;">{{patient.age}}</span><br/>
+										<span style="font-size:15px;">{{patient.husband_name}}<br/>
+										{{patient.village}}</span>
+                </div>
+            </div>
+            <div id="id">
+                EC: <b>{{patient.ec_number}}</b><br/>
+                Thayi: <b>{{patient.thayi}}</b>
+            </div>
+            <div id="due">
+                <span style="font-size:16px; font-weight: bold;">{{patient.days_due}}</span><br/>
+                <span style="color: #595959; line-height: 19px;">{{patient.due_message}}</span>
+            </div>
+            <div id="gplsa">{{patient.num_pregnancies}} {{patient.num_livebirths}} {{patient.num_living_children}}
+                {{patient.num_stillbirths}} {{patient.num_abortions}}
+            </div>
+            <div id="method">
+                <button class="btn" type="button" style="margin-right:8px;">Update</button>
+                <b>{{patient.fp_method}}</b>
+            </div>
+            <div id="sideeffects">
+                <button class="btn" type="button">Side Effects</button>
+                {{patient.side_effects}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer">
+    <p>Footer</p>
+</div>
+</body>
+</html>
