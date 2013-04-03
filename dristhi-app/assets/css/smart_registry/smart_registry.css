@@ -21,8 +21,13 @@
     padding-top: 15px;
     padding-bottom: 15px;
     padding-left: 15px;
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 26px;
+}
+
+.modal-row ul li a {
+    color: #1a1a1a;
+    padding: 15px;
+    border-color: #fff;
 }
 
 .high-priority {

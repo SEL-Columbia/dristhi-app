@@ -73,7 +73,7 @@ function fpRegisterController($scope) {
                 handler: "male_sterilization"
             },
             {
-                label: "Others (LAM, Traditional, Centrocrhoman)",
+                label: "Others",
                 handler: "others"
             }
 
