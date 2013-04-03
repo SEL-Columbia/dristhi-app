@@ -11,11 +11,9 @@
     <script src="../../js/bootstrap.min.js"></script>
 </head>
 <body ng-controller="fpRegisterController">
-<a name"top"></a>
 <div class="header">
     <div class="headcontainer">
-					<span id="menu"><a href="#">
-                        <img src="../../img/smart_registry/homestacks.png"></a></span>
+        <span id="menu"><img src="../../img/smart_registry/homestacks.png"></span>
         <ul>
             <li><a class='link' href="#top">Family Planning Register: March 2013</a></li>
             <li><a id='button' href="#"><img src="../../img/smart_registry/addnew.png" style="margin-top:9px;"> Add new</a>
@@ -44,18 +42,17 @@
         <div id="header-sideeffects">SIDE EFFECTS</div>
     </div>
 </div>
-<div class="content modal-content">
+<div class="content">
     <div ng-show="isModalOpen" class="modal" style="margin-top: 100px;">
-
         <div class="modal-body modal-row">
-            <ul>
+            <ul class="nav nav-tabs nav-stacked">
                 <li ng-repeat="option in currentOptions.options">
                     <div ng-click="onModalOptionClick(option, currentOptions.type)">{{option.label}}</div>
                 </li>
             </ul>
         </div>
-
     </div>
+
     <div class="table">
         <div class="row" ng-repeat="patient in patients | filter:filterList | orderBy:sortList">
             <div id="name">
@@ -91,10 +88,6 @@
             </div>
         </div>
     </div>
-</div>
-
-<div id="footer">
-    <p>Footer</p>
 </div>
 </body>
 </html>

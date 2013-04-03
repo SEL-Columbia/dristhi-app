@@ -208,4 +208,3 @@ function fpRegisterController($scope) {
         $scope.isModalOpen = false;
     };
 }
-

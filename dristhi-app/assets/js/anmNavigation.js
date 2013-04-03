@@ -41,6 +41,12 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
+    var bindToSmartRegistry = function (callbackToRunBeforeAnyAction, identifierOfElement) {
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
+            anmNavigationBridge.delegateToFPSmartRegistry();
+        });
+    }
+
     var runWithCallBack = function (callbackToRunBeforeAnyAction, identifierOfElement, action) {
         $(identifierOfElement).click(function () {
             callbackToRunBeforeAnyAction();
@@ -58,6 +64,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
             bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
             bindToPNCList(callbackToRunBeforeAnyAction, "#pncMenuOption");
             bindToChildList(callbackToRunBeforeAnyAction, "#childMenuOption");
+            bindToSmartRegistry(callbackToRunBeforeAnyAction, "#fpSmartRegistryOption");
         }
     };
 }
@@ -89,6 +96,9 @@ function ANMNavigationBridge() {
         },
         delegateToReports: function () {
             return anmNavigationContext.startReports();
+        },
+        delegateToFPSmartRegistry: function () {
+            window.location = "smart_registry/fp_register.html";
         }
     };
 }
@@ -121,6 +131,9 @@ function FakeANMNavigationContext() {
         },
         startReports: function () {
             window.location.href = "reports.html";
+        },
+        startFPSmartRegistry: function () {
+            window.location = "smart_registry/fp_register.html";
         }
     }
 }

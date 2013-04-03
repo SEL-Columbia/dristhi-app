@@ -138,13 +138,12 @@ a:focus {
 }
 
 .tableheaders {
-    font-size: 13px;
+    font-size: 15px;
     float: left;
-    margin-bottom: 4px;
+    margin-bottom: 10px;
     color: #555555;
     font-weight: bold;
     letter-spacing: .1em;
-
 }
 
 .tableheaders #header-name {
@@ -225,7 +224,6 @@ a:focus {
     border-radius: 3px;
     color: #fff;
     font-size: 14px;
-    font-weight: medium;
     font-style: normal;
     text-shadow: 0pt 1pt 0pt rgb(0, 0, 0);
     text-align: center;
@@ -266,6 +264,7 @@ a:focus {
 .headcontainer2 ul {
     float: left;
     height: 56px;
+    margin: 0px;
 
 }
 
@@ -289,7 +288,7 @@ a:focus {
     font-weight: normal;
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-left: 15px;
+    margin-left: 10px;
 }
 
 .content {
@@ -310,11 +309,12 @@ a:focus {
     border-radius: 3px 3px 3px 3px;
 }
 
-.row {
+.table .row {
     border-bottom: 1px solid #d9d9d9;
     height: 72px;
     padding-top: 7px;
     padding-left: 5px;
+    margin-left: 0px;
 }
 
 .row #name {
@@ -390,18 +390,6 @@ a:focus {
     font-size: 14px;
     line-height: 16px;
     height: 72px;
-}
-
-#footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 9998;
-    height: 48px;
-    width: 100%;
-    background-color: #CCC;
-    background-image: url('../../img/smart_registry/bottom-android.png');
-    background-repeat: no-repeat;
 }
 
 .btn {
