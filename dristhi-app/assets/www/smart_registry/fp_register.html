@@ -34,17 +34,17 @@
         </ul>
     </div>
     <div class="clear"></div>
-    <div class="tableheaders">
-        <div id="header-name">NAME</div>
-        <div id="header-id">ID NO.</div>
-        <div id="header-due">DUE</div>
-        <div id="header-gplsa">GPLSA</div>
-        <div id="header-method">METHOD</div>
-        <div id="header-sideeffects">SIDE EFFECTS</div>
+    <div class="tableheaders row-fluid">
+        <div class="span3">NAME</div>
+        <div class="span1">ID NO.</div>
+        <div class="span1">DUE</div>
+        <div class="span1">GPLSA</div>
+        <div class="span3">METHOD</div>
+        <div class="span2">SIDE EFFECTS</div>
     </div>
 </div>
-<div class="content">
-    <div ng-show="isModalOpen" class="modal" tabindex="-1" role="dialog" style="margin-top: 100px;">
+<div class="content-smart-registry">
+    <div ng-show="isModalOpen" class="modal" style="margin-top: 100px;">
         <div class="modal-body modal-row">
             <ul class="nav nav-tabs nav-stacked">
                 <li ng-repeat="option in currentOptions.options">
@@ -55,9 +55,9 @@
         </div>
     </div>
 
-    <div class="table">
-        <div class="row" ng-repeat="patient in patients | filter:filterList | orderBy:sortList">
-            <div id="name">
+    <div class="container-fluid client-list">
+        <div class="row-fluid client" ng-repeat="patient in patients | filter:filterList | orderBy:sortList">
+            <div id="name" class="span3 line-right">
                 <div id="pic">
                     <img src="../../img/smart_registry/profile-rounded-pic.png">
                 </div>
@@ -69,22 +69,22 @@
 										{{patient.village}}</span>
                 </div>
             </div>
-            <div id="id">
+            <div id="id" class="span1 line-right">
                 EC: <b>{{patient.ec_number}}</b><br/>
                 Thayi: <b>{{patient.thayi}}</b>
             </div>
-            <div id="due">
+            <div id="due" class="span1 line-right">
                 <span style="font-size:16px; font-weight: bold;">{{patient.days_due}}</span><br/>
                 <span style="color: #595959; line-height: 19px;">{{patient.due_message}}</span>
             </div>
-            <div id="gplsa">{{patient.num_pregnancies}} {{patient.num_livebirths}} {{patient.num_living_children}}
+            <div id="gplsa" class="span1 line-right">{{patient.num_pregnancies}} {{patient.num_livebirths}} {{patient.num_living_children}}
                 {{patient.num_stillbirths}} {{patient.num_abortions}}
             </div>
-            <div id="method">
-                <button class="btn" type="button" style="margin-right:8px;">Update</button>
+            <div id="method" class="span3 line-right">
                 <b>{{patient.fp_method}}</b>
+                <button class="btn" type="button" style="margin-right:8px;">Update</button>
             </div>
-            <div id="sideeffects">
+            <div id="sideeffects" class="span2">
                 <button class="btn" type="button">Side Effects</button>
                 {{patient.side_effects}}
             </div>

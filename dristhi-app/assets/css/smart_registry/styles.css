@@ -72,6 +72,7 @@ a:focus {
     font-size: 15px;
     float: left;
     margin-bottom: 10px;
+    margin-left: 30px;
     color: #555555;
     font-weight: bold;
     letter-spacing: .1em;
@@ -110,8 +111,6 @@ a:focus {
 .headcontainer2 {
     width: 100%;
     height: 56px;
-    margin-left: auto;
-    margin-right: auto;
     background-color: rgb(73, 73, 73);
     margin-top: 48px;;
     padding-top: 10px;
@@ -152,22 +151,31 @@ a:focus {
     margin-left: 10px;
 }
 
-.content {
-    width: 100%;
+.content-smart-registry {
     text-align: left;
     margin-top: 135px;
+    padding-top: 2px;
     background-color: #e6e6e6;
 }
 
-.table {
-    color: #0d0d0d;
+.client-list {
     background-color: #FFF;
-    width: 994px;
-    z-index: 1000;
+    color: #0d0d0d;
     margin-left: 10px;
-    padding: 5px;
-    margin-bottom: 15px;
+    margin-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     border-radius: 3px 3px 3px 3px;
+}
+.line-right {
+    border-right: 1px solid #d9d9d9;
+    height: 100%;
+}
+.client {
+    border-bottom: 1px solid #d9d9d9;
+    height: 72px;
+    padding-left: 5px;
+    margin-top: 5px;
 }
 
 .table .row {
@@ -176,6 +184,7 @@ a:focus {
     padding-top: 7px;
     padding-left: 5px;
     margin-left: 0px;
+    width: 100%;
 }
 
 .row #name {
@@ -184,19 +193,19 @@ a:focus {
     line-height: 19px;
 }
 
-.row #pic {
+#pic {
     width: 60px;
     height: 60px;
     float: left;
     background-image: url("../../img/smart_registry/profilepic.png");
     background-size: 60px;
     background-repeat: no-repeat;
-    margin: 0;
     padding: 0;
+    margin-right: 5px;
 }
 
 .row #names {
-    width: 146px;
+    width: 106px;
     float: left;
     margin-left: 10px;
     overflow: hidden;
@@ -244,43 +253,13 @@ a:focus {
 }
 
 .row #sideeffects {
-    width: 197px;
+    width: 157px;
     float: left;
     padding-left: 10px;
     border-left: 1px solid #d9d9d9;
     font-size: 14px;
     line-height: 16px;
     height: 72px;
-}
-
-.btn {
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    width: 64px;
-    height: 48px;
-    background-color: #F5F5F5;
-    background-image: -moz-linear-gradient(center top, #FFFFFF, #E6E6E6);
-    background-repeat: repeat-x;
-    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
-    border-radius: 4px 4px 4px 4px;
-    border-style: solid;
-    border-width: 1px;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-    color: #555555;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 13px;
-    line-height: 15px;
-    margin-top: 6px;
-    margin-right: 2px;
-    margin-bottom: 0;
-    text-align: center;
-    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-    vertical-align: middle;
-    float: right;
 }
 
 .clear {

@@ -1,4 +1,80 @@
 function fpRegisterController($scope) {
+    $scope.patients = [
+        {
+            village: 'Chikkabherya',
+            name: 'Carolyn',
+            thayi: '4',
+            ec_number: '314',
+            age: '24',
+            husband_name: 'Reger_H',
+            fp_method: 'ocp',
+            fp_method_message: 'lorem ipsum',
+            side_effects: 'poops a lot',
+            num_pregnancies: '3',
+            num_livebirths: '2',
+            num_living_children: '1',
+            num_stillbirths: '1',
+            num_abortions: '1',
+            days_due: '3',
+            due_message: 'Follow Up',
+            isHighPriority: false
+        },
+        {
+            village: 'Chikkabherya',
+            name: 'Carolyn1',
+            thayi: '1',
+            ec_number: '31',
+            age: '30',
+            husband_name: 'Reger_H',
+            fp_method: 'iud',
+            side_effects: 'poops a lot',
+            num_pregnancies: '3',
+            num_livebirths: '2',
+            num_living_children: '1',
+            num_stillbirths: '1',
+            num_abortions: '2',
+            days_due: '3',
+            due_message: 'Follow Up',
+            isHighPriority: false
+        },
+        {
+            village: 'Bherya',
+            name: 'Kiran',
+            thayi: '1',
+            ec_number: '31',
+            age: '30',
+            husband_name: 'Reger_H',
+            fp_method: 'iud',
+            side_effects: 'poops a lot',
+            num_pregnancies: '3',
+            num_livebirths: '2',
+            num_living_children: '1',
+            num_stillbirths: '1',
+            num_abortions: '2',
+            days_due: '3',
+            due_message: 'Follow Up',
+            isHighPriority: true
+        },
+        {
+            village: 'Bherya',
+            name: 'Roger1',
+            thayi: '1',
+            ec_number: '31',
+            age: '30',
+            husband_name: 'Reger_H',
+            fp_method: 'iud',
+            side_effects: 'poops a lot',
+            num_pregnancies: '3',
+            num_livebirths: '2',
+            num_living_children: '1',
+            num_stillbirths: '1',
+            num_abortions: '2',
+            days_due: '3',
+            due_message: 'Follow Up',
+            isHighPriority: false
+        }
+    ];
+
     $scope.sortOptions = {
         type: "sort",
         options: [
@@ -11,7 +87,12 @@ function fpRegisterController($scope) {
                 label: "HP",
                 handler: "hp"
             }
-        ]};
+        ]
+    };
+    $scope.defaultSortOption = $scope.sortOptions.options[0];
+    $scope.currentSortOption = $scope.defaultSortOption;
+    $scope.sortList = $scope.sortByName;
+
     $scope.villageOptions = {
         type: "filterVillage",
         options: [
@@ -37,10 +118,12 @@ function fpRegisterController($scope) {
                 else {
                     return 0;
                 }
-            })};
+            }
+        )
+    };
     $scope.defaultVillage = $scope.villageOptions.options[0];
-    $scope.villageFilterOption = $scope.defaultVillage;
 
+    $scope.villageFilterOption = $scope.defaultVillage;
     $scope.fpMethodOptions = {
         type: "filterFPMethod",
         options: [
@@ -99,71 +182,21 @@ function fpRegisterController($scope) {
         }
         return villageCondition && searchCondition && fpMethodCondition;
     };
+
     $scope.currentOptions = null;
+
     $scope.isModalOpen = false;
 
-    $scope.defaultSortOption = $scope.sortOptions.options[0];
-    $scope.currentSortOption = $scope.defaultSortOption;
-    $scope.sortList = $scope.sortByName;
-    $scope.patients = [
-        {
-            village: 'Chikkabherya',
-            name: 'Carolyn',
-            thayi: '4',
-            ec_number: '314',
-            age: '24',
-            husband_name: 'Reger_H',
-            fp_method: 'ocp',
-            fp_method_message: 'lorem ipsum',
-            side_effects: 'poops a lot',
-            num_pregnancies: '3',
-            num_livebirths: '2',
-            num_living_children: '1',
-            num_stillbirths: '1',
-            num_abortions: '1',
-            days_due: '3',
-            due_message: 'Follow Up',
-            isHighPriority: false
-        },
-        {
-            village: 'Bherya',
-            name: 'Roger',
-            thayi: '1',
-            ec_number: '31',
-            age: '30',
-            husband_name: 'Reger_H',
-            fp_method: 'iud',
-            side_effects: 'poops a lot',
-            num_pregnancies: '3',
-            num_livebirths: '2',
-            num_living_children: '1',
-            num_stillbirths: '1',
-            num_abortions: '2',
-            days_due: '3',
-            due_message: 'Follow Up',
-            isHighPriority: true
-        },
-        {
-            village: 'Bherya',
-            name: 'Roger1',
-            thayi: '1',
-            ec_number: '31',
-            age: '30',
-            husband_name: 'Reger_H',
-            fp_method: 'iud',
-            side_effects: 'poops a lot',
-            num_pregnancies: '3',
-            num_livebirths: '2',
-            num_living_children: '1',
-            num_stillbirths: '1',
-            num_abortions: '2',
-            days_due: '3',
-            due_message: 'Follow Up',
-            isHighPriority: false
+    $scope.onModalOptionClick = function (option, type) {
+        if (type === "sort") {
+            $scope.sort(option);
+        } else if (type === "filterVillage") {
+            $scope.filterVillage(option);
+        } else if (type === "filterFPMethod") {
+            $scope.filterFPMethod(option);
         }
-    ];
-
-    $scope.villages = ["Bherya", "Chikkabherya"];
+        $scope.isModalOpen = false;
+    };
 
     $scope.openModal = function (options) {
         $scope.isModalOpen = true;
@@ -178,6 +211,7 @@ function fpRegisterController($scope) {
             $scope.sortList = $scope.sortByPriority;
         }
     };
+
     $scope.filterVillage = function (option) {
         $scope.villageFilterOption = option;
     };
@@ -193,16 +227,6 @@ function fpRegisterController($scope) {
     $scope.filterFPMethod = function (option) {
         $scope.fpMethodFilterOption = option;
     }
-    $scope.onModalOptionClick = function (option, type) {
-        if (type === "sort") {
-            $scope.sort(option);
-        } else if (type === "filterVillage") {
-            $scope.filterVillage(option);
-        } else if (type === "filterFPMethod") {
-            $scope.filterFPMethod(option);
-        }
-        $scope.isModalOpen = false;
-    };
 
     $scope.close = function () {
         $scope.isModalOpen = false;
