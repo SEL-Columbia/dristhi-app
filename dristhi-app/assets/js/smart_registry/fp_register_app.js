@@ -6,12 +6,11 @@ function fpRegisterController($scope) {
             thayi: '4',
             ec_number: '314',
             age: '24',
-            husband_name: 'Reger_H',
-            fp_method: 'ocp',
-            fp_method_message: 'lorem ipsum',
+            husbanad_name: 'Reger_H',
+            fp_method: '',
             side_effects: 'poops a lot',
             num_pregnancies: '3',
-            num_livebirths: '2',
+            parity: '2',
             num_living_children: '1',
             num_stillbirths: '1',
             num_abortions: '1',
@@ -29,8 +28,8 @@ function fpRegisterController($scope) {
             fp_method: 'iud',
             side_effects: 'poops a lot',
             num_pregnancies: '3',
-            num_livebirths: '2',
-            num_living_children: '1',
+            parity: '2',
+            num_living_children: '2',
             num_stillbirths: '1',
             num_abortions: '2',
             days_due: '3',
@@ -44,10 +43,10 @@ function fpRegisterController($scope) {
             ec_number: '31',
             age: '30',
             husband_name: 'Reger_H',
-            fp_method: 'iud',
+            fp_method: '',
             side_effects: 'poops a lot',
             num_pregnancies: '3',
-            num_livebirths: '2',
+            parity: '2',
             num_living_children: '1',
             num_stillbirths: '1',
             num_abortions: '2',
@@ -65,8 +64,26 @@ function fpRegisterController($scope) {
             fp_method: 'iud',
             side_effects: 'poops a lot',
             num_pregnancies: '3',
-            num_livebirths: '2',
-            num_living_children: '1',
+            parity: '2',
+            num_living_children: '2',
+            num_stillbirths: '1',
+            num_abortions: '2',
+            days_due: '3',
+            due_message: 'Follow Up',
+            isHighPriority: false
+        },
+        {
+            village: 'Bherya',
+            name: 'Larry',
+            thayi: '66',
+            ec_number: '568',
+            age: 'age',
+            husband_name: 'Weya',
+            fp_method: 'condom',
+            side_effects: 'poops a lot',
+            num_pregnancies: '3',
+            parity: '2',
+            num_living_children: '2',
             num_stillbirths: '1',
             num_abortions: '2',
             days_due: '3',
@@ -136,85 +153,177 @@ function fpRegisterController($scope) {
     $scope.defaultVillage = $scope.villageOptions.options[0];
     $scope.villageFilterOption = $scope.defaultVillage;
 
-    $scope.fpMethodOptions = {
+    $scope.defaultFPOptions = $scope.ecsWithFPMethodFilterOptions;
+    $scope.ecsWithFPMethodFilterOptions = {
         type: "filterFPMethod",
         options: [
             {
                 label: "All Methods",
-                handler: ""
+                id: "allECsWithFP",
+                handler: "allECsWithFP"
             },
             {
                 label: "Condom",
-                handler: "condom"
+                id: "condom",
+                handler: "fpMethodFilter"
             },
             {
                 label: "DMPA/Injectable",
-                handler: "dmpa_injectable"
+                id: "dmpa_injectable",
+                handler: "fpMethodFilter"
             },
             {
                 label: "IUD",
-                handler: "iud"
+                id: "iud",
+                handler: "fpMethodFilter"
             },
             {
                 label: "OCP",
-                handler: "ocp"
+                id: "ocp",
+                handler: "fpMethodFilter"
             },
             {
                 label: "Female Sterilization",
-                handler: "female_sterilization"
+                id: "female_sterilization",
+                handler: "fpMethodFilter"
             },
             {
                 label: "Male Sterilization",
-                handler: "male_sterilization"
+                id: "male_sterilization",
+                handler: "fpMethodFilter"
             },
             {
                 label: "Others",
-                handler: "others"
+                id: "others",
+                handler: "otherFpMethodFilter"
             }
 
         ]
     };
-    $scope.defaultFPMethodOption = $scope.fpMethodOptions.options[0];
+
+    $scope.ecsWithoutFPMethodFilterOptions = {
+        type: "filterFPMethod",
+        options: [
+            {
+                label: "All EC",
+                id: "allECsWithoutFP",
+                handler: "allECsWithoutFP"
+            },
+            {
+                label: "High Priority",
+                id: "hp",
+                handler: "highPriorityFilter"
+            },
+            {
+                label: "2+ Children",
+                id: "2+_Children",
+                handler: "twoPlusChildrenFilter"
+            },
+            {
+                label: "1 Child",
+                id: "1_Child",
+                handler: "oneChildFilter"
+            }
+
+        ]
+    };
+
+    $scope.defaultFPMethodOption = $scope.ecsWithFPMethodFilterOptions.options[0];
     $scope.fpMethodFilterOption = $scope.defaultFPMethodOption;
     $scope.filterVillage = function (option) {
         $scope.villageFilterOption = option;
     };
+
     $scope.filterFPMethod = function (option) {
         $scope.fpMethodFilterOption = option;
     };
 
     $scope.searchFilterString = "";
 
-    $scope.filterList = function (xpatient) {
+    $scope.filterList = function (client) {
         var searchCondition = true;
         var villageCondition = true;
         var fpMethodCondition = true;
-        if ($scope.searchFilterString != "") {
-            searchCondition = (patient.name.toUpperCase().indexOf($scope.searchFilterString.toUpperCase()) === 0
-                || patient.ec_number.toUpperCase().indexOf($scope.searchFilterString.toUpperCase()) === 0
-                || patient.thayi.toUpperCase().indexOf($scope.searchFilterString.toUpperCase()) === 0);
+        var fpPriorityCondition = true;
+        if ($scope.searchFilterString) {
+            searchCondition = (client.name.toUpperCase().indexOf($scope.searchFilterString.toUpperCase()) === 0
+                || client.ec_number.toUpperCase().indexOf($scope.searchFilterString.toUpperCase()) === 0
+                || client.thayi.toUpperCase().indexOf($scope.searchFilterString.toUpperCase()) === 0);
         }
-        if ($scope.villageFilterOption.handler != "") {
-            villageCondition = (patient.village == $scope.villageFilterOption.handler);
+        if ($scope.villageFilterOption.handler) {
+            villageCondition = (client.village == $scope.villageFilterOption.handler);
         }
-        if ($scope.fpMethodFilterOption.handler != "") {
-            fpMethodCondition = (patient.fp_method == $scope.fpMethodFilterOption.handler);
+        if ($scope.fpMethodFilterOption.handler) {
+            var handlerMethod = $scope[$scope.fpMethodFilterOption.handler];
+            fpMethodCondition = handlerMethod(client, $scope.fpMethodFilterOption.id);
         }
-        return villageCondition && searchCondition && fpMethodCondition;
+        return villageCondition && searchCondition && fpMethodCondition && fpPriorityCondition;
+    };
+
+    $scope.highPriorityFilter = function (client) {
+        return !doesClientUseFpMethod(client) && client.isHighPriority;
+    };
+
+    $scope.twoPlusChildrenFilter = function (client) {
+        return !doesClientUseFpMethod(client) && client.num_living_children >= "2";
+    };
+
+    $scope.oneChildFilter = function (client) {
+        return !doesClientUseFpMethod(client) && client.num_living_children === "1";
+    };
+
+    $scope.fpMethodFilter = function (client, optionId) {
+        return client.fp_method === optionId;
+    };
+
+    $scope.otherFpMethodFilter = function (client) {
+        return client.fp_method === "lam"
+            || client.fp_method === "traditional"
+            || client.fp_method === "centchroman";
+    };
+
+    $scope.allECsWithoutFP = function (client) {
+        return !doesClientUseFpMethod(client);
+    };
+
+    $scope.allECsWithFP = function (client) {
+        return doesClientUseFpMethod(client);
+    };
+
+    var doesClientUseFpMethod = function (client) {
+        return (client.fp_method && client.fp_method !== "none");
     };
 
     $scope.currentOptions = null;
 
     $scope.isModalOpen = false;
 
+    $scope.isFPModalOpen = false;
+    $scope.isFPMethodsOptionSelected = true;
+
+    $scope.selectFPMethodOption = function (fpMethodOptionSelected) {
+        $scope.isFPMethodsOptionSelected = fpMethodOptionSelected;
+        $scope.isFPPrioritizationOptionSelected = !fpMethodOptionSelected;
+    };
+
     $scope.onModalOptionClick = function (option, type) {
         $scope[type](option);
         $scope.isModalOpen = false;
     };
 
-    $scope.openModal = function (options) {
+    $scope.onFPModalOptionClick = function (option, type) {
+        $scope[type](option);
+        $scope.isFPModalOpen = false;
+    };
+
+    $scope.openModal = function (option) {
         $scope.isModalOpen = true;
-        $scope.currentOptions = options;
+        $scope.currentOptions = option;
+    };
+
+    $scope.openFPModal = function (option) {
+        $scope.isFPModalOpen = true;
+        $scope.currentOptions = option;
     };
 
     $scope.close = function () {

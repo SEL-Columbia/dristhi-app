@@ -32,8 +32,12 @@
             <li><a class='sublink' ng-click="openModal(villageOptions)">Village: <span
                     id="dropchoice">{{villageFilterOption.label}}</span><img
                     src="../../img/smart_registry/subnav-arrow.png" style="float: right; margin-right:10px;"></a></li>
-            <li><a class='sublink' ng-click="openModal(fpMethodOptions)">FP Method: <span id="dropchoice">{{fpMethodFilterOption.label}}</span><img
-                    src="../../img/smart_registry/subnav-arrow.png" style="float: right; margin-right:10px;"></a></li>
+            <li>
+                <a class='sublink' ng-click="openFPModal(ecsWithFPMethodFilterOptions)">FP Method:
+                    <span id="dropchoice">{{fpMethodFilterOption.label}}</span><img
+                    src="../../img/smart_registry/subnav-arrow.png" style="float: right; margin-right:10px;">
+                </a>
+            </li>
         </ul>
     </div>
     <div class="clear"></div>
@@ -58,38 +62,67 @@
         </div>
     </div>
 
+    <div ng-show="isFPModalOpen" class="modal" style="margin-top: 100px;">
+        <div class="modal-body modal-row">
+            <ul class="nav nav-pills">
+                <li class="active">
+                    <a ng-click="selectFPMethodOption(true)" href="#fp-method-options" data-toggle="tab">FP Methods</a>
+                </li>
+                <li>
+                    <a ng-click="selectFPMethodOption(false)" href="#fp-prioritization-options" data-toggle="tab">FP Prioritization</a>
+                </li>
+            </ul>
+            <div id="fp-method-options">
+              <ul ng-show="isFPMethodsOptionSelected" class="nav nav-tabs nav-stacked">
+                  <li ng-repeat="option in ecsWithFPMethodFilterOptions.options">
+                    <a href="#" ng-click="onFPModalOptionClick(option, currentOptions.type)">{{option.label}}<i
+                            class="icon-chevron-right" style="float: right"></i></a>
+                  </li>
+              </ul>
+            </div>
+            <div id="fp-prioritization-options">
+                <ul ng-show="!isFPMethodsOptionSelected" class="nav nav-tabs nav-stacked">
+                    <li ng-repeat="option in ecsWithoutFPMethodFilterOptions.options">
+                        <a href="#" ng-click="onFPModalOptionClick(option, currentOptions.type)">{{option.label}}<i
+                                class="icon-chevron-right" style="float: right"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid client-list">
-        <div class="row-fluid client" ng-repeat="patient in patients | filter:filterList | orderBy:sortList">
+        <div class="row-fluid client" ng-repeat="client in clients | filter:filterList | orderBy:sortList">
             <div id="name" class="span3 line-right">
                 <div id="pic">
                     <img src="../../img/smart_registry/profile-rounded-pic.png">
                 </div>
                 <div id="names">
                     <span style="font-size:18px; font-weight: bold;"
-                          ng-class="{'high-priority':patient.isHighPriority}">{{patient.name}}</span>
-                    <span style="font-size: 16px; font-weight: bold;">{{patient.age}}</span><br/>
-										<span style="font-size:15px;">{{patient.husband_name}}<br/>
-										{{patient.village}}</span>
+                          ng-class="{'high-priority':client.isHighPriority}">{{client.name}}</span>
+                    <span style="font-size: 16px; font-weight: bold;">{{client.age}}</span><br/>
+										<span style="font-size:15px;">{{client.husband_name}}<br/>
+										{{client.village}}</span>
                 </div>
             </div>
             <div id="id" class="span1 line-right">
-                EC: <b>{{patient.ec_number}}</b><br/>
-                Thayi: <b>{{patient.thayi}}</b>
+                EC: <b>{{client.ec_number}}</b><br/>
+                Thayi: <b>{{client.thayi}}</b>
             </div>
             <div id="due" class="span1 line-right">
-                <span style="font-size:16px; font-weight: bold;">{{patient.days_due}}</span><br/>
-                <span style="color: #595959; line-height: 19px;">{{patient.due_message}}</span>
+                <span style="font-size:16px; font-weight: bold;">{{client.days_due}}</span><br/>
+                <span style="color: #595959; line-height: 19px;">{{client.due_message}}</span>
             </div>
-            <div id="gplsa" class="span1 line-right">{{patient.num_pregnancies}} {{patient.num_livebirths}} {{patient.num_living_children}}
-                {{patient.num_stillbirths}} {{patient.num_abortions}}
+            <div id="gplsa" class="span1 line-right">{{client.num_pregnancies}} {{client.parity}} {{client.num_living_children}}
+                {{client.num_stillbirths}} {{client.num_abortions}}
             </div>
             <div id="method" class="span3 line-right">
-                <b>{{patient.fp_method}}</b>
+                <b>{{client.fp_method}}</b>
                 <button class="btn" type="button" style="margin-right:8px;">Update</button>
             </div>
             <div id="sideeffects" class="span2">
                 <button class="btn" type="button">Side Effects</button>
-                {{patient.side_effects}}
+                {{client.side_effects}}
             </div>
         </div>
     </div>
