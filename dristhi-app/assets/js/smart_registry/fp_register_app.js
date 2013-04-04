@@ -80,12 +80,11 @@ function fpRegisterController($scope) {
         options: [
             {
                 label: "Name (A to Z)",
-                handler: "name"
-
+                handler: "sortByName"
             },
             {
                 label: "HP",
-                handler: "hp"
+                handler: "sortByPriority"
             }
         ]
     };
@@ -122,8 +121,8 @@ function fpRegisterController($scope) {
         )
     };
     $scope.defaultVillage = $scope.villageOptions.options[0];
-
     $scope.villageFilterOption = $scope.defaultVillage;
+
     $scope.fpMethodOptions = {
         type: "filterFPMethod",
         options: [
@@ -205,11 +204,7 @@ function fpRegisterController($scope) {
 
     $scope.sort = function (option) {
         $scope.currentSortOption = option;
-        if (option.handler == "name") {
-            $scope.sortList = $scope.sortByName;
-        } else if (option.handler == "hp") {
-            $scope.sortList = $scope.sortByPriority;
-        }
+        $scope.sortList = $scope[option.handler];
     };
 
     $scope.filterVillage = function (option) {
@@ -226,7 +221,7 @@ function fpRegisterController($scope) {
 
     $scope.filterFPMethod = function (option) {
         $scope.fpMethodFilterOption = option;
-    }
+    };
 
     $scope.close = function () {
         $scope.isModalOpen = false;
