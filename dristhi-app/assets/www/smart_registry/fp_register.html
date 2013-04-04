@@ -18,14 +18,17 @@
             <a class="brand" href="#">Family Planning Register: March 2013</a>
             <a class="btn add-new-btn btn-primary"><i class="icon-plus icon-white"></i> Add New</a>
             <form class="navbar-search pull-right">
-                <input type="text" class="search-query" placeholder="Search">
+                <input type="text" class="search-query" placeholder="Search" ng-model="searchFilterString">
             </form>
         </div>
     </div>
     <div class="headcontainer2">
         <ul>
-            <li><a class='sublink' ng-click="openModal(sortOptions)">Sort: <span id="dropchoice">{{currentSortOption.label}}</span><img
-                    src="../../img/smart_registry/subnav-arrow.png" style="float: right; margin-right:10px;"></a></li>
+            <li>
+                <a class='sublink' ng-click="openModal(sortOptions)">Sort: <span id="dropchoice">{{currentSortOption.label}}</span><img
+                    src="../../img/smart_registry/subnav-arrow.png" style="float: right; margin-right:10px;">
+                </a>
+            </li>
             <li><a class='sublink' ng-click="openModal(villageOptions)">Village: <span
                     id="dropchoice">{{villageFilterOption.label}}</span><img
                     src="../../img/smart_registry/subnav-arrow.png" style="float: right; margin-right:10px;"></a></li>

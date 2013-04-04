@@ -1,5 +1,5 @@
 function fpRegisterController($scope) {
-    $scope.patients = [
+    $scope.clients = [
         {
             village: 'Chikkabherya',
             name: 'Carolyn',
@@ -185,12 +185,14 @@ function fpRegisterController($scope) {
 
     $scope.searchFilterString = "";
 
-    $scope.filterList = function (patient) {
+    $scope.filterList = function (xpatient) {
         var searchCondition = true;
         var villageCondition = true;
         var fpMethodCondition = true;
         if ($scope.searchFilterString != "") {
-            searchCondition = (patient.name == $scope.searchFilterString);
+            searchCondition = (patient.name.toUpperCase().indexOf($scope.searchFilterString.toUpperCase()) === 0
+                || patient.ec_number.toUpperCase().indexOf($scope.searchFilterString.toUpperCase()) === 0
+                || patient.thayi.toUpperCase().indexOf($scope.searchFilterString.toUpperCase()) === 0);
         }
         if ($scope.villageFilterOption.handler != "") {
             villageCondition = (patient.village == $scope.villageFilterOption.handler);
