@@ -5,16 +5,19 @@ import android.app.ProgressDialog;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import org.ei.drishti.R;
 import org.ei.drishti.sync.SyncAfterFetchListener;
 import org.ei.drishti.sync.SyncProgressIndicator;
 import org.ei.drishti.sync.UpdateActionsTask;
+import org.ei.drishti.util.Log;
 import org.ei.drishti.view.InternationalizationContext;
 import org.ei.drishti.view.controller.NavigationController;
 import org.ei.drishti.view.controller.UpdateController;
+
+import java.text.MessageFormat;
 
 public abstract class SecuredWebActivity extends SecuredActivity {
     protected WebView webView;
@@ -98,10 +101,16 @@ public abstract class SecuredWebActivity extends SecuredActivity {
                 if (progress == 100 && progressDialog.isShowing())
                     progressDialog.dismiss();
             }
+
+            @Override
+            public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
+                Log.logInfo(MessageFormat.format("Javascript Log. Message: {0}, lineNumber: {1}, sourceId, {2}", consoleMessage.message(),
+                        consoleMessage.lineNumber(), consoleMessage.sourceId()));
+                return true;
+            }
         });
 
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.setWebViewClient(new WebViewClient());
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.addJavascriptInterface(new NavigationController(this, context.anmService()), "navigationContext");
         webView.addJavascriptInterface(new InternationalizationContext(getResources()), "internationalizationContext");

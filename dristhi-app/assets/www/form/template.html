@@ -29,9 +29,9 @@
     <script type="text/javascript" src="../../js/form/form_data_controller.js"></script>
 
     <script type="text/javascript">
-        logContext.logError("Initialising enketo template.");
+        console.log("Initialising enketo template.");
         window.onerror = function (m, u, l) {
-            logContext.logError("Javascript Error: , msg: {0}, url: {1}, line: {2}".format(m, u, l));
+            console.log("Javascript Error: , msg: {0}, url: {1}, line: {2}".format(m, u, l));
             return true;
         };
 
@@ -42,7 +42,7 @@
         settings['returnURL'] = '';
 
         var modelStr = androidContext.getModel();
-        logContext.logError("Got Model.");
+        console.log("Got Model.");
     </script>
 </head>
 <body>
