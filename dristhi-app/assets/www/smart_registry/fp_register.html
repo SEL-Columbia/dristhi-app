@@ -116,14 +116,8 @@
             <div id="gplsa" class="span1 line-right">{{client.num_pregnancies}} {{client.parity}} {{client.num_living_children}}
                 {{client.num_stillbirths}} {{client.num_abortions}}
             </div>
-            <div id="method" class="span3 line-right">
-                <b>{{client.fp_method}}</b>
-                <button class="btn" type="button" style="margin-right:8px;">Update</button>
-            </div>
-            <div id="sideeffects" class="span2">
-                <button class="btn" type="button">Side Effects</button>
-                {{client.side_effects}}
-            </div>
+            <ng:include src="contentTemplate + '.html'">
+            </ng:include>
         </div>
     </div>
 

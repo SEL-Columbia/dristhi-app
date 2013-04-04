@@ -240,6 +240,10 @@ function fpRegisterController($scope) {
 
     $scope.searchFilterString = "";
 
+    var hpECWithoutFP = "hp_ec_without_fp";
+    var defaultContentTemplate = "default_content_template";
+
+
     $scope.filterList = function (client) {
         var searchCondition = true;
         var villageCondition = true;
@@ -261,6 +265,7 @@ function fpRegisterController($scope) {
     };
 
     $scope.highPriorityFilter = function (client) {
+        $scope.contentTemplate = hpECWithoutFP;
         return !doesClientUseFpMethod(client) && client.isHighPriority;
     };
 
@@ -329,4 +334,6 @@ function fpRegisterController($scope) {
     $scope.close = function () {
         $scope.isModalOpen = false;
     };
+
+    $scope.contentTemplate = defaultContentTemplate;
 }
