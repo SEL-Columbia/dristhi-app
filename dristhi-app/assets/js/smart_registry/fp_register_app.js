@@ -240,15 +240,14 @@ function fpRegisterController($scope) {
 
     $scope.searchFilterString = "";
 
-    var hpECWithoutFP = "hp_ec_without_fp";
-    var defaultContentTemplate = "default_content_template";
+    var hpECWithoutFP = "ec_without_fp";
+    var defaultContentTemplate = "fp_methods";
 
 
     $scope.filterList = function (client) {
         var searchCondition = true;
         var villageCondition = true;
         var fpMethodCondition = true;
-        var fpPriorityCondition = true;
         if ($scope.searchFilterString) {
             searchCondition = (client.name.toUpperCase().indexOf($scope.searchFilterString.toUpperCase()) === 0
                 || client.ec_number.toUpperCase().indexOf($scope.searchFilterString.toUpperCase()) === 0
@@ -261,7 +260,7 @@ function fpRegisterController($scope) {
             var handlerMethod = $scope[$scope.fpMethodFilterOption.handler];
             fpMethodCondition = handlerMethod(client, $scope.fpMethodFilterOption.id);
         }
-        return villageCondition && searchCondition && fpMethodCondition && fpPriorityCondition;
+        return villageCondition && searchCondition && fpMethodCondition;
     };
 
     $scope.highPriorityFilter = function (client) {
@@ -270,28 +269,34 @@ function fpRegisterController($scope) {
     };
 
     $scope.twoPlusChildrenFilter = function (client) {
+        $scope.contentTemplate = hpECWithoutFP;
         return !doesClientUseFpMethod(client) && client.num_living_children >= "2";
     };
 
     $scope.oneChildFilter = function (client) {
+        $scope.contentTemplate = hpECWithoutFP;
         return !doesClientUseFpMethod(client) && client.num_living_children === "1";
     };
 
     $scope.fpMethodFilter = function (client, optionId) {
+        $scope.contentTemplate = defaultContentTemplate;
         return client.fp_method === optionId;
     };
 
     $scope.otherFpMethodFilter = function (client) {
+        $scope.contentTemplate = defaultContentTemplate;
         return client.fp_method === "lam"
             || client.fp_method === "traditional"
             || client.fp_method === "centchroman";
     };
 
     $scope.allECsWithoutFP = function (client) {
+        $scope.contentTemplate = hpECWithoutFP;
         return !doesClientUseFpMethod(client);
     };
 
     $scope.allECsWithFP = function (client) {
+        $scope.contentTemplate = defaultContentTemplate;
         return doesClientUseFpMethod(client);
     };
 

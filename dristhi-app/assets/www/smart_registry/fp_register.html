@@ -7,9 +7,8 @@
     <link href="../../css/bootstrap.css" rel="stylesheet">
     <link href="../../css/custom.css" rel="stylesheet">
     <script src="../../js/lib/angular.min.js" type="text/javascript"></script>
-    <script src="../../js/jquery.min.js"></script>
     <script src="../../js/smart_registry/fp_register_app.js" type="text/javascript"></script>
-    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/lib/ui-bootstrap-0.2.0.min.js"></script>
 </head>
 <body ng-controller="fpRegisterController">
 <div class="header">
@@ -46,8 +45,8 @@
         <div class="span1">ID NO.</div>
         <div class="span1">DUE</div>
         <div class="span1">GPLSA</div>
-        <div class="span3">METHOD</div>
-        <div class="span2">SIDE EFFECTS</div>
+        <ng:include src="contentTemplate + '_header.html'">
+        </ng:include>
     </div>
 </div>
 <div class="content-smart-registry">
@@ -93,18 +92,7 @@
 
     <div class="container-fluid client-list">
         <div class="row-fluid client" ng-repeat="client in clients | filter:filterList | orderBy:sortList">
-            <div id="name" class="span3 line-right">
-                <div id="pic">
-                    <img src="../../img/smart_registry/profile-rounded-pic.png">
-                </div>
-                <div id="names">
-                    <span style="font-size:18px; font-weight: bold;"
-                          ng-class="{'high-priority':client.isHighPriority}">{{client.name}}</span>
-                    <span style="font-size: 16px; font-weight: bold;">{{client.age}}</span><br/>
-										<span style="font-size:15px;">{{client.husband_name}}<br/>
-										{{client.village}}</span>
-                </div>
-            </div>
+            <ng:include src="'blocks/client_name.html'"></ng:include>
             <div id="id" class="span1 line-right">
                 EC: <b>{{client.ec_number}}</b><br/>
                 Thayi: <b>{{client.thayi}}</b>
