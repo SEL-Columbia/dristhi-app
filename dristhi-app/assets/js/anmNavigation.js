@@ -66,6 +66,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
             bindToChildList(callbackToRunBeforeAnyAction, "#childMenuOption");
             bindToLaunchForm(callbackToRunBeforeAnyAction, "#ecRegistration");
             bindToLaunchForm(callbackToRunBeforeAnyAction, "#familyPlanningUpdate");
+            bindToLaunchForm(callbackToRunBeforeAnyAction, "#fpComplications");
         }
     };
 }
