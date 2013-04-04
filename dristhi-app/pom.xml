@@ -150,8 +150,7 @@
                         <include>**/*.js</include>
                     </sourceIncludes>
                     <sourceExcludes>
-                        <exclude>libraries-all-min.js</exclude>
-                        <exclude>webform-drishti-all-min.js</exclude>
+                        <exclude>enketo/*.js</exclude>
                     </sourceExcludes>
                     <jsTestSrcDir>src/test/js</jsTestSrcDir>
                     <specExcludes>

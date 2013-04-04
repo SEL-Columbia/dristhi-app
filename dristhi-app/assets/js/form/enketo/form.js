@@ -145,7 +145,11 @@ function Form (formSelector, dataStr, dataStrToEdit){
 	this.isValid = function(){
 		return form.isValid();
 	};
-	
+
+	this.fieldsWithErrors = function(){
+		return form.fieldsWithErrors();
+	};
+
 
 	/**
 	 * Inner Class dealing with the XML Instance (data) of a form
@@ -2922,6 +2926,10 @@ function Form (formSelector, dataStr, dataStrToEdit){
 	 */
 	FormHTML.prototype.isValid = function(){
 		return ($form.find('.invalid-required, .invalid-constraint').length > 0) ? false : true;
+	};
+
+	FormHTML.prototype.fieldsWithErrors = function(){
+		return $form.find('.invalid-required, .invalid-constraint');
 	};
 
 	/**

@@ -59,6 +59,11 @@ $(document).ready(function() {
 		if (typeof form !== 'undefined'){
 			form.validateForm();
 			if (!form.isValid()){
+
+                var fieldsWithErrors = form.fieldsWithErrors();
+                logContext.logError("field with error: " + fieldsWithErrors[0].innerHTML);
+                console.log("field with error: " + fieldsWithErrors[0].innerHTML);
+
 				gui.alert('Form contains errors <br/>(please see fields marked in red)');
 				return;
 			}
