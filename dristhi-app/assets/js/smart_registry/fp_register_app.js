@@ -92,6 +92,19 @@ function fpRegisterController($scope) {
     $scope.currentSortOption = $scope.defaultSortOption;
     $scope.sortList = $scope.sortByName;
 
+    $scope.sort = function (option) {
+        $scope.currentSortOption = option;
+        $scope.sortList = $scope[option.handler];
+    };
+
+    $scope.sortByName = function (item) {
+        return item.name;
+    };
+
+    $scope.sortByPriority = function (item) {
+        return !item.isHighPriority;
+    };
+
     $scope.villageOptions = {
         type: "filterVillage",
         options: [
@@ -163,6 +176,12 @@ function fpRegisterController($scope) {
     };
     $scope.defaultFPMethodOption = $scope.fpMethodOptions.options[0];
     $scope.fpMethodFilterOption = $scope.defaultFPMethodOption;
+    $scope.filterVillage = function (option) {
+        $scope.villageFilterOption = option;
+    };
+    $scope.filterFPMethod = function (option) {
+        $scope.fpMethodFilterOption = option;
+    };
 
     $scope.searchFilterString = "";
 
@@ -187,40 +206,13 @@ function fpRegisterController($scope) {
     $scope.isModalOpen = false;
 
     $scope.onModalOptionClick = function (option, type) {
-        if (type === "sort") {
-            $scope.sort(option);
-        } else if (type === "filterVillage") {
-            $scope.filterVillage(option);
-        } else if (type === "filterFPMethod") {
-            $scope.filterFPMethod(option);
-        }
+        $scope[type](option);
         $scope.isModalOpen = false;
     };
 
     $scope.openModal = function (options) {
         $scope.isModalOpen = true;
         $scope.currentOptions = options;
-    };
-
-    $scope.sort = function (option) {
-        $scope.currentSortOption = option;
-        $scope.sortList = $scope[option.handler];
-    };
-
-    $scope.filterVillage = function (option) {
-        $scope.villageFilterOption = option;
-    };
-
-    $scope.sortByName = function (item) {
-        return item.name;
-    };
-
-    $scope.sortByPriority = function (item) {
-        return !item.isHighPriority;
-    };
-
-    $scope.filterFPMethod = function (option) {
-        $scope.fpMethodFilterOption = option;
     };
 
     $scope.close = function () {
