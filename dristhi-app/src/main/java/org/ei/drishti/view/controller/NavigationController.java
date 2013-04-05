@@ -40,6 +40,10 @@ public class NavigationController {
         context.startActivity(new Intent(context, ReportsActivity.class));
     }
 
+    public void startFPSmartRegistry() {
+        context.startActivity(new Intent(context, FPSmartRegistryActivity.class));
+    }
+
     public String get() {
         return new Gson().toJson(new HomeContext(anmService.fetchDetails()));
     }
