@@ -39,8 +39,8 @@ public class FPSmartRegistryController {
                     Mother mother = allBeneficiaries.findMotherByECCaseId(ec.caseId());
                     String thayiCardNumber = mother == null ? "" : mother.thaayiCardNumber();
                     fpClients.add(new FPClient(ec.wifeName(), ec.husbandName(), ec.age(), thayiCardNumber, ec.ecNumber(), ec.village(), ec.getDetail("currentMethod"),
-                            null, ec.getDetail("numberOfPregnancies"),
-                            null, ec.getDetail("numberOfLivingChildren"),
+                            ec.getDetail("sideEffects"), ec.getDetail("numberOfPregnancies"),
+                            ec.getDetail("parity"), ec.getDetail("numberOfLivingChildren"),
                             ec.getDetail("numberOfStillBirths"), ec.getDetail("numberOfAbortions"), null,
                             null, ec.isHighPriority()));
                 }
