@@ -1,0 +1,20 @@
+<div class="span3">
+    <!--weeks pregnant-->
+    <b>{{client.weeks_pregnant}}</b><br>
+    EDD: {{client.edd}}<br>
+    LMP: {{client.lmp}}
+</div>
+<div class="span1">
+    <!--VISITS-->
+    <span data-ng-repeat="visit in client.anc_visits">{{visit.visit}}<span ng-show="!$last">,</span></span>
+</div>
+<div class="span1">
+    <!--TT-->
+</div>
+<div class="span1">
+    <!--IFA-->
+</div>
+<div class="span1">
+
+</div>
+

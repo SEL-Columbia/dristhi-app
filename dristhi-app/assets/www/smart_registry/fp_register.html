@@ -94,10 +94,7 @@
     <div class="container-fluid client-list">
         <div class="row-fluid client" ng-repeat="client in clients | filter:filterList | orderBy:sortList">
             <ng:include src="'blocks/client_name.html'"></ng:include>
-            <div id="id" class="span1 line-right">
-                EC: <b>{{client.ec_number}}</b><br/>
-                Thayi: <b>{{client.thayi}}</b>
-            </div>
+            <ng:include src="'blocks/client_ids.html'"></ng:include>
             <div id="due" class="span1 line-right">
                 <span style="font-size:16px; font-weight: bold;">{{client.days_due}}</span><br/>
                 <span style="color: #595959; line-height: 19px;">{{client.due_message}}</span>

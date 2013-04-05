@@ -5,8 +5,11 @@
     <div id="names">
                     <span style="font-size:18px; font-weight: bold;"
                           ng-class="{'high-priority':client.isHighPriority}">{{client.name}}</span>
-        <span style="font-size: 16px; font-weight: bold;">{{client.age}}</span><br/>
-										<span style="font-size:15px;">{{client.husband_name}}<br/>
-										{{client.village}}</span>
+        <span style="font-size: 16px; font-weight: bold;">{{client.age}}</span>
+        <br/>
+        <span style="font-size:15px;">{{client.husband_name}}
+            <br/>
+            {{client.village}} <span ng-show="locationStatusMapping[client.locationStatus]">({{villageOptions.options[locationStatusMapping[client.locationStatus]].label}})</span>
+        </span>
     </div>
 </div>

@@ -8,20 +8,22 @@ function ancRegisterController($scope) {
             age: '24',
             husbanad_name: 'Reger_H',
             weeks_pregnant: '2',
-            edd: '25/12/13',
+            edd: '2012-06-11T00:00:00.000Z',
             lmp: '25/3/13',
             anc_visits:[
                 {visit: '1', date: '04/04'},
-                {visit: '2', date: '04/08'}
+                {visit: '2', date: '04/08'},
+                {visit: '3', date: '04/09'}
             ],
             tt: [
                 {tt: '1', date: '04/04'},
                 {tt: '2', date: '04/08'}
             ],
-            ifa: {dose: '100', date: '04/04'}
+            ifa: {dose: '100', date: '04/04'},
             days_due: '3',
             due_message: 'Follow Up',
-            isHighPriority: false
+            isHighPriority: false,
+            locationStatus: "out_of_area"
         },
         {
             village: 'Chikkabherya',
@@ -31,7 +33,7 @@ function ancRegisterController($scope) {
             age: '24',
             husbanad_name: 'Reger_H',
             weeks_pregnant: '2',
-            edd: '25/12/13',
+            edd: '2012-04-11T00:00:00.000Z',
             lmp: '25/3/13',
             anc_visits:[
                 {visit: '1', date: '04/04'},
@@ -41,10 +43,11 @@ function ancRegisterController($scope) {
                 {tt: '1', date: '04/04'},
                 {tt: '2', date: '04/08'}
             ],
-            ifa: {dose: '100', date: '04/04'}
+            ifa: {dose: '100', date: '04/04'},
             days_due: '3',
             due_message: 'Follow Up',
-            isHighPriority: false
+            isHighPriority: true,
+            locationStatus: "left_the_place"
         },
         {
             village: 'Bherya',
@@ -54,7 +57,7 @@ function ancRegisterController($scope) {
             age: '24',
             husbanad_name: 'Reger_H',
             weeks_pregnant: '2',
-            edd: '25/12/13',
+            edd: '2013-05-11T00:00:00.000Z',
             lmp: '25/3/13',
             anc_visits:[
                 {visit: '1', date: '04/04'},
@@ -64,38 +67,67 @@ function ancRegisterController($scope) {
                 {tt: '1', date: '04/04'},
                 {tt: '2', date: '04/08'}
             ],
-            ifa: {dose: '100', date: '04/04'}
+            ifa: {dose: '100', date: '04/04'},
             days_due: '3',
             due_message: 'Follow Up',
-            isHighPriority: false
-        },
+            isHighPriority: false,
+            locationStatus: "in_area"
+        }
 
     ];
+//    - Name
+//        - EDD
+//        - HRP
+//        - Due
+//        - In-area/Out of area/Left the place
 
     $scope.sortOptions = {
         type: "sort",
         options: [
             {
                 label: "Name (A to Z)",
-                handler: "sortByName"
+                handler: "sortByName",
+                reverseSort: false
             },
             {
-                label: "HP",
-                handler: "sortByPriority"
+                label: "EDD",
+                handler: "sortByEDD",
+                reverseSort: true
+            },
+            {
+                label: "HRP",
+                handler: "sortByPriority",
+                reverseSort: false
+            },
+            {
+                label: "Due Date",
+                handler: "sortByDueDate",
+                reverseSort: false
             }
         ]
     };
+
     $scope.defaultSortOption = $scope.sortOptions.options[0];
     $scope.currentSortOption = $scope.defaultSortOption;
     $scope.sortList = $scope.sortByName;
+    $scope.reverseSort = true;
 
     $scope.sort = function (option) {
         $scope.currentSortOption = option;
         $scope.sortList = $scope[option.handler];
+        $scope.reverseSort = option.reverseSort;
     };
 
     $scope.sortByName = function (item) {
         return item.name;
+    };
+
+    $scope.sortByEDD = function (item) {
+        return item.edd;
+    };
+
+    $scope.sortByDueDate = function (item) {
+        return item.dueDate;
     };
 
     $scope.sortByPriority = function (item) {
@@ -107,7 +139,7 @@ function ancRegisterController($scope) {
         options: [
             {
                 label: "All",
-                handler: ""
+                handler: "villageFilterAll"
             },
             {
                 label: "Bherya",
@@ -116,55 +148,67 @@ function ancRegisterController($scope) {
             {
                 label: "Chikkabherya",
                 handler: "Chikkabherya"
+            },
+            {
+                label: "Out of Area",
+                id: "out_of_area",
+                handler: "villageFilterByStatus"
+            },
+            {
+                label:"Left the Place",
+                id: "left_the_place",
+                handler:"villageFilterByStatus"
             }
-        ].sort(function (item1, item2) {
-                if (item1.label < item2.label) {
-                    return -1;
-                }
-                else if (item1.label > item2.label) {
-                    return 1;
-                }
-                else {
-                    return 0;
-                }
-            }
-        )
+        ]
     };
     $scope.defaultVillage = $scope.villageOptions.options[0];
     $scope.villageFilterOption = $scope.defaultVillage;
+    $scope.villageFilterAll = function(client, optionId){
+        return client.locationStatus != "left_the_place";
+    };
+    $scope.villageFilterByStatus = function(client, optionId){
+        return client.locationStatus == optionId;
+    };
 
 
     //  filters
-//    overview,  ANC Visits, ANC Visits / TT, hB/IFA, Delivery Plan
-
+//    Overview,  ANC Visits, hB/IFA, ANC Visits / TT,  Delivery Plan
+//
     $scope.ancServiceOptions = {
         type: "ancService",
         options: [
             {
                 label: "Overview",
-                handler: "ancOverview"
+                handler: "overview"
             },
             {
                 label: "ANC Visits",
-                handler: "ancVisits"
-            },
-            {
-                label: "ANC Visits/TT",
-                handler: "ancTT"
+                handler: "visits"
             },
             {
                 label: "hB/IFA",
-                handler: "ancHBIFA"
+                handler: "hb_ifa"
+            },
+            {
+                label: "ANC Visits/TT",
+                handler: "tt"
             },
             {
                 label: "Delivery Plan",
-                handler: "ancDelivery"
+                handler: "delivery"
             }
         ]
     };
+    $scope.locationStatusMapping = {
+        "out_of_area": 3,
+        "left_the_place": 4
+    }
 
     $scope.defaultAncServiceOption = $scope.ancServiceOptions.options[0];
     $scope.ancServiceOption = $scope.defaultAncServiceOption;
+
+
+
 
     $scope.filterVillage = function (option) {
         $scope.villageFilterOption = option;
@@ -176,10 +220,9 @@ function ancRegisterController($scope) {
 
     $scope.searchFilterString = "";
 
-    var defaultContentTemplate = "overview";
-    var overviewContentTemplate = "overview";
+//    set the default
 
-
+    $scope.contentTemplate =  $scope.ancServiceOptions.options[0].handler;
 
     $scope.filterList = function (client) {
         var searchCondition = true;
@@ -191,57 +234,23 @@ function ancRegisterController($scope) {
                 || client.thayi.toUpperCase().indexOf($scope.searchFilterString.toUpperCase()) === 0);
         }
         if ($scope.villageFilterOption.handler) {
-            villageCondition = (client.village == $scope.villageFilterOption.handler);
+            var handler = $scope.villageFilterOption.handler;
+            if($scope.hasOwnProperty(handler) && typeof($scope[handler]) == "function")
+            {
+                villageCondition = $scope[handler](client, $scope.villageFilterOption.id);
+            }
+            else
+            {
+                villageCondition = (client.village == handler);
+            }
         }
         if ($scope.ancServiceOption.handler) {
-            var handlerMethod = $scope[$scope.ancServiceOption.handler];
-            ancServiceCondition = handlerMethod(client, $scope.ancServiceOption.id);
+            $scope.contentTemplate = $scope.ancServiceOption.handler;
         }
-        return villageCondition && searchCondition && ancServiceCondition;
+        return villageCondition && searchCondition;
     };
 
 
-
-    $scope.highPriorityFilter = function (client) {
-        $scope.contentTemplate = hpECWithoutFP;
-        return !doesClientUseFpMethod(client) && client.isHighPriority;
-    };
-
-    $scope.twoPlusChildrenFilter = function (client) {
-        $scope.contentTemplate = hpECWithoutFP;
-        return !doesClientUseFpMethod(client) && client.num_living_children >= "2";
-    };
-
-    $scope.oneChildFilter = function (client) {
-        $scope.contentTemplate = hpECWithoutFP;
-        return !doesClientUseFpMethod(client) && client.num_living_children === "1";
-    };
-
-    $scope.fpMethodFilter = function (client, optionId) {
-        $scope.contentTemplate = defaultContentTemplate;
-        return client.fp_method === optionId;
-    };
-
-    $scope.otherFpMethodFilter = function (client) {
-        $scope.contentTemplate = defaultContentTemplate;
-        return client.fp_method === "lam"
-            || client.fp_method === "traditional"
-            || client.fp_method === "centchroman";
-    };
-
-    $scope.allECsWithoutFP = function (client) {
-        $scope.contentTemplate = hpECWithoutFP;
-        return !doesClientUseFpMethod(client);
-    };
-
-    $scope.allECsWithFP = function (client) {
-        $scope.contentTemplate = defaultContentTemplate;
-        return doesClientUseFpMethod(client);
-    };
-
-    var doesClientUseFpMethod = function (client) {
-        return (client.fp_method && client.fp_method !== "none");
-    };
 
     $scope.currentOptions = null;
 
@@ -276,8 +285,8 @@ function ancRegisterController($scope) {
     };
 
     $scope.close = function () {
-        $scope.isModalOpen = false;
-    };
+    $scope.isModalOpen = false;
+};
 
-    $scope.contentTemplate = defaultContentTemplate;
+
 }
