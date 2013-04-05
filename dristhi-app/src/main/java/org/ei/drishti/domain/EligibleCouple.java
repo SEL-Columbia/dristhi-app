@@ -105,4 +105,13 @@ public class EligibleCouple {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
+
+    public String age() {
+        //TODO: Calculate age from DOB
+        return details.get("wifeAge");
+    }
+
+    public String getDetail(String name) {
+        return details.get(name);
+    }
 }
