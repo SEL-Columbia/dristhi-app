@@ -12,12 +12,14 @@ import org.ei.drishti.R;
 import org.ei.drishti.sync.SyncAfterFetchListener;
 import org.ei.drishti.sync.SyncProgressIndicator;
 import org.ei.drishti.sync.UpdateActionsTask;
-import org.ei.drishti.util.Log;
 import org.ei.drishti.view.InternationalizationContext;
 import org.ei.drishti.view.controller.NavigationController;
 import org.ei.drishti.view.controller.UpdateController;
 
-import java.text.MessageFormat;
+import static android.webkit.ConsoleMessage.MessageLevel.ERROR;
+import static java.text.MessageFormat.format;
+import static org.ei.drishti.util.Log.logDebug;
+import static org.ei.drishti.util.Log.logError;
 
 public abstract class SecuredWebActivity extends SecuredActivity {
     protected WebView webView;
@@ -104,8 +106,14 @@ public abstract class SecuredWebActivity extends SecuredActivity {
 
             @Override
             public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
-                Log.logInfo(MessageFormat.format("Javascript Log. Message: {0}, lineNumber: {1}, sourceId, {2}", consoleMessage.message(),
-                        consoleMessage.lineNumber(), consoleMessage.sourceId()));
+                String message = format("Javascript Log. Message: {0}, lineNumber: {1}, sourceId, {2}", consoleMessage.message(),
+                        consoleMessage.lineNumber(), consoleMessage.sourceId());
+
+                if (consoleMessage.messageLevel() == ERROR) {
+                    logError(message);
+                } else {
+                    logDebug(message);
+                }
                 return true;
             }
         });
