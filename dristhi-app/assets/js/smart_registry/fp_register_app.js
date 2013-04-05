@@ -328,11 +328,13 @@ function fpRegisterController($scope) {
 
     $scope.openModal = function (option) {
         $scope.isModalOpen = true;
+        $scope.isFPModalOpen = false;
         $scope.currentOptions = option;
     };
 
     $scope.openFPModal = function (option) {
         $scope.isFPModalOpen = true;
+        $scope.isModalOpen = false;
         $scope.currentOptions = option;
     };
 
