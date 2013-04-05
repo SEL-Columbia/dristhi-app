@@ -1,113 +1,6 @@
 function fpRegisterController($scope) {
-    $scope.clients = [
-            {"ec_number":"2", "fp_method":"female_sterilization", "husband_name":"Manikyam", "village":"basavanapura", "name":"Ammulu", "thayi":"", "isHighPriority":false},
-            {"ec_number":"9", "fp_method":"iud", "husband_name":"Umesh", "village":"basavanapura", "name":"Amrutha", "thayi":"369258", "isHighPriority":false},
-            {"ec_number":"1", "fp_method":"condom", "husband_name":"Anji", "village":"chikkahalli", "name":"Anitha", "thayi":"2539641", "isHighPriority":true},
-            {"ec_number":"7", "fp_method":"male_sterilization", "husband_name":"Hemanth", "village":"somanahalli_colony", "name":"Anu", "thayi":"", "isHighPriority":false},
-            {"ec_number":"10", "fp_method":"female_sterilization", "husband_name":"Nandisha", "village":"basavanapura", "name":"Bibi", "thayi":"", "isHighPriority":false},
-            {"ec_number":"3", "fp_method":"none", "husband_name":"Biju Nayak", "village":"basavanapura", "name":"Bindu", "thayi":"1234567", "isHighPriority":false},
-            {"ec_number":"4", "fp_method":"none", "husband_name":"Naresh", "village":"basavanapura", "name":"Devi", "thayi":"235689", "isHighPriority":false},
-            {"ec_number":"11", "fp_method":"none", "husband_name":"Suresh", "village":"basavanapura", "name":"Kavitha", "thayi":"123456", "isHighPriority":false},
-            {"ec_number":"13", "fp_method":"female_sterilization", "husband_name":"Kalyan", "village":"basavanapura", "name":"Lakshmi", "thayi":"12369", "isHighPriority":false},
-            {"ec_number":"13", "fp_method":"none", "husband_name":"vinod", "village":"basavanapura", "name":"Latha", "thayi":"147285", "isHighPriority":false},
-            {"ec_number":"8", "fp_method":"female_sterilization", "husband_name":"Raja", "village":"somanahalli_colony", "name":"Mahithi", "thayi":"", "isHighPriority":false},
-            {"ec_number":"12", "fp_method":"none", "husband_name":"Naresh", "village":"basavanapura", "name":"Raji", "thayi":"258399", "isHighPriority":false},
-            {"ec_number":"1", "fp_method":"condom", "husband_name":"Raja", "village":"basavanapura", "name":"Rani", "thayi":"48666", "isHighPriority":false}
-        ];
-
-
-        $scope.clients2 = [
-        {
-            village: 'Chikkabherya',
-            name: 'Carolyn',
-            thayi: '4',
-            ec_number: '314',
-            age: '24',
-            husbanad_name: 'Reger_H',
-            fp_method: '',
-            side_effects: 'poops a lot',
-            num_pregnancies: '3',
-            parity: '2',
-            num_living_children: '1',
-            num_stillbirths: '1',
-            num_abortions: '1',
-            days_due: '3',
-            due_message: 'Follow Up',
-            isHighPriority: false
-        },
-        {
-            village: 'Chikkabherya',
-            name: 'Carolyn1',
-            thayi: '1',
-            ec_number: '31',
-            age: '30',
-            husband_name: 'Reger_H',
-            fp_method: 'iud',
-            side_effects: 'poops a little',
-            num_pregnancies: '3',
-            parity: '2',
-            num_living_children: '2',
-            num_stillbirths: '1',
-            num_abortions: '2',
-            days_due: '3',
-            due_message: 'Follow Up',
-            isHighPriority: false
-        },
-        {
-            village: 'Bherya',
-            name: 'Kiran',
-            thayi: '1',
-            ec_number: '31',
-            age: '30',
-            husband_name: 'Reger_H',
-            fp_method: '',
-            side_effects: 'poops a lot',
-            num_pregnancies: '3',
-            parity: '2',
-            num_living_children: '1',
-            num_stillbirths: '1',
-            num_abortions: '2',
-            days_due: '3',
-            due_message: 'Follow Up',
-            isHighPriority: true
-        },
-        {
-            village: 'Bherya',
-            name: 'Roger1',
-            thayi: '1',
-            ec_number: '31',
-            age: '30',
-            husband_name: 'Reger_H',
-            fp_method: 'iud',
-            side_effects: 'poops a lot',
-            num_pregnancies: '3',
-            parity: '2',
-            num_living_children: '2',
-            num_stillbirths: '1',
-            num_abortions: '2',
-            days_due: '3',
-            due_message: 'Follow Up',
-            isHighPriority: false
-        },
-        {
-            village: 'Bherya',
-            name: 'Larry',
-            thayi: '66',
-            ec_number: '568',
-            age: '31',
-            husband_name: 'Weya',
-            fp_method: 'condom',
-            side_effects: 'poops a lot',
-            num_pregnancies: '3',
-            parity: '2',
-            num_living_children: '2',
-            num_stillbirths: '1',
-            num_abortions: '2',
-            days_due: '3',
-            due_message: 'Follow Up',
-            isHighPriority: false
-        }
-    ];
+    var fpSmartRegistryBridge = new FPSmartRegistryBridge();
+    $scope.clients = fpSmartRegistryBridge.getFPClients();
 
     $scope.sortOptions = {
         type: "sort",
@@ -283,7 +176,7 @@ function fpRegisterController($scope) {
                 || client.thayi.toUpperCase().indexOf($scope.searchFilterString.toUpperCase()) === 0);
         }
         if ($scope.villageFilterOption.handler) {
-            villageCondition = (client.village == $scope.villageFilterOption.handler);
+            villageCondition = (client.village.toUpperCase() === $scope.villageFilterOption.handler.toUpperCase());
         }
         if ($scope.fpMethodFilterOption.handler) {
             var handlerMethod = $scope[$scope.fpMethodFilterOption.handler];

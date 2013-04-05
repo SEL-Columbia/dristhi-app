@@ -45,7 +45,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             anmNavigationBridge.delegateToFPSmartRegistry();
         });
-    }
+    };
 
     var runWithCallBack = function (callbackToRunBeforeAnyAction, identifierOfElement, action) {
         $(identifierOfElement).click(function () {
@@ -98,7 +98,7 @@ function ANMNavigationBridge() {
             return anmNavigationContext.startReports();
         },
         delegateToFPSmartRegistry: function () {
-            window.location = "smart_registry/fp_register.html";
+            return anmNavigationContext.startFPSmartRegistry();
         }
     };
 }
