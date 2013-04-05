@@ -377,7 +377,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   if (stack2 = helpers.childCount) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.childCount; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n\n        <div class=\"menu-option row-fluid\" id=\"fpSmartRegistryOption\">\n            <div class=\"span1\">\n                <img src=\"../img/icons/nav-child.png\">\n            </div>\n            <div class=\"span9\">FP Smart Registry</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n    </div>\n</div>\n";
+    + "</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n\n        <div class=\"menu-option row-fluid\" id=\"fpSmartRegistryOption\">\n            <div class=\"span1\">\n                <img src=\"../img/icons/nav-child.png\">\n            </div>\n            <div class=\"span9\">FP Smart Registry</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n\n        <div class=\"menu-option row-fluid\" id=\"ancSmartRegistryOption\">\n            <div class=\"span1\">\n                <img src=\"../img/icons/nav-child.png\">\n            </div>\n            <div class=\"span9\">ANC Smart Registry</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n    </div>\n</div>\n";
   return buffer;
   });
 templates['birth_plan'] = template(function (Handlebars,depth0,helpers,partials,data) {
