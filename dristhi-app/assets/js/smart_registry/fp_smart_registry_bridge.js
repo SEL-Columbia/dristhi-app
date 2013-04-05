@@ -254,7 +254,7 @@ function FakeFPSmartRegistryContext() {
                     "ec_number": "1",
                     "fp_method": "condom",
                     "husband_name": "Raja",
-                    "village": "Bherya",
+                    "village": "bherya",
                     "name": "Rani",
                     "thayi": "48666",
                     "isHighPriority": false,

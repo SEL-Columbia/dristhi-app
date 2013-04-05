@@ -165,7 +165,7 @@ function fpRegisterController($scope) {
                 || client.thayi.toUpperCase().indexOf($scope.searchFilterString.toUpperCase()) === 0);
         }
         if ($scope.villageFilterOption.handler) {
-            villageCondition = (client.village == $scope.villageFilterOption.handler);
+            villageCondition = (client.village.toUpperCase() == $scope.villageFilterOption.handler.toUpperCase());
         }
         if ($scope.fpMethodFilterOption.handler) {
             var handlerMethod = $scope[$scope.fpMethodFilterOption.handler];
