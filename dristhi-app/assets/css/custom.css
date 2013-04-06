@@ -30,6 +30,11 @@
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#1a93d2), to(#1c83ba));
 }
 
+.navbar .nav > li > a {
+    color: #f8f8ff;
+    text-shadow: none;
+}
+
 .menu-button-container {
     padding: 5px;
     padding-bottom: 0px;
