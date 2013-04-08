@@ -23,7 +23,7 @@
 }
 
 .navbar .navbar-inner {
-    zoom: 125%;
+    zoom: 120%;
     padding-left: 15px;
     border: 0;
     background: -webkit-linear-gradient(top, #1a93d2 0%, #1c83ba 100%);
@@ -37,6 +37,11 @@
 
 .navbar .divider-vertical {
     border-right: none;
+}
+
+.navbar-search .search-query {
+    width: 160px;
+    padding: 4px 8px;
 }
 
 .menu-button-container {
@@ -320,8 +325,7 @@
 }
 
 .container-no-padding {
-    padding-left: 0px;
-    padding-right: 0px;
+    padding: 0;
 }
 
 .well-for-beneficiary-details {
@@ -653,6 +657,37 @@ body {
     margin-right: 10px;
 }
 
+/*button states*/
+/*past-due: #d13f3f;*/
+/*due: #389cc8;*/
+/*upcoming: #cae2ed;*/
+/*done: #ececec;*/
+/*black: #0d0d0d*/
+
+.btn-sr {
+    text-align: left;
+    padding: 2px 6px 3px;
+    width: 100%;
+}
+
+.btn-past-due, .btn-past-due:hover, .btn-past-due:focus {
+    background-color: #d13f3f;
+}
+
+.btn-due, .btn-due:hover, .btn-due:focus {
+    background-color: #389cc8;
+}
+
+.btn-upcoming, .btn-upcoming:hover, .btn-upcoming:focus {
+    background-color: #cae2ed;
+    color: #0d0d0d;
+}
+
+.btn-done, .btn-done:hover, .btn-done:focus {
+    background-color: #ececec;
+    color: #0d0d0d;
+}
+
 .btn.filter {
     margin-right: 10px;
 
@@ -787,4 +822,8 @@ body {
 
 .priority-indicator-icon {
     margin-top: 3px;
+}
+
+.row-fluid [class*="span"] [class*="span"] {
+    padding: 5px;
 }

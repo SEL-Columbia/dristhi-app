@@ -4,7 +4,7 @@
     <link href="../../css/smart_registry/reset.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="../../css/smart_registry/styles.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="../../css/smart_registry/smart_registry.css" media="all" rel="stylesheet" type="text/css"/>
-    <link href="../../css/bootstrap.css" rel="stylesheet">
+    <link href="../../css/flat-bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/font-awesome.min.css">
     <link href="../../css/custom.css" rel="stylesheet">
     <script src="../../js/lib/angular.min.js" type="text/javascript"></script>
@@ -26,7 +26,7 @@
                     <input type="text" class="search-query" placeholder="Search" ng-model="searchFilterString">
                 </form>
                 <ul class="nav pull-right">
-                    <li><a href="#" ng-click="openModal(ancServiceOptions)">ANC Visits <i class="icon-white icon-chevron-down"></i></a></li>
+                    <li><a href="#" ng-click="openModal(ancServiceOptions)">{{ancServiceOption.label}} <i class="icon-white icon-chevron-down"></i></a></li>
                     <li class="divider-vertical"></li>
                     <li><a href="#" ng-click="openModal(sortOptions)"><i class="icon-sort icon-white"></i></a></li>
                     <li class="divider-vertical"></li>
@@ -45,8 +45,6 @@
     <div class="clear"></div>
     <div class="tableheaders row-fluid">
         <div class="span3">NAME</div>
-        <div class="span1">ID NO.</div>
-        <div class="span1">DUE</div>
         <ng:include src="'blocks/anc/' + contentTemplate + '_header.html'">
         </ng:include>
     </div>
@@ -92,15 +90,9 @@
         </div>
     </div>
 
-    <div class="container-fluid client-list">
+    <div class="container-fluid container-no-padding client-list">
         <div class="row-fluid client" ng-repeat="client in clients | filter:filterList | orderBy:sortList:reverseSort">
             <ng:include src="'blocks/client_name.html'"></ng:include>
-            <ng:include src="'blocks/client_ids.html'"></ng:include>
-
-            <div id="due" class="span1 line-right">
-                <span style="font-size:16px; font-weight: bold;">{{client.days_due}}</span><br/>
-                <span style="color: #595959; line-height: 19px;">{{client.due_message}}</span>
-            </div>
             <ng:include src="'blocks/anc/'+ contentTemplate + '.html'">
             </ng:include>
         </div>

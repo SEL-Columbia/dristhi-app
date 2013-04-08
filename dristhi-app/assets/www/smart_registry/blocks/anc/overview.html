@@ -1,20 +1,59 @@
-<div class="span3">
-    <!--weeks pregnant-->
-    <b>{{client.weeks_pregnant}}</b><br>
-    EDD: {{client.edd}}<br>
-    LMP: {{client.lmp}}
+<div class="span3 full-height">
+    <div class="row-fluid full-height">
+        <div id="id" class="span6 line-right full-height">
+            ANC: <b>{{client.ec_number}}</b>
+            <br/>
+            Thayi: <b>{{client.thayi}}</b>
+            <div style="clear: both"></div>
+        </div>
+        <div class="span6 line-right">
+            <!--weeks pregnant-->
+            <b>{{client.weeks_pregnant}} weeks</b><br>
+            EDD: {{client.edd | date:'dd/MM/yy'}}
+            <br>
+            LMP: {{client.lmp | date:'dd/MM/yy'}}
+        </div>
+    </div>
 </div>
-<div class="span1">
-    <!--VISITS-->
-    <span data-ng-repeat="visit in client.anc_visits">{{visit.visit}}<span ng-show="!$last">,</span></span>
-</div>
-<div class="span1">
-    <!--TT-->
-</div>
-<div class="span1">
-    <!--IFA-->
-</div>
-<div class="span1">
 
+<div class="span5 full-height">
+    <div class="row-fluid full-height">
+        <div class="span4 line-right">
+            <!--VISITS-->
+            <button class="btn btn-primary btn-past-due btn-sr" href="#">
+                <strong>ANC 4</strong>
+                <br/>
+                Due 05/03
+            </button>
+            <i class="icon-ok green"></i>
+            ANC 3 02/03
+        </div>
+        <div class="span4 line-right">
+            <!--TT-->
+            <button class="btn btn-primary btn-done btn-sr" href="#">
+                <strong>TT 2</strong>
+                <br/>
+                Due 05/03
+            </button>
+            <i class="icon-ok green"></i>
+            ANC 3 02/03
+        </div>
+        <div class="span4 line-right">
+            <!--IFA-->
+            <button class="btn btn-primary btn-due btn-sr" href="#">
+                <strong>Refill 30</strong>
+                <br/>
+                Due 05/03
+            </button>
+            <i class="icon-ok green full-height"></i>
+            ANC 3 02/03
+        </div>
+    </div>
+</div>
+
+<div class="span1 full-height grid-content-padding">
+    <button class="btn btn-primary btn-large btn-due btn-sr full-height" href="#">
+        <center><i class="icon-pencil icon-large"></i></center>
+    </button>
 </div>
 

@@ -6,7 +6,7 @@ function ancRegisterController($scope) {
             thayi: '4',
             ec_number: '314',
             age: '24',
-            husbanad_name: 'Reger_H',
+            husband_name: 'Billy Bob',
             weeks_pregnant: '2',
             edd: '2012-06-11T00:00:00.000Z',
             lmp: '25/3/13',
@@ -31,7 +31,7 @@ function ancRegisterController($scope) {
             thayi: '4',
             ec_number: '314',
             age: '24',
-            husbanad_name: 'Reger_H',
+            husband_name: 'Jacck',
             weeks_pregnant: '2',
             edd: '2012-04-11T00:00:00.000Z',
             lmp: '25/3/13',
@@ -55,7 +55,31 @@ function ancRegisterController($scope) {
             thayi: '4',
             ec_number: '314',
             age: '24',
-            husbanad_name: 'Reger_H',
+            husband_name: 'Dickson',
+            weeks_pregnant: '2',
+            edd: '2013-05-11T00:00:00.000Z',
+            lmp: '25/3/13',
+            anc_visits:[
+                {visit: '1', date: '04/04'},
+                {visit: '2', date: '04/08'}
+            ],
+            tt: [
+                {tt: '1', date: '04/04'},
+                {tt: '2', date: '04/08'}
+            ],
+            ifa: {dose: '100', date: '04/04'},
+            days_due: '3',
+            due_message: 'Follow Up',
+            isHighPriority: false,
+            locationStatus: "in_area"
+        },
+        {
+            village: 'Bherya',
+            name: 'Ukanga',
+            thayi: '4',
+            ec_number: '315',
+            age: '27',
+            husband_name: 'Harshit',
             weeks_pregnant: '2',
             edd: '2013-05-11T00:00:00.000Z',
             lmp: '25/3/13',
@@ -150,12 +174,12 @@ function ancRegisterController($scope) {
                 handler: "Chikkabherya"
             },
             {
-                label: "Out of Area",
+                label: "O/A",
                 id: "out_of_area",
                 handler: "villageFilterByStatus"
             },
             {
-                label:"Left the Place",
+                label:"L/P",
                 id: "left_the_place",
                 handler:"villageFilterByStatus"
             }
