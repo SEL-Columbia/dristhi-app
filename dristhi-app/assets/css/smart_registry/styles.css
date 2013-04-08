@@ -175,9 +175,11 @@ a:focus {
     border-right: 1px solid #d9d9d9;
     height: 100%;
 }
+
+
 .client {
     border-bottom: 1px solid #d9d9d9;
-    height: 85px;
+    height: 80px;
     padding-left: 5px;
 }
 

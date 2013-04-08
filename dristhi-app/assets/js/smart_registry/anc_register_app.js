@@ -3,11 +3,11 @@ function ancRegisterController($scope) {
         {
             village: 'Chikkabherya',
             name: 'Carolyn',
-            thayi: '4',
+            thayi: '4636587',
             ec_number: '314',
             age: '24',
             husband_name: 'Billy Bob',
-            weeks_pregnant: '2',
+            weeks_pregnant: '18',
             edd: '2012-06-11T00:00:00.000Z',
             lmp: '25/3/13',
             anc_visits:[
@@ -28,11 +28,11 @@ function ancRegisterController($scope) {
         {
             village: 'Chikkabherya',
             name: 'Roger',
-            thayi: '4',
+            thayi: '4636587',
             ec_number: '314',
             age: '24',
             husband_name: 'Jacck',
-            weeks_pregnant: '2',
+            weeks_pregnant: '24',
             edd: '2012-04-11T00:00:00.000Z',
             lmp: '25/3/13',
             anc_visits:[
@@ -52,7 +52,7 @@ function ancRegisterController($scope) {
         {
             village: 'Bherya',
             name: 'Larry',
-            thayi: '4',
+            thayi: '4636587',
             ec_number: '314',
             age: '24',
             husband_name: 'Dickson',
@@ -76,7 +76,7 @@ function ancRegisterController($scope) {
         {
             village: 'Bherya',
             name: 'Ukanga',
-            thayi: '4',
+            thayi: '4636587',
             ec_number: '315',
             age: '27',
             husband_name: 'Harshit',
