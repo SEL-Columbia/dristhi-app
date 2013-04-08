@@ -35,6 +35,10 @@
     text-shadow: none;
 }
 
+.navbar .divider-vertical {
+    border-right: none;
+}
+
 .menu-button-container {
     padding: 5px;
     padding-bottom: 0px;
