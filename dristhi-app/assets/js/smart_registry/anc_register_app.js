@@ -241,7 +241,7 @@ function ancRegisterController($scope) {
             }
             else
             {
-                villageCondition = (client.village == handler);
+                villageCondition = (client.village == handler && client.locationStatus != "left_the_place");
             }
         }
         if ($scope.ancServiceOption.handler) {
