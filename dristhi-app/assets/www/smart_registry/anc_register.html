@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="smartRegistry">
 <head>
     <link href="../../css/smart_registry/reset.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="../../css/smart_registry/styles.css" media="all" rel="stylesheet" type="text/css"/>
@@ -9,93 +9,71 @@
     <link href="../../css/custom.css" rel="stylesheet">
     <script src="../../js/lib/angular.min.js" type="text/javascript"></script>
     <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/smart_registry/smart_registry_app.js" type="text/javascript"></script>
+    <script src="../../js/smart_registry/list_view_controller.js" type="text/javascript"></script>
     <script src="../../js/smart_registry/anc_register_app.js" type="text/javascript"></script>
     <script src="../../js/bootstrap.min.js"></script>
 </head>
 <body ng-controller="ancRegisterController">
-<div class="header">
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <ul class="nav">
-                <li><a href="../home.html"><i class="icon-white icon-chevron-left"></i></a></li>
-            </ul>
-            <ul class="nav">
-                <li><a class="brand" href="../home.html">ANC Register: March 2013</a></li>
-            </ul>
-            <div class="nav-collapse collapse">
-                <form class="navbar-search pull-right">
-                    <input type="text" class="search-query" placeholder="Search" ng-model="searchFilterString">
-                </form>
-                <ul class="nav pull-right">
-                    <li><a href="#" ng-click="openModal(ancServiceOptions)">{{ancServiceOption.label}} <i class="icon-white icon-chevron-down"></i></a></li>
-                    <li><a href="#" ng-click="openModal(sortOptions)"><i class="icon-sort icon-white"></i></a></li>
-                    <li><a href="#" ng-click="openModal(villageOptions)"><i class="icon-home icon-white"></i></a></li>
-                    <li><a href="#"><i class="icon-plus icon-white"></i></a></li>
+<div ng-controller="listViewController">
+    <div class="header">
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <ul class="nav">
+                    <li><a href="../home.html"><i class="icon-white icon-chevron-left"></i></a></li>
                 </ul>
+                <ul class="nav">
+                    <li><a class="brand" href="../home.html">ANC Register: March 2013</a></li>
+                </ul>
+                <div class="nav-collapse collapse">
+                    <form class="navbar-search pull-right">
+                        <input type="text" class="search-query" placeholder="Search" ng-model="searchFilterString">
+                    </form>
+                    <ul class="nav pull-right">
+                        <li><a href="#" ng-click="openModal(ancServiceOptions)">{{serviceModeOption.label}} <i
+                                class="icon-white icon-chevron-down"></i></a></li>
+                        <li><a href="#" ng-click="openModal(sortOptions)"><i class="icon-sort icon-white"></i></a></li>
+                        <li><a href="#" ng-click="openModal(villageOptions)"><i class="icon-home icon-white"></i></a>
+                        </li>
+                        <li><a href="#"><i class="icon-plus icon-white"></i></a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="headcontainer2">
-        <span>Sorted By: <strong>{{currentSortOption.label}}</strong>, </span>
-        <span>Village: <strong>{{villageFilterOption.label}}</strong>, </span>
-        <span>Service Mode: <strong>{{ancServiceOption.label}}</strong></span>
-    </div>
-    <div class="clear"></div>
-    <div class="tableheaders row-fluid">
-        <div class="span3">NAME</div>
-        <ng:include src="'blocks/anc/' + contentTemplate + '_header.html'">
-        </ng:include>
-    </div>
-</div>
-<div class="content-smart-registry">
-    <div ng-show="isModalOpen" class="modal" style="margin-top: 100px;">
-        <div class="modal-body modal-row">
-            <ul class="nav nav-tabs nav-stacked">
-                <li ng-repeat="option in currentOptions.options">
-                    <a href="#" ng-click="onModalOptionClick(option, currentOptions.type)">{{option.label}}<i
-                            class="icon-chevron-right" style="float: right"></i></a>
-                </li>
-            </ul>
+        <div class="headcontainer2">
+            <span>Sorted By: <strong>{{currentSortOption.label}}</strong>, </span>
+            <span>Village: <strong>{{villageFilterOption.label}}</strong>, </span>
+            <span>Service Mode: <strong>{{serviceModeOption.label}}</strong></span>
         </div>
-    </div>
-
-    <div ng-show="isFPModalOpen" class="modal" style="margin-top: 100px;">
-        <div class="modal-body modal-row">
-            <ul class="nav nav-pills">
-                <li class="active">
-                    <a ng-click="selectFPMethodOption(true)" href="#fp-method-options" data-toggle="tab">FP Methods</a>
-                </li>
-                <li>
-                    <a ng-click="selectFPMethodOption(false)" href="#fp-prioritization-options" data-toggle="tab">FP Prioritization</a>
-                </li>
-            </ul>
-            <div id="fp-method-options">
-                <ul ng-show="isFPMethodsOptionSelected" class="nav nav-tabs nav-stacked">
-                    <li ng-repeat="option in ecsWithFPMethodFilterOptions.options">
-                        <a href="#" ng-click="onFPModalOptionClick(option, currentOptions.type)">{{option.label}}<i
-                                class="icon-chevron-right" style="float: right"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <div id="fp-prioritization-options">
-                <ul ng-show="!isFPMethodsOptionSelected" class="nav nav-tabs nav-stacked">
-                    <li ng-repeat="option in ecsWithoutFPMethodFilterOptions.options">
-                        <a href="#" ng-click="onFPModalOptionClick(option, currentOptions.type)">{{option.label}}<i
-                                class="icon-chevron-right" style="float: right"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="container-fluid container-no-padding client-list">
-        <div class="row-fluid client" ng-repeat="client in clients | filter:filterList | orderBy:sortList:reverseSort">
-            <ng:include src="'blocks/client_name.html'"></ng:include>
-            <ng:include src="'blocks/anc/'+ contentTemplate + '.html'">
+        <div class="clear"></div>
+        <div class="tableheaders row-fluid">
+            <div class="span3">NAME</div>
+            <ng:include src="'blocks/anc/' + contentTemplate + '_header.html'">
             </ng:include>
         </div>
     </div>
 
+    <div class="content-smart-registry">
+        <div ng-show="isModalOpen" class="modal" style="margin-top: 100px;">
+            <div class="modal-body modal-row">
+                <ul class="nav nav-tabs nav-stacked">
+                    <li ng-repeat="option in currentOptions.options">
+                        <a href="#" ng-click="onModalOptionClick(option, currentOptions.type)">{{option.label}}<i
+                                class="icon-chevron-right" style="float: right"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container-fluid container-no-padding client-list">
+            <div class="row-fluid client"
+                 ng-repeat="client in clients | filter:filterList | orderBy:sortList:sortDescending">
+                <ng:include src="'blocks/client_name.html'"></ng:include>
+                <ng:include src="'blocks/anc/'+ contentTemplate + '.html'">
+                </ng:include>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

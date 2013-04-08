@@ -1,4 +1,4 @@
-function FPSmartRegistryBridge() {
+function FPRegistryBridge() {
     var fpSmartRegistryContext = window.context;
     if (typeof fpSmartRegistryContext === "undefined" && typeof FakeFPSmartRegistryContext !== "undefined") {
         fpSmartRegistryContext = new FakeFPSmartRegistryContext();
