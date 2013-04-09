@@ -1,18 +1,5 @@
 <div class="span3 full-height">
-    <div class="row-fluid full-height">
-        <div id="id" class="span5 line-right full-height">
-            <small>ANC:</small> <b>{{client.ec_number}}</b>
-            <br/>
-            <small>Thayi:</small> <b>{{client.thayi}}</b>
-            <div style="clear: both"></div>
-        </div>
-        <div class="span7 line-right">
-            <!--weeks pregnant-->
-            <div style="margin-top: 4px"><b><span style="font-size: 24px">{{client.weeks_pregnant}}</span></b> <b><span style="font-size: 20px">weeks</b></div>
-           <div style="margin-top: 6px"><small>EDD:</small> {{client.edd | date:'dd/MM/yy'}}</div>
-            <div style="margin-top: 2px"><small>LMP:</small> {{client.lmp | date:'dd/MM/yy'}}</div>
-        </div>
-    </div>
+    <ng:include src="'blocks/anc/id_anc_status.html'"></ng:include>
 </div>
 
 <div class="span5 full-height no-padding-left small-margin-left">

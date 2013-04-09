@@ -228,7 +228,7 @@ function ancRegisterController($scope) {
         "left_the_place": 4
     }
 
-    $scope.defaultAncServiceOption = $scope.ancServiceOptions.options[0];
+    $scope.defaultAncServiceOption = $scope.ancServiceOptions.options[3];
     $scope.ancServiceOption = $scope.defaultAncServiceOption;
 
 
