@@ -215,7 +215,7 @@ angular.module("smartRegistry.controllers")
             "left_the_place": 4
         };
 
-        $scope.defaultAncServiceOption = $scope.ancServiceOptions.options[3];
+        $scope.defaultAncServiceOption = $scope.ancServiceOptions.options[0];
         $scope.serviceModeOption = $scope.defaultAncServiceOption;
 
         $scope.ancService = function (option) {

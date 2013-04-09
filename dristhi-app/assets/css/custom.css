@@ -419,12 +419,6 @@ body {
     line-height: 17px;
 }
 
-.no-padding-left {
-    padding-left: 0 !important;
-}
-.small-margin-left {
-    margin-left: 6px !important;
-}
 .container-section {
     padding-right: 10px;
     padding-left: 10px;
@@ -669,14 +663,29 @@ body {
     font-size: 16px;
 }
 
-.span1 .btn-sr {
-    width: 105px;
-}
-
 .btn-sr {
     text-align: left;
     padding: 2px 6px 3px;
     width: 100%;
+}
+
+a.btn-sr {
+    width: 94%;
+    height: 90%;
+    text-align: left;
+}
+
+a.btn-sr.btn-due, a.btn-sr.btn-past-due {
+    color: #ffffff;
+}
+
+a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
+    color: #0d0d0d;
+}
+
+.btn-sr div.done-icon {
+    float: left;
+    margin: 3px 4px 0 0;
 }
 
 /*button states*/
@@ -844,7 +853,35 @@ body {
     min-height: 22px;
 }
 
-.content-smart-registry .row-fluid [class*="span"] [class*="span"] {
+.row-fluid .span1.width-without-margins {
+    width: 8.333333333333%;
+}
+
+.row-fluid .span3.width-without-margins {
+    width: 25%;
+}
+
+.row-fluid .span4.width-without-margins {
+    width: 33.33333333333333%;
+}
+
+.row-fluid .span5.width-without-margins {
+    width: 41.666666666667%;
+}
+
+.row-fluid .span6.width-without-margins {
+    width: 50%;
+}
+
+.row-fluid .span7.width-without-margins {
+    width: 58.333333333333%;
+}
+
+.row-fluid [class*="span"].span-no-margin {
+    margin: 0;
+}
+
+.content-smart-registry .row-fluid [class*="span"].span-content {
     padding: 5px;
 }
 

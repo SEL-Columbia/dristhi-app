@@ -183,7 +183,7 @@ a:focus {
 .client {
     border-bottom: 1px solid #d9d9d9;
     height: 80px;
-    padding-left: 5px;
+    /*padding-left: 5px;*/
 }
 
 .client:last-child {
@@ -309,4 +309,8 @@ a:focus {
 
 .grid-content-padding {
     padding: 5px;
+}
+
+.bold-text {
+    font-weight: bold;
 }
