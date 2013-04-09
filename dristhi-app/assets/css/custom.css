@@ -718,6 +718,11 @@ a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
 
 }
 
+.btn-new-form, .btn-new-form:hover, .btn-new-form:focus {
+    color: #389cc8;
+    text-align: center;
+}
+
 .spacing-below {
     margin-bottom: 12px;
 }
@@ -857,6 +862,10 @@ a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
     width: 8.333333333333%;
 }
 
+.row-fluid .span2.width-without-margins {
+    width: 16.666666666667%;
+}
+
 .row-fluid .span3.width-without-margins {
     width: 25%;
 }
@@ -877,6 +886,22 @@ a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
     width: 58.333333333333%;
 }
 
+.row-fluid .span8.width-without-margins {
+    width: 66.666666666667%;
+}
+
+.row-fluid .span9.width-without-margins {
+    width: 75%;
+}
+
+.row-fluid .span10.width-without-margins {
+    width: 83.333333333333%;
+}
+
+.row-fluid .span11.width-without-margins {
+    width: 91.666666666667%;
+}
+
 .row-fluid [class*="span"].span-no-margin {
     margin: 0;
 }
@@ -885,9 +910,46 @@ a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
     padding: 5px;
 }
 
+.span-content ul {
+    margin: 0;
+}
+
 .content-smart-registry .row-fluid [class*="span"] [class*="span"] .btn {
     margin-bottom: 3px;
 }
 .content-smart-registry .row-fluid [class*="span"] [class*="span"] span {
     font-size: 94%;
+}
+
+.row-fluid [class*="span"] div.row-fluid.hb {
+    margin-bottom: 1px;
+}
+
+.row-fluid [class*="span"] div.row-fluid.hb [class*="span"] {
+    min-height: 23px;
+}
+
+.row-fluid [class*="span"] div.row-fluid.hb .hb-content-right-aligned{
+    text-align: right;
+}
+
+.row-fluid [class*="span"] div.row-fluid.hb .hb-content{
+    padding: 3px;
+    background-color: #ececec;
+}
+
+.row-fluid [class*="span"] div.row-fluid.hb .hb-legend{
+    width: 4%;
+}
+
+.row-fluid [class*="span"] div.row-fluid.hb .hb-legend-dangerous{
+    background: #d13f3f;
+}
+
+.row-fluid [class*="span"] div.row-fluid.hb .hb-legend-high{
+    background: #edca00;
+}
+
+.row-fluid [class*="span"] div.row-fluid.hb .hb-legend-normal{
+    background: #43ae23;
 }
