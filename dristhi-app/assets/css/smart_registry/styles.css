@@ -39,8 +39,11 @@ blockquote:after {
 
 i.green {
    color: #23ae23;
-
 }
+i.red {
+    color: #d13f3f;
+}
+
 del {
     text-decoration: line-through;
 }

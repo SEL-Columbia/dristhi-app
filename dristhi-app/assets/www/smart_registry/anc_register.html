@@ -47,7 +47,6 @@
         </div>
         <div class="clear"></div>
         <div class="tableheaders row-fluid">
-            <div class="span3">NAME</div>
             <ng:include src="'blocks/anc/' + contentTemplate + '_header.html'">
             </ng:include>
         </div>
@@ -65,10 +64,10 @@
             </div>
         </div>
 
+
         <div class="container-fluid container-no-padding client-list">
             <div class="row-fluid client"
                  ng-repeat="client in clients | filter:filterList | orderBy:sortList:sortDescending">
-                <ng:include src="'blocks/client_name.html'"></ng:include>
                 <ng:include src="'blocks/anc/'+ contentTemplate + '.html'">
                 </ng:include>
             </div>
