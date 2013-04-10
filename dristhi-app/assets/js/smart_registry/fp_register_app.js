@@ -146,43 +146,44 @@ angular.module("smartRegistry.controllers")
 
         $scope.searchFilterString = "";
 
-        var hpECWithoutFP = "ec_without_fp";
-        var defaultContentTemplate = "fp_methods";
+        var fpMethodTemplate = "fp_methods";
+        var hpECWithoutFPTemplate = "ec_without_fp";
+        var defaultContentTemplate = fpMethodTemplate;
 
         $scope.highPriorityFilter = function (client) {
-            $scope.contentTemplate = hpECWithoutFP;
+            $scope.contentTemplate = hpECWithoutFPTemplate;
             return !doesClientUseFpMethod(client) && client.isHighPriority;
         };
 
         $scope.twoPlusChildrenFilter = function (client) {
-            $scope.contentTemplate = hpECWithoutFP;
+            $scope.contentTemplate = hpECWithoutFPTemplate;
             return !doesClientUseFpMethod(client) && client.num_living_children >= "2";
         };
 
         $scope.oneChildFilter = function (client) {
-            $scope.contentTemplate = hpECWithoutFP;
+            $scope.contentTemplate = hpECWithoutFPTemplate;
             return !doesClientUseFpMethod(client) && client.num_living_children === "1";
         };
 
         $scope.fpMethodFilter = function (client, optionId) {
-            $scope.contentTemplate = defaultContentTemplate;
+            $scope.contentTemplate = fpMethodTemplate;
             return client.fp_method === optionId;
         };
 
         $scope.otherFpMethodFilter = function (client) {
-            $scope.contentTemplate = defaultContentTemplate;
+            $scope.contentTemplate = fpMethodTemplate;
             return client.fp_method === "lam"
                 || client.fp_method === "traditional"
                 || client.fp_method === "centchroman";
         };
 
         $scope.allECsWithoutFP = function (client) {
-            $scope.contentTemplate = hpECWithoutFP;
+            $scope.contentTemplate = hpECWithoutFPTemplate;
             return !doesClientUseFpMethod(client);
         };
 
         $scope.allECsWithFP = function (client) {
-            $scope.contentTemplate = defaultContentTemplate;
+            $scope.contentTemplate = fpMethodTemplate;
             return doesClientUseFpMethod(client);
         };
 
