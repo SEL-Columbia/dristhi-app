@@ -3,7 +3,10 @@ if (typeof enketo == "undefined" || !enketo) {
 }
 
 enketo.FormDataRepository = function () {
-    var repository = window.formDataRepositoryContext;
+    var repository;
+    if (typeof formDataRepositoryContext !== "undefined") {
+        repository = formDataRepositoryContext;
+    }
 
     return {
         getFormInstanceByFormTypeAndId: function (formID, formName) {

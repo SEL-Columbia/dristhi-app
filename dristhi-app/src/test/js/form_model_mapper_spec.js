@@ -5,6 +5,7 @@ describe("Form Model Mapper", function () {
     var savedFormInstance;
     var queryBuilder;
     var entitiesDef;
+    var idFactory;
 
     beforeEach(function () {
         savedFormInstance = JSON.stringify({
@@ -79,7 +80,8 @@ describe("Form Model Mapper", function () {
         ];
         formDataRepository = new enketo.FormDataRepository();
         queryBuilder = new enketo.SQLQueryBuilder(formDataRepository);
-        formModelMapper = new enketo.FormModelMapper(formDataRepository, queryBuilder, new enketo.IdFactory(new enketo.IdFactoryBridge()));
+        idFactory = new enketo.IdFactory(new enketo.IdFactoryBridge());
+        formModelMapper = new enketo.FormModelMapper(formDataRepository, queryBuilder, idFactory);
     });
 
     it("should get form model for a given form type from the saved form instance when it exists", function () {
@@ -278,6 +280,9 @@ describe("Form Model Mapper", function () {
             "mother_id": "new uuid : mother"
         };
         spyOn(formDataRepository, "saveEntity");
+        spyOn(idFactory, 'generateIdFor').andCallFake(function (entityType) {
+            return "new uuid : " + entityType;
+        });
 
         formModelMapper.mapToEntityAndSave(entitiesDef, formModel);
 
@@ -352,6 +357,9 @@ describe("Form Model Mapper", function () {
             "mother_id": "mother id 1"
         };
         spyOn(formDataRepository, "saveEntity");
+        spyOn(idFactory, 'generateIdFor').andCallFake(function (entityType) {
+            return "new uuid : " + entityType;
+        });
 
         formModelMapper.mapToEntityAndSave(entitiesDef, formModel);
 
@@ -421,6 +429,9 @@ describe("Form Model Mapper", function () {
             "id": "new uuid : child"
         };
         spyOn(formDataRepository, "saveEntity");
+        spyOn(idFactory, 'generateIdFor').andCallFake(function (entityType) {
+            return "new uuid : " + entityType;
+        });
 
         formModelMapper.mapToEntityAndSave(entitiesDef, formModel);
 

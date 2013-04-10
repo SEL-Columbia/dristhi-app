@@ -11,9 +11,9 @@ enketo.IdFactory = function (idFactoryBridge) {
 };
 
 enketo.IdFactoryBridge = function () {
-    var idFactoryContext = window.formDataRepositoryContext;
-    if (typeof idFactoryContext === "undefined" && typeof enketo.FakeIdFactoryContext !== "undefined") {
-        idFactoryContext = new enketo.FakeIdFactoryContext();
+    var idFactoryContext;
+    if (typeof formDataRepositoryContext !== "undefined") {
+        idFactoryContext = formDataRepositoryContext;
     }
 
     return {
@@ -21,12 +21,4 @@ enketo.IdFactoryBridge = function () {
             return idFactoryContext.generateIdFor(entityType);
         }
     };
-};
-
-enketo.FakeIdFactoryContext = function () {
-    return {
-        generateIdFor: function (entityType) {
-            return "new uuid : " + entityType;
-        }
-    }
 };
