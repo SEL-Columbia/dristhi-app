@@ -31,8 +31,8 @@ function FakeFPSmartRegistryContext() {
                     "parity": '2',
                     "num_living_children": '1',
                     "num_stillbirths": '1',
-                    "num_abortions": '1'
-
+                    "num_abortions": '1',
+                    "family_planning_method_change_date": "25/02/13"
                 },
                 {
                     "ec_number": "2",
@@ -50,7 +50,8 @@ function FakeFPSmartRegistryContext() {
                     "parity": '2',
                     "num_living_children": '1',
                     "num_stillbirths": '1',
-                    "num_abortions": '1'
+                    "num_abortions": '1',
+                    "family_planning_method_change_date": "14/03/12"
                 },
                 {
                     "ec_number": "9",
@@ -68,7 +69,8 @@ function FakeFPSmartRegistryContext() {
                     "parity": '2',
                     "num_living_children": '1',
                     "num_stillbirths": '2',
-                    "num_abortions": '0'
+                    "num_abortions": '0',
+                    "family_planning_method_change_date": "02/12/13"
                 },
                 {
                     "ec_number": "1",
@@ -86,7 +88,8 @@ function FakeFPSmartRegistryContext() {
                     "parity": '2',
                     "num_living_children": '1',
                     "num_stillbirths": '1',
-                    "num_abortions": '1'
+                    "num_abortions": '1',
+                    "family_planning_method_change_date": "21/06/12"
                 },
                 {
                     "ec_number": "7",
@@ -104,7 +107,8 @@ function FakeFPSmartRegistryContext() {
                     "parity": '2',
                     "num_living_children": '1',
                     "num_stillbirths": '1',
-                    "num_abortions": '1'
+                    "num_abortions": '1',
+                    "family_planning_method_change_date": "25/02/13"
                 },
                 {
                     "ec_number": "10",
@@ -122,7 +126,8 @@ function FakeFPSmartRegistryContext() {
                     "parity": '2',
                     "num_living_children": '1',
                     "num_stillbirths": '1',
-                    "num_abortions": '1'
+                    "num_abortions": '1',
+                    "family_planning_method_change_date": "25/02/13"
                 },
                 {
                     "ec_number": "3",
@@ -140,7 +145,8 @@ function FakeFPSmartRegistryContext() {
                     "parity": '2',
                     "num_living_children": '1',
                     "num_stillbirths": '1',
-                    "num_abortions": '1'
+                    "num_abortions": '1',
+                    "family_planning_method_change_date": "25/02/13"
                 },
                 {
                     "ec_number": "4",
@@ -158,7 +164,8 @@ function FakeFPSmartRegistryContext() {
                     "parity": '2',
                     "num_living_children": '1',
                     "num_stillbirths": '1',
-                    "num_abortions": '1'
+                    "num_abortions": '1',
+                    "family_planning_method_change_date": "25/02/13"
                 },
                 {
                     "ec_number": "11",
@@ -176,7 +183,8 @@ function FakeFPSmartRegistryContext() {
                     "parity": '2',
                     "num_living_children": '1',
                     "num_stillbirths": '1',
-                    "num_abortions": '1'
+                    "num_abortions": '1',
+                    "family_planning_method_change_date": "25/02/13"
                 },
                 {
                     "ec_number": "13",
@@ -194,7 +202,8 @@ function FakeFPSmartRegistryContext() {
                     "parity": '2',
                     "num_living_children": '1',
                     "num_stillbirths": '1',
-                    "num_abortions": '1'
+                    "num_abortions": '1',
+                    "family_planning_method_change_date": "25/02/13"
                 },
                 {
                     "ec_number": "13",
@@ -212,7 +221,8 @@ function FakeFPSmartRegistryContext() {
                     "parity": '2',
                     "num_living_children": '1',
                     "num_stillbirths": '1',
-                    "num_abortions": '1'
+                    "num_abortions": '1',
+                    "family_planning_method_change_date": "25/02/13"
                 },
                 {
                     "ec_number": "8",
@@ -230,7 +240,8 @@ function FakeFPSmartRegistryContext() {
                     "parity": '2',
                     "num_living_children": '1',
                     "num_stillbirths": '1',
-                    "num_abortions": '1'
+                    "num_abortions": '1',
+                    "family_planning_method_change_date": "25/02/13"
                 },
                 {
                     "ec_number": "12",
@@ -248,7 +259,8 @@ function FakeFPSmartRegistryContext() {
                     "parity": '2',
                     "num_living_children": '1',
                     "num_stillbirths": '1',
-                    "num_abortions": '1'
+                    "num_abortions": '1',
+                    "family_planning_method_change_date": "25/02/13"
                 },
                 {
                     "ec_number": "1",
@@ -266,7 +278,8 @@ function FakeFPSmartRegistryContext() {
                     "parity": '2',
                     "num_living_children": '1',
                     "num_stillbirths": '1',
-                    "num_abortions": '1'
+                    "num_abortions": '1',
+                    "family_planning_method_change_date": "25/02/13"
                 }
             ]);
         }

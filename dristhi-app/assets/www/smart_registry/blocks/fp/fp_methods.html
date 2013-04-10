@@ -1,8 +1,22 @@
-<div id="method" class="span3 line-right">
-    <b>{{client.fp_method}}</b>
-    <button class="btn" type="button" style="margin-right:8px;">Update</button>
+<div id="method" class="span6 line-right full-height span-no-margin width-without-margins span-content">
+    <div class="row-fluid full-height">
+        <div class="span8 full-height">
+            <span class="text-bold">{{client.fp_method}}</span>
+            <br/>
+            <span>{{client.family_planning_method_change_date}}</span>
+        </div>
+        <div class="span4 full-height">
+            <button class="btn btn-done btn-sr btn-new-form full-height">Update</button>
+        </div>
+    </div>
 </div>
-<div id="sideeffects" class="span3">
-    <button class="btn" type="button">Side Effects</button>
-    {{client.side_effects}}
+<div id="sideeffects" class="span6 full-height span-no-margin width-without-margins span-content">
+    <div class="row-fluid full-height">
+        <div class="span8 full-height">
+            <span>{{client.side_effects}}</span>
+        </div>
+        <div class="span4 full-height">
+            <button class="btn btn-done btn-sr btn-new-form full-height">Side Effects</button>
+        </div>
+    </div>
 </div>

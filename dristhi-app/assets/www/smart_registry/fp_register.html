@@ -24,7 +24,9 @@
                     <li><a href="../home.html"><i class="icon-white icon-chevron-left"></i></a></li>
                     <li class="divider-vertical"></li>
                 </ul>
-                <a class="brand" href="../home.html">FP Register: March 2013</a>
+                <ul class="nav">
+                    <li><a class="brand" href="#">FP Register: March 2013</a></li>
+                </ul>
 
                 <div class="nav-collapse collapse">
                     <form class="navbar-search pull-right">
@@ -51,12 +53,12 @@
         </div>
         <div class="clear"></div>
         <div class="tableheaders row-fluid">
-            <div class="span3">NAME</div>
-            <div class="span1">ID NO.</div>
-            <div class="span1">DUE</div>
-            <div class="span1">GPLSA</div>
-            <ng:include src="'blocks/fp/'+ contentTemplate + '_header.html'">
-            </ng:include>
+            <div class="span5 full-height span-no-margin width-without-margins">
+                <div class="row-fluid" ng-include="'blocks/fp/common_header.html'"></div>
+            </div>
+            <div class="span7 full-height span-no-margin width-without-margins">
+                <div class="row-fluid" ng-include="'blocks/fp/'+ contentTemplate + '_header.html'"></div>
+            </div>
         </div>
     </div>
     <div class="content-smart-registry">
@@ -102,20 +104,14 @@
             </div>
         </div>
 
-        <div class="container-fluid client-list">
+        <div class="container-fluid container-no-padding client-list">
             <div class="row-fluid client" ng-repeat="client in clients | filter:filterList | orderBy:sortList">
-                <ng:include src="'blocks/client_name.html'"></ng:include>
-                <ng:include src="'blocks/client_ids.html'"></ng:include>
-                <div id="due" class="span1 line-right">
-                    <span style="font-size:16px; font-weight: bold;">{{client.days_due}}</span><br/>
-                    <span style="color: #595959; line-height: 19px;">{{client.due_message}}</span>
+                <div class="span5 full-height span-no-margin width-without-margins">
+                    <div class="row-fluid full-height" ng-include="'blocks/fp/common.html'"></div>
                 </div>
-                <div id="gplsa" class="span1 line-right">{{client.num_pregnancies}} {{client.parity}}
-                    {{client.num_living_children}}
-                    {{client.num_stillbirths}} {{client.num_abortions}}
+                <div class="span7 full-height span-no-margin width-without-margins">
+                    <div class="row-fluid full-height" ng-include="'blocks/fp/'+ contentTemplate + '.html'"></div>
                 </div>
-                <ng:include src="'blocks/fp/'+ contentTemplate + '.html'">
-                </ng:include>
             </div>
         </div>
 
