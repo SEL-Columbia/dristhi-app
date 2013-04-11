@@ -47,6 +47,9 @@
         </div>
         <div class="clear"></div>
         <div class="tableheaders row-fluid">
+            <div class="span5 full-height span-no-margin width-without-margins">
+                <div class="row-fluid full-height" ng-include="'blocks/anc/common_header.html'"></div>
+            </div>
             <ng:include src="'blocks/anc/' + contentTemplate + '_header.html'">
             </ng:include>
         </div>
@@ -68,6 +71,9 @@
         <div class="container-fluid container-no-padding client-list">
             <div class="row-fluid client"
                  ng-repeat="client in clients | filter:filterList | orderBy:sortList:sortDescending">
+                <div class="span5 full-height span-no-margin width-without-margins">
+                    <div class="row-fluid full-height" ng-include="'blocks/anc/common.html'"></div>
+                </div>
                 <ng:include src="'blocks/anc/'+ contentTemplate + '.html'">
                 </ng:include>
             </div>

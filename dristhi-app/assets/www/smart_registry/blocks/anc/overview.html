@@ -1,14 +1,13 @@
-<ng:include src="'blocks/anc/name_id_anc_status.html'"></ng:include>
 <div class="span6 full-height span-no-margin width-without-margins">
     <div class="row-fluid full-height">
         <div class="span4 line-right span-no-margin width-without-margins span-content">
             <!--VISITS-->
-            <button class="btn btn-primary btn-past-due btn-sr" href="#">
-                <span class="text-bold">ANC 4</span>
+            <button class="btn btn-primary btn-sr" ng-class="'btn-' + client.next_anc_visit.visit_status">
+                <span class="text-bold">ANC {{client.next_anc_visit.visit_number}}</span>
                 <br/>
-                Due 05/03
+                Due {{client.next_anc_visit.visit_date}}
             </button>
-            <span><i class="icon-ok green"></i>ANC 3: 02/03</span>
+            <span ng-show="client.next_anc_visit.visit_status != 'done'"><i class="icon-ok green"></i>ANC 3: 02/03</span>
         </div>
         <div class="span4 line-right span-no-margin width-without-margins span-content">
             <!--TT-->
