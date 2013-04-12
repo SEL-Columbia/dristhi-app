@@ -19,9 +19,8 @@ angular.module("smartRegistry.controllers")
         $scope.defaultSortOption = $scope.sortOptions.options[0];
         $scope.currentSortOption = $scope.defaultSortOption;
         $scope.sortList = $scope.sortByName;
-
-        $scope.sortByPriority = function (item) {
-            return !item.isHighPriority;
+        $scope.sortByPriority = function (client) {
+            return !client.isHighPriority;
         };
 
         $scope.villageOptions = {
@@ -29,43 +28,41 @@ angular.module("smartRegistry.controllers")
             options: [
                 {
                     label: "All",
+                    id: "",
                     handler: ""
                 },
                 {
                     label: "Bherya",
-                    handler: "bherya"
+                    id: "bherya",
+                    handler: "filterByVillageName"
                 },
                 {
                     label: "Chikkahalli",
-                    handler: "chikkahalli"
+                    id: "chikkahalli",
+                    handler: "filterByVillageName"
                 },
                 {
                     label: "Somanahalli Colony",
-                    handler: "somanahalli_colony"
+                    id: "somanahalli_colony",
+                    handler: "filterByVillageName"
                 },
                 {
                     label: "Chikkabherya",
-                    handler: "chikkabherya"
+                    id: "chikkabherya",
+                    handler: "filterByVillageName"
                 },
                 {
                     label: "Basavanapura",
-                    handler: "basavanapura"
+                    id: "basavanapura",
+                    handler: "filterByVillageName"
                 }
-            ].sort(function (item1, item2) {
-                    if (item1.label < item2.label) {
-                        return -1;
-                    }
-                    else if (item1.label > item2.label) {
-                        return 1;
-                    }
-                    else {
-                        return 0;
-                    }
-                }
-            )
+            ]
         };
         $scope.defaultVillage = $scope.villageOptions.options[0];
         $scope.villageFilterOption = $scope.defaultVillage;
+        $scope.filterByVillageName = function (client, villageOption) {
+            return (client.village.toUpperCase() === villageOption.id.toUpperCase());
+        };
 
         $scope.defaultFPOptions = $scope.ecsWithFPMethodServiceModeOptions;
         $scope.ecsWithFPMethodServiceModeOptions = {
@@ -73,161 +70,137 @@ angular.module("smartRegistry.controllers")
             options: [
                 {
                     label: "All Methods",
-                    id: "allECsWithFP",
-                    handler: "allECsWithFP"
+                    id: "filterByFPMethodBeingUsed",
+                    handler: "filterByFPMethodBeingUsed"
                 },
                 {
                     label: "Condom",
                     id: "condom",
-                    handler: "fpMethodFilter"
+                    handler: "filterByFPMethod"
                 },
                 {
                     label: "DMPA/Injectable",
                     id: "dmpa_injectable",
-                    handler: "fpMethodFilter"
+                    handler: "filterByFPMethod"
                 },
                 {
                     label: "IUD",
                     id: "iud",
-                    handler: "fpMethodFilter"
+                    handler: "filterByFPMethod"
                 },
                 {
                     label: "OCP",
                     id: "ocp",
-                    handler: "fpMethodFilter"
+                    handler: "filterByFPMethod"
                 },
                 {
                     label: "Female Sterilization",
                     id: "female_sterilization",
-                    handler: "fpMethodFilter"
+                    handler: "filterByFPMethod"
                 },
                 {
                     label: "Male Sterilization",
                     id: "male_sterilization",
-                    handler: "fpMethodFilter"
+                    handler: "filterByFPMethod"
                 },
                 {
                     label: "Others",
                     id: "others",
-                    handler: "otherFpMethodFilter"
+                    handler: "filterByFPMethodOther"
                 }
             ]
         };
-
         $scope.ecsWithoutFPMethodServiceModeOptions = {
             type: "filterFPMethod",
             options: [
                 {
                     label: "All EC",
-                    id: "allECsWithoutFP",
-                    handler: "allECsWithoutFP"
+                    id: "filterByNoFPMethod",
+                    handler: "filterByNoFPMethod"
                 },
                 {
                     label: "High Priority",
                     id: "hp",
-                    handler: "highPriorityFilter"
+                    handler: "filterByPriority"
                 },
                 {
                     label: "2+ Children",
                     id: "2+_Children",
-                    handler: "twoPlusChildrenFilter"
+                    handler: "filterByNumberOfChildrenGreaterThanOne"
                 },
                 {
                     label: "1 Child",
                     id: "1_Child",
-                    handler: "oneChildFilter"
+                    handler: "filterByNumberOfChildrenEqualToOne"
                 }
 
             ]
         };
-
         $scope.defaultFPMethodOption = $scope.ecsWithFPMethodServiceModeOptions.options[0];
         $scope.serviceModeOption = $scope.defaultFPMethodOption;
-
-        $scope.searchFilterString = "";
-
         var fpMethodTemplate = "fp_methods";
         var hpECWithoutFPTemplate = "ec_without_fp";
-        var defaultContentTemplate = fpMethodTemplate;
-
-        $scope.highPriorityFilter = function (client) {
+        $scope.filterByPriority = function (client) {
             $scope.contentTemplate = hpECWithoutFPTemplate;
             return !doesClientUseFpMethod(client) && client.isHighPriority;
         };
-
-        $scope.twoPlusChildrenFilter = function (client) {
+        $scope.filterByNumberOfChildrenGreaterThanOne = function (client) {
             $scope.contentTemplate = hpECWithoutFPTemplate;
             return !doesClientUseFpMethod(client) && client.num_living_children >= "2";
         };
-
-        $scope.oneChildFilter = function (client) {
+        $scope.filterByNumberOfChildrenEqualToOne = function (client) {
             $scope.contentTemplate = hpECWithoutFPTemplate;
             return !doesClientUseFpMethod(client) && client.num_living_children === "1";
         };
-
-        $scope.fpMethodFilter = function (client, optionId) {
+        $scope.filterByFPMethod = function (client, optionId) {
             $scope.contentTemplate = fpMethodTemplate;
             return client.fp_method === optionId;
         };
-
-        $scope.otherFpMethodFilter = function (client) {
+        $scope.filterByFPMethodOther = function (client) {
             $scope.contentTemplate = fpMethodTemplate;
             return client.fp_method === "lam"
                 || client.fp_method === "traditional"
                 || client.fp_method === "centchroman";
         };
-
-        $scope.allECsWithoutFP = function (client) {
+        $scope.filterByNoFPMethod = function (client) {
             $scope.contentTemplate = hpECWithoutFPTemplate;
             return !doesClientUseFpMethod(client);
         };
-
-        $scope.allECsWithFP = function (client) {
+        $scope.filterByFPMethodBeingUsed = function (client) {
             $scope.contentTemplate = fpMethodTemplate;
             return doesClientUseFpMethod(client);
         };
-
         var doesClientUseFpMethod = function (client) {
             return (client.fp_method && client.fp_method !== "none");
         };
 
         $scope.currentOptions = null;
         $scope.currentFPOption = null;
-
+        $scope.contentTemplate = fpMethodTemplate;
         $scope.isModalOpen = false;
-
         $scope.isFPModalOpen = false;
         $scope.isFPMethodsOptionSelected = true;
-
         $scope.filterFPMethod = function (option) {
             $scope.serviceModeOption = option;
         };
-
         $scope.selectFPMethodOption = function (fpMethodOptionSelected) {
             $scope.isFPMethodsOptionSelected = fpMethodOptionSelected;
             $scope.isFPPrioritizationOptionSelected = !fpMethodOptionSelected;
         };
-
         $scope.onFPModalOptionClick = function (option, type) {
             $scope[type](option);
             $scope.isFPModalOpen = false;
         };
-
         $scope.openFPModal = function (option) {
             $scope.isFPModalOpen = true;
             $scope.isModalOpen = false;
             $scope.currentFPOption = option;
         };
 
+        $scope.searchFilterString = "";
         $scope.searchCriteria = function (client, searchFilterString) {
             return (client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0);
         };
-
-        $scope.villageFilterCriteria = function (client, village) {
-            return (client.village.toUpperCase() === village.handler.toUpperCase());
-        };
-
-        $scope.contentTemplate = defaultContentTemplate;
     });

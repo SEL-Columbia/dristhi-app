@@ -3,27 +3,27 @@ angular.module("smartRegistry.controllers")
         $scope.clients = ANCService.getClients();
 
         $scope.sortOptions = {
-            type:"sort",
-            options:[
+            type: "sort",
+            options: [
                 {
-                    label:"Name (A to Z)",
-                    handler:"sortByName",
-                    sortDescending:false
+                    label: "Name (A to Z)",
+                    handler: "sortByName",
+                    sortDescending: false
                 },
                 {
-                    label:"EDD",
-                    handler:"sortByEDD",
-                    sortDescending:true
+                    label: "EDD",
+                    handler: "sortByEDD",
+                    sortDescending: true
                 },
                 {
-                    label:"HRP",
-                    handler:"sortByPriority",
-                    sortDescending:false
+                    label: "HRP",
+                    handler: "sortByPriority",
+                    sortDescending: false
                 },
                 {
-                    label:"Due Date",
-                    handler:"sortByDueDate",
-                    sortDescending:false
+                    label: "Due Date",
+                    handler: "sortByDueDate",
+                    sortDescending: false
                 }
             ]
         };
@@ -46,74 +46,80 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.villageOptions = {
-            type:"filterVillage",
-            options:[
+            type: "filterVillage",
+            options: [
                 {
-                    label:"All",
-                    handler:"villageFilterAll"
+                    label: "All",
+                    id: "",
+                    handler: "filterByInAreaLocationStatus"
                 },
                 {
-                    label:"Bherya",
-                    handler:"Bherya"
+                    label: "Bherya",
+                    id: "bherya",
+                    handler: "filterByVillageName"
                 },
                 {
-                    label:"Chikkabherya",
-                    handler:"Chikkabherya"
+                    label: "Chikkabherya",
+                    id: "chikkabherya",
+                    handler: "filterByVillageName"
                 },
                 {
-                    label:"O/A",
-                    id:"out_of_area",
-                    handler:"villageFilterByStatus"
+                    label: "O/A",
+                    id: "out_of_area",
+                    handler: "filterByLocationStatus"
                 },
                 {
-                    label:"L/P",
-                    id:"left_the_place",
-                    handler:"villageFilterByStatus"
+                    label: "L/P",
+                    id: "left_the_place",
+                    handler: "filterByLocationStatus"
                 }
             ]
         };
         $scope.defaultVillage = $scope.villageOptions.options[0];
         $scope.villageFilterOption = $scope.defaultVillage;
-        $scope.villageFilterAll = function (client, optionId) {
-            return client.locationStatus != "left_the_place";
+        $scope.filterByInAreaLocationStatus = function (client, option) {
+            return client.locationStatus !== "left_the_place";
         };
-        $scope.villageFilterByStatus = function (client, optionId) {
-            return client.locationStatus === optionId;
+        $scope.filterByVillageName = function (client, option) {
+            return client.village.toUpperCase() === option.id.toUpperCase();
+        };
+        $scope.filterByLocationStatus = function (client, option) {
+            return client.locationStatus === option.id;
         };
 
         $scope.ancServiceOptions = {
-            type:"ancService",
-            options:[
+            type: "ancService",
+            options: [
                 {
-                    label:"Overview",
-                    id:"overview",
-                    handler:"changeContentBasedOnServiceMode"
+                    label: "Overview",
+                    id: "overview",
+                    handler: "changeContentBasedOnServiceMode"
                 },
                 {
-                    label:"ANC Visits",
-                    id:"visits",
-                    handler:"changeContentBasedOnServiceMode"
+                    label: "ANC Visits",
+                    id: "visits",
+                    handler: "changeContentBasedOnServiceMode"
                 },
                 {
-                    label:"hB/IFA",
-                    id:"hb_ifa",
-                    handler:"changeContentBasedOnServiceMode"
+                    label: "hB/IFA",
+                    id: "hb_ifa",
+                    handler: "changeContentBasedOnServiceMode"
                 },
                 {
-                    label:"ANC Visits/TT",
-                    id:"tt",
-                    handler:"changeContentBasedOnServiceMode"
+                    label: "ANC Visits/TT",
+                    id: "tt",
+                    handler: "changeContentBasedOnServiceMode"
                 },
                 {
-                    label:"Delivery Plan",
-                    id:"delivery",
-                    handler:"changeContentBasedOnServiceMode"
+                    label: "Delivery Plan",
+                    id: "delivery",
+                    handler: "changeContentBasedOnServiceMode"
                 }
             ]
         };
         $scope.locationStatusMapping = {
-            "out_of_area":3,
-            "left_the_place":4
+            "out_of_area": 3,
+            "left_the_place": 4
         };
 
         $scope.defaultAncServiceOption = $scope.ancServiceOptions.options[0];
@@ -131,16 +137,6 @@ angular.module("smartRegistry.controllers")
             return (client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0);
-        };
-
-        $scope.villageFilterCriteria = function (client, villageFilterOption) {
-            var handler = villageFilterOption.handler;
-            if ($scope.hasOwnProperty(handler) && typeof($scope[handler]) == "function") {
-                return $scope[handler](client, villageFilterOption.id);
-            }
-            else {
-                return (client.village == handler && client.locationStatus != villageFilterOption.id);
-            }
         };
 
         $scope.changeContentBasedOnServiceMode = function (client, serviceModeOptionId) {
