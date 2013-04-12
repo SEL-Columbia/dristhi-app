@@ -23,6 +23,11 @@ describe('ANC Service', function () {
                             name:'anc1',
                             date:'2012-10-24', // 2013-04-10T12:40:45.195Z ISO String
                             status:'normal' // normal, urgent, done - upcoming is JS side, based on the last visit and if the next one is available
+                        },
+                        {
+                            name:'tt2',
+                            date:'2012-10-24', // 2013-04-10T12:40:45.195Z ISO String
+                            status:'urgent' // normal, urgent, done - upcoming is JS side, based on the last visit and if the next one is available
                         }
                     ]
                 }
@@ -38,9 +43,9 @@ describe('ANC Service', function () {
                     previous_status: null
                 },
                 tt:{
-                    next:"tt1",
-                    due_date: null,
-                    status:"btn-upcoming",
+                    next:"tt2",
+                    due_date: "2012-10-24",
+                    status:"btn-past-due",
                     previous:null,
                     previous_date:null,
                     previous_status: null

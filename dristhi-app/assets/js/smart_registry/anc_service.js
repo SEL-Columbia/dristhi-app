@@ -13,9 +13,25 @@ angular.module("smartRegistry.services")
         status_css_class[alert_status.DONE] = "btn-done";
         status_css_class[alert_status.UPCOMING] = "btn-upcoming";
 
-        Array.prototype.find = function(func)
+        if(Array.prototype.find === undefined)
         {
-        };
+            Array.prototype.find = function(func)
+            {
+                var idx;
+                for(var i = 0; i < this.length; i++)
+                {
+                    if(func.call(this, this[i]))
+                    {
+                        idx = i;
+                        break;
+                    }
+                }
+                if(idx !== undefined)
+                {
+                    return this[i];
+                }
+            };
+        }
 
         return {
             getClients:function () {
@@ -33,13 +49,13 @@ angular.module("smartRegistry.services")
                         alerts:[
                             {
                                 name:'anc1',
-                                date:'24/05', // 2013-04-10T12:40:45.195Z ISO String
-                                status:'urgent' // normal, urgent, done - upcoming is JS side, based on the last visit and if the next one is available
+                                date:'24/05',
+                                status:'urgent'
                             },
                             {
                                 name:'anc2',
-                                date:'24/07', // 2013-04-10T12:40:45.195Z ISO String
-                                status:'urgent' // normal, urgent, done - upcoming is JS side, based on the last visit and if the next one is available
+                                date:'24/07',
+                                status:'urgent'
                             },
                             {
                                 name:'tt1',
@@ -52,11 +68,6 @@ angular.module("smartRegistry.services")
                             {visit:'2', date:'04/08'},
                             {visit:'3', date:'04/09'}
                         ],
-//                        next_anc_visit:{
-//                            visit_date:'05/13',
-//                            visit_number:'3',
-//                            visit_status:'past-due' // one of upcoming, due, past-due or done if there are no more visits
-//                        },
                         tt:[
                             {tt:'1', date:'04/04'},
                             {tt:'2', date:'04/08'}
@@ -77,15 +88,22 @@ angular.module("smartRegistry.services")
                         weeks_pregnant:'24',
                         edd:'2012-04-11T00:00:00.000Z',
                         lmp:'25/3/13',
+                        alerts:[
+                            {
+                                name:'anc2',
+                                date:'24/07',
+                                status:'normal'
+                            },
+                            {
+                                name:'tt1',
+                                date:'26/05',
+                                status:'done'
+                            }
+                        ],
                         anc_visits:[
                             {visit:'1', date:'04/04'},
                             {visit:'2', date:'04/08'}
                         ],
-//                        next_anc_visit:{
-//                            visit_date:'05/13',
-//                            visit_number:'3',
-//                            visit_status:'due' // one of upcoming, due, past-due or done if there are no more visits
-//                        },
                         tt:[
                             {tt:'1', date:'04/04'},
                             {tt:'2', date:'04/08'}
@@ -106,15 +124,17 @@ angular.module("smartRegistry.services")
                         weeks_pregnant:'2',
                         edd:'2013-05-11T00:00:00.000Z',
                         lmp:'25/3/13',
+                        alerts:[
+                            {
+                                name:'anc3',
+                                date:'24/05',
+                                status:'urgent'
+                            }
+                        ],
                         anc_visits:[
                             {visit:'1', date:'04/04'},
                             {visit:'2', date:'04/08'}
                         ],
-//                        next_anc_visit:{
-//                            visit_date:'05/13',
-//                            visit_number:'3',
-//                            visit_status:'upcoming' // one of upcoming, due, past-due or done if there are no more visits
-//                        },
                         tt:[
                             {tt:'1', date:'04/04'},
                             {tt:'2', date:'04/08'}
@@ -135,15 +155,27 @@ angular.module("smartRegistry.services")
                         weeks_pregnant:'2',
                         edd:'2013-05-11T00:00:00.000Z',
                         lmp:'25/3/13',
+                        alerts:[
+                            {
+                                name:'anc4',
+                                date:'24/05',
+                                status:'urgent'
+                            },
+                            {
+                                name:'anc2',
+                                date:'24/07',
+                                status:'done'
+                            },
+                            {
+                                name:'tt2',
+                                date:'26/05',
+                                status:'normal'
+                            }
+                        ],
                         anc_visits:[
                             {visit:'1', date:'04/04'},
                             {visit:'2', date:'04/08'}
                         ],
-                        /*next_anc_visit:{
-                         visit_date:'05/13',
-                         visit_number:'3',
-                         visit_status:'done' // one of upcoming, due, past-due or done if there are no more visits
-                         },*/
                         tt:[
                             {tt:'1', date:'04/04'},
                             {tt:'2', date:'04/08'}
@@ -172,38 +204,6 @@ angular.module("smartRegistry.services")
                         }
                     ];
 
-                var next_reminders1 =
-                {
-                    "anc":{
-                        "previous":"anc2",
-                        "previous_date":"1-1-2013",
-                        "next":"anc3",
-                        "status":"upcoming"
-                    },
-                    "tt":{
-                        "previous":"",
-                        "next":"tt1",
-                        "previous_date":""
-                    }
-                };
-
-                var alert = {
-                    name:'anc1',
-                    start_date:'24/05', // 2013-04-10T12:40:45.195Z ISO String
-                    completed_date:'24/05', // 2013-04-10T12:40:45.195Z ISO String
-                    status:'done' // normal, urgent, done - upcoming is JS side, based on the last visit and if the next one is available
-                };
-
-                // transform
-                /*if normal or urgent alert exists
-                 return that alert
-                 if there is a done alert
-                 if done is last
-                 return done
-                 else done + 1
-                 if no done alert
-                 return first
-                 */
                 clients.forEach(function (client) {
                         var next_reminders = {};
                         schedules.forEach(function (schedule) {
@@ -217,12 +217,10 @@ angular.module("smartRegistry.services")
 
                             for (var i = schedule.milestones.length - 1; i > -1; i--) {
                                 var milestone = schedule.milestones[i];
-                                var milestone_alerts = alertsOfTypeCurrentSchedule.filter(function (alert) {
-                                    return alert.name === milestone;
+                                var milestone_alert = alertsOfTypeCurrentSchedule.find(function (schedule_alert) {
+                                    return schedule_alert.name === milestone;
                                 });
-                                var milestone_alert;
-                                if (milestone_alerts.length > 0) {
-                                    milestone_alert = milestone_alerts[0];
+                                if (milestone_alert !== undefined) {
                                     if (milestone_alert.status === alert_status.NORMAL || milestone_alert.status === alert_status.URGENT) {
                                         next_reminder.next = milestone_alert.name;
                                         next_reminder.due_date = milestone_alert.date;
@@ -239,15 +237,15 @@ angular.module("smartRegistry.services")
                                         else if(i > 0)
                                         {
                                             for(var prev_idx = i; prev_idx > 0; prev_idx--){
-                                                prev_alerts = alertsOfTypeCurrentSchedule.filter(function(milestone_alert){
+                                                prev_alert = alertsOfTypeCurrentSchedule.find(function(milestone_alert){
                                                    return milestone_alert.name === schedule.name + prev_idx;
                                                 });
 
-                                                if(prev_alerts.length > 0)
+                                                if(prev_alert !== undefined)
                                                 {
-                                                    next_reminder.previous = prev_alerts[0].name;
-                                                    next_reminder.previous_date = prev_alerts[0].date;
-                                                    next_reminder.previous_status = status_css_class[prev_alerts[0].status];
+                                                    next_reminder.previous = prev_alert.name;
+                                                    next_reminder.previous_date = prev_alert.date;
+                                                    next_reminder.previous_status = status_css_class[prev_alert.status];
                                                     break;
                                                 }
                                             }
