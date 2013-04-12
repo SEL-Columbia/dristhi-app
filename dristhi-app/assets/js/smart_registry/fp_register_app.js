@@ -29,27 +29,33 @@ angular.module("smartRegistry.controllers")
             options: [
                 {
                     label: "All",
+                    id: "",
                     handler: ""
                 },
                 {
                     label: "Bherya",
-                    handler: "bherya"
+                    id: "bherya",
+                    handler: "filterByVillageName"
                 },
                 {
                     label: "Chikkahalli",
-                    handler: "chikkahalli"
+                    id: "chikkahalli",
+                    handler: "filterByVillageName"
                 },
                 {
                     label: "Somanahalli Colony",
-                    handler: "somanahalli_colony"
+                    id: "somanahalli_colony",
+                    handler: "filterByVillageName"
                 },
                 {
                     label: "Chikkabherya",
-                    handler: "chikkabherya"
+                    id: "chikkabherya",
+                    handler: "filterByVillageName"
                 },
                 {
                     label: "Basavanapura",
-                    handler: "basavanapura"
+                    id: "basavanapura",
+                    handler: "filterByVillageName"
                 }
             ].sort(function (item1, item2) {
                     if (item1.label < item2.label) {
@@ -66,6 +72,9 @@ angular.module("smartRegistry.controllers")
         };
         $scope.defaultVillage = $scope.villageOptions.options[0];
         $scope.villageFilterOption = $scope.defaultVillage;
+        $scope.filterByVillageName = function (client, villageOption) {
+            return (client.village.toUpperCase() === villageOption.id.toUpperCase());
+        };
 
         $scope.defaultFPOptions = $scope.ecsWithFPMethodServiceModeOptions;
         $scope.ecsWithFPMethodServiceModeOptions = {
@@ -223,10 +232,6 @@ angular.module("smartRegistry.controllers")
             return (client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0);
-        };
-
-        $scope.villageFilterCriteria = function (client, village) {
-            return (client.village.toUpperCase() === village.handler.toUpperCase());
         };
 
         $scope.contentTemplate = defaultContentTemplate;

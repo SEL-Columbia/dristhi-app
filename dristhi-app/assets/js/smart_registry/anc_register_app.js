@@ -2,151 +2,150 @@ angular.module("smartRegistry.controllers")
     .controller("ancRegisterController", function ($scope) {
         $scope.clients = [
             {
-                village:'Chikkabherya',
-                name:'Carolyn',
-                thayi:'4636587',
-                ec_number:'314',
-                age:'24',
-                husband_name:'Billy Bob',
-                weeks_pregnant:'18',
-                edd:'2012-06-11T00:00:00.000Z',
-                lmp:'25/3/13',
-                alerts:[
+                village: 'Chikkabherya',
+                name: 'Carolyn',
+                thayi: '4636587',
+                ec_number: '314',
+                age: '24',
+                husband_name: 'Billy Bob',
+                weeks_pregnant: '18',
+                edd: '2012-06-11T00:00:00.000Z',
+                lmp: '25/3/13',
+                alerts: [
                     {
-                        type:'anc1',
-                        date:'24/05', // 2013-04-10T12:40:45.195Z ISO String
-                        status:'urgent' // normal, urgent, done - upcoming is JS side, based on the last visit and if the next one is available
+                        type: 'anc1',
+                        date: '24/05', // 2013-04-10T12:40:45.195Z ISO String
+                        status: 'urgent' // normal, urgent, done - upcoming is JS side, based on the last visit and if the next one is available
                     },
                     {
-                        type:'anc2',
-                        date:'24/07', // 2013-04-10T12:40:45.195Z ISO String
-                        status:'urgent' // normal, urgent, done - upcoming is JS side, based on the last visit and if the next one is available
+                        type: 'anc2',
+                        date: '24/07', // 2013-04-10T12:40:45.195Z ISO String
+                        status: 'urgent' // normal, urgent, done - upcoming is JS side, based on the last visit and if the next one is available
                     },
                     {
-                        type:'tt1',
-                        date:'26/05',
-                        status:'normal'
+                        type: 'tt1',
+                        date: '26/05',
+                        status: 'normal'
                     }
                 ],
-                anc_visits:[
-                    {visit:'1', date:'04/04'},
-                    {visit:'2', date:'04/08'},
-                    {visit:'3', date:'04/09'}
+                anc_visits: [
+                    {visit: '1', date: '04/04'},
+                    {visit: '2', date: '04/08'},
+                    {visit: '3', date: '04/09'}
                 ],
-                next_anc_visit:{
-                    visit_date:'05/13',
-                    visit_number:'3',
-                    visit_status:'past-due' // one of upcoming, due, past-due or done if there are no more visits
+                next_anc_visit: {
+                    visit_date: '05/13',
+                    visit_number: '3',
+                    visit_status: 'past-due' // one of upcoming, due, past-due or done if there are no more visits
                 },
-                tt:[
-                    {tt:'1', date:'04/04'},
-                    {tt:'2', date:'04/08'}
+                tt: [
+                    {tt: '1', date: '04/04'},
+                    {tt: '2', date: '04/08'}
                 ],
-                ifa:{dose:'100', date:'04/04'},
-                days_due:'3',
-                due_message:'Follow Up',
-                isHighPriority:false,
-                locationStatus:"out_of_area"
+                ifa: {dose: '100', date: '04/04'},
+                days_due: '3',
+                due_message: 'Follow Up',
+                isHighPriority: false,
+                locationStatus: "out_of_area"
             },
             {
-                village:'Chikkabherya',
-                name:'Roger',
-                thayi:'4636587',
-                ec_number:'314',
-                age:'24',
-                husband_name:'Jacck',
-                weeks_pregnant:'24',
-                edd:'2012-04-11T00:00:00.000Z',
-                lmp:'25/3/13',
-                anc_visits:[
-                    {visit:'1', date:'04/04'},
-                    {visit:'2', date:'04/08'}
+                village: 'Chikkabherya',
+                name: 'Roger',
+                thayi: '4636587',
+                ec_number: '314',
+                age: '24',
+                husband_name: 'Jacck',
+                weeks_pregnant: '24',
+                edd: '2012-04-11T00:00:00.000Z',
+                lmp: '25/3/13',
+                anc_visits: [
+                    {visit: '1', date: '04/04'},
+                    {visit: '2', date: '04/08'}
                 ],
-                next_anc_visit:{
-                    visit_date:'05/13',
-                    visit_number:'3',
-                    visit_status:'due' // one of upcoming, due, past-due or done if there are no more visits
+                next_anc_visit: {
+                    visit_date: '05/13',
+                    visit_number: '3',
+                    visit_status: 'due' // one of upcoming, due, past-due or done if there are no more visits
                 },
-                tt:[
-                    {tt:'1', date:'04/04'},
-                    {tt:'2', date:'04/08'}
+                tt: [
+                    {tt: '1', date: '04/04'},
+                    {tt: '2', date: '04/08'}
                 ],
-                ifa:{dose:'100', date:'04/04'},
-                days_due:'3',
-                due_message:'Follow Up',
-                isHighPriority:true,
-                locationStatus:"left_the_place"
+                ifa: {dose: '100', date: '04/04'},
+                days_due: '3',
+                due_message: 'Follow Up',
+                isHighPriority: true,
+                locationStatus: "left_the_place"
             },
             {
-                village:'Bherya',
-                name:'Larry',
-                thayi:'4636587',
-                ec_number:'314',
-                age:'24',
-                husband_name:'Dickson',
-                weeks_pregnant:'2',
-                edd:'2013-05-11T00:00:00.000Z',
-                lmp:'25/3/13',
-                anc_visits:[
-                    {visit:'1', date:'04/04'},
-                    {visit:'2', date:'04/08'}
+                village: 'Bherya',
+                name: 'Larry',
+                thayi: '4636587',
+                ec_number: '314',
+                age: '24',
+                husband_name: 'Dickson',
+                weeks_pregnant: '2',
+                edd: '2013-05-11T00:00:00.000Z',
+                lmp: '25/3/13',
+                anc_visits: [
+                    {visit: '1', date: '04/04'},
+                    {visit: '2', date: '04/08'}
                 ],
-                next_anc_visit:{
-                    visit_date:'05/13',
-                    visit_number:'3',
-                    visit_status:'upcoming' // one of upcoming, due, past-due or done if there are no more visits
+                next_anc_visit: {
+                    visit_date: '05/13',
+                    visit_number: '3',
+                    visit_status: 'upcoming' // one of upcoming, due, past-due or done if there are no more visits
                 },
-                tt:[
-                    {tt:'1', date:'04/04'},
-                    {tt:'2', date:'04/08'}
+                tt: [
+                    {tt: '1', date: '04/04'},
+                    {tt: '2', date: '04/08'}
                 ],
-                ifa:{dose:'100', date:'04/04'},
-                days_due:'3',
-                due_message:'Follow Up',
-                isHighPriority:false,
-                locationStatus:"in_area"
+                ifa: {dose: '100', date: '04/04'},
+                days_due: '3',
+                due_message: 'Follow Up',
+                isHighPriority: false,
+                locationStatus: "in_area"
             },
             {
-                village:'Bherya',
-                name:'Ukanga',
-                thayi:'4636587',
-                ec_number:'315',
-                age:'27',
-                husband_name:'Harshit',
-                weeks_pregnant:'2',
-                edd:'2013-05-11T00:00:00.000Z',
-                lmp:'25/3/13',
-                anc_visits:[
-                    {visit:'1', date:'04/04'},
-                    {visit:'2', date:'04/08'}
+                village: 'Bherya',
+                name: 'Ukanga',
+                thayi: '4636587',
+                ec_number: '315',
+                age: '27',
+                husband_name: 'Harshit',
+                weeks_pregnant: '2',
+                edd: '2013-05-11T00:00:00.000Z',
+                lmp: '25/3/13',
+                anc_visits: [
+                    {visit: '1', date: '04/04'},
+                    {visit: '2', date: '04/08'}
                 ],
                 /*next_anc_visit:{
-                    visit_date:'05/13',
-                    visit_number:'3',
-                    visit_status:'done' // one of upcoming, due, past-due or done if there are no more visits
-                },*/
-                tt:[
-                    {tt:'1', date:'04/04'},
-                    {tt:'2', date:'04/08'}
+                 visit_date:'05/13',
+                 visit_number:'3',
+                 visit_status:'done' // one of upcoming, due, past-due or done if there are no more visits
+                 },*/
+                tt: [
+                    {tt: '1', date: '04/04'},
+                    {tt: '2', date: '04/08'}
                 ],
-                ifa:{dose:'100', date:'04/04'},
-                days_due:'3',
-                due_message:'Follow Up',
-                isHighPriority:false,
-                locationStatus:"in_area"
+                ifa: {dose: '100', date: '04/04'},
+                days_due: '3',
+                due_message: 'Follow Up',
+                isHighPriority: false,
+                locationStatus: "in_area"
             }
 
         ];
 
-        var generateVisitData = function(clients){
-            angular.forEach(clients, function(client){
+        var generateVisitData = function (clients) {
+            angular.forEach(clients, function (client) {
                 // check alerts for anc* types
                 var key = "anc"
-                angular.forEach(client.alerts, function(alert){
-                   // check if alert matches our alert_key
-                    if(alert.type.indexOf(key) == 0)
-                    {
-                        
+                angular.forEach(client.alerts, function (alert) {
+                    // check if alert matches our alert_key
+                    if (alert.type.indexOf(key) == 0) {
+
                     }
                 });
                 client.next_anc_visit = {};
@@ -154,27 +153,27 @@ angular.module("smartRegistry.controllers")
         }.call(this, $scope.clients);
 
         $scope.sortOptions = {
-            type:"sort",
-            options:[
+            type: "sort",
+            options: [
                 {
-                    label:"Name (A to Z)",
-                    handler:"sortByName",
-                    sortDescending:false
+                    label: "Name (A to Z)",
+                    handler: "sortByName",
+                    sortDescending: false
                 },
                 {
-                    label:"EDD",
-                    handler:"sortByEDD",
-                    sortDescending:true
+                    label: "EDD",
+                    handler: "sortByEDD",
+                    sortDescending: true
                 },
                 {
-                    label:"HRP",
-                    handler:"sortByPriority",
-                    sortDescending:false
+                    label: "HRP",
+                    handler: "sortByPriority",
+                    sortDescending: false
                 },
                 {
-                    label:"Due Date",
-                    handler:"sortByDueDate",
-                    sortDescending:false
+                    label: "Due Date",
+                    handler: "sortByDueDate",
+                    sortDescending: false
                 }
             ]
         };
@@ -197,74 +196,80 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.villageOptions = {
-            type:"filterVillage",
-            options:[
+            type: "filterVillage",
+            options: [
                 {
-                    label:"All",
-                    handler:"villageFilterAll"
+                    label: "All",
+                    id: "",
+                    handler: "filterByInAreaLocationStatus"
                 },
                 {
-                    label:"Bherya",
-                    handler:"Bherya"
+                    label: "Bherya",
+                    id: "bherya",
+                    handler: "filterByVillageName"
                 },
                 {
-                    label:"Chikkabherya",
-                    handler:"Chikkabherya"
+                    label: "Chikkabherya",
+                    id: "chikkabherya",
+                    handler: "filterByVillageName"
                 },
                 {
-                    label:"O/A",
-                    id:"out_of_area",
-                    handler:"villageFilterByStatus"
+                    label: "O/A",
+                    id: "out_of_area",
+                    handler: "filterByLocationStatus"
                 },
                 {
-                    label:"L/P",
-                    id:"left_the_place",
-                    handler:"villageFilterByStatus"
+                    label: "L/P",
+                    id: "left_the_place",
+                    handler: "filterByLocationStatus"
                 }
             ]
         };
         $scope.defaultVillage = $scope.villageOptions.options[0];
         $scope.villageFilterOption = $scope.defaultVillage;
-        $scope.villageFilterAll = function (client, optionId) {
-            return client.locationStatus != "left_the_place";
+        $scope.filterByInAreaLocationStatus = function (client, option) {
+            return client.locationStatus !== "left_the_place";
         };
-        $scope.villageFilterByStatus = function (client, optionId) {
-            return client.locationStatus === optionId;
+        $scope.filterByVillageName = function (client, option) {
+            return client.village.toUpperCase() === option.id.toUpperCase();
+        };
+        $scope.filterByLocationStatus = function (client, option) {
+            return client.locationStatus === option.id;
         };
 
         $scope.ancServiceOptions = {
-            type:"ancService",
-            options:[
+            type: "ancService",
+            options: [
                 {
-                    label:"Overview",
-                    id:"overview",
-                    handler:"changeContentBasedOnServiceMode"
+                    label: "Overview",
+                    id: "overview",
+                    handler: "changeContentBasedOnServiceMode"
                 },
                 {
-                    label:"ANC Visits",
-                    id:"visits",
-                    handler:"changeContentBasedOnServiceMode"
+                    label: "ANC Visits",
+                    id: "visits",
+                    handler: "changeContentBasedOnServiceMode"
                 },
                 {
-                    label:"hB/IFA",
-                    id:"hb_ifa",
-                    handler:"changeContentBasedOnServiceMode"
+                    label: "hB/IFA",
+                    id: "hb_ifa",
+                    handler: "changeContentBasedOnServiceMode"
                 },
                 {
-                    label:"ANC Visits/TT",
-                    id:"tt",
-                    handler:"changeContentBasedOnServiceMode"
+                    label: "ANC Visits/TT",
+                    id: "tt",
+                    handler: "changeContentBasedOnServiceMode"
                 },
                 {
-                    label:"Delivery Plan",
-                    id:"delivery",
-                    handler:"changeContentBasedOnServiceMode"
+                    label: "Delivery Plan",
+                    id: "delivery",
+                    handler: "changeContentBasedOnServiceMode"
                 }
             ]
         };
         $scope.locationStatusMapping = {
-            "out_of_area":3,
-            "left_the_place":4
+            "out_of_area": 3,
+            "left_the_place": 4
         };
 
         $scope.defaultAncServiceOption = $scope.ancServiceOptions.options[0];
@@ -282,16 +287,6 @@ angular.module("smartRegistry.controllers")
             return (client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0);
-        };
-
-        $scope.villageFilterCriteria = function (client, villageFilterOption) {
-            var handler = villageFilterOption.handler;
-            if ($scope.hasOwnProperty(handler) && typeof($scope[handler]) == "function") {
-                return $scope[handler](client, villageFilterOption.id);
-            }
-            else {
-                return (client.village == handler && client.locationStatus != villageFilterOption.id);
-            }
         };
 
         $scope.changeContentBasedOnServiceMode = function (client, serviceModeOptionId) {

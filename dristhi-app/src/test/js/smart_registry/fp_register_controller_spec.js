@@ -21,5 +21,4 @@ describe('FP Register controller', function () {
 
         expect(scope.isFPModalOpen).toBeFalsy();
     });
-
 });

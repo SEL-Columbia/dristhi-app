@@ -22,7 +22,8 @@ angular.module("smartRegistry.controllers")
                 searchCondition = $scope.searchCriteria(client, $scope.searchFilterString);
             }
             if ($scope.villageFilterOption.handler) {
-                villageCondition = $scope.villageFilterCriteria(client, $scope.villageFilterOption);
+                var handlerMethod = $scope[$scope.villageFilterOption.handler];
+                villageCondition = handlerMethod(client, $scope.villageFilterOption);
             }
             if ($scope.serviceModeOption.handler) {
                 var handlerMethod = $scope[$scope.serviceModeOption.handler];
