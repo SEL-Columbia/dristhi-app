@@ -71,13 +71,18 @@
 
         <div class="container-fluid container-no-padding client-list">
             <div class="row-fluid client"
-                 ng-repeat="client in clients | filter:filterList | orderBy:sortList:sortDescending">
+                 ng-repeat="client in ((filteredClients = (clients | filter:filterList | orderBy:sortList:sortDescending)) | limitTo:numberOfClientsToShow)">
                 <div class="span5 full-height span-no-margin width-without-margins">
                     <div class="row-fluid full-height" ng-include="'blocks/anc/common.html'"></div>
                 </div>
                 <ng:include src="'blocks/anc/'+ contentTemplate + '.html'">
                 </ng:include>
             </div>
+        </div>
+
+        <div ng-click="loadAll()" ng-show="allClientsDisplayed(filteredClients)"
+             class="registry-container container-fluid">
+            <button class="btn btn-info btn-block">Load All</button>
         </div>
     </div>
 </div>

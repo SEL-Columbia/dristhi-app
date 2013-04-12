@@ -41,4 +41,14 @@ angular.module("smartRegistry.controllers")
             $scope.isModalOpen = true;
             $scope.currentOptions = option;
         };
+
+        $scope.numberOfClientsToShow = 10;
+
+        $scope.loadAll = function () {
+            $scope.numberOfClientsToShow = $scope.clients.length;
+        };
+
+        $scope.allClientsDisplayed = function (filteredClients) {
+            return $scope.numberOfClientsToShow < filteredClients.length;
+        };
     }]);

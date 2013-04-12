@@ -1,7 +1,6 @@
 angular.module("smartRegistry.controllers")
     .controller("fpRegisterController", function ($scope) {
         var fpSmartRegistryBridge = new FPRegistryBridge();
-        $scope.numberOfClientsToShow = 10;
         $scope.clients = fpSmartRegistryBridge.getFPClients();
 
         $scope.sortOptions = {
@@ -203,13 +202,5 @@ angular.module("smartRegistry.controllers")
             return (client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0);
-        };
-
-        $scope.loadAll = function () {
-            $scope.numberOfClientsToShow = $scope.clients.length;
-        };
-
-        $scope.allClientsDisplayed = function (filteredClients) {
-            return $scope.numberOfClientsToShow < filteredClients.length;
         };
     });
