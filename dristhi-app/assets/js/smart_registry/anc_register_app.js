@@ -1,6 +1,6 @@
 angular.module("smartRegistry.controllers")
     .controller("ancRegisterController", function ($scope, ANCService) {
-        $scope.clients = ANCService.getClients();
+        $scope.clients = ANCService.preProcessClients(ANCService.getClients());
 
         $scope.sortOptions = {
             type: "sort",

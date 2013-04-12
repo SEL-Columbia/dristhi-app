@@ -49,6 +49,14 @@ describe('ANC Service', function () {
                     previous:null,
                     previous_date:null,
                     previous_status: null
+                },
+                ifa: {
+                    next:"ifa1",
+                    due_date: null,
+                    status:"btn-upcoming",
+                    previous:null,
+                    previous_date:null,
+                    previous_status: null
                 }
             };
 
@@ -92,6 +100,14 @@ describe('ANC Service', function () {
                     previous:null,
                     previous_date:null,
                     previous_status: null
+                },
+                ifa: {
+                    next:"ifa1",
+                    due_date: null,
+                    status:"btn-upcoming",
+                    previous:null,
+                    previous_date:null,
+                    previous_status: null
                 }
             };
 
@@ -130,6 +146,14 @@ describe('ANC Service', function () {
                     previous:null,
                     previous_date:null,
                     previous_status: null
+                },
+                ifa: {
+                    next:"ifa1",
+                    due_date: null,
+                    status:"btn-upcoming",
+                    previous:null,
+                    previous_date:null,
+                    previous_status: null
                 }
             };
 
@@ -157,6 +181,14 @@ describe('ANC Service', function () {
                 },
                 tt:{
                     next:"tt1",
+                    due_date: null,
+                    status:"btn-upcoming",
+                    previous:null,
+                    previous_date:null,
+                    previous_status: null
+                },
+                ifa: {
+                    next:"ifa1",
                     due_date: null,
                     status:"btn-upcoming",
                     previous:null,

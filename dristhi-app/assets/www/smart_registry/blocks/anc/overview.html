@@ -1,31 +1,49 @@
 <div class="span6 full-height span-no-margin width-without-margins">
     <div class="row-fluid full-height">
         <div class="span4 line-right span-no-margin width-without-margins span-content">
-            <!--VISITS-->
-            <button class="btn btn-primary btn-sr" ng-class="'btn-' + client.next_anc_visit.visit_status">
-                <span class="text-bold">ANC {{client.next_anc_visit.visit_number}}</span>
+            <!--ANC-->
+            <button ng-show="client.upcoming_reminders.anc.next" class="btn btn-primary btn-sr" ng-class="client.upcoming_reminders.anc.status">
+                <span class="text-bold">{{client.upcoming_reminders.anc.next}}</span>
                 <br/>
-                Due {{client.next_anc_visit.visit_date}}
+                <span ng-show="client.upcoming_reminders.anc.status == 'btn-upcoming'">Upcoming</span>
+                <span ng-show="client.upcoming_reminders.anc.status == 'btn-due' || client.upcoming_reminders.anc.status == 'btn-past-due'">Due</span>
+                <span ng-show="client.upcoming_reminders.anc.status == 'btn-done'">Done</span>
+                <span> {{client.upcoming_reminders.anc.due_date}}</span>
             </button>
-            <span ng-show="client.next_anc_visit.visit_status != 'done'"><i class="icon-ok green"></i>ANC 3: 02/03</span>
+            <span ng-show="client.upcoming_reminders.anc.previous">
+                <i class="icon-ok green"></i>
+                {{client.upcoming_reminders.anc.previous}}: {{client.upcoming_reminders.anc.previous_date}}
+            </span>
         </div>
         <div class="span4 line-right span-no-margin width-without-margins span-content">
             <!--TT-->
-            <button class="btn btn-primary btn-done btn-sr" href="#">
-                <div class="done-icon"><i class="icon-ok green icon-large"></i></div>
-                <span class="text-bold">TT 2</span>
+            <button ng-show="client.upcoming_reminders.tt.next" class="btn btn-primary btn-sr" ng-class="client.upcoming_reminders.tt.status">
+                <span class="text-bold">{{client.upcoming_reminders.tt.next}}</span>
                 <br/>
-                Due 05/03
+                <span ng-show="client.upcoming_reminders.tt.status == 'btn-upcoming'">Upcoming</span>
+                <span ng-show="client.upcoming_reminders.tt.status == 'btn-due' || client.upcoming_reminders.tt.status == 'btn-past-due'">Due</span>
+                <span ng-show="client.upcoming_reminders.tt.status == 'btn-done'">Done</span>
+                <span> {{client.upcoming_reminders.tt.due_date}}</span>
             </button>
+            <span ng-show="client.upcoming_reminders.tt.previous">
+                <i class="icon-ok green"></i>
+                {{client.upcoming_reminders.tt.previous}}: {{client.upcoming_reminders.tt.previous_date}}
+            </span>
         </div>
         <div class="span4 line-right span-no-margin width-without-margins span-content">
             <!--IFA-->
-            <button class="btn btn-primary btn-due btn-sr" href="#">
-                <span class="text-bold">Refill 30</span>
+            <button ng-show="client.upcoming_reminders.ifa.next" class="btn btn-primary btn-sr" ng-class="client.upcoming_reminders.ifa.status">
+                <span class="text-bold">{{client.upcoming_reminders.ifa.next}}</span>
                 <br/>
-                Due 05/03
+                <span ng-show="client.upcoming_reminders.ifa.status == 'btn-upcoming'">Upcoming</span>
+                <span ng-show="client.upcoming_reminders.ifa.status == 'btn-due' || client.upcoming_reminders.ifa.status == 'btn-past-due'">Due</span>
+                <span ng-show="client.upcoming_reminders.ifa.status == 'btn-done'">Done</span>
+                <span> {{client.upcoming_reminders.ifa.due_date}}</span>
             </button>
-            <span><i class="icon-ok green"></i>ANC 3: 02/03</span>
+            <span ng-show="client.upcoming_reminders.ifa.previous">
+                <i class="icon-ok green"></i>
+                {{client.upcoming_reminders.ifa.previous}}: {{client.upcoming_reminders.ifa.previous_date}}
+            </span>
         </div>
     </div>
 </div>

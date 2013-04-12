@@ -1,5 +1,21 @@
 angular.module("smartRegistry.services")
     .service('ANCService', function () {
+        var schedules =
+            [
+                {
+                    "name":"anc",
+                    "milestones":["anc1", "anc2", "anc3", "anc4"]
+                },
+                {
+                    "name":"tt",
+                    "milestones":["tt1", "tt2"]
+                },
+                {
+                    "name":"ifa",
+                    "milestones":["ifa1", "ifa2"]
+                }
+            ];
+
         var alert_status = {
             NORMAL:"normal",
             URGENT:"urgent",
@@ -59,6 +75,11 @@ angular.module("smartRegistry.services")
                             },
                             {
                                 name:'tt1',
+                                date:'26/05',
+                                status:'normal'
+                            },
+                            {
+                                name:'ifa1',
                                 date:'26/05',
                                 status:'normal'
                             }
@@ -128,7 +149,17 @@ angular.module("smartRegistry.services")
                             {
                                 name:'anc3',
                                 date:'24/05',
-                                status:'urgent'
+                                status:'normal'
+                            },
+                            {
+                                name:'ifa2',
+                                date:'26/05',
+                                status:'done'
+                            },
+                            {
+                                name:'ifa1',
+                                date:'26/03',
+                                status:'done'
                             }
                         ],
                         anc_visits:[
@@ -159,11 +190,16 @@ angular.module("smartRegistry.services")
                             {
                                 name:'anc4',
                                 date:'24/05',
-                                status:'urgent'
+                                status:'done'
                             },
                             {
                                 name:'anc2',
                                 date:'24/07',
+                                status:'done'
+                            },
+                            {
+                                name:'tt1',
+                                date:'26/05',
                                 status:'done'
                             },
                             {
@@ -192,18 +228,6 @@ angular.module("smartRegistry.services")
                 return clients;
             },
             preProcessClients:function (clients) {
-                var schedules =
-                    [
-                        {
-                            "name":"anc",
-                            "milestones":["anc1", "anc2", "anc3", "anc4"]
-                        },
-                        {
-                            "name":"tt",
-                            "milestones":["tt1", "tt2"]
-                        }
-                    ];
-
                 clients.forEach(function (client) {
                         var next_reminders = {};
                         schedules.forEach(function (schedule) {
@@ -263,15 +287,15 @@ angular.module("smartRegistry.services")
 
                                             // find previous
                                             for(var prev_idx = i; prev_idx > 0; prev_idx--){
-                                                prev_alerts = alertsOfTypeCurrentSchedule.filter(function(milestone_alert){
+                                                prev_alert = alertsOfTypeCurrentSchedule.find(function(milestone_alert){
                                                     return milestone_alert.name === schedule.name + prev_idx;
                                                 });
 
-                                                if(prev_alerts.length > 0)
+                                                if(prev_alert !== undefined)
                                                 {
-                                                    next_reminder.previous = prev_alerts[0].name;
-                                                    next_reminder.previous_date = prev_alerts[0].date;
-                                                    next_reminder.previous_status = status_css_class[prev_alerts[0].status];
+                                                    next_reminder.previous = prev_alert.name;
+                                                    next_reminder.previous_date = prev_alert.date;
+                                                    next_reminder.previous_status = status_css_class[prev_alert.status];
                                                     break;
                                                 }
                                             }
