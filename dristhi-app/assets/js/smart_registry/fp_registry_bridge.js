@@ -35,11 +35,11 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "25/02/13"
                 },
                 {
-                    "ec_number": "2",
+                    "ec_number": "99",
                     "fp_method": "female_sterilization",
-                    "husband_name": "Manikyam",
+                    "husband_name": "Ramakrishnegowda",
                     "village": "Bherya",
-                    "name": "Ammulu",
+                    "name": "Sukanya",
                     "thayi": "",
                     "isHighPriority": false,
                     "side_effects": "poops a bit",
