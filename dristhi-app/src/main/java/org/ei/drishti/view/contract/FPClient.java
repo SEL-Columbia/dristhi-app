@@ -21,12 +21,13 @@ public class FPClient {
     private final String days_due;
     private final String due_message;
     private final boolean isHighPriority;
+    private final String family_planning_method_change_date;
 
     public FPClient(
             String name, String husband_name, String age, String thayi, String ec_number, String village,
             String fp_method, String side_effects, String num_pregnancies,
             String parity, String num_living_children, String num_stillbirths, String num_abortions,
-            String days_due, String due_message, boolean isHighPriority) {
+            String days_due, String due_message, boolean isHighPriority, String family_planning_method_change_date) {
         this.name = name;
         this.husband_name = husband_name;
         this.age = age;
@@ -43,6 +44,7 @@ public class FPClient {
         this.days_due = days_due;
         this.due_message = due_message;
         this.isHighPriority = isHighPriority;
+        this.family_planning_method_change_date = family_planning_method_change_date;
     }
 
     public String wifeName() {

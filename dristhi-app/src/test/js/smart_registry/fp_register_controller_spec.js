@@ -413,6 +413,7 @@ describe('FP Register controller', function () {
             expect(scope.searchCriteria(client, "1234")).toBeTruthy();
             expect(scope.searchCriteria(client, "6")).toBeTruthy();
             expect(scope.searchCriteria(client, "6789")).toBeTruthy();
+            expect(scope.searchCriteria(client, "")).toBeTruthy();
         });
 
         it("should filter clients which do not match search criteria.", function () {

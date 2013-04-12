@@ -42,7 +42,7 @@ public class FPSmartRegistryController {
                             ec.getDetail("sideEffects"), ec.getDetail("numberOfPregnancies"),
                             ec.getDetail("parity"), ec.getDetail("numberOfLivingChildren"),
                             ec.getDetail("numberOfStillBirths"), ec.getDetail("numberOfAbortions"), null,
-                            null, ec.isHighPriority()));
+                            null, ec.isHighPriority(), ec.getDetail("familyPlanningMethodChangeDate")));
                 }
 
                 sortByName(fpClients);
