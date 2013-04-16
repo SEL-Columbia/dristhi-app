@@ -202,16 +202,17 @@ a:focus {
 }
 
 .client-age {
-    font-size: 16px;
+    font-size: 14px;
     float: right;
 }
 
 .client-village {
-    max-width: 87px;
+    max-width: 56px;
     display: inline-block;
 }
 
 .client-location-status {
+    font-size: 14px !important;
     float: right;
 }
 
