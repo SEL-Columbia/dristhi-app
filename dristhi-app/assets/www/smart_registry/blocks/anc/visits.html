@@ -3,35 +3,44 @@
         <div class="span10 full-height span-no-margin width-without-margins">
             <div class="row-fluid full-height">
                 <div class="span3 line-right span-no-margin width-without-margins span-content">
-                    <!--VISITS-->
-                    <a class="btn btn-primary btn-done btn-sr" href="#">
-                        <div class="done-icon full-height"><i class="icon-ok green"></i></div>
-                        <span class="text-bold">31/03/13</span>
+                    <!--ANC 1-->
+                    <a ng-show="client.visits.anc.anc1" ng-class="client.visits.anc.anc1.status" class="btn btn-primary btn-sr" href="#">
+                        <div ng-show="client.visits.anc.anc1.status == 'btn-done'" class="done-icon full-height"><i class="icon-ok green"></i></div>
+                        <span class="text-bold">{{client.visits.anc.anc1.visit_date | date:'dd/MM'}}</span>
                         <br/>
-                        BP 92/76
+                        BP {{client.visits.anc.anc1.bp}}
                         <br/>
-                        Wt. 45 kg
+                        Wt. {{client.visits.anc.anc1.weight}} kg
                     </a>
                 </div>
                 <div class="span3 line-right span-no-margin width-without-margins span-content">
-                    <a class="btn btn-primary btn-upcoming btn-sr" href="#">
-                        <span class="text-bold">ANC 1</span>
+                    <a ng-show="client.visits.anc.anc2" ng-class="client.visits.anc.anc2.status" class="btn btn-primary btn-sr" href="#">
+                        <div ng-show="client.visits.anc.anc2.status == 'btn-done'" class="done-icon full-height"><i class="icon-ok green"></i></div>
+                        <span class="text-bold">{{client.visits.anc.anc2.visit_date | date:'dd/MM'}}</span>
                         <br/>
-                        Due 05/03
+                        BP {{client.visits.anc.anc2.bp}}
+                        <br/>
+                        Wt. {{client.visits.anc.anc2.weight}} kg
                     </a>
                 </div>
                 <div class="span3 line-right span-no-margin width-without-margins span-content">
-                    <a class="btn btn-primary btn-due btn-sr" href="#">
-                        <span class="text-bold">ANC 1</span>
+                    <a ng-show="client.visits.anc.anc3" ng-class="client.visits.anc.anc3.status" class="btn btn-primary btn-sr" href="#">
+                        <div ng-show="client.visits.anc.anc3.status == 'btn-done'" class="done-icon full-height"><i class="icon-ok green"></i></div>
+                        <span class="text-bold">{{client.visits.anc.anc3.visit_date | date:'dd/MM'}}</span>
                         <br/>
-                        Due 05/03
+                        BP {{client.visits.anc.anc3.bp}}
+                        <br/>
+                        Wt. {{client.visits.anc.anc3.weight}} kg
                     </a>
                 </div>
                 <div class="span3 line-right span-no-margin width-without-margins span-content">
-                    <a class="btn btn-primary btn-upcoming btn-sr" href="#">
-                        <span class="text-bold">ANC 1</span>
+                    <a ng-show="client.visits.anc.anc4" ng-class="client.visits.anc.anc4.status" class="btn btn-primary btn-sr" href="#">
+                        <div ng-show="client.visits.anc.anc4.status == 'btn-done'" class="done-icon full-height"><i class="icon-ok green"></i></div>
+                        <span class="text-bold">{{client.visits.anc.anc4.visit_date | date:'dd/MM'}}</span>
                         <br/>
-                        Due 05/03
+                        BP {{client.visits.anc.anc4.bp}}
+                        <br/>
+                        Wt. {{client.visits.anc.anc4.weight}} kg
                     </a>
                 </div>
             </div>

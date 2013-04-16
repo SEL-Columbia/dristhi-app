@@ -32,40 +32,43 @@ describe('ANC Service', function () {
                     ]
                 }
             ];
-            var expectedUpcomingReminders =
+            var expectedVisits =
             {
-                anc:{
-                    next:"anc1",
-                    due_date:"2012-10-24",
-                    status:"btn-due",
-                    previous:null,
-                    previous_date:null,
-                    previous_status: null
+                anc:
+                {
+                    next: 'anc1',
+                    anc1:
+                    {
+                        status: 'btn-due',
+                        visit_date: '2012-10-24'
+                    }
                 },
-                tt:{
-                    next:"tt2",
-                    due_date: "2012-10-24",
-                    status:"btn-past-due",
-                    previous:null,
-                    previous_date:null,
-                    previous_status: null
+                tt:
+                {
+                    next: 'tt2',
+                    tt2:
+                    {
+                        status: 'btn-past-due',
+                        visit_date: '2012-10-24'
+                    }
                 },
-                ifa: {
-                    next:"ifa1",
-                    due_date: null,
-                    status:"btn-upcoming",
-                    previous:null,
-                    previous_date:null,
-                    previous_status: null
+                ifa:
+                {
+                    next: 'ifa1',
+                    ifa1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
                 }
             };
 
             ancSrvc.preProcessClients(clients);
 
-            expect(JSON.stringify(clients[0].upcoming_reminders)).toBe(JSON.stringify(expectedUpcomingReminders));
+            expect(JSON.stringify(clients[0].visits)).toBe(JSON.stringify(expectedVisits));
         });
 
-        it("should create a next_reminder with previous reminder.", function () {
+        it("should create a next_reminder when a previous reminder is provided.", function () {
             var clients = [
                 {
                     name:'Carolyn',
@@ -83,40 +86,49 @@ describe('ANC Service', function () {
                     ]
                 }
             ];
-            var expectedUpcomingReminders =
+            var expectedVisits =
             {
-                anc:{
-                    next:"anc3",
-                    due_date:"2012-11-24",
-                    status:"btn-due",
-                    previous:"anc1",
-                    previous_date:"2011-10-24",
-                    previous_status: "btn-past-due"
+                anc:
+                {
+                    next: 'anc3',
+                    anc3:
+                    {
+                        status: 'btn-due',
+                        visit_date: '2012-11-24'
+                    },
+                    previous: 'anc1',
+                    anc1:
+                    {
+                        status: 'btn-past-due',
+                        visit_date: '2011-10-24'
+                    }
                 },
-                tt:{
-                    next:"tt1",
-                    due_date: null,
-                    status:"btn-upcoming",
-                    previous:null,
-                    previous_date:null,
-                    previous_status: null
+                tt:
+                {
+                    next: 'tt1',
+                    tt1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
                 },
-                ifa: {
-                    next:"ifa1",
-                    due_date: null,
-                    status:"btn-upcoming",
-                    previous:null,
-                    previous_date:null,
-                    previous_status: null
+                ifa:
+                {
+                    next: 'ifa1',
+                    ifa1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
                 }
             };
 
             ancSrvc.preProcessClients(clients);
 
-            expect(JSON.stringify(clients[0].upcoming_reminders)).toBe(JSON.stringify(expectedUpcomingReminders));
+            expect(JSON.stringify(clients[0].visits)).toBe(JSON.stringify(expectedVisits));
         });
 
-        it("should create an upcoming with a done reminder.", function () {
+        it("should create an upcoming when only a done reminder is provided.", function () {
             var clients = [
                 {
                     name:'Carolyn',
@@ -129,37 +141,46 @@ describe('ANC Service', function () {
                     ]
                 }
             ];
-            var expectedUpcomingReminders =
+            var expectedVisits =
             {
-                anc:{
-                    next:"anc3",
-                    due_date:null,
-                    status:"btn-upcoming",
-                    previous:"anc2",
-                    previous_date: "2011-10-24",
-                    previous_status: "btn-done"
+                anc:
+                {
+                    next: 'anc3',
+                    anc3:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    },
+                    previous: 'anc2',
+                    anc2:
+                    {
+                        status: 'btn-done',
+                        visit_date: '2011-10-24'
+                    }
                 },
-                tt:{
-                    next:"tt1",
-                    due_date: null,
-                    status:"btn-upcoming",
-                    previous:null,
-                    previous_date:null,
-                    previous_status: null
+                tt:
+                {
+                    next: 'tt1',
+                    tt1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
                 },
-                ifa: {
-                    next:"ifa1",
-                    due_date: null,
-                    status:"btn-upcoming",
-                    previous:null,
-                    previous_date:null,
-                    previous_status: null
+                ifa:
+                {
+                    next: 'ifa1',
+                    ifa1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
                 }
             };
 
             ancSrvc.preProcessClients(clients);
 
-            expect(JSON.stringify(clients[0].upcoming_reminders)).toBe(JSON.stringify(expectedUpcomingReminders));
+            expect(JSON.stringify(clients[0].visits)).toBe(JSON.stringify(expectedVisits));
         });
 
         it("should create upcoming for the first milestone if no alerts.", function () {
@@ -169,37 +190,40 @@ describe('ANC Service', function () {
                     alerts:[]
                 }
             ];
-            var expectedUpcomingReminders =
+            var expectedVisits =
             {
-                anc:{
-                    next:"anc1",
-                    due_date:null,
-                    status:"btn-upcoming",
-                    previous: null,
-                    previous_date: null,
-                    previous_status: null
+                anc:
+                {
+                    next: 'anc1',
+                    anc1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
                 },
-                tt:{
-                    next:"tt1",
-                    due_date: null,
-                    status:"btn-upcoming",
-                    previous:null,
-                    previous_date:null,
-                    previous_status: null
+                tt:
+                {
+                    next: 'tt1',
+                    tt1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
                 },
-                ifa: {
-                    next:"ifa1",
-                    due_date: null,
-                    status:"btn-upcoming",
-                    previous:null,
-                    previous_date:null,
-                    previous_status: null
+                ifa:
+                {
+                    next: 'ifa1',
+                    ifa1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
                 }
             };
 
             ancSrvc.preProcessClients(clients);
 
-            expect(JSON.stringify(clients[0].upcoming_reminders)).toBe(JSON.stringify(expectedUpcomingReminders));
+            expect(JSON.stringify(clients[0].visits)).toBe(JSON.stringify(expectedVisits));
         });
 
     });

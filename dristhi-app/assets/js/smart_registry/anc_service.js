@@ -97,7 +97,44 @@ angular.module("smartRegistry.services")
                         days_due:'3',
                         due_message:'Follow Up',
                         isHighPriority:false,
-                        locationStatus:"out_of_area"
+                        locationStatus:"out_of_area",
+                        visits:
+                        {
+                            anc:
+                            {
+                                next: 'anc3',
+                                previous: 'anc1',
+                                anc1:
+                                {
+                                    status: 'done',
+                                    visit_date: '2012-10-24'
+                                },
+                                anc3:
+                                {
+                                    status: 'due',
+                                    visit_date: '2012-10-24'
+                                }
+                            },
+                            tt:
+                            {
+                                next: 'tt2',
+                                // previous is undefined for use in if statements
+                                tt2:
+                                {
+                                    status: 'past-due',
+                                    visit_date: '2012-10-24'
+                                }
+                            },
+                            ifa:
+                            {
+                                next: 'ifa1',
+                                ifa1:
+                                {
+                                    status: 'upcoming',
+                                    visit_date: null
+                                }
+                            }
+                        }
                     },
                     {
                         village:'Chikkabherya',
@@ -133,7 +170,39 @@ angular.module("smartRegistry.services")
                         days_due:'3',
                         due_message:'Follow Up',
                         isHighPriority:true,
-                        locationStatus:"left_the_place"
+                        locationStatus:"left_the_place",
+                        visits:
+                        {
+                            anc:
+                            {
+                                next: 'anc1',
+                                // previous is undefined for use in if statements
+                                anc1:
+                                {
+                                    status: 'due',
+                                    visit_date: '2012-10-24'
+                                }
+                            },
+                            tt:
+                            {
+                                next: 'tt2',
+                                // previous is undefined for use in if statements
+                                tt2:
+                                {
+                                    status: 'past-due',
+                                    visit_date: '2012-10-24'
+                                }
+                            },
+                            ifa:
+                            {
+                                next: 'ifa1',
+                                ifa1:
+                                {
+                                    status: 'upcoming',
+                                    visit_date: null
+                                }
+                            }
+                        }
                     },
                     {
                         village:'Bherya',
@@ -174,7 +243,39 @@ angular.module("smartRegistry.services")
                         days_due:'3',
                         due_message:'Follow Up',
                         isHighPriority:false,
-                        locationStatus:"in_area"
+                        locationStatus:"in_area",
+                        visits:
+                        {
+                            anc:
+                            {
+                                next: 'anc1',
+                                // previous is undefined for use in if statements
+                                anc1:
+                                {
+                                    status: 'due',
+                                    visit_date: '2012-10-24'
+                                }
+                            },
+                            tt:
+                            {
+                                next: 'tt2',
+                                // previous is undefined for use in if statements
+                                tt2:
+                                {
+                                    status: 'past-due',
+                                    visit_date: '2012-10-24'
+                                }
+                            },
+                            ifa:
+                            {
+                                next: 'ifa1',
+                                ifa1:
+                                {
+                                    status: 'upcoming',
+                                    visit_date: null
+                                }
+                            }
+                        }
                     },
                     {
                         village:'Bherya',
@@ -220,7 +321,39 @@ angular.module("smartRegistry.services")
                         days_due:'3',
                         due_message:'Follow Up',
                         isHighPriority:false,
-                        locationStatus:"in_area"
+                        locationStatus:"in_area",
+                        visits:
+                        {
+                            anc:
+                            {
+                                next: 'anc1',
+                                // previous is undefined for use in if statements
+                                anc1:
+                                {
+                                    status: 'due',
+                                    visit_date: '2012-10-24'
+                                }
+                            },
+                            tt:
+                            {
+                                next: 'tt2',
+                                // previous is undefined for use in if statements
+                                tt2:
+                                {
+                                    status: 'past-due',
+                                    visit_date: '2012-10-24'
+                                }
+                            },
+                            ifa:
+                            {
+                                next: 'ifa1',
+                                ifa1:
+                                {
+                                    status: 'upcoming',
+                                    visit_date: null
+                                }
+                            }
+                        }
                     }
 
                 ];
@@ -229,11 +362,9 @@ angular.module("smartRegistry.services")
             },
             preProcessClients:function (clients) {
                 clients.forEach(function (client) {
-                        var next_reminders = {};
+                        var visits = {};
                         schedules.forEach(function (schedule) {
-                            var next_reminder = {};
-                            next_reminders[schedule.name] = next_reminder;
-
+                            var visit = {};
                             var alertsOfTypeCurrentSchedule = [];
                             alertsOfTypeCurrentSchedule = client.alerts.filter(function (alert) {
                                 return schedule.milestones.indexOf(alert.name) > -1;
@@ -246,30 +377,26 @@ angular.module("smartRegistry.services")
                                 });
                                 if (milestone_alert !== undefined) {
                                     if (milestone_alert.status === alert_status.NORMAL || milestone_alert.status === alert_status.URGENT) {
-                                        next_reminder.next = milestone_alert.name;
-                                        next_reminder.due_date = milestone_alert.date;
-                                        next_reminder.status = status_css_class[milestone_alert.status];
+                                        visit.next = milestone;
+                                        var next_milestone = {};
+                                        next_milestone.status = status_css_class[milestone_alert.status];
+                                        next_milestone.visit_date = milestone_alert.date;
+                                        visit[milestone] = next_milestone;
 
-                                        next_reminder.previous = null;
-                                        next_reminder.previous_date = null;
-                                        next_reminder.previous_status = null;
-
-                                        if (i === 0) {
-                                            next_reminder.previous = null;
-                                            next_reminder.previous_date = null;
-                                        }
-                                        else if(i > 0)
+                                        if(i > 0)
                                         {
                                             for(var prev_idx = i; prev_idx > 0; prev_idx--){
-                                                prev_alert = alertsOfTypeCurrentSchedule.find(function(milestone_alert){
+                                                var prev_alert = alertsOfTypeCurrentSchedule.find(function(milestone_alert){
                                                    return milestone_alert.name === schedule.name + prev_idx;
                                                 });
 
                                                 if(prev_alert !== undefined)
                                                 {
-                                                    next_reminder.previous = prev_alert.name;
-                                                    next_reminder.previous_date = prev_alert.date;
-                                                    next_reminder.previous_status = status_css_class[prev_alert.status];
+                                                    visit.previous = prev_alert.name;
+                                                    var previous_milestone = {};
+                                                    previous_milestone.status = status_css_class[prev_alert.status];
+                                                    previous_milestone.visit_date = prev_alert.date;
+                                                    visit[visit.previous] = previous_milestone;
                                                     break;
                                                 }
                                             }
@@ -281,9 +408,11 @@ angular.module("smartRegistry.services")
                                         // check if we are on the last milestone
                                         if(i === schedule.milestones.length - 1)
                                         {
-                                            next_reminder.next = milestone_alert.name;
-                                            next_reminder.due_date = milestone_alert.date;
-                                            next_reminder.status = status_css_class[milestone_alert.status];
+                                            visit.next = milestone_alert.name;
+                                            var next_milestone = {};
+                                            next_milestone.status = status_css_class[milestone_alert.status];
+                                            next_milestone.visit_date = milestone_alert.date;
+                                            visit[visit.next] = next_milestone;
 
                                             // find previous
                                             for(var prev_idx = i; prev_idx > 0; prev_idx--){
@@ -293,39 +422,44 @@ angular.module("smartRegistry.services")
 
                                                 if(prev_alert !== undefined)
                                                 {
-                                                    next_reminder.previous = prev_alert.name;
-                                                    next_reminder.previous_date = prev_alert.date;
-                                                    next_reminder.previous_status = status_css_class[prev_alert.status];
+                                                    visit.previous = prev_alert.name;
+                                                    var previous_milestone = {};
+                                                    previous_milestone.status = status_css_class[prev_alert.status];
+                                                    previous_milestone.visit_date = prev_alert.date;
+                                                    visit[visit.previous] = previous_milestone;
                                                     break;
                                                 }
                                             }
                                         }
                                         else if(i < schedule.milestones.length - 1)
                                         {
-                                            next_reminder.next = schedule.name + (i + 2);
-                                            next_reminder.due_date = null;
-                                            next_reminder.status = status_css_class[alert_status.UPCOMING];
+                                            visit.next = schedule.milestones[schedule.milestones.indexOf(milestone) + 1];
+                                            var next_milestone = {};
+                                            next_milestone.status = status_css_class[alert_status.UPCOMING];
+                                            next_milestone.visit_date = null;
+                                            visit[visit.next] = next_milestone;
 
-                                            next_reminder.previous = milestone_alert.name;
-                                            next_reminder.previous_date = milestone_alert.date;
-                                            next_reminder.previous_status = status_css_class[milestone_alert.status];
+                                            visit.previous = milestone_alert.name;
+                                            var previous_milestone = {};
+                                            previous_milestone.status = status_css_class[milestone_alert.status];
+                                            previous_milestone.visit_date = milestone_alert.date;
+                                            visit[visit.previous] = previous_milestone;
                                         }
                                         break;
                                     }
                                 }
                             }
-                            if(next_reminder.status === undefined)
+                            if(visit.next === undefined)
                             {
-                                next_reminder.next = schedule.milestones[0];
-                                next_reminder.due_date = null;
-                                next_reminder.status = status_css_class[alert_status.UPCOMING];
-
-                                next_reminder.previous = null;
-                                next_reminder.previous_date = null;
-                                next_reminder.previous_status = null;
+                                visit.next = schedule.milestones[0];
+                                var next_milestone = {};
+                                next_milestone.status = status_css_class[alert_status.UPCOMING];
+                                next_milestone.visit_date = null;
+                                visit[visit.next] = next_milestone;
                             }
+                            visits[schedule.name] = visit;
                         });
-                        client.upcoming_reminders = next_reminders;
+                        client.visits = visits;
                     }
                 );
                 return clients;
