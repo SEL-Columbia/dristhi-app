@@ -24,5 +24,6 @@ public class AllConstants {
     public static final String IS_SYNC_IN_PROGRESS_PREFERENCE_KEY = "isSyncInProgress";
     public static final String TYPE = "type";
     public static final String WOMAN_TYPE = "woman";
-    public static final String ID_PARAM = "instanceId";
+    public static final String INSTANCE_ID_PARAM = "instanceId";
+    public static final String ENTITY_ID_FIELD_NAME = "id";
 }

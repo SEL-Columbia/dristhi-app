@@ -45,7 +45,16 @@ describe("Form Data Controller", function () {
             }
         ];
         var formDefinition = {};
-        var formModel = {};
+        var formModel = {form: {
+            bind_type: "ec",
+            fields: [
+                {
+                    name: "id",
+                    source: "ec.id",
+                    value: "ec id 1"
+                }
+            ]
+        }};
         var params = {};
         spyOn(entityRelationshipLoader, 'load').andReturn(entityRelationshipJSON);
         spyOn(formDefinitionLoader, 'load').andReturn(formDefinition);
@@ -74,5 +83,39 @@ describe("Form Data Controller", function () {
 
         expect(formDataRepository.saveFormSubmission).toHaveBeenCalledWith(params, formModel);
         expect(formModelMapper.mapToEntityAndSave).not.toHaveBeenCalled();
+    });
+
+    it("should add entityId to params from formModel.", function () {
+        var entityRelationshipJSON = [
+            {
+                "parent": "ec",
+                "child": "mother",
+                "field": "wife",
+                "kind": "one_to_one",
+                "from": "ec.id",
+                "to": "mother.ec_id"
+            }
+        ];
+        var formDefinition = {};
+        var formModel = {};
+        var params = {};
+        spyOn(entityRelationshipLoader, 'load').andReturn(entityRelationshipJSON);
+        spyOn(formDefinitionLoader, 'load').andReturn(formDefinition);
+        spyOn(formDataRepository, 'saveFormSubmission');
+        spyOn(formModelMapper, 'mapToEntityAndSave').andCallFake(function (entityRelationship, formModel) {
+            formModel["form"] = {};
+            formModel.form.bind_type = "ec";
+            formModel.form["fields"] = [
+                {
+                    source: "ec.id",
+                    value: "ec id 1"
+                }
+            ];
+        });
+
+        formDataController = new enketo.FormDataController(entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository);
+        formDataController.save(params, formModel);
+
+        expect(formDataRepository.saveFormSubmission).toHaveBeenCalledWith({"entityId": "ec id 1"}, formModel);
     });
 });
