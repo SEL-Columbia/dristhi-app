@@ -6,8 +6,8 @@ angular.module("smartRegistry.controllers")
             $scope.sortDescending = option.sortDescending;
         };
 
-        $scope.sortByName = function (item) {
-            return item.name;
+        $scope.sortByName = function (client) {
+            return client.name;
         };
 
         $scope.filterVillage = function (option) {
@@ -49,6 +49,6 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.allClientsDisplayed = function (filteredClients) {
-            return $scope.numberOfClientsToShow < filteredClients.length;
+            return $scope.numberOfClientsToShow >= filteredClients.length;
         };
     }]);
