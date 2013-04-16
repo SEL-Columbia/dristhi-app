@@ -67,7 +67,7 @@ public class FormDataRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldSaveFormSubmission() throws Exception {
-        Map<String, String> params = create("id", "id 1").put("formName", "form name").put("entityId", "entity id 1").map();
+        Map<String, String> params = create("instanceId", "id 1").put("formName", "form name").put("entityId", "entity id 1").map();
         String paramsJSON = new Gson().toJson(params);
 
         repository.saveFormSubmission(paramsJSON, "data");
@@ -78,7 +78,8 @@ public class FormDataRepositoryTest extends AndroidTestCase {
 
     public void testShouldSaveNewEC() throws Exception {
         Map<String, String> fields =
-                create("wifeName", "asha")
+                create("id", "entity id 1")
+                        .put("wifeName", "asha")
                         .put("husbandName", "raja")
                         .put("ecNumber", "ec 123")
                         .put("currentMethod", "ocp")

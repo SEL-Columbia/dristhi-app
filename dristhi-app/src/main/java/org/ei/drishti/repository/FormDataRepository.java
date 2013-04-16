@@ -5,22 +5,26 @@ import android.database.Cursor;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.util.Log;
 
 import java.text.MessageFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static java.util.UUID.randomUUID;
-import static org.apache.commons.lang3.StringUtils.isBlank;
 
 public class FormDataRepository extends DrishtiRepository {
-    private static final String FORM_SUBMISSION_SQL = "CREATE TABLE form_submission(id VARCHAR PRIMARY KEY, formName VARCHAR, data VARCHAR)";
+    private static final String FORM_SUBMISSION_SQL = "CREATE TABLE form_submission(instanceId VARCHAR PRIMARY KEY, formName VARCHAR, data VARCHAR)";
+    public static final String INSTANCE_ID_COLUMN = "instanceId";
     public static final String ID_COLUMN = "id";
     private static final String FORM_NAME_COLUMN = "formName";
     private static final String DATA_COLUMN = "data";
     private static final String FORM_SUBMISSION_TABLE_NAME = "form_submission";
-    public static final String[] FORM_SUBMISSION_TABLE_COLUMNS = new String[]{ID_COLUMN, FORM_NAME_COLUMN, DATA_COLUMN};
+    public static final String[] FORM_SUBMISSION_TABLE_COLUMNS = new String[]{INSTANCE_ID_COLUMN, FORM_NAME_COLUMN, DATA_COLUMN};
     private static final String DETAILS_COLUMN_NAME = "details";
     private static final String ID_PARAM = "id";
     private static final String FORM_NAME_PARAM = "formName";
@@ -71,7 +75,7 @@ public class FormDataRepository extends DrishtiRepository {
 
     private ContentValues createValuesForFormSubmission(Map<String, String> params, String data) {
         ContentValues values = new ContentValues();
-        values.put(ID_COLUMN, params.get(ID_PARAM));
+        values.put(INSTANCE_ID_COLUMN, params.get(AllConstants.ID_PARAM));
         values.put(FORM_NAME_COLUMN, params.get(FORM_NAME_PARAM));
         values.put(DATA_COLUMN, data);
         return values;
@@ -79,7 +83,7 @@ public class FormDataRepository extends DrishtiRepository {
 
     public String fetchFromSubmission(String id) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(FORM_SUBMISSION_TABLE_NAME, FORM_SUBMISSION_TABLE_COLUMNS, ID_COLUMN + " = ?", new String[]{id}, null, null, null);
+        Cursor cursor = database.query(FORM_SUBMISSION_TABLE_NAME, FORM_SUBMISSION_TABLE_COLUMNS, INSTANCE_ID_COLUMN + " = ?", new String[]{id}, null, null, null);
         return readFormSubmission(cursor);
     }
 
@@ -108,15 +112,10 @@ public class FormDataRepository extends DrishtiRepository {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         Map<String, String> updatedFieldsMap = new Gson().fromJson(fields, new TypeToken<Map<String, String>>() {
         }.getType());
+
         String entityId = updatedFieldsMap.get(ID_PARAM);
-        Map<String, String> entityMap;
-        if (isBlank(entityId)) {
-            entityId = randomUUID().toString();
-            updatedFieldsMap.put(ID_PARAM, entityId);
-            entityMap = new HashMap<String, String>();
-        } else {
-            entityMap = loadEntityMap(entityType, database, entityId);
-        }
+        Map<String, String> entityMap = loadEntityMap(entityType, database, entityId);
+
         ContentValues contentValues = getContentValues(updatedFieldsMap, entityType, entityMap);
         database.replace(entityType, null, contentValues);
         return entityId;
