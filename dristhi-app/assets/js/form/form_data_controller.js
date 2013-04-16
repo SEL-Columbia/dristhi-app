@@ -20,8 +20,7 @@ enketo.FormDataController = function (entityRelationshipLoader, formDefinitionLo
 
     self.get = function (params) {
         init(params);
-        var mapToFormModel = formModelMapper.mapToFormModel(self.entitiesDef, self.formDefinition, params);
-        return mapToFormModel;
+        return formModelMapper.mapToFormModel(self.entitiesDef, self.formDefinition, params);
     };
     self.save = function (params, data) {
         init(params);

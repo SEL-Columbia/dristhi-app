@@ -6,6 +6,7 @@ import android.test.RenamingDelegatingContext;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.domain.FormSubmission;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.util.Session;
 
@@ -14,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import static org.ei.drishti.domain.SyncStatus.PENDING;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 
@@ -70,10 +72,11 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         Map<String, String> params = create("instanceId", "id 1").put("entityId", "entity id 1").put("formName", "form name").map();
         String paramsJSON = new Gson().toJson(params);
 
-        repository.saveFormSubmission(paramsJSON, "data");
+        repository.saveFormSubmission(paramsJSON, "instance");
 
-        String actualFormSubmission = repository.fetchFromSubmission("id 1");
-        assertEquals("data", actualFormSubmission);
+        FormSubmission actualFormSubmission = repository.fetchFromSubmission("id 1");
+        assertEquals(new FormSubmission("id 1", "entity id 1", "form name", "instance", "some version", PENDING), actualFormSubmission);
+        assertNotNull(actualFormSubmission);
     }
 
     public void testShouldSaveNewEC() throws Exception {

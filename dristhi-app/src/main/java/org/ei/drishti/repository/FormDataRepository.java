@@ -5,6 +5,8 @@ import android.database.Cursor;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
+import org.ei.drishti.domain.FormSubmission;
+import org.ei.drishti.domain.SyncStatus;
 import org.ei.drishti.util.Log;
 
 import java.text.MessageFormat;
@@ -13,22 +15,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.System.nanoTime;
 import static java.util.Arrays.asList;
 import static java.util.UUID.randomUUID;
 import static org.ei.drishti.AllConstants.*;
+import static org.ei.drishti.domain.SyncStatus.PENDING;
 
 public class FormDataRepository extends DrishtiRepository {
-    private static final String FORM_SUBMISSION_SQL = "CREATE TABLE form_submission(instanceId VARCHAR PRIMARY KEY, entityId VARCHAR, formName VARCHAR, data VARCHAR)";
+    private static final String FORM_SUBMISSION_SQL = "CREATE TABLE form_submission(instanceId VARCHAR PRIMARY KEY, entityId VARCHAR, formName VARCHAR, instance VARCHAR, version VARCHAR, syncStatus VARCHAR)";
     public static final String INSTANCE_ID_COLUMN = "instanceId";
     public static final String ENTITY_ID_COLUMN = "entityId";
     private static final String FORM_NAME_COLUMN = "formName";
-    private static final String DATA_COLUMN = "data";
+    private static final String INSTANCE_COLUMN = "instance";
+    private static final String VERSION_COLUMN = "version";
+    private static final String SYNC_STATUS_COLUMN = "syncStatus";
     private static final String FORM_SUBMISSION_TABLE_NAME = "form_submission";
-    public static final String[] FORM_SUBMISSION_TABLE_COLUMNS = new String[]{INSTANCE_ID_COLUMN, ENTITY_ID_COLUMN, FORM_NAME_COLUMN, DATA_COLUMN};
+    public static final String[] FORM_SUBMISSION_TABLE_COLUMNS = new String[]{INSTANCE_ID_COLUMN, ENTITY_ID_COLUMN, FORM_NAME_COLUMN, INSTANCE_COLUMN, VERSION_COLUMN, SYNC_STATUS_COLUMN};
+    public static final String ID_COLUMN = "id";
     private static final String DETAILS_COLUMN_NAME = "details";
     private static final String FORM_NAME_PARAM = "formName";
     private Map<String, String[]> TABLE_COLUMN_MAP;
-    public static final String ID_COLUMN = "id";
 
     public FormDataRepository() {
         TABLE_COLUMN_MAP = new HashMap<String, String[]>();
@@ -78,19 +84,27 @@ public class FormDataRepository extends DrishtiRepository {
         values.put(INSTANCE_ID_COLUMN, params.get(INSTANCE_ID_PARAM));
         values.put(ENTITY_ID_COLUMN, params.get(ENTITY_ID_PARAMETER));
         values.put(FORM_NAME_COLUMN, params.get(FORM_NAME_PARAM));
-        values.put(DATA_COLUMN, data);
+        values.put(INSTANCE_COLUMN, data);
+        values.put(VERSION_COLUMN, nanoTime());
+        values.put(SYNC_STATUS_COLUMN, PENDING.value());
         return values;
     }
 
-    public String fetchFromSubmission(String id) {
+    public FormSubmission fetchFromSubmission(String id) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(FORM_SUBMISSION_TABLE_NAME, FORM_SUBMISSION_TABLE_COLUMNS, INSTANCE_ID_COLUMN + " = ?", new String[]{id}, null, null, null);
         return readFormSubmission(cursor);
     }
 
-    private String readFormSubmission(Cursor cursor) {
+    private FormSubmission readFormSubmission(Cursor cursor) {
         cursor.moveToFirst();
-        return cursor.getString(cursor.getColumnIndex(DATA_COLUMN));
+        return new FormSubmission(
+                cursor.getString(cursor.getColumnIndex(INSTANCE_ID_COLUMN)),
+                cursor.getString(cursor.getColumnIndex(ENTITY_ID_COLUMN)),
+                cursor.getString(cursor.getColumnIndex(FORM_NAME_COLUMN)),
+                cursor.getString(cursor.getColumnIndex(INSTANCE_COLUMN)), cursor.getString(cursor.getColumnIndex(VERSION_COLUMN)),
+                SyncStatus.valueOf(cursor.getString(cursor.getColumnIndex(SYNC_STATUS_COLUMN)))
+        );
     }
 
     private Map<String, String> readARow(Cursor cursor) {
