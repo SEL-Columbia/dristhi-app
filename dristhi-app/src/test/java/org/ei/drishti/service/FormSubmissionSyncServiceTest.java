@@ -5,7 +5,6 @@ import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.FormSubmission;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
-import org.ei.drishti.dto.form.FormInstance;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.FormDataRepository;
 import org.junit.Before;
@@ -42,7 +41,7 @@ public class FormSubmissionSyncServiceTest {
         String formInstanceJSON = "{form:{bind_type: 'ec'}}";
         submissions = asList(new FormSubmission("id 1", "entity id 1", "form name", formInstanceJSON, "123", PENDING));
         expectedFormSubmissions = asList(new org.ei.drishti.dto.form.FormSubmission(
-                "anm id 1", "id 1", "entity id 1", "form name", new Gson().fromJson(formInstanceJSON, FormInstance.class), "123"));
+                "anm id 1", "id 1", "entity id 1", "form name", formInstanceJSON, "123"));
         when(allSettings.fetchRegisteredANM()).thenReturn("anm id 1");
         when(repository.getPendingFormSubmissions()).thenReturn(submissions);
     }

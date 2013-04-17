@@ -3,7 +3,6 @@ package org.ei.drishti.service;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.FormSubmission;
 import org.ei.drishti.domain.Response;
-import org.ei.drishti.dto.form.FormInstance;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.FormDataRepository;
 
@@ -46,8 +45,7 @@ public class FormSubmissionSyncService {
         List<org.ei.drishti.dto.form.FormSubmission> formSubmissions = new ArrayList<org.ei.drishti.dto.form.FormSubmission>();
         for (FormSubmission pendingFormSubmission : pendingFormSubmissions) {
             formSubmissions.add(new org.ei.drishti.dto.form.FormSubmission(allSettings.fetchRegisteredANM(), pendingFormSubmission.instanceId(),
-                    pendingFormSubmission.entityId(), pendingFormSubmission.formName(),
-                    new Gson().fromJson(pendingFormSubmission.instance(), FormInstance.class), pendingFormSubmission.version()));
+                    pendingFormSubmission.entityId(), pendingFormSubmission.formName(), pendingFormSubmission.instance(), pendingFormSubmission.version()));
         }
         return new Gson().toJson(formSubmissions);
     }
