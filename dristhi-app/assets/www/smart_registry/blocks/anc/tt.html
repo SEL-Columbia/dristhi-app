@@ -2,19 +2,22 @@
     <div class="row-fluid full-height no-padding-left">
         <div class="span4 line-right span-no-margin width-without-margins span-content">
             <!--VISITS-->
-            <a class="btn btn-primary btn-done btn-sr full-height" href="#">
-                <div class="done-icon"><i class="icon-ok green icon-large"></i></div>
+            <a ng-show="client.visits.tt.tt1" class="btn btn-primary btn-sr full-height" ng-class="client.visits.tt.tt1.status" href="#">
+                <div ng-show="client.visits.tt.tt1.status == 'btn-done'" class="done-icon"><i class="icon-ok green icon-large"></i></div>
                 <span class="bold-text">TT1</span>
                 <br/>
-                On 05/03
+                <span ng-show="client.visits.tt.tt1.status != 'btn-upcoming'">On {{client.visits.tt.tt1.visit_date}}</span>
+                <span ng-show="client.visits.tt.tt1.status == 'btn-upcoming'">Upcoming</span>
             </a>
         </div>
         <div class="span4 line-right span-no-margin width-without-margins span-content">
             <!--TT-->
-            <a class="btn btn-primary btn-due btn-sr full-height" href="#">
-                <span class="bold-text">TT 2</span>
+            <a ng-show="client.visits.tt.tt2" class="btn btn-primary btn-sr full-height" ng-class="client.visits.tt.tt2.status" href="#">
+                <div ng-show="client.visits.tt.tt2.status == 'btn-done'" class="done-icon"><i class="icon-ok green icon-large"></i></div>
+                <span class="bold-text">tt2</span>
                 <br/>
-                Due 25/04
+                <span ng-show="client.visits.tt.tt2.status != 'btn-upcoming'">On {{client.visits.tt.tt2.visit_date}}</span>
+                <span ng-show="client.visits.tt.tt2.status == 'btn-upcoming'">Upcoming</span>
             </a>
         </div>
         <div class="span4 line-right span-no-margin width-without-margins span-content">
