@@ -97,44 +97,7 @@ angular.module("smartRegistry.services")
                         days_due:'3',
                         due_message:'Follow Up',
                         isHighPriority:false,
-                        locationStatus:"out_of_area",
-                        visits:
-                        {
-                            anc:
-                            {
-                                next: 'anc3',
-                                previous: 'anc1',
-                                anc1:
-                                {
-                                    status: 'done',
-                                    visit_date: '2012-10-24'
-                                },
-                                anc3:
-                                {
-                                    status: 'due',
-                                    visit_date: '2012-10-24'
-                                }
-                            },
-                            tt:
-                            {
-                                next: 'tt2',
-                                // previous is undefined for use in if statements
-                                tt2:
-                                {
-                                    status: 'past-due',
-                                    visit_date: '2012-10-24'
-                                }
-                            },
-                            ifa:
-                            {
-                                next: 'ifa1',
-                                ifa1:
-                                {
-                                    status: 'upcoming',
-                                    visit_date: null
-                                }
-                            }
-                        }
+                        locationStatus:"out_of_area"
                     },
                     {
                         village:'Chikkabherya',
@@ -170,39 +133,7 @@ angular.module("smartRegistry.services")
                         days_due:'3',
                         due_message:'Follow Up',
                         isHighPriority:true,
-                        locationStatus:"left_the_place",
-                        visits:
-                        {
-                            anc:
-                            {
-                                next: 'anc1',
-                                // previous is undefined for use in if statements
-                                anc1:
-                                {
-                                    status: 'due',
-                                    visit_date: '2012-10-24'
-                                }
-                            },
-                            tt:
-                            {
-                                next: 'tt2',
-                                // previous is undefined for use in if statements
-                                tt2:
-                                {
-                                    status: 'past-due',
-                                    visit_date: '2012-10-24'
-                                }
-                            },
-                            ifa:
-                            {
-                                next: 'ifa1',
-                                ifa1:
-                                {
-                                    status: 'upcoming',
-                                    visit_date: null
-                                }
-                            }
-                        }
+                        locationStatus:"left_the_place"
                     },
                     {
                         village:'Bherya',
@@ -243,39 +174,7 @@ angular.module("smartRegistry.services")
                         days_due:'3',
                         due_message:'Follow Up',
                         isHighPriority:false,
-                        locationStatus:"in_area",
-                        visits:
-                        {
-                            anc:
-                            {
-                                next: 'anc1',
-                                // previous is undefined for use in if statements
-                                anc1:
-                                {
-                                    status: 'due',
-                                    visit_date: '2012-10-24'
-                                }
-                            },
-                            tt:
-                            {
-                                next: 'tt2',
-                                // previous is undefined for use in if statements
-                                tt2:
-                                {
-                                    status: 'past-due',
-                                    visit_date: '2012-10-24'
-                                }
-                            },
-                            ifa:
-                            {
-                                next: 'ifa1',
-                                ifa1:
-                                {
-                                    status: 'upcoming',
-                                    visit_date: null
-                                }
-                            }
-                        }
+                        locationStatus:"in_area"
                     },
                     {
                         village:'Bherya',
@@ -321,39 +220,7 @@ angular.module("smartRegistry.services")
                         days_due:'3',
                         due_message:'Follow Up',
                         isHighPriority:false,
-                        locationStatus:"in_area",
-                        visits:
-                        {
-                            anc:
-                            {
-                                next: 'anc1',
-                                // previous is undefined for use in if statements
-                                anc1:
-                                {
-                                    status: 'due',
-                                    visit_date: '2012-10-24'
-                                }
-                            },
-                            tt:
-                            {
-                                next: 'tt2',
-                                // previous is undefined for use in if statements
-                                tt2:
-                                {
-                                    status: 'past-due',
-                                    visit_date: '2012-10-24'
-                                }
-                            },
-                            ifa:
-                            {
-                                next: 'ifa1',
-                                ifa1:
-                                {
-                                    status: 'upcoming',
-                                    visit_date: null
-                                }
-                            }
-                        }
+                        locationStatus:"in_area"
                     }
 
                 ];
