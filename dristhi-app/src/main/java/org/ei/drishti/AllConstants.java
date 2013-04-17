@@ -26,4 +26,5 @@ public class AllConstants {
     public static final String WOMAN_TYPE = "woman";
     public static final String INSTANCE_ID_PARAM = "instanceId";
     public static final String ENTITY_ID_FIELD_NAME = "id";
+    public static final String DRISHTI_BASE_URL = "https://drishti.modilabs.org";
 }

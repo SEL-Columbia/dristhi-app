@@ -15,7 +15,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.SyncStatus.PENDING;
+import static org.ei.drishti.domain.SyncStatus.SYNCED;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 
@@ -146,5 +148,33 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         Map<String, String> expectedDetails = mapOf("isHighPriority", "no");
         Mother expectedMother = new Mother("entity id 1", "ec 123", "thaayi1", "2013-01-05").withDetails(expectedDetails);
         assertEquals(expectedMother, savedMother);
+    }
+
+    public void testShouldFetchPendingFormSubmissions() throws Exception {
+        FormSubmission firstSubmission = new FormSubmission("id 1", "entity id 1", "form name", "instance 1", "some version", PENDING);
+        FormSubmission secondSubmission = new FormSubmission("id 2", "entity id 2", "form name", "instance 2", "some other version", PENDING);
+        FormSubmission thirdSubmission = new FormSubmission("id 3", "entity id 3", "form name", "instance 3", "some other version", SYNCED);
+        repository.saveFormSubmission(firstSubmission);
+        repository.saveFormSubmission(secondSubmission);
+        repository.saveFormSubmission(thirdSubmission);
+
+        List<FormSubmission> pendingFormSubmissions = repository.getPendingFormSubmissions();
+
+        assertEquals(asList(firstSubmission, secondSubmission), pendingFormSubmissions);
+    }
+
+    public void testShouldMarkPendingFormSubmissionsAsSynced() throws Exception {
+        FormSubmission firstSubmission = new FormSubmission("id 1", "entity id 1", "form name", "instance 1", "some version", PENDING);
+        FormSubmission secondSubmission = new FormSubmission("id 2", "entity id 2", "form name", "instance 2", "some other version", PENDING);
+        FormSubmission thirdSubmission = new FormSubmission("id 3", "entity id 3", "form name", "instance 3", "some other version", PENDING);
+        repository.saveFormSubmission(firstSubmission);
+        repository.saveFormSubmission(secondSubmission);
+        repository.saveFormSubmission(thirdSubmission);
+
+        repository.markFormSubmissionAsSynced(asList(firstSubmission, secondSubmission));
+
+        assertEquals(firstSubmission.setSyncStatus(SYNCED), repository.fetchFromSubmission("id 1"));
+        assertEquals(secondSubmission.setSyncStatus(SYNCED), repository.fetchFromSubmission("id 2"));
+        assertEquals(thirdSubmission, repository.fetchFromSubmission("id 3"));
     }
 }

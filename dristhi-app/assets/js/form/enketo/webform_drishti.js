@@ -23,7 +23,7 @@ var /**@type {*}*/fileManager;
 $(document).ready(function () {
     'use strict';
     var formParts, existingInstanceJ, instanceToEdit, loadErrors, jsonErrors, jDataO,
-        formDataController = new FormDataController({'id': settings.instanceId, 'entityId': settings.entityId, "formName": settings.formId});
+        formDataController = new FormDataController({'instanceId': settings.instanceId, 'entityId': settings.entityId, "formName": settings.formId});
 
     connection = new Connection();
     existingInstanceJ = formDataController.get();
@@ -79,7 +79,7 @@ $(document).ready(function () {
                 );
                 $('#dialog-alert').css({'width': '80%', 'margin-left': '-40%'});//temporary to show JSON
 
-                if (!jData.errors) {
+                if (jData.errors) {
                     //add callbacks or deal with result synchronously?
                     saveResult = formDataController.save(form.getInstanceID(), jData);
                     if (saveResult) {

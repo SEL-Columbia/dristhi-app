@@ -5,6 +5,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpHead;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
@@ -42,5 +43,10 @@ public class GZipEncodingHttpClient {
 
     public CredentialsProvider getCredentialsProvider() {
         return httpClient.getCredentialsProvider();
+    }
+
+    public int postContent(HttpPost request) throws IOException {
+        HttpResponse response = httpClient.execute(request);
+        return response.getStatusLine().getStatusCode();
     }
 }

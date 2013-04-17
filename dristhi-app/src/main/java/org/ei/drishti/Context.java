@@ -6,6 +6,7 @@ import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+import static org.ei.drishti.AllConstants.DRISHTI_BASE_URL;
 
 public class Context {
     private android.content.Context applicationContext;
@@ -30,6 +31,7 @@ public class Context {
     private AllReports allReports;
     private DrishtiService drishtiService;
     private ActionService actionService;
+    private FormSubmissionSyncService formSubmissionSyncService;
     private UserService userService;
     private AlertService alertService;
     private EligibleCoupleService eligibleCoupleService;
@@ -44,6 +46,7 @@ public class Context {
     private Session session;
     private Cache<String> listCache;
     private BeneficiaryService beneficiaryService;
+    private HTTPAgent httpAgent;
 
     protected Context() {
     }
@@ -74,7 +77,7 @@ public class Context {
 
     protected DrishtiService drishtiService() {
         if (drishtiService == null) {
-            drishtiService = new DrishtiService(new HTTPAgent(applicationContext), "https://drishti.modilabs.org");
+            drishtiService = new DrishtiService(new HTTPAgent(applicationContext), DRISHTI_BASE_URL);
         }
         return drishtiService;
     }
@@ -84,6 +87,20 @@ public class Context {
             actionService = new ActionService(drishtiService(), allSettings(), allReports());
         }
         return actionService;
+    }
+
+    public FormSubmissionSyncService formSubmissionSyncService() {
+        if (formSubmissionSyncService == null) {
+            formSubmissionSyncService = new FormSubmissionSyncService(httpAgent(), formDataRepository(), allSettings());
+        }
+        return formSubmissionSyncService;
+    }
+
+    private HTTPAgent httpAgent() {
+        if (httpAgent == null) {
+            httpAgent = new HTTPAgent(applicationContext);
+        }
+        return httpAgent;
     }
 
     private Repository initRepository() {
@@ -237,7 +254,7 @@ public class Context {
 
     private CommCareHQService commCareService() {
         if (commCareService == null) {
-            commCareService = new CommCareHQService(new HTTPAgent(applicationContext), "https://india.commcarehq.org", "dristhi");
+            commCareService = new CommCareHQService(httpAgent(), "https://india.commcarehq.org", "dristhi");
         }
         return commCareService;
     }

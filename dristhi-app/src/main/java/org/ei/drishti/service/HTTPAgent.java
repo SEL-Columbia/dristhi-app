@@ -8,6 +8,7 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpHead;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
@@ -15,10 +16,13 @@ import org.apache.http.conn.scheme.SocketFactory;
 import org.apache.http.conn.ssl.AbstractVerifier;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.SingleClientConnManager;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.protocol.HTTP;
 import org.ei.drishti.client.GZipEncodingHttpClient;
 import org.ei.drishti.domain.LoginResponse;
 import org.ei.drishti.domain.Response;
@@ -34,7 +38,6 @@ import static org.ei.drishti.domain.LoginResponse.*;
 import static org.ei.drishti.util.Log.logWarn;
 
 public class HTTPAgent {
-
     private final GZipEncodingHttpClient httpClient;
     private Context context;
 
@@ -57,6 +60,22 @@ public class HTTPAgent {
         try {
             String responseContent = IOUtils.toString(httpClient.fetchContent(new HttpGet(requestURLPath)));
             return new Response<String>(ResponseStatus.success, responseContent);
+        } catch (Exception e) {
+            logWarn(e.toString());
+            return new Response<String>(ResponseStatus.failure, null);
+        }
+    }
+
+    public Response<String> post(String postURLPath, String jsonPayload) {
+        try {
+            HttpPost httpPost = new HttpPost(postURLPath);
+            StringEntity entity = new StringEntity(jsonPayload);
+            entity.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+            httpPost.setEntity(entity);
+            httpPost.setHeader(HTTP.CONTENT_TYPE, "application/json");
+
+            int responseStatus = httpClient.postContent(httpPost);
+            return responseStatus == HttpStatus.SC_CREATED ? new Response<String>(ResponseStatus.success, null) : new Response<String>(ResponseStatus.failure, null);
         } catch (Exception e) {
             logWarn(e.toString());
             return new Response<String>(ResponseStatus.failure, null);

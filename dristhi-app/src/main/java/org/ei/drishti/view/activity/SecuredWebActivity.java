@@ -61,8 +61,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
     }
 
     public void updateFromServer() {
-        UpdateActionsTask updateActionsTask = new UpdateActionsTask(this, context.actionService(), new SyncProgressIndicator());
-
+        UpdateActionsTask updateActionsTask = new UpdateActionsTask(this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator());
         updateActionsTask.updateFromServer(new SyncAfterFetchListener());
     }
 

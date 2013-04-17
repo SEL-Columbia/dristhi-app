@@ -20,6 +20,7 @@ import static java.util.Arrays.asList;
 import static java.util.UUID.randomUUID;
 import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.domain.SyncStatus.PENDING;
+import static org.ei.drishti.domain.SyncStatus.SYNCED;
 
 public class FormDataRepository extends DrishtiRepository {
     private static final String FORM_SUBMISSION_SQL = "CREATE TABLE form_submission(instanceId VARCHAR PRIMARY KEY, entityId VARCHAR, formName VARCHAR, instance VARCHAR, version VARCHAR, syncStatus VARCHAR)";
@@ -79,6 +80,42 @@ public class FormDataRepository extends DrishtiRepository {
         database.insert(FORM_SUBMISSION_TABLE_NAME, null, createValuesForFormSubmission(params, data));
     }
 
+    public void saveFormSubmission(FormSubmission formSubmission) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        database.insert(FORM_SUBMISSION_TABLE_NAME, null, createValuesForFormSubmission(formSubmission));
+    }
+
+    public FormSubmission fetchFromSubmission(String id) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(FORM_SUBMISSION_TABLE_NAME, FORM_SUBMISSION_TABLE_COLUMNS, INSTANCE_ID_COLUMN + " = ?", new String[]{id}, null, null, null);
+        return readFormSubmission(cursor).get(0);
+    }
+
+    public List<FormSubmission> getPendingFormSubmissions() {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(FORM_SUBMISSION_TABLE_NAME, FORM_SUBMISSION_TABLE_COLUMNS, SYNC_STATUS_COLUMN + " = ?", new String[]{PENDING.value()}, null, null, null);
+        return readFormSubmission(cursor);
+    }
+
+    public void markFormSubmissionAsSynced(List<FormSubmission> formSubmissions) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        for (FormSubmission submission : formSubmissions) {
+            FormSubmission updatedSubmission = new FormSubmission(submission.instanceId(), submission.entityId(), submission.formName(), submission.instance(), submission.version(), SYNCED);
+            database.update(FORM_SUBMISSION_TABLE_NAME, createValuesForFormSubmission(updatedSubmission), INSTANCE_ID_COLUMN + " = ?", new String[]{updatedSubmission.instanceId()});
+        }
+    }
+
+    private ContentValues createValuesForFormSubmission(FormSubmission submission) {
+        ContentValues values = new ContentValues();
+        values.put(INSTANCE_ID_COLUMN, submission.instanceId());
+        values.put(ENTITY_ID_COLUMN, submission.entityId());
+        values.put(FORM_NAME_COLUMN, submission.formName());
+        values.put(INSTANCE_COLUMN, submission.instance());
+        values.put(VERSION_COLUMN, submission.version());
+        values.put(SYNC_STATUS_COLUMN, submission.syncStatus().value());
+        return values;
+    }
+
     private ContentValues createValuesForFormSubmission(Map<String, String> params, String data) {
         ContentValues values = new ContentValues();
         values.put(INSTANCE_ID_COLUMN, params.get(INSTANCE_ID_PARAM));
@@ -90,21 +127,20 @@ public class FormDataRepository extends DrishtiRepository {
         return values;
     }
 
-    public FormSubmission fetchFromSubmission(String id) {
-        SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(FORM_SUBMISSION_TABLE_NAME, FORM_SUBMISSION_TABLE_COLUMNS, INSTANCE_ID_COLUMN + " = ?", new String[]{id}, null, null, null);
-        return readFormSubmission(cursor);
-    }
-
-    private FormSubmission readFormSubmission(Cursor cursor) {
+    private List<FormSubmission> readFormSubmission(Cursor cursor) {
         cursor.moveToFirst();
-        return new FormSubmission(
-                cursor.getString(cursor.getColumnIndex(INSTANCE_ID_COLUMN)),
-                cursor.getString(cursor.getColumnIndex(ENTITY_ID_COLUMN)),
-                cursor.getString(cursor.getColumnIndex(FORM_NAME_COLUMN)),
-                cursor.getString(cursor.getColumnIndex(INSTANCE_COLUMN)), cursor.getString(cursor.getColumnIndex(VERSION_COLUMN)),
-                SyncStatus.valueOf(cursor.getString(cursor.getColumnIndex(SYNC_STATUS_COLUMN)))
-        );
+        List<FormSubmission> submissions = new ArrayList<FormSubmission>();
+        while (!cursor.isAfterLast()) {
+            submissions.add(new FormSubmission(
+                    cursor.getString(cursor.getColumnIndex(INSTANCE_ID_COLUMN)),
+                    cursor.getString(cursor.getColumnIndex(ENTITY_ID_COLUMN)),
+                    cursor.getString(cursor.getColumnIndex(FORM_NAME_COLUMN)),
+                    cursor.getString(cursor.getColumnIndex(INSTANCE_COLUMN)), cursor.getString(cursor.getColumnIndex(VERSION_COLUMN)),
+                    SyncStatus.valueOf(cursor.getString(cursor.getColumnIndex(SYNC_STATUS_COLUMN)))));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return submissions;
     }
 
     private Map<String, String> readARow(Cursor cursor) {

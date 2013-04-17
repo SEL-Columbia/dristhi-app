@@ -21,6 +21,35 @@ public class FormSubmission {
         this.syncStatus = syncStatus;
     }
 
+    public String instanceId() {
+        return instanceId;
+    }
+
+    public String entityId() {
+        return entityId;
+    }
+
+    public String formName() {
+        return formName;
+    }
+
+    public String instance() {
+        return instance;
+    }
+
+    public String version() {
+        return version;
+    }
+
+    public SyncStatus syncStatus() {
+        return syncStatus;
+    }
+
+    public FormSubmission setSyncStatus(SyncStatus syncStatus) {
+        this.syncStatus = syncStatus;
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o, "version");
