@@ -1,12 +1,15 @@
 function FPRegistryBridge() {
-    var fpSmartRegistryContext = window.context;
-    if (typeof fpSmartRegistryContext === "undefined" && typeof FakeFPSmartRegistryContext !== "undefined") {
-        fpSmartRegistryContext = new FakeFPSmartRegistryContext();
+    var context = window.context;
+    if (typeof context === "undefined" && typeof FakeFPSmartRegistryContext !== "undefined") {
+        context = new FakeFPSmartRegistryContext();
     }
 
     return {
         getFPClients: function () {
-            return JSON.parse(fpSmartRegistryContext.get());
+            return JSON.parse(context.get());
+        },
+        getVillages: function () {
+            return JSON.parse(context.villages());
         }
     };
 }
@@ -282,6 +285,17 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "25/02/13"
                 }
             ]);
+        },
+        villages: function () {
+            return JSON.stringify(
+                [
+                    {name: "bherya"},
+                    {name: "chikkahalli"},
+                    {name: "somanahalli_colony"},
+                    {name: "chikkabherya"},
+                    {name: "basavanapura"}
+                ]
+            )
         }
     };
 }

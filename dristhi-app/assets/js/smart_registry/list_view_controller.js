@@ -14,6 +14,32 @@ angular.module("smartRegistry.controllers")
             $scope.villageFilterOption = option;
         };
 
+        var capitalize = function (text) {
+            return text.slice(0, 1).toUpperCase() + text.slice(1);
+        };
+
+        var formatText = function (unformattedText) {
+            if (typeof unformattedText === "undefined" || unformattedText === null) {
+                return "";
+            }
+            return capitalize(unformattedText).replace(/_/g, " ");
+        };
+
+        var addVillageNamesToFilterOptions = function () {
+            var villageFilterOptions = $scope.defaultVillageOptions;
+            var villages = $scope.bridge.getVillages();
+            villages.forEach(function (village) {
+                villageFilterOptions.options.push({
+                    label: formatText(village.name),
+                    id: village.name,
+                    handler: $scope.defaultVillageFilterHandler
+                });
+            });
+            return  villageFilterOptions;
+        };
+
+        $scope.villageOptions = addVillageNamesToFilterOptions();
+
         $scope.filterList = function (client) {
             var searchCondition = true;
             var villageCondition = true;

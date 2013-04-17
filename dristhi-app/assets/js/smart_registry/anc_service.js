@@ -331,5 +331,4 @@ angular.module("smartRegistry.services")
                 return clients;
             }
         }
-    })
-;
+    });
