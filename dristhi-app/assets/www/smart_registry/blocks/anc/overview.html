@@ -1,6 +1,9 @@
 <div class="span6 full-height span-no-margin width-without-margins">
     <div class="row-fluid full-height">
-        <div class="span4 line-right span-no-margin width-without-margins span-content">
+        <div class="span3 line-right span-no-margin width-without-margins span-content">
+            {{client.risk_factors}}
+        </div>
+        <div class="span3 line-right span-no-margin width-without-margins span-content">
             <!--ANC-->
             <button ng-show="client.visits.anc.next" class="btn btn-primary btn-sr" ng-class="client.visits.anc[client.visits.anc.next].status">
                 <span class="text-bold">{{client.visits.anc.next}}</span>
@@ -15,7 +18,7 @@
                 Done: {{client.visits.anc[client.visits.anc.previous].visit_date}}
             </span>
         </div>
-        <div class="span4 line-right span-no-margin width-without-margins span-content">
+        <div class="span3 line-right span-no-margin width-without-margins span-content">
             <!--TT-->
             <button ng-show="client.visits.tt.next" class="btn btn-primary btn-sr" ng-class="client.visits.tt[client.visits.tt.next].status">
                 <span class="text-bold">{{client.visits.tt.next}}</span>
@@ -30,7 +33,7 @@
                 Done: {{client.visits.tt[client.visits.tt.previous].visit_date}}
             </span>
         </div>
-        <div class="span4 line-right span-no-margin width-without-margins span-content">
+        <div class="span3 line-right span-no-margin width-without-margins span-content">
             <!--IFA-->
             <button ng-show="client.visits.ifa.next" class="btn btn-primary btn-sr" ng-class="client.visits.ifa[client.visits.ifa.next].status">
                 <span class="text-bold">{{client.visits.ifa.next}}</span>
