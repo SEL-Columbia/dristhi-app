@@ -3,12 +3,12 @@ angular.module("smartRegistry.services")
         var schedules =
             [
                 {
-                    "name":"anc",
-                    "milestones":["anc1", "anc2", "anc3", "anc4"]
+                    name:"anc",
+                    milestones:["anc1", "anc2", "anc3", "anc4"]
                 },
                 {
                     "name":"tt",
-                    "milestones":["tt1", "tt2"]
+                    "milestones":["tt1", "tt2", "ttbooster"]
                 },
                 {
                     "name":"ifa",
@@ -64,36 +64,40 @@ angular.module("smartRegistry.services")
                         lmp:'25/3/13',
                         alerts:[
                             {
-                                name:'anc1',
-                                date:'24/05',
-                                status:'urgent'
-                            },
-                            {
                                 name:'anc2',
                                 date:'24/07',
                                 status:'urgent'
                             },
                             {
-                                name:'tt1',
-                                date:'26/05',
-                                status:'normal'
-                            },
-                            {
-                                name:'ifa1',
+                                name:'ifa2',
                                 date:'26/05',
                                 status:'normal'
                             }
                         ],
-                        anc_visits:[
-                            {visit:'1', date:'04/04'},
-                            {visit:'2', date:'04/08'},
-                            {visit:'3', date:'04/09'}
+                        services_provided:[
+                            {
+                                name:'anc1',
+                                date:'04/04',
+                                data:{
+                                    bp:'120/80',
+                                    weight:'55'
+                                }
+                            },
+                            {
+                                name: 'tt1',
+                                date:'04/04',
+                                data:{
+                                    dose:'80'
+                                }
+                            },
+                            {
+                                name:'ifa1',
+                                date:'04/04',
+                                data:{
+                                    dose:100
+                                }
+                            }
                         ],
-                        tt:[
-                            {tt:'1', date:'04/04'},
-                            {tt:'2', date:'04/08'}
-                        ],
-                        ifa:{dose:'100', date:'04/04'},
                         days_due:'3',
                         due_message:'Follow Up',
                         isHighPriority:false,
@@ -118,18 +122,26 @@ angular.module("smartRegistry.services")
                             {
                                 name:'tt1',
                                 date:'26/05',
-                                status:'done'
+                                status:'urgent'
                             }
                         ],
-                        anc_visits:[
-                            {visit:'1', date:'04/04'},
-                            {visit:'2', date:'04/08'}
+                        services_provided:[
+                            {
+                                name:'anc1',
+                                date:'04/04',
+                                data:{
+                                    bp:'120/80',
+                                    weight:'55'
+                                }
+                            },
+                            {
+                                name:'ifa1',
+                                date:'04/04',
+                                data:{
+                                    dose:100
+                                }
+                            }
                         ],
-                        tt:[
-                            {tt:'1', date:'04/04'},
-                            {tt:'2', date:'04/08'}
-                        ],
-                        ifa:{dose:'100', date:'04/04'},
                         days_due:'3',
                         due_message:'Follow Up',
                         isHighPriority:true,
@@ -145,7 +157,8 @@ angular.module("smartRegistry.services")
                         weeks_pregnant:'2',
                         edd:'2013-05-11T00:00:00.000Z',
                         lmp:'25/3/13',
-                        alerts:[
+                        alerts:
+                        [
                             {
                                 name:'anc3',
                                 date:'24/05',
@@ -157,20 +170,51 @@ angular.module("smartRegistry.services")
                                 status:'done'
                             },
                             {
-                                name:'ifa1',
+                                name:'ifa2',
                                 date:'26/03',
                                 status:'done'
                             }
                         ],
-                        anc_visits:[
-                            {visit:'1', date:'04/04'},
-                            {visit:'2', date:'04/08'}
+                        services_provided:
+                        [
+                            {
+                                name: 'anc1',
+                                date: '04/04',
+                                data: {
+                                    bp: '120/80',
+                                    weight: '55'
+                                }
+                            },
+                            {
+                                name: 'tt1',
+                                date: '04/04',
+                                data: {
+                                    dose: 100
+                                }
+                            },
+                            {
+                                name: 'tt2',
+                                date: '04/04',
+                                data: {
+                                    dose: 100
+                                }
+                            },
+                            {
+                                name: 'ttbooster',
+                                date: '04/04',
+                                data: {
+                                    dose: 50
+                                }
+                            },
+                            {
+                                name: 'ifa1',
+                                date: '04/04',
+                                data:
+                                {
+                                    dose: 100
+                                }
+                            }
                         ],
-                        tt:[
-                            {tt:'1', date:'04/04'},
-                            {tt:'2', date:'04/08'}
-                        ],
-                        ifa:{dose:'100', date:'04/04'},
                         days_due:'3',
                         due_message:'Follow Up',
                         isHighPriority:false,
@@ -188,35 +232,70 @@ angular.module("smartRegistry.services")
                         lmp:'25/3/13',
                         alerts:[
                             {
-                                name:'anc4',
-                                date:'24/05',
-                                status:'done'
-                            },
-                            {
-                                name:'anc2',
-                                date:'24/07',
-                                status:'done'
-                            },
-                            {
-                                name:'tt1',
-                                date:'26/05',
-                                status:'done'
-                            },
-                            {
                                 name:'tt2',
                                 date:'26/05',
                                 status:'normal'
                             }
                         ],
-                        anc_visits:[
-                            {visit:'1', date:'04/04'},
-                            {visit:'2', date:'04/08'}
+                        services_provided:[
+                            {
+                                name:'anc1',
+                                date:'04/04',
+                                data:{
+                                    bp:'120/80',
+                                    weight:'95'
+                                }
+                            },
+                            {
+                                name:'anc2',
+                                date:'04/08',
+                                data:{
+                                    bp:'115/90',
+                                    weight:'98'
+                                }
+                            },
+                            {
+                                name:'anc4',
+                                date:'04/08',
+                                data:{
+                                    bp:'120/90',
+                                    weight:'95'
+                                }
+                            },
+                            {
+                                name:'tt1',
+                                date:'04/04',
+                                data:{}
+                            },
+                            {
+                                name:'ifa1',
+                                date:'2012-04-24',
+                                data:{
+                                    dose:50
+                                }
+                            },
+                            {
+                                name:'ifa2',
+                                date:'2012-05-24',
+                                data:{
+                                    dose:20
+                                }
+                            },
+                            {
+                                name: 'hb1',
+                                date:'2012-04-18',
+                                data:{
+                                    dose:10
+                                }
+                            },
+                            {
+                                name: 'hb1',
+                                date:'2012-05-23',
+                                data:{
+                                    dose:15
+                                }
+                            }
                         ],
-                        tt:[
-                            {tt:'1', date:'04/04'},
-                            {tt:'2', date:'04/08'}
-                        ],
-                        ifa:{dose:'100', date:'04/04'},
                         days_due:'3',
                         due_message:'Follow Up',
                         isHighPriority:false,
@@ -243,86 +322,83 @@ angular.module("smartRegistry.services")
                                     return schedule_alert.name === milestone;
                                 });
                                 if (milestone_alert !== undefined) {
-                                    if (milestone_alert.status === alert_status.NORMAL || milestone_alert.status === alert_status.URGENT) {
-                                        visit.next = milestone;
-                                        var next_milestone = {};
-                                        next_milestone.status = status_css_class[milestone_alert.status];
-                                        next_milestone.visit_date = milestone_alert.date;
-                                        visit[milestone] = next_milestone;
+                                    visit.next = milestone_alert.name;
+                                    var next_milestone = {};
+                                    next_milestone.status = status_css_class[milestone_alert.status];
+                                    next_milestone.visit_date = milestone_alert.date;
+                                    visit[milestone_alert.name] = next_milestone;
 
-                                        if(i > 0)
-                                        {
-                                            for(var prev_idx = i; prev_idx > 0; prev_idx--){
-                                                var prev_alert = alertsOfTypeCurrentSchedule.find(function(milestone_alert){
-                                                   return milestone_alert.name === schedule.name + prev_idx;
-                                                });
-
-                                                if(prev_alert !== undefined)
-                                                {
-                                                    visit.previous = prev_alert.name;
-                                                    var previous_milestone = {};
-                                                    previous_milestone.status = status_css_class[prev_alert.status];
-                                                    previous_milestone.visit_date = prev_alert.date;
-                                                    visit[visit.previous] = previous_milestone;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                        break;
-                                    }
-                                    else if(milestone_alert.status === alert_status.DONE)
+                                    if(i > 0)// we are not the first milestone, so try to find a previous alert
                                     {
-                                        // check if we are on the last milestone
-                                        if(i === schedule.milestones.length - 1)
-                                        {
-                                            visit.next = milestone_alert.name;
-                                            var next_milestone = {};
-                                            next_milestone.status = status_css_class[milestone_alert.status];
-                                            next_milestone.visit_date = milestone_alert.date;
-                                            visit[visit.next] = next_milestone;
+                                        for(var prev_idx = i-1; prev_idx > -1; prev_idx--){
+                                            var prev_milestone_name = schedule.milestones[prev_idx];
+                                            var prev_alert = alertsOfTypeCurrentSchedule.find(function(milestone_alert){
+                                               return milestone_alert.name === prev_milestone_name;
+                                            });
 
-                                            // find previous
-                                            for(var prev_idx = i; prev_idx > 0; prev_idx--){
-                                                prev_alert = alertsOfTypeCurrentSchedule.find(function(milestone_alert){
-                                                    return milestone_alert.name === schedule.name + prev_idx;
-                                                });
-
-                                                if(prev_alert !== undefined)
-                                                {
-                                                    visit.previous = prev_alert.name;
-                                                    var previous_milestone = {};
-                                                    previous_milestone.status = status_css_class[prev_alert.status];
-                                                    previous_milestone.visit_date = prev_alert.date;
-                                                    visit[visit.previous] = previous_milestone;
-                                                    break;
-                                                }
+                                            if(prev_alert !== undefined)
+                                            {
+                                                visit.previous = prev_alert.name;
+                                                var previous_milestone = {};
+                                                previous_milestone.status = status_css_class[prev_alert.status];
+                                                previous_milestone.visit_date = prev_alert.date;
+                                                visit[visit.previous] = previous_milestone;
+                                                break;
                                             }
                                         }
-                                        else if(i < schedule.milestones.length - 1)
+                                    }
+                                    break;
+                                }
+                            }
+
+                            var servicesOfTypeCurrentSchedule = client.services_provided.filter(function(service){
+                                return schedule.milestones.indexOf(service.name) !== -1;
+                            });
+                            for (var i = schedule.milestones.length - 1; i > -1; i--) {
+                                var milestone_name = schedule.milestones[i];
+                                var service_provided = servicesOfTypeCurrentSchedule.find(function(service){
+                                    return service.name === milestone_name;
+                                });
+
+                                if(service_provided !== undefined)
+                                {
+                                    var service = {};
+                                    service.status = status_css_class[alert_status.DONE];
+                                    service.visit_date = service_provided.date;
+                                    service.data = service_provided.data;
+                                    visit[service_provided.name] = service;
+                                    if(visit.next === undefined)
+                                    {
+                                        // if we are the last milestone, there is no next
+                                        if(i + 1 === schedule.milestones.length)
                                         {
-                                            visit.next = schedule.milestones[schedule.milestones.indexOf(milestone) + 1];
+                                            visit.next = null;
+                                        }
+                                        else
+                                        {
+                                            var next_milestone_name = schedule.milestones[i + 1];
+                                            visit.next = next_milestone_name;
                                             var next_milestone = {};
                                             next_milestone.status = status_css_class[alert_status.UPCOMING];
                                             next_milestone.visit_date = null;
-                                            visit[visit.next] = next_milestone;
-
-                                            visit.previous = milestone_alert.name;
-                                            var previous_milestone = {};
-                                            previous_milestone.status = status_css_class[milestone_alert.status];
-                                            previous_milestone.visit_date = milestone_alert.date;
-                                            visit[visit.previous] = previous_milestone;
+                                            visit[next_milestone_name] = next_milestone;
                                         }
-                                        break;
+                                    }
+
+                                    if(visit.previous === undefined)
+                                    {
+                                        visit.previous = service_provided.name;
                                     }
                                 }
                             }
                             if(visit.next === undefined)
                             {
-                                visit.next = schedule.milestones[0];
+                                var next_milestone_name = schedule.milestones[0];
+                                visit.next =next_milestone_name;
                                 var next_milestone = {};
                                 next_milestone.status = status_css_class[alert_status.UPCOMING];
                                 next_milestone.visit_date = null;
-                                visit[visit.next] = next_milestone;
+                                visit[next_milestone_name] = next_milestone;
                             }
                             visits[schedule.name] = visit;
                         });

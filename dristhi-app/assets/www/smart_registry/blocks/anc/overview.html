@@ -5,47 +5,65 @@
         </div>
         <div class="span3 line-right span-no-margin width-without-margins span-content">
             <!--ANC-->
+            <button ng-show="client.visits.anc.next == null" class="btn btn-primary btn-sr btn-done">
+                <i class="icon-ok icon-large green"></i>
+                <br/>
+                <span class="text-bold text-upper">{{client.visits.anc.previous}}</span>
+                <br/>
+                <span>done {{client.visits.anc[client.visits.anc.previous].visit_date}}</span>
+            </button>
             <button ng-show="client.visits.anc.next" class="btn btn-primary btn-sr" ng-class="client.visits.anc[client.visits.anc.next].status">
-                <span class="text-bold">{{client.visits.anc.next}}</span>
+                <span class="text-bold text-upper">{{client.visits.anc.next}}</span>
                 <br/>
                 <span ng-show="client.visits.anc[client.visits.anc.next].status == 'btn-upcoming'">Upcoming</span>
                 <span ng-show="client.visits.anc[client.visits.anc.next].status == 'btn-due' || client.visits.anc[client.visits.anc.next].status == 'btn-past-due'">Due</span>
-                <span ng-show="client.visits.anc[client.visits.anc.next].status == 'btn-done'">Done</span>
                 <span> {{client.visits.anc[client.visits.anc.next].visit_date}}</span>
             </button>
-            <span ng-show="client.visits.anc.previous">
+            <span ng-show="client.visits.anc.previous && client.visits.anc.next != null">
                 <i class="icon-ok green"></i>
-                Done: {{client.visits.anc[client.visits.anc.previous].visit_date}}
+                <span class="text-upper">{{client.visits.anc.previous}}:</span> {{client.visits.anc[client.visits.anc.previous].visit_date}}
             </span>
         </div>
         <div class="span3 line-right span-no-margin width-without-margins span-content">
             <!--TT-->
+            <button ng-show="client.visits.tt.next == null" class="btn btn-primary btn-sr btn-done">
+                <i class="icon-ok icon-large green"></i>
+                <br/>
+                <span class="text-bold text-upper">{{client.visits.tt.previous}}</span>
+                <br/>
+                <span>done {{client.visits.tt[client.visits.tt.previous].visit_date}}</span>
+            </button>
             <button ng-show="client.visits.tt.next" class="btn btn-primary btn-sr" ng-class="client.visits.tt[client.visits.tt.next].status">
-                <span class="text-bold">{{client.visits.tt.next}}</span>
+                <span class="text-bold text-upper">{{client.visits.tt.next}}</span>
                 <br/>
                 <span ng-show="client.visits.tt[client.visits.tt.next].status == 'btn-upcoming'">Upcoming</span>
                 <span ng-show="client.visits.tt[client.visits.tt.next].status == 'btn-due' || client.visits.tt[client.visits.tt.next].status == 'btn-past-due'">Due</span>
-                <span ng-show="client.visits.tt[client.visits.tt.next].status == 'btn-done'">Done</span>
                 <span> {{client.visits.tt[client.visits.tt.next].visit_date}}</span>
             </button>
-            <span ng-show="client.visits.tt.previous">
+            <span ng-show="client.visits.tt.previous && client.visits.tt.next != null">
                 <i class="icon-ok green"></i>
-                Done: {{client.visits.tt[client.visits.tt.previous].visit_date}}
+                <span class="text-upper">{{client.visits.tt.previous}}:</span> {{client.visits.tt[client.visits.tt.previous].visit_date}}
             </span>
         </div>
         <div class="span3 line-right span-no-margin width-without-margins span-content">
             <!--IFA-->
+            <button ng-show="client.visits.ifa.next == null" class="btn btn-primary btn-sr btn-done">
+                <i class="icon-ok icon-large green"></i>
+                <br/>
+                <span class="text-bold text-upper">{{client.visits.ifa.previous}}</span>
+                <br/>
+                <span>done {{client.visits.ifa[client.visits.ifa.previous].visit_date | date:'dd/MM'}}</span>
+            </button>
             <button ng-show="client.visits.ifa.next" class="btn btn-primary btn-sr" ng-class="client.visits.ifa[client.visits.ifa.next].status">
-                <span class="text-bold">{{client.visits.ifa.next}}</span>
+                <span class="text-bold text-upper">{{client.visits.ifa.next}}</span>
                 <br/>
                 <span ng-show="client.visits.ifa[client.visits.ifa.next].status == 'btn-upcoming'">Upcoming</span>
                 <span ng-show="client.visits.ifa[client.visits.ifa.next].status == 'btn-due' || client.visits.ifa[client.visits.ifa.next].status == 'btn-past-due'">Due</span>
-                <span ng-show="client.visits.ifa[client.visits.ifa.next].status == 'btn-done'">Done</span>
-                <span> {{client.visits.ifa[client.visits.ifa.next].visit_date}}</span>
+                <span> {{client.visits.ifa[client.visits.ifa.next].visit_date | date:'dd/MM'}}</span>
             </button>
-            <span ng-show="client.visits.ifa.previous">
+            <span ng-show="client.visits.ifa.previous && client.visits.ifa.next != null">
                 <i class="icon-ok green"></i>
-                Done: {{client.visits.ifa[client.visits.ifa.previous].visit_date}}
+                <span class="text-upper">{{client.visits.ifa.previous}}:</span> {{client.visits.ifa[client.visits.ifa.previous].visit_date}}
             </span>
         </div>
     </div>

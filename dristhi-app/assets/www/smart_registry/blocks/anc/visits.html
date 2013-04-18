@@ -6,21 +6,25 @@
                     <!--ANC 1-->
                     <a ng-show="client.visits.anc.anc1" ng-class="client.visits.anc.anc1.status" class="btn btn-primary btn-sr" href="#">
                         <div ng-show="client.visits.anc.anc1.status == 'btn-done'" class="done-icon full-height"><i class="icon-ok green"></i></div>
+                        <span class="text-bold">ANC1</span><br/>
+                        <span ng-show="client.visits.anc.anc1.status != 'btn-done'">Due</span>
                         <span class="text-bold">{{client.visits.anc.anc1.visit_date | date:'dd/MM'}}</span>
                         <br/>
-                        BP {{client.visits.anc.anc1.bp}}
+                        <span ng-show="client.visits.anc.anc1.bp">BP {{client.visits.anc.anc1.bp}}</span>
                         <br/>
-                        Wt. {{client.visits.anc.anc1.weight}} kg
+                        <span ng-show="client.visits.anc.anc1.weight">Wt. {{client.visits.anc.anc1.weight}} kg</span>
                     </a>
                 </div>
                 <div class="span3 line-right span-no-margin width-without-margins span-content">
                     <a ng-show="client.visits.anc.anc2" ng-class="client.visits.anc.anc2.status" class="btn btn-primary btn-sr" href="#">
                         <div ng-show="client.visits.anc.anc2.status == 'btn-done'" class="done-icon full-height"><i class="icon-ok green"></i></div>
+                        <span class="text-bold">ANC2</span><br/>
+                        <span ng-show="client.visits.anc.anc2.status != 'btn-done'">Due</span>
                         <span class="text-bold">{{client.visits.anc.anc2.visit_date | date:'dd/MM'}}</span>
                         <br/>
-                        BP {{client.visits.anc.anc2.bp}}
+                        <span ng-show="client.visits.anc.anc2.bp">BP {{client.visits.anc.anc2.bp}}</span>
                         <br/>
-                        Wt. {{client.visits.anc.anc2.weight}} kg
+                        <span ng-show="client.visits.anc.anc2.weight">Wt. {{client.visits.anc.anc2.weight}} kg</span>
                     </a>
                 </div>
                 <div class="span3 line-right span-no-margin width-without-margins span-content">

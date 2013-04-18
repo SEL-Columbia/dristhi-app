@@ -14,7 +14,7 @@ describe('ANC Service', function () {
     });
 
     describe("Pre-process Clients", function () {
-        it("should create a next_reminder with normal or urgent alert when it exists.", function () {
+        it("should create a next reminder with normal or urgent alert when it exists.", function () {
             var clients = [
                 {
                     name:'Carolyn',
@@ -29,7 +29,8 @@ describe('ANC Service', function () {
                             date:'2012-10-24', // 2013-04-10T12:40:45.195Z ISO String
                             status:'urgent' // normal, urgent, done - upcoming is JS side, based on the last visit and if the next one is available
                         }
-                    ]
+                    ],
+                    services_provided:[]
                 }
             ];
             var expectedVisits =
@@ -65,10 +66,73 @@ describe('ANC Service', function () {
 
             ancSrvc.preProcessClients(clients);
 
-            expect(JSON.stringify(clients[0].visits)).toBe(JSON.stringify(expectedVisits));
+            expect(clients[0].visits).toEqual(expectedVisits);
         });
 
-        it("should create a next_reminder when a previous reminder is provided.", function () {
+        it("should create an upcoming reminder when only a done service is specified.", function () {
+            var clients = [
+                {
+                    name:'Carolyn',
+                    alerts:[],
+                    services_provided:[
+                        {
+                            name: 'anc2',
+                            date: '2011-10-24',
+                            data: {
+                                bp: '120/79',
+                                weight: '63'
+                            }
+                        }
+                    ]
+                }
+            ];
+            var expectedVisits =
+            {
+                anc:
+                {
+                    next: 'anc3',
+                    anc3:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    },
+                    previous: 'anc2',
+                    anc2:
+                    {
+                        status: 'btn-done',
+                        visit_date: '2011-10-24',
+                        data:{
+                            bp: '120/79',
+                            weight: '63'
+                        }
+                    }
+                },
+                tt:
+                 {
+                 next: 'tt1',
+                 tt1:
+                 {
+                 status: 'btn-upcoming',
+                 visit_date: null
+                 }
+                 },
+                 ifa:
+                 {
+                 next: 'ifa1',
+                 ifa1:
+                 {
+                 status: 'btn-upcoming',
+                 visit_date: null
+                 }
+                 }
+            };
+
+            ancSrvc.preProcessClients(clients);
+
+            expect(clients[0].visits).toEqual(expectedVisits);
+        });
+
+        it("should create a previous reminder from an existing alert..", function () {
             var clients = [
                 {
                     name:'Carolyn',
@@ -83,7 +147,8 @@ describe('ANC Service', function () {
                             date:'2012-11-24', // 2013-04-10T12:40:45.195Z ISO String
                             status:'normal' // normal, urgent, done - upcoming is JS side, based on the last visit and if the next one is available
                         }
-                    ]
+                    ],
+                    services_provided:[]
                 }
             ];
             var expectedVisits =
@@ -125,69 +190,15 @@ describe('ANC Service', function () {
 
             ancSrvc.preProcessClients(clients);
 
-            expect(JSON.stringify(clients[0].visits)).toBe(JSON.stringify(expectedVisits));
-        });
-
-        it("should create an upcoming when only a done reminder is provided.", function () {
-            var clients = [
-                {
-                    name:'Carolyn',
-                    alerts:[
-                        {
-                            name:'anc2',
-                            date:'2011-10-24', // 2013-04-10T12:40:45.195Z ISO String
-                            status:'done' // normal, urgent, done - upcoming is JS side, based on the last visit and if the next one is available
-                        }
-                    ]
-                }
-            ];
-            var expectedVisits =
-            {
-                anc:
-                {
-                    next: 'anc3',
-                    anc3:
-                    {
-                        status: 'btn-upcoming',
-                        visit_date: null
-                    },
-                    previous: 'anc2',
-                    anc2:
-                    {
-                        status: 'btn-done',
-                        visit_date: '2011-10-24'
-                    }
-                },
-                tt:
-                {
-                    next: 'tt1',
-                    tt1:
-                    {
-                        status: 'btn-upcoming',
-                        visit_date: null
-                    }
-                },
-                ifa:
-                {
-                    next: 'ifa1',
-                    ifa1:
-                    {
-                        status: 'btn-upcoming',
-                        visit_date: null
-                    }
-                }
-            };
-
-            ancSrvc.preProcessClients(clients);
-
-            expect(JSON.stringify(clients[0].visits)).toBe(JSON.stringify(expectedVisits));
+            expect(clients[0].visits).toEqual(expectedVisits);
         });
 
         it("should create upcoming for the first milestone if no alerts.", function () {
             var clients = [
                 {
                     name:'Carolyn',
-                    alerts:[]
+                    alerts:[],
+                    services_provided:[]
                 }
             ];
             var expectedVisits =
@@ -223,10 +234,141 @@ describe('ANC Service', function () {
 
             ancSrvc.preProcessClients(clients);
 
-            expect(JSON.stringify(clients[0].visits)).toBe(JSON.stringify(expectedVisits));
+            expect(clients[0].visits).toEqual(expectedVisits);
+        });
+
+        it("should create a previous when the last milestone is specified as done", function(){
+            var clients = [
+                {
+                    name:'Carolyn',
+                    alerts:[],
+                    services_provided:[
+                        {
+                            name: 'anc4',
+                            date: '2012-05-23',
+                            data:
+                            {
+                                bp: '100/50',
+                                weight: '68'
+                            }
+                        }
+                    ]
+                }
+            ];
+            var expectedVisits =
+            {
+                anc:
+                {
+                    next: null,
+                    previous: 'anc4',
+                    anc4:
+                    {
+                        status: 'btn-done',
+                        visit_date: '2012-05-23',
+                        data:
+                        {
+                            bp: '100/50',
+                            weight: '68'
+                        }
+                    }
+                },
+                tt:{
+                    next:'tt1',
+                    tt1:{
+                        status:'btn-upcoming',
+                        visit_date:null
+                    }
+                },
+                ifa:{
+                    next:'ifa1',
+                    ifa1:{
+                        status:'btn-upcoming',
+                        visit_date:null
+                    }
+                }
+            };
+
+            ancSrvc.preProcessClients(clients);
+
+            expect(clients[0].visits).toEqual(expectedVisits);
+        });
+
+        it("should create visit data for each service_provided specified.", function(){
+            var clients = [
+                {
+                    name:'Carolyn',
+                    alerts:[],
+                    services_provided:[
+                        {
+                            name: 'anc2',
+                            date: '2011-10-24',
+                            data: {
+                                bp: '120/79',
+                                weight: '63'
+                            }
+                        },
+                        {
+                            name: 'anc1',
+                            date: '2011-08-24',
+                            data: {
+                                bp: '130/65',
+                                weight: '67'
+                            }
+                        }
+                    ]
+                }
+            ];
+            var expectedVisits =
+            {
+                anc:
+                {
+                    next: 'anc3',
+                    anc3:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    },
+                    previous: 'anc2',
+                    anc2:
+                    {
+                        status: 'btn-done',
+                        visit_date: '2011-10-24',
+                        data:{
+                            bp: '120/79',
+                            weight: '63'
+                        }
+                    },
+                    anc1:
+                    {
+                        status: 'btn-done',
+                        visit_date: '2011-08-24',
+                        data:{
+                            bp: '130/65',
+                            weight: '67'
+                        }
+                    }
+                },
+                tt:{
+                    next:'tt1',
+                    tt1:{
+                        status:'btn-upcoming',
+                        visit_date:null
+                    }
+                },
+                ifa:{
+                    next:'ifa1',
+                    ifa1:{
+                        status:'btn-upcoming',
+                        visit_date:null
+                    }
+                }
+            };
+
+            ancSrvc.preProcessClients(clients);
+
+            expect(clients[0].visits).toEqual(expectedVisits);
         });
 
     });
-
 
 });
