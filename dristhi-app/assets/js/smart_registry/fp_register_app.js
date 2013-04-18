@@ -1,7 +1,7 @@
 angular.module("smartRegistry.controllers")
     .controller("fpRegisterController", function ($scope) {
-        var fpSmartRegistryBridge = new FPRegistryBridge();
-        $scope.clients = fpSmartRegistryBridge.getFPClients();
+        $scope.bridge = new FPRegistryBridge();
+        $scope.clients = $scope.bridge.getFPClients();
 
         $scope.sortOptions = {
             type: "sort",
@@ -23,42 +23,19 @@ angular.module("smartRegistry.controllers")
             return !client.isHighPriority;
         };
 
-        $scope.villageOptions = {
+        $scope.defaultVillageOptions = {
             type: "filterVillage",
             options: [
                 {
                     label: "All",
                     id: "",
                     handler: ""
-                },
-                {
-                    label: "Bherya",
-                    id: "bherya",
-                    handler: "filterByVillageName"
-                },
-                {
-                    label: "Chikkahalli",
-                    id: "chikkahalli",
-                    handler: "filterByVillageName"
-                },
-                {
-                    label: "Somanahalli Colony",
-                    id: "somanahalli_colony",
-                    handler: "filterByVillageName"
-                },
-                {
-                    label: "Chikkabherya",
-                    id: "chikkabherya",
-                    handler: "filterByVillageName"
-                },
-                {
-                    label: "Basavanapura",
-                    id: "basavanapura",
-                    handler: "filterByVillageName"
                 }
             ]
         };
-        $scope.defaultVillage = $scope.villageOptions.options[0];
+        $scope.defaultVillageFilterHandler = "filterByVillageName";
+
+        $scope.defaultVillage = $scope.defaultVillageOptions.options[0];
         $scope.villageFilterOption = $scope.defaultVillage;
         $scope.filterByVillageName = function (client, villageOption) {
             return (client.village.toUpperCase() === villageOption.id.toUpperCase());

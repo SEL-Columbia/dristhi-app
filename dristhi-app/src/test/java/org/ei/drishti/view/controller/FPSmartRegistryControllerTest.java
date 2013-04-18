@@ -8,6 +8,7 @@ import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.view.contract.FPClient;
+import org.ei.drishti.view.contract.Village;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -72,6 +73,17 @@ public class FPSmartRegistryControllerTest {
                 actualClients);
     }
 
+    @Test
+    public void shouldLoadVillages() throws Exception {
+        List<Village> expectedVillages = asList(new Village("village1"), new Village("village2"));
+        when(allEligibleCouples.villages()).thenReturn(asList("village1", "village2"));
+
+        String villages = controller.villages();
+        List<Village> actualVillages = new Gson().fromJson(villages, new TypeToken<List<Village>>() {
+        }.getType());
+        assertEquals(actualVillages, expectedVillages);
+    }
+
     private Map<String, String> withDetails(String wifeAge, String currentMethod, String sideEffects, String numberOfPregnancies,
                                             String parity, String numberOfLivingChildren, String numberOfStillBirths, String numberOfAbortions, boolean isHighPriority, String familyPlanningMethodChangeDate) {
         return create("wifeAge", wifeAge)
@@ -94,5 +106,4 @@ public class FPSmartRegistryControllerTest {
     private Map<String, String> highPriority() {
         return mapOf("isHighPriority", "yes");
     }
-
 }

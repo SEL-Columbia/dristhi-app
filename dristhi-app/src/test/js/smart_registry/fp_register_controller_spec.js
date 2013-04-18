@@ -1,12 +1,14 @@
 describe('FP Register controller', function () {
 
-    var controller, scope;
+    var controller, scope, FPService;
 
     beforeEach(module("smartRegistry.controllers"));
+    beforeEach(module("smartRegistry.services"));
     beforeEach(inject(function ($controller, $rootScope) {
         scope = $rootScope.$new();
         controller = $controller("fpRegisterController", {
-            $scope: scope
+            $scope: scope,
+            FPService: FPService
         });
     }));
 
@@ -425,6 +427,24 @@ describe('FP Register controller', function () {
 
             expect(scope.searchCriteria(client, "asha rani")).toBeFalsy();
             expect(scope.searchCriteria(client, "12345")).toBeFalsy();
+        });
+    });
+
+    describe("defaultVillageFilterOptions", function () {
+        it("should default village filter options", function () {
+            var expectedDefaultVillageOptions = {
+                type: "filterVillage",
+                options: [
+                    {
+                        label: "All",
+                        id: "",
+                        handler: ""
+                    }
+                ]
+            };
+
+            expect(JSON.stringify(scope.defaultVillageOptions)).toBe(JSON.stringify(expectedDefaultVillageOptions));
+            expect(scope.defaultVillageFilterHandler).toBe("filterByVillageName");
         });
     });
 });

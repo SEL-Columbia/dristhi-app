@@ -1,10 +1,28 @@
 describe("List view controller", function () {
 
-    var controller, scope;
+    var controller, scope, bridge = new FPRegistryBridge();
 
     beforeEach(module("smartRegistry.controllers"));
     beforeEach(inject(function ($controller, $rootScope) {
         scope = $rootScope.$new();
+        scope.bridge = bridge;
+        scope.defaultVillageOptions = {
+            type: "filterVillage",
+            options: [
+                {
+                    label: "All",
+                    id: "",
+                    handler: ""
+                }
+            ]
+        };
+        scope.defaultVillageFilterHandler = "defaultFilterByVillageName";
+        spyOn(bridge, "getVillages")
+            .andReturn(
+                [
+                    {name: "village_1"},
+                    {name: "village2"}
+                ]);
         controller = $controller("listViewController", {
             $scope: scope
         });
@@ -188,5 +206,31 @@ describe("List view controller", function () {
             expect(scope.allClientsDisplayed(scope.filteredClients)).toBeTruthy();
         });
     });
-})
-;
+
+    describe("addVillageNamesToFilterOptions", function () {
+        it("should add filter options for every village.", function () {
+            var expectedVillageOptions = {
+                type: "filterVillage",
+                options: [
+                    {
+                        label: "All",
+                        id: "",
+                        handler: ""
+                    },
+                    {
+                        label: "Village 1",
+                        id: "village_1",
+                        handler: "defaultFilterByVillageName"
+                    },
+                    {
+                        label: "Village2",
+                        id: "village2",
+                        handler: "defaultFilterByVillageName"
+                    }
+                ]
+            };
+
+            expect(JSON.stringify(scope.villageOptions)).toBe(JSON.stringify(expectedVillageOptions));
+        });
+    });
+});

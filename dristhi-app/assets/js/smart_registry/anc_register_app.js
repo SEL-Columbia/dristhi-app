@@ -1,5 +1,6 @@
 angular.module("smartRegistry.controllers")
     .controller("ancRegisterController", function ($scope, ANCService) {
+        $scope.bridge = new ANCRegistryBridge();
         $scope.clients = ANCService.preProcessClients(ANCService.getClients());
 
         $scope.sortOptions = {
@@ -45,23 +46,13 @@ angular.module("smartRegistry.controllers")
             return !item.isHighPriority;
         };
 
-        $scope.villageOptions = {
+        $scope.defaultVillageOptions = {
             type: "filterVillage",
             options: [
                 {
                     label: "All",
                     id: "",
                     handler: "filterByInAreaLocationStatus"
-                },
-                {
-                    label: "Bherya",
-                    id: "bherya",
-                    handler: "filterByVillageName"
-                },
-                {
-                    label: "Chikkabherya",
-                    id: "chikkabherya",
-                    handler: "filterByVillageName"
                 },
                 {
                     label: "O/A",
@@ -75,7 +66,10 @@ angular.module("smartRegistry.controllers")
                 }
             ]
         };
-        $scope.defaultVillage = $scope.villageOptions.options[0];
+
+        $scope.defaultVillageFilterHandler = "filterByVillageName";
+
+        $scope.defaultVillage = $scope.defaultVillageOptions.options[0];
         $scope.villageFilterOption = $scope.defaultVillage;
         $scope.filterByInAreaLocationStatus = function (client, option) {
             return client.locationStatus !== "left_the_place";
