@@ -1,4 +1,4 @@
-xdescribe('ANC Register controller', function () {
+describe('ANC Register controller', function () {
 
     var controller, scope;
 

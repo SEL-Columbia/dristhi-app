@@ -1,4 +1,4 @@
-xdescribe("List view controller", function () {
+describe("List view controller", function () {
 
     var controller, scope, bridge = new FPRegistryBridge();
 

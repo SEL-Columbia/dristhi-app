@@ -1,4 +1,4 @@
-xdescribe('FP Register controller', function () {
+describe('FP Register controller', function () {
 
     var controller, scope, FPService;
 
