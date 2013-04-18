@@ -18,13 +18,15 @@ public class AllConstants {
     public static final String DEFAULT_LOCALE = ENGLISH_LOCALE;
     public static final String ENGLISH_LANGUAGE = "English";
     public static final String KANNADA_LANGUAGE = "Kannada";
-    public static final String FORM_NAME_PARAMETER = "formName";
     public static final String FORM_ID_PARAMETER = "formId";
-    public static final String ENTITY_ID_PARAMETER = "entityId";
     public static final String IS_SYNC_IN_PROGRESS_PREFERENCE_KEY = "isSyncInProgress";
     public static final String TYPE = "type";
     public static final String WOMAN_TYPE = "woman";
-    public static final String INSTANCE_ID_PARAM = "instanceId";
-    public static final String ENTITY_ID_FIELD_NAME = "id";
     public static final String DRISHTI_BASE_URL = "https://drishti.modilabs.org";
+
+    public static final String FORM_NAME_PARAM = "formName";
+    public static final String INSTANCE_ID_PARAM = "instanceId";
+    public static final String ENTITY_ID_PARAM = "entityId";
+    public static final String VERSION_PARAM = "version";
+    public static final String ENTITY_ID_FIELD_NAME = "id";
 }

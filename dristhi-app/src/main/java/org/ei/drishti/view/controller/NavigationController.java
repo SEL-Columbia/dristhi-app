@@ -3,12 +3,11 @@ package org.ei.drishti.view.controller;
 import android.content.Context;
 import android.content.Intent;
 import com.google.gson.Gson;
-import org.ei.drishti.AllConstants;
 import org.ei.drishti.service.ANMService;
 import org.ei.drishti.view.activity.*;
 import org.ei.drishti.view.contract.HomeContext;
 
-import static org.ei.drishti.AllConstants.FORM_NAME_PARAMETER;
+import static org.ei.drishti.AllConstants.FORM_NAME_PARAM;
 
 public class NavigationController {
     private Context context;
@@ -45,7 +44,7 @@ public class NavigationController {
 
     public void startFormActivity(String formName) {
         Intent intent = new Intent(context, FormActivity.class);
-        intent.putExtra(FORM_NAME_PARAMETER, formName);
+        intent.putExtra(FORM_NAME_PARAM, formName);
         context.startActivity(intent);
     }
 

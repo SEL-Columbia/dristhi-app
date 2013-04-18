@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.FormSubmission;
 import org.ei.drishti.domain.Mother;
+import org.ei.drishti.util.FormSubmissionBuilder;
 import org.ei.drishti.util.Session;
 
 import java.text.MessageFormat;
@@ -79,6 +80,14 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         FormSubmission actualFormSubmission = repository.fetchFromSubmission("id 1");
         assertEquals(new FormSubmission("id 1", "entity id 1", "form name", "instance", "some version", PENDING), actualFormSubmission);
         assertNotNull(actualFormSubmission);
+    }
+
+    public void testShouldCheckFormSubmissionExistence() throws Exception {
+        FormSubmission firstFormSubmission = FormSubmissionBuilder.create().withInstanceId("instance id 1").withVersion("122").build();
+        repository.saveFormSubmission(firstFormSubmission);
+
+        assertTrue(repository.submissionExists("instance id 1"));
+        assertFalse(repository.submissionExists("invalid instance Id"));
     }
 
     public void testShouldSaveNewEC() throws Exception {

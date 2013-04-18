@@ -90,7 +90,7 @@ public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTes
 
     private class FakeFormSubmissionSyncService extends FormSubmissionSyncService {
         public FakeFormSubmissionSyncService() {
-            super(null, null, null);
+            super(null, null, null, null);
         }
 
         @Override

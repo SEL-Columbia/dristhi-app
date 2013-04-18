@@ -85,9 +85,9 @@ public class FormDataRepository extends DrishtiRepository {
         database.insert(FORM_SUBMISSION_TABLE_NAME, null, createValuesForFormSubmission(formSubmission));
     }
 
-    public FormSubmission fetchFromSubmission(String id) {
+    public FormSubmission fetchFromSubmission(String instanceId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(FORM_SUBMISSION_TABLE_NAME, FORM_SUBMISSION_TABLE_COLUMNS, INSTANCE_ID_COLUMN + " = ?", new String[]{id}, null, null, null);
+        Cursor cursor = database.query(FORM_SUBMISSION_TABLE_NAME, FORM_SUBMISSION_TABLE_COLUMNS, INSTANCE_ID_COLUMN + " = ?", new String[]{instanceId}, null, null, null);
         return readFormSubmission(cursor).get(0);
     }
 
@@ -105,6 +105,12 @@ public class FormDataRepository extends DrishtiRepository {
         }
     }
 
+    public boolean submissionExists(String instanceId) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(FORM_SUBMISSION_TABLE_NAME, new String[]{INSTANCE_ID_COLUMN}, INSTANCE_ID_COLUMN + " = ?", new String[]{instanceId}, null, null, null);
+        return cursor.moveToFirst();
+    }
+
     private ContentValues createValuesForFormSubmission(FormSubmission submission) {
         ContentValues values = new ContentValues();
         values.put(INSTANCE_ID_COLUMN, submission.instanceId());
@@ -119,7 +125,7 @@ public class FormDataRepository extends DrishtiRepository {
     private ContentValues createValuesForFormSubmission(Map<String, String> params, String data) {
         ContentValues values = new ContentValues();
         values.put(INSTANCE_ID_COLUMN, params.get(INSTANCE_ID_PARAM));
-        values.put(ENTITY_ID_COLUMN, params.get(ENTITY_ID_PARAMETER));
+        values.put(ENTITY_ID_COLUMN, params.get(ENTITY_ID_PARAM));
         values.put(FORM_NAME_COLUMN, params.get(FORM_NAME_PARAM));
         values.put(INSTANCE_COLUMN, data);
         values.put(VERSION_COLUMN, nanoTime());

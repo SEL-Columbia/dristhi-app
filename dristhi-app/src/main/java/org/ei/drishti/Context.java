@@ -27,25 +27,28 @@ public class Context {
     private AllEligibleCouples allEligibleCouples;
     private AllBeneficiaries allBeneficiaries;
     private AllTimelineEvents allTimelineEvents;
-
     private AllReports allReports;
+
     private DrishtiService drishtiService;
     private ActionService actionService;
+    private FormSubmissionService formSubmissionService;
     private FormSubmissionSyncService formSubmissionSyncService;
+    private ZiggyService ziggyService;
     private UserService userService;
     private AlertService alertService;
     private EligibleCoupleService eligibleCoupleService;
     private MotherService motherService;
     private ChildService childService;
-
     private ANMService anmService;
-    private NavigationService navigationService;
+    private BeneficiaryService beneficiaryService;
 
+    private NavigationService navigationService;
     private CommCareHQService commCareService;
     private CommCareClientService commCareClientService;
+
     private Session session;
     private Cache<String> listCache;
-    private BeneficiaryService beneficiaryService;
+
     private HTTPAgent httpAgent;
 
     protected Context() {
@@ -89,9 +92,23 @@ public class Context {
         return actionService;
     }
 
+    public FormSubmissionService formSubmissionService() {
+        if (formSubmissionService == null) {
+            formSubmissionService = new FormSubmissionService(ziggyService(), formDataRepository(), allSettings());
+        }
+        return formSubmissionService;
+    }
+
+    private ZiggyService ziggyService() {
+        if (ziggyService == null) {
+            ziggyService = new ZiggyService();
+        }
+        return ziggyService;
+    }
+
     public FormSubmissionSyncService formSubmissionSyncService() {
         if (formSubmissionSyncService == null) {
-            formSubmissionSyncService = new FormSubmissionSyncService(httpAgent(), formDataRepository(), allSettings());
+            formSubmissionSyncService = new FormSubmissionSyncService(formSubmissionService(), httpAgent(), formDataRepository(), allSettings());
         }
         return formSubmissionSyncService;
     }

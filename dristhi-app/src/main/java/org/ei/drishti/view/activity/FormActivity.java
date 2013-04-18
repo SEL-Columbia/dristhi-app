@@ -31,7 +31,7 @@ public class FormActivity extends SecuredWebActivity {
 
     private void getIntentData() throws IOException {
         Intent intent = getIntent();
-        formName = intent.getStringExtra(FORM_NAME_PARAMETER);
+        formName = intent.getStringExtra(FORM_NAME_PARAM);
         model = IOUtils.toString(getAssets().open("www/form/" + formName + "/model.xml"));
         form = IOUtils.toString(getAssets().open("www/form/" + formName + "/form.xml"));
     }
@@ -44,6 +44,6 @@ public class FormActivity extends SecuredWebActivity {
         webViewSettings.setDatabaseEnabled(true);
         webViewSettings.setDomStorageEnabled(true);
         webView.loadUrl(MessageFormat.format("file:///android_asset/www/form/template.html?{0}={1}&{2}={3}&{4}={5}",
-                FORM_ID_PARAMETER, formName, ENTITY_ID_PARAMETER, "df8e94dd-91bd-40d2-a82a-fb7402e97f30", INSTANCE_ID_PARAM, randomUUID()));
+                FORM_ID_PARAMETER, formName, ENTITY_ID_PARAM, "df8e94dd-91bd-40d2-a82a-fb7402e97f30", INSTANCE_ID_PARAM, randomUUID()));
     }
 }
