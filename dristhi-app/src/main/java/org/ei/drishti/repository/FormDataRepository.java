@@ -50,7 +50,7 @@ public class FormDataRepository extends DrishtiRepository {
     }
 
     public String queryUniqueResult(String sql) {
-        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery(sql, new String[]{});
 
         cursor.moveToFirst();
@@ -61,7 +61,7 @@ public class FormDataRepository extends DrishtiRepository {
     }
 
     public String queryList(String sql) {
-        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery(sql, new String[]{});
         List<Map<String, String>> results = new ArrayList<Map<String, String>>();
         cursor.moveToFirst();
@@ -111,6 +111,19 @@ public class FormDataRepository extends DrishtiRepository {
         boolean isThere = cursor.moveToFirst();
         cursor.close();
         return isThere;
+    }
+
+    public String saveEntity(String entityType, String fields) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        Map<String, String> updatedFieldsMap = new Gson().fromJson(fields, new TypeToken<Map<String, String>>() {
+        }.getType());
+
+        String entityId = updatedFieldsMap.get(ENTITY_ID_FIELD_NAME);
+        Map<String, String> entityMap = loadEntityMap(entityType, database, entityId);
+
+        ContentValues contentValues = getContentValues(updatedFieldsMap, entityType, entityMap);
+        database.replace(entityType, null, contentValues);
+        return entityId;
     }
 
     private ContentValues createValuesForFormSubmission(FormSubmission submission) {
@@ -164,19 +177,6 @@ public class FormDataRepository extends DrishtiRepository {
             }
         }
         return columnValues;
-    }
-
-    public String saveEntity(String entityType, String fields) {
-        SQLiteDatabase database = masterRepository.getWritableDatabase();
-        Map<String, String> updatedFieldsMap = new Gson().fromJson(fields, new TypeToken<Map<String, String>>() {
-        }.getType());
-
-        String entityId = updatedFieldsMap.get(ENTITY_ID_FIELD_NAME);
-        Map<String, String> entityMap = loadEntityMap(entityType, database, entityId);
-
-        ContentValues contentValues = getContentValues(updatedFieldsMap, entityType, entityMap);
-        database.replace(entityType, null, contentValues);
-        return entityId;
     }
 
     private ContentValues getContentValues(Map<String, String> updatedFieldsMap, String entityType, Map<String, String> entityMap) {
