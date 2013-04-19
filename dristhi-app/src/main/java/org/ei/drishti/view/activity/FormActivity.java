@@ -40,7 +40,8 @@ public class FormActivity extends SecuredWebActivity {
         WebSettings webViewSettings = webView.getSettings();
         webViewSettings.setJavaScriptEnabled(true);
         webView.addJavascriptInterface(new FormWebInterface(model, form), "androidContext");
-        webView.addJavascriptInterface(Context.getInstance().formDataService(), "formDataRepositoryContext");
+        webView.addJavascriptInterface(Context.getInstance().formDataRepository(), REPOSITORY);
+        webView.addJavascriptInterface(Context.getInstance().ziggyFileLoader(), ZIGGY_FILE_LOADER);
         webViewSettings.setDatabaseEnabled(true);
         webViewSettings.setDomStorageEnabled(true);
         webView.loadUrl(MessageFormat.format("file:///android_asset/www/form/template.html?{0}={1}&{2}={3}&{4}={5}",

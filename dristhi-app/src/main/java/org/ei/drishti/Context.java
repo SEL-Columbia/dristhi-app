@@ -50,8 +50,13 @@ public class Context {
     private Cache<String> listCache;
 
     private HTTPAgent httpAgent;
+    private ZiggyFileLoader ziggyFileLoader;
 
     protected Context() {
+    }
+
+    public android.content.Context applicationContext() {
+        return applicationContext;
     }
 
     public static Context getInstance() {
@@ -100,10 +105,18 @@ public class Context {
     }
 
     private ZiggyService ziggyService() {
+        initRepository();
         if (ziggyService == null) {
-            ziggyService = new ZiggyService();
+            ziggyService = new ZiggyService(ziggyFileLoader(), formDataRepository());
         }
         return ziggyService;
+    }
+
+    public ZiggyFileLoader ziggyFileLoader() {
+        if (ziggyFileLoader == null) {
+            ziggyFileLoader = new ZiggyFileLoader("js/form", "www/form", applicationContext().getAssets());
+        }
+        return ziggyFileLoader;
     }
 
     public FormSubmissionSyncService formSubmissionSyncService() {
@@ -226,7 +239,7 @@ public class Context {
         return reportRepository;
     }
 
-    private FormDataRepository formDataRepository() {
+    public FormDataRepository formDataRepository() {
         if (formDataRepository == null) {
             formDataRepository = new FormDataRepository();
         }
@@ -281,11 +294,6 @@ public class Context {
             commCareClientService = new CommCareClientService(allSettings(), navigationService());
         }
         return commCareClientService;
-    }
-
-    public FormDataRepository formDataService() {
-        initRepository();
-        return formDataRepository();
     }
 
     public Session session() {

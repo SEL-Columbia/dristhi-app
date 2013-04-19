@@ -52,9 +52,9 @@ public class FormSubmissionServiceTest {
                         .put("version", "123")
                         .map());
         InOrder inOrder = inOrder(ziggyService, allSettings);
-        inOrder.verify(ziggyService).save(paramsForFirstSubmission, "{}");
+        inOrder.verify(ziggyService).saveForm(paramsForFirstSubmission, "{}");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("122");
-        inOrder.verify(ziggyService).save(paramsForSecondSubmission, "{}");
+        inOrder.verify(ziggyService).saveForm(paramsForSecondSubmission, "{}");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("123");
     }
 
@@ -81,9 +81,9 @@ public class FormSubmissionServiceTest {
                         .put("version", "123")
                         .map());
         InOrder inOrder = inOrder(ziggyService, allSettings);
-        inOrder.verify(ziggyService, times(0)).save(paramsForFirstSubmission, "{}");
+        inOrder.verify(ziggyService, times(0)).saveForm(paramsForFirstSubmission, "{}");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("122");
-        inOrder.verify(ziggyService).save(paramsForSecondSubmission, "{}");
+        inOrder.verify(ziggyService).saveForm(paramsForSecondSubmission, "{}");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("123");
 
     }

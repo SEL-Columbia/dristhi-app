@@ -7,8 +7,10 @@ import org.ei.drishti.repository.FormDataRepository;
 
 import java.util.List;
 
+import static java.text.MessageFormat.format;
 import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.util.EasyMap.create;
+import static org.ei.drishti.util.Log.logError;
 
 public class FormSubmissionService {
     private ZiggyService ziggyService;
@@ -24,7 +26,11 @@ public class FormSubmissionService {
     public void processSubmissions(List<FormSubmission> formSubmissions) {
         for (FormSubmission submission : formSubmissions) {
             if (!formDataRepository.submissionExists(submission.instanceId())) {
-                ziggyService.save(getParams(submission), submission.instance());
+                try {
+                    ziggyService.saveForm(getParams(submission), submission.instance());
+                } catch (Exception e) {
+                    logError(format("Form submission processing failed, with submission: {0}. Exception: {1}", submission, e));
+                }
             }
             allSettings.savePreviousFormSyncIndex(submission.version());
         }

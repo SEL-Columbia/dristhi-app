@@ -5,11 +5,7 @@ if (typeof enketo == "undefined" || !enketo) {
 enketo.EntityRelationshipLoader = function () {
     return {
         load: function () {
-            return JSON.parse($.ajax({
-                type: "GET",
-                url: "entity_relationship.json",
-                async: false
-            }).responseText);
+            return JSON.parse(ziggyFileLoader.loadAppData("entity_relationship.json"));
         }
     };
 };
