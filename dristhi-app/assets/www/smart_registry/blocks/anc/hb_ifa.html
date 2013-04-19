@@ -3,19 +3,19 @@
         <div class="span5 full-height span-no-margin width-without-margins">
             <div class="row-fluid full-height">
                 <div class="span8 line-right full-height span-no-margin width-without-margins span-content">
-                    <div class="row-fluid hb">
-                        <div class="span1 width-without-margins hb-legend hb-legend-dangerous"></div>
+                    <div ng-show="client.visits.hb.hb1" class="row-fluid hb">
+                        <div class="span1 width-without-margins hb-legend" ng-class="{'hb-legend-dangerous': client.visits.hb.hb1.status == 'btn-past-due', 'hb-legend-high': client.visits.hb.hb1.status == 'btn-upcoming' || client.visits.hb.hb1.status == 'btn-due', 'hb-legend-normal': client.visits.hb.hb1.status == 'btn-done'}"></div>
                         <div class="span5 span-no-margin width-without-margins hb-content">24/02</div>
                         <div class="span6 span-no-margin width-without-margins hb-content hb-content-right-aligned">10.5g/dl
                         </div>
                     </div>
-                    <div class="row-fluid hb">
+                    <div ng-show="client.visits.hb.hb2"  class="row-fluid hb">
                         <div class="span1 width-without-margins hb-legend hb-legend-high"></div>
                         <div class="span5 span-no-margin width-without-margins hb-content">24/02</div>
                         <div class="span6 span-no-margin width-without-margins hb-content hb-content-right-aligned">10.5g/dl
                         </div>
                     </div>
-                    <div class="row-fluid hb">
+                    <div ng-show="client.visits.hb.hb3"  class="row-fluid hb">
                         <div class="span1 width-without-margins hb-legend hb-legend-normal"></div>
                         <div class="span5 span-no-margin width-without-margins hb-content">24/02</div>
                         <div class="span6 span-no-margin width-without-margins hb-content hb-content-right-aligned">10.5g/dl
@@ -33,25 +33,36 @@
             <div class="row-fluid full-height span-no-margin width-without-margins">
                 <div class="span7 line-right full-height span-no-margin width-without-margins span-content">
                     <div ng-show="client.visits.ifa.ifa1.status == 'btn-done'" class="row-fluid hb">
-                        <div class="span5 span-no-margin width-without-margins hb-content">{{client.visits.ifa.ifa1.visit_date}}</div>
-                        <div class="span7 span-no-margin width-without-margins hb-content hb-content-right-aligned">
-                            <i class="icon-ok green"></i> 60 Tablets
+                        <div class="span4 span-no-margin width-without-margins hb-content">{{client.visits.ifa.ifa1.visit_date | date: 'dd/MM'}}</div>
+                        <div class="span8 span-no-margin width-without-margins hb-content hb-content-right-aligned">
+                            <i class="icon-ok green"></i> {{client.visits.ifa.ifa1.data.dose}} Tablets
                         </div>
                     </div>
-                    <div ng-show="client.visits.ifa.ifa1.status == 'btn-done'" class="row-fluid hb">
-                        <div class="span5 span-no-margin width-without-margins hb-content">{{client.visits.ifa.ifa1.visit_date}}</div>
-                        <div class="span7 span-no-margin width-without-margins hb-content hb-content-right-aligned">
-                            <i class="icon-ok green"></i> 30 Tablets
+                    <div ng-show="client.visits.ifa.ifa2.status == 'btn-done'" class="row-fluid hb">
+                        <div class="span4 span-no-margin width-without-margins hb-content">{{client.visits.ifa.ifa2.visit_date | date: 'dd/MM'}}</div>
+                        <div class="span8 span-no-margin width-without-margins hb-content hb-content-right-aligned">
+                            <i class="icon-ok green"></i> {{client.visits.ifa.ifa2.data.dose}} Tablets
                         </div>
                     </div>
                 </div>
                 <div class="span5 full-height span-no-margin width-without-margins span-content">
                     <!--IFA-->
-                    <a class="btn btn-primary btn-done btn-sr full-height" href="#">
-                        <div class="done-icon full-height"><i class="icon-ok green icon-large"></i></div>
-                        <span class="text-bold">IFA Tablets</span>
-                        <br/>
-                        Due 05/03
+                    <ng:switch on="client.visits.anc.next">
+                        <a ng-switch-when="null" class="btn btn-primary btn-sr full-height btn-done" href="#">
+                            <div class="done-icon full-height">
+                                <i class="icon-ok green icon-large"></i>
+                            </div>
+                            <span class="text-bold">IFA Tablets</span>
+                            <br/>
+                            <span>On {{client.visits.ifa[client.visits.ifa.previous].visit_date | date: 'dd/MM'}}</span>
+                        </a>
+
+                        <a ng-switch-default class="btn btn-primary btn-sr full-height" ng-class="client.visits.ifa[client.visits.ifa.next].status" href="#">
+                            <span class="text-bold">IFA Tablets</span>
+                            <br/>
+                            <span>Due {{client.visits.ifa[client.visits.ifa.next].visit_date | date: 'dd/MM'}}</span>
+                        </a>
+                    </ng:switch>
                     </a>
                 </div>
             </div>

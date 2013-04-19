@@ -61,6 +61,15 @@ describe('ANC Service', function () {
                         status: 'btn-upcoming',
                         visit_date: null
                     }
+                },
+                hb:
+                {
+                    next: 'hb1',
+                    hb1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
                 }
             };
 
@@ -107,24 +116,29 @@ describe('ANC Service', function () {
                         }
                     }
                 },
-                tt:
-                 {
-                 next: 'tt1',
-                 tt1:
-                 {
-                 status: 'btn-upcoming',
-                 visit_date: null
-                 }
-                 },
-                 ifa:
-                 {
-                 next: 'ifa1',
-                 ifa1:
-                 {
-                 status: 'btn-upcoming',
-                 visit_date: null
-                 }
-                 }
+                tt:{
+                    next:'tt1',
+                    tt1:{
+                        status:'btn-upcoming',
+                        visit_date:null
+                    }
+                },
+                ifa:{
+                    next:'ifa1',
+                    ifa1:{
+                        status:'btn-upcoming',
+                        visit_date:null
+                    }
+                },
+                hb:
+                {
+                    next: 'hb1',
+                    hb1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
+                }
             };
 
             ancSrvc.preProcessClients(clients);
@@ -185,6 +199,15 @@ describe('ANC Service', function () {
                         status: 'btn-upcoming',
                         visit_date: null
                     }
+                },
+                hb:
+                {
+                    next: 'hb1',
+                    hb1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
                 }
             };
 
@@ -225,6 +248,15 @@ describe('ANC Service', function () {
                 {
                     next: 'ifa1',
                     ifa1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
+                },
+                hb:
+                {
+                    next: 'hb1',
+                    hb1:
                     {
                         status: 'btn-upcoming',
                         visit_date: null
@@ -284,6 +316,15 @@ describe('ANC Service', function () {
                     ifa1:{
                         status:'btn-upcoming',
                         visit_date:null
+                    }
+                },
+                hb:
+                {
+                    next: 'hb1',
+                    hb1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
                     }
                 }
             };
@@ -360,6 +401,15 @@ describe('ANC Service', function () {
                     ifa1:{
                         status:'btn-upcoming',
                         visit_date:null
+                    }
+                },
+                hb:
+                {
+                    next: 'hb1',
+                    hb1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
                     }
                 }
             };

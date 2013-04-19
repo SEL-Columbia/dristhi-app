@@ -7,12 +7,16 @@ angular.module("smartRegistry.services")
                     milestones:["anc1", "anc2", "anc3", "anc4"]
                 },
                 {
-                    "name":"tt",
-                    "milestones":["tt1", "tt2", "ttbooster"]
+                    name:"tt",
+                    milestones:["tt1", "tt2", "ttbooster"]
                 },
                 {
-                    "name":"ifa",
-                    "milestones":["ifa1", "ifa2"]
+                    name:"ifa",
+                    milestones:["ifa1", "ifa2"]
+                },
+                {
+                    name: "hb",
+                    milestones:["hb1", "hb2", "hb3"]
                 }
             ];
 
@@ -64,7 +68,12 @@ angular.module("smartRegistry.services")
                         lmp:'25/3/13',
                         alerts:[
                             {
-                                name:'anc2',
+                                name:'anc1',
+                                date:'24/07',
+                                status:'urgent'
+                            },
+                            {
+                                name:'tt2',
                                 date:'24/07',
                                 status:'urgent'
                             },
@@ -75,14 +84,6 @@ angular.module("smartRegistry.services")
                             }
                         ],
                         services_provided:[
-                            {
-                                name:'anc1',
-                                date:'04/04',
-                                data:{
-                                    bp:'120/80',
-                                    weight:'55'
-                                }
-                            },
                             {
                                 name: 'tt1',
                                 date:'04/04',
@@ -167,13 +168,8 @@ angular.module("smartRegistry.services")
                             {
                                 name:'ifa2',
                                 date:'26/05',
-                                status:'done'
+                                status:'urgent'
                             },
-                            {
-                                name:'ifa2',
-                                date:'26/03',
-                                status:'done'
-                            }
                         ],
                         services_provided:
                         [
@@ -265,7 +261,9 @@ angular.module("smartRegistry.services")
                             {
                                 name:'tt1',
                                 date:'04/04',
-                                data:{}
+                                data:{
+                                    dose: 100
+                                }
                             },
                             {
                                 name:'ifa1',

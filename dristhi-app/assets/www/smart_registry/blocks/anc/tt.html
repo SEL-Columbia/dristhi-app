@@ -6,26 +6,40 @@
                 <div ng-show="client.visits.tt.tt1.status == 'btn-done'" class="done-icon"><i class="icon-ok green icon-large"></i></div>
                 <span class="bold-text">TT1</span>
                 <br/>
-                <span ng-show="client.visits.tt.tt1.status != 'btn-upcoming'">On {{client.visits.tt.tt1.visit_date}}</span>
-                <span ng-show="client.visits.tt.tt1.status == 'btn-upcoming'">Upcoming</span>
+                <ng:switch on="client.visits.tt.tt1.status">
+                    <span ng-switch-when="btn-done">On </span>
+                    <span ng-switch-when="btn-upcoming">Upcoming</span>
+                    <span ng-switch-default>Due </span>
+                </ng:switch>
+                <span ng-show="client.visits.tt.tt1.visit_date">{{client.visits.tt.tt1.visit_date | date: 'dd/MM'}}</span>
             </a>
         </div>
         <div class="span4 line-right span-no-margin width-without-margins span-content">
             <!--TT-->
             <a ng-show="client.visits.tt.tt2" class="btn btn-primary btn-sr full-height" ng-class="client.visits.tt.tt2.status" href="#">
                 <div ng-show="client.visits.tt.tt2.status == 'btn-done'" class="done-icon"><i class="icon-ok green icon-large"></i></div>
-                <span class="bold-text">tt2</span>
+                <span class="bold-text">TT2</span>
                 <br/>
-                <span ng-show="client.visits.tt.tt2.status != 'btn-upcoming'">On {{client.visits.tt.tt2.visit_date}}</span>
-                <span ng-show="client.visits.tt.tt2.status == 'btn-upcoming'">Upcoming</span>
+                <ng:switch on="client.visits.tt.tt2.status">
+                    <span ng-switch-when="btn-done">On </span>
+                    <span ng-switch-when="btn-upcoming">Upcoming</span>
+                    <span ng-switch-default>Due </span>
+                </ng:switch>
+                <span ng-show="client.visits.tt.tt2.visit_date">{{client.visits.tt.tt2.visit_date | date: 'dd/MM'}}</span>
             </a>
         </div>
         <div class="span4 line-right span-no-margin width-without-margins span-content">
-            <!--IFA-->
-            <a class="btn btn-primary btn-upcoming btn-sr full-height" href="#">
-                <span class="bold-text">TT Boster</span>
+            <!--TT Booster-->
+            <a ng-show="client.visits.tt.ttbooster" class="btn btn-primary btn-sr full-height" ng-class="client.visits.tt.ttbooster.status" href="#">
+                <div ng-show="client.visits.tt.ttbooster.status == 'btn-done'" class="done-icon"><i class="icon-ok green icon-large"></i></div>
+                <span class="bold-text">TT Booster</span>
                 <br/>
-                Due 05/03
+                <ng:switch on="client.visits.tt.ttbooster.status">
+                    <span ng-switch-when="btn-done">On </span>
+                    <span ng-switch-when="btn-upcoming">Upcoming</span>
+                    <span ng-switch-default>Due </span>
+                </ng:switch>
+                <span ng-show="client.visits.tt.ttbooster.visit_date">{{client.visits.tt.ttbooster.visit_date | date: 'dd/MM'}}</span>
             </a>
         </div>
     </div>
