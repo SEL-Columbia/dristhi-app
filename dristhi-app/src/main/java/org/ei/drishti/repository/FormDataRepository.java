@@ -7,9 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.FormSubmission;
 import org.ei.drishti.domain.SyncStatus;
-import org.ei.drishti.util.Log;
 
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +21,8 @@ import static org.ei.drishti.domain.SyncStatus.PENDING;
 import static org.ei.drishti.domain.SyncStatus.SYNCED;
 
 public class FormDataRepository extends DrishtiRepository {
-    private static final String FORM_SUBMISSION_SQL = "CREATE TABLE form_submission(instanceId VARCHAR PRIMARY KEY, entityId VARCHAR, formName VARCHAR, instance VARCHAR, version VARCHAR, syncStatus VARCHAR)";
+    private static final String FORM_SUBMISSION_SQL = "CREATE TABLE form_submission(instanceId VARCHAR PRIMARY KEY, entityId VARCHAR, " +
+            "formName VARCHAR, instance VARCHAR, version VARCHAR, syncStatus VARCHAR)";
     public static final String INSTANCE_ID_COLUMN = "instanceId";
     public static final String ENTITY_ID_COLUMN = "entityId";
     private static final String FORM_NAME_COLUMN = "formName";
@@ -31,7 +30,8 @@ public class FormDataRepository extends DrishtiRepository {
     private static final String VERSION_COLUMN = "version";
     private static final String SYNC_STATUS_COLUMN = "syncStatus";
     private static final String FORM_SUBMISSION_TABLE_NAME = "form_submission";
-    public static final String[] FORM_SUBMISSION_TABLE_COLUMNS = new String[]{INSTANCE_ID_COLUMN, ENTITY_ID_COLUMN, FORM_NAME_COLUMN, INSTANCE_COLUMN, VERSION_COLUMN, SYNC_STATUS_COLUMN};
+    public static final String[] FORM_SUBMISSION_TABLE_COLUMNS = new String[]{INSTANCE_ID_COLUMN, ENTITY_ID_COLUMN, FORM_NAME_COLUMN,
+            INSTANCE_COLUMN, VERSION_COLUMN, SYNC_STATUS_COLUMN};
     public static final String ID_COLUMN = "id";
     private static final String DETAILS_COLUMN_NAME = "details";
     private static final String FORM_NAME_PARAM = "formName";
@@ -108,7 +108,9 @@ public class FormDataRepository extends DrishtiRepository {
     public boolean submissionExists(String instanceId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(FORM_SUBMISSION_TABLE_NAME, new String[]{INSTANCE_ID_COLUMN}, INSTANCE_ID_COLUMN + " = ?", new String[]{instanceId}, null, null, null);
-        return cursor.moveToFirst();
+        boolean isThere = cursor.moveToFirst();
+        cursor.close();
+        return isThere;
     }
 
     private ContentValues createValuesForFormSubmission(FormSubmission submission) {
@@ -165,7 +167,6 @@ public class FormDataRepository extends DrishtiRepository {
     }
 
     public String saveEntity(String entityType, String fields) {
-        Log.logError(MessageFormat.format("entityType: {0}, entityFields: {1}", entityType, fields));
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         Map<String, String> updatedFieldsMap = new Gson().fromJson(fields, new TypeToken<Map<String, String>>() {
         }.getType());
