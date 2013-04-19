@@ -25,6 +25,7 @@
             <ocp_sideeffect/>
             <sterilization_sideeffect/>
             <injectable_sideeffect/>
+            <side_effects/>
             <sideeffect_iud_ocp/>
             <counseling/>
             <sterilization_counseling/>

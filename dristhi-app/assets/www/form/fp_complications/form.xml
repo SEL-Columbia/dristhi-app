@@ -23,13 +23,13 @@
                 </span>
                 <span class="required">*</span>
             </legend>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio"
                        name="/Family_Planning_Complications_EngKan/method_still_the_same" value="yes"
                        required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio"
                        name="/Family_Planning_Complications_EngKan/method_still_the_same" value="no" required="required"
                        data-type-xml="select1"/>
@@ -53,28 +53,28 @@
                     &#xCB8;&#xCCD;&#xCA5;&#xCB3;?
                 </span>
             </legend>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Complications_EngKan/iud_removal_place"
                        value="home"
                        data-relevant=" /Family_Planning_Complications_EngKan/method_still_the_same  = 'no' and  /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Home &#xCAE;&#xCA8;&#xCC6;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Complications_EngKan/iud_removal_place"
                        value="sub_center"
                        data-relevant=" /Family_Planning_Complications_EngKan/method_still_the_same  = 'no' and  /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Sub Center</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Complications_EngKan/iud_removal_place"
                        value="phc"
                        data-relevant=" /Family_Planning_Complications_EngKan/method_still_the_same  = 'no' and  /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">PHC</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Complications_EngKan/iud_removal_place"
                        value="elsewhere"
                        data-relevant=" /Family_Planning_Complications_EngKan/method_still_the_same  = 'no' and  /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
@@ -94,7 +94,7 @@
                 </span>
                 <span class="required">*</span>
             </legend>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio"
                        name="/Family_Planning_Complications_EngKan/familyplanning_method_1" value="ocp"
                        required="required"
@@ -102,7 +102,7 @@
                        data-type-xml="select1"/>
                 <span lang="" class=" active">OCP &#xC92;.&#xCB8;&#xCBF;.&#xCAA;&#xCBF;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio"
                        name="/Family_Planning_Complications_EngKan/familyplanning_method_1" value="iud"
                        required="required"
@@ -110,7 +110,7 @@
                        data-type-xml="select1"/>
                 <span lang="" class=" active">IUD &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio"
                        name="/Family_Planning_Complications_EngKan/familyplanning_method_1" value="male_sterilization"
                        required="required"
@@ -120,7 +120,7 @@
                     &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0;
                     &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio"
                        name="/Family_Planning_Complications_EngKan/familyplanning_method_1" value="female_sterilization"
                        required="required"
@@ -130,7 +130,7 @@
                     &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0;
                     &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio"
                        name="/Family_Planning_Complications_EngKan/familyplanning_method_1" value="injectable"
                        required="required"
@@ -161,21 +161,21 @@
                     &#xC8E;&#xCB2;&#xCCD;&#xCB2;&#xCBF; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
                 </span>
             </legend>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Complications_EngKan/iud_place"
                        value="sub_center"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method_1  = 'iud'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Sub Center</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Complications_EngKan/iud_place"
                        value="phc"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method_1  = 'iud'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">PHC</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Complications_EngKan/iud_place"
                        value="elsewhere"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method_1  = 'iud'"
@@ -191,21 +191,21 @@
                     &#xC85;&#xCB3;&#xCB5;&#xCA1;&#xCBF;&#xCB8;&#xCBF;&#xCA6;&#xCB0;&#xCC1;?
                 </span>
             </legend>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Complications_EngKan/iud_person"
                        value="anm"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method_1  = 'iud'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">ANM &#xC8E;.&#xC8E;&#xCA8;&#xCCD;.&#xC8E;&#xCAE;&#xCCD;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Complications_EngKan/iud_person"
                        value="sn"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method_1  = 'iud'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">SN &#xCB8;&#xCCD;&#xC9F;&#xCBE;&#xCAB;&#xCCD; &#xCA8;&#xCB0;&#xCCD;&#xCB8;&#xCCD;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Complications_EngKan/iud_person"
                        value="lhv"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method_1  = 'iud'"
@@ -213,14 +213,14 @@
                 <span lang="" class=" active">LHV
                     &#xC8E;&#xCB2;&#xCCD;.&#xCB9;&#xCC6;&#xC9A;&#xCCD;.&#xCB5;&#xCBF;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Complications_EngKan/iud_person"
                        value="mo"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method_1  = 'iud'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">MO &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF;&#xCBE; &#xC85;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Complications_EngKan/iud_person"
                        value="others"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method_1  = 'iud'"
@@ -284,14 +284,14 @@
                     &#xCB5;&#xCBF;&#xCAB;&#xCB2;&#xCB5;&#xCBE;&#xCA6; &#xCB5;&#xCB0;&#xCA6;&#xCBF;?
                 </span>
             </legend>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio"
                        name="/Family_Planning_Complications_EngKan/sterilization_failure" value="yes"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/familyplanning_method  = 'female_sterilization'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="radio"
                        name="/Family_Planning_Complications_EngKan/sterilization_failure" value="no"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/familyplanning_method  = 'female_sterilization'"
@@ -307,7 +307,7 @@
                     &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCB5;&#xCC1;?
                 </span>
             </legend>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/iud_sideeffect"
                        value="bleeding"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method  = 'iud'"
@@ -315,35 +315,35 @@
                 <span lang="" class=" active">Bleeding
                     &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCB8;&#xCCD;&#xCB0;&#xCBE;&#xCB5;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/iud_sideeffect"
                        value="nausea"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method  = 'iud'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Nausea &#xCB5;&#xCBE;&#xC95;&#xCB0;&#xCBF;&#xC95;&#xCC6;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/iud_sideeffect"
                        value="headache"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method  = 'iud'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Headache &#xCA4;&#xCB2;&#xCC6;&#xCA8;&#xCCB;&#xCB5;&#xCC1;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/iud_sideeffect"
                        value="pain"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method  = 'iud'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Pain &#xCA8;&#xCCB;&#xCB5;&#xCC1;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/iud_sideeffect"
                        value="fever"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method  = 'iud'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Fever &#xC9C;&#xCCD;&#xCB5;&#xCB0;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/iud_sideeffect"
                        value="others"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method  = 'iud'"
@@ -359,28 +359,28 @@
                     &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCB5;&#xCC1;?
                 </span>
             </legend>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/ocp_sideeffect"
                        value="spotting_or_bleeding"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method  = 'ocp'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Spotting or Bleeding &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCB8;&#xCCD;&#xCB0;&#xCBE;&#xCB5;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/ocp_sideeffect"
                        value="jaundice"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method  = 'ocp'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Jaundice &#xC95;&#xCBE;&#xCAE;&#xCBE;&#xCB2;&#xCC6;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/ocp_sideeffect"
                        value="amenorrhea"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method  = 'ocp'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Amenorrhea</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/ocp_sideeffect"
                        value="others"
                        data-relevant=" /Family_Planning_Complications_EngKan/familyplanning_method  = 'ocp'"
@@ -396,35 +396,35 @@
                     &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCB5;&#xCC1;?
                 </span>
             </legend>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox"
                        name="/Family_Planning_Complications_EngKan/sterilization_sideeffect" value="infection"
                        data-relevant=" /Family_Planning_Complications_EngKan/sterilization_failure  != 'yes' and ( /Family_Planning_Complications_EngKan/familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/familyplanning_method  = 'female_sterilization')"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Infection &#xCB8;&#xCCB;&#xC82;&#xC95;&#xCC1;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox"
                        name="/Family_Planning_Complications_EngKan/sterilization_sideeffect" value="headache"
                        data-relevant=" /Family_Planning_Complications_EngKan/sterilization_failure  != 'yes' and ( /Family_Planning_Complications_EngKan/familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/familyplanning_method  = 'female_sterilization')"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Headache &#xCA4;&#xCB2;&#xCC6;&#xCA8;&#xCCB;&#xCB5;&#xCC1;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox"
                        name="/Family_Planning_Complications_EngKan/sterilization_sideeffect" value="pain"
                        data-relevant=" /Family_Planning_Complications_EngKan/sterilization_failure  != 'yes' and ( /Family_Planning_Complications_EngKan/familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/familyplanning_method  = 'female_sterilization')"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Pain &#xCA8;&#xCCB;&#xCB5;&#xCC1;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox"
                        name="/Family_Planning_Complications_EngKan/sterilization_sideeffect" value="fever"
                        data-relevant=" /Family_Planning_Complications_EngKan/sterilization_failure  != 'yes' and ( /Family_Planning_Complications_EngKan/familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/familyplanning_method  = 'female_sterilization')"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Fever &#xC9C;&#xCCD;&#xCB5;&#xCB0;</span>
             </label>
-            <label class="">
+            <label class="clearfix ">
                 <input autocomplete="off" type="checkbox"
                        name="/Family_Planning_Complications_EngKan/sterilization_sideeffect" value="others"
                        data-relevant=" /Family_Planning_Complications_EngKan/sterilization_failure  != 'yes' and ( /Family_Planning_Complications_EngKan/familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/familyplanning_method  = 'female_sterilization')"
@@ -473,6 +473,11 @@
             <input autocomplete="off" type="hidden"
                    name="/Family_Planning_Complications_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date"
                    data-calculate="date( /Family_Planning_Complications_EngKan/date_familyplanningstart  + 90)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Family_Planning_Complications_EngKan/side_effects"
+                   data-calculate="concat( /Family_Planning_Complications_EngKan/iud_sideeffect , ' ',  /Family_Planning_Complications_EngKan/ocp_sideeffect , ' ',  /Family_Planning_Complications_EngKan/sterilization_sideeffect , ' ',  /Family_Planning_Complications_EngKan/injectable_sideeffect )"
                    data-type-xml="string"/>
         </label>
         <label class="">

@@ -1,6 +1,6 @@
 <model>
     <instance xmlns="http://www.w3.org/2002/xforms">
-        <EC_Registration_EngKan_Final id="EC_Registration_EngKan_Final">
+        <EC_Registration_EngKan id="EC_Registration_EngKan">
             <formhub>
                 <uuid/>
             </formhub>
@@ -28,11 +28,12 @@
             <caste/>
             <education_level/>
             <num_pregnancies/>
-            <num_livebirths/>
             <num_abortions/>
             <num_abortions_spontaneous/>
             <num_abortions_induced/>
+            <num_livebirths/>
             <num_stillbirths/>
+            <parity/>
             <num_livingchildren/>
             <num_livingchildren_male/>
             <num_livingchildren_female/>
@@ -42,6 +43,7 @@
             <familyplanning_method_other/>
             <familyplanning_method/>
             <iud_place/>
+            <iud_person/>
             <date_familyplanningstart/>
             <male_sterilizaton_group>
                 <threemonths_from_sterilization_date/>
@@ -56,14 +58,14 @@
             <youngchild_risk_priority/>
             <would_be_high_risk/>
             <would_be_high_risk_reason/>
-            <is_high_priority/>
+            <is_high_priority1/>
             <high_priority_reason/>
-            <message2/>
-            <message3/>
+            <message/>
+            <is_high_priority/>
             <meta>
                 <instanceID/>
             </meta>
-        </EC_Registration_EngKan_Final>
+        </EC_Registration_EngKan>
     </instance>
     <instance xmlns="http://www.w3.org/2002/xforms" id="village">
         <root>
@@ -365,6 +367,30 @@
             <item>
                 <itextId>static_instance-phc-1</itextId>
                 <name>keelanapura_</name>
+            </item>
+        </root>
+    </instance>
+    <instance xmlns="http://www.w3.org/2002/xforms" id="iud_person">
+        <root>
+            <item>
+                <itextId>static_instance-iud_person-0</itextId>
+                <name>anm</name>
+            </item>
+            <item>
+                <itextId>static_instance-iud_person-1</itextId>
+                <name>sn</name>
+            </item>
+            <item>
+                <itextId>static_instance-iud_person-2</itextId>
+                <name>lhv</name>
+            </item>
+            <item>
+                <itextId>static_instance-iud_person-3</itextId>
+                <name>mo</name>
+            </item>
+            <item>
+                <itextId>static_instance-iud_person-4</itextId>
+                <name>others</name>
             </item>
         </root>
     </instance>

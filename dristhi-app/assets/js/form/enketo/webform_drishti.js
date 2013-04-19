@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-/*jslint browser:true, devel:true, jquery:true, smarttabs:true sub:true *//*global vkbeautify, gui, FormDataController, modelStr, StorageLocal, FileManager, Form*/
+/*jslint browser:true, devel:true, jquery:true, smarttabs:true, sub:true *//*global vkbeautify, gui, FormDataController, modelStr, StorageLocal, FileManager, Form*/
 
 var /**@type {Form}*/form;
 var /**@type {Connection}*/connection;
@@ -23,7 +23,8 @@ var /**@type {*}*/fileManager;
 $(document).ready(function () {
     'use strict';
     var formParts, existingInstanceJ, instanceToEdit, loadErrors, jsonErrors, jDataO,
-        formDataController = new FormDataController({'instanceId': settings.instanceId, 'entityId': settings.entityId, "formName": settings.formId});
+        queryParams = helper.getAllQueryParams(),
+        formDataController = new FormDataController(queryParams);
 
     connection = new Connection();
     existingInstanceJ = formDataController.get();
@@ -50,7 +51,7 @@ $(document).ready(function () {
     loadErrors = (jsonErrors) ? jsonErrors.concat(loadErrors) : loadErrors;
 
     if (loadErrors.length > 0) {
-        console.error(JSON.stringify(loadErrors), 'It is recommended not to use this form for data entry until this is resolved.');
+        //gui.showLoadErrors(loadErrors, 'It is recommended not to use this form for data entry until this is resolved.');
     }
 
     //controller for submission of data to drishti
@@ -59,17 +60,13 @@ $(document).ready(function () {
         if (typeof form !== 'undefined') {
             form.validateForm();
             if (!form.isValid()) {
-
-                var fieldsWithErrors = form.fieldsWithErrors();
-                console.log("field with error: " + fieldsWithErrors[0].innerHTML);
-
-                console.error('Form contains errors <br/>(please see fields marked in red)');
+                gui.alert('Form contains errors <br/>(please see fields marked in red)');
+                return;
             }
             else {
                 jData = jDataO.get();
                 jDataStr = vkbeautify.json(JSON.stringify(jData));
-                errorStr = (typeof jData.errors !== 'undefined' && jData.errors.length > 0) ? '<ul class="alert alert-error"><li>'
-                    + jData.errors.join('</li><li>') + '</li></ul>' : '';
+                errorStr = (typeof jData.errors !== 'undefined' && jData.errors.length > 0) ? '<ul class="alert alert-error"><li>' + jData.errors.join('</li><li>') + '</li></ul>' : '';
                 console.error(
                     errorStr +
                         '<p>The following JSON object with instanceID: ' + form.getInstanceID() + ' has been prepared for submission:</p><br/>' +
@@ -84,12 +81,16 @@ $(document).ready(function () {
                     saveResult = formDataController.save(form.getInstanceID(), jData);
                     if (saveResult) {
                         //go back to dristhi?
+                        //what to do with old instanceId record?
                         //or reset, but with which JSON instance?
                         /*
                          form.resetHTML();
                          form = new Form('form.jr:eq(0)', jrDataStr);
                          form.init();
                          */
+                    }
+                    else {
+                        gui.alert('Saving of record failed.', 'Error');
                     }
                 }
             }
