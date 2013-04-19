@@ -43,7 +43,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
 
     var bindToLaunchForm = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function (e) {
-            anmNavigationBridge.delegateToFormLaunchView($(e.currentTarget).data("formname"));
+            anmNavigationBridge.delegateToFormLaunchView($(e.currentTarget).data("formname"), $(e.currentTarget).data("entityid"));
         });
     };
 
@@ -99,8 +99,8 @@ function ANMNavigationBridge() {
         delegateToReports: function () {
             return anmNavigationContext.startReports();
         },
-        delegateToFormLaunchView: function (formName) {
-            return anmNavigationContext.startFormActivity(formName);
+        delegateToFormLaunchView: function (formName, entityId) {
+            return anmNavigationContext.startFormActivity(formName, entityId);
         }
     };
 }
@@ -134,7 +134,7 @@ function FakeANMNavigationContext() {
         startReports: function () {
             window.location.href = "reports.html";
         },
-        startFormActivity: function (formName) {
+        startFormActivity: function (formName, entityId) {
             alert("Launching form: " + formName);
         }
     }

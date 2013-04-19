@@ -16,6 +16,7 @@ public class FormActivity extends SecuredWebActivity {
     private String model;
     private String form;
     private String formName;
+    private String entityId;
 
     @Override
     protected void onInitialization() {
@@ -32,6 +33,7 @@ public class FormActivity extends SecuredWebActivity {
     private void getIntentData() throws IOException {
         Intent intent = getIntent();
         formName = intent.getStringExtra(FORM_NAME_PARAM);
+        entityId = intent.getStringExtra(ENTITY_ID_PARAM);
         model = IOUtils.toString(getAssets().open("www/form/" + formName + "/model.xml"));
         form = IOUtils.toString(getAssets().open("www/form/" + formName + "/form.xml"));
     }
@@ -39,12 +41,12 @@ public class FormActivity extends SecuredWebActivity {
     private void webViewInitialization() {
         WebSettings webViewSettings = webView.getSettings();
         webViewSettings.setJavaScriptEnabled(true);
+        webViewSettings.setDatabaseEnabled(true);
+        webViewSettings.setDomStorageEnabled(true);
         webView.addJavascriptInterface(new FormWebInterface(model, form), "androidContext");
         webView.addJavascriptInterface(Context.getInstance().formDataRepository(), REPOSITORY);
         webView.addJavascriptInterface(Context.getInstance().ziggyFileLoader(), ZIGGY_FILE_LOADER);
-        webViewSettings.setDatabaseEnabled(true);
-        webViewSettings.setDomStorageEnabled(true);
         webView.loadUrl(MessageFormat.format("file:///android_asset/www/form/template.html?{0}={1}&{2}={3}&{4}={5}",
-                FORM_NAME_PARAM, formName, ENTITY_ID_PARAM, "df8e94dd-91bd-40d2-a82a-fb7402e97f30", INSTANCE_ID_PARAM, randomUUID()));
+                FORM_NAME_PARAM, formName, ENTITY_ID_PARAM, entityId, INSTANCE_ID_PARAM, randomUUID()));
     }
 }

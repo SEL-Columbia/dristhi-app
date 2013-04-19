@@ -28,9 +28,9 @@ function ECList(ecListBridge, cssIdOf) {
                 ecListBridge.delegateToECDetail($(this).data("caseid"));
             });
         },
-        bindItemToCommCare: function () {
+        bindItemToForm: function () {
             $(cssIdOf.commCareItems).click(function () {
-                ecListBridge.delegateToCommCare($(this).data("form"));
+                ecListBridge.delegateToForm($(this).data("formname"), "");
             })
         },
         populateVillageFilter: function () {
@@ -72,8 +72,8 @@ function ECListBridge() {
         delegateToECDetail: function (caseId) {
             return ecContext.startEC(caseId);
         },
-        delegateToCommCare: function (formId) {
-            ecContext.startCommCare(formId);
+        delegateToForm: function (formName, entityId) {
+            ecContext.startFormActivity(formName, entityId);
         },
         getVillages: function () {
             return JSON.parse(ecContext.villages());
@@ -142,8 +142,8 @@ function FakeECListContext() {
         startEC: function (caseId) {
             window.location.href = "ec_detail.html";
         },
-        startCommCare: function (formId) {
-            alert("Start CommCare with form " + formId);
+        startFormActivity: function (formName, entityId) {
+            alert("Start form " + formName);
         },
         villages: function () {
             return JSON.stringify(

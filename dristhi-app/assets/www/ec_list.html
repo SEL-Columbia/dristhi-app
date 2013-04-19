@@ -34,7 +34,7 @@
                 </ul>
                 <ul class="nav pull-right affected-by-sidepanel">
                     <li><img class="separator"></li>
-                    <li id="plusButton" data-form="EC_ADD"><img src="../img/icons/icon_plus.png"></li>
+                    <li id="plusButton" data-formname="ec_registration"><img src="../img/icons/icon_plus.png"></li>
                     <li id="cancel-search" class="cancel-search hidden">Cancel</li>
                 </ul>
             </div>
@@ -120,7 +120,7 @@
         var ecList = new ECList(new ECListBridge(), cssIdOf);
         ecList.populateInto();
         ecList.bindEveryItemToECView();
-        ecList.bindItemToCommCare();
+        ecList.bindItemToForm();
 
         ecList.populateVillageFilter();
         ecList.bindVillageFilterOptions();
