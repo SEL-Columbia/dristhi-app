@@ -1,48 +1,90 @@
 <div class="span7 full-height width-without-margins span-no-margin">
-    <div class="row-fluid full-height">
-        <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
-            <!--VISITS-->
-            <button class="btn btn-primary btn-done btn-sr" href="#">
-                <i class="icon-ok green icon-large"></i>       <br>&nbsp;
-            </button>
-            Matt
+    <ng:switch on="client.visits.delivery_plan.next == null">
+        <div ng-switch-when="false" class="row-fluid full-height">
+            <div class="span12 line-right full-height width-without-margins span-no-margin span-content">
+                <!--VISITS-->
+                <button class="btn btn-primary btn-sr full-height"
+                        ng-class="{'btn-due': client.visits.delivery_plan.delivery_plan1.status == 'btn-due',
+                        'btn-past-due': client.visits.delivery_plan.delivery_plan1.status == 'btn-past-due',
+                        'btn-upcoming': client.visits.delivery_plan.delivery_plan1.status == 'btn-upcoming'}">
+                    <span>Delivery Plan</span>
+                    <br/>
+                    <ng:switch on="client.visits.delivery_plan.delivery_plan1.status">
+                        <span ng-switch-when="btn-upcoming">Upcoming</span>
+                        <span ng-switch-default>Due {{client.visits.delivery_plan.delivery_plan1.visit_date | date: 'dd/MM'}}</span>
+                    </ng:switch>
+                </button>
+            </div>
         </div>
-        <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
-            <!--VISITS-->
-            <button class="btn btn-primary btn-done btn-sr" href="#">
-                <i class="icon-remove red icon-large"></i>       <br>&nbsp;
-            </button>
-            Companion
+        <div ng-switch-when="true" class="row-fluid full-height">
+            <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
+                <button class="btn btn-primary btn-done btn-sr btn-center-aligned btn-icon-only" href="#">
+                    <i class=""
+                       ng-class="{'icon-ok green': client.visits.delivery_plan.delivery_plan1.data.asha_name != null,
+                       'icon-remove red': client.visits.delivery_plan.delivery_plan1.data.asha_name == null}"></i>
+                </button>
+                <ng:switch on="client.visits.delivery_plan.delivery_plan1.data.asha_name">
+                    <span ng-switch-when="null" class="text-upper">Asha</span>
+                    <span ng-switch-default>{{client.visits.delivery_plan.delivery_plan1.data.asha_name}}</span>
+                </ng:switch>
+            </div>
+            <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
+                <button class="btn btn-primary btn-done btn-sr btn-center-aligned btn-icon-only" href="#">
+                    <i class=""
+                       ng-class="{'icon-ok green': client.visits.delivery_plan.delivery_plan1.data.companion != null,
+                       'icon-remove red': client.visits.delivery_plan.delivery_plan1.data.companion == null}"></i>
+                </button>
+                <ng:switch on="client.visits.delivery_plan.delivery_plan1.data.companion">
+                    <span ng-switch-when="null" class="text-upper">Companion</span>
+                    <span ng-switch-default>{{client.visits.delivery_plan.delivery_plan1.data.companion}}</span>
+                </ng:switch>
+            </div>
+            <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
+                <button class="btn btn-primary btn-done btn-sr btn-center-aligned btn-icon-only" href="#">
+                    <i class=""
+                       ng-class="{'icon-ok green': client.visits.delivery_plan.delivery_plan1.data.delivery_site != null,
+                       'icon-remove red': client.visits.delivery_plan.delivery_plan1.data.delivery_site == null}"></i>
+                </button>
+                <ng:switch on="client.visits.delivery_plan.delivery_plan1.data.delivery_site">
+                    <span ng-switch-when="null" class="text-upper">Delivery Site</span>
+                    <span ng-switch-default>{{client.visits.delivery_plan.delivery_plan1.data.delivery_site}}</span>
+                </ng:switch>
+            </div>
+            <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
+                <button class="btn btn-primary btn-done btn-sr btn-center-aligned btn-icon-only" href="#">
+                    <i class=""
+                       ng-class="{'icon-ok green': client.visits.delivery_plan.delivery_plan1.data.transport != null,
+                       'icon-remove red': client.visits.delivery_plan.delivery_plan1.data.transport == null}"></i>
+                </button>
+                <ng:switch on="client.visits.delivery_plan.delivery_plan1.data.transport">
+                    <span ng-switch-when="null" class="text-upper">Transport</span>
+                    <span ng-switch-default>{{client.visits.delivery_plan.delivery_plan1.data.transport}}</span>
+                </ng:switch>
+            </div>
+            <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
+                <button class="btn btn-primary btn-done btn-sr btn-center-aligned btn-icon-only" href="#">
+                    <i class=""
+                       ng-class="{'icon-ok green': client.visits.delivery_plan.delivery_plan1.data.contact_no != null,
+                       'icon-remove red': client.visits.delivery_plan.delivery_plan1.data.contact_no == null}"></i>
+                </button>
+                <ng:switch on="client.visits.delivery_plan.delivery_plan1.data.contact_no">
+                    <span ng-switch-when="null" class="text-upper">Contact No.</span>
+                    <span ng-switch-default>{{client.visits.delivery_plan.delivery_plan1.data.contact_no}}</span>
+                </ng:switch>
+            </div>
+            <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
+                <button class="btn btn-primary btn-done btn-sr btn-center-aligned btn-icon-only" href="#">
+                    <i class=""
+                       ng-class="{'icon-ok green': client.visits.delivery_plan.delivery_plan1.data.review_risks != null,
+                       'icon-remove red': client.visits.delivery_plan.delivery_plan1.data.review_risks == null}"></i>
+                </button>
+                <ng:switch on="client.visits.delivery_plan.delivery_plan1.data.review_risks">
+                    <span ng-switch-when="null" class="text-upper">Review Risks</span>
+                    <span ng-switch-default>{{client.visits.delivery_plan.delivery_plan1.data.review_risks}}</span>
+                </ng:switch>
+            </div>
         </div>
-        <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
-            <!--VISITS-->
-            <button class="btn btn-primary btn-done btn-sr" href="#">
-                <i class="icon-remove red icon-large"></i>       <br>&nbsp;
-            </button>
-            Delivery Site
-        </div>
-        <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
-            <!--VISITS-->
-            <button class="btn btn-primary btn-done btn-sr" href="#">
-                <i class="icon-remove icon-large red icon-large"></i>       <br>&nbsp;
-            </button>
-            Transport
-        </div>
-        <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
-            <!--VISITS-->
-            <button class="btn btn-primary btn-done btn-sr" href="#">
-                <i class="icon-remove red icon-large"></i>       <br>&nbsp;
-            </button>
-            Contact No.
-        </div>
-        <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
-            <!--VISITS-->
-            <button class="btn btn-primary btn-done btn-sr" href="#">
-                <i class="icon-remove red icon-large"></i>       <br>&nbsp;
-            </button>
-            Review Risks
-        </div>
-    </div>
+    </ng:switch>
 </div>
 
 

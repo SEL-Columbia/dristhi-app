@@ -70,6 +70,15 @@ describe('ANC Service', function () {
                         status: 'btn-upcoming',
                         visit_date: null
                     }
+                },
+                delivery_plan:
+                {
+                    next: 'delivery_plan1',
+                    delivery_plan1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
                 }
             };
 
@@ -134,6 +143,15 @@ describe('ANC Service', function () {
                 {
                     next: 'hb1',
                     hb1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
+                },
+                delivery_plan:
+                {
+                    next: 'delivery_plan1',
+                    delivery_plan1:
                     {
                         status: 'btn-upcoming',
                         visit_date: null
@@ -208,6 +226,15 @@ describe('ANC Service', function () {
                         status: 'btn-upcoming',
                         visit_date: null
                     }
+                },
+                delivery_plan:
+                {
+                    next: 'delivery_plan1',
+                    delivery_plan1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
                 }
             };
 
@@ -257,6 +284,15 @@ describe('ANC Service', function () {
                 {
                     next: 'hb1',
                     hb1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
+                },
+                delivery_plan:
+                {
+                    next: 'delivery_plan1',
+                    delivery_plan1:
                     {
                         status: 'btn-upcoming',
                         visit_date: null
@@ -322,6 +358,15 @@ describe('ANC Service', function () {
                 {
                     next: 'hb1',
                     hb1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
+                },
+                delivery_plan:
+                {
+                    next: 'delivery_plan1',
+                    delivery_plan1:
                     {
                         status: 'btn-upcoming',
                         visit_date: null
@@ -407,6 +452,15 @@ describe('ANC Service', function () {
                 {
                     next: 'hb1',
                     hb1:
+                    {
+                        status: 'btn-upcoming',
+                        visit_date: null
+                    }
+                },
+                delivery_plan:
+                {
+                    next: 'delivery_plan1',
+                    delivery_plan1:
                     {
                         status: 'btn-upcoming',
                         visit_date: null

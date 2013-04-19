@@ -688,6 +688,13 @@ a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
     margin: 3px 4px 0 0;
 }
 
+.btn-center-aligned {
+    text-align: center;
+}
+.btn-icon-only {
+    font-size: 35px;
+}
+
 /*button states*/
 /*past-due: #d13f3f;*/
 /*due: #389cc8;*/
@@ -907,6 +914,7 @@ a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
 }
 
 .content-smart-registry .row-fluid [class*="span"].span-content {
+    font-size: 15px;
     padding: 5px;
 }
 

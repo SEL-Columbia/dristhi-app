@@ -17,6 +17,10 @@ angular.module("smartRegistry.services")
                 {
                     name: "hb",
                     milestones:["hb1", "hb2", "hb3"]
+                },
+                {
+                    name: 'delivery_plan',
+                    milestones: ['delivery_plan1']
                 }
             ];
 
@@ -81,6 +85,11 @@ angular.module("smartRegistry.services")
                                 name:'ifa2',
                                 date:'26/05',
                                 status:'normal'
+                            },
+                            {
+                                name: 'delivery_plan1',
+                                date: '2012-05-18',
+                                status: 'urgent'
                             }
                         ],
                         services_provided:[
@@ -208,6 +217,18 @@ angular.module("smartRegistry.services")
                                 data:
                                 {
                                     dose: 100
+                                }
+                            },
+                            {
+                                name: 'delivery_plan1',
+                                date: '2012-09-13',
+                                data:{
+                                    asha_name: 'Robin',
+                                    companion: 'Matt',
+                                    delivery_site: null,
+                                    transport: null,
+                                    contact_no: '9403292920',
+                                    review_risks: null
                                 }
                             }
                         ],
