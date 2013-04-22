@@ -46,7 +46,7 @@ public class EligibleCoupleListViewControllerTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new EligibleCoupleListViewController(allEligibleCouples, allBeneficiaries, allSettings, new Cache<String>(), context, commCareClientService);
+        controller = new EligibleCoupleListViewController(allEligibleCouples, allBeneficiaries, allSettings, new Cache<String>(), context);
     }
 
     @Test

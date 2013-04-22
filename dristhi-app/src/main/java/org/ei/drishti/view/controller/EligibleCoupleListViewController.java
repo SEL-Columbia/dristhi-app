@@ -8,12 +8,11 @@ import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.activity.FormActivity;
-import org.ei.drishti.view.contract.EC;
 import org.ei.drishti.view.contract.Beneficiaries;
+import org.ei.drishti.view.contract.EC;
 import org.ei.drishti.view.contract.Village;
 
 import java.util.ArrayList;
@@ -31,17 +30,14 @@ public class EligibleCoupleListViewController {
     private AllBeneficiaries allBeneficiaries;
     private AllSettings allSettings;
     private Context context;
-    private CommCareClientService commCareClientService;
     private Cache<String> eligibleCoupleListCache;
 
     public EligibleCoupleListViewController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries,
-                                            AllSettings allSettings, Cache<String> eligibleCoupleListCache, Context context,
-                                            CommCareClientService commCareClientService) {
+                                            AllSettings allSettings, Cache<String> eligibleCoupleListCache, Context context) {
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.allSettings = allSettings;
         this.context = context;
-        this.commCareClientService = commCareClientService;
         this.eligibleCoupleListCache = eligibleCoupleListCache;
     }
 

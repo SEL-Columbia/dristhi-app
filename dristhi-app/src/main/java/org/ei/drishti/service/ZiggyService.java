@@ -1,6 +1,5 @@
 package org.ei.drishti.service;
 
-import org.ei.drishti.AllConstants;
 import org.ei.drishti.repository.FormDataRepository;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
@@ -9,11 +8,11 @@ import org.mozilla.javascript.ScriptableObject;
 import java.util.Map;
 
 import static java.text.MessageFormat.format;
+import static org.ei.drishti.AllConstants.REPOSITORY;
+import static org.ei.drishti.AllConstants.ZIGGY_FILE_LOADER;
 import static org.ei.drishti.util.Log.logError;
 import static org.ei.drishti.util.Log.logInfo;
-import static org.mozilla.javascript.Context.enter;
-import static org.mozilla.javascript.Context.exit;
-import static org.mozilla.javascript.Context.toObject;
+import static org.mozilla.javascript.Context.*;
 
 public class ZiggyService {
     private static final String SAVE_METHOD_NAME = "save";
@@ -49,8 +48,8 @@ public class ZiggyService {
             context.setOptimizationLevel(-1);
             scope = context.initStandardObjects();
             String jsFiles = ziggyFileLoader.getJSFiles();
-            scope.put(AllConstants.REPOSITORY, scope, toObject(dataRepository, scope));
-            scope.put(AllConstants.ZIGGY_FILE_LOADER, scope, toObject(ziggyFileLoader, scope));
+            scope.put(REPOSITORY, scope, toObject(dataRepository, scope));
+            scope.put(ZIGGY_FILE_LOADER, scope, toObject(ziggyFileLoader, scope));
             context.evaluateString(scope, jsFiles + JS_INIT_SCRIPT, "code", 1, null);
             saveFunction = ((Function) ((Map) scope.get("controller", scope)).get(SAVE_METHOD_NAME));
         } catch (Exception e) {
