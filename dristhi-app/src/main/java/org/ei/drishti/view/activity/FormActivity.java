@@ -46,6 +46,7 @@ public class FormActivity extends SecuredWebActivity {
         webView.addJavascriptInterface(new FormWebInterface(model, form), "androidContext");
         webView.addJavascriptInterface(Context.getInstance().formDataRepository(), REPOSITORY);
         webView.addJavascriptInterface(Context.getInstance().ziggyFileLoader(), ZIGGY_FILE_LOADER);
+        webView.addJavascriptInterface(Context.getInstance().formSubmissionRouter(), FORM_SUBMISSION_ROUTER);
         webView.loadUrl(MessageFormat.format("file:///android_asset/www/form/template.html?{0}={1}&{2}={3}&{4}={5}",
                 FORM_NAME_PARAM, formName, ENTITY_ID_PARAM, entityId, INSTANCE_ID_PARAM, randomUUID()));
     }

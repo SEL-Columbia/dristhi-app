@@ -1,8 +1,10 @@
-package org.ei.drishti.domain;
+package org.ei.drishti.domain.form;
 
+import com.google.gson.Gson;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.domain.SyncStatus;
 
 public class FormSubmission {
     private String instanceId;
@@ -11,6 +13,8 @@ public class FormSubmission {
     private String instance;
     private String version;
     private SyncStatus syncStatus;
+
+    private FormInstance formInstance;
 
     public FormSubmission(String instanceId, String entityId, String formName, String instance, String version, SyncStatus syncStatus) {
         this.instanceId = instanceId;
@@ -48,6 +52,13 @@ public class FormSubmission {
     public FormSubmission setSyncStatus(SyncStatus syncStatus) {
         this.syncStatus = syncStatus;
         return this;
+    }
+
+    public String getFieldValue(String fieldName) {
+        if (formInstance == null) {
+            formInstance = new Gson().fromJson(instance, FormInstance.class);
+        }
+        return formInstance.getFieldValue(fieldName);
     }
 
     @Override

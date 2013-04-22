@@ -192,6 +192,10 @@
             {
                 "name": "isClosed",
                 "value": "false"
+            },
+            {
+                "name": "submissionDate",
+                "bind": "/model/instance/EC_Registration_EngKan/today"
             }
         ]
     }

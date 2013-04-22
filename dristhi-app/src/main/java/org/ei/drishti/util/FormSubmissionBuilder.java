@@ -1,6 +1,6 @@
 package org.ei.drishti.util;
 
-import org.ei.drishti.domain.FormSubmission;
+import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.domain.SyncStatus;
 
 import static org.ei.drishti.domain.SyncStatus.SYNCED;

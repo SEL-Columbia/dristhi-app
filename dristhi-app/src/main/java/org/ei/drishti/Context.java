@@ -2,6 +2,9 @@ package org.ei.drishti;
 
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
+import org.ei.drishti.service.formSubmissionHandler.ECRegistrationHandler;
+import org.ei.drishti.service.formSubmissionHandler.FPComplicationsHandler;
+import org.ei.drishti.service.formSubmissionHandler.FormSubmissionRouter;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
 
@@ -51,6 +54,9 @@ public class Context {
 
     private HTTPAgent httpAgent;
     private ZiggyFileLoader ziggyFileLoader;
+
+    private FormSubmissionRouter formSubmissionRouter;
+    private ECRegistrationHandler ecRegistrationHandler;
 
     protected Context() {
     }
@@ -104,10 +110,25 @@ public class Context {
         return formSubmissionService;
     }
 
+    public FormSubmissionRouter formSubmissionRouter() {
+        initRepository();
+        if (formSubmissionRouter == null) {
+            formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(), new FPComplicationsHandler());
+        }
+        return formSubmissionRouter;
+    }
+
+    private ECRegistrationHandler ecRegistrationHandler() {
+        if (ecRegistrationHandler == null) {
+            ecRegistrationHandler = new ECRegistrationHandler(eligibleCoupleService());
+        }
+        return ecRegistrationHandler;
+    }
+
     private ZiggyService ziggyService() {
         initRepository();
         if (ziggyService == null) {
-            ziggyService = new ZiggyService(ziggyFileLoader(), formDataRepository());
+            ziggyService = new ZiggyService(ziggyFileLoader(), formDataRepository(), formSubmissionRouter());
         }
         return ziggyService;
     }
@@ -263,7 +284,7 @@ public class Context {
 
     public EligibleCoupleService eligibleCoupleService() {
         if (eligibleCoupleService == null) {
-            eligibleCoupleService = new EligibleCoupleService(eligibleCoupleRepository());
+            eligibleCoupleService = new EligibleCoupleService(eligibleCoupleRepository(), timelineEventRepository());
         }
         return eligibleCoupleService;
     }

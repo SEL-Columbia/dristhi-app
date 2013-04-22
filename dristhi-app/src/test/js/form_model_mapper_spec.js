@@ -250,8 +250,7 @@ describe("Form Model Mapper", function () {
                 "fields": [
                     {
                         "name": "id",
-                        "source": "ec.id",
-                        "value": "ec id 1"
+                        "source": "ec.id"
                     },
                     {
                         "name": "field2",
@@ -287,7 +286,7 @@ describe("Form Model Mapper", function () {
             }
         };
         var expectedECInstance = {
-            "id": "ec id 1",
+            "id": "new uuid : ec",
             "field2": "value2",
             "field6": "value6"
         };
@@ -295,7 +294,7 @@ describe("Form Model Mapper", function () {
             "field3": "value3",
             "field5": "value5",
             "id": "new uuid : mother",
-            "ec_id": "ec id 1"
+            "ec_id": "new uuid : ec"
         };
         var expectedChildInstance = {
             "field4": "value4",
@@ -317,6 +316,10 @@ describe("Form Model Mapper", function () {
         })[0];
         expect(motherId).toBeDefined();
         expect(motherId.value).not.toBeNull();
+        var ecId = formModel.form.fields.filter(function (field) {
+            return field.source === "ec.id";
+        })[0];
+        expect(ecId.value).toBe("new uuid : ec");
     });
 
     it("should map form model into entities and save self, parent and child.", function () {

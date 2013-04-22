@@ -2,7 +2,7 @@ package org.ei.drishti.service;
 
 import com.google.gson.Gson;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.FormSubmission;
+import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.repository.AllSettings;

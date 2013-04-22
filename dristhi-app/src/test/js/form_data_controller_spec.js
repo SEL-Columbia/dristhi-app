@@ -4,12 +4,14 @@ describe("Form Data Controller", function () {
     var formDefinitionLoader;
     var formModelMapper;
     var formDataRepository;
+    var submissionRouter;
 
     beforeEach(function () {
         entityRelationshipLoader = new enketo.EntityRelationshipLoader();
         formDefinitionLoader = new enketo.FormDefinitionLoader();
         formDataRepository = new enketo.FormDataRepository();
         formModelMapper = new enketo.FormModelMapper(formDataRepository, new enketo.SQLQueryBuilder(formDataRepository));
+        submissionRouter = new enketo.FormSubmissionRouter();
     });
 
     it("should get form model for given a form type when there is no instance id.", function () {
@@ -25,7 +27,7 @@ describe("Form Data Controller", function () {
         spyOn(formDefinitionLoader, 'load').andReturn(formDefinition);
         spyOn(formModelMapper, 'mapToFormModel').andReturn(expectedFormModel);
 
-        formDataController = new enketo.FormDataController(entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository);
+        formDataController = new enketo.FormDataController(entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository, submissionRouter);
         var actualFormModel = formDataController.get(params);
 
         expect(actualFormModel).toBe(expectedFormModel);
@@ -61,7 +63,7 @@ describe("Form Data Controller", function () {
         spyOn(formDataRepository, 'saveFormSubmission');
         spyOn(formModelMapper, 'mapToEntityAndSave');
 
-        formDataController = new enketo.FormDataController(entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository);
+        formDataController = new enketo.FormDataController(entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository, submissionRouter);
         formDataController.save(params, formModel);
 
         expect(formDataRepository.saveFormSubmission).toHaveBeenCalledWith(params, formModel);
@@ -78,7 +80,7 @@ describe("Form Data Controller", function () {
         spyOn(formDataRepository, 'saveFormSubmission');
         spyOn(formModelMapper, 'mapToEntityAndSave');
 
-        formDataController = new enketo.FormDataController(entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository);
+        formDataController = new enketo.FormDataController(entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository, submissionRouter);
         formDataController.save(params, formModel);
 
         expect(formDataRepository.saveFormSubmission).toHaveBeenCalledWith(params, formModel);
@@ -113,9 +115,44 @@ describe("Form Data Controller", function () {
             ];
         });
 
-        formDataController = new enketo.FormDataController(entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository);
+        formDataController = new enketo.FormDataController(entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository, submissionRouter);
         formDataController.save(params, formModel);
 
         expect(formDataRepository.saveFormSubmission).toHaveBeenCalledWith({"entityId": "ec id 1"}, formModel);
+    });
+
+    it("should call router when form submission save succeeds.", function () {
+        var entityRelationshipJSON = [
+            {
+                "parent": "ec",
+                "child": "mother",
+                "field": "wife",
+                "kind": "one_to_one",
+                "from": "ec.id",
+                "to": "mother.ec_id"
+            }
+        ];
+        var formDefinition = {};
+        var formModel = {};
+        var params = {"instanceId": "instance id 1"};
+        spyOn(entityRelationshipLoader, 'load').andReturn(entityRelationshipJSON);
+        spyOn(formDefinitionLoader, 'load').andReturn(formDefinition);
+        spyOn(formDataRepository, 'saveFormSubmission').andReturn("instance id 1");
+        spyOn(submissionRouter, 'route');
+        spyOn(formModelMapper, 'mapToEntityAndSave').andCallFake(function (entityRelationship, formModel) {
+            formModel["form"] = {};
+            formModel.form.bind_type = "ec";
+            formModel.form["fields"] = [
+                {
+                    source: "ec.id",
+                    value: "ec id 1"
+                }
+            ];
+        });
+
+        formDataController = new enketo.FormDataController(entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository, submissionRouter);
+        formDataController.save(params, formModel);
+
+        expect(submissionRouter.route).toHaveBeenCalledWith("instance id 1");
     });
 });

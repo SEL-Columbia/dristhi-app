@@ -5,7 +5,7 @@ import android.database.Cursor;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
-import org.ei.drishti.domain.FormSubmission;
+import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.domain.SyncStatus;
 
 import java.util.ArrayList;
@@ -73,11 +73,12 @@ public class FormDataRepository extends DrishtiRepository {
         return new Gson().toJson(results);
     }
 
-    public void saveFormSubmission(String paramsJSON, String data) {
+    public String saveFormSubmission(String paramsJSON, String data) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         Map<String, String> params = new Gson().fromJson(paramsJSON, new TypeToken<Map<String, String>>() {
         }.getType());
         database.insert(FORM_SUBMISSION_TABLE_NAME, null, createValuesForFormSubmission(params, data));
+        return params.get(INSTANCE_ID_PARAM);
     }
 
     public void saveFormSubmission(FormSubmission formSubmission) {

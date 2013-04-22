@@ -2,7 +2,7 @@ if (typeof enketo == "undefined" || !enketo) {
     var enketo = {};
 }
 
-enketo.FormDataController = function (entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository) {
+enketo.FormDataController = function (entityRelationshipLoader, formDefinitionLoader, formModelMapper, formDataRepository, submissionRouter) {
     var self = this;
 
     var init = function (params) {
@@ -37,7 +37,9 @@ enketo.FormDataController = function (entityRelationshipLoader, formDefinitionLo
             })[0];
             params["entityId"] = baseEntityIdField.value;
         }
-        formDataRepository.saveFormSubmission(params, data);
+        if (enketo.hasValue(formDataRepository.saveFormSubmission(params, data))) {
+            submissionRouter.route(params.instanceId);
+        }
     };
     self.delete = function (params) {
         init(params);

@@ -1,6 +1,7 @@
 package org.ei.drishti.service;
 
 import org.ei.drishti.repository.FormDataRepository;
+import org.ei.drishti.service.formSubmissionHandler.FormSubmissionRouter;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
@@ -8,6 +9,7 @@ import org.mozilla.javascript.ScriptableObject;
 import java.util.Map;
 
 import static java.text.MessageFormat.format;
+import static org.ei.drishti.AllConstants.FORM_SUBMISSION_ROUTER;
 import static org.ei.drishti.AllConstants.REPOSITORY;
 import static org.ei.drishti.AllConstants.ZIGGY_FILE_LOADER;
 import static org.ei.drishti.util.Log.logError;
@@ -25,13 +27,15 @@ public class ZiggyService {
 
     private ZiggyFileLoader ziggyFileLoader;
     private FormDataRepository dataRepository;
+    private FormSubmissionRouter formSubmissionRouter;
     private Context context;
     private ScriptableObject scope;
     private Function saveFunction;
 
-    public ZiggyService(ZiggyFileLoader ziggyFileLoader, FormDataRepository dataRepository) {
+    public ZiggyService(ZiggyFileLoader ziggyFileLoader, FormDataRepository dataRepository, FormSubmissionRouter formSubmissionRouter) {
         this.ziggyFileLoader = ziggyFileLoader;
         this.dataRepository = dataRepository;
+        this.formSubmissionRouter = formSubmissionRouter;
         initRhino();
     }
 
@@ -50,6 +54,7 @@ public class ZiggyService {
             String jsFiles = ziggyFileLoader.getJSFiles();
             scope.put(REPOSITORY, scope, toObject(dataRepository, scope));
             scope.put(ZIGGY_FILE_LOADER, scope, toObject(ziggyFileLoader, scope));
+            scope.put(FORM_SUBMISSION_ROUTER, scope, toObject(formSubmissionRouter, scope));
             context.evaluateString(scope, jsFiles + JS_INIT_SCRIPT, "code", 1, null);
             saveFunction = ((Function) ((Map) scope.get("controller", scope)).get(SAVE_METHOD_NAME));
         } catch (Exception e) {
