@@ -115,6 +115,11 @@ enketo.FormModelMapper = function (formDataRepository, queryBuilder, idFactory) 
             }
             //TODO: not every case entityId maybe applicable.
             if (!enketo.hasValue(params.entityId)) {
+                formDefinition.form.fields.forEach(function (field) {
+                    if (!enketo.hasValue(field.source)) {
+                        field["source"] = formDefinition.form.bind_type + "." + field.name;
+                    }
+                });
                 return formDefinition;
             }
             //TODO: pass all the params to the query builder and let it decide what it wants to use for querying.

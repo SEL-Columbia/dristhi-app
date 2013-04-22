@@ -112,6 +112,29 @@ describe("Form Model Mapper", function () {
     });
 
     it("should get form model with empty field values for a given form type when there is no saved form instance, no entity but entity relationship exists", function () {
+        var expectedFormDataDefinition = {
+            "form": {
+                "bind_type": "entity",
+                "default_bind_path": "/Entity registration/",
+                "fields": [
+                    {
+                        "name": "field1",
+                        "source": "entity.field1"
+                    },
+                    {
+                        "name": "field2",
+                        "bind": "field2_bind",
+                        "source": "entity.field2"
+                    },
+                    {
+                        "name": "field3",
+                        "bind": "field3_bind",
+                        "source": "entity.field3_source"
+                    }
+                ]
+            }
+        };
+
         spyOn(formDataRepository, 'getFormInstanceByFormTypeAndId').andReturn(null);
         var entities = [];
         var params = {
@@ -122,7 +145,7 @@ describe("Form Model Mapper", function () {
 
         var formModel = formModelMapper.mapToFormModel(entities, formDefinition, params);
 
-        expect(formModel).toBe(formDefinition);
+        expect(formModel).toEqual(expectedFormDataDefinition);
     });
 
     it("should get form model with values loaded from an entity for a given form type when entity exists", function () {
@@ -215,7 +238,7 @@ describe("Form Model Mapper", function () {
 
         var formModel = formModelMapper.mapToFormModel(entities, formDefinition, params);
 
-        expect(JSON.stringify(formModel)).toBe(JSON.stringify(expectedFormModel));
+        expect(formModel).toEqual(expectedFormModel);
         expect(queryBuilder.loadEntityHierarchy).toHaveBeenCalledWith(entities, "entity", "123");
     });
 

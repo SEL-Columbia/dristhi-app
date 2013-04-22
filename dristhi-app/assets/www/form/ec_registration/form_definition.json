@@ -184,6 +184,14 @@
             {
                 "name": "high_priority_reason",
                 "source": "eligible_couple.highPriorityReason"
+            },
+            {
+                "name": "isOutOfArea",
+                "value": "false"
+            },
+            {
+                "name": "isClosed",
+                "value": "false"
             }
         ]
     }
