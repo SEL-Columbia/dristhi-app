@@ -57,6 +57,7 @@ public class Context {
 
     private FormSubmissionRouter formSubmissionRouter;
     private ECRegistrationHandler ecRegistrationHandler;
+    private FPComplicationsHandler fpComplicationsHandler;
 
     protected Context() {
     }
@@ -104,6 +105,7 @@ public class Context {
     }
 
     public FormSubmissionService formSubmissionService() {
+        initRepository();
         if (formSubmissionService == null) {
             formSubmissionService = new FormSubmissionService(ziggyService(), formDataRepository(), allSettings());
         }
@@ -113,7 +115,7 @@ public class Context {
     public FormSubmissionRouter formSubmissionRouter() {
         initRepository();
         if (formSubmissionRouter == null) {
-            formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(), new FPComplicationsHandler());
+            formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(), fpComplicationsHandler());
         }
         return formSubmissionRouter;
     }
@@ -123,6 +125,13 @@ public class Context {
             ecRegistrationHandler = new ECRegistrationHandler(eligibleCoupleService());
         }
         return ecRegistrationHandler;
+    }
+
+    private FPComplicationsHandler fpComplicationsHandler() {
+        if (fpComplicationsHandler == null) {
+            fpComplicationsHandler = new FPComplicationsHandler(eligibleCoupleService());
+        }
+        return fpComplicationsHandler;
     }
 
     private ZiggyService ziggyService() {

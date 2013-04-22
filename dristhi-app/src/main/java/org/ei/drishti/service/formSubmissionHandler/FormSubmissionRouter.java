@@ -2,8 +2,8 @@ package org.ei.drishti.service.formSubmissionHandler;
 
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.repository.FormDataRepository;
-import org.ei.drishti.util.EasyMap;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.ei.drishti.AllConstants.EC_REGISTRATION;
@@ -18,9 +18,9 @@ public class FormSubmissionRouter {
                                 ECRegistrationHandler ecRegistrationHandler,
                                 FPComplicationsHandler fpComplicationsHandler) {
         this.formDataRepository = formDataRepository;
-        handlerMap = EasyMap.create(EC_REGISTRATION, (FormSubmissionHandler) ecRegistrationHandler)
-                .put(FP_COMPLICATIONS, fpComplicationsHandler)
-                .map();
+        handlerMap = new HashMap<String, FormSubmissionHandler>();
+        handlerMap.put(EC_REGISTRATION, ecRegistrationHandler);
+        handlerMap.put(FP_COMPLICATIONS, fpComplicationsHandler);
 
     }
 

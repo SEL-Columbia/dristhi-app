@@ -193,6 +193,10 @@ describe("Form Model Mapper", function () {
                         "name": "field5",
                         "bind": "field4_bind",
                         "source": "entity.childEntity.field5"
+                    },
+                    {
+                        "name": "previousFPMethod",
+                        "source": "entity.field1"
                     }
                 ]
             }
@@ -229,6 +233,11 @@ describe("Form Model Mapper", function () {
                         "name": "field5",
                         "bind": "field4_bind",
                         "source": "entity.childEntity.field5"
+                    },
+                    {
+                        "name": "previousFPMethod",
+                        "source": "entity.field1",
+                        "value": "value1"
                     }
                 ]
             }

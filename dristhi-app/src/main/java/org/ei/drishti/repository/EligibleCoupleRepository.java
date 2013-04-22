@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.apache.commons.lang3.StringUtils;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.domain.TimelineEvent;
@@ -17,6 +18,9 @@ import java.util.Map;
 
 import static java.lang.Boolean.TRUE;
 import static org.apache.commons.lang3.StringUtils.repeat;
+import static org.ei.drishti.AllConstants.CURRENT_FP_METHOD_FIELD_NAME;
+import static org.ei.drishti.AllConstants.FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME;
+import static org.ei.drishti.AllConstants.FP_UPDATE_FIELD_NAME;
 import static org.ei.drishti.domain.TimelineEvent.forChangeOfFPMethod;
 
 public class EligibleCoupleRepository extends DrishtiRepository {
@@ -37,11 +41,6 @@ public class EligibleCoupleRepository extends DrishtiRepository {
             EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN,
             IS_CLOSED_COLUMN, PHOTO_PATH_COLUMN};
 
-    public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
-    public static final String FP_UPDATE_FIELD_NAME = "fpUpdate";
-    public static final String CHANGE_FP_METHOD_FIELD_NAME = "change_fp_method";
-    public static final String RENEW_FP_PRODUCT_FIELD_NAME = "renew_fp_product";
-    public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME = "familyPlanningMethodChangeDate";
     public static final String NOT_CLOSED = "false";
     private static final String IN_AREA = "false";
 
@@ -195,11 +194,11 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     }
 
     private boolean wasFPProductRenewed(Map<String, String> details) {
-        return details.containsKey(FP_UPDATE_FIELD_NAME) && details.get(FP_UPDATE_FIELD_NAME).equals(RENEW_FP_PRODUCT_FIELD_NAME);
+        return details.containsKey(FP_UPDATE_FIELD_NAME) && details.get(FP_UPDATE_FIELD_NAME).equals(AllConstants.RENEW_FP_PRODUCT_FIELD_NAME);
     }
 
     private boolean wasFPMethodChanged(Map<String, String> details) {
-        return details.containsKey(FP_UPDATE_FIELD_NAME) && details.get(FP_UPDATE_FIELD_NAME).equals(CHANGE_FP_METHOD_FIELD_NAME);
+        return details.containsKey(FP_UPDATE_FIELD_NAME) && details.get(FP_UPDATE_FIELD_NAME).equals(AllConstants.CHANGE_FP_METHOD_FIELD_NAME);
     }
 
     private String insertPlaceholdersForInClause(int length) {

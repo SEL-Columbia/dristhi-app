@@ -82,4 +82,29 @@ public class EligibleCoupleServiceTest {
 
         verifyZeroInteractions(timelineEventRepository);
     }
+
+    @Test
+    public void shouldCreateTimelineEventWhenFPComplicationsIsReported() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("isMethodSame")).thenReturn("no");
+        when(submission.getFieldValue("previousFPMethod")).thenReturn("condom");
+        when(submission.getFieldValue("currentMethod")).thenReturn("ocp");
+        when(submission.getFieldValue("familyPlanningMethodChangeDate")).thenReturn("2012-01-01");
+
+        service.fpComplications(submission);
+
+        verify(timelineEventRepository).add(TimelineEvent.forChangeOfFPMethod("entity id 1", "condom", "ocp", "2012-01-01"));
+    }
+
+    @Test
+    public void shouldNotCreateTimelineEventWhenFPComplicationsIsReportedWithoutMethodChange() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("isMethodSame")).thenReturn("yes");
+
+        service.fpComplications(submission);
+
+        verifyZeroInteractions(timelineEventRepository);
+    }
 }
