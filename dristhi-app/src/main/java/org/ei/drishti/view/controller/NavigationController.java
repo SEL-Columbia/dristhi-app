@@ -7,6 +7,9 @@ import org.ei.drishti.service.ANMService;
 import org.ei.drishti.view.activity.*;
 import org.ei.drishti.view.contract.HomeContext;
 
+import static org.ei.drishti.AllConstants.ENTITY_ID_PARAM;
+import static org.ei.drishti.AllConstants.FORM_NAME_PARAM;
+
 public class NavigationController {
     private Context context;
     private ANMService anmService;
@@ -42,6 +45,13 @@ public class NavigationController {
 
     public void startFPSmartRegistry() {
         context.startActivity(new Intent(context, FPSmartRegistryActivity.class));
+    }
+
+    public void startFormActivity(String formName, String entityId) {
+        Intent intent = new Intent(context, FormActivity.class);
+        intent.putExtra(FORM_NAME_PARAM, formName);
+        intent.putExtra(ENTITY_ID_PARAM, entityId);
+        context.startActivity(intent);
     }
 
     public String get() {

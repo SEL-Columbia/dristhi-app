@@ -54,7 +54,7 @@ public class ChildServiceTest {
     @Test
     public void shouldRegisterChildWhenMotherIsFound() throws Exception {
         Action action = ActionBuilder.actionForCreateChild("Case Mother X");
-        when(motherRepository.find("Case Mother X")).thenReturn(new Mother("Case Mother X", "EC CASE 1", "TC 1", "2012-01-01"));
+        when(motherRepository.findOpenCaseByCaseID("Case Mother X")).thenReturn(new Mother("Case Mother X", "EC CASE 1", "TC 1", "2012-01-01"));
 
         service.register(action);
         verify(allTimelineEvents).add(forChildBirthInMotherProfile("Case Mother X", action.get("dateOfBirth"), action.get("gender"), action.details()));
@@ -65,7 +65,7 @@ public class ChildServiceTest {
     @Test
     public void shouldNotRegisterChildWhenMotherIsNotFound() throws Exception {
         Action action = ActionBuilder.actionForCreateChild("Case Mother X");
-        when(motherRepository.find("Case Mother X")).thenReturn(null);
+        when(motherRepository.findOpenCaseByCaseID("Case Mother X")).thenReturn(null);
 
         service.register(action);
 

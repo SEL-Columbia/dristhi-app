@@ -4,6 +4,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.view.View;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.service.ActionService;
+import org.ei.drishti.service.FormSubmissionSyncService;
 import org.ei.drishti.sync.AfterFetchListener;
 import org.ei.drishti.sync.UpdateActionsTask;
 import org.ei.drishti.util.FakeDrishtiService;
@@ -31,9 +32,10 @@ public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTes
     public void testShouldNotUpdateWhileAnotherUpdateIsInProgress() throws Throwable {
         setupService(drishtiService, 1000000, new FakeNavigationService()).updateApplicationContext(getActivity().getApplicationContext());
 
-        ActionServiceWithSimulatedLongRunningTask service = new ActionServiceWithSimulatedLongRunningTask();
+        ActionServiceWithSimulatedLongRunningTask actionService = new ActionServiceWithSimulatedLongRunningTask();
+        FakeFormSubmissionSyncService syncService = new FakeFormSubmissionSyncService();
         FakeProgressIndicator progressIndicator = new FakeProgressIndicator();
-        final UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, service, progressIndicator);
+        final UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, actionService, syncService, progressIndicator);
 
         for (int i = 0; i < 40; i++) {
             if (progressIndicator.currentStatus == View.VISIBLE) {
@@ -58,7 +60,7 @@ public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTes
         });
 
         signal.await(6, TimeUnit.SECONDS);
-        assertEquals(1, service.numberOfTimesFetchWasCalled());
+        assertEquals(1, actionService.numberOfTimesFetchWasCalled());
         assertEquals(LoginActivity.class, getActivity().getClass());
     }
 
@@ -86,6 +88,16 @@ public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTes
         }
     }
 
+    private class FakeFormSubmissionSyncService extends FormSubmissionSyncService {
+        public FakeFormSubmissionSyncService() {
+            super(null, null, null, null);
+        }
+
+        @Override
+        public void sync() {
+        }
+    }
+
     private class FakeProgressIndicator implements ProgressIndicator {
         private int currentStatus;
 
@@ -98,5 +110,6 @@ public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTes
         public void setInvisible() {
             this.currentStatus = View.INVISIBLE;
         }
+
     }
 }

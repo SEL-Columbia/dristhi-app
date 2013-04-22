@@ -25,7 +25,7 @@ public class AllBeneficiaries {
     }
 
     public Mother findMother(String caseId) {
-        return motherRepository.find(caseId);
+        return motherRepository.findOpenCaseByCaseID(caseId);
     }
 
     public Child findChild(String caseId) {

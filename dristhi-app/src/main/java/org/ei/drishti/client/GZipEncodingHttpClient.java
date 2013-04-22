@@ -5,11 +5,14 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpHead;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.GZIPInputStream;
+
+import static org.apache.http.HttpStatus.SC_OK;
 
 public class GZipEncodingHttpClient {
     private DefaultHttpClient httpClient;
@@ -24,6 +27,9 @@ public class GZipEncodingHttpClient {
         }
 
         HttpResponse response = httpClient.execute(request);
+        if (response.getStatusLine().getStatusCode() != SC_OK) {
+            throw new IOException("Invalid status code: " + response.getStatusLine().getStatusCode());
+        }
 
         if (response.getEntity() != null && response.getEntity().getContentEncoding() != null) {
             HeaderElement[] codecs = response.getEntity().getContentEncoding().getElements();
@@ -42,5 +48,10 @@ public class GZipEncodingHttpClient {
 
     public CredentialsProvider getCredentialsProvider() {
         return httpClient.getCredentialsProvider();
+    }
+
+    public int postContent(HttpPost request) throws IOException {
+        HttpResponse response = httpClient.execute(request);
+        return response.getStatusLine().getStatusCode();
     }
 }

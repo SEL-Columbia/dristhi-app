@@ -11,6 +11,10 @@ public class Log {
         i("DRISHTI", message);
     }
 
+    public static void logDebug(String message) {
+        d("DRISHTI", message);
+    }
+
     public static void logWarn(String message) {
         w("DRISHTI", message);
     }

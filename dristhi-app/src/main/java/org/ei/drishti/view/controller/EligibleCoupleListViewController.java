@@ -1,17 +1,18 @@
 package org.ei.drishti.view.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.contract.EC;
+import org.ei.drishti.view.activity.FormActivity;
 import org.ei.drishti.view.contract.Beneficiaries;
+import org.ei.drishti.view.contract.EC;
 import org.ei.drishti.view.contract.Village;
 
 import java.util.ArrayList;
@@ -19,6 +20,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static org.ei.drishti.AllConstants.ENTITY_ID_PARAM;
+import static org.ei.drishti.AllConstants.FORM_NAME_PARAM;
 import static org.ei.drishti.view.controller.ProfileNavigationController.navigateToECProfile;
 
 public class EligibleCoupleListViewController {
@@ -27,17 +30,14 @@ public class EligibleCoupleListViewController {
     private AllBeneficiaries allBeneficiaries;
     private AllSettings allSettings;
     private Context context;
-    private CommCareClientService commCareClientService;
     private Cache<String> eligibleCoupleListCache;
 
     public EligibleCoupleListViewController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries,
-                                            AllSettings allSettings, Cache<String> eligibleCoupleListCache, Context context,
-                                            CommCareClientService commCareClientService) {
+                                            AllSettings allSettings, Cache<String> eligibleCoupleListCache, Context context) {
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.allSettings = allSettings;
         this.context = context;
-        this.commCareClientService = commCareClientService;
         this.eligibleCoupleListCache = eligibleCoupleListCache;
     }
 
@@ -64,8 +64,11 @@ public class EligibleCoupleListViewController {
         });
     }
 
-    public void startCommCare(String formId) {
-        commCareClientService.start(context, formId, "");
+    public void startFormActivity(String formName, String entityId) {
+        Intent intent = new Intent(context, FormActivity.class);
+        intent.putExtra(FORM_NAME_PARAM, formName);
+        intent.putExtra(ENTITY_ID_PARAM, entityId);
+        context.startActivity(intent);
     }
 
     public void startEC(String caseId) {

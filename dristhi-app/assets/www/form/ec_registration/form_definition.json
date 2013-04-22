@@ -1,0 +1,202 @@
+{
+    "form": {
+        "bind_type": "eligible_couple",
+        "default_bind_path": "/model/instance/EC_Registration_EngKan/",
+        "fields": [
+            {
+                "name": "id"
+            },
+            {
+                "name": "ec_village_phc",
+                "source": "eligible_couple.phc"
+            },
+            {
+                "name": "ec_village_subcenter",
+                "source": "eligible_couple.subCenter"
+            },
+            {
+                "name": "ec_village",
+                "source": "eligible_couple.village"
+            },
+            {
+                "name": "hh_number",
+                "source": "eligible_couple.householdNumber"
+            },
+            {
+                "name": "hh_address",
+                "source": "eligible_couple.householdAddress"
+            },
+            {
+                "name": "headofhousehold",
+                "source": "eligible_couple.headOfHousehold"
+            },
+            {
+                "name": "ec_number",
+                "source": "eligible_couple.ecNumber"
+            },
+            {
+                "name": "woman_name",
+                "source": "eligible_couple.wifeName"
+            },
+            {
+                "name": "woman_name2",
+                "source": "eligible_couple.wifeName"
+            },
+            {
+                "name": "aadhar_number",
+                "source": "eligible_couple.aadharNumber"
+            },
+            {
+                "name": "woman_age",
+                "source": "eligible_couple.womanAge"
+            },
+            {
+                "name": "woman_date_of_birth",
+                "source": "eligible_couple.womanDOB"
+            },
+            {
+                "name": "husband_name",
+                "source": "eligible_couple.husbandName"
+            },
+            {
+                "name": "phone_no",
+                "source": "eligible_couple.phoneNumber"
+            },
+            {
+                "name": "phone_owner",
+                "source": "eligible_couple.phoneOwner"
+            },
+            {
+                "name": "phone_no2",
+                "source": "eligible_couple.alternatePhoneNumber"
+            },
+            {
+                "name": "phone_owner2",
+                "source": "eligible_couple.alternatePhoneOwner"
+            },
+            {
+                "name": "economic_status",
+                "source": "eligible_couple.economicStatus"
+            },
+            {
+                "name": "bpl_card_number",
+                "source": "eligible_couple.bplCardNumber"
+            },
+            {
+                "name": "religion"
+            },
+            {
+                "name": "caste"
+            },
+            {
+                "name": "educational_level",
+                "source": "eligible_couple.educationalLevel"
+            },
+            {
+                "name": "num_pregnancies",
+                "source": "eligible_couple.pregnancies"
+            },
+            {
+                "name": "num_livebirths",
+                "source": "eligible_couple.numberOfLiveBirths"
+            },
+            {
+                "name": "num_abortions",
+                "source": "eligible_couple.numberOfAbortions"
+            },
+            {
+                "name": "num_abortions_spontaneous",
+                "source": "eligible_couple.numberOfSpontaneousAbortions"
+            },
+            {
+                "name": "num_abortions_induced",
+                "source": "eligible_couple.numberOfInducedAbortions"
+            },
+            {
+                "name": "num_stillbirths",
+                "source": "eligible_couple.numberOfStillBirths"
+            },
+            {
+                "name": "num_livingchildren",
+                "source": "eligible_couple.numberOfLivingChildren"
+            },
+            {
+                "name": "num_livingchildren_male",
+                "source": "eligible_couple.numberOfLivingMaleChildren"
+            },
+            {
+                "name": "num_livingchildren_female",
+                "source": "eligible_couple.numberOfLivingFemaleChild"
+            },
+            {
+                "name": "youngestchild_under2",
+                "source": "eligible_couple.isYoungestChildUnderTwo"
+            },
+            {
+                "name": "age_youngestchild",
+                "source": "eligible_couple.youngestChildAge"
+            },
+            {
+                "name": "familyplanning_method",
+                "source": "eligible_couple.currentMethod"
+            },
+            {
+                "name": "familyplanning_method_1",
+                "source": "eligible_couple.currentMethod"
+            },
+            {
+                "name": "familyplanning_method_other",
+                "source": "eligible_couple.currentMethod"
+            },
+            {
+                "name": "iud_place",
+                "source": "eligible_couple.iudPlace"
+            },
+            {
+                "name": "iud_person",
+                "source": "eligible_couple.iudPerson"
+            },
+            {
+                "name": "date_familyplanningstart",
+                "source": "eligible_couple.familyPlanningMethodChangeDate"
+            },
+            {
+                "name": "threemonths_from_sterilization_date",
+                "source": "eligible_couple.threeMonthsFromSterilizationDate",
+                "bind": "/model/instance/EC_Registration_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date"
+            },
+            {
+                "name": "num_condoms",
+                "source": "eligible_couple.numberOfCondomsSupplied"
+            },
+            {
+                "name": "num_ocp_cycles",
+                "source": "eligible_couple.numberOfOCPDelivered"
+            },
+            {
+                "name": "num_centchroman_pills",
+                "source": "eligible_couple.numberOfCentchromanPillsDelivered"
+            },
+            {
+                "name": "is_high_priority",
+                "source": "eligible_couple.isHighPriority"
+            },
+            {
+                "name": "high_priority_reason",
+                "source": "eligible_couple.highPriorityReason"
+            },
+            {
+                "name": "isOutOfArea",
+                "value": "false"
+            },
+            {
+                "name": "isClosed",
+                "value": "false"
+            },
+            {
+                "name": "submissionDate",
+                "bind": "/model/instance/EC_Registration_EngKan/today"
+            }
+        ]
+    }
+}

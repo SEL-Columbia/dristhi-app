@@ -7,6 +7,7 @@ import static org.ei.drishti.AllConstants.*;
 public class AllSettings {
     public static final String APPLIED_VILLAGE_FILTER_SETTING_KEY = "appliedVillageFilter";
     public static final String PREVIOUS_FETCH_INDEX_SETTING_KEY = "previousFetchIndex";
+    public static final String PREVIOUS_FORM_SYNC_INDEX_SETTING_KEY = "previousFormSyncIndex";
     public static final String ANM_IDENTIFIER_PREFERENCE_KEY = "anmIdentifier";
     private static final String COMMCARE_KEY_ID = "commCareKeyID";
     private static final String COMMCARE_PUBLIC_KEY = "commCarePublicKey";
@@ -78,5 +79,13 @@ public class AllSettings {
 
     public void saveIsSyncInProgress(Boolean isSyncInProgress) {
         preferences.edit().putBoolean(IS_SYNC_IN_PROGRESS_PREFERENCE_KEY, isSyncInProgress).commit();
+    }
+
+    public String fetchPreviousFormSyncIndex() {
+        return settingsRepository.querySetting(PREVIOUS_FORM_SYNC_INDEX_SETTING_KEY, "0");
+    }
+
+    public void savePreviousFormSyncIndex(String value) {
+        settingsRepository.updateSetting(PREVIOUS_FORM_SYNC_INDEX_SETTING_KEY, value);
     }
 }

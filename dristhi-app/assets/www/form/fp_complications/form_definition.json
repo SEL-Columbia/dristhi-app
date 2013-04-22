@@ -1,0 +1,88 @@
+{
+    "form": {
+        "bind_type": "eligible_couple",
+        "default_bind_path": "/model/instance/Family_Planning_Complications_EngKan/",
+        "fields": [
+            {
+                "name": "id"
+            },
+            {
+                "name": "case_familyplanning_method",
+                "source": "eligible_couple.currentMethod"
+            },
+            {
+                "name": "isMethodSame",
+                "bind": "/model/instance/Family_Planning_Complications_EngKan/method_still_the_same"
+            },
+            {
+                "name": "iud_removal_date",
+                "source": "eligible_couple.iudRemovalDate"
+            },
+            {
+                "name": "iud_removal_place",
+                "source": "eligible_couple.iudRemovalPlace"
+            },
+            {
+                "name": "fpMethodProblem",
+                "bind": "/model/instance/Family_Planning_Complications_EngKan/familyplanning_method_1"
+            },
+            {
+                "name": "familyPlanningMethodChangeDate",
+                "bind": "/model/instance/Family_Planning_Complications_EngKan/date_familyplanningstart"
+            },
+            {
+                "name": "iud_place",
+                "source": "eligible_couple.iudPlace"
+            },
+            {
+                "name": "iud_person",
+                "source": "eligible_couple.iudPerson"
+            },
+            {
+                "name": "num_ocp_cycles",
+                "source": "eligible_couple.numberOfOCPDelivered"
+            },
+            {
+                "name": "threemonths_from_sterilization_date",
+                "source": "eligible_couple.threeMonthsFromSterilizationDate",
+                "bind": "/model/instance/Family_Planning_Complications_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date"
+            },
+            {
+                "name": "currentMethod",
+                "bind": "/model/instance/Family_Planning_Complications_EngKan/familyplanning_method"
+            },
+            {
+                "name": "complication_date",
+                "source": "eligible_couple.fpComplicationDate"
+            },
+            {
+                "name": "sterilization_failure",
+                "source": "eligible_couple.isSterilizationFailure"
+            },
+            {
+                "name": "iud_sideeffect",
+                "source": "eligible_couple.iud_SideEffect"
+            },
+            {
+                "name": "ocp_sideeffect",
+                "source": "eligible_couple.ocpSideEffect"
+            },
+            {
+                "name": "sterilization_sideeffect",
+                "source": "eligible_couple.sterilizationSideEffect"
+            },
+            {
+                "name": "injectable_sideeffect",
+                "source": "eligible_couple.injectableSideEffect"
+            },
+            {
+                "name": "previousFPMethod",
+                "source": "eligible_couple.currentMethod"
+            },
+            {
+                "name": "submissionDate",
+                "bind": "/model/instance/EC_Registration_EngKan/today"
+            }
+        ]
+    }
+}

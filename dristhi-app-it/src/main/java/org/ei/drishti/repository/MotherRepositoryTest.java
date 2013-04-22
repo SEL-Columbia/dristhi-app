@@ -122,18 +122,18 @@ public class MotherRepositoryTest extends AndroidTestCase {
         repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
         repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
 
-        assertEquals(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"), repository.find("CASE X"));
-        assertEquals(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08"), repository.find("CASE Y"));
-        assertEquals(null, repository.find("CASE NOT FOUND"));
+        assertEquals(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"), repository.findOpenCaseByCaseID("CASE X"));
+        assertEquals(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08"), repository.findOpenCaseByCaseID("CASE Y"));
+        assertEquals(null, repository.findOpenCaseByCaseID("CASE NOT FOUND"));
     }
 
     public void testShouldNotFindAClosedMotherByCaseId() throws Exception {
         repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
         repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08").setIsClosed(true));
 
-        assertEquals(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"), repository.find("CASE X"));
-        assertEquals(null, repository.find("CASE Y"));
-        assertEquals(null, repository.find("CASE NOT FOUND"));
+        assertEquals(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"), repository.findOpenCaseByCaseID("CASE X"));
+        assertEquals(null, repository.findOpenCaseByCaseID("CASE Y"));
+        assertEquals(null, repository.findOpenCaseByCaseID("CASE NOT FOUND"));
     }
 
     public void testShouldCountANCsAndPNCs() throws Exception {

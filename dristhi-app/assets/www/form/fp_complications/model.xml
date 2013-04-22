@@ -1,0 +1,37 @@
+<model>
+    <instance xmlns="http://www.w3.org/2002/xforms">
+        <Family_Planning_Complications_EngKan id="Family_Planning_Complications_EngKan">
+            <formhub>
+                <uuid/>
+            </formhub>
+            <today/>
+            <case_familyplanning_method/>
+            <method_still_the_same/>
+            <iud_removal_date/>
+            <iud_removal_place/>
+            <familyplanning_method_1/>
+            <date_familyplanningstart/>
+            <iud_place/>
+            <iud_person/>
+            <num_ocp_cycles/>
+            <familyplanning_method/>
+            <male_sterilizaton_group>
+                <threemonths_from_sterilization_date/>
+                <male_sterilization_message/>
+            </male_sterilizaton_group>
+            <complication_date/>
+            <sterilization_failure/>
+            <iud_sideeffect/>
+            <ocp_sideeffect/>
+            <sterilization_sideeffect/>
+            <injectable_sideeffect/>
+            <side_effects/>
+            <sideeffect_iud_ocp/>
+            <counseling/>
+            <sterilization_counseling/>
+            <meta>
+                <instanceID/>
+            </meta>
+        </Family_Planning_Complications_EngKan>
+    </instance>
+</model>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <title>Drishti</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Martijn van de Rijdt (Aid Web Solutions) &amp; Modi Research Group">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <link href="../../css/form/drishti.css" media="all" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../../js/form/enketo/libraries-all-min.js"></script>
+    <script type="text/javascript" src="../../js/form/enketo/helpers.js"></script>
+    <script type="text/javascript" src="../../js/form/enketo/gui.js"></script>
+    <script type="text/javascript" src="../../js/form/enketo/storage_drishti.js"></script>
+    <script type="text/javascript" src="../../js/form/enketo/form.js"></script>
+    <script type="text/javascript" src="../../js/form/enketo/widgets.js"></script>
+    <script type="text/javascript" src="../../js/form/enketo/webform_drishti.js"></script>
+    <script type="text/javascript" src="../../js/form/util.js"></script>
+    <script type="text/javascript" src="../../js/form/id_factory.js"></script>
+    <script type="text/javascript" src="../../js/form/form_model_mapper.js"></script>
+    <script type="text/javascript" src="../../js/form/entity_relationship_loader.js"></script>
+    <script type="text/javascript" src="../../js/form/entity.js"></script>
+    <script type="text/javascript" src="../../js/form/relation_kind.js"></script>
+    <script type="text/javascript" src="../../js/form/entity_relationships.js"></script>
+    <script type="text/javascript" src="../../js/form/form_definition_loader.js"></script>
+    <script type="text/javascript" src="../../js/form/sql_query_builder.js"></script>
+    <script type="text/javascript" src="../../js/form/form_data_repository.js"></script>
+    <script type="text/javascript" src="../../js/form/form_submission_router.js"></script>
+    <script type="text/javascript" src="../../js/form/form_data_controller.js"></script>
+
+    <script type="text/javascript">
+        console.log("Initialising enketo template.");
+        window.onerror = function (m, u, l) {
+            console.log("Javascript Error: , msg: {0}, url: {1}, line: {2}".format(m, u, l));
+            return true;
+        };
+
+        var settings = {};
+        settings['mapsDynamicAPIKey'] = 'AIzaSyDF5xYZfxN7r5SsNPGstjAeTzwa6dVU4Ik';
+        settings['mapsStaticAPIKey'] = 'AIzaSyDF5xYZfxN7r5SsNPGstjAeTzwa6dVU4Ik';
+        settings['supportEmail'] = '';
+        settings['returnURL'] = '';
+
+        var modelStr = androidContext.getModel();
+        console.log("Got Model.");
+    </script>
+</head>
+<body>
+
+<div id="feedback-bar" class="alert">
+    <i class="icon-info-sign"></i>
+    <a href="#" class="close">&times;</a>
+</div>
+
+<div id="dialog-alert" class="modal hide fade ">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3></h3>
+    </div>
+    <div class="modal-body">
+        <p class="alert alert-block alert-error"></p>
+    </div>
+    <div class="modal-footer">
+        <span class="self-destruct-timer"></span>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>
+
+<div id="dialog-confirm" class="modal hide fade">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3></h3>
+    </div>
+    <div class="modal-body">
+        <p class="alert alert-block alert-error"></p>
+
+        <p class="msg"></p>
+    </div>
+    <div class="modal-footer">
+        <span class="self-destruct-timer"></span>
+        <button class="negative btn">Close</button>
+        <button class="positive btn btn-info">Confirm</button>
+    </div>
+</div>
+
+<div id="dialog-save" class="dialog" style="display: none;">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3></h3>
+    </div>
+    <div class="modal-body">
+        <form onsubmit="return false;">
+            <span class="dialog-msg"></span>
+            <span class="dialog-error ui-state-error"></span>
+            <label>name:<input name="record-name" type="text"/></label>
+            <label><input name="record-final" type="checkbox" value="true"/><span>final</span></label>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    </div>
+</div>
+<div class="main">
+    <article class="paper">
+        <div class="form-header clearfix"><span class="form-language-selector"><span>Choose Language</span></span></div>
+
+        <script>
+            document.write(androidContext.getForm());
+        </script>
+
+        <button id="validate-form" class="btn btn-info btn-large"> Validate</button>
+        <div class="enketo-power">Powered by <img src="../../img/form/enketo_bare_100x37.png" alt="enketo logo"/>
+        </div>
+    </article>
+</div>
+</body>
+</html>

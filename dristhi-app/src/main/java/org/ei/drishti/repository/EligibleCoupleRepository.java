@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.apache.commons.lang3.StringUtils;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.domain.TimelineEvent;
@@ -15,14 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.Boolean.TRUE;
 import static org.apache.commons.lang3.StringUtils.repeat;
+import static org.ei.drishti.AllConstants.CURRENT_FP_METHOD_FIELD_NAME;
+import static org.ei.drishti.AllConstants.FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME;
+import static org.ei.drishti.AllConstants.FP_UPDATE_FIELD_NAME;
 import static org.ei.drishti.domain.TimelineEvent.forChangeOfFPMethod;
 
 public class EligibleCoupleRepository extends DrishtiRepository {
-    private static final String EC_SQL = "CREATE TABLE eligible_couple(caseID VARCHAR PRIMARY KEY, wifeName VARCHAR, " +
-            "husbandName VARCHAR, ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR, " +
-            "isClosed INTEGER, photoPath VARCHAR)";
-    public static final String CASE_ID_COLUMN = "caseID";
+    private static final String EC_SQL = "CREATE TABLE eligible_couple(id VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, " +
+            "ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR, isClosed VARCHAR, photoPath VARCHAR)";
+    public static final String CASE_ID_COLUMN = "id";
     private static final String EC_NUMBER_COLUMN = "ecNumber";
     private static final String WIFE_NAME_COLUMN = "wifeName";
     private static final String HUSBAND_NAME_COLUMN = "husbandName";
@@ -37,12 +41,8 @@ public class EligibleCoupleRepository extends DrishtiRepository {
             EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN,
             IS_CLOSED_COLUMN, PHOTO_PATH_COLUMN};
 
-    public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
-    public static final String FP_UPDATE_FIELD_NAME = "fpUpdate";
-    public static final String CHANGE_FP_METHOD_FIELD_NAME = "change_fp_method";
-    public static final String RENEW_FP_PRODUCT_FIELD_NAME = "renew_fp_product";
-    public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME = "familyPlanningMethodChangeDate";
-    public static final String NOT_CLOSED = "0";
+    public static final String NOT_CLOSED = "false";
+    private static final String IN_AREA = "false";
 
     private MotherRepository motherRepository;
     private final AlertRepository alertRepository;
@@ -86,7 +86,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     public List<EligibleCouple> allEligibleCouples() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, IS_OUT_OF_AREA_COLUMN + " = ? AND " +
-                IS_CLOSED_COLUMN + " = ?", new String[]{"false", NOT_CLOSED}, null, null, null, null);
+                IS_CLOSED_COLUMN + " = ?", new String[]{IN_AREA, NOT_CLOSED}, null, null, null, null);
         return readAllEligibleCouples(cursor);
     }
 
@@ -110,14 +110,14 @@ public class EligibleCoupleRepository extends DrishtiRepository {
 
     public long count() {
         return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + EC_TABLE_NAME
-                + " WHERE " + IS_OUT_OF_AREA_COLUMN + " = 'false' and " +
-                IS_CLOSED_COLUMN + " = " + NOT_CLOSED, new String[0]);
+                + " WHERE " + IS_OUT_OF_AREA_COLUMN + " = '" + IN_AREA + "' and " +
+                IS_CLOSED_COLUMN + " = '" + NOT_CLOSED + "'", new String[0]);
     }
 
     public List<String> villages() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(true, EC_TABLE_NAME, new String[]{VILLAGE_NAME_COLUMN}, IS_OUT_OF_AREA_COLUMN +
-                " = ? AND " + IS_CLOSED_COLUMN + " = ?", new String[]{"false", NOT_CLOSED}, null, null, null, null);
+                " = ? AND " + IS_CLOSED_COLUMN + " = ?", new String[]{IN_AREA, NOT_CLOSED}, null, null, null, null);
         cursor.moveToFirst();
         List<String> villages = new ArrayList<String>();
         while (!cursor.isAfterLast()) {
@@ -144,7 +144,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
 
     private void markAsClosed(String caseId) {
         ContentValues values = new ContentValues();
-        values.put(IS_CLOSED_COLUMN, true);
+        values.put(IS_CLOSED_COLUMN, TRUE.toString());
         masterRepository.getWritableDatabase().update(EC_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
@@ -158,7 +158,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         values.put(SUBCENTER_NAME_COLUMN, eligibleCouple.subCenter());
         values.put(IS_OUT_OF_AREA_COLUMN, Boolean.toString(eligibleCouple.isOutOfArea()));
         values.put(DETAILS_COLUMN, new Gson().toJson(eligibleCouple.details()));
-        values.put(IS_CLOSED_COLUMN, eligibleCouple.isClosed());
+        values.put(IS_CLOSED_COLUMN, Boolean.toString(eligibleCouple.isClosed()));
         return values;
     }
 
@@ -169,7 +169,8 @@ public class EligibleCoupleRepository extends DrishtiRepository {
             EligibleCouple eligibleCouple = new EligibleCouple(cursor.getString(0), cursor.getString(1), cursor.getString(2),
                     cursor.getString(3), cursor.getString(4), cursor.getString(5),
                     new Gson().<Map<String, String>>fromJson(cursor.getString(7), new TypeToken<Map<String, String>>() {
-                    }.getType())).setIsClosed(cursor.getInt(8) != 0);
+                    }.getType()));
+            eligibleCouple.setIsClosed(Boolean.valueOf(cursor.getString(8)));
             if (Boolean.valueOf(cursor.getString(6)))
                 eligibleCouple.asOutOfArea();
             eligibleCouple.withPhotoPath(cursor.getString(9));
@@ -193,11 +194,11 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     }
 
     private boolean wasFPProductRenewed(Map<String, String> details) {
-        return details.containsKey(FP_UPDATE_FIELD_NAME) && details.get(FP_UPDATE_FIELD_NAME).equals(RENEW_FP_PRODUCT_FIELD_NAME);
+        return details.containsKey(FP_UPDATE_FIELD_NAME) && details.get(FP_UPDATE_FIELD_NAME).equals(AllConstants.RENEW_FP_PRODUCT_FIELD_NAME);
     }
 
     private boolean wasFPMethodChanged(Map<String, String> details) {
-        return details.containsKey(FP_UPDATE_FIELD_NAME) && details.get(FP_UPDATE_FIELD_NAME).equals(CHANGE_FP_METHOD_FIELD_NAME);
+        return details.containsKey(FP_UPDATE_FIELD_NAME) && details.get(FP_UPDATE_FIELD_NAME).equals(AllConstants.CHANGE_FP_METHOD_FIELD_NAME);
     }
 
     private String insertPlaceholdersForInClause(int length) {

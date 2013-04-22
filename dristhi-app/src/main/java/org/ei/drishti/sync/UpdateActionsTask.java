@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.service.ActionService;
+import org.ei.drishti.service.FormSubmissionSyncService;
 import org.ei.drishti.view.BackgroundAction;
 import org.ei.drishti.view.LockingBackgroundTask;
 import org.ei.drishti.view.ProgressIndicator;
@@ -14,10 +15,12 @@ public class UpdateActionsTask {
     private final LockingBackgroundTask task;
     private ActionService actionService;
     private Context context;
+    private FormSubmissionSyncService formSubmissionSyncService;
 
-    public UpdateActionsTask(Context context, ActionService actionService, ProgressIndicator progressIndicator) {
+    public UpdateActionsTask(Context context, ActionService actionService, FormSubmissionSyncService formSubmissionSyncService, ProgressIndicator progressIndicator) {
         this.actionService = actionService;
         this.context = context;
+        this.formSubmissionSyncService = formSubmissionSyncService;
         task = new LockingBackgroundTask(progressIndicator);
     }
 
@@ -29,6 +32,7 @@ public class UpdateActionsTask {
 
         task.doActionInBackground(new BackgroundAction<FetchStatus>() {
             public FetchStatus actionToDoInBackgroundThread() {
+                formSubmissionSyncService.sync();
                 return actionService.fetchNewActions();
             }
 

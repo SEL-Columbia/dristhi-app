@@ -53,10 +53,16 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
+    var bindToLaunchForm = function (callbackToRunBeforeAnyAction, identifierOfElement) {
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function (e) {
+            anmNavigationBridge.delegateToFormLaunchView($(e.currentTarget).data("formname"), $(e.currentTarget).data("entityid"));
+        });
+    };
+
     var runWithCallBack = function (callbackToRunBeforeAnyAction, identifierOfElement, action) {
-        $(identifierOfElement).click(function () {
+        $(identifierOfElement).click(function (e) {
             callbackToRunBeforeAnyAction();
-            action();
+            action(e);
         });
     };
 
@@ -72,6 +78,9 @@ function ANMNavigationPanel(anmNavigationBridge) {
             bindToChildList(callbackToRunBeforeAnyAction, "#childMenuOption");
             bindToFPSmartRegistry(callbackToRunBeforeAnyAction, "#fpSmartRegistryOption");
             bindToANCSmartRegistry(callbackToRunBeforeAnyAction, "#ancSmartRegistryOption");
+            bindToLaunchForm(callbackToRunBeforeAnyAction, "#ecRegistration");
+            bindToLaunchForm(callbackToRunBeforeAnyAction, "#familyPlanningUpdate");
+            bindToLaunchForm(callbackToRunBeforeAnyAction, "#fpComplications");
         }
     };
 }
@@ -109,6 +118,9 @@ function ANMNavigationBridge() {
         },
         delegateToANCSmartRegistry: function () {
             return anmNavigationContext.startANCSmartRegistry();
+        },
+        delegateToFormLaunchView: function (formName, entityId) {
+            return anmNavigationContext.startFormActivity(formName, entityId);
         }
     };
 }
@@ -147,6 +159,9 @@ function FakeANMNavigationContext() {
         },
         startANCSmartRegistry: function () {
             window.location = "smart_registry/anc_register.html";
+        },
+        startFormActivity: function (formName, entityId) {
+            alert("Launching form: " + formName);
         }
     }
 }

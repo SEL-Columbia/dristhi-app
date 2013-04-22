@@ -112,6 +112,11 @@
             <artifactId>prettytime</artifactId>
             <version>1.0.8.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.mozilla</groupId>
+            <artifactId>rhino</artifactId>
+            <version>1.7R4</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -150,6 +155,7 @@
                     </preloadSources>
                     <jsSrcDir>assets/js/</jsSrcDir>
                     <sourceIncludes>
+                        <include>form/*.js</include>
                         <include>lib/*.js</include>
                         <include>smart_registry/app.js</include>
                         <include>smart_registry/*.js</include>
