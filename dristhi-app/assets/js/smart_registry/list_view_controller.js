@@ -77,4 +77,9 @@ angular.module("smartRegistry.controllers")
         $scope.allClientsDisplayed = function (filteredClients) {
             return $scope.numberOfClientsToShow >= filteredClients.length;
         };
+
+        $scope.openForm = function (formName, entityId) {
+            $scope.navigationBridge = new ANMNavigationBridge();
+            $scope.navigationBridge.delegateToFormLaunchView(formName, entityId);
+        }
     }]);

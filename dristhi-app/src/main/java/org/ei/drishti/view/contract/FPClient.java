@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class FPClient {
+    private final String entity_id;
     private final String name;
     private final String husband_name;
     private final String age;
@@ -24,10 +25,11 @@ public class FPClient {
     private final String family_planning_method_change_date;
 
     public FPClient(
-            String name, String husband_name, String age, String thayi, String ec_number, String village,
+            String entity_id, String name, String husband_name, String age, String thayi, String ec_number, String village,
             String fp_method, String side_effects, String num_pregnancies,
             String parity, String num_living_children, String num_stillbirths, String num_abortions,
             String days_due, String due_message, boolean isHighPriority, String family_planning_method_change_date) {
+        this.entity_id = entity_id;
         this.name = name;
         this.husband_name = husband_name;
         this.age = age;

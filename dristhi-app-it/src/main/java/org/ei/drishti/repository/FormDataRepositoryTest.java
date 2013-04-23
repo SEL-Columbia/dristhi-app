@@ -6,8 +6,8 @@ import android.test.RenamingDelegatingContext;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.domain.Mother;
+import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.util.FormSubmissionBuilder;
 import org.ei.drishti.util.Session;
 
@@ -53,6 +53,16 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         assertEquals(eligibleCouple.caseId(), fieldValues.get("id"));
         assertEquals(eligibleCouple.wifeName(), fieldValues.get("wifeName"));
         assertEquals("someValue", fieldValues.get("someKey"));
+    }
+
+    public void testReturnsEmptyResultWhenQueryResultsAreEmpty() throws Exception {
+        String sql = MessageFormat.format("select * from eligible_couple where eligible_couple.id = ''{0}''", "");
+
+        String result = repository.queryUniqueResult(sql);
+
+        Map<String, String> fieldValues = new Gson().fromJson(result, new TypeToken<Map<String, String>>() {
+        }.getType());
+        assertEquals(0, fieldValues.size());
     }
 
     public void testShouldRunQueryAndGetListAsResult() throws Exception {

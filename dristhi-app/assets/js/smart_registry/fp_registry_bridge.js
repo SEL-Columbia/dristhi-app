@@ -19,6 +19,7 @@ function FakeFPSmartRegistryContext() {
         get: function () {
             return JSON.stringify([
                 {
+                    "entity_id": "entity 1",
                     "ec_number": "2",
                     "fp_method": "female_sterilization",
                     "husband_name": "Manikyam",
@@ -38,6 +39,7 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "25/02/13"
                 },
                 {
+                    "entity_id": "entity 2",
                     "ec_number": "99",
                     "fp_method": "female_sterilization",
                     "husband_name": "Ramakrishnegowda",
@@ -57,6 +59,7 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "14/03/12"
                 },
                 {
+                    "entity_id": "entity 3",
                     "ec_number": "9",
                     "fp_method": "iud",
                     "husband_name": "Umesh",
@@ -76,6 +79,7 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "02/12/13"
                 },
                 {
+                    "entity_id": "entity 4",
                     "ec_number": "1",
                     "fp_method": "condom",
                     "husband_name": "Anji",
@@ -95,6 +99,7 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "21/06/12"
                 },
                 {
+                    "entity_id": "entity 5",
                     "ec_number": "7",
                     "fp_method": "male_sterilization",
                     "husband_name": "Hemanth",
@@ -114,6 +119,7 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "25/02/13"
                 },
                 {
+                    "entity_id": "entity 6",
                     "ec_number": "10",
                     "fp_method": "female_sterilization",
                     "husband_name": "Nandisha",
@@ -133,6 +139,7 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "25/02/13"
                 },
                 {
+                    "entity_id": "entity 7",
                     "ec_number": "3",
                     "fp_method": "none",
                     "husband_name": "Biju Nayak",
@@ -152,6 +159,7 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "25/02/13"
                 },
                 {
+                    "entity_id": "entity 8",
                     "ec_number": "4",
                     "fp_method": "none",
                     "husband_name": "Naresh",
@@ -171,6 +179,7 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "25/02/13"
                 },
                 {
+                    "entity_id": "entity 9",
                     "ec_number": "11",
                     "fp_method": "none",
                     "husband_name": "Suresh",
@@ -190,6 +199,7 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "25/02/13"
                 },
                 {
+                    "entity_id": "entity 10",
                     "ec_number": "13",
                     "fp_method": "female_sterilization",
                     "husband_name": "Kalyan",
@@ -209,6 +219,7 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "25/02/13"
                 },
                 {
+                    "entity_id": "entity 11",
                     "ec_number": "13",
                     "fp_method": "none",
                     "husband_name": "vinod",
@@ -228,6 +239,7 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "25/02/13"
                 },
                 {
+                    "entity_id": "entity 12",
                     "ec_number": "8",
                     "fp_method": "female_sterilization",
                     "husband_name": "Raja",
@@ -247,6 +259,7 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "25/02/13"
                 },
                 {
+                    "entity_id": "entity 13",
                     "ec_number": "12",
                     "fp_method": "none",
                     "husband_name": "Naresh",
@@ -266,6 +279,7 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "25/02/13"
                 },
                 {
+                    "entity_id": "entity 14",
                     "ec_number": "1",
                     "fp_method": "condom",
                     "husband_name": "Raja",

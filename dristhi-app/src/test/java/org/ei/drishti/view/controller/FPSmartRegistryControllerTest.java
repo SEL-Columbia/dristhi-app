@@ -51,12 +51,12 @@ public class FPSmartRegistryControllerTest {
         when(allEligibleCouples.all()).thenReturn(asList(ecHighPriority3, ecNormalPriority2, ecHighPriority1, ecNormalPriority3, ecNormalPriority1, ecHighPriority2));
         when(allBeneficiaries.findMotherByECCaseId("EC Case 1")).thenReturn(motherForNormalPriorityEC1);
         when(allBeneficiaries.findMotherByECCaseId("EC Case 4")).thenReturn(motherForHighPriorityEC1);
-        FPClient expectedNormalPriorityClient1 = new FPClient("Woman A", "Husband A", "22", "12345", "EC Number 1", "Bherya", "condom", "sideEffects 1", "2", "2", "1", "1", "0", null, null, false, "2013-01-02");
-        FPClient expectedNormalPriorityClient2 = new FPClient("Woman B", "Husband B", "23", "", "EC Number 2", "kavalu_hosur", "iud", "sideEffects 2", "4", "1", "5", "0", "9", null, null, false, "2013-01-01");
-        FPClient expectedNormalPriorityClient3 = new FPClient("Woman C", "Husband C", null, "", "EC Number 3", "Bherya", null, null, null, null, null, null, null, null, null, false, null);
-        FPClient expectedHighPriorityClient1 = new FPClient("Woman D", "Husband D", null, "4444", "EC Number 4", "Bherya", null, null, null, null, null, null, null, null, null, true, null);
-        FPClient expectedHighPriorityClient2 = new FPClient("Woman E", "Husband E", null, "", "EC Number 5", "kavalu_hosur", null, null, null, null, null, null, null, null, null, true, null);
-        FPClient expectedHighPriorityClient3 = new FPClient("Woman F", "Husband F", null, "", "EC Number 6", "Bherya", null, null, null, null, null, null, null, null, null, true, null);
+        FPClient expectedNormalPriorityClient1 = new FPClient("EC Case 1", "Woman A", "Husband A", "22", "12345", "EC Number 1", "Bherya", "condom", "sideEffects 1", "2", "2", "1", "1", "0", null, null, false, "2013-01-02");
+        FPClient expectedNormalPriorityClient2 = new FPClient("EC Case 2", "Woman B", "Husband B", "23", "", "EC Number 2", "kavalu_hosur", "iud", "sideEffects 2", "4", "1", "5", "0", "9", null, null, false, "2013-01-01");
+        FPClient expectedNormalPriorityClient3 = new FPClient("EC Case 3", "Woman C", "Husband C", null, "", "EC Number 3", "Bherya", null, null, null, null, null, null, null, null, null, false, null);
+        FPClient expectedHighPriorityClient1 = new FPClient("EC Case 4", "Woman D", "Husband D", null, "4444", "EC Number 4", "Bherya", null, null, null, null, null, null, null, null, null, true, null);
+        FPClient expectedHighPriorityClient2 = new FPClient("EC Case 5", "Woman E", "Husband E", null, "", "EC Number 5", "kavalu_hosur", null, null, null, null, null, null, null, null, null, true, null);
+        FPClient expectedHighPriorityClient3 = new FPClient("EC Case 6", "Woman F", "Husband F", null, "", "EC Number 6", "Bherya", null, null, null, null, null, null, null, null, null, true, null);
 
         String clients = controller.get();
 

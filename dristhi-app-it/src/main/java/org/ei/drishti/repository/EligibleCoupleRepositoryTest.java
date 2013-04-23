@@ -63,6 +63,19 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         assertEquals(asList(TimelineEvent.forChangeOfFPMethod("CASE X", "IUD", "Condom", "2012-03-03")), timelineEventRepository.allFor("CASE X"));
     }
 
+    public void testShouldMergeDetailsOfEligibleCoupleIntoRepository() throws Exception {
+        Map<String, String> detailsBeforeUpdate = create("Key 1", "Value 1").put("currentMethod", "IUD").map();
+        EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsBeforeUpdate);
+        repository.add(eligibleCouple);
+        Map<String, String> detailsToBeUpdated = create("currentMethod", "Condom").put("familyPlanningMethodChangeDate", "2012-03-03").map();
+        Map<String, String> expectedDetails = create("Key 1", "Value 1").put("currentMethod", "Condom").put("familyPlanningMethodChangeDate", "2012-03-03").map();
+
+        repository.mergeDetails("CASE X", detailsToBeUpdated);
+
+        assertEquals(asList(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", expectedDetails)),
+                repository.allEligibleCouples());
+    }
+
     public void testShouldAddATimelineEventForWhenFPProductIsRenewed() throws Exception {
         Map<String, String> detailsBeforeUpdate = create("Key 1", "Value 1").put("currentMethod", "condom").map();
         EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsBeforeUpdate);

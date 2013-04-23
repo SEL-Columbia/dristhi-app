@@ -5,8 +5,8 @@ import android.database.Cursor;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
-import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.domain.SyncStatus;
+import org.ei.drishti.domain.form.FormSubmission;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -167,6 +167,8 @@ public class FormDataRepository extends DrishtiRepository {
 
     private Map<String, String> readARow(Cursor cursor) {
         Map<String, String> columnValues = new HashMap<String, String>();
+        if (cursor.isAfterLast())
+            return columnValues;
         String[] columns = cursor.getColumnNames();
         for (int index = 0; index < columns.length; index++) {
             if (DETAILS_COLUMN_NAME.equalsIgnoreCase(columns[index])) {

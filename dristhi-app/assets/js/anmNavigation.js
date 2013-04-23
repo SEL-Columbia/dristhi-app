@@ -162,7 +162,7 @@ function FakeANMNavigationContext() {
             window.location = "smart_registry/anc_register.html";
         },
         startFormActivity: function (formName, entityId) {
-            alert("Launching form: " + formName);
+            alert("Launching form: " + formName + ", for entityId: '" + entityId +"'");
         }
     }
 }

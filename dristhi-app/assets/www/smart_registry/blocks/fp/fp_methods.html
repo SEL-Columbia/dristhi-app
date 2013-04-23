@@ -6,7 +6,7 @@
             <span>{{client.family_planning_method_change_date}}</span>
         </div>
         <div class="span4 full-height">
-            <button class="btn btn-done btn-sr btn-new-form full-height">Update</button>
+            <button class="btn btn-done btn-sr btn-new-form full-height" ng-click="openForm('fp_change', client.entity_id)">Update</button>
         </div>
     </div>
 </div>
@@ -16,7 +16,7 @@
             <span>{{client.side_effects}}</span>
         </div>
         <div class="span4 full-height">
-            <button class="btn btn-done btn-sr btn-new-form full-height">Side Effects</button>
+            <button class="btn btn-done btn-sr btn-new-form full-height" ng-click="openForm('fp_complications', client.entity_id)">Side Effects</button>
         </div>
     </div>
 </div>

@@ -12,6 +12,7 @@
     <script src="../../js/smart_registry/app.js" type="text/javascript"></script>
     <script src="../../js/smart_registry/list_view_controller.js" type="text/javascript"></script>
     <script src="../../js/smart_registry/fp_registry_bridge.js" type="text/javascript"></script>
+    <script src="../../js/anmNavigation.js" type="text/javascript"></script>
     <script src="../../js/smart_registry/fp_register_app.js" type="text/javascript"></script>
     <script src="../../js/bootstrap.min.js"></script>
 </head>
@@ -35,7 +36,7 @@
                         <li><a href="#" ng-click="openFPModal(ecsWithFPMethodServiceModeOptions)">{{serviceModeOption.label}}<i class="icon-white icon-chevron-down"></i></a></li>
                         <li><a href="#" ng-click="openModal(sortOptions)"><i class="icon-sort icon-white"></i></a></li>
                         <li><a href="#" ng-click="openModal(villageOptions)"><i class="icon-home icon-white"></i></a></li>
-                        <li><a href="#"><i class="icon-plus icon-white"></i></a></li>
+                        <li><a href="#" ng-click="openForm('ec_registration', '')"><i class="icon-plus icon-white"></i></a></li>
                     </ul>
                 </div>
             </div>
