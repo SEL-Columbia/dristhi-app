@@ -7,80 +7,80 @@
                 "name": "id"
             },
             {
-                "name": "ec_village_phc",
-                "source": "eligible_couple.phc"
+                "name": "phc",
+                "bind": "/model/instance/EC_Registration_EngKan/ec_village_phc"
             },
             {
-                "name": "ec_village_subcenter",
-                "source": "eligible_couple.subCenter"
+                "name": "subCenter",
+                "bind": "/model/instance/EC_Registration_EngKan/ec_village_subcenter"
             },
             {
-                "name": "ec_village",
-                "source": "eligible_couple.village"
+                "name": "village",
+                "bind": "/model/instance/EC_Registration_EngKan/ec_village"
             },
             {
-                "name": "hh_number",
-                "source": "eligible_couple.householdNumber"
+                "name": "householdNumber",
+                "bind": "/model/instance/EC_Registration_EngKan/hh_number"
             },
             {
-                "name": "hh_address",
-                "source": "eligible_couple.householdAddress"
+                "name": "householdAddress",
+                "bind": "/model/instance/EC_Registration_EngKan/hh_address"
             },
             {
-                "name": "headofhousehold",
-                "source": "eligible_couple.headOfHousehold"
+                "name": "headOfHousehold",
+                "bind": "/model/instance/EC_Registration_EngKan/headofhousehold"
             },
             {
-                "name": "ec_number",
-                "source": "eligible_couple.ecNumber"
+                "name": "ecNumber",
+                "bind": "/model/instance/EC_Registration_EngKan/ec_number"
             },
             {
-                "name": "woman_name",
-                "source": "eligible_couple.wifeName"
+                "name": "wifeName",
+                "bind": "/model/instance/EC_Registration_EngKan/woman_name"
             },
             {
-                "name": "woman_name2",
-                "source": "eligible_couple.wifeName"
+                "name": "wifeName2",
+                "bind": "/model/instance/EC_Registration_EngKan/woman_name2"
             },
             {
-                "name": "aadhar_number",
-                "source": "eligible_couple.aadharNumber"
+                "name": "aadharNumber",
+                "bind": "/model/instance/EC_Registration_EngKan/aadhar_number"
             },
             {
-                "name": "woman_age",
-                "source": "eligible_couple.womanAge"
+                "name": "wifeAge",
+                "bind": "/model/instance/EC_Registration_EngKan/woman_age"
             },
             {
-                "name": "woman_date_of_birth",
-                "source": "eligible_couple.womanDOB"
+                "name": "womanDOB",
+                "bind": "/model/instance/EC_Registration_EngKan/woman_date_of_birth"
             },
             {
-                "name": "husband_name",
-                "source": "eligible_couple.husbandName"
+                "name": "husbandName",
+                "bind": "/model/instance/EC_Registration_EngKan/husband_name"
             },
             {
-                "name": "phone_no",
-                "source": "eligible_couple.phoneNumber"
+                "name": "phoneNumber",
+                "bind": "/model/instance/EC_Registration_EngKan/phone_no"
             },
             {
-                "name": "phone_owner",
-                "source": "eligible_couple.phoneOwner"
+                "name": "phoneOwner",
+                "bind": "/model/instance/EC_Registration_EngKan/phone_owner"
             },
             {
-                "name": "phone_no2",
-                "source": "eligible_couple.alternatePhoneNumber"
+                "name": "alternatePhoneNumber",
+                "bind": "/model/instance/EC_Registration_EngKan/phone_no2"
             },
             {
-                "name": "phone_owner2",
-                "source": "eligible_couple.alternatePhoneOwner"
+                "name": "alternatePhoneOwner",
+                "bind": "/model/instance/EC_Registration_EngKan/phone_owner2"
             },
             {
-                "name": "economic_status",
-                "source": "eligible_couple.economicStatus"
+                "name": "economicStatus",
+                "bind": "/model/instance/EC_Registration_EngKan/economic_status"
             },
             {
-                "name": "bpl_card_number",
-                "source": "eligible_couple.bplCardNumber"
+                "name": "bplCardNumber",
+                "bind": "/model/instance/EC_Registration_EngKan/bpl_card_number"
             },
             {
                 "name": "religion"
@@ -89,101 +89,100 @@
                 "name": "caste"
             },
             {
-                "name": "educational_level",
-                "source": "eligible_couple.educationalLevel"
+                "name": "educationalLevel",
+                "bind": "/model/instance/EC_Registration_EngKan/educational_level"
             },
             {
-                "name": "num_pregnancies",
-                "source": "eligible_couple.pregnancies"
+                "name": "numberOfPregnancies",
+                "bind": "/model/instance/EC_Registration_EngKan/num_pregnancies"
             },
             {
-                "name": "num_livebirths",
-                "source": "eligible_couple.numberOfLiveBirths"
+                "name": "numberOfLiveBirths",
+                "bind": "/model/instance/EC_Registration_EngKan/num_livebirths"
             },
             {
-                "name": "num_abortions",
-                "source": "eligible_couple.numberOfAbortions"
+                "name": "numberOfAbortions",
+                "bind": "/model/instance/EC_Registration_EngKan/num_abortions"
             },
             {
-                "name": "num_abortions_spontaneous",
-                "source": "eligible_couple.numberOfSpontaneousAbortions"
+                "name": "numberOfSpontaneousAbortions",
+                "bind": "/model/instance/EC_Registration_EngKan/num_abortions_spontaneous"
             },
             {
-                "name": "num_abortions_induced",
-                "source": "eligible_couple.numberOfInducedAbortions"
+                "name": "numberOfInducedAbortions",
+                "bind": "/model/instance/EC_Registration_EngKan/num_abortions_induced"
             },
             {
-                "name": "num_stillbirths",
-                "source": "eligible_couple.numberOfStillBirths"
+                "name": "numberOfStillBirths",
+                "bind": "/model/instance/EC_Registration_EngKan/num_stillbirths"
             },
             {
-                "name": "num_livingchildren",
-                "source": "eligible_couple.numberOfLivingChildren"
+                "name": "numberOfLivingChildren",
+                "bind": "/model/instance/EC_Registration_EngKan/num_livingchildren"
             },
             {
-                "name": "num_livingchildren_male",
-                "source": "eligible_couple.numberOfLivingMaleChildren"
+                "name": "numberOfLivingMaleChildren",
+                "bind": "/model/instance/EC_Registration_EngKan/num_livingchildren_male"
             },
             {
-                "name": "num_livingchildren_female",
-                "source": "eligible_couple.numberOfLivingFemaleChild"
+                "name": "numberOfLivingFemaleChild",
+                "bind": "/model/instance/EC_Registration_EngKan/num_livingchildren_female"
             },
             {
-                "name": "youngestchild_under2",
-                "source": "eligible_couple.isYoungestChildUnderTwo"
+                "name": "isYoungestChildUnderTwo",
+                "bind": "/model/instance/EC_Registration_EngKan/youngestchild_under2"
             },
             {
-                "name": "age_youngestchild",
-                "source": "eligible_couple.youngestChildAge"
+                "name": "youngestChildAge",
+                "bind": "/model/instance/EC_Registration_EngKan/age_youngestchild"
             },
             {
-                "name": "familyplanning_method",
-                "source": "eligible_couple.currentMethod"
+                "name": "currentMethod",
+                "bind": "/model/instance/EC_Registration_EngKan/familyplanning_method"
             },
             {
-                "name": "familyplanning_method_1",
-                "source": "eligible_couple.currentMethod"
+                "name": "currentMethod",
+                "bind": "/model/instance/EC_Registration_EngKan/familyplanning_method_1"
             },
             {
-                "name": "familyplanning_method_other",
-                "source": "eligible_couple.currentMethod"
+                "name": "otherCurrentMethod",
+                "bind": "/model/instance/EC_Registration_EngKan/familyplanning_method_other"
             },
             {
-                "name": "iud_place",
-                "source": "eligible_couple.iudPlace"
+                "name": "iudPlace",
+                "bind": "/model/instance/EC_Registration_EngKan/iud_place"
             },
             {
-                "name": "iud_person",
-                "source": "eligible_couple.iudPerson"
+                "name": "iudPerson",
+                "bind": "/model/instance/EC_Registration_EngKan/iud_person"
             },
             {
-                "name": "date_familyplanningstart",
-                "source": "eligible_couple.familyPlanningMethodChangeDate"
+                "name": "familyPlanningMethodChangeDate",
+                "bind": "/model/instance/EC_Registration_EngKan/date_familyplanningstart"
             },
             {
-                "name": "threemonths_from_sterilization_date",
-                "source": "eligible_couple.threeMonthsFromSterilizationDate",
+                "name": "threeMonthsFromSterilizationDate",
                 "bind": "/model/instance/EC_Registration_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date"
             },
             {
-                "name": "num_condoms",
-                "source": "eligible_couple.numberOfCondomsSupplied"
+                "name": "numberOfCondomsSupplied",
+                "bind": "/model/instance/EC_Registration_EngKan/num_condoms"
             },
             {
-                "name": "num_ocp_cycles",
-                "source": "eligible_couple.numberOfOCPDelivered"
+                "name": "numberOfOCPDelivered",
+                "bind": "/model/instance/EC_Registration_EngKan/num_ocp_cycles"
             },
             {
-                "name": "num_centchroman_pills",
-                "source": "eligible_couple.numberOfCentchromanPillsDelivered"
+                "name": "numberOfCentchromanPillsDelivered",
+                "bind": "/model/instance/EC_Registration_EngKan/num_centchroman_pills"
             },
             {
-                "name": "is_high_priority",
-                "source": "eligible_couple.isHighPriority"
+                "name": "isHighPriority",
+                "bind": "/model/instance/EC_Registration_EngKan/is_high_priority"
             },
             {
-                "name": "high_priority_reason",
-                "source": "eligible_couple.highPriorityReason"
+                "name": "highPriorityReason",
+                "bind": "/model/instance/EC_Registration_EngKan/high_priority_reason"
             },
             {
                 "name": "isOutOfArea",
@@ -196,6 +195,10 @@
             {
                 "name": "submissionDate",
                 "bind": "/model/instance/EC_Registration_EngKan/today"
+            },
+            {
+                "name": "parity",
+                "bind": "/model/instance/EC_Registration_EngKan/parity"
             }
         ]
     }
