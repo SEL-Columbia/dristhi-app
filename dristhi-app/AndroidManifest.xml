@@ -39,55 +39,55 @@
         <activity
             android:name=".view.activity.WorkplanActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".view.activity.ReportsActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".view.activity.ReportIndicatorListViewActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".view.activity.ReportIndicatorDetailActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".view.activity.ReportIndicatorCaseListActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".view.activity.EligibleCoupleListActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".view.activity.EligibleCoupleDetailActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".view.activity.ANCListActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".view.activity.ANCDetailActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".view.activity.PNCListActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".view.activity.PNCDetailActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".view.activity.ChildListActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".view.activity.ChildDetailActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".view.activity.CameraLaunchActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
@@ -99,7 +99,7 @@
         <activity
             android:name=".view.activity.FormActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
 
         <receiver android:name=".view.receiver.SyncBroadcastReceiver"/>
         <receiver android:name=".view.receiver.ConnectivityChangeReceiver">
