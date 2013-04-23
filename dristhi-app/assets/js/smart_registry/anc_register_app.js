@@ -112,8 +112,8 @@ angular.module("smartRegistry.controllers")
             ]
         };
         $scope.locationStatusMapping = {
-            "out_of_area": 3,
-            "left_the_place": 4
+            "out_of_area": 1,
+            "left_the_place": 2
         };
 
         $scope.defaultAncServiceOption = $scope.ancServiceOptions.options[0];
