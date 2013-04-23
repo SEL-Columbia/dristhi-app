@@ -1,95 +1,35 @@
-<div class="content sidepanel-content">
-    <div class="menu-button-container container-fluid">
-        <div class="row-fluid">
-            <div class="menu-button span6" id="workplanButton">
-                <img src="../img/icons/nav-workplan.png" class="menu-icon"><br>
-                {{internationalize "home_workplan_label"}}
-            </div>
-            <div class="menu-button span6" id="reportsButton">
-                <img src="../img/icons/nav-reporting.png" class="menu-icon"><br>
-                {{internationalize "home_report_label"}}
-            </div>
-        </div>
-        <div class="menu-option row-fluid" id="eligibleCoupleMenuOption">
-            <div class="span1">
-                <img src="../img/icons/nav-ec.png">
-            </div>
-            <div class="span9">{{internationalize "home_ec_label"}}</div>
-            <div class="span2 pull-text-completely-right">{{eligibleCoupleCount}}</div>
-        </div>
-        <div class="menu-option-divider"></div>
-
-        <div class="menu-option row-fluid" id="ancMenuOption">
-            <div class="span1">
-                <img src="../img/icons/nav-anc.png">
-            </div>
-            <div class="span9">{{internationalize "home_anc_label"}}</div>
-            <div class="span2 pull-text-completely-right">{{ancCount}}</div>
-        </div>
-        <div class="menu-option-divider"></div>
-
-        <div class="menu-option row-fluid" id="pncMenuOption">
-            <div class="span1">
-                <img src="../img/icons/nav-pnc.png">
-            </div>
-            <div class="span9">{{internationalize "home_pnc_label"}}</div>
-            <div class="span2 pull-text-completely-right">{{pncCount}}</div>
-        </div>
-        <div class="menu-option-divider"></div>
-
-        <div class="menu-option row-fluid" id="childMenuOption">
-            <div class="span1">
-                <img src="../img/icons/nav-child.png">
-            </div>
-            <div class="span9">{{internationalize "home_child_label"}}</div>
-            <div class="span2 pull-text-completely-right">{{childCount}}</div>
-        </div>
-        <div class="menu-option-divider"></div>
-
-        <div class="menu-option row-fluid" id="fpSmartRegistryOption">
-            <div class="span1">
-                <img src="../img/icons/nav-child.png">
-            </div>
-            <div class="span9">FP Smart Registry</div>
-        </div>
-        <div class="menu-option-divider"></div>
-
-        <div class="menu-option row-fluid" id="ancSmartRegistryOption">
-            <div class="span1">
-                <img src="../img/icons/nav-child.png">
-            </div>
-            <div class="span9">ANC Smart Registry</div>
-        </div>
-        <div class="menu-option-divider"></div>
-
-        <div class="menu-option row-fluid" id="ecRegistration" data-formname="ec_registration"
-             data-entityid="df8e94dd-91bd-40d2-a82a-fb7402e97f30">
-            <div class="span1">
-                <img src="../img/icons/nav-child.png">
-            </div>
-            <div class="span9">EC Registration enketo form</div>
-            <div class="span2 pull-text-completely-right"></div>
-        </div>
-        <div class="menu-option-divider"></div>
-
-        <div class="menu-option row-fluid" id="familyPlanningUpdate" data-formname="family_planning_update"
-             data-entityid="df8e94dd-91bd-40d2-a82a-fb7402e97f30">
-            <div class="span1">
-                <img src="../img/icons/nav-child.png">
-            </div>
-            <div class="span9">Family planning update enketo form</div>
-            <div class="span2 pull-text-completely-right"></div>
-        </div>
-        <div class="menu-option-divider"></div>
-
-        <div class="menu-option row-fluid" id="fpComplications" data-formname="fp_complications"
-             data-entityid="df8e94dd-91bd-40d2-a82a-fb7402e97f30">
-            <div class="span1">
-                <img src="../img/icons/nav-child.png">
-            </div>
-            <div class="span9">Family planning complications enketo form</div>
-            <div class="span2 pull-text-completely-right"></div>
-        </div>
-        <div class="menu-option-divider"></div>
-    </div>
+<div class="span2" id="ec-register">
+    <a class="btn btn-register" id="eligibleCoupleMenuOption">
+        <span class="register-count">{{eligibleCoupleCount}}</span>
+        <span class="register-title">{{internationalize "home_ec_label"}}</span>
+        <span>{{internationalize "register_label"}}</span>
+    </a>
+</div>
+<div class="span2" id="fp-register">
+    <a class="btn btn-register" id="fpSmartRegistryOption">
+        <span class="register-count">{{fpCount}}</span>
+        <span class="register-title">{{internationalize "home_fp_label"}}</span>
+        <span>{{internationalize "register_label"}}</span>
+    </a>
+</div>
+<div class="span2" id="anc-register">
+    <a class="btn btn-register" id="ancSmartRegistryOption">
+        <span class="register-count">{{ancCount}}</span>
+        <span class="register-title">{{internationalize "home_anc_label"}}</span>
+        <span>{{internationalize "register_label"}}</span>
+    </a>
+</div>
+<div class="span2" id="pnc-register">
+    <a class="btn btn-register" id="pncMenuOption">
+        <span class="register-count">{{pncCount}}</span>
+        <span class="register-title">{{internationalize "home_pnc_label"}}</span>
+        <span>{{internationalize "register_label"}}</span>
+    </a>
+</div>
+<div class="span2" id="child-register">
+    <a class="btn btn-register" id="childMenuOption">
+        <span class="register-count">{{childCount}}</span>
+        <span class="register-title">{{internationalize "home_child_label"}}</span>
+        <span>{{internationalize "register_label"}}</span>
+    </a>
 </div>

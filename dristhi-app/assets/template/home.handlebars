@@ -1,23 +1,20 @@
-<div id="sidepanel" class="sidepanel affected-by-sidepanel">
-    <div class="menu-background">
-        <div class="navbar navbar-fixed-top navbar-sidepanel">
-            <div class="navbar-inner nav-sidepanel">
-                <span class="brand in-navbar in-sidepanel" href="#">
-                    <img src="../img/icons/nav-logo.png">
-                </span>
-
-                <ul class="nav pull-right">
-                    <li><img class="progress-indicator hidden" src="../img/progress.gif"></li>
-                    <li>
-                        <div class="manual-sync btn btn-primary" id="manualSync">Sync</div>
-                    </li>
-                </ul>
+<div class="row-fluid with-margin with-padding" id="logo-and-buttons">
+    <div class="span10">
+        <div class="row-fluid with-margin" id="drishti-logo">
+            <div class="span10">
+                <center><img src="../img/smart_registry/logo.png"></center>
             </div>
         </div>
-
-        {{> anm_navigation}}
+        <div class="row-fluid with-margin">
+            {{> anm_navigation}}
+        </div>
     </div>
 </div>
-
-<div id="mainpanel-overlay" class="affected-by-sidepanel">
+<div class="row-fluid with-margin" id="reports-videos-buttons">
+    <div class="span5">
+        <a class="btn btn-block btn-inverse" id="reportsButton"><i class="icon-reporting"></i> {{internationalize "home_report_label"}}</a>
+    </div>
+    <div class="span5">
+        <a class="btn btn-block btn-inverse"><i class="icon-tv"></i> {{internationalize "home_videos_label"}}</a>
+    </div>
 </div>

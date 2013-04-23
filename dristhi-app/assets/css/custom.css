@@ -68,7 +68,7 @@
 }
 
 .menu-background {
-    background: #343434;
+    background: #333;
 }
 
 .menu-icon {
@@ -263,7 +263,6 @@
 }
 
 .content {
-    margin-top: 48px;
     padding-top: 2px;
 }
 

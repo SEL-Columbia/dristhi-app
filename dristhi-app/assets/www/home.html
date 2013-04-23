@@ -1,13 +1,13 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/flat-bootstrap-grid10.min.css" rel="stylesheet">
     <link href="../css/custom.css" rel="stylesheet">
     <link href="../css/home.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" charset="UTF-8">
 </head>
 <body>
-<div class="menu-background" id="template-container">
+<div class="menu-background container-fluid" id="template-container">
 </div>
 </body>
 
@@ -28,11 +28,9 @@
 
         pageView.onStartProgressIndicator(function() {
             $(".progress-indicator").removeClass("hidden");
-            $("#manualSync").hide();
         });
         pageView.onStopProgressIndicator(function() {
             $(".progress-indicator").addClass("hidden");
-            $("#manualSync").show();
         });
         pageView.onReload(function() {
             home.populateInto("#template-container", function() {});

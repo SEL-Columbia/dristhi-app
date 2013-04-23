@@ -69,11 +69,11 @@ function ANMNavigationPanel(anmNavigationBridge) {
     return {
         populateInto: function (cssIdentifierOfSidePanelElement, displayTemplate, callbackToRunBeforeAnyAction) {
             populateDataInto(cssIdentifierOfSidePanelElement, displayTemplate);
-            bindToWorkplan(callbackToRunBeforeAnyAction, "#workplanButton");
+            //bindToWorkplan(callbackToRunBeforeAnyAction, "#workplanButton");
             bindToReports(callbackToRunBeforeAnyAction, "#reportsButton");
 
             bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
-            bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
+            //bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
             bindToPNCList(callbackToRunBeforeAnyAction, "#pncMenuOption");
             bindToChildList(callbackToRunBeforeAnyAction, "#childMenuOption");
             bindToFPSmartRegistry(callbackToRunBeforeAnyAction, "#fpSmartRegistryOption");
@@ -133,7 +133,8 @@ function FakeANMNavigationContext() {
                 pncCount: "4",
                 ancCount: "5",
                 childCount: "6",
-                eligibleCoupleCount: "7"
+                eligibleCoupleCount: "7",
+                fpCount: "12"
             });
         },
         startECList: function () {

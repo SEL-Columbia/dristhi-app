@@ -42,7 +42,10 @@ function FakeInternationalisationContext() {
                     "home_pnc_label": "PNC",
                     "home_child_label": "Child",
                     "home_workplan_label": "Workplan",
-                    "home_report_label": "Reporting"
+                    "home_report_label": "Reporting",
+                    "home_fp_label": "FP",
+                    "register_label": "Register",
+                    "home_videos_label": "Videos"
                 });
             else
                 return JSON.stringify({
@@ -51,7 +54,10 @@ function FakeInternationalisationContext() {
                     "home_pnc_label": "ಪಿಎನ್",
                     "home_child_label": "ಮಗು",
                     "home_workplan_label": "ಕಾರ್ಯ ಯೋಜನೆ",
-                    "home_report_label": "ವರದಿ"
+                    "home_report_label": "ವರದಿ",
+                    "home_fp_label": "",
+                    "register_label": "" ,
+                    "home_videos_label": ""
                 });
         }
     }

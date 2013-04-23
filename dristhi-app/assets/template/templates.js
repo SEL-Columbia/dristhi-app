@@ -340,44 +340,60 @@ function program6(depth0,data) {
 templates['anm_navigation'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [2,'>= 1.0.0-rc.3'];
 helpers = helpers || Handlebars.helpers; data = data || {};
-  var buffer = "", stack1, stack2, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function";
+  var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 
-  buffer += "<div class=\"content sidepanel-content\">\n    <div class=\"menu-button-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"menu-button span6\" id=\"workplanButton\">\n                <img src=\"../img/icons/nav-workplan.png\" class=\"menu-icon\"><br>\n                ";
-  options = {hash:{},data:data};
-  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "home_workplan_label", options) : helperMissing.call(depth0, "internationalize", "home_workplan_label", options)))
-    + "\n            </div>\n            <div class=\"menu-button span6\" id=\"reportsButton\">\n                <img src=\"../img/icons/nav-reporting.png\" class=\"menu-icon\"><br>\n                ";
-  options = {hash:{},data:data};
-  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "home_report_label", options) : helperMissing.call(depth0, "internationalize", "home_report_label", options)))
-    + "\n            </div>\n        </div>\n        <div class=\"menu-option row-fluid\" id=\"eligibleCoupleMenuOption\">\n            <div class=\"span1\">\n                <img src=\"../img/icons/nav-ec.png\">\n            </div>\n            <div class=\"span9\">";
+  buffer += "<div class=\"span2\" id=\"ec-register\">\n    <a class=\"btn btn-register\" id=\"eligibleCoupleMenuOption\">\n        <span class=\"register-count\">";
+  if (stack1 = helpers.eligibleCoupleCount) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.eligibleCoupleCount; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n        <span class=\"register-title\">";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "home_ec_label", options) : helperMissing.call(depth0, "internationalize", "home_ec_label", options)))
-    + "</div>\n            <div class=\"span2 pull-text-completely-right\">";
-  if (stack2 = helpers.eligibleCoupleCount) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.eligibleCoupleCount; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n\n        <div class=\"menu-option row-fluid\" id=\"ancMenuOption\">\n            <div class=\"span1\">\n                <img src=\"../img/icons/nav-anc.png\">\n            </div>\n            <div class=\"span9\">";
+    + "</span>\n        <span>";
   options = {hash:{},data:data};
-  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "home_anc_label", options) : helperMissing.call(depth0, "internationalize", "home_anc_label", options)))
-    + "</div>\n            <div class=\"span2 pull-text-completely-right\">";
+  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "register_label", options) : helperMissing.call(depth0, "internationalize", "register_label", options)))
+    + "</span>\n    </a>\n</div>\n<div class=\"span2\" id=\"fp-register\">\n    <a class=\"btn btn-register\" id=\"fpSmartRegistryOption\">\n        <span class=\"register-count\">";
+  if (stack2 = helpers.fpCount) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
+  else { stack2 = depth0.fpCount; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  buffer += escapeExpression(stack2)
+    + "</span>\n        <span class=\"register-title\">";
+  options = {hash:{},data:data};
+  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "home_fp_label", options) : helperMissing.call(depth0, "internationalize", "home_fp_label", options)))
+    + "</span>\n        <span>";
+  options = {hash:{},data:data};
+  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "register_label", options) : helperMissing.call(depth0, "internationalize", "register_label", options)))
+    + "</span>\n    </a>\n</div>\n<div class=\"span2\" id=\"anc-register\">\n    <a class=\"btn btn-register\" id=\"ancSmartRegistryOption\">\n        <span class=\"register-count\">";
   if (stack2 = helpers.ancCount) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.ancCount; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n\n        <div class=\"menu-option row-fluid\" id=\"pncMenuOption\">\n            <div class=\"span1\">\n                <img src=\"../img/icons/nav-pnc.png\">\n            </div>\n            <div class=\"span9\">";
+    + "</span>\n        <span class=\"register-title\">";
   options = {hash:{},data:data};
-  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "home_pnc_label", options) : helperMissing.call(depth0, "internationalize", "home_pnc_label", options)))
-    + "</div>\n            <div class=\"span2 pull-text-completely-right\">";
+  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "home_anc_label", options) : helperMissing.call(depth0, "internationalize", "home_anc_label", options)))
+    + "</span>\n        <span>";
+  options = {hash:{},data:data};
+  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "register_label", options) : helperMissing.call(depth0, "internationalize", "register_label", options)))
+    + "</span>\n    </a>\n</div>\n<div class=\"span2\" id=\"pnc-register\">\n    <a class=\"btn btn-register\" id=\"pncMenuOption\">\n        <span class=\"register-count\">";
   if (stack2 = helpers.pncCount) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.pncCount; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n\n        <div class=\"menu-option row-fluid\" id=\"childMenuOption\">\n            <div class=\"span1\">\n                <img src=\"../img/icons/nav-child.png\">\n            </div>\n            <div class=\"span9\">";
+    + "</span>\n        <span class=\"register-title\">";
   options = {hash:{},data:data};
-  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "home_child_label", options) : helperMissing.call(depth0, "internationalize", "home_child_label", options)))
-    + "</div>\n            <div class=\"span2 pull-text-completely-right\">";
+  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "home_pnc_label", options) : helperMissing.call(depth0, "internationalize", "home_pnc_label", options)))
+    + "</span>\n        <span>";
+  options = {hash:{},data:data};
+  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "register_label", options) : helperMissing.call(depth0, "internationalize", "register_label", options)))
+    + "</span>\n    </a>\n</div>\n<div class=\"span2\" id=\"child-register\">\n    <a class=\"btn btn-register\" id=\"childMenuOption\">\n        <span class=\"register-count\">";
   if (stack2 = helpers.childCount) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.childCount; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n\n        <div class=\"menu-option row-fluid\" id=\"fpSmartRegistryOption\">\n            <div class=\"span1\">\n                <img src=\"../img/icons/nav-child.png\">\n            </div>\n            <div class=\"span9\">FP Smart Registry</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n\n        <div class=\"menu-option row-fluid\" id=\"ancSmartRegistryOption\">\n            <div class=\"span1\">\n                <img src=\"../img/icons/nav-child.png\">\n            </div>\n            <div class=\"span9\">ANC Smart Registry</div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n\n        <div class=\"menu-option row-fluid\" id=\"ecRegistration\" data-formname=\"ec_registration\"\n             data-entityid=\"df8e94dd-91bd-40d2-a82a-fb7402e97f30\">\n            <div class=\"span1\">\n                <img src=\"../img/icons/nav-child.png\">\n            </div>\n            <div class=\"span9\">EC Registration enketo form</div>\n            <div class=\"span2 pull-text-completely-right\"></div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n\n        <div class=\"menu-option row-fluid\" id=\"familyPlanningUpdate\" data-formname=\"family_planning_update\"\n             data-entityid=\"df8e94dd-91bd-40d2-a82a-fb7402e97f30\">\n            <div class=\"span1\">\n                <img src=\"../img/icons/nav-child.png\">\n            </div>\n            <div class=\"span9\">Family planning update enketo form</div>\n            <div class=\"span2 pull-text-completely-right\"></div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n\n        <div class=\"menu-option row-fluid\" id=\"fpComplications\" data-formname=\"fp_complications\"\n             data-entityid=\"df8e94dd-91bd-40d2-a82a-fb7402e97f30\">\n            <div class=\"span1\">\n                <img src=\"../img/icons/nav-child.png\">\n            </div>\n            <div class=\"span9\">Family planning complications enketo form</div>\n            <div class=\"span2 pull-text-completely-right\"></div>\n        </div>\n        <div class=\"menu-option-divider\"></div>\n    </div>\n</div>\n";
+    + "</span>\n        <span class=\"register-title\">";
+  options = {hash:{},data:data};
+  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "home_child_label", options) : helperMissing.call(depth0, "internationalize", "home_child_label", options)))
+    + "</span>\n        <span>";
+  options = {hash:{},data:data};
+  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "register_label", options) : helperMissing.call(depth0, "internationalize", "register_label", options)))
+    + "</span>\n    </a>\n</div>\n";
   return buffer;
   });
 templates['birth_plan'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -1282,13 +1298,19 @@ function program1(depth0,data) {
 templates['home'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [2,'>= 1.0.0-rc.3'];
 helpers = helpers || Handlebars.helpers; partials = partials || Handlebars.partials; data = data || {};
-  var buffer = "", stack1, self=this;
+  var buffer = "", stack1, options, self=this, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div id=\"sidepanel\" class=\"sidepanel affected-by-sidepanel\">\n    <div class=\"menu-background\">\n        <div class=\"navbar navbar-fixed-top navbar-sidepanel\">\n            <div class=\"navbar-inner nav-sidepanel\">\n                <span class=\"brand in-navbar in-sidepanel\" href=\"#\">\n                    <img src=\"../img/icons/nav-logo.png\">\n                </span>\n\n                <ul class=\"nav pull-right\">\n                    <li><img class=\"progress-indicator hidden\" src=\"../img/progress.gif\"></li>\n                    <li>\n                        <div class=\"manual-sync btn btn-primary\" id=\"manualSync\">Sync</div>\n                    </li>\n                </ul>\n            </div>\n        </div>\n\n        ";
+  buffer += "<div class=\"row-fluid with-margin with-padding\" id=\"logo-and-buttons\">\n    <div class=\"span10\">\n        <div class=\"row-fluid with-margin\" id=\"drishti-logo\">\n            <div class=\"span10\">\n                <center><img src=\"../img/smart_registry/logo.png\"></center>\n            </div>\n        </div>\n        <div class=\"row-fluid with-margin\">\n            ";
   stack1 = self.invokePartial(partials.anm_navigation, 'anm_navigation', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n</div>\n\n<div id=\"mainpanel-overlay\" class=\"affected-by-sidepanel\">\n</div>\n";
+  buffer += "\n        </div>\n    </div>\n</div>\n<div class=\"row-fluid with-margin\" id=\"reports-videos-buttons\">\n    <div class=\"span5\">\n        <a class=\"btn btn-block btn-inverse\" id=\"reportsButton\"><i class=\"icon-reporting\"></i> ";
+  options = {hash:{},data:data};
+  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "home_report_label", options) : helperMissing.call(depth0, "internationalize", "home_report_label", options)))
+    + "</a>\n    </div>\n    <div class=\"span5\">\n        <a class=\"btn btn-block btn-inverse\"><i class=\"icon-tv\"></i> ";
+  options = {hash:{},data:data};
+  buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "home_videos_label", options) : helperMissing.call(depth0, "internationalize", "home_videos_label", options)))
+    + "</a>\n    </div>\n</div>\n";
   return buffer;
   });
 templates['overdue_todo'] = template(function (Handlebars,depth0,helpers,partials,data) {
