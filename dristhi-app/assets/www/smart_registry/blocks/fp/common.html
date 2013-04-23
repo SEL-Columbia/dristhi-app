@@ -1,5 +1,18 @@
-<div id="name" class="span7 line-right full-height span-no-margin width-without-margins span-content">
+<div id="name" class=" client-details span7 line-right full-height span-no-margin width-without-margins span-content">
     <ng:include src="'blocks/client_name.html'"></ng:include>
+    <div class="flag-container">
+        <div ng-show="client.isHighPriority" class="flag flag-hrp"></div>
+        <div ng-show="false" class="flag flag-hr"></div>
+        <div ng-show="false" class="flag flag-hrp"></div>
+        <ng:switch on="client.economicStatus">
+            <div ng-switch-when="bpl" class="flag flag-bpl"></div>
+            <div ng-switch-when="apl" class="flag flag-apl"></div>
+        </ng:switch>
+        <ng:switch on="client.caste">
+            <div ng-switch-when="sc" class="flag flag-sc"></div>
+            <div ng-switch-when="st" class="flag flag-st"></div>
+        </ng:switch>
+    </div>
 </div>
 <div class="span2 line-right full-height span-no-margin width-without-margins span-content">
     <span class="text-bold">{{client.ec_number}}</span>

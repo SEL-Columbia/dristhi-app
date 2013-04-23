@@ -186,6 +186,51 @@ a:focus {
     /*padding-left: 5px;*/
 }
 
+.client-details {
+    position: relative;
+}
+
+.client-details .flag-container {
+    width: 30px;
+    height: 66px;
+    position: absolute;
+    top: 0;
+    left: -5px;
+}
+
+.client-details .flag-container .flag {
+    width: 30px;
+    height: 22px;
+    margin-bottom: -5px;
+}
+.client-details .flag-container .flag-hp {
+    background: url("../../img/smart_registry/flag-hp.png") no-repeat;
+}
+
+.client-details .flag-container .flag-hr {
+    background: url("../../img/smart_registry/flag-hr.png") no-repeat;
+}
+
+.client-details .flag-container .flag-hrp {
+    background: url("../../img/smart_registry/flag-hrp.png") no-repeat;
+}
+
+.client-details .flag-container .flag-bpl {
+    background: url("../../img/smart_registry/flag-bpl.png") no-repeat;
+}
+
+.client-details .flag-container .flag-apl {
+    background: url("../../img/smart_registry/flag-apl.png") no-repeat;
+}
+
+.client-details .flag-container .flag-sc {
+    background: url("../../img/smart_registry/flag-sc.png") no-repeat;
+}
+
+.client-details .flag-container .flag-st {
+    background: url("../../img/smart_registry/flag-st.png") no-repeat;
+}
+
 .client:last-child {
     border-bottom: none;
 }

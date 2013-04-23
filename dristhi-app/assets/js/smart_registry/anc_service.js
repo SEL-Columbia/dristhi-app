@@ -110,7 +110,7 @@ angular.module("smartRegistry.services")
                         ],
                         days_due:'3',
                         due_message:'Follow Up',
-                        isHighPriority:false,
+                        isHighPriority:true,
                         locationStatus:"out_of_area"
                     },
                     {
@@ -234,8 +234,9 @@ angular.module("smartRegistry.services")
                         ],
                         days_due:'3',
                         due_message:'Follow Up',
-                        isHighPriority:false,
-                        locationStatus:"in_area"
+                        isHighPriority:true,
+                        locationStatus:"in_area",
+                        economicStatus: "bpl"
                     },
                     {
                         village:'Bherya',
