@@ -240,6 +240,9 @@ a:focus {
     max-width: 67px;
     display: inline-block;
 }
+#fp-client-list .client-name {
+    max-width: 135px;
+}
 
 .client-husband-name {
     max-width: 96px;
