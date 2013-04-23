@@ -3,6 +3,7 @@
 }
 #reports-videos-buttons .btn {
     padding: 14px;
+    font-size: 20px;
 }
 .row-fluid.with-margin {
     margin-bottom: 20px;
@@ -67,8 +68,16 @@
 
 .icon-tv {
     background-image: url("../img/smart_registry/icon-tv.png");
+    width: 29px;
+    height: 28px;
+    background-position: 50% 0;
+    background-size: 76%;
 }
 
 .icon-reporting {
     background-image: url("../img/smart_registry/icon-reporting.png");
+    width: 34px;
+    height: 27px;
+    background-position: 50% 0;
+    background-size: 84%;
 }
