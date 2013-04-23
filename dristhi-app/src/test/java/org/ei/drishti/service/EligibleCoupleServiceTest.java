@@ -94,6 +94,6 @@ public class EligibleCoupleServiceTest {
         service.fpChange(submission);
 
         verify(timelineEventRepository).add(TimelineEvent.forChangeOfFPMethod("entity id 1", "condom", "ocp", "2012-01-01"));
-        verify(eligibleCoupleRepository).updateDetails("entity id 1", mapOf("currentMethod", "ocp"));
+        verify(eligibleCoupleRepository).mergeDetails("entity id 1", mapOf("currentMethod", "ocp"));
     }
 }
