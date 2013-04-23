@@ -2,14 +2,16 @@ package org.ei.drishti.domain;
 
 public class ANM {
     private final String name;
+    private final long fpCount;
     private final long eligibleCoupleCount;
     private final long ancCount;
     private final long pncCount;
     private final long childCount;
 
-    public ANM(String name, long eligibleCoupleCount, long ancCount, long pncCount, long childCount) {
+    public ANM(String name, long fpCount, long eligibleCoupleCount, long ancCount, long pncCount, long childCount) {
         this.name = name;
         this.eligibleCoupleCount = eligibleCoupleCount;
+        this.fpCount = fpCount;
         this.ancCount = ancCount;
         this.pncCount = pncCount;
         this.childCount = childCount;
@@ -33,5 +35,9 @@ public class ANM {
 
     public long ecCount() {
         return eligibleCoupleCount;
+    }
+
+    public long fpCount() {
+        return fpCount;
     }
 }

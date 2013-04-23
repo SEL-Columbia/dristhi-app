@@ -3,6 +3,7 @@ package org.ei.drishti.view.contract;
 import org.ei.drishti.domain.ANM;
 
 public class HomeContext {
+    private final long fpCount;
     private String anmName;
     private long ancCount;
     private long pncCount;
@@ -15,5 +16,6 @@ public class HomeContext {
         this.pncCount = anm.pncCount();
         this.childCount = anm.childCount();
         this.eligibleCoupleCount = anm.ecCount();
+        this.fpCount = anm.fpCount();
     }
 }

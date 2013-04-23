@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import info.guardianproject.database.DatabaseUtils;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.AllConstants;
@@ -13,14 +12,16 @@ import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.domain.TimelineEvent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static info.guardianproject.database.DatabaseUtils.longForQuery;
 import static java.lang.Boolean.TRUE;
+import static java.text.MessageFormat.format;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.repeat;
-import static org.ei.drishti.AllConstants.CURRENT_FP_METHOD_FIELD_NAME;
-import static org.ei.drishti.AllConstants.FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME;
-import static org.ei.drishti.AllConstants.FP_UPDATE_FIELD_NAME;
+import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.domain.TimelineEvent.forChangeOfFPMethod;
 
 public class EligibleCoupleRepository extends DrishtiRepository {
@@ -109,7 +110,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     }
 
     public long count() {
-        return DatabaseUtils.longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + EC_TABLE_NAME
+        return longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + EC_TABLE_NAME
                 + " WHERE " + IS_OUT_OF_AREA_COLUMN + " = '" + IN_AREA + "' and " +
                 IS_CLOSED_COLUMN + " = '" + NOT_CLOSED + "'", new String[0]);
     }
@@ -203,5 +204,36 @@ public class EligibleCoupleRepository extends DrishtiRepository {
 
     private String insertPlaceholdersForInClause(int length) {
         return repeat("?", ",", length);
+    }
+
+    public long fpCount() {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery(format("SELECT details FROM {0} WHERE {1} = ''{2}'' and {3} = ''{4}''",
+                EC_TABLE_NAME, IS_OUT_OF_AREA_COLUMN, IN_AREA, IS_CLOSED_COLUMN, NOT_CLOSED), new String[0]);
+        List<Map<String, String>> detailsList = readDetailsList(cursor);
+        return getECsUsingFPMethod(detailsList);
+    }
+
+    private long getECsUsingFPMethod(List<Map<String, String>> detailsList) {
+        long fpCount = 0;
+        for (Map<String, String> details : detailsList) {
+            if (!(isBlank(details.get(AllConstants.CURRENT_FP_METHOD_FIELD_NAME)) || "none".equalsIgnoreCase(details.get(AllConstants.CURRENT_FP_METHOD_FIELD_NAME)))) {
+                fpCount++;
+            }
+        }
+        return fpCount;
+    }
+
+    private List<Map<String, String>> readDetailsList(Cursor cursor) {
+        cursor.moveToFirst();
+        List<Map<String, String>> detailsList = new ArrayList<Map<String, String>>();
+        while (!cursor.isAfterLast()) {
+            String detailsJSON = cursor.getString(0);
+            detailsList.add(new Gson().<Map<String, String>>fromJson(detailsJSON, new TypeToken<HashMap<String, String>>() {
+            }.getType()));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return detailsList;
     }
 }

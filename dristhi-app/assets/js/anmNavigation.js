@@ -134,7 +134,7 @@ function FakeANMNavigationContext() {
                 ancCount: "5",
                 childCount: "6",
                 eligibleCoupleCount: "7",
-                fpCount: "12"
+                fpCount: "4"
             });
         },
         startECList: function () {

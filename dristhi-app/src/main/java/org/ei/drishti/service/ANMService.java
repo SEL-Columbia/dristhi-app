@@ -1,7 +1,9 @@
 package org.ei.drishti.service;
 
 import org.ei.drishti.domain.ANM;
-import org.ei.drishti.repository.*;
+import org.ei.drishti.repository.AllBeneficiaries;
+import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.repository.AllSettings;
 
 public class ANMService {
     private AllSettings allSettings;
@@ -15,6 +17,6 @@ public class ANMService {
     }
 
     public ANM fetchDetails() {
-        return new ANM(allSettings.fetchRegisteredANM(), allEligibleCouples.count(), allBeneficiaries.ancCount(), allBeneficiaries.pncCount(), allBeneficiaries.childCount());
+        return new ANM(allSettings.fetchRegisteredANM(), allEligibleCouples.count(), allEligibleCouples.fpCount(), allBeneficiaries.ancCount(), allBeneficiaries.pncCount(), allBeneficiaries.childCount());
     }
 }

@@ -23,6 +23,10 @@ public class AllEligibleCouples {
         return repository.count();
     }
 
+    public long fpCount() {
+        return repository.fpCount();
+    }
+
     public List<String> villages() {
         return repository.villages();
     }

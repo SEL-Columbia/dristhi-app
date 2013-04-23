@@ -6,12 +6,16 @@ import org.ei.drishti.domain.*;
 import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.util.Session;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.ei.drishti.domain.AlertStatus.open;
 import static org.ei.drishti.util.EasyMap.create;
+import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     private EligibleCoupleRepository repository;
@@ -276,4 +280,32 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
 
         assertEquals(asList(eligibleCouple), repository.allEligibleCouples());
     }
+
+    public void testShouldGetCountOfECsWithFPInRepo() throws Exception {
+        EligibleCouple ecNotUsingAnyFPMethod = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", mapOf("currentMethod", "none"));
+        EligibleCouple anotherECNotUsingAnyFPMethod = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", new HashMap<String, String>());
+        EligibleCouple ecUsingCondomFPMethod = new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", mapOf("currentMethod", "condom"));
+        EligibleCouple ecUsingIUDFPMethod = new EligibleCouple("CASE Z", "Wife 3", "Husband 3", "EC Number 3", "Village 3", "SubCenter 3", mapOf("currentMethod", "iud"));
+        EligibleCouple outOfAreaEC = new EligibleCouple("CASE A", "Wife 4", "Husband 4", "", "Village 4", "SubCenter 4", mapOf("currentMethod", "condom"))
+                .asOutOfArea();
+        EligibleCouple closedEC = new EligibleCouple("CASE B", "Wife 5", "Husband 5", "", "Village 5", "SubCenter 5", mapOf("currentMethod", "iud"))
+                .setIsClosed(true);
+
+        repository.add(ecNotUsingAnyFPMethod);
+        repository.add(anotherECNotUsingAnyFPMethod);
+        repository.add(ecUsingCondomFPMethod);
+        repository.add(closedEC);
+
+        assertEquals(1, repository.fpCount());
+
+        repository.add(ecUsingIUDFPMethod);
+        assertEquals(2, repository.fpCount());
+
+        repository.close(ecUsingIUDFPMethod.caseId());
+        assertEquals(1, repository.fpCount());
+
+        repository.add(outOfAreaEC);
+        assertEquals(1, repository.fpCount());
+    }
+
 }
