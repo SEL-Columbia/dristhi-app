@@ -9,12 +9,16 @@
 }
 .row-fluid.with-padding {
     padding: 0 10px;
+    width: 98%;
 }
 #logo-and-buttons {
-    background: url("../img/smart_registry/bg-texture.jpg") repeat-y;
+    background: url("../img/smart_registry/bg-texture.jpg") repeat;
 }
 #drishti-logo {
     margin-top: 20px;;
+}
+.btn-home {
+    background-image: none;
 }
 .btn-register {
     position: relative;
