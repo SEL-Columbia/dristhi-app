@@ -78,9 +78,6 @@ function ANMNavigationPanel(anmNavigationBridge) {
             bindToChildList(callbackToRunBeforeAnyAction, "#childMenuOption");
             bindToFPSmartRegistry(callbackToRunBeforeAnyAction, "#fpSmartRegistryOption");
             bindToANCSmartRegistry(callbackToRunBeforeAnyAction, "#ancSmartRegistryOption");
-            bindToLaunchForm(callbackToRunBeforeAnyAction, "#ecRegistration");
-            bindToLaunchForm(callbackToRunBeforeAnyAction, "#familyPlanningUpdate");
-            bindToLaunchForm(callbackToRunBeforeAnyAction, "#fpComplications");
         }
     };
 }
