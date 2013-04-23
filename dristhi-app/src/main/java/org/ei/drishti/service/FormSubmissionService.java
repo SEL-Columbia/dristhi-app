@@ -28,6 +28,7 @@ public class FormSubmissionService {
             if (!formDataRepository.submissionExists(submission.instanceId())) {
                 try {
                     ziggyService.saveForm(getParams(submission), submission.instance());
+                    formDataRepository.markFormSubmissionAsSynced(submission.instanceId());
                 } catch (Exception e) {
                     logError(format("Form submission processing failed, with submission: {0}. Exception: {1}", submission, e));
                 }

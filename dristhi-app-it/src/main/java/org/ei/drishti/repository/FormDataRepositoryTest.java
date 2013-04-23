@@ -197,4 +197,20 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         assertEquals(secondSubmission.setSyncStatus(SYNCED), repository.fetchFromSubmission("id 2"));
         assertEquals(thirdSubmission, repository.fetchFromSubmission("id 3"));
     }
+
+    public void testShouldMarkPendingFormSubmissionsAsSyncedByInstanceId() throws Exception {
+        FormSubmission firstSubmission = new FormSubmission("instance 1", "entity id 1", "form name", "instance 1", "some version", PENDING);
+        FormSubmission secondSubmission = new FormSubmission("instance 2", "entity id 2", "form name", "instance 2", "some other version", PENDING);
+        FormSubmission thirdSubmission = new FormSubmission("instance 3", "entity id 3", "form name", "instance 3", "some other version", PENDING);
+        repository.saveFormSubmission(firstSubmission);
+        repository.saveFormSubmission(secondSubmission);
+        repository.saveFormSubmission(thirdSubmission);
+
+        repository.markFormSubmissionAsSynced("instance 1");
+        repository.markFormSubmissionAsSynced("instance 2");
+
+        assertEquals(firstSubmission.setSyncStatus(SYNCED), repository.fetchFromSubmission("instance 1"));
+        assertEquals(secondSubmission.setSyncStatus(SYNCED), repository.fetchFromSubmission("instance 2"));
+        assertEquals(thirdSubmission, repository.fetchFromSubmission("instance 3"));
+    }
 }

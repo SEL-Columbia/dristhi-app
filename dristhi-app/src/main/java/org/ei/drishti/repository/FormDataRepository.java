@@ -106,6 +106,13 @@ public class FormDataRepository extends DrishtiRepository {
         }
     }
 
+    public void markFormSubmissionAsSynced(String instanceId) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(SYNC_STATUS_COLUMN, SYNCED.value());
+        database.update(FORM_SUBMISSION_TABLE_NAME, values, INSTANCE_ID_COLUMN + " = ?", new String[]{instanceId});
+    }
+
     public boolean submissionExists(String instanceId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(FORM_SUBMISSION_TABLE_NAME, new String[]{INSTANCE_ID_COLUMN}, INSTANCE_ID_COLUMN + " = ?", new String[]{instanceId}, null, null, null);

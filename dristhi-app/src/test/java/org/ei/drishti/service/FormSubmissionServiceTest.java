@@ -34,8 +34,9 @@ public class FormSubmissionServiceTest {
     }
 
     @Test
-    public void shouldDelegateProcessingToZiggyService() throws Exception {
-        List<FormSubmission> submissions = asList(create().withVersion("122").build(), create().withVersion("123").build());
+    public void shouldDelegateProcessingToZiggyServiceAndMarkAsSynced() throws Exception {
+        List<FormSubmission> submissions = asList(create().withInstanceId("instance id 1").withVersion("122").build(),
+                create().withInstanceId("instance id 2").withVersion("123").build());
 
         service.processSubmissions(submissions);
 
@@ -46,15 +47,17 @@ public class FormSubmissionServiceTest {
                         .put("version", "122")
                         .map());
         String paramsForSecondSubmission = new Gson().toJson(
-                create("instanceId", "instance id 1")
+                create("instanceId", "instance id 2")
                         .put("entityId", "entity id 1")
                         .put("formName", "form name 1")
                         .put("version", "123")
                         .map());
-        InOrder inOrder = inOrder(ziggyService, allSettings);
+        InOrder inOrder = inOrder(ziggyService, allSettings, formDataRepository);
         inOrder.verify(ziggyService).saveForm(paramsForFirstSubmission, "{}");
+        inOrder.verify(formDataRepository).markFormSubmissionAsSynced("instance id 1");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("122");
         inOrder.verify(ziggyService).saveForm(paramsForSecondSubmission, "{}");
+        inOrder.verify(formDataRepository).markFormSubmissionAsSynced("instance id 2");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("123");
     }
 
@@ -80,10 +83,12 @@ public class FormSubmissionServiceTest {
                         .put("formName", "form name 1")
                         .put("version", "123")
                         .map());
-        InOrder inOrder = inOrder(ziggyService, allSettings);
+        InOrder inOrder = inOrder(ziggyService, allSettings, formDataRepository);
         inOrder.verify(ziggyService, times(0)).saveForm(paramsForFirstSubmission, "{}");
+        inOrder.verify(formDataRepository, times(0)).markFormSubmissionAsSynced("instance id 1");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("122");
         inOrder.verify(ziggyService).saveForm(paramsForSecondSubmission, "{}");
+        inOrder.verify(formDataRepository).markFormSubmissionAsSynced("instance id 2");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("123");
 
     }
