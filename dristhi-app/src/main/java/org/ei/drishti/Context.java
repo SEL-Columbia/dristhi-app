@@ -3,6 +3,7 @@ package org.ei.drishti;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
 import org.ei.drishti.service.formSubmissionHandler.ECRegistrationHandler;
+import org.ei.drishti.service.formSubmissionHandler.FPChangeHandler;
 import org.ei.drishti.service.formSubmissionHandler.FPComplicationsHandler;
 import org.ei.drishti.service.formSubmissionHandler.FormSubmissionRouter;
 import org.ei.drishti.util.Cache;
@@ -58,6 +59,7 @@ public class Context {
     private FormSubmissionRouter formSubmissionRouter;
     private ECRegistrationHandler ecRegistrationHandler;
     private FPComplicationsHandler fpComplicationsHandler;
+    private FPChangeHandler fpChangeHandler;
 
     protected Context() {
     }
@@ -115,7 +117,7 @@ public class Context {
     public FormSubmissionRouter formSubmissionRouter() {
         initRepository();
         if (formSubmissionRouter == null) {
-            formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(), fpComplicationsHandler());
+            formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(), fpComplicationsHandler(), fpChangeHandler());
         }
         return formSubmissionRouter;
     }
@@ -132,6 +134,13 @@ public class Context {
             fpComplicationsHandler = new FPComplicationsHandler(eligibleCoupleService());
         }
         return fpComplicationsHandler;
+    }
+
+    private FPChangeHandler fpChangeHandler() {
+        if (fpChangeHandler == null) {
+            fpChangeHandler = new FPChangeHandler(eligibleCoupleService());
+        }
+        return fpChangeHandler;
     }
 
     private ZiggyService ziggyService() {

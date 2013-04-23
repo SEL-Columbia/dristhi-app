@@ -2,8 +2,8 @@ package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.domain.TimelineEvent;
+import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.repository.EligibleCoupleRepository;
 import org.ei.drishti.repository.TimelineEventRepository;
@@ -84,27 +84,16 @@ public class EligibleCoupleServiceTest {
     }
 
     @Test
-    public void shouldCreateTimelineEventWhenFPComplicationsIsReported() throws Exception {
+    public void shouldCreateTimelineEventAndUpdateEntityWhenFPChangeIsReported() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
-        when(submission.getFieldValue("isMethodSame")).thenReturn("no");
-        when(submission.getFieldValue("previousFPMethod")).thenReturn("condom");
-        when(submission.getFieldValue("currentMethod")).thenReturn("ocp");
+        when(submission.getFieldValue("currentMethod")).thenReturn("condom");
+        when(submission.getFieldValue("newMethod")).thenReturn("ocp");
         when(submission.getFieldValue("familyPlanningMethodChangeDate")).thenReturn("2012-01-01");
 
-        service.fpComplications(submission);
+        service.fpChange(submission);
 
         verify(timelineEventRepository).add(TimelineEvent.forChangeOfFPMethod("entity id 1", "condom", "ocp", "2012-01-01"));
-    }
-
-    @Test
-    public void shouldNotCreateTimelineEventWhenFPComplicationsIsReportedWithoutMethodChange() throws Exception {
-        FormSubmission submission = mock(FormSubmission.class);
-        when(submission.entityId()).thenReturn("entity id 1");
-        when(submission.getFieldValue("isMethodSame")).thenReturn("yes");
-
-        service.fpComplications(submission);
-
-        verifyZeroInteractions(timelineEventRepository);
+        verify(eligibleCoupleRepository).updateDetails("entity id 1", mapOf("currentMethod", "ocp"));
     }
 }

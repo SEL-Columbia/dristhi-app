@@ -34,12 +34,11 @@ public class AllConstants {
 
     public static final String EC_REGISTRATION = "ec_registration";
     public static final String FP_COMPLICATIONS = "fp_complications";
+    public static final String FP_CHANGE = "fp_change";
     public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
     public static final String FP_UPDATE_FIELD_NAME = "fpUpdate";
-    public static final String IS_METHOD_SAME_FIELD_NAME = "isMethodSame";
+    public static final String NEW_FP_METHOD_FIELD_NAME = "newMethod";
     public static final String CHANGE_FP_METHOD_FIELD_NAME = "change_fp_method";
-    public static final String FP_METHOD_PROBLEM_FIELD_NAME = "fpMethodProblem";
-    public static final String PREVIOUS_FP_METHOD_FIELD_NAME = "previousFPMethod";
     public static final String RENEW_FP_PRODUCT_FIELD_NAME = "renew_fp_product";
     public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME = "familyPlanningMethodChangeDate";
 }

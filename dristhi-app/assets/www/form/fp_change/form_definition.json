@@ -1,0 +1,59 @@
+{
+    "form": {
+        "bind_type": "eligible_couple",
+        "default_bind_path": "/model/instance/Family_Planning_Change_Method_EngKan/",
+        "fields": [
+            {
+                "name": "id"
+            },
+            {
+                "name": "currentMethod",
+                "bind": "/model/instance/Family_Planning_Change_Method_EngKan/case_familyplanning_method"
+            },
+            {
+                "name": "newMethod",
+                "bind": "/model/instance/Family_Planning_Change_Method_EngKan/familyplanning_method"
+            },
+            {
+                "name": "iudRemovalDate",
+                "bind": "/model/instance/Family_Planning_Change_Method_EngKan/iud_removal_date"
+            },
+            {
+                "name": "familyPlanningMethodChangeDate",
+                "bind": "/model/instance/Family_Planning_Change_Method_EngKan/date_familyplanningstart"
+            },
+            {
+                "name": "iudPlace",
+                "bind": "/model/instance/Family_Planning_Change_Method_EngKan/iud_place"
+            },
+            {
+                "name": "iudPerson",
+                "bind": "/model/instance/Family_Planning_Change_Method_EngKan/iud_person"
+            },
+            {
+                "name": "threeMonthsFromSterilizationDate",
+                "bind": "/model/instance/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date"
+            },
+            {
+                "name": "maleSterilizationMessage",
+                "bind": "/model/instance/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/male_sterilization_message"
+            },
+            {
+                "name": "numberOfCondomsDelivered",
+                "bind": "/model/instance/Family_Planning_Change_Method_EngKan/num_condomsdelivered"
+            },
+            {
+                "name": "numberOfOCPDelivered",
+                "bind": "/model/instance/Family_Planning_Change_Method_EngKan/num_ocpdelivered"
+            },
+            {
+                "name": "numberOfCentchromanPillsDelivered",
+                "bind": "/model/instance/Family_Planning_Change_Method_EngKan/num_centchroman_pills"
+            },
+            {
+                "name": "submissionDate",
+                "bind": "/model/instance/EC_Registration_EngKan/today"
+            }
+        ]
+    }
+}

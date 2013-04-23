@@ -10,6 +10,7 @@ import org.ei.drishti.repository.TimelineEventRepository;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.domain.TimelineEvent.forChangeOfFPMethod;
+import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class EligibleCoupleService {
     private static final String SUBMISSION_DATE_FORM_FIELD_NAME = "submissionDate";
@@ -41,9 +42,11 @@ public class EligibleCoupleService {
     }
 
     public void fpComplications(FormSubmission submission) {
-        if (submission.getFieldValue(IS_METHOD_SAME_FIELD_NAME).equalsIgnoreCase("no")) {
-            timelineEventRepository.add(forChangeOfFPMethod(submission.entityId(), submission.getFieldValue(PREVIOUS_FP_METHOD_FIELD_NAME),
-                    submission.getFieldValue(CURRENT_FP_METHOD_FIELD_NAME), submission.getFieldValue(FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME)));
-        }
+    }
+
+    public void fpChange(FormSubmission submission) {
+        timelineEventRepository.add(forChangeOfFPMethod(submission.entityId(), submission.getFieldValue(CURRENT_FP_METHOD_FIELD_NAME),
+                submission.getFieldValue(NEW_FP_METHOD_FIELD_NAME), submission.getFieldValue(FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME)));
+        repository.updateDetails(submission.entityId(), mapOf(CURRENT_FP_METHOD_FIELD_NAME, submission.getFieldValue(NEW_FP_METHOD_FIELD_NAME)));
     }
 }
