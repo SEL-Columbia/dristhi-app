@@ -12,6 +12,7 @@ public class Event<CallbackType> {
     public static final Event<Boolean> ON_LOGOUT = new Event<Boolean>();
     public static final Event<Boolean> SYNC_STARTED = new Event<Boolean>();
     public static final Event<Boolean> SYNC_COMPLETED = new Event<Boolean>();
+    public static final Event<String> FORM_SUBMITTED = new Event<String>();
 
     List<WeakReference<Listener<CallbackType>>> listeners;
 

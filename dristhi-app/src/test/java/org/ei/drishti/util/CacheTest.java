@@ -53,4 +53,15 @@ public class CacheTest {
         verify(cacheableData, times(2)).fetch();
     }
 
+    @Test
+    public void shouldClearCacheWhenFormIsSubmitted() throws Exception {
+        Cache<String> cache = new Cache<String>();
+        when(cacheableData.fetch()).thenReturn("value");
+
+        cache.get("key", cacheableData);
+        Event.FORM_SUBMITTED.notifyListeners("ec_registration");
+
+        assertEquals("value", cache.get("key", cacheableData));
+        verify(cacheableData, times(2)).fetch();
+    }
 }
