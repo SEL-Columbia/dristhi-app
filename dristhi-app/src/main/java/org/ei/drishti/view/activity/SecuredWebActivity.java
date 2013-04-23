@@ -2,7 +2,6 @@ package org.ei.drishti.view.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.ConsoleMessage;
@@ -39,15 +38,6 @@ public abstract class SecuredWebActivity extends SecuredActivity {
     }
 
     protected abstract void onInitialization();
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
-            webView.goBack();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
