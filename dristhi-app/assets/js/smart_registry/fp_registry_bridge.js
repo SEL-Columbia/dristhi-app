@@ -26,7 +26,7 @@ function FakeFPSmartRegistryContext() {
                     "village": "Bherya",
                     "name": "Ammulu",
                     "thayi": "",
-                    "isHighPriority": false,
+                    "isHighPriority": true,
                     "side_effects": "poops a lot",
                     "days_due": "2013/01/01",
                     "due_message": "due message",
@@ -36,7 +36,8 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '1',
                     "num_abortions": '1',
-                    "family_planning_method_change_date": "25/02/13"
+                    "family_planning_method_change_date": "25/02/13",
+                    "economicStatus": "bpl"
                 },
                 {
                     "entity_id": "entity 2",
@@ -76,7 +77,8 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '2',
                     "num_abortions": '0',
-                    "family_planning_method_change_date": "02/12/13"
+                    "family_planning_method_change_date": "02/12/13",
+                    "economicStatus": "apl"
                 },
                 {
                     "entity_id": "entity 4",

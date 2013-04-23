@@ -111,7 +111,8 @@ angular.module("smartRegistry.services")
                         days_due:'3',
                         due_message:'Follow Up',
                         isHighPriority:true,
-                        locationStatus:"out_of_area"
+                        locationStatus:"out_of_area",
+                        isHighRisk: true
                     },
                     {
                         village:'Chikkabherya',

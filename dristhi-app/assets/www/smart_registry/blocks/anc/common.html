@@ -2,12 +2,8 @@
     <ng:include src="'blocks/client_name.html'"></ng:include>
     <div class="flag-container">
         <div ng-show="client.isHighPriority" class="flag flag-hp"></div>
-        <div ng-show="false" class="flag flag-hr"></div>
-        <div ng-show="false" class="flag flag-hrp"></div>
-        <ng:switch on="client.economicStatus">
-            <div ng-switch-when="bpl" class="flag flag-bpl"></div>
-            <div ng-switch-when="apl" class="flag flag-apl"></div>
-        </ng:switch>
+        <div ng-show="client.isHighRisk" class="flag flag-hrp"></div>
+        <div ng-show="client.economicStatus == 'bpl'" class="flag flag-bpl"></div>
         <ng:switch on="client.caste">
             <div ng-switch-when="sc" class="flag flag-sc"></div>
             <div ng-switch-when="st" class="flag flag-st"></div>
