@@ -6,29 +6,22 @@
             </formhub>
             <today/>
             <case_familyplanning_method/>
-            <method_still_the_same/>
-            <iud_removal_date/>
-            <iud_removal_place/>
-            <familyplanning_method_1/>
-            <date_familyplanningstart/>
-            <iud_place/>
-            <iud_person/>
-            <num_ocp_cycles/>
-            <familyplanning_method/>
-            <male_sterilizaton_group>
-                <threemonths_from_sterilization_date/>
-                <male_sterilization_message/>
-            </male_sterilizaton_group>
+            <case_familyplanning_method_note/>
             <complication_date/>
             <sterilization_failure/>
+            <condom_sideeffect/>
             <iud_sideeffect/>
             <ocp_sideeffect/>
             <sterilization_sideeffect/>
             <injectable_sideeffect/>
+            <other_sideeffect/>
             <side_effects/>
-            <sideeffect_iud_ocp/>
-            <counseling/>
-            <sterilization_counseling/>
+            <refer_couple_fp_method_complication/>
+            <refer_couple_fp_method_complication_place/>
+            <refer_couple_fp_method_complication_place_other/>
+            <fp_method_complication_treatment_plan/>
+            <fp_method_complication_treatment_plan_other/>
+            <instructions/>
             <meta>
                 <instanceID/>
             </meta>
