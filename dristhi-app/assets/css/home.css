@@ -13,6 +13,9 @@
 #logo-and-buttons {
     background: url("../img/smart_registry/bg-texture.jpg") repeat-y;
 }
+#drishti-logo {
+    margin-top: 20px;;
+}
 .btn-register {
     position: relative;
     height: 176px;
@@ -20,6 +23,13 @@
     text-transform: uppercase;
     border: none;
     padding: 60px 0 0;
+}
+.btn-register span {
+    /* Hide the text. */
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
 }
 .btn-register .register-count {
     position: absolute;
@@ -32,6 +42,8 @@
     padding: 10px 0 0;
     text-align: center;
     font-size: 14px;
+    /* show text */
+    text-indent: 0;
 }
 .btn-register .register-title {
     font-weight: bold;

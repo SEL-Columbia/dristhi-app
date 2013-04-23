@@ -5,6 +5,26 @@
     <span class="text-bold">{{client.ec_number}}</span>
 </div>
 <div class="span3 line-right full-height span-no-margin width-without-margins span-content">
-    {{client.num_pregnancies}} {{client.parity}} {{client.num_living_children}}
-    {{client.num_stillbirths}} {{client.num_abortions}}
+    <div class="row-fluid">
+        <span class="span2 offset1">
+            G<br/>
+            {{client.num_pregnancies}}
+        </span>
+        <span class="span2">
+            P<br/>
+            {{client.parity}}
+        </span>
+        <span class="span2">
+            L<br/>
+            {{client.num_living_children}}
+        </span>
+        <span class="span2">
+            S<br/>
+            {{client.num_stillbirths}}
+        </span>
+        <span class="span2">
+            A<br/>
+            {{client.num_abortions}}
+        </span>
+    </div>
 </div>
