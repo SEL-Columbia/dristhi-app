@@ -1,5 +1,5 @@
 function ANCRegistryBridge() {
-    var context = window.context;
+    var context = window.ancContext;
     if (typeof context === "undefined" && typeof FakeANCSmartRegistryContext !== "undefined") {
         context = new FakeANCSmartRegistryContext();
     }
