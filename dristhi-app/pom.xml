@@ -173,6 +173,23 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.kelveden</groupId>
+                <artifactId>maven-karma-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <configFile>src/test/angular_e2e/conf/karma.conf.js</configFile>
+                    <browsers>Chrome</browsers>
+                    <singleRun>false</singleRun>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <profiles>
