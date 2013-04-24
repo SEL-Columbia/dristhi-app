@@ -23,7 +23,7 @@ public class ZiggyService {
             "        new enketo.EntityRelationshipLoader(),\n" +
             "        new enketo.FormDefinitionLoader(),\n" +
             "        new enketo.FormModelMapper(formDataRepository, new enketo.SQLQueryBuilder(formDataRepository), new enketo.IdFactory(new enketo.IdFactoryBridge())),\n" +
-            "        formDataRepository);";
+            "        formDataRepository, new enketo.FormSubmissionRouter());";
 
     private ZiggyFileLoader ziggyFileLoader;
     private FormDataRepository dataRepository;
