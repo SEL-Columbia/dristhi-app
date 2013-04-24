@@ -6,6 +6,7 @@ import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
+import org.ei.drishti.dto.form.FormSubmissionDTO;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.FormDataRepository;
 import org.junit.Before;
@@ -39,7 +40,7 @@ public class FormSubmissionSyncServiceTest {
     private FormSubmissionService formSubmissionService;
 
     private FormSubmissionSyncService service;
-    private List<org.ei.drishti.dto.form.FormSubmission> expectedFormSubmissionsDto;
+    private List<FormSubmissionDTO> expectedFormSubmissionsDto;
     private List<FormSubmission> submissions;
     private String formInstanceJSON;
 
@@ -50,7 +51,7 @@ public class FormSubmissionSyncServiceTest {
 
         formInstanceJSON = "{form:{bind_type: 'ec'}}";
         submissions = asList(new FormSubmission("id 1", "entity id 1", "form name", formInstanceJSON, "123", PENDING));
-        expectedFormSubmissionsDto = asList(new org.ei.drishti.dto.form.FormSubmission(
+        expectedFormSubmissionsDto = asList(new FormSubmissionDTO(
                 "anm id 1", "id 1", "entity id 1", "form name", formInstanceJSON, "123"));
         when(allSettings.fetchRegisteredANM()).thenReturn("anm id 1");
         when(repository.getPendingFormSubmissions()).thenReturn(submissions);

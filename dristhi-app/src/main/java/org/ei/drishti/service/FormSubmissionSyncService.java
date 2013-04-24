@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.domain.Response;
+import org.ei.drishti.dto.form.FormSubmissionDTO;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.FormDataRepository;
 
@@ -61,7 +62,7 @@ public class FormSubmissionSyncService {
             logError(format("Form submissions pull failed."));
             return fetchedFailed;
         }
-        List<org.ei.drishti.dto.form.FormSubmission> formSubmissions = new Gson().fromJson(response.payload(), new TypeToken<List<org.ei.drishti.dto.form.FormSubmission>>() {
+        List<FormSubmissionDTO> formSubmissions = new Gson().fromJson(response.payload(), new TypeToken<List<FormSubmissionDTO>>() {
         }.getType());
         if (formSubmissions.isEmpty()) {
             return nothingFetched;
@@ -71,9 +72,9 @@ public class FormSubmissionSyncService {
     }
 
     private String mapToFormSubmissionDTO(List<FormSubmission> pendingFormSubmissions) {
-        List<org.ei.drishti.dto.form.FormSubmission> formSubmissions = new ArrayList<org.ei.drishti.dto.form.FormSubmission>();
+        List<org.ei.drishti.dto.form.FormSubmissionDTO> formSubmissions = new ArrayList<org.ei.drishti.dto.form.FormSubmissionDTO>();
         for (FormSubmission pendingFormSubmission : pendingFormSubmissions) {
-            formSubmissions.add(new org.ei.drishti.dto.form.FormSubmission(allSettings.fetchRegisteredANM(), pendingFormSubmission.instanceId(),
+            formSubmissions.add(new org.ei.drishti.dto.form.FormSubmissionDTO(allSettings.fetchRegisteredANM(), pendingFormSubmission.instanceId(),
                     pendingFormSubmission.entityId(), pendingFormSubmission.formName(), pendingFormSubmission.instance(), pendingFormSubmission.version()));
         }
         return new Gson().toJson(formSubmissions);
