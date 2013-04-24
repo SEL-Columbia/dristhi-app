@@ -9,7 +9,6 @@
         <version>2.0.1</version>
     </parent>
 
-    <groupId>org.ei.drishti</groupId>
     <artifactId>dristhi-app-it</artifactId>
     <version>2.0.1</version>
     <packaging>apk</packaging>
