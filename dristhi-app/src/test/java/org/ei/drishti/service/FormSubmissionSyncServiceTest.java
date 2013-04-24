@@ -2,6 +2,7 @@ package org.ei.drishti.service;
 
 import com.google.gson.Gson;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
@@ -16,6 +17,9 @@ import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static junit.framework.Assert.assertEquals;
+import static org.ei.drishti.domain.FetchStatus.fetched;
+import static org.ei.drishti.domain.FetchStatus.nothingFetched;
 import static org.ei.drishti.domain.ResponseStatus.failure;
 import static org.ei.drishti.domain.ResponseStatus.success;
 import static org.ei.drishti.domain.SyncStatus.PENDING;
@@ -94,10 +98,23 @@ public class FormSubmissionSyncServiceTest {
         when(allSettings.fetchPreviousFormSyncIndex()).thenReturn("122");
         when(httpAgent.fetch("https://drishti.modilabs.org/form-submissions?anm-id=anm id 1&timestamp=122")).thenReturn(new Response<String>(success, new Gson().toJson(this.expectedFormSubmissionsDto)));
 
-        service.pullFromServer();
+        FetchStatus fetchStatus = service.pullFromServer();
 
+        assertEquals(fetched, fetchStatus);
         verify(httpAgent).fetch("https://drishti.modilabs.org/form-submissions?anm-id=anm id 1&timestamp=122");
         verify(formSubmissionService).processSubmissions(expectedFormSubmissions);
+    }
+
+    @Test
+    public void shouldReturnNothingFetchedStatusWhenNoFormSubmissionsAreGotFromServer() throws Exception {
+        when(allSettings.fetchPreviousFormSyncIndex()).thenReturn("122");
+        when(httpAgent.fetch("https://drishti.modilabs.org/form-submissions?anm-id=anm id 1&timestamp=122")).thenReturn(new Response<String>(success, new Gson().toJson(Collections.emptyList())));
+
+        FetchStatus fetchStatus = service.pullFromServer();
+
+        assertEquals(nothingFetched, fetchStatus);
+        verify(httpAgent).fetch("https://drishti.modilabs.org/form-submissions?anm-id=anm id 1&timestamp=122");
+        verifyZeroInteractions(formSubmissionService);
     }
 
     @Test
@@ -105,8 +122,9 @@ public class FormSubmissionSyncServiceTest {
         when(allSettings.fetchPreviousFormSyncIndex()).thenReturn("122");
         when(httpAgent.fetch("https://drishti.modilabs.org/form-submissions?anm-id=anm id 1&timestamp=122")).thenReturn(new Response<String>(failure, null));
 
-        service.pullFromServer();
+        FetchStatus fetchStatus = service.pullFromServer();
 
+        assertEquals(FetchStatus.fetchedFailed, fetchStatus);
         verifyZeroInteractions(formSubmissionService);
     }
 }

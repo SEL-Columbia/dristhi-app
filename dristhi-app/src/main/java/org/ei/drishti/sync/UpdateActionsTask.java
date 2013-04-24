@@ -32,8 +32,9 @@ public class UpdateActionsTask {
 
         task.doActionInBackground(new BackgroundAction<FetchStatus>() {
             public FetchStatus actionToDoInBackgroundThread() {
-                formSubmissionSyncService.sync();
-                return actionService.fetchNewActions();
+                FetchStatus fetchStatus = formSubmissionSyncService.sync();
+                actionService.fetchNewActions();
+                return fetchStatus;
             }
 
             public void postExecuteInUIThread(FetchStatus result) {

@@ -2,6 +2,7 @@ package org.ei.drishti.service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.repository.AllSettings;
@@ -13,6 +14,9 @@ import java.util.List;
 import static java.text.MessageFormat.format;
 import static org.ei.drishti.AllConstants.DRISHTI_BASE_URL;
 import static org.ei.drishti.convertor.FormSubmissionConvertor.toDomain;
+import static org.ei.drishti.domain.FetchStatus.fetched;
+import static org.ei.drishti.domain.FetchStatus.fetchedFailed;
+import static org.ei.drishti.domain.FetchStatus.nothingFetched;
 import static org.ei.drishti.util.Log.logError;
 import static org.ei.drishti.util.Log.logInfo;
 
@@ -30,9 +34,9 @@ public class FormSubmissionSyncService {
         this.allSettings = allSettings;
     }
 
-    public void sync() {
+    public FetchStatus sync() {
         pushToServer();
-        pullFromServer();
+        return pullFromServer();
     }
 
     public void pushToServer() {
@@ -50,16 +54,20 @@ public class FormSubmissionSyncService {
         logInfo(format("Form submissions sync successfully. Submissions:  {0}", pendingFormSubmissions));
     }
 
-    public void pullFromServer() {
+    public FetchStatus pullFromServer() {
         String uri = DRISHTI_BASE_URL + FORM_SUBMISSIONS_PATH + "?anm-id=" + allSettings.fetchRegisteredANM() + "&timestamp=" + allSettings.fetchPreviousFormSyncIndex();
         Response<String> response = httpAgent.fetch(uri);
         if (response.isFailure()) {
             logError(format("Form submissions pull failed."));
-            return;
+            return fetchedFailed;
         }
         List<org.ei.drishti.dto.form.FormSubmission> formSubmissions = new Gson().fromJson(response.payload(), new TypeToken<List<org.ei.drishti.dto.form.FormSubmission>>() {
         }.getType());
+        if (formSubmissions.isEmpty()) {
+            return nothingFetched;
+        }
         formSubmissionService.processSubmissions(toDomain(formSubmissions));
+        return fetched;
     }
 
     private String mapToFormSubmissionDTO(List<FormSubmission> pendingFormSubmissions) {

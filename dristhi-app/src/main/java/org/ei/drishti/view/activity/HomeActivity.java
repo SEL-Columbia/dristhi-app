@@ -31,12 +31,19 @@ public class HomeActivity extends SecuredWebActivity {
             }
         }
     };
+    private Listener<String> onFormSubmittedListener = new Listener<String>() {
+        @Override
+        public void onEvent(String instanceId) {
+            updateController.reload();
+        }
+    };
 
     @Override
     protected void onInitialization() {
         SYNC_STARTED.addListener(onSyncStartListener);
         SYNC_COMPLETED.addListener(onSyncCompleteListener);
         ON_DATA_FETCHED.addListener(onDataFetchedListener);
+        FORM_SUBMITTED.addListener(onFormSubmittedListener);
 
         webView.loadUrl("file:///android_asset/www/home.html");
         webView.addJavascriptInterface(new HomeController(this, updateController), "context");

@@ -44,6 +44,7 @@ public class UpdateActionsTaskTest {
         org.ei.drishti.Context.setInstance(context);
         when(context.IsUserLoggedOut()).thenReturn(false);
         when(actionService.fetchNewActions()).thenReturn(fetched);
+        when(formSubmissionSyncService.sync()).thenReturn(fetched);
 
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, actionService, formSubmissionSyncService, progressIndicator);
         updateActionsTask.updateFromServer(new AfterFetchListener() {
@@ -63,6 +64,7 @@ public class UpdateActionsTaskTest {
         org.ei.drishti.Context.setInstance(context);
         when(context.IsUserLoggedOut()).thenReturn(false);
         when(actionService.fetchNewActions()).thenReturn(nothingFetched);
+        when(formSubmissionSyncService.sync()).thenReturn(nothingFetched);
 
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, actionService, formSubmissionSyncService, progressIndicator);
         updateActionsTask.updateFromServer(new AfterFetchListener() {
