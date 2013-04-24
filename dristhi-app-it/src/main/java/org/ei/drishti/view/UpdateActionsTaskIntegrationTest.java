@@ -94,7 +94,8 @@ public class UpdateActionsTaskIntegrationTest extends ActivityInstrumentationTes
         }
 
         @Override
-        public void sync() {
+        public FetchStatus sync() {
+            return fetched;
         }
     }
 
