@@ -235,11 +235,12 @@
                                 <goals>
                                     <goal>start</goal>
                                 </goals>
+                                <phase>test</phase>
                             </execution>
                         </executions>
                         <configuration>
                             <configFile>src/test/angular_e2e/conf/karma.conf.js</configFile>
-                            <browsers>Chrome</browsers>
+                            <browsers>PhantomJS</browsers>
                             <singleRun>false</singleRun>
                         </configuration>
                     </plugin>

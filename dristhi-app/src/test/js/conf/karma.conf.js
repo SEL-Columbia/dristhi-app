@@ -14,5 +14,3 @@ files = [
     'src/test/js/*spec.js',
     'src/test/js/smart_registry/*spec.js'
 ];
-
-autoWatch = true;
