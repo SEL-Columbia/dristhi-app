@@ -8,8 +8,10 @@ files = [
 
 autoWatch = true;
 
+browsers = ['Chrome'];
+
 proxies = {
-    '/': 'http://localhost:8080/'
+    '/': 'http://localhost:8888/'
 };
 
 junitReporter = {
