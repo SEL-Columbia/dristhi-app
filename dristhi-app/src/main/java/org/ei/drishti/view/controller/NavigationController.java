@@ -3,12 +3,12 @@ package org.ei.drishti.view.controller;
 import android.content.Context;
 import android.content.Intent;
 import com.google.gson.Gson;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.service.ANMService;
 import org.ei.drishti.view.activity.*;
 import org.ei.drishti.view.contract.HomeContext;
 
-import static org.ei.drishti.AllConstants.ENTITY_ID_PARAM;
-import static org.ei.drishti.AllConstants.FORM_NAME_PARAM;
+import static org.ei.drishti.AllConstants.*;
 
 public class NavigationController {
     private Context context;
@@ -56,5 +56,12 @@ public class NavigationController {
 
     public String get() {
         return new Gson().toJson(new HomeContext(anmService.fetchDetails()));
+    }
+
+    public void takePhoto(String entityId, String entityType) {
+        Intent intent = new Intent(context, CameraLaunchActivity.class);
+        intent.putExtra(AllConstants.TYPE, entityType);
+        intent.putExtra(ENTITY_ID, entityId);
+        context.startActivity(intent);
     }
 }

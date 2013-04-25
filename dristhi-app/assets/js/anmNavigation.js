@@ -118,6 +118,9 @@ function ANMNavigationBridge() {
         },
         delegateToFormLaunchView: function (formName, entityId) {
             return anmNavigationContext.startFormActivity(formName, entityId);
+        },
+        takePhoto: function (entityId, entityType) {
+            return anmNavigationContext.takePhoto(entityId, entityType);
         }
     };
 }
@@ -159,7 +162,10 @@ function FakeANMNavigationContext() {
             window.location = "smart_registry/anc_register.html";
         },
         startFormActivity: function (formName, entityId) {
-            alert("Launching form: " + formName + ", for entityId: '" + entityId +"'");
+            alert("Launching form: " + formName + ", for entityId: '" + entityId + "'");
+        },
+        takePhoto: function (entityId, entityType) {
+            alert("Taking photo for:" + entityId + " of type: " + entityType);
         }
     }
 }

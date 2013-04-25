@@ -1,5 +1,5 @@
-<div id="pic">
-    <img src="../../img/smart_registry/profile-rounded-pic.png">
+<div id="pic" ng-click="capturePicture(client.entity_id, client_type)">
+    <img ng-src="{{client.photo_path}}"/>
 </div>
 <div id="names">
     <span class="client-name text-bold ellipsis">{{client.name}}</span>

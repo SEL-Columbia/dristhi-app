@@ -1,5 +1,6 @@
 angular.module("smartRegistry.controllers")
     .controller("listViewController", ["$scope", function ($scope) {
+        $scope.navigationBridge = new ANMNavigationBridge();
         $scope.sort = function (option) {
             $scope.currentSortOption = option;
             $scope.sortList = $scope[option.handler];
@@ -81,5 +82,9 @@ angular.module("smartRegistry.controllers")
         $scope.openForm = function (formName, entityId) {
             $scope.navigationBridge = new ANMNavigationBridge();
             $scope.navigationBridge.delegateToFormLaunchView(formName, entityId);
-        }
+        };
+
+        $scope.capturePicture = function (entityId, entityType) {
+            $scope.navigationBridge.takePhoto(entityId, entityType);
+        };
     }]);

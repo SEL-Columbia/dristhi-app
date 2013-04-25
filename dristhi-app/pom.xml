@@ -154,6 +154,8 @@
                     </preloadSources>
                     <jsSrcDir>assets/js/</jsSrcDir>
                     <sourceIncludes>
+                        <include>anmNavigation.js</include>
+                        <include>page_view.js</include>
                         <include>form/*.js</include>
                         <include>lib/*.js</include>
                         <include>smart_registry/app.js</include>
@@ -161,7 +163,6 @@
                     </sourceIncludes>
                     <sourceExcludes>
                         <exclude>enketo/*.js</exclude>
-                        <exclude>*.js</exclude>
                     </sourceExcludes>
                     <jsTestSrcDir>src/test/js</jsTestSrcDir>
                 </configuration>

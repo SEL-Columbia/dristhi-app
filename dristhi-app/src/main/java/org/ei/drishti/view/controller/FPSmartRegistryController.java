@@ -15,6 +15,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import static java.util.Collections.sort;
+import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
 
 public class FPSmartRegistryController {
 
@@ -39,12 +41,14 @@ public class FPSmartRegistryController {
                 for (EligibleCouple ec : ecs) {
                     Mother mother = allBeneficiaries.findMotherByECCaseId(ec.caseId());
                     String thayiCardNumber = mother == null ? "" : mother.thaayiCardNumber();
+                    String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
                     fpClients.add(new FPClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.age(), thayiCardNumber,
                             ec.ecNumber(), ec.village(), ec.getDetail("currentMethod"),
                             ec.getDetail("sideEffects"), ec.getDetail("numberOfPregnancies"),
                             ec.getDetail("parity"), ec.getDetail("numberOfLivingChildren"),
                             ec.getDetail("numberOfStillBirths"), ec.getDetail("numberOfAbortions"), null,
-                            null, ec.isHighPriority(), ec.getDetail("familyPlanningMethodChangeDate")));
+                            null, ec.isHighPriority(), ec.getDetail("familyPlanningMethodChangeDate"),
+                            photoPath));
                 }
                 sortByName(fpClients);
                 return new Gson().toJson(fpClients);

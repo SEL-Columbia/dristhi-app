@@ -21,7 +21,7 @@ public class EligibleCoupleDetailActivity extends SecuredWebActivity {
             @Override
             public void onEvent(CapturedPhotoInformation data) {
                 if (webView != null) {
-                    webView.loadUrl("javascript:pageView.reloadPhoto('" + data.caseId() + "', '" + data.photoPath() + "')");
+                    webView.loadUrl("javascript:pageView.reloadPhoto('" + data.entityId() + "', '" + data.photoPath() + "')");
                 }
             }
         };

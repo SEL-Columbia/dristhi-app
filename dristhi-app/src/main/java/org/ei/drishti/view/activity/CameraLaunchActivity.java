@@ -17,7 +17,7 @@ import java.util.UUID;
 
 import static android.os.Environment.DIRECTORY_PICTURES;
 import static android.os.Environment.getExternalStoragePublicDirectory;
-import static org.ei.drishti.AllConstants.CASE_ID;
+import static org.ei.drishti.AllConstants.ENTITY_ID;
 import static org.ei.drishti.AllConstants.WOMAN_TYPE;
 import static org.ei.drishti.event.Event.ON_PHOTO_CAPTURED;
 
@@ -27,12 +27,12 @@ public class CameraLaunchActivity extends SecuredActivity {
     private static final String DRISTHI_DIRECTORY_NAME = "Dristhi";
     private File imageFile;
     private String entityType;
-    private String caseId;
+    private String entityId;
 
     @Override
     protected void onCreation() {
         Intent intent = getIntent();
-        caseId = intent.getStringExtra(CASE_ID);
+        entityId = intent.getStringExtra(ENTITY_ID);
         entityType = intent.getStringExtra(AllConstants.TYPE);
         startCamera();
     }
@@ -71,7 +71,7 @@ public class CameraLaunchActivity extends SecuredActivity {
         if (imageFile.exists()) {
             String imageFilePath = imageFile.getAbsolutePath();
             setPic(imageFilePath);
-            updateEntity(imageFilePath);
+            updateEntity("file://" + imageFilePath);
             Toast.makeText(this, "Photo captured", Toast.LENGTH_SHORT).show();
         }
         super.onBackPressed();
@@ -98,8 +98,8 @@ public class CameraLaunchActivity extends SecuredActivity {
 
     private void updateEntity(String imagePath) {
         if (WOMAN_TYPE.equals(entityType)) {
-            context.allEligibleCouples().updatePhotoPath(caseId, imagePath);
-            ON_PHOTO_CAPTURED.notifyListeners(new CapturedPhotoInformation(caseId, imagePath));
+            context.allEligibleCouples().updatePhotoPath(entityId, imagePath);
+            ON_PHOTO_CAPTURED.notifyListeners(new CapturedPhotoInformation(entityId, imagePath));
         }
     }
 

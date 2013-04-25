@@ -22,6 +22,7 @@ public class AllConstants {
     public static final String TYPE = "type";
     public static final String WOMAN_TYPE = "woman";
     public static final String DRISHTI_BASE_URL = "https://drishti.modilabs.org";
+    public static final String DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH = "../../img/woman-placeholder.png";
 
     public static final String FORM_NAME_PARAM = "formName";
     public static final String INSTANCE_ID_PARAM = "instanceId";
@@ -41,4 +42,6 @@ public class AllConstants {
     public static final String CHANGE_FP_METHOD_FIELD_NAME = "change_fp_method";
     public static final String RENEW_FP_PRODUCT_FIELD_NAME = "renew_fp_product";
     public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME = "familyPlanningMethodChangeDate";
+
+    public static final String ENTITY_ID = "entityId";
 }

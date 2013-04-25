@@ -180,6 +180,14 @@ describe("List view controller", function () {
             expect(scope.filterList(client1)).toBeTruthy();
             expect(scope.filterList(client2)).toBeFalsy();
         });
+
+        it("should trigger take photo", function () {
+            scope.navigationBridge = jasmine.createSpyObj('ANMNavigationBridge', ['takePhoto']);
+
+            scope.capturePicture("entity id 1", "type");
+
+            expect(scope.navigationBridge.takePhoto).toHaveBeenCalledWith("entity id 1", "type")
+        });
     });
 
     describe("loadAll", function () {

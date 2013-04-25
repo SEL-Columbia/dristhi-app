@@ -38,7 +38,8 @@ function FakeFPSmartRegistryContext() {
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
                     "economicStatus": "bpl",
-                    "caste": "sc"
+                    "caste": "sc",
+                    "photo_path": "../../img/woman-placeholder.png"
                 },
                 {
                     "entity_id": "entity 2",
@@ -59,7 +60,8 @@ function FakeFPSmartRegistryContext() {
                     "num_stillbirths": '1',
                     "num_abortions": '1',
                     "family_planning_method_change_date": "14/03/12",
-                    "caste": "st"
+                    "caste": "st",
+                    "photo_path": "../../img/woman-placeholder.png"
                 },
                 {
                     "entity_id": "entity 3",
@@ -80,7 +82,8 @@ function FakeFPSmartRegistryContext() {
                     "num_stillbirths": '2',
                     "num_abortions": '0',
                     "family_planning_method_change_date": "02/12/13",
-                    "economicStatus": "apl"
+                    "economicStatus": "apl",
+                    "photo_path": "../../img/woman-placeholder.png"
                 },
                 {
                     "entity_id": "entity 4",
@@ -100,7 +103,8 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '1',
                     "num_abortions": '1',
-                    "family_planning_method_change_date": "21/06/12"
+                    "family_planning_method_change_date": "21/06/12",
+                    "photo_path": "../../img/woman-placeholder.png"
                 },
                 {
                     "entity_id": "entity 5",
@@ -120,7 +124,8 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '1',
                     "num_abortions": '1',
-                    "family_planning_method_change_date": "25/02/13"
+                    "family_planning_method_change_date": "25/02/13",
+                    "photo_path": "../../img/woman-placeholder.png"
                 },
                 {
                     "entity_id": "entity 6",
@@ -140,7 +145,8 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '1',
                     "num_abortions": '1',
-                    "family_planning_method_change_date": "25/02/13"
+                    "family_planning_method_change_date": "25/02/13",
+                    "photo_path": "../../img/woman-placeholder.png"
                 },
                 {
                     "entity_id": "entity 7",
@@ -160,7 +166,8 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '1',
                     "num_abortions": '1',
-                    "family_planning_method_change_date": "25/02/13"
+                    "family_planning_method_change_date": "25/02/13",
+                    "photo_path": "../../img/woman-placeholder.png"
                 },
                 {
                     "entity_id": "entity 8",
@@ -180,7 +187,8 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '1',
                     "num_abortions": '1',
-                    "family_planning_method_change_date": "25/02/13"
+                    "family_planning_method_change_date": "25/02/13",
+                    "photo_path": "../../img/woman-placeholder.png"
                 },
                 {
                     "entity_id": "entity 9",
@@ -200,7 +208,8 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '1',
                     "num_abortions": '1',
-                    "family_planning_method_change_date": "25/02/13"
+                    "family_planning_method_change_date": "25/02/13",
+                    "photo_path": "../../img/woman-placeholder.png"
                 },
                 {
                     "entity_id": "entity 10",
@@ -220,7 +229,8 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '1',
                     "num_abortions": '1',
-                    "family_planning_method_change_date": "25/02/13"
+                    "family_planning_method_change_date": "25/02/13",
+                    "photo_path": "../../img/woman-placeholder.png"
                 },
                 {
                     "entity_id": "entity 11",
@@ -240,7 +250,8 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '1',
                     "num_abortions": '1',
-                    "family_planning_method_change_date": "25/02/13"
+                    "family_planning_method_change_date": "25/02/13",
+                    "photo_path": "../../img/woman-placeholder.png"
                 },
                 {
                     "entity_id": "entity 12",
@@ -260,7 +271,8 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '1',
                     "num_abortions": '1',
-                    "family_planning_method_change_date": "25/02/13"
+                    "family_planning_method_change_date": "25/02/13",
+                    "photo_path": "../../img/woman-placeholder.png"
                 },
                 {
                     "entity_id": "entity 13",
@@ -280,7 +292,8 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '1',
                     "num_abortions": '1',
-                    "family_planning_method_change_date": "25/02/13"
+                    "family_planning_method_change_date": "25/02/13",
+                    "photo_path": "../../img/woman-placeholder.png"
                 },
                 {
                     "entity_id": "entity 14",
@@ -300,7 +313,8 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '1',
                     "num_abortions": '1',
-                    "family_planning_method_change_date": "25/02/13"
+                    "family_planning_method_change_date": "25/02/13",
+                    "photo_path": "../../img/woman-placeholder.png"
                 }
             ]);
         },

@@ -1,16 +1,16 @@
 package org.ei.drishti.event;
 
 public class CapturedPhotoInformation {
-    private final String caseId;
+    private final String entityId;
     private final String photoPath;
 
-    public CapturedPhotoInformation(String caseId, String photoPath) {
-        this.caseId = caseId;
+    public CapturedPhotoInformation(String entityId, String photoPath) {
+        this.entityId = entityId;
         this.photoPath = photoPath;
     }
 
-    public String caseId() {
-        return caseId;
+    public String entityId() {
+        return entityId;
     }
 
     public String photoPath() {

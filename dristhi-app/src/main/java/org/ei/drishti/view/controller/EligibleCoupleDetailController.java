@@ -17,10 +17,13 @@ import org.joda.time.LocalDate;
 import org.ocpsoft.pretty.time.Duration;
 import org.ocpsoft.pretty.time.PrettyTime;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
 
 import static java.lang.Math.min;
-import static org.ei.drishti.AllConstants.CASE_ID;
+import static org.ei.drishti.AllConstants.ENTITY_ID;
 import static org.ei.drishti.AllConstants.WOMAN_TYPE;
 
 public class EligibleCoupleDetailController {
@@ -69,7 +72,7 @@ public class EligibleCoupleDetailController {
     public void takePhoto() {
         Intent intent = new Intent(context, CameraLaunchActivity.class);
         intent.putExtra(AllConstants.TYPE, WOMAN_TYPE);
-        intent.putExtra(CASE_ID, caseId);
+        intent.putExtra(ENTITY_ID, caseId);
         context.startActivity(intent);
     }
 
