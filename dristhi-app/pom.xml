@@ -187,7 +187,8 @@
                 </executions>
                 <configuration>
                     <configFile>src/test/angular_e2e/conf/karma.conf.js</configFile>
-                    <singleRun>false</singleRun>
+                    <browsers>Chrome</browsers>
+                    <singleRun>true</singleRun>
                 </configuration>
             </plugin>
         </plugins>
