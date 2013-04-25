@@ -91,7 +91,7 @@
         <activity
             android:name=".view.activity.CameraLaunchActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".view.activity.FPSmartRegistryActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"

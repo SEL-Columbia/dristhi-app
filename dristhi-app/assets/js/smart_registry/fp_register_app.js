@@ -181,16 +181,4 @@ angular.module("smartRegistry.controllers")
                 || client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0);
         };
-
-        $scope.reloadPhoto = function (entityId, photoPath) {
-            $scope.$apply(function () {
-                $scope.clients.filter(function (client) {
-                    return client.entity_id === entityId;
-                })[0]['photo_path'] = photoPath;
-            });
-        };
-
-        pageView.onReloadPhoto(function (entityId, photoPath) {
-            $scope.reloadPhoto(entityId, photoPath);
-        });
     });
