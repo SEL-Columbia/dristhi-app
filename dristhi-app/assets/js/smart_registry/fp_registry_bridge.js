@@ -37,7 +37,8 @@ function FakeFPSmartRegistryContext() {
                     "num_stillbirths": '1',
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
-                    "economicStatus": "bpl"
+                    "economicStatus": "bpl",
+                    "caste": "sc"
                 },
                 {
                     "entity_id": "entity 2",
@@ -57,7 +58,8 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '1',
                     "num_abortions": '1',
-                    "family_planning_method_change_date": "14/03/12"
+                    "family_planning_method_change_date": "14/03/12",
+                    "caste": "st"
                 },
                 {
                     "entity_id": "entity 3",
