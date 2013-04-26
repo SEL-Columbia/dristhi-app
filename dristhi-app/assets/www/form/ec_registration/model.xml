@@ -28,12 +28,17 @@
             <caste/>
             <education_level/>
             <num_pregnancies/>
+            <num_abortions1/>
             <num_abortions/>
+            <num_abortions_spontaneous1/>
             <num_abortions_spontaneous/>
             <num_abortions_induced/>
+            <num_livebirths1/>
             <num_livebirths/>
+            <num_stillbirths1/>
             <num_stillbirths/>
             <parity/>
+            <num_livingchildren1/>
             <num_livingchildren/>
             <num_livingchildren_male/>
             <num_livingchildren_female/>
@@ -442,7 +447,7 @@
             </item>
             <item>
                 <itextId>static_instance-w_religion-5</itextId>
-                <name>buddist</name>
+                <name>buddhist</name>
             </item>
             <item>
                 <itextId>static_instance-w_religion-6</itextId>
@@ -470,7 +475,7 @@
         <root>
             <item>
                 <itextId>static_instance-fp_method_other-0</itextId>
-                <name>injectable</name>
+                <name>dmpa_injectable</name>
             </item>
             <item>
                 <itextId>static_instance-fp_method_other-1</itextId>

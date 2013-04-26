@@ -302,9 +302,9 @@
                 <span lang="" class=" active">Sikh &#xCB8;&#xCBF;&#xC96;&#xCCD;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/religion" value="buddist"
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/religion" value="buddhist"
                        data-type-xml="select1"/>
-                <span lang="" class=" active">Buddist &#xCAC;&#xCCC;&#xCA6;&#xCCD;&#xCA7;</span>
+                <span lang="" class=" active">Buddhist &#xCAC;&#xCCC;&#xCA6;&#xCCD;&#xCA7;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/religion" value="r_others"
@@ -409,7 +409,8 @@
         <span lang="" class=" active">Number of abortions? &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCAA;&#xCBE;&#xCA4;&#xCA6;
             &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;?
         </span>
-        <select name="/EC_Registration_EngKan/num_abortions"
+        <span class="required">*</span>
+        <select name="/EC_Registration_EngKan/num_abortions1" required="required"
                 data-constraint=".&lt;=  /EC_Registration_EngKan/num_pregnancies "
                 data-relevant=" /EC_Registration_EngKan/num_pregnancies  &gt; 0" data-type-xml="select1">
             <option value="">...</option>
@@ -432,7 +433,8 @@
         <span lang="" class=" active">Number of spontaneous abortions? &#xCB8;&#xCCD;&#xCB5;&#xCBE;&#xCAD;&#xCB5;&#xCBF;&#xC95;
             &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCAA;&#xCBE;&#xCA4;&#xCA6; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;?
         </span>
-        <select name="/EC_Registration_EngKan/num_abortions_spontaneous"
+        <span class="required">*</span>
+        <select name="/EC_Registration_EngKan/num_abortions_spontaneous1" required="required"
                 data-constraint=".&lt;=  /EC_Registration_EngKan/num_abortions "
                 data-relevant=" /EC_Registration_EngKan/num_abortions  &gt; 0" data-type-xml="select1">
             <option value="">...</option>
@@ -455,7 +457,8 @@
         <span lang="" class=" active">Number of live births? &#xCB8;&#xC9C;&#xCC0;&#xCB5; &#xC9C;&#xCA8;&#xCA8;&#xCA6;
             &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;?
         </span>
-        <select name="/EC_Registration_EngKan/num_livebirths"
+        <span class="required">*</span>
+        <select name="/EC_Registration_EngKan/num_livebirths1" required="required"
                 data-constraint=".&lt;=( /EC_Registration_EngKan/num_pregnancies  -  /EC_Registration_EngKan/num_abortions )"
                 data-relevant="( /EC_Registration_EngKan/num_pregnancies  -  /EC_Registration_EngKan/num_abortions ) &gt; 0"
                 data-type-xml="select1">
@@ -479,7 +482,8 @@
         <span lang="" class=" active">Number of still births? &#xCA8;&#xCBF;&#xCB0;&#xCCD;&#xC9C;&#xCC0;&#xCB5; &#xC9C;&#xCA8;&#xCA8;&#xCA6;
             &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;?
         </span>
-        <select name="/EC_Registration_EngKan/num_stillbirths"
+        <span class="required">*</span>
+        <select name="/EC_Registration_EngKan/num_stillbirths1" required="required"
                 data-constraint=".&lt;=( /EC_Registration_EngKan/num_pregnancies  -  /EC_Registration_EngKan/num_livebirths  -  /EC_Registration_EngKan/num_abortions )"
                 data-relevant="( /EC_Registration_EngKan/num_pregnancies  -  /EC_Registration_EngKan/num_livebirths  -  /EC_Registration_EngKan/num_abortions ) &gt; 0"
                 data-type-xml="select1">
@@ -503,7 +507,8 @@
         <span lang="" class=" active">Number of living children? &#xC9C;&#xCC0;&#xCB5;&#xC82;&#xCA4; &#xCAE;&#xC95;&#xCCD;&#xC95;&#xCB3;
             &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;?
         </span>
-        <select name="/EC_Registration_EngKan/num_livingchildren"
+        <span class="required">*</span>
+        <select name="/EC_Registration_EngKan/num_livingchildren1" required="required"
                 data-relevant=" /EC_Registration_EngKan/num_livebirths  &gt; 0" data-type-xml="select1">
             <option value="">...</option>
             <option value="0">0</option>
@@ -525,7 +530,8 @@
         <span lang="" class=" active">Number of male living children? &#xC9C;&#xCC0;&#xCB5;&#xC82;&#xCA4; &#xC97;&#xC82;&#xCA1;&#xCC1;
             &#xCAE;&#xC95;&#xCCD;&#xC95;&#xCB3; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;?
         </span>
-        <select name="/EC_Registration_EngKan/num_livingchildren_male"
+        <span class="required">*</span>
+        <select name="/EC_Registration_EngKan/num_livingchildren_male" required="required"
                 data-constraint=".&lt;=( /EC_Registration_EngKan/num_livingchildren )"
                 data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0" data-type-xml="select1">
             <option value="">...</option>
@@ -632,7 +638,7 @@
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_other"
-                       value="injectable" required="required"
+                       value="dmpa_injectable" required="required"
                        data-relevant=" /EC_Registration_EngKan/familyplanning_method_1  = 'others'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">DMPA / Injectable &#xCA1;&#xCBF;&#xC82;&#xCAA;&#xCBE; / &#xC9A;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
@@ -827,13 +833,38 @@
                    data-calculate="concat( /EC_Registration_EngKan/woman_name , ' ')" data-type-xml="string"/>
         </label>
         <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/num_abortions"
+                   data-calculate="if( /EC_Registration_EngKan/num_abortions1  = '', 0,  /EC_Registration_EngKan/num_abortions1 )"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/num_abortions_spontaneous"
+                   data-calculate="if( /EC_Registration_EngKan/num_abortions_spontaneous1  = '', 0,  /EC_Registration_EngKan/num_abortions_spontaneous1 )"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
             <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/num_abortions_induced"
                    data-calculate=" /EC_Registration_EngKan/num_abortions  -  /EC_Registration_EngKan/num_abortions_spontaneous "
                    data-type-xml="string"/>
         </label>
         <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/num_livebirths"
+                   data-calculate="if( /EC_Registration_EngKan/num_livebirths1  = '', 0,  /EC_Registration_EngKan/num_livebirths1 )"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/num_stillbirths"
+                   data-calculate="if( /EC_Registration_EngKan/num_stillbirths1  = '', 0,  /EC_Registration_EngKan/num_stillbirths1 )"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
             <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/parity"
                    data-calculate=" /EC_Registration_EngKan/num_livebirths  +  /EC_Registration_EngKan/num_stillbirths "
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/num_livingchildren"
+                   data-calculate="if( /EC_Registration_EngKan/num_livingchildren1  = '', 0,  /EC_Registration_EngKan/num_livingchildren1 )"
                    data-type-xml="string"/>
         </label>
         <label class="">
