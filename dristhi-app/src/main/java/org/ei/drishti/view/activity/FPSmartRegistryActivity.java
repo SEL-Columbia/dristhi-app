@@ -24,4 +24,9 @@ public class FPSmartRegistryActivity extends SecuredWebActivity {
         };
         ON_PHOTO_CAPTURED.addListener(photoCaptureListener);
     }
+
+    @Override
+    protected void onResumption() {
+        webView.loadUrl("javascript:pageView.reload()");
+    }
 }

@@ -2,7 +2,7 @@ angular.module("smartRegistry.controllers")
     .controller("fpRegisterController", function ($scope) {
         $scope.bridge = new FPRegistryBridge();
         $scope.client_type = "woman";
-        $scope.clients = $scope.bridge.getFPClients();
+        $scope.clients = $scope.bridge.getClients();
 
         $scope.sortOptions = {
             type: "sort",

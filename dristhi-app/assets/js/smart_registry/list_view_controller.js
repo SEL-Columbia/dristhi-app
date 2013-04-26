@@ -1,6 +1,8 @@
 angular.module("smartRegistry.controllers")
     .controller("listViewController", ["$scope", function ($scope) {
+
         $scope.navigationBridge = new ANMNavigationBridge();
+
         $scope.sort = function (option) {
             $scope.currentSortOption = option;
             $scope.sortList = $scope[option.handler];
@@ -26,8 +28,11 @@ angular.module("smartRegistry.controllers")
             return capitalize(unformattedText).replace(/_/g, " ");
         };
 
-        var addVillageNamesToFilterOptions = function () {
-            var villageFilterOptions = $scope.defaultVillageOptions;
+        var getVillageFilterOptions = function () {
+            var villageFilterOptions = {
+                type: $scope.defaultVillageOptions.type,
+                options: $scope.defaultVillageOptions.options.slice(0)
+            };
             var villages = $scope.bridge.getVillages();
             villages.forEach(function (village) {
                 villageFilterOptions.options.push({
@@ -39,7 +44,7 @@ angular.module("smartRegistry.controllers")
             return  villageFilterOptions;
         };
 
-        $scope.villageOptions = addVillageNamesToFilterOptions();
+        $scope.villageOptions = getVillageFilterOptions();
 
         $scope.filterList = function (client) {
             var searchCondition = true;
@@ -80,7 +85,6 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.openForm = function (formName, entityId) {
-            $scope.navigationBridge = new ANMNavigationBridge();
             $scope.navigationBridge.delegateToFormLaunchView(formName, entityId);
         };
 
@@ -98,5 +102,12 @@ angular.module("smartRegistry.controllers")
 
         pageView.onReloadPhoto(function (entityId, photoPath) {
             $scope.reloadPhoto(entityId, photoPath);
+        });
+
+        pageView.onReload(function () {
+            $scope.$apply(function () {
+                $scope.clients = $scope.bridge.getClients();
+                $scope.villageOptions = getVillageFilterOptions();
+            });
         });
     }]);

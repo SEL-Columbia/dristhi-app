@@ -5,7 +5,7 @@ function FPRegistryBridge() {
     }
 
     return {
-        getFPClients: function () {
+        getClients: function () {
             return JSON.parse(context.get());
         },
         getVillages: function () {

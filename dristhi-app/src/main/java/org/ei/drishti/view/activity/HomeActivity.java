@@ -31,6 +31,7 @@ public class HomeActivity extends SecuredWebActivity {
             }
         }
     };
+
     private Listener<String> onFormSubmittedListener = new Listener<String>() {
         @Override
         public void onEvent(String instanceId) {
