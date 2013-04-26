@@ -15,6 +15,33 @@ describe('ANC Register controller', function () {
         expect(scope.clients.length).toBeGreaterThan(0);
     });
 
+    it("should sum the number of tablets from ifa data", function () {
+        var ifaData = {
+            ifa1:{
+                status: 'done',
+                visit_date: '04/04',
+                data:{
+                    dose: 120
+                }
+            },
+            next:{
+                name: 'ifa2',
+                status: 'upcoming',
+                visit_date: null
+            },
+            'ifa2':{
+                status: 'done',
+                visit_date: '04/04',
+                data:{
+                    dose: 100
+                }
+            },
+            previous: 'ifa1'
+        };
+        var tabletsGiven = scope.sumIFATablets(ifaData);
+        expect(tabletsGiven).toEqual(220);
+    });
+
     describe("defaultVillageFilterOptions", function () {
         it("should default village filter options", function () {
             var expectedDefaultVillageOptions = {

@@ -1,5 +1,6 @@
 angular.module("smartRegistry.services")
     .service('ANCService', function () {
+        this.something = "Something";
         var schedules =
             [
                 {
@@ -12,7 +13,7 @@ angular.module("smartRegistry.services")
                 },
                 {
                     name:"ifa",
-                    milestones:["ifa1", "ifa2"]
+                    milestones:["ifa1", "ifa2", "ifa3"]
                 },
                 {
                     name: "hb",
@@ -303,7 +304,14 @@ angular.module("smartRegistry.services")
                                 name:'ifa2',
                                 date:'2012-05-24',
                                 data:{
-                                    dose:20
+                                    dose:80
+                                }
+                            },
+                            {
+                                name:'ifa3',
+                                date:'2012-06-17',
+                                data:{
+                                    dose:100
                                 }
                             },
                             {

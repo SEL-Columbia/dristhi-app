@@ -27,29 +27,37 @@
         <div class="span7 full-height span-no-margin width-without-margins">
             <div class="row-fluid full-height span-no-margin width-without-margins">
                 <div class="span7 line-right full-height span-no-margin width-without-margins span-content">
-                    <div data-ng-repeat="milestone in ['ifa1', 'ifa2']" ng-show="client.visits.ifa[milestone].status == 'done'" class="row-fluid hb">
+                    <div data-ng-repeat="milestone in ['ifa1', 'ifa2', 'ifa3']">
+                        <div ng-show="client.visits.ifa[milestone].status == 'done'" class="row-fluid hb">
                         <div class="span4 span-no-margin width-without-margins hb-content">{{client.visits.ifa[milestone].visit_date | date: 'dd/MM'}}</div>
                         <div class="span8 span-no-margin width-without-margins hb-content hb-content-right-aligned">
                             <i class="icon-ok green"></i> {{client.visits.ifa[milestone].data.dose}} Tablets
                         </div>
                     </div>
+                    </div>
                 </div>
                 <div class="span5 full-height span-no-margin width-without-margins span-content">
                     <!--IFA-->
-                    <ng:switch on="client.visits.anc.next">
+                    <ng:switch on="client.visits.ifa.next">
                         <a ng-switch-when="null" class="btn btn-primary btn-sr full-height btn-done" href="#">
                             <div class="done-icon full-height">
                                 <i class="icon-ok green icon-large"></i>
                             </div>
-                            <span class="text-bold">IFA Tablets</span>
+                            <span class="text-bold">IFA {{sumIFATablets(client.visits.ifa)}}</span>
                             <br/>
                             <span>On {{client.visits.ifa[client.visits.ifa.previous].visit_date | date: 'dd/MM'}}</span>
                         </a>
 
-                        <a ng-switch-default class="btn btn-primary btn-sr full-height" ng-class="client.visits.ifa[client.visits.ifa.next].status" href="#">
+                        <a ng-switch-default class="btn btn-primary btn-sr full-height"
+                           ng-class="{'btn-due': client.visits.ifa.next.status == 'normal',
+                           'btn-past-due': client.visits.ifa.next.status == 'urgent',
+                           'btn-upcoming': client.visits.ifa.next.status == 'upcoming'}" href="#">
                             <span class="text-bold">IFA Tablets</span>
                             <br/>
-                            <span>Due {{client.visits.ifa[client.visits.ifa.next].visit_date | date: 'dd/MM'}}</span>
+                            <ng:switch on="client.visits.ifa.next.visit_date">
+                                <span ng-switch-when="null">Upcoming</span>
+                                <span ng-switch-default>Due {{client.visits.ifa.next.visit_date | date: 'dd/MM'}}</span>
+                            </ng:switch>
                         </a>
                     </ng:switch>
                     </a>
