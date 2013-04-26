@@ -19,7 +19,6 @@ public class DrishtiSyncScheduler {
 
     public static final int SYNC_INTERVAL = MILLIS_PER_MINUTE;
     public static final int SYNC_START_DELAY = 5 * MILLIS_PER_SECOND;
-    //"logoutListener" has to be a field despite what Idea suggests as the ON_LOGOUT event holds a weak reference to this object to send a notification when user logs out.
     private static Listener<Boolean> logoutListener;
 
     public static void start(final Context context) {
