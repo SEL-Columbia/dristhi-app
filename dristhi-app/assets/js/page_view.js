@@ -7,6 +7,8 @@ var pageView = (function () {
     };
     var callbackForStopProgressIndicator = function () {
     };
+    var callbackForUpdateANMDetails = function (anmDetailsJSON) {
+    };
 
     return {
         reload: function () {
@@ -21,7 +23,9 @@ var pageView = (function () {
         stopProgressIndicator: function () {
             callbackForStopProgressIndicator();
         },
-
+        updateANMDetails: function (anmDetailsJSON) {
+            callbackForUpdateANMDetails(anmDetailsJSON);
+        },
         onReload: function (callBack) {
             callbackForReload = callBack;
         },
@@ -33,6 +37,9 @@ var pageView = (function () {
         },
         onStopProgressIndicator: function (callBack) {
             callbackForStopProgressIndicator = callBack;
+        },
+        onUpdateANMDetails: function (callBack) {
+            callbackForUpdateANMDetails = callBack;
         }
     }
 })();

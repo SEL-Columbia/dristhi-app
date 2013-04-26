@@ -1,10 +1,8 @@
 package org.ei.drishti.view.activity;
 
-import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.event.Listener;
 import org.ei.drishti.view.controller.HomeController;
 
-import static org.ei.drishti.domain.FetchStatus.fetched;
 import static org.ei.drishti.event.Event.*;
 
 public class HomeActivity extends SecuredWebActivity {
@@ -23,19 +21,10 @@ public class HomeActivity extends SecuredWebActivity {
         }
     };
 
-    private Listener<FetchStatus> onDataFetchedListener = new Listener<FetchStatus>() {
-        @Override
-        public void onEvent(FetchStatus data) {
-            if (fetched.equals(data)) {
-                updateController.reload();
-            }
-        }
-    };
-
     private Listener<String> onFormSubmittedListener = new Listener<String>() {
         @Override
         public void onEvent(String instanceId) {
-            updateController.reload();
+            updateController.updateANMDetails();
         }
     };
 
@@ -43,7 +32,6 @@ public class HomeActivity extends SecuredWebActivity {
     protected void onInitialization() {
         SYNC_STARTED.addListener(onSyncStartListener);
         SYNC_COMPLETED.addListener(onSyncCompleteListener);
-        ON_DATA_FETCHED.addListener(onDataFetchedListener);
         FORM_SUBMITTED.addListener(onFormSubmittedListener);
 
         webView.loadUrl("file:///android_asset/www/home.html");

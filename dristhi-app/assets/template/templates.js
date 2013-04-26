@@ -343,7 +343,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 
-  buffer += "<div class=\"span2\" id=\"ec-register\">\n    <a class=\"btn btn-register\" id=\"eligibleCoupleMenuOption\">\n        <span class=\"register-count\">";
+  buffer += "<div class=\"span2\" id=\"ec-register\">\n    <a class=\"btn btn-register\" id=\"eligibleCoupleMenuOption\">\n        <span id=\"eligibleCoupleCount\" class=\"register-count\">";
   if (stack1 = helpers.eligibleCoupleCount) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.eligibleCoupleCount; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -353,7 +353,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
     + "</span>\n        <span>";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "register_label", options) : helperMissing.call(depth0, "internationalize", "register_label", options)))
-    + "</span>\n    </a>\n</div>\n<div class=\"span2\" id=\"fp-register\">\n    <a class=\"btn btn-register\" id=\"fpSmartRegistryOption\">\n        <span class=\"register-count\">";
+    + "</span>\n    </a>\n</div>\n<div class=\"span2\" id=\"fp-register\">\n    <a class=\"btn btn-register\" id=\"fpSmartRegistryOption\">\n        <span id=\"fpCount\" class=\"register-count\">";
   if (stack2 = helpers.fpCount) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.fpCount; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
@@ -363,7 +363,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
     + "</span>\n        <span>";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "register_label", options) : helperMissing.call(depth0, "internationalize", "register_label", options)))
-    + "</span>\n    </a>\n</div>\n<div class=\"span2\" id=\"anc-register\">\n    <a class=\"btn btn-register\" id=\"ancSmartRegistryOption\">\n        <span class=\"register-count\">";
+    + "</span>\n    </a>\n</div>\n<div class=\"span2\" id=\"anc-register\">\n    <a class=\"btn btn-register\" id=\"ancSmartRegistryOption\">\n        <span id=\"ancCount\" class=\"register-count\">";
   if (stack2 = helpers.ancCount) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.ancCount; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
@@ -373,7 +373,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
     + "</span>\n        <span>";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "register_label", options) : helperMissing.call(depth0, "internationalize", "register_label", options)))
-    + "</span>\n    </a>\n</div>\n<div class=\"span2\" id=\"pnc-register\">\n    <a class=\"btn btn-register\" id=\"pncMenuOption\">\n        <span class=\"register-count\">";
+    + "</span>\n    </a>\n</div>\n<div class=\"span2\" id=\"pnc-register\">\n    <a class=\"btn btn-register\" id=\"pncMenuOption\">\n        <span id=\"pncCount\" class=\"register-count\">";
   if (stack2 = helpers.pncCount) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.pncCount; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
@@ -383,7 +383,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
     + "</span>\n        <span>";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.internationalize),stack1 ? stack1.call(depth0, "register_label", options) : helperMissing.call(depth0, "internationalize", "register_label", options)))
-    + "</span>\n    </a>\n</div>\n<div class=\"span2\" id=\"child-register\">\n    <a class=\"btn btn-register\" id=\"childMenuOption\">\n        <span class=\"register-count\">";
+    + "</span>\n    </a>\n</div>\n<div class=\"span2\" id=\"child-register\">\n    <a class=\"btn btn-register\" id=\"childMenuOption\">\n        <span id=\"childCount\" class=\"register-count\">";
   if (stack2 = helpers.childCount) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.childCount; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
