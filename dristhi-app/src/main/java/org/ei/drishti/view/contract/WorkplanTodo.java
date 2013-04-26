@@ -1,7 +1,5 @@
 package org.ei.drishti.view.contract;
 
-import org.ei.drishti.domain.CommCareForm;
-
 public class WorkplanTodo {
     private String caseId;
     private String visitCode;
@@ -10,8 +8,6 @@ public class WorkplanTodo {
     private String description;
     private String dueDate;
     private String villageName;
-    private CommCareForm formToOpen;
-
 
     public WorkplanTodo(String caseId, String beneficiaryName, String husbandName, String visitCode, String dueDate, String villageName) {
         this.caseId = caseId;
@@ -21,6 +17,5 @@ public class WorkplanTodo {
         this.villageName = villageName;
         this.description = TodoDetail.from(visitCode).prefix();
         this.dueDate = dueDate;
-        this.formToOpen = TodoDetail.from(visitCode).formToOpen();
     }
 }
