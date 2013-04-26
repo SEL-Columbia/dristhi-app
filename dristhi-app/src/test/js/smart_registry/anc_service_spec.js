@@ -37,7 +37,12 @@ describe('ANC Service', function () {
             {
                 anc:
                 {
-                    next: 'anc1',
+                    next:
+                    {
+                        name: 'anc1',
+                        status: 'normal',
+                        visit_date: '2012-10-24'
+                    },
                     anc1:
                     {
                         status: 'normal',
@@ -46,7 +51,12 @@ describe('ANC Service', function () {
                 },
                 tt:
                 {
-                    next: 'tt2',
+                    next:
+                    {
+                        name: 'tt2',
+                        status: 'urgent',
+                        visit_date: '2012-10-24'
+                    },
                     tt2:
                     {
                         status: 'urgent',
@@ -55,7 +65,12 @@ describe('ANC Service', function () {
                 },
                 ifa:
                 {
-                    next: 'ifa1',
+                    next:
+                    {
+                        name: 'ifa1',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
                     ifa1:
                     {
                         status: 'upcoming',
@@ -64,8 +79,13 @@ describe('ANC Service', function () {
                 },
                 hb:
                 {
-                    next: 'hb1',
-                    hb1:
+                    next:
+                    {
+                        name: 'hb',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
+                    hb:
                     {
                         status: 'upcoming',
                         visit_date: null
@@ -73,7 +93,12 @@ describe('ANC Service', function () {
                 },
                 delivery_plan:
                 {
-                    next: 'delivery_plan1',
+                    next:
+                    {
+                        name: 'delivery_plan1',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
                     delivery_plan1:
                     {
                         status: 'upcoming',
@@ -108,7 +133,12 @@ describe('ANC Service', function () {
             {
                 anc:
                 {
-                    next: 'anc3',
+                    next:
+                    {
+                        name: 'anc3',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
                     anc3:
                     {
                         status: 'upcoming',
@@ -126,23 +156,40 @@ describe('ANC Service', function () {
                     }
                 },
                 tt:{
-                    next:'tt1',
-                    tt1:{
+                    next:
+                    {
+                        name: 'tt1',
+                        status:'upcoming',
+                        visit_date:null
+                    },
+                    tt1:
+                    {
                         status:'upcoming',
                         visit_date:null
                     }
                 },
                 ifa:{
-                    next:'ifa1',
-                    ifa1:{
+                    next:
+                    {
+                        name: 'ifa1',
+                        status:'upcoming',
+                        visit_date:null
+                    },
+                    ifa1:
+                    {
                         status:'upcoming',
                         visit_date:null
                     }
                 },
                 hb:
                 {
-                    next: 'hb1',
-                    hb1:
+                    next:
+                    {
+                        name: 'hb',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
+                    hb:
                     {
                         status: 'upcoming',
                         visit_date: null
@@ -150,7 +197,12 @@ describe('ANC Service', function () {
                 },
                 delivery_plan:
                 {
-                    next: 'delivery_plan1',
+                    next:
+                    {
+                        name: 'delivery_plan1',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
                     delivery_plan1:
                     {
                         status: 'upcoming',
@@ -187,7 +239,12 @@ describe('ANC Service', function () {
             {
                 anc:
                 {
-                    next: 'anc3',
+                    next:
+                    {
+                        name: 'anc3',
+                        status: 'normal',
+                        visit_date: '2012-11-24'
+                    },
                     anc3:
                     {
                         status: 'normal',
@@ -200,28 +257,41 @@ describe('ANC Service', function () {
                         visit_date: '2011-10-24'
                     }
                 },
-                tt:
-                {
-                    next: 'tt1',
+                tt:{
+                    next:
+                    {
+                        name: 'tt1',
+                        status:'upcoming',
+                        visit_date:null
+                    },
                     tt1:
                     {
-                        status: 'upcoming',
-                        visit_date: null
+                        status:'upcoming',
+                        visit_date:null
                     }
                 },
-                ifa:
-                {
-                    next: 'ifa1',
+                ifa:{
+                    next:
+                    {
+                        name: 'ifa1',
+                        status:'upcoming',
+                        visit_date:null
+                    },
                     ifa1:
                     {
-                        status: 'upcoming',
-                        visit_date: null
+                        status:'upcoming',
+                        visit_date:null
                     }
                 },
                 hb:
                 {
-                    next: 'hb1',
-                    hb1:
+                    next:
+                    {
+                        name: 'hb',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
+                    hb:
                     {
                         status: 'upcoming',
                         visit_date: null
@@ -229,7 +299,12 @@ describe('ANC Service', function () {
                 },
                 delivery_plan:
                 {
-                    next: 'delivery_plan1',
+                    next:
+                    {
+                        name: 'delivery_plan1',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
                     delivery_plan1:
                     {
                         status: 'upcoming',
@@ -253,37 +328,54 @@ describe('ANC Service', function () {
             ];
             var expectedVisits =
             {
-                anc:
-                {
-                    next: 'anc1',
+                anc:{
+                    next:
+                    {
+                        name: 'anc1',
+                        status:'upcoming',
+                        visit_date:null
+                    },
                     anc1:
                     {
-                        status: 'upcoming',
-                        visit_date: null
+                        status:'upcoming',
+                        visit_date:null
                     }
                 },
-                tt:
-                {
-                    next: 'tt1',
+                tt:{
+                    next:
+                    {
+                        name: 'tt1',
+                        status:'upcoming',
+                        visit_date:null
+                    },
                     tt1:
                     {
-                        status: 'upcoming',
-                        visit_date: null
+                        status:'upcoming',
+                        visit_date:null
                     }
                 },
-                ifa:
-                {
-                    next: 'ifa1',
+                ifa:{
+                    next:
+                    {
+                        name: 'ifa1',
+                        status:'upcoming',
+                        visit_date:null
+                    },
                     ifa1:
                     {
-                        status: 'upcoming',
-                        visit_date: null
+                        status:'upcoming',
+                        visit_date:null
                     }
                 },
                 hb:
                 {
-                    next: 'hb1',
-                    hb1:
+                    next:
+                    {
+                        name: 'hb',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
+                    hb:
                     {
                         status: 'upcoming',
                         visit_date: null
@@ -291,7 +383,12 @@ describe('ANC Service', function () {
                 },
                 delivery_plan:
                 {
-                    next: 'delivery_plan1',
+                    next:
+                    {
+                        name: 'delivery_plan1',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
                     delivery_plan1:
                     {
                         status: 'upcoming',
@@ -341,23 +438,40 @@ describe('ANC Service', function () {
                     }
                 },
                 tt:{
-                    next:'tt1',
-                    tt1:{
+                    next:
+                    {
+                        name: 'tt1',
+                        status:'upcoming',
+                        visit_date:null
+                    },
+                    tt1:
+                    {
                         status:'upcoming',
                         visit_date:null
                     }
                 },
                 ifa:{
-                    next:'ifa1',
-                    ifa1:{
+                    next:
+                    {
+                        name: 'ifa1',
+                        status:'upcoming',
+                        visit_date:null
+                    },
+                    ifa1:
+                    {
                         status:'upcoming',
                         visit_date:null
                     }
                 },
                 hb:
                 {
-                    next: 'hb1',
-                    hb1:
+                    next:
+                    {
+                        name: 'hb',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
+                    hb:
                     {
                         status: 'upcoming',
                         visit_date: null
@@ -365,7 +479,12 @@ describe('ANC Service', function () {
                 },
                 delivery_plan:
                 {
-                    next: 'delivery_plan1',
+                    next:
+                    {
+                        name: 'delivery_plan1',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
                     delivery_plan1:
                     {
                         status: 'upcoming',
@@ -408,7 +527,12 @@ describe('ANC Service', function () {
             {
                 anc:
                 {
-                    next: 'anc3',
+                    next:
+                    {
+                        name: 'anc3',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
                     anc3:
                     {
                         status: 'upcoming',
@@ -435,23 +559,40 @@ describe('ANC Service', function () {
                     }
                 },
                 tt:{
-                    next:'tt1',
-                    tt1:{
+                    next:
+                    {
+                        name: 'tt1',
+                        status:'upcoming',
+                        visit_date:null
+                    },
+                    tt1:
+                    {
                         status:'upcoming',
                         visit_date:null
                     }
                 },
                 ifa:{
-                    next:'ifa1',
-                    ifa1:{
+                    next:
+                    {
+                        name: 'ifa1',
+                        status:'upcoming',
+                        visit_date:null
+                    },
+                    ifa1:
+                    {
                         status:'upcoming',
                         visit_date:null
                     }
                 },
                 hb:
                 {
-                    next: 'hb1',
-                    hb1:
+                    next:
+                    {
+                        name: 'hb',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
+                    hb:
                     {
                         status: 'upcoming',
                         visit_date: null
@@ -459,7 +600,115 @@ describe('ANC Service', function () {
                 },
                 delivery_plan:
                 {
-                    next: 'delivery_plan1',
+                    next:
+                    {
+                        name: 'delivery_plan1',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
+                    delivery_plan1:
+                    {
+                        status: 'upcoming',
+                        visit_date: null
+                    }
+                }
+            };
+
+            ancSrvc.preProcessClients(clients);
+
+            expect(clients[0].visits).toEqual(expectedVisits);
+        });
+
+        it("should show an alert for hb even when a previous hb has been done", function(){
+            var clients = [
+                {
+                    name:'Carolyn',
+                    alerts:[
+                        {
+                            name: 'hb',
+                            date: '2012-03-14',
+                            status: 'normal'
+                        }
+                    ],
+                    services_provided:[
+                        {
+                            name: 'hb',
+                            data:[
+                                {date: '2012-02-26', dose: '11'},
+                                {date: '2012-03-15', dose: '9'}
+                            ]
+                        }
+                    ]
+                }
+            ];
+            var expectedVisits =
+            {
+                hb:
+                {
+                    next:
+                    {
+                        name: 'hb',
+                        status: 'normal',
+                        visit_date: '2012-03-14'
+                    },
+                    previous: 'hb',
+                    hb:
+                    {
+                        status: 'done',
+                        visit_date: undefined,
+                        data: [
+                            {date: '2012-02-26', dose: '11'},
+                            {date: '2012-03-15', dose: '9'}
+                        ]
+                    }
+                },
+                anc:{
+                    next:
+                    {
+                        name: 'anc1',
+                        status:'upcoming',
+                        visit_date:null
+                    },
+                    anc1:
+                    {
+                        status:'upcoming',
+                        visit_date:null
+                    }
+                },
+                tt:{
+                    next:
+                    {
+                        name: 'tt1',
+                        status:'upcoming',
+                        visit_date:null
+                    },
+                    tt1:
+                    {
+                        status:'upcoming',
+                        visit_date:null
+                    }
+                },
+                ifa:{
+                    next:
+                    {
+                        name: 'ifa1',
+                        status:'upcoming',
+                        visit_date:null
+                    },
+                    ifa1:
+                    {
+                        status:'upcoming',
+                        visit_date:null
+                    }
+                },
+                delivery_plan:
+                {
+                    next:
+                    {
+                        name: 'delivery_plan1',
+                        status: 'upcoming',
+                        visit_date: null
+                    },
                     delivery_plan1:
                     {
                         status: 'upcoming',

@@ -16,7 +16,7 @@ angular.module("smartRegistry.services")
                 },
                 {
                     name: "hb",
-                    milestones:["hb1", "hb2", "hb3"]
+                    milestones:["hb"]
                 },
                 {
                     name: 'delivery_plan',
@@ -394,8 +394,7 @@ angular.module("smartRegistry.services")
                         var visits = {};
                         schedules.forEach(function (schedule) {
                             var visit = {};
-                            var alertsOfTypeCurrentSchedule = [];
-                            alertsOfTypeCurrentSchedule = client.alerts.filter(function (alert) {
+                            var alertsOfTypeCurrentSchedule = client.alerts.filter(function (alert) {
                                 return schedule.milestones.indexOf(alert.name) > -1;
                             });
 
@@ -405,11 +404,15 @@ angular.module("smartRegistry.services")
                                     return schedule_alert.name === milestone;
                                 });
                                 if (milestone_alert !== undefined) {
-                                    visit.next = milestone_alert.name;
                                     var next_milestone = {};
+                                    next_milestone.name = milestone_alert.name;
                                     next_milestone.status = milestone_alert.status;
                                     next_milestone.visit_date = milestone_alert.date;
-                                    visit[milestone_alert.name] = next_milestone;
+                                    visit.next = next_milestone;
+                                    visit[next_milestone.name] = {
+                                        status: next_milestone.status,
+                                        visit_date: next_milestone.visit_date
+                                    };
 
                                     if(i > 0)// we are not the first milestone, so try to find a previous alert
                                     {
@@ -459,12 +462,15 @@ angular.module("smartRegistry.services")
                                         }
                                         else
                                         {
-                                            var next_milestone_name = schedule.milestones[i + 1];
-                                            visit.next = next_milestone_name;
                                             var next_milestone = {};
+                                            next_milestone.name = schedule.milestones[i + 1];
                                             next_milestone.status = alert_status.UPCOMING;
                                             next_milestone.visit_date = null;
-                                            visit[next_milestone_name] = next_milestone;
+                                            visit.next = next_milestone;
+                                            visit[next_milestone.name] = {
+                                                status: next_milestone.status,
+                                                visit_date: next_milestone.visit_date
+                                            };
                                         }
                                     }
 
@@ -476,12 +482,15 @@ angular.module("smartRegistry.services")
                             }
                             if(visit.next === undefined)
                             {
-                                var next_milestone_name = schedule.milestones[0];
-                                visit.next =next_milestone_name;
                                 var next_milestone = {};
+                                next_milestone.name = schedule.milestones[0];
                                 next_milestone.status = alert_status.UPCOMING;
                                 next_milestone.visit_date = null;
-                                visit[next_milestone_name] = next_milestone;
+                                visit.next = next_milestone;
+                                visit[next_milestone.name] = {
+                                    status: next_milestone.status,
+                                    visit_date: next_milestone.visit_date
+                                };
                             }
                             visits[schedule.name] = visit;
                         });
