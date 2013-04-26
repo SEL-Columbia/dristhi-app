@@ -166,7 +166,7 @@ angular.module("smartRegistry.services")
                         alerts:
                         [
                             {
-                                name:'anc3',
+                                name:'anc2',
                                 date:'24/05',
                                 status:'normal'
                             },
@@ -253,14 +253,6 @@ angular.module("smartRegistry.services")
                             }
                         ],
                         services_provided:[
-                            {
-                                name:'anc1',
-                                date:'04/04',
-                                data:{
-                                    bp:'120/80',
-                                    weight:'95'
-                                }
-                            },
                             {
                                 name:'anc2',
                                 date:'04/08',

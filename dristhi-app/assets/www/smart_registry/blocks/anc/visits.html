@@ -2,95 +2,31 @@
     <div class="row-fluid full-height">
         <div class="span10 full-height span-no-margin width-without-margins">
             <div class="row-fluid full-height">
-                <div class="span3 line-right span-no-margin width-without-margins span-content">
+                <div data-ng-repeat="milestone in ['anc1', 'anc2', 'anc3', 'anc4']" class="visits span3 line-right span-no-margin width-without-margins span-content">
                     <!--ANC 1-->
-                    <a ng-show="client.visits.anc.anc1" ng-class="client.visits.anc.anc1.status" class="btn btn-primary btn-sr" href="#">
-                        <ng:switch on="client.visits.anc.anc1.status">
-                            <div ng-switch-when="btn-done" class="full-height">
+                    <a ng-show="client.visits.anc[milestone]" class="btn btn-primary btn-sr" href="#"
+                       ng-class="{'btn-done': client.visits.anc[milestone].status == 'done',
+                       'btn-due': client.visits.anc[milestone].status == 'normal',
+                       'btn-past-due': client.visits.anc[milestone].status == 'urgent',
+                       'btn-upcoming': client.visits.anc[milestone].status == 'upcoming'}">
+                        <ng:switch on="client.visits.anc[milestone].status">
+                            <div ng-switch-when="done" class="full-height">
                                 <div class="done-icon full-height"><i class="icon-ok green"></i></div>
-                                <span>{{client.visits.anc.anc1.visit_date | date:'dd/MM'}}</span>
+                                <span>{{client.visits.anc[milestone].visit_date | date:'dd/MM'}}</span>
                                 <br/>
-                                <span ng-show="client.visits.anc.anc1.data.bp">Bp {{client.visits.anc.anc1.data.bp}}</span>
+                                <span ng-show="client.visits.anc[milestone].data.bp">Bp {{client.visits.anc[milestone].data.bp}}</span>
                                 <br/>
-                                <span ng-show="client.visits.anc.anc1.data.weight">Wt. {{client.visits.anc.anc1.data.weight}} kg</span>
+                                <span ng-show="client.visits.anc[milestone].data.weight">Wt. {{client.visits.anc[milestone].data.weight}} kg</span>
                             </div>
                             <div ng-switch-default>
-                                <span class="text-bold">ANC1</span>
+                                <span class="text-bold">{{milestone}}</span>
                                 <br/>
-                                <ng:switch on="client.visits.anc.anc1.status">
-                                    <span ng-switch-when="btn-done">Done </span>
+                                <ng:switch on="client.visits.anc[milestone].status">
+                                    <span ng-switch-when="done">Done </span>
+                                    <span ng-switch-when="upcoming">Upcoming </span>
                                     <span ng-switch-default>Due </span>
                                 </ng:switch>
-                                <span>{{client.visits.anc.anc1.visit_date | date:'dd/MM'}}</span>
-                            </div>
-                        </ng:switch>
-                    </a>
-                </div>
-                <div class="span3 line-right span-no-margin width-without-margins span-content">
-                    <a ng-show="client.visits.anc.anc2" ng-class="client.visits.anc.anc2.status" class="btn btn-primary btn-sr" href="#">
-                        <ng:switch on="client.visits.anc.anc2.status">
-                            <div ng-switch-when="btn-done" class="full-height">
-                                <div class="done-icon full-height"><i class="icon-ok green"></i></div>
-                                <span>{{client.visits.anc.anc2.visit_date | date:'dd/MM'}}</span>
-                                <br/>
-                                <span ng-show="client.visits.anc.anc2.data.bp">Bp {{client.visits.anc.anc2.data.bp}}</span>
-                                <br/>
-                                <span ng-show="client.visits.anc.anc2.data.weight">Wt. {{client.visits.anc.anc2.data.weight}} kg</span>
-                            </div>
-                            <div ng-switch-default>
-                                <span class="text-bold">ANC2</span>
-                                <br/>
-                                <ng:switch on="client.visits.anc.anc2.status">
-                                    <span ng-switch-when="btn-done">Done </span>
-                                    <span ng-switch-default>Due </span>
-                                </ng:switch>
-                                <span>{{client.visits.anc.anc2.visit_date | date:'dd/MM'}}</span>
-                            </div>
-                        </ng:switch>
-                    </a>
-                </div>
-                <div class="span3 line-right span-no-margin width-without-margins span-content">
-                    <a ng-show="client.visits.anc.anc3" ng-class="client.visits.anc.anc3.status" class="btn btn-primary btn-sr" href="#">
-                        <ng:switch on="client.visits.anc.anc3.status">
-                            <div ng-switch-when="btn-done" class="full-height">
-                                <div class="done-icon full-height"><i class="icon-ok green"></i></div>
-                                <span>{{client.visits.anc.anc3.visit_date | date:'dd/MM'}}</span>
-                                <br/>
-                                <span ng-show="client.visits.anc.anc3.data.bp">Bp {{client.visits.anc.anc3.data.bp}}</span>
-                                <br/>
-                                <span ng-show="client.visits.anc.anc3.data.weight">Wt. {{client.visits.anc.anc3.data.weight}} kg</span>
-                            </div>
-                            <div ng-switch-default>
-                                <span class="text-bold">ANC3</span>
-                                <br/>
-                                <ng:switch on="client.visits.anc.anc3.status">
-                                    <span ng-switch-when="btn-done">Done </span>
-                                    <span ng-switch-default>Due </span>
-                                </ng:switch>
-                                <span>{{client.visits.anc.anc3.visit_date | date:'dd/MM'}}</span>
-                            </div>
-                        </ng:switch>
-                    </a>
-                </div>
-                <div class="span3 line-right span-no-margin width-without-margins span-content">
-                    <a ng-show="client.visits.anc.anc4" ng-class="client.visits.anc.anc4.status" class="btn btn-primary btn-sr" href="#">
-                        <ng:switch on="client.visits.anc.anc4.status">
-                            <div ng-switch-when="btn-done" class="full-height">
-                                <div class="done-icon full-height"><i class="icon-ok green"></i></div>
-                                <span>{{client.visits.anc.anc4.visit_date | date:'dd/MM'}}</span>
-                                <br/>
-                                <span ng-show="client.visits.anc.anc4.data.bp">Bp {{client.visits.anc.anc4.data.bp}}</span>
-                                <br/>
-                                <span ng-show="client.visits.anc.anc4.data.weight">Wt. {{client.visits.anc.anc4.data.weight}} kg</span>
-                            </div>
-                            <div ng-switch-default>
-                                <span class="text-bold">ANC4</span>
-                                <br/>
-                                <ng:switch on="client.visits.anc.anc4.status">
-                                    <span ng-switch-when="btn-done">Done </span>
-                                    <span ng-switch-default>Due </span>
-                                </ng:switch>
-                                <span>{{client.visits.anc.anc4.visit_date | date:'dd/MM'}}</span>
+                                <span>{{client.visits.anc[milestone].visit_date | date:'dd/MM'}}</span>
                             </div>
                         </ng:switch>
                     </a>
