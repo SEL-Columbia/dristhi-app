@@ -108,6 +108,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         });
 
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.addJavascriptInterface(new NavigationController(this, context.anmService()), "navigationContext");
         webView.addJavascriptInterface(new InternationalizationContext(getResources()), "internationalizationContext");
