@@ -1,45 +1,23 @@
 <div class="span7 full-height span-no-margin width-without-margins">
     <div class="row-fluid full-height no-padding-left">
-        <div class="span4 line-right span-no-margin width-without-margins span-content">
+        <div data-ng-repeat="milestone in ['tt1', 'tt2', 'ttbooster']" class="span4 line-right span-no-margin width-without-margins span-content">
             <!--VISITS-->
-            <a ng-show="client.visits.tt.tt1" class="btn btn-primary btn-sr full-height" ng-class="client.visits.tt.tt1.status" href="#">
-                <div ng-show="client.visits.tt.tt1.status == 'btn-done'" class="done-icon"><i class="icon-ok green icon-large"></i></div>
-                <span class="bold-text">TT1</span>
+            <a ng-show="client.visits.tt[milestone]" class="btn btn-primary btn-sr full-height"
+               ng-class="{'btn-done': client.visits.tt[milestone].status == 'done',
+               'btn-due': client.visits.tt[milestone].status == 'normal',
+               'btn-past-due': client.visits.tt[milestone].status == 'urgent',
+               'btn-upcoming': client.visits.tt[milestone].status == 'upcoming'}" href="#">
+                <div ng-show="client.visits.tt[milestone].status == 'done'" class="done-icon">
+                    <i class="icon-ok green icon-large"></i>
+                </div>
+                <span class="bold-text">{{milestone}}</span>
                 <br/>
-                <ng:switch on="client.visits.tt.tt1.status">
-                    <span ng-switch-when="btn-done">On </span>
-                    <span ng-switch-when="btn-upcoming">Upcoming</span>
+                <ng:switch on="client.visits.tt[milestone].status">
+                    <span ng-switch-when="done">On </span>
+                    <span ng-switch-when="upcoming">Upcoming</span>
                     <span ng-switch-default>Due </span>
                 </ng:switch>
-                <span ng-show="client.visits.tt.tt1.visit_date">{{client.visits.tt.tt1.visit_date | date: 'dd/MM'}}</span>
-            </a>
-        </div>
-        <div class="span4 line-right span-no-margin width-without-margins span-content">
-            <!--TT-->
-            <a ng-show="client.visits.tt.tt2" class="btn btn-primary btn-sr full-height" ng-class="client.visits.tt.tt2.status" href="#">
-                <div ng-show="client.visits.tt.tt2.status == 'btn-done'" class="done-icon"><i class="icon-ok green icon-large"></i></div>
-                <span class="bold-text">TT2</span>
-                <br/>
-                <ng:switch on="client.visits.tt.tt2.status">
-                    <span ng-switch-when="btn-done">On </span>
-                    <span ng-switch-when="btn-upcoming">Upcoming</span>
-                    <span ng-switch-default>Due </span>
-                </ng:switch>
-                <span ng-show="client.visits.tt.tt2.visit_date">{{client.visits.tt.tt2.visit_date | date: 'dd/MM'}}</span>
-            </a>
-        </div>
-        <div class="span4 line-right span-no-margin width-without-margins span-content">
-            <!--TT Booster-->
-            <a ng-show="client.visits.tt.ttbooster" class="btn btn-primary btn-sr full-height" ng-class="client.visits.tt.ttbooster.status" href="#">
-                <div ng-show="client.visits.tt.ttbooster.status == 'btn-done'" class="done-icon"><i class="icon-ok green icon-large"></i></div>
-                <span class="bold-text">TT Booster</span>
-                <br/>
-                <ng:switch on="client.visits.tt.ttbooster.status">
-                    <span ng-switch-when="btn-done">On </span>
-                    <span ng-switch-when="btn-upcoming">Upcoming</span>
-                    <span ng-switch-default>Due </span>
-                </ng:switch>
-                <span ng-show="client.visits.tt.ttbooster.visit_date">{{client.visits.tt.ttbooster.visit_date | date: 'dd/MM'}}</span>
+                <span ng-show="client.visits.tt[milestone].visit_date">{{client.visits.tt[milestone].visit_date | date: 'dd/MM'}}</span>
             </a>
         </div>
     </div>

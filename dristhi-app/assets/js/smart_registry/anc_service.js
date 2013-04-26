@@ -181,6 +181,11 @@ angular.module("smartRegistry.services")
                                 status:'normal'
                             },
                             {
+                                name:'tt1',
+                                date:'26/05',
+                                status:'normal'
+                            },
+                            {
                                 name:'ifa2',
                                 date:'26/05',
                                 status:'urgent'
@@ -194,20 +199,6 @@ angular.module("smartRegistry.services")
                                 data: {
                                     bp: '120/80',
                                     weight: '55'
-                                }
-                            },
-                            {
-                                name: 'tt1',
-                                date: '04/04',
-                                data: {
-                                    dose: 100
-                                }
-                            },
-                            {
-                                name: 'tt2',
-                                date: '04/04',
-                                data: {
-                                    dose: 100
                                 }
                             },
                             {
@@ -342,6 +333,11 @@ angular.module("smartRegistry.services")
                                 name:'tt2',
                                 date:'26/05',
                                 status:'normal'
+                            },
+                            {
+                                name: 'delivery_plan1',
+                                date: '26/05',
+                                status: 'normal'
                             }
                         ],
                         services_provided:[

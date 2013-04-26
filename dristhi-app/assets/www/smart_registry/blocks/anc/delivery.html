@@ -1,22 +1,22 @@
 <div class="span7 full-height width-without-margins span-no-margin">
-    <ng:switch on="client.visits.delivery_plan.next == null">
-        <div ng-switch-when="false" class="row-fluid full-height">
+    <ng:switch on="client.visits.delivery_plan.next">
+        <div ng-switch-default class="row-fluid full-height">
             <div class="span12 line-right full-height width-without-margins span-no-margin span-content">
                 <!--VISITS-->
                 <button class="btn btn-primary btn-sr full-height"
-                        ng-class="{'btn-due': client.visits.delivery_plan.delivery_plan1.status == 'btn-due',
-                        'btn-past-due': client.visits.delivery_plan.delivery_plan1.status == 'btn-past-due',
-                        'btn-upcoming': client.visits.delivery_plan.delivery_plan1.status == 'btn-upcoming'}">
+                        ng-class="{'btn-due': client.visits.delivery_plan.delivery_plan1.status == 'normal',
+                        'btn-past-due': client.visits.delivery_plan.delivery_plan1.status == 'urgent',
+                        'btn-upcoming': client.visits.delivery_plan.delivery_plan1.status == 'upcoming'}">
                     <span>Delivery Plan</span>
                     <br/>
                     <ng:switch on="client.visits.delivery_plan.delivery_plan1.status">
-                        <span ng-switch-when="btn-upcoming">Upcoming</span>
+                        <span ng-switch-when="upcoming">Upcoming</span>
                         <span ng-switch-default>Due {{client.visits.delivery_plan.delivery_plan1.visit_date | date: 'dd/MM'}}</span>
                     </ng:switch>
                 </button>
             </div>
         </div>
-        <div ng-switch-when="true" class="row-fluid full-height">
+        <div ng-switch-when="null" class="row-fluid full-height">
             <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
                 <button class="btn btn-primary btn-done btn-sr btn-center-aligned btn-icon-only" href="#">
                     <i class=""
