@@ -960,3 +960,7 @@ a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
 .row-fluid [class*="span"] div.row-fluid.hb .hb-legend-normal{
     background: #43ae23;
 }
+
+.row-fluid [class*="span"] div.row-fluid.hb .hb-legend-upcoming{
+    background: #cae2ed;
+}

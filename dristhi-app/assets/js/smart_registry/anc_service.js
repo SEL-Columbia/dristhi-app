@@ -100,6 +100,15 @@ angular.module("smartRegistry.services")
                                 data:{
                                     dose:100
                                 }
+                            },
+                            {
+                                name: 'hb',
+                                data:[
+                                    {date: '2012-05-27', level: 14},
+                                    {date: '2012-06-13', level: 10},
+                                    {date: '2012-05-27', level: 18},
+                                    {date: '2012-05-27', level: 12}
+                                ]
                             }
                         ],
                         days_due:'3',
@@ -216,6 +225,13 @@ angular.module("smartRegistry.services")
                                 }
                             },
                             {
+                                name: 'hb',
+                                data:[
+                                    {date: '2012-05-27', level: 14},
+                                    {date: '2012-06-13', level: 10}
+                                ]
+                            },
+                            {
                                 name: 'delivery_plan1',
                                 date: '2012-09-13',
                                 data:{
@@ -291,18 +307,11 @@ angular.module("smartRegistry.services")
                                 }
                             },
                             {
-                                name: 'hb1',
-                                date:'2012-04-18',
-                                data:{
-                                    dose:10
-                                }
-                            },
-                            {
-                                name: 'hb1',
-                                date:'2012-05-23',
-                                data:{
-                                    dose:15
-                                }
+                                name: 'hb',
+                                data:[
+                                    {date: '2012-05-27', level: 14},
+                                    {date: '2012-06-13', level: 10}
+                                ]
                             }
                         ],
                         days_due:'3',
@@ -366,18 +375,10 @@ angular.module("smartRegistry.services")
                                 }
                             },
                             {
-                                name: 'hb1',
-                                date:'2012-04-18',
-                                data:{
-                                    dose:10
-                                }
-                            },
-                            {
-                                name: 'hb1',
-                                date:'2012-05-23',
-                                data:{
-                                    dose:15
-                                }
+                                name: 'hb',
+                                data:[
+                                    {date: '2012-06-13', level: 10}
+                                ]
                             }
                         ],
                         days_due:'3',
