@@ -31,12 +31,6 @@ angular.module("smartRegistry.services")
             UPCOMING:"upcoming"
         };
 
-        var status_css_class = {};
-        status_css_class[alert_status.NORMAL] = "btn-due";
-        status_css_class[alert_status.URGENT] = "btn-past-due";
-        status_css_class[alert_status.DONE] = "btn-done";
-        status_css_class[alert_status.UPCOMING] = "btn-upcoming";
-
         if(Array.prototype.find === undefined)
         {
             Array.prototype.find = function(func)
@@ -112,7 +106,8 @@ angular.module("smartRegistry.services")
                         due_message:'Follow Up',
                         isHighPriority:true,
                         locationStatus:"out_of_area",
-                        isHighRisk: true
+                        isHighRisk: true,
+                        caste: "sc"
                     },
                     {
                         village:'Chikkabherya',
@@ -179,7 +174,7 @@ angular.module("smartRegistry.services")
                                 name:'ifa2',
                                 date:'26/05',
                                 status:'urgent'
-                            },
+                            }
                         ],
                         services_provided:
                         [
@@ -237,7 +232,8 @@ angular.module("smartRegistry.services")
                         due_message:'Follow Up',
                         isHighPriority:true,
                         locationStatus:"in_area",
-                        economicStatus: "bpl"
+                        economicStatus: "bpl",
+                        caste: "st"
                     },
                     {
                         village:'Bherya',
@@ -321,8 +317,82 @@ angular.module("smartRegistry.services")
                         due_message:'Follow Up',
                         isHighPriority:false,
                         locationStatus:"in_area"
+                    },
+                    {
+                        village:'Bherya',
+                        name:'Moses',
+                        thayi:'4636543',
+                        ec_number:'429',
+                        age:'35',
+                        husband_name:'Kiran',
+                        weeks_pregnant:'5',
+                        edd:'2013-05-11T00:00:00.000Z',
+                        lmp:'25/3/13',
+                        alerts:[
+                            {
+                                name:'tt2',
+                                date:'26/05',
+                                status:'normal'
+                            }
+                        ],
+                        services_provided:[
+                            {
+                                name:'anc1',
+                                date:'04/04',
+                                data:{
+                                    bp:'120/80',
+                                    weight:'95'
+                                }
+                            },
+                            {
+                                name:'anc2',
+                                date:'04/08',
+                                data:{
+                                    bp:'115/90',
+                                    weight:'98'
+                                }
+                            },
+                            {
+                                name:'tt1',
+                                date:'04/04',
+                                data:{
+                                    dose: 100
+                                }
+                            },
+                            {
+                                name:'ifa1',
+                                date:'2012-04-24',
+                                data:{
+                                    dose:50
+                                }
+                            },
+                            {
+                                name:'ifa2',
+                                date:'2012-05-24',
+                                data:{
+                                    dose:20
+                                }
+                            },
+                            {
+                                name: 'hb1',
+                                date:'2012-04-18',
+                                data:{
+                                    dose:10
+                                }
+                            },
+                            {
+                                name: 'hb1',
+                                date:'2012-05-23',
+                                data:{
+                                    dose:15
+                                }
+                            }
+                        ],
+                        days_due:'3',
+                        due_message:'Follow Up',
+                        isHighPriority:false,
+                        locationStatus:"in_area"
                     }
-
                 ];
 
                 return clients;
@@ -345,7 +415,7 @@ angular.module("smartRegistry.services")
                                 if (milestone_alert !== undefined) {
                                     visit.next = milestone_alert.name;
                                     var next_milestone = {};
-                                    next_milestone.status = status_css_class[milestone_alert.status];
+                                    next_milestone.status = milestone_alert.status;
                                     next_milestone.visit_date = milestone_alert.date;
                                     visit[milestone_alert.name] = next_milestone;
 
@@ -361,7 +431,7 @@ angular.module("smartRegistry.services")
                                             {
                                                 visit.previous = prev_alert.name;
                                                 var previous_milestone = {};
-                                                previous_milestone.status = status_css_class[prev_alert.status];
+                                                previous_milestone.status = prev_alert.status;
                                                 previous_milestone.visit_date = prev_alert.date;
                                                 visit[visit.previous] = previous_milestone;
                                                 break;
@@ -384,7 +454,7 @@ angular.module("smartRegistry.services")
                                 if(service_provided !== undefined)
                                 {
                                     var service = {};
-                                    service.status = status_css_class[alert_status.DONE];
+                                    service.status = alert_status.DONE;
                                     service.visit_date = service_provided.date;
                                     service.data = service_provided.data;
                                     visit[service_provided.name] = service;
@@ -400,7 +470,7 @@ angular.module("smartRegistry.services")
                                             var next_milestone_name = schedule.milestones[i + 1];
                                             visit.next = next_milestone_name;
                                             var next_milestone = {};
-                                            next_milestone.status = status_css_class[alert_status.UPCOMING];
+                                            next_milestone.status = alert_status.UPCOMING;
                                             next_milestone.visit_date = null;
                                             visit[next_milestone_name] = next_milestone;
                                         }
@@ -417,7 +487,7 @@ angular.module("smartRegistry.services")
                                 var next_milestone_name = schedule.milestones[0];
                                 visit.next =next_milestone_name;
                                 var next_milestone = {};
-                                next_milestone.status = status_css_class[alert_status.UPCOMING];
+                                next_milestone.status = alert_status.UPCOMING;
                                 next_milestone.visit_date = null;
                                 visit[next_milestone_name] = next_milestone;
                             }

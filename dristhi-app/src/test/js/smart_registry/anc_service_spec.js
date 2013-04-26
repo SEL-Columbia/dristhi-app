@@ -40,7 +40,7 @@ describe('ANC Service', function () {
                     next: 'anc1',
                     anc1:
                     {
-                        status: 'btn-due',
+                        status: 'normal',
                         visit_date: '2012-10-24'
                     }
                 },
@@ -49,7 +49,7 @@ describe('ANC Service', function () {
                     next: 'tt2',
                     tt2:
                     {
-                        status: 'btn-past-due',
+                        status: 'urgent',
                         visit_date: '2012-10-24'
                     }
                 },
@@ -58,7 +58,7 @@ describe('ANC Service', function () {
                     next: 'ifa1',
                     ifa1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 },
@@ -67,7 +67,7 @@ describe('ANC Service', function () {
                     next: 'hb1',
                     hb1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 },
@@ -76,7 +76,7 @@ describe('ANC Service', function () {
                     next: 'delivery_plan1',
                     delivery_plan1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 }
@@ -111,13 +111,13 @@ describe('ANC Service', function () {
                     next: 'anc3',
                     anc3:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     },
                     previous: 'anc2',
                     anc2:
                     {
-                        status: 'btn-done',
+                        status: 'done',
                         visit_date: '2011-10-24',
                         data:{
                             bp: '120/79',
@@ -128,14 +128,14 @@ describe('ANC Service', function () {
                 tt:{
                     next:'tt1',
                     tt1:{
-                        status:'btn-upcoming',
+                        status:'upcoming',
                         visit_date:null
                     }
                 },
                 ifa:{
                     next:'ifa1',
                     ifa1:{
-                        status:'btn-upcoming',
+                        status:'upcoming',
                         visit_date:null
                     }
                 },
@@ -144,7 +144,7 @@ describe('ANC Service', function () {
                     next: 'hb1',
                     hb1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 },
@@ -153,7 +153,7 @@ describe('ANC Service', function () {
                     next: 'delivery_plan1',
                     delivery_plan1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 }
@@ -190,13 +190,13 @@ describe('ANC Service', function () {
                     next: 'anc3',
                     anc3:
                     {
-                        status: 'btn-due',
+                        status: 'normal',
                         visit_date: '2012-11-24'
                     },
                     previous: 'anc1',
                     anc1:
                     {
-                        status: 'btn-past-due',
+                        status: 'urgent',
                         visit_date: '2011-10-24'
                     }
                 },
@@ -205,7 +205,7 @@ describe('ANC Service', function () {
                     next: 'tt1',
                     tt1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 },
@@ -214,7 +214,7 @@ describe('ANC Service', function () {
                     next: 'ifa1',
                     ifa1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 },
@@ -223,7 +223,7 @@ describe('ANC Service', function () {
                     next: 'hb1',
                     hb1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 },
@@ -232,7 +232,7 @@ describe('ANC Service', function () {
                     next: 'delivery_plan1',
                     delivery_plan1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 }
@@ -258,7 +258,7 @@ describe('ANC Service', function () {
                     next: 'anc1',
                     anc1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 },
@@ -267,7 +267,7 @@ describe('ANC Service', function () {
                     next: 'tt1',
                     tt1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 },
@@ -276,7 +276,7 @@ describe('ANC Service', function () {
                     next: 'ifa1',
                     ifa1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 },
@@ -285,7 +285,7 @@ describe('ANC Service', function () {
                     next: 'hb1',
                     hb1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 },
@@ -294,7 +294,7 @@ describe('ANC Service', function () {
                     next: 'delivery_plan1',
                     delivery_plan1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 }
@@ -331,7 +331,7 @@ describe('ANC Service', function () {
                     previous: 'anc4',
                     anc4:
                     {
-                        status: 'btn-done',
+                        status: 'done',
                         visit_date: '2012-05-23',
                         data:
                         {
@@ -343,14 +343,14 @@ describe('ANC Service', function () {
                 tt:{
                     next:'tt1',
                     tt1:{
-                        status:'btn-upcoming',
+                        status:'upcoming',
                         visit_date:null
                     }
                 },
                 ifa:{
                     next:'ifa1',
                     ifa1:{
-                        status:'btn-upcoming',
+                        status:'upcoming',
                         visit_date:null
                     }
                 },
@@ -359,7 +359,7 @@ describe('ANC Service', function () {
                     next: 'hb1',
                     hb1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 },
@@ -368,7 +368,7 @@ describe('ANC Service', function () {
                     next: 'delivery_plan1',
                     delivery_plan1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 }
@@ -411,13 +411,13 @@ describe('ANC Service', function () {
                     next: 'anc3',
                     anc3:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     },
                     previous: 'anc2',
                     anc2:
                     {
-                        status: 'btn-done',
+                        status: 'done',
                         visit_date: '2011-10-24',
                         data:{
                             bp: '120/79',
@@ -426,7 +426,7 @@ describe('ANC Service', function () {
                     },
                     anc1:
                     {
-                        status: 'btn-done',
+                        status: 'done',
                         visit_date: '2011-08-24',
                         data:{
                             bp: '130/65',
@@ -437,14 +437,14 @@ describe('ANC Service', function () {
                 tt:{
                     next:'tt1',
                     tt1:{
-                        status:'btn-upcoming',
+                        status:'upcoming',
                         visit_date:null
                     }
                 },
                 ifa:{
                     next:'ifa1',
                     ifa1:{
-                        status:'btn-upcoming',
+                        status:'upcoming',
                         visit_date:null
                     }
                 },
@@ -453,7 +453,7 @@ describe('ANC Service', function () {
                     next: 'hb1',
                     hb1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 },
@@ -462,7 +462,7 @@ describe('ANC Service', function () {
                     next: 'delivery_plan1',
                     delivery_plan1:
                     {
-                        status: 'btn-upcoming',
+                        status: 'upcoming',
                         visit_date: null
                     }
                 }
