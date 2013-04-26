@@ -15,7 +15,6 @@ import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginActivity> {
     private DrishtiSolo solo;
     private FakeUserService userService;
-    private FakeCommCareClientService commCareClientService;
     private FakeNavigationService navigationService;
 
     public LoginActivityTest() {
@@ -27,9 +26,8 @@ public class LoginActivityTest extends ActivityInstrumentationTestCase2<LoginAct
         FakeDrishtiService drishtiService = new FakeDrishtiService(String.valueOf(new Date().getTime() - 1));
         userService = new FakeUserService();
         navigationService = new FakeNavigationService();
-        commCareClientService = new FakeCommCareClientService(navigationService);
 
-        setupService(drishtiService, userService, -1000, navigationService, commCareClientService).updateApplicationContext(getActivity());
+        setupService(drishtiService, userService, -1000, navigationService).updateApplicationContext(getActivity());
         Context.getInstance().session().setPassword(null);
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());

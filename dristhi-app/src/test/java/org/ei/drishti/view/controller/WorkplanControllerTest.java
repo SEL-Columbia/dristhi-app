@@ -8,7 +8,6 @@ import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.view.contract.WorkplanContext;
 import org.ei.drishti.view.contract.WorkplanTodo;
 import org.junit.Before;
@@ -34,15 +33,13 @@ public class WorkplanControllerTest {
     @Mock
     private Context context;
     @Mock
-    private CommCareClientService commCareClientService;
-    @Mock
     private AllEligibleCouples allEligibleCouples;
     private WorkplanController controller;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new WorkplanController(allAlerts, allSettings, commCareClientService, allEligibleCouples, context);
+        controller = new WorkplanController(allAlerts, allSettings, allEligibleCouples, context);
     }
 
     @Test

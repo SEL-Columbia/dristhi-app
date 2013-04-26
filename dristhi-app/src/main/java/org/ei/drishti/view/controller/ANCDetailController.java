@@ -2,23 +2,25 @@ package org.ei.drishti.view.controller;
 
 import android.content.Context;
 import com.google.gson.Gson;
-import org.ei.drishti.domain.*;
+import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
-import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.TimelineEventComparator;
 import org.ei.drishti.view.contract.*;
-import org.ei.drishti.view.contract.TimelineEvent;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.ocpsoft.pretty.time.Duration;
 import org.ocpsoft.pretty.time.PrettyTime;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
 
 import static java.lang.Math.min;
 
@@ -30,17 +32,15 @@ public class ANCDetailController {
     private final AllBeneficiaries allBeneficiaries;
     private AllAlerts allAlerts;
     private final AllTimelineEvents allTimelineEvents;
-    private CommCareClientService commCareClientService;
     private PrettyTime prettyTime;
 
-    public ANCDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllAlerts allAlerts, AllTimelineEvents allTimelineEvents, CommCareClientService commCareClientService) {
+    public ANCDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllAlerts allAlerts, AllTimelineEvents allTimelineEvents) {
         this.context = context;
         this.caseId = caseId;
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.allAlerts = allAlerts;
         this.allTimelineEvents = allTimelineEvents;
-        this.commCareClientService = commCareClientService;
         prettyTime = new PrettyTime(DateUtil.today().toDate(), new Locale("short"));
     }
 
@@ -66,10 +66,6 @@ public class ANCDetailController {
                 .addExtraDetails(mother.details());
 
         return new Gson().toJson(detail);
-    }
-
-    public void startCommCare(String formId, String caseId) {
-        commCareClientService.start(context, formId, caseId);
     }
 
     public void markTodoAsCompleted(String caseId, String visitCode) {

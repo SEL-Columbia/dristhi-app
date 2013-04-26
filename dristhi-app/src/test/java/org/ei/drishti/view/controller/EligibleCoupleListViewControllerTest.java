@@ -10,7 +10,6 @@ import org.ei.drishti.event.Event;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.view.contract.Beneficiaries;
 import org.ei.drishti.view.contract.EC;
@@ -38,8 +37,6 @@ public class EligibleCoupleListViewControllerTest {
     private AllSettings allSettings;
     @Mock
     private Context context;
-    @Mock
-    private CommCareClientService commCareClientService;
 
     private EligibleCoupleListViewController controller;
 

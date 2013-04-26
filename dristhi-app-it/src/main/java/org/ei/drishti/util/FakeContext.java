@@ -1,7 +1,6 @@
 package org.ei.drishti.util;
 
 import org.ei.drishti.Context;
-import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.service.DrishtiService;
 import org.ei.drishti.service.NavigationService;
 import org.ei.drishti.service.UserService;
@@ -32,7 +31,7 @@ public class FakeContext {
 
     public static Context setupService(final DrishtiService drishtiService, final FakeUserService userService,
                                        final int numberOfMillisecondsAfterNowThatThisSessionEnds,
-                                       final NavigationService navigationService, final FakeCommCareClientService commCareClientService) {
+                                       final NavigationService navigationService) {
         Context context = Context.setInstance(new Context() {
             @Override
             protected DrishtiService drishtiService() {
@@ -47,11 +46,6 @@ public class FakeContext {
             @Override
             public NavigationService navigationService() {
                 return navigationService;
-            }
-
-            @Override
-            public CommCareClientService commCareClientService() {
-                return commCareClientService;
             }
         });
 

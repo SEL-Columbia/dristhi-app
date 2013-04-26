@@ -9,7 +9,6 @@ import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
-import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.view.contract.*;
 import org.joda.time.LocalDate;
@@ -37,8 +36,6 @@ public class ChildDetailControllerTest {
     @Mock
     private AllTimelineEvents allTimelineEvents;
     @Mock
-    private CommCareClientService commCareClientService;
-    @Mock
     private AllAlerts allAlerts;
 
     private String caseId = "1234-5678-1234";
@@ -48,7 +45,7 @@ public class ChildDetailControllerTest {
     public void setUp() throws Exception {
         initMocks(this);
         DateUtil.fakeIt(new LocalDate(2012, 8, 1));
-        controller = new ChildDetailController(context, caseId, allEligibleCouples, allBeneficiaries, allAlerts, allTimelineEvents, commCareClientService);
+        controller = new ChildDetailController(context, caseId, allEligibleCouples, allBeneficiaries, allAlerts, allTimelineEvents);
     }
 
     @Test

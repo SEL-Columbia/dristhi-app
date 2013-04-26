@@ -14,7 +14,7 @@ public class EligibleCoupleDetailActivity extends SecuredWebActivity {
         String caseId = (String) getIntent().getExtras().get("caseId");
 
         webView.addJavascriptInterface(new EligibleCoupleDetailController(this, caseId, context.allEligibleCouples(),
-                context.allAlerts(), context.allTimelineEvents(), context.commCareClientService()), "context");
+                context.allAlerts(), context.allTimelineEvents()), "context");
         webView.loadUrl("file:///android_asset/www/ec_detail.html");
 
         photoCaptureListener = new Listener<CapturedPhotoInformation>() {

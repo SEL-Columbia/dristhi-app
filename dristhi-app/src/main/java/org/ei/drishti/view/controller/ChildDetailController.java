@@ -9,7 +9,6 @@ import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
-import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.TimelineEventComparator;
 import org.ei.drishti.view.contract.*;
@@ -31,17 +30,15 @@ public class ChildDetailController {
     private final AllBeneficiaries allBeneficiaries;
     private final AllAlerts allAlerts;
     private final AllTimelineEvents allTimelineEvents;
-    private final CommCareClientService commCareClientService;
     private PrettyTime prettyTime;
 
-    public ChildDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllAlerts allAlerts, AllTimelineEvents allTimelineEvents, CommCareClientService commCareClientService) {
+    public ChildDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllAlerts allAlerts, AllTimelineEvents allTimelineEvents) {
         this.context = context;
         this.caseId = caseId;
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.allAlerts = allAlerts;
         this.allTimelineEvents = allTimelineEvents;
-        this.commCareClientService = commCareClientService;
         prettyTime = new PrettyTime(DateUtil.today().toDate(), new Locale("short"));
     }
 
@@ -63,10 +60,6 @@ public class ChildDetailController {
                 .addExtraDetails(child.details());
 
         return new Gson().toJson(detail);
-    }
-
-    public void startCommCare(String formId, String caseId) {
-        commCareClientService.start(context, formId, caseId);
     }
 
     public void markTodoAsCompleted(String caseId, String visitCode) {

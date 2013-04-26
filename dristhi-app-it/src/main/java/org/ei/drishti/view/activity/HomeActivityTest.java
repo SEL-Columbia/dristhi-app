@@ -15,7 +15,6 @@ public class HomeActivityTest extends ActivityInstrumentationTestCase2<HomeActiv
     private DrishtiSolo solo;
     private FakeUserService userService;
     private FakeNavigationService navigationService;
-    private FakeCommCareClientService commCareClientService;
 
     public HomeActivityTest() {
         super(HomeActivity.class);
@@ -26,9 +25,8 @@ public class HomeActivityTest extends ActivityInstrumentationTestCase2<HomeActiv
         FakeDrishtiService drishtiService = new FakeDrishtiService(String.valueOf(new Date().getTime() - 1));
         userService = new FakeUserService();
         navigationService = new FakeNavigationService();
-        commCareClientService = new FakeCommCareClientService(navigationService);
 
-        setupService(drishtiService, userService, 100000, navigationService, commCareClientService).updateApplicationContext(getActivity());
+        setupService(drishtiService, userService, 100000, navigationService).updateApplicationContext(getActivity());
         Context.getInstance().session().setPassword("password");
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());

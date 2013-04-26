@@ -48,7 +48,6 @@ public class Context {
 
     private NavigationService navigationService;
     private CommCareHQService commCareService;
-    private CommCareClientService commCareClientService;
 
     private Session session;
     private Cache<String> listCache;
@@ -326,13 +325,6 @@ public class Context {
             commCareService = new CommCareHQService(httpAgent(), "https://india.commcarehq.org", "dristhi");
         }
         return commCareService;
-    }
-
-    public CommCareClientService commCareClientService() {
-        if (commCareClientService == null) {
-            commCareClientService = new CommCareClientService(allSettings(), navigationService());
-        }
-        return commCareClientService;
     }
 
     public Session session() {

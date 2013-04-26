@@ -9,9 +9,11 @@ import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
-import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.contract.Child;
+import org.ei.drishti.view.contract.CoupleDetails;
+import org.ei.drishti.view.contract.ECDetail;
+import org.ei.drishti.view.contract.ProfileTodo;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,8 +40,6 @@ public class EligibleCoupleDetailControllerTest {
     @Mock
     private AllTimelineEvents allTimelineEvents;
     @Mock
-    private CommCareClientService commCareClientService;
-    @Mock
     private AllAlerts allAlerts;
 
     private String caseId = "1234-5678-1234";
@@ -49,7 +49,7 @@ public class EligibleCoupleDetailControllerTest {
     public void setUp() throws Exception {
         initMocks(this);
         DateUtil.fakeIt(new LocalDate(2012, 8, 1));
-        controller = new EligibleCoupleDetailController(context, caseId, allEligibleCouples, allAlerts, allTimelineEvents, commCareClientService);
+        controller = new EligibleCoupleDetailController(context, caseId, allEligibleCouples, allAlerts, allTimelineEvents);
     }
 
     @Test

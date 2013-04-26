@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -15,7 +14,6 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import org.ei.drishti.AllConstants;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.LoginResponse;
@@ -31,17 +29,15 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
-import static org.ei.drishti.AllConstants.CC_KEY_EXCHANGE_API_REQUEST_CODE;
 import static org.ei.drishti.domain.LoginResponse.SUCCESS;
-import static org.ei.drishti.util.Log.*;
+import static org.ei.drishti.util.Log.logError;
+import static org.ei.drishti.util.Log.logVerbose;
 
 public class LoginActivity extends Activity {
-    private static final String COMMCARE_SHARING_KEY_PAYLOAD = "commcare_sharing_key_payload";
     private Context context;
     private EditText userNameEditText;
     private EditText passwordEditText;
     private ProgressDialog progressDialog;
-    private boolean establishingConnectionWithCC = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,7 +65,7 @@ public class LoginActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
-        if (!context.IsUserLoggedOut() && !establishingConnectionWithCC) {
+        if (!context.IsUserLoggedOut()) {
             goToHome();
         }
 
@@ -88,39 +84,6 @@ public class LoginActivity extends Activity {
         } else {
             remoteLogin(view, userName, password);
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CC_KEY_EXCHANGE_API_REQUEST_CODE) {
-            if (resultCode == Activity.RESULT_OK) {
-                logInfo("User granted key access to CC ODK!");
-                establishingConnectionWithCC = false;
-                context.commCareClientService().handleCommCareKeyExchangeResponse(this,
-                        data.getStringExtra(AllConstants.COMMCARE_SHARING_KEY_ID),
-                        data.getByteArrayExtra(COMMCARE_SHARING_KEY_PAYLOAD));
-            } else {
-                logError("User denied key access to CC ODK!");
-                establishingConnectionWithCC = true;
-                showTryAgainToEstablishConnectionWithCCDialog();
-            }
-        }
-    }
-
-    private void showTryAgainToEstablishConnectionWithCCDialog() {
-        final LoginActivity activity = this;
-        AlertDialog tryAgainDialog = new AlertDialog.Builder(this)
-                .setTitle("Try again.")
-                .setMessage("Please grant access in CommCare.")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        context.commCareClientService().establishConnection(activity);
-                    }
-                })
-                .create();
-        tryAgainDialog.show();
     }
 
     private void initializeLoginFields() {
@@ -224,7 +187,7 @@ public class LoginActivity extends Activity {
 
     private void loginWith(String userName, String password) {
         context.userService().loginWith(userName, password);
-        context.commCareClientService().establishConnection(this);
+        context.navigationService().goHome(this);
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 

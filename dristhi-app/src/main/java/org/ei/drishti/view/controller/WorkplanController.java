@@ -6,7 +6,6 @@ import org.ei.drishti.domain.Alert;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.view.contract.Village;
 import org.ei.drishti.view.contract.WorkplanContext;
 import org.ei.drishti.view.contract.WorkplanTodo;
@@ -21,15 +20,13 @@ public class WorkplanController {
     private AllAlerts allAlerts;
     private AllEligibleCouples allEligibleCouples;
     private Context context;
-    private CommCareClientService commCareClientService;
     private AllSettings allSettings;
 
-    public WorkplanController(AllAlerts allAlerts, AllSettings allSettings, CommCareClientService commCareClientService, AllEligibleCouples allEligibleCouples, Context context) {
+    public WorkplanController(AllAlerts allAlerts, AllSettings allSettings, AllEligibleCouples allEligibleCouples, Context context) {
         this.allAlerts = allAlerts;
         this.allSettings = allSettings;
         this.allEligibleCouples = allEligibleCouples;
         this.context = context;
-        this.commCareClientService = commCareClientService;
     }
 
     public String get() {
@@ -51,10 +48,6 @@ public class WorkplanController {
         }
 
         return new Gson().toJson(new WorkplanContext(overdue, upcoming, completed));
-    }
-
-    public void startCommCare(String formId, String caseId) {
-        commCareClientService.start(context, formId, caseId);
     }
 
     public String villages() {

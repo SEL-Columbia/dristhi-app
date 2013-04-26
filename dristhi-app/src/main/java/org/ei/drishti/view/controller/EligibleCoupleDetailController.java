@@ -8,7 +8,6 @@ import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
-import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.TimelineEventComparator;
 import org.ei.drishti.view.activity.CameraLaunchActivity;
@@ -33,16 +32,14 @@ public class EligibleCoupleDetailController {
     private AllAlerts allAlerts;
     private final AllTimelineEvents allTimelineEvents;
     private PrettyTime prettyTime;
-    private CommCareClientService commCareClientService;
 
     public EligibleCoupleDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllAlerts allAlerts,
-                                          AllTimelineEvents allTimelineEvents, CommCareClientService commCareClientService) {
+                                          AllTimelineEvents allTimelineEvents) {
         this.context = context;
         this.caseId = caseId;
         this.allEligibleCouples = allEligibleCouples;
         this.allAlerts = allAlerts;
         this.allTimelineEvents = allTimelineEvents;
-        this.commCareClientService = commCareClientService;
         this.prettyTime = new PrettyTime(DateUtil.today().toDate(), new Locale("short"));
     }
 
@@ -59,10 +56,6 @@ public class EligibleCoupleDetailController {
                 addTimelineEvents(getEvents());
 
         return new Gson().toJson(ecContext);
-    }
-
-    public void startCommCare(String formId, String caseId) {
-        commCareClientService.start(context, formId, caseId);
     }
 
     public void markTodoAsCompleted(String caseId, String visitCode) {

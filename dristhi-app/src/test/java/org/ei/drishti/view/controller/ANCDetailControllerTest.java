@@ -11,11 +11,8 @@ import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
-import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.util.EasyMap;
 import org.ei.drishti.view.contract.*;
-import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,10 +26,10 @@ import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.AlertStatus.open;
 import static org.ei.drishti.dto.AlertPriority.normal;
 import static org.ei.drishti.dto.AlertPriority.urgent;
+import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
-import static org.ei.drishti.util.EasyMap.mapOf;
 
 @RunWith(RobolectricTestRunner.class)
 public class ANCDetailControllerTest {
@@ -45,8 +42,6 @@ public class ANCDetailControllerTest {
     @Mock
     private AllTimelineEvents allTimelineEvents;
     @Mock
-    private CommCareClientService commCareClientService;
-    @Mock
     private AllAlerts allAlerts;
 
     private String caseId = "1234-5678-1234";
@@ -56,7 +51,7 @@ public class ANCDetailControllerTest {
     public void setUp() throws Exception {
         initMocks(this);
         DateUtil.fakeIt(new LocalDate(2012, 8, 1));
-        controller = new ANCDetailController(context, caseId, allEligibleCouples, allBeneficiaries, allAlerts, allTimelineEvents, commCareClientService);
+        controller = new ANCDetailController(context, caseId, allEligibleCouples, allBeneficiaries, allAlerts, allTimelineEvents);
     }
 
     @Test

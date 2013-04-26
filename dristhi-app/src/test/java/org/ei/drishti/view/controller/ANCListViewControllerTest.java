@@ -11,7 +11,6 @@ import org.ei.drishti.event.Event;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.service.CommCareClientService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.view.contract.ANC;
 import org.ei.drishti.view.contract.Beneficiaries;
@@ -38,8 +37,6 @@ public class ANCListViewControllerTest {
     @Mock
     private AllSettings allSettings;
     @Mock
-    private CommCareClientService commCareClientService;
-    @Mock
     private Context context;
 
     private ANCListViewController controller;
@@ -47,7 +44,7 @@ public class ANCListViewControllerTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new ANCListViewController(context, allBeneficiaries, allEligibleCouples, allSettings, new Cache<String>(), commCareClientService);
+        controller = new ANCListViewController(context, allBeneficiaries, allEligibleCouples, allSettings, new Cache<String>());
     }
 
     @Test
