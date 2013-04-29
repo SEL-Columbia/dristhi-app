@@ -5,9 +5,11 @@
                 <div class="span8 line-right full-height span-no-margin width-without-margins span-content">
                     <div data-ng-repeat="data in client.visits.hb.hb.data.slice(0, 3)" class="row-fluid hb">
                         <div class="span1 width-without-margins hb-legend"
-                             ng-class="{'hb-legend-dangerous': data.level > 17,
-                             'hb-legend-high': data.level > 12 && data.level < 18,
-                             'hb-legend-normal': data.level <= 12}">
+                             ng-class="{
+                             'hb-legend-dangerous': data.level < 7,
+                             'hb-legend-high': data.level >= 7 && data.level < 11,
+                             'hb-legend-normal': data.level >= 11
+                             }">
                         </div>
                         <div class="span5 span-no-margin width-without-margins hb-content">
                             <span>{{data.date | date:'dd/MM' }}</span>

@@ -219,8 +219,7 @@ angular.module("smartRegistry.services")
                             {
                                 name: 'hb',
                                 data:[
-                                    {date: '2012-05-27', level: 14},
-                                    {date: '2012-06-13', level: 10}
+                                    {date: '2012-05-27', level: 6}
                                 ]
                             },
                             {
