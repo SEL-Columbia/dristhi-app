@@ -201,13 +201,6 @@ angular.module("smartRegistry.services")
                                 }
                             },
                             {
-                                name: 'ttbooster',
-                                date: '04/04',
-                                data: {
-                                    dose: 50
-                                }
-                            },
-                            {
                                 name: 'ifa1',
                                 date: '04/04',
                                 data:

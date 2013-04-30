@@ -21,11 +21,11 @@
                         <br/>
                         <span ng-show="client.visits[schedule].next.status == 'upcoming'">Upcoming</span>
                         <span ng-show="client.visits[schedule].next.status == 'normal' || client.visits[schedule].next.status == 'urgent'">Due</span>
-                        <span> {{client.visits[schedule].next.visit_date}}</span>
+                        <span> {{client.visits[schedule].next.visit_date | date:'dd/MM'}}</span>
                     </button>
                     <span ng-show="client.visits[schedule].previous" class="previous-alert">
                         <i class="icon-ok green"></i>
-                        <span class="text-upper">{{client.visits[schedule].previous}}:</span> {{client.visits[schedule][client.visits[schedule].previous].visit_date}}
+                        <span class="text-upper">{{client.visits[schedule].previous}}:</span> {{client.visits[schedule][client.visits[schedule].previous].visit_date | date:'dd/MM'}}
                     </span>
                 </div>
             </ng:switch>
