@@ -6,6 +6,7 @@ import org.ei.drishti.service.ANMService;
 
 import java.util.concurrent.locks.ReentrantLock;
 
+import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
 import static org.ei.drishti.util.Log.logWarn;
 
 public class UpdateANMDetailsTask {
@@ -36,7 +37,6 @@ public class UpdateANMDetailsTask {
             protected void onPostExecute(ANM anm) {
                 afterFetchListener.afterFetch(anm);
             }
-        }.execute(null);
-
+        }.executeOnExecutor(THREAD_POOL_EXECUTOR);
     }
 }
