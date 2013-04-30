@@ -37,6 +37,11 @@ public class DrishtiSyncScheduler {
 
         logInfo(format("Scheduled to sync from server every {0} seconds.", SYNC_INTERVAL / 1000));
 
+        attachListenerToStopSyncOnLogout(context);
+    }
+
+    private static void attachListenerToStopSyncOnLogout(final Context context) {
+        ON_LOGOUT.removeListener(logoutListener);
         logoutListener = new Listener<Boolean>() {
             public void onEvent(Boolean data) {
                 logInfo("User is logged out. Stopping Dristhi Sync scheduler.");
@@ -61,8 +66,6 @@ public class DrishtiSyncScheduler {
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(syncBroadcastReceiverIntent);
-
-        ON_LOGOUT.removeListener(logoutListener);
 
         logInfo("Unscheduled sync.");
     }

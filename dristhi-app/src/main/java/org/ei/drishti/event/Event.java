@@ -29,6 +29,7 @@ public class Event<CallbackType> {
         for (WeakReference<Listener<CallbackType>> l : listeners) {
             if (listener.equals(l.get())) {
                 listenerToRemove = l;
+                break;
             }
         }
         listeners.remove(listenerToRemove);
