@@ -2,7 +2,6 @@ package org.ei.drishti.util;
 
 import android.app.Activity;
 import android.view.View;
-import org.ei.drishti.service.NavigationService;
 
 public class Wait {
     public static void waitForProgressBarToGoAway(Activity activity) {
@@ -21,18 +20,6 @@ public class Wait {
 
     public static void waitForFilteringToFinish() {
         sleep(400);
-    }
-
-    public static void waitForLoginActivityToFinish(FakeNavigationService navigationService) {
-        for (int i = 0; i < 10; i++) {
-            if (navigationService.isAtHome()) {
-                return;
-            }
-            sleep(400);
-        }
-        if (!navigationService.isAtHome()) {
-            throw new RuntimeException("Never came home!");
-        }
     }
 
     private static void sleep(int time) {

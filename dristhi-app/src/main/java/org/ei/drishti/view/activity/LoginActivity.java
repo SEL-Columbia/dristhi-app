@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -187,12 +188,13 @@ public class LoginActivity extends Activity {
 
     private void loginWith(String userName, String password) {
         context.userService().loginWith(userName, password);
-        context.navigationService().goHome(this);
+        goToHome();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
     private void goToHome() {
-        context.navigationService().goHome(this);
+        startActivity(new Intent(this, HomeActivity.class));
+        finish();
     }
 
     private String getVersion() throws PackageManager.NameNotFoundException {

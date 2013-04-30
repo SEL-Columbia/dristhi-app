@@ -9,15 +9,15 @@ import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.event.Event.ON_LOGOUT;
 
 public class UserService {
-    private CommCareHQService commCareService;
     private final Repository repository;
     private final AllSettings allSettings;
+    private HTTPAgent httpAgent;
     private Session session;
 
-    public UserService(CommCareHQService commCareService, Repository repository, AllSettings allSettings, Session session) {
-        this.commCareService = commCareService;
+    public UserService(Repository repository, AllSettings allSettings, HTTPAgent httpAgent, Session session) {
         this.repository = repository;
         this.allSettings = allSettings;
+        this.httpAgent = httpAgent;
         this.session = session;
     }
 
@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public LoginResponse isValidRemoteLogin(String userName, String password) {
-        return commCareService.isValidUser(userName, password);
+        return httpAgent.urlCanBeAccessWithGivenCredentials(DRISHTI_BASE_URL, userName, password);
     }
 
     public void loginWith(String userName, String password) {

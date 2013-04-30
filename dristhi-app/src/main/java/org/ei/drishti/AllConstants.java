@@ -8,9 +8,6 @@ public class AllConstants {
     public static final String CASE_IDS = "caseIds";
     public static final String INDICATOR = "indicator";
     public static final String CASE_ID = "caseId";
-    public static final int CC_KEY_EXCHANGE_API_REQUEST_CODE = 1;
-    public static final String CC_KEY_EXCHANGE_API_REQUEST_ACTION = "org.commcare.dalvik.action.CommCareKeyAccessRequest";
-    public static final String COMMCARE_SHARING_KEY_ID = "commcare_sharing_key_id";
 
     public static final String LANGUAGE_PREFERENCE_KEY = "locale";
     public static final String ENGLISH_LOCALE = "en";
@@ -38,7 +35,7 @@ public class AllConstants {
     public static final String FP_CHANGE = "fp_change";
     public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
     public static final String FP_UPDATE_FIELD_NAME = "fpUpdate";
-    public static final String NEW_FP_METHOD_FIELD_NAME = "newMethod";
+    public static final String  NEW_FP_METHOD_FIELD_NAME = "newMethod";
     public static final String CHANGE_FP_METHOD_FIELD_NAME = "change_fp_method";
     public static final String RENEW_FP_PRODUCT_FIELD_NAME = "renew_fp_product";
     public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME = "familyPlanningMethodChangeDate";

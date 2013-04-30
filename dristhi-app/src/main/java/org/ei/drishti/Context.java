@@ -46,9 +46,6 @@ public class Context {
     private ANMService anmService;
     private BeneficiaryService beneficiaryService;
 
-    private NavigationService navigationService;
-    private CommCareHQService commCareService;
-
     private Session session;
     private Cache<String> listCache;
 
@@ -287,7 +284,7 @@ public class Context {
     public UserService userService() {
         if (userService == null) {
             Repository repo = initRepository();
-            userService = new UserService(commCareService(), repo, allSettings(), session());
+            userService = new UserService(repo, allSettings(), httpAgent(), session());
         }
         return userService;
     }
@@ -320,13 +317,6 @@ public class Context {
         return childService;
     }
 
-    private CommCareHQService commCareService() {
-        if (commCareService == null) {
-            commCareService = new CommCareHQService(httpAgent(), "https://india.commcarehq.org", "dristhi");
-        }
-        return commCareService;
-    }
-
     public Session session() {
         if (session == null) {
             session = new Session();
@@ -339,13 +329,6 @@ public class Context {
             anmService = new ANMService(allSettings(), allBeneficiaries(), allEligibleCouples());
         }
         return anmService;
-    }
-
-    public NavigationService navigationService() {
-        if (navigationService == null) {
-            navigationService = new NavigationService();
-        }
-        return navigationService;
     }
 
     public Cache<String> listCache() {

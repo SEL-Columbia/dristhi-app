@@ -1,7 +1,6 @@
 package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
-import org.ei.drishti.AllConstants;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
@@ -21,8 +20,6 @@ import static org.mockito.MockitoAnnotations.initMocks;
 @RunWith(RobolectricTestRunner.class)
 public class UserServiceTest {
     @Mock
-    private CommCareHQService commCareService;
-    @Mock
     private Repository repository;
     @Mock
     private AllSettings allSettings;
@@ -32,20 +29,22 @@ public class UserServiceTest {
     private AllEligibleCouples allEligibleCouples;
     @Mock
     private Session session;
+    @Mock
+    private HTTPAgent httpAgent;
 
     private UserService userService;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        userService = new UserService(commCareService, repository, allSettings, session);
+        userService = new UserService(repository, allSettings, httpAgent, session);
     }
 
     @Test
-    public void shouldUseCommCareToDoRemoteLoginCheck() {
+    public void shouldUseHttpAgentToDoRemoteLoginCheck() {
         userService.isValidRemoteLogin("user X", "password Y");
 
-        verify(commCareService).isValidUser("user X", "password Y");
+        verify(httpAgent).urlCanBeAccessWithGivenCredentials(DRISHTI_BASE_URL, "user X", "password Y");
     }
 
     @Test

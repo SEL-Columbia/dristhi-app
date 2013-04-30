@@ -14,7 +14,6 @@ import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
 public class HomeActivityTest extends ActivityInstrumentationTestCase2<HomeActivity> {
     private DrishtiSolo solo;
     private FakeUserService userService;
-    private FakeNavigationService navigationService;
 
     public HomeActivityTest() {
         super(HomeActivity.class);
@@ -24,9 +23,8 @@ public class HomeActivityTest extends ActivityInstrumentationTestCase2<HomeActiv
     protected void setUp() throws Exception {
         FakeDrishtiService drishtiService = new FakeDrishtiService(String.valueOf(new Date().getTime() - 1));
         userService = new FakeUserService();
-        navigationService = new FakeNavigationService();
 
-        setupService(drishtiService, userService, 100000, navigationService).updateApplicationContext(getActivity());
+        setupService(drishtiService, userService, 100000).updateApplicationContext(getActivity());
         Context.getInstance().session().setPassword("password");
 
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
@@ -40,7 +38,7 @@ public class HomeActivityTest extends ActivityInstrumentationTestCase2<HomeActiv
         solo.assertCurrentActivity("Should be in Login screen.", LoginActivity.class);
 
         userService.setupFor("user", "password", false, false, SUCCESS);
-        solo.assertCanLogin(navigationService, "user", "password");
+        solo.assertCanLogin("user", "password");
     }
 
     @Override

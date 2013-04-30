@@ -83,7 +83,7 @@ public class HTTPAgent {
     }
 
     public LoginResponse urlCanBeAccessWithGivenCredentials(String requestURL, String userName, String password) {
-        httpClient.getCredentialsProvider().setCredentials(new AuthScope("india.commcarehq.org", 443, "DJANGO", "digest"),
+        httpClient.getCredentialsProvider().setCredentials(new AuthScope(AuthScope.ANY),
                 new UsernamePasswordCredentials(userName, password));
         try {
             HttpResponse response = httpClient.execute(new HttpHead(requestURL));
@@ -94,7 +94,7 @@ public class HTTPAgent {
                 Log.logError("Invalid credentials for: " + userName + " using " + requestURL);
                 return UNAUTHORIZED;
             } else {
-                Log.logError("Bad response from CommCare. Status code:  " + statusCode + " username: " + userName + " using " + requestURL);
+                Log.logError("Bad response from Dristhi. Status code:  " + statusCode + " username: " + userName + " using " + requestURL);
                 return UNKNOWN_RESPONSE;
             }
         } catch (IOException e) {

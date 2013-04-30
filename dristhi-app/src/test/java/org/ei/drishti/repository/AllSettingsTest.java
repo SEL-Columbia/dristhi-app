@@ -107,36 +107,6 @@ public class AllSettingsTest {
     }
 
     @Test
-    public void shouldSaveCommCareKeyID() throws Exception {
-        allSettings.saveCommCareKeyID("key code");
-
-        verify(settingsRepository).updateSetting("commCareKeyID", "key code");
-    }
-
-    @Test
-    public void shouldSaveCommCarePublicKey() throws Exception {
-        byte[] publicKey = {1, 2};
-        allSettings.saveCommCarePublicKey(publicKey);
-
-        verify(settingsRepository).updateBLOB("commCarePublicKey", publicKey);
-    }
-
-    @Test
-    public void shouldFetchCommCareKeyID() throws Exception {
-        when(settingsRepository.querySetting("commCareKeyID", null)).thenReturn("key id");
-
-        assertEquals("key id", allSettings.fetchCommCareKeyID());
-    }
-
-    @Test
-    public void shouldFetchCommCarePublicKey() throws Exception {
-        byte[] expectedPublicKey = {1, 2};
-        when(settingsRepository.queryBLOB("commCarePublicKey")).thenReturn(expectedPublicKey);
-
-        assertEquals(expectedPublicKey, allSettings.fetchCommCarePublicKey());
-    }
-
-    @Test
     public void shouldFetchLanguagePreference() throws Exception {
         when(preferences.getString(LANGUAGE_PREFERENCE_KEY, DEFAULT_LOCALE)).thenReturn(ENGLISH_LANGUAGE);
 
