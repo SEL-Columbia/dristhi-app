@@ -1,6 +1,5 @@
 angular.module("smartRegistry.services")
     .service('ANCService', function () {
-        this.something = "Something";
         var schedules =
             [
                 {
