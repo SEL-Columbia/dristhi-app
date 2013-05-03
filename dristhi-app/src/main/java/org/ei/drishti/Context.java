@@ -90,7 +90,7 @@ public class Context {
 
     protected DrishtiService drishtiService() {
         if (drishtiService == null) {
-            drishtiService = new DrishtiService(new HTTPAgent(applicationContext), DRISHTI_BASE_URL);
+            drishtiService = new DrishtiService(httpAgent(), DRISHTI_BASE_URL);
         }
         return drishtiService;
     }
@@ -163,7 +163,7 @@ public class Context {
 
     private HTTPAgent httpAgent() {
         if (httpAgent == null) {
-            httpAgent = new HTTPAgent(applicationContext);
+            httpAgent = new HTTPAgent(applicationContext, allSettings());
         }
         return httpAgent;
     }

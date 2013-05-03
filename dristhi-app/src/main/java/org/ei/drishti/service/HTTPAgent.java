@@ -27,7 +27,7 @@ import org.ei.drishti.client.GZipEncodingHttpClient;
 import org.ei.drishti.domain.LoginResponse;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
-import org.ei.drishti.util.Log;
+import org.ei.drishti.repository.AllSettings;
 
 import javax.net.ssl.SSLException;
 import java.io.IOException;
@@ -35,14 +35,17 @@ import java.io.InputStream;
 import java.security.KeyStore;
 
 import static org.ei.drishti.domain.LoginResponse.*;
+import static org.ei.drishti.util.Log.logError;
 import static org.ei.drishti.util.Log.logWarn;
 
 public class HTTPAgent {
     private final GZipEncodingHttpClient httpClient;
     private Context context;
+    private AllSettings settings;
 
-    public HTTPAgent(Context context) {
+    public HTTPAgent(Context context, AllSettings settings) {
         this.context = context;
+        this.settings = settings;
 
         BasicHttpParams basicHttpParams = new BasicHttpParams();
         HttpConnectionParams.setConnectionTimeout(basicHttpParams, 30000);
@@ -58,6 +61,7 @@ public class HTTPAgent {
 
     public Response<String> fetch(String requestURLPath) {
         try {
+            setCredentials(settings.fetchRegisteredANM(), settings.fetchANMPassword());
             String responseContent = IOUtils.toString(httpClient.fetchContent(new HttpGet(requestURLPath)));
             return new Response<String>(ResponseStatus.success, responseContent);
         } catch (Exception e) {
@@ -68,6 +72,7 @@ public class HTTPAgent {
 
     public Response<String> post(String postURLPath, String jsonPayload) {
         try {
+            setCredentials(settings.fetchRegisteredANM(), settings.fetchANMPassword());
             HttpPost httpPost = new HttpPost(postURLPath);
             StringEntity entity = new StringEntity(jsonPayload);
             entity.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
@@ -83,24 +88,28 @@ public class HTTPAgent {
     }
 
     public LoginResponse urlCanBeAccessWithGivenCredentials(String requestURL, String userName, String password) {
-        httpClient.getCredentialsProvider().setCredentials(new AuthScope(AuthScope.ANY),
-                new UsernamePasswordCredentials(userName, password));
+        setCredentials(userName, password);
         try {
             HttpResponse response = httpClient.execute(new HttpHead(requestURL));
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode == HttpStatus.SC_OK) {
                 return SUCCESS;
             } else if (statusCode == HttpStatus.SC_UNAUTHORIZED) {
-                Log.logError("Invalid credentials for: " + userName + " using " + requestURL);
+                logError("Invalid credentials for: " + userName + " using " + requestURL);
                 return UNAUTHORIZED;
             } else {
-                Log.logError("Bad response from Dristhi. Status code:  " + statusCode + " username: " + userName + " using " + requestURL);
+                logError("Bad response from Dristhi. Status code:  " + statusCode + " username: " + userName + " using " + requestURL);
                 return UNKNOWN_RESPONSE;
             }
         } catch (IOException e) {
-            Log.logError("Failed to check credentials of: " + userName + " using " + requestURL + ". Error: " + e.toString());
+            logError("Failed to check credentials of: " + userName + " using " + requestURL + ". Error: " + e.toString());
             return NO_INTERNET_CONNECTIVITY;
         }
+    }
+
+    private void setCredentials(String userName, String password) {
+        httpClient.getCredentialsProvider().setCredentials(new AuthScope(AuthScope.ANY),
+                new UsernamePasswordCredentials(userName, password));
     }
 
     private SocketFactory sslSocketFactoryWithDrishtiCertificate() {

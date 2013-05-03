@@ -20,7 +20,7 @@ public class AllSettings {
 
     public void registerANM(String userName, String password) {
         preferences.edit().putString(ANM_IDENTIFIER_PREFERENCE_KEY, userName).commit();
-        settingsRepository.updateSetting(ANM_PASSWORD_PREFERENCE_KEY, password.trim());
+        settingsRepository.updateSetting(ANM_PASSWORD_PREFERENCE_KEY, password);
     }
 
     public String fetchRegisteredANM() {
