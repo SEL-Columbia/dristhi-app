@@ -149,7 +149,7 @@ public class Context {
 
     public ZiggyFileLoader ziggyFileLoader() {
         if (ziggyFileLoader == null) {
-            ziggyFileLoader = new ZiggyFileLoader("js/form", "www/form", applicationContext().getAssets());
+            ziggyFileLoader = new ZiggyFileLoader("js/form/ziggy/ziggy/src", "www/form", applicationContext().getAssets());
         }
         return ziggyFileLoader;
     }
