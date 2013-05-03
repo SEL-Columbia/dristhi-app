@@ -34,6 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
 
+import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.domain.LoginResponse.*;
 import static org.ei.drishti.util.Log.logError;
 import static org.ei.drishti.util.Log.logWarn;
@@ -108,7 +109,7 @@ public class HTTPAgent {
     }
 
     private void setCredentials(String userName, String password) {
-        httpClient.getCredentialsProvider().setCredentials(new AuthScope(AuthScope.ANY),
+        httpClient.getCredentialsProvider().setCredentials(new AuthScope(HOST, PORT, REALM),
                 new UsernamePasswordCredentials(userName, password));
     }
 
@@ -127,7 +128,7 @@ public class HTTPAgent {
                 @Override
                 public void verify(String host, String[] cns, String[] subjectAlts) throws SSLException {
                     for (String cn : cns) {
-                        if (host.equals(cn)) {
+                        if (!SHOULD_VERIFY_CERTIFICATE || host.equals(cn)) {
                             return;
                         }
                     }
