@@ -95,12 +95,12 @@ angular.module("smartRegistry.controllers")
                     handler: "changeContentBasedOnServiceMode"
                 },
                 {
-                    label: "hB/IFA",
+                    label: "Hb/IFA",
                     id: "hb_ifa",
                     handler: "changeContentBasedOnServiceMode"
                 },
                 {
-                    label: "ANC Visits/TT",
+                    label: "TT",
                     id: "tt",
                     handler: "changeContentBasedOnServiceMode"
                 },
@@ -116,7 +116,7 @@ angular.module("smartRegistry.controllers")
             "left_the_place": 2
         };
 
-        $scope.defaultAncServiceOption = $scope.ancServiceOptions.options[0];
+        $scope.defaultAncServiceOption = $scope.ancServiceOptions.options[3];
         $scope.serviceModeOption = $scope.defaultAncServiceOption;
 
         $scope.ancService = function (option) {

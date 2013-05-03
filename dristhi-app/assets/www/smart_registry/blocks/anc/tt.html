@@ -10,7 +10,7 @@
                 <div ng-show="client.visits.tt[milestone].status == 'done'" class="done-icon">
                     <i class="icon-ok green icon-large"></i>
                 </div>
-                <span class="bold-text">{{milestone}}</span>
+                <span class="text-bold text-upper">{{milestone}}</span>
                 <br/>
                 <ng:switch on="client.visits.tt[milestone].status">
                     <span ng-switch-when="done">On </span>

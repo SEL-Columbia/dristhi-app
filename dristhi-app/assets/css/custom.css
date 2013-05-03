@@ -660,6 +660,8 @@ body {
 
 .btn {
     font-size: 16px;
+    border: none;
+    line-height: 18px;
 }
 
 .btn-sr {
@@ -727,6 +729,14 @@ a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
 .btn-new-form, .btn-new-form:hover, .btn-new-form:focus {
     color: #389cc8;
     text-align: center;
+}
+
+.text-due {
+    color: #389cc8;
+}
+
+.text-past-due {
+    color: #d13f3f;
 }
 
 .spacing-below {
@@ -942,11 +952,15 @@ a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
 
 .row-fluid [class*="span"] div.row-fluid.hb .hb-content{
     padding: 3px;
-    background-color: #ececec;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #ececec;
 }
 
 .row-fluid [class*="span"] div.row-fluid.hb .hb-legend{
-    width: 4%;
+    width: 6%;
+    min-height: 10px;
+    margin-top: 6px;
 }
 
 .row-fluid [class*="span"] div.row-fluid.hb .hb-legend-dangerous{

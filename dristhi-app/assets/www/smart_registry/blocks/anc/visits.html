@@ -12,14 +12,14 @@
                         <ng:switch on="client.visits.anc[milestone].status">
                             <div ng-switch-when="done" class="full-height">
                                 <div class="done-icon full-height"><i class="icon-ok green"></i></div>
-                                <span>{{client.visits.anc[milestone].visit_date | date:'dd/MM'}}</span>
+                                <span class="text-bold">{{client.visits.anc[milestone].visit_date | date:'dd/MM'}}</span>
                                 <br/>
                                 <span ng-show="client.visits.anc[milestone].data.bp">Bp {{client.visits.anc[milestone].data.bp}}</span>
                                 <br/>
                                 <span ng-show="client.visits.anc[milestone].data.weight">Wt. {{client.visits.anc[milestone].data.weight}} kg</span>
                             </div>
                             <div ng-switch-default>
-                                <span class="text-bold">{{milestone}}</span>
+                                <span class="text-bold text-upper">{{milestone}}</span>
                                 <br/>
                                 <ng:switch on="client.visits.anc[milestone].status">
                                     <span ng-switch-when="done">Done </span>

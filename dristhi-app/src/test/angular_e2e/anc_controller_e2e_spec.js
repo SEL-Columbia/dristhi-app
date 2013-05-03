@@ -30,6 +30,13 @@ describe("ANC E2E", function(){
         });
     });
 
+    describe("Common partial", function(){
+        it("should assign text-due and text-past-due classes on the ANC status column as required", function(){
+            expect(element("div.client:nth(0) .anc-status.text-past-due").count()).toEqual(1);
+            expect(element("div.client:nth(1) .anc-status.text-due").count()).toEqual(1);
+        });
+    });
+
     describe("Button CSS Classes", function(){
         describe("Overview", function(){
             beforeEach(function(){

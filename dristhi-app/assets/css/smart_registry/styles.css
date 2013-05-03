@@ -194,7 +194,7 @@ a:focus {
     width: 30px;
     height: 66px;
     position: absolute;
-    top: 0;
+    top: 3px;
     left: -5px;
 }
 

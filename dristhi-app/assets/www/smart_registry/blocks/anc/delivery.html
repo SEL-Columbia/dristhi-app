@@ -7,7 +7,7 @@
                         ng-class="{'btn-due': client.visits.delivery_plan.delivery_plan1.status == 'normal',
                         'btn-past-due': client.visits.delivery_plan.delivery_plan1.status == 'urgent',
                         'btn-upcoming': client.visits.delivery_plan.delivery_plan1.status == 'upcoming'}">
-                    <span>Delivery Plan</span>
+                    <span class="text-bold">Delivery Plan</span>
                     <br/>
                     <ng:switch on="client.visits.delivery_plan.delivery_plan1.status">
                         <span ng-switch-when="upcoming">Upcoming</span>
@@ -24,7 +24,7 @@
                        'icon-remove red': client.visits.delivery_plan.delivery_plan1.data.asha_name == null}"></i>
                 </button>
                 <ng:switch on="client.visits.delivery_plan.delivery_plan1.data.asha_name">
-                    <span ng-switch-when="null" class="text-upper">Asha</span>
+                    <span ng-switch-when="null" class="">Asha</span>
                     <span ng-switch-default>{{client.visits.delivery_plan.delivery_plan1.data.asha_name}}</span>
                 </ng:switch>
             </div>
@@ -35,7 +35,7 @@
                        'icon-remove red': client.visits.delivery_plan.delivery_plan1.data.companion == null}"></i>
                 </button>
                 <ng:switch on="client.visits.delivery_plan.delivery_plan1.data.companion">
-                    <span ng-switch-when="null" class="text-upper">Companion</span>
+                    <span ng-switch-when="null" class="">Companion</span>
                     <span ng-switch-default>{{client.visits.delivery_plan.delivery_plan1.data.companion}}</span>
                 </ng:switch>
             </div>
@@ -46,7 +46,7 @@
                        'icon-remove red': client.visits.delivery_plan.delivery_plan1.data.delivery_site == null}"></i>
                 </button>
                 <ng:switch on="client.visits.delivery_plan.delivery_plan1.data.delivery_site">
-                    <span ng-switch-when="null" class="text-upper">Delivery Site</span>
+                    <span ng-switch-when="null" class="">Delivery Site</span>
                     <span ng-switch-default>{{client.visits.delivery_plan.delivery_plan1.data.delivery_site}}</span>
                 </ng:switch>
             </div>
@@ -57,7 +57,7 @@
                        'icon-remove red': client.visits.delivery_plan.delivery_plan1.data.transport == null}"></i>
                 </button>
                 <ng:switch on="client.visits.delivery_plan.delivery_plan1.data.transport">
-                    <span ng-switch-when="null" class="text-upper">Transport</span>
+                    <span ng-switch-when="null" class="">Transport</span>
                     <span ng-switch-default>{{client.visits.delivery_plan.delivery_plan1.data.transport}}</span>
                 </ng:switch>
             </div>
@@ -68,7 +68,7 @@
                        'icon-remove red': client.visits.delivery_plan.delivery_plan1.data.contact_no == null}"></i>
                 </button>
                 <ng:switch on="client.visits.delivery_plan.delivery_plan1.data.contact_no">
-                    <span ng-switch-when="null" class="text-upper">Contact No.</span>
+                    <span ng-switch-when="null" class="">Contact No.</span>
                     <span ng-switch-default>{{client.visits.delivery_plan.delivery_plan1.data.contact_no}}</span>
                 </ng:switch>
             </div>
@@ -79,7 +79,7 @@
                        'icon-remove red': client.visits.delivery_plan.delivery_plan1.data.review_risks == null}"></i>
                 </button>
                 <ng:switch on="client.visits.delivery_plan.delivery_plan1.data.review_risks">
-                    <span ng-switch-when="null" class="text-upper">Review Risks</span>
+                    <span ng-switch-when="null" class="">Review Risks</span>
                     <span ng-switch-default>{{client.visits.delivery_plan.delivery_plan1.data.review_risks}}</span>
                 </ng:switch>
             </div>
