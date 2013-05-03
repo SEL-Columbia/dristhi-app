@@ -7,7 +7,6 @@ files = [
     'assets/js/lib/*.js',
     'assets/js/page_view.js',
     'assets/js/anmNavigation.js',
-    'assets/js/form/*.js',
     'assets/js/smart_registry/app.js',
     'assets/js/smart_registry/*.js',
     'src/test/js/lib/*.js',
