@@ -199,6 +199,14 @@
             {
                 "name": "parity",
                 "bind": "/model/instance/EC_Registration_EngKan/parity"
+            },
+            {
+                "name": "dmpaInjectionDate",
+                "bind": "/model/instance/EC_Registration_EngKan/injectable_date"
+            },
+            {
+                "name": "ocpRefillDate",
+                "bind": "/model/instance/EC_Registration_EngKan/refill_date"
             }
         ]
     }
