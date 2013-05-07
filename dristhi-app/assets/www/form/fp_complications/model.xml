@@ -19,9 +19,11 @@
             <refer_couple_fp_method_complication/>
             <refer_couple_fp_method_complication_place/>
             <refer_couple_fp_method_complication_place_other/>
+            <needs_referral_followup/>
             <fp_method_complication_treatment_plan/>
             <fp_method_complication_treatment_plan_other/>
             <instructions/>
+            <needs_followup/>
             <meta>
                 <instanceID/>
             </meta>
