@@ -32,7 +32,7 @@
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio"
-                       name="/Family_Planning_Change_Method_EngKan/familyplanning_method" value="dmpa"
+                       name="/Family_Planning_Change_Method_EngKan/familyplanning_method" value="dmpa_injectable"
                        required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">DMPA / Injectable &#xCA1;&#xCBF;&#xC82;&#xCAA;&#xCBE; / &#xC9A;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
                     &#xCAE;&#xCA6;&#xCCD;&#xCA6;&#xCC1;</span>
@@ -140,6 +140,36 @@
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none'"
                data-type-xml="date"/>
     </label>
+    <label class="jr-branch pre-init ">
+        <span lang="" class=" active">LMP</span>
+        <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/lmp_date"
+               data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
+               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none'"
+               data-type-xml="date"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">UPT result? &#xCAF;&#xCC1;.&#xCAA;&#xCBF;.&#xC9F;&#xCBF; &#xCAB;&#xCB2;&#xCBF;&#xCA4;&#xCBE;&#xC82;&#xCB6;?</span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/upt_result"
+                       value="positive"
+                       data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Positive
+                    &#xCB8;&#xC95;&#xCBE;&#xCB0;&#xCBE;&#xCA4;&#xCCD;&#xCAE;&#xC95;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/upt_result"
+                       value="negative"
+                       data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Negative
+                    &#xCA8;&#xC95;&#xCBE;&#xCB0;&#xCBE;&#xCA4;&#xCCD;&#xCAE;&#xC95;</span>
+            </label>
+        </fieldset>
+    </fieldset>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
         <fieldset>
             <legend>
@@ -210,6 +240,65 @@
             </label>
         </fieldset>
     </fieldset>
+    <label class="jr-branch pre-init ">
+        <span lang="" class=" active">Name of doctor who did sterilization? &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCB9;&#xCB0;&#xCA3;
+            &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+            &#xCAE;&#xCBE;&#xCA1;&#xCBF;&#xCA6; &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xCB0; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?
+        </span>
+        <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/sterilization_doctor_name"
+               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization' or  /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'female_sterilization'"
+               data-type-xml="string"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Type of sterilization? &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCB9;&#xCB0;&#xCA3;
+                    &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xCAF;
+                    &#xCB5;&#xCBF;&#xCA7;?
+                </span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio"
+                       name="/Family_Planning_Change_Method_EngKan/male_sterilization_type" value="nsv"
+                       data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">No-Scalpel Vasectomy (NSV)</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio"
+                       name="/Family_Planning_Change_Method_EngKan/male_sterilization_type"
+                       value="conventional_vasectomy"
+                       data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Conventional Vasectomy &#xCB8;&#xCBE;&#xC82;&#xCAA;&#xCCD;&#xCB0;&#xCA6;&#xCBE;&#xCAF;&#xCBF;&#xC95;
+                    &#xCB5;&#xCC6;&#xCB8;&#xCCD;&#xC95;&#xCC6;&#xC9F;&#xCAE;&#xCBF;</span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Type of sterilization? &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCB9;&#xCB0;&#xCA3;
+                    &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xCAF;
+                    &#xCB5;&#xCBF;&#xCA7;?
+                </span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio"
+                       name="/Family_Planning_Change_Method_EngKan/female_sterilization_type" value="minilap"
+                       data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'female_sterilization'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Minilap</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio"
+                       name="/Family_Planning_Change_Method_EngKan/female_sterilization_type" value="laparoscopic"
+                       data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'female_sterilization'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Laparoscopic &#xCB2;&#xCCD;&#xCAF;&#xCBE;&#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xC95;&#xCCB;&#xCAB;&#xCBF;</span>
+            </label>
+        </fieldset>
+    </fieldset>
     <fieldset class="jr-branch pre-init " name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group"
               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization'">
         <fieldset class="trigger jr-branch pre-init"
@@ -243,8 +332,8 @@
             &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
         </span>
         <span class="required">*</span>
-        <input autocomplete="off" type="number" name="/Family_Planning_Change_Method_EngKan/num_condomsdelivered"
-               required="required"
+        <input autocomplete="off" type="number" name="/Family_Planning_Change_Method_EngKan/num_condoms"
+               required="required" data-constraint=".&gt;= 0"
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'condom'"
                data-type-xml="int"/>
     </label>
@@ -253,8 +342,9 @@
             &#xCB8;&#xCCD;&#xC9F;&#xCCD;&#xCB0;&#xCBF;&#xCAA;&#xCCD;&#xCB8;&#xCCD; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
         </span>
         <span class="required">*</span>
-        <input autocomplete="off" type="number" name="/Family_Planning_Change_Method_EngKan/num_ocpdelivered"
-               required="required" data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'ocp'"
+        <input autocomplete="off" type="number" name="/Family_Planning_Change_Method_EngKan/num_ocp_strips"
+               required="required" data-constraint=".&gt;= 0"
+               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'ocp'"
                data-type-xml="int"/>
     </label>
     <label class="jr-branch pre-init ">
@@ -263,7 +353,7 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/Family_Planning_Change_Method_EngKan/num_centchroman_pills"
-               required="required"
+               required="required" data-constraint=".&gt;= 0"
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'centchroman'"
                data-type-xml="int"/>
     </label>
@@ -281,7 +371,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Family_Planning_Change_Method_EngKan/formhub/uuid"
-                   data-calculate="'6be06cf5ee71479ebf392d95655b6c1d'" data-type-xml="string"/>
+                   data-calculate="'89a5746d9f434f7681cde818eaab7e3a'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
