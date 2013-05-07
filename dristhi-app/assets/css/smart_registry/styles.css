@@ -250,7 +250,7 @@ a:focus {
 }
 
 .client-age {
-    font-size: 14px;
+    font-size: 100%;
     float: right;
 }
 

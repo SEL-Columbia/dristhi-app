@@ -3,7 +3,7 @@
         <div class="span8 full-height">
             <span class="text-bold">{{client.fp_method}}</span>
             <br/>
-            <span>{{client.family_planning_method_change_date}}</span>
+            <span>{{client.family_planning_method_change_date | date:'dd/MM/yy'}}</span>
         </div>
         <div class="span4 full-height">
             <button class="btn btn-done btn-sr btn-new-form full-height" ng-click="openForm('fp_change', client.entity_id)">Update</button>

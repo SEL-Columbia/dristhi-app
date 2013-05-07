@@ -36,7 +36,7 @@ function FakeFPSmartRegistryContext() {
                     "num_living_children": '1',
                     "num_stillbirths": '1',
                     "num_abortions": '1',
-                    "family_planning_method_change_date": "25/02/13",
+                    "family_planning_method_change_date": "2013-02-25",
                     "economicStatus": "bpl",
                     "caste": "sc",
                     "photo_path": "../../img/woman-placeholder.png"

@@ -33,8 +33,8 @@
                     <ul class="nav pull-right">
                         <li><a href="#" ng-click="openFPModal(ecsWithFPMethodServiceModeOptions)">{{serviceModeOption.label}}<i
                                 class="icon-white icon-chevron-down"></i></a></li>
-                        <li><a href="#" ng-click="openModal(sortOptions)"><i class="icon-sort icon-white"></i></a></li>
-                        <li><a href="#" ng-click="openModal(villageOptions)"><i class="icon-home icon-white"></i></a></li>
+                        <li><a href="#" ng-click="openModal(sortOptions)"><i class="icon-sort-custom icon-white"></i></a></li>
+                        <li><a href="#" ng-click="openModal(villageOptions)"><i class="icon-village icon-white"></i></a></li>
                         <li><a href="#" ng-click="openForm('ec_registration', '')"><i class="icon-plus icon-white"></i></a></li>
                     </ul>
                 </div>
@@ -43,7 +43,6 @@
         <div class="headcontainer2">
             <span>Sorted By: <strong>{{currentSortOption.label}}</strong>, </span>
             <span>Village: <strong>{{villageFilterOption.label}}</strong>, </span>
-            <span>FP Method: <strong>{{serviceModeOption.label}}</strong></span>
         </div>
         <div class="clear"></div>
         <div class="tableheaders row-fluid">

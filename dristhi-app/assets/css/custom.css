@@ -42,6 +42,7 @@
 .navbar-search .search-query {
     width: 140px;
     padding: 4px 8px;
+    border-radius: 18px;
 }
 
 .menu-button-container {
@@ -977,4 +978,25 @@ a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
 
 .row-fluid [class*="span"] div.row-fluid.hb .hb-legend-upcoming{
     background: #cae2ed;
+}
+
+.previous-alert span {
+    font-size: 100% !important;
+}
+
+.nav li i.icon-village {
+    background-image: url(../img/smart_registry/icon-villagefilter.png);
+}
+
+.nav li i.icon-sort-custom {
+    background: url(../img/smart_registry/icon-sort.png) no-repeat;
+
+}
+
+.nav li i.icon-sort-custom, .nav li i.icon-village {
+    background-position: 50% 50%;
+    height: 18px;
+    width: 25px;
+    background-size: 90%;
+    background-repeat: no-repeat;
 }
