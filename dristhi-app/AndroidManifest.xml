@@ -98,7 +98,7 @@
         <activity
             android:name=".view.activity.FormActivity"
             android:theme="@android:style/Theme.Holo.NoActionBar"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="portrait"/>
 
         <receiver android:name=".view.receiver.SyncBroadcastReceiver"/>
         <receiver android:name=".view.receiver.ConnectivityChangeReceiver">
