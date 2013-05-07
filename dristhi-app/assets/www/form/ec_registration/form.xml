@@ -133,7 +133,7 @@
     <label class="">
         <span lang="" class=" active">Head of Household's Name &#xCAE;&#xCA8;&#xCC6; &#xCAE;&#xCC1;&#xC96;&#xCCD;&#xCAF;&#xCB8;&#xCCD;&#xCA5;&#xCB0;
             &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;</span>
-        <input autocomplete="off" type="text" name="/EC_Registration_EngKan/headofhousehold" data-type-xml="string"/>
+        <input autocomplete="off" type="text" name="/EC_Registration_EngKan/hh_head" data-type-xml="string"/>
     </label>
     <label class="">
         <span lang="" class=" active">EC Number &#xC85;&#xCB0;&#xCCD;&#xCB9;&#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;
@@ -172,6 +172,12 @@
         <span class="required">*</span>
         <input autocomplete="off" type="text" name="/EC_Registration_EngKan/husband_name" required="required"
                data-type-xml="string"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Husband's Age &#xC97;&#xC82;&#xCA1;&#xCA8; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;</span>
+        <span class="required">*</span>
+        <input autocomplete="off" type="number" name="/EC_Registration_EngKan/husband_age" required="required"
+               data-type-xml="int"/>
     </label>
     <label class="">
         <span lang="" class=" active">Contact Phone Number &#xCB8;&#xC82;&#xCAA;&#xCB0;&#xCCD;&#xC95;&#xCBF;&#xCB8;&#xCC1;&#xCB5;
@@ -343,40 +349,86 @@
                 </span>
             </legend>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/education_level" value="illiterate"
-                       data-type-xml="select1"/>
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level"
+                       value="illiterate" data-type-xml="select1"/>
                 <span lang="" class=" active">Illiterate &#xC85;&#xCA8;&#xC95;&#xCCD;&#xCB7;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCB0;&#xCC1;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/education_level" value="primary"
-                       data-type-xml="select1"/>
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level"
+                       value="primary" data-type-xml="select1"/>
                 <span lang="" class=" active">Primary School &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
                     &#xCB6;&#xCBE;&#xCB2;&#xCC6;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/education_level" value="middle"
-                       data-type-xml="select1"/>
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level"
+                       value="middle" data-type-xml="select1"/>
                 <span lang="" class=" active">Middle School &#xCAE;&#xCBE;&#xCA7;&#xCCD;&#xCAF;&#xCAE;&#xCBF;&#xC95;
                     &#xCB6;&#xCB2;&#xCC6;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/education_level" value="high"
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level" value="high"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">High School &#xCAA;&#xCCD;&#xCB0;&#xCCC;&#xCA2; &#xCB6;&#xCBE;&#xCB2;&#xCC6;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/education_level" value="puc"
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level" value="puc"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">PUC &#xCAA;&#xCBF;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/education_level" value="graduate"
-                       data-type-xml="select1"/>
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level"
+                       value="graduate" data-type-xml="select1"/>
                 <span lang="" class=" active">Graduate
                     &#xCAA;&#xCA6;&#xCB5;&#xCBF;&#xCA6;&#xCBE;&#xCB0;&#xCB0;&#xCC1;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/education_level"
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level"
+                       value="post_graduate" data-type-xml="select1"/>
+                <span lang="" class=" active">Post Graduate &#xCB8;&#xCCD;&#xCA8;&#xCBE;&#xCA4;&#xC95;&#xCCB;&#xCA4;&#xCCD;&#xCA4;&#xCB0;
+                    &#xCAA;&#xCA6;&#xCB5;&#xCBF;&#xCA6;&#xCBE;&#xCB0;&#xCB0;&#xCC1;</span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Husband's education level? &#xC97;&#xC82;&#xCA1;&#xCA8; &#xCB5;&#xCBF;&#xCA6;&#xCCD;&#xCAF;&#xCBE;&#xCB0;&#xCCD;&#xCB9;&#xCA4;&#xCC6;?</span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/husband_education_level"
+                       value="illiterate" data-type-xml="select1"/>
+                <span lang="" class=" active">Illiterate &#xC85;&#xCA8;&#xC95;&#xCCD;&#xCB7;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCB0;&#xCC1;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/husband_education_level"
+                       value="primary" data-type-xml="select1"/>
+                <span lang="" class=" active">Primary School &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
+                    &#xCB6;&#xCBE;&#xCB2;&#xCC6;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/husband_education_level"
+                       value="middle" data-type-xml="select1"/>
+                <span lang="" class=" active">Middle School &#xCAE;&#xCBE;&#xCA7;&#xCCD;&#xCAF;&#xCAE;&#xCBF;&#xC95;
+                    &#xCB6;&#xCB2;&#xCC6;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/husband_education_level"
+                       value="high" data-type-xml="select1"/>
+                <span lang="" class=" active">High School &#xCAA;&#xCCD;&#xCB0;&#xCCC;&#xCA2; &#xCB6;&#xCBE;&#xCB2;&#xCC6;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/husband_education_level"
+                       value="puc" data-type-xml="select1"/>
+                <span lang="" class=" active">PUC &#xCAA;&#xCBF;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/husband_education_level"
+                       value="graduate" data-type-xml="select1"/>
+                <span lang="" class=" active">Graduate
+                    &#xCAA;&#xCA6;&#xCB5;&#xCBF;&#xCA6;&#xCBE;&#xCB0;&#xCB0;&#xCC1;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/husband_education_level"
                        value="post_graduate" data-type-xml="select1"/>
                 <span lang="" class=" active">Post Graduate &#xCB8;&#xCCD;&#xCA8;&#xCBE;&#xCA4;&#xC95;&#xCCB;&#xCA4;&#xCCD;&#xCA4;&#xCB0;
                     &#xCAA;&#xCA6;&#xCB5;&#xCBF;&#xCA6;&#xCBE;&#xCB0;&#xCB0;&#xCC1;</span>
@@ -575,8 +627,7 @@
             &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1; &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1; (&#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCC1;&#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)?
         </span>
         <input autocomplete="off" type="number" name="/EC_Registration_EngKan/age_youngestchild"
-               data-constraint=".&gt;=1 and .&lt;24"
-               data-relevant=" /EC_Registration_EngKan/youngestchild_under2  = 'yes'" data-type-xml="int"/>
+               data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0" data-type-xml="int"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
@@ -653,7 +704,7 @@
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_other"
-                       value="fp_traditional" required="required"
+                       value="traditional_methods" required="required"
                        data-relevant=" /EC_Registration_EngKan/familyplanning_method_1  = 'others'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Traditional Methods &#xCB8;&#xCBE;&#xC82;&#xCAA;&#xCCD;&#xCB0;&#xCA6;&#xCBE;&#xCAF;&#xCBF;&#xC95;
@@ -665,6 +716,43 @@
                        data-relevant=" /EC_Registration_EngKan/familyplanning_method_1  = 'others'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">LAM</span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <label class="jr-branch pre-init ">
+        <span lang="" class=" active">Date on which FP started? &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;
+            &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF;&#xCA6;
+            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        </span>
+        <span class="required">*</span>
+        <input autocomplete="off" type="date" name="/EC_Registration_EngKan/date_familyplanningstart"
+               required="required" data-constraint=".&lt;= /EC_Registration_EngKan/today "
+               data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none'" data-type-xml="date"/>
+    </label>
+    <label class="jr-branch pre-init ">
+        <span lang="" class=" active">LMP</span>
+        <input autocomplete="off" type="date" name="/EC_Registration_EngKan/lmp_date"
+               data-constraint=".&lt;= /EC_Registration_EngKan/today "
+               data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none'" data-type-xml="date"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">UPT result? &#xCAF;&#xCC1;.&#xCAA;&#xCBF;.&#xC9F;&#xCBF; &#xCAB;&#xCB2;&#xCBF;&#xCA4;&#xCBE;&#xC82;&#xCB6;?</span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/upt_result" value="positive"
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Positive
+                    &#xCB8;&#xC95;&#xCBE;&#xCB0;&#xCBE;&#xCA4;&#xCCD;&#xCAE;&#xC95;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/upt_result" value="negative"
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Negative
+                    &#xCA8;&#xC95;&#xCBE;&#xCB0;&#xCBE;&#xCA4;&#xCCD;&#xCAE;&#xC95;</span>
             </label>
         </fieldset>
     </fieldset>
@@ -728,15 +816,63 @@
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Date on which FP started? &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;
-            &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF;&#xCA6;
-            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        <span lang="" class=" active">Name of doctor who did sterilization? &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCB9;&#xCB0;&#xCA3;
+            &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+            &#xCAE;&#xCBE;&#xCA1;&#xCBF;&#xCA6; &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xCB0; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?
         </span>
-        <span class="required">*</span>
-        <input autocomplete="off" type="date" name="/EC_Registration_EngKan/date_familyplanningstart"
-               required="required" data-constraint=".&lt;= /EC_Registration_EngKan/today "
-               data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none'" data-type-xml="date"/>
+        <input autocomplete="off" type="text" name="/EC_Registration_EngKan/sterilization_doctor_name"
+               data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'male_sterilization' or  /EC_Registration_EngKan/familyplanning_method  = 'female_sterilization'"
+               data-type-xml="string"/>
     </label>
+    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Type of sterilization? &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCB9;&#xCB0;&#xCA3;
+                    &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xCAF;
+                    &#xCB5;&#xCBF;&#xCA7;?
+                </span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/male_sterilization_type"
+                       value="nsv"
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'male_sterilization'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">No-Scalpel Vasectomy (NSV)</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/male_sterilization_type"
+                       value="conventional_vasectomy"
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'male_sterilization'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Conventional Vasectomy &#xCB8;&#xCBE;&#xC82;&#xCAA;&#xCCD;&#xCB0;&#xCA6;&#xCBE;&#xCAF;&#xCBF;&#xC95;
+                    &#xCB5;&#xCC6;&#xCB8;&#xCCD;&#xC95;&#xCC6;&#xC9F;&#xCAE;&#xCBF;</span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Type of sterilization? &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCB9;&#xCB0;&#xCA3;
+                    &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xCAF;
+                    &#xCB5;&#xCBF;&#xCA7;?
+                </span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/female_sterilization_type"
+                       value="minilap"
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'female_sterilization'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Minilap</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/female_sterilization_type"
+                       value="laparoscopic"
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'female_sterilization'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Laparoscopic &#xCB2;&#xCCD;&#xCAF;&#xCBE;&#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xC95;&#xCCB;&#xCAB;&#xCBF;</span>
+            </label>
+        </fieldset>
+    </fieldset>
     <fieldset class="jr-branch pre-init " name="/EC_Registration_EngKan/male_sterilizaton_group"
               data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'male_sterilization'">
         <fieldset class="trigger jr-branch pre-init"
@@ -766,20 +902,31 @@
     </fieldset>
     <!--end of group -->
     <label class="jr-branch pre-init ">
+        <span lang="" class=" active">Last DMPA injection date? &#xC95;&#xCCA;&#xCA8;&#xCC6;&#xCAF; &#xCA1;&#xCBF;&#xC82;&#xCAA;&#xCBE;
+            &#xC9A;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;&#xCAE;&#xCA6;&#xCCD;&#xCA6;&#xCBF;&#xCA8; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        </span>
+        <input autocomplete="off" type="date" name="/EC_Registration_EngKan/injectable_date"
+               data-constraint=".&lt;= /EC_Registration_EngKan/today "
+               data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'dmpa_injectable'"
+               data-type-xml="date"/>
+    </label>
+    <label class="jr-branch pre-init ">
         <span lang="" class=" active">Number of condoms given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1; &#xCA8;&#xCBF;&#xCB0;&#xCCB;&#xCA6;&#xCCD;&#x200D;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
             &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;?
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/EC_Registration_EngKan/num_condoms" required="required"
-               data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'condom'" data-type-xml="int"/>
+               data-constraint=".&gt;= 0" data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'condom'"
+               data-type-xml="int"/>
     </label>
     <label class="jr-branch pre-init ">
         <span lang="" class=" active">Number of OCP strips given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1; &#xC92;&#xCB8;&#xCBF;&#xCAA;&#xCBF;
             &#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;?
         </span>
         <span class="required">*</span>
-        <input autocomplete="off" type="number" name="/EC_Registration_EngKan/num_ocp_cycles" required="required"
-               data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'ocp'" data-type-xml="int"/>
+        <input autocomplete="off" type="number" name="/EC_Registration_EngKan/num_ocp_strips" required="required"
+               data-constraint=".&gt;= 0" data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'ocp'"
+               data-type-xml="int"/>
     </label>
     <label class="jr-branch pre-init ">
         <span lang="" class=" active">Number of Centchroman strips given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1; &#xCB8;&#xCC6;&#xC82;&#xCA4;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCA8;&#xCCD;
@@ -787,7 +934,18 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/EC_Registration_EngKan/num_centchroman_pills" required="required"
+               data-constraint=".&gt;= 0"
                data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'centchroman'" data-type-xml="int"/>
+    </label>
+    <label class="jr-branch pre-init ">
+        <span lang="" class=" active">Date the couple will start new supply? &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1;
+            &#xCB9;&#xCCA;&#xCB8; &#xCB8;&#xCB0;&#xCAC;&#xCB0;&#xCBE;&#xC9C;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF;&#xCA6;
+            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        </span>
+        <span class="required">*</span>
+        <input autocomplete="off" type="date" name="/EC_Registration_EngKan/refill_date1" required="required"
+               data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'ocp' or  /EC_Registration_EngKan/familyplanning_method  = 'centchroman'"
+               data-type-xml="date"/>
     </label>
     <fieldset class="trigger jr-branch pre-init" name="/EC_Registration_EngKan/message"
               data-relevant=" /EC_Registration_EngKan/is_high_priority1  = 'yes'">
@@ -884,6 +1042,11 @@
                    data-type-xml="string"/>
         </label>
         <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/refill_date"
+                   data-calculate="if( /EC_Registration_EngKan/injectable_date  != '',  /EC_Registration_EngKan/injectable_date ,  /EC_Registration_EngKan/refill_date1 )"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
             <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/abortion_risk"
                    data-calculate="if( /EC_Registration_EngKan/num_abortions  &gt;= 3, 'Abortion_history','')"
                    data-type-xml="string"/>
@@ -929,7 +1092,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/formhub/uuid"
-                   data-calculate="'28718d2cc4484a6ab9395a7d9fe66fd1'" data-type-xml="string"/>
+                   data-calculate="'cd5cb9672f804251ba893a4285934bf3'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
