@@ -23,13 +23,15 @@ public class FormSubmissionRouterTest {
     private FPComplicationsHandler fpComplicationsHandler;
     @Mock
     private FPChangeHandler fpChangeHandler;
+    @Mock
+    private RenewFPProductHandler renewFPProductHandler;
 
     private FormSubmissionRouter router;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        router = new FormSubmissionRouter(formDataRepository, ecRegistrationHandler, fpComplicationsHandler, fpChangeHandler);
+        router = new FormSubmissionRouter(formDataRepository, ecRegistrationHandler, fpComplicationsHandler, fpChangeHandler, renewFPProductHandler);
     }
 
     @Test
@@ -49,5 +51,16 @@ public class FormSubmissionRouterTest {
 
         verify(formDataRepository).fetchFromSubmission("instance id 2");
         verify(fpComplicationsHandler).handle(formSubmission);
+    }
+
+    @Test
+    public void shouldDelegateRenewFPProductFormSubmissionHandlingToRenewFPProductHandler() throws Exception {
+        FormSubmission formSubmission = create().withFormName("renew_fp_product").withInstanceId("instance id 1").withVersion("122").build();
+        when(formDataRepository.fetchFromSubmission("instance id 1")).thenReturn(formSubmission);
+
+        router.route("instance id 1");
+
+        verify(formDataRepository).fetchFromSubmission("instance id 1");
+        verify(renewFPProductHandler).handle(formSubmission);
     }
 }

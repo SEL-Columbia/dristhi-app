@@ -38,8 +38,9 @@ blockquote:after {
 }
 
 i.green {
-   color: #23ae23;
+    color: #23ae23;
 }
+
 i.red {
     color: #d13f3f;
 }
@@ -74,44 +75,18 @@ a:focus {
     background-color: #e6e6e6;
 }
 
+.column-header-container {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
 .tableheaders {
     font-size: 15px;
     float: left;
-    margin-top: 5px;
-    margin-left: 12px;
     color: #555555;
     font-weight: bold;
     letter-spacing: .1em;
-}
-
-.tableheaders #header-name {
-    float: left;
-    margin-left: 20px;
-}
-
-.tableheaders #header-id {
-    float: left;
-    margin-left: 198px;
-}
-
-.tableheaders #header-due {
-    float: left;
-    margin-left: 85px;
-}
-
-.tableheaders #header-gplsa {
-    float: left;
-    margin-left: 87px;
-}
-
-.tableheaders #header-method {
-    float: left;
-    margin-left: 54px;
-}
-
-.tableheaders #header-sideeffects {
-    float: left;
-    margin-left: 151px;
 }
 
 .headcontainer2 {
@@ -174,11 +149,11 @@ a:focus {
     padding-bottom: 5px;
     border-radius: 3px 3px 3px 3px;
 }
+
 .line-right {
     border-right: 1px solid #d9d9d9;
     height: 100%;
 }
-
 
 .client {
     border-bottom: 1px solid #d9d9d9;
@@ -203,6 +178,7 @@ a:focus {
     height: 22px;
     margin-bottom: -5px;
 }
+
 .client-details .flag-container .flag-hp {
     background: url("../../img/smart_registry/flag-hp.png") no-repeat;
 }
@@ -236,10 +212,11 @@ a:focus {
 }
 
 .client-name {
-    font-size:18px !important;
+    font-size: 18px !important;
     max-width: 67px;
     display: inline-block;
 }
+
 #fp-client-list .client-name {
     max-width: 135px;
 }

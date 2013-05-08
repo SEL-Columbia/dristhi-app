@@ -26,17 +26,22 @@
                 <ul class="nav">
                     <li><a href="../home.html" class="btn-back"><i class="icon-white"></i></a></li>
                     <li>&nbsp;</li>
-                    <li><a class="brand" href="#">ANC: {{reportingPeriodStart() | date:'dd/MM'}} - {{reportingPeriodEnd() | date:'dd/MM'}}</a></li>
+                    <li><a class="brand" href="#">ANC: {{reportingPeriodStart() | date:'dd/MM'}} -
+                        {{reportingPeriodEnd() | date:'dd/MM'}}</a></li>
                 </ul>
                 <div class="nav-collapse collapse">
                     <form class="navbar-search pull-right">
                         <input type="text" class="search-query" placeholder="Search" ng-model="searchFilterString">
                     </form>
                     <ul class="nav pull-right">
-                        <li><a id="anc-service-modes" href="#" ng-click="openModal(ancServiceOptions)">{{serviceModeOption.label}} <i
-                                class="icon-white icon-chevron-down"></i></a></li>
-                        <li><a id="sort-options" href="#" ng-click="openModal(sortOptions)"><i class="icon-sort-custom icon-white"></i></a></li>
-                        <li><a id="village-options" href="#" ng-click="openModal(villageOptions)"><i class="icon-village icon-white"></i></a>
+                        <li><a id="anc-service-modes" href="#" ng-click="openModal(ancServiceOptions)">{{serviceModeOption.label}}
+                            <i
+                                    class="icon-white icon-chevron-down"></i></a></li>
+                        <li><a id="sort-options" href="#" ng-click="openModal(sortOptions)"><i
+                                class="icon-sort-custom icon-white"></i></a></li>
+                        <li><a id="village-options" href="#" ng-click="openModal(villageOptions)"><i
+                                class="icon-village icon-white"></i></a>
+
                         </li>
                         <li><a href="#"><i class="icon-plus icon-white"></i></a></li>
                     </ul>
@@ -48,12 +53,14 @@
             <span>Village: <strong>{{villageFilterOption.label}}</strong>, </span>
         </div>
         <div class="clear"></div>
-        <div class="tableheaders row-fluid">
-            <div class="span5 full-height span-no-margin width-without-margins">
-                <div class="row-fluid full-height" ng-include="'blocks/anc/common_header.html'"></div>
+        <div class="container-fluid container-no-padding column-header-container">
+            <div class="tableheaders row-fluid">
+                <div class="span5 full-height span-no-margin width-without-margins">
+                    <div class="row-fluid full-height" ng-include="'blocks/anc/common_header.html'"></div>
+                </div>
+                <ng:include src="'blocks/anc/' + contentTemplate + '_header.html'">
+                </ng:include>
             </div>
-            <ng:include src="'blocks/anc/' + contentTemplate + '_header.html'">
-            </ng:include>
         </div>
     </div>
 

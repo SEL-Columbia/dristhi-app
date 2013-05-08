@@ -24,7 +24,8 @@
                 <ul class="nav">
                     <li><a href="../home.html" class="btn-back"><i class="icon-white"></i></a></li>
                     <li>&nbsp;</li>
-                    <li><a class="brand" href="#">FP: {{reportingPeriodStart() | date:'dd/MM'}} - {{reportingPeriodEnd() | date:'dd/MM'}}</a></li>
+                    <li><a class="brand" href="#">FP: {{reportingPeriodStart() | date:'dd/MM'}} - {{reportingPeriodEnd()
+                        | date:'dd/MM'}}</a></li>
                 </ul>
                 <div class="nav-collapse collapse">
                     <form class="navbar-search pull-right">
@@ -33,9 +34,12 @@
                     <ul class="nav pull-right">
                         <li><a href="#" ng-click="openFPModal(ecsWithFPMethodServiceModeOptions)">{{serviceModeOption.label}}<i
                                 class="icon-white icon-chevron-down"></i></a></li>
-                        <li><a href="#" ng-click="openModal(sortOptions)"><i class="icon-sort-custom icon-white"></i></a></li>
-                        <li><a href="#" ng-click="openModal(villageOptions)"><i class="icon-village icon-white"></i></a></li>
-                        <li><a href="#" ng-click="openForm('ec_registration', '')"><i class="icon-plus icon-white"></i></a></li>
+                        <li><a href="#" ng-click="openModal(sortOptions)"><i
+                                class="icon-sort-custom icon-white"></i></a></li>
+                        <li><a href="#" ng-click="openModal(villageOptions)"><i class="icon-village icon-white"></i></a>
+                        </li>
+                        <li><a href="#" ng-click="openForm('ec_registration', '')"><i class="icon-plus icon-white"></i></a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -45,12 +49,14 @@
             <span>Village: <strong>{{villageFilterOption.label}}</strong>, </span>
         </div>
         <div class="clear"></div>
-        <div class="tableheaders row-fluid">
-            <div class="span5 full-height span-no-margin width-without-margins">
-                <div class="row-fluid" ng-include="'blocks/fp/common_header.html'"></div>
-            </div>
-            <div class="span7 full-height span-no-margin width-without-margins">
-                <div class="row-fluid" ng-include="'blocks/fp/'+ contentTemplate + '_header.html'"></div>
+        <div class="container-fluid container-no-padding column-header-container">
+            <div class="tableheaders row-fluid">
+                <div class="span5 full-height span-no-margin width-without-margins">
+                    <div class="row-fluid" ng-include="'blocks/fp/common_header.html'"></div>
+                </div>
+                <div class="span7 full-height span-no-margin width-without-margins">
+                    <div class="row-fluid" ng-include="'blocks/fp/'+ contentTemplate + '_header.html'"></div>
+                </div>
             </div>
         </div>
     </div>

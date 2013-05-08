@@ -2,10 +2,7 @@ package org.ei.drishti;
 
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
-import org.ei.drishti.service.formSubmissionHandler.ECRegistrationHandler;
-import org.ei.drishti.service.formSubmissionHandler.FPChangeHandler;
-import org.ei.drishti.service.formSubmissionHandler.FPComplicationsHandler;
-import org.ei.drishti.service.formSubmissionHandler.FormSubmissionRouter;
+import org.ei.drishti.service.formSubmissionHandler.*;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
 
@@ -56,6 +53,7 @@ public class Context {
     private ECRegistrationHandler ecRegistrationHandler;
     private FPComplicationsHandler fpComplicationsHandler;
     private FPChangeHandler fpChangeHandler;
+    private RenewFPProductHandler renewFPProductHandler;
 
     protected Context() {
     }
@@ -113,7 +111,7 @@ public class Context {
     public FormSubmissionRouter formSubmissionRouter() {
         initRepository();
         if (formSubmissionRouter == null) {
-            formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(), fpComplicationsHandler(), fpChangeHandler());
+            formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(), fpComplicationsHandler(), fpChangeHandler(), renewFPProductHandler());
         }
         return formSubmissionRouter;
     }
@@ -137,6 +135,13 @@ public class Context {
             fpChangeHandler = new FPChangeHandler(eligibleCoupleService());
         }
         return fpChangeHandler;
+    }
+
+    private RenewFPProductHandler renewFPProductHandler() {
+        if (renewFPProductHandler == null) {
+            renewFPProductHandler = new RenewFPProductHandler(eligibleCoupleService());
+        }
+        return renewFPProductHandler;
     }
 
     private ZiggyService ziggyService() {

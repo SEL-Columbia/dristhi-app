@@ -49,4 +49,8 @@ public class EligibleCoupleService {
                 submission.getFieldValue(NEW_FP_METHOD_FIELD_NAME), submission.getFieldValue(FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME)));
         repository.mergeDetails(submission.entityId(), mapOf(CURRENT_FP_METHOD_FIELD_NAME, submission.getFieldValue(NEW_FP_METHOD_FIELD_NAME)));
     }
+
+    public void renewFPProduct(FormSubmission submission) {
+
+    }
 }

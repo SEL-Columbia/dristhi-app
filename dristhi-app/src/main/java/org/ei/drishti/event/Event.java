@@ -1,5 +1,6 @@
 package org.ei.drishti.event;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.ei.drishti.domain.FetchStatus;
 
 import java.lang.ref.WeakReference;
@@ -27,7 +28,7 @@ public class Event<CallbackType> {
     public void removeListener(Listener<CallbackType> listener) {
         WeakReference<Listener<CallbackType>> listenerToRemove = null;
         for (WeakReference<Listener<CallbackType>> l : listeners) {
-            if (listener.equals(l.get())) {
+            if (ObjectUtils.equals(listener, l.get())) {
                 listenerToRemove = l;
                 break;
             }

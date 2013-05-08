@@ -44,6 +44,7 @@ public class AllConstants {
     public static final String EC_REGISTRATION = "ec_registration";
     public static final String FP_COMPLICATIONS = "fp_complications";
     public static final String FP_CHANGE = "fp_change";
+    public static final String RENEW_FP_PRODUCT = "renew_fp_product";
     public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
     public static final String FP_UPDATE_FIELD_NAME = "fpUpdate";
     public static final String NEW_FP_METHOD_FIELD_NAME = "newMethod";
