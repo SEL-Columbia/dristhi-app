@@ -20,6 +20,7 @@ public class AllConstants {
     public static final String WOMAN_TYPE = "woman";
     public static final String REALM = "Dristhi";
     public static final String DRISHTI_BASE_URL = "https://drishti.modilabs.org";
+    public static final String AUTHENTICATE_USER_URL_PATH = "/authenticate-user";
     public static final String HOST = "drishti.modilabs.org";
     public static final int PORT = 443;
     public static final boolean SHOULD_VERIFY_CERTIFICATE = true;

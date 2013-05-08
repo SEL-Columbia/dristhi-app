@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public LoginResponse isValidRemoteLogin(String userName, String password) {
-        return httpAgent.urlCanBeAccessWithGivenCredentials(DRISHTI_BASE_URL, userName, password);
+        return httpAgent.urlCanBeAccessWithGivenCredentials(DRISHTI_BASE_URL + AUTHENTICATE_USER_URL_PATH, userName, password);
     }
 
     public void loginWith(String userName, String password) {

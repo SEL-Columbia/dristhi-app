@@ -44,7 +44,7 @@ public class UserServiceTest {
     public void shouldUseHttpAgentToDoRemoteLoginCheck() {
         userService.isValidRemoteLogin("user X", "password Y");
 
-        verify(httpAgent).urlCanBeAccessWithGivenCredentials(DRISHTI_BASE_URL, "user X", "password Y");
+        verify(httpAgent).urlCanBeAccessWithGivenCredentials("https://drishti.modilabs.org/authenticate-user", "user X", "password Y");
     }
 
     @Test
