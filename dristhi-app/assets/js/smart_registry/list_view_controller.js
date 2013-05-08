@@ -74,6 +74,25 @@ angular.module("smartRegistry.controllers")
         $scope.currentOptions = option;
     };
 
+    $scope.closeModal = function (option) {
+        $scope.isModalOpen = false;
+        //$scope.currentOptions = null;
+    };
+
+    $scope.modalOpts = {
+        backdropFade: true,
+        dialogFade:true
+    };
+
+    $scope.openTestModal = function(msg){
+        $scope.modal_message = msg;
+        $scope.shouldBeOpen = true;
+    };
+
+    $scope.closeTestModal = function(){
+        $scope.shouldBeOpen = false;
+    };
+
     $scope.numberOfClientsToShow = 10;
 
     $scope.loadAll = function () {

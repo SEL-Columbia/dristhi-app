@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../css/font-awesome.min.css">
     <link href="../../css/custom.css" rel="stylesheet">
     <script src="../../js/lib/angular.min.js" type="text/javascript"></script>
+    <script src="../../js/lib/ui-bootstrap-tpls-0.3.0.min.js"></script>
     <script src="../../js/jquery.min.js"></script>
     <script src="../../js/smart_registry/app.js" type="text/javascript"></script>
     <script src="../../js/smart_registry/anc_registry_bridge.js" type="text/javascript"></script>
@@ -16,7 +17,6 @@
     <script src="../../js/anmNavigation.js"></script>
     <script src="../../js/page_view.js"></script>
     <script src="../../js/smart_registry/anc_register_app.js" type="text/javascript"></script>
-    <script src="../../js/bootstrap.min.js"></script>
 </head>
 <body ng-controller="ancRegisterController">
 <div ng-controller="listViewController">
@@ -34,14 +34,10 @@
                         <input type="text" class="search-query" placeholder="Search" ng-model="searchFilterString">
                     </form>
                     <ul class="nav pull-right">
-                        <li><a id="anc-service-modes" href="#" ng-click="openModal(ancServiceOptions)">{{serviceModeOption.label}}
-                            <i
-                                    class="icon-white icon-chevron-down"></i></a></li>
-                        <li><a id="sort-options" href="#" ng-click="openModal(sortOptions)"><i
-                                class="icon-sort-custom icon-white"></i></a></li>
-                        <li><a id="village-options" href="#" ng-click="openModal(villageOptions)"><i
-                                class="icon-village icon-white"></i></a>
-
+                        <li><a id="anc-service-modes" ng-click="openModal(ancServiceOptions)">{{serviceModeOption.label}} <i
+                                class="icon-white icon-chevron-down"></i></a></li>
+                        <li><a id="sort-options" ng-click="openModal(sortOptions)"><i class="icon-sort-custom icon-white"></i></a></li>
+                        <li><a id="village-options" ng-click="openModal(villageOptions)"><i class="icon-village icon-white"></i></a>
                         </li>
                         <li><a href="#"><i class="icon-plus icon-white"></i></a></li>
                     </ul>
@@ -65,7 +61,7 @@
     </div>
 
     <div class="content-smart-registry">
-        <div ng-show="isModalOpen" class="modal" style="margin-top: 100px;">
+        <div modal="isModalOpen" close="closeModal()" options="modalOpts">
             <div class="modal-body modal-row">
                 <ul class="nav nav-tabs nav-stacked">
                     <li ng-repeat="option in currentOptions.options">
@@ -75,7 +71,6 @@
                 </ul>
             </div>
         </div>
-
 
         <div class="container-fluid container-no-padding client-list">
             <div class="row-fluid client"

@@ -39,7 +39,29 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "2013-02-25",
                     "economicStatus": "bpl",
                     "caste": "sc",
-                    "photo_path": "../../img/woman-placeholder.png"
+                    "photo_path": "../../img/woman-placeholder.png",
+                    alerts:[
+                        {
+                            name:'OCP Refill',
+                            date:'24/07',
+                            status:'urgent'
+                        },
+                        {
+                            name:'Condom Refill',
+                            date:'24/07',
+                            status:'urgent'
+                        },
+                        {
+                            name:'Male Steralisation Follow-up',
+                            date:'26/05',
+                            status:'normal'
+                        },
+                        {
+                            name: 'Female Follow-up',
+                            date: '2012-05-18',
+                            status: 'urgent'
+                        }
+                    ]
                 },
                 {
                     "entity_id": "entity 2",

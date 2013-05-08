@@ -175,6 +175,11 @@ angular.module("smartRegistry.controllers")
             $scope.currentFPOption = option;
         };
 
+        $scope.closeFPModal = function () {
+            $scope.isFPModalOpen = false;
+            $scope.isModalOpen = false;
+        };
+
         $scope.searchFilterString = "";
         $scope.searchCriteria = function (client, searchFilterString) {
             return (client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
