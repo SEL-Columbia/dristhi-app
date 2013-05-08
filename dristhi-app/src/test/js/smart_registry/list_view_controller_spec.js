@@ -32,6 +32,33 @@ describe("List view controller", function () {
         expect(scope.numberOfClientsToShow).toBe(10);
     });
 
+    describe("Reporting period", function(){
+        it("should start on the 26th of the previous month if the specified day is on or before the 25th", function(){
+            var date_str = '2012-02-25';
+            expect(Date.parse(scope.reportingPeriodStart(date_str))).toEqual(Date.parse("2012-01-26"));
+        });
+
+        it("should end on the 25th of the current month if the day is on or before the 25th", function(){
+            var date_str = '2012-02-25';
+            expect(Date.parse(scope.reportingPeriodEnd(date_str))).toEqual(Date.parse("2012-02-25"));
+        });
+
+        it("should start on the 26th of the current month if the specified day is after the 25th", function(){
+            var date_str = '2012-02-26';
+            expect(Date.parse(scope.reportingPeriodStart(date_str))).toEqual(Date.parse("2012-02-26"));
+        });
+
+        it("should end on the 25th of the next month if the day is after the 25th", function(){
+            var date_str = '2012-02-26';
+            expect(Date.parse(scope.reportingPeriodEnd(date_str))).toEqual(Date.parse("2012-03-25"));
+        });
+
+        it("should end in Jan of the next year if the next month is january", function(){
+            var date_str = '2012-12-26';
+            expect(Date.parse(scope.reportingPeriodEnd(date_str))).toEqual(Date.parse("2013-01-25"));
+        });
+    });
+
     describe("sort", function () {
         it("should set currentSortOption to the selected one.", function () {
             var sortOption = {

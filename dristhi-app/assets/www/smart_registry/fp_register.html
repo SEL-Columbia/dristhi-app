@@ -24,7 +24,7 @@
                 <ul class="nav">
                     <li><a href="../home.html" class="btn-back"><i class="icon-white"></i></a></li>
                     <li>&nbsp;</li>
-                    <li><a class="brand" href="#">FP: 26/03 - 25/04</a></li>
+                    <li><a class="brand" href="#">FP: {{reportingPeriodStart() | date:'dd/MM'}} - {{reportingPeriodEnd() | date:'dd/MM'}}</a></li>
                 </ul>
                 <div class="nav-collapse collapse">
                     <form class="navbar-search pull-right">
