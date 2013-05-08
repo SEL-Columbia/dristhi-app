@@ -7,7 +7,6 @@ import org.apache.http.HttpStatus;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpHead;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
@@ -91,7 +90,7 @@ public class HTTPAgent {
     public LoginResponse urlCanBeAccessWithGivenCredentials(String requestURL, String userName, String password) {
         setCredentials(userName, password);
         try {
-            HttpResponse response = httpClient.execute(new HttpHead(requestURL));
+            HttpResponse response = httpClient.execute(new HttpGet(requestURL));
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode == HttpStatus.SC_OK) {
                 return SUCCESS;

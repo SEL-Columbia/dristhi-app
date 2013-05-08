@@ -4,7 +4,6 @@ import org.apache.http.HeaderElement;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpHead;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
@@ -42,7 +41,7 @@ public class GZipEncodingHttpClient {
         return response.getEntity().getContent();
     }
 
-    public HttpResponse execute(HttpHead request) throws IOException {
+    public HttpResponse execute(HttpGet request) throws IOException {
         return httpClient.execute(request);
     }
 
