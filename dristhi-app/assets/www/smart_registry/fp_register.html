@@ -62,7 +62,7 @@
             <div class="modal-body modal-row">
                 <ul class="nav nav-tabs nav-stacked">
                     <li ng-repeat="option in currentOptions.options">
-                        <a href="#" ng-click="onModalOptionClick(option, currentOptions.type)">{{option.label}}<i
+                        <a ng-click="onModalOptionClick(option, currentOptions.type)">{{option.label}}<i
                                 class="icon-chevron-right" style="float: right"></i></a>
                     </li>
                 </ul>
@@ -84,7 +84,7 @@
                 <div id="fp-method-options">
                     <ul ng-show="isFPMethodsOptionSelected" class="nav nav-tabs nav-stacked">
                         <li ng-repeat="option in ecsWithFPMethodServiceModeOptions.options">
-                            <a href="#" ng-click="onFPModalOptionClick(option, currentFPOption.type)">{{option.label}}<i
+                            <a ng-click="onFPModalOptionClick(option, currentFPOption.type)">{{option.label}}<i
                                     class="icon-chevron-right" style="float: right"></i></a>
                         </li>
                     </ul>
@@ -92,7 +92,7 @@
                 <div id="fp-prioritization-options">
                     <ul ng-show="!isFPMethodsOptionSelected" class="nav nav-tabs nav-stacked">
                         <li ng-repeat="option in ecsWithoutFPMethodServiceModeOptions.options">
-                            <a href="#" ng-click="onFPModalOptionClick(option, currentFPOption.type)">{{option.label}}<i
+                            <a ng-click="onFPModalOptionClick(option, currentFPOption.type)">{{option.label}}<i
                                     class="icon-chevron-right" style="float: right"></i></a>
                         </li>
                     </ul>
