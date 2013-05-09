@@ -1,4 +1,4 @@
-<div id="method" class="span5 line-right full-height span-no-margin width-without-margins span-content">
+<div id="method" class="span4 line-right full-height span-no-margin width-without-margins span-content">
     <div class="row-fluid full-height">
         <div class="span8 full-height">
             <span class="text-bold">{{client.fp_method}}</span>
@@ -12,21 +12,34 @@
         </div>
     </div>
 </div>
-<div id="sideeffects" class="span3 line-right full-height span-no-margin width-without-margins span-content">
+<div id="sideeffects" class="span4 full-height span-no-margin width-without-margins span-content line-right">
     <div class="row-fluid full-height">
-        <div class="span6 full-height">
+        <div class="span8 full-height">
             <span>{{client.side_effects}}</span>
         </div>
-        <div class="span6 full-height">
+        <div class="span4 full-height">
             <button class="btn btn-done btn-sr btn-new-form full-height"
                     ng-click="openForm('fp_complications', client.entity_id)">Side Effects
             </button>
         </div>
     </div>
 </div>
-<div id="followUpAndRefill" class="span4 full-height span-no-margin width-without-margins span-content">
+<div id="followUpAndRefill" class="span4 full-height span-no-margin width-without-margins span-content"
+     ng-show="client.refill_follow_ups">
     <div class="row-fluid full-height">
-        <button class="btn btn-done btn-sr btn-new-form full-height"
-                ng-click="openForm('renew_fp_product', client.entity_id)">Refill</button>
+        <div class="span12 full-height">
+            <a class="btn btn-primary btn-block full-height text-align-left"
+               ng-class="{
+               'btn-due': client.alerts[client.refill_follow_ups.alert_index].status == 'normal',
+               'btn-past-due': client.alerts[client.refill_follow_ups.alert_index].status == 'urgent'}">
+                <ng:switch on="client.refill_follow_ups.type">
+                    <span ng-switch-when="follow-up" class="text-bold">Follow Up</span>
+                    <span ng-switch-when="refill" class="text-bold">Refill</span>
+                    <span ng-switch-when="referral" class="text-bold">Referral Follow Up</span>
+                </ng:switch>
+                <br/>
+                <span>due {{client.alerts[client.refill_follow_ups.alert_index].date | date:'dd/MM'}}</span>
+            </a>
+        </div>
     </div>
 </div>

@@ -21,7 +21,7 @@ function FakeFPSmartRegistryContext() {
                 {
                     "entity_id": "entity 1",
                     "ec_number": "2",
-                    "fp_method": "female_sterilization",
+                    "fp_method": "male_sterilization",
                     "husband_name": "Manikyam",
                     "village": "Bherya",
                     "name": "Ammulu",
@@ -42,24 +42,9 @@ function FakeFPSmartRegistryContext() {
                     "photo_path": "../../img/woman-placeholder.png",
                     alerts:[
                         {
-                            name:'OCP Refill',
-                            date:'24/07',
-                            status:'urgent'
-                        },
-                        {
-                            name:'Condom Refill',
-                            date:'24/07',
-                            status:'urgent'
-                        },
-                        {
-                            name:'Male Steralisation Follow-up',
+                            name:'Male Sterilization Follow-up',
                             date:'26/05',
                             status:'normal'
-                        },
-                        {
-                            name: 'Female Follow-up',
-                            date: '2012-05-18',
-                            status: 'urgent'
                         }
                     ]
                 },
@@ -83,7 +68,14 @@ function FakeFPSmartRegistryContext() {
                     "num_abortions": '1',
                     "family_planning_method_change_date": "14/03/12",
                     "caste": "st",
-                    "photo_path": "../../img/woman-placeholder.png"
+                    "photo_path": "../../img/woman-placeholder.png",
+                    alerts:[
+                        {
+                            name:'Condom Refill',
+                            date:'24/07',
+                            status:'urgent'
+                        }
+                    ]
                 },
                 {
                     "entity_id": "entity 3",
@@ -105,7 +97,14 @@ function FakeFPSmartRegistryContext() {
                     "num_abortions": '0',
                     "family_planning_method_change_date": "02/12/13",
                     "economicStatus": "apl",
-                    "photo_path": "../../img/woman-placeholder.png"
+                    "photo_path": "../../img/woman-placeholder.png",
+                    alerts:[
+                        {
+                            name: 'IUD Follow-up',
+                            date: '2012-05-18',
+                            status: 'urgent'
+                        }
+                    ]
                 },
                 {
                     "entity_id": "entity 4",
@@ -126,7 +125,19 @@ function FakeFPSmartRegistryContext() {
                     "num_stillbirths": '1',
                     "num_abortions": '1',
                     "family_planning_method_change_date": "21/06/12",
-                    "photo_path": "../../img/woman-placeholder.png"
+                    "photo_path": "../../img/woman-placeholder.png",
+                    alerts:[
+                        {
+                            name:'OCP Refill',
+                            date:'24/07',
+                            status:'urgent'
+                        },
+                        {
+                            name:'Condom Refill',
+                            date:'24/07',
+                            status:'normal'
+                        }
+                    ]
                 },
                 {
                     "entity_id": "entity 5",
@@ -147,7 +158,8 @@ function FakeFPSmartRegistryContext() {
                     "num_stillbirths": '1',
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
-                    "photo_path": "../../img/woman-placeholder.png"
+                    "photo_path": "../../img/woman-placeholder.png",
+                    alerts: []
                 },
                 {
                     "entity_id": "entity 6",
@@ -168,7 +180,8 @@ function FakeFPSmartRegistryContext() {
                     "num_stillbirths": '1',
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
-                    "photo_path": "../../img/woman-placeholder.png"
+                    "photo_path": "../../img/woman-placeholder.png",
+                    alerts: []
                 },
                 {
                     "entity_id": "entity 7",
@@ -189,7 +202,8 @@ function FakeFPSmartRegistryContext() {
                     "num_stillbirths": '1',
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
-                    "photo_path": "../../img/woman-placeholder.png"
+                    "photo_path": "../../img/woman-placeholder.png",
+                    alerts: []
                 },
                 {
                     "entity_id": "entity 8",
@@ -210,7 +224,8 @@ function FakeFPSmartRegistryContext() {
                     "num_stillbirths": '1',
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
-                    "photo_path": "../../img/woman-placeholder.png"
+                    "photo_path": "../../img/woman-placeholder.png",
+                    alerts: []
                 },
                 {
                     "entity_id": "entity 9",
@@ -231,7 +246,8 @@ function FakeFPSmartRegistryContext() {
                     "num_stillbirths": '1',
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
-                    "photo_path": "../../img/woman-placeholder.png"
+                    "photo_path": "../../img/woman-placeholder.png",
+                    alerts: []
                 },
                 {
                     "entity_id": "entity 10",
@@ -252,7 +268,8 @@ function FakeFPSmartRegistryContext() {
                     "num_stillbirths": '1',
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
-                    "photo_path": "../../img/woman-placeholder.png"
+                    "photo_path": "../../img/woman-placeholder.png",
+                    alerts: []
                 },
                 {
                     "entity_id": "entity 11",
@@ -273,7 +290,8 @@ function FakeFPSmartRegistryContext() {
                     "num_stillbirths": '1',
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
-                    "photo_path": "../../img/woman-placeholder.png"
+                    "photo_path": "../../img/woman-placeholder.png",
+                    alerts: []
                 },
                 {
                     "entity_id": "entity 12",
@@ -294,7 +312,8 @@ function FakeFPSmartRegistryContext() {
                     "num_stillbirths": '1',
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
-                    "photo_path": "../../img/woman-placeholder.png"
+                    "photo_path": "../../img/woman-placeholder.png",
+                    alerts: []
                 },
                 {
                     "entity_id": "entity 13",
@@ -315,7 +334,8 @@ function FakeFPSmartRegistryContext() {
                     "num_stillbirths": '1',
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
-                    "photo_path": "../../img/woman-placeholder.png"
+                    "photo_path": "../../img/woman-placeholder.png",
+                    alerts: []
                 },
                 {
                     "entity_id": "entity 14",
@@ -336,7 +356,8 @@ function FakeFPSmartRegistryContext() {
                     "num_stillbirths": '1',
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
-                    "photo_path": "../../img/woman-placeholder.png"
+                    "photo_path": "../../img/woman-placeholder.png",
+                    alerts: []
                 }
             ]);
         },

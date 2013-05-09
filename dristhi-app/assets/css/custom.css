@@ -677,6 +677,10 @@ a.btn-sr {
     text-align: left;
 }
 
+a.btn-block:not(.bn-sr) {
+    padding: 8px;
+}
+
 a.btn-sr.btn-due, a.btn-sr.btn-past-due {
     color: #ffffff;
 }
@@ -999,4 +1003,8 @@ a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
     width: 25px;
     background-size: 90%;
     background-repeat: no-repeat;
+}
+
+.text-align-left {
+    text-align: left;
 }
