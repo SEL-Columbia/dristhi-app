@@ -191,7 +191,7 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         repository.saveFormSubmission(secondSubmission);
         repository.saveFormSubmission(thirdSubmission);
 
-        repository.markFormSubmissionAsSynced(asList(firstSubmission, secondSubmission));
+        repository.markFormSubmissionsAsSynced(asList(firstSubmission, secondSubmission));
 
         assertEquals(firstSubmission.setSyncStatus(SYNCED), repository.fetchFromSubmission("id 1"));
         assertEquals(secondSubmission.setSyncStatus(SYNCED), repository.fetchFromSubmission("id 2"));
@@ -211,6 +211,22 @@ public class FormDataRepositoryTest extends AndroidTestCase {
 
         assertEquals(firstSubmission.setSyncStatus(SYNCED), repository.fetchFromSubmission("instance 1"));
         assertEquals(secondSubmission.setSyncStatus(SYNCED), repository.fetchFromSubmission("instance 2"));
+        assertEquals(thirdSubmission, repository.fetchFromSubmission("instance 3"));
+    }
+
+    public void testShouldUpdateServerVersionByInstanceId() throws Exception {
+        FormSubmission firstSubmission = new FormSubmission("instance 1", "entity id 1", "form name", "instance 1", "some version", SYNCED);
+        FormSubmission secondSubmission = new FormSubmission("instance 2", "entity id 2", "form name", "instance 2", "some other version", SYNCED);
+        FormSubmission thirdSubmission = new FormSubmission("instance 3", "entity id 3", "form name", "instance 3", "some other version", PENDING);
+        repository.saveFormSubmission(firstSubmission);
+        repository.saveFormSubmission(secondSubmission);
+        repository.saveFormSubmission(thirdSubmission);
+
+        repository.updateServerVersion("instance 1", "0");
+        repository.updateServerVersion("instance 2", "1");
+
+        assertEquals(firstSubmission.setServerVersion("0"), repository.fetchFromSubmission("instance 1"));
+        assertEquals(secondSubmission.setServerVersion("1"), repository.fetchFromSubmission("instance 2"));
         assertEquals(thirdSubmission, repository.fetchFromSubmission("instance 3"));
     }
 }

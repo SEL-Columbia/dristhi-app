@@ -16,7 +16,9 @@ public class FormSubmissionConvertor {
                     formSubmission.entityId(),
                     formSubmission.formName(),
                     formSubmission.instance(),
-                    formSubmission.timeStamp(), SYNCED));
+                    formSubmission.timeStamp(),
+                    formSubmission.serverVersion(),
+                    SYNCED));
         }
         return submissions;
     }

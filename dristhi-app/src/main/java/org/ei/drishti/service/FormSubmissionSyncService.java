@@ -51,7 +51,7 @@ public class FormSubmissionSyncService {
             logError(format("Form submissions sync failed. Submissions:  {0}", pendingFormSubmissions));
             return;
         }
-        formDataRepository.markFormSubmissionAsSynced(pendingFormSubmissions);
+        formDataRepository.markFormSubmissionsAsSynced(pendingFormSubmissions);
         logInfo(format("Form submissions sync successfully. Submissions:  {0}", pendingFormSubmissions));
     }
 

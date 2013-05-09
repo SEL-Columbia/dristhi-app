@@ -12,6 +12,7 @@ public class FormSubmission {
     private String formName;
     private String instance;
     private String version;
+    private String serverVersion;
     private SyncStatus syncStatus;
 
     private FormInstance formInstance;
@@ -22,6 +23,16 @@ public class FormSubmission {
         this.formName = formName;
         this.instance = instance;
         this.version = version;
+        this.syncStatus = syncStatus;
+    }
+
+    public FormSubmission(String instanceId, String entityId, String formName, String instance, String version, String serverVersion, SyncStatus syncStatus) {
+        this.instanceId = instanceId;
+        this.entityId = entityId;
+        this.formName = formName;
+        this.instance = instance;
+        this.version = version;
+        this.serverVersion = serverVersion;
         this.syncStatus = syncStatus;
     }
 
@@ -45,12 +56,21 @@ public class FormSubmission {
         return version;
     }
 
+    public String serverVersion() {
+        return serverVersion;
+    }
+
     public SyncStatus syncStatus() {
         return syncStatus;
     }
 
     public FormSubmission setSyncStatus(SyncStatus syncStatus) {
         this.syncStatus = syncStatus;
+        return this;
+    }
+
+    public FormSubmission setServerVersion(String serverVersion) {
+        this.serverVersion = serverVersion;
         return this;
     }
 

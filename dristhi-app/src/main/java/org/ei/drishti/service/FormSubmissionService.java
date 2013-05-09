@@ -33,7 +33,8 @@ public class FormSubmissionService {
                     logError(format("Form submission processing failed, with submission: {0}. Exception: {1}", submission, e));
                 }
             }
-            allSettings.savePreviousFormSyncIndex(submission.version());
+            formDataRepository.updateServerVersion(submission.instanceId(), submission.serverVersion());
+            allSettings.savePreviousFormSyncIndex(submission.serverVersion());
         }
     }
 

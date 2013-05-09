@@ -55,16 +55,18 @@ public class FormSubmissionServiceTest {
         InOrder inOrder = inOrder(ziggyService, allSettings, formDataRepository);
         inOrder.verify(ziggyService).saveForm(paramsForFirstSubmission, "{}");
         inOrder.verify(formDataRepository).markFormSubmissionAsSynced("instance id 1");
-        inOrder.verify(allSettings).savePreviousFormSyncIndex("122");
+        inOrder.verify(formDataRepository).updateServerVersion("instance id 1", "0");
+        inOrder.verify(allSettings).savePreviousFormSyncIndex("0");
         inOrder.verify(ziggyService).saveForm(paramsForSecondSubmission, "{}");
         inOrder.verify(formDataRepository).markFormSubmissionAsSynced("instance id 2");
-        inOrder.verify(allSettings).savePreviousFormSyncIndex("123");
+        inOrder.verify(formDataRepository).updateServerVersion("instance id 2", "0");
+        inOrder.verify(allSettings).savePreviousFormSyncIndex("0");
     }
 
     @Test
     public void shouldNotDelegateProcessingToZiggyServiceForProcessedSubmissions() throws Exception {
         FormSubmission firstFormSubmission = create().withInstanceId("instance id 1").withVersion("122").build();
-        FormSubmission secondFormSubmission = create().withInstanceId("instance id 2").withVersion("123").build();
+        FormSubmission secondFormSubmission = create().withInstanceId("instance id 2").withVersion("123").withServerVersion("1").build();
         List<FormSubmission> submissions = asList(firstFormSubmission, secondFormSubmission);
         when(formDataRepository.submissionExists("instance id 1")).thenReturn(true);
         when(formDataRepository.submissionExists("instance id 2")).thenReturn(false);
@@ -86,10 +88,11 @@ public class FormSubmissionServiceTest {
         InOrder inOrder = inOrder(ziggyService, allSettings, formDataRepository);
         inOrder.verify(ziggyService, times(0)).saveForm(paramsForFirstSubmission, "{}");
         inOrder.verify(formDataRepository, times(0)).markFormSubmissionAsSynced("instance id 1");
-        inOrder.verify(allSettings).savePreviousFormSyncIndex("122");
+        inOrder.verify(formDataRepository).updateServerVersion("instance id 1", "0");
+        inOrder.verify(allSettings).savePreviousFormSyncIndex("0");
         inOrder.verify(ziggyService).saveForm(paramsForSecondSubmission, "{}");
         inOrder.verify(formDataRepository).markFormSubmissionAsSynced("instance id 2");
-        inOrder.verify(allSettings).savePreviousFormSyncIndex("123");
-
+        inOrder.verify(formDataRepository).updateServerVersion("instance id 2", "1");
+        inOrder.verify(allSettings).savePreviousFormSyncIndex("1");
     }
 }

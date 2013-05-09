@@ -67,7 +67,7 @@ public class FormSubmissionSyncServiceTest {
         inOrder(allSettings, httpAgent, repository);
         verify(allSettings).fetchRegisteredANM();
         verify(httpAgent).post("https://drishti.modilabs.org" + "/form-submissions", new Gson().toJson(expectedFormSubmissionsDto));
-        verify(repository).markFormSubmissionAsSynced(submissions);
+        verify(repository).markFormSubmissionsAsSynced(submissions);
     }
 
     @Test
