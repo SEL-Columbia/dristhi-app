@@ -159,7 +159,13 @@ function FakeFPSmartRegistryContext() {
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
                     "photo_path": "../../img/woman-placeholder.png",
-                    alerts: []
+                    alerts: [
+                        {
+                            name: "Referral Follow-up",
+                            date: "2012-05-28",
+                            status: "normal"
+                        }
+                    ]
                 },
                 {
                     "entity_id": "entity 6",

@@ -15,7 +15,12 @@
 <div id="sideeffects" class="span4 full-height span-no-margin width-without-margins span-content line-right">
     <div class="row-fluid full-height">
         <div class="span8 full-height">
-            <span>{{client.side_effects}}</span>
+            <span class="text-bold">{{"2012-05-21" | date:"dd/MM/yy"}}</span>
+            <br/>
+            <ng-switch on="client.refill_follow_ups.type">
+                <span ng-switch-when="referral" class="text-past-due text-bold"><i class="icon-warning-sign"></i> Referred</span>
+                <span ng-switch-default>{{client.side_effects}}</span>
+            </ng-switch>
         </div>
         <div class="span4 full-height">
             <button class="btn btn-done btn-sr btn-new-form full-height"
