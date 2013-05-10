@@ -20,19 +20,20 @@
             <b>{{client.thayi}}</b>
         </div>
         <div class="span7 line-right full-height span-no-margin width-without-margins span-content anc-status"
-             ng-class="{'text-due': client.visits.anc.next.status == 'normal',
-             'text-past-due': client.visits.anc.next.status == 'urgent'}">
+             ng-class="{'text-due': client.days_past_edd > -30 && client.days_past_edd < 0,
+             'text-past-due': client.days_past_edd >= 0}">
             <!--weeks pregnant-->
-            <div style="margin-top: 4px"><b><span style="font-size: 24px">{{client.weeks_pregnant}}</span></b>
+            <div ng-show="client.days_past_edd <= 0" style="margin-top: 4px"><b><span style="font-size: 24px">{{client.weeks_pregnant}}</span></b>
                 <b><span style="font-size: 20px">weeks</span></b>
             </div>
-            <div style="margin-top: 2px">
-                <small>LMP:</small>
-                {{client.lmp | date:'dd/MM/yy'}}
+            <div ng-show="client.days_past_edd <= 0" style="margin-top: 2px" class="text-bold">
+                LMP: {{client.lmp | date:'dd/MM/yy'}}
             </div>
-            <div style="margin-top: 2px">
-                <small>EDD:</small>
-                {{client.edd | date:'dd/MM/yy'}}
+            <div style="margin-top: 2px" class="text-bold">
+                EDD: {{client.edd | date:'dd/MM/yy'}}
+            </div>
+            <div ng-show="client.days_past_edd > 0" style="margin-top: 4px"><b><span style="font-size: 20px">{{client.days_past_edd}}</span></b>
+                <b><span style="font-size: 16px">day(s) past due</span></b>
             </div>
         </div>
     </div>

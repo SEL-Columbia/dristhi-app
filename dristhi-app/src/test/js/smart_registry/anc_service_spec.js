@@ -1,10 +1,11 @@
 describe('ANC Service', function () {
 
-    var ancSrvc;
+    var ancSrvc, smartHelper;
 
     beforeEach(module("smartRegistry.services"));
-    beforeEach(inject(function (ANCService) {
+    beforeEach(inject(function (ANCService, SmartHelper) {
         ancSrvc = ANCService;
+        smartHelper = SmartHelper;
     }));
 
     it("should load clients from service", function () {
@@ -722,6 +723,36 @@ describe('ANC Service', function () {
             expect(clients[0].visits).toEqual(expectedVisits);
         });
 
+        it("should add a days_past_edd variable based on current date and edd", function(){
+            var clients = [
+                {
+                    name:'Carolyn',
+                    edd: '2013-08-21',
+                    alerts:[
+                        {
+                            name: 'hb',
+                            date: '2012-03-14',
+                            status: 'normal'
+                        }
+                    ],
+                    services_provided:[
+                        {
+                            name: 'hb',
+                            data:[
+                                {date: '2012-02-26', dose: '11'},
+                                {date: '2012-03-15', dose: '9'}
+                            ]
+                        }
+                    ]
+                }
+            ];
+
+            var expectedDaysPastEDD = Math.ceil(
+                smartHelper.daysBetween(new Date(Date.parse(clients[0].edd)), new Date()));
+            ancSrvc.preProcessClients(clients);
+            expect(clients[0].days_past_edd).toBeDefined();
+            expect(clients[0].days_past_edd).toEqual(expectedDaysPastEDD);
+        });
     });
 
 });

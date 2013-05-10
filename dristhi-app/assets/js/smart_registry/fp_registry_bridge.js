@@ -40,6 +40,9 @@ function FakeFPSmartRegistryContext() {
                     "economicStatus": "bpl",
                     "caste": "sc",
                     "photo_path": "../../img/woman-placeholder.png",
+                    "is_youngest_child_under_two": true,
+                    "youngest_child_age": 18,
+                    "complication_date": "2012-05-23",
                     alerts:[
                         {
                             name:'Male Sterilization Follow-up',

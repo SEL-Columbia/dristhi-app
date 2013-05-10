@@ -1,5 +1,5 @@
 angular.module("smartRegistry.services")
-    .service('ANCService', function () {
+    .service('ANCService', function (SmartHelper) {
         var schedules =
             [
                 {
@@ -42,7 +42,7 @@ angular.module("smartRegistry.services")
                         age:'24',
                         husband_name:'Billy Bob',
                         weeks_pregnant:'18',
-                        edd:'2012-06-11T00:00:00.000Z',
+                        edd:'2013-04-28T00:00:00.000Z',
                         lmp:'25/3/13',
                         alerts:[
                             {
@@ -150,7 +150,7 @@ angular.module("smartRegistry.services")
                         age:'24',
                         husband_name:'Dickson',
                         weeks_pregnant:'2',
-                        edd:'2013-05-11T00:00:00.000Z',
+                        edd:'2013-09-11T00:00:00.000Z',
                         lmp:'25/3/13',
                         alerts:
                         [
@@ -222,7 +222,7 @@ angular.module("smartRegistry.services")
                         age:'27',
                         husband_name:'Harshit',
                         weeks_pregnant:'2',
-                        edd:'2013-05-11T00:00:00.000Z',
+                        edd:'2013-06-08T00:00:00.000Z',
                         lmp:'25/3/13',
                         alerts:[
                             {
@@ -287,7 +287,8 @@ angular.module("smartRegistry.services")
                         days_due:'3',
                         due_message:'Follow Up',
                         isHighPriority:false,
-                        locationStatus:"in_area"
+                        locationStatus:"in_area",
+                        days_past_edd: 3
                     },
                     {
                         village:'Bherya',
@@ -471,6 +472,11 @@ angular.module("smartRegistry.services")
                             visits[schedule.name] = visit;
                         });
                         client.visits = visits;
+                        // calculate days between today and EDD
+                        var days_past_edd;
+                        var edd_date = Date.parse(client.edd);
+                        if(edd_date)
+                            client.days_past_edd = Math.ceil(SmartHelper.daysBetween(new Date(edd_date), new Date()));
                     }
                 );
                 return clients;
