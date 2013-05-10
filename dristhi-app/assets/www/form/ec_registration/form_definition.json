@@ -8,15 +8,15 @@
             },
             {
                 "name": "phc",
-                "bind": "/model/instance/EC_Registration_EngKan/ec_village_phc"
+                "bind": "/model/instance/EC_Registration_EngKan/phc"
             },
             {
                 "name": "subCenter",
-                "bind": "/model/instance/EC_Registration_EngKan/ec_village_subcenter"
+                "bind": "/model/instance/EC_Registration_EngKan/sub_center"
             },
             {
                 "name": "village",
-                "bind": "/model/instance/EC_Registration_EngKan/ec_village"
+                "bind": "/model/instance/EC_Registration_EngKan/village"
             },
             {
                 "name": "householdNumber",

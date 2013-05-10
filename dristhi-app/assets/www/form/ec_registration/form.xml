@@ -19,14 +19,16 @@
                 <span lang="" class=" active">PHC</span>
                 <span class="required">*</span>
             </legend>
-            <label class="itemset-template" data-items-path="instance('phc')/root/item">
-                <input type="radio" name="/EC_Registration_EngKan/ec_village_phc" required="required"
-                       data-type-xml="select1" value=""/>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/phc" value="bherya"
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Bherya &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
             </label>
-            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
-                <span lang="default" class=" active" data-itext-id="static_instance-phc-0">Bherya &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-phc-1">Keelanapura &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
-            </span>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/phc" value="keelanapura"
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Keelanapura &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
+            </label>
         </fieldset>
     </fieldset>
     <fieldset class="restoring-sanity-to-legends ">
@@ -36,24 +38,26 @@
                 <span class="required">*</span>
             </legend>
             <label class="itemset-template"
-                   data-items-path="instance('subcenter')/root/item[phc= /EC_Registration_EngKan/ec_village_phc ]">
-                <input type="radio" name="/EC_Registration_EngKan/ec_village_subcenter" required="required"
+                   data-items-path="instance('sub_centers')/root/item[phc= /EC_Registration_EngKan/phc ]">
+                <input type="radio" name="/EC_Registration_EngKan/sub_center" required="required"
                        data-type-xml="select1" value=""/>
             </label>
             <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
-                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-0">Bherya - A &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-0">Bherya - A &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;
                     -&#xC8E;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-1">Bherya - B &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-1">Bherya - B &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;
                     -&#xCAC;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-2">Hosa Agrahara &#xCB9;&#xCCA;&#xCB8;
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-2">Hosa Agrahara &#xCB9;&#xCCA;&#xCB8;
                     &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-3">Munjanahalli &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-4">G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;.
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-3">Munjanahalli &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-4">G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;.
                     &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-5">Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-6">Keelanapura - A &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xC8E;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-7">Keelanapura - B &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xCAC;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-subcenter-8">Puttegowdanahundi
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-5">Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-6">Keelanapura - A
+                    &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xC8E;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-7">Keelanapura - B
+                    &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xCAC;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-8">Puttegowdanahundi
                     &#xCAA;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
             </span>
         </fieldset>
@@ -65,59 +69,60 @@
                 <span class="required">*</span>
             </legend>
             <label class="itemset-template"
-                   data-items-path="instance('village')/root/item[phc= /EC_Registration_EngKan/ec_village_phc  and subcenter= /EC_Registration_EngKan/ec_village_subcenter ]">
-                <input type="radio" name="/EC_Registration_EngKan/ec_village" required="required"
-                       data-type-xml="select1" value=""/>
+                   data-items-path="instance('villages')/root/item[phc= /EC_Registration_EngKan/phc  and sub_center= /EC_Registration_EngKan/sub_center ]">
+                <input type="radio" name="/EC_Registration_EngKan/village" required="required" data-type-xml="select1"
+                       value=""/>
             </label>
             <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
-                <span lang="default" class=" active" data-itext-id="static_instance-village-0">Basavanapura &#xCAC;&#xCB8;&#xCB5;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-1">Somanahalli Colony
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-0">Basavanapura &#xCAC;&#xCB8;&#xCB5;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-1">Somanahalli Colony
                     &#xCB8;&#xCCB;&#xCAE;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF; &#xC95;&#xCBE;&#xCB2;&#xCCB;&#xCA8;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-2">Sambaravalli &#xCB6;&#xC82;&#xCAC;&#xCB0;&#xCB5;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-3">Geradada &#xC97;&#xCC7;&#xCB0;&#xCCD;&#x200D;&#xCA6;&#xCA1;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-4">Ardha Bherya &#xC85;&#xCB0;&#xCCD;&#xCA7;
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-2">Sambaravalli &#xCB6;&#xC82;&#xCAC;&#xCB0;&#xCB5;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-3">Geradada &#xC97;&#xCC7;&#xCB0;&#xCCD;&#x200D;&#xCA6;&#xCA1;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-4">Ardha Bherya &#xC85;&#xCB0;&#xCCD;&#xCA7;
                     &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-5">Sugganahalli &#xCB8;&#xCC1;&#xC97;&#xCCD;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-6">Battiganahalli &#xCAC;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-7">Half Bherya &#xCB9;&#xCBE;&#xCAB;&#xCCD;
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-5">Sugganahalli &#xCB8;&#xCC1;&#xC97;&#xCCD;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-6">Battiganahalli &#xCAC;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-7">Half Bherya &#xCB9;&#xCBE;&#xCAB;&#xCCD;
                     &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-8">Hosa Agrahara &#xCB9;&#xCCA;&#xCB8;
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-8">Hosa Agrahara &#xCB9;&#xCCA;&#xCB8;
                     &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-9">Mandiganahalli &#xCAE;&#xC82;&#xCA1;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-10">Harambanahalli &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-11">Harambanahalli Koppalu
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-9">Mandiganahalli &#xCAE;&#xC82;&#xCA1;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-10">Harambanahalli &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-11">Harambanahalli Koppalu
                     &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-12">Boregowdanakoppalu
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-12">Boregowdanakoppalu
                     &#xCAC;&#xCCB;&#xCB0;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-13">Munjanahalli &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-14">Kavalu Hosur &#xC95;&#xCBE;&#xCB5;&#xCB2;&#xCC1;
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-13">Munjanahalli &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-14">Kavalu Hosur &#xC95;&#xCBE;&#xCB5;&#xCB2;&#xCC1;
                     &#xCB9;&#xCCA;&#xCB8;&#xCC2;&#xCB0;&#xCC1;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-15">Chikkabherya &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-16">G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;.
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-15">Chikkabherya &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-16">G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;.
                     &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-17">Udayagiri &#xC89;&#xCA6;&#xCAF;&#xC97;&#xCBF;&#xCB0;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-18">Arakere &#xC85;&#xCB0;&#xC95;&#xCC6;&#xCB0;&#xCC6;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-19">Chikkahalli &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-20">Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-21">Halagayanahundi &#xCB9;&#xCB2;&#xC97;&#xCAF;&#xCCD;&#xCAF;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-22">Keelanapura &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-23">M.C.Hundi &#xC8E;&#xC82;.&#xCB8;&#xCBF;.
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-17">Udayagiri &#xC89;&#xCA6;&#xCAF;&#xC97;&#xCBF;&#xCB0;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-18">Arakere &#xC85;&#xCB0;&#xC95;&#xCC6;&#xCB0;&#xCC6;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-19">Chikkahalli &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-20">Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-21">Halagayanahundi &#xCB9;&#xCB2;&#xC97;&#xCAF;&#xCCD;&#xCAF;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-22">Keelanapura &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-23">M.C.Hundi &#xC8E;&#xC82;.&#xCB8;&#xCBF;.
                     &#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-24">Inam Uttanahalli &#xC87;&#xCA8;&#xCBE;&#xC82;
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-24">Inam Uttanahalli
+                    &#xC87;&#xCA8;&#xCBE;&#xC82;
                     &#xC89;&#xCA4;&#xCCD;&#xCA4;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-25">Megalapura &#xCAE;&#xCC7;&#xC98;&#xCB2;&#xCAA;&#xCC1;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-26">Madhavagere &#xCAE;&#xCBE;&#xCA6;&#xCB5;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-27">Hosahalli &#xCB9;&#xCCA;&#xCB8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-28">Gurukarapura &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xC95;&#xCBE;&#xCB0;&#xCAA;&#xCC1;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-29">Puttegowdanahundi
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-25">Megalapura &#xCAE;&#xCC7;&#xC98;&#xCB2;&#xCAA;&#xCC1;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-26">Madhavagere &#xCAE;&#xCBE;&#xCA6;&#xCB5;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-27">Hosahalli &#xCB9;&#xCCA;&#xCB8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-28">Gurukarapura &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xC95;&#xCBE;&#xCB0;&#xCAA;&#xCC1;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-29">Puttegowdanahundi
                     &#xCAA;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-30">Lakshmipura &#xCB2;&#xC95;&#xCCD;&#xCB7;&#xCCD;&#xCAE;&#xCC0;&#xCAA;&#xCC1;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-31">Mahadevi Colony &#xCAE;&#xCBE;&#xCB9;&#xCA6;&#xCC7;&#xCB5;&#xCBF;
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-30">Lakshmipura &#xCB2;&#xC95;&#xCCD;&#xCB7;&#xCCD;&#xCAE;&#xCC0;&#xCAA;&#xCC1;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-31">Mahadevi Colony &#xCAE;&#xCBE;&#xCB9;&#xCA6;&#xCC7;&#xCB5;&#xCBF;
                     &#xC95;&#xCBE;&#xCB2;&#xCCB;&#xCA8;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-32">Duddagere &#xCA6;&#xCC1;&#xCA6;&#xCCD;&#xCA6;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-33">Chattanahallipalya
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-32">Duddagere &#xCA6;&#xCC1;&#xCA6;&#xCCD;&#xCA6;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-33">Chattanahallipalya
                     &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;&#xCAA;&#xCBE;&#xCB3;&#xCCD;&#xCAF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-village-34">Chattanahalli &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-34">Chattanahalli &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
             </span>
         </fieldset>
     </fieldset>
@@ -1092,7 +1097,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/formhub/uuid"
-                   data-calculate="'cd5cb9672f804251ba893a4285934bf3'" data-type-xml="string"/>
+                   data-calculate="'9e4559619d1343fcb531bb02be8c6742'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
