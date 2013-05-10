@@ -4,6 +4,10 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class FPClient {
     private final String entity_id;
     private final String name;
@@ -24,12 +28,15 @@ public class FPClient {
     private final boolean isHighPriority;
     private final String family_planning_method_change_date;
     private final String photo_path;
+    private final boolean is_youngest_child_under_two;
+    private final String youngest_child_age;
+    private final List<Map<String, String>> alerts;
 
     public FPClient(
             String entity_id, String name, String husband_name, String age, String thayi, String ec_number, String village,
             String fp_method, String side_effects, String num_pregnancies,
             String parity, String num_living_children, String num_stillbirths, String num_abortions,
-            String days_due, String due_message, boolean isHighPriority, String family_planning_method_change_date, String photoPath) {
+            String days_due, String due_message, boolean isHighPriority, String family_planning_method_change_date, String photoPath, boolean is_youngest_child_under_two, String youngest_child_age) {
         this.entity_id = entity_id;
         this.name = name;
         this.husband_name = husband_name;
@@ -49,6 +56,9 @@ public class FPClient {
         this.isHighPriority = isHighPriority;
         this.family_planning_method_change_date = family_planning_method_change_date;
         this.photo_path = photoPath;
+        this.is_youngest_child_under_two = is_youngest_child_under_two;
+        this.youngest_child_age = youngest_child_age;
+        this.alerts = new ArrayList<Map<String, String>>();
     }
 
     public String wifeName() {

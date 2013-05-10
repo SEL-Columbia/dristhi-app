@@ -43,11 +43,11 @@ function FakeFPSmartRegistryContext() {
                     "is_youngest_child_under_two": true,
                     "youngest_child_age": 18,
                     "complication_date": "2012-05-23",
-                    alerts:[
+                    alerts: [
                         {
-                            name:'Male Sterilization Follow-up',
-                            date:'26/05',
-                            status:'normal'
+                            name: 'Male Sterilization Follow-up',
+                            date: '26/05',
+                            status: 'normal'
                         }
                     ]
                 },
@@ -72,11 +72,11 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "14/03/12",
                     "caste": "st",
                     "photo_path": "../../img/woman-placeholder.png",
-                    alerts:[
+                    alerts: [
                         {
-                            name:'Condom Refill',
-                            date:'24/07',
-                            status:'urgent'
+                            name: 'Condom Refill',
+                            date: '24/07',
+                            status: 'urgent'
                         }
                     ]
                 },
@@ -101,7 +101,7 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "02/12/13",
                     "economicStatus": "apl",
                     "photo_path": "../../img/woman-placeholder.png",
-                    alerts:[
+                    alerts: [
                         {
                             name: 'IUD Follow-up',
                             date: '2012-05-18',
@@ -129,16 +129,16 @@ function FakeFPSmartRegistryContext() {
                     "num_abortions": '1',
                     "family_planning_method_change_date": "21/06/12",
                     "photo_path": "../../img/woman-placeholder.png",
-                    alerts:[
+                    alerts: [
                         {
-                            name:'OCP Refill',
-                            date:'24/07',
-                            status:'urgent'
+                            name: 'OCP Refill',
+                            date: '24/07',
+                            status: 'urgent'
                         },
                         {
-                            name:'Condom Refill',
-                            date:'24/07',
-                            status:'normal'
+                            name: 'Condom Refill',
+                            date: '24/07',
+                            status: 'normal'
                         }
                     ]
                 },

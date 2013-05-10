@@ -70,7 +70,15 @@ public class EligibleCouple {
     }
 
     public boolean isHighPriority() {
-        String isHighPriority = details.get("isHighPriority");
+        return parseDetailFieldValueToBoolean("isHighPriority");
+    }
+
+    public boolean isYoungestChildUnderTwo() {
+        return parseDetailFieldValueToBoolean("isYoungestChildUnderTwo");
+    }
+
+    private boolean parseDetailFieldValueToBoolean(String fieldName) {
+        String isHighPriority = details.get(fieldName);
         return "1".equals(isHighPriority) || "yes".equals(isHighPriority);
     }
 
