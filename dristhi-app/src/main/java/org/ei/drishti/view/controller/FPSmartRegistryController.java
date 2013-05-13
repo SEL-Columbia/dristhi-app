@@ -24,11 +24,15 @@ import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
 
 public class FPSmartRegistryController {
 
+    public static final String OCP_REFILL_SCHEDULE_NAME = "OCP Refill";
+    public static final String CONDOM_REFILL_SCHEDULE_NAME = "Condom Refill";
+    public static final String DMPA_INJECTABLE_REFILL_SCHEDULE_NAME = "DMPA Injectable Refill";
+    private final static String FP_CLIENTS_LIST = "FPClientsList";
+    
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
     private Cache<String> cache;
     private final AlertService alertService;
-    private final static String FP_CLIENTS_LIST = "FPClientsList";
 
     public FPSmartRegistryController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AlertService alertService, Cache<String> cache) {
         this.allEligibleCouples = allEligibleCouples;
@@ -64,7 +68,8 @@ public class FPSmartRegistryController {
     }
 
     private List<AlertDTO> getFPAlertsForEC(String entityId) {
-        List<Alert> alerts = alertService.findByECIdAndAlertNames(entityId, asList("OCP Refill"));
+        List<Alert> alerts = alertService.findByECIdAndAlertNames(entityId, asList(OCP_REFILL_SCHEDULE_NAME,
+                CONDOM_REFILL_SCHEDULE_NAME, DMPA_INJECTABLE_REFILL_SCHEDULE_NAME));
         ArrayList<AlertDTO> alertDTOs = new ArrayList<AlertDTO>();
         for (Alert alert : alerts) {
             alertDTOs.add(new AlertDTO(alert.visitCode(), String.valueOf(alert.priority()), alert.startDate()));

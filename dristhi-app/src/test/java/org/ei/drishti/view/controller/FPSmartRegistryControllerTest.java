@@ -89,7 +89,7 @@ public class FPSmartRegistryControllerTest {
         Alert ocpRefillAlert = new Alert("entity id 1", "woman 1", "husband 1", "village 1", "OCP Refill", "", normal, "2013-01-01", "2013-02-01", open);
         AlertDTO expectedAlertDto = new AlertDTO("OCP Refill", "normal", "2013-01-01");
         when(allEligibleCouples.all()).thenReturn(asList(ec));
-        when(alertService.findByECIdAndAlertNames("entity id 1", asList("OCP Refill"))).thenReturn(asList(ocpRefillAlert));
+        when(alertService.findByECIdAndAlertNames("entity id 1", asList("OCP Refill", "Condom Refill", "DMPA Injectable Refill"))).thenReturn(asList(ocpRefillAlert));
         FPClient expectedEC = new FPClient("entity id 1", "Woman C", "Husband C", null, "", "EC Number 3",
                 "Bherya", null, null, null, null, null, null, null, null, null, false, null, "../../img/woman-placeholder.png", false, null,
                 asList(expectedAlertDto));
@@ -98,7 +98,7 @@ public class FPSmartRegistryControllerTest {
 
         List<FPClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
         }.getType());
-        verify(alertService).findByECIdAndAlertNames("entity id 1", asList("OCP Refill"));
+        verify(alertService).findByECIdAndAlertNames("entity id 1", asList("OCP Refill", "Condom Refill", "DMPA Injectable Refill"));
         assertEquals(asList(expectedEC), actualClients);
     }
 
