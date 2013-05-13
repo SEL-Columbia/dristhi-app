@@ -9,6 +9,8 @@ import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.util.Log;
 
+import java.util.List;
+
 import static org.ei.drishti.dto.BeneficiaryType.child;
 import static org.ei.drishti.dto.BeneficiaryType.mother;
 
@@ -52,5 +54,9 @@ public class AlertService {
         } else {
             Log.logWarn("Unknown beneficiary type to add alert for: " + action);
         }
+    }
+
+    public List<Alert> findByECIdAndAlertNames(String entityId, List<String> names) {
+        return repository.findByECIdAndAlertNames(entityId, names);
     }
 }

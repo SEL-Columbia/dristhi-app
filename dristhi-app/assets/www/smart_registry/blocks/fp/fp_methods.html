@@ -35,18 +35,38 @@
      ng-show="client.refill_follow_ups">
     <div class="row-fluid full-height">
         <div class="span12 full-height">
-            <a class="btn btn-primary btn-block full-height text-align-left"
-               ng-class="{
+            <ng:switch on="client.refill_follow_ups.type">
+                <a ng-switch-when="follow-up"
+                   class="btn btn-primary btn-block full-height text-align-left"
+                   ng-class="{
                'btn-due': client.alerts[client.refill_follow_ups.alert_index].status == 'normal',
-               'btn-past-due': client.alerts[client.refill_follow_ups.alert_index].status == 'urgent'}">
-                <ng:switch on="client.refill_follow_ups.type">
-                    <span ng-switch-when="follow-up" class="text-bold">Follow Up</span>
-                    <span ng-switch-when="refill" class="text-bold">Refill</span>
-                    <span ng-switch-when="referral" class="text-bold">Referral Follow Up</span>
-                </ng:switch>
-                <br/>
-                <span>due {{client.alerts[client.refill_follow_ups.alert_index].date | date:'dd/MM'}}</span>
-            </a>
+               'btn-past-due': client.alerts[client.refill_follow_ups.alert_index].status == 'urgent'}"
+                   ng-click="openForm('follow-up', client.entity_id)">
+                    <span class="text-bold">Follow Up</span>
+                    <br/>
+                    <span>due {{client.alerts[client.refill_follow_ups.alert_index].date | date:'dd/MM'}}</span>
+                </a>
+                <a ng-switch-when="refill"
+                   class="btn btn-primary btn-block full-height text-align-left"
+                   ng-class="{
+               'btn-due': client.alerts[client.refill_follow_ups.alert_index].status == 'normal',
+               'btn-past-due': client.alerts[client.refill_follow_ups.alert_index].status == 'urgent'}"
+                   ng-click="openForm('renew_fp_product', client.entity_id)">
+                    <span class="text-bold">Refill</span>
+                    <br/>
+                    <span>due {{client.alerts[client.refill_follow_ups.alert_index].date | date:'dd/MM'}}</span>
+                </a>
+                <a ng-switch-when="referral"
+                   class="btn btn-primary btn-block full-height text-align-left"
+                   ng-class="{
+               'btn-due': client.alerts[client.refill_follow_ups.alert_index].status == 'normal',
+               'btn-past-due': client.alerts[client.refill_follow_ups.alert_index].status == 'urgent'}"
+                   ng-click="openForm('referral', client.entity_id)">
+                    <span class="text-bold">Referral Follow Up</span>
+                    <br/>
+                    <span>due {{client.alerts[client.refill_follow_ups.alert_index].date | date:'dd/MM'}}</span>
+                </a>
+            </ng:switch>
         </div>
     </div>
 </div>

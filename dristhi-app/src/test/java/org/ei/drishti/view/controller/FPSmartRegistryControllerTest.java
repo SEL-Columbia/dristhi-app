@@ -2,24 +2,31 @@ package org.ei.drishti.view.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.service.AlertService;
 import org.ei.drishti.util.Cache;
+import org.ei.drishti.view.contract.AlertDTO;
 import org.ei.drishti.view.contract.FPClient;
 import org.ei.drishti.view.contract.Village;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
+import static org.ei.drishti.domain.AlertStatus.open;
+import static org.ei.drishti.dto.AlertPriority.normal;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -28,12 +35,15 @@ public class FPSmartRegistryControllerTest {
     private AllEligibleCouples allEligibleCouples;
     @Mock
     private AllBeneficiaries allBeneficiaries;
+    @Mock
+    private AlertService alertService;
+
     private FPSmartRegistryController controller;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new FPSmartRegistryController(allEligibleCouples, allBeneficiaries, new Cache<String>());
+        controller = new FPSmartRegistryController(allEligibleCouples, allBeneficiaries, alertService, new Cache<String>());
     }
 
     @Test
@@ -51,12 +61,12 @@ public class FPSmartRegistryControllerTest {
         when(allEligibleCouples.all()).thenReturn(asList(ecHighPriority3, ecNormalPriority2, ecHighPriority1, ecNormalPriority3, ecNormalPriority1, ecHighPriority2));
         when(allBeneficiaries.findMotherByECCaseId("EC Case 1")).thenReturn(motherForNormalPriorityEC1);
         when(allBeneficiaries.findMotherByECCaseId("EC Case 4")).thenReturn(motherForHighPriorityEC1);
-        FPClient expectedNormalPriorityClient1 = new FPClient("EC Case 1", "Woman A", "Husband A", "22", "12345", "EC Number 1", "Bherya", "condom", "sideEffects 1", "2", "2", "1", "1", "0", null, null, false, "2013-01-02", "new photo path", true, "3");
-        FPClient expectedNormalPriorityClient2 = new FPClient("EC Case 2", "Woman B", "Husband B", "23", "", "EC Number 2", "kavalu_hosur", "iud", "sideEffects 2", "4", "1", "5", "0", "9", null, null, false, "2013-01-01", "../../img/woman-placeholder.png", false, "");
-        FPClient expectedNormalPriorityClient3 = new FPClient("EC Case 3", "Woman C", "Husband C", null, "", "EC Number 3", "Bherya", null, null, null, null, null, null, null, null, null, false, null, "../../img/woman-placeholder.png", false, null);
-        FPClient expectedHighPriorityClient1 = new FPClient("EC Case 4", "Woman D", "Husband D", null, "4444", "EC Number 4", "Bherya", null, null, null, null, null, null, null, null, null, true, null, "../../img/woman-placeholder.png", false, null);
-        FPClient expectedHighPriorityClient2 = new FPClient("EC Case 5", "Woman E", "Husband E", null, "", "EC Number 5", "kavalu_hosur", null, null, null, null, null, null, null, null, null, true, null, "../../img/woman-placeholder.png", false, null);
-        FPClient expectedHighPriorityClient3 = new FPClient("EC Case 6", "Woman F", "Husband F", null, "", "EC Number 6", "Bherya", null, null, null, null, null, null, null, null, null, true, null, "../../img/woman-placeholder.png", false, null);
+        FPClient expectedNormalPriorityClient1 = new FPClient("EC Case 1", "Woman A", "Husband A", "22", "12345", "EC Number 1", "Bherya", "condom", "sideEffects 1", "2", "2", "1", "1", "0", null, null, false, "2013-01-02", "new photo path", true, "3", Collections.<AlertDTO>emptyList());
+        FPClient expectedNormalPriorityClient2 = new FPClient("EC Case 2", "Woman B", "Husband B", "23", "", "EC Number 2", "kavalu_hosur", "iud", "sideEffects 2", "4", "1", "5", "0", "9", null, null, false, "2013-01-01", "../../img/woman-placeholder.png", false, "", Collections.<AlertDTO>emptyList());
+        FPClient expectedNormalPriorityClient3 = new FPClient("EC Case 3", "Woman C", "Husband C", null, "", "EC Number 3", "Bherya", null, null, null, null, null, null, null, null, null, false, null, "../../img/woman-placeholder.png", false, null, Collections.<AlertDTO>emptyList());
+        FPClient expectedHighPriorityClient1 = new FPClient("EC Case 4", "Woman D", "Husband D", null, "4444", "EC Number 4", "Bherya", null, null, null, null, null, null, null, null, null, true, null, "../../img/woman-placeholder.png", false, null, Collections.<AlertDTO>emptyList());
+        FPClient expectedHighPriorityClient2 = new FPClient("EC Case 5", "Woman E", "Husband E", null, "", "EC Number 5", "kavalu_hosur", null, null, null, null, null, null, null, null, null, true, null, "../../img/woman-placeholder.png", false, null, Collections.<AlertDTO>emptyList());
+        FPClient expectedHighPriorityClient3 = new FPClient("EC Case 6", "Woman F", "Husband F", null, "", "EC Number 6", "Bherya", null, null, null, null, null, null, null, null, null, true, null, "../../img/woman-placeholder.png", false, null, Collections.<AlertDTO>emptyList());
 
         String clients = controller.get();
 
@@ -71,6 +81,25 @@ public class FPSmartRegistryControllerTest {
                 expectedHighPriorityClient3
         ),
                 actualClients);
+    }
+
+    @Test
+    public void shouldCreateFPClientsWithOCPRefillAlert() throws Exception {
+        EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", normalPriority());
+        Alert ocpRefillAlert = new Alert("entity id 1", "woman 1", "husband 1", "village 1", "OCP Refill", "", normal, "2013-01-01", "2013-02-01", open);
+        AlertDTO expectedAlertDto = new AlertDTO("OCP Refill", "normal", "2013-01-01");
+        when(allEligibleCouples.all()).thenReturn(asList(ec));
+        when(alertService.findByECIdAndAlertNames("entity id 1", asList("OCP Refill"))).thenReturn(asList(ocpRefillAlert));
+        FPClient expectedEC = new FPClient("entity id 1", "Woman C", "Husband C", null, "", "EC Number 3",
+                "Bherya", null, null, null, null, null, null, null, null, null, false, null, "../../img/woman-placeholder.png", false, null,
+                asList(expectedAlertDto));
+
+        String clients = controller.get();
+
+        List<FPClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
+        }.getType());
+        verify(alertService).findByECIdAndAlertNames("entity id 1", asList("OCP Refill"));
+        assertEquals(asList(expectedEC), actualClients);
     }
 
     @Test

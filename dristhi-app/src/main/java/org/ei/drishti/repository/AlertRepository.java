@@ -11,10 +11,12 @@ import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.String.format;
+import static org.apache.commons.lang3.StringUtils.repeat;
 import static org.ei.drishti.domain.AlertStatus.closed;
 
 public class AlertRepository extends DrishtiRepository {
-    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, thaayiCardNumber VARCHAR, visitCode VARCHAR, benificiaryName VARCHAR, husbandName VARCHAR, village VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR, status VARCHAR)";
+    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, benificiaryName VARCHAR, husbandName VARCHAR, village VARCHAR, visitCode VARCHAR, thaayiCardNumber VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR, status VARCHAR)";
     private static final String ALERTS_TABLE_NAME = "alerts";
     public static final String ALERTS_CASEID_COLUMN = "caseID";
     public static final String ALERTS_THAAYI_CARD_COLUMN = "thaayiCardNumber";
@@ -120,5 +122,23 @@ public class AlertRepository extends DrishtiRepository {
         values.put(ALERTS_COMPLETIONDATE_COLUMN, alert.completionDate());
         values.put(ALERTS_STATUS_COLUMN, alert.status().value());
         return values;
+    }
+
+    public List<Alert> findByECIdAndAlertNames(String entityId, List<String> names) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery(format("SELECT * FROM %s WHERE %s = ? AND %s IN (%s)", ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN, ALERTS_VISIT_CODE_COLUMN,
+                insertPlaceholdersForInClause(names.size())), getSelectionArgs(entityId, names));
+        return readAllAlerts(cursor);
+    }
+
+    private String[] getSelectionArgs(String entityId, List<String> names) {
+        List<String> selectionArgs = new ArrayList<String>();
+        selectionArgs.add(entityId);
+        selectionArgs.addAll(names);
+        return selectionArgs.toArray(new String[names.size() + 1]);
+    }
+
+    private String insertPlaceholdersForInClause(int length) {
+        return repeat("?", ",", length);
     }
 }

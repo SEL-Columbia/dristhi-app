@@ -11,7 +11,7 @@ public class FPSmartRegistryActivity extends SecuredWebActivity {
 
     @Override
     protected void onInitialization() {
-        webView.addJavascriptInterface(new FPSmartRegistryController(context.allEligibleCouples(), context.allBeneficiaries(), context.listCache()), "context");
+        webView.addJavascriptInterface(new FPSmartRegistryController(context.allEligibleCouples(), context.allBeneficiaries(), context.alertService(), context.listCache()), "context");
         webView.loadUrl("file:///android_asset/www/smart_registry/fp_register.html");
 
         photoCaptureListener = new Listener<CapturedPhotoInformation>() {

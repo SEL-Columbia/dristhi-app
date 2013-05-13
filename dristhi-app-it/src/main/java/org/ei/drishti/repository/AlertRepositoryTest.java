@@ -110,4 +110,21 @@ public class AlertRepositoryTest extends AndroidTestCase {
         alertRepository.deleteAllAlerts();
         assertEquals(new ArrayList<Alert>(), alertRepository.allAlerts());
     }
+
+    public void testShouldFindByECIdAndAlertNames() throws Exception {
+        Alert ocpRefillAlert = new Alert("entity id 1", "Theresa", "Husband 1", "bherya", "OCP Refill", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open);
+        Alert condomRefillAlert = new Alert("entity id 1", "Theresa", "Husband 1", "bherya", "Condom Refill", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open);
+        Alert closedAlert = new Alert("entity id 1", "Theresa", "Husband 1", "bherya", "DMPA Injectable Refill", "Thaayi 1", normal, "2012-01-01", "2012-01-11", closed);
+        Alert ocpRefillAlertForAnotherEntity = new Alert("entity id 2", "Theresa", "Husband 1", "bherya", "OCP Refill", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open);
+        Alert notOCPRefillAlert = new Alert("entity id 1", "Theresa", "Husband 1", "bherya", "Not OCP Refill", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open);
+        alertRepository.createAlert(ocpRefillAlert);
+        alertRepository.createAlert(condomRefillAlert);
+        alertRepository.createAlert(closedAlert);
+        alertRepository.createAlert(ocpRefillAlertForAnotherEntity);
+        alertRepository.createAlert(notOCPRefillAlert);
+
+        List<Alert> alerts = alertRepository.findByECIdAndAlertNames("entity id 1", asList("OCP Refill", "Condom Refill", "DMPA Injectable Refill"));
+
+        assertEquals(asList(ocpRefillAlert, condomRefillAlert, closedAlert), alerts);
+    }
 }
