@@ -1,0 +1,36 @@
+<model>
+    <instance xmlns="http://www.w3.org/2002/xforms">
+        <Family_Planning_Followup_EngKan id="Family_Planning_Followup_EngKan">
+            <formhub>
+                <uuid/>
+            </formhub>
+            <today/>
+            <case_needs_followup/>
+            <case_familyplanning_method/>
+            <case_familyplanning_method_note/>
+            <fp_method_followup_date/>
+            <first_time_followup_group>
+                <sterilization_failure/>
+                <condom_sideeffect/>
+                <iud_sideeffect/>
+                <ocp_sideeffect/>
+                <sterilization_sideeffect/>
+                <injectable_sideeffect/>
+                <other_sideeffect/>
+                <side_effects/>
+            </first_time_followup_group>
+            <fp_method_complication_resolved/>
+            <refer_couple_fp_method_complication/>
+            <refer_couple_fp_method_complication_place/>
+            <refer_couple_fp_method_complication_place_other/>
+            <needs_referral_followup/>
+            <fp_method_complication_treatment_plan/>
+            <fp_method_complication_treatment_plan_other/>
+            <instructions/>
+            <needs_followup/>
+            <meta>
+                <instanceID/>
+            </meta>
+        </Family_Planning_Followup_EngKan>
+    </instance>
+</model>
