@@ -11,8 +11,7 @@ import org.ei.drishti.util.Log;
 
 import java.util.List;
 
-import static org.ei.drishti.dto.BeneficiaryType.child;
-import static org.ei.drishti.dto.BeneficiaryType.mother;
+import static org.ei.drishti.dto.BeneficiaryType.*;
 
 public class AlertService {
     private AlertRepository repository;
@@ -51,6 +50,12 @@ public class AlertService {
             Mother mom = allBeneficiaries.findMother(kid.motherCaseId());
             EligibleCouple momDad = allEligibleCouples.findByCaseID(mom.ecCaseId());
             repository.createAlert(new Alert(action.caseID(), "B/O " + momDad.wifeName(), momDad.husbandName(), momDad.village(), action.get("visitCode"), kid.thaayiCardNumber(), AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate"), AlertStatus.open));
+        } else if (ec.equals(type)) {
+            EligibleCouple couple = allEligibleCouples.findByCaseID(action.caseID());
+            Mother mom = allBeneficiaries.findMotherByECCaseId(action.caseID());
+            repository.createAlert(new Alert(action.caseID(), couple.wifeName(), couple.husbandName(), couple.village(),
+                    action.get("visitCode"), mom != null ? mom.thaayiCardNumber() : "",
+                    AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate"), AlertStatus.open));
         } else {
             Log.logWarn("Unknown beneficiary type to add alert for: " + action);
         }
