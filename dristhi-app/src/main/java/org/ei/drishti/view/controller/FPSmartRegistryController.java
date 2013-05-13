@@ -28,7 +28,7 @@ public class FPSmartRegistryController {
     public static final String CONDOM_REFILL_SCHEDULE_NAME = "Condom Refill";
     public static final String DMPA_INJECTABLE_REFILL_SCHEDULE_NAME = "DMPA Injectable Refill";
     private final static String FP_CLIENTS_LIST = "FPClientsList";
-    
+
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
     private Cache<String> cache;
@@ -55,7 +55,7 @@ public class FPSmartRegistryController {
                     List<AlertDTO> alerts = getFPAlertsForEC(ec.caseId());
                     fpClients.add(new FPClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.age(), thayiCardNumber,
                             ec.ecNumber(), ec.village(), ec.getDetail("currentMethod"),
-                            ec.getDetail("sideEffects"), ec.getDetail("numberOfPregnancies"),
+                            ec.getDetail("sideEffects"), ec.getDetail("complicationDate"), ec.getDetail("numberOfPregnancies"),
                             ec.getDetail("parity"), ec.getDetail("numberOfLivingChildren"),
                             ec.getDetail("numberOfStillBirths"), ec.getDetail("numberOfAbortions"), null,
                             null, ec.isHighPriority(), ec.getDetail("familyPlanningMethodChangeDate"),
