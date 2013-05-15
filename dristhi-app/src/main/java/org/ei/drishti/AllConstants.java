@@ -31,6 +31,7 @@ public class AllConstants {
 //    public static final int PORT = AuthScope.ANY_PORT;
 //    public static final boolean SHOULD_VERIFY_CERTIFICATE = false;
 
+    public static final String DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH = "../../img/woman-placeholder.png";
     public static final String FORM_NAME_PARAM = "formName";
     public static final String INSTANCE_ID_PARAM = "instanceId";
     public static final String ENTITY_ID_PARAM = "entityId";
