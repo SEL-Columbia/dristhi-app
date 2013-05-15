@@ -1,7 +1,7 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['anc_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; partials = partials || Handlebars.partials; data = data || {};
   var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -55,7 +55,7 @@ function program13(depth0,data,depth1) {
   
   var buffer = "", stack1;
   buffer += "\n        ";
-  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(program16, data, depth1),fn:self.programWithDepth(program14, data, depth1),data:data});
+  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(16, program16, data, depth1),fn:self.programWithDepth(14, program14, data, depth1),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        ";
   return buffer;
@@ -112,7 +112,7 @@ function program18(depth0,data,depth1) {
   
   var buffer = "", stack1;
   buffer += "\n        ";
-  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(program19, data, depth1),fn:self.programWithDepth(program14, data, depth1),data:data});
+  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(19, program19, data, depth1),fn:self.programWithDepth(14, program14, data, depth1),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        ";
   return buffer;
@@ -246,10 +246,10 @@ function program29(depth0,data) {
   else { stack2 = depth0.thaayiCardNumber; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
     + "\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n\n    <div id=\"todos\" class=\"registry-container container-fluid\">\n        ";
-  stack2 = helpers.each.call(depth0, depth0.urgentTodos, {hash:{},inverse:self.noop,fn:self.programWithDepth(program13, data, depth0),data:data});
+  stack2 = helpers.each.call(depth0, depth0.urgentTodos, {hash:{},inverse:self.noop,fn:self.programWithDepth(13, program13, data, depth0),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n        ";
-  stack2 = helpers.each.call(depth0, depth0.todos, {hash:{},inverse:self.noop,fn:self.programWithDepth(program18, data, depth0),data:data});
+  stack2 = helpers.each.call(depth0, depth0.todos, {hash:{},inverse:self.noop,fn:self.programWithDepth(18, program18, data, depth0),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n    </div>\n\n    <div class=\"divider\"></div>\n\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Summary\n        </div>\n        <div class=\"well well-for-beneficiary-details-no-padding\">\n            <div class=\"container-fluid container-no-padding\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                        ";
   options = {hash:{},inverse:self.program(23, program23, data),fn:self.program(21, program21, data),data:data};
@@ -271,7 +271,7 @@ function program29(depth0,data) {
   return buffer;
   });
 templates['anc_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -338,7 +338,7 @@ function program6(depth0,data) {
   return buffer;
   });
 templates['anm_navigation'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
@@ -397,7 +397,7 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   return buffer;
   });
 templates['birth_plan'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var stack1, stack2, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, functionType="function", self=this;
 
@@ -481,7 +481,7 @@ function program4(depth0,data) {
   else { return ''; }
   });
 templates['child_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -540,7 +540,7 @@ function program17(depth0,data,depth1) {
   
   var buffer = "", stack1;
   buffer += "\n        ";
-  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(program20, data, depth1),fn:self.programWithDepth(program18, data, depth1),data:data});
+  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(20, program20, data, depth1),fn:self.programWithDepth(18, program18, data, depth1),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        ";
   return buffer;
@@ -597,7 +597,7 @@ function program22(depth0,data,depth1) {
   
   var buffer = "", stack1;
   buffer += "\n        ";
-  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(program23, data, depth1),fn:self.programWithDepth(program18, data, depth1),data:data});
+  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(23, program23, data, depth1),fn:self.programWithDepth(18, program18, data, depth1),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        ";
   return buffer;
@@ -743,10 +743,10 @@ function program35(depth0,data) {
   stack2 = ((stack1 = helpers.ifequal),stack1 ? stack1.call(depth0, ((stack1 = depth0.childDetails),stack1 == null || stack1 === false ? stack1 : stack1.gender), "male", options) : helperMissing.call(depth0, "ifequal", ((stack1 = depth0.childDetails),stack1 == null || stack1 === false ? stack1 : stack1.gender), "male", options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "</li>\n                    <li class=\"text-blue\">Infant</li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div id=\"todos\" class=\"registry-container container-fluid\">\n        ";
-  stack2 = helpers.each.call(depth0, depth0.urgentTodos, {hash:{},inverse:self.noop,fn:self.programWithDepth(program17, data, depth0),data:data});
+  stack2 = helpers.each.call(depth0, depth0.urgentTodos, {hash:{},inverse:self.noop,fn:self.programWithDepth(17, program17, data, depth0),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n        ";
-  stack2 = helpers.each.call(depth0, depth0.todos, {hash:{},inverse:self.noop,fn:self.programWithDepth(program22, data, depth0),data:data});
+  stack2 = helpers.each.call(depth0, depth0.todos, {hash:{},inverse:self.noop,fn:self.programWithDepth(22, program22, data, depth0),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n\n        <div class=\"divider\"></div>\n    </div>\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Summary\n        </div>\n        <div class=\"well well-for-beneficiary-details-no-padding\">\n            <div class=\"container-fluid container-no-padding\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                        ";
   options = {hash:{},inverse:self.program(27, program27, data),fn:self.program(25, program25, data),data:data};
@@ -769,7 +769,7 @@ function program35(depth0,data) {
   return buffer;
   });
 templates['child_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -836,7 +836,7 @@ function program6(depth0,data) {
   return buffer;
   });
 templates['completed_todo'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -884,7 +884,7 @@ function program1(depth0,data) {
   return buffer;
   });
 templates['ec_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -904,7 +904,7 @@ function program5(depth0,data,depth1) {
   
   var buffer = "", stack1;
   buffer += "\n        ";
-  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(program8, data, depth1),fn:self.programWithDepth(program6, data, depth1),data:data});
+  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(8, program8, data, depth1),fn:self.programWithDepth(6, program6, data, depth1),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        ";
   return buffer;
@@ -961,7 +961,7 @@ function program10(depth0,data,depth1) {
   
   var buffer = "", stack1;
   buffer += "\n        ";
-  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(program13, data, depth1),fn:self.programWithDepth(program11, data, depth1),data:data});
+  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(13, program13, data, depth1),fn:self.programWithDepth(11, program11, data, depth1),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        ";
   return buffer;
@@ -1175,10 +1175,10 @@ function program33(depth0,data) {
   else { stack2 = depth0.ecNumber; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
     + "</li>\n                </ul>\n            </div>\n        </div>\n    </div>\n\n    <div id=\"todos\" class=\"registry-container container-fluid\">\n        ";
-  stack2 = helpers.each.call(depth0, depth0.urgentTodos, {hash:{},inverse:self.noop,fn:self.programWithDepth(program5, data, depth0),data:data});
+  stack2 = helpers.each.call(depth0, depth0.urgentTodos, {hash:{},inverse:self.noop,fn:self.programWithDepth(5, program5, data, depth0),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n        ";
-  stack2 = helpers.each.call(depth0, depth0.todos, {hash:{},inverse:self.noop,fn:self.programWithDepth(program10, data, depth0),data:data});
+  stack2 = helpers.each.call(depth0, depth0.todos, {hash:{},inverse:self.noop,fn:self.programWithDepth(10, program10, data, depth0),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n        <div class=\"divider\"></div>\n    </div>\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Summary\n        </div>\n        <div class=\"well well-for-beneficiary-details-no-padding\">\n            <div class=\"container-fluid container-no-padding\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                        ";
   options = {hash:{},inverse:self.program(17, program17, data),fn:self.program(15, program15, data),data:data};
@@ -1200,7 +1200,7 @@ function program33(depth0,data) {
   return buffer;
   });
 templates['ec_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -1272,7 +1272,7 @@ function program6(depth0,data) {
   return buffer;
   });
 templates['filter_by_village'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -1296,7 +1296,7 @@ function program1(depth0,data) {
   return buffer;
   });
 templates['home'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; partials = partials || Handlebars.partials; data = data || {};
   var buffer = "", stack1, options, self=this, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
@@ -1314,7 +1314,7 @@ helpers = helpers || Handlebars.helpers; partials = partials || Handlebars.parti
   return buffer;
   });
 templates['overdue_todo'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -1362,7 +1362,7 @@ function program1(depth0,data) {
   return buffer;
   });
 templates['pnc_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -1409,7 +1409,7 @@ function program13(depth0,data,depth1) {
   
   var buffer = "", stack1;
   buffer += "\n        ";
-  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(program16, data, depth1),fn:self.programWithDepth(program14, data, depth1),data:data});
+  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(16, program16, data, depth1),fn:self.programWithDepth(14, program14, data, depth1),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        ";
   return buffer;
@@ -1466,7 +1466,7 @@ function program18(depth0,data,depth1) {
   
   var buffer = "", stack1;
   buffer += "\n        ";
-  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(program19, data, depth1),fn:self.programWithDepth(program14, data, depth1),data:data});
+  stack1 = helpers['if'].call(depth0, depth0.isCompleted, {hash:{},inverse:self.programWithDepth(19, program19, data, depth1),fn:self.programWithDepth(14, program14, data, depth1),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        ";
   return buffer;
@@ -1604,10 +1604,10 @@ function program31(depth0,data) {
   else { stack2 = depth0.thaayiCardNumber; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
     + "\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n\n    <div id=\"todos\" class=\"registry-container container-fluid\">\n        ";
-  stack2 = helpers.each.call(depth0, depth0.urgentTodos, {hash:{},inverse:self.noop,fn:self.programWithDepth(program13, data, depth0),data:data});
+  stack2 = helpers.each.call(depth0, depth0.urgentTodos, {hash:{},inverse:self.noop,fn:self.programWithDepth(13, program13, data, depth0),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n        ";
-  stack2 = helpers.each.call(depth0, depth0.todos, {hash:{},inverse:self.noop,fn:self.programWithDepth(program18, data, depth0),data:data});
+  stack2 = helpers.each.call(depth0, depth0.todos, {hash:{},inverse:self.noop,fn:self.programWithDepth(18, program18, data, depth0),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n\n        <div class=\"divider\"></div>\n    </div>\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Summary\n        </div>\n        <div class=\"well well-for-beneficiary-details-no-padding\">\n            <div class=\"container-fluid container-no-padding\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                        ";
   options = {hash:{},inverse:self.program(23, program23, data),fn:self.program(21, program21, data),data:data};
@@ -1629,7 +1629,7 @@ function program31(depth0,data) {
   return buffer;
   });
 templates['pnc_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -1696,7 +1696,7 @@ function program6(depth0,data) {
   return buffer;
   });
 templates['report_indicator_case_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -1764,7 +1764,7 @@ function program6(depth0,data) {
   return buffer;
   });
 templates['report_indicator_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -1807,13 +1807,13 @@ function program1(depth0,data,depth1) {
   else { stack1 = depth0.description; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
     + "</div>\n        <table class=\"table table-bordered indicator-report\">\n            <tbody>\n            ";
-  stack1 = helpers.each.call(depth0, depth0.monthlySummaries, {hash:{},inverse:self.noop,fn:self.programWithDepth(program1, data, depth0),data:data});
+  stack1 = helpers.each.call(depth0, depth0.monthlySummaries, {hash:{},inverse:self.noop,fn:self.programWithDepth(1, program1, data, depth0),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n            </tbody>\n        </table>\n    </div>\n</div>\n";
   return buffer;
   });
 templates['report_indicator_list'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -1864,7 +1864,7 @@ function program1(depth0,data) {
   return buffer;
   });
 templates['sidepanel'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; partials = partials || Handlebars.partials; data = data || {};
   var buffer = "", stack1, self=this;
 
@@ -1876,7 +1876,7 @@ helpers = helpers || Handlebars.helpers; partials = partials || Handlebars.parti
   return buffer;
   });
 templates['upcoming_todo'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
@@ -1924,7 +1924,7 @@ function program1(depth0,data) {
   return buffer;
   });
 templates['workplan'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
+  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Handlebars.helpers; data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
