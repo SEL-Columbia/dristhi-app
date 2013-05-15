@@ -36,7 +36,7 @@
     <div class="row-fluid full-height">
         <div class="span12 full-height">
             <ng:switch on="client.refill_follow_ups.type">
-                <a ng-switch-when="follow-up"
+                <button ng-switch-when="follow-up"
                    class="btn btn-primary btn-block full-height text-align-left"
                    ng-class="{
                'btn-due': client.alerts[client.refill_follow_ups.alert_index].status == 'normal',
@@ -45,8 +45,8 @@
                     <span class="text-bold">Follow Up</span>
                     <br/>
                     <span>due {{client.alerts[client.refill_follow_ups.alert_index].date | date:'dd/MM'}}</span>
-                </a>
-                <a ng-switch-when="refill"
+                </button>
+                <button ng-switch-when="refill"
                    class="btn btn-primary btn-block full-height text-align-left"
                    ng-class="{
                'btn-due': client.alerts[client.refill_follow_ups.alert_index].status == 'normal',
@@ -55,8 +55,8 @@
                     <span class="text-bold">Refill</span>
                     <br/>
                     <span>due {{client.alerts[client.refill_follow_ups.alert_index].date | date:'dd/MM'}}</span>
-                </a>
-                <a ng-switch-when="referral"
+                </button>
+                <button ng-switch-when="referral"
                    class="btn btn-primary btn-block full-height text-align-left"
                    ng-class="{
                'btn-due': client.alerts[client.refill_follow_ups.alert_index].status == 'normal',
@@ -65,7 +65,7 @@
                     <span class="text-bold">Referral Follow Up</span>
                     <br/>
                     <span>due {{client.alerts[client.refill_follow_ups.alert_index].date | date:'dd/MM'}}</span>
-                </a>
+                </button>
             </ng:switch>
         </div>
     </div>

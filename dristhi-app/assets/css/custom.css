@@ -1008,3 +1008,10 @@ a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
 .text-align-left {
     text-align: left;
 }
+
+button.text-align-left {
+    padding-bottom: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 2px;
+}
