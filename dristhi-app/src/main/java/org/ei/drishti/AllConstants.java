@@ -19,18 +19,17 @@ public class AllConstants {
     public static final String TYPE = "type";
     public static final String WOMAN_TYPE = "woman";
     public static final String REALM = "Dristhi";
-    public static final String DRISHTI_BASE_URL = "https://drishti.modilabs.org";
     public static final String AUTHENTICATE_USER_URL_PATH = "/authenticate-user";
+
+    public static final String DRISHTI_BASE_URL = "https://drishti.modilabs.org";
     public static final String HOST = "drishti.modilabs.org";
     public static final int PORT = 443;
     public static final boolean SHOULD_VERIFY_CERTIFICATE = true;
 
-//    public static final String DRISHTI_BASE_URL = "https://10.4.4.45:8443";
+//    public static final String DRISHTI_BASE_URL = "https://li310-155.members.linode.com";
 //    public static final String HOST = AuthScope.ANY_HOST;
 //    public static final int PORT = AuthScope.ANY_PORT;
 //    public static final boolean SHOULD_VERIFY_CERTIFICATE = false;
-
-    public static final String DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH = "../../img/woman-placeholder.png";
 
     public static final String FORM_NAME_PARAM = "formName";
     public static final String INSTANCE_ID_PARAM = "instanceId";
