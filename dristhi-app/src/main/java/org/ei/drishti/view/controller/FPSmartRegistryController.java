@@ -23,7 +23,6 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
 
 public class FPSmartRegistryController {
-
     public static final String OCP_REFILL_ALERT_NAME = "OCP Refill";
     public static final String CONDOM_REFILL_ALERT_NAME = "Condom Refill";
     public static final String DMPA_INJECTABLE_REFILL_ALERT_NAME = "DMPA Injectable Refill";
