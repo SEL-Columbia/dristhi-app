@@ -53,4 +53,6 @@ public class AllConstants {
     public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME = "familyPlanningMethodChangeDate";
 
     public static final String ENTITY_ID = "entityId";
+    public static final int FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE = 112;
+    public static final String ALERT_NAME_PARAM = "alertName";
 }

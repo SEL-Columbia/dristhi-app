@@ -47,13 +47,6 @@ public class NavigationController {
         context.startActivity(new Intent(context, FPSmartRegistryActivity.class));
     }
 
-    public void startFormActivity(String formName, String entityId) {
-        Intent intent = new Intent(context, FormActivity.class);
-        intent.putExtra(FORM_NAME_PARAM, formName);
-        intent.putExtra(ENTITY_ID_PARAM, entityId);
-        context.startActivity(intent);
-    }
-
     public String get() {
         return new Gson().toJson(new HomeContext(anmService.fetchDetails()));
     }

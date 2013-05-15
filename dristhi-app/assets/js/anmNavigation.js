@@ -116,9 +116,6 @@ function ANMNavigationBridge() {
         delegateToANCSmartRegistry: function () {
             return anmNavigationContext.startANCSmartRegistry();
         },
-        delegateToFormLaunchView: function (formName, entityId) {
-            return anmNavigationContext.startFormActivity(formName, entityId);
-        },
         takePhoto: function (entityId, entityType) {
             return anmNavigationContext.takePhoto(entityId, entityType);
         }
@@ -160,9 +157,6 @@ function FakeANMNavigationContext() {
         },
         startANCSmartRegistry: function () {
             window.location = "smart_registry/anc_register.html";
-        },
-        startFormActivity: function (formName, entityId) {
-            alert("Launching form: " + formName + ", for entityId: '" + entityId + "'");
         },
         takePhoto: function (entityId, entityType) {
             alert("Taking photo for:" + entityId + " of type: " + entityType);

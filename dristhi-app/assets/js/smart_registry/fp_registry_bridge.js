@@ -45,6 +45,7 @@ function FakeFPSmartRegistryContext() {
                     "complication_date": "2012-05-23",
                     alerts: [
                         {
+                            id: "id 1",
                             name: 'Male Sterilization Follow-up',
                             date: '26/05',
                             status: 'normal'
@@ -74,6 +75,7 @@ function FakeFPSmartRegistryContext() {
                     "photo_path": "../../img/woman-placeholder.png",
                     alerts: [
                         {
+                            id: "id 2",
                             name: 'Condom Refill',
                             date: '24/07',
                             status: 'urgent'
@@ -103,6 +105,7 @@ function FakeFPSmartRegistryContext() {
                     "photo_path": "../../img/woman-placeholder.png",
                     alerts: [
                         {
+                            id: "id 3",
                             name: 'IUD Follow-up',
                             date: '2012-05-18',
                             status: 'urgent'
@@ -131,11 +134,13 @@ function FakeFPSmartRegistryContext() {
                     "photo_path": "../../img/woman-placeholder.png",
                     alerts: [
                         {
+                            id: "id 4",
                             name: 'OCP Refill',
                             date: '24/07',
                             status: 'urgent'
                         },
                         {
+                            id: "id 5",
                             name: 'Condom Refill',
                             date: '24/07',
                             status: 'normal'
@@ -164,6 +169,7 @@ function FakeFPSmartRegistryContext() {
                     "photo_path": "../../img/woman-placeholder.png",
                     alerts: [
                         {
+                            id: "id 6",
                             name: "Referral Follow-up",
                             date: "2012-05-28",
                             status: "normal"

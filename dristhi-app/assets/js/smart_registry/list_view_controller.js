@@ -2,6 +2,7 @@ angular.module("smartRegistry.controllers")
     .controller("listViewController", ["$scope", function ($scope) {
 
     $scope.navigationBridge = new ANMNavigationBridge();
+    $scope.formBridge = new FormBridge();
 
     $scope.sort = function (option) {
         $scope.currentSortOption = option;
@@ -88,8 +89,11 @@ angular.module("smartRegistry.controllers")
         return $scope.numberOfClientsToShow >= filteredClients.length;
     };
 
-    $scope.openForm = function (formName, entityId) {
-        $scope.navigationBridge.delegateToFormLaunchView(formName, entityId);
+    $scope.openForm = function (formName, entityId, metaData) {
+        if(!metaData) {
+            metaData = {};
+        }
+        $scope.formBridge.delegateToFormLaunchView(formName, entityId, JSON.stringify(metaData));
     };
 
     $scope.capturePicture = function (entityId, entityType) {
