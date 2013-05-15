@@ -2,6 +2,7 @@ package org.ei.drishti.view.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
@@ -14,6 +15,7 @@ import org.ei.drishti.view.contract.FPClient;
 import org.ei.drishti.view.contract.Village;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import java.util.Collections;
@@ -30,17 +32,18 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+@RunWith(RobolectricTestRunner.class)
 public class FPSmartRegistryControllerTest {
     public static final List<String> EC_ALERTS = asList("OCP Refill",
             "Condom Refill",
             "DMPA Injectable Refill",
-            "Female sterilization followup 1",
-            "Female sterilization followup 2",
-            "Female sterilization followup 3",
-            "Male sterilization followup 1",
-            "Male sterilization followup 2",
-            "IUD followup 1",
-            "IUD followup 2",
+            "Female sterilization Followup 1",
+            "Female sterilization Followup 2",
+            "Female sterilization Followup 3",
+            "Male sterilization Followup 1",
+            "Male sterilization Followup 2",
+            "IUD Followup 1",
+            "IUD Followup 2",
             "FP Followup",
             "FP Referral Followup");
     @Mock

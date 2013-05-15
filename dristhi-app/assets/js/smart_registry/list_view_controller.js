@@ -108,13 +108,6 @@ angular.module("smartRegistry.controllers")
         $scope.reloadPhoto(entityId, photoPath);
     });
 
-    pageView.onReload(function () {
-        $scope.$apply(function () {
-            $scope.clients = $scope.bridge.getClients();
-            $scope.villageOptions = getVillageFilterOptions();
-        });
-    });
-
     $scope.reportingPeriodStart = function (date_str) {
         var src_date;
         if (date_str === undefined)

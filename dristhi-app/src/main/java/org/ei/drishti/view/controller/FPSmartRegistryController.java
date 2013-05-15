@@ -26,13 +26,13 @@ public class FPSmartRegistryController {
     public static final String OCP_REFILL_ALERT_NAME = "OCP Refill";
     public static final String CONDOM_REFILL_ALERT_NAME = "Condom Refill";
     public static final String DMPA_INJECTABLE_REFILL_ALERT_NAME = "DMPA Injectable Refill";
-    public static final String FEMALE_STERILIZATION_FOLLOWUP_1_ALERT_NAME = "Female sterilization followup 1";
-    public static final String FEMALE_STERILIZATION_FOLLOWUP_2_ALERT_NAME = "Female sterilization followup 2";
-    public static final String FEMALE_STERILIZATION_FOLLOWUP_3_ALERT_NAME = "Female sterilization followup 3";
-    public static final String MALE_STERILIZATION_FOLLOWUP_1_ALERT_NAME = "Male sterilization followup 1";
-    public static final String MALE_STERILIZATION_FOLLOWUP_2_ALERT_NAME = "Male sterilization followup 2";
-    public static final String IUD_FOLLOWUP_1_ALERT_NAME = "IUD followup 1";
-    public static final String IUD_FOLLOWUP_2_ALERT_NAME = "IUD followup 2";
+    public static final String FEMALE_STERILIZATION_FOLLOWUP_1_ALERT_NAME = "Female sterilization Followup 1";
+    public static final String FEMALE_STERILIZATION_FOLLOWUP_2_ALERT_NAME = "Female sterilization Followup 2";
+    public static final String FEMALE_STERILIZATION_FOLLOWUP_3_ALERT_NAME = "Female sterilization Followup 3";
+    public static final String MALE_STERILIZATION_FOLLOWUP_1_ALERT_NAME = "Male sterilization Followup 1";
+    public static final String MALE_STERILIZATION_FOLLOWUP_2_ALERT_NAME = "Male sterilization Followup 2";
+    public static final String IUD_FOLLOWUP_1_ALERT_NAME = "IUD Followup 1";
+    public static final String IUD_FOLLOWUP_2_ALERT_NAME = "IUD Followup 2";
     public static final String FP_FOLLOWUP_ALERT_NAME = "FP Followup";
     public static final String FP_REFERRAL_FOLLOWUP_ALERT_NAME = "FP Referral Followup";
 

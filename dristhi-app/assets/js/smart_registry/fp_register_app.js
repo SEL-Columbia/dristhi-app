@@ -186,4 +186,11 @@ angular.module("smartRegistry.controllers")
                 || client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0);
         };
+
+        pageView.onReload(function () {
+            $scope.$apply(function () {
+                $scope.clients = FPService.preProcessClients($scope.bridge.getClients());
+                $scope.villageOptions = getVillageFilterOptions();
+            });
+        });
     });
