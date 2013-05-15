@@ -32,7 +32,8 @@ function FormDataController(params) {
      */
     this.save = function (instanceId, data) {
         controller.save(params, data);
-        return false;
+        androidContext.goBack();
+        //return false;
     };
 
     this.remove = function (instanceId) {

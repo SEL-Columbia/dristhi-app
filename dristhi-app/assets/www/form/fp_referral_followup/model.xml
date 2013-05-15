@@ -1,0 +1,26 @@
+<model>
+    <instance xmlns="http://www.w3.org/2002/xforms">
+        <Family_Planning_Referral_Followup_EngKan id="Family_Planning_Referral_Followup_EngKan">
+            <formhub>
+                <uuid/>
+            </formhub>
+            <today/>
+            <case_familyplanning_method/>
+            <case_familyplanning_method_note/>
+            <referral_followup_date/>
+            <couple_went_for_referral/>
+            <referral_result/>
+            <couple_didnt_go_referral_reason/>
+            <couple_didnt_go_referral_reason_other/>
+            <new_treatment_plan/>
+            <referral_place/>
+            <referral_place_other/>
+            <needs_referral_followup/>
+            <needs_followup/>
+            <instructions/>
+            <meta>
+                <instanceID/>
+            </meta>
+        </Family_Planning_Referral_Followup_EngKan>
+    </instance>
+</model>

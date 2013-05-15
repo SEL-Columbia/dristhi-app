@@ -23,10 +23,19 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
 
 public class FPSmartRegistryController {
+    public static final String OCP_REFILL_ALERT_NAME = "OCP Refill";
+    public static final String CONDOM_REFILL_ALERT_NAME = "Condom Refill";
+    public static final String DMPA_INJECTABLE_REFILL_ALERT_NAME = "DMPA Injectable Refill";
+    public static final String FEMALE_STERILIZATION_FOLLOWUP_1_ALERT_NAME = "Female sterilization followup 1";
+    public static final String FEMALE_STERILIZATION_FOLLOWUP_2_ALERT_NAME = "Female sterilization followup 2";
+    public static final String FEMALE_STERILIZATION_FOLLOWUP_3_ALERT_NAME = "Female sterilization followup 3";
+    public static final String MALE_STERILIZATION_FOLLOWUP_1_ALERT_NAME = "Male sterilization followup 1";
+    public static final String MALE_STERILIZATION_FOLLOWUP_2_ALERT_NAME = "Male sterilization followup 2";
+    public static final String IUD_FOLLOWUP_1_ALERT_NAME = "IUD followup 1";
+    public static final String IUD_FOLLOWUP_2_ALERT_NAME = "IUD followup 2";
+    public static final String FP_FOLLOWUP_ALERT_NAME = "FP Followup";
+    public static final String FP_REFERRAL_FOLLOWUP_ALERT_NAME = "FP Referral Followup";
 
-    public static final String OCP_REFILL_SCHEDULE_NAME = "OCP Refill";
-    public static final String CONDOM_REFILL_SCHEDULE_NAME = "Condom Refill";
-    public static final String DMPA_INJECTABLE_REFILL_SCHEDULE_NAME = "DMPA Injectable Refill";
     private final static String FP_CLIENTS_LIST = "FPClientsList";
 
     private final AllEligibleCouples allEligibleCouples;
@@ -68,8 +77,17 @@ public class FPSmartRegistryController {
     }
 
     private List<AlertDTO> getFPAlertsForEC(String entityId) {
-        List<Alert> alerts = alertService.findByECIdAndAlertNames(entityId, asList(OCP_REFILL_SCHEDULE_NAME,
-                CONDOM_REFILL_SCHEDULE_NAME, DMPA_INJECTABLE_REFILL_SCHEDULE_NAME));
+        List<Alert> alerts = alertService.findByECIdAndAlertNames(entityId, asList(OCP_REFILL_ALERT_NAME,
+                CONDOM_REFILL_ALERT_NAME, DMPA_INJECTABLE_REFILL_ALERT_NAME,
+                FEMALE_STERILIZATION_FOLLOWUP_1_ALERT_NAME,
+                FEMALE_STERILIZATION_FOLLOWUP_2_ALERT_NAME,
+                FEMALE_STERILIZATION_FOLLOWUP_3_ALERT_NAME,
+                MALE_STERILIZATION_FOLLOWUP_1_ALERT_NAME,
+                MALE_STERILIZATION_FOLLOWUP_2_ALERT_NAME,
+                IUD_FOLLOWUP_1_ALERT_NAME,
+                IUD_FOLLOWUP_2_ALERT_NAME,
+                FP_FOLLOWUP_ALERT_NAME,
+                FP_REFERRAL_FOLLOWUP_ALERT_NAME));
         ArrayList<AlertDTO> alertDTOs = new ArrayList<AlertDTO>();
         for (Alert alert : alerts) {
             alertDTOs.add(new AlertDTO(alert.visitCode(), String.valueOf(alert.priority()), alert.startDate()));

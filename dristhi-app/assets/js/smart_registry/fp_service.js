@@ -4,10 +4,11 @@ angular.module("smartRegistry.services")
             CONDOM_REFILL: "Condom Refill",
             DPMA_INJECTABLE_REFILL: "DPMA Injectable Refill",
             OCP_REFILL: "OCP Refill",
-            MALE_STERILIZATION_FOLLOW_UP: "Male Sterilization Follow-up",
-            FEMALE_STERILIZATION_FOLLOW_UP: "Female Sterilization Follow-up",
-            IUD_FOLLOW_UP: "IUD Follow-up",
-            REFERRAL_FOLLOW_UP: "Referral Follow-up"
+            MALE_STERILIZATION_FOLLOW_UP: "Male Sterilization Followup",
+            FEMALE_STERILIZATION_FOLLOW_UP: "Female Sterilization Followup",
+            IUD_FOLLOW_UP_1: "IUD Followup 1",
+            IUD_FOLLOW_UP_2: "IUD Followup 2",
+            REFERRAL_FOLLOW_UP: "Referral Followup"
         };
 
         var refill_types = [
@@ -19,7 +20,8 @@ angular.module("smartRegistry.services")
         var follow_up_types = [
             constants.MALE_STERILIZATION_FOLLOW_UP,
             constants.FEMALE_STERILIZATION_FOLLOW_UP,
-            constants.IUD_FOLLOW_UP
+            constants.IUD_FOLLOW_UP_1,
+            constants.IUD_FOLLOW_UP_2
         ];
 
         var alert_name_to_fp_method_map = {};
@@ -28,7 +30,8 @@ angular.module("smartRegistry.services")
         alert_name_to_fp_method_map[constants.OCP_REFILL] = "ocp";
         alert_name_to_fp_method_map[constants.MALE_STERILIZATION_FOLLOW_UP] = "male_sterilization";
         alert_name_to_fp_method_map[constants.FEMALE_STERILIZATION_FOLLOW_UP] = "female_sterilization";
-        alert_name_to_fp_method_map[constants.IUD_FOLLOW_UP] = "iud";
+        alert_name_to_fp_method_map[constants.IUD_FOLLOW_UP_1] = "iud";
+        alert_name_to_fp_method_map[constants.IUD_FOLLOW_UP_2] = "iud";
 
         return {
             constants: constants,

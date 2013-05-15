@@ -39,9 +39,10 @@
                 <button ng-switch-when="follow-up"
                    class="btn btn-primary btn-block full-height text-align-left"
                    ng-class="{
+               'btn-upcoming': client.alerts[client.refill_follow_ups.alert_index].status == 'upcoming',
                'btn-due': client.alerts[client.refill_follow_ups.alert_index].status == 'normal',
                'btn-past-due': client.alerts[client.refill_follow_ups.alert_index].status == 'urgent'}"
-                   ng-click="openForm('follow-up', client.entity_id)">
+                   ng-click="openForm('fp_followup', client.entity_id)">
                     <span class="text-bold">Follow Up</span>
                     <br/>
                     <span>due {{client.alerts[client.refill_follow_ups.alert_index].date | date:'dd/MM'}}</span>
@@ -49,6 +50,7 @@
                 <button ng-switch-when="refill"
                    class="btn btn-primary btn-block full-height text-align-left"
                    ng-class="{
+               'btn-upcoming': client.alerts[client.refill_follow_ups.alert_index].status == 'upcoming',
                'btn-due': client.alerts[client.refill_follow_ups.alert_index].status == 'normal',
                'btn-past-due': client.alerts[client.refill_follow_ups.alert_index].status == 'urgent'}"
                    ng-click="openForm('renew_fp_product', client.entity_id)">
@@ -59,9 +61,10 @@
                 <button ng-switch-when="referral"
                    class="btn btn-primary btn-block full-height text-align-left"
                    ng-class="{
+               'btn-upcoming': client.alerts[client.refill_follow_ups.alert_index].status == 'upcoming',
                'btn-due': client.alerts[client.refill_follow_ups.alert_index].status == 'normal',
                'btn-past-due': client.alerts[client.refill_follow_ups.alert_index].status == 'urgent'}"
-                   ng-click="openForm('referral', client.entity_id)">
+                   ng-click="openForm('fp_referral_followup', client.entity_id)">
                     <span class="text-bold">Referral Follow Up</span>
                     <br/>
                     <span>due {{client.alerts[client.refill_follow_ups.alert_index].date | date:'dd/MM'}}</span>

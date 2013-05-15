@@ -895,7 +895,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
         var i, j, error, context, contextDoc, instances, id, resTypeNum, resultTypes, result, $result, attr,
             $contextWrapNodes, $repParents;
         //var profiler;
-        //var timeStart = new Date().getTime();
+        //var totTime, xTime, timeStart = new Date().getTime();
         //xpathEvalNum++;
 
         console.debug('evaluating expr: ' + expr + ' with context selector: ' + selector + ', 0-based index: ' +
@@ -985,8 +985,6 @@ function Form(formSelector, dataStr, dataStrToEdit) {
         expr = expr.replace(/&quot;/g, '"');
 
         //var timeLap = new Date().getTime();
-        //var totTime;
-        //var xTime;
         //console.log('expr to test: '+expr+' with result type number: '+resTypeNum);
         try {
             result = document.evaluate(expr, context, null, resTypeNum, null);
@@ -1000,6 +998,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
                         //xTime = new Date().getTime() - timeLap;
                         //console.debug('took '+totTime+' millseconds (XPath lib only: '+ Math.round((xTime / totTime) * 100 )+'%)');
                         //xpathEvalTime += totTime;
+                        //xpathEvalTimePure += xTime;
                         return result;
                     }
                 }
@@ -1018,7 +1017,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
                 //xTime = new Date().getTime() - timeLap;
                 //console.debug('took '+totTime+' millseconds (XPath lib only: '+ Math.round((xTime / totTime) * 100 )+'%)');
                 //xpathEvalTime += totTime;
-                //xpathEvalTime += new Date().getTime() - timeStart;
+                //xpathEvalTimePure += xTime;
                 return $result;
             }
             console.debug('evaluated ' + expr + ' to: ' + result[resultTypes[resTypeNum][2]]);
@@ -1026,7 +1025,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
             //xTime = new Date().getTime() - timeLap;
             //console.debug('took '+totTime+' millseconds (XPath lib only: '+ Math.round((xTime / totTime) * 100 )+'%)');
             //xpathEvalTime += totTime;
-            //xpathEvalTime += new Date().getTime() - timeStart;
+            //xpathEvalTimePure += xTime;
             return result[resultTypes[resTypeNum][2]];
         }
         catch (e) {
@@ -1035,6 +1034,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
             $(document).trigger('xpatherror', error);
             loadErrors.push(error);
             //xpathEvalTime += new Date().getTime() - timeStart;
+            //xpathEvalTimePure += new Date().getTime() - timeLap;s
             return null;
         }
     };
@@ -1062,6 +1062,12 @@ function Form(formSelector, dataStr, dataStrToEdit) {
 
         //var profiler = new Profiler('preloads.init()');
         this.preloads.init(this); //before widgets.init (as instanceID used in offlineFileWidget)
+        //profiler.report();
+
+        this.grosslyViolateStandardComplianceByIgnoringCertainCalcs(); //before calcUpdate!
+
+        //profiler = new Profiler('calcupdate');
+        this.calcUpdate(); //before repeat.init as repeat count may use a calculated item
         //profiler.report();
 
         //profiler = new Profiler('adding hint icons');
@@ -1094,7 +1100,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
         });
 
         //profiler = new Profiler('setLangs()');
-        this.setLangs();//test: before itemsetUpdate
+        this.langs.init();//test: before itemsetUpdate
         //profiler.report();
 
         //profiler = new Profiler('repeat.init()');
@@ -1119,13 +1125,6 @@ function Form(formSelector, dataStr, dataStrToEdit) {
         this.bootstrapify();
         //profiler.report();
 
-        this.grosslyViolateStandardComplianceByIgnoringCertainCalcs(); //before calcUpdate!
-
-        //profiler = new Profiler('calcupdate');
-        this.calcUpdate(); //why is this not evaluated before branch.init? the eventhandlers are not yet present so a calcupdate
-        //does not lead to a branch update().
-        //profiler.report();
-
         //profiler = new Profiler('branch.init()');
         this.branch.init();
         //profiler.report();
@@ -1138,7 +1137,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
         this.setHints();
         //profiler.report();
 
-        this.setEventHandlers();
+        this.setEventHandlers(); //after widgets init to make sure widget handlers are called before
         this.editStatus.set(false);
         //profiler.report('time taken across all functions to evaluate '+xpathEvalNum+' XPath expressions: '+xpathEvalTime);
     };
@@ -1410,47 +1409,43 @@ function Form(formSelector, dataStr, dataStrToEdit) {
         return;
     };
 
-    FormHTML.prototype.setLangs = function () {
-        var lang, value, /** @type {string} */curLabel, /** @type {string} */ newLabel,
-            that = this,
-            defaultLang = $form.find('#form-languages').attr('data-default-lang'),
-            $langSelector = $('.form-language-selector');
+    FormHTML.prototype.langs = {
+        init: function () {
+            var lang,
+                that = this,
+                setOptionLangs,
+                defaultLang = $form.find('#form-languages').attr('data-default-lang'),
+                $langSelector = $('.form-language-selector');
 
-        $('#form-languages').detach().appendTo($langSelector);//insertBefore($('form.jr').parent());
+            $('#form-languages').detach().appendTo($langSelector);//insertBefore($('form.jr').parent());
 
-        if (!defaultLang || defaultLang === '') {
-            defaultLang = $('#form-languages option:eq(0)').attr('value');
-        }
-        console.debug('default language is: ' + defaultLang);
-        $('#form-languages').val(defaultLang);
+            if (!defaultLang || defaultLang === '') {
+                defaultLang = $('#form-languages option:eq(0)').attr('value');
+            }
+            console.debug('default language is: ' + defaultLang);
+            $('#form-languages').val(defaultLang);
 
-        if ($('#form-languages option').length < 2) {
-            $langSelector.hide();
-            return;
-        }
-
-        $('#form-languages').change(function (event) {
-            console.debug('form-language change event detected!');
-            event.preventDefault();
-            lang = $(this).val();
+            if ($('#form-languages option').length < 2) {
+                $langSelector.hide();
+                return;
+            }
+            $('#form-languages').change(function (event) {
+                lang = $(this).val();
+                console.debug('form-language change event detected!');
+                event.preventDefault();
+                that.setAll(lang);
+            });
+        },
+        setAll: function (lang) {
+            var that = this;
             $('#form-languages option').removeClass('active');
             $(this).addClass('active');
 
             $form.find('[lang]').removeClass('active').filter('[lang="' + lang + '"], [lang=""]').addClass('active');
 
-            //swap language of <select> <option>s
-            $form.find('select > option').not('[value=""]').each(function () {
-                curLabel = /** @type {string} */ $(this).text();
-                value = $(this).attr('value');
-
-                newLabel = $(this).parent('select').siblings('.jr-option-translations')
-                    .children('.active[data-option-value="' + value + '"]').text().trim();
-
-                newLabel = (typeof newLabel !== 'undefined' && newLabel.length > 0) ? newLabel : curLabel;
-
-                $(this).text(newLabel);
+            $form.find('select').each(function () {
+                that.setSelect($(this));
             });
-
             //quickfix for labels and legends that do not contain a span.active without other class
             $form.find('legend span.active:not(.jr-hint, .jr-constraint-msg), label span.active:not(.jr-hint, .jr-constraint-msg)').each(function () {
                 if ($(this).text().trim().length === 0) {
@@ -1458,9 +1453,21 @@ function Form(formSelector, dataStr, dataStrToEdit) {
                 }
             });
 
-            that.setHints();
             $form.trigger('changelanguage');
-        });
+        },
+        //swap language of <select> <option>s
+        setSelect: function ($select) {
+            var value, /** @type {string} */curLabel, /** @type {string} */ newLabel;
+            console.debug('setting select labels');
+            $select.children('option').not('[value=""]').each(function () {
+                curLabel = /** @type {string} */ $(this).text();
+                value = $(this).attr('value');
+                newLabel = $(this).parent('select').siblings('.jr-option-translations')
+                    .children('.active[data-option-value="' + value + '"]').text().trim();
+                newLabel = (typeof newLabel !== 'undefined' && newLabel.length > 0) ? newLabel : curLabel;
+                $(this).text(newLabel);
+            });
+        }
     };
 
     /**
@@ -1641,9 +1648,9 @@ function Form(formSelector, dataStr, dataStrToEdit) {
 
                 that.process($branchNode, result);
             });
-
             //console.debug('already covered: ', alreadyCovered);
             //console.debug('relevant expression results cached:', relevantCache);
+            //profiler.report();
             return true;
         },
         /**
@@ -1765,7 +1772,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
      * @param  {string=} changedDataNodeNames node names that were recently changed, separated by commas
      */
     FormHTML.prototype.itemsetUpdate = function (changedDataNodeNames) {
-        console.log('updating itemsets');
+        console.log('checking if itemsets need updating because values of following nodes changed: ' + changedDataNodeNames);
         //TODO: test with very large itemset
         var clonedRepeatsPresent, insideRepeat, insideRepeatClone,
             that = this,
@@ -1809,8 +1816,8 @@ function Form(formSelector, dataStr, dataStrToEdit) {
             index = (insideRepeatClone) ? that.input.getIndex($input) : 0;
 
             if (typeof itemsCache[itemsXpath] !== 'undefined') {
-                console.debug('using cached itemset items result for ' + itemsXpath);
                 $instanceItems = itemsCache[itemsXpath];
+                console.debug('using cached itemset items result for ' + itemsXpath);//, $instanceItems);
             }
             else {
                 console.debug('no cache for ' + itemsXpath + ', need to evaluate XPath');
@@ -1863,7 +1870,6 @@ function Form(formSelector, dataStr, dataStrToEdit) {
                     $labels.before($htmlItem.find(':first'));
                 }
                 else if (templateNodeName === 'option') {
-                    needToUpdateLangs = true;
                     if ($htmlItemLabels.length === 1) {
                         $htmlItem.find('option').text($htmlItemLabels.text());
                     }
@@ -1874,12 +1880,14 @@ function Form(formSelector, dataStr, dataStrToEdit) {
                     $template.siblings().addBack().last().after($htmlItem.find(':first'));
                 }
             });
+            if ($input.prop('nodeName').toLowerCase() === 'select') {
+                //populate labels (with current language)
+                that.langs.setSelect($input);
+                //update widget
+                $input.trigger('changeoption');
+            }
         });
-        console.debug('need to update langs: ' + needToUpdateLangs);
-        if (needToUpdateLangs) {
-            //that.setLangs();
-            $('#form-languages').trigger('change');
-        }
+        console.log('itemset update finished');
     };
 
     /**
@@ -1888,7 +1896,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
      * @param  {string=} changedNodeNames Comma-separated node names that may have changed
      */
     FormHTML.prototype.outputUpdate = function (changedNodeNames) {
-        var i, expr, namesArr, cleverSelector, clonedRepeatsPresent, insideRepeat, insideRepeatClone, context, index,
+        var i, expr, namesArr, cleverSelector, clonedRepeatsPresent, insideRepeat, insideRepeatClone, $context, context, index,
             outputChanged = false,
             outputCache = {},
             val = '',
@@ -1903,10 +1911,16 @@ function Form(formSelector, dataStr, dataStrToEdit) {
 
         $form.find(':not(:disabled) span.active').find(cleverSelector.join()).each(function () {
             expr = $(this).attr('data-value');
-            context = that.input.getName($(this).closest('fieldset'));
+            //context = that.input.getName($(this).closest('fieldset'));
+            //context is either the sibling input (if output is inside input label),
+            //or the parent with a name attribute
+            //or the whole doc
+            $context = ($(this).siblings('[name], [data-name]').eq(0).length === 1) ? $(this).siblings('[name]:eq(0)') : $(this).closest('[name]');
+            context = that.input.getName($context);
             insideRepeat = (clonedRepeatsPresent && $(this).closest('.jr-repeat').length > 0);
             insideRepeatClone = (clonedRepeatsPresent && $(this).closest('.jr-repeat.clone').length > 0);
-            index = (insideRepeatClone) ? that.input.getIndex($(this).closest('fieldset')) : 0;
+            //index = (insideRepeatClone) ? that.input.getIndex($(this).closest('fieldset')) : 0;
+            index = (insideRepeatClone) ? that.input.getIndex($context) : 0;
 
             if (typeof outputCache[expr] !== 'undefined') {
                 val = outputCache[expr];
@@ -2078,9 +2092,30 @@ function Form(formSelector, dataStr, dataStrToEdit) {
             this.barcodeWidget();
             this.offlineFileWidget();
             this.mediaLabelWidget();
+            this.radioEventsWidget();
             this.radioCheckWidget();
-            //this.radioUnselectWidget();
+            this.radioUnselectWidget();
         },
+        //for debugging
+        radioEventsWidget: function () {
+            $form.on('click', 'label', function () {
+                console.log('click label');
+            });
+            $form.on('focus', 'label', function () {
+                console.log('focus label');
+            });
+            $form.on('click', 'input[type="radio"], input[type="checkbox"]', function () {
+                console.log('click input, checked:' + $(this).is(':checked'));
+            });
+            $form.on('focus', 'input[type="radio"], input[type="checkbox"]', function () {
+                console.log('focus input, checked:' + $(this).is(':checked'));
+            });
+            $form.on('change', 'input[type="radio"], input[type="checkbox"]', function () {
+                console.log('change input, checked:' + $(this).is(':checked'));
+            });
+        },
+        //applies a data-checked attribute to the parent label of a checked checkbox and radio button
+        //used in radioUnselect widget and touch screen styling
         radioCheckWidget: function () {
             if (!this.repeat) {
                 var $label;
@@ -2094,6 +2129,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
                 });
                 //defaults
                 $form.find('input[type="radio"]:checked, input[type="checkbox"]:checked').parent('label').attr('data-checked', 'true');
+
             }
         },
         radioUnselectWidget: function () {
@@ -2130,7 +2166,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
                 //in the browser the focus event is fired when a user clicks the field and after the native picker closes.
                 //the value at the second focus event is the new value
                 $form.on('focus', 'input[type="date"]', function (event) {
-                    var val = $(this).val();
+                    var val = /**@type {string}*/$(this).val();
                     //if the bug occurs, the value length will be larger than 10
                     //our best guess for the correct value is the first 10 characters
                     val = (val.length > 10) ? val.substring(0, 10) : val;
@@ -2278,7 +2314,13 @@ function Form(formSelector, dataStr, dataStrToEdit) {
             this.$group.find('select').not('#form-languages').selectpicker();
             if (!this.repeat) {
                 $form.on('changelanguage', function () {
+                    //update all pickers in form
                     $form.find('select').selectpicker('update');
+                });
+                $form.on('changeoption', 'select', function () {
+                    //onsole.debug('option change detected, going to update select widget', $(this));
+                    //update (itemselect) picker on which event was triggered because the options changed
+                    $(this).selectpicker('update');
                 });
             }
         },
@@ -2331,11 +2373,9 @@ function Form(formSelector, dataStr, dataStrToEdit) {
             }
         },
         tableWidget: function ($group) {
-            //if (!this.repeat){
+            var $g = $group || $form;
             //when loading a form dynamically the DOM elements don't have a width yet (width = 0), so we call
             //this with a bit of a delay..
-            var $g = $group || $form;
-
             setTimeout(function () {
                 console.debug('setting table column widths');
                 $g.parent().find('.jr-appearance-field-list .jr-appearance-list-nolabel, .jr-appearance-field-list .jr-appearance-label')
@@ -2345,8 +2385,6 @@ function Form(formSelector, dataStr, dataStrToEdit) {
                         $(this).find('legend').css('width', 'auto').toLargestWidth(35);
                     });
             }, 50);
-            //}
-            //$form.find('.jr-appearance-compact label img').selectable();
         },
         spinnerWidget: function () {
             //$form.find('input[type="number"]').spinner();
@@ -2366,10 +2404,12 @@ function Form(formSelector, dataStr, dataStrToEdit) {
         },
         offlineFileWidget: function () {
             if (!this.repeat) {
-                var feedbackMsg = 'Awaiting user permission to store local data (files)',
+                var fileInputHandler,
+                    feedbackMsg = 'Awaiting user permission to store local data (files)',
                     feedbackClass = 'info',
                     allClear = false,
-                    $fileInputs = this.$group.find('input[type="file"]');
+                    permissionGranted = false,
+                    $fileInputs = $form.find('input[type="file"]');
 
                 if ($fileInputs.length === 0) {
                     return;
@@ -2397,68 +2437,82 @@ function Form(formSelector, dataStr, dataStrToEdit) {
                     return;
                 }
 
+
+                /*
+                 This delegated eventhander should actually be added asynchronously (or not at all if no FS support/permission). However, it
+                 needs to fired *before* the regular input change event handler for 2 reasons:
+                 1. If saving the file in the browser's file system fails, the instance should not be updated
+                 2. The regular eventhandler has event.stopImmediatePropagation which would mean this handler is never called.
+                 The easiest way to achieve this is to always add it but only let it do something if permission is granted to use FS.
+                 */
+                $form.on('change.passthrough', 'input[type="file"]', function (event) {
+                    if (permissionGranted) {
+                        var prevFileName, file, mediaType, $preview,
+                            $input = $(this);
+                        console.debug('namespace: ' + event.namespace);
+                        if (event.namespace === 'passthrough') {
+                            //console.debug('returning true');
+                            $input.trigger('change.file');
+                            return false;
+                        }
+                        prevFileName = $input.attr('data-previous-file-name');
+                        file = $input[0].files[0];
+                        mediaType = $input.attr('accept');
+                        $preview = (mediaType && mediaType === 'image/*') ? $('<img />')
+                            : (mediaType === 'audio/*') ? $('<audio controls="controls"/>')
+                            : (mediaType === 'video/*') ? $('<video controls="controls"/>')
+                            : $('<span>No preview (unknown mediatype)</span>');
+                        $preview.addClass('file-preview');
+
+                        if (prevFileName && (!file || prevFileName !== file.name)) {
+                            fileManager.deleteFile(prevFileName);
+                        }
+
+                        $input.siblings('.file-feedback, .file-preview, .file-loaded').remove();
+
+                        console.debug('file: ', file);
+                        if (file && file.size > 0 && file.size <= connection.maxSubmissionSize()) {
+                            console.debug('going to save it in filesystem');
+                            fileManager.saveFile(
+                                file,
+                                {
+                                    success: function (fsURL) {
+                                        $preview.attr('src', fsURL);
+                                        $input.trigger('change.passthrough').after($preview);
+                                    },
+                                    error: function (e) {
+                                        console.error('error: ', e);
+                                        $input.val('');
+                                        $input.after('<div class="file-feedback text-error">' +
+                                            'Failed to save file</span>');
+                                    }
+                                }
+                            );
+                            return false;
+                        }
+                        //clear instance value by letting it bubble up to normal change handler
+                        else {
+                            if (file.size > connection.maxSubmissionSize()) {
+                                $input.after('<div class="file-feedback text-error">' +
+                                    'File too large (max ' +
+                                    (Math.round((connection.maxSubmissionSize() * 100 ) / (1024 * 1024)) / 100 ) +
+                                    ' Mb)</div>');
+                            }
+                            return true;
+                        }
+                    }
+                });
+
                 var callbacks = {
                     success: function () {
                         console.log('Whoheee, we have permission to use the file system');
-                        $fileInputs.on('change.passthrough',function (event) {
-                            var prevFileName, file, mediaType, $preview,
-                                $input = $(this);
-                            console.debug('namespace: ' + event.namespace);
-                            if (event.namespace === 'passthrough') {
-                                //console.debug('returning true');
-                                $input.trigger('change.file');
-                                return false;
-                            }
-                            prevFileName = $input.attr('data-previous-file-name');
-                            file = $input[0].files[0];
-                            mediaType = $input.attr('accept');
-                            $preview = (mediaType && mediaType === 'image/*') ? $('<img />')
-                                : (mediaType === 'audio/*') ? $('<audio controls="controls"/>')
-                                : (mediaType === 'video/*') ? $('<video controls="controls"/>')
-                                : $('<span>No preview (unknown mediatype)</span>');
-                            $preview.addClass('file-preview');
-
-                            if (prevFileName && (!file || prevFileName !== file.name)) {
-                                fileManager.deleteFile(prevFileName);
-                            }
-
-                            $input.siblings('.file-feedback, .file-preview, .file-loaded').remove();
-
-                            console.debug('file: ', file);
-                            if (file && file.size > 0 && file.size <= connection.maxSubmissionSize()) {
-                                console.debug('going to save it in filesystem');
-                                fileManager.saveFile(
-                                    file,
-                                    {
-                                        success: function (fsURL) {
-                                            $preview.attr('src', fsURL);
-                                            $input.trigger('change.passthrough').after($preview);
-                                        },
-                                        error: function (e) {
-                                            console.error('error: ', e);
-                                            $input.val('');
-                                            $input.after('<div class="file-feedback text-error">' +
-                                                'Failed to save file</span>');
-                                        }
-                                    }
-                                );
-                                return false;
-                            }
-                            //clear instance value by letting it bubble up to normal change handler
-                            else {
-                                if (file.size > connection.maxSubmissionSize()) {
-                                    $input.after('<div class="file-feedback text-error">' +
-                                        'File too large (max ' +
-                                        (Math.round((connection.maxSubmissionSize() * 100 ) / (1024 * 1024)) / 100 ) +
-                                        ' Mb)</div>');
-                                }
-                                return true;
-                            }
-                        }).removeClass('ignore')
+                        permissionGranted = true;
+                        $fileInputs.removeClass('ignore')
                             .prop('disabled', false)
-                            .siblings('.file-feedback').remove();
-                        $fileInputs.after('<div class="text-info">' +
-                            'File inputs are experimental. Use only for testing.');
+                            .siblings('.file-feedback').remove()
+                            .end()
+                            .after('<div class="text-info">' +
+                                'File inputs are experimental. Use only for testing.');
                     },
                     error: function () {
                         $fileInputs.siblings('.file-feedback').remove();
@@ -2854,6 +2908,18 @@ function Form(formSelector, dataStr, dataStrToEdit) {
         //first prevent default submission, e.g. when text field is filled in and Enter key is pressed
         $('form.jr').attr('onsubmit', 'return false;');
 
+        /*
+         workaround for Chrome to clear invalid values right away
+         issue: https://code.google.com/p/chromium/issues/detail?can=2&start=0&num=100&q=&colspec=ID%20Pri%20M%20Iteration%20ReleaseBlock%20Cr%20Status%20Owner%20Summary%20OS%20Modified&groupby=&sort=&id=178437)
+         a workaround was chosen instead of replacing the change event listener to a blur event listener
+         because I'm guessing that Google will bring back the old behaviour.
+         */
+        $form.on('blur', 'input:not([type="text"], [type="radio"], [type="checkbox"])', function (event) {
+            if (typeof $(this).prop('validity').badInput !== 'undefined' && $(this).prop('validity').badInput) {
+                $(this).val('');
+            }
+        });
+
         $form.on('change.file validate', 'input:not(.ignore), select:not(.ignore), textarea:not(.ignore)', function (event) {
             var validCons, validReq,
                 n = that.input.getProps($(this));
@@ -2970,6 +3036,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
         $form.on('changelanguage', function () {
             //console.debug('language change handler started');
             that.outputUpdate();
+            that.setHints();
         });
     };
 
@@ -3118,6 +3185,9 @@ Date.prototype.toISOLocalString = function () {
     $.fn.clearInputs = function (ev) {
         ev = ev || 'edit';
         return this.each(function () {
+            //remove media previews
+            $(this).find('.file-preview').remove();
+            //remove input values
             $(this).find('input, select, textarea').each(function () {
                 var type = $(this).attr('type');
                 if ($(this).prop('nodeName').toUpperCase() === 'SELECT') {
@@ -3140,6 +3210,7 @@ Date.prototype.toISOLocalString = function () {
                     case 'password':
                     case 'text':
                     case 'file':
+                        $(this).removeAttr('data-previous-file-name data-loaded-file-name');
                     case 'hidden':
                     case 'textarea':
                         if ($(this).val() !== '') {
