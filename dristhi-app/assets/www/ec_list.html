@@ -3,7 +3,6 @@
 <head>
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/custom.css" rel="stylesheet">
-    <link href="../css/sidepanel.css" rel="stylesheet">
     <link href="../css/list.css" rel="stylesheet">
     <link href="../css/alerts.css" rel="stylesheet">
 
@@ -11,35 +10,30 @@
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body>
-<div class="page affected-by-sidepanel">
-    <div id="sidePanelContainer"></div>
-
-    <div id="mainpanel" class="mainpanel affected-by-sidepanel">
-        <div class="navbar navbar-fixed-top affected-by-sidepanel">
+<div class="page">
+    <div id="mainpanel" class="mainpanel">
+        <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <ul class="nav pull-left">
-                    <li id="sidepanel-button">
-                        <img class="sidepanel-icon affected-by-sidepanel"><img class="separator">
-                    </li>
                     <li>
                         <div class="navbar-header">EC</div>
                     </li>
                 </ul>
-                <ul id="search-container" class="nav search-container affected-by-sidepanel">
+                <ul id="search-container" class="nav search-container">
                     <li class="match-parents-width">
                         <form id="search-form" class="navbar-search match-parents-width">
                             <input id="search-box" type="text" class="search-query search-box" placeholder="Search">
                         </form>
                     </li>
                 </ul>
-                <ul class="nav pull-right affected-by-sidepanel">
+                <ul class="nav pull-right">
                     <li><img class="separator"></li>
                     <li id="plusButton" data-formname="ec_registration"><img src="../img/icons/icon_plus.png"></li>
                     <li id="cancel-search" class="cancel-search hidden">Cancel</li>
                 </ul>
             </div>
         </div>
-        <div id="content" class="content affected-by-sidepanel">
+        <div id="content" class="content">
             <div class="container-fluid dropdown dropdown-filter">
                 <a class="btn dropdown-toggle toggle-filter filter-by-village" data-toggle="dropdown">
                     Show: All
@@ -82,8 +76,6 @@
 
 <script src="../js/custom.ui.js"></script>
 <script src="../template/templates.js"></script>
-<script src="../js/anmNavigation.js"></script>
-<script src="../js/sidePanel.js"></script>
 <script src="../js/list_view.js"></script>
 <script src="../js/international_text.js"></script>
 <script src="../js/page_view.js"></script>
@@ -127,8 +119,6 @@
         ecList.bindSearchEvents();
         ecList.bindLoadAll();
         ecList.bindToDefaultPhoto('../img/woman-placeholder.png');
-
-        new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
 
         pageView.onReloadPhoto(ecList.reloadPhoto);
     });
