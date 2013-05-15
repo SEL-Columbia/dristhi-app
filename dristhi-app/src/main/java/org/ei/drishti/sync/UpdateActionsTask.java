@@ -9,6 +9,7 @@ import org.ei.drishti.view.BackgroundAction;
 import org.ei.drishti.view.LockingBackgroundTask;
 import org.ei.drishti.view.ProgressIndicator;
 
+import static org.ei.drishti.domain.FetchStatus.nothingFetched;
 import static org.ei.drishti.util.Log.logInfo;
 
 public class UpdateActionsTask {
@@ -38,7 +39,7 @@ public class UpdateActionsTask {
             }
 
             public void postExecuteInUIThread(FetchStatus result) {
-                if (result != null && context != null) {
+                if (result != null && context != null && result != nothingFetched) {
                     Toast.makeText(context, result.displayValue(), Toast.LENGTH_SHORT).show();
                 }
                 afterFetchListener.afterFetch(result);
