@@ -727,9 +727,12 @@ a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
     color: #0d0d0d;
 }
 
+.btn-in-process, .btn-in-process:hover, .btn-in-process:focus {
+    background-color: #25aa4a;
+}
+
 .btn.filter {
     margin-right: 10px;
-
 }
 
 .btn-new-form, .btn-new-form:hover, .btn-new-form:focus {

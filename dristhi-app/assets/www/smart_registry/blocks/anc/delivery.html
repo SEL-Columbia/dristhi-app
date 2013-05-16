@@ -6,7 +6,8 @@
                 <button class="btn btn-primary btn-sr full-height"
                         ng-class="{'btn-due': client.visits.delivery_plan.delivery_plan1.status == 'normal',
                         'btn-past-due': client.visits.delivery_plan.delivery_plan1.status == 'urgent',
-                        'btn-upcoming': client.visits.delivery_plan.delivery_plan1.status == 'upcoming'}">
+                        'btn-upcoming': client.visits.delivery_plan.delivery_plan1.status == 'upcoming',
+                        'btn-in-process': client.visits.delivery_plan.delivery_plan1.status == 'inProcess'}">
                     <span class="text-bold">Delivery Plan</span>
                     <br/>
                     <ng:switch on="client.visits.delivery_plan.delivery_plan1.status">

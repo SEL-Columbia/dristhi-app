@@ -8,7 +8,8 @@
                        ng-class="{'btn-done': client.visits.anc[milestone].status == 'done',
                        'btn-due': client.visits.anc[milestone].status == 'normal',
                        'btn-past-due': client.visits.anc[milestone].status == 'urgent',
-                       'btn-upcoming': client.visits.anc[milestone].status == 'upcoming'}">
+                       'btn-upcoming': client.visits.anc[milestone].status == 'upcoming',
+                       'btn-in-process': client.visits.anc[milestone].status == 'inProcess'}">
                         <ng:switch on="client.visits.anc[milestone].status">
                             <div ng-switch-when="done" class="full-height">
                                 <div class="done-icon full-height"><i class="icon-ok green"></i></div>

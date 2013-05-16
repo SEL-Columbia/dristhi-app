@@ -46,9 +46,9 @@ function FakeFPSmartRegistryContext() {
                     alerts: [
                         {
                             id: "id 1",
-                            name: 'Male Sterilization Follow-up',
+                            name: 'Male Sterilization Followup',
                             date: '26/05',
-                            status: 'normal'
+                            status: 'inProcess'
                         }
                     ]
                 },
@@ -76,7 +76,7 @@ function FakeFPSmartRegistryContext() {
                     alerts: [
                         {
                             id: "id 2",
-                            name: 'Condom Refill',
+                            name: 'Female Sterilization Followup',
                             date: '24/07',
                             status: 'urgent'
                         }
@@ -106,9 +106,9 @@ function FakeFPSmartRegistryContext() {
                     alerts: [
                         {
                             id: "id 3",
-                            name: 'IUD Follow-up',
+                            name: 'IUD Followup 2',
                             date: '2012-05-18',
-                            status: 'urgent'
+                            status: 'upcoming'
                         }
                     ]
                 },
@@ -136,7 +136,7 @@ function FakeFPSmartRegistryContext() {
                         {
                             id: "id 4",
                             name: 'OCP Refill',
-                            date: '24/07',
+                            date: '25/07',
                             status: 'urgent'
                         },
                         {
@@ -170,7 +170,7 @@ function FakeFPSmartRegistryContext() {
                     alerts: [
                         {
                             id: "id 6",
-                            name: "Referral Follow-up",
+                            name: "Referral Followup",
                             date: "2012-05-28",
                             status: "normal"
                         }

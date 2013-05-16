@@ -53,7 +53,8 @@
                         <a ng-switch-default class="btn btn-primary btn-sr full-height"
                            ng-class="{'btn-due': client.visits.ifa.next.status == 'normal',
                            'btn-past-due': client.visits.ifa.next.status == 'urgent',
-                           'btn-upcoming': client.visits.ifa.next.status == 'upcoming'}" href="#">
+                           'btn-upcoming': client.visits.ifa.next.status == 'upcoming',
+                           'btn-in-process': client.visits.ifa.next.status == 'inProcess'}" href="#">
                             <span class="text-bold">IFA Tablets</span>
                             <br/>
                             <ng:switch on="client.visits.ifa.next.visit_date">
