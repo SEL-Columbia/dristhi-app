@@ -13,6 +13,7 @@ import java.util.List;
 import static java.lang.String.format;
 import static org.apache.commons.lang3.StringUtils.repeat;
 import static org.ei.drishti.domain.AlertStatus.closed;
+import static org.ei.drishti.domain.AlertStatus.open;
 import static org.ei.drishti.dto.AlertPriority.from;
 import static org.ei.drishti.dto.AlertPriority.inProcess;
 
@@ -127,7 +128,7 @@ public class AlertRepository extends DrishtiRepository {
 
     public List<Alert> findByECIdAndAlertNames(String entityId, List<String> names) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.rawQuery(format("SELECT * FROM %s WHERE %s = ? AND %s IN (%s)", ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN, ALERTS_VISIT_CODE_COLUMN,
+        Cursor cursor = database.rawQuery(format("SELECT * FROM %s WHERE %s = ? AND %s = ? AND %s IN (%s)", ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN, ALERTS_STATUS_COLUMN,ALERTS_VISIT_CODE_COLUMN,
                 insertPlaceholdersForInClause(names.size())), getSelectionArgs(entityId, names));
         return readAllAlerts(cursor);
     }
@@ -135,6 +136,7 @@ public class AlertRepository extends DrishtiRepository {
     private String[] getSelectionArgs(String entityId, List<String> names) {
         List<String> selectionArgs = new ArrayList<String>();
         selectionArgs.add(entityId);
+        selectionArgs.add(open.value());
         selectionArgs.addAll(names);
         return selectionArgs.toArray(new String[names.size() + 1]);
     }

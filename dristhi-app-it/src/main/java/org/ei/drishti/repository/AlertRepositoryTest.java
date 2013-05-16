@@ -124,7 +124,7 @@ public class AlertRepositoryTest extends AndroidTestCase {
 
         List<Alert> alerts = alertRepository.findByECIdAndAlertNames("entity id 1", asList("OCP Refill", "Condom Refill", "DMPA Injectable Refill"));
 
-        assertEquals(asList(ocpRefillAlert, condomRefillAlert, closedAlert), alerts);
+        assertEquals(asList(ocpRefillAlert, condomRefillAlert), alerts);
     }
 
     public void testShouldChangeAlertPriorityToInProcessBasedOnEntityIdAndVisitCode() throws Exception {
