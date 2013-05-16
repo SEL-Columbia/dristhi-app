@@ -4,10 +4,14 @@ angular.module("smartRegistry.services")
             CONDOM_REFILL: "Condom Refill",
             DPMA_INJECTABLE_REFILL: "DPMA Injectable Refill",
             OCP_REFILL: "OCP Refill",
-            MALE_STERILIZATION_FOLLOW_UP: "Male Sterilization Followup",
-            FEMALE_STERILIZATION_FOLLOW_UP: "Female Sterilization Followup",
+            MALE_STERILIZATION_FOLLOW_UP_1: "Male Sterilization Followup 1",
+            MALE_STERILIZATION_FOLLOW_UP_2: "Male Sterilization Followup 2",
+            FEMALE_STERILIZATION_FOLLOW_UP_1: "Female sterilization Followup 1",
+            FEMALE_STERILIZATION_FOLLOW_UP_2: "Female sterilization Followup 2",
+            FEMALE_STERILIZATION_FOLLOW_UP_3: "Female sterilization Followup 3",
             IUD_FOLLOW_UP_1: "IUD Followup 1",
             IUD_FOLLOW_UP_2: "IUD Followup 2",
+            FP_FOLLOW_UP: "FP Followup",
             REFERRAL_FOLLOW_UP: "Referral Followup"
         };
 
@@ -18,8 +22,11 @@ angular.module("smartRegistry.services")
         ];
 
         var follow_up_types = [
-            constants.MALE_STERILIZATION_FOLLOW_UP,
-            constants.FEMALE_STERILIZATION_FOLLOW_UP,
+            constants.MALE_STERILIZATION_FOLLOW_UP_1,
+            constants.MALE_STERILIZATION_FOLLOW_UP_2,
+            constants.FEMALE_STERILIZATION_FOLLOW_UP_1,
+            constants.FEMALE_STERILIZATION_FOLLOW_UP_2,
+            constants.FEMALE_STERILIZATION_FOLLOW_UP_3,
             constants.IUD_FOLLOW_UP_1,
             constants.IUD_FOLLOW_UP_2
         ];
@@ -28,8 +35,11 @@ angular.module("smartRegistry.services")
         alert_name_to_fp_method_map[constants.CONDOM_REFILL] = "condom";
         alert_name_to_fp_method_map[constants.DPMA_INJECTABLE_REFILL] = "dpma";
         alert_name_to_fp_method_map[constants.OCP_REFILL] = "ocp";
-        alert_name_to_fp_method_map[constants.MALE_STERILIZATION_FOLLOW_UP] = "male_sterilization";
-        alert_name_to_fp_method_map[constants.FEMALE_STERILIZATION_FOLLOW_UP] = "female_sterilization";
+        alert_name_to_fp_method_map[constants.MALE_STERILIZATION_FOLLOW_UP_1] = "male_sterilization";
+        alert_name_to_fp_method_map[constants.MALE_STERILIZATION_FOLLOW_UP_2] = "male_sterilization";
+        alert_name_to_fp_method_map[constants.FEMALE_STERILIZATION_FOLLOW_UP_1] = "female_sterilization";
+        alert_name_to_fp_method_map[constants.FEMALE_STERILIZATION_FOLLOW_UP_2] = "female_sterilization";
+        alert_name_to_fp_method_map[constants.FEMALE_STERILIZATION_FOLLOW_UP_3] = "female_sterilization";
         alert_name_to_fp_method_map[constants.IUD_FOLLOW_UP_1] = "iud";
         alert_name_to_fp_method_map[constants.IUD_FOLLOW_UP_2] = "iud";
 
@@ -41,6 +51,9 @@ angular.module("smartRegistry.services")
                     var referral_alert = client.alerts.find(function(a){
                         return a.name === constants.REFERRAL_FOLLOW_UP;
                     });
+                    var fp_followup_alert = client.alerts.find(function(a){
+                        return a.name === constants.FP_FOLLOW_UP;
+                    });
 
                     if(referral_alert !== undefined)
                     {
@@ -48,6 +61,13 @@ angular.module("smartRegistry.services")
                             name: referral_alert.name,
                             alert_index: client.alerts.indexOf(referral_alert),
                             type: "referral"
+                        }
+                    }
+                    else if(fp_followup_alert !== undefined) {
+                        client.refill_follow_ups = {
+                            name: fp_followup_alert.name,
+                            alert_index: client.alerts.indexOf(fp_followup_alert),
+                            type: "follow-up"
                         }
                     }
                     else{

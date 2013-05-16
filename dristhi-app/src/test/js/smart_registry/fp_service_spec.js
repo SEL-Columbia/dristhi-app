@@ -20,7 +20,7 @@ describe('FP Service', function () {
                             status:'urgent'
                         },
                         {
-                            name:'Female Sterilization Followup',
+                            name:'Female Sterilization Followup 1',
                             date:'2012-05-18',
                             status:'urgent'
                         },
@@ -42,6 +42,40 @@ describe('FP Service', function () {
             expect(fpSrvc.preProcessClients(clients)[0].refill_follow_ups).toEqual(expectedOutput);
         });
 
+        it("should set fp followup data if a fp followup exists and referral alert does not exist", function () {
+            var clients = [
+                {
+                    fp_method:"female_sterilization",
+                    family_planning_method_change_date:"2013-02-25",
+                    alerts:[
+                        {
+                            name:'OCP Refill',
+                            date:'2012-07-24',
+                            status:'urgent'
+                        },
+                        {
+                            name:'Female Sterilization Followup 1',
+                            date:'2012-05-18',
+                            status:'urgent'
+                        },
+                        {
+                            name:'FP Followup',
+                            date:'2012-05-12',
+                            status:'normal'
+                        }
+                    ]
+                }
+            ];
+
+            var expectedOutput =
+            {
+                name: "FP Followup",
+                alert_index: 2,
+                type: "follow-up"
+            };
+            expect(fpSrvc.preProcessClients(clients)[0].refill_follow_ups).toEqual(expectedOutput);
+        });
+
         it("should set female sterilization follow-up data when a female sterilization alert exits, and referral data is NOT specified", function () {
             var clients = [
                 {
@@ -54,7 +88,7 @@ describe('FP Service', function () {
                             status:'urgent'
                         },
                         {
-                            name:'Female Sterilization Followup',
+                            name:'Female sterilization Followup 1',
                             date:'2012-05-18',
                             status:'urgent'
                         }
@@ -64,7 +98,7 @@ describe('FP Service', function () {
 
             var expectedOutput =
             {
-                name: "Female Sterilization Followup",
+                name: "Female sterilization Followup 1",
                 alert_index: 1,
                 type: "follow-up"
             };
@@ -83,7 +117,7 @@ describe('FP Service', function () {
                             status:'urgent'
                         },
                         {
-                            name:'Female Sterilization Followup',
+                            name:'Female sterilization Followup 1',
                             date:'2012-05-18',
                             status:'urgent'
                         }
@@ -93,7 +127,7 @@ describe('FP Service', function () {
 
             var expectedOutput =
             {
-                name: "Female Sterilization Followup",
+                name: "Female sterilization Followup 1",
                 alert_index: 1,
                 type: "follow-up"
             };
@@ -136,7 +170,7 @@ describe('FP Service', function () {
                     family_planning_method_change_date:"2013-02-25",
                     alerts:[
                         {
-                            name:'Female Sterilization Followup',
+                            name:'Female sterilization Followup 1',
                             date:'2012-05-18',
                             status:'urgent'
                         },
