@@ -12,7 +12,6 @@ import org.ei.drishti.util.Log;
 import java.util.List;
 
 import static org.ei.drishti.dto.BeneficiaryType.*;
-import static org.ei.drishti.util.Log.logError;
 
 public class AlertService {
     private AlertRepository repository;
@@ -66,7 +65,7 @@ public class AlertService {
         return repository.findByECIdAndAlertNames(entityId, names);
     }
 
-    public void changeAlertStatusToInProcess(String entityId, String alertName) {
-        logError("**** changing alert status to in process for : alertId" + entityId + ", alertName: " + alertName);
+    public void changeAlertPriorityToInProcess(String entityId, String alertName) {
+        repository.changeAlertPriorityToInProcess(entityId, alertName);
     }
 }

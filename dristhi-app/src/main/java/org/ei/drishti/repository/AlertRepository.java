@@ -5,7 +5,6 @@ import android.database.Cursor;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.AlertStatus;
-import org.ei.drishti.dto.AlertPriority;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
@@ -14,6 +13,8 @@ import java.util.List;
 import static java.lang.String.format;
 import static org.apache.commons.lang3.StringUtils.repeat;
 import static org.ei.drishti.domain.AlertStatus.closed;
+import static org.ei.drishti.dto.AlertPriority.from;
+import static org.ei.drishti.dto.AlertPriority.inProcess;
 
 public class AlertRepository extends DrishtiRepository {
     private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, benificiaryName VARCHAR, husbandName VARCHAR, village VARCHAR, visitCode VARCHAR, thaayiCardNumber VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR, status VARCHAR)";
@@ -89,7 +90,7 @@ public class AlertRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<Alert> alerts = new ArrayList<Alert>();
         while (!cursor.isAfterLast()) {
-            alerts.add(new Alert(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), AlertPriority.from(cursor.getString(6)),
+            alerts.add(new Alert(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), from(cursor.getString(6)),
                     cursor.getString(7), cursor.getString(8), AlertStatus.from(cursor.getString(10))).withCompletionDate(cursor.getString(9)));
             cursor.moveToNext();
         }
@@ -140,5 +141,14 @@ public class AlertRepository extends DrishtiRepository {
 
     private String insertPlaceholdersForInClause(int length) {
         return repeat("?", ",", length);
+    }
+
+    public void changeAlertPriorityToInProcess(String entityId, String alertName) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        String[] caseAndVisitCodeColumnValues = {entityId, alertName};
+
+        ContentValues valuesToBeUpdated = new ContentValues();
+        valuesToBeUpdated.put(ALERTS_PRIORITY_COLUMN, inProcess.value());
+        database.update(ALERTS_TABLE_NAME, valuesToBeUpdated, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, caseAndVisitCodeColumnValues);
     }
 }

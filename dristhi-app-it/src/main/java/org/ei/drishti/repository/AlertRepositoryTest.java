@@ -13,8 +13,7 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.AlertStatus.closed;
 import static org.ei.drishti.domain.AlertStatus.open;
-import static org.ei.drishti.dto.AlertPriority.normal;
-import static org.ei.drishti.dto.AlertPriority.urgent;
+import static org.ei.drishti.dto.AlertPriority.*;
 
 public class AlertRepositoryTest extends AndroidTestCase {
     private AlertRepository alertRepository;
@@ -126,5 +125,21 @@ public class AlertRepositoryTest extends AndroidTestCase {
         List<Alert> alerts = alertRepository.findByECIdAndAlertNames("entity id 1", asList("OCP Refill", "Condom Refill", "DMPA Injectable Refill"));
 
         assertEquals(asList(ocpRefillAlert, condomRefillAlert, closedAlert), alerts);
+    }
+
+    public void testShouldChangeAlertPriorityToInProcessBasedOnEntityIdAndVisitCode() throws Exception {
+        alertRepository.createAlert(new Alert("Case X", "Theresa", "Husband 1", "bherya", "ANC 1", "Thaayi 1", normal, "2012-01-01", "2012-01-11", open));
+        alertRepository.createAlert(new Alert("Case Y", "SomeOtherWoman", "Husband 2", "bherya", "ANC 2", "Thaayi 2", urgent, "2012-01-01", "2012-01-11", open));
+
+        alertRepository.changeAlertPriorityToInProcess("Case X", "ANC 1");
+
+        assertEquals(asList(new Alert("Case X", "Theresa", "Husband 1", "bherya", "ANC 1", "Thaayi 1", inProcess, "2012-01-01", "2012-01-11", open),
+                new Alert("Case Y", "SomeOtherWoman", "Husband 2", "bherya", "ANC 2", "Thaayi 2", urgent, "2012-01-01", "2012-01-11", open)), alertRepository.allAlerts());
+    }
+
+    public void testShouldNotFailChangingAlertPriorityWhenNoAlertExists() throws Exception {
+        alertRepository.changeAlertPriorityToInProcess("Non existent alert", "ANC 1");
+
+        assertTrue(alertRepository.allAlerts().isEmpty());
     }
 }
