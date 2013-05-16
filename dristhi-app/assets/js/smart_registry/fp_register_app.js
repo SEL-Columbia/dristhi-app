@@ -2,7 +2,11 @@ angular.module("smartRegistry.controllers")
     .controller("fpRegisterController", function ($scope, FPService) {
         $scope.bridge = new FPRegistryBridge();
         $scope.client_type = "woman";
-        $scope.clients = FPService.preProcessClients($scope.bridge.getClients());
+        $scope.getClients = function () {
+            return FPService.preProcessClients($scope.bridge.getClients());
+        };
+
+        $scope.clients = $scope.getClients();
 
         $scope.sortOptions = {
             type: "sort",
@@ -186,11 +190,4 @@ angular.module("smartRegistry.controllers")
                 || client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0);
         };
-
-        pageView.onReload(function () {
-            $scope.$apply(function () {
-                $scope.clients = FPService.preProcessClients($scope.bridge.getClients());
-                $scope.villageOptions = getVillageFilterOptions();
-            });
-        });
     });

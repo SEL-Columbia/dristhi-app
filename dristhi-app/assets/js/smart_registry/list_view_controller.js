@@ -145,4 +145,11 @@ angular.module("smartRegistry.controllers")
             }
             return end_date;
         };
+
+        pageView.onReload(function () {
+            $scope.$apply(function () {
+                $scope.clients = $scope.getClients();
+                $scope.villageOptions = getVillageFilterOptions();
+            });
+        });
     }]);
