@@ -45,57 +45,54 @@ angular.module("smartRegistry.services")
 
         return {
             constants: constants,
-            preProcessClients:function (clients) {
+            preProcessClients: function (clients) {
                 clients.forEach(function (client) {
                     // find a referral alert if it exists
-                    var referral_alert = client.alerts.find(function(a){
+                    var referral_alert = client.alerts.find(function (a) {
                         return a.name === constants.REFERRAL_FOLLOW_UP;
                     });
-                    var fp_followup_alert = client.alerts.find(function(a){
+                    var fp_followup_alert = client.alerts.find(function (a) {
                         return a.name === constants.FP_FOLLOW_UP;
                     });
 
-                    if(referral_alert !== undefined)
-                    {
+                    if (referral_alert !== undefined) {
                         client.refill_follow_ups = {
                             name: referral_alert.name,
                             alert_index: client.alerts.indexOf(referral_alert),
                             type: "referral"
                         }
                     }
-                    else if(fp_followup_alert !== undefined) {
+                    else if (fp_followup_alert !== undefined) {
                         client.refill_follow_ups = {
                             name: fp_followup_alert.name,
                             alert_index: client.alerts.indexOf(fp_followup_alert),
                             type: "follow-up"
                         }
                     }
-                    else{
+                    else {
                         // find a normal follow-up alert that matches the fp method
-                        var follow_up_alert = client.alerts.find(function(a){
+                        var follow_up_alert = client.alerts.find(function (a) {
                             return follow_up_types.indexOf(a.name) > -1 &&
                                 client.fp_method === alert_name_to_fp_method_map[a.name];
                         });
 
-                        if(follow_up_alert !== undefined)
-                        {
+                        if (follow_up_alert !== undefined) {
                             client.refill_follow_ups = {
                                 name: follow_up_alert.name,
                                 alert_index: client.alerts.indexOf(follow_up_alert),
                                 type: "follow-up"
                             }
                         }
-                        else
-                        {
-                            var refill_alert = client.alerts.find(function(a){
+                        else {
+                            var refill_alert = client.alerts.find(function (a) {
                                 return refill_types.indexOf(a.name) > -1 &&
                                     client.fp_method === alert_name_to_fp_method_map[a.name];
                             });
 
                             if (refill_alert !== undefined) {
                                 client.refill_follow_ups = {
-                                    name:refill_alert.name,
-                                    alert_index:client.alerts.indexOf(refill_alert),
+                                    name: refill_alert.name,
+                                    alert_index: client.alerts.indexOf(refill_alert),
                                     type: "refill"
                                 }
                             }

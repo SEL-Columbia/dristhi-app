@@ -152,12 +152,11 @@ angular.module("smartRegistry.controllers")
 
         $scope.isModalOpen = false;
 
-        $scope.sumIFATablets = function(ifaData) {
+        $scope.sumIFATablets = function (ifaData) {
             var numTablets = 0;
             var milestones = ['ifa1', 'ifa2', 'ifa3']
-            milestones.forEach(function(milestone){
-                if(ifaData[milestone] !== undefined && ifaData[milestone].status === 'done' && ifaData[milestone].data !== undefined)
-                {
+            milestones.forEach(function (milestone) {
+                if (ifaData[milestone] !== undefined && ifaData[milestone].status === 'done' && ifaData[milestone].data !== undefined) {
                     numTablets += ifaData[milestone].data['dose'] || 0;
                 }
             });
