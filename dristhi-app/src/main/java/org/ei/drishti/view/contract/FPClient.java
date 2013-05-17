@@ -32,13 +32,14 @@ public class FPClient {
     private final String complication_date;
     private final String caste;
     private final String economicStatus;
+    private final String fp_method_followup_date;
 
     public FPClient(
             String entity_id, String name, String husband_name, String age, String thayi, String ec_number, String village,
             String fp_method, String side_effects, String complication_date, String num_pregnancies,
             String parity, String num_living_children, String num_stillbirths, String num_abortions,
             String days_due, String due_message, boolean isHighPriority, String family_planning_method_change_date,
-            String photoPath, boolean is_youngest_child_under_two, String youngest_child_age, List<AlertDTO> alerts, String caste, String economicStatus) {
+            String photoPath, boolean is_youngest_child_under_two, String youngest_child_age, List<AlertDTO> alerts, String caste, String economicStatus, String fp_method_followup_date) {
         this.entity_id = entity_id;
         this.name = name;
         this.husband_name = husband_name;
@@ -64,6 +65,7 @@ public class FPClient {
         this.complication_date = complication_date;
         this.caste = caste;
         this.economicStatus = economicStatus;
+        this.fp_method_followup_date = fp_method_followup_date;
     }
 
     public String wifeName() {
