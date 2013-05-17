@@ -103,6 +103,8 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "02/12/13",
                     "economicStatus": "apl",
                     "photo_path": "../../img/woman-placeholder.png",
+                    "placeWhereIUDWasGiven": "phc",
+                    "personWhoInsertedIUD": "lhv",
                     alerts: [
                         {
                             id: "id 3",
@@ -132,6 +134,7 @@ function FakeFPSmartRegistryContext() {
                     "num_abortions": '1',
                     "family_planning_method_change_date": "21/06/12",
                     "photo_path": "../../img/woman-placeholder.png",
+                    "numberOfCondomsSupplied": "20",
                     alerts: [
                         {
                             id: "id 4",
@@ -372,6 +375,53 @@ function FakeFPSmartRegistryContext() {
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
                     "photo_path": "../../img/woman-placeholder.png",
+                    "numberOfCondomsSupplied": "10",
+                    alerts: []
+                },
+                {
+                    "entity_id": "entity 15",
+                    "ec_number": "15",
+                    "fp_method": "ocp",
+                    "husband_name": "Babu",
+                    "village": "bherya",
+                    "name": "Anitha",
+                    "thayi": "48667",
+                    "isHighPriority": false,
+                    "side_effects": "Too skinny",
+                    "days_due": "2013/04/01",
+                    "due_message": "due message 1",
+                    "age": '25',
+                    "num_pregnancies": '0',
+                    "parity": '0',
+                    "num_living_children": '0',
+                    "num_stillbirths": '0',
+                    "num_abortions": '0',
+                    "family_planning_method_change_date": "25/03/13",
+                    "photo_path": "../../img/woman-placeholder.png",
+                    "numberOfOCPDelivered": "1",
+                    alerts: []
+                },
+                {
+                    "entity_id": "entity 16",
+                    "ec_number": "16",
+                    "fp_method": "centchroman",
+                    "husband_name": "Raju",
+                    "village": "bherya",
+                    "name": "Gayathri",
+                    "thayi": "48668",
+                    "isHighPriority": false,
+                    "side_effects": "Does not eat well",
+                    "days_due": "2013/04/02",
+                    "due_message": "due message 2",
+                    "age": '32',
+                    "num_pregnancies": '2',
+                    "parity": '2',
+                    "num_living_children": '2',
+                    "num_stillbirths": '0',
+                    "num_abortions": '0',
+                    "family_planning_method_change_date": "25/04/13",
+                    "photo_path": "../../img/woman-placeholder.png",
+                    "numberOfCentchromanPillsDelivered": "2",
                     alerts: []
                 }
             ]);
