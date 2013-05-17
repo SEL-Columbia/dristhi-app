@@ -40,14 +40,11 @@ public class FPClient {
     private final String numberOfOCPDelivered;
 
     public FPClient(
-            String entity_id, String name, String husband_name, String age, String thayi, String ec_number, String village,
-            String fp_method, String side_effects, String complication_date, String num_pregnancies,
+            String entity_id, String ec_number, String thayi, String name, String husband_name, String age, String village,
+            String fp_method, String family_planning_method_change_date, String side_effects, String complication_date, String placeWhereIUDWasGiven, String personWhoInsertedIUD, String numberOfCondomsSupplied, String numberOfCentchromanPillsDelivered, String numberOfOCPDelivered, String fp_method_followup_date, String caste, String economicStatus, String num_pregnancies,
             String parity, String num_living_children, String num_stillbirths, String num_abortions,
-            String days_due, String due_message, boolean isHighPriority, String family_planning_method_change_date,
-            String photoPath, boolean is_youngest_child_under_two, String youngest_child_age, List<AlertDTO> alerts,
-            String caste, String economicStatus, String fp_method_followup_date, String placeWhereIUDWasGiven,
-            String personWhoInsertedIUD, String numberOfCondomsSupplied, String numberOfCentchromanPillsDelivered,
-            String numberOfOCPDelivered) {
+            boolean is_youngest_child_under_two, String youngest_child_age, String days_due, String due_message, boolean isHighPriority,
+            String photoPath, List<AlertDTO> alerts) {
         this.entity_id = entity_id;
         this.name = name;
         this.husband_name = husband_name;

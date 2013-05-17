@@ -62,16 +62,14 @@ public class FPSmartRegistryController {
                     String thayiCardNumber = mother == null ? "" : mother.thaayiCardNumber();
                     String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
                     List<AlertDTO> alerts = getFPAlertsForEC(ec.caseId());
-                    fpClients.add(new FPClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.age(), thayiCardNumber,
-                            ec.ecNumber(), ec.village(), ec.getDetail("currentMethod"),
-                            ec.getDetail("sideEffects"), ec.getDetail("complicationDate"), ec.getDetail("numberOfPregnancies"),
+                    fpClients.add(new FPClient(ec.caseId(), ec.ecNumber(), thayiCardNumber, ec.wifeName(), ec.husbandName(), ec.age(),
+                            ec.village(), ec.getDetail("currentMethod"),
+                            ec.getDetail("familyPlanningMethodChangeDate"), ec.getDetail("sideEffects"), ec.getDetail("complicationDate"), ec.getDetail("placeWhereIUDWasGiven"), ec.getDetail("personWhoInsertedIUD"), ec.getDetail("numberOfCondomsSupplied"), ec.getDetail("numberOfCentchromanPillsDelivered"), ec.getDetail("numberOfOCPDelivered"), ec.getDetail("fpFollowupDate"), ec.getDetail("caste"), ec.getDetail("economicStatus"), ec.getDetail("numberOfPregnancies"),
                             ec.getDetail("parity"), ec.getDetail("numberOfLivingChildren"),
-                            ec.getDetail("numberOfStillBirths"), ec.getDetail("numberOfAbortions"), null,
-                            null, ec.isHighPriority(), ec.getDetail("familyPlanningMethodChangeDate"),
-                            photoPath, ec.isYoungestChildUnderTwo(), ec.getDetail("youngestChildAge"), alerts,
-                            ec.getDetail("caste"), ec.getDetail("economicStatus"), ec.getDetail("fpFollowupDate"),
-                            ec.getDetail("placeWhereIUDWasGiven"), ec.getDetail("personWhoInsertedIUD"), ec.getDetail("numberOfCondomsSupplied"),
-                            ec.getDetail("numberOfCentchromanPillsDelivered"), ec.getDetail("numberOfOCPDelivered")));
+                            ec.getDetail("numberOfStillBirths"), ec.getDetail("numberOfAbortions"), ec.isYoungestChildUnderTwo(), ec.getDetail("youngestChildAge"), null,
+                            null, ec.isHighPriority(),
+                            photoPath, alerts
+                    ));
                 }
                 sortByName(fpClients);
                 return new Gson().toJson(fpClients);
