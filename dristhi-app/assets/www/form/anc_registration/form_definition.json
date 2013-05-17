@@ -7,6 +7,10 @@
                 "name": "id"
             },
             {
+                "name": "motherId",
+                "source": "eligible_couple.mother.id"
+            },
+            {
                 "name": "registrationDate",
                 "bind": "/model/instance/ANC_Registration_EngKan/reg_date",
                 "source": "eligible_couple.mother.registrationDate"
@@ -15,10 +19,6 @@
                 "name": "registrationPlace",
                 "bind": "/model/instance/ANC_Registration_EngKan/reg_place",
                 "source": "eligible_couple.mother.registrationPlace"
-            },
-            {
-                "name": "phoneNumber",
-                "bind": "/model/instance/ANC_Registration_EngKan/case_ec_phone_no"
             },
             {
                 "name": "wifeName",

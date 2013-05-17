@@ -14,7 +14,7 @@
         <span lang="" class=" active">Registration Date &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCBE;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;</span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/ANC_Registration_EngKan/reg_date" required="required"
-               data-constraint="{u'default': u'.&lt;= /ANC_Registration_EngKan/today '}" data-type-xml="date"/>
+               data-constraint=".&lt;= /ANC_Registration_EngKan/today " data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
@@ -85,15 +85,15 @@
         <span lang="" class=" active">LMP</span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/ANC_Registration_EngKan/lmp_date" required="required"
-               data-constraint="{u'default': u'.&lt;= /ANC_Registration_EngKan/today '}" data-type-xml="date"/>
+               data-constraint=".&lt;= /ANC_Registration_EngKan/today " data-type-xml="date"/>
     </label>
     <fieldset class="trigger " name="/ANC_Registration_EngKan/edd_note">
         <span lang="" class=" active">Expected Date of Delivery is:
-            <span class="jr-output" data-value=" /ANC_Registration_EngKan/edd ">
+            <span class="jr-output" data-value=" /ANC_Registration_EngKan/edd_formatted ">
             </span>
             &#xCA8;&#xCBF;&#xCB0;&#xCC0;&#xC95;&#xCCD;&#xCB7;&#xCBF;&#xCA4;&#xCBE; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;
             &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;:
-            <span class="jr-output" data-value=" /ANC_Registration_EngKan/edd ">
+            <span class="jr-output" data-value=" /ANC_Registration_EngKan/edd_formatted ">
             </span>
         </span>
     </fieldset>
@@ -148,7 +148,6 @@
                     &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCB5;&#xCBE;&#xCB8;&#xCCD;&#xCA5;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
                     &#xCA4;&#xCCA;&#xCA1;&#xC95;&#xCC1;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCBE;?
                 </span>
-                <span lang="" class="jr-hint active">TODO: Pull still_birth and abortion history from case.</span>
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
@@ -385,8 +384,8 @@
         <span lang="" class=" active">Height (in cms) &#xC8E;&#xCA4;&#xCCD;&#xCA4;&#xCB0; (&#xCB8;&#xCC7;.&#xCAE;&#xCC0;
             &#xCA8;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)
         </span>
-        <input autocomplete="off" type="number" name="/ANC_Registration_EngKan/height"
-               data-constraint=".&gt;=50 and .&lt;=200" data-type-xml="decimal" step="any"/>
+        <input autocomplete="off" type="number" name="/ANC_Registration_EngKan/height" data-type-xml="decimal"
+               step="any"/>
     </label>
     <label class="">
         <span lang="" class=" active">Weight at start of pregnancy (in kgs) &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCA7;&#xCBE;&#xCB0;&#xCA3;&#xCC6;&#xCAF;
@@ -394,7 +393,7 @@
             &#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)
         </span>
         <input autocomplete="off" type="number" name="/ANC_Registration_EngKan/weight_startofpregnancy"
-               data-constraint=".&gt;=20 and .&lt;150" data-type-xml="decimal" step="any"/>
+               data-type-xml="decimal" step="any"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
@@ -503,6 +502,10 @@
         <label class="">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/edd"
                    data-calculate="date( /ANC_Registration_EngKan/lmp_date +280)" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/edd_formatted"
+                   data-calculate="format-date( /ANC_Registration_EngKan/edd , '%Y-%n-%e')" data-type-xml="string"/>
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/w_rh_negative"
