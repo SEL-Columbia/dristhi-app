@@ -22,18 +22,18 @@ import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_COLUMN
 import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_NAME;
 
 public class MotherRepository extends DrishtiRepository {
-    private static final String MOTHER_SQL = "CREATE TABLE mother(id VARCHAR PRIMARY KEY, ecCaseId VARCHAR, thaayiCardNumber VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR, isClosed VARCHAR)";
+    private static final String MOTHER_SQL = "CREATE TABLE mother(id VARCHAR PRIMARY KEY, ecCaseId VARCHAR, thayiCardNumber VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR, isClosed VARCHAR)";
     private static final String MOTHER_TYPE_INDEX_SQL = "CREATE INDEX mother_type_index ON mother(type);";
     private static final String MOTHER_REFERENCE_DATE_INDEX_SQL = "CREATE INDEX mother_referenceDate_index ON mother(referenceDate);";
     public static final String MOTHER_TABLE_NAME = "mother";
     private static final String CASE_ID_COLUMN = "id";
     private static final String EC_CASEID_COLUMN = "ecCaseId";
-    private static final String THAAYI_CARD_COLUMN = "thaayiCardNumber";
+    private static final String THAYI_CARD_NUMBER = "thayiCardNumber";
     private static final String TYPE_COLUMN = "type";
     private static final String REF_DATE_COLUMN = "referenceDate";
     private static final String DETAILS_COLUMN = "details";
     private static final String IS_CLOSED_COLUMN = "isClosed";
-    public static final String[] MOTHER_TABLE_COLUMNS = {CASE_ID_COLUMN, EC_CASEID_COLUMN, THAAYI_CARD_COLUMN, TYPE_COLUMN, REF_DATE_COLUMN, DETAILS_COLUMN, IS_CLOSED_COLUMN};
+    public static final String[] MOTHER_TABLE_COLUMNS = {CASE_ID_COLUMN, EC_CASEID_COLUMN, THAYI_CARD_NUMBER, TYPE_COLUMN, REF_DATE_COLUMN, DETAILS_COLUMN, IS_CLOSED_COLUMN};
 
     private static final String TYPE_ANC = "ANC";
     private static final String TYPE_PNC = "PNC";
@@ -162,7 +162,7 @@ public class MotherRepository extends DrishtiRepository {
         ContentValues values = new ContentValues();
         values.put(CASE_ID_COLUMN, mother.caseId());
         values.put(EC_CASEID_COLUMN, mother.ecCaseId());
-        values.put(THAAYI_CARD_COLUMN, mother.thaayiCardNumber());
+        values.put(THAYI_CARD_NUMBER, mother.thaayiCardNumber());
         values.put(TYPE_COLUMN, type);
         values.put(REF_DATE_COLUMN, mother.referenceDate());
         values.put(DETAILS_COLUMN, new Gson().toJson(mother.details()));

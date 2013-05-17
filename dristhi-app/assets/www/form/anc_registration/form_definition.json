@@ -62,9 +62,9 @@
                 "source": "eligible_couple.mother.ashaPhoneNumber"
             },
             {
-                "name": "lmpDate",
+                "name": "referenceDate",
                 "bind": "/model/instance/ANC_Registration_EngKan/lmp_date",
-                "source": "eligible_couple.mother.lmpDate"
+                "source": "eligible_couple.mother.referenceDate"
             },
             {
                 "name": "edd",
@@ -166,11 +166,23 @@
             },
             {
                 "name": "isHighRisk",
-                "bind": "/model/instance/ANC_Registration_EngKan/is_high_risk"
+                "bind": "/model/instance/ANC_Registration_EngKan/is_high_risk",
+                "source": "eligible_couple.mother.isHighRisk"
             },
             {
                 "name": "submissionDate",
-                "bind": "/model/instance/ANC_Registration_EngKan/today"
+                "bind": "/model/instance/ANC_Registration_EngKan/today",
+                "source": "eligible_couple.mother.submissionDate"
+            },
+            {
+                "name": "type",
+                "value": "ANC",
+                "source": "eligible_couple.mother.type"
+            },
+            {
+                "name": "isClosed",
+                "value": "false",
+                "source": "eligible_couple.mother.isClosed"
             }
         ]
     }
