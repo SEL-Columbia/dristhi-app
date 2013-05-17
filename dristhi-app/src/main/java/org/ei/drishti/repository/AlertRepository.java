@@ -128,8 +128,8 @@ public class AlertRepository extends DrishtiRepository {
 
     public List<Alert> findByECIdAndAlertNames(String entityId, List<String> names) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.rawQuery(format("SELECT * FROM %s WHERE %s = ? AND %s = ? AND %s IN (%s)", ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN, ALERTS_STATUS_COLUMN,ALERTS_VISIT_CODE_COLUMN,
-                insertPlaceholdersForInClause(names.size())), getSelectionArgs(entityId, names));
+        Cursor cursor = database.rawQuery(format("SELECT * FROM %s WHERE %s = ? AND %s = ? AND %s IN (%s) ORDER BY DATE(%s)", ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN, ALERTS_STATUS_COLUMN,ALERTS_VISIT_CODE_COLUMN,
+                insertPlaceholdersForInClause(names.size()), ALERTS_STARTDATE_COLUMN), getSelectionArgs(entityId, names));
         return readAllAlerts(cursor);
     }
 
