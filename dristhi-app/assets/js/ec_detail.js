@@ -44,9 +44,8 @@ function ECBridge() {
         getCurrentEC: function () {
             return JSON.parse(ecContext.get());
         },
-
         delegateToCommCare: function (formId, caseId) {
-            ecContext.startCommCare(formId, caseId);
+            ecContext.startFormActivity(formId, caseId);
         },
         markAsCompleted: function (caseId, visitCode) {
             ecContext.markTodoAsCompleted(caseId, visitCode);
@@ -59,8 +58,8 @@ function ECBridge() {
 
 function FakeECContext() {
     return {
-        startCommCare: function (formId, caseId) {
-            alert("Start CommCare for case " + caseId + " with form " + formId);
+        startFormActivity: function (formId, caseId) {
+            alert("Start Form for entity " + caseId + " with form " + formId);
         },
         markTodoAsCompleted: function (caseId, visitCode) {
             console.log("markAsCompleted " + caseId + " " + visitCode);
