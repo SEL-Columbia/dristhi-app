@@ -11,6 +11,7 @@ import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.TimelineEventComparator;
 import org.ei.drishti.view.activity.CameraLaunchActivity;
+import org.ei.drishti.view.activity.FormActivity;
 import org.ei.drishti.view.contract.*;
 import org.joda.time.LocalDate;
 import org.ocpsoft.pretty.time.Duration;
@@ -22,8 +23,7 @@ import java.util.List;
 import java.util.Locale;
 
 import static java.lang.Math.min;
-import static org.ei.drishti.AllConstants.ENTITY_ID;
-import static org.ei.drishti.AllConstants.WOMAN_TYPE;
+import static org.ei.drishti.AllConstants.*;
 
 public class EligibleCoupleDetailController {
     private final Context context;
@@ -60,6 +60,13 @@ public class EligibleCoupleDetailController {
 
     public void markTodoAsCompleted(String caseId, String visitCode) {
         allAlerts.markAsCompleted(caseId, visitCode, LocalDate.now().toString());
+    }
+
+    public void startFormActivity(String formName, String entityId) {
+        Intent intent = new Intent(context, FormActivity.class);
+        intent.putExtra(FORM_NAME_PARAM, formName);
+        intent.putExtra(ENTITY_ID_PARAM, entityId);
+        context.startActivity(intent);
     }
 
     public void takePhoto() {
