@@ -68,7 +68,10 @@ public class FPSmartRegistryController {
                             ec.getDetail("parity"), ec.getDetail("numberOfLivingChildren"),
                             ec.getDetail("numberOfStillBirths"), ec.getDetail("numberOfAbortions"), null,
                             null, ec.isHighPriority(), ec.getDetail("familyPlanningMethodChangeDate"),
-                            photoPath, ec.isYoungestChildUnderTwo(), ec.getDetail("youngestChildAge"), alerts, ec.getDetail("caste"), ec.getDetail("economicStatus"), ec.getDetail("fpFollowupDate")));
+                            photoPath, ec.isYoungestChildUnderTwo(), ec.getDetail("youngestChildAge"), alerts,
+                            ec.getDetail("caste"), ec.getDetail("economicStatus"), ec.getDetail("fpFollowupDate"),
+                            ec.getDetail("placeWhereIUDWasGiven"), ec.getDetail("personWhoInsertedIUD"), ec.getDetail("numberOfCondomsSupplied"),
+                            ec.getDetail("numberOfCentchromanPillsDelivered"), ec.getDetail("numberOfOCPDelivered")));
                 }
                 sortByName(fpClients);
                 return new Gson().toJson(fpClients);

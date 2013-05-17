@@ -23,11 +23,11 @@
                 "bind": "/model/instance/Family_Planning_Change_Method_EngKan/date_familyplanningstart"
             },
             {
-                "name": "iudPlace",
+                "name": "placeWhereIUDWasGiven",
                 "bind": "/model/instance/Family_Planning_Change_Method_EngKan/iud_place"
             },
             {
-                "name": "iudPerson",
+                "name": "personWhoInsertedIUD",
                 "bind": "/model/instance/Family_Planning_Change_Method_EngKan/iud_person"
             },
             {

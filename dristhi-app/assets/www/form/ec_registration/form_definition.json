@@ -149,11 +149,11 @@
                 "bind": "/model/instance/EC_Registration_EngKan/familyplanning_method_other"
             },
             {
-                "name": "iudPlace",
+                "name": "placeWhereIUDWasGiven",
                 "bind": "/model/instance/EC_Registration_EngKan/iud_place"
             },
             {
-                "name": "iudPerson",
+                "name": "personWhoInsertedIUD",
                 "bind": "/model/instance/EC_Registration_EngKan/iud_person"
             },
             {
