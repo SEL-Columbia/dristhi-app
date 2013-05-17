@@ -7,7 +7,6 @@
             <today/>
             <reg_date/>
             <reg_place/>
-            <case_ec_phone_no/>
             <case_woman_name/>
             <woman_name/>
             <case_num_pregnancies/>
@@ -19,6 +18,7 @@
             <asha_phone_number/>
             <lmp_date/>
             <edd/>
+            <edd_formatted/>
             <edd_note/>
             <linked_facility_delivery/>
             <name_facility/>
