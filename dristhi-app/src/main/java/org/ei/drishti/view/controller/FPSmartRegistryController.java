@@ -64,7 +64,9 @@ public class FPSmartRegistryController {
                     List<AlertDTO> alerts = getFPAlertsForEC(ec.caseId());
                     fpClients.add(new FPClient(ec.caseId(), ec.ecNumber(), thayiCardNumber, ec.wifeName(), ec.husbandName(), ec.age(),
                             ec.village(), ec.getDetail("currentMethod"),
-                            ec.getDetail("familyPlanningMethodChangeDate"), ec.getDetail("sideEffects"), ec.getDetail("complicationDate"), ec.getDetail("placeWhereIUDWasGiven"), ec.getDetail("personWhoInsertedIUD"), ec.getDetail("numberOfCondomsSupplied"), ec.getDetail("numberOfCentchromanPillsDelivered"), ec.getDetail("numberOfOCPDelivered"), ec.getDetail("fpFollowupDate"), ec.getDetail("caste"), ec.getDetail("economicStatus"), ec.getDetail("numberOfPregnancies"),
+                            ec.getDetail("familyPlanningMethodChangeDate"), ec.getDetail("sideEffects"), ec.getDetail("complicationDate"),
+                            ec.getDetail("iudPlace"), ec.getDetail("iudPerson"), ec.getDetail("numberOfCondomsSupplied"), ec.getDetail("numberOfCentchromanPillsDelivered"),
+                            ec.getDetail("numberOfOCPDelivered"), ec.getDetail("fpFollowupDate"), ec.getDetail("caste"), ec.getDetail("economicStatus"), ec.getDetail("numberOfPregnancies"),
                             ec.getDetail("parity"), ec.getDetail("numberOfLivingChildren"),
                             ec.getDetail("numberOfStillBirths"), ec.getDetail("numberOfAbortions"), ec.isYoungestChildUnderTwo(), ec.getDetail("youngestChildAge"), null,
                             null, ec.isHighPriority(),

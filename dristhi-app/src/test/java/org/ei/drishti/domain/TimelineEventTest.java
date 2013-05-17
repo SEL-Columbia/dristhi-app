@@ -159,7 +159,7 @@ public class TimelineEventTest {
                 .put("currentMethod", "condom")
                 .put("familyPlanningMethodChangeDate", "2012-03-03")
                 .put("fpUpdate", "renew_fp_product")
-                .put("numberOfCondomsDelivered", "30")
+                .put("numberOfCondomsSupplied", "30")
                 .map();
 
         TimelineEvent timelineEvent = forFPCondomRenew("CASE A", details);

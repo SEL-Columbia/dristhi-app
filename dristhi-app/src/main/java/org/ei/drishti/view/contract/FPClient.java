@@ -33,15 +33,15 @@ public class FPClient {
     private final String caste;
     private final String economicStatus;
     private final String fp_method_followup_date;
-    private final String placeWhereIUDWasGiven;
-    private final String personWhoInsertedIUD;
+    private final String iudPlace;
+    private final String iudPerson;
     private final String numberOfCondomsSupplied;
     private final String numberOfCentchromanPillsDelivered;
     private final String numberOfOCPDelivered;
 
     public FPClient(
             String entity_id, String ec_number, String thayi, String name, String husband_name, String age, String village,
-            String fp_method, String family_planning_method_change_date, String side_effects, String complication_date, String placeWhereIUDWasGiven, String personWhoInsertedIUD, String numberOfCondomsSupplied, String numberOfCentchromanPillsDelivered, String numberOfOCPDelivered, String fp_method_followup_date, String caste, String economicStatus, String num_pregnancies,
+            String fp_method, String family_planning_method_change_date, String side_effects, String complication_date, String iudPlace, String iudPerson, String numberOfCondomsSupplied, String numberOfCentchromanPillsDelivered, String numberOfOCPDelivered, String fp_method_followup_date, String caste, String economicStatus, String num_pregnancies,
             String parity, String num_living_children, String num_stillbirths, String num_abortions,
             boolean is_youngest_child_under_two, String youngest_child_age, String days_due, String due_message, boolean isHighPriority,
             String photoPath, List<AlertDTO> alerts) {
@@ -71,8 +71,8 @@ public class FPClient {
         this.caste = caste;
         this.economicStatus = economicStatus;
         this.fp_method_followup_date = fp_method_followup_date;
-        this.placeWhereIUDWasGiven = placeWhereIUDWasGiven;
-        this.personWhoInsertedIUD = personWhoInsertedIUD;
+        this.iudPlace = iudPlace;
+        this.iudPerson = iudPerson;
         this.numberOfCondomsSupplied = numberOfCondomsSupplied;
         this.numberOfCentchromanPillsDelivered = numberOfCentchromanPillsDelivered;
         this.numberOfOCPDelivered = numberOfOCPDelivered;

@@ -84,7 +84,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
                 .put("currentMethod", "condom")
                 .put("familyPlanningMethodChangeDate", "2012-03-03")
                 .put("fpUpdate", "renew_fp_product")
-                .put("numberOfCondomsDelivered", "30")
+                .put("numberOfCondomsSupplied", "30")
                 .map();
 
         repository.updateDetails("CASE X", detailsToBeUpdated);

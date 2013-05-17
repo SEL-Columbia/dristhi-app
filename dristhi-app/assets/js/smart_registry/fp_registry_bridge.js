@@ -103,8 +103,8 @@ function FakeFPSmartRegistryContext() {
                     "family_planning_method_change_date": "02/12/13",
                     "economicStatus": "apl",
                     "photo_path": "../../img/woman-placeholder.png",
-                    "placeWhereIUDWasGiven": "phc",
-                    "personWhoInsertedIUD": "lhv",
+                    "iudPlace": "phc",
+                    "iudPerson": "lhv",
                     alerts: [
                         {
                             id: "id 3",

@@ -102,13 +102,13 @@ public class FPSmartRegistryControllerTest {
     public void shouldCreateFPClientByMappingAllRequiredFieldsFromEC() throws Exception {
         EligibleCouple ec = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC",
                 withDetails("22", "condom", "sideEffects 1", "2011-05-05", "2", "2", "1", "1", "0", false, "2013-01-02", "yes",
-                        "3", "sc", "bpl", "2013-03-04", "placeWhereIUDWasGiven", "personWhoInsertedIUD", "numberOfCondomsSupplied", "numberOfCentchromanPillsDelivered", "numberOfOCPDelivered"))
+                        "3", "sc", "bpl", "2013-03-04", "iudPlace", "iudPerson", "numberOfCondomsSupplied", "numberOfCentchromanPillsDelivered", "numberOfOCPDelivered"))
                 .withPhotoPath("new photo path");
         Mother mother = new Mother("MOTHER Case 1", "EC Case 1", "12345", "2012-12-12");
         when(allEligibleCouples.all()).thenReturn(asList(ec));
         when(allBeneficiaries.findMotherByECCaseId("EC Case 1")).thenReturn(mother);
         FPClient expectedFPClient = new FPClient("EC Case 1", "EC Number 1", "12345", "Woman A", "Husband A", "22", "Bherya", "condom",
-                "2013-01-02", "sideEffects 1", "2011-05-05", "placeWhereIUDWasGiven", "personWhoInsertedIUD", "numberOfCondomsSupplied", "numberOfCentchromanPillsDelivered", "numberOfOCPDelivered", "2013-03-04", "sc", "bpl", "2", "2", "1", "1", "0", true, "3", null, null, false, "new photo path",
+                "2013-01-02", "sideEffects 1", "2011-05-05", "iudPlace", "iudPerson", "numberOfCondomsSupplied", "numberOfCentchromanPillsDelivered", "numberOfOCPDelivered", "2013-03-04", "sc", "bpl", "2", "2", "1", "1", "0", true, "3", null, null, false, "new photo path",
                 Collections.<AlertDTO>emptyList()
         );
 
@@ -154,7 +154,7 @@ public class FPSmartRegistryControllerTest {
                                             String parity, String numberOfLivingChildren, String numberOfStillBirths, String numberOfAbortions,
                                             boolean isHighPriority, String familyPlanningMethodChangeDate, String isYoungestChildUnderTwo,
                                             String youngestChildAge, String caste, String economicStatus, String fpFollowupDate,
-                                            String placeWhereIUDWasGiven, String personWhoInsertedIUD, String numberOfCondomsSupplied, String numberOfCentchromanPillsDelivered,
+                                            String iudPlace, String iudPerson, String numberOfCondomsSupplied, String numberOfCentchromanPillsDelivered,
                                             String numberOfOCPDelivered) {
         return create("wifeAge", wifeAge)
                 .put("currentMethod", currentMethod)
@@ -172,8 +172,8 @@ public class FPSmartRegistryControllerTest {
                 .put("caste", caste)
                 .put("economicStatus", economicStatus)
                 .put("fpFollowupDate", fpFollowupDate)
-                .put("placeWhereIUDWasGiven", placeWhereIUDWasGiven)
-                .put("personWhoInsertedIUD", personWhoInsertedIUD)
+                .put("iudPlace", iudPlace)
+                .put("iudPerson", iudPerson)
                 .put("numberOfCondomsSupplied", numberOfCondomsSupplied)
                 .put("numberOfCentchromanPillsDelivered", numberOfCentchromanPillsDelivered)
                 .put("numberOfOCPDelivered", numberOfOCPDelivered)

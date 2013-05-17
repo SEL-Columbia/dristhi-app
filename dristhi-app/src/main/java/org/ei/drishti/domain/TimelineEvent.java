@@ -95,7 +95,7 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forFPCondomRenew(String caseId, Map<String, String> details) {
-        String detailString = new DetailBuilder(details).withNumberOfCondomsDelivered("numberOfCondomsDelivered").value();
+        String detailString = new DetailBuilder(details).withNumberOfCondomsSupplied("numberOfCondomsSupplied").value();
 
         return new TimelineEvent(caseId, "FPRENEW", LocalDate.parse(details.get("familyPlanningMethodChangeDate")), "FP Renewed", detailString, null);
     }
@@ -227,9 +227,9 @@ public class TimelineEvent {
             return this;
         }
 
-        public DetailBuilder withNumberOfCondomsDelivered(String numberOfCondomsDelivered) {
-            String condomsGiven = "Condoms given: " + details.get(numberOfCondomsDelivered) + "<br />";
-            this.stringBuilder.append(checkEmptyField(condomsGiven, details.get(numberOfCondomsDelivered)));
+        public DetailBuilder withNumberOfCondomsSupplied(String numberOfCondomsSupplied) {
+            String condomsGiven = "Condoms given: " + details.get(numberOfCondomsSupplied) + "<br />";
+            this.stringBuilder.append(checkEmptyField(condomsGiven, details.get(numberOfCondomsSupplied)));
             return this;
         }
 
