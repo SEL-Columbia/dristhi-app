@@ -54,6 +54,7 @@ public class Context {
     private FPComplicationsHandler fpComplicationsHandler;
     private FPChangeHandler fpChangeHandler;
     private RenewFPProductHandler renewFPProductHandler;
+    private ECCloseHandler ecCloseHandler;
 
     protected Context() {
     }
@@ -111,7 +112,8 @@ public class Context {
     public FormSubmissionRouter formSubmissionRouter() {
         initRepository();
         if (formSubmissionRouter == null) {
-            formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(), fpComplicationsHandler(), fpChangeHandler(), renewFPProductHandler());
+            formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(),
+                    fpComplicationsHandler(), fpChangeHandler(), renewFPProductHandler(), ecCloseHandler());
         }
         return formSubmissionRouter;
     }
@@ -142,6 +144,13 @@ public class Context {
             renewFPProductHandler = new RenewFPProductHandler(eligibleCoupleService());
         }
         return renewFPProductHandler;
+    }
+
+    private ECCloseHandler ecCloseHandler() {
+        if (ecCloseHandler == null) {
+            ecCloseHandler = new ECCloseHandler(eligibleCoupleService());
+        }
+        return ecCloseHandler;
     }
 
     private ZiggyService ziggyService() {

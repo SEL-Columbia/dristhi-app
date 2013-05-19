@@ -53,4 +53,8 @@ public class EligibleCoupleService {
     public void renewFPProduct(FormSubmission submission) {
 
     }
+
+    public void closeEligibleCouple(FormSubmission submission) {
+        repository.close(submission.entityId());
+    }
 }

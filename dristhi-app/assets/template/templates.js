@@ -1138,7 +1138,11 @@ function program33(depth0,data) {
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "\">Register as ANC</div>\n</div>\n\n<div id=\"content\" class=\"content-detail\">\n    <div class=\"status-bar\">\n        <span class=\"left-text\">EC</span>\n        ";
+    + "\">Register as ANC</div>\n    <div class=\"modal-row\" data-form=\"ec_close\" data-caseid=\"";
+  if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
+  else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  buffer += escapeExpression(stack2)
+    + "\">Close EC</div>\n</div>\n\n<div id=\"content\" class=\"content-detail\">\n    <div class=\"status-bar\">\n        <span class=\"left-text\">EC</span>\n        ";
   options = {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data};
   stack2 = ((stack1 = helpers.ifFalse),stack1 ? stack1.call(depth0, depth0.isHighPriority, options) : helperMissing.call(depth0, "ifFalse", depth0.isHighPriority, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }

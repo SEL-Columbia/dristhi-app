@@ -41,10 +41,11 @@ public class AllConstants {
     public static final String FORM_SUBMISSION_ROUTER = "formSubmissionRouter";
 
     public static final String REPOSITORY = "formDataRepositoryContext";
-    public static final String EC_REGISTRATION = "ec_registration";
-    public static final String FP_COMPLICATIONS = "fp_complications";
-    public static final String FP_CHANGE = "fp_change";
-    public static final String RENEW_FP_PRODUCT = "renew_fp_product";
+    public static final String EC_REGISTRATION_FORM_NAME = "ec_registration";
+    public static final String FP_COMPLICATIONS_FORM_NAME = "fp_complications";
+    public static final String FP_CHANGE_FORM_NAME = "fp_change";
+    public static final String RENEW_FP_PRODUCT_FORM_NAME = "renew_fp_product";
+    public static final String EC_CLOSE_FORM_NAME = "ec_close";
     public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
     public static final String FP_UPDATE_FIELD_NAME = "fpUpdate";
     public static final String NEW_FP_METHOD_FIELD_NAME = "newMethod";
