@@ -195,15 +195,16 @@
                     &#xCAE;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;&#xCB5;&#xCBF;&#xC95;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                     &#xC96;&#xC9A;&#xCBF;&#xCA4;&#xCAA;&#xCA1;&#xCBF;&#xCB8;&#xCBF;?
                 </span>
+                <span class="required">*</span>
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/confirm_ec_close" value="yes"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/confirm_ec_close" value="no"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
             </label>
         </fieldset>
@@ -216,7 +217,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/EC_Close_EngKan/formhub/uuid"
-                   data-calculate="'8485c32e77184817870da1a3c827131c'" data-type-xml="string"/>
+                   data-calculate="'5c5fb680ffd24df1b16ef79dacfa7f50'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
