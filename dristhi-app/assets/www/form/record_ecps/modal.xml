@@ -1,0 +1,16 @@
+<model>
+    <instance xmlns="http://www.w3.org/2002/xforms">
+        <Family_Planning_ECPs id="Family_Planning_ECPs">
+            <formhub>
+                <uuid/>
+            </formhub>
+            <today/>
+            <ecp_given/>
+            <ecp_date/>
+            <ecp_message/>
+            <meta>
+                <instanceID/>
+            </meta>
+        </Family_Planning_ECPs>
+    </instance>
+</model>
