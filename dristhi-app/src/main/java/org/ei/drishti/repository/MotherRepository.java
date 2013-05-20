@@ -39,12 +39,10 @@ public class MotherRepository extends DrishtiRepository {
     private static final String TYPE_PNC = "PNC";
     private static final String NOT_CLOSED = "false";
 
-    private ChildRepository childRepository;
     private TimelineEventRepository timelineEventRepository;
     private AlertRepository alertRepository;
 
-    public MotherRepository(ChildRepository childRepository, TimelineEventRepository timelineEventRepository, AlertRepository alertRepository) {
-        this.childRepository = childRepository;
+    public MotherRepository(TimelineEventRepository timelineEventRepository, AlertRepository alertRepository) {
         this.timelineEventRepository = timelineEventRepository;
         this.alertRepository = alertRepository;
     }
@@ -146,7 +144,6 @@ public class MotherRepository extends DrishtiRepository {
     }
 
     public void close(String caseId) {
-        childRepository.closeAllCasesForMother(caseId);
         alertRepository.deleteAllAlertsForCase(caseId);
         timelineEventRepository.deleteAllTimelineEventsForCase(caseId);
         markAsClosed(caseId);

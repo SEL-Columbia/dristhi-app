@@ -88,12 +88,6 @@ public class ChildRepository extends DrishtiRepository {
         markAsClosed(caseId);
     }
 
-    public void closeAllCasesForMother(String motherCaseId) {
-        for (Child child : findByMotherCaseId(motherCaseId)) {
-            close(child.caseId());
-        }
-    }
-
     private void markAsClosed(String caseId) {
         ContentValues values = new ContentValues();
         values.put(IS_CLOSED_COLUMN, TRUE.toString());

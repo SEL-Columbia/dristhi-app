@@ -269,7 +269,7 @@ public class Context {
 
     private MotherRepository motherRepository() {
         if (motherRepository == null) {
-            motherRepository = new MotherRepository(childRepository(), timelineEventRepository(), alertRepository());
+            motherRepository = new MotherRepository(timelineEventRepository(), alertRepository());
         }
         return motherRepository;
     }

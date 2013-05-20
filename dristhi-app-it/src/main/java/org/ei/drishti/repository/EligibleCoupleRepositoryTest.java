@@ -29,7 +29,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         alertRepository = new AlertRepository();
         timelineEventRepository = new TimelineEventRepository();
         childRepository = new ChildRepository(timelineEventRepository, alertRepository);
-        motherRepository = new MotherRepository(childRepository, timelineEventRepository, alertRepository);
+        motherRepository = new MotherRepository(timelineEventRepository, alertRepository);
         repository = new EligibleCoupleRepository(motherRepository, timelineEventRepository, alertRepository);
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
         new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, alertRepository,

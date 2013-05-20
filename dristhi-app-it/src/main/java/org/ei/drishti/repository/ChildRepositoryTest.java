@@ -106,23 +106,6 @@ public class ChildRepositoryTest extends AndroidTestCase {
         assertEquals(asList(TimelineEvent.forChildBirthInChildProfile("CASE B", "2012-06-10", new HashMap<String, String>())), timelineEventRepository.allFor("CASE B"));
     }
 
-    public void testShouldDeleteAllChildrenAndTheirDependentEntitiesForAGivenMother() throws Exception {
-        Child firstChild = new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS);
-        Child secondChild = new Child("CASE B", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS);
-        repository.add(firstChild);
-        repository.add(secondChild);
-        repository.add(new Child("CASE C", "CASE Y", "TC 2", "2012-06-09", "female", EXTRA_DETAILS));
-
-        repository.closeAllCasesForMother("CASE X");
-
-        assertEquals(asList(new Child("CASE C", "CASE Y", "TC 2", "2012-06-09", "female", EXTRA_DETAILS)), repository.all());
-        assertEquals(firstChild.setIsClosed(true), repository.find(firstChild.caseId()));
-        assertEquals(secondChild.setIsClosed(true), repository.find(secondChild.caseId()));
-        assertEquals(new ArrayList<TimelineEvent>(), timelineEventRepository.allFor("CASE A"));
-        assertEquals(new ArrayList<TimelineEvent>(), timelineEventRepository.allFor("CASE B"));
-        assertEquals(asList(TimelineEvent.forChildBirthInChildProfile("CASE C", "2012-06-09", new HashMap<String, String>())), timelineEventRepository.allFor("CASE C"));
-    }
-
     public void testShouldUpdateMotherDetails() throws Exception {
         Map<String, String> details = mapOf("some-key", "some-value");
         Child child = new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", details);

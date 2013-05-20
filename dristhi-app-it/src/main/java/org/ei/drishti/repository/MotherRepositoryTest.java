@@ -18,7 +18,6 @@ import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class MotherRepositoryTest extends AndroidTestCase {
     private MotherRepository repository;
-    private ChildRepository childRepository;
     private TimelineEventRepository timelineEventRepository;
     private AlertRepository alertRepository;
     private EligibleCoupleRepository eligibleCoupleRepository;
@@ -29,14 +28,13 @@ public class MotherRepositoryTest extends AndroidTestCase {
         today = DateUtil.today();
         timelineEventRepository = new TimelineEventRepository();
         alertRepository = new AlertRepository();
-        childRepository = new ChildRepository(timelineEventRepository, alertRepository);
 
-        repository = new MotherRepository(childRepository, timelineEventRepository, alertRepository);
+        repository = new MotherRepository(timelineEventRepository, alertRepository);
 
         eligibleCoupleRepository = new EligibleCoupleRepository(repository, timelineEventRepository, alertRepository);
 
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
-        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, childRepository, timelineEventRepository, alertRepository, eligibleCoupleRepository);
+        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, timelineEventRepository, alertRepository, eligibleCoupleRepository);
     }
 
     public void testShouldInsertMother() throws Exception {
@@ -192,29 +190,19 @@ public class MotherRepositoryTest extends AndroidTestCase {
         assertEquals(asList(new Alert("CASE Y", "Theresa 2", "Husband 2", "bherya", "ANC 1", "TC 2", AlertPriority.normal, "2012-01-01", "2012-01-11", open)), alertRepository.allAlerts());
     }
 
-    public void testShouldCloseChildrenAndTheirEntitiesWhenMotherIsClosed() throws Exception {
+    public void testShouldRemoveAllTimelineEventsWhenMotherIsClosed() throws Exception {
         Mother mother1 = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
         Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
 
         repository.add(mother1);
-        Child femaleChild = new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", new HashMap<String, String>());
-        Child maleChild = new Child("CASE B", "CASE X", "TC 1", "2012-06-09", "male", new HashMap<String, String>());
-        childRepository.add(femaleChild);
-        childRepository.add(maleChild);
-
         repository.add(mother2);
-        childRepository.add(new Child("CASE C", "CASE Y", "TC 2", "2012-06-09", "female", new HashMap<String, String>()));
 
         repository.close(mother1.caseId());
 
         assertEquals(asList(mother2), repository.allANCs());
-        assertEquals(femaleChild.setIsClosed(true), childRepository.find("CASE A"));
-        assertEquals(maleChild.setIsClosed(true), childRepository.find("CASE B"));
-        assertNotNull(childRepository.find("CASE C"));
 
         assertTrue(timelineEventRepository.allFor("CASE A").isEmpty());
         assertTrue(timelineEventRepository.allFor("CASE B").isEmpty());
-        assertEquals(1, timelineEventRepository.allFor("CASE C").size());
     }
 
     public void testShouldCloseAllMothersForEC() throws Exception {
