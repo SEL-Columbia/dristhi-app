@@ -1,7 +1,7 @@
 <div id="method" class="span4 line-right full-height span-no-margin width-without-margins span-content">
     <div class="row-fluid full-height">
         <div class="span8 full-height">
-            <span class="text-bold">{{client.fp_method}}</span>
+            <span class="text-bold">{{client.fp_method | humanize}}</span>
             <br/>
             <span>{{client.family_planning_method_change_date | date:'dd/MM/yy'}}</span>
             <br/>
