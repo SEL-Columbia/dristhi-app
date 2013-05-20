@@ -2,15 +2,9 @@ package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.Child;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
 import org.ei.drishti.dto.Action;
-import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.dto.BeneficiaryType;
 import org.ei.drishti.repository.AlertRepository;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllEligibleCouples;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,22 +23,18 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class AlertServiceTest {
     @Mock
     private AlertRepository alertRepository;
-    @Mock
-    private AllBeneficiaries allBeneficiaries;
-    @Mock
-    private AllEligibleCouples allEligibleCouples;
 
     private AlertService service;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new AlertService(alertRepository, allBeneficiaries, allEligibleCouples);
+        service = new AlertService(alertRepository);
     }
 
     @Test
     public void shouldAddAnAlertIntoAlertRepositoryForMotherCreateAlertAction() throws Exception {
-        Action actionForMother = setupActionForMotherCreateAlert("Case X", normal, "ANC 1", "2012-01-01", "2012-01-22", "Husband 1");
+        Action actionForMother = actionForCreateAlert("Case X", normal.value(), BeneficiaryType.mother.value(), "Schedule 1", "ANC 1", "2012-01-01", "2012-01-22", "0");
 
         service.create(actionForMother);
 
@@ -54,7 +44,7 @@ public class AlertServiceTest {
 
     @Test
     public void shouldAddAnAlertIntoAlertRepositoryForECCreateAlertAction() throws Exception {
-        Action actionForEC = setupActionForECCreateAlert("Case X", normal, "Milestone 1", "2012-01-01", "2012-01-22", "Husband 1");
+        Action actionForEC = actionForCreateAlert("Case X", normal.value(), BeneficiaryType.ec.value(), "Schedule 1", "Milestone 1", "2012-01-01", "2012-01-22", "0");
 
         service.create(actionForEC);
 
@@ -64,7 +54,7 @@ public class AlertServiceTest {
 
     @Test
     public void shouldAddAnAlertIntoAlertRepositoryForECCreateAlertActionWhenThereIsNoMother() throws Exception {
-        Action actionForEC = setupActionForECCreateAlertWithoutMother("Case X", normal, "Milestone 1", "2012-01-01", "2012-01-22", "Husband 1");
+        Action actionForEC = actionForCreateAlert("Case X", normal.value(), BeneficiaryType.ec.value(), "Schedule 1", "Milestone 1", "2012-01-01", "2012-01-22", "0");
 
         service.create(actionForEC);
 
@@ -83,7 +73,7 @@ public class AlertServiceTest {
 
     @Test
     public void shouldAddAnAlertIntoAlertRepositoryForChildCreateAlertAction() throws Exception {
-        Action actionForMother = setupActionForChildCreateAlert("Case X", urgent, "Milestone 1", "2012-01-01", "2012-01-22");
+        Action actionForMother = actionForCreateAlert("Case X", urgent.value(), BeneficiaryType.child.value(), "Schedule 1", "Milestone 1", "2012-01-01", "2012-01-22", "0");
 
         service.create(actionForMother);
 
@@ -115,34 +105,5 @@ public class AlertServiceTest {
         verify(alertRepository).deleteAllAlertsForCase("Case X");
         verify(alertRepository).deleteAllAlertsForCase("Case Y");
         verifyNoMoreInteractions(alertRepository);
-    }
-
-    private Action setupActionForMotherCreateAlert(String caseID, AlertPriority priority, String visitCode, String startDate, String expiryDate, String husbandName) {
-        Action action = actionForCreateAlert(caseID, priority.value(), BeneficiaryType.mother.value(), "Schedule 1", visitCode, startDate, expiryDate, "0");
-        when(allBeneficiaries.findMother(caseID)).thenReturn(new Mother(caseID, "EC " + caseID, "Thaayi " + caseID, "2012-05-05"));
-        when(allEligibleCouples.findByCaseID("EC " + caseID)).thenReturn(new EligibleCouple("EC " + caseID, "Theresa " + caseID, husbandName, "EC Number 1", "Village " + caseID, "SubCenter", new HashMap<String, String>()));
-        return action;
-    }
-
-    private Action setupActionForChildCreateAlert(String caseID, AlertPriority priority, String visitCode, String startDate, String expiryDate) {
-        Action action = actionForCreateAlert(caseID, priority.value(), BeneficiaryType.child.value(), "Schedule 1", visitCode, startDate, expiryDate, "0");
-        when(allBeneficiaries.findChild(caseID)).thenReturn(new Child(caseID, "Mother " + caseID, "Thaayi " + caseID, "2012-05-05", "female", new HashMap<String, String>()));
-        when(allBeneficiaries.findMother("Mother " + caseID)).thenReturn(new Mother("Mother " + caseID, "EC " + caseID, "Thaayi " + caseID, "2012-05-05"));
-        when(allEligibleCouples.findByCaseID("EC " + caseID)).thenReturn(new EligibleCouple("EC " + caseID, "Theresa " + caseID, "Husband 1", "EC Number 1", "Village " + caseID, "SubCenter", new HashMap<String, String>()));
-        return action;
-    }
-
-    private Action setupActionForECCreateAlert(String caseID, AlertPriority priority, String visitCode, String startDate, String expiryDate, String husbandName) {
-        Action action = actionForCreateAlert(caseID, priority.value(), BeneficiaryType.ec.value(), "Schedule 1", visitCode, startDate, expiryDate, "0");
-        when(allBeneficiaries.findMotherByECCaseId(caseID)).thenReturn(new Mother(caseID, "EC " + caseID, "Thaayi " + caseID, "2012-05-05"));
-        when(allEligibleCouples.findByCaseID(caseID)).thenReturn(new EligibleCouple(caseID, "Theresa " + caseID, husbandName, "EC Number 1", "Village " + caseID, "SubCenter", new HashMap<String, String>()));
-        return action;
-    }
-
-    private Action setupActionForECCreateAlertWithoutMother(String caseID, AlertPriority priority, String visitCode, String startDate, String expiryDate, String husbandName) {
-        Action action = actionForCreateAlert(caseID, priority.value(), BeneficiaryType.ec.value(), "Schedule 1", visitCode, startDate, expiryDate, "0");
-        when(allBeneficiaries.findMotherByECCaseId(caseID)).thenReturn(null);
-        when(allEligibleCouples.findByCaseID(caseID)).thenReturn(new EligibleCouple(caseID, "Theresa " + caseID, husbandName, "EC Number 1", "Village " + caseID, "SubCenter", new HashMap<String, String>()));
-        return action;
     }
 }

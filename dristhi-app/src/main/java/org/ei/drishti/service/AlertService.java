@@ -1,27 +1,18 @@
 package org.ei.drishti.service;
 
-import org.ei.drishti.domain.*;
+import org.ei.drishti.domain.Alert;
+import org.ei.drishti.domain.AlertStatus;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.dto.AlertPriority;
-import org.ei.drishti.dto.BeneficiaryType;
 import org.ei.drishti.repository.AlertRepository;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.util.Log;
 
 import java.util.List;
 
-import static org.ei.drishti.dto.BeneficiaryType.*;
-
 public class AlertService {
     private AlertRepository repository;
-    private AllBeneficiaries allBeneficiaries;
-    private AllEligibleCouples allEligibleCouples;
 
-    public AlertService(AlertRepository repository, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples) {
+    public AlertService(AlertRepository repository) {
         this.repository = repository;
-        this.allBeneficiaries = allBeneficiaries;
-        this.allEligibleCouples = allEligibleCouples;
     }
 
     public void create(Action action) {
@@ -39,26 +30,8 @@ public class AlertService {
     }
 
     private void createAlert(Action action) {
-        BeneficiaryType type = BeneficiaryType.from(action.get("beneficiaryType"));
-
-        if (mother.equals(type)) {
-            Mother mom = allBeneficiaries.findMother(action.caseID());
-            EligibleCouple couple = allEligibleCouples.findByCaseID(mom.ecCaseId());
-            repository.createAlert(new Alert(action.caseID(), action.get("visitCode"), AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate"), AlertStatus.open));
-        } else if (child.equals(type)) {
-            Child kid = allBeneficiaries.findChild(action.caseID());
-            Mother mom = allBeneficiaries.findMother(kid.motherCaseId());
-            EligibleCouple momDad = allEligibleCouples.findByCaseID(mom.ecCaseId());
-            repository.createAlert(new Alert(action.caseID(), action.get("visitCode"), AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate"), AlertStatus.open));
-        } else if (ec.equals(type)) {
-            EligibleCouple couple = allEligibleCouples.findByCaseID(action.caseID());
-            Mother mom = allBeneficiaries.findMotherByECCaseId(action.caseID());
-            repository.createAlert(new Alert(action.caseID(),
-                    action.get("visitCode"),
-                    AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate"), AlertStatus.open));
-        } else {
-            Log.logWarn("Unknown beneficiary type to add alert for: " + action);
-        }
+        repository.createAlert(new Alert(action.caseID(), action.get("visitCode"),
+                AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate"), AlertStatus.open));
     }
 
     public List<Alert> findByECIdAndAlertNames(String entityId, List<String> names) {

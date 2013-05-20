@@ -313,7 +313,7 @@ public class Context {
 
     public AlertService alertService() {
         if (alertService == null) {
-            alertService = new AlertService(alertRepository(), allBeneficiaries(), allEligibleCouples());
+            alertService = new AlertService(alertRepository());
         }
         return alertService;
     }
