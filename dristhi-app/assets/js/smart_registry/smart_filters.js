@@ -1,3 +1,8 @@
+var fpMethodMap = {
+    condom: 'Condom',
+    iud: 'IUD',
+
+};
 angular.module("smartRegistry.filters")
     .filter('humanize', function () {
         return function(input){
@@ -28,6 +33,21 @@ angular.module("smartRegistry.filters")
             catch(err)
             {
                 return "";
+            }
+        }
+    })
+    .filter('fpMethodName', function () {
+        return function(input, options){
+            var method;
+            method = options.find(function(option){
+               return option['id'] === input;
+            });
+            if(method !== undefined){
+                return method['label'];
+            }
+            else
+            {
+                return input;
             }
         }
     });
