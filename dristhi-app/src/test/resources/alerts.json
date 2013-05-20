@@ -5,6 +5,7 @@
         "data": {
             "alertPriority": "normal",
             "beneficiaryType": "mother",
+            "scheduleName": "Ante Natal Care - Normal",
             "visitCode": "ANC 1",
             "startDate": "2012-01-01",
             "expiryDate": "2012-01-11"

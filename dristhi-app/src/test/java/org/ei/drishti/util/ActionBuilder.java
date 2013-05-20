@@ -16,8 +16,8 @@ import static org.ei.drishti.dto.BeneficiaryType.mother;
 import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class ActionBuilder {
-    public static Action actionForCreateAlert(String caseID, String alertPriority, String beneficiaryType, String visitCode, String startDate, String expiryDate, String index) {
-        return new Action(caseID, "alert", "createAlert", createAlert(BeneficiaryType.from(beneficiaryType), visitCode, AlertPriority.from(alertPriority), new DateTime(startDate), new DateTime(expiryDate)).data(), index, true, new HashMap<String, String>());
+    public static Action actionForCreateAlert(String caseID, String alertPriority, String beneficiaryType, String scheduleName, String visitCode, String startDate, String expiryDate, String index) {
+        return new Action(caseID, "alert", "createAlert", createAlert(BeneficiaryType.from(beneficiaryType), scheduleName, visitCode, AlertPriority.from(alertPriority), new DateTime(startDate), new DateTime(expiryDate)).data(), index, true, new HashMap<String, String>());
     }
 
     public static Action actionForCloseAlert(String caseID, String visitCode, String completionDate, String index) {

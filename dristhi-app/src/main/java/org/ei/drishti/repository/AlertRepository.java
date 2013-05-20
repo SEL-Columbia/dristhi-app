@@ -18,20 +18,16 @@ import static org.ei.drishti.dto.AlertPriority.from;
 import static org.ei.drishti.dto.AlertPriority.inProcess;
 
 public class AlertRepository extends DrishtiRepository {
-    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, benificiaryName VARCHAR, husbandName VARCHAR, village VARCHAR, visitCode VARCHAR, thaayiCardNumber VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR, status VARCHAR)";
+    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, visitCode VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR, status VARCHAR)";
     private static final String ALERTS_TABLE_NAME = "alerts";
     public static final String ALERTS_CASEID_COLUMN = "caseID";
-    public static final String ALERTS_THAAYI_CARD_COLUMN = "thaayiCardNumber";
     public static final String ALERTS_VISIT_CODE_COLUMN = "visitCode";
-    public static final String ALERTS_BENEFICIARY_NAME_COLUMN = "benificiaryName";
-    public static final String ALERTS_HUSBAND_NAME_COLUMN = "husbandName";
-    private static final String ALERTS_VILLAGE_COLUMN = "village";
     public static final String ALERTS_PRIORITY_COLUMN = "priority";
     public static final String ALERTS_STARTDATE_COLUMN = "startDate";
     public static final String ALERTS_EXPIRYDATE_COLUMN = "expiryDate";
     public static final String ALERTS_COMPLETIONDATE_COLUMN = "completionDate";
     private static final String ALERTS_STATUS_COLUMN = "status";
-    private static final String[] ALERTS_TABLE_COLUMNS = new String[]{ALERTS_CASEID_COLUMN, ALERTS_BENEFICIARY_NAME_COLUMN, ALERTS_HUSBAND_NAME_COLUMN, ALERTS_VILLAGE_COLUMN, ALERTS_VISIT_CODE_COLUMN, ALERTS_THAAYI_CARD_COLUMN,
+    private static final String[] ALERTS_TABLE_COLUMNS = new String[]{ALERTS_CASEID_COLUMN, ALERTS_VISIT_CODE_COLUMN,
             ALERTS_PRIORITY_COLUMN, ALERTS_STARTDATE_COLUMN, ALERTS_EXPIRYDATE_COLUMN, ALERTS_COMPLETIONDATE_COLUMN, ALERTS_STATUS_COLUMN};
     public static final String CASE_AND_VISIT_CODE_COLUMN_SELECTIONS = ALERTS_CASEID_COLUMN + " = ? AND " + ALERTS_VISIT_CODE_COLUMN + " = ?";
 
@@ -91,8 +87,14 @@ public class AlertRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<Alert> alerts = new ArrayList<Alert>();
         while (!cursor.isAfterLast()) {
-            alerts.add(new Alert(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(5), from(cursor.getString(6)),
-                    cursor.getString(7), cursor.getString(8), AlertStatus.from(cursor.getString(10))).withCompletionDate(cursor.getString(9)));
+            alerts.add(
+                    new Alert(cursor.getString(cursor.getColumnIndex(ALERTS_CASEID_COLUMN)),
+                            cursor.getString(cursor.getColumnIndex(ALERTS_VISIT_CODE_COLUMN)),
+                            from(cursor.getString(cursor.getColumnIndex(ALERTS_PRIORITY_COLUMN))),
+                            cursor.getString(cursor.getColumnIndex(ALERTS_STARTDATE_COLUMN)),
+                            cursor.getString(cursor.getColumnIndex(ALERTS_EXPIRYDATE_COLUMN)),
+                            AlertStatus.from(cursor.getString(cursor.getColumnIndex(ALERTS_STATUS_COLUMN))))
+                            .withCompletionDate(cursor.getString(cursor.getColumnIndex(ALERTS_COMPLETIONDATE_COLUMN))));
             cursor.moveToNext();
         }
         cursor.close();
@@ -113,11 +115,7 @@ public class AlertRepository extends DrishtiRepository {
     private ContentValues createValuesFor(Alert alert) {
         ContentValues values = new ContentValues();
         values.put(ALERTS_CASEID_COLUMN, alert.caseId());
-        values.put(ALERTS_THAAYI_CARD_COLUMN, alert.thaayiCardNo());
         values.put(ALERTS_VISIT_CODE_COLUMN, alert.visitCode());
-        values.put(ALERTS_BENEFICIARY_NAME_COLUMN, alert.beneficiaryName());
-        values.put(ALERTS_HUSBAND_NAME_COLUMN, alert.husbandName());
-        values.put(ALERTS_VILLAGE_COLUMN, alert.village());
         values.put(ALERTS_PRIORITY_COLUMN, alert.priority().value());
         values.put(ALERTS_STARTDATE_COLUMN, alert.startDate());
         values.put(ALERTS_EXPIRYDATE_COLUMN, alert.expiryDate());
@@ -128,7 +126,7 @@ public class AlertRepository extends DrishtiRepository {
 
     public List<Alert> findByECIdAndAlertNames(String entityId, List<String> names) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.rawQuery(format("SELECT * FROM %s WHERE %s = ? AND %s = ? AND %s IN (%s) ORDER BY DATE(%s)", ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN, ALERTS_STATUS_COLUMN,ALERTS_VISIT_CODE_COLUMN,
+        Cursor cursor = database.rawQuery(format("SELECT * FROM %s WHERE %s = ? AND %s = ? AND %s IN (%s) ORDER BY DATE(%s)", ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN, ALERTS_STATUS_COLUMN, ALERTS_VISIT_CODE_COLUMN,
                 insertPlaceholdersForInClause(names.size()), ALERTS_STARTDATE_COLUMN), getSelectionArgs(entityId, names));
         return readAllAlerts(cursor);
     }

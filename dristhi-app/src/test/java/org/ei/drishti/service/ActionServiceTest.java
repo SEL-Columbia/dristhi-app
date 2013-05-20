@@ -72,7 +72,7 @@ public class ActionServiceTest {
 
     @Test
     public void shouldFetchAlertActionsAndSaveThemToRepository() throws Exception {
-        Action action = ActionBuilder.actionForCreateAlert("Case X", "normal", "mother", "ANC 1", "2012-01-01", null, "0");
+        Action action = ActionBuilder.actionForCreateAlert("Case X", "normal", "mother", "Ante Natal Care - Normal", "ANC 1", "2012-01-01", null, "0");
         setupActions(success, asList(action));
 
         assertEquals(fetched, service.fetchNewActions());
@@ -84,8 +84,8 @@ public class ActionServiceTest {
     @Test
     public void shouldUpdatePreviousIndexWithIndexOfEachActionThatIsHandled() throws Exception {
 
-        Action firstAction = actionForCreateAlert("Case X", "normal", "mother", "ANC 1", "2012-01-01", "2012-01-22", "11111");
-        Action secondAction = actionForCreateAlert("Case Y", "normal", "mother", "ANC 2", "2012-01-01", "2012-01-11", "12345");
+        Action firstAction = actionForCreateAlert("Case X", "normal", "mother", "Ante Natal Care - Normal", "ANC 1", "2012-01-01", "2012-01-22", "11111");
+        Action secondAction = actionForCreateAlert("Case Y", "normal", "mother", "Ante Natal Care - Normal", "ANC 2", "2012-01-01", "2012-01-11", "12345");
 
         setupActions(success, asList(firstAction, secondAction));
 
@@ -101,7 +101,7 @@ public class ActionServiceTest {
     @Test
     public void shouldHandleDifferentKindsOfActions() throws Exception {
         Action reportAction = actionForReport("Case X", "annual target");
-        Action alertAction = actionForCreateAlert("Case X", "normal", "mother", "ANC 1", "2012-01-01", null, "0");
+        Action alertAction = actionForCreateAlert("Case X", "normal", "mother", "Ante Natal Care - Normal", "ANC 1", "2012-01-01", null, "0");
         setupActions(success, asList(reportAction, alertAction));
 
         service.fetchNewActions();

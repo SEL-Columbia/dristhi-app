@@ -44,7 +44,7 @@ public class DrishtiServiceTest {
         Response<List<Action>> actions = drishtiService.fetchNewActions("anm1", "0");
 
         verify(httpAgent).fetch(EXPECTED_URL);
-        assertEquals(asList(actionForCreateAlert("Case X", normal.value(), mother.value(), "ANC 1", "2012-01-01", "2012-01-11", "1333695798583"),
+        assertEquals(asList(actionForCreateAlert("Case X", normal.value(), mother.value(), "Ante Natal Care - Normal", "ANC 1", "2012-01-01", "2012-01-11", "1333695798583"),
                 actionForCloseAlert("Case Y", "ANC 1", "2012-01-01", "1333695798644")), actions.payload());
         assertEquals(ResponseStatus.success, actions.status());
     }

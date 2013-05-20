@@ -40,16 +40,16 @@ public class FakeDrishtiService extends DrishtiService {
     public Response<List<Action>> actionsFor(String suffix) {
         Action deleteXAction = new Action("Case X", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456", true, new HashMap<String, String>());
         Action deleteYAction = new Action("Case Y", "alert", "deleteAllAlerts", new HashMap<String, String>(), "123456", true, new HashMap<String, String>());
-        Action firstAction = new Action("Case X", "alert", "createAlert", dataForCreateAction("BCG", "2012-01-01"), "123456", true, new HashMap<String, String>());
-        Action secondAction = new Action("Case Y", "alert", "createAlert", dataForCreateAction("OPV 1", "2100-04-09"), "123456", true, new HashMap<String, String>());
+        Action firstAction = new Action("Case X", "alert", "createAlert", dataForCreateAction("BCG", "BCG", "2012-01-01"), "123456", true, new HashMap<String, String>());
+        Action secondAction = new Action("Case Y", "alert", "createAlert", dataForCreateAction("OPV", "OPV 1", "2100-04-09"), "123456", true, new HashMap<String, String>());
         Action firstCreateEC = new Action("Case A" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 1 " + suffix, "Husband 1", "EC 1" + suffix, "SubCenter 1", "Village 1", "PHC X"), "123456", true, new HashMap<String, String>());
         Action secondCreateEC = new Action("Case B" + suffix, "eligibleCouple", "createEC", dataForCreateEC("Wife 2 " + suffix, "Husband 2", "EC 2" + suffix, "SubCenter 2", "Village 2", "PHC X"), "123456", true, new HashMap<String, String>());
 
         return new Response<List<Action>>(ResponseStatus.success, new ArrayList<Action>(Arrays.asList(deleteXAction, deleteYAction, firstAction, secondAction, firstCreateEC, secondCreateEC)));
     }
 
-    private static Map<String, String> dataForCreateAction(String visitCode, String dueDate) {
-        return createAlert(BeneficiaryType.mother, visitCode, AlertPriority.normal, new DateTime(dueDate), new DateTime("2012-01-11")).data();
+    private static Map<String, String> dataForCreateAction(String scheduleName, String visitCode, String dueDate) {
+        return createAlert(BeneficiaryType.mother, scheduleName,visitCode, AlertPriority.normal, new DateTime(dueDate), new DateTime("2012-01-11")).data();
     }
 
     private Map<String, String> dataForCreateEC(String wifeName, String husbandName, String ecNumber, String village, String subCenter, String phc) {

@@ -20,15 +20,15 @@ public class ProfileTodoTest {
 
     @Test
     public void shouldProvideProfileTodoDataBasedOnVisitCode() throws Exception {
-        assertData(new ProfileTodo(new Alert("Case X", "Theresa", "Husband 1", "bherya", "ANC 1", "Thaayi 1", urgent, "2012-02-02", DUE_DATE, open)), "ANC Visit #1", false, "ANC 1");
-        assertData(new ProfileTodo(new Alert("Case X", "Theresa", "Husband 1", "bherya", "ANC 2", "Thaayi 1", normal, "2012-02-02", DUE_DATE, open)), "ANC Visit #2", false, "ANC 2");
-        assertData(new ProfileTodo(new Alert("Case X", "Theresa", "Husband 1", "bherya", "ANC 3", "Thaayi 1", normal, "2012-02-02", DUE_DATE, open)), "ANC Visit #3", false, "ANC 3");
-        assertData(new ProfileTodo(new Alert("Case X", "Theresa", "Husband 1", "bherya", "ANC 4", "Thaayi 1", urgent, "2012-02-02", DUE_DATE, closed).withCompletionDate(COMPLETION_DATE)), "ANC Visit #4", true, "ANC 4");
+        assertData(new ProfileTodo(new Alert("Case X", "ANC 1", urgent, "2012-02-02", DUE_DATE, open)), "ANC Visit #1", false, "ANC 1");
+        assertData(new ProfileTodo(new Alert("Case X", "ANC 2", normal, "2012-02-02", DUE_DATE, open)), "ANC Visit #2", false, "ANC 2");
+        assertData(new ProfileTodo(new Alert("Case X", "ANC 3", normal, "2012-02-02", DUE_DATE, open)), "ANC Visit #3", false, "ANC 3");
+        assertData(new ProfileTodo(new Alert("Case X", "ANC 4", urgent, "2012-02-02", DUE_DATE, closed).withCompletionDate(COMPLETION_DATE)), "ANC Visit #4", true, "ANC 4");
     }
 
     @Test
     public void shouldProvideSensibleDefaultsIfAVisitCodeIsNotFound() throws Exception {
-        assertData(new ProfileTodo(new Alert("Case X", "Theresa", "Husband 1", "bherya", "UNKNOWN_VISIT_CODE", "Thaayi 1", urgent, "2012-02-02", DUE_DATE, open)), "UNKNOWN_VISIT_CODE", false, "UNKNOWN_VISIT_CODE");
+        assertData(new ProfileTodo(new Alert("Case X", "UNKNOWN_VISIT_CODE", urgent, "2012-02-02", DUE_DATE, open)), "UNKNOWN_VISIT_CODE", false, "UNKNOWN_VISIT_CODE");
     }
 
     private void assertData(ProfileTodo todo, String message, final boolean isCompleted, String visitCode) {
