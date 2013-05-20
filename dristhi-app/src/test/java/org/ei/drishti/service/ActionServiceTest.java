@@ -99,26 +99,15 @@ public class ActionServiceTest {
     }
 
     @Test
-    public void shouldFetchECAndSaveThemToRepository() throws Exception {
-        setupActions(success, asList(actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", "PHC X")));
-
-        assertEquals(fetched, service.fetchNewActions());
-
-        verify(drishtiService).fetchNewActions("ANM X", "1234");
-        verify(actionRouter).directECAction(actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", "PHC X"));
-    }
-
-    @Test
     public void shouldHandleDifferentKindsOfActions() throws Exception {
-        Action ecAction = actionForCreateEC("Case X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", "PHC X");
+        Action reportAction = actionForReport("Case X", "annual target");
         Action alertAction = actionForCreateAlert("Case X", "normal", "mother", "ANC 1", "2012-01-01", null, "0");
-        setupActions(success, asList(ecAction, alertAction));
+        setupActions(success, asList(reportAction, alertAction));
 
         service.fetchNewActions();
 
-        InOrder inOrder = inOrder(allEligibleCouples, actionRouter);
-        inOrder.verify(actionRouter).directECAction(ecAction);
-        inOrder.verify(actionRouter).directAlertAction(alertAction);
+        verify(allReports).handleAction(reportAction);
+        verify(actionRouter).directAlertAction(alertAction);
     }
 
     private void setupActions(ResponseStatus status, List<Action> list) {

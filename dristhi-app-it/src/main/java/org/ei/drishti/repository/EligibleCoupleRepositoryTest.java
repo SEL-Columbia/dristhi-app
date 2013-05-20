@@ -30,7 +30,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         timelineEventRepository = new TimelineEventRepository();
         childRepository = new ChildRepository(timelineEventRepository, alertRepository);
         motherRepository = new MotherRepository(timelineEventRepository, alertRepository);
-        repository = new EligibleCoupleRepository(motherRepository, timelineEventRepository, alertRepository);
+        repository = new EligibleCoupleRepository(motherRepository, alertRepository);
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
         new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, alertRepository,
                 timelineEventRepository, childRepository, motherRepository);
@@ -60,7 +60,6 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
 
         assertEquals(asList(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsToBeUpdated)),
                 repository.allEligibleCouples());
-        assertEquals(asList(TimelineEvent.forChangeOfFPMethod("CASE X", "IUD", "Condom", "2012-03-03")), timelineEventRepository.allFor("CASE X"));
     }
 
     public void testShouldMergeDetailsOfEligibleCoupleIntoRepository() throws Exception {
@@ -74,48 +73,6 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
 
         assertEquals(asList(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", expectedDetails)),
                 repository.allEligibleCouples());
-    }
-
-    public void testShouldAddATimelineEventForWhenFPProductIsRenewed() throws Exception {
-        Map<String, String> detailsBeforeUpdate = create("Key 1", "Value 1").put("currentMethod", "condom").map();
-        EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsBeforeUpdate);
-        repository.add(eligibleCouple);
-        Map<String, String> detailsToBeUpdated = create("Key 1", "Value 1")
-                .put("currentMethod", "condom")
-                .put("familyPlanningMethodChangeDate", "2012-03-03")
-                .put("fpUpdate", "renew_fp_product")
-                .put("numberOfCondomsSupplied", "30")
-                .map();
-
-        repository.updateDetails("CASE X", detailsToBeUpdated);
-
-        assertEquals(asList(TimelineEvent.forFPCondomRenew("CASE X", detailsToBeUpdated)), timelineEventRepository.allFor("CASE X"));
-    }
-
-    public void testShouldNotAddATimelineEventWhenNoFPMethodIsBeingUsed() throws Exception {
-        Map<String, String> detailsBeforeUpdate = create("Key 1", "Value 1").put("currentMethod", "none").map();
-        EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsBeforeUpdate);
-        repository.add(eligibleCouple);
-        Map<String, String> detailsToBeUpdated = create("Key 1", "Value 1")
-                .put("currentMethod", "none")
-                .put("familyPlanningMethodChangeDate", "2012-03-03")
-                .put("fpUpdate", "renew_fp_product")
-                .map();
-
-        repository.updateDetails("CASE X", detailsToBeUpdated);
-
-        assertTrue(timelineEventRepository.allFor("CASE X").isEmpty());
-    }
-
-    public void testShouldNotAddATimelineEventForFPMethodChangeWhenItIsNotChanged() throws Exception {
-        Map<String, String> detailsBeforeUpdate = create("Key 1", "Value 1").put("currentMethod", "IUD").put("familyPlanningMethodChangeDate", "2012-01-01").map();
-        EligibleCouple eligibleCouple = new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number", "Village 1", "SubCenter 1", detailsBeforeUpdate);
-
-        repository.add(eligibleCouple);
-        Map<String, String> detailsToBeUpdated = create("Key 1", "Value 1").put("somethingOtherThanCurrentMethod", "Blah").put("Key 3", "Value 3").map();
-        repository.updateDetails("CASE X", detailsToBeUpdated);
-
-        assertEquals(emptyList(), timelineEventRepository.allFor("CASE X"));
     }
 
     public void testShouldMarkAsCloseEligibleCoupleFromRepositoryBasedOnCaseID() throws Exception {
@@ -152,28 +109,12 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         assertEquals(asList(alert), alertRepository.allAlerts());
     }
 
-    public void testShouldDeleteCorrespondingTimelineEventsWhenDeletingEC() throws Exception {
-        TimelineEvent event = TimelineEvent.forStartOfPregnancy("CASE Y", "2012-01-01");
-
-        repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", new HashMap<String, String>()));
-        timelineEventRepository.add(TimelineEvent.forStartOfPregnancy("CASE X", "2012-01-01"));
-
-        repository.add(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", new HashMap<String, String>()));
-        timelineEventRepository.add(event);
-
-        repository.close("CASE X");
-
-        assertEquals(emptyList(), timelineEventRepository.allFor("CASE X"));
-        assertEquals(asList(event), timelineEventRepository.allFor("CASE Y"));
-    }
-
-    public void testShouldDeleteCorrespondingChildrenAndTheirDependenciesWhenDeletingAnEC() throws Exception {
+    public void testShouldDeleteMotherWhenDeletingAnEC() throws Exception {
         repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", new HashMap<String, String>()));
 
         Mother mother = new Mother("CASE Y", "CASE X", "TC 1", "2012-01-01");
         motherRepository.add(mother);
         motherRepository.add(new Mother("CASE Z", "CASE X", "TC 2", "2012-01-01"));
-        childRepository.add(new Child("CASE C1", "CASE Y", "TC 1", "2012-06-08", "female", new HashMap<String, String>()));
 
         EligibleCouple ecWhoIsNotClosed = new EligibleCouple("CASE A", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", new HashMap<String, String>());
         Mother motherWhoIsNotClosed = new Mother("CASE B", "CASE A", "TC 2", "2012-01-01");
@@ -184,11 +125,8 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
 
         assertEquals(asList(ecWhoIsNotClosed), repository.allEligibleCouples());
         assertEquals(asList(motherWhoIsNotClosed), motherRepository.allANCs());
-        assertEquals(emptyList(), childRepository.all());
-        assertEquals(emptyList(), timelineEventRepository.allFor("CASE X"));
         assertEquals(emptyList(), timelineEventRepository.allFor("CASE Y"));
         assertEquals(emptyList(), timelineEventRepository.allFor("CASE Z"));
-        assertEquals(emptyList(), timelineEventRepository.allFor("CASE C1"));
 
         assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE B", "2012-01-01")), timelineEventRepository.allFor("CASE B"));
     }
@@ -320,5 +258,4 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         repository.add(outOfAreaEC);
         assertEquals(1, repository.fpCount());
     }
-
 }

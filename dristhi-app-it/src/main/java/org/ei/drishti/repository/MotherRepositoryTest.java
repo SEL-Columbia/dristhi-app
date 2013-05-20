@@ -31,7 +31,7 @@ public class MotherRepositoryTest extends AndroidTestCase {
 
         repository = new MotherRepository(timelineEventRepository, alertRepository);
 
-        eligibleCoupleRepository = new EligibleCoupleRepository(repository, timelineEventRepository, alertRepository);
+        eligibleCoupleRepository = new EligibleCoupleRepository(repository, alertRepository);
 
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
         new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, timelineEventRepository, alertRepository, eligibleCoupleRepository);

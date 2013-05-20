@@ -26,11 +26,6 @@ public class MotherService {
         this.eligibleCoupleRepository = eligibleCoupleRepository;
     }
 
-    public void registerANC(Action action) {
-        motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate"))
-                .withDetails(action.details()));
-    }
-
     public void registerANC(FormSubmission submission) {
         allTimelines.add(forStartOfPregnancy(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(REFERENCE_DATE)));
         allTimelines.add(forStartOfPregnancyForEC(submission.entityId(), submission.getFieldValue(THAYI_CARD_NUMBER), submission.getFieldValue(REFERENCE_DATE)));

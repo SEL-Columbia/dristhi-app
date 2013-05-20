@@ -249,7 +249,7 @@ public class Context {
 
     private EligibleCoupleRepository eligibleCoupleRepository() {
         if (eligibleCoupleRepository == null) {
-            eligibleCoupleRepository = new EligibleCoupleRepository(motherRepository(), timelineEventRepository(), alertRepository());
+            eligibleCoupleRepository = new EligibleCoupleRepository(motherRepository(), alertRepository());
         }
         return eligibleCoupleRepository;
     }

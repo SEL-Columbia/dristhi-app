@@ -4,12 +4,6 @@ import org.ei.drishti.Context;
 import org.ei.drishti.dto.Action;
 
 public enum MotherActionRoute {
-    REGISTER_ANC("registerPregnancy") {
-        @Override
-        public void direct(Action action) {
-            Context.getInstance().motherService().registerANC(action);
-        }
-    },
     UPDATE_DETAILS("updateDetails") {
         @Override
         public void direct(Action action) {

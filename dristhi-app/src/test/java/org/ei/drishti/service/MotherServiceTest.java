@@ -58,14 +58,6 @@ public class MotherServiceTest {
     }
 
     @Test
-    public void shouldHandleRegisterPregnancyForMother() throws Exception {
-        Action action = ActionBuilder.actionForRegisterPregnancy("Case Mother X");
-        service.registerANC(action);
-        verify(motherRepository).add(new Mother("Case Mother X", "ecCaseId", "thaayiCardNumber", LocalDate.now().toString())
-                .withDetails(mapOf("some-key", "some-field")));
-    }
-
-    @Test
     public void shouldHandleOutOfAreaANCRegistration() throws Exception {
         Action action = ActionBuilder.actionForOutOfAreaANCRegistration("Case Mother X");
         Map<String, String> details = mapOf("some-key", "some-field");

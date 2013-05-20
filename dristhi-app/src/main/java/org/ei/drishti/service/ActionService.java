@@ -62,15 +62,7 @@ public class ActionService {
     }
 
     private void handleAction(Action actionToUse) {
-        if ("eligibleCouple".equals(actionToUse.target())) {
-            runAction(actionToUse, new ActionHandler() {
-                @Override
-                public void run(Action action) {
-                    actionRouter.directECAction(action);
-                }
-            });
-
-        } else if ("mother".equals(actionToUse.target())) {
+        if ("mother".equals(actionToUse.target())) {
             runAction(actionToUse, new ActionHandler() {
                 @Override
                 public void run(Action action) {

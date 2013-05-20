@@ -5,11 +5,8 @@ import android.database.Cursor;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
-import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.FPMethod;
-import org.ei.drishti.domain.TimelineEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,8 +18,6 @@ import static java.lang.Boolean.TRUE;
 import static java.text.MessageFormat.format;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.repeat;
-import static org.ei.drishti.AllConstants.*;
-import static org.ei.drishti.domain.TimelineEvent.forChangeOfFPMethod;
 
 public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String EC_SQL = "CREATE TABLE eligible_couple(id VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, " +
@@ -47,13 +42,10 @@ public class EligibleCoupleRepository extends DrishtiRepository {
 
     private MotherRepository motherRepository;
     private final AlertRepository alertRepository;
-    private final TimelineEventRepository timelineEventRepository;
 
-    public EligibleCoupleRepository(MotherRepository motherRepository, TimelineEventRepository timelineEventRepository,
-                                    AlertRepository alertRepository) {
+    public EligibleCoupleRepository(MotherRepository motherRepository, AlertRepository alertRepository) {
         this.motherRepository = motherRepository;
         this.alertRepository = alertRepository;
-        this.timelineEventRepository = timelineEventRepository;
     }
 
     @Override
@@ -64,9 +56,6 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     public void add(EligibleCouple eligibleCouple) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(EC_TABLE_NAME, null, createValuesFor(eligibleCouple));
-        if (StringUtils.isNotBlank(eligibleCouple.details().get("submissionDate"))) {
-            timelineEventRepository.add(TimelineEvent.forECRegistered(eligibleCouple.caseId(), eligibleCouple.details().get("submissionDate")));
-        }
     }
 
     public void updateDetails(String caseId, Map<String, String> details) {
@@ -76,8 +65,6 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         if (couple == null) {
             return;
         }
-
-        addTimelineEventsForFPRelatedChanges(couple, details);
 
         ContentValues valuesToUpdate = new ContentValues();
         valuesToUpdate.put(DETAILS_COLUMN, new Gson().toJson(details));
@@ -153,7 +140,6 @@ public class EligibleCoupleRepository extends DrishtiRepository {
 
     public void close(String caseId) {
         alertRepository.deleteAllAlertsForCase(caseId);
-        timelineEventRepository.deleteAllTimelineEventsForCase(caseId);
         motherRepository.closeAllCasesForEC(caseId);
         markAsClosed(caseId);
     }
@@ -195,26 +181,6 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         }
         cursor.close();
         return eligibleCouples;
-    }
-
-    private void addTimelineEventsForFPRelatedChanges(EligibleCouple couple, Map<String, String> details) {
-        if (wasFPMethodChanged(details)) {
-            timelineEventRepository.add(forChangeOfFPMethod(couple.caseId(), couple.details().get(CURRENT_FP_METHOD_FIELD_NAME),
-                    details.get(CURRENT_FP_METHOD_FIELD_NAME), details.get(FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME)));
-        } else if (wasFPProductRenewed(details)) {
-            TimelineEvent timelineEventForRenew = FPMethod.tryParse(details.get(CURRENT_FP_METHOD_FIELD_NAME),
-                    FPMethod.NONE).getTimelineEventForRenew(couple.caseId(), details);
-            if (timelineEventForRenew != null)
-                timelineEventRepository.add(timelineEventForRenew);
-        }
-    }
-
-    private boolean wasFPProductRenewed(Map<String, String> details) {
-        return details.containsKey(FP_UPDATE_FIELD_NAME) && details.get(FP_UPDATE_FIELD_NAME).equals(AllConstants.RENEW_FP_PRODUCT_FIELD_NAME);
-    }
-
-    private boolean wasFPMethodChanged(Map<String, String> details) {
-        return details.containsKey(FP_UPDATE_FIELD_NAME) && details.get(FP_UPDATE_FIELD_NAME).equals(AllConstants.CHANGE_FP_METHOD_FIELD_NAME);
     }
 
     private String insertPlaceholdersForInClause(int length) {
