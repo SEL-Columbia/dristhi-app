@@ -4,6 +4,7 @@ import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
+import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.repository.EligibleCoupleRepository;
@@ -21,8 +22,8 @@ import java.util.Map;
 import static org.ei.drishti.util.ActionBuilder.actionForANCCareProvided;
 import static org.ei.drishti.util.ActionBuilder.actionForCloseMother;
 import static org.ei.drishti.util.EasyMap.mapOf;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
@@ -40,6 +41,20 @@ public class MotherServiceTest {
     public void setUp() throws Exception {
         initMocks(this);
         service = new MotherService(motherRepository, allTimelineEvents, eligibleCoupleRepository);
+    }
+
+    @Test
+    public void shouldRegisterANC() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("motherId")).thenReturn("mother id 1");
+        when(submission.getFieldValue("thayiCardNumber")).thenReturn("thayi 1");
+        when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
+
+        service.registerANC(submission);
+
+        allTimelineEvents.add(TimelineEvent.forStartOfPregnancy("mother id 1", "2012-01-01"));
+        allTimelineEvents.add(TimelineEvent.forStartOfPregnancyForEC("entity id 1", "thayi 1", "2012-01-01"));
     }
 
     @Test

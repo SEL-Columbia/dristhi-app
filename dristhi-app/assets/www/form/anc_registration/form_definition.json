@@ -25,16 +25,8 @@
                 "bind": "/model/instance/ANC_Registration_EngKan/case_woman_name"
             },
             {
-                "name": "wifeName",
-                "bind": "/model/instance/ANC_Registration_EngKan/woman_name"
-            },
-            {
                 "name": "numberOfPregnancies",
                 "bind": "/model/instance/ANC_Registration_EngKan/case_num_pregnancies"
-            },
-            {
-                "name": "numberOfPregnancies",
-                "bind": "/model/instance/ANC_Registration_EngKan/num_pregnancies"
             },
             {
                 "name": "thayiCardNumber",
