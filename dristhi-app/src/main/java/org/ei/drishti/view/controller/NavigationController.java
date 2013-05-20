@@ -35,10 +35,6 @@ public class NavigationController {
         context.startActivity(new Intent(context, ChildListActivity.class));
     }
 
-    public void startWorkplan() {
-        context.startActivity(new Intent(context, WorkplanActivity.class));
-    }
-
     public void startReports() {
         context.startActivity(new Intent(context, ReportsActivity.class));
     }

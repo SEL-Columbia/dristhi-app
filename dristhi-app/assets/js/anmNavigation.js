@@ -5,12 +5,6 @@ function ANMNavigationPanel(anmNavigationBridge) {
         $(cssIdentifierOfRootElement).html(displayTemplate(anmNavigationBridge.getANMInformation()));
     };
 
-    var bindToWorkplan = function (callbackToRunBeforeAnyAction, identifierOfElement) {
-        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
-            anmNavigationBridge.delegateToWorkplan();
-        });
-    };
-
     var bindToReports = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             anmNavigationBridge.delegateToReports();
@@ -69,7 +63,6 @@ function ANMNavigationPanel(anmNavigationBridge) {
     return {
         populateInto: function (cssIdentifierOfSidePanelElement, displayTemplate, callbackToRunBeforeAnyAction) {
             populateDataInto(cssIdentifierOfSidePanelElement, displayTemplate);
-            //bindToWorkplan(callbackToRunBeforeAnyAction, "#workplanButton");
             bindToReports(callbackToRunBeforeAnyAction, "#reportsButton");
 
             bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
@@ -103,9 +96,6 @@ function ANMNavigationBridge() {
         },
         delegateToChildList: function () {
             return anmNavigationContext.startChildList();
-        },
-        delegateToWorkplan: function () {
-            return anmNavigationContext.startWorkplan();
         },
         delegateToReports: function () {
             return anmNavigationContext.startReports();
@@ -145,9 +135,6 @@ function FakeANMNavigationContext() {
         },
         startChildList: function () {
             window.location.href = "child_list.html";
-        },
-        startWorkplan: function () {
-            window.location.href = "workplan.html";
         },
         startReports: function () {
             window.location.href = "reports.html";

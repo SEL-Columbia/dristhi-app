@@ -49,10 +49,6 @@
             android:name=".view.activity.HomeActivity"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.activity.WorkplanActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar"
-            android:screenOrientation="landscape"/>
-        <activity
             android:name=".view.activity.ReportsActivity"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:screenOrientation="landscape"/>

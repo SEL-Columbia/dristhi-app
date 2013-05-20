@@ -1915,19 +1915,4 @@ function program1(depth0,data) {
   buffer += "\n";
   return buffer;
   });
-templates['workplan'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [3,'>= 1.0.0-rc.4'];
-helpers = helpers || Handlebars.helpers; data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
-
-
-  buffer += "<div class=\"tabbable\">\n    <ul class=\"nav nav-tabs navbar-fixed-top affected-by-sidepanel\">\n        <li class=\"active overdue\"><a href=\"#overdue\" data-toggle=\"tab\">Overdue (<span id=\"overdue-count\">"
-    + escapeExpression(((stack1 = ((stack1 = depth0.overdue),stack1 == null || stack1 === false ? stack1 : stack1.length)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</span>)</a>\n        </li>\n        <li class=\"upcoming\"><a href=\"#upcoming\" data-toggle=\"tab\">To Do (<span\n                id=\"upcoming-count\">"
-    + escapeExpression(((stack1 = ((stack1 = depth0.upcoming),stack1 == null || stack1 === false ? stack1 : stack1.length)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</span>)</a></li>\n        <li class=\"completed\"><a href=\"#completed\" data-toggle=\"tab\">Done (<span id=\"completed-count\">"
-    + escapeExpression(((stack1 = ((stack1 = depth0.completed),stack1 == null || stack1 === false ? stack1 : stack1.length)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</span>)</a>\n        </li>\n    </ul>\n</div>\n\n<div class=\"tab-content container-fluid container-no-padding\">\n    <div class=\"tab-pane overdue active\" id=\"overdue\">\n    </div>\n\n    <div class=\"tab-pane upcoming\" id=\"upcoming\">\n    </div>\n\n    <div class=\"tab-pane completed\" id=\"completed\">\n    </div>\n</div>\n";
-  return buffer;
-  });
 })();
