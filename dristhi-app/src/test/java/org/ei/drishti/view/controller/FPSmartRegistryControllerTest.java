@@ -24,7 +24,6 @@ import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
-import static org.ei.drishti.domain.AlertStatus.open;
 import static org.ei.drishti.dto.AlertPriority.normal;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
@@ -123,7 +122,7 @@ public class FPSmartRegistryControllerTest {
     @Test
     public void shouldCreateFPClientsWithOCPRefillAlert() throws Exception {
         EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", normalPriority());
-        Alert ocpRefillAlert = new Alert("entity id 1", "OCP Refill", normal, "2013-01-01", "2013-02-01", open);
+        Alert ocpRefillAlert = new Alert("entity id 1", "OCP Refill", normal, "2013-01-01", "2013-02-01");
         when(allEligibleCouples.all()).thenReturn(asList(ec));
         when(alertService.findByECIdAndAlertNames("entity id 1", EC_ALERTS)).thenReturn(asList(ocpRefillAlert));
 

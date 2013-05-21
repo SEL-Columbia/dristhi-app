@@ -14,7 +14,7 @@ import static org.apache.commons.lang3.StringUtils.repeat;
 import static org.ei.drishti.dto.AlertPriority.*;
 
 public class AlertRepository extends DrishtiRepository {
-    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, visitCode VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR, status VARCHAR)";
+    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, visitCode VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR)";
     private static final String ALERTS_TABLE_NAME = "alerts";
     public static final String ALERTS_CASEID_COLUMN = "caseID";
     public static final String ALERTS_VISIT_CODE_COLUMN = "visitCode";
@@ -22,9 +22,14 @@ public class AlertRepository extends DrishtiRepository {
     public static final String ALERTS_STARTDATE_COLUMN = "startDate";
     public static final String ALERTS_EXPIRYDATE_COLUMN = "expiryDate";
     public static final String ALERTS_COMPLETIONDATE_COLUMN = "completionDate";
-    private static final String ALERTS_STATUS_COLUMN = "status";
-    private static final String[] ALERTS_TABLE_COLUMNS = new String[]{ALERTS_CASEID_COLUMN, ALERTS_VISIT_CODE_COLUMN,
-            ALERTS_PRIORITY_COLUMN, ALERTS_STARTDATE_COLUMN, ALERTS_EXPIRYDATE_COLUMN, ALERTS_COMPLETIONDATE_COLUMN, ALERTS_STATUS_COLUMN};
+    private static final String[] ALERTS_TABLE_COLUMNS = new String[]{
+            ALERTS_CASEID_COLUMN,
+            ALERTS_VISIT_CODE_COLUMN,
+            ALERTS_PRIORITY_COLUMN,
+            ALERTS_STARTDATE_COLUMN,
+            ALERTS_EXPIRYDATE_COLUMN,
+            ALERTS_COMPLETIONDATE_COLUMN
+    };
     public static final String CASE_AND_VISIT_CODE_COLUMN_SELECTIONS = ALERTS_CASEID_COLUMN + " = ? AND " + ALERTS_VISIT_CODE_COLUMN + " = ?";
 
     @Override
@@ -88,8 +93,8 @@ public class AlertRepository extends DrishtiRepository {
                             cursor.getString(cursor.getColumnIndex(ALERTS_VISIT_CODE_COLUMN)),
                             from(cursor.getString(cursor.getColumnIndex(ALERTS_PRIORITY_COLUMN))),
                             cursor.getString(cursor.getColumnIndex(ALERTS_STARTDATE_COLUMN)),
-                            cursor.getString(cursor.getColumnIndex(ALERTS_EXPIRYDATE_COLUMN)),
-                            null)
+                            cursor.getString(cursor.getColumnIndex(ALERTS_EXPIRYDATE_COLUMN))
+                    )
                             .withCompletionDate(cursor.getString(cursor.getColumnIndex(ALERTS_COMPLETIONDATE_COLUMN))));
             cursor.moveToNext();
         }

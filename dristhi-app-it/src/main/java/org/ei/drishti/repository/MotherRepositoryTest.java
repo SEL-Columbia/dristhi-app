@@ -12,7 +12,6 @@ import org.joda.time.LocalDate;
 import java.util.*;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.domain.AlertStatus.open;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 
@@ -181,13 +180,13 @@ public class MotherRepositoryTest extends AndroidTestCase {
         Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
 
         repository.add(mother1);
-        alertRepository.createAlert(new Alert("CASE X", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
+        alertRepository.createAlert(new Alert("CASE X", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11"));
         repository.add(mother2);
-        alertRepository.createAlert(new Alert("CASE Y", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
+        alertRepository.createAlert(new Alert("CASE Y", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11"));
 
         repository.close(mother1.caseId());
 
-        assertEquals(asList(new Alert("CASE Y", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open)), alertRepository.allAlerts());
+        assertEquals(asList(new Alert("CASE Y", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11")), alertRepository.allAlerts());
     }
 
     public void testShouldRemoveAllTimelineEventsWhenMotherIsClosed() throws Exception {

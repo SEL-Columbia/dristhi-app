@@ -12,7 +12,6 @@ import org.mockito.Mock;
 
 import java.util.HashMap;
 
-import static org.ei.drishti.domain.AlertStatus.open;
 import static org.ei.drishti.dto.AlertPriority.normal;
 import static org.ei.drishti.dto.AlertPriority.urgent;
 import static org.ei.drishti.util.ActionBuilder.*;
@@ -38,7 +37,7 @@ public class AlertServiceTest {
 
         service.create(actionForMother);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "ANC 1", normal, "2012-01-01", "2012-01-22", open));
+        verify(alertRepository).createAlert(new Alert("Case X", "ANC 1", normal, "2012-01-01", "2012-01-22"));
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -48,7 +47,7 @@ public class AlertServiceTest {
 
         service.create(actionForEC);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "Milestone 1", normal, "2012-01-01", "2012-01-22", open));
+        verify(alertRepository).createAlert(new Alert("Case X", "Milestone 1", normal, "2012-01-01", "2012-01-22"));
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -58,7 +57,7 @@ public class AlertServiceTest {
 
         service.create(actionForEC);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "Milestone 1", normal, "2012-01-01", "2012-01-22", open));
+        verify(alertRepository).createAlert(new Alert("Case X", "Milestone 1", normal, "2012-01-01", "2012-01-22"));
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -77,7 +76,7 @@ public class AlertServiceTest {
 
         service.create(actionForMother);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "Milestone 1", urgent, "2012-01-01", "2012-01-22", open));
+        verify(alertRepository).createAlert(new Alert("Case X", "Milestone 1", urgent, "2012-01-01", "2012-01-22"));
         verifyNoMoreInteractions(alertRepository);
     }
 

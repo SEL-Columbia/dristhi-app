@@ -13,7 +13,6 @@ import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
-import static org.ei.drishti.domain.AlertStatus.open;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 
@@ -96,10 +95,10 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldDeleteCorrespondingAlertsWhenDeletingEC() throws Exception {
-        Alert alert = new Alert("CASE Y", "FP 2", AlertPriority.normal, "2012-01-01", "2012-01-11", open);
+        Alert alert = new Alert("CASE Y", "FP 2", AlertPriority.normal, "2012-01-01", "2012-01-11");
 
         repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", new HashMap<String, String>()));
-        alertRepository.createAlert(new Alert("CASE X", "FP 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
+        alertRepository.createAlert(new Alert("CASE X", "FP 1", AlertPriority.normal, "2012-01-01", "2012-01-11"));
 
         repository.add(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", new HashMap<String, String>()));
         alertRepository.createAlert(alert);

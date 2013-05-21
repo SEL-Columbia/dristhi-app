@@ -1,7 +1,6 @@
 package org.ei.drishti.service;
 
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.AlertStatus;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.dto.AlertPriority;
 import org.ei.drishti.repository.AlertRepository;
@@ -31,7 +30,7 @@ public class AlertService {
 
     private void createAlert(Action action) {
         repository.createAlert(new Alert(action.caseID(), action.get("visitCode"),
-                AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate"), AlertStatus.open));
+                AlertPriority.from(action.get("alertPriority")), action.get("startDate"), action.get("expiryDate")));
     }
 
     public List<Alert> findByECIdAndAlertNames(String entityId, List<String> names) {

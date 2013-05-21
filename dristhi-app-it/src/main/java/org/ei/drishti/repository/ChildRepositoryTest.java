@@ -11,7 +11,6 @@ import org.ei.drishti.util.Session;
 import java.util.*;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.domain.AlertStatus.open;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 
@@ -86,14 +85,14 @@ public class ChildRepositoryTest extends AndroidTestCase {
 
         repository.add(firstChild);
         repository.add(secondChild);
-        alertRepository.createAlert(new Alert("CASE A", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
-        alertRepository.createAlert(new Alert("CASE B", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open));
+        alertRepository.createAlert(new Alert("CASE A", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11"));
+        alertRepository.createAlert(new Alert("CASE B", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11"));
 
         repository.close("CASE A");
 
         assertEquals(firstChild.setIsClosed(true), repository.find(firstChild.caseId()));
         assertEquals(secondChild, repository.find(secondChild.caseId()));
-        assertEquals(asList(new Alert("CASE B", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11", open)), alertRepository.allAlerts());
+        assertEquals(asList(new Alert("CASE B", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11")), alertRepository.allAlerts());
     }
 
     public void testShouldDeleteCorrespondingTimelineEventsWhenAChildIsDeleted() throws Exception {

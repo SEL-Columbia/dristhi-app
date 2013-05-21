@@ -14,15 +14,13 @@ public class Alert {
     private String startDate;
     private String expiryDate;
     private String completionDate;
-    private AlertStatus status;
 
-    public Alert(String caseID, String visitCode, AlertPriority priority, String startDate, String expiryDate, AlertStatus status) {
+    public Alert(String caseID, String visitCode, AlertPriority priority, String startDate, String expiryDate) {
         this.caseID = caseID;
         this.visitCode = visitCode;
         this.priority = priority;
         this.startDate = startDate;
         this.expiryDate = expiryDate;
-        this.status = null;
     }
 
     public Alert withCompletionDate(String completionDate) {
@@ -56,10 +54,6 @@ public class Alert {
 
     public boolean isClosed() {
         return complete.equals(priority);
-    }
-
-    public AlertStatus status() {
-        return status;
     }
 
     @Override
