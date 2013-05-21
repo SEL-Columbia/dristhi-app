@@ -38,6 +38,12 @@ public class FPClient {
     private final String numberOfCondomsSupplied;
     private final String numberOfCentchromanPillsDelivered;
     private final String numberOfOCPDelivered;
+    private String condomSideEffect;
+    private String iudSidEffect;
+    private String ocpSideEffect;
+    private String sterilizationSideEffect;
+    private String injectableSideEffect;
+    private String otherSideEffect;
 
     public FPClient(
             String entity_id, String ec_number, String thayi, String name, String husband_name, String age, String village,
@@ -80,6 +86,36 @@ public class FPClient {
 
     public String wifeName() {
         return name;
+    }
+
+    public FPClient withCondomSideEffect(String condomSideEffect) {
+        this.condomSideEffect = condomSideEffect;
+        return this;
+    }
+
+    public FPClient withIUDSidEffect(String iudSidEffect) {
+        this.iudSidEffect = iudSidEffect;
+        return this;
+    }
+
+    public FPClient withOCPSideEffect(String ocpSideEffect) {
+        this.ocpSideEffect = ocpSideEffect;
+        return this;
+    }
+
+    public FPClient withSterilizationSideEffect(String sterilizationSideEffect) {
+        this.sterilizationSideEffect = sterilizationSideEffect;
+        return this;
+    }
+
+    public FPClient withInjectableSideEffect(String injectableSideEffect) {
+        this.injectableSideEffect = injectableSideEffect;
+        return this;
+    }
+
+    public FPClient withOtherSideEffect(String otherSideEffect) {
+        this.otherSideEffect = otherSideEffect;
+        return this;
     }
 
     @Override

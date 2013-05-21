@@ -62,7 +62,7 @@ public class FPSmartRegistryController {
                     String thayiCardNumber = mother == null ? "" : mother.thaayiCardNumber();
                     String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
                     List<AlertDTO> alerts = getFPAlertsForEC(ec.caseId());
-                    fpClients.add(new FPClient(ec.caseId(), ec.ecNumber(), thayiCardNumber, ec.wifeName(), ec.husbandName(), ec.age(),
+                    FPClient fpClient = new FPClient(ec.caseId(), ec.ecNumber(), thayiCardNumber, ec.wifeName(), ec.husbandName(), ec.age(),
                             ec.village(), ec.getDetail("currentMethod"),
                             ec.getDetail("familyPlanningMethodChangeDate"), ec.getDetail("sideEffects"), ec.getDetail("complicationDate"),
                             ec.getDetail("iudPlace"), ec.getDetail("iudPerson"), ec.getDetail("numberOfCondomsSupplied"), ec.getDetail("numberOfCentchromanPillsDelivered"),
@@ -71,7 +71,14 @@ public class FPSmartRegistryController {
                             ec.getDetail("numberOfStillBirths"), ec.getDetail("numberOfAbortions"), ec.isYoungestChildUnderTwo(), ec.getDetail("youngestChildAge"), null,
                             null, ec.isHighPriority(),
                             photoPath, alerts
-                    ));
+                    )
+                            .withCondomSideEffect(ec.getDetail("condomSideEffect"))
+                            .withIUDSidEffect(ec.getDetail("iudSidEffect"))
+                            .withOCPSideEffect(ec.getDetail("ocpSideEffect"))
+                            .withInjectableSideEffect(ec.getDetail("injectableSideEffect"))
+                            .withSterilizationSideEffect(ec.getDetail("sterilizationSideEffect"))
+                            .withOtherSideEffect(ec.getDetail("otherSideEffect"));
+                    fpClients.add(fpClient);
                 }
                 sortByName(fpClients);
                 return new Gson().toJson(fpClients);
