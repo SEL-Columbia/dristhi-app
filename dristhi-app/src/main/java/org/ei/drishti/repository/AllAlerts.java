@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.dto.AlertPriority.urgent;
+import static org.ei.drishti.dto.AlertStatus.urgent;
 
 public class AllAlerts {
     private AlertRepository repository;
@@ -28,7 +28,7 @@ public class AllAlerts {
         List<ProfileTodo> todos = new ArrayList<ProfileTodo>();
         List<ProfileTodo> urgentTodos = new ArrayList<ProfileTodo>();
         for (Alert alert : alerts) {
-            if (urgent.equals(alert.priority())) {
+            if (urgent.equals(alert.status())) {
                 urgentTodos.add(new ProfileTodo(alert));
             } else {
                 todos.add(new ProfileTodo(alert));

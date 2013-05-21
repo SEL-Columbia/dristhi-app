@@ -3,7 +3,7 @@ package org.ei.drishti.util;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.dto.Action;
-import org.ei.drishti.dto.AlertPriority;
+import org.ei.drishti.dto.AlertStatus;
 import org.ei.drishti.dto.BeneficiaryType;
 import org.ei.drishti.service.DrishtiService;
 import org.joda.time.DateTime;
@@ -49,7 +49,7 @@ public class FakeDrishtiService extends DrishtiService {
     }
 
     private static Map<String, String> dataForCreateAction(String scheduleName, String visitCode, String dueDate) {
-        return createAlert(BeneficiaryType.mother, scheduleName,visitCode, AlertPriority.normal, new DateTime(dueDate), new DateTime("2012-01-11")).data();
+        return createAlert(BeneficiaryType.mother, scheduleName,visitCode, AlertStatus.normal, new DateTime(dueDate), new DateTime("2012-01-11")).data();
     }
 
     private Map<String, String> dataForCreateEC(String wifeName, String husbandName, String ecNumber, String village, String subCenter, String phc) {

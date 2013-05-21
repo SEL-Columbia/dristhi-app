@@ -15,7 +15,7 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
-import static org.ei.drishti.dto.AlertPriority.normal;
+import static org.ei.drishti.dto.AlertStatus.normal;
 import static org.ei.drishti.dto.BeneficiaryType.mother;
 import static org.ei.drishti.util.ActionBuilder.actionForCloseAlert;
 import static org.ei.drishti.util.ActionBuilder.actionForCreateAlert;

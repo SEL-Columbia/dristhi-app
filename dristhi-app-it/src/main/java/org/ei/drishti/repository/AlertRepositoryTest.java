@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.dto.AlertPriority.*;
+import static org.ei.drishti.dto.AlertStatus.*;
 
 public class AlertRepositoryTest extends AndroidTestCase {
     private AlertRepository alertRepository;
@@ -126,18 +126,18 @@ public class AlertRepositoryTest extends AndroidTestCase {
         assertEquals(asList(condomRefillAlert, ocpRefillAlert), alerts);
     }
 
-    public void testShouldChangeAlertPriorityToInProcessBasedOnEntityIdAndVisitCode() throws Exception {
+    public void testShouldChangeAlertStatusToInProcessBasedOnEntityIdAndVisitCode() throws Exception {
         alertRepository.createAlert(new Alert("Case X", "ANC 1", normal, "2012-01-01", "2012-01-11"));
         alertRepository.createAlert(new Alert("Case Y", "ANC 2", urgent, "2012-01-01", "2012-01-11"));
 
-        alertRepository.changeAlertPriorityToInProcess("Case X", "ANC 1");
+        alertRepository.changeAlertStatusToInProcess("Case X", "ANC 1");
 
         assertEquals(asList(new Alert("Case X", "ANC 1", inProcess, "2012-01-01", "2012-01-11"),
                 new Alert("Case Y", "ANC 2", urgent, "2012-01-01", "2012-01-11")), alertRepository.allAlerts());
     }
 
-    public void testShouldNotFailChangingAlertPriorityWhenNoAlertExists() throws Exception {
-        alertRepository.changeAlertPriorityToInProcess("Non existent alert", "ANC 1");
+    public void testShouldNotFailChangingAlertStatusWhenNoAlertExists() throws Exception {
+        alertRepository.changeAlertStatusToInProcess("Non existent alert", "ANC 1");
 
         assertTrue(alertRepository.allAlerts().isEmpty());
     }

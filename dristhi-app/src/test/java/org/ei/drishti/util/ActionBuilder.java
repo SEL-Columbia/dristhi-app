@@ -2,7 +2,7 @@ package org.ei.drishti.util;
 
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.dto.ActionData;
-import org.ei.drishti.dto.AlertPriority;
+import org.ei.drishti.dto.AlertStatus;
 import org.ei.drishti.dto.BeneficiaryType;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -15,8 +15,8 @@ import static org.ei.drishti.dto.BeneficiaryType.child;
 import static org.ei.drishti.dto.BeneficiaryType.mother;
 
 public class ActionBuilder {
-    public static Action actionForCreateAlert(String caseID, String alertPriority, String beneficiaryType, String scheduleName, String visitCode, String startDate, String expiryDate, String index) {
-        return new Action(caseID, "alert", "createAlert", createAlert(BeneficiaryType.from(beneficiaryType), scheduleName, visitCode, AlertPriority.from(alertPriority), new DateTime(startDate), new DateTime(expiryDate)).data(), index, true, new HashMap<String, String>());
+    public static Action actionForCreateAlert(String caseID, String alertStatus, String beneficiaryType, String scheduleName, String visitCode, String startDate, String expiryDate, String index) {
+        return new Action(caseID, "alert", "createAlert", createAlert(BeneficiaryType.from(beneficiaryType), scheduleName, visitCode, AlertStatus.from(alertStatus), new DateTime(startDate), new DateTime(expiryDate)).data(), index, true, new HashMap<String, String>());
     }
 
     public static Action actionForCloseAlert(String caseID, String visitCode, String completionDate, String index) {

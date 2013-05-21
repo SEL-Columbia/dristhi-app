@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 
 import static java.text.MessageFormat.format;
 import static junit.framework.Assert.assertEquals;
-import static org.ei.drishti.dto.AlertPriority.*;
+import static org.ei.drishti.dto.AlertStatus.*;
 
 @RunWith(RobolectricTestRunner.class)
 public class ProfileTodoTest {

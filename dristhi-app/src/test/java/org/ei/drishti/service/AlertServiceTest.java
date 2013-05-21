@@ -12,8 +12,8 @@ import org.mockito.Mock;
 
 import java.util.HashMap;
 
-import static org.ei.drishti.dto.AlertPriority.normal;
-import static org.ei.drishti.dto.AlertPriority.urgent;
+import static org.ei.drishti.dto.AlertStatus.normal;
+import static org.ei.drishti.dto.AlertStatus.urgent;
 import static org.ei.drishti.util.ActionBuilder.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;

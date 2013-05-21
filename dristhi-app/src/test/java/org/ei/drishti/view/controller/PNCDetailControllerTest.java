@@ -22,8 +22,8 @@ import org.mockito.Mock;
 import java.util.HashMap;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.dto.AlertPriority.normal;
-import static org.ei.drishti.dto.AlertPriority.urgent;
+import static org.ei.drishti.dto.AlertStatus.normal;
+import static org.ei.drishti.dto.AlertStatus.urgent;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;

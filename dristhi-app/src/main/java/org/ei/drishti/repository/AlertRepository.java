@@ -11,21 +11,21 @@ import java.util.List;
 
 import static java.lang.String.format;
 import static org.apache.commons.lang3.StringUtils.repeat;
-import static org.ei.drishti.dto.AlertPriority.*;
+import static org.ei.drishti.dto.AlertStatus.*;
 
 public class AlertRepository extends DrishtiRepository {
-    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, visitCode VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR)";
+    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, visitCode VARCHAR, status VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR)";
     private static final String ALERTS_TABLE_NAME = "alerts";
     public static final String ALERTS_CASEID_COLUMN = "caseID";
     public static final String ALERTS_VISIT_CODE_COLUMN = "visitCode";
-    public static final String ALERTS_PRIORITY_COLUMN = "priority";
+    public static final String ALERTS_STATUS_COLUMN = "status";
     public static final String ALERTS_STARTDATE_COLUMN = "startDate";
     public static final String ALERTS_EXPIRYDATE_COLUMN = "expiryDate";
     public static final String ALERTS_COMPLETIONDATE_COLUMN = "completionDate";
     private static final String[] ALERTS_TABLE_COLUMNS = new String[]{
             ALERTS_CASEID_COLUMN,
             ALERTS_VISIT_CODE_COLUMN,
-            ALERTS_PRIORITY_COLUMN,
+            ALERTS_STATUS_COLUMN,
             ALERTS_STARTDATE_COLUMN,
             ALERTS_EXPIRYDATE_COLUMN,
             ALERTS_COMPLETIONDATE_COLUMN
@@ -69,7 +69,7 @@ public class AlertRepository extends DrishtiRepository {
         String[] caseAndVisitCodeColumnValues = {caseId, visitCode};
 
         ContentValues valuesToBeUpdated = new ContentValues();
-        valuesToBeUpdated.put(ALERTS_PRIORITY_COLUMN, complete.value());
+        valuesToBeUpdated.put(ALERTS_STATUS_COLUMN, complete.value());
         valuesToBeUpdated.put(ALERTS_COMPLETIONDATE_COLUMN, completionDate);
         database.update(ALERTS_TABLE_NAME, valuesToBeUpdated, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, caseAndVisitCodeColumnValues);
     }
@@ -91,7 +91,7 @@ public class AlertRepository extends DrishtiRepository {
             alerts.add(
                     new Alert(cursor.getString(cursor.getColumnIndex(ALERTS_CASEID_COLUMN)),
                             cursor.getString(cursor.getColumnIndex(ALERTS_VISIT_CODE_COLUMN)),
-                            from(cursor.getString(cursor.getColumnIndex(ALERTS_PRIORITY_COLUMN))),
+                            from(cursor.getString(cursor.getColumnIndex(ALERTS_STATUS_COLUMN))),
                             cursor.getString(cursor.getColumnIndex(ALERTS_STARTDATE_COLUMN)),
                             cursor.getString(cursor.getColumnIndex(ALERTS_EXPIRYDATE_COLUMN))
                     )
@@ -106,7 +106,7 @@ public class AlertRepository extends DrishtiRepository {
         List<Alert> activeAlerts = new ArrayList<Alert>();
         for (Alert alert : alerts) {
             LocalDate today = LocalDate.now();
-            if (LocalDate.parse(alert.expiryDate()).isAfter(today) || (complete.equals(alert.priority()) && LocalDate.parse(alert.completionDate()).isAfter(today.minusDays(3)))) {
+            if (LocalDate.parse(alert.expiryDate()).isAfter(today) || (complete.equals(alert.status()) && LocalDate.parse(alert.completionDate()).isAfter(today.minusDays(3)))) {
                 activeAlerts.add(alert);
             }
         }
@@ -117,7 +117,7 @@ public class AlertRepository extends DrishtiRepository {
         ContentValues values = new ContentValues();
         values.put(ALERTS_CASEID_COLUMN, alert.caseId());
         values.put(ALERTS_VISIT_CODE_COLUMN, alert.visitCode());
-        values.put(ALERTS_PRIORITY_COLUMN, alert.priority().value());
+        values.put(ALERTS_STATUS_COLUMN, alert.status().value());
         values.put(ALERTS_STARTDATE_COLUMN, alert.startDate());
         values.put(ALERTS_EXPIRYDATE_COLUMN, alert.expiryDate());
         values.put(ALERTS_COMPLETIONDATE_COLUMN, alert.completionDate());
@@ -126,7 +126,7 @@ public class AlertRepository extends DrishtiRepository {
 
     public List<Alert> findByECIdAndAlertNames(String entityId, List<String> names) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.rawQuery(format("SELECT * FROM %s WHERE %s = ? AND %s != ? AND %s IN (%s) ORDER BY DATE(%s)", ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN, ALERTS_PRIORITY_COLUMN, ALERTS_VISIT_CODE_COLUMN,
+        Cursor cursor = database.rawQuery(format("SELECT * FROM %s WHERE %s = ? AND %s != ? AND %s IN (%s) ORDER BY DATE(%s)", ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN, ALERTS_STATUS_COLUMN, ALERTS_VISIT_CODE_COLUMN,
                 insertPlaceholdersForInClause(names.size()), ALERTS_STARTDATE_COLUMN), getSelectionArgs(entityId, names));
         return readAllAlerts(cursor);
     }
@@ -143,12 +143,12 @@ public class AlertRepository extends DrishtiRepository {
         return repeat("?", ",", length);
     }
 
-    public void changeAlertPriorityToInProcess(String entityId, String alertName) {
+    public void changeAlertStatusToInProcess(String entityId, String alertName) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         String[] caseAndVisitCodeColumnValues = {entityId, alertName};
 
         ContentValues valuesToBeUpdated = new ContentValues();
-        valuesToBeUpdated.put(ALERTS_PRIORITY_COLUMN, inProcess.value());
+        valuesToBeUpdated.put(ALERTS_STATUS_COLUMN, inProcess.value());
         database.update(ALERTS_TABLE_NAME, valuesToBeUpdated, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, caseAndVisitCodeColumnValues);
     }
 }

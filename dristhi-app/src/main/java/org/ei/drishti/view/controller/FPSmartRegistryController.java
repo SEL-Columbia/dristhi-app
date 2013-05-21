@@ -93,7 +93,7 @@ public class FPSmartRegistryController {
                 FP_REFERRAL_FOLLOWUP_ALERT_NAME));
         ArrayList<AlertDTO> alertDTOs = new ArrayList<AlertDTO>();
         for (Alert alert : alerts) {
-            alertDTOs.add(new AlertDTO(alert.visitCode(), String.valueOf(alert.priority()), alert.startDate()));
+            alertDTOs.add(new AlertDTO(alert.visitCode(), String.valueOf(alert.status()), alert.startDate()));
         }
         return alertDTOs;
     }

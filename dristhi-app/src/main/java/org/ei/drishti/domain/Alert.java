@@ -3,22 +3,22 @@ package org.ei.drishti.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.dto.AlertPriority;
+import org.ei.drishti.dto.AlertStatus;
 
-import static org.ei.drishti.dto.AlertPriority.complete;
+import static org.ei.drishti.dto.AlertStatus.complete;
 
 public class Alert {
     private String caseID;
     private String visitCode;
-    private AlertPriority priority;
+    private AlertStatus status;
     private String startDate;
     private String expiryDate;
     private String completionDate;
 
-    public Alert(String caseID, String visitCode, AlertPriority priority, String startDate, String expiryDate) {
+    public Alert(String caseID, String visitCode, AlertStatus status, String startDate, String expiryDate) {
         this.caseID = caseID;
         this.visitCode = visitCode;
-        this.priority = priority;
+        this.status = status;
         this.startDate = startDate;
         this.expiryDate = expiryDate;
     }
@@ -28,8 +28,8 @@ public class Alert {
         return this;
     }
 
-    public AlertPriority priority() {
-        return priority;
+    public AlertStatus status() {
+        return status;
     }
 
     public String visitCode() {
@@ -53,7 +53,7 @@ public class Alert {
     }
 
     public boolean isClosed() {
-        return complete.equals(priority);
+        return complete.equals(status);
     }
 
     @Override

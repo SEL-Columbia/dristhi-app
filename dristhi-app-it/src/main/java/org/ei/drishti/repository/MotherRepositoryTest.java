@@ -4,7 +4,7 @@ import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.*;
-import org.ei.drishti.dto.AlertPriority;
+import org.ei.drishti.dto.AlertStatus;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.Session;
 import org.joda.time.LocalDate;
@@ -180,13 +180,13 @@ public class MotherRepositoryTest extends AndroidTestCase {
         Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
 
         repository.add(mother1);
-        alertRepository.createAlert(new Alert("CASE X", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11"));
+        alertRepository.createAlert(new Alert("CASE X", "ANC 1", AlertStatus.normal, "2012-01-01", "2012-01-11"));
         repository.add(mother2);
-        alertRepository.createAlert(new Alert("CASE Y", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11"));
+        alertRepository.createAlert(new Alert("CASE Y", "ANC 1", AlertStatus.normal, "2012-01-01", "2012-01-11"));
 
         repository.close(mother1.caseId());
 
-        assertEquals(asList(new Alert("CASE Y", "ANC 1", AlertPriority.normal, "2012-01-01", "2012-01-11")), alertRepository.allAlerts());
+        assertEquals(asList(new Alert("CASE Y", "ANC 1", AlertStatus.normal, "2012-01-01", "2012-01-11")), alertRepository.allAlerts());
     }
 
     public void testShouldRemoveAllTimelineEventsWhenMotherIsClosed() throws Exception {
