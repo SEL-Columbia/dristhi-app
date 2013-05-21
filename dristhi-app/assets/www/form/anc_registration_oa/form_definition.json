@@ -233,6 +233,10 @@
             },
             {
                 "name": "isClosed",
+                "value": "false"
+            },
+            {
+                "name": "isClosed",
                 "value": "false",
                 "source": "eligible_couple.mother.isClosed"
             },

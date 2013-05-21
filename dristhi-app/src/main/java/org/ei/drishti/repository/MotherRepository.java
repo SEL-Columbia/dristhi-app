@@ -20,6 +20,7 @@ import static org.apache.commons.lang3.StringUtils.join;
 import static org.apache.commons.lang3.StringUtils.repeat;
 import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_COLUMNS;
 import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_NAME;
+import static org.ei.drishti.repository.EligibleCoupleRepository.IS_OUT_OF_AREA_COLUMN;
 
 public class MotherRepository extends DrishtiRepository {
     private static final String MOTHER_SQL = "CREATE TABLE mother(id VARCHAR PRIMARY KEY, ecCaseId VARCHAR, thayiCardNumber VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR, isClosed VARCHAR)";
@@ -191,8 +192,9 @@ public class MotherRepository extends DrishtiRepository {
             EligibleCouple eligibleCouple = new EligibleCouple(cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12),
                     new Gson().<Map<String, String>>fromJson(cursor.getString(14), new TypeToken<Map<String, String>>() {
                     }.getType()));
-            if (Boolean.valueOf(cursor.getString(12)))
+            if (Boolean.valueOf(cursor.getString(cursor.getColumnIndex(IS_OUT_OF_AREA_COLUMN)))) {
                 eligibleCouple.asOutOfArea();
+            }
 
             ancsWithEC.add(Pair.of(mother, eligibleCouple));
             cursor.moveToNext();

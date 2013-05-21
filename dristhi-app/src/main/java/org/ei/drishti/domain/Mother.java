@@ -62,6 +62,10 @@ public class Mother {
         return this;
     }
 
+    public String getDetail(String name) {
+        return details.get(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);

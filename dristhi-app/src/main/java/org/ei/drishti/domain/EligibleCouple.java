@@ -99,6 +99,10 @@ public class EligibleCouple {
         return this;
     }
 
+    public String getDetail(String name) {
+        return details.get(name);
+    }
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
@@ -117,9 +121,5 @@ public class EligibleCouple {
     public String age() {
         //TODO: Calculate age from DOB
         return details.get("wifeAge");
-    }
-
-    public String getDetail(String name) {
-        return details.get(name);
     }
 }

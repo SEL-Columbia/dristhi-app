@@ -28,7 +28,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String HUSBAND_NAME_COLUMN = "husbandName";
     private static final String VILLAGE_NAME_COLUMN = "village";
     private static final String SUBCENTER_NAME_COLUMN = "subCenter";
-    private static final String IS_OUT_OF_AREA_COLUMN = "isOutOfArea";
+    public static final String IS_OUT_OF_AREA_COLUMN = "isOutOfArea";
     private static final String DETAILS_COLUMN = "details";
     private static final String IS_CLOSED_COLUMN = "isClosed";
     private static final String PHOTO_PATH_COLUMN = "photoPath";

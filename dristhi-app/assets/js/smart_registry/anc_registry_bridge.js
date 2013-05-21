@@ -1,5 +1,5 @@
 function ANCRegistryBridge() {
-    var context = window.ancContext;
+    var context = window.context;
     if (typeof context === "undefined" && typeof FakeANCSmartRegistryContext !== "undefined") {
         context = new FakeANCSmartRegistryContext();
     }
@@ -79,6 +79,7 @@ function FakeANCSmartRegistryContext() {
                     due_message: 'Follow Up',
                     isHighPriority: true,
                     locationStatus: "out_of_area",
+                    "photo_path": "../../img/woman-placeholder.png",
                     isHighRisk: true,
                     caste: "sc"
                 },
@@ -124,6 +125,7 @@ function FakeANCSmartRegistryContext() {
                     days_due: '3',
                     due_message: 'Follow Up',
                     isHighPriority: true,
+                    "photo_path": "../../img/woman-placeholder.png",
                     locationStatus: "left_the_place"
                 },
                 {
@@ -136,6 +138,7 @@ function FakeANCSmartRegistryContext() {
                     weeks_pregnant: '2',
                     edd: '2013-09-11T00:00:00.000Z',
                     lmp: '25/3/13',
+                    "photo_path": "../../img/woman-placeholder.png",
                     alerts: [
                         {
                             name: 'anc2',
@@ -204,6 +207,7 @@ function FakeANCSmartRegistryContext() {
                     husband_name: 'Harshit',
                     weeks_pregnant: '2',
                     edd: '2013-06-08T00:00:00.000Z',
+                    "photo_path": "../../img/woman-placeholder.png",
                     lmp: '25/3/13',
                     alerts: [
                         {
@@ -275,6 +279,7 @@ function FakeANCSmartRegistryContext() {
                     village: 'Bherya',
                     name: 'Moses',
                     thayi: '4636543',
+                    "photo_path": "../../img/woman-placeholder.png",
                     ec_number: '429',
                     age: '35',
                     husband_name: 'Kiran',
