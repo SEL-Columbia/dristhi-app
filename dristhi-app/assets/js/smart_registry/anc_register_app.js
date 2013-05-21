@@ -2,7 +2,7 @@ angular.module("smartRegistry.controllers")
     .controller("ancRegisterController", function ($scope, ANCService) {
         $scope.bridge = new ANCRegistryBridge();
         $scope.getClients = function () {
-            return ANCService.preProcessClients(ANCService.getClients());
+            return ANCService.preProcessClients($scope.bridge.getClients());
         };
 
         $scope.clients = $scope.getClients();
