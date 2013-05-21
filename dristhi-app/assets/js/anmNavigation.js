@@ -43,7 +43,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
 
     var bindToANCSmartRegistry = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
-            window.location = "smart_registry/anc_register.html";
+            anmNavigationBridge.delegateToANCSmartRegistry();
         });
     };
 

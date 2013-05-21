@@ -43,6 +43,10 @@ public class NavigationController {
         context.startActivity(new Intent(context, FPSmartRegistryActivity.class));
     }
 
+    public void startANCSmartRegistry() {
+        context.startActivity(new Intent(context, ANCSmartRegistryActivity.class));
+    }
+
     public String get() {
         return new Gson().toJson(new HomeContext(anmService.fetchDetails()));
     }
