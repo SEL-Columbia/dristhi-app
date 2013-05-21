@@ -16,14 +16,6 @@ public class AllAlerts {
         this.repository = repository;
     }
 
-    public List<Alert> fetchAll() {
-        return repository.allAlerts();
-    }
-
-    public void deleteAllAlerts() {
-        repository.deleteAllAlerts();
-    }
-
     public List<List<ProfileTodo>> fetchAllActiveAlertsForCase(String caseId) {
         return classifyTodosBasedOnUrgency(repository.allActiveAlertsForCase(caseId));
     }
