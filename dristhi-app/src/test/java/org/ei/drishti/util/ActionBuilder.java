@@ -13,7 +13,6 @@ import java.util.Map;
 import static org.ei.drishti.dto.ActionData.*;
 import static org.ei.drishti.dto.BeneficiaryType.child;
 import static org.ei.drishti.dto.BeneficiaryType.mother;
-import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class ActionBuilder {
     public static Action actionForCreateAlert(String caseID, String alertPriority, String beneficiaryType, String scheduleName, String visitCode, String startDate, String expiryDate, String index) {
@@ -28,35 +27,8 @@ public class ActionBuilder {
         return new Action(caseID, "alert", "deleteAllAlerts", new HashMap<String, String>(), "0", true, new HashMap<String, String>());
     }
 
-    public static Action actionForCreateEC(String caseID, String wifeName, String husbandName, String ecNumber, String village, String subCenter, String phc) {
-        return new Action(caseID, "eligibleCouple", "createEC", createEligibleCouple(wifeName, husbandName, ecNumber, village, subCenter, phc, new HashMap<String, String>()).data(), "0", true, new HashMap<String, String>());
-    }
-
-    public static Action actionForUpdateECDetails(String caseId, Map<String, String> details) {
-        ActionData actionData = updateEligibleCoupleDetails(details);
-        return new Action(caseId, "eligibleCouple", "updateDetails", actionData.data(), "0", true, actionData.details());
-    }
-
-    public static Action actionForDeleteEC(String caseID) {
-        return new Action(caseID, "eligibleCouple", "deleteEC", new HashMap<String, String>(), "0", true, new HashMap<String, String>());
-    }
-
-    public static Action actionForUpdateBeneficiary() {
-        return new Action("Case X", "mother", "closeANC", closeMother("death").data(), "0", true, new HashMap<String, String>());
-    }
-
-    public static Action actionForRegisterPregnancy(String motherCaseId) {
-        ActionData actionData = registerPregnancy("ecCaseId", "thaayiCardNumber", LocalDate.now(), mapOf("some-key", "some-field"));
-        return new Action(motherCaseId, "mother", "registerPregnancy", actionData.data(), "0", true, actionData.details());
-    }
-
     public static Action actionForCreateChild(String motherCaseId) {
         return new Action("Case X", "child", "register", registerChildBirth(motherCaseId, "TC 1", LocalDate.now(), "female", new HashMap<String, String>()).data(), "0", true, new HashMap<String, String>());
-    }
-
-    public static Action actionForOutOfAreaANCRegistration(String caseId) {
-        ActionData actionData = ActionData.registerOutOfAreaANC("EC Case ID", "Wife 1", "Husband 1", "Village X", "SubCenter X", "PHC X", "TC 1", LocalDate.parse("2012-09-17"), new HashMap<String, String>());
-        return new Action(caseId, "mother", "registerOutOfAreaANC", actionData.data(), "0", true, mapOf("some-key", "some-field"));
     }
 
     public static Action actionForUpdateMotherDetails(String motherCaseId, Map<String, String> details) {
