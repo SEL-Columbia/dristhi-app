@@ -56,6 +56,7 @@ public class Context {
     private RenewFPProductHandler renewFPProductHandler;
     private ECCloseHandler ecCloseHandler;
     private ANCRegistrationHandler ancRegistrationHandler;
+    private ANCRegistrationOAHandler ancRegistrationOAHandler;
 
     protected Context() {
     }
@@ -114,7 +115,7 @@ public class Context {
         initRepository();
         if (formSubmissionRouter == null) {
             formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(),
-                    fpComplicationsHandler(), fpChangeHandler(), renewFPProductHandler(), ecCloseHandler(), ancRegistrationHandler());
+                    fpComplicationsHandler(), fpChangeHandler(), renewFPProductHandler(), ecCloseHandler(), ancRegistrationHandler(), ancRegistrationOAHandler());
         }
         return formSubmissionRouter;
     }
@@ -159,6 +160,13 @@ public class Context {
             ancRegistrationHandler = new ANCRegistrationHandler(motherService());
         }
         return ancRegistrationHandler;
+    }
+
+    private ANCRegistrationOAHandler ancRegistrationOAHandler() {
+        if (ancRegistrationOAHandler == null) {
+            ancRegistrationOAHandler = new ANCRegistrationOAHandler(motherService());
+        }
+        return ancRegistrationOAHandler;
     }
 
     private ZiggyService ziggyService() {
@@ -327,7 +335,7 @@ public class Context {
 
     public MotherService motherService() {
         if (motherService == null) {
-            motherService = new MotherService(motherRepository(), allTimelineEvents(), eligibleCoupleRepository());
+            motherService = new MotherService(motherRepository(), allTimelineEvents());
         }
         return motherService;
     }

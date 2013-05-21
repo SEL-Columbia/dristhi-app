@@ -1,8 +1,6 @@
 package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
@@ -17,13 +15,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import static org.ei.drishti.util.ActionBuilder.actionForANCCareProvided;
 import static org.ei.drishti.util.ActionBuilder.actionForCloseMother;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
@@ -40,7 +36,7 @@ public class MotherServiceTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new MotherService(motherRepository, allTimelineEvents, eligibleCoupleRepository);
+        service = new MotherService(motherRepository, allTimelineEvents);
     }
 
     @Test
@@ -58,15 +54,17 @@ public class MotherServiceTest {
     }
 
     @Test
-    public void shouldHandleOutOfAreaANCRegistration() throws Exception {
-        Action action = ActionBuilder.actionForOutOfAreaANCRegistration("Case Mother X");
-        Map<String, String> details = mapOf("some-key", "some-field");
+    public void shouldRegisterOutOfAreaANC() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("motherId")).thenReturn("mother id 1");
+        when(submission.getFieldValue("thayiCardNumber")).thenReturn("thayi 1");
+        when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
 
-        service.registerOutOfAreaANC(action);
+        service.registerOutOfAreaANC(submission);
 
-        verify(eligibleCoupleRepository).add(new EligibleCouple("EC Case ID", "Wife 1", "Husband 1", "", "Village X", "SubCenter X", details).asOutOfArea());
-        verify(motherRepository).add(new Mother("Case Mother X", "EC Case ID", "TC 1", "2012-09-17")
-                .withDetails(details));
+        allTimelineEvents.add(TimelineEvent.forStartOfPregnancy("mother id 1", "2012-01-01"));
+        allTimelineEvents.add(TimelineEvent.forStartOfPregnancyForEC("entity id 1", "thayi 1", "2012-01-01"));
     }
 
     @Test

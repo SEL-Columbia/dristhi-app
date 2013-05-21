@@ -22,12 +22,6 @@ public enum MotherActionRoute {
             Context.getInstance().motherService().ancCareProvided(action);
         }
     },
-    REGISTER_OUT_OF_AREA("registerOutOfAreaANC") {
-        @Override
-        public void direct(Action action) {
-            Context.getInstance().motherService().registerOutOfAreaANC(action);
-        }
-    },
     UPDATE_ANC_OUTCOME("updateANCOutcome") {
         @Override
         public void direct(Action action) {

@@ -13,24 +13,24 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
-public class ANCRegistrationHandlerTest {
+public class ANCRegistrationOAHandlerTest {
     @Mock
     private MotherService motherService;
 
-    private ANCRegistrationHandler handler;
+    private ANCRegistrationOAHandler handler;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        handler = new ANCRegistrationHandler(motherService);
+        handler = new ANCRegistrationOAHandler(motherService);
     }
 
     @Test
     public void shouldDelegateFormSubmissionHandlingToMotherService() throws Exception {
-        FormSubmission submission = create().withFormName("anc_registration").withInstanceId("instance id 1").withVersion("122").build();
+        FormSubmission submission = create().withFormName("anc_registration_oa").withInstanceId("instance id 1").withVersion("122").build();
 
         handler.handle(submission);
 
-        verify(motherService).registerANC(submission);
+        verify(motherService).registerOutOfAreaANC(submission);
     }
 }

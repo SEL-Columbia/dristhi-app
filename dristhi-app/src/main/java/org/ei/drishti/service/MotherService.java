@@ -1,12 +1,9 @@
 package org.ei.drishti.service;
 
 import org.apache.commons.lang3.StringUtils;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.repository.AllTimelineEvents;
-import org.ei.drishti.repository.EligibleCoupleRepository;
 import org.ei.drishti.repository.MotherRepository;
 import org.ei.drishti.util.IntegerUtil;
 
@@ -18,17 +15,14 @@ public class MotherService {
     public static final String THAYI_CARD_NUMBER = "thayiCardNumber";
     private MotherRepository motherRepository;
     private AllTimelineEvents allTimelines;
-    private EligibleCoupleRepository eligibleCoupleRepository;
 
-    public MotherService(MotherRepository motherRepository, AllTimelineEvents allTimelineEvents, EligibleCoupleRepository eligibleCoupleRepository) {
+    public MotherService(MotherRepository motherRepository, AllTimelineEvents allTimelineEvents) {
         this.motherRepository = motherRepository;
         this.allTimelines = allTimelineEvents;
-        this.eligibleCoupleRepository = eligibleCoupleRepository;
     }
 
     public void registerANC(FormSubmission submission) {
-        allTimelines.add(forStartOfPregnancy(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(REFERENCE_DATE)));
-        allTimelines.add(forStartOfPregnancyForEC(submission.entityId(), submission.getFieldValue(THAYI_CARD_NUMBER), submission.getFieldValue(REFERENCE_DATE)));
+        addTimelineEventsForMotherRegistration(submission);
     }
 
     public void update(Action action) {
@@ -47,10 +41,8 @@ public class MotherService {
         }
     }
 
-    public void registerOutOfAreaANC(Action action) {
-        eligibleCoupleRepository.add(new EligibleCouple(action.get("ecCaseId"), action.get("wife"), action.get("husband"), "", action.get("village"), action.get("subcenter"), action.details()).asOutOfArea());
-        motherRepository.add(new Mother(action.caseID(), action.get("ecCaseId"), action.get("thaayiCardNumber"), action.get("referenceDate"))
-                .withDetails(action.details()));
+    public void registerOutOfAreaANC(FormSubmission submission) {
+        addTimelineEventsForMotherRegistration(submission);
     }
 
     public void updateANCOutcome(Action action) {
@@ -70,5 +62,10 @@ public class MotherService {
 
     public void close(Action action) {
         motherRepository.close(action.caseID());
+    }
+
+    private void addTimelineEventsForMotherRegistration(FormSubmission submission) {
+        allTimelines.add(forStartOfPregnancy(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(REFERENCE_DATE)));
+        allTimelines.add(forStartOfPregnancyForEC(submission.entityId(), submission.getFieldValue(THAYI_CARD_NUMBER), submission.getFieldValue(REFERENCE_DATE)));
     }
 }
