@@ -158,7 +158,7 @@ angular.module("smartRegistry.controllers")
 
         $scope.sumIFATablets = function (ifaData) {
             var numTablets = 0;
-            var milestones = ['ifa1', 'ifa2', 'ifa3']
+            var milestones = ['ifa1', 'ifa2', 'ifa3'];
             milestones.forEach(function (milestone) {
                 if (ifaData[milestone] !== undefined && ifaData[milestone].status === 'done' && ifaData[milestone].data !== undefined) {
                     numTablets += ifaData[milestone].data['dose'] || 0;
