@@ -14,9 +14,10 @@ import static org.apache.commons.lang3.StringUtils.repeat;
 import static org.ei.drishti.dto.AlertStatus.*;
 
 public class AlertRepository extends DrishtiRepository {
-    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, visitCode VARCHAR, status VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR)";
+    private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, scheduleName VARCHAR, visitCode VARCHAR, status VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR)";
     private static final String ALERTS_TABLE_NAME = "alerts";
     public static final String ALERTS_CASEID_COLUMN = "caseID";
+    public static final String ALERTS_SCHEDULE_NAME_COLUMN = "scheduleName";
     public static final String ALERTS_VISIT_CODE_COLUMN = "visitCode";
     public static final String ALERTS_STATUS_COLUMN = "status";
     public static final String ALERTS_STARTDATE_COLUMN = "startDate";
@@ -24,6 +25,7 @@ public class AlertRepository extends DrishtiRepository {
     public static final String ALERTS_COMPLETIONDATE_COLUMN = "completionDate";
     private static final String[] ALERTS_TABLE_COLUMNS = new String[]{
             ALERTS_CASEID_COLUMN,
+            ALERTS_SCHEDULE_NAME_COLUMN,
             ALERTS_VISIT_CODE_COLUMN,
             ALERTS_STATUS_COLUMN,
             ALERTS_STARTDATE_COLUMN,
@@ -51,16 +53,17 @@ public class AlertRepository extends DrishtiRepository {
 
     public void createAlert(Alert alert) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
-        String[] caseAndVisitCodeColumnValues = {alert.caseId(), alert.visitCode()};
+        String[] caseAndScheduleNameColumnValues = {alert.caseId(), alert.scheduleName()};
 
-        List<Alert> existingAlerts = readAllAlerts(database.query(ALERTS_TABLE_NAME, ALERTS_TABLE_COLUMNS,
-                CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, caseAndVisitCodeColumnValues, null, null, null, null));
+        String caseAndScheduleNameColumnSelections = ALERTS_CASEID_COLUMN + " = ? AND " + ALERTS_SCHEDULE_NAME_COLUMN + " = ?";
+        Cursor cursor = database.query(ALERTS_TABLE_NAME, ALERTS_TABLE_COLUMNS, caseAndScheduleNameColumnSelections, caseAndScheduleNameColumnValues, null, null, null, null);
+        List<Alert> existingAlerts = readAllAlerts(cursor);
 
         ContentValues values = createValuesFor(alert);
         if (existingAlerts.isEmpty()) {
             database.insert(ALERTS_TABLE_NAME, null, values);
         } else {
-            database.update(ALERTS_TABLE_NAME, values, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, caseAndVisitCodeColumnValues);
+            database.update(ALERTS_TABLE_NAME, values, caseAndScheduleNameColumnSelections, caseAndScheduleNameColumnValues);
         }
     }
 
@@ -90,7 +93,7 @@ public class AlertRepository extends DrishtiRepository {
         while (!cursor.isAfterLast()) {
             alerts.add(
                     new Alert(cursor.getString(cursor.getColumnIndex(ALERTS_CASEID_COLUMN)),
-                            cursor.getString(cursor.getColumnIndex(ALERTS_VISIT_CODE_COLUMN)),
+                            cursor.getString(cursor.getColumnIndex(ALERTS_SCHEDULE_NAME_COLUMN)), cursor.getString(cursor.getColumnIndex(ALERTS_VISIT_CODE_COLUMN)),
                             from(cursor.getString(cursor.getColumnIndex(ALERTS_STATUS_COLUMN))),
                             cursor.getString(cursor.getColumnIndex(ALERTS_STARTDATE_COLUMN)),
                             cursor.getString(cursor.getColumnIndex(ALERTS_EXPIRYDATE_COLUMN))
@@ -116,6 +119,7 @@ public class AlertRepository extends DrishtiRepository {
     private ContentValues createValuesFor(Alert alert) {
         ContentValues values = new ContentValues();
         values.put(ALERTS_CASEID_COLUMN, alert.caseId());
+        values.put(ALERTS_SCHEDULE_NAME_COLUMN, alert.scheduleName());
         values.put(ALERTS_VISIT_CODE_COLUMN, alert.visitCode());
         values.put(ALERTS_STATUS_COLUMN, alert.status().value());
         values.put(ALERTS_STARTDATE_COLUMN, alert.startDate());

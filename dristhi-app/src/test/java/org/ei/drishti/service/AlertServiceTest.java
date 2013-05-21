@@ -37,7 +37,7 @@ public class AlertServiceTest {
 
         service.create(actionForMother);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "ANC 1", normal, "2012-01-01", "2012-01-22"));
+        verify(alertRepository).createAlert(new Alert("Case X", "Schedule 1", "ANC 1", normal, "2012-01-01", "2012-01-22"));
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -47,7 +47,7 @@ public class AlertServiceTest {
 
         service.create(actionForEC);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "Milestone 1", normal, "2012-01-01", "2012-01-22"));
+        verify(alertRepository).createAlert(new Alert("Case X", "Schedule 1", "Milestone 1", normal, "2012-01-01", "2012-01-22"));
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -57,7 +57,7 @@ public class AlertServiceTest {
 
         service.create(actionForEC);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "Milestone 1", normal, "2012-01-01", "2012-01-22"));
+        verify(alertRepository).createAlert(new Alert("Case X", "Schedule 1", "Milestone 1", normal, "2012-01-01", "2012-01-22"));
         verifyNoMoreInteractions(alertRepository);
     }
 
@@ -76,7 +76,7 @@ public class AlertServiceTest {
 
         service.create(actionForMother);
 
-        verify(alertRepository).createAlert(new Alert("Case X", "Milestone 1", urgent, "2012-01-01", "2012-01-22"));
+        verify(alertRepository).createAlert(new Alert("Case X", "Schedule 1", "Milestone 1", urgent, "2012-01-01", "2012-01-22"));
         verifyNoMoreInteractions(alertRepository);
     }
 

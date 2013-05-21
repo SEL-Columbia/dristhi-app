@@ -85,14 +85,14 @@ public class ChildRepositoryTest extends AndroidTestCase {
 
         repository.add(firstChild);
         repository.add(secondChild);
-        alertRepository.createAlert(new Alert("CASE A", "ANC 1", AlertStatus.normal, "2012-01-01", "2012-01-11"));
-        alertRepository.createAlert(new Alert("CASE B", "ANC 1", AlertStatus.normal, "2012-01-01", "2012-01-11"));
+        alertRepository.createAlert(new Alert("CASE A", "Ante Natal Care - Normal", "ANC 1", AlertStatus.normal, "2012-01-01", "2012-01-11"));
+        alertRepository.createAlert(new Alert("CASE B", "Ante Natal Care - Normal", "ANC 1", AlertStatus.normal, "2012-01-01", "2012-01-11"));
 
         repository.close("CASE A");
 
         assertEquals(firstChild.setIsClosed(true), repository.find(firstChild.caseId()));
         assertEquals(secondChild, repository.find(secondChild.caseId()));
-        assertEquals(asList(new Alert("CASE B", "ANC 1", AlertStatus.normal, "2012-01-01", "2012-01-11")), alertRepository.allAlerts());
+        assertEquals(asList(new Alert("CASE B", "Ante Natal Care - Normal", "ANC 1", AlertStatus.normal, "2012-01-01", "2012-01-11")), alertRepository.allAlerts());
     }
 
     public void testShouldDeleteCorrespondingTimelineEventsWhenAChildIsDeleted() throws Exception {

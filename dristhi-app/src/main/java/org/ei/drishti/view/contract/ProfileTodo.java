@@ -14,7 +14,7 @@ public class ProfileTodo {
     public ProfileTodo(Alert alert) {
         visitCode = alert.visitCode();
         message = TodoDetail.from(visitCode).prefix();
-        isCompleted = alert.isClosed();
+        isCompleted = alert.isComplete();
 
         todoDate = alert.expiryDate();
         if (isCompleted) {

@@ -56,8 +56,8 @@ public class EligibleCoupleDetailControllerTest {
         TimelineEvent pregnancyEvent = TimelineEvent.forStartOfPregnancyForEC(caseId, "TC 1", "2011-10-21");
         TimelineEvent fpEvent = TimelineEvent.forChangeOfFPMethod(caseId, "condom", "iud", "2011-12-22");
         TimelineEvent eventVeryCloseToCurrentDate = TimelineEvent.forChangeOfFPMethod(caseId, "iud", "condom", "2012-07-29");
-        ProfileTodo todo = new ProfileTodo(new Alert("Case X", "ANC 1", normal, "2012-01-01", "2012-01-11"));
-        ProfileTodo urgentTodo = new ProfileTodo(new Alert("Case X", "TT 1", urgent, "2012-02-02", "2012-02-11"));
+        ProfileTodo todo = new ProfileTodo(new Alert("Case X", "Ante Natal Care - Normal", "ANC 1", normal, "2012-01-01", "2012-01-11"));
+        ProfileTodo urgentTodo = new ProfileTodo(new Alert("Case X", "Ante Natal Care - Normal", "TT 1", urgent, "2012-02-02", "2012-02-11"));
 
         HashMap<String, String> details = new HashMap<String, String>();
         details.put("ashaName", "Shiwani");
