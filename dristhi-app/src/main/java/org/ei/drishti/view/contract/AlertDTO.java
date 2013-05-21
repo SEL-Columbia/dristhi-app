@@ -10,7 +10,6 @@ public class AlertDTO {
     private final String date;
 
     public AlertDTO(String name, String status, String date) {
-
         this.name = name;
         this.status = status;
         this.date = date;

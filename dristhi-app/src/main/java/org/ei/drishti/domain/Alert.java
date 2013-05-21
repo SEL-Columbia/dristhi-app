@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.dto.AlertPriority;
 
-import static org.ei.drishti.domain.AlertStatus.closed;
+import static org.ei.drishti.dto.AlertPriority.complete;
 
 public class Alert {
     private String caseID;
@@ -22,7 +22,7 @@ public class Alert {
         this.priority = priority;
         this.startDate = startDate;
         this.expiryDate = expiryDate;
-        this.status = status;
+        this.status = null;
     }
 
     public Alert withCompletionDate(String completionDate) {
@@ -55,7 +55,7 @@ public class Alert {
     }
 
     public boolean isClosed() {
-        return closed.equals(status);
+        return complete.equals(priority);
     }
 
     public AlertStatus status() {

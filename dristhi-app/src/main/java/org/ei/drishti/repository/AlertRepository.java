@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.AlertStatus;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
@@ -12,10 +11,7 @@ import java.util.List;
 
 import static java.lang.String.format;
 import static org.apache.commons.lang3.StringUtils.repeat;
-import static org.ei.drishti.domain.AlertStatus.closed;
-import static org.ei.drishti.domain.AlertStatus.open;
-import static org.ei.drishti.dto.AlertPriority.from;
-import static org.ei.drishti.dto.AlertPriority.inProcess;
+import static org.ei.drishti.dto.AlertPriority.*;
 
 public class AlertRepository extends DrishtiRepository {
     private static final String ALERTS_SQL = "CREATE TABLE alerts(caseID VARCHAR, visitCode VARCHAR, priority VARCHAR, startDate VARCHAR, expiryDate VARCHAR, completionDate VARCHAR, status VARCHAR)";
@@ -68,7 +64,7 @@ public class AlertRepository extends DrishtiRepository {
         String[] caseAndVisitCodeColumnValues = {caseId, visitCode};
 
         ContentValues valuesToBeUpdated = new ContentValues();
-        valuesToBeUpdated.put(ALERTS_STATUS_COLUMN, closed.value());
+        valuesToBeUpdated.put(ALERTS_PRIORITY_COLUMN, complete.value());
         valuesToBeUpdated.put(ALERTS_COMPLETIONDATE_COLUMN, completionDate);
         database.update(ALERTS_TABLE_NAME, valuesToBeUpdated, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, caseAndVisitCodeColumnValues);
     }
@@ -93,7 +89,7 @@ public class AlertRepository extends DrishtiRepository {
                             from(cursor.getString(cursor.getColumnIndex(ALERTS_PRIORITY_COLUMN))),
                             cursor.getString(cursor.getColumnIndex(ALERTS_STARTDATE_COLUMN)),
                             cursor.getString(cursor.getColumnIndex(ALERTS_EXPIRYDATE_COLUMN)),
-                            AlertStatus.from(cursor.getString(cursor.getColumnIndex(ALERTS_STATUS_COLUMN))))
+                            null)
                             .withCompletionDate(cursor.getString(cursor.getColumnIndex(ALERTS_COMPLETIONDATE_COLUMN))));
             cursor.moveToNext();
         }
@@ -105,7 +101,7 @@ public class AlertRepository extends DrishtiRepository {
         List<Alert> activeAlerts = new ArrayList<Alert>();
         for (Alert alert : alerts) {
             LocalDate today = LocalDate.now();
-            if (LocalDate.parse(alert.expiryDate()).isAfter(today) || (closed.equals(alert.status()) && LocalDate.parse(alert.completionDate()).isAfter(today.minusDays(3)))) {
+            if (LocalDate.parse(alert.expiryDate()).isAfter(today) || (complete.equals(alert.priority()) && LocalDate.parse(alert.completionDate()).isAfter(today.minusDays(3)))) {
                 activeAlerts.add(alert);
             }
         }
@@ -120,13 +116,12 @@ public class AlertRepository extends DrishtiRepository {
         values.put(ALERTS_STARTDATE_COLUMN, alert.startDate());
         values.put(ALERTS_EXPIRYDATE_COLUMN, alert.expiryDate());
         values.put(ALERTS_COMPLETIONDATE_COLUMN, alert.completionDate());
-        values.put(ALERTS_STATUS_COLUMN, alert.status().value());
         return values;
     }
 
     public List<Alert> findByECIdAndAlertNames(String entityId, List<String> names) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.rawQuery(format("SELECT * FROM %s WHERE %s = ? AND %s = ? AND %s IN (%s) ORDER BY DATE(%s)", ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN, ALERTS_STATUS_COLUMN, ALERTS_VISIT_CODE_COLUMN,
+        Cursor cursor = database.rawQuery(format("SELECT * FROM %s WHERE %s = ? AND %s != ? AND %s IN (%s) ORDER BY DATE(%s)", ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN, ALERTS_PRIORITY_COLUMN, ALERTS_VISIT_CODE_COLUMN,
                 insertPlaceholdersForInClause(names.size()), ALERTS_STARTDATE_COLUMN), getSelectionArgs(entityId, names));
         return readAllAlerts(cursor);
     }
@@ -134,7 +129,7 @@ public class AlertRepository extends DrishtiRepository {
     private String[] getSelectionArgs(String entityId, List<String> names) {
         List<String> selectionArgs = new ArrayList<String>();
         selectionArgs.add(entityId);
-        selectionArgs.add(open.value());
+        selectionArgs.add(complete.value());
         selectionArgs.addAll(names);
         return selectionArgs.toArray(new String[names.size() + 1]);
     }

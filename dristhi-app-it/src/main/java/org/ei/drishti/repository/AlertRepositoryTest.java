@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.domain.AlertStatus.closed;
 import static org.ei.drishti.domain.AlertStatus.open;
 import static org.ei.drishti.dto.AlertPriority.*;
 
@@ -48,9 +47,9 @@ public class AlertRepositoryTest extends AndroidTestCase {
 
     public void testShouldFetchAllAlerts() throws Exception {
         Alert alert1 = new Alert("Case X", "ANC 1", normal, "2012-01-01", "2012-01-11", open);
-        Alert alert2 = new Alert("Case Y", "ANC 2", urgent, "2012-01-01", "2012-01-11", closed);
+        Alert alert2 = new Alert("Case Y", "ANC 2", complete, "2012-01-01", "2012-01-11", null);
         Alert alert3 = new Alert("Case X", "TT 1", normal, "2012-01-01", "2012-01-11", open);
-        Alert alert4 = new Alert("Case Y", "IFA 1", urgent, "2012-01-01", "2012-01-11", closed);
+        Alert alert4 = new Alert("Case Y", "IFA 1", complete, "2012-01-01", "2012-01-11", null);
 
         alertRepository.createAlert(alert1);
         alertRepository.createAlert(alert2);
@@ -62,28 +61,29 @@ public class AlertRepositoryTest extends AndroidTestCase {
 
     public void testShouldFetchNonExpiredAlertsAndAlertsWithRecentCompletionAsActiveAlerts() throws Exception {
         LocalDate today = LocalDate.now();
-        Alert alert1 = new Alert("Case X", "ANC 1", normal, "2012-01-01", "2012-01-11", open);
-        Alert alert2 = new Alert("Case X", "ANC 2", urgent, "2012-01-01", "2012-01-11", closed).withCompletionDate(today.toString());
-        Alert alert3 = new Alert("Case X", "TT 1", normal, "2012-01-01", today.plusDays(30).toString(), open);
-        Alert alert4 = new Alert("Case X", "IFA 1", urgent, "2012-01-01", "2012-01-11", closed).withCompletionDate(today.minusDays(2).toString());
-        Alert alert5 = new Alert("Case X", "HEP 1", urgent, "2012-01-01", "2012-01-11", closed).withCompletionDate(today.minusDays(3).toString());
-
+        Alert alert1 = new Alert("Case X", "ANC 1", normal, "2012-01-01", "2012-01-11", null);
+        Alert alert2 = new Alert("Case X", "ANC 2", complete, "2012-01-01", "2012-01-11", null).withCompletionDate(today.toString());
+        Alert alert3 = new Alert("Case X", "TT 1", normal, "2012-01-01", today.plusDays(30).toString(), null);
+        Alert alert4 = new Alert("Case X", "IFA 1", complete, "2012-01-01", "2012-01-11", null).withCompletionDate(today.minusDays(2).toString());
+        Alert alert5 = new Alert("Case X", "HEP 1", complete, "2012-01-01", "2012-01-11", null).withCompletionDate(today.minusDays(3).toString());
         alertRepository.createAlert(alert1);
         alertRepository.createAlert(alert2);
         alertRepository.createAlert(alert3);
         alertRepository.createAlert(alert4);
         alertRepository.createAlert(alert5);
 
-        assertEquals(asList(alert2, alert3, alert4), alertRepository.allActiveAlertsForCase("Case X"));
+        List<Alert> activeAlerts = alertRepository.allActiveAlertsForCase("Case X");
+
+        assertEquals(asList(alert2, alert3, alert4), activeAlerts);
     }
 
-    public void testShouldMarkAlertsAsClosedBasedOnCaseIDAndVisitCode() throws Exception {
+    public void testShouldMarkAlertsAsCompletedBasedOnCaseIDAndVisitCode() throws Exception {
         alertRepository.createAlert(new Alert("Case X", "ANC 1", normal, "2012-01-01", "2012-01-11", open));
         alertRepository.createAlert(new Alert("Case Y", "ANC 2", normal, "2012-01-01", "2012-01-11", open));
 
         alertRepository.markAlertAsClosed("Case X", "ANC 1", "2012-01-01");
 
-        assertEquals(asList(new Alert("Case X", "ANC 1", normal, "2012-01-01", "2012-01-11", closed).withCompletionDate("2012-01-01"),
+        assertEquals(asList(new Alert("Case X", "ANC 1", complete, "2012-01-01", "2012-01-11", open).withCompletionDate("2012-01-01"),
                 new Alert("Case Y", "ANC 2", normal, "2012-01-01", "2012-01-11", open)), alertRepository.allAlerts());
     }
 
@@ -113,7 +113,7 @@ public class AlertRepositoryTest extends AndroidTestCase {
     public void testShouldFindByECIdAndAlertNames() throws Exception {
         Alert ocpRefillAlert = new Alert("entity id 1", "OCP Refill", normal, "2012-01-02", "2012-01-11", open);
         Alert condomRefillAlert = new Alert("entity id 1", "Condom Refill", normal, "2012-01-01", "2012-01-11", open);
-        Alert closedAlert = new Alert("entity id 1", "DMPA Injectable Refill", normal, "2012-01-01", "2012-01-11", closed);
+        Alert closedAlert = new Alert("entity id 1", "DMPA Injectable Refill", complete, "2012-01-01", "2012-01-11", null);
         Alert ocpRefillAlertForAnotherEntity = new Alert("entity id 2", "OCP Refill", normal, "2012-01-01", "2012-01-11", open);
         Alert notOCPRefillAlert = new Alert("entity id 1", "Not OCP Refill", normal, "2012-01-01", "2012-01-11", open);
         alertRepository.createAlert(ocpRefillAlert);
