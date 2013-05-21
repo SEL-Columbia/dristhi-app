@@ -447,4 +447,26 @@ describe('FP Register controller', function () {
             expect(scope.defaultVillageFilterHandler).toBe("filterByVillageName");
         });
     });
+
+    describe("getSideEffects", function(){
+        it("should return a side effect that matches the fp method", function(){
+            var client =
+            {
+                name: "Client 1",
+                fp_method: 'condom',
+                condomSideEffect: "Itchy!"
+            };
+            expect(scope.getSideEffect(client)).toEqual("Itchy!");
+        });
+
+        it("should return nothing if the side effct specified does NOT match the fp method", function(){
+            var client =
+            {
+                name: "Client 1",
+                fp_method: 'iud',
+                condomSideEffect: "Itchy!"
+            };
+            expect(scope.getSideEffect(client)).toEqual(undefined);
+        });
+    });
 });

@@ -58,37 +58,44 @@ angular.module("smartRegistry.controllers")
                 {
                     label: "Condom",
                     id: "condom",
-                    handler: "filterByFPMethod"
+                    handler: "filterByFPMethod",
+                    sideEffect: "condomSideEffect"
                 },
                 {
                     label: "DMPA/Injectable",
                     id: "dmpa_injectable",
-                    handler: "filterByFPMethod"
+                    handler: "filterByFPMethod",
+                    sideEffect: "injectableSideEffect"
                 },
                 {
                     label: "IUD",
                     id: "iud",
-                    handler: "filterByFPMethod"
+                    handler: "filterByFPMethod",
+                    sideEffect: "iudSidEffect"
                 },
                 {
                     label: "OCP",
                     id: "ocp",
-                    handler: "filterByFPMethod"
+                    handler: "filterByFPMethod",
+                    sideEffect: "ocpSideEffect"
                 },
                 {
                     label: "Female Sterilization",
                     id: "female_sterilization",
-                    handler: "filterByFPMethod"
+                    handler: "filterByFPMethod",
+                    sideEffect: "sterilizationSideEffect"
                 },
                 {
                     label: "Male Sterilization",
                     id: "male_sterilization",
-                    handler: "filterByFPMethod"
+                    handler: "filterByFPMethod",
+                    sideEffect: "sterilizationSideEffect"
                 },
                 {
                     label: "Others",
                     id: "others",
-                    handler: "filterByFPMethodOther"
+                    handler: "filterByFPMethodOther",
+                    sideEffect: "otherSideEffect"
                 }
             ]
         };
@@ -189,5 +196,21 @@ angular.module("smartRegistry.controllers")
             return (client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
                 || client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0);
+        };
+
+        $scope.getSideEffect = function(client) {
+            // get the fp method
+            var fp_method = client['fp_method'];
+            if(fp_method !== undefined)
+            {
+                // get matching side effect
+                var option = $scope.ecsWithFPMethodServiceModeOptions.options.find(function(option){
+                    return option.id === fp_method;
+                });
+                if(option)
+                {
+                    return client[option.sideEffect];
+                }
+            }
         };
     });
