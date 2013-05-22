@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.String.format;
+import static org.apache.commons.lang3.ArrayUtils.addAll;
 import static org.apache.commons.lang3.StringUtils.repeat;
 import static org.ei.drishti.dto.AlertStatus.*;
 
@@ -128,19 +129,12 @@ public class AlertRepository extends DrishtiRepository {
         return values;
     }
 
-    public List<Alert> findByEntityIdAndAlertNames(String entityId, List<String> names) {
+    public List<Alert> findByEntityIdAndAlertNames(String entityId, String... names) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.rawQuery(format("SELECT * FROM %s WHERE %s = ? AND %s != ? AND %s IN (%s) ORDER BY DATE(%s)", ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN, ALERTS_STATUS_COLUMN, ALERTS_VISIT_CODE_COLUMN,
-                insertPlaceholdersForInClause(names.size()), ALERTS_STARTDATE_COLUMN), getSelectionArgs(entityId, names));
+        Cursor cursor = database.rawQuery(format("SELECT * FROM %s WHERE %s = ? AND %s != ? AND %s IN (%s) ORDER BY DATE(%s)",
+                ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN, ALERTS_STATUS_COLUMN, ALERTS_VISIT_CODE_COLUMN,
+                insertPlaceholdersForInClause(names.length), ALERTS_STARTDATE_COLUMN), addAll(new String[]{entityId, complete.value()}, names));
         return readAllAlerts(cursor);
-    }
-
-    private String[] getSelectionArgs(String entityId, List<String> names) {
-        List<String> selectionArgs = new ArrayList<String>();
-        selectionArgs.add(entityId);
-        selectionArgs.add(complete.value());
-        selectionArgs.addAll(names);
-        return selectionArgs.toArray(new String[names.size() + 1]);
     }
 
     private String insertPlaceholdersForInClause(int length) {

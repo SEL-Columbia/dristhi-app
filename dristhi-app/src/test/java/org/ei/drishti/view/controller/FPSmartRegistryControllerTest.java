@@ -33,7 +33,8 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
 public class FPSmartRegistryControllerTest {
-    public static final List<String> EC_ALERTS = asList("OCP Refill",
+    public static final String[] EC_ALERTS = new String[]{
+            "OCP Refill",
             "Condom Refill",
             "DMPA Injectable Refill",
             "Female sterilization Followup 1",
@@ -44,7 +45,8 @@ public class FPSmartRegistryControllerTest {
             "IUD Followup 1",
             "IUD Followup 2",
             "FP Followup",
-            "FP Referral Followup");
+            "FP Referral Followup"
+    };
     @Mock
     private AllEligibleCouples allEligibleCouples;
     @Mock

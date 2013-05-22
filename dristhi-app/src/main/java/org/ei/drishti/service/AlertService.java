@@ -29,7 +29,7 @@ public class AlertService {
         repository.deleteAllAlertsForCase(action.caseID());
     }
 
-    public List<Alert> findByEntityIdAndAlertNames(String entityId, List<String> names) {
+    public List<Alert> findByEntityIdAndAlertNames(String entityId, String... names) {
         return repository.findByEntityIdAndAlertNames(entityId, names);
     }
 

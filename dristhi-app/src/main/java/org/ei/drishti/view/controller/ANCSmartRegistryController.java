@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static java.util.Arrays.asList;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
@@ -76,12 +75,11 @@ public class ANCSmartRegistryController {
         for (String village : villages) {
             villagesList.add(new Village(village));
         }
-
         return new Gson().toJson(villagesList);
     }
 
     private List<AlertDTO> getAlertsForANC(String entityId) {
-        List<Alert> alerts = alertService.findByEntityIdAndAlertNames(entityId, asList(
+        List<Alert> alerts = alertService.findByEntityIdAndAlertNames(entityId,
                 ANC_1_ALERT_NAME,
                 ANC_2_ALERT_NAME,
                 ANC_3_ALERT_NAME,
@@ -91,7 +89,7 @@ public class ANCSmartRegistryController {
                 LAB_REMINDER_ALERT_NAME,
                 TT_1_ALERT_NAME,
                 TT_2_ALERT_NAME
-        ));
+        );
         List<AlertDTO> alertDTOs = new ArrayList<AlertDTO>();
         for (Alert alert : alerts) {
             alertDTOs.add(new AlertDTO(alert.visitCode(), String.valueOf(alert.status()), alert.startDate()));

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static java.util.Arrays.asList;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
@@ -104,7 +103,8 @@ public class FPSmartRegistryController {
     }
 
     private List<AlertDTO> getFPAlertsForEC(String entityId) {
-        List<Alert> alerts = alertService.findByEntityIdAndAlertNames(entityId, asList(OCP_REFILL_ALERT_NAME,
+        List<Alert> alerts = alertService.findByEntityIdAndAlertNames(entityId,
+                OCP_REFILL_ALERT_NAME,
                 CONDOM_REFILL_ALERT_NAME, DMPA_INJECTABLE_REFILL_ALERT_NAME,
                 FEMALE_STERILIZATION_FOLLOWUP_1_ALERT_NAME,
                 FEMALE_STERILIZATION_FOLLOWUP_2_ALERT_NAME,
@@ -114,7 +114,7 @@ public class FPSmartRegistryController {
                 IUD_FOLLOWUP_1_ALERT_NAME,
                 IUD_FOLLOWUP_2_ALERT_NAME,
                 FP_FOLLOWUP_ALERT_NAME,
-                FP_REFERRAL_FOLLOWUP_ALERT_NAME));
+                FP_REFERRAL_FOLLOWUP_ALERT_NAME);
         ArrayList<AlertDTO> alertDTOs = new ArrayList<AlertDTO>();
         for (Alert alert : alerts) {
             alertDTOs.add(new AlertDTO(alert.visitCode(), String.valueOf(alert.status()), alert.startDate()));

@@ -129,7 +129,7 @@ public class AlertRepositoryTest extends AndroidTestCase {
         alertRepository.createAlert(ocpRefillAlertForAnotherEntity);
         alertRepository.createAlert(notOCPRefillAlert);
 
-        List<Alert> alerts = alertRepository.findByEntityIdAndAlertNames("entity id 1", asList("OCP Refill", "Condom Refill", "DMPA Injectable Refill"));
+        List<Alert> alerts = alertRepository.findByEntityIdAndAlertNames("entity id 1", "OCP Refill", "Condom Refill", "DMPA Injectable Refill");
 
         assertEquals(asList(condomRefillAlert, ocpRefillAlert), alerts);
     }
