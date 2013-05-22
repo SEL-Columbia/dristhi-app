@@ -114,6 +114,7 @@ public class FPSmartRegistryControllerTest {
                 .put("sterilizationSideEffect", "sterilization side effect")
                 .put("injectableSideEffect", "injectable side effect")
                 .put("otherSideEffect", "other side effect")
+                .put("highPriorityReason", "high priority reason")
                 .map();
         EligibleCouple ec = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC", details)
                 .withPhotoPath("new photo path");
@@ -148,6 +149,7 @@ public class FPSmartRegistryControllerTest {
                 .withSterilizationSideEffect("sterilization side effect")
                 .withInjectableSideEffect("injectable side effect")
                 .withOtherSideEffect("other side effect")
+                .withHighPriorityReason("high priority reason")
                 .withAlerts(Collections.<AlertDTO>emptyList());
 
         String clients = controller.get();

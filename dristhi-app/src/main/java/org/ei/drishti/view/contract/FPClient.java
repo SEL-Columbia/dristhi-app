@@ -41,6 +41,7 @@ public class FPClient {
     private String sterilizationSideEffect;
     private String injectableSideEffect;
     private String otherSideEffect;
+    private String highPriorityReason;
 
 
     public FPClient(String entity_id, String name, String husband_name, String village, String ecNumber) {
@@ -197,6 +198,11 @@ public class FPClient {
 
     public FPClient withOtherSideEffect(String otherSideEffect) {
         this.otherSideEffect = otherSideEffect;
+        return this;
+    }
+
+    public FPClient withHighPriorityReason(String highPriorityReason) {
+        this.highPriorityReason = highPriorityReason;
         return this;
     }
 

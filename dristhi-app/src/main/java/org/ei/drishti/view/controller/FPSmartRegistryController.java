@@ -90,7 +90,8 @@ public class FPSmartRegistryController {
                             .withOCPSideEffect(ec.getDetail("ocpSideEffect"))
                             .withInjectableSideEffect(ec.getDetail("injectableSideEffect"))
                             .withSterilizationSideEffect(ec.getDetail("sterilizationSideEffect"))
-                            .withOtherSideEffect(ec.getDetail("otherSideEffect"));
+                            .withOtherSideEffect(ec.getDetail("otherSideEffect"))
+                            .withHighPriorityReason(ec.getDetail("highPriorityReason"));
                     fpClients.add(fpClient);
                 }
                 sortByName(fpClients);
