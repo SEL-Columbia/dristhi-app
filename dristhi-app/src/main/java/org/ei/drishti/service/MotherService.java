@@ -3,8 +3,10 @@ package org.ei.drishti.service;
 import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
+import org.ei.drishti.repository.AlertRepository;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.repository.MotherRepository;
+import org.ei.drishti.repository.TimelineEventRepository;
 import org.ei.drishti.util.IntegerUtil;
 
 import static org.ei.drishti.domain.TimelineEvent.*;
@@ -79,5 +81,9 @@ public class MotherService {
     private void addTimelineEventsForMotherRegistration(FormSubmission submission) {
         allTimelines.add(forStartOfPregnancy(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(REFERENCE_DATE)));
         allTimelines.add(forStartOfPregnancyForEC(submission.entityId(), submission.getFieldValue(THAYI_CARD_NUMBER), submission.getFieldValue(REFERENCE_DATE)));
+    }
+
+    public void close(FormSubmission submission) {
+        motherRepository.close(submission.entityId());
     }
 }

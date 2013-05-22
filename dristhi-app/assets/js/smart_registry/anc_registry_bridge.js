@@ -19,6 +19,7 @@ function FakeANCSmartRegistryContext() {
         get: function () {
             return JSON.stringify([
                 {
+                    entityId: "entity id 1",
                     village: 'Chikkabherya',
                     name: 'Carolyn',
                     thayi: '4636587',
@@ -84,6 +85,7 @@ function FakeANCSmartRegistryContext() {
                     caste: "sc"
                 },
                 {
+                    entityId: "entity id 2",
                     village: 'Chikkabherya',
                     name: 'Roger',
                     thayi: '4636587',
@@ -129,6 +131,7 @@ function FakeANCSmartRegistryContext() {
                     locationStatus: "left_the_place"
                 },
                 {
+                    entityId: "entity id 3",
                     village: 'Bherya',
                     name: 'Larry',
                     thayi: '4636587',
@@ -199,6 +202,7 @@ function FakeANCSmartRegistryContext() {
                     caste: "st"
                 },
                 {
+                    entityId: "entity id 4",
                     village: 'Bherya',
                     name: 'Ukanga',
                     thayi: '4636587',
@@ -276,6 +280,7 @@ function FakeANCSmartRegistryContext() {
                     days_past_edd: 3
                 },
                 {
+                    entityId: "entity id 5",
                     village: 'Bherya',
                     name: 'Moses',
                     thayi: '4636543',

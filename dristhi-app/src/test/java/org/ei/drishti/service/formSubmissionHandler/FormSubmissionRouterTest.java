@@ -28,6 +28,8 @@ public class FormSubmissionRouterTest {
     @Mock
     private ECCloseHandler ecCloseHandler;
     @Mock
+    private ANCCloseHandler ancCloseHandler;
+    @Mock
     private ANCRegistrationHandler ancRegistrationHandler;
     @Mock
     private ANCRegistrationOAHandler ancRegistrationOAHandler;
@@ -47,7 +49,8 @@ public class FormSubmissionRouterTest {
                 ecCloseHandler,
                 ancRegistrationHandler,
                 ancRegistrationOAHandler,
-                ancVisitHandler);
+                ancVisitHandler,
+                ancCloseHandler);
     }
 
     @Test
@@ -122,5 +125,16 @@ public class FormSubmissionRouterTest {
 
         verify(formDataRepository).fetchFromSubmission("instance id 1");
         verify(ancVisitHandler).handle(formSubmission);
+    }
+
+    @Test
+    public void shouldDelegateANCCloseFormSubmissionHandlingToANCCloseHandler() throws Exception {
+        FormSubmission formSubmission = create().withFormName("anc_close").withInstanceId("instance id 1").withVersion("122").build();
+        when(formDataRepository.fetchFromSubmission("instance id 1")).thenReturn(formSubmission);
+
+        router.route("instance id 1");
+
+        verify(formDataRepository).fetchFromSubmission("instance id 1");
+        verify(ancCloseHandler).handle(formSubmission);
     }
 }

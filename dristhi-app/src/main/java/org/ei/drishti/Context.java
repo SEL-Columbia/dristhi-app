@@ -58,6 +58,7 @@ public class Context {
     private ANCRegistrationHandler ancRegistrationHandler;
     private ANCRegistrationOAHandler ancRegistrationOAHandler;
     private ANCVisitHandler ancVisitHandler;
+    private ANCCloseHandler ancCloseHandler;
 
     protected Context() {
     }
@@ -116,7 +117,8 @@ public class Context {
         initRepository();
         if (formSubmissionRouter == null) {
             formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(),
-                    fpComplicationsHandler(), fpChangeHandler(), renewFPProductHandler(), ecCloseHandler(), ancRegistrationHandler(), ancRegistrationOAHandler(), ancVisitHandler());
+                    fpComplicationsHandler(), fpChangeHandler(), renewFPProductHandler(), ecCloseHandler(),
+                    ancRegistrationHandler(), ancRegistrationOAHandler(), ancVisitHandler(), ancCloseHandler());
         }
         return formSubmissionRouter;
     }
@@ -175,6 +177,13 @@ public class Context {
             ancVisitHandler = new ANCVisitHandler(motherService());
         }
         return ancVisitHandler;
+    }
+
+    private ANCCloseHandler ancCloseHandler() {
+        if (ancCloseHandler == null) {
+            ancCloseHandler = new ANCCloseHandler(motherService());
+        }
+        return ancCloseHandler;
     }
 
     private ZiggyService ziggyService() {
