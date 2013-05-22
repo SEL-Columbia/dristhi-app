@@ -15,14 +15,11 @@ public class FPClient {
     private String ec_number;
     private String village;
     private String fp_method;
-    private String side_effects;
     private String num_pregnancies;
     private String parity;
     private String num_living_children;
     private String num_stillbirths;
     private String num_abortions;
-    private String days_due;
-    private String due_message;
     private boolean isHighPriority;
     private String family_planning_method_change_date;
     private String photo_path;
@@ -73,11 +70,6 @@ public class FPClient {
         return this;
     }
 
-    public FPClient withSideEffects(String side_effects) {
-        this.side_effects = side_effects;
-        return this;
-    }
-
     public FPClient withNumberOfPregnancies(String num_pregnancies) {
         this.num_pregnancies = num_pregnancies;
         return this;
@@ -100,16 +92,6 @@ public class FPClient {
 
     public FPClient withNumberOfAbortions(String num_abortions) {
         this.num_abortions = num_abortions;
-        return this;
-    }
-
-    public FPClient withDaysDue(String days_due) {
-        this.days_due = days_due;
-        return this;
-    }
-
-    public FPClient withDueMessage(String due_message) {
-        this.due_message = due_message;
         return this;
     }
 
