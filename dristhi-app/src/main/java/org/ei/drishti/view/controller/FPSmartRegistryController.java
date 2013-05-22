@@ -80,7 +80,7 @@ public class FPSmartRegistryController {
     }
 
     private List<AlertDTO> getFPAlertsForEC(String entityId) {
-        List<Alert> alerts = alertService.findByECIdAndAlertNames(entityId, asList(OCP_REFILL_ALERT_NAME,
+        List<Alert> alerts = alertService.findByEntityIdAndAlertNames(entityId, asList(OCP_REFILL_ALERT_NAME,
                 CONDOM_REFILL_ALERT_NAME, DMPA_INJECTABLE_REFILL_ALERT_NAME,
                 FEMALE_STERILIZATION_FOLLOWUP_1_ALERT_NAME,
                 FEMALE_STERILIZATION_FOLLOWUP_2_ALERT_NAME,

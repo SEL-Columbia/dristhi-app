@@ -124,13 +124,13 @@ public class FPSmartRegistryControllerTest {
         EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", normalPriority());
         Alert ocpRefillAlert = new Alert("entity id 1", "OCP Refill", "OCP Refill", normal, "2013-01-01", "2013-02-01");
         when(allEligibleCouples.all()).thenReturn(asList(ec));
-        when(alertService.findByECIdAndAlertNames("entity id 1", EC_ALERTS)).thenReturn(asList(ocpRefillAlert));
+        when(alertService.findByEntityIdAndAlertNames("entity id 1", EC_ALERTS)).thenReturn(asList(ocpRefillAlert));
 
         String clients = controller.get();
 
         List<FPClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
         }.getType());
-        verify(alertService).findByECIdAndAlertNames("entity id 1", EC_ALERTS);
+        verify(alertService).findByEntityIdAndAlertNames("entity id 1", EC_ALERTS);
         AlertDTO expectedAlertDto = new AlertDTO("OCP Refill", "normal", "2013-01-01");
         FPClient expectedEC = new FPClient("entity id 1", "EC Number 3", "", "Woman C", "Husband C", null,
                 "Bherya", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, null, null, null, false, "../../img/woman-placeholder.png",

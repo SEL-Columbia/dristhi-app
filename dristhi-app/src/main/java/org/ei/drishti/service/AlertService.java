@@ -29,8 +29,8 @@ public class AlertService {
         repository.deleteAllAlertsForCase(action.caseID());
     }
 
-    public List<Alert> findByECIdAndAlertNames(String entityId, List<String> names) {
-        return repository.findByECIdAndAlertNames(entityId, names);
+    public List<Alert> findByEntityIdAndAlertNames(String entityId, List<String> names) {
+        return repository.findByEntityIdAndAlertNames(entityId, names);
     }
 
     public void changeAlertStatusToInProcess(String entityId, String alertName) {

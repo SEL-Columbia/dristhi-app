@@ -117,7 +117,7 @@ public class AlertRepositoryTest extends AndroidTestCase {
         assertEquals(new ArrayList<Alert>(), alertRepository.allAlerts());
     }
 
-    public void testShouldFindByECIdAndAlertNames() throws Exception {
+    public void testShouldFindByEntityIdAndAlertNames() throws Exception {
         Alert ocpRefillAlert = new Alert("entity id 1", "OCP Refill", "OCP Refill", normal, "2012-01-02", "2012-01-11");
         Alert condomRefillAlert = new Alert("entity id 1", "Condom Refill", "Condom Refill", normal, "2012-01-01", "2012-01-11");
         Alert closedAlert = new Alert("entity id 1", "DMPA Injectable Refill", "DMPA Injectable Refill", complete, "2012-01-01", "2012-01-11");
@@ -129,7 +129,7 @@ public class AlertRepositoryTest extends AndroidTestCase {
         alertRepository.createAlert(ocpRefillAlertForAnotherEntity);
         alertRepository.createAlert(notOCPRefillAlert);
 
-        List<Alert> alerts = alertRepository.findByECIdAndAlertNames("entity id 1", asList("OCP Refill", "Condom Refill", "DMPA Injectable Refill"));
+        List<Alert> alerts = alertRepository.findByEntityIdAndAlertNames("entity id 1", asList("OCP Refill", "Condom Refill", "DMPA Injectable Refill"));
 
         assertEquals(asList(condomRefillAlert, ocpRefillAlert), alerts);
     }
