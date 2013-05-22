@@ -10,6 +10,7 @@
             <this_anc_number/>
             <anc_visit_date/>
             <anc_visit_place/>
+            <anc_visit_person/>
             <risk_observed/>
             <other_risk_observed/>
             <case_jaundice/>
@@ -54,6 +55,7 @@
             <num_weeks/>
             <case_birth_planning/>
             <birth_plan_message/>
+            <lab_investigations_message/>
             <meta>
                 <instanceID/>
             </meta>

@@ -20,6 +20,10 @@
                 "bind": "/model/instance/ANC_Visit_EngKan/anc_visit_date"
             },
             {
+                "name": "ancVisitPerson",
+                "bind": "/model/instance/ANC_Visit_EngKan/anc_visit_person"
+            },
+            {
                 "name": "ancVisitPlace",
                 "bind": "/model/instance/ANC_Visit_EngKan/anc_visit_place"
             },
