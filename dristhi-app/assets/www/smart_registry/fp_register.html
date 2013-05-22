@@ -21,6 +21,16 @@
 </head>
 <body ng-controller="fpRegisterController">
 <div ng-controller="listViewController">
+    <div modal="isFPChangeModalOpen" close="closeFPChangeModal()">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="closeFPChangeModal()" aria-hidden="true">&times;</button>
+            <h4>Change FP or Record ECP</h4>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" ng-click="openForm('fp_change', currentClientEntityId)">Change FP</button>
+            <button class="btn" ng-click="openForm('record_ecps', currentClientEntityId)">Record ECP</button>
+        </div>
+    </div>
     <div class="header">
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
