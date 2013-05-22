@@ -7,9 +7,9 @@
             <br/>
             <ng:switch on="client.fp_method">
                 <span ng-switch-when="iud">
-                    <span>{{client.iudPlace}}</span>
+                    <span>{{client.iudPlace | uppercase}}</span>
                     <span ng-show="client.iudPlace">, </span>
-                    <span>{{client.iudPerson}}</span>
+                    <span>{{client.iudPerson | uppercase}}</span>
                 </span>
                 <span ng-switch-when="ocp">No. Strips: {{client.numberOfOCPDelivered}}</span>
                 <span ng-switch-when="condom">No. Given: {{client.numberOfCondomsSupplied}}</span>

@@ -92,6 +92,21 @@ angular.module("smartRegistry.controllers")
                     sideEffect: "sterilizationSideEffect"
                 },
                 {
+                    label: "Centchroman",
+                    id: "centchroman",
+                    handler: "filterByFPMethod"
+                },
+                {
+                    label: "Traditional Methods",
+                    id: "traditional_methods",
+                    handler: "filterByFPMethod"
+                },
+                {
+                    label: "LAM",
+                    id: "lam",
+                    handler: "filterByFPMethod"
+                },
+                {
                     label: "Others",
                     id: "others",
                     handler: "filterByFPMethodOther",
