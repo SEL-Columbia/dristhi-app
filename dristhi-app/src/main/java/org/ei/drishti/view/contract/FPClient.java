@@ -7,37 +7,37 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.util.List;
 
 public class FPClient {
-    private final String entity_id;
-    private final String name;
-    private final String husband_name;
-    private final String age;
-    private final String thayi;
-    private final String ec_number;
-    private final String village;
-    private final String fp_method;
-    private final String side_effects;
-    private final String num_pregnancies;
-    private final String parity;
-    private final String num_living_children;
-    private final String num_stillbirths;
-    private final String num_abortions;
-    private final String days_due;
-    private final String due_message;
-    private final boolean isHighPriority;
-    private final String family_planning_method_change_date;
-    private final String photo_path;
-    private final boolean is_youngest_child_under_two;
-    private final String youngest_child_age;
-    private final List<AlertDTO> alerts;
-    private final String complication_date;
-    private final String caste;
-    private final String economicStatus;
-    private final String fp_method_followup_date;
-    private final String iudPlace;
-    private final String iudPerson;
-    private final String numberOfCondomsSupplied;
-    private final String numberOfCentchromanPillsDelivered;
-    private final String numberOfOCPDelivered;
+    private String entity_id;
+    private String name;
+    private String husband_name;
+    private String age;
+    private String thayi;
+    private String ec_number;
+    private String village;
+    private String fp_method;
+    private String side_effects;
+    private String num_pregnancies;
+    private String parity;
+    private String num_living_children;
+    private String num_stillbirths;
+    private String num_abortions;
+    private String days_due;
+    private String due_message;
+    private boolean isHighPriority;
+    private String family_planning_method_change_date;
+    private String photo_path;
+    private boolean is_youngest_child_under_two;
+    private String youngest_child_age;
+    private List<AlertDTO> alerts;
+    private String complication_date;
+    private String caste;
+    private String economicStatus;
+    private String fp_method_followup_date;
+    private String iudPlace;
+    private String iudPerson;
+    private String numberOfCondomsSupplied;
+    private String numberOfCentchromanPillsDelivered;
+    private String numberOfOCPDelivered;
     private String condomSideEffect;
     private String iudSidEffect;
     private String ocpSideEffect;
@@ -45,47 +45,147 @@ public class FPClient {
     private String injectableSideEffect;
     private String otherSideEffect;
 
-    public FPClient(
-            String entity_id, String ec_number, String thayi, String name, String husband_name, String age, String village,
-            String fp_method, String family_planning_method_change_date, String side_effects, String complication_date, String iudPlace, String iudPerson, String numberOfCondomsSupplied, String numberOfCentchromanPillsDelivered, String numberOfOCPDelivered, String fp_method_followup_date, String caste, String economicStatus, String num_pregnancies,
-            String parity, String num_living_children, String num_stillbirths, String num_abortions,
-            boolean is_youngest_child_under_two, String youngest_child_age, String days_due, String due_message, boolean isHighPriority,
-            String photoPath, List<AlertDTO> alerts) {
+
+    public FPClient(String entity_id, String name, String husband_name, String village, String ecNumber) {
         this.entity_id = entity_id;
         this.name = name;
         this.husband_name = husband_name;
-        this.age = age;
-        this.thayi = thayi;
-        this.ec_number = ec_number;
         this.village = village;
-        this.fp_method = fp_method;
-        this.side_effects = side_effects;
-        this.num_pregnancies = num_pregnancies;
-        this.parity = parity;
-        this.num_living_children = num_living_children;
-        this.num_stillbirths = num_stillbirths;
-        this.num_abortions = num_abortions;
-        this.days_due = days_due;
-        this.due_message = due_message;
-        this.isHighPriority = isHighPriority;
-        this.family_planning_method_change_date = family_planning_method_change_date;
-        this.photo_path = photoPath;
-        this.is_youngest_child_under_two = is_youngest_child_under_two;
-        this.youngest_child_age = youngest_child_age;
-        this.alerts = alerts;
-        this.complication_date = complication_date;
-        this.caste = caste;
-        this.economicStatus = economicStatus;
-        this.fp_method_followup_date = fp_method_followup_date;
-        this.iudPlace = iudPlace;
-        this.iudPerson = iudPerson;
-        this.numberOfCondomsSupplied = numberOfCondomsSupplied;
-        this.numberOfCentchromanPillsDelivered = numberOfCentchromanPillsDelivered;
-        this.numberOfOCPDelivered = numberOfOCPDelivered;
+        this.ec_number = ecNumber;
     }
 
     public String wifeName() {
         return name;
+    }
+
+    public FPClient withAge(String age) {
+        this.age = age;
+        return this;
+    }
+
+    public FPClient withThayi(String thayi) {
+        this.thayi = thayi;
+        return this;
+    }
+
+    public FPClient withFPMethod(String fp_method) {
+        this.fp_method = fp_method;
+        return this;
+    }
+
+    public FPClient withSideEffects(String side_effects) {
+        this.side_effects = side_effects;
+        return this;
+    }
+
+    public FPClient withNumberOfPregnancies(String num_pregnancies) {
+        this.num_pregnancies = num_pregnancies;
+        return this;
+    }
+
+    public FPClient withParity(String parity) {
+        this.parity = parity;
+        return this;
+    }
+
+    public FPClient withNumberOfLivingChildren(String num_living_children) {
+        this.num_living_children = num_living_children;
+        return this;
+    }
+
+    public FPClient withNumberOfStillBirths(String num_stillbirths) {
+        this.num_stillbirths = num_stillbirths;
+        return this;
+    }
+
+    public FPClient withNumberOfAbortions(String num_abortions) {
+        this.num_abortions = num_abortions;
+        return this;
+    }
+
+    public FPClient withDaysDue(String days_due) {
+        this.days_due = days_due;
+        return this;
+    }
+
+    public FPClient withDueMessage(String due_message) {
+        this.due_message = due_message;
+        return this;
+    }
+
+    public FPClient withIsHighPriority(boolean highPriority) {
+        isHighPriority = highPriority;
+        return this;
+    }
+
+    public FPClient withFamilyPlanningMethodChangeDate(String family_planning_method_change_date) {
+        this.family_planning_method_change_date = family_planning_method_change_date;
+        return this;
+    }
+
+    public FPClient withPhotoPath(String photo_path) {
+        this.photo_path = photo_path;
+        return this;
+    }
+
+    public FPClient withIsYoungestChildUnderTwo(boolean is_youngest_child_under_two) {
+        this.is_youngest_child_under_two = is_youngest_child_under_two;
+        return this;
+    }
+
+    public FPClient withYoungestChildAge(String youngest_child_age) {
+        this.youngest_child_age = youngest_child_age;
+        return this;
+    }
+
+    public FPClient withAlerts(List<AlertDTO> alerts) {
+        this.alerts = alerts;
+        return this;
+    }
+
+    public FPClient withComplicationDate(String complication_date) {
+        this.complication_date = complication_date;
+        return this;
+    }
+
+    public FPClient withCaste(String caste) {
+        this.caste = caste;
+        return this;
+    }
+
+    public FPClient withEconomicStatus(String economicStatus) {
+        this.economicStatus = economicStatus;
+        return this;
+    }
+
+    public FPClient withFPMethodFollowupDate(String fp_method_followup_date) {
+        this.fp_method_followup_date = fp_method_followup_date;
+        return this;
+    }
+
+    public FPClient withIUDPlace(String iudPlace) {
+        this.iudPlace = iudPlace;
+        return this;
+    }
+
+    public FPClient withIUDPerson(String iudPerson) {
+        this.iudPerson = iudPerson;
+        return this;
+    }
+
+    public FPClient withNumberOfCondomsSupplied(String numberOfCondomsSupplied) {
+        this.numberOfCondomsSupplied = numberOfCondomsSupplied;
+        return this;
+    }
+
+    public FPClient withNumberOfCentchromanPillsDelivered(String numberOfCentchromanPillsDelivered) {
+        this.numberOfCentchromanPillsDelivered = numberOfCentchromanPillsDelivered;
+        return this;
+    }
+
+    public FPClient withNumberOfOCPDelivered(String numberOfOCPDelivered) {
+        this.numberOfOCPDelivered = numberOfOCPDelivered;
+        return this;
     }
 
     public FPClient withCondomSideEffect(String condomSideEffect) {

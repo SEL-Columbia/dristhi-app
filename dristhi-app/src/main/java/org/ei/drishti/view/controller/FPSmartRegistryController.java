@@ -62,16 +62,33 @@ public class FPSmartRegistryController {
                     String thayiCardNumber = mother == null ? "" : mother.thaayiCardNumber();
                     String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
                     List<AlertDTO> alerts = getFPAlertsForEC(ec.caseId());
-                    FPClient fpClient = new FPClient(ec.caseId(), ec.ecNumber(), thayiCardNumber, ec.wifeName(), ec.husbandName(), ec.age(),
-                            ec.village(), ec.getDetail("currentMethod"),
-                            ec.getDetail("familyPlanningMethodChangeDate"), ec.getDetail("sideEffects"), ec.getDetail("complicationDate"),
-                            ec.getDetail("iudPlace"), ec.getDetail("iudPerson"), ec.getDetail("numberOfCondomsSupplied"), ec.getDetail("numberOfCentchromanPillsDelivered"),
-                            ec.getDetail("numberOfOCPDelivered"), ec.getDetail("fpFollowupDate"), ec.getDetail("caste"), ec.getDetail("economicStatus"), ec.getDetail("numberOfPregnancies"),
-                            ec.getDetail("parity"), ec.getDetail("numberOfLivingChildren"),
-                            ec.getDetail("numberOfStillBirths"), ec.getDetail("numberOfAbortions"), ec.isYoungestChildUnderTwo(), ec.getDetail("youngestChildAge"), null,
-                            null, ec.isHighPriority(),
-                            photoPath, alerts
-                    )
+                    FPClient fpClient = new FPClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), ec.ecNumber())
+                            .withThayi(thayiCardNumber)
+                            .withAge(ec.age())
+                            .withFPMethod(ec.getDetail("currentMethod"))
+                            .withFamilyPlanningMethodChangeDate(ec.getDetail("familyPlanningMethodChangeDate"))
+                            .withSideEffects(ec.getDetail("sideEffects"))
+                            .withComplicationDate(ec.getDetail("complicationDate"))
+                            .withIUDPlace(ec.getDetail("iudPlace"))
+                            .withIUDPerson(ec.getDetail("iudPerson"))
+                            .withNumberOfCondomsSupplied(ec.getDetail("numberOfCondomsSupplied"))
+                            .withNumberOfCentchromanPillsDelivered(ec.getDetail("numberOfCentchromanPillsDelivered"))
+                            .withNumberOfOCPDelivered(ec.getDetail("numberOfOCPDelivered"))
+                            .withFPMethodFollowupDate(ec.getDetail("fpFollowupDate"))
+                            .withCaste(ec.getDetail("caste"))
+                            .withEconomicStatus(ec.getDetail("economicStatus"))
+                            .withNumberOfPregnancies(ec.getDetail("numberOfPregnancies"))
+                            .withParity(ec.getDetail("parity"))
+                            .withNumberOfLivingChildren(ec.getDetail("numberOfLivingChildren"))
+                            .withNumberOfStillBirths(ec.getDetail("numberOfStillBirths"))
+                            .withNumberOfAbortions(ec.getDetail("numberOfAbortions"))
+                            .withIsYoungestChildUnderTwo(ec.isYoungestChildUnderTwo())
+                            .withYoungestChildAge(ec.getDetail("youngestChildAge"))
+                            .withDaysDue(null)
+                            .withDueMessage(null)
+                            .withIsHighPriority(ec.isHighPriority())
+                            .withPhotoPath(photoPath)
+                            .withAlerts(alerts)
                             .withCondomSideEffect(ec.getDetail("condomSideEffect"))
                             .withIUDSidEffect(ec.getDetail("iudSidEffect"))
                             .withOCPSideEffect(ec.getDetail("ocpSideEffect"))

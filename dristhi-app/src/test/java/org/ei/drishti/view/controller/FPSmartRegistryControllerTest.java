@@ -53,87 +53,114 @@ public class FPSmartRegistryControllerTest {
     private AlertService alertService;
 
     private FPSmartRegistryController controller;
+    private Map<String, String> emptyDetails;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
+        emptyDetails = Collections.emptyMap();
         controller = new FPSmartRegistryController(allEligibleCouples, allBeneficiaries, alertService, new Cache<String>());
     }
 
     @Test
-    public void shouldSortECsByPriorityAndThenByName() throws Exception {
-        EligibleCouple ecNormalPriority1 = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC",
-                withDetails("22", "condom", "sideEffects 1", "2011-05-05", "2", "2", "1", "1", "0", false, "2013-01-02", "yes", "3", "sc", "bpl", "2013-03-04", null, null, null, null, null)).withPhotoPath("new photo path");
-        EligibleCouple ecNormalPriority2 = new EligibleCouple("EC Case 2", "Woman B", "Husband B", "EC Number 2", "kavalu_hosur", "Bherya SC",
-                withDetails("23", "iud", "sideEffects 2", "2011-05-07", "4", "1", "5", "0", "9", false, "2013-01-01", "no", "", "st", "apl", "2013-03-02", null, null, null, null, null));
-        EligibleCouple ecNormalPriority3 = new EligibleCouple("EC Case 3", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", normalPriority());
-        EligibleCouple ecHighPriority1 = new EligibleCouple("EC Case 4", "Woman D", "Husband D", "EC Number 4", "Bherya", "Bherya SC", highPriority());
-        EligibleCouple ecHighPriority2 = new EligibleCouple("EC Case 5", "Woman E", "Husband E", "EC Number 5", "kavalu_hosur", "Bherya SC", highPriority());
-        EligibleCouple ecHighPriority3 = new EligibleCouple("EC Case 6", "Woman F", "Husband F", "EC Number 6", "Bherya", "Bherya SC", highPriority());
-        Mother motherForNormalPriorityEC1 = new Mother("MOTHER Case 1", "EC Case 1", "12345", "2012-12-12");
-        Mother motherForHighPriorityEC1 = new Mother("MOTHER Case 4", "EC Case 4", "4444", "2012-12-22");
-        when(allEligibleCouples.all()).thenReturn(asList(ecHighPriority3, ecNormalPriority2, ecHighPriority1, ecNormalPriority3, ecNormalPriority1, ecHighPriority2));
-        when(allBeneficiaries.findMotherByECCaseId("EC Case 1")).thenReturn(motherForNormalPriorityEC1);
-        when(allBeneficiaries.findMotherByECCaseId("EC Case 4")).thenReturn(motherForHighPriorityEC1);
-        FPClient expectedNormalPriorityClient1 = new FPClient("EC Case 1", "EC Number 1", "12345", "Woman A", "Husband A", "22", "Bherya", "condom", "2013-01-02", "sideEffects 1", "2011-05-05", null, null, null, null, null, "2013-03-04", "sc", "bpl", "2", "2", "1", "1", "0", true, "3", null, null, false, "new photo path", Collections.<AlertDTO>emptyList());
-        FPClient expectedNormalPriorityClient2 = new FPClient("EC Case 2", "EC Number 2", "", "Woman B", "Husband B", "23", "kavalu_hosur", "iud", "2013-01-01", "sideEffects 2", "2011-05-07", null, null, null, null, null, "2013-03-02", "st", "apl", "4", "1", "5", "0", "9", false, "", null, null, false, "../../img/woman-placeholder.png", Collections.<AlertDTO>emptyList());
-        FPClient expectedNormalPriorityClient3 = new FPClient("EC Case 3", "EC Number 3", "", "Woman C", "Husband C", null, "Bherya", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, null, null, null, false, "../../img/woman-placeholder.png", Collections.<AlertDTO>emptyList());
-        FPClient expectedHighPriorityClient1 = new FPClient("EC Case 4", "EC Number 4", "4444", "Woman D", "Husband D", null, "Bherya", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, null, null, null, true, "../../img/woman-placeholder.png", Collections.<AlertDTO>emptyList());
-        FPClient expectedHighPriorityClient2 = new FPClient("EC Case 5", "EC Number 5", "", "Woman E", "Husband E", null, "kavalu_hosur", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, null, null, null, true, "../../img/woman-placeholder.png", Collections.<AlertDTO>emptyList());
-        FPClient expectedHighPriorityClient3 = new FPClient("EC Case 6", "EC Number 6", "", "Woman F", "Husband F", null, "Bherya", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, null, null, null, true, "../../img/woman-placeholder.png", Collections.<AlertDTO>emptyList());
+    public void shouldSortECsByName() throws Exception {
+        EligibleCouple ec2 = new EligibleCouple("EC Case 2", "Woman B", "Husband B", "EC Number 2", "kavalu_hosur", "Bherya SC", emptyDetails);
+        EligibleCouple ec3 = new EligibleCouple("EC Case 3", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", emptyDetails);
+        EligibleCouple ec1 = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null, emptyDetails);
+        when(allEligibleCouples.all()).thenReturn(asList(ec2, ec3, ec1));
+        FPClient expectedClient1 = createFPClient("EC Case 1", "Woman A", "Husband A", "Bherya", "EC Number 1");
+        FPClient expectedClient2 = createFPClient("EC Case 2", "Woman B", "Husband B", "kavalu_hosur", "EC Number 2");
+        FPClient expectedClient3 = createFPClient("EC Case 3", "Woman C", "Husband C", "Bherya", "EC Number 3");
 
         String clients = controller.get();
 
         List<FPClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
         }.getType());
-        assertEquals(asList(
-                expectedNormalPriorityClient1,
-                expectedNormalPriorityClient2,
-                expectedNormalPriorityClient3,
-                expectedHighPriorityClient1,
-                expectedHighPriorityClient2,
-                expectedHighPriorityClient3
-        ),
-                actualClients);
+        assertEquals(asList(expectedClient1, expectedClient2, expectedClient3), actualClients);
+    }
+
+    private FPClient createFPClient(String entityId, String name, String husbandName, String village, String ecNumber) {
+        return new FPClient(entityId, name, husbandName, village, ecNumber).withThayi("").withPhotoPath("../../img/woman-placeholder.png").withAlerts(Collections.<AlertDTO>emptyList());
     }
 
     @Test
     public void shouldMapECToFPClient() throws Exception {
-        Map<String, String> details = withDetails("22", "condom", "sideEffects 1", "2011-05-05", "2", "2", "1", "1", "0", false, "2013-01-02", "yes",
-                "3", "sc", "bpl", "2013-03-04", "iudPlace", "iudPerson", "numberOfCondomsSupplied", "numberOfCentchromanPillsDelivered", "numberOfOCPDelivered");
-        details.put("condomSideEffect", "condom side effect");
-        details.put("iudSidEffect", "iud side effect");
-        details.put("ocpSideEffect", "ocp side effect");
-        details.put("sterilizationSideEffect", "sterilization side effect");
-        details.put("injectableSideEffect", "injectable side effect");
-        details.put("otherSideEffect", "other side effect");
+        Map<String, String> details = create("wifeAge", "22")
+                .put("currentMethod", "condom")
+                .put("familyPlanningMethodChangeDate", "2013-01-02")
+                .put("sideEffects", "sideEffects 1")
+                .put("numberOfPregnancies", "2")
+                .put("parity", "2")
+                .put("numberOfLivingChildren", "1")
+                .put("numberOfStillBirths", "1")
+                .put("numberOfAbortions", "0")
+                .put("isHighPriority", Boolean.toString(false))
+                .put("isYoungestChildUnderTwo", "yes")
+                .put("youngestChildAge", "3")
+                .put("complicationDate", "2011-05-05")
+                .put("caste", "sc")
+                .put("economicStatus", "bpl")
+                .put("fpFollowupDate", "2013-03-04")
+                .put("iudPlace", "iudPlace")
+                .put("iudPerson", "iudPerson")
+                .put("numberOfCondomsSupplied", "numberOfCondomsSupplied")
+                .put("numberOfCentchromanPillsDelivered", "numberOfCentchromanPillsDelivered")
+                .put("numberOfOCPDelivered", "numberOfOCPDelivered")
+                .put("condomSideEffect", "condom side effect")
+                .put("iudSidEffect", "iud side effect")
+                .put("ocpSideEffect", "ocp side effect")
+                .put("sterilizationSideEffect", "sterilization side effect")
+                .put("injectableSideEffect", "injectable side effect")
+                .put("otherSideEffect", "other side effect")
+                .map();
         EligibleCouple ec = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC", details)
                 .withPhotoPath("new photo path");
         Mother mother = new Mother("MOTHER Case 1", "EC Case 1", "12345", "2012-12-12");
         when(allEligibleCouples.all()).thenReturn(asList(ec));
         when(allBeneficiaries.findMotherByECCaseId("EC Case 1")).thenReturn(mother);
-        FPClient expectedFPClient = new FPClient("EC Case 1", "EC Number 1", "12345", "Woman A", "Husband A", "22", "Bherya", "condom",
-                "2013-01-02", "sideEffects 1", "2011-05-05", "iudPlace", "iudPerson", "numberOfCondomsSupplied", "numberOfCentchromanPillsDelivered",
-                "numberOfOCPDelivered", "2013-03-04", "sc", "bpl", "2", "2", "1", "1", "0", true, "3", null, null, false, "new photo path",
-                Collections.<AlertDTO>emptyList()
-        ).withCondomSideEffect("condom side effect")
+        FPClient expectedFPClient = new FPClient("EC Case 1", "Woman A", "Husband A", "Bherya", "EC Number 1")
+                .withThayi("12345")
+                .withAge("22")
+                .withFPMethod("condom")
+                .withFamilyPlanningMethodChangeDate("2013-01-02")
+                .withSideEffects("sideEffects 1")
+                .withComplicationDate("2011-05-05")
+                .withIUDPlace("iudPlace")
+                .withIUDPerson("iudPerson")
+                .withNumberOfCondomsSupplied("numberOfCondomsSupplied")
+                .withNumberOfCentchromanPillsDelivered("numberOfCentchromanPillsDelivered")
+                .withNumberOfOCPDelivered("numberOfOCPDelivered").withFPMethodFollowupDate("2013-03-04")
+                .withCaste("sc")
+                .withEconomicStatus("bpl")
+                .withNumberOfPregnancies("2")
+                .withParity("2")
+                .withNumberOfLivingChildren("1")
+                .withNumberOfStillBirths("1")
+                .withNumberOfAbortions("0")
+                .withIsYoungestChildUnderTwo(true)
+                .withYoungestChildAge("3")
+                .withDaysDue(null)
+                .withDueMessage(null)
+                .withIsHighPriority(false)
+                .withPhotoPath("new photo path")
+                .withCondomSideEffect("condom side effect")
                 .withIUDSidEffect("iud side effect")
                 .withOCPSideEffect("ocp side effect")
                 .withSterilizationSideEffect("sterilization side effect")
                 .withInjectableSideEffect("injectable side effect")
-                .withOtherSideEffect("other side effect");
+                .withOtherSideEffect("other side effect")
+                .withAlerts(Collections.<AlertDTO>emptyList());
 
         String clients = controller.get();
 
         List<FPClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
         }.getType());
         assertEquals(asList(expectedFPClient), actualClients);
-
     }
 
     @Test
     public void shouldCreateFPClientsWithOCPRefillAlert() throws Exception {
-        EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", normalPriority());
+        EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", emptyDetails);
         Alert ocpRefillAlert = new Alert("entity id 1", "OCP Refill", "OCP Refill", normal, "2013-01-01", "2013-02-01");
         when(allEligibleCouples.all()).thenReturn(asList(ec));
         when(alertService.findByEntityIdAndAlertNames("entity id 1", EC_ALERTS)).thenReturn(asList(ocpRefillAlert));
@@ -144,9 +171,7 @@ public class FPSmartRegistryControllerTest {
         }.getType());
         verify(alertService).findByEntityIdAndAlertNames("entity id 1", EC_ALERTS);
         AlertDTO expectedAlertDto = new AlertDTO("OCP Refill", "normal", "2013-01-01");
-        FPClient expectedEC = new FPClient("entity id 1", "EC Number 3", "", "Woman C", "Husband C", null,
-                "Bherya", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, false, null, null, null, false, "../../img/woman-placeholder.png",
-                asList(expectedAlertDto));
+        FPClient expectedEC = createFPClient("entity id 1", "Woman C", "Husband C", "Bherya", "EC Number 3").withAlerts(asList(expectedAlertDto));
         assertEquals(asList(expectedEC), actualClients);
     }
 
@@ -161,41 +186,7 @@ public class FPSmartRegistryControllerTest {
         assertEquals(actualVillages, expectedVillages);
     }
 
-    private Map<String, String> withDetails(String wifeAge, String currentMethod, String sideEffects, String complicationDate, String numberOfPregnancies,
-                                            String parity, String numberOfLivingChildren, String numberOfStillBirths, String numberOfAbortions,
-                                            boolean isHighPriority, String familyPlanningMethodChangeDate, String isYoungestChildUnderTwo,
-                                            String youngestChildAge, String caste, String economicStatus, String fpFollowupDate,
-                                            String iudPlace, String iudPerson, String numberOfCondomsSupplied, String numberOfCentchromanPillsDelivered,
-                                            String numberOfOCPDelivered) {
-        return create("wifeAge", wifeAge)
-                .put("currentMethod", currentMethod)
-                .put("familyPlanningMethodChangeDate", familyPlanningMethodChangeDate)
-                .put("sideEffects", sideEffects)
-                .put("numberOfPregnancies", numberOfPregnancies)
-                .put("parity", parity)
-                .put("numberOfLivingChildren", numberOfLivingChildren)
-                .put("numberOfStillBirths", numberOfStillBirths)
-                .put("numberOfAbortions", numberOfAbortions)
-                .put("isHighPriority", Boolean.toString(isHighPriority))
-                .put("isYoungestChildUnderTwo", isYoungestChildUnderTwo)
-                .put("youngestChildAge", youngestChildAge)
-                .put("complicationDate", complicationDate)
-                .put("caste", caste)
-                .put("economicStatus", economicStatus)
-                .put("fpFollowupDate", fpFollowupDate)
-                .put("iudPlace", iudPlace)
-                .put("iudPerson", iudPerson)
-                .put("numberOfCondomsSupplied", numberOfCondomsSupplied)
-                .put("numberOfCentchromanPillsDelivered", numberOfCentchromanPillsDelivered)
-                .put("numberOfOCPDelivered", numberOfOCPDelivered)
-                .map();
-    }
-
     private Map<String, String> normalPriority() {
         return mapOf("isHighPriority", "no");
-    }
-
-    private Map<String, String> highPriority() {
-        return mapOf("isHighPriority", "yes");
     }
 }
