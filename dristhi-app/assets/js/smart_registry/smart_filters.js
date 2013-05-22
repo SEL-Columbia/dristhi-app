@@ -50,4 +50,17 @@ angular.module("smartRegistry.filters")
                 return input;
             }
         }
+    })
+    .filter('commaSeparated', function () {
+        return function(input){
+            try
+            {
+                var text = input.toString();
+                return input.split(" ").join(", ");
+            }
+            catch(err)
+            {
+                return "";
+            }
+        }
     });

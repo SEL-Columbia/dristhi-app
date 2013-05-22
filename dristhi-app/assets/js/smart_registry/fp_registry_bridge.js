@@ -43,7 +43,7 @@ function FakeFPSmartRegistryContext() {
                     "is_youngest_child_under_two": true,
                     "youngest_child_age": 18,
                     "complication_date": "2012-05-23",
-                    "sterilizationSideEffect": "poops_just_enough!",
+                    "sterilizationSideEffect": "pain fever",
                     alerts: [
                         {
                             id: "id 1",

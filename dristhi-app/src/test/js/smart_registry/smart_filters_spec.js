@@ -1,24 +1,25 @@
 describe('Smart Filters', function () {
 
-    var humanize, camelCase, fpMethodName;
+    var humanize, camelCase, fpMethodName, commaSeparated;
 
     beforeEach(module("smartRegistry.filters"));
-    beforeEach(inject(function (humanizeFilter, camelCaseFilter, fpMethodNameFilter) {
+    beforeEach(inject(function (humanizeFilter, camelCaseFilter, fpMethodNameFilter, commaSeparatedFilter) {
         humanize = humanizeFilter;
         camelCase = camelCaseFilter;
         fpMethodName = fpMethodNameFilter;
+        commaSeparated = commaSeparatedFilter;
     }));
 
     describe("Humanize", function(){
-        it("should return if input is null", function(){
+        it("should return blank if input is null", function(){
             expect(humanize(null)).toEqual("");
         });
 
-        it("should return if input is undefined", function(){
+        it("should return blank if input is undefined", function(){
             expect(humanize(undefined)).toEqual("");
         });
 
-        it("should return if input is blank", function(){
+        it("should return blank if input is blank", function(){
             expect(humanize("")).toEqual("");
         });
 
@@ -36,15 +37,15 @@ describe('Smart Filters', function () {
     });
 
     describe("Camel Case", function(){
-        it("should return if input is null", function(){
+        it("should return blank if input is null", function(){
             expect(camelCase(null)).toEqual("");
         });
 
-        it("should return if input is undefined", function(){
+        it("should return blank if input is undefined", function(){
             expect(camelCase(undefined)).toEqual("");
         });
 
-        it("should return if input is blank", function(){
+        it("should return blank if input is blank", function(){
             expect(camelCase("")).toEqual("");
         });
 
@@ -67,6 +68,24 @@ describe('Smart Filters', function () {
 
         it("should convert iud into IUD", function(){
             expect(fpMethodName("dmpa_injectable", options)).toEqual('DMPA/Injectable');
+        });
+    });
+
+    describe("Comma Separated", function(){
+        it("should return blank if input is null", function(){
+            expect(commaSeparated(null)).toEqual("");
+        });
+
+        it("should return blank if input is undefined", function(){
+            expect(commaSeparated(undefined)).toEqual("");
+        });
+
+        it("should return blank if input is blank", function(){
+            expect(commaSeparated("")).toEqual("");
+        });
+
+        it("should comma separate space separated inputs", function(){
+            expect(commaSeparated("pain fever others")).toEqual("pain, fever, others");
         });
     });
 });
