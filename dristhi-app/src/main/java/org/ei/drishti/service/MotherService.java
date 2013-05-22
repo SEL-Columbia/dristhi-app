@@ -8,11 +8,18 @@ import org.ei.drishti.repository.MotherRepository;
 import org.ei.drishti.util.IntegerUtil;
 
 import static org.ei.drishti.domain.TimelineEvent.*;
+import static org.ei.drishti.util.EasyMap.create;
 
 public class MotherService {
     public static final String MOTHER_ID = "motherId";
     public static final String REFERENCE_DATE = "referenceDate";
     public static final String THAYI_CARD_NUMBER = "thayiCardNumber";
+    public static final String ANC_VISIT_NUMBER = "ancVisitNumber";
+    public static final String ANC_VISIT_DATE = "ancVisitDate";
+    public static final String BP_SYSTOLIC = "bpSystolic";
+    public static final String BP_DIASTOLIC = "bpDiastolic";
+    public static final String TEMPERATURE = "temperature";
+    public static final String WEIGHT = "weight";
     private MotherRepository motherRepository;
     private AllTimelineEvents allTimelines;
 
@@ -23,6 +30,19 @@ public class MotherService {
 
     public void registerANC(FormSubmission submission) {
         addTimelineEventsForMotherRegistration(submission);
+    }
+
+    public void registerOutOfAreaANC(FormSubmission submission) {
+        addTimelineEventsForMotherRegistration(submission);
+    }
+
+    public void ancVisit(FormSubmission submission) {
+        allTimelines.add(forANCCareProvided(submission.entityId(), submission.getFieldValue(ANC_VISIT_NUMBER), submission.getFieldValue(ANC_VISIT_DATE),
+                create("bpSystolic", submission.getFieldValue(BP_SYSTOLIC))
+                        .put("bpDiastolic", submission.getFieldValue(BP_DIASTOLIC))
+                        .put("temperature", submission.getFieldValue(TEMPERATURE))
+                        .put("weight", submission.getFieldValue(WEIGHT))
+                        .map()));
     }
 
     public void update(Action action) {
@@ -39,10 +59,6 @@ public class MotherService {
         if (StringUtils.isNotBlank(action.get("ttDose"))) {
             allTimelines.add(forTTShotProvided(action.caseID(), action.get("ttDose"), action.get("visitDate")));
         }
-    }
-
-    public void registerOutOfAreaANC(FormSubmission submission) {
-        addTimelineEventsForMotherRegistration(submission);
     }
 
     public void updateANCOutcome(Action action) {

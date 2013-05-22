@@ -18,6 +18,7 @@ import java.util.HashMap;
 
 import static org.ei.drishti.util.ActionBuilder.actionForANCCareProvided;
 import static org.ei.drishti.util.ActionBuilder.actionForCloseMother;
+import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -65,6 +66,23 @@ public class MotherServiceTest {
 
         allTimelineEvents.add(TimelineEvent.forStartOfPregnancy("mother id 1", "2012-01-01"));
         allTimelineEvents.add(TimelineEvent.forStartOfPregnancyForEC("entity id 1", "thayi 1", "2012-01-01"));
+    }
+
+    @Test
+    public void shouldHandleANCVisitForMother() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("ancVisitDate")).thenReturn("2013-01-01");
+        when(submission.getFieldValue("ancVisitNumber")).thenReturn("2");
+        when(submission.getFieldValue("weight")).thenReturn("21");
+        when(submission.getFieldValue("bpDiastolic")).thenReturn("80");
+        when(submission.getFieldValue("bpSystolic")).thenReturn("90");
+        when(submission.getFieldValue("temperature")).thenReturn("98.5");
+
+        service.ancVisit(submission);
+
+        verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("entity id 1", "2", "2013-01-01",
+                create("bpDiastolic", "80").put("bpSystolic", "90").put("temperature", "98.5").put("weight", "21").map()));
     }
 
     @Test

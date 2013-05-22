@@ -31,6 +31,8 @@ public class FormSubmissionRouterTest {
     private ANCRegistrationHandler ancRegistrationHandler;
     @Mock
     private ANCRegistrationOAHandler ancRegistrationOAHandler;
+    @Mock
+    private ANCVisitHandler ancVisitHandler;
 
     private FormSubmissionRouter router;
 
@@ -44,7 +46,8 @@ public class FormSubmissionRouterTest {
                 renewFPProductHandler,
                 ecCloseHandler,
                 ancRegistrationHandler,
-                ancRegistrationOAHandler);
+                ancRegistrationOAHandler,
+                ancVisitHandler);
     }
 
     @Test
@@ -108,5 +111,16 @@ public class FormSubmissionRouterTest {
 
         verify(formDataRepository).fetchFromSubmission("instance id 1");
         verify(ancRegistrationOAHandler).handle(formSubmission);
+    }
+
+    @Test
+    public void shouldDelegateANCVisitFormSubmissionHandlingToANCVisitHandler() throws Exception {
+        FormSubmission formSubmission = create().withFormName("anc_visit").withInstanceId("instance id 1").withVersion("122").build();
+        when(formDataRepository.fetchFromSubmission("instance id 1")).thenReturn(formSubmission);
+
+        router.route("instance id 1");
+
+        verify(formDataRepository).fetchFromSubmission("instance id 1");
+        verify(ancVisitHandler).handle(formSubmission);
     }
 }
