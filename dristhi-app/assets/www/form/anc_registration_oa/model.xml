@@ -31,6 +31,7 @@
             <asha_phone_number/>
             <lmp_date/>
             <edd/>
+            <edd_formatted/>
             <edd_note/>
             <first_pregnancy/>
             <threeormore_births/>

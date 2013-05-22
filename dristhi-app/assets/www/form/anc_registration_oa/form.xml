@@ -340,10 +340,10 @@
     </label>
     <fieldset class="trigger " name="/ANC_Registration_OA_EngKan/edd_note">
         <span lang="" class=" active">Expected Date of Delivery is:
-            <span class="jr-output" data-value=" /ANC_Registration_OA_EngKan/edd ">
+            <span class="jr-output" data-value=" /ANC_Registration_OA_EngKan/edd_formatted ">
             </span>
             &#xCA8;&#xCBF;&#xCB0;&#xCC0;&#xC95;&#xCCD;&#xCB7;&#xCA4; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;:
-            <span class="jr-output" data-value=" /ANC_Registration_OA_EngKan/edd ">
+            <span class="jr-output" data-value=" /ANC_Registration_OA_EngKan/edd_formatted ">
             </span>
         </span>
     </fieldset>
@@ -806,11 +806,10 @@
         </span>
     </fieldset>
     <fieldset class="trigger " name="/ANC_Registration_OA_EngKan/lab_investigations_message">
-        <span lang="" class=" active">Please record all previous ANC services in the correct service mode. &#xCA4;&#xCA8;&#xCBF;&#xC96;&#xCC6;&#xC97;&#xCB3;
-            &#xCB8;&#xCC6;&#xCD5;&#xCB5;&#xCC6; &#xC95;&#xCCD;&#xCB0;&#xCAE;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA8;
-            &#xC8E;&#xCB2;&#xCCD;&#xCB2;&#xCBE; &#xCB9;&#xCBF;&#xC82;&#xCA6;&#xCBF;&#xCA8; &#xCAA;&#xCCD;&#xCB0;&#xCAF;&#xCC6;&#xCC2;&#xCD5;&#xC97;&#xCBE;&#xCB2;&#xCAF;&#xCA6;
-            &#xCAB;&#xCB2;&#xCBF;&#xCA4;&#xCBE;&#xC82;&#xCB6;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCC6;
-            &#xCAE;&#xCBE;&#xCA1;&#xCBF;.
+        <span lang="" class=" active">Please record all previous ANC services in the correct service mode. &#xCB8;&#xCB0;&#xCBF;&#xCAF;&#xCBE;&#xCA6;
+            &#xCB8;&#xCC7;&#xCB5;&#xCC6; &#xC95;&#xCCD;&#xCB0;&#xCAE;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF; &#xCB9;&#xCBF;&#xC82;&#xCA6;&#xCBF;&#xCA8;
+            &#xC8E;&#xCB2;&#xCCD;&#xCB2;&#xCBE; &#xC8E;&#xC8E;&#xCA8;&#xCCD;&#x200D;&#xCB8;&#xCBF; &#xCB8;&#xCC7;&#xCB5;&#xCC6;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+            &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCC1; &#xCAE;&#xCBE;&#xCA1;&#xCBF;.
         </span>
     </fieldset>
 
@@ -826,6 +825,10 @@
         <label class="">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_OA_EngKan/edd"
                    data-calculate="date( /ANC_Registration_OA_EngKan/lmp_date +280)" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/ANC_Registration_OA_EngKan/edd_formatted"
+                   data-calculate="format-date( /ANC_Registration_OA_EngKan/edd , '%Y-%n-%e')" data-type-xml="string"/>
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_OA_EngKan/w_rh_negative"
@@ -923,7 +926,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_OA_EngKan/formhub/uuid"
-                   data-calculate="'e1ac2c0106ca4f7faf020d5a9be6ec2a'" data-type-xml="string"/>
+                   data-calculate="'6e89986a59574afeb990d6b9f2b00cc2'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
