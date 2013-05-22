@@ -59,9 +59,18 @@ public class ANCSmartRegistryController {
                     EligibleCouple ec = ancWithEc.getRight();
                     String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
 
-                    ancClients.add(new ANCClient(anc.caseId(), ec.ecNumber(), ec.village(), ec.wifeName(), anc.thaayiCardNumber(), ec.age(), ec.husbandName(),
-                            anc.getDetail("edd"), anc.referenceDate(), ec.isHighPriority(), anc.isHighRisk(), ec.isOutOfArea(), ec.getDetail("caste"), photoPath,
-                            getAlertsForANC(anc.caseId()), new ArrayList<ServiceProvidedDTO>()));
+                    ancClients.add(new ANCClient(anc.caseId(), ec.village(), ec.wifeName(), anc.thaayiCardNumber(), anc.getDetail("edd"), anc.referenceDate())
+                            .withHusbandName(ec.husbandName())
+                            .withAge(ec.age())
+                            .withECNumber(ec.ecNumber())
+                            .withIsHighPriority(ec.isHighPriority())
+                            .withIsHighRisk(anc.isHighRisk())
+                            .withIsOutOfArea(ec.isOutOfArea())
+                            .withCaste(ec.getDetail("caste"))
+                            .withPhotoPath(photoPath)
+                            .withAlerts(getAlertsForANC(anc.caseId()))
+                            .withServicesProvided(new ArrayList<ServiceProvidedDTO>())
+                    );
                 }
                 sortByName(ancClients);
                 return new Gson().toJson(ancClients);
