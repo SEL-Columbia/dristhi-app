@@ -86,15 +86,6 @@ public class MotherServiceTest {
     }
 
     @Test
-    public void shouldHandleUpdateDetailsForMother() throws Exception {
-        Action action = ActionBuilder.actionForUpdateMotherDetails("Case Mother X", mapOf("some-key", "some-value"));
-
-        service.update(action);
-
-        verify(motherRepository).updateDetails("Case Mother X", mapOf("some-key", "some-value"));
-    }
-
-    @Test
     public void shouldHandleANCCareProvidedForMother() throws Exception {
         LocalDate visitDate = LocalDate.now().minusDays(1);
         Action action = actionForANCCareProvided("Case Mother X", 1, 10, visitDate, "TT 1");
@@ -144,14 +135,5 @@ public class MotherServiceTest {
 
         verify(allTimelineEvents).add(TimelineEvent.forMotherPNCVisit(caseId, "1", "2012-01-01", mapOf("some-key", "some-value")));
         verify(motherRepository).updateDetails(caseId, mapOf("some-key", "some-value"));
-    }
-
-    @Test
-    public void shouldHandleUpdateBirthPlanningForMother() throws Exception {
-        Action action = ActionBuilder.updateBirthPlanning("Case Mother X", mapOf("aKey", "aValue"));
-
-        service.update(action);
-
-        verify(motherRepository).updateDetails("Case Mother X", mapOf("aKey", "aValue"));
     }
 }

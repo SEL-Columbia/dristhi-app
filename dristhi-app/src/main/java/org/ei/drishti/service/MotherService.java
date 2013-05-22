@@ -45,10 +45,6 @@ public class MotherService {
                         .map()));
     }
 
-    public void update(Action action) {
-        motherRepository.updateDetails(action.caseID(), action.details());
-    }
-
     public void ancCareProvided(Action action) {
         allTimelines.add(forANCCareProvided(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
 

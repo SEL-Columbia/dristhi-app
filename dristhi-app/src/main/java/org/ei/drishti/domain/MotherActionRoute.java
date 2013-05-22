@@ -4,18 +4,6 @@ import org.ei.drishti.Context;
 import org.ei.drishti.dto.Action;
 
 public enum MotherActionRoute {
-    UPDATE_DETAILS("updateDetails") {
-        @Override
-        public void direct(Action action) {
-            Context.getInstance().motherService().update(action);
-        }
-    },
-    UPDATE_BIRTH_PLANNING("updateBirthPlanning") {
-        @Override
-        public void direct(Action action) {
-            Context.getInstance().motherService().update(action);
-        }
-    },
     ANC_CARE_PROVIDED("ancCareProvided") {
         @Override
         public void direct(Action action) {
