@@ -28,7 +28,7 @@ function FakeANCSmartRegistryContext() {
                     husband_name: 'Billy Bob',
                     weeks_pregnant: '18',
                     edd: '2013-04-28T00:00:00.000Z',
-                    lmp: '25/3/13',
+                    lmp: '2013-03-25',
                     alerts: [
                         {
                             name: 'anc1',
@@ -94,7 +94,7 @@ function FakeANCSmartRegistryContext() {
                     husband_name: 'Jacck',
                     weeks_pregnant: '24',
                     edd: '2012-04-11T00:00:00.000Z',
-                    lmp: '25/3/13',
+                    lmp: '2013-03-25',
                     alerts: [
                         {
                             name: 'anc2',
@@ -140,7 +140,7 @@ function FakeANCSmartRegistryContext() {
                     husband_name: 'Dickson',
                     weeks_pregnant: '2',
                     edd: '2013-09-11T00:00:00.000Z',
-                    lmp: '25/3/13',
+                    lmp: '2013-01-25',
                     "photo_path": "../../img/woman-placeholder.png",
                     alerts: [
                         {
@@ -212,7 +212,7 @@ function FakeANCSmartRegistryContext() {
                     weeks_pregnant: '2',
                     edd: '2013-06-08T00:00:00.000Z',
                     "photo_path": "../../img/woman-placeholder.png",
-                    lmp: '25/3/13',
+                    lmp: '2012-09-13',
                     alerts: [
                         {
                             name: 'tt2',

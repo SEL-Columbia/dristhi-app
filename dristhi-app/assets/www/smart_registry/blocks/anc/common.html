@@ -23,7 +23,7 @@
              ng-class="{'text-due': client.days_past_edd > -30 && client.days_past_edd < 0,
              'text-past-due': client.days_past_edd >= 0}">
             <!--weeks pregnant-->
-            <div ng-show="client.days_past_edd <= 0" style="margin-top: 4px"><b><span style="font-size: 24px">{{client.weeks_pregnant}}</span></b>
+            <div ng-show="client.days_past_edd <= 0" style="margin-top: 4px"><b><span style="font-size: 24px">{{weeksPregnant(client)}}</span></b>
                 <b><span style="font-size: 20px">weeks</span></b>
             </div>
             <div ng-show="client.days_past_edd <= 0" style="margin-top: 2px" class="text-bold">

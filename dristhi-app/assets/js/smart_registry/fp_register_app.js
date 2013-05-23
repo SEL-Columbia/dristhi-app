@@ -232,10 +232,10 @@ angular.module("smartRegistry.controllers")
         $scope.openFPChangeModal = function(clientEntityId) {
             $scope.currentClientEntityId = clientEntityId;
             $scope.isFPChangeModalOpen = true;
-        }
+        };
 
         $scope.closeFPChangeModal = function() {
             $scope.currentClientEntityId = null;
             $scope.isFPChangeModalOpen = false;
-        }
+        };
     });

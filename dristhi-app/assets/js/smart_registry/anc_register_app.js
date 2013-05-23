@@ -165,15 +165,26 @@ angular.module("smartRegistry.controllers")
                 }
             });
             return numTablets;
-        }
+        };
 
         $scope.openANCFormModal = function(clientEntityId) {
             $scope.currentClientEntityId = clientEntityId;
             $scope.isANCFormModalOpen = true;
-        }
+        };
 
         $scope.closeANCFormModal = function() {
             $scope.currentClientEntityId = null;
             $scope.isANCFormModalOpen = false;
-        }
+        };
+
+        $scope.weeksPregnant = function(client) {
+            // get lmp data
+            var lmp = Date.parse(client.lmp);
+            if(lmp)
+            {
+                var lmp_date = new Date(lmp);
+                var today = new Date();
+                return Math.round((today - lmp_date) / 1000 / 60 / 60 / 24 / 7);
+            }
+        };
     });
