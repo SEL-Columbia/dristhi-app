@@ -27,7 +27,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
 
     @Override
     protected void onCreation() {
-        setContentView(R.layout.html);
+        setActivityLayout();
 
         progressDialogInitialization();
         webViewInitialization(this);
@@ -35,6 +35,10 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         updateController = new UpdateController(webView);
 
         onInitialization();
+    }
+
+    protected void setActivityLayout() {
+        setContentView(R.layout.html);
     }
 
     protected abstract void onInitialization();

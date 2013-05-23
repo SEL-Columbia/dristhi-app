@@ -12,4 +12,8 @@ public class FormController {
     public void startFormActivity(String formName, String entityId, String metaData) {
         smartRegisterActivity.startFormActivity(formName, entityId, metaData);
     }
+
+    public void startMicroFormActivity(String formName, String entityId, String metaData) {
+        smartRegisterActivity.startMicroFormActivity(formName, entityId, metaData);
+    }
 }

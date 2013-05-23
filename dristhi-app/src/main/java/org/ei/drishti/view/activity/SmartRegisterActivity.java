@@ -24,12 +24,20 @@ public abstract class SmartRegisterActivity extends SecuredWebActivity {
     protected abstract void onSmartRegisterInitialization();
 
     public void startFormActivity(String formName, String entityId, String metaData) {
+        launchForm(formName, entityId, metaData, FormActivity.class);
+    }
+
+    public void startMicroFormActivity(String formName, String entityId, String metaData) {
+        launchForm(formName, entityId, metaData, MicroFormActivity.class);
+    }
+
+    private void launchForm(String formName, String entityId, String metaData, Class formType) {
         this.metaData = metaData;
 
-        Intent intent = new Intent(this, FormActivity.class);
+        Intent intent = new Intent(this, formType);
         intent.putExtra(FORM_NAME_PARAM, formName);
         intent.putExtra(ENTITY_ID_PARAM, entityId);
-        startActivityForResult(intent, AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE);
+        startActivityForResult(intent, FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE);
     }
 
     @Override

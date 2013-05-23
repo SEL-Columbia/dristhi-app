@@ -96,6 +96,13 @@ angular.module("smartRegistry.controllers")
             $scope.formBridge.delegateToFormLaunchView(formName, entityId, JSON.stringify(metaData));
         };
 
+        $scope.openMicroForm = function (formName, entityId, metaData) {
+            if (!metaData) {
+                metaData = {};
+            }
+            $scope.formBridge.delegateToMicroFormLaunchView(formName, entityId, JSON.stringify(metaData));
+        };
+
         $scope.capturePicture = function (entityId, entityType) {
             $scope.navigationBridge.takePhoto(entityId, entityType);
         };
