@@ -21,12 +21,6 @@ public enum MotherActionRoute {
         public void direct(Action action) {
             Context.getInstance().motherService().pncVisitHappened(action);
         }
-    },
-    CLOSE("close") {
-        @Override
-        public void direct(Action action) {
-            Context.getInstance().motherService().close(action);
-        }
     };
 
     private String identifier;

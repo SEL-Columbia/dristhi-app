@@ -17,7 +17,6 @@ import org.mockito.Mock;
 import java.util.HashMap;
 
 import static org.ei.drishti.util.ActionBuilder.actionForANCCareProvided;
-import static org.ei.drishti.util.ActionBuilder.actionForCloseMother;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.mockito.Mockito.*;
@@ -106,13 +105,6 @@ public class MotherServiceTest {
 
         verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("Case Mother X", "1", visitDate.toString(), new HashMap<String, String>()));
         verifyNoMoreInteractions(allTimelineEvents);
-    }
-
-    @Test
-    public void shouldCloseANC() throws Exception {
-        service.close(actionForCloseMother("Case X"));
-
-        verify(motherRepository).close("Case X");
     }
 
     @Test
