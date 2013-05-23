@@ -157,8 +157,7 @@
             },
             {
                 "name": "isBirthPlanningDone",
-                "bind": "/model/instance/ANC_Visit_EngKan/case_birth_planning",
-                "source": "mother.eligible_couple.isBirthPlanningDone"
+                "bind": "/model/instance/ANC_Visit_EngKan/case_birth_planning"
             },
             {
                 "name": "submissionDate",
