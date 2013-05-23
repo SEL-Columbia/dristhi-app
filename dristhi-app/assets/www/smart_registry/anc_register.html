@@ -37,7 +37,7 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <ul class="nav">
-                    <li><a href="../home.html" class="btn-back"><i class="icon-white"></i></a></li>
+                    <li><a ng-click="goBack()" class="btn-back"><i class="icon-white"></i></a></li>
                     <li>&nbsp;</li>
                     <li><a class="brand" href="#">ANC: {{reportingPeriodStart() | date:'dd/MM'}} -
                         {{reportingPeriodEnd() | date:'dd/MM'}}</a></li>

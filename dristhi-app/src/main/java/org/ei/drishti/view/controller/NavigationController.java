@@ -1,6 +1,6 @@
 package org.ei.drishti.view.controller;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.AllConstants;
@@ -8,43 +8,43 @@ import org.ei.drishti.service.ANMService;
 import org.ei.drishti.view.activity.*;
 import org.ei.drishti.view.contract.HomeContext;
 
-import static org.ei.drishti.AllConstants.*;
+import static org.ei.drishti.AllConstants.ENTITY_ID;
 
 public class NavigationController {
-    private Context context;
+    private Activity activity;
     private ANMService anmService;
 
-    public NavigationController(Context context, ANMService anmService) {
-        this.context = context;
+    public NavigationController(Activity activity, ANMService anmService) {
+        this.activity = activity;
         this.anmService = anmService;
     }
 
     public void startECList() {
-        context.startActivity(new Intent(context, EligibleCoupleListActivity.class));
+        activity.startActivity(new Intent(activity, EligibleCoupleListActivity.class));
     }
 
     public void startANCList() {
-        context.startActivity(new Intent(context, ANCListActivity.class));
+        activity.startActivity(new Intent(activity, ANCListActivity.class));
     }
 
     public void startPNCList() {
-        context.startActivity(new Intent(context, PNCListActivity.class));
+        activity.startActivity(new Intent(activity, PNCListActivity.class));
     }
 
     public void startChildList() {
-        context.startActivity(new Intent(context, ChildListActivity.class));
+        activity.startActivity(new Intent(activity, ChildListActivity.class));
     }
 
     public void startReports() {
-        context.startActivity(new Intent(context, ReportsActivity.class));
+        activity.startActivity(new Intent(activity, ReportsActivity.class));
     }
 
     public void startFPSmartRegistry() {
-        context.startActivity(new Intent(context, FPSmartRegistryActivity.class));
+        activity.startActivity(new Intent(activity, FPSmartRegistryActivity.class));
     }
 
     public void startANCSmartRegistry() {
-        context.startActivity(new Intent(context, ANCSmartRegistryActivity.class));
+        activity.startActivity(new Intent(activity, ANCSmartRegistryActivity.class));
     }
 
     public String get() {
@@ -52,9 +52,13 @@ public class NavigationController {
     }
 
     public void takePhoto(String entityId, String entityType) {
-        Intent intent = new Intent(context, CameraLaunchActivity.class);
+        Intent intent = new Intent(activity, CameraLaunchActivity.class);
         intent.putExtra(AllConstants.TYPE, entityType);
         intent.putExtra(ENTITY_ID, entityId);
-        context.startActivity(intent);
+        activity.startActivity(intent);
+    }
+
+    public void goBack() {
+        activity.finish();
     }
 }

@@ -159,4 +159,8 @@ angular.module("smartRegistry.controllers")
                 $scope.villageOptions = getVillageFilterOptions();
             });
         });
+
+        $scope.goBack = function () {
+            $scope.navigationBridge.goBack();
+        }
     }]);

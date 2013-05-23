@@ -108,6 +108,9 @@ function ANMNavigationBridge() {
         },
         takePhoto: function (entityId, entityType) {
             return anmNavigationContext.takePhoto(entityId, entityType);
+        },
+        goBack: function () {
+            anmNavigationContext.goBack();
         }
     };
 }
@@ -147,6 +150,9 @@ function FakeANMNavigationContext() {
         },
         takePhoto: function (entityId, entityType) {
             alert("Taking photo for:" + entityId + " of type: " + entityType);
+        },
+        goBack: function () {
+            window.location.href = "../home.html";
         }
     }
 }
