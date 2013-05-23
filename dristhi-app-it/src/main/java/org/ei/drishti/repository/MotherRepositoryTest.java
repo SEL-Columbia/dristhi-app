@@ -3,13 +3,16 @@ package org.ei.drishti.repository;
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 import org.apache.commons.lang3.tuple.Pair;
-import org.ei.drishti.domain.*;
-import org.ei.drishti.dto.AlertStatus;
+import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.domain.Mother;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.Session;
 import org.joda.time.LocalDate;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static org.ei.drishti.util.EasyMap.create;
@@ -17,7 +20,6 @@ import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class MotherRepositoryTest extends AndroidTestCase {
     private MotherRepository repository;
-    private TimelineEventRepository timelineEventRepository;
     private AlertRepository alertRepository;
     private EligibleCoupleRepository eligibleCoupleRepository;
     private LocalDate today;
@@ -25,15 +27,14 @@ public class MotherRepositoryTest extends AndroidTestCase {
     @Override
     protected void setUp() throws Exception {
         today = DateUtil.today();
-        timelineEventRepository = new TimelineEventRepository();
         alertRepository = new AlertRepository();
 
-        repository = new MotherRepository(timelineEventRepository, alertRepository);
+        repository = new MotherRepository();
 
         eligibleCoupleRepository = new EligibleCoupleRepository(repository, alertRepository);
 
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
-        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, timelineEventRepository, alertRepository, eligibleCoupleRepository);
+        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, alertRepository, eligibleCoupleRepository);
     }
 
     public void testShouldInsertMother() throws Exception {
@@ -43,7 +44,6 @@ public class MotherRepositoryTest extends AndroidTestCase {
         repository.add(mother);
 
         assertEquals(asList(mother), repository.allANCs());
-        assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE X", "2012-06-08")), timelineEventRepository.allFor("CASE X"));
     }
 
     public void testShouldFetchANCAndCorrespondingEC() throws Exception {
@@ -154,54 +154,12 @@ public class MotherRepositoryTest extends AndroidTestCase {
         assertEquals(1, repository.pncCount());
     }
 
-    public void testShouldRemoveTimelineEventsWhenMotherIsClosed() throws Exception {
-        Mother mother1 = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
-        Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
-
-        repository.add(mother1);
-        repository.add(mother2);
-
-        repository.close(mother1.caseId());
-
-        assertEquals(new ArrayList<TimelineEvent>(), timelineEventRepository.allFor(mother1.caseId()));
-        assertEquals(asList(TimelineEvent.forStartOfPregnancy(mother2.caseId(), "2012-06-08")), timelineEventRepository.allFor(mother2.caseId()));
-    }
-
     public void testShouldMarkAsClosedWhenMotherIsClosed() throws Exception {
         Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
         repository.add(mother);
 
         repository.close(mother.caseId());
         assertEquals(asList(mother.setIsClosed(true)), repository.findByCaseIds(mother.caseId()));
-    }
-
-    public void testShouldRemoveAlertsWhenMotherIsClosed() throws Exception {
-        Mother mother1 = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
-        Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
-
-        repository.add(mother1);
-        alertRepository.createAlert(new Alert("CASE X", "Ante Natal Care - Normal", "ANC 1", AlertStatus.normal, "2012-01-01", "2012-01-11"));
-        repository.add(mother2);
-        alertRepository.createAlert(new Alert("CASE Y", "Ante Natal Care - Normal", "ANC 1", AlertStatus.normal, "2012-01-01", "2012-01-11"));
-
-        repository.close(mother1.caseId());
-
-        assertEquals(asList(new Alert("CASE Y", "Ante Natal Care - Normal", "ANC 1", AlertStatus.normal, "2012-01-01", "2012-01-11")), alertRepository.allAlerts());
-    }
-
-    public void testShouldRemoveAllTimelineEventsWhenMotherIsClosed() throws Exception {
-        Mother mother1 = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
-        Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
-
-        repository.add(mother1);
-        repository.add(mother2);
-
-        repository.close(mother1.caseId());
-
-        assertEquals(asList(mother2), repository.allANCs());
-
-        assertTrue(timelineEventRepository.allFor("CASE A").isEmpty());
-        assertTrue(timelineEventRepository.allFor("CASE B").isEmpty());
     }
 
     public void testShouldCloseAllMothersForEC() throws Exception {

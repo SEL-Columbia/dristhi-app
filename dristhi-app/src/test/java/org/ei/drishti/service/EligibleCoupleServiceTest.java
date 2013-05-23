@@ -49,7 +49,7 @@ public class EligibleCoupleServiceTest {
         service.closeEligibleCouple(submission);
 
         verify(eligibleCoupleRepository).close("entity id 1");
-        verify(timelineEventRepository).deleteAllTimelineEventsForCase("entity id 1");
+        verify(timelineEventRepository).deleteAllTimelineEventsForEntity("entity id 1");
     }
 
     @Test

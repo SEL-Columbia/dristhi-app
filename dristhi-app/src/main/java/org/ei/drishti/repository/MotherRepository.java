@@ -8,7 +8,6 @@ import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
-import org.ei.drishti.domain.TimelineEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +17,7 @@ import static info.guardianproject.database.DatabaseUtils.longForQuery;
 import static java.lang.Boolean.TRUE;
 import static org.apache.commons.lang3.StringUtils.join;
 import static org.apache.commons.lang3.StringUtils.repeat;
-import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_COLUMNS;
-import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_NAME;
-import static org.ei.drishti.repository.EligibleCoupleRepository.IS_OUT_OF_AREA_COLUMN;
+import static org.ei.drishti.repository.EligibleCoupleRepository.*;
 
 public class MotherRepository extends DrishtiRepository {
     private static final String MOTHER_SQL = "CREATE TABLE mother(id VARCHAR PRIMARY KEY, ecCaseId VARCHAR, thayiCardNumber VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR, isClosed VARCHAR)";
@@ -40,14 +37,6 @@ public class MotherRepository extends DrishtiRepository {
     private static final String TYPE_PNC = "PNC";
     private static final String NOT_CLOSED = "false";
 
-    private TimelineEventRepository timelineEventRepository;
-    private AlertRepository alertRepository;
-
-    public MotherRepository(TimelineEventRepository timelineEventRepository, AlertRepository alertRepository) {
-        this.timelineEventRepository = timelineEventRepository;
-        this.alertRepository = alertRepository;
-    }
-
     @Override
     protected void onCreate(SQLiteDatabase database) {
         database.execSQL(MOTHER_SQL);
@@ -58,8 +47,6 @@ public class MotherRepository extends DrishtiRepository {
     public void add(Mother mother) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(MOTHER_TABLE_NAME, null, createValuesFor(mother, TYPE_ANC));
-        timelineEventRepository.add(TimelineEvent.forStartOfPregnancy(mother.caseId(), mother.referenceDate()));
-        timelineEventRepository.add(TimelineEvent.forStartOfPregnancyForEC(mother.ecCaseId(), mother.thaayiCardNumber(), mother.referenceDate()));
     }
 
     public void switchToPNC(String caseId) {
@@ -145,12 +132,6 @@ public class MotherRepository extends DrishtiRepository {
     }
 
     public void close(String caseId) {
-        alertRepository.deleteAllAlertsForCase(caseId);
-        timelineEventRepository.deleteAllTimelineEventsForCase(caseId);
-        markAsClosed(caseId);
-    }
-
-    private void markAsClosed(String caseId) {
         ContentValues values = new ContentValues();
         values.put(IS_CLOSED_COLUMN, TRUE.toString());
         masterRepository.getWritableDatabase().update(MOTHER_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});

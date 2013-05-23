@@ -10,10 +10,15 @@ import java.util.List;
 public class AllBeneficiaries {
     private ChildRepository childRepository;
     private MotherRepository motherRepository;
+    private final AlertRepository alertRepository;
+    private final TimelineEventRepository timelineEventRepository;
 
-    public AllBeneficiaries(MotherRepository motherRepository, ChildRepository childRepository) {
+    public AllBeneficiaries(MotherRepository motherRepository, ChildRepository childRepository,
+                            AlertRepository alertRepository, TimelineEventRepository timelineEventRepository) {
         this.childRepository = childRepository;
         this.motherRepository = motherRepository;
+        this.alertRepository = alertRepository;
+        this.timelineEventRepository = timelineEventRepository;
     }
 
     public List<Mother> allPNCs() {
@@ -61,5 +66,11 @@ public class AllBeneficiaries {
 
     public List<Mother> findAllMothersByCaseIDs(List<String> caseIds) {
         return motherRepository.findByCaseIds(caseIds.toArray(new String[caseIds.size()]));
+    }
+
+    public void closeMother(String entityId) {
+        alertRepository.deleteAllAlertsForEntity(entityId);
+        timelineEventRepository.deleteAllTimelineEventsForEntity(entityId);
+        motherRepository.close(entityId);
     }
 }

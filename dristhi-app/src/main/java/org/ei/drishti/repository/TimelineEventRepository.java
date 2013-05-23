@@ -38,7 +38,7 @@ public class TimelineEventRepository extends DrishtiRepository {
         return readAllTimelineEvents(cursor);
     }
 
-    public void deleteAllTimelineEventsForCase(String caseId) {
+    public void deleteAllTimelineEventsForEntity(String caseId) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.delete(TIMELINEEVENT_TABLE_NAME, CASEID_COLUMN + " = ?", new String[]{caseId});
     }

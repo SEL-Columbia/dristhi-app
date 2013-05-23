@@ -139,7 +139,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     }
 
     public void close(String caseId) {
-        alertRepository.deleteAllAlertsForCase(caseId);
+        alertRepository.deleteAllAlertsForEntity(caseId);
         motherRepository.closeAllCasesForEC(caseId);
         markAsClosed(caseId);
     }

@@ -44,7 +44,7 @@ public class TimelineEventRepositoryTest extends AndroidTestCase {
         repository.add(event2);
         repository.add(event3);
 
-        repository.deleteAllTimelineEventsForCase("CASE X");
+        repository.deleteAllTimelineEventsForEntity("CASE X");
 
         assertEquals(Collections.emptyList(), repository.allFor("CASE X"));
         assertEquals(asList(event3), repository.allFor("CASE Y"));

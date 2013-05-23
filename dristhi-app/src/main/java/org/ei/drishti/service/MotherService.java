@@ -3,6 +3,7 @@ package org.ei.drishti.service;
 import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
+import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.repository.MotherRepository;
 import org.ei.drishti.util.IntegerUtil;
@@ -21,10 +22,12 @@ public class MotherService {
     public static final String TEMPERATURE = "temperature";
     public static final String WEIGHT = "weight";
     private MotherRepository motherRepository;
+    private AllBeneficiaries allBeneficiaries;
     private AllTimelineEvents allTimelines;
 
-    public MotherService(MotherRepository motherRepository, AllTimelineEvents allTimelineEvents) {
+    public MotherService(MotherRepository motherRepository, AllBeneficiaries allBeneficiaries, AllTimelineEvents allTimelineEvents) {
         this.motherRepository = motherRepository;
+        this.allBeneficiaries = allBeneficiaries;
         this.allTimelines = allTimelineEvents;
     }
 
@@ -46,9 +49,10 @@ public class MotherService {
     }
 
     public void close(FormSubmission submission) {
-        motherRepository.close(submission.entityId());
+        allBeneficiaries.closeMother(submission.entityId());
     }
 
+    @Deprecated
     public void ancCareProvided(Action action) {
         allTimelines.add(forANCCareProvided(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
 
@@ -61,11 +65,13 @@ public class MotherService {
         }
     }
 
+    @Deprecated
     public void updateANCOutcome(Action action) {
         motherRepository.switchToPNC(action.caseID());
         motherRepository.updateDetails(action.caseID(), action.details());
     }
 
+    @Deprecated
     public void pncVisitHappened(Action action) {
         allTimelines.add(forMotherPNCVisit(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
         motherRepository.updateDetails(action.caseID(), action.details());

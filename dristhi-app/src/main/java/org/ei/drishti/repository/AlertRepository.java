@@ -78,7 +78,7 @@ public class AlertRepository extends DrishtiRepository {
         database.update(ALERTS_TABLE_NAME, valuesToBeUpdated, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, caseAndVisitCodeColumnValues);
     }
 
-    public void deleteAllAlertsForCase(String caseId) {
+    public void deleteAllAlertsForEntity(String caseId) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.delete(ALERTS_TABLE_NAME, ALERTS_CASEID_COLUMN + "= ?", new String[]{caseId});
     }

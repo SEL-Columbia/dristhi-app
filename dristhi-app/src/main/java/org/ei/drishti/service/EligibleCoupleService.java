@@ -40,6 +40,6 @@ public class EligibleCoupleService {
 
     public void closeEligibleCouple(FormSubmission submission) {
         repository.close(submission.entityId());
-        timelineEventRepository.deleteAllTimelineEventsForCase(submission.entityId());
+        timelineEventRepository.deleteAllTimelineEventsForEntity(submission.entityId());
     }
 }

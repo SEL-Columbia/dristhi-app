@@ -5,7 +5,6 @@ import android.test.RenamingDelegatingContext;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
-import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.dto.AlertStatus;
 import org.ei.drishti.util.Session;
 
@@ -15,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
-import static java.util.Collections.emptyList;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 
@@ -31,7 +29,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         alertRepository = new AlertRepository();
         timelineEventRepository = new TimelineEventRepository();
         childRepository = new ChildRepository(timelineEventRepository, alertRepository);
-        motherRepository = new MotherRepository(timelineEventRepository, alertRepository);
+        motherRepository = new MotherRepository();
         repository = new EligibleCoupleRepository(motherRepository, alertRepository);
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
         new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, alertRepository,
@@ -127,10 +125,6 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
 
         assertEquals(asList(ecWhoIsNotClosed), repository.allEligibleCouples());
         assertEquals(asList(motherWhoIsNotClosed), motherRepository.allANCs());
-        assertEquals(emptyList(), timelineEventRepository.allFor("CASE Y"));
-        assertEquals(emptyList(), timelineEventRepository.allFor("CASE Z"));
-
-        assertEquals(asList(TimelineEvent.forStartOfPregnancy("CASE B", "2012-01-01")), timelineEventRepository.allFor("CASE B"));
     }
 
     public void testFindECByCaseID() throws Exception {

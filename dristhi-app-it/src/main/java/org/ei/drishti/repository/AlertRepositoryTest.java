@@ -106,7 +106,7 @@ public class AlertRepositoryTest extends AndroidTestCase {
         alertRepository.createAlert(new Alert("Case Y", "Ante Natal Care - Normal", "ANC 2", normal, "2012-01-01", "2012-01-11"));
         alertRepository.createAlert(new Alert("Case X", "Ante Natal Care - Normal", "ANC 3", normal, "2012-01-01", "2012-01-11"));
 
-        alertRepository.deleteAllAlertsForCase("Case X");
+        alertRepository.deleteAllAlertsForEntity("Case X");
 
         assertEquals(asList(new Alert("Case Y", "Ante Natal Care - Normal", "ANC 2", normal, "2012-01-01", "2012-01-11")), alertRepository.allAlerts());
     }

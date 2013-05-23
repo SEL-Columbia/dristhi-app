@@ -26,7 +26,7 @@ public class AlertService {
     }
 
     public void deleteAll(Action action) {
-        repository.deleteAllAlertsForCase(action.caseID());
+        repository.deleteAllAlertsForEntity(action.caseID());
     }
 
     public List<Alert> findByEntityIdAndAlertNames(String entityId, String... names) {

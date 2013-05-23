@@ -251,7 +251,7 @@ public class Context {
     public AllBeneficiaries allBeneficiaries() {
         initRepository();
         if (allBeneficiaries == null) {
-            allBeneficiaries = new AllBeneficiaries(motherRepository(), childRepository());
+            allBeneficiaries = new AllBeneficiaries(motherRepository(), childRepository(), alertRepository(), timelineEventRepository());
         }
         return allBeneficiaries;
     }
@@ -302,7 +302,7 @@ public class Context {
 
     private MotherRepository motherRepository() {
         if (motherRepository == null) {
-            motherRepository = new MotherRepository(timelineEventRepository(), alertRepository());
+            motherRepository = new MotherRepository();
         }
         return motherRepository;
     }
@@ -352,7 +352,7 @@ public class Context {
 
     public MotherService motherService() {
         if (motherService == null) {
-            motherService = new MotherService(motherRepository(), allTimelineEvents());
+            motherService = new MotherService(motherRepository(), allBeneficiaries(), allTimelineEvents());
         }
         return motherService;
     }

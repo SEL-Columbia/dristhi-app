@@ -101,8 +101,8 @@ public class AlertServiceTest {
         service.deleteAll(firstAction);
         service.deleteAll(secondAction);
 
-        verify(alertRepository).deleteAllAlertsForCase("Case X");
-        verify(alertRepository).deleteAllAlertsForCase("Case Y");
+        verify(alertRepository).deleteAllAlertsForEntity("Case X");
+        verify(alertRepository).deleteAllAlertsForEntity("Case Y");
         verifyNoMoreInteractions(alertRepository);
     }
 }

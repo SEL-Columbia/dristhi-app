@@ -83,8 +83,8 @@ public class ChildRepository extends DrishtiRepository {
     }
 
     public void close(String caseId) {
-        alertRepository.deleteAllAlertsForCase(caseId);
-        timelineEventRepository.deleteAllTimelineEventsForCase(caseId);
+        alertRepository.deleteAllAlertsForEntity(caseId);
+        timelineEventRepository.deleteAllTimelineEventsForEntity(caseId);
         markAsClosed(caseId);
     }
 

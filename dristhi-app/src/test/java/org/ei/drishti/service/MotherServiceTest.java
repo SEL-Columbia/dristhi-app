@@ -4,6 +4,7 @@ import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
+import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.repository.EligibleCoupleRepository;
 import org.ei.drishti.repository.MotherRepository;
@@ -27,6 +28,8 @@ public class MotherServiceTest {
     @Mock
     private MotherRepository motherRepository;
     @Mock
+    private AllBeneficiaries allBeneficiaries;
+    @Mock
     private EligibleCoupleRepository eligibleCoupleRepository;
     @Mock
     private AllTimelineEvents allTimelineEvents;
@@ -36,7 +39,7 @@ public class MotherServiceTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new MotherService(motherRepository, allTimelineEvents);
+        service = new MotherService(motherRepository, allBeneficiaries, allTimelineEvents);
     }
 
     @Test
