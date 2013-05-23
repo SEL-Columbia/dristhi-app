@@ -166,4 +166,14 @@ angular.module("smartRegistry.controllers")
             });
             return numTablets;
         }
+
+        $scope.openANCFormModal = function(clientEntityId) {
+            $scope.currentClientEntityId = clientEntityId;
+            $scope.isANCFormModalOpen = true;
+        }
+
+        $scope.closeANCFormModal = function() {
+            $scope.currentClientEntityId = null;
+            $scope.isANCFormModalOpen = false;
+        }
     });

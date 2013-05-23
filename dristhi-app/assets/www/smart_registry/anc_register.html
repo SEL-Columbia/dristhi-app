@@ -23,6 +23,16 @@
 </head>
 <body ng-controller="ancRegisterController">
 <div ng-controller="listViewController">
+    <div modal="isANCFormModalOpen" close="closeANCFormModal()">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="closeANCFormModal()" aria-hidden="true">&times;</button>
+            <h4>Fill ANC forms</h4>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" ng-click="openForm('anc_visit', currentClientEntityId)">ANC Visit</button>
+            <button class="btn" ng-click="openForm('anc_close', currentClientEntityId)">ANC Close</button>
+        </div>
+    </div>
     <div class="header">
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
