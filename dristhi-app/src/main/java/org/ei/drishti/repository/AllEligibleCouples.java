@@ -3,39 +3,51 @@ package org.ei.drishti.repository;
 import org.ei.drishti.domain.EligibleCouple;
 
 import java.util.List;
+import java.util.Map;
 
 public class AllEligibleCouples {
-    private EligibleCoupleRepository repository;
+    private EligibleCoupleRepository eligibleCoupleRepository;
+    private final TimelineEventRepository timelineEventRepository;
 
-    public AllEligibleCouples(EligibleCoupleRepository eligibleCoupleRepository) {
-        this.repository = eligibleCoupleRepository;
+    public AllEligibleCouples(EligibleCoupleRepository eligibleCoupleRepository, TimelineEventRepository timelineEventRepository) {
+        this.eligibleCoupleRepository = eligibleCoupleRepository;
+        this.timelineEventRepository = timelineEventRepository;
     }
 
     public List<EligibleCouple> all() {
-        return repository.allEligibleCouples();
+        return eligibleCoupleRepository.allEligibleCouples();
     }
 
     public EligibleCouple findByCaseID(String caseId) {
-        return repository.findByCaseID(caseId);
+        return eligibleCoupleRepository.findByCaseID(caseId);
     }
 
     public long count() {
-        return repository.count();
+        return eligibleCoupleRepository.count();
     }
 
     public long fpCount() {
-        return repository.fpCount();
+        return eligibleCoupleRepository.fpCount();
     }
 
     public List<String> villages() {
-        return repository.villages();
+        return eligibleCoupleRepository.villages();
     }
 
     public List<EligibleCouple> findByCaseIDs(List<String> caseIds) {
-        return repository.findByCaseIDs(caseIds.toArray(new String[caseIds.size()]));
+        return eligibleCoupleRepository.findByCaseIDs(caseIds.toArray(new String[caseIds.size()]));
     }
 
     public void updatePhotoPath(String caseId, String imagePath) {
-        repository.updatePhotoPath(caseId, imagePath);
+        eligibleCoupleRepository.updatePhotoPath(caseId, imagePath);
+    }
+
+    public void close(String entityId) {
+        eligibleCoupleRepository.close(entityId);
+        timelineEventRepository.deleteAllTimelineEventsForEntity(entityId);
+    }
+
+    public void mergeDetails(String entityId, Map<String, String> details) {
+        eligibleCoupleRepository.mergeDetails(entityId, details);
     }
 }

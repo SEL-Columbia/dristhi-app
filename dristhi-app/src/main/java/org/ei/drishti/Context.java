@@ -227,7 +227,7 @@ public class Context {
     public AllEligibleCouples allEligibleCouples() {
         initRepository();
         if (allEligibleCouples == null) {
-            allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository());
+            allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository(), timelineEventRepository());
         }
         return allEligibleCouples;
     }
@@ -345,14 +345,14 @@ public class Context {
 
     public EligibleCoupleService eligibleCoupleService() {
         if (eligibleCoupleService == null) {
-            eligibleCoupleService = new EligibleCoupleService(eligibleCoupleRepository(), timelineEventRepository());
+            eligibleCoupleService = new EligibleCoupleService(allEligibleCouples(), allTimelineEvents());
         }
         return eligibleCoupleService;
     }
 
     public MotherService motherService() {
         if (motherService == null) {
-            motherService = new MotherService(motherRepository(), allBeneficiaries(), allTimelineEvents());
+            motherService = new MotherService(motherRepository(), allBeneficiaries(), allEligibleCouples(), allTimelineEvents());
         }
         return motherService;
     }

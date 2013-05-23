@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -19,13 +20,15 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class AllEligibleCouplesTest {
     @Mock
     private EligibleCoupleRepository eligibleCoupleRepository;
+    @Mock
+    private TimelineEventRepository timelineEventRepository;
 
     private AllEligibleCouples allEligibleCouples;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository);
+        allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository, timelineEventRepository);
     }
 
     @Test
@@ -37,5 +40,13 @@ public class AllEligibleCouplesTest {
         List<EligibleCouple> couples = allEligibleCouples.all();
 
         assertEquals(expectedCouples, couples);
+    }
+
+    @Test
+    public void shouldCloseEC() throws Exception {
+        allEligibleCouples.close("entity id 1");
+
+        verify(eligibleCoupleRepository).close("entity id 1");
+        verify(timelineEventRepository).deleteAllTimelineEventsForEntity("entity id 1");
     }
 }

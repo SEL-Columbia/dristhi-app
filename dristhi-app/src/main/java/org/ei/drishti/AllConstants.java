@@ -60,4 +60,10 @@ public class AllConstants {
     public static final String ENTITY_ID = "entityId";
     public static final int FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE = 112;
     public static final String ALERT_NAME_PARAM = "alertName";
+
+    public class ANCCloseFields {
+        public static final String DEATH_OF_WOMAN_FIELD_VALUE = "death_of_woman";
+        public static final String CLOSE_REASON_FIELD_NAME = "closeReason";
+        public static final String PERMANENT_RELOCATION_FIELD_VALUE = "relocation_permanent";
+    }
 }

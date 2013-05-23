@@ -3,6 +3,8 @@ package org.ei.drishti.service;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.domain.form.FormSubmission;
+import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.repository.EligibleCoupleRepository;
 import org.ei.drishti.repository.TimelineEventRepository;
 import org.junit.Before;
@@ -20,13 +22,17 @@ public class EligibleCoupleServiceTest {
     private EligibleCoupleRepository eligibleCoupleRepository;
     @Mock
     private TimelineEventRepository timelineEventRepository;
+    @Mock
+    private AllTimelineEvents allTimelineEvents;
+    @Mock
+    private AllEligibleCouples allEligibleCouples;
 
     private EligibleCoupleService service;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new EligibleCoupleService(eligibleCoupleRepository, timelineEventRepository);
+        service = new EligibleCoupleService(allEligibleCouples, allTimelineEvents);
     }
 
     @Test
@@ -37,19 +43,17 @@ public class EligibleCoupleServiceTest {
 
         service.register(submission);
 
-        verify(timelineEventRepository).add(TimelineEvent.forECRegistered("entity id 1", "2012-01-01"));
+        verify(allTimelineEvents).add(TimelineEvent.forECRegistered("entity id 1", "2012-01-01"));
     }
 
     @Test
     public void shouldCloseEC() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
-        when(submission.getFieldValue("submissionDate")).thenReturn("2012-01-01");
 
         service.closeEligibleCouple(submission);
 
-        verify(eligibleCoupleRepository).close("entity id 1");
-        verify(timelineEventRepository).deleteAllTimelineEventsForEntity("entity id 1");
+        verify(allEligibleCouples).close("entity id 1");
     }
 
     @Test
@@ -60,7 +64,7 @@ public class EligibleCoupleServiceTest {
 
         service.register(submission);
 
-        verifyZeroInteractions(timelineEventRepository);
+        verifyZeroInteractions(allTimelineEvents);
     }
 
     @Test
@@ -73,7 +77,7 @@ public class EligibleCoupleServiceTest {
 
         service.fpChange(submission);
 
-        verify(timelineEventRepository).add(TimelineEvent.forChangeOfFPMethod("entity id 1", "condom", "ocp", "2012-01-01"));
-        verify(eligibleCoupleRepository).mergeDetails("entity id 1", mapOf("currentMethod", "ocp"));
+        verify(allTimelineEvents).add(TimelineEvent.forChangeOfFPMethod("entity id 1", "condom", "ocp", "2012-01-01"));
+        verify(allEligibleCouples).mergeDetails("entity id 1", mapOf("currentMethod", "ocp"));
     }
 }

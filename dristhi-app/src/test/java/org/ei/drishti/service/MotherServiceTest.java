@@ -1,13 +1,11 @@
 package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllTimelineEvents;
-import org.ei.drishti.repository.EligibleCoupleRepository;
-import org.ei.drishti.repository.MotherRepository;
+import org.ei.drishti.repository.*;
 import org.ei.drishti.util.ActionBuilder;
 import org.joda.time.LocalDate;
 import org.junit.Before;
@@ -33,13 +31,15 @@ public class MotherServiceTest {
     private EligibleCoupleRepository eligibleCoupleRepository;
     @Mock
     private AllTimelineEvents allTimelineEvents;
+    @Mock
+    private AllEligibleCouples allEligibleCouples;
 
     private MotherService service;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new MotherService(motherRepository, allBeneficiaries, allTimelineEvents);
+        service = new MotherService(motherRepository, allBeneficiaries, allEligibleCouples, allTimelineEvents);
     }
 
     @Test
@@ -85,6 +85,54 @@ public class MotherServiceTest {
 
         verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("entity id 1", "2", "2013-01-01",
                 create("bpDiastolic", "80").put("bpSystolic", "90").put("temperature", "98.5").put("weight", "21").map()));
+    }
+
+    @Test
+    public void shouldNotDoAnythingWhenANCIsClosedAndMotherDoesNotExist() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(allBeneficiaries.findMother("entity id 1")).thenReturn(null);
+
+        service.close(submission);
+
+        verify(allBeneficiaries, times(0)).closeMother("entity id 1");
+        verifyZeroInteractions(allEligibleCouples);
+    }
+
+    @Test
+    public void shouldCloseECWhenMotherIsClosedAndReasonIsDeath() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("closeReason")).thenReturn("death_of_woman");
+        when(allBeneficiaries.findMother("entity id 1")).thenReturn(new Mother("entity id 1", "ec entity id 1", "thayi 1", "2013-01-01"));
+
+        service.close(submission);
+
+        verify(allEligibleCouples).close("ec entity id 1");
+    }
+
+    @Test
+    public void shouldCloseECWhenMotherIsClosedAndReasonIsPermanentRelocation() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("closeReason")).thenReturn("relocation_permanent");
+        when(allBeneficiaries.findMother("entity id 1")).thenReturn(new Mother("entity id 1", "ec entity id 1", "thayi 1", "2013-01-01"));
+
+        service.close(submission);
+
+        verify(allEligibleCouples).close("ec entity id 1");
+    }
+
+    @Test
+    public void shouldNotCloseECWhenMotherIsClosedForOtherReasons() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("closeReason")).thenReturn("other_reason");
+        when(allBeneficiaries.findMother("entity id 1")).thenReturn(new Mother("entity id 1", "ec entity id 1", "thayi 1", "2013-01-01"));
+
+        service.close(submission);
+
+        verifyZeroInteractions(allEligibleCouples);
     }
 
     @Test
