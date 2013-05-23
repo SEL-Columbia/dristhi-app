@@ -227,7 +227,7 @@ public class Context {
     public AllEligibleCouples allEligibleCouples() {
         initRepository();
         if (allEligibleCouples == null) {
-            allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository(), timelineEventRepository());
+            allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository(), alertRepository(), timelineEventRepository());
         }
         return allEligibleCouples;
     }
@@ -274,7 +274,7 @@ public class Context {
 
     private EligibleCoupleRepository eligibleCoupleRepository() {
         if (eligibleCoupleRepository == null) {
-            eligibleCoupleRepository = new EligibleCoupleRepository(motherRepository(), alertRepository());
+            eligibleCoupleRepository = new EligibleCoupleRepository();
         }
         return eligibleCoupleRepository;
     }
@@ -345,7 +345,7 @@ public class Context {
 
     public EligibleCoupleService eligibleCoupleService() {
         if (eligibleCoupleService == null) {
-            eligibleCoupleService = new EligibleCoupleService(allEligibleCouples(), allTimelineEvents());
+            eligibleCoupleService = new EligibleCoupleService(allEligibleCouples(), allTimelineEvents(), allBeneficiaries());
         }
         return eligibleCoupleService;
     }

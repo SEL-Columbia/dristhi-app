@@ -2,10 +2,7 @@ package org.ei.drishti.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
-import org.ei.drishti.dto.AlertStatus;
 import org.ei.drishti.util.Session;
 
 import java.util.Date;
@@ -30,7 +27,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         timelineEventRepository = new TimelineEventRepository();
         childRepository = new ChildRepository(timelineEventRepository, alertRepository);
         motherRepository = new MotherRepository();
-        repository = new EligibleCoupleRepository(motherRepository, alertRepository);
+        repository = new EligibleCoupleRepository();
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
         new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, alertRepository,
                 timelineEventRepository, childRepository, motherRepository);
@@ -93,38 +90,6 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
         repository.close("CASE Y");
         assertEquals(firstEligibleCouple.setIsClosed(true), repository.findByCaseID(firstEligibleCouple.caseId()));
         assertEquals(secondEligibleCouple.setIsClosed(true), repository.findByCaseID(secondEligibleCouple.caseId()));
-    }
-
-    public void testShouldDeleteCorrespondingAlertsWhenDeletingEC() throws Exception {
-        Alert alert = new Alert("CASE Y", "FP", "FP 2", AlertStatus.normal, "2012-01-01", "2012-01-11");
-
-        repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", new HashMap<String, String>()));
-        alertRepository.createAlert(new Alert("CASE X", "FP", "FP 1", AlertStatus.normal, "2012-01-01", "2012-01-11"));
-
-        repository.add(new EligibleCouple("CASE Y", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", new HashMap<String, String>()));
-        alertRepository.createAlert(alert);
-
-        repository.close("CASE X");
-
-        assertEquals(asList(alert), alertRepository.allAlerts());
-    }
-
-    public void testShouldDeleteMotherWhenDeletingAnEC() throws Exception {
-        repository.add(new EligibleCouple("CASE X", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", new HashMap<String, String>()));
-
-        Mother mother = new Mother("CASE Y", "CASE X", "TC 1", "2012-01-01");
-        motherRepository.add(mother);
-        motherRepository.add(new Mother("CASE Z", "CASE X", "TC 2", "2012-01-01"));
-
-        EligibleCouple ecWhoIsNotClosed = new EligibleCouple("CASE A", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", new HashMap<String, String>());
-        Mother motherWhoIsNotClosed = new Mother("CASE B", "CASE A", "TC 2", "2012-01-01");
-        repository.add(ecWhoIsNotClosed);
-        motherRepository.add(motherWhoIsNotClosed);
-
-        repository.close("CASE X");
-
-        assertEquals(asList(ecWhoIsNotClosed), repository.allEligibleCouples());
-        assertEquals(asList(motherWhoIsNotClosed), motherRepository.allANCs());
     }
 
     public void testFindECByCaseID() throws Exception {

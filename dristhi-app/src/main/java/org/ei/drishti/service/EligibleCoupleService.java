@@ -2,6 +2,7 @@ package org.ei.drishti.service;
 
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.domain.form.FormSubmission;
+import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 
@@ -14,10 +15,12 @@ public class EligibleCoupleService {
     private static final String SUBMISSION_DATE_FORM_FIELD_NAME = "submissionDate";
     private final AllEligibleCouples allEligibleCouples;
     private final AllTimelineEvents allTimelineEvents;
+    private final AllBeneficiaries allBeneficiaries;
 
-    public EligibleCoupleService(AllEligibleCouples allEligibleCouples, AllTimelineEvents allTimelineEvents) {
+    public EligibleCoupleService(AllEligibleCouples allEligibleCouples, AllTimelineEvents allTimelineEvents, AllBeneficiaries allBeneficiaries) {
         this.allEligibleCouples = allEligibleCouples;
         this.allTimelineEvents = allTimelineEvents;
+        this.allBeneficiaries = allBeneficiaries;
     }
 
     public void register(FormSubmission submission) {
@@ -40,5 +43,6 @@ public class EligibleCoupleService {
 
     public void closeEligibleCouple(FormSubmission submission) {
         allEligibleCouples.close(submission.entityId());
+        allBeneficiaries.closeAllMothersForEC(submission.entityId());
     }
 }

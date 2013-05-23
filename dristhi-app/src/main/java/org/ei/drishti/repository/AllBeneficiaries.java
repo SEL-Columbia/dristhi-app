@@ -73,4 +73,13 @@ public class AllBeneficiaries {
         timelineEventRepository.deleteAllTimelineEventsForEntity(entityId);
         motherRepository.close(entityId);
     }
+
+    public void closeAllMothersForEC(String ecId) {
+        List<Mother> mothers = motherRepository.findAllCasesForEC(ecId);
+        if (mothers == null || mothers.isEmpty())
+            return;
+        for (Mother mother : mothers) {
+            closeMother(mother.caseId());
+        }
+    }
 }

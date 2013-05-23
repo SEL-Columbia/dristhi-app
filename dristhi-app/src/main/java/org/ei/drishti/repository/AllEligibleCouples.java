@@ -8,10 +8,12 @@ import java.util.Map;
 public class AllEligibleCouples {
     private EligibleCoupleRepository eligibleCoupleRepository;
     private final TimelineEventRepository timelineEventRepository;
+    private final AlertRepository alertRepository;
 
-    public AllEligibleCouples(EligibleCoupleRepository eligibleCoupleRepository, TimelineEventRepository timelineEventRepository) {
+    public AllEligibleCouples(EligibleCoupleRepository eligibleCoupleRepository, AlertRepository alertRepository, TimelineEventRepository timelineEventRepository) {
         this.eligibleCoupleRepository = eligibleCoupleRepository;
         this.timelineEventRepository = timelineEventRepository;
+        this.alertRepository = alertRepository;
     }
 
     public List<EligibleCouple> all() {
@@ -43,8 +45,9 @@ public class AllEligibleCouples {
     }
 
     public void close(String entityId) {
-        eligibleCoupleRepository.close(entityId);
+        alertRepository.deleteAllAlertsForEntity(entityId);
         timelineEventRepository.deleteAllTimelineEventsForEntity(entityId);
+        eligibleCoupleRepository.close(entityId);
     }
 
     public void mergeDetails(String entityId, Map<String, String> details) {

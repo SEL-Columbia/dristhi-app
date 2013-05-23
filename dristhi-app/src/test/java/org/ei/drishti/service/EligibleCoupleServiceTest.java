@@ -3,10 +3,7 @@ package org.ei.drishti.service;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.domain.form.FormSubmission;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.repository.AllTimelineEvents;
-import org.ei.drishti.repository.EligibleCoupleRepository;
-import org.ei.drishti.repository.TimelineEventRepository;
+import org.ei.drishti.repository.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,13 +23,15 @@ public class EligibleCoupleServiceTest {
     private AllTimelineEvents allTimelineEvents;
     @Mock
     private AllEligibleCouples allEligibleCouples;
+    @Mock
+    private AllBeneficiaries allBeneficiaries;
 
     private EligibleCoupleService service;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new EligibleCoupleService(allEligibleCouples, allTimelineEvents);
+        service = new EligibleCoupleService(allEligibleCouples, allTimelineEvents, allBeneficiaries);
     }
 
     @Test
@@ -54,6 +53,7 @@ public class EligibleCoupleServiceTest {
         service.closeEligibleCouple(submission);
 
         verify(allEligibleCouples).close("entity id 1");
+        verify(allBeneficiaries).closeAllMothersForEC("entity id 1");
     }
 
     @Test

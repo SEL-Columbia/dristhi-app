@@ -22,13 +22,15 @@ public class AllEligibleCouplesTest {
     private EligibleCoupleRepository eligibleCoupleRepository;
     @Mock
     private TimelineEventRepository timelineEventRepository;
+    @Mock
+    private AlertRepository alertRepository;
 
     private AllEligibleCouples allEligibleCouples;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository, timelineEventRepository);
+        allEligibleCouples = new AllEligibleCouples(eligibleCoupleRepository, alertRepository, timelineEventRepository);
     }
 
     @Test
@@ -46,6 +48,7 @@ public class AllEligibleCouplesTest {
     public void shouldCloseEC() throws Exception {
         allEligibleCouples.close("entity id 1");
 
+        verify(alertRepository).deleteAllAlertsForEntity("entity id 1");
         verify(eligibleCoupleRepository).close("entity id 1");
         verify(timelineEventRepository).deleteAllTimelineEventsForEntity("entity id 1");
     }

@@ -40,14 +40,6 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     public static final String NOT_CLOSED = "false";
     private static final String IN_AREA = "false";
 
-    private MotherRepository motherRepository;
-    private final AlertRepository alertRepository;
-
-    public EligibleCoupleRepository(MotherRepository motherRepository, AlertRepository alertRepository) {
-        this.motherRepository = motherRepository;
-        this.alertRepository = alertRepository;
-    }
-
     @Override
     protected void onCreate(SQLiteDatabase database) {
         database.execSQL(EC_SQL);
@@ -139,12 +131,6 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     }
 
     public void close(String caseId) {
-        alertRepository.deleteAllAlertsForEntity(caseId);
-        motherRepository.closeAllCasesForEC(caseId);
-        markAsClosed(caseId);
-    }
-
-    private void markAsClosed(String caseId) {
         ContentValues values = new ContentValues();
         values.put(IS_CLOSED_COLUMN, TRUE.toString());
         masterRepository.getWritableDatabase().update(EC_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
