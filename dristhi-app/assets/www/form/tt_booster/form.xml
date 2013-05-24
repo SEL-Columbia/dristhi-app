@@ -2,6 +2,12 @@
     <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
     <section class="form-logo"></section>
     <h3 id="form-title">TT Booster</h3>
+    <fieldset id="jr-preload-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/TTBooster_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
 
 
     <fieldset class="restoring-sanity-to-legends ">

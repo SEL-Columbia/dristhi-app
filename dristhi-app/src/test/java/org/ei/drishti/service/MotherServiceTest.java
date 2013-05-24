@@ -15,6 +15,7 @@ import org.mockito.Mock;
 
 import java.util.HashMap;
 
+import static org.ei.drishti.domain.TimelineEvent.forTTShotProvided;
 import static org.ei.drishti.util.ActionBuilder.actionForANCCareProvided;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
@@ -136,6 +137,18 @@ public class MotherServiceTest {
     }
 
     @Test
+    public void shouldHandleTTProvided() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("ttDose")).thenReturn("ttbooster");
+        when(submission.getFieldValue("ttDate")).thenReturn("2013-01-01");
+
+        service.ttProvided(submission);
+
+        verify(allTimelineEvents).add(forTTShotProvided("entity id 1", "ttbooster", "2013-01-01"));
+    }
+
+    @Test
     public void shouldHandleANCCareProvidedForMother() throws Exception {
         LocalDate visitDate = LocalDate.now().minusDays(1);
         Action action = actionForANCCareProvided("Case Mother X", 1, 10, visitDate, "TT 1");
@@ -144,7 +157,7 @@ public class MotherServiceTest {
 
         verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("Case Mother X", "1", visitDate.toString(), new HashMap<String, String>()));
         verify(allTimelineEvents).add(TimelineEvent.forIFATabletsProvided(action.caseID(), "10", visitDate.toString()));
-        verify(allTimelineEvents).add(TimelineEvent.forTTShotProvided(action.caseID(), "TT 1", visitDate.toString()));
+        verify(allTimelineEvents).add(forTTShotProvided(action.caseID(), "TT 1", visitDate.toString()));
     }
 
     @Test

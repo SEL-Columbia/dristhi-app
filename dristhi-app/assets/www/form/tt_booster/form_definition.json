@@ -11,11 +11,11 @@
                 "bind": "/model/instance/TTBooster_EngKan/tt_dose"
             },
             {
-                "name": "ttBoosterInjectionPlace",
+                "name": "ttInjectionPlace",
                 "bind": "/model/instance/TTBooster_EngKan/ttbooster_injection_place"
             },
             {
-                "name": "ttBoosterDate",
+                "name": "ttDate",
                 "bind": "/model/instance/TTBooster_EngKan/ttbooster_date"
             },
             {

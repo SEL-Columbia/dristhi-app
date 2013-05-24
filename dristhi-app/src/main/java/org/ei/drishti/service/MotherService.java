@@ -25,6 +25,8 @@ public class MotherService {
     public static final String BP_DIASTOLIC = "bpDiastolic";
     public static final String TEMPERATURE = "temperature";
     public static final String WEIGHT = "weight";
+    public static final String TT_DOSE = "ttDose";
+    public static final String TT_DATE = "ttDate";
     private MotherRepository motherRepository;
     private AllBeneficiaries allBeneficiaries;
     private AllTimelineEvents allTimelines;
@@ -68,6 +70,15 @@ public class MotherService {
         }
     }
 
+    public void ttProvided(FormSubmission submission) {
+        allTimelines.add(forTTShotProvided(submission.entityId(), submission.getFieldValue(TT_DOSE), submission.getFieldValue(TT_DATE)));
+    }
+
+    private void addTimelineEventsForMotherRegistration(FormSubmission submission) {
+        allTimelines.add(forStartOfPregnancy(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(REFERENCE_DATE)));
+        allTimelines.add(forStartOfPregnancyForEC(submission.entityId(), submission.getFieldValue(THAYI_CARD_NUMBER), submission.getFieldValue(REFERENCE_DATE)));
+    }
+
     @Deprecated
     public void ancCareProvided(Action action) {
         allTimelines.add(forANCCareProvided(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
@@ -96,10 +107,5 @@ public class MotherService {
         if (numberOfIFATabletsProvided != null && IntegerUtil.tryParse(numberOfIFATabletsProvided, 0) > 0) {
             allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
         }
-    }
-
-    private void addTimelineEventsForMotherRegistration(FormSubmission submission) {
-        allTimelines.add(forStartOfPregnancy(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(REFERENCE_DATE)));
-        allTimelines.add(forStartOfPregnancyForEC(submission.entityId(), submission.getFieldValue(THAYI_CARD_NUMBER), submission.getFieldValue(REFERENCE_DATE)));
     }
 }

@@ -35,6 +35,8 @@ public class FormSubmissionRouterTest {
     private ANCRegistrationOAHandler ancRegistrationOAHandler;
     @Mock
     private ANCVisitHandler ancVisitHandler;
+    @Mock
+    private TTHandler ttHandler;
 
     private FormSubmissionRouter router;
 
@@ -50,7 +52,8 @@ public class FormSubmissionRouterTest {
                 ancRegistrationHandler,
                 ancRegistrationOAHandler,
                 ancVisitHandler,
-                ancCloseHandler);
+                ancCloseHandler,
+                ttHandler);
     }
 
     @Test
@@ -136,5 +139,16 @@ public class FormSubmissionRouterTest {
 
         verify(formDataRepository).fetchFromSubmission("instance id 1");
         verify(ancCloseHandler).handle(formSubmission);
+    }
+
+    @Test
+    public void shouldDelegateTTBoosterFormSubmissionHandlingToTTHandler() throws Exception {
+        FormSubmission formSubmission = create().withFormName("tt_booster").withInstanceId("instance id 1").withVersion("122").build();
+        when(formDataRepository.fetchFromSubmission("instance id 1")).thenReturn(formSubmission);
+
+        router.route("instance id 1");
+
+        verify(formDataRepository).fetchFromSubmission("instance id 1");
+        verify(ttHandler).handle(formSubmission);
     }
 }

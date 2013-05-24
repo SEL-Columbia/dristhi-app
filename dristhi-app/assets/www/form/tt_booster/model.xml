@@ -4,6 +4,7 @@
             <formhub>
                 <uuid/>
             </formhub>
+            <today/>
             <tt_dose/>
             <ttbooster_injection_place/>
             <ttbooster_date/>
