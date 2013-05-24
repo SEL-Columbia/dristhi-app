@@ -8,11 +8,13 @@ import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.repository.MotherRepository;
-import org.ei.drishti.util.IntegerUtil;
 
 import static org.ei.drishti.AllConstants.ANCCloseFields.*;
+import static org.ei.drishti.AllConstants.IFAFields.IFA_TABLETS_DATE;
+import static org.ei.drishti.AllConstants.IFAFields.NUMBER_OF_IFA_TABLETS_GIVEN;
 import static org.ei.drishti.domain.TimelineEvent.*;
 import static org.ei.drishti.util.EasyMap.create;
+import static org.ei.drishti.util.IntegerUtil.tryParse;
 import static org.ei.drishti.util.Log.logWarn;
 
 public class MotherService {
@@ -74,6 +76,13 @@ public class MotherService {
         allTimelines.add(forTTShotProvided(submission.entityId(), submission.getFieldValue(TT_DOSE), submission.getFieldValue(TT_DATE)));
     }
 
+    public void ifaProvided(FormSubmission submission) {
+        String numberOfIFATabletsProvided = submission.getFieldValue(NUMBER_OF_IFA_TABLETS_GIVEN);
+        if (tryParse(numberOfIFATabletsProvided, 0) > 0) {
+            allTimelines.add(forIFATabletsProvided(submission.entityId(), numberOfIFATabletsProvided, submission.getFieldValue(IFA_TABLETS_DATE)));
+        }
+    }
+
     private void addTimelineEventsForMotherRegistration(FormSubmission submission) {
         allTimelines.add(forStartOfPregnancy(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(REFERENCE_DATE)));
         allTimelines.add(forStartOfPregnancyForEC(submission.entityId(), submission.getFieldValue(THAYI_CARD_NUMBER), submission.getFieldValue(REFERENCE_DATE)));
@@ -83,10 +92,6 @@ public class MotherService {
     public void ancCareProvided(Action action) {
         allTimelines.add(forANCCareProvided(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
 
-        String numberOfIFATabletsProvided = action.get("numberOfIFATabletsProvided");
-        if (numberOfIFATabletsProvided != null && Integer.parseInt(numberOfIFATabletsProvided) > 0) {
-            allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
-        }
         if (StringUtils.isNotBlank(action.get("ttDose"))) {
             allTimelines.add(forTTShotProvided(action.caseID(), action.get("ttDose"), action.get("visitDate")));
         }
@@ -104,7 +109,7 @@ public class MotherService {
         motherRepository.updateDetails(action.caseID(), action.details());
 
         String numberOfIFATabletsProvided = action.get("numberOfIFATabletsProvided");
-        if (numberOfIFATabletsProvided != null && IntegerUtil.tryParse(numberOfIFATabletsProvided, 0) > 0) {
+        if (numberOfIFATabletsProvided != null && tryParse(numberOfIFATabletsProvided, 0) > 0) {
             allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
         }
     }

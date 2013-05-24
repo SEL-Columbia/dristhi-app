@@ -15,6 +15,7 @@ import org.mockito.Mock;
 
 import java.util.HashMap;
 
+import static org.ei.drishti.domain.TimelineEvent.forIFATabletsProvided;
 import static org.ei.drishti.domain.TimelineEvent.forTTShotProvided;
 import static org.ei.drishti.util.ActionBuilder.actionForANCCareProvided;
 import static org.ei.drishti.util.EasyMap.create;
@@ -149,6 +150,30 @@ public class MotherServiceTest {
     }
 
     @Test
+    public void shouldAddTimelineEventWhenIFAProvided() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("100");
+        when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2013-02-01");
+
+        service.ifaProvided(submission);
+
+        verify(allTimelineEvents).add(forIFATabletsProvided("entity id 1", "100", "2013-02-01"));
+    }
+
+    @Test
+    public void shouldNotAddTimelineEventWhenIFATabletsAreNotProvided() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("0");
+        when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2013-02-01");
+
+        service.ifaProvided(submission);
+
+        verifyZeroInteractions(allTimelineEvents);
+    }
+
+    @Test
     public void shouldHandleANCCareProvidedForMother() throws Exception {
         LocalDate visitDate = LocalDate.now().minusDays(1);
         Action action = actionForANCCareProvided("Case Mother X", 1, 10, visitDate, "TT 1");
@@ -156,7 +181,6 @@ public class MotherServiceTest {
         service.ancCareProvided(action);
 
         verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("Case Mother X", "1", visitDate.toString(), new HashMap<String, String>()));
-        verify(allTimelineEvents).add(TimelineEvent.forIFATabletsProvided(action.caseID(), "10", visitDate.toString()));
         verify(allTimelineEvents).add(forTTShotProvided(action.caseID(), "TT 1", visitDate.toString()));
     }
 

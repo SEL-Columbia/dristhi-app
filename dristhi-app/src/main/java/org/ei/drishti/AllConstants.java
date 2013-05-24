@@ -70,4 +70,9 @@ public class AllConstants {
         public static final String CLOSE_REASON_FIELD_NAME = "closeReason";
         public static final String PERMANENT_RELOCATION_FIELD_VALUE = "relocation_permanent";
     }
+
+    public class IFAFields {
+        public static final String NUMBER_OF_IFA_TABLETS_GIVEN = "numberOfIFATabletsGiven";
+        public static final String IFA_TABLETS_DATE = "ifaTabletsDate";
+    }
 }
