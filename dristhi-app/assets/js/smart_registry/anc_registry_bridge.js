@@ -36,7 +36,7 @@ function FakeANCSmartRegistryContext() {
                             status: 'urgent'
                         },
                         {
-                            name: 'tt2',
+                            name: 'ttbooster',
                             date: '24/07',
                             status: 'urgent'
                         },

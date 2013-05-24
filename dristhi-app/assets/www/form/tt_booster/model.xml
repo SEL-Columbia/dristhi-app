@@ -1,0 +1,15 @@
+<model>
+    <instance xmlns="http://www.w3.org/2002/xforms">
+        <TTBooster_EngKan id="TTBooster_EngKan">
+            <formhub>
+                <uuid/>
+            </formhub>
+            <tt_dose/>
+            <ttbooster_injection_place/>
+            <ttbooster_date/>
+            <meta>
+                <instanceID/>
+            </meta>
+        </TTBooster_EngKan>
+    </instance>
+</model>
