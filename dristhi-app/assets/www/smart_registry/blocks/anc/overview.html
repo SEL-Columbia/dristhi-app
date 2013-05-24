@@ -109,12 +109,12 @@
                             'btn-past-due': client.visits[schedule].next.status == 'urgent',
                             'btn-upcoming': client.visits[schedule].next.status == 'upcoming',
                             'btn-in-process': client.visits[schedule].next.status == 'inProcess'}"
-                            ng-click="openMicroForm('tt_2', client.entityId)"/>
-                    <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
-                    <br/>
-                    <span ng-show="client.visits[schedule].next.status == 'upcoming'">Upcoming</span>
-                    <span ng-show="client.visits[schedule].next.status == 'normal' || client.visits[schedule].next.status == 'urgent'">Due</span>
-                    <span> {{client.visits[schedule].next.visit_date | date:'dd/MM'}}</span>
+                            ng-click="openMicroForm('tt_2', client.entityId)">
+                        <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
+                        <br/>
+                        <span ng-show="client.visits[schedule].next.status == 'upcoming'">Upcoming</span>
+                        <span ng-show="client.visits[schedule].next.status == 'normal' || client.visits[schedule].next.status == 'urgent'">Due</span>
+                        <span> {{client.visits[schedule].next.visit_date | date:'dd/MM'}}</span>
                     </button>
                     <span ng-show="client.visits[schedule].previous" class="previous-alert">
                         <i class="icon-ok green"></i>

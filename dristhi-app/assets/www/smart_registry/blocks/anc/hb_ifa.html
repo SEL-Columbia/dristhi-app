@@ -31,11 +31,13 @@
                 <div class="span7 line-right full-height span-no-margin width-without-margins span-content">
                     <div data-ng-repeat="milestone in ['ifa1', 'ifa2', 'ifa3']">
                         <div ng-show="client.visits.ifa[milestone].status == 'done'" class="row-fluid hb">
-                        <div class="span4 span-no-margin width-without-margins hb-content">{{client.visits.ifa[milestone].visit_date | date: 'dd/MM'}}</div>
-                        <div class="span8 span-no-margin width-without-margins hb-content hb-content-right-aligned">
-                            <i class="icon-ok green"></i> {{client.visits.ifa[milestone].data.dose}} Tablets
+                            <div class="span4 span-no-margin width-without-margins hb-content">
+                                {{client.visits.ifa[milestone].visit_date | date: 'dd/MM'}}
+                            </div>
+                            <div class="span8 span-no-margin width-without-margins hb-content hb-content-right-aligned">
+                                <i class="icon-ok green"></i> {{client.visits.ifa[milestone].data.dose}} Tablets
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
                 <div class="span5 full-height span-no-margin width-without-margins span-content">
@@ -54,7 +56,8 @@
                            ng-class="{'btn-due': client.visits.ifa.next.status == 'normal',
                            'btn-past-due': client.visits.ifa.next.status == 'urgent',
                            'btn-upcoming': client.visits.ifa.next.status == 'upcoming',
-                           'btn-in-process': client.visits.ifa.next.status == 'inProcess'}" href="#">
+                           'btn-in-process': client.visits.ifa.next.status == 'inProcess'}"
+                           ng-click="openMicroForm('ifa', client.entityId)">
                             <span class="text-bold">IFA Tablets</span>
                             <br/>
                             <ng:switch on="client.visits.ifa.next.visit_date">
