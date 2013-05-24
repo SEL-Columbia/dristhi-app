@@ -1,26 +1,26 @@
 {
     "form": {
         "bind_type": "mother",
-        "default_bind_path": "/model/instance/TT1_EngKan/",
+        "default_bind_path": "/model/instance/TT2_EngKan/",
         "fields": [
             {
                 "name": "id"
             },
             {
                 "name": "ttDose",
-                "bind": "/model/instance/TT1_EngKan/tt_dose"
+                "bind": "/model/instance/TT2_EngKan/tt_dose"
             },
             {
                 "name": "ttInjectionPlace",
-                "bind": "/model/instance/TT1_EngKan/tt1_injection_place"
+                "bind": "/model/instance/TT2_EngKan/tt2_injection_place"
             },
             {
                 "name": "ttDate",
-                "bind": "/model/instance/TT1_EngKan/tt1_date"
+                "bind": "/model/instance/TT2_EngKan/tt2_date"
             },
             {
                 "name": "submissionDate",
-                "bind": "/model/instance/TT1_EngKan/today"
+                "bind": "/model/instance/TT2_EngKan/today"
             }
         ]
     }

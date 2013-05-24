@@ -162,4 +162,15 @@ public class FormSubmissionRouterTest {
         verify(formDataRepository).fetchFromSubmission("instance id 1");
         verify(ttHandler).handle(formSubmission);
     }
+
+    @Test
+    public void shouldDelegateTT2FormSubmissionHandlingToTTHandler() throws Exception {
+        FormSubmission formSubmission = create().withFormName("tt_2").withInstanceId("instance id 1").withVersion("122").build();
+        when(formDataRepository.fetchFromSubmission("instance id 1")).thenReturn(formSubmission);
+
+        router.route("instance id 1");
+
+        verify(formDataRepository).fetchFromSubmission("instance id 1");
+        verify(ttHandler).handle(formSubmission);
+    }
 }

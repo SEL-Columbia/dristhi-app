@@ -49,5 +49,4 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
         webView.loadUrl(MessageFormat.format("file:///android_asset/www/form/template.html?{0}={1}&{2}={3}&{4}={5}&touch=true",
                 FORM_NAME_PARAM, formName, ENTITY_ID_PARAM, entityId, INSTANCE_ID_PARAM, randomUUID()));
     }
-
 }
