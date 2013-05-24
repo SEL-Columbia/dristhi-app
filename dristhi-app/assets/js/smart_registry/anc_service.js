@@ -8,7 +8,7 @@ angular.module("smartRegistry.services")
                 },
                 {
                     name: "tt",
-                    milestones: ["tt1", "tt2", "ttbooster"]
+                    milestones: ["TT 1", "TT 2", "ttbooster"]
                 },
                 {
                     name: "ifa",

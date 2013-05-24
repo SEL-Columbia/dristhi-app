@@ -19,7 +19,7 @@ describe('ANC Service', function () {
                             status: 'normal' // normal, urgent, done - upcoming is JS side, based on the last visit and if the next one is available
                         },
                         {
-                            name: 'tt2',
+                            name: 'TT 2',
                             date: '2012-10-24', // 2013-04-10T12:40:45.195Z ISO String
                             status: 'urgent' // normal, urgent, done - upcoming is JS side, based on the last visit and if the next one is available
                         }
@@ -42,11 +42,11 @@ describe('ANC Service', function () {
                 },
                 tt: {
                     next: {
-                        name: 'tt2',
+                        name: 'TT 2',
                         status: 'urgent',
                         visit_date: '2012-10-24'
                     },
-                    tt2: {
+                    "TT 2": {
                         status: 'urgent',
                         visit_date: '2012-10-24'
                     }
@@ -132,11 +132,11 @@ describe('ANC Service', function () {
                 },
                 tt: {
                     next: {
-                        name: 'tt1',
+                        name: 'TT 1',
                         status: 'upcoming',
                         visit_date: null
                     },
-                    tt1: {
+                    "TT 1": {
                         status: 'upcoming',
                         visit_date: null
                     }
@@ -220,11 +220,11 @@ describe('ANC Service', function () {
                 },
                 tt: {
                     next: {
-                        name: 'tt1',
+                        name: 'TT 1',
                         status: 'upcoming',
                         visit_date: null
                     },
-                    tt1: {
+                    "TT 1": {
                         status: 'upcoming',
                         visit_date: null
                     }
@@ -292,11 +292,11 @@ describe('ANC Service', function () {
                 },
                 tt: {
                     next: {
-                        name: 'tt1',
+                        name: 'TT 1',
                         status: 'upcoming',
                         visit_date: null
                     },
-                    tt1: {
+                    "TT 1": {
                         status: 'upcoming',
                         visit_date: null
                     }
@@ -374,11 +374,11 @@ describe('ANC Service', function () {
                 },
                 tt: {
                     next: {
-                        name: 'tt1',
+                        name: 'TT 1',
                         status: 'upcoming',
                         visit_date: null
                     },
-                    tt1: {
+                    "TT 1": {
                         status: 'upcoming',
                         visit_date: null
                     }
@@ -480,11 +480,11 @@ describe('ANC Service', function () {
                 },
                 tt: {
                     next: {
-                        name: 'tt1',
+                        name: 'TT 1',
                         status: 'upcoming',
                         visit_date: null
                     },
-                    tt1: {
+                    "TT 1": {
                         status: 'upcoming',
                         visit_date: null
                     }
@@ -582,11 +582,11 @@ describe('ANC Service', function () {
                 },
                 tt: {
                     next: {
-                        name: 'tt1',
+                        name: 'TT 1',
                         status: 'upcoming',
                         visit_date: null
                     },
-                    tt1: {
+                    "TT 1": {
                         status: 'upcoming',
                         visit_date: null
                     }
