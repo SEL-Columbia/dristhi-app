@@ -1,6 +1,5 @@
 package org.ei.drishti.service;
 
-import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
@@ -86,15 +85,6 @@ public class MotherService {
     private void addTimelineEventsForMotherRegistration(FormSubmission submission) {
         allTimelines.add(forStartOfPregnancy(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(REFERENCE_DATE)));
         allTimelines.add(forStartOfPregnancyForEC(submission.entityId(), submission.getFieldValue(THAYI_CARD_NUMBER), submission.getFieldValue(REFERENCE_DATE)));
-    }
-
-    @Deprecated
-    public void ancCareProvided(Action action) {
-        allTimelines.add(forANCCareProvided(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
-
-        if (StringUtils.isNotBlank(action.get("ttDose"))) {
-            allTimelines.add(forTTShotProvided(action.caseID(), action.get("ttDose"), action.get("visitDate")));
-        }
     }
 
     @Deprecated

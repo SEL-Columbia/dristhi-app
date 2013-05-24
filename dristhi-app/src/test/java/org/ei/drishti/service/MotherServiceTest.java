@@ -7,17 +7,13 @@ import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.util.ActionBuilder;
-import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import java.util.HashMap;
-
 import static org.ei.drishti.domain.TimelineEvent.forIFATabletsProvided;
 import static org.ei.drishti.domain.TimelineEvent.forTTShotProvided;
-import static org.ei.drishti.util.ActionBuilder.actionForANCCareProvided;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.mockito.Mockito.*;
@@ -171,28 +167,6 @@ public class MotherServiceTest {
         service.ifaProvided(submission);
 
         verifyZeroInteractions(allTimelineEvents);
-    }
-
-    @Test
-    public void shouldHandleANCCareProvidedForMother() throws Exception {
-        LocalDate visitDate = LocalDate.now().minusDays(1);
-        Action action = actionForANCCareProvided("Case Mother X", 1, 10, visitDate, "TT 1");
-
-        service.ancCareProvided(action);
-
-        verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("Case Mother X", "1", visitDate.toString(), new HashMap<String, String>()));
-        verify(allTimelineEvents).add(forTTShotProvided(action.caseID(), "TT 1", visitDate.toString()));
-    }
-
-    @Test
-    public void shouldNotAddTimelineEventForServicesNotProvidedForMother() throws Exception {
-        LocalDate visitDate = LocalDate.now().minusDays(1);
-        Action action = actionForANCCareProvided("Case Mother X", 1, 0, visitDate, "");
-
-        service.ancCareProvided(action);
-
-        verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("Case Mother X", "1", visitDate.toString(), new HashMap<String, String>()));
-        verifyNoMoreInteractions(allTimelineEvents);
     }
 
     @Test

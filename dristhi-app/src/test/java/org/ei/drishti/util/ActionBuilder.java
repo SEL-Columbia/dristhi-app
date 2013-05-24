@@ -31,21 +31,6 @@ public class ActionBuilder {
         return new Action("Case X", "child", "register", registerChildBirth(motherCaseId, "TC 1", LocalDate.now(), "female", new HashMap<String, String>()).data(), "0", true, new HashMap<String, String>());
     }
 
-    public static Action actionForUpdateMotherDetails(String motherCaseId, Map<String, String> details) {
-        ActionData actionData = updateMotherDetails(details);
-        return new Action(motherCaseId, "mother", "updateDetails", actionData.data(), "0", true, actionData.details());
-    }
-
-    public static Action actionForANCCareProvided(String motherCaseId, int visitNumber, int numberOfIFATabletsProvided, LocalDate visitDate, String ttDose) {
-        ActionData actionData = ancCareProvided(visitNumber, visitDate, numberOfIFATabletsProvided, ttDose, new HashMap<String, String>());
-        return new Action(motherCaseId, "mother", "ancCareProvided", actionData.data(), "0", true, new HashMap<String, String>());
-    }
-
-    public static Action actionForCloseMother(String caseId) {
-        ActionData actionData = closeMother("death");
-        return new Action(caseId, "mother", "close", actionData.data(), "0", false, new HashMap<String, String>());
-    }
-
     public static Action actionForUpdateANCOutcome(String caseId, Map<String, String> details) {
         ActionData actionData = updateANCOutcome(details);
         return new Action(caseId, "mother", "updateANCOutcome", actionData.data(), "0", true, actionData.details());
@@ -59,11 +44,6 @@ public class ActionBuilder {
     public static Action actionForChildPNCVisit(String caseId, Map<String, String> details) {
         ActionData actionData = pncVisitHappened(child, LocalDate.parse("2012-01-01"), 1, "10", details);
         return new Action(caseId, "child", "pncVisitHappened", actionData.data(), "0", true, actionData.details());
-    }
-
-    public static Action updateBirthPlanning(String caseId, Map<String, String> details) {
-        ActionData actionData = ActionData.updateBirthPlanning(details);
-        return new Action(caseId, "mother", "updateBirthPlanning", actionData.data(), "2012-01-01", true, details);
     }
 
     public static Action updateImmunizations(String caseId, Map<String, String> details) {
