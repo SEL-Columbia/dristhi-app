@@ -1,0 +1,59 @@
+<form class="jr" autocomplete="off" id="TT1_EngKan">
+    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">TT1</h3>
+    <fieldset id="jr-preload-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/TT1_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
+
+
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Place of TT1 injection?</span>
+                <span class="required">*</span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/TT1_EngKan/tt1_injection_place" value="sub_center"
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Sub Center</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/TT1_EngKan/tt1_injection_place" value="phc"
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">PHC</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/TT1_EngKan/tt1_injection_place" value="elsewhere"
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Elsewhere</span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <label class="">
+        <span lang="" class=" active">Date of TT1 injection?
+            TT1 &#xC9A;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;&#xCAE;&#xCA6;&#xCCD;&#xCA6;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+            &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        </span>
+        <span class="required">*</span>
+        <input autocomplete="off" type="date" name="/TT1_EngKan/tt1_date" required="required" data-type-xml="date"/>
+    </label>
+
+    <fieldset id="jr-calculated-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/TT1_EngKan/tt_dose" data-calculate="&quot;tt1&quot;"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/TT1_EngKan/meta/instanceID"
+                   data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/TT1_EngKan/formhub/uuid"
+                   data-calculate="'28d0ad0c784d4254a6dbc10171124143'" data-type-xml="string"/>
+        </label>
+    </fieldset>
+</form>

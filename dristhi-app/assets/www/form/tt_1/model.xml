@@ -1,0 +1,16 @@
+<model>
+    <instance xmlns="http://www.w3.org/2002/xforms">
+        <TT1_EngKan id="TT1_EngKan">
+            <formhub>
+                <uuid/>
+            </formhub>
+            <today/>
+            <tt_dose/>
+            <tt1_injection_place/>
+            <tt1_date/>
+            <meta>
+                <instanceID/>
+            </meta>
+        </TT1_EngKan>
+    </instance>
+</model>

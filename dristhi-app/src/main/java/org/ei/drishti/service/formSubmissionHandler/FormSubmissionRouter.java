@@ -37,6 +37,7 @@ public class FormSubmissionRouter {
         handlerMap.put(ANC_VISIT_FORM_NAME, ancVisitHandler);
         handlerMap.put(ANC_CLOSE_FORM_NAME, ancCloseHandler);
         handlerMap.put(TT_BOOSTER, ttHandler);
+        handlerMap.put(TT_1, ttHandler);
     }
 
     public void route(String instanceId) {
