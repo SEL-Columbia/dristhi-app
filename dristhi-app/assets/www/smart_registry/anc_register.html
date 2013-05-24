@@ -30,6 +30,7 @@
         </div>
         <div class="modal-footer">
             <button class="btn" ng-click="openForm('anc_visit', currentClientEntityId)">ANC Visit</button>
+            <button class="btn" ng-click="openMicroForm('ifa', currentClientEntityId)">IFA</button>
             <button class="btn" ng-click="openForm('anc_close', currentClientEntityId)">ANC Close</button>
         </div>
     </div>
@@ -47,12 +48,16 @@
                         <input type="text" class="search-query" placeholder="Search" ng-model="searchFilterString">
                     </form>
                     <ul class="nav pull-right">
-                        <li><a id="anc-service-modes" ng-click="openModal(ancServiceOptions)">{{serviceModeOption.label}} <i
-                                class="icon-white icon-chevron-down"></i></a></li>
-                        <li><a id="sort-options" ng-click="openModal(sortOptions)"><i class="icon-sort-custom icon-white"></i></a></li>
-                        <li><a id="village-options" ng-click="openModal(villageOptions)"><i class="icon-village icon-white"></i></a>
+                        <li><a id="anc-service-modes" ng-click="openModal(ancServiceOptions)">{{serviceModeOption.label}}
+                            <i
+                                    class="icon-white icon-chevron-down"></i></a></li>
+                        <li><a id="sort-options" ng-click="openModal(sortOptions)"><i
+                                class="icon-sort-custom icon-white"></i></a></li>
+                        <li><a id="village-options" ng-click="openModal(villageOptions)"><i
+                                class="icon-village icon-white"></i></a>
                         </li>
-                        <li><a ng-click="openForm('anc_registration_oa', '')"><i class="icon-plus icon-white"></i></a></li>
+                        <li><a ng-click="openForm('anc_registration_oa', '')"><i class="icon-plus icon-white"></i></a>
+                        </li>
                     </ul>
                 </div>
             </div>
