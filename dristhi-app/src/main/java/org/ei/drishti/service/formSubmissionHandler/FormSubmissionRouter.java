@@ -24,7 +24,7 @@ public class FormSubmissionRouter {
                                 ANCRegistrationOAHandler ancRegistrationOAHandler,
                                 ANCVisitHandler ancVisitHandler,
                                 ANCCloseHandler ancCloseHandler,
-                                TTHandler ttHandler) {
+                                TTHandler ttHandler, IFAHandler ifaHandler) {
         this.formDataRepository = formDataRepository;
         handlerMap = new HashMap<String, FormSubmissionHandler>();
         handlerMap.put(EC_REGISTRATION_FORM_NAME, ecRegistrationHandler);
@@ -39,6 +39,7 @@ public class FormSubmissionRouter {
         handlerMap.put(TT_BOOSTER, ttHandler);
         handlerMap.put(TT_1, ttHandler);
         handlerMap.put(TT_2, ttHandler);
+        handlerMap.put(IFA_FORM_NAME, ifaHandler);
     }
 
     public void route(String instanceId) {

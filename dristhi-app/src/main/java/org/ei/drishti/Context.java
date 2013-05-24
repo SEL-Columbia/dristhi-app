@@ -60,6 +60,7 @@ public class Context {
     private ANCVisitHandler ancVisitHandler;
     private ANCCloseHandler ancCloseHandler;
     private TTHandler ttHandler;
+    private IFAHandler ifaHandler;
 
     protected Context() {
     }
@@ -119,7 +120,7 @@ public class Context {
         if (formSubmissionRouter == null) {
             formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(),
                     fpComplicationsHandler(), fpChangeHandler(), renewFPProductHandler(), ecCloseHandler(),
-                    ancRegistrationHandler(), ancRegistrationOAHandler(), ancVisitHandler(), ancCloseHandler(), ttHandler());
+                    ancRegistrationHandler(), ancRegistrationOAHandler(), ancVisitHandler(), ancCloseHandler(), ttHandler(), ifaHandler());
         }
         return formSubmissionRouter;
     }
@@ -192,6 +193,13 @@ public class Context {
             ttHandler = new TTHandler(motherService());
         }
         return ttHandler;
+    }
+
+    private IFAHandler ifaHandler() {
+        if (ifaHandler == null) {
+            ifaHandler = new IFAHandler(motherService());
+        }
+        return ifaHandler;
     }
 
     private ZiggyService ziggyService() {
