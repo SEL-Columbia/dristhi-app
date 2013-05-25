@@ -12,6 +12,6 @@ public class IFAHandler implements FormSubmissionHandler {
 
     @Override
     public void handle(FormSubmission submission) {
-        motherService.ifaProvided(submission);
+        motherService.ifaTabletsGiven(submission);
     }
 }

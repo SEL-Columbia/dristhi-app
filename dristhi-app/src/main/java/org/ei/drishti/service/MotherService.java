@@ -75,7 +75,7 @@ public class MotherService {
         allTimelines.add(forTTShotProvided(submission.entityId(), submission.getFieldValue(TT_DOSE), submission.getFieldValue(TT_DATE)));
     }
 
-    public void ifaProvided(FormSubmission submission) {
+    public void ifaTabletsGiven(FormSubmission submission) {
         String numberOfIFATabletsProvided = submission.getFieldValue(NUMBER_OF_IFA_TABLETS_GIVEN);
         if (tryParse(numberOfIFATabletsProvided, 0) > 0) {
             allTimelines.add(forIFATabletsProvided(submission.entityId(), numberOfIFATabletsProvided, submission.getFieldValue(IFA_TABLETS_DATE)));

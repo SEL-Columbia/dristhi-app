@@ -152,7 +152,7 @@ public class MotherServiceTest {
         when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("100");
         when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2013-02-01");
 
-        service.ifaProvided(submission);
+        service.ifaTabletsGiven(submission);
 
         verify(allTimelineEvents).add(forIFATabletsProvided("entity id 1", "100", "2013-02-01"));
     }
@@ -164,7 +164,7 @@ public class MotherServiceTest {
         when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("0");
         when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2013-02-01");
 
-        service.ifaProvided(submission);
+        service.ifaTabletsGiven(submission);
 
         verifyZeroInteractions(allTimelineEvents);
     }
