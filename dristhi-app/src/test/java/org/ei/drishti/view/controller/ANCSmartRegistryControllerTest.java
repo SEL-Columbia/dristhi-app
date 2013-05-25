@@ -39,6 +39,7 @@ public class ANCSmartRegistryControllerTest {
             "ANC 4",
             "IFA 1",
             "IFA 2",
+            "IFA 3",
             "REMINDER",
             "TT 1",
             "TT 2"

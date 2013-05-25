@@ -30,6 +30,7 @@ public class ANCSmartRegistryController {
     private static final String ANC_4_ALERT_NAME = "ANC 4";
     private static final String IFA_1_ALERT_NAME = "IFA 1";
     private static final String IFA_2_ALERT_NAME = "IFA 2";
+    private static final String IFA_3_ALERT_NAME = "IFA 3";
     private static final String LAB_REMINDER_ALERT_NAME = "REMINDER";
     private static final String TT_1_ALERT_NAME = "TT 1";
     private static final String TT_2_ALERT_NAME = "TT 2";
@@ -95,6 +96,7 @@ public class ANCSmartRegistryController {
                 ANC_4_ALERT_NAME,
                 IFA_1_ALERT_NAME,
                 IFA_2_ALERT_NAME,
+                IFA_3_ALERT_NAME,
                 LAB_REMINDER_ALERT_NAME,
                 TT_1_ALERT_NAME,
                 TT_2_ALERT_NAME
