@@ -7,11 +7,16 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
+import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.service.AlertService;
+import org.ei.drishti.service.ServiceProvidedService;
 import org.ei.drishti.util.Cache;
-import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.contract.ANCClient;
+import org.ei.drishti.view.contract.AlertDTO;
+import org.ei.drishti.view.contract.ServiceProvidedDTO;
+import org.ei.drishti.view.contract.Village;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,29 +49,35 @@ public class ANCSmartRegistryControllerTest {
             "TT 1",
             "TT 2"
     };
+    public static final String[] ANC_SERVICES = new String[]{
+            "ifa",
+            "tt1"
+    };
     @Mock
     private AllEligibleCouples allEligibleCouples;
     @Mock
     private AllBeneficiaries allBeneficiaries;
     @Mock
     private AlertService alertService;
+    @Mock
+    private ServiceProvidedService sericeProvidedService;
 
     private ANCSmartRegistryController controller;
-    private Map<String, String> emptyDetails;
+    private Map<String, String> emptyMap;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        emptyDetails = Collections.emptyMap();
-        controller = new ANCSmartRegistryController(allEligibleCouples, allBeneficiaries, alertService, new Cache<String>());
+        emptyMap = Collections.emptyMap();
+        controller = new ANCSmartRegistryController(sericeProvidedService, alertService, allEligibleCouples, allBeneficiaries, new Cache<String>());
     }
 
     @Test
     public void shouldSortANCsByWifeName() throws Exception {
         Map<String, String> details = mapOf("edd", "Tue, 25 Feb 2014 00:00:00 GMT");
-        EligibleCouple ec2 = new EligibleCouple("EC Case 2", "Woman B", "Husband B", "EC Number 2", "kavalu_hosur", "Bherya SC", emptyDetails);
-        EligibleCouple ec3 = new EligibleCouple("EC Case 3", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", emptyDetails);
-        EligibleCouple ec1 = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null, emptyDetails);
+        EligibleCouple ec2 = new EligibleCouple("EC Case 2", "Woman B", "Husband B", "EC Number 2", "kavalu_hosur", "Bherya SC", emptyMap);
+        EligibleCouple ec3 = new EligibleCouple("EC Case 3", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", emptyMap);
+        EligibleCouple ec1 = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null, emptyMap);
         Mother m1 = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25").withDetails(details);
         Mother m2 = new Mother("Entity Y", "EC Case 2", "thayi 2", "2013-05-25").withDetails(details);
         Mother m3 = new Mother("Entity Z", "EC Case 3", "thayi 3", "2013-05-25").withDetails(details);
@@ -115,7 +126,7 @@ public class ANCSmartRegistryControllerTest {
     @Test
     public void shouldCreateANCClientsWithANC1Alert() throws Exception {
         Map<String, String> details = mapOf("edd", "Tue, 25 Feb 2014 00:00:00 GMT");
-        EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 1", "Bherya", "Bherya SC", emptyDetails);
+        EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 1", "Bherya", "Bherya SC", emptyMap);
         Mother mother = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25").withDetails(details);
 
         Alert anc1Alert = new Alert("entity id 1", "ANC", "ANC 1", normal, "2013-01-01", "2013-02-01");
@@ -132,6 +143,31 @@ public class ANCSmartRegistryControllerTest {
                 .withECNumber("EC Number 1")
                 .withHusbandName("Husband C")
                 .withAlerts(asList(expectedAlertDto));
+        assertEquals(asList(expectedEC), actualClients);
+    }
+
+    @Test
+    public void shouldCreateANCClientsWithServicesProvided() throws Exception {
+        Map<String, String> details = mapOf("edd", "Tue, 25 Feb 2014 00:00:00 GMT");
+        EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 1", "Bherya", "Bherya SC", emptyMap);
+        Mother mother = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25").withDetails(details);
+        when(allBeneficiaries.allANCsWithEC()).thenReturn(asList(Pair.of(mother, ec)));
+        when(alertService.findByEntityIdAndAlertNames("Entity X", ANC_ALERTS)).thenReturn(Collections.<Alert>emptyList());
+        when(sericeProvidedService.findByEntityIdAndName("Entity X", "ifa", "tt1"))
+                .thenReturn(asList(new ServiceProvided("ifa", "2013-01-01", mapOf("dose", "100")), new ServiceProvided("tt1", "2013-02-01", emptyMap)));
+
+        String clients = controller.get();
+
+        List<ANCClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<ANCClient>>() {
+        }.getType());
+        verify(alertService).findByEntityIdAndAlertNames("Entity X", ANC_ALERTS);
+        verify(sericeProvidedService).findByEntityIdAndName("Entity X", ANC_SERVICES);
+        List<ServiceProvidedDTO> expectedServicesProvided = asList(new ServiceProvidedDTO("ifa", "2013-01-01", mapOf("dose", "100")),
+                new ServiceProvidedDTO("tt1", "2013-02-01", emptyMap));
+        ANCClient expectedEC = createANCClient("Entity X", "Woman C", "Bherya", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25")
+                .withECNumber("EC Number 1")
+                .withHusbandName("Husband C")
+                .withServicesProvided(expectedServicesProvided);
         assertEquals(asList(expectedEC), actualClients);
     }
 

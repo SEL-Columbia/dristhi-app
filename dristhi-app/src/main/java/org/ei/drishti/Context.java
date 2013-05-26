@@ -42,6 +42,7 @@ public class Context {
     private ChildService childService;
     private ANMService anmService;
     private BeneficiaryService beneficiaryService;
+    private ServiceProvidedService serviceProvidedService;
 
     private Session session;
     private Cache<String> listCache;
@@ -357,6 +358,13 @@ public class Context {
             alertService = new AlertService(alertRepository());
         }
         return alertService;
+    }
+
+    public ServiceProvidedService serviceProvidedService() {
+        if (serviceProvidedService == null) {
+            serviceProvidedService = new ServiceProvidedService();
+        }
+        return serviceProvidedService;
     }
 
     public EligibleCoupleService eligibleCoupleService() {

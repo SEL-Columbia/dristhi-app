@@ -5,9 +5,11 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
+import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.service.AlertService;
+import org.ei.drishti.service.ServiceProvidedService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.contract.ANCClient;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
@@ -35,16 +38,23 @@ public class ANCSmartRegistryController {
     private static final String TT_1_ALERT_NAME = "TT 1";
     private static final String TT_2_ALERT_NAME = "TT 2";
 
+    private static final String IFA_SERVICE_PROVIDED_NAME = "ifa";
+    private static final String TT_1_SERVICE_PROVIDED_NAME = "tt1";
+
+
     private static final String ANC_CLIENTS_LIST = "ANCClientList";
     private AllEligibleCouples allEligibleCouples;
     private AllBeneficiaries allBeneficiaries;
     private AlertService alertService;
     private Cache<String> cache;
+    private final ServiceProvidedService serviceProvidedService;
 
-    public ANCSmartRegistryController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AlertService alertService, Cache<String> cache) {
+    public ANCSmartRegistryController(ServiceProvidedService serviceProvidedService, AlertService alertService, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries,
+                                      Cache<String> cache) {
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.alertService = alertService;
+        this.serviceProvidedService = serviceProvidedService;
         this.cache = cache;
     }
 
@@ -60,6 +70,7 @@ public class ANCSmartRegistryController {
                     EligibleCouple ec = ancWithEc.getRight();
                     String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
 
+                    List<ServiceProvidedDTO> servicesProvided = getServicesProvided(anc.caseId());
                     ancClients.add(new ANCClient(anc.caseId(), ec.village(), ec.wifeName(), anc.thaayiCardNumber(), anc.getDetail("edd"), anc.referenceDate())
                             .withHusbandName(ec.husbandName())
                             .withAge(ec.age())
@@ -69,8 +80,8 @@ public class ANCSmartRegistryController {
                             .withIsOutOfArea(ec.isOutOfArea())
                             .withCaste(ec.getDetail("caste"))
                             .withPhotoPath(photoPath)
-                            .withAlerts(getAlertsForANC(anc.caseId()))
-                            .withServicesProvided(new ArrayList<ServiceProvidedDTO>())
+                            .withAlerts(getAlerts(anc.caseId()))
+                            .withServicesProvided(servicesProvided)
                     );
                 }
                 sortByName(ancClients);
@@ -88,7 +99,18 @@ public class ANCSmartRegistryController {
         return new Gson().toJson(villagesList);
     }
 
-    private List<AlertDTO> getAlertsForANC(String entityId) {
+    private List<ServiceProvidedDTO> getServicesProvided(String entityId) {
+        List<ServiceProvided> servicesProvided = serviceProvidedService.findByEntityIdAndName(entityId,
+                IFA_SERVICE_PROVIDED_NAME,
+                TT_1_SERVICE_PROVIDED_NAME);
+        List<ServiceProvidedDTO> serviceProvidedDTOs = new ArrayList<ServiceProvidedDTO>();
+        for (ServiceProvided serviceProvided : servicesProvided) {
+            serviceProvidedDTOs.add(new ServiceProvidedDTO(serviceProvided.name(), serviceProvided.date(), serviceProvided.data()));
+        }
+        return serviceProvidedDTOs;
+    }
+
+    private List<AlertDTO> getAlerts(String entityId) {
         List<Alert> alerts = alertService.findByEntityIdAndAlertNames(entityId,
                 ANC_1_ALERT_NAME,
                 ANC_2_ALERT_NAME,
@@ -103,7 +125,7 @@ public class ANCSmartRegistryController {
         );
         List<AlertDTO> alertDTOs = new ArrayList<AlertDTO>();
         for (Alert alert : alerts) {
-            alertDTOs.add(new AlertDTO(alert.visitCode(), String.valueOf(alert.status()), alert.startDate()));
+            alertDTOs.add(new AlertDTO(alert.visitCode(), valueOf(alert.status()), alert.startDate()));
         }
         return alertDTOs;
     }
