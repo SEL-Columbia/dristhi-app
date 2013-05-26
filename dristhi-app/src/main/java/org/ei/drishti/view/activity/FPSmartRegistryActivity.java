@@ -27,6 +27,6 @@ public class FPSmartRegistryActivity extends SmartRegisterActivity {
 
     @Override
     protected void onResumption() {
-        webView.loadUrl("javascript:pageView.reload()");
+        webView.loadUrl("javascript:if(window.pageView) {window.pageView.reload();}");
     }
 }
