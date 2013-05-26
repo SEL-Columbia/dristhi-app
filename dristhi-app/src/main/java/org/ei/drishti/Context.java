@@ -22,6 +22,7 @@ public class Context {
     private TimelineEventRepository timelineEventRepository;
     private ReportRepository reportRepository;
     private FormDataRepository formDataRepository;
+    private ServiceProvidedRepository serviceProvidedRepository;
 
     private AllSettings allSettings;
     private AllAlerts allAlerts;
@@ -29,6 +30,7 @@ public class Context {
     private AllBeneficiaries allBeneficiaries;
     private AllTimelineEvents allTimelineEvents;
     private AllReports allReports;
+    private AllServicesProvided allServicesProvided;
 
     private DrishtiService drishtiService;
     private ActionService actionService;
@@ -236,7 +238,7 @@ public class Context {
         if (repository == null) {
             repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(),
                     eligibleCoupleRepository(), childRepository(), timelineEventRepository(), motherRepository(), reportRepository(),
-                    formDataRepository());
+                    formDataRepository(), serviceProvidedRepository());
         }
         return repository;
     }
@@ -287,6 +289,14 @@ public class Context {
             allReports = new AllReports(reportRepository());
         }
         return allReports;
+    }
+
+    public AllServicesProvided allServicesProvided() {
+        initRepository();
+        if (allServicesProvided == null) {
+            allServicesProvided = new AllServicesProvided(serviceProvidedRepository());
+        }
+        return allServicesProvided;
     }
 
     private EligibleCoupleRepository eligibleCoupleRepository() {
@@ -345,6 +355,13 @@ public class Context {
         return formDataRepository;
     }
 
+    private ServiceProvidedRepository serviceProvidedRepository() {
+        if (serviceProvidedRepository == null) {
+            serviceProvidedRepository = new ServiceProvidedRepository();
+        }
+        return serviceProvidedRepository;
+    }
+
     public UserService userService() {
         if (userService == null) {
             Repository repo = initRepository();
@@ -362,7 +379,7 @@ public class Context {
 
     public ServiceProvidedService serviceProvidedService() {
         if (serviceProvidedService == null) {
-            serviceProvidedService = new ServiceProvidedService();
+            serviceProvidedService = new ServiceProvidedService(allServicesProvided());
         }
         return serviceProvidedService;
     }

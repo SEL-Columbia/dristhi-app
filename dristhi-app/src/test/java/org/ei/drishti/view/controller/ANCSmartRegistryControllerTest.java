@@ -154,7 +154,7 @@ public class ANCSmartRegistryControllerTest {
         when(allBeneficiaries.allANCsWithEC()).thenReturn(asList(Pair.of(mother, ec)));
         when(alertService.findByEntityIdAndAlertNames("Entity X", ANC_ALERTS)).thenReturn(Collections.<Alert>emptyList());
         when(sericeProvidedService.findByEntityIdAndName("Entity X", "ifa", "tt1"))
-                .thenReturn(asList(new ServiceProvided("ifa", "2013-01-01", mapOf("dose", "100")), new ServiceProvided("tt1", "2013-02-01", emptyMap)));
+                .thenReturn(asList(new ServiceProvided("entity id 1", "ifa", "2013-01-01", mapOf("dose", "100")), new ServiceProvided("entity id 1", "tt1", "2013-02-01", emptyMap)));
 
         String clients = controller.get();
 
