@@ -100,7 +100,7 @@ public class ANCSmartRegistryController {
     }
 
     private List<ServiceProvidedDTO> getServicesProvided(String entityId) {
-        List<ServiceProvided> servicesProvided = serviceProvidedService.findByEntityIdAndName(entityId,
+        List<ServiceProvided> servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId,
                 IFA_SERVICE_PROVIDED_NAME,
                 TT_1_SERVICE_PROVIDED_NAME);
         List<ServiceProvidedDTO> serviceProvidedDTOs = new ArrayList<ServiceProvidedDTO>();

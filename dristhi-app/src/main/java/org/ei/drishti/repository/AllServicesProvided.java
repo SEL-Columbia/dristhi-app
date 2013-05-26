@@ -11,7 +11,7 @@ public class AllServicesProvided {
         this.repository = repository;
     }
 
-    public List<ServiceProvided> findByEntityIdAndName(String entityId, String[] names) {
-        return repository.findByEntityIdAndName(entityId, names);
+    public List<ServiceProvided> findByEntityIdAndServiceNames(String entityId, String... names) {
+        return repository.findByEntityIdAndServiceNames(entityId, names);
     }
 }

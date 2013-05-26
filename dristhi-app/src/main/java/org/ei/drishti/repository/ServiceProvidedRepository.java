@@ -12,6 +12,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import static java.lang.String.format;
+import static org.apache.commons.lang3.ArrayUtils.addAll;
+import static org.apache.commons.lang3.StringUtils.repeat;
+
 public class ServiceProvidedRepository extends DrishtiRepository {
 
     private static final String SERVICE_PROVIDED_SQL = "CREATE TABLE service_provided(id VARCHAR, entityId VARCHAR, name VARCHAR, date VARCHAR, data VARCHAR)";
@@ -26,10 +30,6 @@ public class ServiceProvidedRepository extends DrishtiRepository {
     public static final String[] SERVICE_PROVIDED_TABLE_COLUMNS = new String[]{ENTITY_ID_COLUMN, NAME_ID_COLUMN, DATE_ID_COLUMN, DATA_ID_COLUMN};
 
 
-    public List<ServiceProvided> findByEntityIdAndName(String entityId, String[] names) {
-        return null;
-    }
-
     @Override
     protected void onCreate(SQLiteDatabase database) {
         database.execSQL(SERVICE_PROVIDED_SQL);
@@ -38,6 +38,15 @@ public class ServiceProvidedRepository extends DrishtiRepository {
     public void add(ServiceProvided serviceProvided) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(SERVICE_PROVIDED_TABLE_NAME, null, createValuesFor(serviceProvided));
+    }
+
+    public List<ServiceProvided> findByEntityIdAndServiceNames(String entityId, String... names) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery(
+                format("SELECT * FROM %s WHERE %s = ? AND %s IN (%s)", SERVICE_PROVIDED_TABLE_NAME, ENTITY_ID_COLUMN, NAME_ID_COLUMN,
+                        insertPlaceholdersForInClause(names.length)),
+                addAll(new String[]{entityId}, names));
+        return readAllServicesProvided(cursor);
     }
 
     public List<ServiceProvided> all() {
@@ -72,5 +81,9 @@ public class ServiceProvidedRepository extends DrishtiRepository {
         }
         cursor.close();
         return servicesProvided;
+    }
+
+    private String insertPlaceholdersForInClause(int length) {
+        return repeat("?", ",", length);
     }
 }

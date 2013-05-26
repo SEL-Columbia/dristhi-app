@@ -153,7 +153,7 @@ public class ANCSmartRegistryControllerTest {
         Mother mother = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25").withDetails(details);
         when(allBeneficiaries.allANCsWithEC()).thenReturn(asList(Pair.of(mother, ec)));
         when(alertService.findByEntityIdAndAlertNames("Entity X", ANC_ALERTS)).thenReturn(Collections.<Alert>emptyList());
-        when(sericeProvidedService.findByEntityIdAndName("Entity X", "ifa", "tt1"))
+        when(sericeProvidedService.findByEntityIdAndServiceNames("Entity X", "ifa", "tt1"))
                 .thenReturn(asList(new ServiceProvided("entity id 1", "ifa", "2013-01-01", mapOf("dose", "100")), new ServiceProvided("entity id 1", "tt1", "2013-02-01", emptyMap)));
 
         String clients = controller.get();
@@ -161,7 +161,7 @@ public class ANCSmartRegistryControllerTest {
         List<ANCClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<ANCClient>>() {
         }.getType());
         verify(alertService).findByEntityIdAndAlertNames("Entity X", ANC_ALERTS);
-        verify(sericeProvidedService).findByEntityIdAndName("Entity X", ANC_SERVICES);
+        verify(sericeProvidedService).findByEntityIdAndServiceNames("Entity X", ANC_SERVICES);
         List<ServiceProvidedDTO> expectedServicesProvided = asList(new ServiceProvidedDTO("ifa", "2013-01-01", mapOf("dose", "100")),
                 new ServiceProvidedDTO("tt1", "2013-02-01", emptyMap));
         ANCClient expectedEC = createANCClient("Entity X", "Woman C", "Bherya", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25")

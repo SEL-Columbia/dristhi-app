@@ -12,7 +12,7 @@ public class ServiceProvidedService {
         this.allServiceProvided = allServicesProvided;
     }
 
-    public List<ServiceProvided> findByEntityIdAndName(String entityId, String... names) {
-        return allServiceProvided.findByEntityIdAndName(entityId, names);
+    public List<ServiceProvided> findByEntityIdAndServiceNames(String entityId, String... names) {
+        return allServiceProvided.findByEntityIdAndServiceNames(entityId, names);
     }
 }
