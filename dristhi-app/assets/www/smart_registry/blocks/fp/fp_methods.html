@@ -32,7 +32,7 @@
             </span>
             <ng-switch on="client.refill_follow_ups.type">
                 <span ng-switch-when="referral" class="text-past-due text-bold"><i class="icon-warning-sign"></i> Referred</span>
-                <span ng-switch-default>{{getSideEffect(client) | camelCase | commaSeparated}}</span>
+                <span ng-switch-default>{{getSideEffect(client) | camelCase | commaSeparated | humanize}}</span>
             </ng-switch>
         </div>
         <div class="span4 full-height">
