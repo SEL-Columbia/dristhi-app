@@ -1,0 +1,124 @@
+<form class="jr" autocomplete="off" id="Hb_Test_EngKan">
+    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Hb Test</h3>
+    <fieldset id="jr-preload-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Hb_Test_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
+
+
+    <label class="">
+        <span lang="" class=" active">Hb test date? &#xCB9;&#xCC6;&#xC9A;&#xCCD;.&#xCAC;&#xCBF; &#xCAA;&#xCB0;&#xCBF;&#xCD5;&#xC95;&#xCCD;&#xCB7;&#xCBE;
+            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        </span>
+        <span class="required">*</span>
+        <input autocomplete="off" type="date" name="/Hb_Test_EngKan/hb_test_date" required="required"
+               data-type-xml="date"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Hb test place? &#xCB9;&#xCC6;&#xC9A;&#xCCD;.&#xCAC;&#xCBF; &#xCAA;&#xCB0;&#xCC0;&#xC95;&#xCCD;&#xCB7;&#xCC6;&#xCAF;
+                    &#xCB8;&#xCCD;&#xCA5;&#xCB3;?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Hb_Test_EngKan/hb_test_place" value="sub_center"
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Sub Center</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Hb_Test_EngKan/hb_test_place" value="phc"
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">PHC</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Hb_Test_EngKan/hb_test_place" value="elsewhere"
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Elsewhere &#xCAC;&#xCC7;&#xCB0;&#xCC6;&#xCA1;&#xCC6;</span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <label class="">
+        <span lang="" class=" active">Hb Level (g/dl)
+            &#xCB9;&#xCC6;&#xC9A;&#xCCD;.&#xCAC;&#xCBF; &#xCAE;&#xC9F;&#xCCD;&#xC9F; (&#xC9C;&#xCBF;/&#xCA1;&#xCBF;&#xC8E;&#xCB2;&#xCCD;)
+        </span>
+        <span class="required">*</span>
+        <input autocomplete="off" type="number" name="/Hb_Test_EngKan/hb_level" required="required"
+               data-type-xml="decimal" step="any"/>
+    </label>
+    <fieldset class="trigger jr-branch pre-init" name="/Hb_Test_EngKan/anaemic_message"
+              data-relevant=" /Hb_Test_EngKan/hb_level  &gt;= 7 and  /Hb_Test_EngKan/hb_level  &lt; 11">
+        <span lang="" class=" active">Woman is anaemic! &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCB0;&#xC95;&#xCCD;&#xCA4;
+            &#xCB9;&#xCC0;&#xCA8;&#xCA4;&#xCC6;!
+        </span>
+    </fieldset>
+    <fieldset class="trigger jr-branch pre-init" name="/Hb_Test_EngKan/severely_anaemic_message"
+              data-relevant=" /Hb_Test_EngKan/hb_level  &lt; 7">
+        <span lang="" class=" active">Woman is severely anaemic! &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCA4;&#xCC0;&#xCB5;&#xCCD;&#xCB0;
+            &#xCB0;&#xC95;&#xCCD;&#xCA4; &#xCB9;&#xCC0;&#xCA8;&#xCA4;&#xCC6;!
+        </span>
+    </fieldset>
+    <fieldset class="trigger jr-branch pre-init" name="/Hb_Test_EngKan/high_risk_note"
+              data-relevant=" /Hb_Test_EngKan/is_high_risk1  != ''">
+        <span lang="" class=" active">Woman is at risk because of:
+            <span class="jr-output" data-value=" /Hb_Test_EngKan/high_risk_reason ">
+            </span>
+            &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xC97;&#xCC6; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;
+            &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
+            <span class="jr-output" data-value=" /Hb_Test_EngKan/high_risk_reason ">
+            </span>
+        </span>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Do you want to mark as HRP?
+                    &#xCA8;&#xCC0;&#xCB5;&#xCC1; HRP &#xC8E;&#xC82;&#xCA6;&#xCC1; &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCC1;
+                    &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCBF;&#xCB0;&#xCBE;?
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Hb_Test_EngKan/is_high_risk" value="yes"
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Yes</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Hb_Test_EngKan/is_high_risk" value="no"
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">No</span>
+            </label>
+        </fieldset>
+    </fieldset>
+
+    <fieldset id="jr-calculated-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Hb_Test_EngKan/anaemic_status"
+                   data-calculate="if( /Hb_Test_EngKan/hb_level  &lt; 7, 'Severe_Anaemia', (if( /Hb_Test_EngKan/hb_level  &gt;= 7 and  /Hb_Test_EngKan/hb_level  &lt; 11, 'Anaemia', '')))"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Hb_Test_EngKan/is_high_risk1"
+                   data-calculate="if( /Hb_Test_EngKan/anaemic_status  != '' or  /Hb_Test_EngKan/case_high_risk_reason  != '', 'yes', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Hb_Test_EngKan/high_risk_reason"
+                   data-calculate="concat( /Hb_Test_EngKan/anaemic_status , ' ',  /Hb_Test_EngKan/case_high_risk_reason )"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Hb_Test_EngKan/meta/instanceID"
+                   data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Hb_Test_EngKan/formhub/uuid"
+                   data-calculate="'87d289cc9d304acb8d77dce0b0b16ebb'" data-type-xml="string"/>
+        </label>
+    </fieldset>
+</form>
