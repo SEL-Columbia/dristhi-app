@@ -393,7 +393,7 @@ public class Context {
 
     public MotherService motherService() {
         if (motherService == null) {
-            motherService = new MotherService(motherRepository(), allBeneficiaries(), allEligibleCouples(), allTimelineEvents());
+            motherService = new MotherService(motherRepository(), allBeneficiaries(), allEligibleCouples(), allTimelineEvents(), serviceProvidedService());
         }
         return motherService;
     }

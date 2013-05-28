@@ -11,6 +11,7 @@ import org.ei.drishti.repository.MotherRepository;
 import static org.ei.drishti.AllConstants.ANCCloseFields.*;
 import static org.ei.drishti.AllConstants.IFAFields.IFA_TABLETS_DATE;
 import static org.ei.drishti.AllConstants.IFAFields.NUMBER_OF_IFA_TABLETS_GIVEN;
+import static org.ei.drishti.domain.ServiceProvided.forTTDose;
 import static org.ei.drishti.domain.TimelineEvent.*;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.IntegerUtil.tryParse;
@@ -32,12 +33,15 @@ public class MotherService {
     private AllBeneficiaries allBeneficiaries;
     private AllTimelineEvents allTimelines;
     private AllEligibleCouples allEligibleCouples;
+    private ServiceProvidedService serviceProvidedService;
 
-    public MotherService(MotherRepository motherRepository, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples, AllTimelineEvents allTimelineEvents) {
+    public MotherService(MotherRepository motherRepository, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples,
+                         AllTimelineEvents allTimelineEvents, ServiceProvidedService serviceProvidedService) {
         this.motherRepository = motherRepository;
         this.allBeneficiaries = allBeneficiaries;
         this.allTimelines = allTimelineEvents;
         this.allEligibleCouples = allEligibleCouples;
+        this.serviceProvidedService = serviceProvidedService;
     }
 
     public void registerANC(FormSubmission submission) {
@@ -73,6 +77,7 @@ public class MotherService {
 
     public void ttProvided(FormSubmission submission) {
         allTimelines.add(forTTShotProvided(submission.entityId(), submission.getFieldValue(TT_DOSE), submission.getFieldValue(TT_DATE)));
+        serviceProvidedService.add(forTTDose(submission.entityId(), submission.getFieldValue(TT_DOSE), submission.getFieldValue(TT_DATE)));
     }
 
     public void ifaTabletsGiven(FormSubmission submission) {

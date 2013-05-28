@@ -15,4 +15,8 @@ public class ServiceProvidedService {
     public List<ServiceProvided> findByEntityIdAndServiceNames(String entityId, String... names) {
         return allServiceProvided.findByEntityIdAndServiceNames(entityId, names);
     }
+
+    public void add(ServiceProvided serviceProvided) {
+        allServiceProvided.add(serviceProvided);
+    }
 }

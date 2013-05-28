@@ -14,4 +14,8 @@ public class AllServicesProvided {
     public List<ServiceProvided> findByEntityIdAndServiceNames(String entityId, String... names) {
         return repository.findByEntityIdAndServiceNames(entityId, names);
     }
+
+    public void add(ServiceProvided serviceProvided) {
+        repository.add(serviceProvided);
+    }
 }

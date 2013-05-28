@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
+import static org.ei.drishti.domain.ServiceProvided.forTTDose;
 import static org.ei.drishti.domain.TimelineEvent.forIFATabletsProvided;
 import static org.ei.drishti.domain.TimelineEvent.forTTShotProvided;
 import static org.ei.drishti.util.EasyMap.create;
@@ -31,13 +32,15 @@ public class MotherServiceTest {
     private AllTimelineEvents allTimelineEvents;
     @Mock
     private AllEligibleCouples allEligibleCouples;
+    @Mock
+    private ServiceProvidedService serviceProvidedService;
 
     private MotherService service;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new MotherService(motherRepository, allBeneficiaries, allEligibleCouples, allTimelineEvents);
+        service = new MotherService(motherRepository, allBeneficiaries, allEligibleCouples, allTimelineEvents, serviceProvidedService);
     }
 
     @Test
@@ -143,6 +146,7 @@ public class MotherServiceTest {
         service.ttProvided(submission);
 
         verify(allTimelineEvents).add(forTTShotProvided("entity id 1", "ttbooster", "2013-01-01"));
+        verify(serviceProvidedService).add(forTTDose("entity id 1", "ttbooster", "2013-01-01"));
     }
 
     @Test

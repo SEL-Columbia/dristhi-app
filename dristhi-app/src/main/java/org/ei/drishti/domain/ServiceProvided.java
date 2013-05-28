@@ -3,8 +3,11 @@ package org.ei.drishti.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.domain.mapper.TTMapper;
 
 import java.util.Map;
+
+import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class ServiceProvided {
     private final String entityId;
@@ -17,6 +20,11 @@ public class ServiceProvided {
         this.date = date;
         this.data = data;
         this.entityId = entityId;
+    }
+
+    public static ServiceProvided forTTDose(String entityId, String ttDose, String date) {
+        String mappedTTDose = TTMapper.valueOf(ttDose).value();
+        return new ServiceProvided(entityId, mappedTTDose, date, mapOf("ttDose", mappedTTDose));
     }
 
     public String name() {
