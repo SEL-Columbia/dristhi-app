@@ -27,6 +27,10 @@ public class ServiceProvided {
         return new ServiceProvided(entityId, mappedTTDose, date, mapOf("ttDose", mappedTTDose));
     }
 
+    public static ServiceProvided forHBTest(String entityId, String hbLevel, String date) {
+        return new ServiceProvided(entityId, "HB Test", date, mapOf("hbLevel", hbLevel));
+    }
+
     public String name() {
         return name;
     }

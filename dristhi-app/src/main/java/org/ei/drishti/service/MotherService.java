@@ -11,6 +11,7 @@ import org.ei.drishti.repository.MotherRepository;
 import static org.ei.drishti.AllConstants.ANCCloseFields.*;
 import static org.ei.drishti.AllConstants.IFAFields.IFA_TABLETS_DATE;
 import static org.ei.drishti.AllConstants.IFAFields.NUMBER_OF_IFA_TABLETS_GIVEN;
+import static org.ei.drishti.domain.ServiceProvided.forHBTest;
 import static org.ei.drishti.domain.ServiceProvided.forTTDose;
 import static org.ei.drishti.domain.TimelineEvent.*;
 import static org.ei.drishti.util.EasyMap.create;
@@ -29,6 +30,8 @@ public class MotherService {
     public static final String WEIGHT = "weight";
     public static final String TT_DOSE = "ttDose";
     public static final String TT_DATE = "ttDate";
+    public static final String HB_TEST_DATE = "hbTestDate";
+    public static final String HB_LEVEL = "hbLevel";
     private MotherRepository motherRepository;
     private AllBeneficiaries allBeneficiaries;
     private AllTimelineEvents allTimelines;
@@ -90,6 +93,10 @@ public class MotherService {
     private void addTimelineEventsForMotherRegistration(FormSubmission submission) {
         allTimelines.add(forStartOfPregnancy(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(REFERENCE_DATE)));
         allTimelines.add(forStartOfPregnancyForEC(submission.entityId(), submission.getFieldValue(THAYI_CARD_NUMBER), submission.getFieldValue(REFERENCE_DATE)));
+    }
+
+    public void hbTest(FormSubmission submission) {
+        serviceProvidedService.add(forHBTest(submission.entityId(), submission.getFieldValue(HB_LEVEL), submission.getFieldValue(HB_TEST_DATE)));
     }
 
     @Deprecated

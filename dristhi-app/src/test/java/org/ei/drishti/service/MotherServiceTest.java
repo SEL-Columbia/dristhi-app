@@ -2,6 +2,7 @@ package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Mother;
+import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
@@ -171,6 +172,18 @@ public class MotherServiceTest {
         service.ifaTabletsGiven(submission);
 
         verifyZeroInteractions(allTimelineEvents);
+    }
+
+    @Test
+    public void shouldHandleHBTest() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("hbLevel")).thenReturn("11");
+        when(submission.getFieldValue("hbTestDate")).thenReturn("2013-01-01");
+
+        service.hbTest(submission);
+
+        verify(serviceProvidedService).add(new ServiceProvided("entity id 1", "HB Test", "2013-01-01", mapOf("hbLevel", "11")));
     }
 
     @Test

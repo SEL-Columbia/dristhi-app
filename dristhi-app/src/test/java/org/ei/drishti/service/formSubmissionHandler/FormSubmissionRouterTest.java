@@ -39,6 +39,8 @@ public class FormSubmissionRouterTest {
     private TTHandler ttHandler;
     @Mock
     private IFAHandler ifaHandler;
+    @Mock
+    private HBTestHandler hbTestHandler;
 
     private FormSubmissionRouter router;
 
@@ -56,7 +58,8 @@ public class FormSubmissionRouterTest {
                 ancVisitHandler,
                 ancCloseHandler,
                 ttHandler,
-                ifaHandler);
+                ifaHandler,
+                hbTestHandler);
     }
 
     @Test
@@ -186,5 +189,16 @@ public class FormSubmissionRouterTest {
 
         verify(formDataRepository).fetchFromSubmission("instance id 1");
         verify(ifaHandler).handle(formSubmission);
+    }
+
+    @Test
+    public void shouldDelegateHBTestFormSubmissionHandlingToHBTestHandler() throws Exception {
+        FormSubmission formSubmission = create().withFormName("hb_test").withInstanceId("instance id 1").withVersion("122").build();
+        when(formDataRepository.fetchFromSubmission("instance id 1")).thenReturn(formSubmission);
+
+        router.route("instance id 1");
+
+        verify(formDataRepository).fetchFromSubmission("instance id 1");
+        verify(hbTestHandler).handle(formSubmission);
     }
 }

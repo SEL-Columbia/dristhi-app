@@ -50,10 +50,11 @@ public class AllConstants {
     public static final String ANC_REGISTRATION_OA_FORM_NAME = "anc_registration_oa";
     public static final String ANC_VISIT_FORM_NAME = "anc_visit";
     public static final String ANC_CLOSE_FORM_NAME = "anc_close";
-    public static final String TT_BOOSTER = "tt_booster";
-    public static final String TT_1 = "tt_1";
-    public static final String TT_2 = "tt_2";
+    public static final String TT_BOOSTER_FORM_NAME = "tt_booster";
+    public static final String TT_1_FORM_NAME = "tt_1";
+    public static final String TT_2_FORM_NAME = "tt_2";
     public static final String IFA_FORM_NAME = "ifa";
+    public static final String HB_TEST_FORM_NAME = "hb_test";
     public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
     public static final String FP_UPDATE_FIELD_NAME = "fpUpdate";
     public static final String NEW_FP_METHOD_FIELD_NAME = "newMethod";
