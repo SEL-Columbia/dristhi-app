@@ -28,10 +28,11 @@
             <div class="modal-body modal-row">
                 <ul class="nav nav-tabs nav-stacked">
                     <li><a ng-click="closeANCFormModal();openForm('anc_visit', currentClientEntityId)">ANC Visit</a></li>
+                    <li><a ng-click="closeANCFormModal();openMicroForm('hb_test', currentClientEntityId)">Hb Test</a></li>
+                    <li><a ng-click="closeANCFormModal();openMicroForm('ifa', currentClientEntityId)">IFA</a></li>
                     <li><a ng-click="closeANCFormModal();openMicroForm('tt_1', currentClientEntityId)">TT 1</a></li>
                     <li><a ng-click="closeANCFormModal();openMicroForm('tt_2', currentClientEntityId)">TT 2</a></li>
                     <li><a ng-click="closeANCFormModal();openMicroForm('tt_booster', currentClientEntityId)">TT Booster</a></li>
-                    <li><a ng-click="closeANCFormModal();openMicroForm('ifa', currentClientEntityId)">IFA</a></li>
                     <li><a ng-click="closeANCFormModal();openForm('anc_close', currentClientEntityId)">ANC Close</a></li>
                 </ul>
             </div>
