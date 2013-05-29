@@ -2,14 +2,10 @@
     <div class="row-fluid full-height">
         <div class="span10 full-height span-no-margin width-without-margins">
             <div class="row-fluid full-height">
-                <div data-ng-repeat="milestone in ['anc1', 'anc2', 'anc3', 'anc4']" class="visits span3 line-right span-no-margin width-without-margins span-content">
+                <div data-ng-repeat="milestone in ['ANC 1', 'ANC 2', 'ANC 3', 'ANC 4']" class="visits span3 line-right span-no-margin width-without-margins span-content">
                     <!--ANC 1-->
-                    <a ng-show="client.visits.anc[milestone]" class="btn btn-primary btn-sr" href="#"
-                       ng-class="{'btn-done': client.visits.anc[milestone].status == 'done',
-                       'btn-due': client.visits.anc[milestone].status == 'normal',
-                       'btn-past-due': client.visits.anc[milestone].status == 'urgent',
-                       'btn-upcoming': client.visits.anc[milestone].status == 'upcoming',
-                       'btn-in-process': client.visits.anc[milestone].status == 'inProcess'}">
+                    <a ng-show="client.visits.anc[milestone]" class="btn btn-primary btn-sr"
+                       ng-class="client.visits.anc[milestone].status">
                         <ng:switch on="client.visits.anc[milestone].status">
                             <div ng-switch-when="done" class="full-height">
                                 <div class="done-icon full-height"><i class="icon-ok green"></i></div>
@@ -23,7 +19,7 @@
                                 <span class="text-bold text-upper">{{milestone}}</span>
                                 <br/>
                                 <ng:switch on="client.visits.anc[milestone].status">
-                                    <span ng-switch-when="done">Done </span>
+                                    <span ng-switch-when="complete">Done </span>
                                     <span ng-switch-when="upcoming">Upcoming </span>
                                     <span ng-switch-default>Due </span>
                                 </ng:switch>
@@ -35,7 +31,7 @@
             </div>
         </div>
         <div class="span2 full-height span-no-margin width-without-margins span-content">
-            <button class="btn btn-primary btn-large btn-sr btn-done btn-new-form full-height" href="#">
+            <button class="btn btn-primary btn-large btn-sr complete btn-new-form full-height">
                 ANC Visit
             </button>
         </div>

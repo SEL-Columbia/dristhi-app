@@ -17,26 +17,28 @@ describe('ANC Register controller', function () {
 
     it("should sum the number of tablets from ifa data", function () {
         var ifaData = {
-            ifa1:{
-                status: 'done',
-                visit_date: '04/04',
-                data:{
-                    dose: 120
-                }
-            },
             next:{
                 name: 'ifa2',
                 status: 'upcoming',
                 visit_date: null
             },
-            'ifa2':{
-                status: 'done',
-                visit_date: '04/04',
-                data:{
-                    dose: 100
+            IFA: [
+                {
+                    status: 'done',
+                    visit_date: '04/04',
+                    data:{
+                        dose: 100
+                    }
+                },
+                {
+                    status: 'done',
+                    visit_date: '04/04',
+                    data:{
+                        dose: 120
+                    }
                 }
-            },
-            previous: 'ifa1'
+            ],
+            previous: {}
         };
         var tabletsGiven = scope.sumIFATablets(ifaData);
         expect(tabletsGiven).toEqual(220);

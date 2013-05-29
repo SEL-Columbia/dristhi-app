@@ -2,7 +2,7 @@ angular.module("smartRegistry.controllers")
     .controller("ancRegisterController", function ($scope, ANCService) {
         $scope.bridge = new ANCRegistryBridge();
         $scope.getClients = function () {
-            return ANCService.preProcessClients($scope.bridge.getClients());
+            return ANCService.preProcess($scope.bridge.getClients());
         };
 
         $scope.clients = $scope.getClients();
@@ -158,12 +158,12 @@ angular.module("smartRegistry.controllers")
 
         $scope.sumIFATablets = function (ifaData) {
             var numTablets = 0;
-            var milestones = ['ifa1', 'ifa2', 'ifa3'];
-            milestones.forEach(function (milestone) {
-                if (ifaData[milestone] !== undefined && ifaData[milestone].status === 'done' && ifaData[milestone].data !== undefined) {
-                    numTablets += ifaData[milestone].data['dose'] || 0;
-                }
-            });
+            if(ifaData['IFA'] !== undefined)
+            {
+                ifaData['IFA'].forEach(function (ifa) {
+                    numTablets += ifa.data['dose'] || 0;
+                });
+            }
             return numTablets;
         };
 

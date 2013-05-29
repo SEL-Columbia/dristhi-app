@@ -682,11 +682,11 @@ a.btn-block:not(.bn-sr) {
     padding: 8px;
 }
 
-a.btn-sr.btn-due, a.btn-sr.btn-past-due {
+a.btn-sr.normal, a.btn-sr.urgent {
     color: #ffffff;
 }
 
-a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
+a.btn-sr.upcoming, a.btn-sr.done {
     color: #0d0d0d;
 }
 
@@ -706,28 +706,28 @@ a.btn-sr.btn-upcoming, a.btn-sr.btn-done {
 /*past-due: #d13f3f;*/
 /*due: #389cc8;*/
 /*upcoming: #cae2ed;*/
-/*done: #ececec;*/
+/*complete: #ececec;*/
 /*black: #0d0d0d*/
 
-.btn-past-due, .btn-past-due:hover, .btn-past-due:focus {
+.urgent, .urgent:hover, .urgent:focus {
     background-color: #d13f3f;
 }
 
-.btn-due, .btn-due:hover, .btn-due:focus {
+.normal, .normal:hover, .normal:focus {
     background-color: #389cc8;
 }
 
-.btn-upcoming, .btn-upcoming:hover, .btn-upcoming:focus {
+.upcoming, .upcoming:hover, .upcoming:focus {
     background-color: #cae2ed;
     color: #0d0d0d;
 }
 
-.btn-done, .btn-done:hover, .btn-done:focus {
+.complete, .complete:hover, .complete:focus {
     background-color: #ececec;
     color: #0d0d0d;
 }
 
-.btn-in-process, .btn-in-process:hover, .btn-in-process:focus {
+.inProcess, .inProcess:hover, .inProcess:focus {
     background-color: #25aa4a;
 }
 
@@ -1018,4 +1018,12 @@ button.text-align-left {
     padding-left: 6px;
     padding-right: 6px;
     padding-top: 2px;
+}
+
+.relative-positioning {
+    position: relative;
+}
+.previous-alert {
+    position: absolute;
+    top: 56px;
 }

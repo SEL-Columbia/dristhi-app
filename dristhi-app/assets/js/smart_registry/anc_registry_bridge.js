@@ -31,49 +31,63 @@ function FakeANCSmartRegistryContext() {
                     lmp: '2013-03-25',
                     alerts: [
                         {
-                            name: 'anc1',
+                            name: 'ANC 4',
+                            date: '24/07',
+                            status: 'complete'
+                        },
+                        {
+                            name: 'TT Booster',
                             date: '24/07',
                             status: 'urgent'
                         },
                         {
-                            name: 'ttbooster',
-                            date: '24/07',
-                            status: 'urgent'
-                        },
-                        {
-                            name: 'ifa2',
+                            name: 'IFA 2',
                             date: '26/05',
                             status: 'normal'
                         },
                         {
-                            name: 'delivery_plan1',
+                            name: 'Delivery Plan',
                             date: '2012-05-18',
                             status: 'urgent'
                         }
                     ],
                     services_provided: [
                         {
-                            name: 'tt1',
+                            name: 'TT 1',
                             date: '04/04',
                             data: {
                                 dose: '80'
                             }
                         },
                         {
-                            name: 'ifa1',
+                            name: 'IFA',
                             date: '04/04',
                             data: {
                                 dose: 100
                             }
                         },
                         {
-                            name: 'hb',
-                            data: [
-                                {date: '2012-05-27', level: 14},
-                                {date: '2012-06-13', level: 10},
-                                {date: '2012-05-27', level: 18},
-                                {date: '2012-05-27', level: 12}
-                            ]
+                            name: 'IFA',
+                            date: '05/04',
+                            data: {
+                                dose: 80
+                            }
+                        },
+                        {
+                            name: 'Hb Test',
+                            date: '2012-05-27',
+                            data: {
+                                hbLevel: 14,
+                                hbTestPlace: 'phc'
+                            }
+                        },
+                        {
+                            name: 'Hb Test',
+                            date: '2012-06-13',
+                            data: {
+                                hbLevel: 10,
+                                hbTestPlace: 'phc'
+                            }
                         }
                     ],
                     days_due: '3',
@@ -97,19 +111,19 @@ function FakeANCSmartRegistryContext() {
                     lmp: '2013-03-25',
                     alerts: [
                         {
-                            name: 'anc2',
+                            name: 'ANC 2',
                             date: '24/07',
                             status: 'normal'
                         },
                         {
-                            name: 'tt1',
+                            name: 'TT 1',
                             date: '26/05',
                             status: 'urgent'
                         }
                     ],
                     services_provided: [
                         {
-                            name: 'anc1',
+                            name: 'ANC 1',
                             date: '04/04',
                             data: {
                                 bp: '120/80',
@@ -117,7 +131,7 @@ function FakeANCSmartRegistryContext() {
                             }
                         },
                         {
-                            name: 'ifa1',
+                            name: 'IFA',
                             date: '04/04',
                             data: {
                                 dose: 100
@@ -144,24 +158,24 @@ function FakeANCSmartRegistryContext() {
                     "photo_path": "../../img/woman-placeholder.png",
                     alerts: [
                         {
-                            name: 'anc2',
+                            name: 'ANC 2',
                             date: '24/05',
                             status: 'normal'
                         },
                         {
-                            name: 'tt1',
+                            name: 'TT 1',
                             date: '26/05',
                             status: 'normal'
                         },
                         {
-                            name: 'ifa2',
+                            name: 'IFA 2',
                             date: '26/05',
-                            status: 'urgent'
+                            status: 'complete'
                         }
                     ],
                     services_provided: [
                         {
-                            name: 'anc1',
+                            name: 'ANC 1',
                             date: '04/04',
                             data: {
                                 bp: '120/80',
@@ -169,20 +183,29 @@ function FakeANCSmartRegistryContext() {
                             }
                         },
                         {
-                            name: 'ifa1',
+                            name: 'IFA',
                             date: '04/04',
                             data: {
                                 dose: 100
                             }
                         },
                         {
-                            name: 'hb',
-                            data: [
-                                {date: '2012-05-27', level: 6}
-                            ]
+                            name: 'IFA',
+                            date: '04/04',
+                            data: {
+                                dose: 100
+                            }
                         },
                         {
-                            name: 'delivery_plan1',
+                            name: 'Hb Test',
+                            date: '2012-05-27',
+                            data: {
+                                hbLevel: 6,
+                                hbTestPlace: 'phc'
+                            }
+                        },
+                        {
+                            name: 'Delivery Plan',
                             date: '2012-09-13',
                             data: {
                                 asha_name: 'Robin',
@@ -215,14 +238,29 @@ function FakeANCSmartRegistryContext() {
                     lmp: '2012-09-13',
                     alerts: [
                         {
-                            name: 'tt2',
+                            name: 'TT 2',
                             date: '26/05',
                             status: 'normal'
+                        },
+                        {
+                            name: 'ANC 3',
+                            date: '26/05',
+                            status: 'urgent'
+                        },
+                        {
+                            name: 'IFA 3',
+                            date: '26/05',
+                            status: 'urgent'
+                        },
+                        {
+                            name: 'Delivery Plan',
+                            date: '26/05',
+                            status: 'upcoming'
                         }
                     ],
                     services_provided: [
                         {
-                            name: 'anc2',
+                            name: 'ANC 2',
                             date: '04/08',
                             data: {
                                 bp: '115/90',
@@ -230,47 +268,48 @@ function FakeANCSmartRegistryContext() {
                             }
                         },
                         {
-                            name: 'anc4',
-                            date: '04/08',
-                            data: {
-                                bp: '120/90',
-                                weight: '95'
-                            }
-                        },
-                        {
-                            name: 'tt1',
+                            name: 'TT 1',
                             date: '04/04',
                             data: {
                                 dose: 100
                             }
                         },
                         {
-                            name: 'ifa1',
+                            name: 'IFA',
                             date: '2012-04-24',
                             data: {
                                 dose: 50
                             }
                         },
                         {
-                            name: 'ifa2',
+                            name: 'IFA',
                             date: '2012-05-24',
                             data: {
                                 dose: 80
                             }
                         },
                         {
-                            name: 'ifa3',
+                            name: 'IFA',
                             date: '2012-06-17',
                             data: {
                                 dose: 100
                             }
                         },
                         {
-                            name: 'hb',
-                            data: [
-                                {date: '2012-05-27', level: 14},
-                                {date: '2012-06-13', level: 10}
-                            ]
+                            name: 'Hb Test',
+                            date: '2012-05-27',
+                            data: {
+                                hbLevel: 14,
+                                hbTestPlace: 'phc'
+                            }
+                        },
+                        {
+                            name: 'Hb Test',
+                            date: '2012-06-13',
+                            data: {
+                                hbLevel: 10,
+                                hbTestPlace: 'phc'
+                            }
                         }
                     ],
                     days_due: '3',
@@ -293,7 +332,7 @@ function FakeANCSmartRegistryContext() {
                     lmp: '25/3/13',
                     alerts: [
                         {
-                            name: 'tt2',
+                            name: 'TT 2',
                             date: '26/05',
                             status: 'normal'
                         },
@@ -305,7 +344,7 @@ function FakeANCSmartRegistryContext() {
                     ],
                     services_provided: [
                         {
-                            name: 'anc1',
+                            name: 'ANC 1',
                             date: '04/04',
                             data: {
                                 bp: '120/80',
@@ -313,7 +352,7 @@ function FakeANCSmartRegistryContext() {
                             }
                         },
                         {
-                            name: 'anc2',
+                            name: 'ANC 2',
                             date: '04/08',
                             data: {
                                 bp: '115/90',
@@ -321,31 +360,40 @@ function FakeANCSmartRegistryContext() {
                             }
                         },
                         {
-                            name: 'tt1',
+                            name: 'TT 1',
                             date: '04/04',
                             data: {
                                 dose: 100
                             }
                         },
                         {
-                            name: 'ifa1',
+                            name: 'IFA',
                             date: '2012-04-24',
                             data: {
                                 dose: 50
                             }
                         },
                         {
-                            name: 'ifa2',
+                            name: 'IFA',
                             date: '2012-05-24',
                             data: {
                                 dose: 20
                             }
                         },
                         {
-                            name: 'hb',
-                            data: [
-                                {date: '2012-06-13', level: 10}
-                            ]
+                            name: 'IFA',
+                            date: '2012-05-24',
+                            data: {
+                                dose: 20
+                            }
+                        },
+                        {
+                            name: 'Hb Test',
+                            date: '2012-06-13',
+                            data: {
+                                hbLevel: 10,
+                                hbTestPlace: 'phc'
+                            }
                         }
                     ],
                     days_due: '3',
