@@ -120,18 +120,18 @@ public class AlertRepositoryTest extends AndroidTestCase {
     public void testShouldFindByEntityIdAndAlertNames() throws Exception {
         Alert ocpRefillAlert = new Alert("entity id 1", "OCP Refill", "OCP Refill", normal, "2012-01-02", "2012-01-11");
         Alert condomRefillAlert = new Alert("entity id 1", "Condom Refill", "Condom Refill", normal, "2012-01-01", "2012-01-11");
-        Alert closedAlert = new Alert("entity id 1", "DMPA Injectable Refill", "DMPA Injectable Refill", complete, "2012-01-01", "2012-01-11");
+        Alert completedAlert = new Alert("entity id 1", "DMPA Injectable Refill", "DMPA Injectable Refill", complete, "2012-01-01", "2012-01-11");
         Alert ocpRefillAlertForAnotherEntity = new Alert("entity id 2", "OCP Refill", "OCP Refill", normal, "2012-01-01", "2012-01-11");
         Alert notOCPRefillAlert = new Alert("entity id 1", "Not OCP Refill", "Not OCP Refill", normal, "2012-01-01", "2012-01-11");
         alertRepository.createAlert(ocpRefillAlert);
         alertRepository.createAlert(condomRefillAlert);
-        alertRepository.createAlert(closedAlert);
+        alertRepository.createAlert(completedAlert);
         alertRepository.createAlert(ocpRefillAlertForAnotherEntity);
         alertRepository.createAlert(notOCPRefillAlert);
 
         List<Alert> alerts = alertRepository.findByEntityIdAndAlertNames("entity id 1", "OCP Refill", "Condom Refill", "DMPA Injectable Refill");
 
-        assertEquals(asList(condomRefillAlert, ocpRefillAlert), alerts);
+        assertEquals(asList(condomRefillAlert, completedAlert, ocpRefillAlert), alerts);
     }
 
     public void testShouldChangeAlertStatusToInProcessBasedOnEntityIdAndVisitCode() throws Exception {
