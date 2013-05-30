@@ -6827,6 +6827,20 @@ progress {
     text-decoration: underline;
 }
 
+.alert em {
+    color: #666;
+}
+
+.alert strong {
+    color: black;
+    font-size: 110%;
+    text-decoration: none;
+}
+
+.alert a {
+    text-decoration: underline;
+}
+
 .overlay {
     position: absolute;
     top: 0;
@@ -7664,7 +7678,7 @@ legend {
     margin-bottom: 0.6em;
 }
 
-legend span {
+legend > span {
     vertical-align: 12px;
 }
 
@@ -7721,11 +7735,11 @@ input:not([type="radio"]):not([type="checkbox"]), textarea {
     height: 34px;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"], input[type="url"], input[type="email"] {
     width: 80%;
 }
 
-input[type=date], input[type=number], input[type=email], input[type=password] {
+input[type=date], input[type=number] {
     width: 144px;
 }
 
