@@ -469,4 +469,84 @@ describe('FP Register controller', function () {
             expect(scope.getSideEffect(client)).toEqual(undefined);
         });
     });
+
+    describe("sort by EC Number", function () {
+        it("should sort clients by EC Number.", inject(function ($filter) {
+            var clients = [
+                {
+                    name: "client1",
+                    ec_number: "20"
+                },
+                {
+                    name: "client2",
+                    ec_number: "5"
+                }
+            ];
+
+            var filterFunc = scope.sortByECNumber;
+            var filteredClients = $filter('orderBy')(clients, filterFunc);
+            expect(filteredClients[0]).toEqual(clients[1]);
+            expect(filteredClients[1]).toEqual(clients[0]);
+        }));
+    });
+
+    describe("sort by BPL", function () {
+        it("should sort clients by BPL.", inject(function ($filter) {
+            var clients = [
+                {
+                    name: "client1",
+                    economicStatus: ""
+                },
+                {
+                    name: "client2",
+                    economicStatus: "bpl"
+                }
+            ];
+
+            var filterFunc = scope.sortByBPL;
+            var filteredClients = $filter('orderBy')(clients, filterFunc);
+            expect(filteredClients[0]).toEqual(clients[1]);
+            expect(filteredClients[1]).toEqual(clients[0]);
+        }));
+    });
+
+    describe("sort by SC", function () {
+        it("should sort clients by SC.", inject(function ($filter) {
+            var clients = [
+                {
+                    name: "client1",
+                    caste: "st"
+                },
+                {
+                    name: "client2",
+                    caste: "sc"
+                }
+            ];
+
+            var filterFunc = scope.sortBySC;
+            var filteredClients = $filter('orderBy')(clients, filterFunc);
+            expect(filteredClients[0]).toEqual(clients[1]);
+            expect(filteredClients[1]).toEqual(clients[0]);
+        }));
+    });
+
+    describe("sort by BPL", function () {
+        it("should sort clients by BPL.", inject(function ($filter) {
+            var clients = [
+                {
+                    name: "client1",
+                    caste: "sc"
+                },
+                {
+                    name: "client2",
+                    caste: "st"
+                }
+            ];
+
+            var filterFunc = scope.sortByST;
+            var filteredClients = $filter('orderBy')(clients, filterFunc);
+            expect(filteredClients[0]).toEqual(clients[1]);
+            expect(filteredClients[1]).toEqual(clients[0]);
+        }));
+    });
 });

@@ -18,6 +18,22 @@ angular.module("smartRegistry.controllers")
                 {
                     label: "HP",
                     handler: "sortByPriority"
+                },
+                {
+                    label: "EC Number",
+                    handler: "sortByECNumber"
+                },
+                {
+                    label: "BPL",
+                    handler: "sortByBPL"
+                },
+                {
+                    label: "SC",
+                    handler: "sortBySC"
+                },
+                {
+                    label: "ST",
+                    handler: "sortByST"
                 }
             ]
         };
@@ -26,6 +42,18 @@ angular.module("smartRegistry.controllers")
         $scope.sortList = $scope.sortByName;
         $scope.sortByPriority = function (client) {
             return !client.isHighPriority;
+        };
+        $scope.sortByECNumber = function(client) {
+            return parseInt(client.ec_number) || 0;
+        };
+        $scope.sortByBPL = function(client) {
+            return client.economicStatus !== "bpl";
+        };
+        $scope.sortBySC = function(client) {
+            return client.caste !== "sc";
+        };
+        $scope.sortByST = function(client) {
+            return client.caste !== "st";
         };
 
         $scope.defaultVillageOptions = {
