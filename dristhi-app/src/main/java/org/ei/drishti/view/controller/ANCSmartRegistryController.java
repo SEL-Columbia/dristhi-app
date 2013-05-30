@@ -37,6 +37,9 @@ public class ANCSmartRegistryController {
     private static final String LAB_REMINDER_ALERT_NAME = "REMINDER";
     private static final String TT_1_ALERT_NAME = "TT 1";
     private static final String TT_2_ALERT_NAME = "TT 2";
+    private static final String HB_TEST_1_ALERT_NAME = "Hb Test 1";
+    private static final String HB_TEST_2_ALERT_NAME = "Hb Test 2";
+    private static final String HB_FOLLOWUP_TEST_ALERT_NAME = "Hb Followup Test";
 
     private static final String IFA_SERVICE_PROVIDED_NAME = "ifa";
     private static final String TT_1_SERVICE_PROVIDED_NAME = "tt1";
@@ -121,7 +124,10 @@ public class ANCSmartRegistryController {
                 IFA_3_ALERT_NAME,
                 LAB_REMINDER_ALERT_NAME,
                 TT_1_ALERT_NAME,
-                TT_2_ALERT_NAME
+                TT_2_ALERT_NAME,
+                HB_TEST_1_ALERT_NAME,
+                HB_FOLLOWUP_TEST_ALERT_NAME,
+                HB_TEST_2_ALERT_NAME
         );
         List<AlertDTO> alertDTOs = new ArrayList<AlertDTO>();
         for (Alert alert : alerts) {

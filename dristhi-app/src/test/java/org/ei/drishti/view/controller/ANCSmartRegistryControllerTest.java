@@ -47,7 +47,10 @@ public class ANCSmartRegistryControllerTest {
             "IFA 3",
             "REMINDER",
             "TT 1",
-            "TT 2"
+            "TT 2",
+            "Hb Test 1",
+            "Hb Followup Test",
+            "Hb Test 2"
     };
     public static final String[] ANC_SERVICES = new String[]{
             "ifa",
