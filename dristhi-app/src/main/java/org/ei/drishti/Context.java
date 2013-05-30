@@ -65,6 +65,7 @@ public class Context {
     private TTHandler ttHandler;
     private IFAHandler ifaHandler;
     private HBTestHandler hbTestHandler;
+    private DeliveryOutcomeHandler deliveryOutcomeHandler;
 
     protected Context() {
     }
@@ -124,7 +125,8 @@ public class Context {
         if (formSubmissionRouter == null) {
             formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(),
                     fpComplicationsHandler(), fpChangeHandler(), renewFPProductHandler(), ecCloseHandler(),
-                    ancRegistrationHandler(), ancRegistrationOAHandler(), ancVisitHandler(), ancCloseHandler(), ttHandler(), ifaHandler(), hbTestHandler());
+                    ancRegistrationHandler(), ancRegistrationOAHandler(), ancVisitHandler(), ancCloseHandler(),
+                    ttHandler(), ifaHandler(), hbTestHandler(), deliveryOutcomeHandler());
         }
         return formSubmissionRouter;
     }
@@ -211,6 +213,13 @@ public class Context {
             hbTestHandler = new HBTestHandler(motherService());
         }
         return hbTestHandler;
+    }
+
+    private DeliveryOutcomeHandler deliveryOutcomeHandler() {
+        if (deliveryOutcomeHandler == null) {
+            deliveryOutcomeHandler = new DeliveryOutcomeHandler(motherService());
+        }
+        return deliveryOutcomeHandler;
     }
 
     private ZiggyService ziggyService() {

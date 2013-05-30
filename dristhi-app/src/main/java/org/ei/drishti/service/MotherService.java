@@ -32,6 +32,7 @@ public class MotherService {
     public static final String TT_DATE = "ttDate";
     public static final String HB_TEST_DATE = "hbTestDate";
     public static final String HB_LEVEL = "hbLevel";
+    public static final String DID_WOMAN_SURVIVE = "didWomanSurvive";
     private MotherRepository motherRepository;
     private AllBeneficiaries allBeneficiaries;
     private AllTimelineEvents allTimelines;
@@ -99,10 +100,13 @@ public class MotherService {
         serviceProvidedService.add(forHBTest(submission.entityId(), submission.getFieldValue(HB_LEVEL), submission.getFieldValue(HB_TEST_DATE)));
     }
 
-    @Deprecated
-    public void updateANCOutcome(Action action) {
-        motherRepository.switchToPNC(action.caseID());
-        motherRepository.updateDetails(action.caseID(), action.details());
+    public void deliveryOutcome(FormSubmission submission) {
+        if ("no".equals(submission.getFieldValue(DID_WOMAN_SURVIVE))) {
+            allBeneficiaries.closeMother(submission.entityId());
+            return;
+        }
+
+        allBeneficiaries.switchMotherToPNC(submission.entityId());
     }
 
     @Deprecated

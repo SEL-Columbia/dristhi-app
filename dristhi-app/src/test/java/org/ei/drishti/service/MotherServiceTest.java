@@ -187,14 +187,26 @@ public class MotherServiceTest {
     }
 
     @Test
-    public void shouldHandleUpdateANCOutcomeAction() throws Exception {
-        String caseId = "Case Mother X";
-        Action action = ActionBuilder.actionForUpdateANCOutcome(caseId, mapOf("some-key", "some-value"));
+    public void shouldHandleDeliveryOutcome() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("didWomanSurvive")).thenReturn("yes");
 
-        service.updateANCOutcome(action);
+        service.deliveryOutcome(submission);
 
-        verify(motherRepository).switchToPNC(caseId);
-        verify(motherRepository).updateDetails(caseId, mapOf("some-key", "some-value"));
+        verify(allBeneficiaries).switchMotherToPNC("entity id 1");
+    }
+
+    @Test
+    public void shouldCloseMotherIfDeadDuringDeliveryOutcome() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("didWomanSurvive")).thenReturn("no");
+
+        service.deliveryOutcome(submission);
+
+        verify(allBeneficiaries).closeMother("entity id 1");
+        verifyNoMoreInteractions(allBeneficiaries);
     }
 
     @Test

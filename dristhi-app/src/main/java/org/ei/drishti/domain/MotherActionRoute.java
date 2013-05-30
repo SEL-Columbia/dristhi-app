@@ -4,12 +4,6 @@ import org.ei.drishti.Context;
 import org.ei.drishti.dto.Action;
 
 public enum MotherActionRoute {
-    UPDATE_ANC_OUTCOME("updateANCOutcome") {
-        @Override
-        public void direct(Action action) {
-            Context.getInstance().motherService().updateANCOutcome(action);
-        }
-    },
     PNC_VISIT_HAPPENED("pncVisitHappened") {
         @Override
         public void direct(Action action) {

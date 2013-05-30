@@ -68,6 +68,10 @@ public class AllBeneficiaries {
         return motherRepository.findByCaseIds(caseIds.toArray(new String[caseIds.size()]));
     }
 
+    public void switchMotherToPNC(String entityId) {
+        motherRepository.switchToPNC(entityId);
+    }
+
     public void closeMother(String entityId) {
         alertRepository.deleteAllAlertsForEntity(entityId);
         timelineEventRepository.deleteAllTimelineEventsForEntity(entityId);
