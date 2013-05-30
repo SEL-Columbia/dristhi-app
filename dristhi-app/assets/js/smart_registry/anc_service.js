@@ -22,7 +22,7 @@ angular.module("smartRegistry.services")
                 },
                 {
                     name: "hb",
-                    milestones: ["HB Test 1", "HB Test 2"],
+                    milestones: ["Hb Test 1", "Hb Test 2"],
                     services: ["Hb Test"],
                     is_list: true
                 },
