@@ -401,7 +401,7 @@
     <!--end of group -->
     <fieldset class="jr-branch pre-init " name="/Delivery_Outcome_EngKan/live_birth_group"
               data-relevant=" /Delivery_Outcome_EngKan/delivery_outcome  = 'live_birth'">
-        <fieldset class="jr-group " name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat">
+        <fieldset class="jr-group " name="/Delivery_Outcome_EngKan/live_birth_group/child">
             <h4>
                 <span lang="" class=" active">Please enter birth information for each child born. &#xC9C;&#xCA8;&#xCA8;&#xCB5;&#xCBE;&#xCA6;
                     &#xCAA;&#xCCD;&#xCB0;&#xCA4;&#xCBF; &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xC9C;&#xCA8;&#xCCD;&#xCAE;
@@ -409,7 +409,7 @@
                     &#xCA8;&#xCAE;&#xCC2;&#xCA6;&#xCBF;&#xCB8;&#xCBF;.
                 </span>
             </h4>
-            <fieldset class="jr-repeat " name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat">
+            <fieldset class="jr-repeat " name="/Delivery_Outcome_EngKan/live_birth_group/child">
                 <fieldset class="restoring-sanity-to-legends ">
                     <fieldset>
                         <legend>
@@ -419,14 +419,14 @@
                         </legend>
                         <label class="clearfix ">
                             <input autocomplete="off" type="radio"
-                                   name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat/sex_child"
-                                   value="male" data-type-xml="select1"/>
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/sex_child" value="male"
+                                   data-type-xml="select1"/>
                             <span lang="" class=" active">Male &#xC97;&#xC82;&#xCA1;&#xCC1;</span>
                         </label>
                         <label class="clearfix ">
                             <input autocomplete="off" type="radio"
-                                   name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat/sex_child"
-                                   value="female" data-type-xml="select1"/>
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/sex_child" value="female"
+                                   data-type-xml="select1"/>
                             <span lang="" class=" active">Female &#xCB9;&#xCC6;&#xCA3;&#xCCD;&#xCA3;&#xCC1;</span>
                         </label>
                     </fieldset>
@@ -437,8 +437,8 @@
                         &#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)?
                     </span>
                     <input autocomplete="off" type="number"
-                           name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat/birthweight"
-                           data-type-xml="decimal" step="any"/>
+                           name="/Delivery_Outcome_EngKan/live_birth_group/child/birthweight" data-type-xml="decimal"
+                           step="any"/>
                 </label>
                 <fieldset class="restoring-sanity-to-legends ">
                     <fieldset>
@@ -449,49 +449,49 @@
                         </legend>
                         <label class="clearfix ">
                             <input autocomplete="off" type="radio"
-                                   name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat/child_blood_group"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/child_blood_group"
                                    value="a_positive" data-type-xml="select1"/>
                             <span lang="" class=" active">A+</span>
                         </label>
                         <label class="clearfix ">
                             <input autocomplete="off" type="radio"
-                                   name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat/child_blood_group"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/child_blood_group"
                                    value="a_negative" data-type-xml="select1"/>
                             <span lang="" class=" active">A-</span>
                         </label>
                         <label class="clearfix ">
                             <input autocomplete="off" type="radio"
-                                   name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat/child_blood_group"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/child_blood_group"
                                    value="b_positive" data-type-xml="select1"/>
                             <span lang="" class=" active">B+</span>
                         </label>
                         <label class="clearfix ">
                             <input autocomplete="off" type="radio"
-                                   name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat/child_blood_group"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/child_blood_group"
                                    value="b_negative" data-type-xml="select1"/>
                             <span lang="" class=" active">B-</span>
                         </label>
                         <label class="clearfix ">
                             <input autocomplete="off" type="radio"
-                                   name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat/child_blood_group"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/child_blood_group"
                                    value="ab_positive" data-type-xml="select1"/>
                             <span lang="" class=" active">AB+</span>
                         </label>
                         <label class="clearfix ">
                             <input autocomplete="off" type="radio"
-                                   name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat/child_blood_group"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/child_blood_group"
                                    value="ab_negative" data-type-xml="select1"/>
                             <span lang="" class=" active">AB-</span>
                         </label>
                         <label class="clearfix ">
                             <input autocomplete="off" type="radio"
-                                   name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat/child_blood_group"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/child_blood_group"
                                    value="o_positive" data-type-xml="select1"/>
                             <span lang="" class=" active">O+</span>
                         </label>
                         <label class="clearfix ">
                             <input autocomplete="off" type="radio"
-                                   name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat/child_blood_group"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/child_blood_group"
                                    value="o_negative" data-type-xml="select1"/>
                             <span lang="" class=" active">O-</span>
                         </label>
@@ -507,19 +507,19 @@
                         </legend>
                         <label class="clearfix ">
                             <input autocomplete="off" type="checkbox"
-                                   name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat/immunizations_atbirth"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/immunizations_atbirth"
                                    value="bcg" data-type-xml="select"/>
                             <span lang="" class=" active">BCG &#xCAC;&#xCBF;.&#xCB8;&#xCBF;.&#xC9C;&#xCBF;</span>
                         </label>
                         <label class="clearfix ">
                             <input autocomplete="off" type="checkbox"
-                                   name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat/immunizations_atbirth"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/immunizations_atbirth"
                                    value="opv_0" data-type-xml="select"/>
                             <span lang="" class=" active">OPV 0 &#xC92;.&#xCAA;&#xCBF;.&#xCB5;&#xCBF; 0</span>
                         </label>
                         <label class="clearfix ">
                             <input autocomplete="off" type="checkbox"
-                                   name="/Delivery_Outcome_EngKan/live_birth_group/children_repeat/immunizations_atbirth"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/immunizations_atbirth"
                                    value="hepb_0" data-type-xml="select"/>
                             <span lang="" class=" active">HEP B 0 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
                                 &#xCAC;&#xCBF; 0
@@ -528,7 +528,7 @@
                     </fieldset>
                 </fieldset>
             </fieldset>
-            <!--end of repeat fieldset with name /Delivery_Outcome_EngKan/live_birth_group/children_repeat-->
+            <!--end of repeat fieldset with name /Delivery_Outcome_EngKan/live_birth_group/child-->
         </fieldset>
         <!--end of group -->
         <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
@@ -1081,12 +1081,12 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/lbw"
-                   data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/children_repeat/birthweight  &gt;= 1.5 and  /Delivery_Outcome_EngKan/live_birth_group/children_repeat/birthweight  &lt; 2.5, 'Low_Birth_Weight','')"
+                   data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/birthweight  &gt;= 1.5 and  /Delivery_Outcome_EngKan/live_birth_group/child/birthweight  &lt; 2.5, 'Low_Birth_Weight','')"
                    data-type-xml="string"/>
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/vlbw"
-                   data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/children_repeat/birthweight  &lt; 1.5, 'Very_Low_Birth_Weight', '')"
+                   data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/birthweight  &lt; 1.5, 'Very_Low_Birth_Weight', '')"
                    data-type-xml="string"/>
         </label>
         <label class="">

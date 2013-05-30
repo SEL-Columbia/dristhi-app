@@ -101,6 +101,10 @@
                 "bind": "/model/instance/Delivery_Outcome_EngKan/still_birth_group/woman_survived"
             },
             {
+                "name": "didWomanSurvive",
+                "bind": "/model/instance/Delivery_Outcome_EngKan/still_birth_group/mother_survived"
+            },
+            {
                 "name": "numberOFLivingChildren",
                 "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/num_livingchildren",
                 "source": "mother.eligible_couple.numberOFLivingChildren"
@@ -267,26 +271,26 @@
         "sub_forms": [
             {
                 "bind_type": "child",
-                "default_bind_path": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/children_repeat",
+                "default_bind_path": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child",
                 "fields": [
                     {
                         "name": "id"
                     },
                     {
                         "name": "gender",
-                        "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/children_repeat/sex_child"
+                        "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child/sex_child"
                     },
                     {
                         "name": "weight",
-                        "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/children_repeat/birthweight"
+                        "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child/birthweight"
                     },
                     {
                         "name": "bloodGroup",
-                        "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/children_repeat/child_blood_group"
+                        "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child/child_blood_group"
                     },
                     {
                         "name": "immunizationsGivenAtBirth",
-                        "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/children_repeat/immunizations_atbirth"
+                        "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child/immunizations_atbirth"
                     }
                 ]
             }

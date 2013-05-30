@@ -173,7 +173,6 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.closeANCFormModal = function() {
-            $scope.currentClientEntityId = null;
             $scope.isANCFormModalOpen = false;
         };
 

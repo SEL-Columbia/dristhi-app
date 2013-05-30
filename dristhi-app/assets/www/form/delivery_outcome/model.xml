@@ -30,12 +30,12 @@
                 <woman_survived/>
             </still_birth_group>
             <live_birth_group>
-                <children_repeat template="">
+                <child template="">
                     <sex_child/>
                     <birthweight/>
                     <child_blood_group/>
                     <immunizations_atbirth/>
-                </children_repeat>
+                </child>
                 <num_livingchildren/>
                 <youngestchild_under2/>
                 <numlivingchildren_female/>
