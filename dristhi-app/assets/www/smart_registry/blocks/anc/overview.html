@@ -87,7 +87,11 @@
                 </ng:switch>
                 <span ng-show="client.visits[schedule].previous" class="previous-alert">
                     <i class="icon-ok green"></i>
-                    <span class="text-upper">{{client.visits[schedule].previous.name}}:</span> {{client.visits[schedule].previous.visit_date | date:'dd/MM'}}
+                    <ng:switch on="client.visits[schedule].previous.name">
+                        <span ng-switch-default class="text-upper">{{client.visits[schedule].previous.name}}:</span>
+                        <span ng-switch-when="TT Booster" class="text-upper">TT B:</span>
+                    </ng:switch>
+                    {{client.visits[schedule].previous.visit_date | date:'dd/MM'}}
                 </span>
             </div>
         </div>
