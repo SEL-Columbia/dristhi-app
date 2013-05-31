@@ -124,7 +124,8 @@ function FakeANCSmartRegistryContext() {
                             name: 'ANC 1',
                             date: '04/04',
                             data: {
-                                bp: '120/80',
+                                bpSystolic: '120',
+                                bpDiastolic: '79',
                                 weight: '55'
                             }
                         },
@@ -176,7 +177,8 @@ function FakeANCSmartRegistryContext() {
                             name: 'ANC 1',
                             date: '04/04',
                             data: {
-                                bp: '120/80',
+                                bpSystolic: '120',
+                                bpDiastolic: '80',
                                 weight: '55'
                             }
                         },
@@ -260,7 +262,8 @@ function FakeANCSmartRegistryContext() {
                             name: 'ANC 2',
                             date: '04/08',
                             data: {
-                                bp: '115/90',
+                                bpSystolic: '115',
+                                bpDiastolic: '90',
                                 weight: '98'
                             }
                         },
@@ -342,7 +345,8 @@ function FakeANCSmartRegistryContext() {
                             name: 'ANC 1',
                             date: '04/04',
                             data: {
-                                bp: '120/80',
+                                bpSystolic: '120',
+                                bpDiastolic: '80',
                                 weight: '95'
                             }
                         },
@@ -350,7 +354,8 @@ function FakeANCSmartRegistryContext() {
                             name: 'ANC 2',
                             date: '04/08',
                             data: {
-                                bp: '115/90',
+                                bpSystolic: '115',
+                                bpDiastolic: '90',
                                 weight: '98'
                             }
                         },

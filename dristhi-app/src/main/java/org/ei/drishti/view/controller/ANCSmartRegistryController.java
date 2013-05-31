@@ -105,7 +105,11 @@ public class ANCSmartRegistryController {
                 TT_1_SERVICE_PROVIDED_NAME,
                 TT_2_SERVICE_PROVIDED_NAME,
                 TT_BOOSTER_SERVICE_PROVIDED_NAME,
-                HB_TEST_SERVICE_PROVIDED_NAME);
+                HB_TEST_SERVICE_PROVIDED_NAME,
+                ANC_1_SERVICE_PROVIDED_NAME,
+                ANC_2_SERVICE_PROVIDED_NAME,
+                ANC_3_SERVICE_PROVIDED_NAME,
+                ANC_4_SERVICE_PROVIDED_NAME);
         List<ServiceProvidedDTO> serviceProvidedDTOs = new ArrayList<ServiceProvidedDTO>();
         for (ServiceProvided serviceProvided : servicesProvided) {
             serviceProvidedDTOs.add(new ServiceProvidedDTO(serviceProvided.name(), serviceProvided.date(), serviceProvided.data()));

@@ -57,7 +57,11 @@ public class ANCSmartRegistryControllerTest {
             "TT 1",
             "TT 2",
             "TT Booster",
-            "Hb Test"
+            "Hb Test",
+            "ANC 1",
+            "ANC 2",
+            "ANC 3",
+            "ANC 4"
     };
     @Mock
     private AllEligibleCouples allEligibleCouples;

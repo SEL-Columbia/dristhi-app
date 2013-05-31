@@ -2,17 +2,20 @@
     <div class="row-fluid full-height">
         <div class="span10 full-height span-no-margin width-without-margins">
             <div class="row-fluid full-height">
-                <div data-ng-repeat="milestone in ['ANC 1', 'ANC 2', 'ANC 3', 'ANC 4']" class="visits span3 line-right span-no-margin width-without-margins span-content">
+                <div data-ng-repeat="milestone in ['ANC 1', 'ANC 2', 'ANC 3', 'ANC 4']"
+                     class="visits span3 line-right span-no-margin width-without-margins span-content">
                     <!--ANC 1-->
                     <a ng-show="client.visits.anc[milestone]" class="btn btn-primary btn-sr"
                        ng-class="client.visits.anc[milestone].status">
                         <ng:switch on="client.visits.anc[milestone].status">
-                            <div ng-switch-when="done" class="full-height">
+                            <div ng-switch-when="complete" class="full-height">
                                 <div class="done-icon full-height"><i class="icon-ok green"></i></div>
                                 <span class="text-bold">{{client.visits.anc[milestone].visit_date | date:'dd/MM'}}</span>
                                 <br/>
-                                <span ng-show="client.visits.anc[milestone].data.bp">Bp {{client.visits.anc[milestone].data.bp}}</span>
-                                <br/>
+                                <span ng-show="client.visits.anc[milestone].data.bpSystolic && client.visits.anc[milestone].data.bpDiastolic">
+                                    Bp. {{client.visits.anc[milestone].data.bpSystolic}}/{{client.visits.anc[milestone].data.bpDiastolic}}
+                                    <br/>
+                                </span>
                                 <span ng-show="client.visits.anc[milestone].data.weight">Wt. {{client.visits.anc[milestone].data.weight}} kg</span>
                             </div>
                             <div ng-switch-default>

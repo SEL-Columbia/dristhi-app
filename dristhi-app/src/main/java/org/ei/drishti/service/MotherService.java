@@ -52,12 +52,24 @@ public class MotherService {
     }
 
     public void ancVisit(FormSubmission submission) {
-        allTimelines.add(forANCCareProvided(submission.entityId(), submission.getFieldValue(ANC_VISIT_NUMBER), submission.getFieldValue(ANC_VISIT_DATE),
-                create(BP_SYSTOLIC, submission.getFieldValue(BP_SYSTOLIC))
-                        .put(BP_DIASTOLIC, submission.getFieldValue(BP_DIASTOLIC))
-                        .put(TEMPERATURE, submission.getFieldValue(TEMPERATURE))
-                        .put(WEIGHT, submission.getFieldValue(WEIGHT))
-                        .map()));
+        allTimelines.add(
+                forANCCareProvided(
+                        submission.entityId(),
+                        submission.getFieldValue(ANC_VISIT_NUMBER),
+                        submission.getFieldValue(ANC_VISIT_DATE),
+                        create(BP_SYSTOLIC, submission.getFieldValue(BP_SYSTOLIC))
+                                .put(BP_DIASTOLIC, submission.getFieldValue(BP_DIASTOLIC))
+                                .put(TEMPERATURE, submission.getFieldValue(TEMPERATURE))
+                                .put(WEIGHT, submission.getFieldValue(WEIGHT))
+                                .map()));
+        serviceProvidedService.add(
+                ServiceProvided.forANCCareProvided(
+                        submission.entityId(),
+                        submission.getFieldValue(ANC_VISIT_NUMBER),
+                        submission.getFieldValue(ANC_VISIT_DATE),
+                        submission.getFieldValue(BP_SYSTOLIC),
+                        submission.getFieldValue(BP_DIASTOLIC),
+                        submission.getFieldValue(WEIGHT)));
     }
 
     public void close(FormSubmission submission) {

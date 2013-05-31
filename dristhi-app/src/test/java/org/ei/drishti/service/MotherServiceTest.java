@@ -72,7 +72,7 @@ public class MotherServiceTest {
     }
 
     @Test
-    public void shouldHandleANCVisitForMother() throws Exception {
+    public void shouldCreateTimelineEventsWhenANCVisitHappens() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
         when(submission.getFieldValue("ancVisitDate")).thenReturn("2013-01-01");
@@ -86,6 +86,22 @@ public class MotherServiceTest {
 
         verify(allTimelineEvents).add(TimelineEvent.forANCCareProvided("entity id 1", "2", "2013-01-01",
                 create("bpDiastolic", "80").put("bpSystolic", "90").put("temperature", "98.5").put("weight", "21").map()));
+    }
+
+    @Test
+    public void shouldAddServiceProvidedWhenANCVisitHappens() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("ancVisitDate")).thenReturn("2013-01-01");
+        when(submission.getFieldValue("ancVisitNumber")).thenReturn("1");
+        when(submission.getFieldValue("weight")).thenReturn("21");
+        when(submission.getFieldValue("bpDiastolic")).thenReturn("80");
+        when(submission.getFieldValue("bpSystolic")).thenReturn("90");
+
+        service.ancVisit(submission);
+
+        verify(serviceProvidedService).add(
+                new ServiceProvided("entity id 1", "ANC 1", "2013-01-01", create("bpDiastolic", "80").put("bpSystolic", "90").put("weight", "21").map()));
     }
 
     @Test
