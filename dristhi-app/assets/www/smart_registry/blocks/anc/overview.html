@@ -45,7 +45,7 @@
 
                     <button ng-switch-when="IFA 1" class="btn btn-primary btn-sr"
                             ng-class="client.visits[schedule].next.status"
-                            ng-click="openMicroForm('schedule', client.entityId)">
+                            ng-click="openMicroForm(schedule, client.entityId)">
                         <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
                         <br/>
                         <span ng-show="client.visits[schedule].next.status == 'upcoming'">Upcoming</span>
@@ -55,7 +55,7 @@
 
                     <button ng-switch-when="IFA 2" class="btn btn-primary btn-sr"
                             ng-class="client.visits[schedule].next.status"
-                            ng-click="openMicroForm('schedule', client.entityId)">
+                            ng-click="openMicroForm(schedule, client.entityId)">
                         <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
                         <br/>
                         <span ng-show="client.visits[schedule].next.status == 'upcoming'">Upcoming</span>
@@ -65,7 +65,7 @@
 
                     <button ng-switch-when="IFA 3" class="btn btn-primary btn-sr"
                             ng-class="client.visits[schedule].next.status"
-                            ng-click="openMicroForm('schedule', client.entityId)">
+                            ng-click="openMicroForm(schedule, client.entityId)">
                         <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
                         <br/>
                         <span ng-show="client.visits[schedule].next.status == 'upcoming'">Upcoming</span>
@@ -73,8 +73,11 @@
                         <span> {{client.visits[schedule].next.visit_date | date:'dd/MM'}}</span>
                     </button>
 
-                    <button ng-switch-default class="btn btn-primary btn-sr"
-                            ng-class="client.visits[schedule].next.status" ng-show="client.visits[schedule].next">
+                    <button ng-switch-default
+                            class="btn btn-primary btn-sr"
+                            ng-class="client.visits[schedule].next.status"
+                            ng-show="client.visits[schedule].next"
+                            ng-click="openForm('anc_visit', client.entityId)">
                         <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
                         <br/>
                         <span ng-show="client.visits[schedule].next.status == 'upcoming'">Upcoming</span>
