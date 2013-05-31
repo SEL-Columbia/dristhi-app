@@ -69,11 +69,11 @@
             },
             {
                 "name": "weight",
-                "bind": "/model/instance/ANC_Visit_EngKan/weight_group/weight"
+                "bind": "/model/instance/ANC_Visit_EngKan/weight_group/case_weight"
             },
             {
                 "name": "weight",
-                "bind": "/model/instance/ANC_Visit_EngKan/weight_group/case_weight"
+                "bind": "/model/instance/ANC_Visit_EngKan/weight_group/weight"
             },
             {
                 "name": "referenceDate",
