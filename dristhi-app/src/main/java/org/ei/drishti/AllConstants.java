@@ -57,15 +57,13 @@ public class AllConstants {
     public static final String HB_TEST_FORM_NAME = "hb_test";
     public static final String DELIVERY_OUTCOME_TEST_FORM_NAME = "delivery_outcome";
     public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
-    public static final String FP_UPDATE_FIELD_NAME = "fpUpdate";
     public static final String NEW_FP_METHOD_FIELD_NAME = "newMethod";
-    public static final String CHANGE_FP_METHOD_FIELD_NAME = "change_fp_method";
-    public static final String RENEW_FP_PRODUCT_FIELD_NAME = "renew_fp_product";
     public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME = "familyPlanningMethodChangeDate";
 
     public static final String ENTITY_ID = "entityId";
     public static final int FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE = 112;
     public static final String ALERT_NAME_PARAM = "alertName";
+    public static final String BOOLEAN_FALSE = "no";
 
     public class ANCCloseFields {
         public static final String DEATH_OF_WOMAN_FIELD_VALUE = "death_of_woman";
@@ -76,5 +74,30 @@ public class AllConstants {
     public class IFAFields {
         public static final String NUMBER_OF_IFA_TABLETS_GIVEN = "numberOfIFATabletsGiven";
         public static final String IFA_TABLETS_DATE = "ifaTabletsDate";
+    }
+
+    public class HbTestFields {
+        public static final String HB_LEVEL = "hbLevel";
+        public static final String HB_TEST_DATE = "hbTestDate";
+    }
+
+    public class TTFields {
+        public static final String TT_DOSE = "ttDose";
+        public static final String TT_DATE = "ttDate";
+    }
+
+    public class ANCVisitFields {
+        public static final String REFERENCE_DATE = "referenceDate";
+        public static final String THAYI_CARD_NUMBER = "thayiCardNumber";
+        public static final String ANC_VISIT_NUMBER = "ancVisitNumber";
+        public static final String ANC_VISIT_DATE = "ancVisitDate";
+        public static final String BP_SYSTOLIC = "bpSystolic";
+        public static final String BP_DIASTOLIC = "bpDiastolic";
+        public static final String TEMPERATURE = "temperature";
+        public static final String WEIGHT = "weight";
+    }
+
+    public class DeliveryOutcomeFields {
+        public static final String DID_WOMAN_SURVIVE = "didWomanSurvive";
     }
 }

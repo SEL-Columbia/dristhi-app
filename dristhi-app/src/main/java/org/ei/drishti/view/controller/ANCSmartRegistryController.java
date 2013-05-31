@@ -25,6 +25,7 @@ import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
+import static org.ei.drishti.domain.ServiceProvided.*;
 
 public class ANCSmartRegistryController {
     private static final String ANC_1_ALERT_NAME = "ANC 1";
@@ -40,10 +41,6 @@ public class ANCSmartRegistryController {
     private static final String HB_TEST_1_ALERT_NAME = "Hb Test 1";
     private static final String HB_TEST_2_ALERT_NAME = "Hb Test 2";
     private static final String HB_FOLLOWUP_TEST_ALERT_NAME = "Hb Followup Test";
-
-    private static final String IFA_SERVICE_PROVIDED_NAME = "ifa";
-    private static final String TT_1_SERVICE_PROVIDED_NAME = "tt1";
-
 
     private static final String ANC_CLIENTS_LIST = "ANCClientList";
     private AllEligibleCouples allEligibleCouples;
@@ -105,7 +102,10 @@ public class ANCSmartRegistryController {
     private List<ServiceProvidedDTO> getServicesProvided(String entityId) {
         List<ServiceProvided> servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId,
                 IFA_SERVICE_PROVIDED_NAME,
-                TT_1_SERVICE_PROVIDED_NAME);
+                TT_1_SERVICE_PROVIDED_NAME,
+                TT_2_SERVICE_PROVIDED_NAME,
+                TT_BOOSTER_SERVICE_PROVIDED_NAME,
+                HB_TEST_SERVICE_PROVIDED_NAME);
         List<ServiceProvidedDTO> serviceProvidedDTOs = new ArrayList<ServiceProvidedDTO>();
         for (ServiceProvided serviceProvided : servicesProvided) {
             serviceProvidedDTOs.add(new ServiceProvidedDTO(serviceProvided.name(), serviceProvided.date(), serviceProvided.data()));

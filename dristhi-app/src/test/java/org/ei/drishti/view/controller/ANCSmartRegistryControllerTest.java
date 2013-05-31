@@ -53,8 +53,11 @@ public class ANCSmartRegistryControllerTest {
             "Hb Test 2"
     };
     public static final String[] ANC_SERVICES = new String[]{
-            "ifa",
-            "tt1"
+            "IFA",
+            "TT 1",
+            "TT 2",
+            "TT Booster",
+            "Hb Test"
     };
     @Mock
     private AllEligibleCouples allEligibleCouples;
@@ -156,8 +159,8 @@ public class ANCSmartRegistryControllerTest {
         Mother mother = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25").withDetails(details);
         when(allBeneficiaries.allANCsWithEC()).thenReturn(asList(Pair.of(mother, ec)));
         when(alertService.findByEntityIdAndAlertNames("Entity X", ANC_ALERTS)).thenReturn(Collections.<Alert>emptyList());
-        when(sericeProvidedService.findByEntityIdAndServiceNames("Entity X", "ifa", "tt1"))
-                .thenReturn(asList(new ServiceProvided("entity id 1", "ifa", "2013-01-01", mapOf("dose", "100")), new ServiceProvided("entity id 1", "tt1", "2013-02-01", emptyMap)));
+        when(sericeProvidedService.findByEntityIdAndServiceNames("Entity X", ANC_SERVICES))
+                .thenReturn(asList(new ServiceProvided("entity id 1", "IFA", "2013-01-01", mapOf("dose", "100")), new ServiceProvided("entity id 1", "TT 1", "2013-02-01", emptyMap)));
 
         String clients = controller.get();
 
@@ -165,8 +168,8 @@ public class ANCSmartRegistryControllerTest {
         }.getType());
         verify(alertService).findByEntityIdAndAlertNames("Entity X", ANC_ALERTS);
         verify(sericeProvidedService).findByEntityIdAndServiceNames("Entity X", ANC_SERVICES);
-        List<ServiceProvidedDTO> expectedServicesProvided = asList(new ServiceProvidedDTO("ifa", "2013-01-01", mapOf("dose", "100")),
-                new ServiceProvidedDTO("tt1", "2013-02-01", emptyMap));
+        List<ServiceProvidedDTO> expectedServicesProvided = asList(new ServiceProvidedDTO("IFA", "2013-01-01", mapOf("dose", "100")),
+                new ServiceProvidedDTO("TT 1", "2013-02-01", emptyMap));
         ANCClient expectedEC = createANCClient("Entity X", "Woman C", "Bherya", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25")
                 .withECNumber("EC Number 1")
                 .withHusbandName("Husband C")

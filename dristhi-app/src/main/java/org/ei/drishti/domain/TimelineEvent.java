@@ -64,7 +64,7 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "ANCVISIT", LocalDate.parse(visitDate), "ANC Visit " + visitNumber, detailsString, null);
     }
 
-    public static TimelineEvent forIFATabletsProvided(String caseId, String numberOfIFATabletsProvided, String visitDate) {
+    public static TimelineEvent forIFATabletsGiven(String caseId, String numberOfIFATabletsProvided, String visitDate) {
         return new TimelineEvent(caseId, "IFAPROVIDED", LocalDate.parse(visitDate), "IFA Provided", numberOfIFATabletsProvided + " tablets", null);
     }
 

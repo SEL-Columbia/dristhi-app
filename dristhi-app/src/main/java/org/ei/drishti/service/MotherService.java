@@ -1,6 +1,8 @@
 package org.ei.drishti.service;
 
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.Mother;
+import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.repository.AllBeneficiaries;
@@ -9,8 +11,13 @@ import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.repository.MotherRepository;
 
 import static org.ei.drishti.AllConstants.ANCCloseFields.*;
+import static org.ei.drishti.AllConstants.ANCVisitFields.*;
+import static org.ei.drishti.AllConstants.BOOLEAN_FALSE;
+import static org.ei.drishti.AllConstants.DeliveryOutcomeFields.DID_WOMAN_SURVIVE;
 import static org.ei.drishti.AllConstants.IFAFields.IFA_TABLETS_DATE;
 import static org.ei.drishti.AllConstants.IFAFields.NUMBER_OF_IFA_TABLETS_GIVEN;
+import static org.ei.drishti.AllConstants.TTFields.TT_DATE;
+import static org.ei.drishti.AllConstants.TTFields.TT_DOSE;
 import static org.ei.drishti.domain.ServiceProvided.forHBTest;
 import static org.ei.drishti.domain.ServiceProvided.forTTDose;
 import static org.ei.drishti.domain.TimelineEvent.*;
@@ -20,19 +27,6 @@ import static org.ei.drishti.util.Log.logWarn;
 
 public class MotherService {
     public static final String MOTHER_ID = "motherId";
-    public static final String REFERENCE_DATE = "referenceDate";
-    public static final String THAYI_CARD_NUMBER = "thayiCardNumber";
-    public static final String ANC_VISIT_NUMBER = "ancVisitNumber";
-    public static final String ANC_VISIT_DATE = "ancVisitDate";
-    public static final String BP_SYSTOLIC = "bpSystolic";
-    public static final String BP_DIASTOLIC = "bpDiastolic";
-    public static final String TEMPERATURE = "temperature";
-    public static final String WEIGHT = "weight";
-    public static final String TT_DOSE = "ttDose";
-    public static final String TT_DATE = "ttDate";
-    public static final String HB_TEST_DATE = "hbTestDate";
-    public static final String HB_LEVEL = "hbLevel";
-    public static final String DID_WOMAN_SURVIVE = "didWomanSurvive";
     private MotherRepository motherRepository;
     private AllBeneficiaries allBeneficiaries;
     private AllTimelineEvents allTimelines;
@@ -58,10 +52,10 @@ public class MotherService {
 
     public void ancVisit(FormSubmission submission) {
         allTimelines.add(forANCCareProvided(submission.entityId(), submission.getFieldValue(ANC_VISIT_NUMBER), submission.getFieldValue(ANC_VISIT_DATE),
-                create("bpSystolic", submission.getFieldValue(BP_SYSTOLIC))
-                        .put("bpDiastolic", submission.getFieldValue(BP_DIASTOLIC))
-                        .put("temperature", submission.getFieldValue(TEMPERATURE))
-                        .put("weight", submission.getFieldValue(WEIGHT))
+                create(BP_SYSTOLIC, submission.getFieldValue(BP_SYSTOLIC))
+                        .put(BP_DIASTOLIC, submission.getFieldValue(BP_DIASTOLIC))
+                        .put(TEMPERATURE, submission.getFieldValue(TEMPERATURE))
+                        .put(WEIGHT, submission.getFieldValue(WEIGHT))
                         .map()));
     }
 
@@ -85,9 +79,10 @@ public class MotherService {
     }
 
     public void ifaTabletsGiven(FormSubmission submission) {
-        String numberOfIFATabletsProvided = submission.getFieldValue(NUMBER_OF_IFA_TABLETS_GIVEN);
-        if (tryParse(numberOfIFATabletsProvided, 0) > 0) {
-            allTimelines.add(forIFATabletsProvided(submission.entityId(), numberOfIFATabletsProvided, submission.getFieldValue(IFA_TABLETS_DATE)));
+        String numberOfIFATabletsGiven = submission.getFieldValue(NUMBER_OF_IFA_TABLETS_GIVEN);
+        if (tryParse(numberOfIFATabletsGiven, 0) > 0) {
+            allTimelines.add(forIFATabletsGiven(submission.entityId(), numberOfIFATabletsGiven, submission.getFieldValue(IFA_TABLETS_DATE)));
+            serviceProvidedService.add(ServiceProvided.forIFATabletsGiven(submission.entityId(), numberOfIFATabletsGiven, submission.getFieldValue(IFA_TABLETS_DATE)));
         }
     }
 
@@ -97,11 +92,11 @@ public class MotherService {
     }
 
     public void hbTest(FormSubmission submission) {
-        serviceProvidedService.add(forHBTest(submission.entityId(), submission.getFieldValue(HB_LEVEL), submission.getFieldValue(HB_TEST_DATE)));
+        serviceProvidedService.add(forHBTest(submission.entityId(), submission.getFieldValue(AllConstants.HbTestFields.HB_LEVEL), submission.getFieldValue(AllConstants.HbTestFields.HB_TEST_DATE)));
     }
 
     public void deliveryOutcome(FormSubmission submission) {
-        if ("no".equals(submission.getFieldValue(DID_WOMAN_SURVIVE))) {
+        if (BOOLEAN_FALSE.equals(submission.getFieldValue(DID_WOMAN_SURVIVE))) {
             allBeneficiaries.closeMother(submission.entityId());
             return;
         }
@@ -116,7 +111,7 @@ public class MotherService {
 
         String numberOfIFATabletsProvided = action.get("numberOfIFATabletsProvided");
         if (numberOfIFATabletsProvided != null && tryParse(numberOfIFATabletsProvided, 0) > 0) {
-            allTimelines.add(forIFATabletsProvided(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
+            allTimelines.add(forIFATabletsGiven(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
         }
     }
 }

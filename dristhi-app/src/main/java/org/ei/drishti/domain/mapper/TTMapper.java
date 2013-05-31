@@ -1,7 +1,9 @@
 package org.ei.drishti.domain.mapper;
 
+import static org.ei.drishti.domain.ServiceProvided.*;
+
 public enum TTMapper {
-    ttbooster("TT Booster"), tt1("TT 1"), tt2("TT 2");
+    ttbooster(TT_BOOSTER_SERVICE_PROVIDED_NAME), tt1(TT_1_SERVICE_PROVIDED_NAME), tt2(TT_2_SERVICE_PROVIDED_NAME);
 
     private String value;
 

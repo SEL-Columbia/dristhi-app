@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import static org.ei.drishti.domain.ServiceProvided.forTTDose;
-import static org.ei.drishti.domain.TimelineEvent.forIFATabletsProvided;
+import static org.ei.drishti.domain.TimelineEvent.forIFATabletsGiven;
 import static org.ei.drishti.domain.TimelineEvent.forTTShotProvided;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
@@ -151,7 +151,7 @@ public class MotherServiceTest {
     }
 
     @Test
-    public void shouldAddTimelineEventWhenIFAProvided() throws Exception {
+    public void shouldAddTimelineEventWhenIFATabletsAreGiven() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
         when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("100");
@@ -159,11 +159,23 @@ public class MotherServiceTest {
 
         service.ifaTabletsGiven(submission);
 
-        verify(allTimelineEvents).add(forIFATabletsProvided("entity id 1", "100", "2013-02-01"));
+        verify(allTimelineEvents).add(forIFATabletsGiven("entity id 1", "100", "2013-02-01"));
     }
 
     @Test
-    public void shouldNotAddTimelineEventWhenIFATabletsAreNotProvided() throws Exception {
+    public void shouldAddServiceProvidedWhenIFATabletsAreGiven() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("100");
+        when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2013-02-01");
+
+        service.ifaTabletsGiven(submission);
+
+        verify(serviceProvidedService).add(ServiceProvided.forIFATabletsGiven("entity id 1", "100", "2013-02-01"));
+    }
+
+    @Test
+    public void shouldDoNothingWhenIFATabletsAreNotGiven() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
         when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("0");
@@ -172,6 +184,7 @@ public class MotherServiceTest {
         service.ifaTabletsGiven(submission);
 
         verifyZeroInteractions(allTimelineEvents);
+        verifyZeroInteractions(serviceProvidedService);
     }
 
     @Test
