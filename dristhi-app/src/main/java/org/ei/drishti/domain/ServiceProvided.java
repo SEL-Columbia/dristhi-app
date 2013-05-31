@@ -29,7 +29,7 @@ public class ServiceProvided {
 
     public static ServiceProvided forTTDose(String entityId, String ttDose, String date) {
         String mappedTTDose = TTMapper.valueOf(ttDose).value();
-        return new ServiceProvided(entityId, mappedTTDose, date, mapOf("ttDose", mappedTTDose));
+        return new ServiceProvided(entityId, mappedTTDose, date, mapOf("dose", mappedTTDose));
     }
 
     public static ServiceProvided forHBTest(String entityId, String hbLevel, String date) {

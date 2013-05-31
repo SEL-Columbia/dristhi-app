@@ -13,7 +13,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import static org.ei.drishti.domain.ServiceProvided.forTTDose;
 import static org.ei.drishti.domain.TimelineEvent.forIFATabletsGiven;
 import static org.ei.drishti.domain.TimelineEvent.forTTShotProvided;
 import static org.ei.drishti.util.EasyMap.create;
@@ -147,7 +146,7 @@ public class MotherServiceTest {
         service.ttProvided(submission);
 
         verify(allTimelineEvents).add(forTTShotProvided("entity id 1", "ttbooster", "2013-01-01"));
-        verify(serviceProvidedService).add(forTTDose("entity id 1", "ttbooster", "2013-01-01"));
+        verify(serviceProvidedService).add(new ServiceProvided("entity id 1", "TT Booster", "2013-01-01", mapOf("dose", "TT Booster")));
     }
 
     @Test
@@ -170,8 +169,7 @@ public class MotherServiceTest {
         when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2013-02-01");
 
         service.ifaTabletsGiven(submission);
-
-        verify(serviceProvidedService).add(ServiceProvided.forIFATabletsGiven("entity id 1", "100", "2013-02-01"));
+        verify(serviceProvidedService).add(new ServiceProvided("entity id 1", "IFA", "2013-02-01", mapOf("dose", "100")));
     }
 
     @Test
@@ -196,7 +194,7 @@ public class MotherServiceTest {
 
         service.hbTest(submission);
 
-        verify(serviceProvidedService).add(new ServiceProvided("entity id 1", "HB Test", "2013-01-01", mapOf("hbLevel", "11")));
+        verify(serviceProvidedService).add(new ServiceProvided("entity id 1", "Hb Test", "2013-01-01", mapOf("hbLevel", "11")));
     }
 
     @Test

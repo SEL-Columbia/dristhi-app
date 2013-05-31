@@ -1,6 +1,5 @@
 package org.ei.drishti.service;
 
-import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.form.FormSubmission;
@@ -14,6 +13,8 @@ import static org.ei.drishti.AllConstants.ANCCloseFields.*;
 import static org.ei.drishti.AllConstants.ANCVisitFields.*;
 import static org.ei.drishti.AllConstants.BOOLEAN_FALSE;
 import static org.ei.drishti.AllConstants.DeliveryOutcomeFields.DID_WOMAN_SURVIVE;
+import static org.ei.drishti.AllConstants.HbTestFields.HB_LEVEL;
+import static org.ei.drishti.AllConstants.HbTestFields.HB_TEST_DATE;
 import static org.ei.drishti.AllConstants.IFAFields.IFA_TABLETS_DATE;
 import static org.ei.drishti.AllConstants.IFAFields.NUMBER_OF_IFA_TABLETS_GIVEN;
 import static org.ei.drishti.AllConstants.TTFields.TT_DATE;
@@ -92,7 +93,10 @@ public class MotherService {
     }
 
     public void hbTest(FormSubmission submission) {
-        serviceProvidedService.add(forHBTest(submission.entityId(), submission.getFieldValue(AllConstants.HbTestFields.HB_LEVEL), submission.getFieldValue(AllConstants.HbTestFields.HB_TEST_DATE)));
+        serviceProvidedService.add(
+                forHBTest(submission.entityId(),
+                        submission.getFieldValue(HB_LEVEL),
+                        submission.getFieldValue(HB_TEST_DATE)));
     }
 
     public void deliveryOutcome(FormSubmission submission) {

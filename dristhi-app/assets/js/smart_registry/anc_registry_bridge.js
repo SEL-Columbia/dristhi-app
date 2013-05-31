@@ -77,16 +77,14 @@ function FakeANCSmartRegistryContext() {
                             name: 'Hb Test',
                             date: '2012-05-27',
                             data: {
-                                hbLevel: 14,
-                                hbTestPlace: 'phc'
+                                hbLevel: 14
                             }
                         },
                         {
                             name: 'Hb Test',
                             date: '2012-06-13',
                             data: {
-                                hbLevel: 10,
-                                hbTestPlace: 'phc'
+                                hbLevel: 10
                             }
                         }
                     ],
@@ -200,8 +198,7 @@ function FakeANCSmartRegistryContext() {
                             name: 'Hb Test',
                             date: '2012-05-27',
                             data: {
-                                hbLevel: 6,
-                                hbTestPlace: 'phc'
+                                hbLevel: 6
                             }
                         },
                         {
@@ -299,16 +296,14 @@ function FakeANCSmartRegistryContext() {
                             name: 'Hb Test',
                             date: '2012-05-27',
                             data: {
-                                hbLevel: 14,
-                                hbTestPlace: 'phc'
+                                hbLevel: 14
                             }
                         },
                         {
                             name: 'Hb Test',
                             date: '2012-06-13',
                             data: {
-                                hbLevel: 10,
-                                hbTestPlace: 'phc'
+                                hbLevel: 10
                             }
                         }
                     ],
@@ -391,8 +386,7 @@ function FakeANCSmartRegistryContext() {
                             name: 'Hb Test',
                             date: '2012-06-13',
                             data: {
-                                hbLevel: 10,
-                                hbTestPlace: 'phc'
+                                hbLevel: 10
                             }
                         }
                     ],
