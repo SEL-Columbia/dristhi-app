@@ -217,7 +217,7 @@ public class Context {
 
     private DeliveryOutcomeHandler deliveryOutcomeHandler() {
         if (deliveryOutcomeHandler == null) {
-            deliveryOutcomeHandler = new DeliveryOutcomeHandler(motherService());
+            deliveryOutcomeHandler = new DeliveryOutcomeHandler(motherService(), childService());
         }
         return deliveryOutcomeHandler;
     }

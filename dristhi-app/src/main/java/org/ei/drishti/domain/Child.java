@@ -9,7 +9,7 @@ import java.util.Map;
 public class Child {
     private final String caseId;
     private final String motherCaseId;
-    private final String thaayiCardNumber;
+    private String thaayiCardNumber;
     private String dateOfBirth;
     private final String gender;
     private final Map<String, String> details;
@@ -63,6 +63,11 @@ public class Child {
 
     public Child setIsClosed(boolean isClosed) {
         this.isClosed = isClosed;
+        return this;
+    }
+
+    public Child setThayiCardNumber(String thayiCardNumber) {
+        this.thaayiCardNumber = thayiCardNumber;
         return this;
     }
 

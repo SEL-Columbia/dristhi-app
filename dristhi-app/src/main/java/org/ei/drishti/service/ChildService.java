@@ -2,10 +2,13 @@ package org.ei.drishti.service;
 
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.Mother;
+import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.repository.ChildRepository;
 import org.ei.drishti.repository.MotherRepository;
+
+import java.util.List;
 
 import static org.ei.drishti.domain.TimelineEvent.*;
 
@@ -18,6 +21,15 @@ public class ChildService {
         this.childRepository = childRepository;
         this.motherRepository = motherRepository;
         this.allTimelines = allTimelineEvents;
+    }
+
+    public void register(FormSubmission submission) {
+        Mother mother = motherRepository.findById(submission.entityId());
+        List<Child> children = childRepository.findByMotherCaseId(submission.entityId());
+
+        for (Child child : children) {
+            childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thaayiCardNumber()));
+        }
     }
 
     public void register(Action action) {

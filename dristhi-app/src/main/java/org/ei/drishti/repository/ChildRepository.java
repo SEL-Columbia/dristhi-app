@@ -48,6 +48,11 @@ public class ChildRepository extends DrishtiRepository {
         timelineEventRepository.add(TimelineEvent.forChildBirthInChildProfile(child.caseId(), child.dateOfBirth(), child.detailsAsMap()));
     }
 
+    public void update(Child child) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        database.update(CHILD_TABLE_NAME, createValuesFor(child), CASE_ID_COLUMN + " = ?", new String[]{child.caseId()});
+    }
+
     public List<Child> all() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(CHILD_TABLE_NAME, CHILD_TABLE_COLUMNS, IS_CLOSED_COLUMN + " = ?", new String[]{NOT_CLOSED}, null, null, null, null);
@@ -78,6 +83,12 @@ public class ChildRepository extends DrishtiRepository {
         database.update(CHILD_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
     }
 
+    public List<Child> findByMotherCaseId(String caseId) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(CHILD_TABLE_NAME, CHILD_TABLE_COLUMNS, MOTHER_CASEID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
+        return readAll(cursor);
+    }
+
     public long count() {
         return longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + CHILD_TABLE_NAME + " WHERE " + IS_CLOSED_COLUMN + " = '" + NOT_CLOSED + "'", new String[0]);
     }
@@ -92,12 +103,6 @@ public class ChildRepository extends DrishtiRepository {
         ContentValues values = new ContentValues();
         values.put(IS_CLOSED_COLUMN, TRUE.toString());
         masterRepository.getWritableDatabase().update(CHILD_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
-    }
-
-    private List<Child> findByMotherCaseId(String caseId) {
-        SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(CHILD_TABLE_NAME, CHILD_TABLE_COLUMNS, MOTHER_CASEID_COLUMN + " = ?", new String[]{caseId}, null, null, null, null);
-        return readAll(cursor);
     }
 
     private ContentValues createValuesFor(Child child) {

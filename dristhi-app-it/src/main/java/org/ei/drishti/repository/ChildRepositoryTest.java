@@ -38,6 +38,15 @@ public class ChildRepositoryTest extends AndroidTestCase {
         assertEquals(asList(TimelineEvent.forChildBirthInChildProfile("CASE A", "2012-06-09", new HashMap<String, String>())), timelineEventRepository.allFor("CASE A"));
     }
 
+    public void testShouldUpdateChild() throws Exception {
+        Child child = new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS).setIsClosed(false);
+        repository.add(child);
+        child.setIsClosed(true);
+
+        repository.update(child);
+        assertEquals(child, repository.find("CASE A"));
+    }
+
     public void testShouldFetchAllOpenChildren() throws Exception {
         Child firstChild = new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS);
         Child secondChild = new Child("CASE B", "CASE X", "TC 1", "2012-06-10", "female", EXTRA_DETAILS);
@@ -117,7 +126,7 @@ public class ChildRepositoryTest extends AndroidTestCase {
         assertEquals(asList(expectedChildWithNewDetails), repository.all());
     }
 
-    public void testShouldFindAllChildrenByCaseIds(){
+    public void testShouldFindAllChildrenByCaseIds() {
         Child child1 = new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS);
         Child child2 = new Child("CASE B", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS);
         Child child3 = new Child("CASE C", "CASE Y", "TC 2", "2012-06-09", "female", EXTRA_DETAILS).setIsClosed(true);
@@ -127,6 +136,6 @@ public class ChildRepositoryTest extends AndroidTestCase {
 
         List<Child> childrenByCaseIds = repository.findChildrenByCaseIds("CASE A", "CASE C");
 
-        assertEquals(asList(child1,child3), childrenByCaseIds);
+        assertEquals(asList(child1, child3), childrenByCaseIds);
     }
 }

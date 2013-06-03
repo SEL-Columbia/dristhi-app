@@ -2,6 +2,7 @@ package org.ei.drishti.service.formSubmissionHandler;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.form.FormSubmission;
+import org.ei.drishti.service.ChildService;
 import org.ei.drishti.service.MotherService;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,13 +17,15 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class DeliveryOutcomeHandlerTest {
     @Mock
     private MotherService motherService;
+    @Mock
+    private ChildService childService;
 
     private DeliveryOutcomeHandler handler;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        handler = new DeliveryOutcomeHandler(motherService);
+        handler = new DeliveryOutcomeHandler(motherService, childService);
     }
 
     @Test
@@ -32,5 +35,6 @@ public class DeliveryOutcomeHandlerTest {
         handler.handle(submission);
 
         verify(motherService).deliveryOutcome(submission);
+        verify(childService).register(submission);
     }
 }
