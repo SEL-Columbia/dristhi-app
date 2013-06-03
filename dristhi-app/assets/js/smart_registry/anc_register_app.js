@@ -186,4 +186,27 @@ angular.module("smartRegistry.controllers")
                 return Math.round((today - lmp_date) / 1000 / 60 / 60 / 24 / 7);
             }
         };
+
+        $scope.microformSchedules = ['tt', 'ifa'];
+
+        $scope.useMicroForm = function(schedule) {
+            if($scope.microformSchedules.indexOf(schedule) !== -1)
+            {
+                return true;
+            }
+            return false;
+        };
+
+        $scope.milestoneForm = {
+            'ANC 1': 'anc_visit',
+            'ANC 2': 'anc_visit',
+            'ANC 3': 'anc_visit',
+            'ANC 4': 'anc_visit',
+            'TT 1': 'tt_1',
+            'TT 2': 'tt_2',
+            'TT Booster': 'tt_booster',
+            'IFA 1': 'schedule',
+            'IFA 2': 'schedule',
+            'IFA 3': 'schedule'
+        };
     });
