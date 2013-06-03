@@ -80,9 +80,23 @@ function FakeANCSmartRegistryContext() {
                         },
                         {
                             name: 'Hb Test',
-                            date: '2012-05-27',
+                            date: '2012-04-20',
                             data: {
                                 hbLevel: 14
+                            }
+                        },
+                        {
+                            name: 'Hb Test',
+                            date: '2012-03-27',
+                            data: {
+                                hbLevel: 10
+                            }
+                        },
+                        {
+                            name: 'Hb Test',
+                            date: '2012-05-27',
+                            data: {
+                                hbLevel: 10
                             }
                         },
                         {
