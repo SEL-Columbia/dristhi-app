@@ -209,4 +209,21 @@ angular.module("smartRegistry.controllers")
             'IFA 2': 'schedule',
             'IFA 3': 'schedule'
         };
+
+        $scope.hbLegendClass = function(level) {
+            var legend_class;
+            if(level < 7)
+            {
+                legend_class = "hb-legend-dangerous";
+            }
+            else if(level >= 7 && level < 11)
+            {
+                legend_class = "hb-legend-high";
+            }
+            else
+            {
+                legend_class = "hb-legend-normal";
+            }
+           return legend_class;
+        } ;
     });

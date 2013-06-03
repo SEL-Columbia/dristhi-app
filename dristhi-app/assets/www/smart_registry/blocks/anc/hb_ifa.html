@@ -6,11 +6,7 @@
                     <div ng-show="client.visits.hb['Hb Test']"
                          data-ng-repeat="hb in client.visits.hb['Hb Test'] | orderBy:'-visit_date' | limitTo: 3" class="row-fluid hb">
                         <div class="span1 width-without-margins hb-legend"
-                             ng-class="{
-                             'hb-legend-dangerous': hb.data.hbLevel < 7,
-                             'hb-legend-high': hb.data.hbLevel >= 7 && hb.data.hbLevel < 11,
-                             'hb-legend-normal': hb.data.hbLevel >= 11
-                             }">
+                             ng-class="hbLegendClass(hb.data.hbLevel)">
                         </div>
                         <div class="span5 span-no-margin width-without-margins hb-content">
                             <span>{{hb.visit_date | date:'dd/MM' }}</span>

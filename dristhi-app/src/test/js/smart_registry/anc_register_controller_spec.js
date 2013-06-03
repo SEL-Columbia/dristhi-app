@@ -84,4 +84,21 @@ describe('ANC Register controller', function () {
         });
     });
 
+    describe("HB Level Legend", function () {
+        it("should return hb-legend-dangerous id level < 7", function () {
+            var level = 5;
+            expect(scope.hbLegendClass(level)).toEqual('hb-legend-dangerous');
+        });
+
+        it("should return hb-legend-high id level >= 7 and < 11", function () {
+            var level = 10;
+            expect(scope.hbLegendClass(level)).toEqual('hb-legend-high');
+        });
+
+        it("should return hb-legend-normal id level >= 11", function () {
+            var level = 12;
+            expect(scope.hbLegendClass(level)).toEqual('hb-legend-normal');
+        });
+    });
+
 });
