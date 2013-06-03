@@ -61,11 +61,10 @@ public class PNCDetailControllerTest {
 
         HashMap<String, String> details = new HashMap<String, String>();
         details.put("ashaName", "Shiwani");
-        details.put("dateOfDelivery", "2012-07-28");
         details.put("isHighRisk", "yes");
         details.put("highRiskReason", "Anaemia");
 
-        when(allBeneficiaries.findMother(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withDetails(details));
+        when(allBeneficiaries.findMother(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2012-07-28").withDetails(details));
         HashMap<String, String> ecDetails = new HashMap<String, String>();
         ecDetails.put("caste", "c_others");
         ecDetails.put("economicStatus", "apl");

@@ -47,11 +47,11 @@ public class PNCDetailController {
         EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
         List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 
-        LocalDate deliveryDate = LocalDate.parse(mother.details().get("dateOfDelivery"));
+        LocalDate deliveryDate = LocalDate.parse(mother.referenceDate());
         Days postPartumDuration = Days.daysBetween(deliveryDate, DateUtil.today());
 
         PNCDetail detail = new PNCDetail(caseId, mother.thaayiCardNumber(),
-                new CoupleDetails(couple.wifeName(), couple.husbandName(), couple.ecNumber(), couple.isOutOfArea()).withCaste(couple.details().get("caste")).withEconomicStatus(couple.details().get("economicStatus")),
+                new CoupleDetails(couple.wifeName(), couple.husbandName(), couple.ecNumber(), couple.isOutOfArea()).withCaste(couple.getDetail("caste")).withEconomicStatus(couple.getDetail("economicStatus")),
                 new LocationDetails(couple.village(), couple.subCenter()),
                 new PregnancyOutcomeDetails(deliveryDate.toString(), postPartumDuration.getDays()))
                 .addTimelineEvents(getEvents())
