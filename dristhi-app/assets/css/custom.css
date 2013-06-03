@@ -670,6 +670,7 @@ body {
     text-align: left;
     padding: 2px 6px 3px;
     width: 100%;
+    position: relative;
 }
 
 a.btn-sr {
@@ -693,6 +694,10 @@ a.btn-sr.upcoming, a.btn-sr.done {
 .btn-sr div.done-icon {
     float: left;
     margin: 3px 4px 0 0;
+}
+
+.btn-sr div.done-icon + div.button-text-container {
+    margin-left: 30px;
 }
 
 .btn-center-aligned {
@@ -1026,4 +1031,14 @@ button.text-align-left {
 .previous-alert {
     position: absolute;
     top: 56px;
+}
+
+button .button-text-container {
+    position: absolute;
+    top: 2px;
+}
+
+button .button-text-container.middle {
+    position: absolute;
+    top: 35%;
 }

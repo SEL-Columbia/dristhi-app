@@ -41,6 +41,11 @@ function FakeANCSmartRegistryContext() {
                             status: 'urgent'
                         },
                         {
+                            name: 'Hb Test 2',
+                            date: '26/05',
+                            status: 'normal'
+                        },
+                        {
                             name: 'IFA 2',
                             date: '26/05',
                             status: 'normal'

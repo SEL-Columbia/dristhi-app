@@ -2,7 +2,7 @@
     <div class="row-fluid full-height">
         <div class="span5 full-height span-no-margin width-without-margins">
             <div class="row-fluid full-height">
-                <div class="span8 full-height span-no-margin width-without-margins span-content">
+                <div class="span6 full-height span-no-margin width-without-margins span-content">
                     <div ng-show="client.visits.hb['Hb Test']"
                          data-ng-repeat="hb in client.visits.hb['Hb Test'].slice(0, 3)" class="row-fluid hb">
                         <div class="span1 width-without-margins hb-legend"
@@ -20,9 +20,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="span4 line-right full-height span-no-margin width-without-margins span-content">
-                    <button ng-click="openMicroForm('hb_test', client.entityId)" class="btn btn-primary complete btn-sr btn-new-form full-height">
-                        <div><span class="text-bold">Hb Test</span></div>
+                <div class="span6 line-right full-height span-no-margin width-without-margins span-content">
+                    <button class="btn btn-primary btn-sr full-height"
+                            ng-show="client.visits.hb.next"
+                            ng-class="client.visits.hb.next.status"
+                            ng-click="openMicroForm('hb_test', client.entityId)">
+                        <div class="button-text-container">
+                            <span class="text-bold">Hb Test</span>
+                            <br/>
+                            <span>Due {{client.visits.hb.next.visit_date | date: 'dd/MM'}}</span>
+                        </div>
+                    </button>
+                    <button class="btn btn-primary btn-sr full-height normal"
+                            ng-show="!client.visits.hb.next"
+                            ng-click="openMicroForm('hb_test', client.entityId)">
+                        <div class="button-text-container middle">
+                            <span class="text-bold">Hb Test</span><br/>
+                        </div>
                     </button>
                 </div>
             </div>
@@ -44,24 +58,28 @@
                 </div>
                 <div class="span5 full-height span-no-margin width-without-margins span-content">
                     <!--IFA-->
-                    <a class="btn btn-primary btn-sr full-height"
+                    <button class="btn btn-primary btn-sr full-height"
                        ng-show="client.visits.ifa.next && client.visits.ifa.next.status != 'complete'"
                        ng-class="client.visits.ifa.next.status"
                        ng-click="openMicroForm('ifa', client.entityId)">
-                        <span class="text-bold">IFA Tablets</span>
-                        <br/>
-                        <span>Due {{client.visits.ifa.next.visit_date | date: 'dd/MM'}}</span>
-                    </a>
-                    <a class="btn btn-primary btn-sr full-height complete"
+                        <div class="button-text-container">
+                            <span class="text-bold">IFA Tablets</span>
+                            <br/>
+                            <span>Due {{client.visits.ifa.next.visit_date | date: 'dd/MM'}}</span>
+                        </div>
+                    </button>
+                    <button class="btn btn-primary btn-sr full-height complete"
                             ng-show="(client.visits.ifa.next && client.visits.ifa.next.status == 'complete') ||
                                 (!client.visits.ifa.next)">
                         <div class="done-icon full-height">
                             <i class="icon-ok green icon-large"></i>
                         </div>
-                        <span class="text-bold">IFA {{sumIFATablets(client.visits.ifa)}}</span>
-                        <br/>
-                        <span>On {{client.visits.ifa.previous.visit_date | date: 'dd/MM'}}</span>
-                    </a>
+                        <div class="button-text-container">
+                            <span class="text-bold">IFA {{sumIFATablets(client.visits.ifa)}}</span>
+                            <br/>
+                            <span>On {{client.visits.ifa.previous.visit_date | date: 'dd/MM'}}</span>
+                        </div>
+                    </button>
                 </div>
             </div>
         </div>
