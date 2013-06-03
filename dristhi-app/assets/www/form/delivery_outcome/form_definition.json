@@ -289,7 +289,7 @@
                         "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child/child_blood_group"
                     },
                     {
-                        "name": "immunizationsGivenAtBirth",
+                        "name": "immunizationsGiven",
                         "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child/immunizations_atbirth"
                     }
                 ]
