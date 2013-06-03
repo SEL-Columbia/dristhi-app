@@ -696,7 +696,7 @@ a.btn-sr.upcoming, a.btn-sr.done {
     margin: 3px 4px 0 0;
 }
 
-.btn-sr div.done-icon + div.button-text-container {
+.btn-sr div.done-icon + div.button-text-container, .button-text-container.complete {
     margin-left: 30px;
 }
 
