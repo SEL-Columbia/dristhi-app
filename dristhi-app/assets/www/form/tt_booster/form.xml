@@ -13,29 +13,34 @@
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Place of TT Booster injection?</span>
+                <span lang="" class=" active">Place of TT Booster injection? &#xC9F;&#xCBF;.&#xC9F;&#xCBF; &#xCAC;&#xCC2;&#xCB8;&#xCCD;&#xC9F;&#xCB0;&#xCCD;
+                    &#xC9A;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;&#xCAE;&#xCA6;&#xCCD;&#xCA6;&#xCC1; &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6;
+                    &#xCB8;&#xCCD;&#xCA5;&#xCB3;?
+                </span>
                 <span class="required">*</span>
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/TTBooster_EngKan/ttbooster_injection_place"
                        value="sub_center" required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Sub Center</span>
+                <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
+                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/TTBooster_EngKan/ttbooster_injection_place" value="phc"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">PHC</span>
+                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
+                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/TTBooster_EngKan/ttbooster_injection_place"
                        value="elsewhere" required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Elsewhere</span>
+                <span lang="" class=" active">Elsewhere &#xCAC;&#xCC7;&#xCB0;&#xCC6;&#xCA1;&#xCC6;</span>
             </label>
         </fieldset>
     </fieldset>
     <label class="">
         <span lang="" class=" active">Date of TT Booster injection?
-            TT Booster &#xC9A;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;&#xCAE;&#xCA6;&#xCCD;&#xCA6;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+            &#xC9F;&#xCBF;.&#xC9F;&#xCBF; &#xCAC;&#xCC2;&#xCB8;&#xCCD;&#xC9F;&#xCB0;&#xCCD; &#xC9A;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;&#xCAE;&#xCA6;&#xCCD;&#xCA6;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
             &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <span class="required">*</span>
