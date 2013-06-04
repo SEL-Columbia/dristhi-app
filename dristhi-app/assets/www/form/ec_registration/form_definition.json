@@ -137,14 +137,6 @@
                 "bind": "/model/instance/EC_Registration_EngKan/familyplanning_method"
             },
             {
-                "name": "currentMethod",
-                "bind": "/model/instance/EC_Registration_EngKan/familyplanning_method_1"
-            },
-            {
-                "name": "otherCurrentMethod",
-                "bind": "/model/instance/EC_Registration_EngKan/familyplanning_method_other"
-            },
-            {
                 "name": "iudPlace",
                 "bind": "/model/instance/EC_Registration_EngKan/iud_place"
             },
