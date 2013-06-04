@@ -11,6 +11,10 @@
                 "bind": "/model/instance/Family_Planning_Renew_Method_EngKan/case_familyplanning_method"
             },
             {
+                "name": "fpRenewMethodVisitDate",
+                "bind": "/model/instance/Family_Planning_Renew_Method_EngKan/fp_renew_method_visit_date"
+            },
+            {
                 "name": "wasFPMethodRenewed",
                 "bind": "/model/instance/Family_Planning_Renew_Method_EngKan/able_to_renew_method"
             },

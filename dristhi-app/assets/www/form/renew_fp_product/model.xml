@@ -7,6 +7,7 @@
             <today/>
             <case_familyplanning_method/>
             <familyplanning_method_message/>
+            <fp_renew_method_visit_date/>
             <able_to_renew_method/>
             <renewed_method_group>
                 <injectable_date/>
