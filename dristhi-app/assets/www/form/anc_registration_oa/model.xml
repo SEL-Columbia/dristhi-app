@@ -50,6 +50,7 @@
             <weight_startofpregnancy/>
             <tobacco_use/>
             <tobacco_user/>
+            <tobacco_user_other/>
             <tobacco_message/>
             <parity_risk/>
             <age_risk/>
@@ -71,7 +72,7 @@
             <num_weeks/>
             <case_birth_planning/>
             <birth_plan_message/>
-            <lab_investigations_message/>
+            <previous_anc_services_message/>
             <meta>
                 <instanceID/>
             </meta>
@@ -198,27 +199,27 @@
             </item>
             <item>
                 <itextId>static_instance-prevpreg_complication-4</itextId>
-                <name>Prev_Preg_Complication_Spontaneous_Abortion</name>
-            </item>
-            <item>
-                <itextId>static_instance-prevpreg_complication-5</itextId>
                 <name>Prev_Preg_Complication_Prolonged_Obstructed_Labor</name>
             </item>
             <item>
-                <itextId>static_instance-prevpreg_complication-6</itextId>
+                <itextId>static_instance-prevpreg_complication-5</itextId>
                 <name>Prev_Preg_Complication_Intrauterine_Growth_Retardation</name>
             </item>
             <item>
-                <itextId>static_instance-prevpreg_complication-7</itextId>
+                <itextId>static_instance-prevpreg_complication-6</itextId>
                 <name>Prev_Preg_Complication_PPH</name>
             </item>
             <item>
-                <itextId>static_instance-prevpreg_complication-8</itextId>
+                <itextId>static_instance-prevpreg_complication-7</itextId>
                 <name>Prev_Preg_Complication_Cesarean</name>
             </item>
             <item>
-                <itextId>static_instance-prevpreg_complication-9</itextId>
+                <itextId>static_instance-prevpreg_complication-8</itextId>
                 <name>Prev_Preg_Complication_Still_Birth</name>
+            </item>
+            <item>
+                <itextId>static_instance-prevpreg_complication-9</itextId>
+                <name>Prev_Preg_Complication_Spontaneous_Abortion</name>
             </item>
         </root>
     </instance>
@@ -481,22 +482,6 @@
             <item>
                 <itextId>static_instance-phcs-1</itextId>
                 <name>keelanapura</name>
-            </item>
-        </root>
-    </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="tt_dose">
-        <root>
-            <item>
-                <itextId>static_instance-tt_dose-0</itextId>
-                <name>tt1</name>
-            </item>
-            <item>
-                <itextId>static_instance-tt_dose-1</itextId>
-                <name>tt2</name>
-            </item>
-            <item>
-                <itextId>static_instance-tt_dose-2</itextId>
-                <name>ttbooster</name>
             </item>
         </root>
     </instance>
