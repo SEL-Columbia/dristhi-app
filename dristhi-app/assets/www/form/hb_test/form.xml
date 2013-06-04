@@ -29,12 +29,14 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Hb_Test_EngKan/hb_test_place" value="sub_center"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Sub Center</span>
+                <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
+                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Hb_Test_EngKan/hb_test_place" value="phc"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">PHC</span>
+                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
+                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Hb_Test_EngKan/hb_test_place" value="elsewhere"
@@ -44,8 +46,8 @@
         </fieldset>
     </fieldset>
     <label class="">
-        <span lang="" class=" active">Hb Level (g/dl)
-            &#xCB9;&#xCC6;&#xC9A;&#xCCD;.&#xCAC;&#xCBF; &#xCAE;&#xC9F;&#xCCD;&#xC9F; (&#xC9C;&#xCBF;/&#xCA1;&#xCBF;&#xC8E;&#xCB2;&#xCCD;)
+        <span lang="" class=" active">Hb level (g/dl) &#xCB9;&#xCC6;&#xC9A;&#xCCD;.&#xCAC;&#xCBF; &#xCAE;&#xC9F;&#xCCD;&#xC9F;
+            (&#xC9C;&#xCBF;/&#xCA1;&#xCBF;&#xC8E;&#xCB2;&#xCCD;)
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/Hb_Test_EngKan/hb_level" required="required"
@@ -53,14 +55,25 @@
     </label>
     <fieldset class="trigger jr-branch pre-init" name="/Hb_Test_EngKan/anaemic_message"
               data-relevant=" /Hb_Test_EngKan/hb_level  &gt;= 7 and  /Hb_Test_EngKan/hb_level  &lt; 11">
-        <span lang="" class=" active">Woman is anaemic! &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCB0;&#xC95;&#xCCD;&#xCA4;
-            &#xCB9;&#xCC0;&#xCA8;&#xCA4;&#xCC6;!
+        <span lang="" class=" active">Woman is anaemic! Start her on therapeutic dose of IFA (2 tablets per day).
+            &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCB0;&#xC95;&#xCCD;&#xCA4; &#xCB9;&#xCC0;&#xCA8;&#xCA4;&#xCC6;!
+            &#xC86;&#xC95;&#xCC6;&#xC97;&#xCC6; &#xC95;&#xCAC;&#xCCD;&#xCAC;&#xCBF;&#xCA3;&#xCBE;&#xC82;&#xCB6;&#xCA6;
+            &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xCAF;&#xCBE; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xC95;&#xCBE;&#xCB0;&#xC95;
+            &#xCA1;&#xCCB;&#xCB8;&#xCCD; &#xC85;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF;
+            (&#xCA6;&#xCBF;&#xCA8;&#xC95;&#xCCD;&#xC95;&#xCC6; 2 &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xC97;&#xCB3;&#xC82;&#xCA4;&#xCC6;).
         </span>
     </fieldset>
     <fieldset class="trigger jr-branch pre-init" name="/Hb_Test_EngKan/severely_anaemic_message"
               data-relevant=" /Hb_Test_EngKan/hb_level  &lt; 7">
-        <span lang="" class=" active">Woman is severely anaemic! &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCA4;&#xCC0;&#xCB5;&#xCCD;&#xCB0;
-            &#xCB0;&#xC95;&#xCCD;&#xCA4; &#xCB9;&#xCC0;&#xCA8;&#xCA4;&#xCC6;!
+        <span lang="" class=" active">Woman is severely anaemic! Start her on therapeutic dose of IFA (2 tablets per
+            day) and refer immediately to the MO! &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCA4;&#xCC0;&#xCB5;&#xCCD;&#xCB0;
+            &#xCB0;&#xC95;&#xCCD;&#xCA4; &#xCB9;&#xCC0;&#xCA8;&#xCA4;&#xCC6;! &#xC86;&#xC95;&#xCC6;&#xC97;&#xCC6;
+            &#xC95;&#xCAC;&#xCCD;&#xCAC;&#xCBF;&#xCA3;&#xCBE;&#xC82;&#xCB6;&#xCA6; &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xCAF;&#xCBE;
+            &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xC95;&#xCBE;&#xCB0;&#xC95; &#xCA1;&#xCCB;&#xCB8;&#xCCD;
+            &#xC85;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF; (&#xCA6;&#xCBF;&#xCA8;&#xC95;&#xCCD;&#xC95;&#xCC6;
+            2 &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xC97;&#xCB3;&#xC82;&#xCA4;&#xCC6;) &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1;
+            &#xCA4;&#xC95;&#xCCD;&#xCB7;&#xCA3; &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xCBE;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
+            &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD; &#xCAE;&#xCBE;&#xCA1;&#xCBF;!
         </span>
     </fieldset>
     <fieldset class="trigger jr-branch pre-init" name="/Hb_Test_EngKan/high_risk_note"
@@ -86,12 +99,12 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Hb_Test_EngKan/is_high_risk" value="yes"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Yes</span>
+                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Hb_Test_EngKan/is_high_risk" value="no"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">No</span>
+                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
             </label>
         </fieldset>
     </fieldset>
