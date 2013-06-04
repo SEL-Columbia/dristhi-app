@@ -21,22 +21,22 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/this_anc_number" value="1"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">ANC1</span>
+                <span lang="" class=" active">ANC 1</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/this_anc_number" value="2"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">ANC2</span>
+                <span lang="" class=" active">ANC 2</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/this_anc_number" value="3"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">ANC3</span>
+                <span lang="" class=" active">ANC 3</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/this_anc_number" value="4"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">ANC4</span>
+                <span lang="" class=" active">ANC 4</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/this_anc_number" value="5"
@@ -47,11 +47,11 @@
         </fieldset>
     </fieldset>
     <label class="">
-        <span lang="" class=" active">ANC Visit Date
+        <span lang="" class=" active">ANC visit date
             ANC &#xCAD;&#xCC7;&#xC9F;&#xCBF; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;</span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/ANC_Visit_EngKan/anc_visit_date" required="required"
-               data-constraint=".&lt;= /ANC_Visit_EngKan/today " data-type-xml="date"/>
+               data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
@@ -59,20 +59,23 @@
                 <span lang="" class=" active">Place of ANC check up?
                     ANC &#xCA4;&#xCAA;&#xCBE;&#xCB8;&#xCA3;&#xCC6; &#xCB8;&#xCCD;&#xCA5;&#xCB3;?
                 </span>
+                <span class="required">*</span>
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/anc_visit_place" value="sub_center"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Sub Center</span>
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
+                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/anc_visit_place" value="phc"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">PHC</span>
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
+                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/anc_visit_place" value="elsewhere"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Elsewhere &#xCAC;&#xCC7;&#xCB0;&#xCC6;&#xCA1;&#xCC6;</span>
             </label>
         </fieldset>
@@ -83,31 +86,32 @@
                 <span lang="" class=" active">Who did ANC visit? &#xCAF;&#xCBE;&#xCB0;&#xCC1; ANC &#xCAD;&#xCC7;&#xC9F;&#xCBF;
                     &#xCAE;&#xCBE;&#xCA1;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCBE;&#xCB0;&#xCC6;?
                 </span>
+                <span class="required">*</span>
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/anc_visit_person" value="anm"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">ANM &#xC8E;.&#xC8E;&#xCA8;&#xCCD;.&#xC8E;&#xCAE;&#xCCD;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/anc_visit_person" value="sn"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">SN &#xCB8;&#xCCD;&#xC9F;&#xCBE;&#xCAB;&#xCCD; &#xCA8;&#xCB0;&#xCCD;&#xCB8;&#xCCD;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/anc_visit_person" value="lhv"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">LHV
                     &#xC8E;&#xCB2;&#xCCD;.&#xCB9;&#xCC6;&#xC9A;&#xCCD;.&#xCB5;&#xCBF;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/anc_visit_person" value="mo"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">MO &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF;&#xCBE; &#xC85;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/anc_visit_person" value="others"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
             </label>
         </fieldset>
@@ -206,12 +210,13 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Visit_EngKan/vitals_taken" value="bp"
                        data-type-xml="select"/>
-                <span lang="" class=" active">BP</span>
+                <span lang="" class=" active">BP
+                    &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;&#xCCA;&#xCA4;&#xCCD;&#xCA4;&#xCA1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Visit_EngKan/vitals_taken" value="pulse_rate"
                        data-type-xml="select"/>
-                <span lang="" class=" active">Pulse Rate &#xCA8;&#xCBE;&#xCA1;&#xCBF; &#xCAE;&#xCBF;&#xCA1;&#xCBF;&#xCA4;</span>
+                <span lang="" class=" active">Pulse rate &#xCA8;&#xCBE;&#xCA1;&#xCBF; &#xCAE;&#xCBF;&#xCA1;&#xCBF;&#xCA4;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Visit_EngKan/vitals_taken" value="temperature"
@@ -226,18 +231,21 @@
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">BP (systolic) (&#xCB8;&#xC82;&#xC95;&#xCCB;&#xC9A;&#xCA8;&#xCA6;)</span>
+        <span lang="" class=" active">BP (systolic) &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;&#xCCA;&#xCA4;&#xCCD;&#xCA4;&#xCA1;
+            (&#xCB8;&#xC82;&#xC95;&#xCCB;&#xC9A;&#xCA8;&#xCA6;)
+        </span>
         <input autocomplete="off" type="number" name="/ANC_Visit_EngKan/bp_systolic"
                data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'bp')" data-type-xml="int"/>
     </label>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">BP (diastolic) (&#xCB5;&#xCCD;&#xCAF;&#xCBE;&#xC95;&#xCCB;&#xC9A;&#xCA8;&#xCA6;)
+        <span lang="" class=" active">BP (diastolic) &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;&#xCCA;&#xCA4;&#xCCD;&#xCA4;&#xCA1;
+            (&#xCB5;&#xCCD;&#xCAF;&#xCBE;&#xC95;&#xCCB;&#xC9A;&#xCA8;&#xCA6;)
         </span>
         <input autocomplete="off" type="number" name="/ANC_Visit_EngKan/bp_diastolic"
                data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'bp')" data-type-xml="int"/>
     </label>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Pulse Rate &#xCA8;&#xCBE;&#xCA1;&#xCBF;&#xCAE;&#xCBF;&#xCA1;&#xCBF;&#xCA4; &#xCA6;&#xCB0;</span>
+        <span lang="" class=" active">Pulse rate &#xCA8;&#xCBE;&#xCA1;&#xCBF;&#xCAE;&#xCBF;&#xCA1;&#xCBF;&#xCA4; &#xCA6;&#xCB0;</span>
         <input autocomplete="off" type="number" name="/ANC_Visit_EngKan/pulse_rate"
                data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'pulse_rate')" data-type-xml="int"/>
     </label>
@@ -259,7 +267,7 @@
             <span lang="" class=" active">Weight gain since last visit:
                 <span class="jr-output" data-value=" /ANC_Visit_EngKan/weight_group/weight_change ">
                 </span>
-                kg
+                kgs
                 &#xC95;&#xCCA;&#xCA8;&#xCC6;&#xCAF; &#xCAD;&#xCC7;&#xC9F;&#xCBF;&#xCAF; &#xCA8;&#xC82;&#xCA4;&#xCB0;&#xCA6;&#xCBF;&#xC82;&#xCA6;
                 &#xCA4;&#xCC2;&#xC95; &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;:
                 <span class="jr-output" data-value=" /ANC_Visit_EngKan/weight_group/weight_change ">
@@ -286,14 +294,14 @@
                 <input autocomplete="off" type="checkbox" name="/ANC_Visit_EngKan/abdominals_observed"
                        value="fetal_heart_rate" data-relevant=" /ANC_Visit_EngKan/num_days_since_lmp  &gt;= 112"
                        data-type-xml="select"/>
-                <span lang="" class=" active">Fetal Heart Rate &#xCAD;&#xCCD;&#xCB0;&#xCC2;&#xCA3;&#xCA6; &#xCB9;&#xCC3;&#xCA6;&#xCAF;&#xCA6;
+                <span lang="" class=" active">Fetal heart rate &#xCAD;&#xCCD;&#xCB0;&#xCC2;&#xCA3;&#xCA6; &#xCB9;&#xCC3;&#xCA6;&#xCAF;&#xCA6;
                     &#xCA6;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Visit_EngKan/abdominals_observed"
                        value="fetal_movement" data-relevant=" /ANC_Visit_EngKan/num_days_since_lmp  &gt;= 112"
                        data-type-xml="select"/>
-                <span lang="" class=" active">Fetal Movement &#xCAD;&#xCCD;&#xCB0;&#xCC2;&#xCA3;&#xCA6; &#xC9A;&#xCB2;&#xCA8;&#xCC6;</span>
+                <span lang="" class=" active">Fetal movement &#xCAD;&#xCCD;&#xCB0;&#xCC2;&#xCA3;&#xCA6; &#xC9A;&#xCB2;&#xCA8;&#xCC6;</span>
             </label>
         </fieldset>
     </fieldset>
@@ -315,14 +323,14 @@
                 <input autocomplete="off" type="checkbox" name="/ANC_Visit_EngKan/abdominals_abnormal"
                        value="fetal_heart_rate" data-relevant=" /ANC_Visit_EngKan/abdominals_observed  != ''"
                        data-type-xml="select"/>
-                <span lang="" class=" active">Fetal Heart Rate &#xCAD;&#xCCD;&#xCB0;&#xCC2;&#xCA3;&#xCA6; &#xCB9;&#xCC3;&#xCA6;&#xCAF;&#xCA6;
+                <span lang="" class=" active">Fetal heart rate &#xCAD;&#xCCD;&#xCB0;&#xCC2;&#xCA3;&#xCA6; &#xCB9;&#xCC3;&#xCA6;&#xCAF;&#xCA6;
                     &#xCA6;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Visit_EngKan/abdominals_abnormal"
                        value="fetal_movement" data-relevant=" /ANC_Visit_EngKan/abdominals_observed  != ''"
                        data-type-xml="select"/>
-                <span lang="" class=" active">Fetal Movement &#xCAD;&#xCCD;&#xCB0;&#xCC2;&#xCA3;&#xCA6; &#xC9A;&#xCB2;&#xCA8;&#xCC6;</span>
+                <span lang="" class=" active">Fetal movement &#xCAD;&#xCCD;&#xCB0;&#xCC2;&#xCA3;&#xCA6; &#xC9A;&#xCB2;&#xCA8;&#xCC6;</span>
             </label>
         </fieldset>
     </fieldset>
@@ -399,7 +407,6 @@
             &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <input autocomplete="off" type="date" name="/ANC_Visit_EngKan/prasooti1_date"
-               data-constraint=".&lt;= /ANC_Visit_EngKan/today "
                data-relevant=" /ANC_Visit_EngKan/prasooti_payment1  = 'yes'" data-type-xml="date"/>
     </label>
     <fieldset class="trigger jr-branch pre-init" name="/ANC_Visit_EngKan/high_risk_note"
@@ -444,7 +451,7 @@
             is
             <span class="jr-output" data-value=" /ANC_Visit_EngKan/num_weeks ">
             </span>
-            weeks pregnant. Complete Birth Planning form now.
+            weeks pregnant. Complete Birth Plan form now.
             &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
             <span class="jr-output" data-value=" /ANC_Visit_EngKan/woman_name ">
             </span>
@@ -453,14 +460,6 @@
             &#xCB5;&#xCBE;&#xCB0;&#xC97;&#xCB3; &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBF;&#xCA3;&#xCBF;. &#xC88;&#xC97;
             &#xCB8;&#xC82;&#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCA3; &#xC9C;&#xCA8;&#xCCD;&#xCAE; &#xCAF;&#xCCA;&#xC9C;&#xCA8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
             &#xCB0;&#xCC2;&#xCAA;&#xCBF;&#xCB8;&#xCBF;.
-        </span>
-    </fieldset>
-    <fieldset class="trigger " name="/ANC_Visit_EngKan/lab_investigations_message">
-        <span lang="" class=" active">Please record any lab results in the investigations service mode. &#xCA4;&#xCA8;&#xCBF;&#xC96;&#xCC6;&#xC97;&#xCB3;
-            &#xCB8;&#xCC6;&#xCD5;&#xCB5;&#xCC6; &#xC95;&#xCCD;&#xCB0;&#xCAE;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA8;
-            &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCC6;&#xCD5; &#xCAA;&#xCCD;&#xCB0;&#xCAF;&#xCC6;&#xCC2;&#xCD5;&#xC97;&#xCBE;&#xCB2;&#xCAF;&#xCA6;
-            &#xCAB;&#xCB2;&#xCBF;&#xCA4;&#xCBE;&#xC82;&#xCB6;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCC6;
-            &#xCAE;&#xCBE;&#xCA1;&#xCBF;.
         </span>
     </fieldset>
 

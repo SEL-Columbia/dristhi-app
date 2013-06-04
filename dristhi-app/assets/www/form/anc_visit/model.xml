@@ -55,7 +55,6 @@
             <num_weeks/>
             <case_birth_planning/>
             <birth_plan_message/>
-            <lab_investigations_message/>
             <meta>
                 <instanceID/>
             </meta>
