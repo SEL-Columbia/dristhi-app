@@ -16,39 +16,40 @@
                 <span lang="" class=" active">Reason for EC close? &#xC85;&#xCB0;&#xCCD;&#xCB9; &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                     &#xCAE;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCB2;&#xCC1; &#xC95;&#xCBE;&#xCB0;&#xCA3;&#xCB5;&#xCC7;&#xCA8;&#xCC1;?
                 </span>
+                <span class="required">*</span>
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/close_reason" value="age_morethan_49"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Woman's age &gt; 49 &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;
                     &gt; 49
                 </span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/close_reason" value="permanent_relocation"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Relocation (permanent) &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCBE;&#xC82;&#xCA4;&#xCB0;
                     (&#xCB6;&#xCBE;&#xCB6;&#xCCD;&#xCB5;&#xCA4;)
                 </span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/close_reason" value="separation"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Separation &#xC85;&#xC97;&#xCB2;&#xCBF;&#xC95;&#xCC6;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/close_reason" value="death_of_wife"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Death of wife &#xCAA;&#xCA4;&#xCCD;&#xCA8;&#xCBF;&#xCAF; &#xCAE;&#xCB0;&#xCA3;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/close_reason" value="death_of_husband"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Death of husband &#xCAA;&#xCA4;&#xCBF;&#xCAF; &#xCAE;&#xCB0;&#xCA3;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/close_reason" value="others"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
             </label>
         </fieldset>
@@ -67,15 +68,18 @@
                     &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xCAF;
                     &#xCA4;&#xCCA;&#xCA1;&#xC95;&#xCBF;&#xCA8;&#xCBF;&#xC82;&#xCA6; &#xCB8;&#xCBE;&#xCB5;&#xCC1; &#xCB8;&#xC82;&#xCAD;&#xCB5;&#xCBF;&#xCB8;&#xCBF;&#xCA4;&#xCC6;?
                 </span>
+                <span class="required">*</span>
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/sterilization_death" value="yes"
+                       required="required"
                        data-relevant="( /EC_Close_EngKan/close_reason  = 'death_of_wife') or ( /EC_Close_EngKan/close_reason  = 'death_of_husband')"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/sterilization_death" value="no"
+                       required="required"
                        data-relevant="( /EC_Close_EngKan/close_reason  = 'death_of_wife') or ( /EC_Close_EngKan/close_reason  = 'death_of_husband')"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
@@ -88,7 +92,6 @@
             &#xCB8;&#xCBE;&#xCB5;&#xCC1; &#xCB8;&#xC82;&#xCAD;&#xCB5;&#xCBF;&#xCB8;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <input autocomplete="off" type="date" name="/EC_Close_EngKan/sterilization_death_date"
-               data-constraint=".&lt;= /EC_Close_EngKan/today "
                data-relevant=" /EC_Close_EngKan/sterilization_death  = 'yes'" data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
@@ -124,7 +127,6 @@
             &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <input autocomplete="off" type="date" name="/EC_Close_EngKan/maternal_death_date"
-               data-constraint=".&lt;= /EC_Close_EngKan/today "
                data-relevant=" /EC_Close_EngKan/maternal_death  = 'yes'" data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
