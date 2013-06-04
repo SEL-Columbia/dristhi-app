@@ -14,6 +14,7 @@
             <upt_result/>
             <iud_place/>
             <iud_person/>
+            <iud_person_other/>
             <sterilization_doctor_name/>
             <male_sterilization_type/>
             <female_sterilization_type/>
