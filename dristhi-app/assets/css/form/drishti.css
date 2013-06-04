@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*
  * Bootstrap v2.3.1
  *
@@ -1857,7 +1856,7 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
     *margin-right: .3em;
     line-height: 14px;
     vertical-align: text-top;
-    background-image: url("../../img/form/glyphicons-halflings.png");
+    background-image: url("../images/glyphicons-halflings.png");
     background-position: 14px 14px;
     background-repeat: no-repeat;
     margin-top: 1px;
@@ -1865,7 +1864,7 @@ table td[class*="span"], table th[class*="span"], .row-fluid table td[class*="sp
 
 /* White icons with optional class, or on hover/focus/active states of certain elements */
 .icon-white, .nav-pills > .active > a > [class^="icon-"], .nav-pills > .active > a > [class*=" icon-"], .nav-list > .active > a > [class^="icon-"], .nav-list > .active > a > [class*=" icon-"], .navbar-inverse .nav > .active > a > [class^="icon-"], .navbar-inverse .nav > .active > a > [class*=" icon-"], .dropdown-menu > li > a:hover > [class^="icon-"], .dropdown-menu > li > a:focus > [class^="icon-"], .dropdown-menu > li > a:hover > [class*=" icon-"], .dropdown-menu > li > a:focus > [class*=" icon-"], .dropdown-menu > .active > a > [class^="icon-"], .dropdown-menu > .active > a > [class*=" icon-"], .dropdown-submenu:hover > a > [class^="icon-"], .dropdown-submenu:focus > a > [class^="icon-"], .dropdown-submenu:hover > a > [class*=" icon-"], .dropdown-submenu:focus > a > [class*=" icon-"] {
-    background-image: url("../../img/form/glyphicons-halflings-white.png");
+    background-image: url("../images/glyphicons-halflings-white.png");
 }
 
 .icon-glass {
@@ -6763,8 +6762,6 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
 
 /*light gray*/
 /** copy of bootstrap style for alert-error */
-/*@font-face{ font-family: 'Open Sans'; src: local('☺'), url('fonts/OpenSans-Regular.ttf') format('truetype');
-}*/
 @font-face {
     font-family: 'OpenSansRegular';
     src: url("fonts/OpenSans-Regular-webfont.woff") format("woff"), url("fonts/OpenSans-Regular-webfont.ttf") format("truetype"), url("fonts/OpenSans-Regular-webfont.svg#OpenSansRegular") format("svg");
@@ -7744,7 +7741,7 @@ input[type=date], input[type=number] {
 }
 
 input[type=radio], input[type=checkbox] {
-    background: url("../../img/form/checkradio.png") no-repeat;
+    background: url("../images/checkradio.png") no-repeat;
     cursor: pointer;
     -webkit-appearance: none;
     -moz-background-position-x: -9999px -9999px !important;
