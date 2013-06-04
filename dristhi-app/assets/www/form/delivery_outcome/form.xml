@@ -14,7 +14,7 @@
         <span lang="" class=" active">Delivery date? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Delivery_Outcome_EngKan/date_outcome" required="required"
-               data-constraint=".&lt;= /Delivery_Outcome_EngKan/today " data-type-xml="date"/>
+               data-type-xml="date"/>
     </label>
     <label class="">
         <span lang="" class=" active">Delivery registration date? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCBE;&#xCA4;&#xCBF;
@@ -22,7 +22,6 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Delivery_Outcome_EngKan/delivery_reg_date" required="required"
-               data-constraint=".&gt;= /Delivery_Outcome_EngKan/date_outcome  and .&lt;= /Delivery_Outcome_EngKan/today "
                data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
@@ -416,17 +415,18 @@
                             <span lang="" class=" active">Sex of child? &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8;
                                 &#xCB2;&#xCBF;&#xC82;&#xC97;?
                             </span>
+                            <span class="required">*</span>
                         </legend>
                         <label class="clearfix ">
                             <input autocomplete="off" type="radio"
                                    name="/Delivery_Outcome_EngKan/live_birth_group/child/sex_child" value="male"
-                                   data-type-xml="select1"/>
+                                   required="required" data-type-xml="select1"/>
                             <span lang="" class=" active">Male &#xC97;&#xC82;&#xCA1;&#xCC1;</span>
                         </label>
                         <label class="clearfix ">
                             <input autocomplete="off" type="radio"
                                    name="/Delivery_Outcome_EngKan/live_birth_group/child/sex_child" value="female"
-                                   data-type-xml="select1"/>
+                                   required="required" data-type-xml="select1"/>
                             <span lang="" class=" active">Female &#xCB9;&#xCC6;&#xCA3;&#xCCD;&#xCA3;&#xCC1;</span>
                         </label>
                     </fieldset>
@@ -521,7 +521,7 @@
                             <input autocomplete="off" type="checkbox"
                                    name="/Delivery_Outcome_EngKan/live_birth_group/child/immunizations_atbirth"
                                    value="hepb_0" data-type-xml="select"/>
-                            <span lang="" class=" active">HEP B 0 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                            <span lang="" class=" active">Hep B 0 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
                                 &#xCAC;&#xCBF; 0
                             </span>
                         </label>
@@ -592,7 +592,7 @@
         <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
             <fieldset>
                 <legend>
-                    <span lang="" class=" active">Was breastfeeding started within 1 hr of birth? &#xCB9;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xCA6;
+                    <span lang="" class=" active">Was breastfeeding started within 1 hour of birth? &#xCB9;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xCA6;
                         &#xC92;&#xC82;&#xCA6;&#xCC1; &#xC97;&#xC82;&#xC9F;&#xCC6;&#xCAF; &#xC92;&#xCB3;&#xC97;&#xCC6;
                         &#xC8E;&#xCA6;&#xCC6;&#xCB9;&#xCBE;&#xCB2;&#xCC1; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC6;?
                     </span>
@@ -856,8 +856,8 @@
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">JSY payment given?
-                    JSY &#xCB9;&#xCA3; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
+                <span lang="" class=" active">JSY payment given? &#xC9C;&#xCA8;&#xCA8;&#xCBF; &#xCB8;&#xCC1;&#xCB0;&#xC95;&#xCCD;&#xCB7;&#xCBE;
+                    &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6; &#xCB9;&#xCA3; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
                 </span>
             </legend>
             <label class="clearfix ">
@@ -877,14 +877,14 @@
                 <input autocomplete="off" type="radio" name="/Delivery_Outcome_EngKan/jsy_payment" value="not_eligible"
                        data-relevant=" /Delivery_Outcome_EngKan/delivery_outcome  = 'live_birth'"
                        data-type-xml="select1"/>
-                <span lang="" class=" active">Not eligible for JSY
-                    JSY &#xC97;&#xCC6; &#xC85;&#xCB0;&#xCCD;&#xCB9;&#xCB0;&#xCB2;&#xCCD;&#xCB2;</span>
+                <span lang="" class=" active">Not eligible for JSY &#xC9C;&#xCA8;&#xCA8;&#xCBF; &#xCB8;&#xCC1;&#xCB0;&#xC95;&#xCCD;&#xCB7;&#xCBE;
+                    &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6; &#xC97;&#xCC6; &#xC85;&#xCB0;&#xCCD;&#xCB9;&#xCB0;&#xCB2;&#xCCD;&#xCB2;</span>
             </label>
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">JSY payment date?
-            JSY &#xCB9;&#xCA3; &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        <span lang="" class=" active">JSY payment date? &#xC9C;&#xCA8;&#xCA8;&#xCBF; &#xCB8;&#xCC1;&#xCB0;&#xC95;&#xCCD;&#xCB7;&#xCBE;
+            &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6; &#xCB9;&#xCA3; &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <input autocomplete="off" type="date" name="/Delivery_Outcome_EngKan/jsy_date"
                data-relevant=" /Delivery_Outcome_EngKan/jsy_payment  = 'yes'" data-type-xml="date"/>
@@ -1062,11 +1062,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/num_livingchildren"
-                   data-calculate="1" data-type-xml="string"/>
-        </label>
-        <label class="">
-            <input autocomplete="off" type="hidden"
-                   name="/Delivery_Outcome_EngKan/live_birth_group/youngestchild_under2" data-calculate="1"
+                   data-calculate="count( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child )"
                    data-type-xml="string"/>
         </label>
         <label class="">
@@ -1111,7 +1107,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/is_high_risk1"
-                   data-calculate="if( /Delivery_Outcome_EngKan/case_is_high_risk_till_pnc_close  = 'yes' or  /Delivery_Outcome_EngKan/case_anaemic_status  != '' or  /Delivery_Outcome_EngKan/case_pih  != '' or  /Delivery_Outcome_EngKan/case_pre_eclampsia  != '' or  /Delivery_Outcome_EngKan/case_eclampsia  != '' or  /Delivery_Outcome_EngKan/case_jaundice  != '', 'yes', 'no')"
+                   data-calculate="if( /Delivery_Outcome_EngKan/case_is_high_risk_till_pnc_close  = 'yes' or  /Delivery_Outcome_EngKan/case_anaemic_status  != '' or  /Delivery_Outcome_EngKan/case_pih  != '' or  /Delivery_Outcome_EngKan/case_pre_eclampsia  != '' or  /Delivery_Outcome_EngKan/case_jaundice  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
         <label class="">
@@ -1121,7 +1117,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/high_risk_reason"
-                   data-calculate="concat( /Delivery_Outcome_EngKan/case_is_high_risk_till_pnc_close_reason , ' ',  /Delivery_Outcome_EngKan/case_anaemic_status , ' ',  /Delivery_Outcome_EngKan/case_pih , ' ',  /Delivery_Outcome_EngKan/case_pre_eclampsia , ' ',  /Delivery_Outcome_EngKan/case_eclampsia , ' ',  /Delivery_Outcome_EngKan/case_jaundice )"
+                   data-calculate="concat( /Delivery_Outcome_EngKan/case_is_high_risk_till_pnc_close_reason , ' ',  /Delivery_Outcome_EngKan/case_anaemic_status , ' ',  /Delivery_Outcome_EngKan/case_pih , ' ',  /Delivery_Outcome_EngKan/case_pre_eclampsia , ' ',  /Delivery_Outcome_EngKan/case_jaundice )"
                    data-type-xml="string"/>
         </label>
         <label class="">
@@ -1135,7 +1131,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/formhub/uuid"
-                   data-calculate="'813e81bd73194d92b5e42b55e1e988ae'" data-type-xml="string"/>
+                   data-calculate="'e664028bbe1b44f984b592448f8b0436'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>

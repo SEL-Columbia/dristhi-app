@@ -37,7 +37,6 @@
                     <immunizations_atbirth/>
                 </child>
                 <num_livingchildren/>
-                <youngestchild_under2/>
                 <numlivingchildren_female/>
                 <numlivingchildren_male/>
                 <case_hepb/>
@@ -55,7 +54,6 @@
                 <other_maternal_death_cause/>
             </maternal_death_group>
             <woman_survived_group>
-                <case_w_blood_group/>
                 <case_w_rh_negative/>
                 <rh_injection_given/>
                 <had_delivery_complications/>
@@ -78,7 +76,6 @@
             <case_anaemic_status/>
             <case_pih/>
             <case_pre_eclampsia/>
-            <case_eclampsia/>
             <case_jaundice/>
             <is_high_risk1/>
             <is_high_risk_baby1/>
