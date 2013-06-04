@@ -9,20 +9,27 @@ import java.util.Map;
 public class Child {
     private final String caseId;
     private final String motherCaseId;
-    private String thaayiCardNumber;
+    private String thayiCardNumber;
     private String dateOfBirth;
     private final String gender;
     private final Map<String, String> details;
     private boolean isClosed;
 
-    public Child(String caseId, String motherCaseId, String thaayiCardNumber, String dateOfBirth, String gender, Map<String, String> details) {
+    public Child(String caseId, String motherCaseId, String thayiCardNumber, String dateOfBirth, String gender, Map<String, String> details) {
         this.caseId = caseId;
         this.motherCaseId = motherCaseId;
-        this.thaayiCardNumber = thaayiCardNumber;
+        this.thayiCardNumber = thayiCardNumber;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.details = details;
         this.isClosed = false;
+    }
+
+    public Child(String caseId, String motherCaseId, String gender, Map<String, String> details) {
+        this.caseId = caseId;
+        this.motherCaseId = motherCaseId;
+        this.gender = gender;
+        this.details = details;
     }
 
     public String caseId() {
@@ -34,7 +41,7 @@ public class Child {
     }
 
     public String thaayiCardNumber() {
-        return thaayiCardNumber;
+        return thayiCardNumber;
     }
 
     public String dateOfBirth() {
@@ -67,7 +74,12 @@ public class Child {
     }
 
     public Child setThayiCardNumber(String thayiCardNumber) {
-        this.thaayiCardNumber = thayiCardNumber;
+        this.thayiCardNumber = thayiCardNumber;
+        return this;
+    }
+
+    public Child setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
         return this;
     }
 

@@ -25,10 +25,10 @@ public class ChildService {
 
     public void register(FormSubmission submission) {
         Mother mother = motherRepository.findById(submission.entityId());
-        List<Child> children = childRepository.findByMotherCaseId(submission.entityId());
+        List<Child> children = childRepository.findByMotherCaseId(mother.caseId());
 
         for (Child child : children) {
-            childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thaayiCardNumber()));
+            childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thaayiCardNumber()).setDateOfBirth(mother.referenceDate()));
         }
     }
 
