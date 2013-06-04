@@ -26,8 +26,7 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Family_Planning_Followup_EngKan/fp_method_followup_date"
-               required="required" data-constraint=".&lt;= /Family_Planning_Followup_EngKan/today "
-               data-type-xml="date"/>
+               required="required" data-type-xml="date"/>
     </label>
     <fieldset class="jr-branch pre-init " name="/Family_Planning_Followup_EngKan/first_time_followup_group"
               data-relevant=" /Family_Planning_Followup_EngKan/case_needs_followup  != 'yes'">
@@ -61,34 +60,7 @@
         <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
             <fieldset>
                 <legend>
-                    <span lang="" class=" active">Any problems with using condoms? &#xCA8;&#xCBF;&#xCB0;&#xCCB;&#xCA6;&#xCCD;
-                        &#xCAC;&#xCB3;&#xCB8;&#xCC1;&#xCB5;&#xCB2;&#xCCD;&#xCB2;&#xCBF; &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1;
-                        &#xCB8;&#xCAE;&#xCB8;&#xCCD;&#xCAF;&#xCC6;&#xC97;&#xCB3;&#xCBF;&#xCB5;&#xCC7;&#xCAF;&#xCC7;?
-                    </span>
-                </legend>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Followup_EngKan/first_time_followup_group/condom_sideeffect"
-                           value="allergic_reaction"
-                           data-relevant=" /Family_Planning_Followup_EngKan/case_familyplanning_method  = 'condom'"
-                           data-type-xml="select"/>
-                    <span lang="" class=" active">Allergic reaction &#xC85;&#xCB2;&#xCB0;&#xCCD;&#xC9C;&#xCBF;&#xCAF;
-                        &#xCAA;&#xCCD;&#xCB0;&#xCA4;&#xCBF;&#xC95;&#xCCD;&#xCB0;&#xCBF;&#xCAF;&#xCC6;</span>
-                </label>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Followup_EngKan/first_time_followup_group/condom_sideeffect"
-                           value="others"
-                           data-relevant=" /Family_Planning_Followup_EngKan/case_familyplanning_method  = 'condom'"
-                           data-type-xml="select"/>
-                    <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
-                </label>
-            </fieldset>
-        </fieldset>
-        <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
-            <fieldset>
-                <legend>
-                    <span lang="" class=" active">Any problems with IUD? &#xC90;.&#xCAF;&#xCC1;.&#xCA1;&#xCBF; &#xCAC;&#xCB3;&#xCB8;&#xCC1;&#xCB5;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
+                    <span lang="" class=" active">Any problems with IUD? &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF; &#xCAC;&#xCB3;&#xCB8;&#xCC1;&#xCB5;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
                         &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1; &#xCB8;&#xCAE;&#xCB8;&#xCCD;&#xCAF;&#xCC6;&#xC97;&#xCB3;&#xCBF;&#xCB5;&#xCC7;&#xCAF;&#xCC7;?
                     </span>
                 </legend>
@@ -136,47 +108,6 @@
                            name="/Family_Planning_Followup_EngKan/first_time_followup_group/iud_sideeffect"
                            value="others"
                            data-relevant=" /Family_Planning_Followup_EngKan/case_familyplanning_method  = 'iud'"
-                           data-type-xml="select"/>
-                    <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
-                </label>
-            </fieldset>
-        </fieldset>
-        <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
-            <fieldset>
-                <legend>
-                    <span lang="" class=" active">Any problems with OCP? &#xC92;.&#xCB8;&#xCBF;.&#xCAA;&#xCBF; &#xCAC;&#xCB3;&#xCB8;&#xCC1;&#xCB5;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-                        &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1; &#xCB8;&#xCAE;&#xCB8;&#xCCD;&#xCAF;&#xCC6;&#xC97;&#xCB3;&#xCBF;&#xCB5;&#xCC7;&#xCAF;&#xCC7;?
-                    </span>
-                </legend>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Followup_EngKan/first_time_followup_group/ocp_sideeffect"
-                           value="spotting_or_bleeding"
-                           data-relevant=" /Family_Planning_Followup_EngKan/case_familyplanning_method  = 'ocp'"
-                           data-type-xml="select"/>
-                    <span lang="" class=" active">Spotting or Bleeding &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCB8;&#xCCD;&#xCB0;&#xCBE;&#xCB5;</span>
-                </label>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Followup_EngKan/first_time_followup_group/ocp_sideeffect"
-                           value="jaundice"
-                           data-relevant=" /Family_Planning_Followup_EngKan/case_familyplanning_method  = 'ocp'"
-                           data-type-xml="select"/>
-                    <span lang="" class=" active">Jaundice &#xC95;&#xCBE;&#xCAE;&#xCBE;&#xCB2;&#xCC6;</span>
-                </label>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Followup_EngKan/first_time_followup_group/ocp_sideeffect"
-                           value="amenorrhea"
-                           data-relevant=" /Family_Planning_Followup_EngKan/case_familyplanning_method  = 'ocp'"
-                           data-type-xml="select"/>
-                    <span lang="" class=" active">Amenorrhea</span>
-                </label>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Followup_EngKan/first_time_followup_group/ocp_sideeffect"
-                           value="others"
-                           data-relevant=" /Family_Planning_Followup_EngKan/case_familyplanning_method  = 'ocp'"
                            data-type-xml="select"/>
                     <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
                 </label>
@@ -234,20 +165,10 @@
             </fieldset>
         </fieldset>
         <label class="jr-branch pre-init ">
-            <span lang="" class=" active">Any problems with DMPA / Injectable? &#xCA1;&#xCBF;&#xC82;&#xCAA;&#xCBE; /
-                &#xC9A;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;&#xCAE;&#xCA6;&#xCCD;&#xCA6;&#xCC1; &#xCAC;&#xCB3;&#xCB8;&#xCC1;&#xCB5;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-                &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1; &#xCB8;&#xCAE;&#xCB8;&#xCCD;&#xCAF;&#xCC6;&#xC97;&#xCB3;&#xCBF;&#xCB5;&#xCC7;&#xCAF;&#xCC7;?
-            </span>
-            <input autocomplete="off" type="text"
-                   name="/Family_Planning_Followup_EngKan/first_time_followup_group/injectable_sideeffect"
-                   data-relevant=" /Family_Planning_Followup_EngKan/case_familyplanning_method  = 'dmpa_injectable'"
-                   data-type-xml="string"/>
-        </label>
-        <label class="jr-branch pre-init ">
             <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
             <input autocomplete="off" type="text"
                    name="/Family_Planning_Followup_EngKan/first_time_followup_group/other_sideeffect"
-                   data-relevant="selected( /Family_Planning_Followup_EngKan/first_time_followup_group/condom_sideeffect , 'others') or selected( /Family_Planning_Followup_EngKan/first_time_followup_group/iud_sideeffect , 'others') or selected( /Family_Planning_Followup_EngKan/first_time_followup_group/ocp_sideeffect , 'others') or selected( /Family_Planning_Followup_EngKan/first_time_followup_group/sterilization_sideeffect , 'others')"
+                   data-relevant="selected( /Family_Planning_Followup_EngKan/first_time_followup_group/iud_sideeffect , 'others') or selected( /Family_Planning_Followup_EngKan/first_time_followup_group/sterilization_sideeffect , 'others')"
                    data-type-xml="string"/>
         </label>
     </fieldset>
@@ -317,7 +238,8 @@
                        required="required"
                        data-relevant=" /Family_Planning_Followup_EngKan/refer_couple_fp_method_complication  = 'yes'"
                        data-type-xml="select1"/>
-                <span lang="" class=" active">PHC</span>
+                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
+                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio"
@@ -414,7 +336,7 @@
         <label class="">
             <input autocomplete="off" type="hidden"
                    name="/Family_Planning_Followup_EngKan/first_time_followup_group/side_effects"
-                   data-calculate="concat( /Family_Planning_Followup_EngKan/first_time_followup_group/condom_sideeffect , ' ', string( /Family_Planning_Followup_EngKan/first_time_followup_group/iud_sideeffect ), ' ', string( /Family_Planning_Followup_EngKan/first_time_followup_group/ocp_sideeffect ), ' ', string( /Family_Planning_Followup_EngKan/first_time_followup_group/sterilization_sideeffect ), ' ',  /Family_Planning_Followup_EngKan/first_time_followup_group/injectable_sideeffect , ' ',  /Family_Planning_Followup_EngKan/first_time_followup_group/other_sideeffect )"
+                   data-calculate="concat(string( /Family_Planning_Followup_EngKan/first_time_followup_group/iud_sideeffect ), ' ', string( /Family_Planning_Followup_EngKan/first_time_followup_group/sterilization_sideeffect ), ' ',  /Family_Planning_Followup_EngKan/first_time_followup_group/other_sideeffect )"
                    data-type-xml="string"/>
         </label>
         <label class="">

@@ -11,11 +11,8 @@
             <fp_method_followup_date/>
             <first_time_followup_group>
                 <sterilization_failure/>
-                <condom_sideeffect/>
                 <iud_sideeffect/>
-                <ocp_sideeffect/>
                 <sterilization_sideeffect/>
-                <injectable_sideeffect/>
                 <other_sideeffect/>
                 <side_effects/>
             </first_time_followup_group>
