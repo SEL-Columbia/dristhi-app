@@ -48,7 +48,6 @@ public class FormSubmissionRouter {
     }
 
     public void route(String instanceId) {
-        FORM_SUBMITTED.notifyListeners(instanceId);
         FormSubmission submission = formDataRepository.fetchFromSubmission(instanceId);
         FormSubmissionHandler handler = handlerMap.get(submission.formName());
         if (handler == null) {
@@ -56,5 +55,6 @@ public class FormSubmissionRouter {
             return;
         }
         handler.handle(submission);
+        FORM_SUBMITTED.notifyListeners(instanceId);
     }
 }
