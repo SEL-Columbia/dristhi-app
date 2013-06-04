@@ -263,7 +263,6 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.closeFPChangeModal = function() {
-            $scope.currentClientEntityId = null;
             $scope.isFPChangeModalOpen = false;
         };
     });

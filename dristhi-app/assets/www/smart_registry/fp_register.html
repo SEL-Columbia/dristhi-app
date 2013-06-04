@@ -24,8 +24,8 @@
     <div modal="isFPChangeModalOpen" close="closeFPChangeModal()">
         <div class="modal-body modal-row">
             <ul class="nav nav-tabs nav-stacked">
-                <li><a ng-click="closeFPChangeModal();openForm('fp_change', currentClientEntityId)">Change FP</a></li>
-                <li><a ng-click="closeFPChangeModal();openForm('record_ecps', currentClientEntityId)">Record ECP</a></li>
+                <li><a ng-click="openForm('fp_change', currentClientEntityId);closeFPChangeModal()">Change FP</a></li>
+                <li><a ng-click="openForm('record_ecps', currentClientEntityId);closeFPChangeModal()">Record ECP</a></li>
             </ul>
         </div>
     </div>
