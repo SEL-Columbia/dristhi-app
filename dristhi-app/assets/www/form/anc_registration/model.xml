@@ -5,12 +5,12 @@
                 <uuid/>
             </formhub>
             <today/>
-            <reg_date/>
-            <reg_place/>
             <case_woman_name/>
             <woman_name/>
             <case_num_pregnancies/>
             <num_pregnancies/>
+            <reg_date/>
+            <reg_place/>
             <thayi_no/>
             <anc_number/>
             <jsy_beneficiary/>
@@ -35,6 +35,7 @@
             <weight_startofpregnancy/>
             <tobacco_use/>
             <tobacco_user/>
+            <tobacco_user_other/>
             <tobacco_message/>
             <case_would_be_high_risk/>
             <case_would_be_high_risk_reason/>
