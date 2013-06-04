@@ -47,8 +47,16 @@
                 "bind": "/model/instance/EC_Registration_EngKan/woman_age"
             },
             {
+                "name": "husbandAge",
+                "bind": "/model/instance/EC_Registration_EngKan/husband_age"
+            },
+            {
                 "name": "womanDOB",
                 "bind": "/model/instance/EC_Registration_EngKan/woman_date_of_birth"
+            },
+            {
+                "name": "husbandDOB",
+                "bind": "/model/instance/EC_Registration_EngKan/husband_date_of_birth"
             },
             {
                 "name": "husbandName",
@@ -130,7 +138,11 @@
             },
             {
                 "name": "youngestChildAge",
-                "bind": "/model/instance/EC_Registration_EngKan/age_youngestchild"
+                "bind": "/model/instance/EC_Registration_EngKan/youngestchild_age"
+            },
+            {
+                "name": "youngestChildDOB",
+                "bind": "/model/instance/EC_Registration_EngKan/youngestchild_date_of_birth"
             },
             {
                 "name": "currentMethod",

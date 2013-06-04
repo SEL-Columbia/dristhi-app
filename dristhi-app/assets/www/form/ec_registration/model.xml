@@ -15,10 +15,13 @@
             <woman_name/>
             <woman_name2/>
             <aadhaar_number/>
-            <woman_age/>
             <woman_date_of_birth/>
+            <woman_age/>
+            <woman_age_note/>
             <husband_name/>
+            <husband_date_of_birth/>
             <husband_age/>
+            <husband_age_note/>
             <phone_no/>
             <phone_owner/>
             <phone_no2/>
@@ -45,7 +48,9 @@
             <num_livingchildren_male/>
             <num_livingchildren_female/>
             <youngestchild_under2/>
-            <age_youngestchild/>
+            <youngestchild_date_of_birth/>
+            <youngestchild_age/>
+            <youngestchild_age_note/>
             <familyplanning_method_1/>
             <familyplanning_method_other/>
             <familyplanning_method/>
@@ -75,7 +80,7 @@
             <would_be_high_risk_reason/>
             <is_high_priority1/>
             <high_priority_reason/>
-            <message/>
+            <high_priority_message/>
             <is_high_priority/>
             <meta>
                 <instanceID/>
@@ -176,46 +181,6 @@
             <item>
                 <itextId>static_instance-female_sterilization-1</itextId>
                 <name>laparoscopic</name>
-            </item>
-        </root>
-    </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="w_caste">
-        <root>
-            <item>
-                <itextId>static_instance-w_caste-0</itextId>
-                <name>sc</name>
-            </item>
-            <item>
-                <itextId>static_instance-w_caste-1</itextId>
-                <name>st</name>
-            </item>
-            <item>
-                <itextId>static_instance-w_caste-2</itextId>
-                <name>c_others</name>
-            </item>
-        </root>
-    </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="iud_person">
-        <root>
-            <item>
-                <itextId>static_instance-iud_person-0</itextId>
-                <name>anm</name>
-            </item>
-            <item>
-                <itextId>static_instance-iud_person-1</itextId>
-                <name>sn</name>
-            </item>
-            <item>
-                <itextId>static_instance-iud_person-2</itextId>
-                <name>lhv</name>
-            </item>
-            <item>
-                <itextId>static_instance-iud_person-3</itextId>
-                <name>mo</name>
-            </item>
-            <item>
-                <itextId>static_instance-iud_person-4</itextId>
-                <name>others</name>
             </item>
         </root>
     </instance>
@@ -457,34 +422,78 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="w_religion">
+    <instance xmlns="http://www.w3.org/2002/xforms" id="education">
         <root>
             <item>
-                <itextId>static_instance-w_religion-0</itextId>
+                <itextId>static_instance-education-0</itextId>
+                <name>illiterate</name>
+            </item>
+            <item>
+                <itextId>static_instance-education-1</itextId>
+                <name>primary</name>
+            </item>
+            <item>
+                <itextId>static_instance-education-2</itextId>
+                <name>middle</name>
+            </item>
+            <item>
+                <itextId>static_instance-education-3</itextId>
+                <name>high</name>
+            </item>
+            <item>
+                <itextId>static_instance-education-4</itextId>
+                <name>puc</name>
+            </item>
+            <item>
+                <itextId>static_instance-education-5</itextId>
+                <name>graduate</name>
+            </item>
+            <item>
+                <itextId>static_instance-education-6</itextId>
+                <name>post_graduate</name>
+            </item>
+        </root>
+    </instance>
+    <instance xmlns="http://www.w3.org/2002/xforms" id="male_sterilization">
+        <root>
+            <item>
+                <itextId>static_instance-male_sterilization-0</itextId>
+                <name>nsv</name>
+            </item>
+            <item>
+                <itextId>static_instance-male_sterilization-1</itextId>
+                <name>conventional_vasectomy</name>
+            </item>
+        </root>
+    </instance>
+    <instance xmlns="http://www.w3.org/2002/xforms" id="religion">
+        <root>
+            <item>
+                <itextId>static_instance-religion-0</itextId>
                 <name>hindu</name>
             </item>
             <item>
-                <itextId>static_instance-w_religion-1</itextId>
+                <itextId>static_instance-religion-1</itextId>
                 <name>muslim</name>
             </item>
             <item>
-                <itextId>static_instance-w_religion-2</itextId>
+                <itextId>static_instance-religion-2</itextId>
                 <name>christian</name>
             </item>
             <item>
-                <itextId>static_instance-w_religion-3</itextId>
+                <itextId>static_instance-religion-3</itextId>
                 <name>jain</name>
             </item>
             <item>
-                <itextId>static_instance-w_religion-4</itextId>
+                <itextId>static_instance-religion-4</itextId>
                 <name>sikh</name>
             </item>
             <item>
-                <itextId>static_instance-w_religion-5</itextId>
+                <itextId>static_instance-religion-5</itextId>
                 <name>buddhist</name>
             </item>
             <item>
-                <itextId>static_instance-w_religion-6</itextId>
+                <itextId>static_instance-religion-6</itextId>
                 <name>r_others</name>
             </item>
         </root>
@@ -505,15 +514,47 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="male_sterilization">
+    <instance xmlns="http://www.w3.org/2002/xforms" id="numbers">
         <root>
             <item>
-                <itextId>static_instance-male_sterilization-0</itextId>
-                <name>nsv</name>
+                <itextId>static_instance-numbers-0</itextId>
+                <name>0</name>
             </item>
             <item>
-                <itextId>static_instance-male_sterilization-1</itextId>
-                <name>conventional_vasectomy</name>
+                <itextId>static_instance-numbers-1</itextId>
+                <name>1</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-2</itextId>
+                <name>2</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-3</itextId>
+                <name>3</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-4</itextId>
+                <name>4</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-5</itextId>
+                <name>5</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-6</itextId>
+                <name>6</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-7</itextId>
+                <name>7</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-8</itextId>
+                <name>8</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-9</itextId>
+                <name>999</name>
             </item>
         </root>
     </instance>
@@ -525,15 +566,15 @@
             </item>
             <item>
                 <itextId>static_instance-fp_method_other-1</itextId>
-                <name>centchroman</name>
-            </item>
-            <item>
-                <itextId>static_instance-fp_method_other-2</itextId>
                 <name>traditional_methods</name>
             </item>
             <item>
-                <itextId>static_instance-fp_method_other-3</itextId>
+                <itextId>static_instance-fp_method_other-2</itextId>
                 <name>lam</name>
+            </item>
+            <item>
+                <itextId>static_instance-fp_method_other-3</itextId>
+                <name>centchroman</name>
             </item>
         </root>
     </instance>
@@ -569,79 +610,43 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="w_education">
+    <instance xmlns="http://www.w3.org/2002/xforms" id="caste">
         <root>
             <item>
-                <itextId>static_instance-w_education-0</itextId>
-                <name>illiterate</name>
+                <itextId>static_instance-caste-0</itextId>
+                <name>sc</name>
             </item>
             <item>
-                <itextId>static_instance-w_education-1</itextId>
-                <name>primary</name>
+                <itextId>static_instance-caste-1</itextId>
+                <name>st</name>
             </item>
             <item>
-                <itextId>static_instance-w_education-2</itextId>
-                <name>middle</name>
-            </item>
-            <item>
-                <itextId>static_instance-w_education-3</itextId>
-                <name>high</name>
-            </item>
-            <item>
-                <itextId>static_instance-w_education-4</itextId>
-                <name>puc</name>
-            </item>
-            <item>
-                <itextId>static_instance-w_education-5</itextId>
-                <name>graduate</name>
-            </item>
-            <item>
-                <itextId>static_instance-w_education-6</itextId>
-                <name>post_graduate</name>
+                <itextId>static_instance-caste-2</itextId>
+                <name>c_others</name>
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="noofprg">
+    <instance xmlns="http://www.w3.org/2002/xforms" id="iud_person">
         <root>
             <item>
-                <itextId>static_instance-noofprg-0</itextId>
-                <name>0</name>
+                <itextId>static_instance-iud_person-0</itextId>
+                <name>anm</name>
             </item>
             <item>
-                <itextId>static_instance-noofprg-1</itextId>
-                <name>1</name>
+                <itextId>static_instance-iud_person-1</itextId>
+                <name>sn</name>
             </item>
             <item>
-                <itextId>static_instance-noofprg-2</itextId>
-                <name>2</name>
+                <itextId>static_instance-iud_person-2</itextId>
+                <name>lhv</name>
             </item>
             <item>
-                <itextId>static_instance-noofprg-3</itextId>
-                <name>3</name>
+                <itextId>static_instance-iud_person-3</itextId>
+                <name>mo</name>
             </item>
             <item>
-                <itextId>static_instance-noofprg-4</itextId>
-                <name>4</name>
-            </item>
-            <item>
-                <itextId>static_instance-noofprg-5</itextId>
-                <name>5</name>
-            </item>
-            <item>
-                <itextId>static_instance-noofprg-6</itextId>
-                <name>6</name>
-            </item>
-            <item>
-                <itextId>static_instance-noofprg-7</itextId>
-                <name>7</name>
-            </item>
-            <item>
-                <itextId>static_instance-noofprg-8</itextId>
-                <name>8</name>
-            </item>
-            <item>
-                <itextId>static_instance-noofprg-9</itextId>
-                <name>999</name>
+                <itextId>static_instance-iud_person-4</itextId>
+                <name>others</name>
             </item>
         </root>
     </instance>
