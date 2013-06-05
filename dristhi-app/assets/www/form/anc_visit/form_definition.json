@@ -7,6 +7,10 @@
                 "name": "id"
             },
             {
+                "name": "ecId",
+                "source": "mother.eligible_couple.id"
+            },
+            {
                 "name": "wifeName",
                 "bind": "/model/instance/ANC_Visit_EngKan/case_woman_name",
                 "source": "mother.eligible_couple.wifeName"
