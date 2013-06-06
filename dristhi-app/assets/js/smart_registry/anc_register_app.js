@@ -22,7 +22,7 @@ angular.module("smartRegistry.controllers")
                 },
                 {
                     label: "HRP",
-                    handler: "sortByPriority",
+                    handler: "sortByRisk",
                     sortDescending: false
                 },
                 {
@@ -46,8 +46,8 @@ angular.module("smartRegistry.controllers")
             return item.dueDate;
         };
 
-        $scope.sortByPriority = function (item) {
-            return !item.isHighPriority;
+        $scope.sortByRisk = function (item) {
+            return !item.isHighRisk;
         };
 
         $scope.defaultVillageOptions = {
