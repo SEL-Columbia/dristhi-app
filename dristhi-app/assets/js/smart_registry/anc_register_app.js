@@ -183,7 +183,7 @@ angular.module("smartRegistry.controllers")
             {
                 var lmp_date = new Date(lmp);
                 var today = new Date();
-                return Math.round((today - lmp_date) / 1000 / 60 / 60 / 24 / 7);
+                return Math.floor((today - lmp_date) / 1000 / 60 / 60 / 24 / 7);
             }
         };
 
