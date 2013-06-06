@@ -1,5 +1,5 @@
 <div class="span6 line-right span-no-margin width-without-margins span-content">
-    <p>{{client.highPriorityReason | humanize}}</p>
+    <p>{{client.highPriorityReason | camelCase | commaSeparated | humanize}}</p>
 </div>
 <div class="span3 full-height span-no-margin width-without-margins span-content">
     <button class="btn btn-done btn-sr btn-new-form full-height" ng-click="openFPChangeModal(client.entity_id)">
