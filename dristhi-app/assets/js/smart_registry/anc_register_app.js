@@ -18,7 +18,7 @@ angular.module("smartRegistry.controllers")
                 {
                     label: "EDD",
                     handler: "sortByEDD",
-                    sortDescending: true
+                    sortDescending: false
                 },
                 {
                     label: "HRP",
