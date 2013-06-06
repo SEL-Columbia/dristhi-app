@@ -55,8 +55,8 @@ angular.module("smartRegistry.filters")
         return function(input){
             try
             {
-                var text = input.toString();
-                return input.split(" ").join(", ");
+                var text = input.toString().trim();
+                return text.split(" ").join(", ");
             }
             catch(err)
             {

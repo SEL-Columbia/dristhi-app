@@ -105,7 +105,7 @@ public class ANCSmartRegistryControllerTest {
 
     @Test
     public void shouldMapANCToANCClient() throws Exception {
-        Map<String, String> details = create("edd", "Tue, 25 Feb 2014 00:00:00 GMT").put("isHighRisk", "yes").put("ancNumber", "ANC X").map();
+        Map<String, String> details = create("edd", "Tue, 25 Feb 2014 00:00:00 GMT").put("isHighRisk", "yes").put("ancNumber", "ANC X").put("highRiskReason", "Headache").map();
         EligibleCouple eligibleCouple = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null,
                 create("wifeAge", "23")
                         .put("isHighPriority", Boolean.toString(false))
@@ -123,6 +123,7 @@ public class ANCSmartRegistryControllerTest {
                 .withIsHighRisk(true)
                 .withCaste("other")
                 .withANCNumber("ANC X")
+                .withHighRiskReason("Headache")
                 .withPhotoPath("../../img/woman-placeholder.png")
                 .withAlerts(Collections.<AlertDTO>emptyList())
                 .withServicesProvided(Collections.<ServiceProvidedDTO>emptyList());

@@ -23,6 +23,7 @@ public class ANCClient {
     private String lmp;
     private boolean isHighPriority;
     private boolean isHighRisk;
+    private String riskFactors;
     private String locationStatus;
     private String caste;
     private List<AlertDTO> alerts;
@@ -78,6 +79,11 @@ public class ANCClient {
 
     public ANCClient withCaste(String caste) {
         this.caste = caste;
+        return this;
+    }
+
+    public ANCClient withHighRiskReason(String highRiskReason) {
+        this.riskFactors = highRiskReason;
         return this;
     }
 

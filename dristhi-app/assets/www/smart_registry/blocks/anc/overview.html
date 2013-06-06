@@ -1,7 +1,7 @@
 <div class="span6 full-height span-no-margin width-without-margins">
     <div class="row-fluid full-height">
         <div class="span3 line-right span-no-margin width-without-margins span-content">
-            {{client.risk_factors}}
+            {{client.riskFactors | camelCase | commaSeparated | humanize}}
         </div>
         <div data-ng-repeat="schedule in ['anc', 'tt', 'ifa']"
              class="visits span3 line-right span-no-margin width-without-margins span-content">
