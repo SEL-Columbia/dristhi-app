@@ -75,6 +75,7 @@ public class ANCSmartRegistryController {
                             .withHusbandName(ec.husbandName())
                             .withAge(ec.age())
                             .withECNumber(ec.ecNumber())
+                            .withANCNumber(anc.getDetail("ancNumber"))
                             .withIsHighPriority(ec.isHighPriority())
                             .withIsHighRisk(anc.isHighRisk())
                             .withIsOutOfArea(ec.isOutOfArea())

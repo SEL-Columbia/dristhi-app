@@ -15,6 +15,7 @@ public class ANCClient {
     private String village;
     private String name;
     private String thayi;
+    private String ancNumber;
     private String age;
     private String husband_name;
     private String photo_path;
@@ -52,6 +53,11 @@ public class ANCClient {
 
     public ANCClient withECNumber(String ecNumber) {
         this.ec_number = ecNumber;
+        return this;
+    }
+
+    public ANCClient withANCNumber(String ancNumber) {
+        this.ancNumber = ancNumber;
         return this;
     }
 
