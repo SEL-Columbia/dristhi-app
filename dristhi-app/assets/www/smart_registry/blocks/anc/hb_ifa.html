@@ -65,8 +65,8 @@
                         </div>
                     </button>
                     <button class="btn btn-primary btn-sr full-height complete"
-                            ng-show="(client.visits.ifa.next && client.visits.ifa.next.status == 'complete') ||
-                                (!client.visits.ifa.next)">
+                            ng-show="client.visits.ifa['IFA'] && ((client.visits.ifa.next && client.visits.ifa.next.status == 'complete') ||
+                                (!client.visits.ifa.next))">
                         <div class="done-icon full-height">
                             <i class="icon-ok green icon-large"></i>
                         </div>
