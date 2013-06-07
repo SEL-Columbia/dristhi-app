@@ -497,6 +497,11 @@ body {
     color: #d5d5d5;
 }
 
+.vertical-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .ellipsis {
     overflow: hidden;
     text-overflow: ellipsis;
