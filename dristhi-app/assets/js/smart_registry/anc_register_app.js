@@ -132,9 +132,9 @@ angular.module("smartRegistry.controllers")
         $scope.contentTemplate = $scope.ancServiceOptions.options[0].id;
 
         $scope.searchCriteria = function (client, searchFilterString) {
-            return (client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
-                || client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
-                || client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0);
+            return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
+                || (client.ec_number && client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
+                || (client.thayi && client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
         };
 
         $scope.changeContentBasedOnServiceMode = function (client, serviceModeOptionId) {
@@ -158,8 +158,7 @@ angular.module("smartRegistry.controllers")
 
         $scope.sumIFATablets = function (ifaData) {
             var numTablets = 0;
-            if(ifaData['IFA'] !== undefined)
-            {
+            if (ifaData['IFA'] !== undefined) {
                 ifaData['IFA'].forEach(function (ifa) {
                     numTablets += ifa.data['dose'] || 0;
                 });
@@ -167,20 +166,19 @@ angular.module("smartRegistry.controllers")
             return numTablets;
         };
 
-        $scope.openANCFormModal = function(clientEntityId) {
+        $scope.openANCFormModal = function (clientEntityId) {
             $scope.currentClientEntityId = clientEntityId;
             $scope.isANCFormModalOpen = true;
         };
 
-        $scope.closeANCFormModal = function() {
+        $scope.closeANCFormModal = function () {
             $scope.isANCFormModalOpen = false;
         };
 
-        $scope.weeksPregnant = function(client) {
+        $scope.weeksPregnant = function (client) {
             // get lmp data
             var lmp = Date.parse(client.lmp);
-            if(lmp)
-            {
+            if (lmp) {
                 var lmp_date = new Date(lmp);
                 var today = new Date();
                 return Math.floor((today - lmp_date) / 1000 / 60 / 60 / 24 / 7);
@@ -189,9 +187,8 @@ angular.module("smartRegistry.controllers")
 
         $scope.microformSchedules = ['tt', 'ifa'];
 
-        $scope.useMicroForm = function(schedule) {
-            if($scope.microformSchedules.indexOf(schedule) !== -1)
-            {
+        $scope.useMicroForm = function (schedule) {
+            if ($scope.microformSchedules.indexOf(schedule) !== -1) {
                 return true;
             }
             return false;
@@ -210,20 +207,17 @@ angular.module("smartRegistry.controllers")
             'IFA 3': 'schedule'
         };
 
-        $scope.hbLegendClass = function(level) {
+        $scope.hbLegendClass = function (level) {
             var legend_class;
-            if(level < 7)
-            {
+            if (level < 7) {
                 legend_class = "hb-legend-dangerous";
             }
-            else if(level >= 7 && level < 11)
-            {
+            else if (level >= 7 && level < 11) {
                 legend_class = "hb-legend-high";
             }
-            else
-            {
+            else {
                 legend_class = "hb-legend-normal";
             }
-           return legend_class;
-        } ;
+            return legend_class;
+        };
     });

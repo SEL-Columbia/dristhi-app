@@ -43,16 +43,16 @@ angular.module("smartRegistry.controllers")
         $scope.sortByPriority = function (client) {
             return !client.isHighPriority;
         };
-        $scope.sortByECNumber = function(client) {
+        $scope.sortByECNumber = function (client) {
             return parseInt(client.ec_number) || 0;
         };
-        $scope.sortByBPL = function(client) {
+        $scope.sortByBPL = function (client) {
             return client.economicStatus !== "bpl";
         };
-        $scope.sortBySC = function(client) {
+        $scope.sortBySC = function (client) {
             return client.caste !== "sc";
         };
-        $scope.sortByST = function(client) {
+        $scope.sortByST = function (client) {
             return client.caste !== "st";
         };
 
@@ -236,33 +236,31 @@ angular.module("smartRegistry.controllers")
 
         $scope.searchFilterString = "";
         $scope.searchCriteria = function (client, searchFilterString) {
-            return (client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
-                || client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0
-                || client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0);
+            return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
+                || (client.ec_number && client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
+                || (client.thayi && client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
         };
 
-        $scope.getSideEffect = function(client) {
+        $scope.getSideEffect = function (client) {
             // get the fp method
             var fp_method = client['fp_method'];
-            if(fp_method !== undefined)
-            {
+            if (fp_method !== undefined) {
                 // get matching side effect
-                var option = $scope.ecsWithFPMethodServiceModeOptions.options.find(function(option){
+                var option = $scope.ecsWithFPMethodServiceModeOptions.options.find(function (option) {
                     return option.id === fp_method;
                 });
-                if(option)
-                {
+                if (option) {
                     return client[option.sideEffect];
                 }
             }
         };
 
-        $scope.openFPChangeModal = function(clientEntityId) {
+        $scope.openFPChangeModal = function (clientEntityId) {
             $scope.currentClientEntityId = clientEntityId;
             $scope.isFPChangeModalOpen = true;
         };
 
-        $scope.closeFPChangeModal = function() {
+        $scope.closeFPChangeModal = function () {
             $scope.isFPChangeModalOpen = false;
         };
     });

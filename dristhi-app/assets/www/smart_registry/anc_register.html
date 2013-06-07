@@ -27,14 +27,19 @@
         <div class="modal-body modal-row">
             <div class="modal-body modal-row">
                 <ul class="nav nav-tabs nav-stacked">
-                    <li><a ng-click="openForm('anc_visit', currentClientEntityId);closeANCFormModal();">ANC Visit</a></li>
-                    <li><a ng-click="openMicroForm('hb_test', currentClientEntityId);closeANCFormModal();">Hb Test</a></li>
+                    <li><a ng-click="openForm('anc_visit', currentClientEntityId);closeANCFormModal();">ANC Visit</a>
+                    </li>
+                    <li><a ng-click="openMicroForm('hb_test', currentClientEntityId);closeANCFormModal();">Hb Test</a>
+                    </li>
                     <li><a ng-click="openMicroForm('ifa', currentClientEntityId);closeANCFormModal();">IFA</a></li>
                     <li><a ng-click="openMicroForm('tt_1', currentClientEntityId);closeANCFormModal();">TT 1</a></li>
                     <li><a ng-click="openMicroForm('tt_2', currentClientEntityId);closeANCFormModal();">TT 2</a></li>
-                    <li><a ng-click="openMicroForm('tt_booster', currentClientEntityId);closeANCFormModal()">TT Booster</a></li>
-                    <li><a ng-click="openForm('delivery_outcome', currentClientEntityId);closeANCFormModal();">Delivery outcome</a></li>
-                    <li><a ng-click="openForm('anc_close', currentClientEntityId);closeANCFormModal();">ANC Close</a></li>
+                    <li><a ng-click="openMicroForm('tt_booster', currentClientEntityId);closeANCFormModal()">TT
+                        Booster</a></li>
+                    <li><a ng-click="openForm('delivery_outcome', currentClientEntityId);closeANCFormModal();">Delivery
+                        outcome</a></li>
+                    <li><a ng-click="openForm('anc_close', currentClientEntityId);closeANCFormModal();">ANC Close</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -54,12 +59,11 @@
                     </form>
                     <ul class="nav pull-right">
                         <li><a id="anc-service-modes" ng-click="openModal(ancServiceOptions)">{{serviceModeOption.label}}
-                            <i
-                                    class="icon-white icon-chevron-down"></i></a></li>
+                            <i class="icon-white icon-chevron-down"></i></a></li>
                         <li><a id="sort-options" ng-click="openModal(sortOptions)"><i
                                 class="icon-sort-custom icon-white"></i></a></li>
-                        <li><a id="village-options" ng-click="openModal(villageOptions)"><i
-                                class="icon-village icon-white"></i></a>
+                        <li><a id="village-options" ng-click="openModal(villageOptions)">
+                            <i class="icon-village icon-white"></i></a>
                         </li>
                         <li><a ng-click="openForm('anc_registration_oa', '')"><i class="icon-plus icon-white"></i></a>
                         </li>
