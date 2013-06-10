@@ -1,5 +1,5 @@
 angular.module("smartRegistry.controllers")
-    .controller("pncRegisterController", function ($scope) {
+    .controller("pncRegisterController", function ($scope, SmartHelper) {
         $scope.bridge = new PNCRegistryBridge();
         $scope.getClients = function () {
             return $scope.bridge.getClients();
@@ -128,5 +128,13 @@ angular.module("smartRegistry.controllers")
         $scope.openPNCFormModal = function (clientEntityId) {
             $scope.currentClientEntityId = clientEntityId;
             $scope.isANCFormModalOpen = true;
+        };
+
+        $scope.daysPP = function(client) {
+            return Math.round(SmartHelper.daysBetween(new Date(Date.parse(client.deliveryDate)), new Date()));
+        };
+
+        $scope.isPNCService = function(service) {
+            return service['name'] === "PNC";
         };
     });

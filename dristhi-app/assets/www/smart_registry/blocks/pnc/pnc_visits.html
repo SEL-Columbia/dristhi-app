@@ -1,28 +1,24 @@
 <div class="span4 span-no-margin width-without-margins full-height">
     <div class="row-fluid full-height">
         <div class="span4 span-no-margin width-without-margins line-right span-content">
-            <span class="text-bold text-bigger">6</span>
+            <span class="text-bold text-bigger">{{daysPP(client)}}</span>
             <br/>
             <span>DOB: </span>
-            <span class="text-bold">25/02</span>
+            <span class="text-bold">{{client.deliveryDate | date:'dd/MM'}}</span>
         </div>
-        <div class="span8 span-no-margin width-without-margins line-right span-content">Complications</div>
+        <div class="span8 span-no-margin width-without-margins line-right span-content">{{client.deliveryComplications | camelCase | humanize}}</div>
     </div>
 </div>
 <div class="span4 span-no-margin width-without-margins line-right span-content">First 7 Days</div>
 <div class="span2 span-no-margin width-without-margins line-right span-content">
-    <p class="text-left text-bold">
+    <p data-ng-repeat="visit in client.services_provided | filter:isPNCService |  orderBy:'-date' | limitTo:3" class="text-left text-bold">
         <span>14 </span>
-        <span class="text-due">01/01</span>
-    </p>
-    <p class="text-left text-bold">
-        <span>18 </span>
-        <span class="text-due">31/03</span>
+        <span class="text-due">{{visit.date | date:'dd/MM' }}</span>
     </p>
 </div>
 <div class="span2 span-no-margin width-without-margins line-right span-content">
         <button class="btn btn-primary btn-large normal btn-sr normal">
-            <span class="text-bold">PNC Visit 2</span>
+            <span class="text-bold">PNC Visit</span>
             <br/>
             <span>due 06/04</span>
         </button>
