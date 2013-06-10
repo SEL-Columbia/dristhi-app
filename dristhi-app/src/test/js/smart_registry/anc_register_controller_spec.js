@@ -17,7 +17,7 @@ describe('ANC Register controller', function () {
 
     it("should sum the number of tablets from ifa data", function () {
         var ifaData = {
-            next:{
+            next: {
                 name: 'ifa2',
                 status: 'upcoming',
                 visit_date: null
@@ -26,14 +26,14 @@ describe('ANC Register controller', function () {
                 {
                     status: 'done',
                     visit_date: '04/04',
-                    data:{
+                    data: {
                         dose: 100
                     }
                 },
                 {
                     status: 'done',
                     visit_date: '04/04',
-                    data:{
+                    data: {
                         dose: 120
                     }
                 }
@@ -71,14 +71,14 @@ describe('ANC Register controller', function () {
         });
     });
 
-    describe("Weeks Pregnant", function(){
-        it("calculates weeks pregnant from client's lmp", function(){
+    describe("Weeks Pregnant", function () {
+        it("calculates weeks pregnant from client's lmp", function () {
             var today = new Date();
             var a_week_ago = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
-            // pad month with zero
-            var month = ('00' + (a_week_ago.getMonth() + 1)).substr(-2);
+            var month = ('0' + (a_week_ago.getMonth() + 1)).substr(-2);
+            var day = ('0' + a_week_ago.getDay()).substr(-2);
             var client = {
-                lmp: a_week_ago.getFullYear() + '-' + month + '-' + a_week_ago.getDate()
+                lmp: a_week_ago.getFullYear() + '-' + month + '-' + day
             };
             expect(scope.weeksPregnant(client)).toEqual(1);
         });

@@ -176,7 +176,6 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.weeksPregnant = function (client) {
-            // get lmp data
             var lmp = Date.parse(client.lmp);
             if (lmp) {
                 var lmp_date = new Date(lmp);
