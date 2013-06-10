@@ -7,6 +7,9 @@ import org.ei.drishti.domain.Mother;
 
 import java.util.List;
 
+import static org.ei.drishti.repository.MotherRepository.TYPE_ANC;
+import static org.ei.drishti.repository.MotherRepository.TYPE_PNC;
+
 public class AllBeneficiaries {
     private ChildRepository childRepository;
     private MotherRepository motherRepository;
@@ -50,7 +53,11 @@ public class AllBeneficiaries {
     }
 
     public List<Pair<Mother, EligibleCouple>> allANCsWithEC() {
-        return motherRepository.allANCsWithEC();
+        return motherRepository.allMothersOfATypeWithEC(TYPE_ANC);
+    }
+
+    public List<Pair<Mother, EligibleCouple>> allPNCsWithEC() {
+        return motherRepository.allMothersOfATypeWithEC(TYPE_PNC);
     }
 
     public Mother findMotherByECCaseId(String ecCaseId) {

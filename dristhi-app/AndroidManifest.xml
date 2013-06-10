@@ -129,6 +129,10 @@
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:screenOrientation="landscape"/>
         <activity
+            android:name=".view.activity.PNCSmartRegistryActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:screenOrientation="landscape"/>
+        <activity
             android:name=".view.activity.FormActivity"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:screenOrientation="portrait"/>

@@ -18,10 +18,12 @@ public class ServiceProvided {
     public static final String TT_BOOSTER_SERVICE_PROVIDED_NAME = "TT Booster";
     public static final String HB_TEST_SERVICE_PROVIDED_NAME = "Hb Test";
     public static final String ANC_SERVICE_PREFIX = "ANC ";
+    public static final String PNC_SERVICE_PREFIX = "PNC ";
     public static final String ANC_1_SERVICE_PROVIDED_NAME = ANC_SERVICE_PREFIX + "1";
     public static final String ANC_2_SERVICE_PROVIDED_NAME = ANC_SERVICE_PREFIX + "2";
     public static final String ANC_3_SERVICE_PROVIDED_NAME = ANC_SERVICE_PREFIX + "3";
     public static final String ANC_4_SERVICE_PROVIDED_NAME = ANC_SERVICE_PREFIX + "4";
+    public static final String PNC_1_SERVICE_PROVIDED_NAME = PNC_SERVICE_PREFIX + "1";
 
     private final String entityId;
     private final String name;

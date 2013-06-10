@@ -47,6 +47,10 @@ public class NavigationController {
         activity.startActivity(new Intent(activity, ANCSmartRegistryActivity.class));
     }
 
+    public void startPNCSmartRegistry() {
+        activity.startActivity(new Intent(activity, PNCSmartRegistryActivity.class));
+    }
+
     public String get() {
         return new Gson().toJson(new HomeContext(anmService.fetchDetails()));
     }

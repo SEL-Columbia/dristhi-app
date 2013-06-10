@@ -47,6 +47,12 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
+    var bindToPNCSmartRegistry = function (callbackToRunBeforeAnyAction, identifierOfElement) {
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
+            anmNavigationBridge.delegateToPNCSmartRegistry();
+        });
+    };
+
     var bindToLaunchForm = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function (e) {
             anmNavigationBridge.delegateToFormLaunchView($(e.currentTarget).data("formname"), $(e.currentTarget).data("entityid"));
@@ -66,11 +72,12 @@ function ANMNavigationPanel(anmNavigationBridge) {
             bindToReports(callbackToRunBeforeAnyAction, "#reportsButton");
 
             bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
-            //bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
-            bindToPNCList(callbackToRunBeforeAnyAction, "#pncMenuOption");
+//            bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
+//            bindToPNCList(callbackToRunBeforeAnyAction, "#pncMenuOption");
             bindToChildList(callbackToRunBeforeAnyAction, "#childMenuOption");
             bindToFPSmartRegistry(callbackToRunBeforeAnyAction, "#fpSmartRegistryOption");
             bindToANCSmartRegistry(callbackToRunBeforeAnyAction, "#ancSmartRegistryOption");
+            bindToPNCSmartRegistry(callbackToRunBeforeAnyAction, "#pncSmartRegistryOption");
         }
     };
 }
@@ -106,6 +113,9 @@ function ANMNavigationBridge() {
         delegateToANCSmartRegistry: function () {
             return anmNavigationContext.startANCSmartRegistry();
         },
+        delegateToPNCSmartRegistry: function () {
+            return anmNavigationContext.startPNCSmartRegistry();
+        },
         takePhoto: function (entityId, entityType) {
             return anmNavigationContext.takePhoto(entityId, entityType);
         },
@@ -134,7 +144,7 @@ function FakeANMNavigationContext() {
             window.location.href = "anc_list.html";
         },
         startPNCList: function () {
-            window.location.href = "smart_registry/pnc_register.html";
+            window.location.href = "pnc_list.html";
         },
         startChildList: function () {
             window.location.href = "child_list.html";
@@ -147,6 +157,9 @@ function FakeANMNavigationContext() {
         },
         startANCSmartRegistry: function () {
             window.location = "smart_registry/anc_register.html";
+        },
+        startPNCSmartRegistry: function () {
+            window.location = "smart_registry/pnc_register.html";
         },
         takePhoto: function (entityId, entityType) {
             alert("Taking photo for:" + entityId + " of type: " + entityType);

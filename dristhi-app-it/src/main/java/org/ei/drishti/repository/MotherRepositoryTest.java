@@ -62,9 +62,33 @@ public class MotherRepositoryTest extends AndroidTestCase {
         repository.add(thirdMother);
 
 
-        List<Pair<Mother, EligibleCouple>> ancsWithEC = repository.allANCsWithEC();
+        List<Pair<Mother, EligibleCouple>> ancsWithEC = repository.allMothersOfATypeWithEC("ANC");
 
         assertEquals(asList(Pair.of(firstMother, firstEligibleCouple), Pair.of(secondMother, secondEligibleCouple)), ancsWithEC);
+    }
+
+    public void testShouldFetchPNCAndCorrespondingEC() throws Exception {
+        Map<String, String> details = mapOf("some-key", "some-value");
+        EligibleCouple firstEligibleCouple = new EligibleCouple("EC Case 1", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", details);
+        EligibleCouple secondEligibleCouple = new EligibleCouple("EC Case 2", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", details);
+        EligibleCouple thirdEligibleCouple = new EligibleCouple("EC Case 3", "Wife 3", "Husband 3", "EC Number 3", "Village 3", "SubCenter 3", details);
+        Mother firstMother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withDetails(details);
+        Mother secondMother = new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08");
+        Mother thirdMother = new Mother("CASE Z", "EC Case 3", "TC 3", "2012-06-08").setIsClosed(true);
+        eligibleCoupleRepository.add(firstEligibleCouple);
+        eligibleCoupleRepository.add(secondEligibleCouple);
+        eligibleCoupleRepository.add(thirdEligibleCouple);
+        repository.add(firstMother);
+        repository.switchToPNC("CASE X");
+        repository.add(secondMother);
+        repository.switchToPNC("CASE Y");
+        repository.add(thirdMother);
+        repository.switchToPNC("CASE Z");
+
+
+        List<Pair<Mother, EligibleCouple>> pncsWithEC = repository.allMothersOfATypeWithEC("PNC");
+
+        assertEquals(asList(Pair.of(firstMother, firstEligibleCouple), Pair.of(secondMother, secondEligibleCouple)), pncsWithEC);
     }
 
     public void testShouldUpdateMotherDetails() throws Exception {

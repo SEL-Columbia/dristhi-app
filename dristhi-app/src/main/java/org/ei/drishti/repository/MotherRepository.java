@@ -33,8 +33,8 @@ public class MotherRepository extends DrishtiRepository {
     private static final String IS_CLOSED_COLUMN = "isClosed";
     public static final String[] MOTHER_TABLE_COLUMNS = {CASE_ID_COLUMN, EC_CASEID_COLUMN, THAYI_CARD_NUMBER, TYPE_COLUMN, REF_DATE_COLUMN, DETAILS_COLUMN, IS_CLOSED_COLUMN};
 
-    private static final String TYPE_ANC = "ANC";
-    private static final String TYPE_PNC = "PNC";
+    public static final String TYPE_ANC = "ANC";
+    public static final String TYPE_PNC = "PNC";
     private static final String NOT_CLOSED = "false";
 
     @Override
@@ -114,14 +114,14 @@ public class MotherRepository extends DrishtiRepository {
         return readAll(cursor);
     }
 
-    public List<Pair<Mother, EligibleCouple>> allANCsWithEC() {
+    public List<Pair<Mother, EligibleCouple>> allMothersOfATypeWithEC(String type) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery("SELECT " + tableColumnsForQuery(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS) + ", " + tableColumnsForQuery(EC_TABLE_NAME, EC_TABLE_COLUMNS) +
                 " FROM " + MOTHER_TABLE_NAME + ", " + EC_TABLE_NAME +
-                " WHERE " + TYPE_COLUMN + "='" + TYPE_ANC +
+                " WHERE " + TYPE_COLUMN + "='" + type +
                 "' AND " + MOTHER_TABLE_NAME + "." + IS_CLOSED_COLUMN + "= '" + NOT_CLOSED + "' AND " +
                 MOTHER_TABLE_NAME + "." + EC_CASEID_COLUMN + " = " + EC_TABLE_NAME + "." + EligibleCoupleRepository.CASE_ID_COLUMN, null);
-        return readAllANCsWithEC(cursor);
+        return readAllMothersWithEC(cursor);
     }
 
     public void closeAllCasesForEC(String ecCaseId) {
@@ -163,7 +163,7 @@ public class MotherRepository extends DrishtiRepository {
         return mothers;
     }
 
-    private List<Pair<Mother, EligibleCouple>> readAllANCsWithEC(Cursor cursor) {
+    private List<Pair<Mother, EligibleCouple>> readAllMothersWithEC(Cursor cursor) {
         cursor.moveToFirst();
         List<Pair<Mother, EligibleCouple>> ancsWithEC = new ArrayList<Pair<Mother, EligibleCouple>>();
         while (!cursor.isAfterLast()) {

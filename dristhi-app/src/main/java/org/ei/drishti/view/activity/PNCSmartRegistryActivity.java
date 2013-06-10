@@ -1,13 +1,13 @@
 package org.ei.drishti.view.activity;
 
-import org.ei.drishti.view.controller.ANCSmartRegistryController;
+import org.ei.drishti.view.controller.PNCSmartRegistryController;
 
-public class ANCSmartRegistryActivity extends SmartRegisterActivity {
+public class PNCSmartRegistryActivity extends SmartRegisterActivity {
     @Override
     protected void onSmartRegisterInitialization() {
-        webView.addJavascriptInterface(new ANCSmartRegistryController(context.serviceProvidedService(), context.alertService(),
+        webView.addJavascriptInterface(new PNCSmartRegistryController(context.serviceProvidedService(), context.alertService(),
                 context.allEligibleCouples(), context.allBeneficiaries(), context.listCache()), "context");
-        webView.loadUrl("file:///android_asset/www/smart_registry/anc_register.html");
+        webView.loadUrl("file:///android_asset/www/smart_registry/pnc_register.html");
     }
 
     @Override

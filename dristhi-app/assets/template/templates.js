@@ -373,7 +373,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     + "</span>\n        <span>";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.internationalize || depth0.internationalize),stack1 ? stack1.call(depth0, "register_label", options) : helperMissing.call(depth0, "internationalize", "register_label", options)))
-    + "</span>\n    </a>\n</div>\n<div class=\"span2\" id=\"pnc-register\">\n    <a class=\"btn btn-register\" id=\"pncMenuOption\">\n        <span id=\"pncCount\" class=\"register-count\">";
+    + "</span>\n    </a>\n</div>\n<div class=\"span2\" id=\"pnc-register\">\n    <a class=\"btn btn-register\" id=\"pncSmartRegistryOption\">\n        <span id=\"pncCount\" class=\"register-count\">";
   if (stack2 = helpers.pncCount) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.pncCount; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
