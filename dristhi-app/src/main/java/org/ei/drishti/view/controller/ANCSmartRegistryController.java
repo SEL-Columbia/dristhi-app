@@ -71,6 +71,7 @@ public class ANCSmartRegistryController {
                     String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
 
                     List<ServiceProvidedDTO> servicesProvided = getServicesProvided(anc.caseId());
+                    List<AlertDTO> alerts = getAlerts(anc.caseId());
                     ancClients.add(new ANCClient(anc.caseId(), ec.village(), ec.wifeName(), anc.thaayiCardNumber(), anc.getDetail("edd"), anc.referenceDate())
                             .withHusbandName(ec.husbandName())
                             .withAge(ec.age())
@@ -82,7 +83,7 @@ public class ANCSmartRegistryController {
                             .withHighRiskReason(anc.getDetail("highRiskReason"))
                             .withCaste(ec.getDetail("caste"))
                             .withPhotoPath(photoPath)
-                            .withAlerts(getAlerts(anc.caseId()))
+                            .withAlerts(alerts)
                             .withServicesProvided(servicesProvided)
                     );
                 }

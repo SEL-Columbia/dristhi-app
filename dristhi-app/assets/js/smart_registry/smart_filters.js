@@ -41,10 +41,8 @@ angular.module("smartRegistry.filters")
     })
     .filter('fpMethodName', function () {
         return function (input) {
-            if (input) {
-                return fpMethodMap[input];
-            }
-            return input;
+            return fpMethodMap[input] ? fpMethodMap[input] : input;
+
         }
     })
     .filter('commaSeparated', function () {
