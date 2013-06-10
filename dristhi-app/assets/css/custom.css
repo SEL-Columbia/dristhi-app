@@ -406,7 +406,7 @@
     background-color: #f5dcf3;
 }
 
-.gender-text{
+.gender-text {
     font-weight: bold;
 }
 
@@ -708,6 +708,7 @@ a.btn-sr.upcoming, a.btn-sr.done {
 .btn-center-aligned {
     text-align: center;
 }
+
 .btn-icon-only {
     font-size: 35px;
 }
@@ -941,7 +942,7 @@ a.btn-sr.upcoming, a.btn-sr.done {
     margin: 0;
 }
 
-.content-smart-registry .row-fluid [class*="span"].span-content{
+.content-smart-registry .row-fluid [class*="span"].span-content {
     font-size: 15px;
     padding: 5px;
 }
@@ -958,6 +959,7 @@ a.btn-sr.upcoming, a.btn-sr.done {
 .content-smart-registry .row-fluid [class*="span"] [class*="span"] .btn {
     margin-bottom: 3px;
 }
+
 .content-smart-registry .row-fluid [class*="span"] [class*="span"] span {
     font-size: 94%;
 }
@@ -970,36 +972,36 @@ a.btn-sr.upcoming, a.btn-sr.done {
     min-height: 23px;
 }
 
-.row-fluid [class*="span"] div.row-fluid.hb .hb-content-right-aligned{
+.row-fluid [class*="span"] div.row-fluid.hb .hb-content-right-aligned {
     text-align: right;
 }
 
-.row-fluid [class*="span"] div.row-fluid.hb .hb-content{
+.row-fluid [class*="span"] div.row-fluid.hb .hb-content {
     padding: 3px;
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-color: #ececec;
 }
 
-.row-fluid [class*="span"] div.row-fluid.hb .hb-legend{
+.row-fluid [class*="span"] div.row-fluid.hb .hb-legend {
     width: 6%;
     min-height: 10px;
     margin-top: 6px;
 }
 
-.row-fluid [class*="span"] div.row-fluid.hb .hb-legend-dangerous{
+.row-fluid [class*="span"] div.row-fluid.hb .hb-legend-dangerous {
     background: #d13f3f;
 }
 
-.row-fluid [class*="span"] div.row-fluid.hb .hb-legend-high{
+.row-fluid [class*="span"] div.row-fluid.hb .hb-legend-high {
     background: #edca00;
 }
 
-.row-fluid [class*="span"] div.row-fluid.hb .hb-legend-normal{
+.row-fluid [class*="span"] div.row-fluid.hb .hb-legend-normal {
     background: #43ae23;
 }
 
-.row-fluid [class*="span"] div.row-fluid.hb .hb-legend-upcoming{
+.row-fluid [class*="span"] div.row-fluid.hb .hb-legend-upcoming {
     background: #cae2ed;
 }
 
@@ -1013,10 +1015,13 @@ a.btn-sr.upcoming, a.btn-sr.done {
 
 .nav li i.icon-sort-custom {
     background: url(../img/smart_registry/icon-sort.png) no-repeat;
-
 }
 
-.nav li i.icon-sort-custom, .nav li i.icon-village {
+.nav li i.icon-cancel-search-custom {
+    background: url(../img/smart_registry/icon-cross.png) no-repeat;
+}
+
+.nav li i.icon-sort-custom, .nav li i.icon-village, .nav li i.icon-cancel-search-custom {
     background-position: 50% 50%;
     height: 18px;
     width: 25px;
@@ -1038,6 +1043,7 @@ button.text-align-left {
 .relative-positioning {
     position: relative;
 }
+
 .previous-alert {
     position: absolute;
     top: 56px;

@@ -75,7 +75,7 @@ angular.module("smartRegistry.controllers")
             $scope.currentOptions = option;
         };
 
-        $scope.closeModal = function (option) {
+        $scope.closeModal = function () {
             $scope.isModalOpen = false;
         };
 
@@ -162,5 +162,13 @@ angular.module("smartRegistry.controllers")
 
         $scope.goBack = function () {
             $scope.navigationBridge.goBack();
-        }
+        };
+
+        $scope.isInSearchMode = function () {
+            return $scope.searchFilterString ? true : false;
+        };
+
+        $scope.cancelSearch = function () {
+            $scope.searchFilterString = "";
+        };
     }]);
