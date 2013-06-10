@@ -13,7 +13,7 @@
                                 || openMicroForm(milestoneForm[client.visits[schedule].next.name], client.entityId)">
                         <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
                         <br/>
-                        <span ng-show="client.visits[schedule].next.status == 'upcoming'">Upcoming</span>
+                        <span ng-show="client.visits[schedule].next.status == 'upcoming'">Next</span>
                         <span ng-show="client.visits[schedule].next.status == 'normal'
                             || client.visits[schedule].next.status == 'urgent'">Due</span>
                         <span> {{client.visits[schedule].next.visit_date | date:'dd/MM'}}</span>
@@ -25,7 +25,7 @@
                                 || openForm(milestoneForm[client.visits[schedule].next.name], client.entityId)">
                         <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
                         <br/>
-                        <span ng-show="client.visits[schedule].next.status == 'upcoming'">Upcoming</span>
+                        <span ng-show="client.visits[schedule].next.status == 'upcoming'">Next</span>
                         <span ng-show="client.visits[schedule].next.status == 'normal'
                             || client.visits[schedule].next.status == 'urgent'">Due</span>
                         <span> {{client.visits[schedule].next.visit_date | date:'dd/MM'}}</span>
