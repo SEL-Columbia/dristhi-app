@@ -93,13 +93,13 @@ angular.module("smartRegistry.controllers")
                 },
                 {
                     label: "PNC Visits",
-                    id: "visits",
+                    id: "pnc_visits",
                     handler: "changeContentBasedOnServiceMode"
                 }
             ]
         };
 
-        $scope.defaultPNCServiceOption = $scope.pncServiceOptions.options[0];
+        $scope.defaultPNCServiceOption = $scope.pncServiceOptions.options[2];
         $scope.serviceModeOption = $scope.defaultPNCServiceOption;
 
         $scope.pncService = function (option) {

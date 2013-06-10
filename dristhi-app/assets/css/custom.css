@@ -731,11 +731,13 @@ a.btn-sr.upcoming, a.btn-sr.done {
 .upcoming, .upcoming:hover, .upcoming:focus {
     background-color: #cae2ed;
     color: #0d0d0d;
+    text-shadow: 0 -1px 0 rgba(236, 232, 232, 0.25);
 }
 
 .complete, .complete:hover, .complete:focus {
     background-color: #ececec;
     color: #0d0d0d;
+    text-shadow: 0 -1px 0 rgba(236, 232, 232, 0.25);
 }
 
 .inProcess, .inProcess:hover, .inProcess:focus {
@@ -749,6 +751,7 @@ a.btn-sr.upcoming, a.btn-sr.done {
 .btn-new-form, .btn-new-form:hover, .btn-new-form:focus {
     color: #389cc8;
     text-align: center;
+    text-shadow: 0 -1px 0 rgba(236, 232, 232, 0.25);
 }
 
 .text-due {
@@ -964,6 +967,10 @@ a.btn-sr.upcoming, a.btn-sr.done {
     font-size: 94%;
 }
 
+.content-smart-registry .row-fluid [class*="span"] [class*="span"] span.text-bigger {
+    font-size: 120%;
+}
+
 .row-fluid [class*="span"] div.row-fluid.hb {
     margin-bottom: 1px;
 }
@@ -1044,7 +1051,7 @@ button.text-align-left {
     position: relative;
 }
 
-.previous-alert {
+.relative-positioning .previous-alert {
     position: absolute;
     top: 56px;
 }
@@ -1065,4 +1072,26 @@ button .button-text-container.middle {
 
 img.pnc-child-img {
     margin: 0 4px 4px 0;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.grid-content-padding {
+    padding: 5px;
+}
+
+.text-bold {
+    font-weight: 500;
+}
+
+.text-upper {
+    text-transform: uppercase;
+}
+
+.btn-back {
+    background: url("../img/smart_registry/homestacks.png") no-repeat;
+    background-position: 0 50%;
+    background-size: 90%;
 }
