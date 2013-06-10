@@ -941,9 +941,14 @@ a.btn-sr.upcoming, a.btn-sr.done {
     margin: 0;
 }
 
-.content-smart-registry .row-fluid [class*="span"].span-content {
+.content-smart-registry .row-fluid [class*="span"].span-content{
     font-size: 15px;
     padding: 5px;
+}
+
+.content-smart-registry .row-fluid [class*="span"].span-content p {
+    font-size: 15px;
+    margin: 0 0 8px;
 }
 
 .span-content ul {
@@ -1046,4 +1051,12 @@ button .button-text-container {
 button .button-text-container.middle {
     position: absolute;
     top: 35%;
+}
+
+.img-left {
+    float: left;
+}
+
+img.pnc-child-img {
+    margin: 0 4px 4px 0;
 }

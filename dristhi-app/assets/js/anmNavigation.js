@@ -134,7 +134,7 @@ function FakeANMNavigationContext() {
             window.location.href = "anc_list.html";
         },
         startPNCList: function () {
-            window.location.href = "pnc_list.html";
+            window.location.href = "smart_registry/pnc_register.html";
         },
         startChildList: function () {
             window.location.href = "child_list.html";
