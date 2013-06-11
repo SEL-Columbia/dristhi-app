@@ -201,9 +201,9 @@ angular.module("smartRegistry.controllers")
             'TT 1': 'tt_1',
             'TT 2': 'tt_2',
             'TT Booster': 'tt_booster',
-            'IFA 1': 'schedule',
-            'IFA 2': 'schedule',
-            'IFA 3': 'schedule'
+            'IFA 1': 'ifa',
+            'IFA 2': 'ifa',
+            'IFA 3': 'ifa'
         };
 
         $scope.hbLegendClass = function (level) {

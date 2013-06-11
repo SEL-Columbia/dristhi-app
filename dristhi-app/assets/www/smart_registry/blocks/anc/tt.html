@@ -6,7 +6,7 @@
                     ng-show="client.visits.tt[milestone]"
                     ng-class="client.visits.tt[milestone].status"
                     ng-click="client.visits.tt[milestone].status == 'complete'
-                        || openMicroForm(milestoneForm[milestone], client.entityId)">
+                        || openMicroForm(milestoneForm[milestone], client.entityId, {'entityId': client.entityId, 'alertName': milestone})">
                 <ng-switch on="client.visits.tt[milestone].status">
                     <div ng-switch-when="complete" class="done-icon full-height">
                         <i class="icon-ok green icon-large"></i>
