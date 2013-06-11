@@ -68,6 +68,23 @@ public class ChildServiceTest {
     }
 
     @Test
+    public void shouldUpdateEveryChildWhilePNCRegistration() throws Exception {
+        Child firstChild = new Child("Child X", "Mother X", "female", new HashMap<String, String>());
+        Child secondChild = new Child("Child Y", "Mother X", "female", new HashMap<String, String>());
+        when(motherRepository.findAllCasesForEC("EC X")).thenReturn(asList(new Mother("Mother X", "EC X", "TC 1", "2012-01-01")));
+        when(childRepository.findByMotherCaseId("Mother X")).thenReturn(asList(firstChild, secondChild));
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("EC X");
+
+        service.pncRegistration(submission);
+
+        verify(childRepository).findByMotherCaseId("Mother X");
+        verify(childRepository).update(firstChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
+        verify(childRepository).update(secondChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
+        verifyNoMoreInteractions(childRepository);
+    }
+
+    @Test
     public void shouldHandleUpdateImmunizationsForChild() throws Exception {
         Action action = ActionBuilder.updateImmunizations("Case X", mapOf("aKey", "aValue"));
 

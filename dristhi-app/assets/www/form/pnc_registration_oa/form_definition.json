@@ -252,8 +252,7 @@
                         "name": "immunizationsGiven",
                         "bind": "/model/instance/PNC_Child_Registration_EngKan/child/immunizations_atbirth"
                     }
-                ],
-                "instances": []
+                ]
             }
         ]
     }

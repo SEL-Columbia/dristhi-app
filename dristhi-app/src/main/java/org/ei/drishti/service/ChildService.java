@@ -10,7 +10,8 @@ import org.ei.drishti.repository.MotherRepository;
 
 import java.util.List;
 
-import static org.ei.drishti.domain.TimelineEvent.*;
+import static org.ei.drishti.domain.TimelineEvent.forChildImmunization;
+import static org.ei.drishti.domain.TimelineEvent.forChildPNCVisit;
 
 public class ChildService {
     private ChildRepository childRepository;
@@ -25,6 +26,15 @@ public class ChildService {
 
     public void register(FormSubmission submission) {
         Mother mother = motherRepository.findById(submission.entityId());
+        List<Child> children = childRepository.findByMotherCaseId(mother.caseId());
+
+        for (Child child : children) {
+            childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thaayiCardNumber()).setDateOfBirth(mother.referenceDate()));
+        }
+    }
+
+    public void pncRegistration(FormSubmission submission) {
+        Mother mother = motherRepository.findAllCasesForEC(submission.entityId()).get(0);
         List<Child> children = childRepository.findByMotherCaseId(mother.caseId());
 
         for (Child child : children) {
