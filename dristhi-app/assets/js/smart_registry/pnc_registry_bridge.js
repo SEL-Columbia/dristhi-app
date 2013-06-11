@@ -33,7 +33,7 @@ function FakePNCSmartRegistryContext() {
                     locationStatus: "out_of_area",
                     economicStatus: "bpl",
                     caste: "sc",
-                    fp_method: "OCP",
+                    fp_method: "ocp",
                     iudPlace: "PNC",
                     iudPerson: "",
                     family_planning_method_change_date: '2013-08-13',
