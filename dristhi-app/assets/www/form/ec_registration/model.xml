@@ -49,6 +49,7 @@
             <num_livingchildren_female/>
             <youngestchild_under2/>
             <youngestchild_date_of_birth/>
+            <youngestchild_age1/>
             <youngestchild_age/>
             <youngestchild_age_note/>
             <familyplanning_method_1/>
@@ -58,7 +59,9 @@
             <lmp_date/>
             <upt_result/>
             <iud_place/>
+            <iud_place_name/>
             <iud_person/>
+            <iud_person_name/>
             <sterilization_doctor_name/>
             <male_sterilization_type/>
             <female_sterilization_type/>

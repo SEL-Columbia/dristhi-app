@@ -45,18 +45,16 @@
                        data-type-xml="select1" value=""/>
             </label>
             <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
-                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-0">Bherya - A
-                    &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF; -&#xC8E;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-1">Bherya - B
-                    &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF; -&#xCAC;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-2">Hosa Agrahara
-                    &#xCB9;&#xCCA;&#xCB8; &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-3">Munjanahalli
-                    &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-0">Bherya - A &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;
+                    -&#xC8E;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-1">Bherya - B &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;
+                    -&#xCAC;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-2">Hosa Agrahara &#xCB9;&#xCCA;&#xCB8;
+                    &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-3">Munjanahalli &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-4">G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;.
                     &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-5">Vajamangala
-                    &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-5">Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-6">Keelanapura - A
                     &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xC8E;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-7">Keelanapura - B
@@ -74,8 +72,8 @@
             </legend>
             <label class="itemset-template"
                    data-items-path="instance('villages')/root/item[phc= /EC_Registration_EngKan/phc  and sub_center= /EC_Registration_EngKan/sub_center ]">
-                <input type="radio" name="/EC_Registration_EngKan/village" required="required"
-                       data-type-xml="select1" value=""/>
+                <input type="radio" name="/EC_Registration_EngKan/village" required="required" data-type-xml="select1"
+                       value=""/>
             </label>
             <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-0">Basavanapura &#xCAC;&#xCB8;&#xCB5;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
@@ -86,34 +84,28 @@
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-4">Ardha Bherya &#xC85;&#xCB0;&#xCCD;&#xCA7;
                     &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-5">Sugganahalli &#xCB8;&#xCC1;&#xC97;&#xCCD;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-6">Battiganahalli
-                    &#xCAC;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-6">Battiganahalli &#xCAC;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-7">Half Bherya &#xCB9;&#xCBE;&#xCAB;&#xCCD;
                     &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-8">Hosa Agrahara
-                    &#xCB9;&#xCCA;&#xCB8; &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-9">Mandiganahalli
-                    &#xCAE;&#xC82;&#xCA1;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-10">Harambanahalli
-                    &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-11">Harambanahalli
-                    Koppalu &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-8">Hosa Agrahara &#xCB9;&#xCCA;&#xCB8;
+                    &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-9">Mandiganahalli &#xCAE;&#xC82;&#xCA1;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-10">Harambanahalli &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-11">Harambanahalli Koppalu
+                    &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-12">Boregowdanakoppalu
                     &#xCAC;&#xCCB;&#xCB0;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-13">Munjanahalli
-                    &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-14">Kavalu Hosur
-                    &#xC95;&#xCBE;&#xCB5;&#xCB2;&#xCC1; &#xCB9;&#xCCA;&#xCB8;&#xCC2;&#xCB0;&#xCC1;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-15">Chikkabherya
-                    &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-13">Munjanahalli &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-14">Kavalu Hosur &#xC95;&#xCBE;&#xCB5;&#xCB2;&#xCC1;
+                    &#xCB9;&#xCCA;&#xCB8;&#xCC2;&#xCB0;&#xCC1;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-15">Chikkabherya &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-16">G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;.
                     &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-17">Udayagiri &#xC89;&#xCA6;&#xCAF;&#xC97;&#xCBF;&#xCB0;&#xCBF;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-18">Arakere &#xC85;&#xCB0;&#xC95;&#xCC6;&#xCB0;&#xCC6;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-19">Chikkahalli &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-20">Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-21">Halagayanahundi
-                    &#xCB9;&#xCB2;&#xC97;&#xCAF;&#xCCD;&#xCAF;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-21">Halagayanahundi &#xCB9;&#xCB2;&#xC97;&#xCAF;&#xCCD;&#xCAF;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-22">Keelanapura &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-23">M.C.Hundi &#xC8E;&#xC82;.&#xCB8;&#xCBF;.
                     &#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
@@ -123,19 +115,16 @@
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-25">Megalapura &#xCAE;&#xCC7;&#xC98;&#xCB2;&#xCAA;&#xCC1;&#xCB0;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-26">Madhavagere &#xCAE;&#xCBE;&#xCA6;&#xCB5;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-27">Hosahalli &#xCB9;&#xCCA;&#xCB8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-28">Gurukarapura
-                    &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xC95;&#xCBE;&#xCB0;&#xCAA;&#xCC1;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-28">Gurukarapura &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xC95;&#xCBE;&#xCB0;&#xCAA;&#xCC1;&#xCB0;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-29">Puttegowdanahundi
                     &#xCAA;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-30">Lakshmipura &#xCB2;&#xC95;&#xCCD;&#xCB7;&#xCCD;&#xCAE;&#xCC0;&#xCAA;&#xCC1;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-31">Mahadevi Colony
-                    &#xCAE;&#xCBE;&#xCB9;&#xCA6;&#xCC7;&#xCB5;&#xCBF;
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-31">Mahadevi Colony &#xCAE;&#xCBE;&#xCB9;&#xCA6;&#xCC7;&#xCB5;&#xCBF;
                     &#xC95;&#xCBE;&#xCB2;&#xCCB;&#xCA8;&#xCBF;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-32">Duddagere &#xCA6;&#xCC1;&#xCA6;&#xCCD;&#xCA6;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
                 <span lang="default" class=" active" data-itext-id="static_instance-villages-33">Chattanahallipalya
                     &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;&#xCAA;&#xCBE;&#xCB3;&#xCCD;&#xCAF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-34">Chattanahalli
-                    &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-34">Chattanahalli &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
             </span>
         </fieldset>
     </fieldset>
@@ -145,8 +134,7 @@
         <input autocomplete="off" type="number" name="/EC_Registration_EngKan/hh_number" data-type-xml="int"/>
     </label>
     <label class="">
-        <span lang="" class=" active">Household address &#xCAE;&#xCA8;&#xCC6;
-            &#xCB5;&#xCBF;&#xCB3;&#xCBE;&#xCB8;</span>
+        <span lang="" class=" active">Household address &#xCAE;&#xCA8;&#xCC6; &#xCB5;&#xCBF;&#xCB3;&#xCBE;&#xCB8;</span>
         <input autocomplete="off" type="text" name="/EC_Registration_EngKan/hh_address" data-type-xml="string"/>
     </label>
     <label class="">
@@ -195,8 +183,8 @@
     <label class="">
         <span lang="" class=" active">Husband's DOB &#xC97;&#xC82;&#xCA1;&#xCA8; DOB:</span>
         <span class="required">*</span>
-        <input autocomplete="off" type="date" name="/EC_Registration_EngKan/husband_date_of_birth"
-               required="required" data-type-xml="date"/>
+        <input autocomplete="off" type="date" name="/EC_Registration_EngKan/husband_date_of_birth" required="required"
+               data-type-xml="date"/>
     </label>
     <fieldset class="trigger " name="/EC_Registration_EngKan/husband_age_note">
         <span lang="" class=" active">Husband's age &#xC97;&#xC82;&#xCA1;&#xCA8; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;:
@@ -233,8 +221,7 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/phone_owner" value="neighbor"
                        data-relevant=" /EC_Registration_EngKan/phone_no  != ''" data-type-xml="select1"/>
-                <span lang="" class=" active">Neighbor
-                    &#xCA8;&#xCC6;&#xCB0;&#xCC6;&#xCB9;&#xCCA;&#xCB0;&#xCC6;</span>
+                <span lang="" class=" active">Neighbor &#xCA8;&#xCC6;&#xCB0;&#xCC6;&#xCB9;&#xCCA;&#xCB0;&#xCC6;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/phone_owner" value="others"
@@ -272,8 +259,7 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/phone_owner2" value="neighbor"
                        data-relevant=" /EC_Registration_EngKan/phone_no2  != ''" data-type-xml="select1"/>
-                <span lang="" class=" active">Neighbor
-                    &#xCA8;&#xCC6;&#xCB0;&#xCC6;&#xCB9;&#xCCA;&#xCB0;&#xCC6;</span>
+                <span lang="" class=" active">Neighbor &#xCA8;&#xCC6;&#xCB0;&#xCC6;&#xCB9;&#xCCA;&#xCB0;&#xCC6;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/phone_owner2" value="others"
@@ -394,13 +380,13 @@
                     &#xCB6;&#xCBE;&#xCB2;&#xCC6;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level"
-                       value="high" data-type-xml="select1"/>
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level" value="high"
+                       data-type-xml="select1"/>
                 <span lang="" class=" active">High School &#xCAA;&#xCCD;&#xCB0;&#xCCC;&#xCA2; &#xCB6;&#xCBE;&#xCB2;&#xCC6;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level"
-                       value="puc" data-type-xml="select1"/>
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level" value="puc"
+                       data-type-xml="select1"/>
                 <span lang="" class=" active">PUC &#xCAA;&#xCBF;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;</span>
             </label>
             <label class="clearfix ">
@@ -559,8 +545,8 @@
         </span>
     </label>
     <label class="jr-appearance-minimal jr-branch pre-init ">
-        <span lang="" class=" active">Number of still births? &#xCA8;&#xCBF;&#xCB0;&#xCCD;&#xC9C;&#xCC0;&#xCB5;
-            &#xC9C;&#xCA8;&#xCA8;&#xCA6; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;?
+        <span lang="" class=" active">Number of still births? &#xCA8;&#xCBF;&#xCB0;&#xCCD;&#xC9C;&#xCC0;&#xCB5; &#xC9C;&#xCA8;&#xCA8;&#xCA6;
+            &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;?
         </span>
         <span class="required">*</span>
         <select name="/EC_Registration_EngKan/num_stillbirths1" required="required"
@@ -640,15 +626,15 @@
                 <span class="required">*</span>
             </legend>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/youngestchild_under2"
-                       value="yes" required="required"
-                       data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0" data-type-xml="select1"/>
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/youngestchild_under2" value="yes"
+                       required="required" data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0"
+                       data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/youngestchild_under2"
-                       value="no" required="required"
-                       data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0" data-type-xml="select1"/>
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/youngestchild_under2" value="no"
+                       required="required" data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0"
+                       data-type-xml="select1"/>
                 <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
             </label>
         </fieldset>
@@ -664,9 +650,8 @@
     </label>
     <fieldset class="trigger jr-branch pre-init" name="/EC_Registration_EngKan/youngestchild_age_note"
               data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0">
-        <span lang="" class=" active">Age of the youngest child (in months) &#xC95;&#xCBF;&#xCB0;&#xCBF;&#xCAF;
-            &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1; &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1;
-            (&#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCC1;&#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;):
+        <span lang="" class=" active">Age of the youngest child (in months) &#xC95;&#xCBF;&#xCB0;&#xCBF;&#xCAF; &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8;
+            &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1; &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1; (&#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCC1;&#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;):
             <span class="jr-output" data-value=" /EC_Registration_EngKan/youngestchild_age ">
             </span>
             months &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCC1;
@@ -809,26 +794,28 @@
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/iud_place" value="sub_center"
-                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
-                       data-type-xml="select1"/>
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="select1"/>
                 <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
                     &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/iud_place" value="phc"
-                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
-                       data-type-xml="select1"/>
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="select1"/>
                 <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
                     &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/iud_place" value="elsewhere"
-                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
-                       data-type-xml="select1"/>
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="select1"/>
                 <span lang="" class=" active">Elsewhere &#xCAC;&#xCC7;&#xCB0;&#xCC7;&#xCA1;&#xCC6;</span>
             </label>
         </fieldset>
     </fieldset>
+    <label class="jr-branch pre-init ">
+        <span lang="" class=" active">Name of facility where IUD was given?</span>
+        <input autocomplete="off" type="text" name="/EC_Registration_EngKan/iud_place_name"
+               data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="string"/>
+    </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
         <fieldset>
             <legend>
@@ -838,38 +825,37 @@
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/iud_person" value="anm"
-                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
-                       data-type-xml="select1"/>
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="select1"/>
                 <span lang="" class=" active">ANM &#xC8E;.&#xC8E;&#xCA8;&#xCCD;.&#xC8E;&#xCAE;&#xCCD;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/iud_person" value="sn"
-                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
-                       data-type-xml="select1"/>
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="select1"/>
                 <span lang="" class=" active">SN &#xCB8;&#xCCD;&#xC9F;&#xCBE;&#xCAB;&#xCCD; &#xCA8;&#xCB0;&#xCCD;&#xCB8;&#xCCD;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/iud_person" value="lhv"
-                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
-                       data-type-xml="select1"/>
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="select1"/>
                 <span lang="" class=" active">LHV
                     &#xC8E;&#xCB2;&#xCCD;.&#xCB9;&#xCC6;&#xC9A;&#xCCD;.&#xCB5;&#xCBF;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/iud_person" value="mo"
-                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">MO &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF;&#xCBE;
-                    &#xC85;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;</span>
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="select1"/>
+                <span lang="" class=" active">MO &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF;&#xCBE; &#xC85;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/iud_person" value="others"
-                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'"
-                       data-type-xml="select1"/>
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="select1"/>
                 <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
             </label>
         </fieldset>
     </fieldset>
+    <label class="jr-branch pre-init ">
+        <span lang="" class=" active">Name of IUD inserter:</span>
+        <input autocomplete="off" type="text" name="/EC_Registration_EngKan/iud_person_name"
+               data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="string"/>
+    </label>
     <label class="jr-branch pre-init ">
         <span lang="" class=" active">Name of doctor who did sterilization? &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCB9;&#xCB0;&#xCA3;
             &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
@@ -934,8 +920,8 @@
                   name="/EC_Registration_EngKan/male_sterilizaton_group/male_sterilization_message"
                   data-relevant=" /EC_Registration_EngKan/today  -  /EC_Registration_EngKan/date_familyplanningstart  &lt; 90">
             <span lang="" class=" active">Instructions:
-                Pregnancy can still happen up to 3 months after male sterilization. Tell the couple to use back-up
-                FP method until 3 months from sterilization date:
+                Pregnancy can still happen up to 3 months after male sterilization. Tell the couple to use back-up FP
+                method until 3 months from sterilization date:
                 <span class="jr-output"
                       data-value=" /EC_Registration_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date ">
                 </span>
@@ -986,12 +972,12 @@
                data-type-xml="int"/>
     </label>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Number of Centchroman strips given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1;
-            &#xCB8;&#xCC6;&#xC82;&#xCA4;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCA8;&#xCCD; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;?
+        <span lang="" class=" active">Number of Centchroman strips given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1; &#xCB8;&#xCC6;&#xC82;&#xCA4;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCA8;&#xCCD;
+            &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;?
         </span>
         <span class="required">*</span>
-        <input autocomplete="off" type="number" name="/EC_Registration_EngKan/num_centchroman_pills"
-               required="required" data-constraint=".&gt;= 0"
+        <input autocomplete="off" type="number" name="/EC_Registration_EngKan/num_centchroman_pills" required="required"
+               data-constraint=".&gt;= 0"
                data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'centchroman'" data-type-xml="int"/>
     </label>
     <label class="jr-branch pre-init ">
@@ -1023,8 +1009,7 @@
             <legend>
                 <span lang="" class=" active">Do you want to mark as HP (High Priority)?
                     &#xCA8;&#xCC0;&#xCB5;&#xCC1; HP (&#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBF;&#xCA8; &#xC86;&#xCA6;&#xCCD;&#xCAF;&#xCA4;&#xCC6;)
-                    &#xC8E;&#xC82;&#xCA6;&#xCC1; &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCC1;
-                    &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCBF;&#xCB0;&#xCBE;?
+                    &#xC8E;&#xC82;&#xCA6;&#xCC1; &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCC1; &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCBF;&#xCB0;&#xCBE;?
                 </span>
             </legend>
             <label class="clearfix ">
@@ -1098,8 +1083,13 @@
                    data-type-xml="string"/>
         </label>
         <label class="">
-            <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/youngestchild_age"
+            <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/youngestchild_age1"
                    data-calculate="int(( /EC_Registration_EngKan/today  -  /EC_Registration_EngKan/youngestchild_date_of_birth ) div 30)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/youngestchild_age"
+                   data-calculate="if( /EC_Registration_EngKan/youngestchild_age1  = 'NaN', '',  /EC_Registration_EngKan/youngestchild_age1 )"
                    data-type-xml="string"/>
         </label>
         <label class="">
