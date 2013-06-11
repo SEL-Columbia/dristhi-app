@@ -127,7 +127,11 @@ angular.module("smartRegistry.controllers")
 
         $scope.openPNCFormModal = function (clientEntityId) {
             $scope.currentClientEntityId = clientEntityId;
-            $scope.isANCFormModalOpen = true;
+            $scope.isPNCFormModalOpen = true;
+        };
+
+        $scope.closePNCFormModal = function () {
+            $scope.isPNCFormModalOpen = false;
         };
 
         $scope.daysPP = function(client) {
