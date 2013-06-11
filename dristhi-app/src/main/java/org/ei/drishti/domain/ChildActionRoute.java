@@ -4,12 +4,6 @@ import org.ei.drishti.Context;
 import org.ei.drishti.dto.Action;
 
 public enum ChildActionRoute {
-    REGISTER("register") {
-        @Override
-        public void direct(Action action) {
-            Context.getInstance().childService().register(action);
-        }
-    },
     PNC_VISIT_HAPPENED("pncVisitHappened") {
         @Override
         public void direct(Action action) {

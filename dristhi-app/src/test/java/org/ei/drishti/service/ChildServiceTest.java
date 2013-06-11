@@ -10,7 +10,6 @@ import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.repository.ChildRepository;
 import org.ei.drishti.repository.MotherRepository;
 import org.ei.drishti.util.ActionBuilder;
-import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,8 +18,6 @@ import org.mockito.Mock;
 import java.util.HashMap;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.domain.TimelineEvent.forChildBirthInECProfile;
-import static org.ei.drishti.domain.TimelineEvent.forChildBirthInMotherProfile;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -54,17 +51,6 @@ public class ChildServiceTest {
     }
 
     @Test
-    public void shouldRegisterChildWhenMotherIsFound() throws Exception {
-        Action action = ActionBuilder.actionForCreateChild("Case Mother X");
-        when(motherRepository.findOpenCaseByCaseID("Case Mother X")).thenReturn(new Mother("Case Mother X", "EC CASE 1", "TC 1", "2012-01-01"));
-
-        service.register(action);
-        verify(allTimelineEvents).add(forChildBirthInMotherProfile("Case Mother X", action.get("dateOfBirth"), action.get("gender"), action.details()));
-        verify(allTimelineEvents).add(forChildBirthInECProfile("EC CASE 1", action.get("dateOfBirth"), action.get("gender"), action.details()));
-        verify(childRepository).add(new Child("Case X", "Case Mother X", "TC 1", LocalDate.now().toString(), "female", new HashMap<String, String>()));
-    }
-
-    @Test
     public void shouldUpdateEveryChildWhileRegistering() throws Exception {
         Child firstChild = new Child("Child X", "Mother X", "female", new HashMap<String, String>());
         Child secondChild = new Child("Child Y", "Mother X", "female", new HashMap<String, String>());
@@ -79,16 +65,6 @@ public class ChildServiceTest {
         verify(childRepository).update(firstChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
         verify(childRepository).update(secondChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
         verifyNoMoreInteractions(childRepository);
-    }
-
-    @Test
-    public void shouldNotRegisterChildWhenMotherIsNotFound() throws Exception {
-        Action action = ActionBuilder.actionForCreateChild("Case Mother X");
-        when(motherRepository.findOpenCaseByCaseID("Case Mother X")).thenReturn(null);
-
-        service.register(action);
-
-        verifyZeroInteractions(childRepository);
     }
 
     @Test

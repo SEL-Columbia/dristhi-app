@@ -27,15 +27,6 @@ public class ActionBuilder {
         return new Action(caseID, "alert", "deleteAllAlerts", new HashMap<String, String>(), "0", true, new HashMap<String, String>());
     }
 
-    public static Action actionForCreateChild(String motherCaseId) {
-        return new Action("Case X", "child", "register", registerChildBirth(motherCaseId, "TC 1", LocalDate.now(), "female", new HashMap<String, String>()).data(), "0", true, new HashMap<String, String>());
-    }
-
-    public static Action actionForUpdateANCOutcome(String caseId, Map<String, String> details) {
-        ActionData actionData = updateANCOutcome(details);
-        return new Action(caseId, "mother", "updateANCOutcome", actionData.data(), "0", true, actionData.details());
-    }
-
     public static Action actionForMotherPNCVisit(String caseId, Map<String, String> details) {
         ActionData actionData = pncVisitHappened(mother, LocalDate.parse("2012-01-01"), 1, "10", details);
         return new Action(caseId, "mother", "pncVisitHappened", actionData.data(), "0", true, actionData.details());

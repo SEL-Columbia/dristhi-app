@@ -32,16 +32,6 @@ public class ChildService {
         }
     }
 
-    public void register(Action action) {
-        Mother mother = motherRepository.findOpenCaseByCaseID(action.get("motherCaseId"));
-        if (mother == null) {
-            return;
-        }
-        allTimelines.add(forChildBirthInMotherProfile(action.get("motherCaseId"), action.get("dateOfBirth"), action.get("gender"), action.details()));
-        allTimelines.add(forChildBirthInECProfile(mother.ecCaseId(), action.get("dateOfBirth"), action.get("gender"), action.details()));
-        childRepository.add(new Child(action.caseID(), action.get("motherCaseId"), action.get("thaayiCardNumber"), action.get("dateOfBirth"), action.get("gender"), action.details()));
-    }
-
     public void pncVisit(Action action) {
         allTimelines.add(forChildPNCVisit(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
         childRepository.updateDetails(action.caseID(), action.details());
