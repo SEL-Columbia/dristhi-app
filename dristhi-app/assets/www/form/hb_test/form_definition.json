@@ -23,10 +23,6 @@
                 "bind": "/model/instance/Hb_Test_EngKan/anaemic_status"
             },
             {
-                "name": "isHighRisk1",
-                "bind": "/model/instance/Hb_Test_EngKan/is_high_risk1"
-            },
-            {
                 "name": "highRiskReason",
                 "bind": "/model/instance/Hb_Test_EngKan/case_high_risk_reason"
             },
