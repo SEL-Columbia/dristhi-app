@@ -99,7 +99,7 @@ angular.module("smartRegistry.controllers")
             ]
         };
 
-        $scope.defaultPNCServiceOption = $scope.pncServiceOptions.options[2];
+        $scope.defaultPNCServiceOption = $scope.pncServiceOptions.options[0];
         $scope.serviceModeOption = $scope.defaultPNCServiceOption;
 
         $scope.pncService = function (option) {
@@ -125,12 +125,15 @@ angular.module("smartRegistry.controllers")
 
         $scope.isModalOpen = false;
 
+        $scope.isPNCFormModalOpen = false;
+
         $scope.openPNCFormModal = function (clientEntityId) {
             $scope.currentClientEntityId = clientEntityId;
             $scope.isPNCFormModalOpen = true;
         };
 
         $scope.closePNCFormModal = function () {
+            $scope.currentClientEntityId = null;
             $scope.isPNCFormModalOpen = false;
         };
 

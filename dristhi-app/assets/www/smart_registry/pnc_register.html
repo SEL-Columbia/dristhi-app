@@ -23,12 +23,14 @@
     <div modal="isPNCFormModalOpen" close="closePNCFormModal()">
         <div class="modal-body modal-row">
             <ul class="nav nav-tabs nav-stacked">
-                <li>
-                    <a ng-click="openForm('pnc_visit', currentClientEntityId);closePNCFormModal();">PNC Visit</a>
+                <li><a ng-click="openForm('pnc_visit', currentClientEntityId);closePNCFormModal();">PNC Visit</a>
+                </li>
+                <li><a ng-click="openForm('pnc_close', currentClientEntityId);closePNCFormModal();">PNC Close</a>
                 </li>
             </ul>
         </div>
     </div>
+
     <div modal="isModalOpen" close="closeModal()">
         <div class="modal-body modal-row">
             <ul class="nav nav-tabs nav-stacked">
