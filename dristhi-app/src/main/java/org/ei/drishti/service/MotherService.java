@@ -12,6 +12,7 @@ import org.ei.drishti.repository.MotherRepository;
 import static org.ei.drishti.AllConstants.ANCCloseFields.*;
 import static org.ei.drishti.AllConstants.ANCVisitFields.*;
 import static org.ei.drishti.AllConstants.BOOLEAN_FALSE;
+import static org.ei.drishti.AllConstants.DeliveryOutcomeFields.DID_MOTHER_SURVIVE;
 import static org.ei.drishti.AllConstants.DeliveryOutcomeFields.DID_WOMAN_SURVIVE;
 import static org.ei.drishti.AllConstants.HbTestFields.HB_LEVEL;
 import static org.ei.drishti.AllConstants.HbTestFields.HB_TEST_DATE;
@@ -112,7 +113,7 @@ public class MotherService {
     }
 
     public void deliveryOutcome(FormSubmission submission) {
-        if (BOOLEAN_FALSE.equals(submission.getFieldValue(DID_WOMAN_SURVIVE))) {
+        if (BOOLEAN_FALSE.equals(submission.getFieldValue(DID_WOMAN_SURVIVE)) || BOOLEAN_FALSE.equals(submission.getFieldValue(DID_MOTHER_SURVIVE))) {
             allBeneficiaries.closeMother(submission.entityId());
             return;
         }

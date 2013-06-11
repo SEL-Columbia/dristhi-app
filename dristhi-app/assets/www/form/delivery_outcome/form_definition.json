@@ -101,7 +101,7 @@
                 "bind": "/model/instance/Delivery_Outcome_EngKan/still_birth_group/woman_survived"
             },
             {
-                "name": "didWomanSurvive",
+                "name": "didMotherSurvive",
                 "bind": "/model/instance/Delivery_Outcome_EngKan/still_birth_group/mother_survived"
             },
             {

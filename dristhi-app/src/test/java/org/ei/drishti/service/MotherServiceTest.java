@@ -228,7 +228,21 @@ public class MotherServiceTest {
     public void shouldCloseMotherIfDeadDuringDeliveryOutcome() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("didWomanSurvive")).thenReturn("");
+        when(submission.getFieldValue("didMotherSurvive")).thenReturn("no");
+
+        service.deliveryOutcome(submission);
+
+        verify(allBeneficiaries).closeMother("entity id 1");
+        verifyNoMoreInteractions(allBeneficiaries);
+    }
+
+    @Test
+    public void shouldCloseWomanIfDeadDuringDeliveryOutcome() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
         when(submission.getFieldValue("didWomanSurvive")).thenReturn("no");
+        when(submission.getFieldValue("didMotherSurvive")).thenReturn("");
 
         service.deliveryOutcome(submission);
 

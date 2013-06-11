@@ -99,5 +99,6 @@ public class AllConstants {
 
     public class DeliveryOutcomeFields {
         public static final String DID_WOMAN_SURVIVE = "didWomanSurvive";
+        public static final String DID_MOTHER_SURVIVE = "didMotherSurvive";
     }
 }
