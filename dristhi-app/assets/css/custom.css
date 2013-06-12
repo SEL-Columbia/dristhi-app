@@ -1024,11 +1024,7 @@ a.btn-sr.upcoming, a.btn-sr.done {
     background: url(../img/smart_registry/icon-sort.png) no-repeat;
 }
 
-.nav li i.icon-cancel-search-custom {
-    background: url(../img/smart_registry/icon-cross.png) no-repeat;
-}
-
-.nav li i.icon-sort-custom, .nav li i.icon-village, .nav li i.icon-cancel-search-custom {
+.nav li i.icon-sort-custom, .nav li i.icon-village {
     background-position: 50% 50%;
     height: 18px;
     width: 25px;

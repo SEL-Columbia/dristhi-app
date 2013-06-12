@@ -336,6 +336,13 @@ a:focus {
     margin-right: 5px;
 }
 
+.search-cancel {
+    content: url("../../img/smart_registry/icon-cross.png");
+    position: absolute;
+    right: 17px;
+    top: 7px;
+}
+
 .add-new-btn {
     width: 80px;
     height: 20px;
