@@ -24,7 +24,6 @@
                                 <br/>
                                 <ng:switch on="client.visits.anc[milestone].status">
                                     <span ng-switch-when="complete">Done </span>
-                                    <span ng-switch-when="upcoming">Next </span>
                                     <span ng-switch-default>Due </span>
                                 </ng:switch>
                                 <span>{{client.visits.anc[milestone].visit_date | date:'dd/MM'}}</span>
