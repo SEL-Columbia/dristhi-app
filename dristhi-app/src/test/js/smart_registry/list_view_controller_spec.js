@@ -270,29 +270,30 @@ describe("List view controller", function () {
     });
 
     describe("search", function () {
-        it("should be in search mode when user has searched for some text", function () {
-            scope.searchFilterString = "criteria";
-
-            expect(scope.isInSearchMode()).toBeTruthy();
+        it("should not be in search mode when user has not tapped on search box", function () {
+            expect(scope.inSearchMode).toBeFalsy();
         });
 
-        it("should not be in search mode when user has not searched for any text", function () {
-            scope.searchFilterString = "";
-            expect(scope.isInSearchMode()).toBeFalsy();
+        it("should be in search mode when user taps on search box", function () {
+            scope.enterSearchMode();
 
-            scope.searchFilterString = undefined;
-            expect(scope.isInSearchMode()).toBeFalsy();
-
-            scope.searchFilterString = null;
-            expect(scope.isInSearchMode()).toBeFalsy();
+            expect(scope.inSearchMode).toBeTruthy();
         });
 
         it("should clear search string when search is cancelled", function () {
+            scope.enterSearchMode();
             scope.searchFilterString = "criteria";
 
             scope.cancelSearch();
 
             expect(scope.searchFilterString).toBe("");
+            expect(scope.inSearchMode).toBeFalsy();
+        });
+
+        it("should enter search mode", function () {
+            scope.enterSearchMode();
+
+            expect(scope.inSearchMode).toBeTruthy();
         });
     });
 });

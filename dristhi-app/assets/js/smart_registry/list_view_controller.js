@@ -164,11 +164,14 @@ angular.module("smartRegistry.controllers")
             $scope.navigationBridge.goBack();
         };
 
-        $scope.isInSearchMode = function () {
-            return $scope.searchFilterString ? true : false;
-        };
+        $scope.inSearchMode = false;
 
         $scope.cancelSearch = function () {
             $scope.searchFilterString = "";
+            $scope.inSearchMode = false;
+        };
+
+        $scope.enterSearchMode = function () {
+            $scope.inSearchMode = true;
         };
     }]);
