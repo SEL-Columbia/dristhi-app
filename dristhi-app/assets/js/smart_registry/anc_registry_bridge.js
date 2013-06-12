@@ -48,7 +48,7 @@ function FakeANCSmartRegistryContext() {
                         {
                             name: 'IFA 2',
                             date: '26/05',
-                            status: 'normal'
+                            status: 'upcoming'
                         },
                         {
                             name: 'Delivery Plan',
