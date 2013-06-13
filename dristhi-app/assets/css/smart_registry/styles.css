@@ -339,8 +339,9 @@ a:focus {
 .search-cancel {
     content: url("../../img/smart_registry/icon-cross.png");
     position: absolute;
-    right: 17px;
-    top: 7px;
+    right: 5px;
+    top: -3px;
+    padding: 10px 15px;
 }
 
 .add-new-btn {
