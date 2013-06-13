@@ -1,4 +1,0 @@
-The images uploaded have gone through this:
-
-mkdir small
-for each in *.jpg; do convert -scale 75% $each small/$each; done
