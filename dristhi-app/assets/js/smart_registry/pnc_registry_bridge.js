@@ -56,18 +56,80 @@ function FakePNCSmartRegistryContext() {
                         {
                             name: 'PNC',
                             date: '2013-06-03',
-                            data: {}
+                            data: {
+                                day: 14
+                            }
                         },
                         {
                             name: 'PNC',
                             date: '2013-06-07',
-                            data: {}
+                            data: {
+                                day: 18
+                            }
                         },
                         {
                             name: 'Not PNC',
                             date: '2013-06-09',
                             data: {}
                         }
+                    ]
+                },
+                {
+                    entityId: "entity id 1",
+                    ec_number: '314',
+                    village: 'Chikkabherya',
+                    name: 'Radhia',
+                    thayi: '3728256',
+                    age: '21',
+                    womanDOB: '1981-06-18',
+                    husband_name: 'Bob Billy',
+                    photo_path: "../../img/woman-placeholder.png",
+                    isHighPriority: false,
+                    isHighRisk: false,
+                    locationStatus: "out_of_area",
+                    economicStatus: "apl",
+                    caste: "st",
+                    fp_method: "ocp",
+                    iudPlace: "PNC",
+                    iudPerson: "",
+                    family_planning_method_change_date: '2013-08-13',
+                    numberOfCondomsSupplied: null,
+                    numberOfOCPDelivered: "10",
+                    numberOfCentchromanPillsDelivered: null,
+                    deliveryDate: "2013-05-13",
+                    deliveryPlace:"PNC",
+                    deliveryType: "Normal", //TODO: what are the options
+                    deliveryComplications: "",
+                    otherDeliveryComplications: "",
+                    alerts: [
+                        {
+                            name: 'PNC',
+                            date: '2013-06-03',
+                            status: 'normal'
+                        }
+                    ],
+                    services_provided: [
+                        {
+                            name: 'PNC',
+                            date: '2013-06-03',
+                            data: {
+                                day: 14
+                            }
+                        },
+                        {
+                            name: 'PNC',
+                            date: '2013-06-07',
+                            data: {
+                                day: 18
+                            }
+                        },
+                        {
+                            name: 'PNC',
+                            date: '2013-05-14',
+                            data: {
+                                day: 7
+                            }
+                        },
                     ]
                 }
             ]);

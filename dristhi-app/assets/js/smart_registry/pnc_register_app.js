@@ -16,19 +16,26 @@ angular.module("smartRegistry.controllers")
                     sortDescending: false
                 },
                 {
-                    label: "EDD",
-                    handler: "sortByEDD",
+                    label: "Date of Delivery",
+                    handler: "sortByDeliveryDate",
                     sortDescending: false
                 },
                 {
-                    label: "HRP",
+                    label: "HR",
                     handler: "sortByRisk",
                     sortDescending: false
                 },
                 {
-                    label: "Due Date",
-                    handler: "sortByDueDate",
-                    sortDescending: false
+                    label: "BPL",
+                    handler: "sortByBPL"
+                },
+                {
+                    label: "SC",
+                    handler: "sortBySC"
+                },
+                {
+                    label: "ST",
+                    handler: "sortByST"
                 }
             ]
         };
@@ -37,6 +44,24 @@ angular.module("smartRegistry.controllers")
         $scope.currentSortOption = $scope.defaultSortOption;
         $scope.sortList = $scope.sortByName;
         $scope.sortDescending = true;
+
+        $scope.sortByDeliveryDate = function (item) {
+            return item.deliveryDate;
+        };
+
+        $scope.sortByRisk = function (item) {
+            return !item.isHighRisk;
+        };
+
+        $scope.sortByBPL = function (client) {
+            return client.economicStatus !== "bpl";
+        };
+        $scope.sortBySC = function (client) {
+            return client.caste !== "sc";
+        };
+        $scope.sortByST = function (client) {
+            return client.caste !== "st";
+        };
 
         $scope.defaultVillageOptions = {
             type: "filterVillage",
