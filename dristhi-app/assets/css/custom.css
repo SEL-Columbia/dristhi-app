@@ -678,6 +678,10 @@ body {
     position: relative;
 }
 
+.btn-visit-status {
+    min-height: 50px;
+}
+
 a.btn-sr {
     width: 90%;
     height: 90%;

@@ -102,11 +102,7 @@ function FakePNCSmartRegistryContext() {
                     deliveryComplications: "",
                     otherDeliveryComplications: "",
                     alerts: [
-                        {
-                            name: 'PNC',
-                            date: '2013-06-03',
-                            status: 'normal'
-                        }
+
                     ],
                     services_provided: [
                         {
@@ -125,7 +121,7 @@ function FakePNCSmartRegistryContext() {
                         },
                         {
                             name: 'PNC',
-                            date: '2013-05-14',
+                            date: '2013-06-09',
                             data: {
                                 day: 7
                             }

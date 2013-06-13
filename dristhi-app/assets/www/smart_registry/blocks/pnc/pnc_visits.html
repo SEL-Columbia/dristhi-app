@@ -17,13 +17,21 @@
     </p>
 </div>
 <div class="span2 span-no-margin width-without-margins line-right span-content">
-        <button ng-click="openForm('pnc_visit', client.entityId);" class="btn btn-primary btn-large normal btn-sr normal">
+    <div class="relative-positioning">
+        <button ng-show="client.visits.pnc.next"
+                class="btn btn-primary btn-large normal btn-sr btn-visit-status normal"
+                ng-class="client.pnc.next.status"
+                ng-click="openForm('pnc_visit', client.entityId);">
             <span class="text-bold">PNC Visit</span>
             <br/>
-            <span>due 06/04</span>
+            <ng-switch on="client.visits.pnc.next.status">
+                <span ng-switch-when="complete">due {{client.visits.pnc.previous.visit_date | date:"dd/MM"}}</span>
+                <span ng-switch-default>due {{client.visits.pnc.previous.visit_date | date:"dd/MM"}}</span>
+            </ng-switch>
         </button>
-        <span class="previous-alert">
+        <span ng-show="client.visits.pnc.previous" class="previous-alert">
             <i class="icon-ok green"></i>
-            <span class="text-upper">PNC: </span><span>04/04</span>
+            <span class="text-upper">PNC: </span><span>{{client.visits.pnc.previous.visit_date | date:"dd/MM"}}</span>
         </span>
+    </div>
 </div>

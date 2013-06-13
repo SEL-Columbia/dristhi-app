@@ -1,8 +1,8 @@
 angular.module("smartRegistry.controllers")
-    .controller("pncRegisterController", function ($scope, SmartHelper) {
+    .controller("pncRegisterController", function ($scope, SmartHelper, ANCService) {
         $scope.bridge = new PNCRegistryBridge();
         $scope.getClients = function () {
-            return $scope.bridge.getClients();
+            return ANCService.preProcess($scope.bridge.getClients());
         };
 
         $scope.clients = $scope.getClients();
@@ -124,7 +124,7 @@ angular.module("smartRegistry.controllers")
             ]
         };
 
-        $scope.defaultPNCServiceOption = $scope.pncServiceOptions.options[0];
+        $scope.defaultPNCServiceOption = $scope.pncServiceOptions.options[2];
         $scope.serviceModeOption = $scope.defaultPNCServiceOption;
 
         $scope.pncService = function (option) {

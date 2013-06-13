@@ -31,6 +31,12 @@ angular.module("smartRegistry.services")
                     milestones: ['Delivery Plan'],
                     services: ['Delivery Plan'],
                     is_list: false
+                },
+                {
+                    name: 'pnc',
+                    milestones: ["PNC"],
+                    services: ["PNC"],
+                    is_list: true
                 }
             ];
 
