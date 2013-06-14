@@ -85,7 +85,10 @@ angular.module("smartRegistry.controllers")
 
         $scope.loadAll = function () {
             setTimeout(function () {
-                $scope.numberOfClientsToShow = $scope.clients.length;
+                $scope.$apply(
+                    function () {
+                        $scope.numberOfClientsToShow = $scope.clients.length;
+                    });
             }, 1);
             $scope.loadText = 'Loading ...';
         };
