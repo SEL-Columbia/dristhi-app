@@ -3,6 +3,7 @@ package org.ei.drishti.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.mapper.TTMapper;
 
 import java.util.Map;
@@ -56,6 +57,12 @@ public class ServiceProvided {
                         .put(BP_DIASTOLIC, bpDiastolic)
                         .put(WEIGHT, weight)
                         .map()
+        );
+    }
+
+    public static ServiceProvided forMotherPNCVisit(String entityId, String pncVisitNumber, String date) {
+        return new ServiceProvided(entityId, PNC_SERVICE_PREFIX + pncVisitNumber, date,
+                mapOf(AllConstants.PNCVisitFields.PNC_VISIT_NUMBER, pncVisitNumber)
         );
     }
 

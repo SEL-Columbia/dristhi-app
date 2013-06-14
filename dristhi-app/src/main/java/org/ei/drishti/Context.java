@@ -241,7 +241,7 @@ public class Context {
 
     private PNCVisitHandler pncVisitHandler() {
         if (pncVisitHandler == null) {
-            pncVisitHandler = new PNCVisitHandler();
+            pncVisitHandler = new PNCVisitHandler(motherService());
         }
         return pncVisitHandler;
     }

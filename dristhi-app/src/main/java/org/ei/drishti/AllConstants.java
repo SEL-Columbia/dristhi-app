@@ -100,6 +100,17 @@ public class AllConstants {
         public static final String WEIGHT = "weight";
     }
 
+    public class PNCVisitFields {
+        public static final String PNC_VISIT_NUMBER = "pncVisitNumber";
+        public static final String PNC_VISIT_DATE = "pncVisitDate";
+        public static final String BP_SYSTOLIC = "bpSystolic";
+        public static final String BP_DIASTOLIC = "bpDiastolic";
+        public static final String TEMPERATURE = "temperature";
+        public static final String HB_LEVEL = "hbLevel";
+        public static final String NUMBER_OF_IFA_TABLETS_GIVEN = "numberOfIFATabletsGiven";
+        public static final String IFA_TABLETS_DATE = "ifaTabletsDate";
+    }
+
     public class DeliveryOutcomeFields {
         public static final String DID_WOMAN_SURVIVE = "didWomanSurvive";
         public static final String DID_MOTHER_SURVIVE = "didMotherSurvive";

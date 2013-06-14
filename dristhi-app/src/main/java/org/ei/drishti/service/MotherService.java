@@ -1,5 +1,6 @@
 package org.ei.drishti.service;
 
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.form.FormSubmission;
@@ -119,6 +120,28 @@ public class MotherService {
         }
 
         allBeneficiaries.switchMotherToPNC(submission.entityId());
+    }
+
+    public void pncVisitHappened(FormSubmission submission) {
+        allTimelines.add(
+                forMotherPNCVisit(
+                        submission.entityId(),
+                        submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_NUMBER),
+                        submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DATE),
+                        submission.getFieldValue(AllConstants.PNCVisitFields.BP_SYSTOLIC),
+                        submission.getFieldValue(AllConstants.PNCVisitFields.BP_DIASTOLIC),
+                        submission.getFieldValue(AllConstants.PNCVisitFields.TEMPERATURE),
+                        submission.getFieldValue(AllConstants.PNCVisitFields.HB_LEVEL)));
+        serviceProvidedService.add(
+                ServiceProvided.forMotherPNCVisit(
+                        submission.entityId(),
+                        submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_NUMBER),
+                        submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DATE)));
+
+        String numberOfIFATabletsGiven = submission.getFieldValue(AllConstants.PNCVisitFields.NUMBER_OF_IFA_TABLETS_GIVEN);
+        if (tryParse(numberOfIFATabletsGiven, 0) > 0) {
+            allTimelines.add(forIFATabletsGiven(submission.entityId(), numberOfIFATabletsGiven, submission.getFieldValue(AllConstants.PNCVisitFields.IFA_TABLETS_DATE)));
+        }
     }
 
     @Deprecated

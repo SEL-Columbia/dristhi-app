@@ -260,4 +260,76 @@ public class MotherServiceTest {
         verify(allTimelineEvents).add(TimelineEvent.forMotherPNCVisit(caseId, "1", "2012-01-01", mapOf("some-key", "some-value")));
         verify(motherRepository).updateDetails(caseId, mapOf("some-key", "some-value"));
     }
+
+    @Test
+    public void shouldAddPNCVisitTimelineEventWhenPNCVisitHappens() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("pncVisitNumber")).thenReturn("2");
+        when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("100");
+        when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2012-01-02");
+        when(submission.getFieldValue("bpSystolic")).thenReturn("120");
+        when(submission.getFieldValue("bpDiastolic")).thenReturn("80");
+        when(submission.getFieldValue("temperature")).thenReturn("98.1");
+        when(submission.getFieldValue("hbLevel")).thenReturn("10.0");
+
+        service.pncVisitHappened(submission);
+
+        verify(allTimelineEvents).add(TimelineEvent.forMotherPNCVisit("entity id 1", "2", "2012-01-01", "120", "80", "98.1", "10.0"));
+    }
+
+    @Test
+    public void shouldAddIFATabletsGivenTimelineEventWhenPNCVisitHappens() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("pncVisitNumber")).thenReturn("2");
+        when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("100");
+        when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2012-01-02");
+        when(submission.getFieldValue("bpSystolic")).thenReturn("120");
+        when(submission.getFieldValue("bpDiastolic")).thenReturn("80");
+        when(submission.getFieldValue("temperature")).thenReturn("98.1");
+        when(submission.getFieldValue("hbLevel")).thenReturn("10.0");
+
+        service.pncVisitHappened(submission);
+
+        verify(allTimelineEvents).add(forIFATabletsGiven("entity id 1", "100", "2012-01-02"));
+    }
+
+    @Test
+    public void shouldAddPNCVisitServiceProvidedWhenPNCVisitHappens() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("pncVisitNumber")).thenReturn("2");
+        when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("100");
+        when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2012-01-02");
+        when(submission.getFieldValue("bpSystolic")).thenReturn("120");
+        when(submission.getFieldValue("bpDiastolic")).thenReturn("80");
+        when(submission.getFieldValue("temperature")).thenReturn("98.1");
+        when(submission.getFieldValue("hbLevel")).thenReturn("10.0");
+
+        service.pncVisitHappened(submission);
+
+        verify(serviceProvidedService).add(new ServiceProvided("entity id 1", "PNC 2", "2012-01-01", mapOf("pncVisitNumber", "2")));
+    }
+
+    @Test
+    public void shouldNotAddIFATabletsGivenTimelineEventWhenPNCVisitHappensAndNoIFATabletsWereGiven() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("pncVisitNumber")).thenReturn("2");
+        when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("");
+        when(submission.getFieldValue("ifaTabletsDate")).thenReturn(null);
+        when(submission.getFieldValue("bpSystolic")).thenReturn("120");
+        when(submission.getFieldValue("bpDiastolic")).thenReturn("80");
+        when(submission.getFieldValue("temperature")).thenReturn("98.1");
+        when(submission.getFieldValue("hbLevel")).thenReturn("10.0");
+
+        service.pncVisitHappened(submission);
+
+        verify(allTimelineEvents, times(0)).add(forIFATabletsGiven("entity id 1", "2012-01-01", "100"));
+    }
 }
