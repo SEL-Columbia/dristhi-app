@@ -120,6 +120,18 @@ public class MotherServiceTest {
     public void shouldCloseECWhenMotherIsClosedAndReasonIsDeath() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("closeReason")).thenReturn("death_of_mother");
+        when(allBeneficiaries.findMother("entity id 1")).thenReturn(new Mother("entity id 1", "ec entity id 1", "thayi 1", "2013-01-01"));
+
+        service.close(submission);
+
+        verify(allEligibleCouples).close("ec entity id 1");
+    }
+
+    @Test
+    public void shouldCloseECWhenWomanIsClosedAndReasonIsDeath() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
         when(submission.getFieldValue("closeReason")).thenReturn("death_of_woman");
         when(allBeneficiaries.findMother("entity id 1")).thenReturn(new Mother("entity id 1", "ec entity id 1", "thayi 1", "2013-01-01"));
 

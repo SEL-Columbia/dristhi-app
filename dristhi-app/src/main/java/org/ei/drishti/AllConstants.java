@@ -74,6 +74,10 @@ public class AllConstants {
         public static final String PERMANENT_RELOCATION_FIELD_VALUE = "relocation_permanent";
     }
 
+    public class PNCCloseFields {
+        public static final String DEATH_OF_MOTHER_FIELD_VALUE = "death_of_mother";
+    }
+
     public class IFAFields {
         public static final String NUMBER_OF_IFA_TABLETS_GIVEN = "numberOfIFATabletsGiven";
         public static final String IFA_TABLETS_DATE = "ifaTabletsDate";

@@ -18,6 +18,7 @@ import static org.ei.drishti.AllConstants.HbTestFields.HB_LEVEL;
 import static org.ei.drishti.AllConstants.HbTestFields.HB_TEST_DATE;
 import static org.ei.drishti.AllConstants.IFAFields.IFA_TABLETS_DATE;
 import static org.ei.drishti.AllConstants.IFAFields.NUMBER_OF_IFA_TABLETS_GIVEN;
+import static org.ei.drishti.AllConstants.PNCCloseFields.DEATH_OF_MOTHER_FIELD_VALUE;
 import static org.ei.drishti.AllConstants.TTFields.TT_DATE;
 import static org.ei.drishti.AllConstants.TTFields.TT_DOSE;
 import static org.ei.drishti.domain.ServiceProvided.forHBTest;
@@ -82,6 +83,7 @@ public class MotherService {
 
         allBeneficiaries.closeMother(submission.entityId());
         if (DEATH_OF_WOMAN_FIELD_VALUE.equalsIgnoreCase(submission.getFieldValue(CLOSE_REASON_FIELD_NAME))
+                || DEATH_OF_MOTHER_FIELD_VALUE.equalsIgnoreCase(submission.getFieldValue(CLOSE_REASON_FIELD_NAME))
                 || PERMANENT_RELOCATION_FIELD_VALUE.equalsIgnoreCase(submission.getFieldValue(CLOSE_REASON_FIELD_NAME))) {
             allEligibleCouples.close(mother.ecCaseId());
         }
