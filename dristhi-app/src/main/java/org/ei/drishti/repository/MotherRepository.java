@@ -84,13 +84,6 @@ public class MotherRepository extends DrishtiRepository {
         return longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + MOTHER_TABLE_NAME + " WHERE " + TYPE_COLUMN + " = ? AND " + IS_CLOSED_COLUMN + " = ?", new String[]{TYPE_PNC, NOT_CLOSED});
     }
 
-    public void updateDetails(String caseId, Map<String, String> details) {
-        SQLiteDatabase database = masterRepository.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(DETAILS_COLUMN, new Gson().toJson(details));
-        database.update(MOTHER_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
-    }
-
     public Mother findOpenCaseByCaseID(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, CASE_ID_COLUMN + " = ? AND " + IS_CLOSED_COLUMN + " = ?", new String[]{caseId, NOT_CLOSED}, null, null, null, null);

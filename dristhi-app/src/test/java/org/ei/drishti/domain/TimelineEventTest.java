@@ -56,7 +56,7 @@ public class TimelineEventTest {
 
     @Test
     public void shouldCreateTimelineEventForMotherPNCVisitWithDetails() throws Exception {
-        TimelineEvent timelineEvent = TimelineEvent.forMotherPNCVisit("CASE A", "1", "2012-01-01", detailsWithData);
+        TimelineEvent timelineEvent = TimelineEvent.forMotherPNCVisit("CASE A", "1", "2012-01-01", "120", "80", "98", "11");
 
         assertTrue(timelineEvent.detail1().contains("BP: 120/80"));
         assertTrue(timelineEvent.detail1().contains("Temp: 98 °F"));
@@ -65,7 +65,7 @@ public class TimelineEventTest {
 
     @Test
     public void shouldCreateTimelineEventForMotherPNCVisitExcludingThoseDetailsWhichDoNotHaveValue() throws Exception {
-        TimelineEvent timelineEvent = TimelineEvent.forMotherPNCVisit("CASE A", "1", "2012-01-01", detailsWithoutData);
+        TimelineEvent timelineEvent = TimelineEvent.forMotherPNCVisit("CASE A", "1", "2012-01-01", null, null, null, null);
 
         assertFalse(timelineEvent.detail1().contains("BP:"));
         assertFalse(timelineEvent.detail1().contains("Temp:"));

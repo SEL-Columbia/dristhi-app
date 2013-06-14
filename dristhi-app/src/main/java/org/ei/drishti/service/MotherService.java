@@ -4,7 +4,6 @@ import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.form.FormSubmission;
-import org.ei.drishti.dto.Action;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
@@ -141,17 +140,6 @@ public class MotherService {
         String numberOfIFATabletsGiven = submission.getFieldValue(AllConstants.PNCVisitFields.NUMBER_OF_IFA_TABLETS_GIVEN);
         if (tryParse(numberOfIFATabletsGiven, 0) > 0) {
             allTimelines.add(forIFATabletsGiven(submission.entityId(), numberOfIFATabletsGiven, submission.getFieldValue(AllConstants.PNCVisitFields.IFA_TABLETS_DATE)));
-        }
-    }
-
-    @Deprecated
-    public void pncVisitHappened(Action action) {
-        allTimelines.add(forMotherPNCVisit(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
-        motherRepository.updateDetails(action.caseID(), action.details());
-
-        String numberOfIFATabletsProvided = action.get("numberOfIFATabletsProvided");
-        if (numberOfIFATabletsProvided != null && tryParse(numberOfIFATabletsProvided, 0) > 0) {
-            allTimelines.add(forIFATabletsGiven(action.caseID(), numberOfIFATabletsProvided, action.get("visitDate")));
         }
     }
 }

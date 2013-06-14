@@ -91,18 +91,6 @@ public class MotherRepositoryTest extends AndroidTestCase {
         assertEquals(asList(Pair.of(firstMother, firstEligibleCouple), Pair.of(secondMother, secondEligibleCouple)), pncsWithEC);
     }
 
-    public void testShouldUpdateMotherDetails() throws Exception {
-        Map<String, String> details = mapOf("some-key", "some-value");
-        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withDetails(details);
-        repository.add(mother);
-
-        Map<String, String> newDetails = create("some-key", "some-new-value").put("some-other-key", "blah").map();
-        repository.updateDetails("CASE X", newDetails);
-
-        Mother expectedMotherWithNewDetails = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withDetails(newDetails);
-        assertEquals(asList(expectedMotherWithNewDetails), repository.allANCs());
-    }
-
     public void testShouldLoadAllANCsBasedOnType() throws Exception {
         Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
         repository.add(mother);

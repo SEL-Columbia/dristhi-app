@@ -12,7 +12,6 @@ import java.util.Map;
 
 import static org.ei.drishti.dto.ActionData.*;
 import static org.ei.drishti.dto.BeneficiaryType.child;
-import static org.ei.drishti.dto.BeneficiaryType.mother;
 
 public class ActionBuilder {
     public static Action actionForCreateAlert(String caseID, String alertStatus, String beneficiaryType, String scheduleName, String visitCode, String startDate, String expiryDate, String index) {
@@ -25,11 +24,6 @@ public class ActionBuilder {
 
     public static Action actionForDeleteAllAlert(String caseID) {
         return new Action(caseID, "alert", "deleteAllAlerts", new HashMap<String, String>(), "0", true, new HashMap<String, String>());
-    }
-
-    public static Action actionForMotherPNCVisit(String caseId, Map<String, String> details) {
-        ActionData actionData = pncVisitHappened(mother, LocalDate.parse("2012-01-01"), 1, "10", details);
-        return new Action(caseId, "mother", "pncVisitHappened", actionData.data(), "0", true, actionData.details());
     }
 
     public static Action actionForChildPNCVisit(String caseId, Map<String, String> details) {

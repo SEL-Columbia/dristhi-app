@@ -251,17 +251,6 @@ public class MotherServiceTest {
     }
 
     @Test
-    public void shouldHandlePNCVisitActionForMother() throws Exception {
-        String caseId = "Case Mother X";
-        Action action = ActionBuilder.actionForMotherPNCVisit(caseId, mapOf("some-key", "some-value"));
-
-        service.pncVisitHappened(action);
-
-        verify(allTimelineEvents).add(TimelineEvent.forMotherPNCVisit(caseId, "1", "2012-01-01", mapOf("some-key", "some-value")));
-        verify(motherRepository).updateDetails(caseId, mapOf("some-key", "some-value"));
-    }
-
-    @Test
     public void shouldAddPNCVisitTimelineEventWhenPNCVisitHappens() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
