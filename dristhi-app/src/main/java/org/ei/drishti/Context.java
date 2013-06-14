@@ -68,6 +68,7 @@ public class Context {
     private DeliveryOutcomeHandler deliveryOutcomeHandler;
     private PNCRegistrationOAHandler pncRegistrationOAHandler;
     private PNCCloseHandler pncCloseHandler;
+    private PNCVisitHandler pncVisitHandler;
 
     protected Context() {
     }
@@ -128,8 +129,7 @@ public class Context {
             formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(),
                     fpComplicationsHandler(), fpChangeHandler(), renewFPProductHandler(), ecCloseHandler(),
                     ancRegistrationHandler(), ancRegistrationOAHandler(), ancVisitHandler(), ancCloseHandler(),
-                    ttHandler(), ifaHandler(), hbTestHandler(), deliveryOutcomeHandler(), pncRegistrationOAHandler(),
-                    pncCloseHandler());
+                    ttHandler(), ifaHandler(), hbTestHandler(), deliveryOutcomeHandler(), pncRegistrationOAHandler(), pncCloseHandler(), pncVisitHandler());
         }
         return formSubmissionRouter;
     }
@@ -237,6 +237,13 @@ public class Context {
             pncCloseHandler = new PNCCloseHandler(motherService());
         }
         return pncCloseHandler;
+    }
+
+    private PNCVisitHandler pncVisitHandler() {
+        if (pncVisitHandler == null) {
+            pncVisitHandler = new PNCVisitHandler();
+        }
+        return pncVisitHandler;
     }
 
     private ZiggyService ziggyService() {

@@ -58,6 +58,7 @@ public class AllConstants {
     public static final String DELIVERY_OUTCOME_TEST_FORM_NAME = "delivery_outcome";
     public static final String PNC_REGISTRATION_OA_FORM_NAME = "pnc_registration_oa";
     public static final String PNC_CLOSE_FORM_NAME = "pnc_close";
+    public static final String PNC_VISIT_FORM_NAME = "pnc_visit";
     public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
     public static final String NEW_FP_METHOD_FIELD_NAME = "newMethod";
     public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME = "familyPlanningMethodChangeDate";

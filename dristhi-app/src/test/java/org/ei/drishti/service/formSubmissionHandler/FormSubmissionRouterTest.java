@@ -50,6 +50,8 @@ public class FormSubmissionRouterTest {
     @Mock
     private PNCCloseHandler pncCloseHandler;
     @Mock
+    private PNCVisitHandler pncVisitHandler;
+    @Mock
     private Listener<String> formSubmittedListener;
 
     private FormSubmissionRouter router;
@@ -72,7 +74,8 @@ public class FormSubmissionRouterTest {
                 hbTestHandler,
                 deliveryOutcomeHandler,
                 pncRegistrationOAHandler,
-                pncCloseHandler);
+                pncCloseHandler,
+                pncVisitHandler);
     }
 
     @Test
@@ -256,13 +259,13 @@ public class FormSubmissionRouterTest {
     }
 
     @Test
-    public void shouldDelegatePNCCloseFormSubmissionHandlingToPNCCloseHandler() throws Exception {
-        FormSubmission formSubmission = create().withFormName("pnc_close").withInstanceId("instance id 1").withVersion("122").build();
+    public void shouldDelegatePNCVisitFormSubmissionHandlingToPNCVisitHandler() throws Exception {
+        FormSubmission formSubmission = create().withFormName("pnc_visit").withInstanceId("instance id 1").withVersion("122").build();
         when(formDataRepository.fetchFromSubmission("instance id 1")).thenReturn(formSubmission);
 
         router.route("instance id 1");
 
         verify(formDataRepository).fetchFromSubmission("instance id 1");
-        verify(pncCloseHandler).handle(formSubmission);
+        verify(pncVisitHandler).handle(formSubmission);
     }
 }
