@@ -7,7 +7,6 @@ import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
-import org.ei.drishti.repository.MotherRepository;
 
 import static org.ei.drishti.AllConstants.ANCCloseFields.*;
 import static org.ei.drishti.AllConstants.ANCVisitFields.*;
@@ -30,15 +29,13 @@ import static org.ei.drishti.util.Log.logWarn;
 
 public class MotherService {
     public static final String MOTHER_ID = "motherId";
-    private MotherRepository motherRepository;
     private AllBeneficiaries allBeneficiaries;
     private AllTimelineEvents allTimelines;
     private AllEligibleCouples allEligibleCouples;
     private ServiceProvidedService serviceProvidedService;
 
-    public MotherService(MotherRepository motherRepository, AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples,
+    public MotherService(AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples,
                          AllTimelineEvents allTimelineEvents, ServiceProvidedService serviceProvidedService) {
-        this.motherRepository = motherRepository;
         this.allBeneficiaries = allBeneficiaries;
         this.allTimelines = allTimelineEvents;
         this.allEligibleCouples = allEligibleCouples;

@@ -5,9 +5,7 @@ import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.domain.form.FormSubmission;
-import org.ei.drishti.dto.Action;
 import org.ei.drishti.repository.*;
-import org.ei.drishti.util.ActionBuilder;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,8 +20,6 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
 public class MotherServiceTest {
-    @Mock
-    private MotherRepository motherRepository;
     @Mock
     private AllBeneficiaries allBeneficiaries;
     @Mock
@@ -40,7 +36,7 @@ public class MotherServiceTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new MotherService(motherRepository, allBeneficiaries, allEligibleCouples, allTimelineEvents, serviceProvidedService);
+        service = new MotherService(allBeneficiaries, allEligibleCouples, allTimelineEvents, serviceProvidedService);
     }
 
     @Test
