@@ -80,9 +80,14 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.numberOfClientsToShow = 10;
+        $scope.loadText = 'Load All';
+
 
         $scope.loadAll = function () {
-            $scope.numberOfClientsToShow = $scope.clients.length;
+            setTimeout(function () {
+                $scope.numberOfClientsToShow = $scope.clients.length;
+            }, 1);
+            $scope.loadText = 'Loading ...';
         };
 
         $scope.allClientsDisplayed = function (filteredClients) {
