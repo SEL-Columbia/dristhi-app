@@ -1002,7 +1002,7 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
     border-color: rgba(82, 168, 236, 0.8);
     outline: 0;
-    outline: thin dotted   \9; /* IE6-9 */
+    outline: thin dotted  \9; /* IE6-9 */
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
@@ -1011,7 +1011,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 input[type="radio"], input[type="checkbox"] {
     margin: 4px 0 0;
     *margin-top: 0; /* IE7 */
-    margin-top: 1px   \9; /* IE8-9 */
+    margin-top: 1px  \9; /* IE8-9 */
     line-height: normal;
 }
 
@@ -1495,9 +1495,9 @@ input:focus:invalid:focus, textarea:focus:invalid:focus, select:focus:invalid:fo
 
 input.search-query {
     padding-right: 14px;
-    padding-right: 4px   \9;
+    padding-right: 4px  \9;
     padding-left: 14px;
-    padding-left: 4px   \9; /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    padding-left: 4px  \9; /* IE7-8 doesn't have border-radius, so don't indent the padding */
     margin-bottom: 0;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
@@ -2775,7 +2775,7 @@ button.close {
 }
 
 .btn:active, .btn.active {
-    background-color: #cccccc   \9;
+    background-color: #cccccc  \9;
 }
 
 .btn:first-child {
@@ -2898,7 +2898,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 
 .btn-primary:active, .btn-primary.active {
-    background-color: #003399   \9;
+    background-color: #003399  \9;
 }
 
 .btn-warning {
@@ -2925,7 +2925,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 
 .btn-warning:active, .btn-warning.active {
-    background-color: #c67605   \9;
+    background-color: #c67605  \9;
 }
 
 .btn-danger {
@@ -2952,7 +2952,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 
 .btn-danger:active, .btn-danger.active {
-    background-color: #942a25   \9;
+    background-color: #942a25  \9;
 }
 
 .btn-success {
@@ -2979,7 +2979,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 
 .btn-success:active, .btn-success.active {
-    background-color: #408140   \9;
+    background-color: #408140  \9;
 }
 
 .btn-info {
@@ -3006,7 +3006,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 
 .btn-info:active, .btn-info.active {
-    background-color: #24748c   \9;
+    background-color: #24748c  \9;
 }
 
 .btn-inverse {
@@ -3033,7 +3033,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 
 .btn-inverse:active, .btn-inverse.active {
-    background-color: #090909   \9;
+    background-color: #090909  \9;
 }
 
 button.btn, input[type="submit"].btn {
@@ -4050,7 +4050,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 }
 
 .navbar .btn-navbar:active, .navbar .btn-navbar.active {
-    background-color: #cccccc   \9;
+    background-color: #cccccc  \9;
 }
 
 .navbar .btn-navbar .icon-bar {
@@ -4286,7 +4286,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .btn-navbar:active, .navbar-inverse .btn-navbar.active {
-    background-color: black   \9;
+    background-color: black  \9;
 }
 
 .breadcrumb {
@@ -7357,7 +7357,7 @@ h2, h3, h4, legend {
 }
 
 .datepicker td.today:active, .datepicker td.today.active, .datepicker td.today:hover:active, .datepicker td.today:hover.active, .datepicker td.today.disabled:active, .datepicker td.today.disabled.active, .datepicker td.today.disabled:hover:active, .datepicker td.today.disabled:hover.active {
-    background-color: #fbf069   \9;
+    background-color: #fbf069  \9;
 }
 
 .datepicker td.active, .datepicker td.active:hover, .datepicker td.active.disabled, .datepicker td.active.disabled:hover {
@@ -7386,7 +7386,7 @@ h2, h3, h4, legend {
 }
 
 .datepicker td.active:active, .datepicker td.active.active, .datepicker td.active:hover:active, .datepicker td.active:hover.active, .datepicker td.active.disabled:active, .datepicker td.active.disabled.active, .datepicker td.active.disabled:hover:active, .datepicker td.active.disabled:hover.active {
-    background-color: #003399   \9;
+    background-color: #003399  \9;
 }
 
 .datepicker td span {
@@ -7438,7 +7438,7 @@ h2, h3, h4, legend {
 }
 
 .datepicker td span.active:active, .datepicker td span.active.active, .datepicker td span.active:hover:active, .datepicker td span.active:hover.active, .datepicker td span.active.disabled:active, .datepicker td span.active.disabled.active, .datepicker td span.active.disabled:hover:active, .datepicker td span.active.disabled:hover.active {
-    background-color: #003399   \9;
+    background-color: #003399  \9;
 }
 
 .datepicker td span.old {
@@ -7977,7 +7977,7 @@ fieldset .remove {
 }
 
 .geopoint button, .geopoint .input-append .add-on {
-    height: 40px;
+    height: 44px;
 }
 
 .geopoint button[name="geodetect"], .geopoint .input-append .add-on[name="geodetect"] {
