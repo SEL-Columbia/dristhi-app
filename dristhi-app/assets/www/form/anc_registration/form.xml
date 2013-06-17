@@ -58,7 +58,7 @@
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">JSY Beneficiary? &#xC9C;&#xCA8;&#xCA8;&#xCBF; &#xCB8;&#xCC1;&#xCB0;&#xC95;&#xCCD;&#xCB7;&#xCBE;
+                <span lang="" class=" active">JSY beneficiary? &#xC9C;&#xCA8;&#xCA8;&#xCBF; &#xCB8;&#xCC1;&#xCB0;&#xC95;&#xCCD;&#xCB7;&#xCBE;
                     &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6; &#xCAB;&#xCB2;&#xCBE;&#xCA8;&#xCC1;&#xCAD;&#xCB5;&#xCBF;&#xCAF;&#xCC7;?
                 </span>
                 <span class="required">*</span>
@@ -157,21 +157,21 @@
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
-                       value="Prev_Preg_Complication_APH"
+                       value="Prev_Preg_Complication:_APH"
                        data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0" data-type-xml="select"/>
                 <span lang="" class=" active">APH &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5; &#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCB5;
                     &#xCB0;&#xC95;&#xCCD;&#xCA4; &#xCB8;&#xCCD;&#xCB0;&#xCBE;&#xCB5;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
-                       value="Prev_Preg_Complication_PIH"
+                       value="Prev_Preg_Complication:_PIH"
                        data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0" data-type-xml="select"/>
                 <span lang="" class=" active">PIH &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBE;&#xCB5;&#xCB8;&#xCCD;&#xCA5;&#xCC6;&#xCAF;
                     &#xCAA;&#xCCD;&#xCB0;&#xCC6;&#xCD5;&#xCB0;&#xCBF;&#xCA4; &#xC85;&#xCA4;&#xCBF; &#xC92;&#xCA4;&#xCCD;&#xCA4;&#xCA1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
-                       value="Prev_Preg_Complication_Preeclampsia_Eclampsia"
+                       value="Prev_Preg_Complication:_Preeclampsia_Eclampsia"
                        data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0" data-type-xml="select"/>
                 <span lang="" class=" active">Pre-eclampsia / Eclampsia &#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCB5; &#xCAC;&#xCB8;&#xCBF;&#xCB0;&#xCC1;
                     &#xCA8;&#xC82;&#xC9C;&#xCC1; / &#xCAC;&#xCB8;&#xCBF;&#xCB0;&#xCC1;
@@ -179,14 +179,14 @@
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
-                       value="Prev_Preg_Complication_Pregnancy_with_Tumors"
+                       value="Prev_Preg_Complication:_Pregnancy_with_Tumors"
                        data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0" data-type-xml="select"/>
                 <span lang="" class=" active">Pregnancy with Tumors &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCA7;&#xCBE;&#xCB0;&#xCA3;&#xCC6;&#xCAF;
                     &#xC9C;&#xCCA;&#xCA4;&#xCC6; &#xC97;&#xCC6;&#xCA1;&#xCCD;&#xCA1;&#xCC6;&#xC97;&#xCB3;&#xCC1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
-                       value="Prev_Preg_Complication_Prolonged_Obstructed_Labor"
+                       value="Prev_Preg_Complication:_Prolonged_Obstructed_Labor"
                        data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0" data-type-xml="select"/>
                 <span lang="" class=" active">Prolonged / Obstructed Labor &#xCA6;&#xCBF;&#xCD5;&#xCB0;&#xCCD;&#xC98;&#xC95;&#xCBE;&#xCB2;&#xCBF;&#xCD5;&#xCA8;
                     / &#xC85;&#xCA1;&#xC9A;&#xCA3;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCA4;&#xC82;&#xCA6;&#xCC6;&#xCC2;&#xCA1;&#xCCD;&#xCA1;&#xCC1;&#xCB5;
@@ -194,7 +194,7 @@
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
-                       value="Prev_Preg_Complication_Intrauterine_Growth_Retardation"
+                       value="Prev_Preg_Complication:_Intrauterine_Growth_Retardation"
                        data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0" data-type-xml="select"/>
                 <span lang="" class=" active">Intrauterine Growth Retardation &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCB6;&#xCBE;&#xCAF;&#xCA6;
                     &#xC92;&#xCB3;&#xC97;&#xCBF;&#xCA8; &#xCAC;&#xCC6;&#xCB3;&#xCB5;&#xCA3;&#xCBF;&#xC97;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
@@ -202,27 +202,27 @@
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
-                       value="Prev_Preg_Complication_PPH"
+                       value="Prev_Preg_Complication:_PPH"
                        data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0" data-type-xml="select"/>
                 <span lang="" class=" active">PPH &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5; &#xCA8;&#xC82;&#xCA4;&#xCB0;
                     &#xCB0;&#xC95;&#xCCD;&#xCA4; &#xCB8;&#xCCD;&#xCB0;&#xCBE;&#xCB5;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
-                       value="Prev_Preg_Complication_Cesarean"
+                       value="Prev_Preg_Complication:_Cesarean"
                        data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0" data-type-xml="select"/>
                 <span lang="" class=" active">Cesarean
                     &#xCB8;&#xCBF;&#xCB8;&#xCC7;&#xCB0;&#xCBF;&#xCAF;&#xCA8;&#xCCD;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
-                       value="Prev_Preg_Complication_Still_Birth"
+                       value="Prev_Preg_Complication:_Still_Birth"
                        data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0" data-type-xml="select"/>
                 <span lang="" class=" active">Still Birth &#xCA8;&#xCBF;&#xCB0;&#xCCD;&#xC9C;&#xCC0;&#xCB5;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
-                       value="Prev_Preg_Complication_Spontaneous_Abortion"
+                       value="Prev_Preg_Complication:_Spontaneous_Abortion"
                        data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0" data-type-xml="select"/>
                 <span lang="" class=" active">Spontaneous Abortion &#xCB8;&#xCCD;&#xCB5;&#xCBE;&#xCAD;&#xCBE;&#xCB5;&#xCBF;&#xC95;
                     &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCAA;&#xCBE;&#xCA4;</span>
@@ -253,23 +253,23 @@
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/medical_histories"
-                       value="Medical_History_TB" data-type-xml="select"/>
+                       value="Medical_History:_TB" data-type-xml="select"/>
                 <span lang="" class=" active">TB &#xC9F;&#xCBF;.&#xCAC;&#xCBF;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/medical_histories"
-                       value="Medical_History_Hypertension" data-type-xml="select"/>
+                       value="Medical_History:_Hypertension" data-type-xml="select"/>
                 <span lang="" class=" active">Hypertension &#xC85;&#xCA7;&#xCBF;&#xC95; &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;&#xCCA;&#xCA4;&#xCCD;&#xCA4;&#xCA1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/medical_histories"
-                       value="Medical_History_Heart_Related_Diseases" data-type-xml="select"/>
+                       value="Medical_History:_Heart_Related_Diseases" data-type-xml="select"/>
                 <span lang="" class=" active">Heart-related diseases &#xCB9;&#xCC3;&#xCA6;&#xCAF; &#xCB8;&#xC82;&#xCAC;&#xC82;&#xCA7;&#xCBF;
                     &#xC95;&#xCBE;&#xCAF;&#xCBF;&#xCB2;&#xCC6;&#xC97;&#xCB3;&#xCC1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/medical_histories"
-                       value="Medical_History_Diabetes" data-type-xml="select"/>
+                       value="Medical_History:_Diabetes" data-type-xml="select"/>
                 <span lang="" class=" active">Diabetes &#xCAE;&#xCA7;&#xCC1;&#xCAE;&#xCC7;&#xCB9;</span>
             </label>
         </fieldset>
