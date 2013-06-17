@@ -76,10 +76,11 @@ describe('ANC Register controller', function () {
             var today = new Date();
             var a_week_ago = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 7);
             var month = ('0' + (a_week_ago.getMonth() + 1)).substr(-2);
-            var day = ('0' + a_week_ago.getDay()).substr(-2);
+            var day = ('0' + a_week_ago.getDate()).substr(-2);
             var client = {
                 lmp: a_week_ago.getFullYear() + '-' + month + '-' + day
             };
+
             expect(scope.weeksPregnant(client)).toEqual(1);
         });
     });
