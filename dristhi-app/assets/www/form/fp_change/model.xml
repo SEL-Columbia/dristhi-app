@@ -13,13 +13,16 @@
             <lmp_date/>
             <upt_result/>
             <iud_place/>
+            <iud_place_name/>
             <iud_person/>
             <iud_person_other/>
+            <iud_person_name/>
             <sterilization_doctor_name/>
             <male_sterilization_type/>
             <female_sterilization_type/>
             <male_sterilizaton_group>
                 <threemonths_from_sterilization_date/>
+                <threemonths_from_sterilization_date_formatted/>
                 <male_sterilization_message/>
             </male_sterilizaton_group>
             <num_condoms/>

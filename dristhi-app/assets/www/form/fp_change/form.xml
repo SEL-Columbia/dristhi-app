@@ -202,6 +202,12 @@
             </label>
         </fieldset>
     </fieldset>
+    <label class="jr-branch pre-init ">
+        <span lang="" class=" active">Name of facility where IUD was given?</span>
+        <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/iud_place_name"
+               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
+               data-type-xml="string"/>
+    </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
         <fieldset>
             <legend>
@@ -247,6 +253,12 @@
         <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
         <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/iud_person_other"
                data-relevant=" /Family_Planning_Change_Method_EngKan/iud_person  = 'others'" data-type-xml="string"/>
+    </label>
+    <label class="jr-branch pre-init ">
+        <span lang="" class=" active">Name of IUD inserter:</span>
+        <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/iud_person_name"
+               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
+               data-type-xml="string"/>
     </label>
     <label class="jr-branch pre-init ">
         <span lang="" class=" active">Name of doctor who did sterilization? &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCB9;&#xCB0;&#xCA3;
@@ -316,7 +328,7 @@
                 Pregnancy can still happen up to 3 months after male sterilization. Tell the couple to use back-up FP
                 method until 3 months from sterilization date:
                 <span class="jr-output"
-                      data-value=" /Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date ">
+                      data-value=" /Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted ">
                 </span>
                 &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
                 &#xCAA;&#xCC1;&#xCB0;&#xCC1;&#xCB7; &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCBE;&#xCB9;&#xCB0;&#xCA3;
@@ -330,7 +342,7 @@
                 &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC6; &#xCAC;&#xCB3;&#xCB8;&#xCC1;&#xCB5;&#xC82;&#xCA4;&#xCC6; &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
                 &#xCB9;&#xCC7;&#xCB3;&#xCBF;:
                 <span class="jr-output"
-                      data-value=" /Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date ">
+                      data-value=" /Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted ">
                 </span>
             </span>
         </fieldset>
@@ -372,6 +384,12 @@
             <input autocomplete="off" type="hidden"
                    name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date"
                    data-calculate="date( /Family_Planning_Change_Method_EngKan/date_familyplanningstart  + 90)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted"
+                   data-calculate="format-date( /Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date , '%Y-%n-%e')"
                    data-type-xml="string"/>
         </label>
         <label class="">
