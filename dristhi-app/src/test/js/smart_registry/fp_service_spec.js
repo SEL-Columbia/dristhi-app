@@ -25,7 +25,7 @@ describe('FP Service', function () {
                             status:'urgent'
                         },
                         {
-                            name:'Referral Followup',
+                            name:'FP Referral Followup',
                             date:'2012-05-18',
                             status:'normal'
                         }
@@ -35,7 +35,7 @@ describe('FP Service', function () {
 
             var expectedOutput =
             {
-                name: "Referral Followup",
+                name: "FP Referral Followup",
                 alert_index: 2,
                 type: "referral"
             };
