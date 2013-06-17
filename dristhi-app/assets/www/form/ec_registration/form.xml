@@ -923,7 +923,7 @@
                 Pregnancy can still happen up to 3 months after male sterilization. Tell the couple to use back-up FP
                 method until 3 months from sterilization date:
                 <span class="jr-output"
-                      data-value=" /EC_Registration_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date ">
+                      data-value=" /EC_Registration_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted ">
                 </span>
                 &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
                 &#xCAA;&#xCC1;&#xCB0;&#xCC1;&#xCB7; &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCBE;&#xCB9;&#xCB0;&#xCA3;
@@ -937,7 +937,7 @@
                 &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC6; &#xCAC;&#xCB3;&#xCB8;&#xCC1;&#xCB5;&#xC82;&#xCA4;&#xCC6; &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
                 &#xCB9;&#xCC7;&#xCB3;&#xCBF;:
                 <span class="jr-output"
-                      data-value=" /EC_Registration_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date ">
+                      data-value=" /EC_Registration_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted ">
                 </span>
             </span>
         </fieldset>
@@ -987,7 +987,7 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/EC_Registration_EngKan/refill_date1" required="required"
-               data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'ocp'" data-type-xml="date"/>
+               data-relevant=" /EC_Registration_EngKan/num_ocp_strips  &gt; 0" data-type-xml="date"/>
     </label>
     <fieldset class="trigger jr-branch pre-init" name="/EC_Registration_EngKan/high_priority_message"
               data-relevant=" /EC_Registration_EngKan/is_high_priority1  = 'yes'">
@@ -1104,6 +1104,12 @@
                    data-type-xml="string"/>
         </label>
         <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/EC_Registration_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted"
+                   data-calculate="format-date( /EC_Registration_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date , '%Y-%n-%e')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
             <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/refill_date"
                    data-calculate="if( /EC_Registration_EngKan/injectable_date  != '',  /EC_Registration_EngKan/injectable_date ,  /EC_Registration_EngKan/refill_date1 )"
                    data-type-xml="string"/>
@@ -1154,7 +1160,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/formhub/uuid"
-                   data-calculate="'a66cdd2be8d64616891f9c988f2b02c6'" data-type-xml="string"/>
+                   data-calculate="'6f1b8363f98a45e4b3f5221869f25c96'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
