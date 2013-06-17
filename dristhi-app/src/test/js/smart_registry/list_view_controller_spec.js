@@ -217,19 +217,6 @@ describe("List view controller", function () {
         });
     });
 
-    describe("loadAll", function () {
-        it("should set the number of clients to show to total number the clients.", function () {
-            scope.clients = [
-                {name: "client1"},
-                {name: "client2"}
-            ];
-
-            scope.loadAll();
-
-            expect(scope.numberOfClientsToShow).toBe(2);
-        });
-    });
-
     describe("allClientsDisplayed", function () {
         it("should return true if all clients are displayed.", function () {
             scope.numberOfClientsToShow = 2;
