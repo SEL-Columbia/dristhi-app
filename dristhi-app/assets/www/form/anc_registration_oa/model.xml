@@ -155,71 +155,47 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="anc_number">
-        <root>
-            <item>
-                <itextId>static_instance-anc_number-0</itextId>
-                <name>1</name>
-            </item>
-            <item>
-                <itextId>static_instance-anc_number-1</itextId>
-                <name>2</name>
-            </item>
-            <item>
-                <itextId>static_instance-anc_number-2</itextId>
-                <name>3</name>
-            </item>
-            <item>
-                <itextId>static_instance-anc_number-3</itextId>
-                <name>4</name>
-            </item>
-            <item>
-                <itextId>static_instance-anc_number-4</itextId>
-                <name>5</name>
-            </item>
-        </root>
-    </instance>
     <instance xmlns="http://www.w3.org/2002/xforms" id="prevpreg_complication">
         <root>
             <item>
                 <itextId>static_instance-prevpreg_complication-0</itextId>
-                <name>Prev_Preg_Complication_APH</name>
+                <name>Prev_Preg_Complication:_APH</name>
             </item>
             <item>
                 <itextId>static_instance-prevpreg_complication-1</itextId>
-                <name>Prev_Preg_Complication_PIH</name>
+                <name>Prev_Preg_Complication:_PIH</name>
             </item>
             <item>
                 <itextId>static_instance-prevpreg_complication-2</itextId>
-                <name>Prev_Preg_Complication_Preeclampsia_Eclampsia</name>
+                <name>Prev_Preg_Complication:_Preeclampsia_Eclampsia</name>
             </item>
             <item>
                 <itextId>static_instance-prevpreg_complication-3</itextId>
-                <name>Prev_Preg_Complication_Pregnancy_with_Tumors</name>
+                <name>Prev_Preg_Complication:_Pregnancy_with_Tumors</name>
             </item>
             <item>
                 <itextId>static_instance-prevpreg_complication-4</itextId>
-                <name>Prev_Preg_Complication_Prolonged_Obstructed_Labor</name>
+                <name>Prev_Preg_Complication:_Prolonged_Obstructed_Labor</name>
             </item>
             <item>
                 <itextId>static_instance-prevpreg_complication-5</itextId>
-                <name>Prev_Preg_Complication_Intrauterine_Growth_Retardation</name>
+                <name>Prev_Preg_Complication:_Intrauterine_Growth_Retardation</name>
             </item>
             <item>
                 <itextId>static_instance-prevpreg_complication-6</itextId>
-                <name>Prev_Preg_Complication_PPH</name>
+                <name>Prev_Preg_Complication:_PPH</name>
             </item>
             <item>
                 <itextId>static_instance-prevpreg_complication-7</itextId>
-                <name>Prev_Preg_Complication_Cesarean</name>
+                <name>Prev_Preg_Complication:_Cesarean</name>
             </item>
             <item>
                 <itextId>static_instance-prevpreg_complication-8</itextId>
-                <name>Prev_Preg_Complication_Still_Birth</name>
+                <name>Prev_Preg_Complication:_Still_Birth</name>
             </item>
             <item>
                 <itextId>static_instance-prevpreg_complication-9</itextId>
-                <name>Prev_Preg_Complication_Spontaneous_Abortion</name>
+                <name>Prev_Preg_Complication:_Spontaneous_Abortion</name>
             </item>
         </root>
     </instance>
@@ -457,19 +433,19 @@
         <root>
             <item>
                 <itextId>static_instance-medical_history-0</itextId>
-                <name>Medical_History_TB</name>
+                <name>Medical_History:_TB</name>
             </item>
             <item>
                 <itextId>static_instance-medical_history-1</itextId>
-                <name>Medical_History_Hypertension</name>
+                <name>Medical_History:_Hypertension</name>
             </item>
             <item>
                 <itextId>static_instance-medical_history-2</itextId>
-                <name>Medical_History_Heart_Related_Diseases</name>
+                <name>Medical_History:_Heart_Related_Diseases</name>
             </item>
             <item>
                 <itextId>static_instance-medical_history-3</itextId>
-                <name>Medical_History_Diabetes</name>
+                <name>Medical_History:_Diabetes</name>
             </item>
         </root>
     </instance>
