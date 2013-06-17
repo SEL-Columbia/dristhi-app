@@ -77,7 +77,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
             bindToChildList(callbackToRunBeforeAnyAction, "#childMenuOption");
             bindToFPSmartRegistry(callbackToRunBeforeAnyAction, "#fpSmartRegistryOption");
             bindToANCSmartRegistry(callbackToRunBeforeAnyAction, "#ancSmartRegistryOption");
-            bindToPNCSmartRegistry(callbackToRunBeforeAnyAction, "#pncSmartRegistryOption");
+            bindToPNCList(callbackToRunBeforeAnyAction, "#pncSmartRegistryOption");
         }
     };
 }
