@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="org.ei.drishti"
           android:versionCode="13"
-          android:versionName="2.0.9"
+          android:versionName="2.0.10"
           android:installLocation="auto">
 
     <compatible-screens>
