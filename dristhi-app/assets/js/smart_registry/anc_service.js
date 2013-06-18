@@ -145,7 +145,8 @@ angular.module("smartRegistry.services")
             preProcessSchedule: preProcessSchedule,
             preProcess: function (clients) {
                 clients.forEach(function (client) {
-                        client.visits = {};
+                        if(!client.visits)
+                            client.visits = {};
                         schedules.forEach(function (schedule) {
                             preProcessSchedule(client, schedule)
                         });
