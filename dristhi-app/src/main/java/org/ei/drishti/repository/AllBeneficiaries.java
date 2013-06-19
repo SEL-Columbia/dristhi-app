@@ -67,6 +67,10 @@ public class AllBeneficiaries {
         return mothers.get(0);
     }
 
+    public List<Child> findAllChildrenByMotherId(String entityId) {
+        return childRepository.findByMotherCaseId(entityId);
+    }
+
     public List<Child> findAllChildrenByCaseIDs(List<String> caseIds) {
         return childRepository.findChildrenByCaseIds(caseIds.toArray(new String[caseIds.size()]));
     }

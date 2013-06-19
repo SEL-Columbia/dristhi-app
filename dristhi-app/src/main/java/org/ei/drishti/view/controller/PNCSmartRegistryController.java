@@ -2,10 +2,8 @@ package org.ei.drishti.view.controller;
 
 import com.google.gson.Gson;
 import org.apache.commons.lang3.tuple.Pair;
-import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
-import org.ei.drishti.domain.ServiceProvided;
+import org.ei.drishti.domain.*;
+import org.ei.drishti.domain.Child;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.service.AlertService;
@@ -22,7 +20,7 @@ import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
-import static org.ei.drishti.domain.ServiceProvided.*;
+import static org.ei.drishti.domain.ServiceProvided.PNC_1_SERVICE_PROVIDED_NAME;
 
 public class PNCSmartRegistryController {
     private static final String PNC_1_ALERT_NAME = "PNC 1";
@@ -82,6 +80,7 @@ public class PNCSmartRegistryController {
                             .withOtherDeliveryComplications(pnc.getDetail("otherDeliveryComplications"))
                             .withAlerts(alerts)
                             .withServicesProvided(servicesProvided)
+                            .withChildren(findChildren(pnc.caseId()))
                     );
                 }
                 sortByName(pncClients);
@@ -127,5 +126,14 @@ public class PNCSmartRegistryController {
                 return oneANCClient.wifeName().compareToIgnoreCase(anotherANCClient.wifeName());
             }
         });
+    }
+
+    private List<ChildClient> findChildren(String entityId) {
+        List<Child> children = allBeneficiaries.findAllChildrenByMotherId(entityId);
+        List<ChildClient> childClientList = new ArrayList<ChildClient>();
+        for (Child child : children) {
+            childClientList.add(new ChildClient(child.gender(), child.getDetail("weight")));
+        }
+        return childClientList;
     }
 }

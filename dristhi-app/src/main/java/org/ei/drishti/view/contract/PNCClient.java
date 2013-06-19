@@ -35,6 +35,7 @@ public class PNCClient {
     private String otherDeliveryComplications;
     private List<AlertDTO> alerts;
     private List<ServiceProvidedDTO> services_provided;
+    private List<ChildClient> children;
 
     public PNCClient(String entityId, String village, String name, String thayi, String deliveryDate) {
         this.entityId = entityId;
@@ -160,6 +161,11 @@ public class PNCClient {
 
     public PNCClient withOtherDeliveryComplications(String otherDeliveryComplications) {
         this.otherDeliveryComplications = otherDeliveryComplications;
+        return this;
+    }
+
+    public PNCClient withChildren(List<ChildClient> children) {
+        this.children = children;
         return this;
     }
 

@@ -4,19 +4,14 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.apache.commons.lang3.tuple.Pair;
-import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
-import org.ei.drishti.domain.ServiceProvided;
+import org.ei.drishti.domain.*;
+import org.ei.drishti.domain.Child;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.service.AlertService;
 import org.ei.drishti.service.ServiceProvidedService;
 import org.ei.drishti.util.Cache;
-import org.ei.drishti.view.contract.AlertDTO;
-import org.ei.drishti.view.contract.PNCClient;
-import org.ei.drishti.view.contract.ServiceProvidedDTO;
-import org.ei.drishti.view.contract.Village;
+import org.ei.drishti.view.contract.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -71,9 +66,9 @@ public class PNCSmartRegistryControllerTest {
         Mother m1 = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25").withDetails(details);
         Mother m2 = new Mother("Entity Y", "EC Case 2", "thayi 2", "2013-05-25").withDetails(details);
         Mother m3 = new Mother("Entity Z", "EC Case 3", "thayi 3", "2013-05-25").withDetails(details);
-        PNCClient expectedClient1 = createPNCClient("Entity Z", "Woman A", "Bherya", "thayi 3", "2013-05-25").withECNumber("EC Number 1").withHusbandName("Husband A");
-        PNCClient expectedClient2 = createPNCClient("Entity X", "Woman B", "kavalu_hosur", "thayi 1", "2013-05-25").withECNumber("EC Number 2").withHusbandName("Husband B");
-        PNCClient expectedClient3 = createPNCClient("Entity Y", "Woman C", "Bherya", "thayi 2", "2013-05-25").withECNumber("EC Number 3").withHusbandName("Husband C");
+        PNCClient expectedClient1 = createPNCClient("Entity Z", "Woman A", "Bherya", "thayi 3", "2013-05-25").withECNumber("EC Number 1").withHusbandName("Husband A").withChildren(Collections.EMPTY_LIST);
+        PNCClient expectedClient2 = createPNCClient("Entity X", "Woman B", "kavalu_hosur", "thayi 1", "2013-05-25").withECNumber("EC Number 2").withHusbandName("Husband B").withChildren(Collections.EMPTY_LIST);
+        PNCClient expectedClient3 = createPNCClient("Entity Y", "Woman C", "Bherya", "thayi 2", "2013-05-25").withECNumber("EC Number 3").withHusbandName("Husband C").withChildren(Collections.EMPTY_LIST);
         when(allBeneficiaries.allPNCsWithEC()).thenReturn(asList(Pair.of(m1, ec2), Pair.of(m2, ec3), Pair.of(m3, ec1)));
 
         String clients = controller.get();
@@ -107,6 +102,8 @@ public class PNCSmartRegistryControllerTest {
         EligibleCouple eligibleCouple = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null, ecDetails).asOutOfArea();
         Mother mother = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25").withDetails(motherDetails);
         when(allBeneficiaries.allPNCsWithEC()).thenReturn(asList(Pair.of(mother, eligibleCouple)));
+        when(allBeneficiaries.findAllChildrenByMotherId("Entity X")).thenReturn(asList(new Child("Child 1", "Entity X", "male", mapOf("weight", "2.4")),
+                new Child("Child 2", "Entity X", "female", mapOf("weight", "2.5"))));
         PNCClient expectedPNCClient = new PNCClient("Entity X", "Bherya", "Woman A", "thayi 1", "2013-05-25")
                 .withECNumber("EC Number 1")
                 .withIsHighPriority(false)
@@ -130,6 +127,7 @@ public class PNCSmartRegistryControllerTest {
                 .withOtherDeliveryComplications("Vomiting")
                 .withPhotoPath("../../img/woman-placeholder.png")
                 .withAlerts(Collections.<AlertDTO>emptyList())
+                .withChildren(asList(new ChildClient("male", "2.4"), new ChildClient("female", "2.5")))
                 .withServicesProvided(Collections.<ServiceProvidedDTO>emptyList());
 
         String clients = controller.get();
@@ -157,7 +155,8 @@ public class PNCSmartRegistryControllerTest {
         PNCClient expectedEC = createPNCClient("Entity X", "Woman C", "Bherya", "thayi 1", "2013-05-25")
                 .withECNumber("EC Number 1")
                 .withHusbandName("Husband C")
-                .withAlerts(asList(expectedAlertDto));
+                .withAlerts(asList(expectedAlertDto))
+                .withChildren(Collections.EMPTY_LIST);
         assertEquals(asList(expectedEC), actualClients);
     }
 
@@ -181,7 +180,8 @@ public class PNCSmartRegistryControllerTest {
         PNCClient expectedEC = createPNCClient("Entity X", "Woman C", "Bherya", "thayi 1", "2013-05-25")
                 .withECNumber("EC Number 1")
                 .withHusbandName("Husband C")
-                .withServicesProvided(expectedServicesProvided);
+                .withServicesProvided(expectedServicesProvided)
+                .withChildren(Collections.EMPTY_LIST);
         assertEquals(asList(expectedEC), actualClients);
     }
 
