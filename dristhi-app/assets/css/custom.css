@@ -45,6 +45,14 @@
     border-radius: 18px;
 }
 
+.navbar .brand {
+    margin-left: -13px;
+}
+
+.nav.pull-right .icon-plus {
+    font-size: 19px;
+}
+
 .menu-button-container {
     padding: 5px;
     padding-bottom: 0px;
@@ -500,6 +508,10 @@ body {
 .vertical-ellipsis {
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    max-height: 72px;
 }
 
 .ellipsis {
@@ -756,6 +768,8 @@ a.btn-sr.upcoming, a.btn-sr.done {
     color: #389cc8;
     text-align: center;
     text-shadow: 0 -1px 0 rgba(236, 232, 232, 0.25);
+    font-size: 94%;
+    font-weight: bold;
 }
 
 .text-due {
@@ -1031,9 +1045,10 @@ a.btn-sr.upcoming, a.btn-sr.done {
 .nav li i.icon-sort-custom, .nav li i.icon-village {
     background-position: 50% 50%;
     height: 18px;
-    width: 25px;
-    background-size: 90%;
+    width: 29px;
+    background-size: 94%;
     background-repeat: no-repeat;
+    background-position: 2px 4px;
 }
 
 .text-align-left {

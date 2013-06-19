@@ -113,7 +113,8 @@ function FakeANCSmartRegistryContext() {
                     locationStatus: "out_of_area",
                     "photo_path": "../../img/woman-placeholder.png",
                     isHighRisk: true,
-                    caste: "sc"
+                    caste: "sc",
+                    riskFactors: "Risk factors text overflow should be ellipses or clipped Risk factors text overflow should be ellipses or clipped "
                 },
                 {
                     entityId: "entity id 2",

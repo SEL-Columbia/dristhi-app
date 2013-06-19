@@ -37,7 +37,7 @@ function FakeInternationalisationContext() {
         getInternationalizedLabels: function () {
             if (language === "en")
                 return JSON.stringify({
-                    "home_ec_label": "Eligible Couple",
+                    "home_ec_label": "EC",
                     "home_anc_label": "ANC",
                     "home_pnc_label": "PNC",
                     "home_child_label": "Child",

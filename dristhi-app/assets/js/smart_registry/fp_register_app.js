@@ -16,7 +16,7 @@ angular.module("smartRegistry.controllers")
                     handler: "sortByName"
                 },
                 {
-                    label: "HP",
+                    label: "High Priority (HP)",
                     handler: "sortByPriority"
                 },
                 {
@@ -136,7 +136,7 @@ angular.module("smartRegistry.controllers")
                     handler: "filterByNoFPMethod"
                 },
                 {
-                    label: "High Priority",
+                    label: "High Priority (HP)",
                     id: "hp",
                     handler: "filterByPriority"
                 },

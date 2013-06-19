@@ -39,14 +39,14 @@
                             <i class="icon-white"></i>
                         </a>
                     </li>
-                    <li>&nbsp;</li>
+                    <li class="separator"></li>
                     <li><a class="brand" href="#">FP: {{reportingPeriodStart() | date:'dd/MM'}} - {{reportingPeriodEnd()
                         | date:'dd/MM'}}</a>
                     </li>
                 </ul>
                 <div class="nav-collapse collapse">
                     <form class="navbar-search pull-right">
-                        <input type="text" class="search-query" placeholder="Search" ng-model="searchFilterString"
+                        <input type="text" class="search-query" placeholder="Search FP Register" ng-model="searchFilterString"
                                ng-click="enterSearchMode()"/>
                         <a ng-show="inSearchMode" ng-click="cancelSearch()" class="search-cancel"></a>
                     </form>
@@ -56,12 +56,16 @@
                                 <span class="fp-service-mode ellipsis">
                                     {{serviceModeOption.label}}
                                 </span>
-                                <i class="icon-white icon-chevron-down"></i>
+                                <i class="icon-white icon-caret-down"></i>
                             </a>
                         </li>
+                        <li class="separator"></li>
                         <li><a ng-click="openModal(sortOptions)"><i class="icon-sort-custom icon-white"></i></a></li>
+                        <li class="separator"></li>
                         <li><a ng-click="openModal(villageOptions)"><i class="icon-village icon-white"></i></a></li>
+                        <li class="separator"></li>
                         <li><a ng-click="openForm('ec_registration', '')"><i class="icon-plus icon-white"></i></a></li>
+                        <li class="separator"></li>
                     </ul>
                 </div>
             </div>

@@ -289,7 +289,8 @@ function FakeFPSmartRegistryContext() {
                     "num_abortions": '1',
                     "family_planning_method_change_date": "25/02/13",
                     "photo_path": "../../img/woman-placeholder.png",
-                    alerts: []
+                    alerts: [],
+                    youngest_child_age: 18
                 },
                 {
                     "entity_id": "entity 11",

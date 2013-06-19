@@ -52,23 +52,27 @@
             <div class="navbar-inner">
                 <ul class="nav">
                     <li><a ng-click="goBack()" class="btn-back"><i class="icon-white"></i></a></li>
-                    <li>&nbsp;</li>
+                    <li class="separator"></li>
                     <li><a class="brand" href="#">PNC: {{reportingPeriodStart() | date:'dd/MM'}} -
                         {{reportingPeriodEnd()
                         | date:'dd/MM'}}</a></li>
                 </ul>
                 <div class="nav-collapse collapse">
                     <form class="navbar-search pull-right">
-                        <input type="text" class="search-query" placeholder="Search" ng-model="searchFilterString"
+                        <input type="text" class="search-query" placeholder="Search PNC Register" ng-model="searchFilterString"
                                ng-click="enterSearchMode()">
                         <a ng-show="inSearchMode" ng-click="cancelSearch()" class="search-cancel"></a>
                     </form>
                     <ul class="nav pull-right">
                         <li><a ng-click="openModal(pncServiceOptions)">{{serviceModeOption.label}}<i
-                                class="icon-white icon-chevron-down"></i></a></li>
+                                class="icon-white icon-caret-down"></i></a></li>
+                        <li class="separator"></li>
                         <li><a ng-click="openModal(sortOptions)"><i class="icon-sort-custom icon-white"></i></a></li>
+                        <li class="separator"></li>
                         <li><a ng-click="openModal(villageOptions)"><i class="icon-village icon-white"></i></a></li>
+                        <li class="separator"></li>
                         <li><a ng-click="openForm('pnc_registration_oa', '')"><i class="icon-plus icon-white"></i></a>
+                        <li class="separator"></li>
                         </li>
                     </ul>
                 </div>

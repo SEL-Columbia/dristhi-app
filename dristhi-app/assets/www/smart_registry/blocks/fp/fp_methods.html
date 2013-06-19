@@ -11,9 +11,9 @@
                     <span ng-show="client.iudPlace">, </span>
                     <span>{{client.iudPerson | uppercase}}</span>
                 </span>
-                <span ng-switch-when="ocp" ng-show="client.numberOfOCPDelivered">No. Strips: {{client.numberOfOCPDelivered}}</span>
-                <span ng-switch-when="condom" ng-show="client.numberOfCondomsSupplied">No. Given: {{client.numberOfCondomsSupplied}}</span>
-                <span ng-switch-when="centchroman" ng-show="client.numberOfCentchromanPillsDelivered">No. Strips: {{client.numberOfCentchromanPillsDelivered}}</span>
+                <span ng-switch-when="ocp" ng-show="client.numberOfOCPDelivered">No. strips: {{client.numberOfOCPDelivered}}</span>
+                <span ng-switch-when="condom" ng-show="client.numberOfCondomsSupplied">No. given: {{client.numberOfCondomsSupplied}}</span>
+                <span ng-switch-when="centchroman" ng-show="client.numberOfCentchromanPillsDelivered">No. strips: {{client.numberOfCentchromanPillsDelivered}}</span>
             </ng:switch>
         </div>
         <div class="span4 full-height">

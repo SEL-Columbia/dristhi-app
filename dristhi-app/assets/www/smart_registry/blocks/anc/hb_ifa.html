@@ -1,8 +1,8 @@
 <div class="span7 full-height span-no-margin width-without-margins">
     <div class="row-fluid full-height">
-        <div class="span5 full-height span-no-margin width-without-margins">
+        <div class="span6 full-height span-no-margin width-without-margins">
             <div class="row-fluid full-height">
-                <div class="span6 full-height span-no-margin width-without-margins span-content">
+                <div class="span7 full-height span-no-margin width-without-margins span-content">
                     <div ng-show="client.visits.hb['Hb Test']"
                          data-ng-repeat="hb in client.visits.hb['Hb Test'] | orderBy:'-visit_date' | limitTo: 3" class="row-fluid hb">
                         <div class="span1 width-without-margins hb-legend"
@@ -12,11 +12,11 @@
                             <span>{{hb.visit_date | date:'dd/MM' }}</span>
                         </div>
                         <div class="span6 span-no-margin width-without-margins hb-content hb-content-right-aligned">
-                            <span>{{hb.data.hbLevel}}g/dl</span>
+                            <span>{{hb.data.hbLevel}} g/dl</span>
                         </div>
                     </div>
                 </div>
-                <div class="span6 line-right full-height span-no-margin width-without-margins span-content">
+                <div class="span5 line-right full-height span-no-margin width-without-margins span-content">
                     <button class="btn btn-primary btn-sr full-height"
                             ng-show="client.visits.hb.next"
                             ng-class="client.visits.hb.next.status"
@@ -27,17 +27,14 @@
                             <span>Due {{client.visits.hb.next.visit_date | date: 'dd/MM'}}</span>
                         </div>
                     </button>
-                    <button class="btn btn-primary btn-sr full-height normal"
+                    <button class="btn btn-done btn-sr btn-new-form full-height"
                             ng-show="!client.visits.hb.next"
-                            ng-click="openMicroForm('hb_test', client.entityId)">
-                        <div class="button-text-container middle">
-                            <span class="text-bold">Hb Test</span><br/>
-                        </div>
+                            ng-click="openMicroForm('hb_test', client.entityId)">Hb Test
                     </button>
                 </div>
             </div>
         </div>
-        <div class="span7 full-height span-no-margin width-without-margins">
+        <div class="span6 full-height span-no-margin width-without-margins">
             <div class="row-fluid full-height span-no-margin width-without-margins">
                 <div class="span7 line-right full-height span-no-margin width-without-margins span-content">
                     <div ng-show="client.visits.ifa['IFA']"
