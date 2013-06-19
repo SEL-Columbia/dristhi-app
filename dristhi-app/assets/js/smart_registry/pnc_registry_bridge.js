@@ -40,7 +40,7 @@ function FakePNCSmartRegistryContext() {
                     numberOfCondomsSupplied: null,
                     numberOfOCPDelivered: "8",
                     numberOfCentchromanPillsDelivered: null,
-                    deliveryDate: "2013-06-01",
+                    deliveryDate: "2013-06-15",
                     deliveryPlace:"PNC",
                     deliveryType: "Normal", //TODO: what are the options
                     deliveryComplications: "hemorrhage, placenta_previa, prolonged_or_obstructed_labour",
@@ -48,21 +48,21 @@ function FakePNCSmartRegistryContext() {
                     alerts: [
                         {
                             name: 'PNC',
-                            date: '2013-06-03',
+                            date: '2013-06-26',
                             status: 'normal'
                         }
                     ],
                     services_provided: [
                         {
                             name: 'PNC',
-                            date: '2013-06-03',
+                            date: '2013-06-16',
                             data: {
                                 day: 14
                             }
                         },
                         {
                             name: 'PNC',
-                            date: '2013-06-07',
+                            date: '2013-06-18',
                             data: {
                                 day: 18
                             }
@@ -86,7 +86,7 @@ function FakePNCSmartRegistryContext() {
                     photo_path: "../../img/woman-placeholder.png",
                     isHighPriority: false,
                     isHighRisk: false,
-                    locationStatus: "out_of_area",
+                    locationStatus: "",
                     economicStatus: "apl",
                     caste: "st",
                     fp_method: "ocp",

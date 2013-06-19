@@ -1,8 +1,11 @@
 angular.module("smartRegistry.controllers")
-    .controller("pncRegisterController", function ($scope, SmartHelper, ANCService) {
+    .controller("pncRegisterController", function ($scope, SmartHelper, ANCService, PNCService) {
         $scope.bridge = new PNCRegistryBridge();
         $scope.getClients = function () {
-            return ANCService.preProcess($scope.bridge.getClients());
+            var clients = $scope.bridge.getClients();
+            ANCService.preProcess(clients);
+            PNCService.preProcess(clients);
+            return clients;
         };
 
         $scope.clients = $scope.getClients();
@@ -168,5 +171,79 @@ angular.module("smartRegistry.controllers")
 
         $scope.isPNCService = function(service) {
             return service['name'] === "PNC";
+        };
+
+        $scope.drawSevenDayGraphic = function(client, selector) {
+            var svg = d3.selectAll(selector);
+            // TODO: perhaps we could skip drawing if g exists for performance since we've already drawn
+            var g = svg.select('g');
+            g.remove();
+            g = svg.append('g');
+            var colors = {
+                red: '#d13f3f',
+                yellow: '#EDCA00',
+                green: '#25aa4a',
+                grey: '#B6B6B6'
+            };
+            var active_color = colors[client.visits.first_7_days.active_color || 'yellow'];
+
+            (function(client, svg, color, red, yellow, green, grey){
+                var x_offset = 18;
+                var x_scale = 28;
+                var y_offset = 30;
+                var thickness = 4, thickness_scaled = thickness * 0.5;
+                var radius = 10, radius_scaled = radius * 0.7;
+                var text_width = 13;
+                var tick_height = 12;
+
+                svg.selectAll('.lines')
+                    .data(client.lines)
+                    .enter()
+                    .append('rect')
+                    .attr('x', function(d){ return ((d.start - 1) * x_scale) + x_offset })
+                    .attr('y', y_offset-thickness/2)
+                    .attr('width', function(d){ return (d.end - d.start) * x_scale})
+                    .attr('height', thickness)
+                    .attr('fill', function(d){ return d.type === 'expected'?grey:color});
+
+                svg.selectAll('.ticks')
+                    .data(client.ticks)
+                    .enter()
+                    .append('rect')
+                    .attr('x', function(d){ return ((d.day - 1) * x_scale) + x_offset })
+                    .attr('y', y_offset - tick_height/2)
+                    .attr('width', thickness_scaled)
+                    .attr('height', tick_height)
+                    .attr('fill', function(d){ return d.type === 'expected'?grey:color});
+
+                svg.selectAll('.circles')
+                    .data(client.circles)
+                    .enter()
+                    .append('circle')
+                    .attr('cx', function(d){ return ((d.day - 1) * x_scale) + x_offset })
+                    .attr('cy', y_offset)
+                    .attr('fill', function(d){ return d.type === 'actual'?'black':(d.colored?color:grey) })
+                    .attr('r', function(d){ return d.type === 'expected'?radius:radius_scaled});
+
+                svg.selectAll('.statuses')
+                    .data(client.statuses)
+                    .enter()
+                    .append('text')
+                    .text(function(d){return d.status === 'missed'?'X':'V'})
+                    .text(function(d){return d.status === 'missed'?'\uf00d':'\uf00c'})
+                    .style('font-family', 'FontAwesome')
+                    .attr('x', function(d){return (((d.day - 1) * x_scale) + x_offset) - text_width/2})
+                    .attr('y', function(d){return y_offset - radius * 1.5})
+                    .attr('fill', function(d){return d.status === 'done'?green:red});
+
+                svg.selectAll('.day_nos')
+                    .data(client.day_nos)
+                    .enter()
+                    .append('text')
+                    .text(function(d){return d.day})
+                    .attr('x', function(d){return (((d.day - 1) * x_scale) + x_offset) - text_width/3})
+                    .attr('y', (y_offset + radius) * 1.4)
+                    .attr('fill', function(d){return d.type === 'actual'?'black':grey});
+            })(client.visits.first_7_days, g, active_color, colors.red, colors.yellow, colors.green, colors.grey);
         };
     });

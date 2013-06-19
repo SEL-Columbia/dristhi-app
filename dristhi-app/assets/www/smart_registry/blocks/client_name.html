@@ -7,6 +7,10 @@
     <br/>
     <span class="client-husband-name ellipsis" style="font-size:15px;">{{client.husband_name | humanize | camelCase}}</span>
     <br/>
-    <span class="client-village ellipsis">{{client.village | humanize | camelCase}}</span>
+    <span class="client-village ellipsis">
+        <span ng-show="client.locationStatus == 'out_of_area'">( </span>
+        {{client.village | humanize | camelCase}}
+        <span ng-show="client.locationStatus == 'out_of_area'"> )</span>
+    </span>
     <span class="client-location-status" ng-show="locationStatusMapping[client.locationStatus]">({{villageOptions.options[locationStatusMapping[client.locationStatus]].label}})</span>
 </div>
