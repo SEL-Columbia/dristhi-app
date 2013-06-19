@@ -45,8 +45,8 @@
                 "source": "eligible_couple.mother.thayiCardNumber"
             },
             {
-                "name": "aadharNumber",
-                "bind": "/model/instance/PNC_Child_Registration_EngKan/aadhar_number"
+                "name": "aadhaarNumber",
+                "bind": "/model/instance/PNC_Child_Registration_EngKan/aadhaar_number"
             },
             {
                 "name": "husbandName",
