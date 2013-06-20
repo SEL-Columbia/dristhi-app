@@ -114,11 +114,11 @@ angular.module("smartRegistry.controllers")
                     id: "overview",
                     handler: "changeContentBasedOnServiceMode"
                 },
-                {
+                /*{
                     label: "Benefits",
                     id: "benefits",
                     handler: "changeContentBasedOnServiceMode"
-                },
+                },*/
                 {
                     label: "PNC Visits",
                     id: "pnc_visits",

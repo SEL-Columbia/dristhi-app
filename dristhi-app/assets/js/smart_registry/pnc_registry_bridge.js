@@ -72,6 +72,12 @@ function FakePNCSmartRegistryContext() {
                             date: '2013-06-09',
                             data: {}
                         }
+                    ],
+                    children: [
+                        {
+                            gender: 'female',
+                            weight: '3.5'
+                        }
                     ]
                 },
                 {

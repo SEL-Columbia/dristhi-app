@@ -21,13 +21,15 @@
     </ng:switch>
 </div>
 <div class="span3 span-no-margin width-without-margins line-right span-content">
-    <img ng-src="{{client.photo_path}}" class="img-rounded img-left pnc-child-img" width="40" height="40" />
-    <p class="text-left">
-        <span>Female</span>
-        <br/>
-        <span class="text-upper">Birth Wt:</span>
-        <span>3.5 kg</span>
-    </p>
+    <div ng-repeat="child in client.children">
+        <!--<img ng-src="{{client.photo_path}}" class="img-rounded img-left pnc-child-img" width="40" height="40" />-->
+        <p class="text-left">
+            <span>{{child.gender | camelCase}}</span>
+            <br/>
+            <span class="text-upper">Birth Wt:</span>
+            <span>{{child.weight}} kg</span>
+        </p>
+    </div>
 </div>
 <div class="span1 span-no-margin width-without-margins full-height span-content">
     <button class="btn btn-primary btn-large normal btn-sr full-height" ng-click="openPNCFormModal(client.entityId)">
