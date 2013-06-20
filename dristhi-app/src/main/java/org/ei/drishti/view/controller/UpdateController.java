@@ -24,23 +24,6 @@ public class UpdateController {
         flushUrlLoads();
     }
 
-    public void startProgressIndicator() {
-        loadUrl("javascript:pageView.startProgressIndicator()");
-    }
-
-    public void stopProgressIndicator() {
-        loadUrl("javascript:pageView.stopProgressIndicator()");
-    }
-
-    private void loadUrl(String url) {
-        saveUrlLoad(url);
-        flushUrlLoads();
-    }
-
-    private void saveUrlLoad(String urlToLoad) {
-        urlsToLoad.add(urlToLoad);
-    }
-
     private void flushUrlLoads() {
         if (pageHasFinishedLoading) {
             for (String url : urlsToLoad) {
@@ -66,4 +49,3 @@ public class UpdateController {
         });
     }
 }
-

@@ -1,23 +1,27 @@
 package org.ei.drishti.view.activity;
 
+import android.view.Menu;
+import android.view.MenuItem;
+import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
 import org.ei.drishti.view.controller.HomeController;
 
 import static org.ei.drishti.event.Event.*;
 
 public class HomeActivity extends SecuredWebActivity {
+    private MenuItem updateMenuItem;
 
     private Listener<Boolean> onSyncStartListener = new Listener<Boolean>() {
         @Override
         public void onEvent(Boolean data) {
-            updateController.startProgressIndicator();
+            updateMenuItem.setActionView(R.layout.progress);
         }
     };
 
     private Listener<Boolean> onSyncCompleteListener = new Listener<Boolean>() {
         @Override
         public void onEvent(Boolean data) {
-            updateController.stopProgressIndicator();
+            updateMenuItem.setActionView(null);
         }
     };
 
@@ -40,9 +44,18 @@ public class HomeActivity extends SecuredWebActivity {
 
     @Override
     protected void onResumption() {
-        if (context.allSettings().fetchIsSyncInProgress()) {
-            updateController.startProgressIndicator();
-        } else
-            updateController.stopProgressIndicator();
+        if (updateMenuItem != null) {
+            if (context.allSettings().fetchIsSyncInProgress()) {
+                updateMenuItem.setActionView(R.layout.progress);
+            } else
+                updateMenuItem.setActionView(null);
+        }
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        updateMenuItem = menu.findItem(R.id.updateMenuItem);
+        return true;
     }
 }

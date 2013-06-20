@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/updateMenuItem" android:title="Update" android:icon="@drawable/ic_menu_refresh"></item>
+    <item android:id="@+id/updateMenuItem" android:title="Update" android:icon="@drawable/refresh" android:showAsAction="always" android:orderInCategory="100"></item>
     <item android:id="@+id/switchLanguageMenuItem" android:title="Switch Language" android:icon="@drawable/ic_menu_edit"></item>
     <item android:id="@+id/logoutMenuItem" android:title="Logout" android:icon="@drawable/ic_menu_settings"></item>
 </menu>
