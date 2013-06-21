@@ -20,7 +20,7 @@ import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
-import static org.ei.drishti.domain.ServiceProvided.PNC_1_SERVICE_PROVIDED_NAME;
+import static org.ei.drishti.domain.ServiceProvided.PNC_SERVICE_PROVIDED_NAME;
 
 public class PNCSmartRegistryController {
     private static final String PNC_1_ALERT_NAME = "PNC 1";
@@ -100,7 +100,7 @@ public class PNCSmartRegistryController {
 
     private List<ServiceProvidedDTO> getServicesProvided(String entityId) {
         List<ServiceProvided> servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId,
-                PNC_1_SERVICE_PROVIDED_NAME);
+                PNC_SERVICE_PROVIDED_NAME);
         List<ServiceProvidedDTO> serviceProvidedDTOs = new ArrayList<ServiceProvidedDTO>();
         for (ServiceProvided serviceProvided : servicesProvided) {
             serviceProvidedDTOs.add(new ServiceProvidedDTO(serviceProvided.name(), serviceProvided.date(), serviceProvided.data()));

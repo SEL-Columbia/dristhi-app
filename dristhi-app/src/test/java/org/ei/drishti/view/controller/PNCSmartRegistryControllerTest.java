@@ -36,7 +36,7 @@ public class PNCSmartRegistryControllerTest {
             "PNC 1"
     };
     public static final String[] PNC_SERVICES = new String[]{
-            "PNC 1"
+            "PNC"
     };
     @Mock
     private AllEligibleCouples allEligibleCouples;

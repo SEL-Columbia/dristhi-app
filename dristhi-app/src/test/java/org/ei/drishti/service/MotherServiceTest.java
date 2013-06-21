@@ -309,7 +309,7 @@ public class MotherServiceTest {
 
         service.pncVisitHappened(submission);
 
-        verify(serviceProvidedService).add(new ServiceProvided("entity id 1", "PNC 2", "2012-01-01", mapOf("pncVisitNumber", "2")));
+        verify(serviceProvidedService).add(new ServiceProvided("entity id 1", "PNC", "2012-01-01", mapOf("pncVisitNumber", "2")));
     }
 
     @Test
