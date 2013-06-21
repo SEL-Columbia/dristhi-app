@@ -58,11 +58,6 @@ describe('ANC Register controller', function () {
                         label: "O/A",
                         id: "out_of_area",
                         handler: "filterByLocationStatus"
-                    },
-                    {
-                        label: "L/P",
-                        id: "left_the_place",
-                        handler: "filterByLocationStatus"
                     }
                 ]
             };

@@ -62,11 +62,6 @@ angular.module("smartRegistry.controllers")
                     label: "O/A",
                     id: "out_of_area",
                     handler: "filterByLocationStatus"
-                },
-                {
-                    label: "L/P",
-                    id: "left_the_place",
-                    handler: "filterByLocationStatus"
                 }
             ]
         };
