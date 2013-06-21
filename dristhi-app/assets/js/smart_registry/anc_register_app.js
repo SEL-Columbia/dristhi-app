@@ -24,11 +24,6 @@ angular.module("smartRegistry.controllers")
                     label: "HRP",
                     handler: "sortByRisk",
                     sortDescending: false
-                },
-                {
-                    label: "Due Date",
-                    handler: "sortByDueDate",
-                    sortDescending: false
                 }
             ]
         };
