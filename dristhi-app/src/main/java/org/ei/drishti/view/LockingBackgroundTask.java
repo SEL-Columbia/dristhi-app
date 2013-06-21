@@ -42,6 +42,6 @@ public class LockingBackgroundTask {
                 backgroundAction.postExecuteInUIThread(result);
                 indicator.setInvisible();
             }
-        }.execute(null);
+        }.execute((Void) null);
     }
 }
