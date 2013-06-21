@@ -213,7 +213,7 @@ a:focus {
 
 .client-name {
     font-size: 18px !important;
-    max-width: 63px;
+    max-width: 98px;
     display: inline-block;
 }
 
@@ -222,7 +222,7 @@ a:focus {
 }
 
 .client-husband-name {
-    max-width: 96px;
+    max-width: 130px;
     display: inline-block;
 }
 
@@ -232,7 +232,7 @@ a:focus {
 }
 
 .client-village {
-    max-width: 56px;
+    max-width: 130px;
     display: inline-block;
 }
 
@@ -265,7 +265,7 @@ a:focus {
     margin-right: 5px;
 }
 
-.row #names {
+.row .names {
     width: 106px;
     float: left;
     margin-left: 10px;

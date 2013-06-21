@@ -1,16 +1,15 @@
 <div id="pic" ng-click="capturePicture(client.entity_id, client_type)">
     <img ng-src="{{client.photo_path}}"/>
 </div>
-<div id="names">
+<div class="names">
     <span class="client-name text-bold ellipsis">{{client.name | humanize | camelCase}}</span>
     <span class="client-age text-bold">({{client.age}})</span>
     <br/>
-    <span class="client-husband-name ellipsis" style="font-size:15px;">{{client.husband_name | humanize | camelCase}}</span>
+    <span class="client-husband-name ellipsis"
+          style="font-size:15px;">{{client.husband_name | humanize | camelCase}}</span>
     <br/>
     <span class="client-village ellipsis">
-        <span ng-show="client.locationStatus == 'out_of_area'">( </span>
         {{client.village | humanize | camelCase}}
-        <span ng-show="client.locationStatus == 'out_of_area'"> )</span>
     </span>
     <span class="client-location-status" ng-show="locationStatusMapping[client.locationStatus]">({{villageOptions.options[locationStatusMapping[client.locationStatus]].label}})</span>
 </div>
