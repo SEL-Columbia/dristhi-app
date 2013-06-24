@@ -169,8 +169,9 @@ angular.module("smartRegistry.controllers")
             return Math.round(SmartHelper.daysBetween(new Date(Date.parse(client.deliveryDate)), new Date()));
         };
 
-        $scope.isPNCService = function(service) {
-            return service['name'] === "PNC";
+        $scope.isPNCOutsideFirst7Days = function(service) {
+            return service['name'] === "PNC" && SmartHelper.daysBetween(
+                new Date(Date.parse($scope.client.deliveryDate)), new Date(Date.parse(service.date))) > 7;
         };
 
         $scope.drawSevenDayGraphic = function(client, selector) {

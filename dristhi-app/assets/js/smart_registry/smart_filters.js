@@ -55,4 +55,18 @@ angular.module("smartRegistry.filters")
                 return "";
             }
         }
-    });
+    })
+    .filter("dateFallsWithin", [function(){
+        return function(input, start_date, date_field, period, invert) {
+            return input.filter(function(item){
+                var end_date = item[date_field];
+                var val = ((Date.parse(end_date) - Date.parse(start_date)) / 1000 / 60 / 60 / 24) < period;
+                // if invert is undefined or false return val, else return  !val
+                if(!invert)
+                    return val;
+                else
+                    return !val;
+            });
+
+        }
+    }]);

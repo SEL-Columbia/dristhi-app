@@ -1,13 +1,15 @@
 describe('Smart Filters', function () {
 
-    var humanize, camelCase, fpMethodName, commaSeparated;
+    var humanize, camelCase, fpMethodName, commaSeparated, dateFallsWithin;
 
     beforeEach(module("smartRegistry.filters"));
-    beforeEach(inject(function (humanizeFilter, camelCaseFilter, fpMethodNameFilter, commaSeparatedFilter) {
+    beforeEach(inject(function (humanizeFilter, camelCaseFilter, fpMethodNameFilter,
+                                commaSeparatedFilter, dateFallsWithinFilter) {
         humanize = humanizeFilter;
         camelCase = camelCaseFilter;
         fpMethodName = fpMethodNameFilter;
         commaSeparated = commaSeparatedFilter;
+        dateFallsWithin = dateFallsWithinFilter;
     }));
 
     describe("Humanize", function(){
@@ -86,6 +88,39 @@ describe('Smart Filters', function () {
 
         it("should comma separate space separated inputs", function(){
             expect(commaSeparated("pain fever others")).toEqual("pain, fever, others");
+        });
+    });
+
+    describe("Period filter", function(){
+        var visits = [
+            {
+                date: '2013-06-14' // within 7 days
+            },
+            {
+                date: '2013-06-21' // outside 7 days
+            }
+        ];
+
+        var client = {
+            deliveryDate: '2013-06-13'
+        };
+
+        it("should return visits whose dates fall within the specified period if invert is undefined or false", function(){
+            var expected_visits = [
+                {
+                    date: '2013-06-14' // within 7 days
+                }
+            ];
+            expect(dateFallsWithin(visits, client.deliveryDate, 'date', 7, undefined)[0]).toEqual(expected_visits[0]);
+        });
+
+        it("should return visits whose dates fall outside the specified period if invert is true", function(){
+            var expected_visits = [
+                {
+                    date: '2013-06-21' // within 7 days
+                }
+            ];
+            expect(dateFallsWithin(visits, client.deliveryDate, 'date', 7, true)[0]).toEqual(expected_visits[0]);
         });
     });
 });
