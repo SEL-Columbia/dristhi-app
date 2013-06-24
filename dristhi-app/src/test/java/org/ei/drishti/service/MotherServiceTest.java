@@ -262,7 +262,7 @@ public class MotherServiceTest {
     public void shouldAddPNCVisitTimelineEventWhenPNCVisitHappens() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
-        when(submission.getFieldValue("pncVisitNumber")).thenReturn("2");
+        when(submission.getFieldValue("pncVisitDay")).thenReturn("2");
         when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("100");
         when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2012-01-02");
@@ -280,7 +280,7 @@ public class MotherServiceTest {
     public void shouldAddIFATabletsGivenTimelineEventWhenPNCVisitHappens() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
-        when(submission.getFieldValue("pncVisitNumber")).thenReturn("2");
+        when(submission.getFieldValue("pncVisitDay")).thenReturn("2");
         when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("100");
         when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2012-01-02");
@@ -298,7 +298,7 @@ public class MotherServiceTest {
     public void shouldAddPNCVisitServiceProvidedWhenPNCVisitHappens() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
-        when(submission.getFieldValue("pncVisitNumber")).thenReturn("2");
+        when(submission.getFieldValue("pncVisitDay")).thenReturn("2");
         when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("100");
         when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2012-01-02");
@@ -309,14 +309,14 @@ public class MotherServiceTest {
 
         service.pncVisitHappened(submission);
 
-        verify(serviceProvidedService).add(new ServiceProvided("entity id 1", "PNC", "2012-01-01", mapOf("pncVisitNumber", "2")));
+        verify(serviceProvidedService).add(new ServiceProvided("entity id 1", "PNC", "2012-01-01", mapOf("day", "2")));
     }
 
     @Test
     public void shouldNotAddIFATabletsGivenTimelineEventWhenPNCVisitHappensAndNoIFATabletsWereGiven() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
-        when(submission.getFieldValue("pncVisitNumber")).thenReturn("2");
+        when(submission.getFieldValue("pncVisitDay")).thenReturn("2");
         when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("");
         when(submission.getFieldValue("ifaTabletsDate")).thenReturn(null);

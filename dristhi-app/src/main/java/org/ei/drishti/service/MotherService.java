@@ -124,7 +124,7 @@ public class MotherService {
         allTimelines.add(
                 forMotherPNCVisit(
                         submission.entityId(),
-                        submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_NUMBER),
+                        submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DAY),
                         submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DATE),
                         submission.getFieldValue(AllConstants.PNCVisitFields.BP_SYSTOLIC),
                         submission.getFieldValue(AllConstants.PNCVisitFields.BP_DIASTOLIC),
@@ -133,7 +133,7 @@ public class MotherService {
         serviceProvidedService.add(
                 ServiceProvided.forMotherPNCVisit(
                         submission.entityId(),
-                        submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_NUMBER),
+                        submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DAY),
                         submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DATE)));
 
         String numberOfIFATabletsGiven = submission.getFieldValue(AllConstants.PNCVisitFields.NUMBER_OF_IFA_TABLETS_GIVEN);

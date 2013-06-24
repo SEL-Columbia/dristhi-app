@@ -105,7 +105,7 @@ public class AllConstants {
     }
 
     public class PNCVisitFields {
-        public static final String PNC_VISIT_NUMBER = "pncVisitNumber";
+        public static final String PNC_VISIT_DAY = "pncVisitDay";
         public static final String PNC_VISIT_DATE = "pncVisitDate";
         public static final String BP_SYSTOLIC = "bpSystolic";
         public static final String BP_DIASTOLIC = "bpDiastolic";

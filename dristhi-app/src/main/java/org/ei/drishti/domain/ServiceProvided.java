@@ -3,7 +3,6 @@ package org.ei.drishti.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.mapper.TTMapper;
 
 import java.util.Map;
@@ -24,6 +23,7 @@ public class ServiceProvided {
     public static final String ANC_2_SERVICE_PROVIDED_NAME = ANC_SERVICE_PREFIX + "2";
     public static final String ANC_3_SERVICE_PROVIDED_NAME = ANC_SERVICE_PREFIX + "3";
     public static final String ANC_4_SERVICE_PROVIDED_NAME = ANC_SERVICE_PREFIX + "4";
+    public static final String PNC_VISIT_DAY = "day";
 
     private final String entityId;
     private final String name;
@@ -59,9 +59,9 @@ public class ServiceProvided {
         );
     }
 
-    public static ServiceProvided forMotherPNCVisit(String entityId, String pncVisitNumber, String date) {
+    public static ServiceProvided forMotherPNCVisit(String entityId, String pncVisitDay, String date) {
         return new ServiceProvided(entityId, PNC_SERVICE_PROVIDED_NAME, date,
-                mapOf(AllConstants.PNCVisitFields.PNC_VISIT_NUMBER, pncVisitNumber)
+                mapOf(PNC_VISIT_DAY, pncVisitDay)
         );
     }
 
