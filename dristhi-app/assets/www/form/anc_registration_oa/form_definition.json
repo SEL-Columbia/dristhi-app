@@ -228,6 +228,7 @@
             },
             {
                 "name": "submissionDate",
+                "shouldLoadValue": false,
                 "bind": "/model/instance/ANC_Registration_OA_EngKan/today",
                 "source": "eligible_couple.mother.submissionDate"
             },

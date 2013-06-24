@@ -226,6 +226,7 @@
             },
             {
                 "name": "submissionDate",
+                "shouldLoadValue": false,
                 "bind": "/model/instance/PNC_Visit_EngKan/today"
             }
         ],

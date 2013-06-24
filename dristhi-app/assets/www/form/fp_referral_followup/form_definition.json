@@ -48,6 +48,7 @@
             },
             {
                 "name": "submissionDate",
+                "shouldLoadValue": false,
                 "bind": "/model/instance/Family_Planning_Referral_Followup_EngKan/today"
             }
         ]

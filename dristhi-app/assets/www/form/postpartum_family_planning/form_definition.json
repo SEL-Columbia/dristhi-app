@@ -159,6 +159,7 @@
             },
             {
                 "name": "submissionDate",
+                "shouldLoadValue": false,
                 "bind": "/model/instance/Postpartum_FamilyPlanning_EngKan/today"
             }
         ]

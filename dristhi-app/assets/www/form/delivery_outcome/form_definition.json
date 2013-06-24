@@ -252,6 +252,7 @@
             },
             {
                 "name": "submissionDate",
+                "shouldLoadValue": false,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/today"
             }
         ],

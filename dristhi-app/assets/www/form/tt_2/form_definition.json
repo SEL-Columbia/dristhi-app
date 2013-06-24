@@ -20,6 +20,7 @@
             },
             {
                 "name": "submissionDate",
+                "shouldLoadValue": false,
                 "bind": "/model/instance/TT2_EngKan/today"
             }
         ]

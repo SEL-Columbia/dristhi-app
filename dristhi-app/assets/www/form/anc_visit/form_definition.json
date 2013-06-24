@@ -165,6 +165,7 @@
             },
             {
                 "name": "submissionDate",
+                "shouldLoadValue": false,
                 "bind": "/model/instance/ANC_Visit_EngKan/today"
             }
         ]

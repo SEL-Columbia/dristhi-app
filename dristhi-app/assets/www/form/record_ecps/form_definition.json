@@ -16,6 +16,7 @@
             },
             {
                 "name": "submissionDate",
+                "shouldLoadValue": false,
                 "bind": "/model/instance/Family_Planning_ECPs/today"
             }
         ]
