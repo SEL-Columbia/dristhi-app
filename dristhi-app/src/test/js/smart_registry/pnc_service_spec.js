@@ -35,12 +35,18 @@ describe('PNC Service', function () {
             expect(calculatedVisitData).toEqual(expectedData);
         });
 
-        describe("First 3 visit calculation", function(){
-            it("should generate a list of the first 3 visits within the first 7 days sorted by visit date", function(){
+        describe("First 7 days visit calculation", function(){
+            it("should generate a list of visits within the first 7 days sorted by visit date", function(){
+                var delivery_date = new Date("2013-05-13");
+
                 var services_provided = [
                     {
                         name: "PNC",
                         date: '2013-05-26'
+                    },
+                    {
+                        name: "PNC",
+                        date: '2013-05-15'
                     },
                     {
                         name: "PNC",
@@ -64,6 +70,11 @@ describe('PNC Service', function () {
                     },
                     {
                         name: "PNC",
+                        day: 2,
+                        date: '2013-05-15'
+                    },
+                    {
+                        name: "PNC",
                         day: 4,
                         date: '2013-05-17'
                     },
@@ -74,14 +85,12 @@ describe('PNC Service', function () {
                     }
                 ];
 
-                var delivery_date = new Date("2013-05-13");
+                var first_7_days = pncService.getFirst7DaysVisits(delivery_date, services_provided);
 
-                var first_3_visits = pncService.getFirst3Visits(delivery_date, services_provided);
-
-                expect(first_3_visits.length).toEqual(expected_visits.length);
-                expect(first_3_visits[0]).toEqual(expected_visits[0]);
-                expect(first_3_visits[1]).toEqual(expected_visits[1]);
-                expect(first_3_visits[2]).toEqual(expected_visits[2]);
+                expect(first_7_days.length).toEqual(expected_visits.length);
+                expect(first_7_days[0]).toEqual(expected_visits[0]);
+                expect(first_7_days[1]).toEqual(expected_visits[1]);
+                expect(first_7_days[2]).toEqual(expected_visits[2]);
             });
 
             it("should only return visits that are within the 7 day period", function(){
@@ -107,7 +116,7 @@ describe('PNC Service', function () {
 
                 var delivery_date = new Date("2013-05-13");
 
-                var first_3_visits = pncService.getFirst3Visits(delivery_date, services_provided);
+                var first_3_visits = pncService.getFirst7DaysVisits(delivery_date, services_provided);
 
                 expect(first_3_visits.length).toEqual(expected_visits.length);
                 expect(first_3_visits[0]).toEqual(expected_visits[0]);

@@ -21,7 +21,7 @@ angular.module("smartRegistry.services")
             return expected_visit_days;
         };
 
-        var getFirst3Visits = function(delivery_date, services_provided) {
+        var getFirst7DaysVisits = function(delivery_date, services_provided) {
             /// determine the 7 day period end date
             var end_date = new Date(Date.parse(delivery_date));
             end_date.setDate(end_date.getDate() + 7);
@@ -33,23 +33,23 @@ angular.module("smartRegistry.services")
 
             if(pnc_services.length > 0)
             {
-                /// sort by service date ascending and slice to 3
-                var first_3_services = pnc_services.sort(function(a, b){
+                /// sort by service date ascending
+                var first_7_days_services = pnc_services.sort(function(a, b){
                     return a.date < b.date?-1:1;
-                }).slice(0, 3);
+                });
 
                 // determine the day within the 7 day window that the service falls on
-                first_3_services.forEach(function(service){
+                first_7_days_services.forEach(function(service){
                     service.day = Math.floor((Date.parse(service.date) - Date.parse(delivery_date)) / 1000 / 60 / 60 / 24);
                 });
-                return first_3_services;
+                return first_7_days_services;
             }
             return [];
         };
 
         var preProcessFirst7Days = function(client, expected_visits, current_date)
         {
-            var first_3_visits = getFirst3Visits(client.deliveryDate, client.services_provided);
+            var first_7_days_services = getFirst7DaysVisits(client.deliveryDate, client.services_provided);
 
             var delivery_date_ts = Date.parse(client.deliveryDate);
             var current_day = Math.floor((current_date.getTime() - delivery_date_ts) / 1000 / 60 / 60 / 24);
@@ -60,8 +60,8 @@ angular.module("smartRegistry.services")
             expected_visits.forEach(function(expected_visit){
                 var expected_visit_ts = Date.parse(expected_visit.date);
                 var expected_visit_day = Math.floor((expected_visit_ts - delivery_date_ts) / 1000 / 60 / 60 / 24);
-                var num_visits = first_3_visits.filter(function(visit){
-                    return visit.day === expected_visit_day
+                var num_visits = first_7_days_services.filter(function(visit){
+                    return visit.day === expected_visit_day;
                 }).length;
                 /// check whether the visit date is beyond the current date in which case its always of type expected and color grey
                 if(expected_visit_day >= current_day)
@@ -103,7 +103,7 @@ angular.module("smartRegistry.services")
             });
 
             /// create circle data based on actual data
-            first_3_visits.forEach(function(actual_visit){
+            first_7_days_services.forEach(function(actual_visit){
                 circle_datas.push({
                     day: actual_visit.day,
                     type: 'actual'
@@ -124,12 +124,12 @@ angular.module("smartRegistry.services")
                     return d.day;
                 });
 
-            var valid_actual_visit_days = first_3_visits
+            var valid_actual_visit_days = first_7_days_services
                 .map(function(d){
                     return d.day;
                 });
 
-            if(first_3_visits.length === 0 && current_day > 1)
+            if(first_7_days_services.length === 0 && current_day > 1)
             {
                 client.visits.first_7_days.active_color = 'red';
             }
@@ -206,7 +206,7 @@ angular.module("smartRegistry.services")
         return {
             calculateExpectedVisitDates: calculateExpectedVisitDates,
             preProcessFirst7Days: preProcessFirst7Days,
-            getFirst3Visits: getFirst3Visits,
+            getFirst7DaysVisits: getFirst7DaysVisits,
             preProcess: function (clients) {
                 var current_date = new Date();
                 clients.forEach(function (client) {
