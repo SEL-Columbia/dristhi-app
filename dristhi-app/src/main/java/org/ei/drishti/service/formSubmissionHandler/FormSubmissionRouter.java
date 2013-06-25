@@ -58,9 +58,9 @@ public class FormSubmissionRouter {
         FormSubmissionHandler handler = handlerMap.get(submission.formName());
         if (handler == null) {
             logWarn("Could not find a handler due to unknown form submission: " + submission);
-            return;
+        } else {
+            handler.handle(submission);
         }
-        handler.handle(submission);
         FORM_SUBMITTED.notifyListeners(instanceId);
     }
 }

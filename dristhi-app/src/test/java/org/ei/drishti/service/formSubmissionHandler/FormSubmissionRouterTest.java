@@ -93,6 +93,19 @@ public class FormSubmissionRouterTest {
     }
 
     @Test
+    public void shouldNotifyFormSubmittedListenersWhenThereIsNoHandlerForForm() throws Exception {
+        FormSubmission formSubmission = create().withFormName("form-without-handler").withInstanceId("instance id 1").withVersion("122").build();
+        when(formDataRepository.fetchFromSubmission("instance id 1")).thenReturn(formSubmission);
+        FORM_SUBMITTED.addListener(formSubmittedListener);
+
+        router.route("instance id 1");
+
+        InOrder inOrder = inOrder(formDataRepository, formSubmittedListener);
+        inOrder.verify(formDataRepository).fetchFromSubmission("instance id 1");
+        inOrder.verify(formSubmittedListener).onEvent("instance id 1");
+    }
+
+    @Test
     public void shouldDelegateECRegistrationFormSubmissionHandlingToECRegistrationHandler() throws Exception {
         FormSubmission formSubmission = create().withFormName("ec_registration").withInstanceId("instance id 1").withVersion("122").build();
         when(formDataRepository.fetchFromSubmission("instance id 1")).thenReturn(formSubmission);
