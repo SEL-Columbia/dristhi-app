@@ -29,6 +29,8 @@
                 <lam/>
                 <lam_message/>
                 <lam_continue/>
+                <pp_fp_method3/>
+                <pp_fp_method3_start_date/>
                 <no_lam_message/>
                 <fp_method_selection_group>
                     <preference_future_children/>
@@ -66,7 +68,9 @@
             </no_fp_after_delivery_group>
             <entity_hepb/>
             <hepb_message/>
+            <pp_fp_method4/>
             <pp_fp_method/>
+            <pp_fp_method4_start_date/>
             <pp_fp_method_start_date/>
             <iud_place/>
             <iud_place_name/>

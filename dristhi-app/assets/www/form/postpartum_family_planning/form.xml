@@ -63,8 +63,8 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method1_start_date"
-               required="required" data-relevant=" /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes'"
-               data-type-xml="date"/>
+               required="required" data-constraint=".&lt;= /Postpartum_FamilyPlanning_EngKan/today "
+               data-relevant=" /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes'" data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
         <fieldset>
@@ -483,7 +483,8 @@
                 <span class="required">*</span>
                 <input autocomplete="off" type="date"
                        name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2_start_date"
-                       required="required" data-type-xml="date"/>
+                       required="required" data-constraint=".&lt;= /Postpartum_FamilyPlanning_EngKan/today "
+                       data-type-xml="date"/>
             </label>
             <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
                 <fieldset>
@@ -676,7 +677,7 @@
                 <span class="required">*</span>
                 <input autocomplete="off" type="number"
                        name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/num_ocp_strips"
-                       required="required"
+                       required="required" data-constraint=".&gt;=0"
                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2  = 'ocp'"
                        data-type-xml="int"/>
             </label>
@@ -687,7 +688,7 @@
                 <span class="required">*</span>
                 <input autocomplete="off" type="number"
                        name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/num_condoms"
-                       required="required"
+                       required="required" data-constraint=".&gt;=0"
                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2  = 'condom'"
                        data-type-xml="int"/>
             </label>
@@ -699,7 +700,7 @@
                 <span class="required">*</span>
                 <input autocomplete="off" type="number"
                        name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/num_centchroman_pills"
-                       required="required"
+                       required="required" data-constraint=".&gt;=0"
                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2  = 'centchroman'"
                        data-type-xml="int"/>
             </label>
@@ -754,6 +755,18 @@
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/lam"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/exclusively_bf  = 'yes' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/monthly_bleeding  = 'no' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6mos_pp  = 'yes', 'yes', 'no')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/pp_fp_method3"
+                   data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/lam_continue  = 'no', 'lam', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/pp_fp_method3_start_date"
+                   data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/pp_fp_method3  != '',  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/entity_delivery_date , '')"
                    data-type-xml="string"/>
         </label>
         <label class="">
@@ -835,13 +848,23 @@
                    data-type-xml="string"/>
         </label>
         <label class="">
+            <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method4"
+                   data-calculate="if( /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes',  /Postpartum_FamilyPlanning_EngKan/pp_fp_method1 ,  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/pp_fp_method3 )"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method"
-                   data-calculate="if( /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes',  /Postpartum_FamilyPlanning_EngKan/pp_fp_method1 ,  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2 )"
+                   data-calculate="if( /Postpartum_FamilyPlanning_EngKan/pp_fp_method4  = '',  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2 ,  /Postpartum_FamilyPlanning_EngKan/pp_fp_method4 )"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method4_start_date"
+                   data-calculate="if( /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes',  /Postpartum_FamilyPlanning_EngKan/pp_fp_method1_start_date ,  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/pp_fp_method3_start_date )"
                    data-type-xml="string"/>
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method_start_date"
-                   data-calculate="if( /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes',  /Postpartum_FamilyPlanning_EngKan/pp_fp_method1_start_date ,  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2_start_date )"
+                   data-calculate="if( /Postpartum_FamilyPlanning_EngKan/pp_fp_method4_start_date  = '',  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2_start_date ,  /Postpartum_FamilyPlanning_EngKan/pp_fp_method4_start_date )"
                    data-type-xml="string"/>
         </label>
         <label class="">
@@ -885,7 +908,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/formhub/uuid"
-                   data-calculate="'3004e14c972f49e69ca6d12c81e94151'" data-type-xml="string"/>
+                   data-calculate="'b54d5c4984244ee7a72e2e577495ec27'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
