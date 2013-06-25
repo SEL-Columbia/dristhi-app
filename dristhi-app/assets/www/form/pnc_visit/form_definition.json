@@ -12,6 +12,7 @@
             },
             {
                 "name": "pncVisitNumber",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/case_pnc_number"
             },
             {
@@ -20,6 +21,7 @@
             },
             {
                 "name": "wifeName",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/case_woman_name",
                 "source": "mother.eligible_couple.wifeName"
             },
@@ -30,6 +32,7 @@
             },
             {
                 "name": "deliveryOutcome",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/case_delivery_outcome"
             },
             {
@@ -42,10 +45,12 @@
             },
             {
                 "name": "deliveryPlace",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/case_place_delivery"
             },
             {
                 "name": "dischargeDate",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/case_discharge_date"
             },
             {
@@ -58,6 +63,7 @@
             },
             {
                 "name": "referenceDate",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/case_delivery_date"
             },
             {
@@ -78,6 +84,7 @@
             },
             {
                 "name": "jsyPaymentStatus",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/case_jsy"
             },
             {
@@ -90,6 +97,7 @@
             },
             {
                 "name": "madiluKitStatus",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/case_madilu"
             },
             {
@@ -102,6 +110,7 @@
             },
             {
                 "name": "prasootiPayment2",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/case_prasooti_payment2"
             },
             {
@@ -186,6 +195,7 @@
             },
             {
                 "name": "currentMethod",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/case_pp_fp_method"
             },
             {
@@ -198,10 +208,12 @@
             },
             {
                 "name": "anaemicStatus",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/case_anaemic_status"
             },
             {
                 "name": "pih",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/case_pih"
             },
             {
@@ -210,6 +222,7 @@
             },
             {
                 "name": "preEclampsia",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/case_pre_eclampsia"
             },
             {
@@ -222,6 +235,7 @@
             },
             {
                 "name": "is_high_risk",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/is_high_risk"
             },
             {
@@ -239,10 +253,12 @@
                     },
                     {
                         "name": "gender",
+                        "shouldLoadValue": true,
                         "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/case_sex_child"
                     },
                     {
                         "name": "weight",
+                        "shouldLoadValue": true,
                         "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/case_birthweight"
                     },
                     {
@@ -251,10 +267,12 @@
                     },
                     {
                         "name": "bloodGroup",
+                        "shouldLoadValue": true,
                         "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/case_child_blood_group"
                     },
                     {
                         "name": "immunizationsGiven",
+                        "shouldLoadValue": true,
                         "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/case_immunizations_atbirth"
                     },
                     {
@@ -307,6 +325,7 @@
                     },
                     {
                         "name": "isHighRisk",
+                        "shouldLoadValue": true,
                         "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/is_high_risk_baby"
                     }
                 ]
