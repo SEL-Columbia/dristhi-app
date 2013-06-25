@@ -43,7 +43,8 @@
             &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <span class="required">*</span>
-        <input autocomplete="off" type="date" name="/TT2_EngKan/tt2_date" required="required" data-type-xml="date"/>
+        <input autocomplete="off" type="date" name="/TT2_EngKan/tt2_date" required="required"
+               data-constraint=".&lt;= /TT2_EngKan/today " data-type-xml="date"/>
     </label>
 
     <fieldset id="jr-calculated-items" style="display:none;">
