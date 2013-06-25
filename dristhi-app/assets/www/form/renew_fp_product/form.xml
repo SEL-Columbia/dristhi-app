@@ -27,7 +27,8 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Family_Planning_Renew_Method_EngKan/fp_renew_method_visit_date"
-               required="required" data-type-xml="date"/>
+               required="required" data-constraint=".&lt;= /Family_Planning_Renew_Method_EngKan/today "
+               data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
@@ -58,6 +59,7 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Family_Planning_Renew_Method_EngKan/renewed_method_group/injectable_date" required="required"
+                   data-constraint=".&lt;= /Family_Planning_Renew_Method_EngKan/today "
                    data-relevant=" /Family_Planning_Renew_Method_EngKan/case_familyplanning_method  = 'dmpa_injectable'"
                    data-type-xml="date"/>
         </label>
