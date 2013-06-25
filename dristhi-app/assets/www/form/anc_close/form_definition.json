@@ -12,6 +12,7 @@
             },
             {
                 "name": "numberOfAbortions",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Close_EngKan/case_num_abortions"
             },
             {
@@ -24,6 +25,7 @@
             },
             {
                 "name": "numberOfSpontaneousAbortions",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Close_EngKan/spontaneous_abortion_group/case_num_abortions_spontaneous"
             },
             {
@@ -36,6 +38,7 @@
             },
             {
                 "name": "referenceDate",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Close_EngKan/spontaneous_abortion_group/case_lmp"
             },
             {
@@ -56,10 +59,12 @@
             },
             {
                 "name": "isRHNegative",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Close_EngKan/spontaneous_abortion_group/case_w_rh_negative"
             },
             {
                 "name": "numberOfInducedAbortions",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Close_EngKan/induced_abortion_group/case_num_abortions_induced"
             },
             {
@@ -104,7 +109,6 @@
             },
             {
                 "name": "submissionDate",
-                "shouldLoadValue": false,
                 "bind": "/model/instance/ANC_Close_EngKan/today"
             }
         ]
