@@ -83,6 +83,7 @@ public class ANCSmartRegistryController {
                             .withIsOutOfArea(ec.isOutOfArea())
                             .withHighRiskReason(anc.getDetail("highRiskReason"))
                             .withCaste(ec.getDetail("caste"))
+                            .withEconomicStatus(ec.getDetail("economicStatus"))
                             .withPhotoPath(photoPath)
                             .withAlerts(alerts)
                             .withServicesProvided(servicesProvided)

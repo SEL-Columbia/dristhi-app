@@ -110,6 +110,7 @@ public class ANCSmartRegistryControllerTest {
                 create("wifeAge", "23")
                         .put("isHighPriority", Boolean.toString(false))
                         .put("caste", "other")
+                        .put("economicStatus", "bpl")
                         .map()
         ).asOutOfArea();
         Mother mother = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25").withDetails(details);
@@ -125,6 +126,7 @@ public class ANCSmartRegistryControllerTest {
                 .withANCNumber("ANC X")
                 .withHighRiskReason("Headache")
                 .withPhotoPath("../../img/woman-placeholder.png")
+                .withEconomicStatus("bpl")
                 .withAlerts(Collections.<AlertDTO>emptyList())
                 .withServicesProvided(Collections.<ServiceProvidedDTO>emptyList());
 

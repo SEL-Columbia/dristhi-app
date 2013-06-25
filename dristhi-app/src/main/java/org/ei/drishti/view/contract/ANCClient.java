@@ -26,6 +26,7 @@ public class ANCClient {
     private String riskFactors;
     private String locationStatus;
     private String caste;
+    private String economicStatus;
     private List<AlertDTO> alerts;
     private List<ServiceProvidedDTO> services_provided;
 
@@ -84,6 +85,11 @@ public class ANCClient {
 
     public ANCClient withHighRiskReason(String highRiskReason) {
         this.riskFactors = highRiskReason;
+        return this;
+    }
+
+    public ANCClient withEconomicStatus(String economicStatus) {
+        this.economicStatus = economicStatus;
         return this;
     }
 
