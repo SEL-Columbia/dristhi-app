@@ -12,6 +12,7 @@
             },
             {
                 "name": "wifeName",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Visit_EngKan/case_woman_name",
                 "source": "mother.eligible_couple.wifeName"
             },
@@ -33,6 +34,7 @@
             },
             {
                 "name": "riskObservedDuringANC",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Visit_EngKan/risk_observed"
             },
             {
@@ -45,6 +47,7 @@
             },
             {
                 "name": "vitalsTaken",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Visit_EngKan/vitals_taken"
             },
             {
@@ -65,6 +68,7 @@
             },
             {
                 "name": "weight",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Visit_EngKan/weight_group/case_weight"
             },
             {
@@ -73,6 +77,7 @@
             },
             {
                 "name": "referenceDate",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Visit_EngKan/case_lmp"
             },
             {
@@ -85,14 +90,17 @@
             },
             {
                 "name": "isMultiplePregnancy",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Visit_EngKan/multiple_pregnancy"
             },
             {
                 "name": "isMalpresentationOfFetus",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Visit_EngKan/malpresentation_of_fetus"
             },
             {
                 "name": "prasootiPayment1",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Visit_EngKan/case_prasooti_payment1"
             },
             {
@@ -105,6 +113,7 @@
             },
             {
                 "name": "pih",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Visit_EngKan/case_pih"
             },
             {
@@ -141,10 +150,12 @@
             },
             {
                 "name": "isHighRisk",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Visit_EngKan/is_high_risk"
             },
             {
                 "name": "isBirthPlanningDone",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Visit_EngKan/case_birth_planning"
             },
             {
