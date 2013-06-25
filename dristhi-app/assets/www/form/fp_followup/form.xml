@@ -26,7 +26,8 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Family_Planning_Followup_EngKan/fp_method_followup_date"
-               required="required" data-type-xml="date"/>
+               required="required" data-constraint=".&lt;= /Family_Planning_Followup_EngKan/today "
+               data-type-xml="date"/>
     </label>
     <fieldset class="jr-branch pre-init " name="/Family_Planning_Followup_EngKan/first_time_followup_group"
               data-relevant=" /Family_Planning_Followup_EngKan/case_needs_followup  != 'yes'">
