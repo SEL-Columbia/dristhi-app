@@ -16,7 +16,7 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Hb_Test_EngKan/hb_test_date" required="required"
-               data-type-xml="date"/>
+               data-constraint=".&lt;= /Hb_Test_EngKan/today " data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
