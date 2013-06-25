@@ -4,10 +4,12 @@
         "default_bind_path": "/model/instance/PNC_Visit_EngKan/",
         "fields": [
             {
-                "name": "id"
+                "name": "id",
+                "shouldLoadValue": true
             },
             {
                 "name": "ecId",
+                "shouldLoadValue": true,
                 "source": "mother.eligible_couple.id"
             },
             {
@@ -249,7 +251,8 @@
                 "default_bind_path": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/",
                 "fields": [
                     {
-                        "name": "id"
+                        "name": "id",
+                        "shouldLoadValue": true
                     },
                     {
                         "name": "gender",

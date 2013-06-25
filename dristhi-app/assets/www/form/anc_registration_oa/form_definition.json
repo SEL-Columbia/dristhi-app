@@ -4,7 +4,8 @@
         "default_bind_path": "/model/instance/ANC_Registration_OA_EngKan/",
         "fields": [
             {
-                "name": "id"
+                "name": "id",
+                "shouldLoadValue": true
             },
             {
                 "name": "originalVillage",
@@ -72,6 +73,7 @@
             },
             {
                 "name": "motherId",
+                "shouldLoadValue": true,
                 "source": "eligible_couple.mother.id"
             },
             {

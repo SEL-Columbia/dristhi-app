@@ -4,7 +4,8 @@
         "default_bind_path": "/model/instance/TT1_EngKan/",
         "fields": [
             {
-                "name": "id"
+                "name": "id",
+                "shouldLoadValue": true
             },
             {
                 "name": "ttDose",

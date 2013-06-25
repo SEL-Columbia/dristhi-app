@@ -4,10 +4,12 @@
         "default_bind_path": "/model/instance/Delivery_Outcome_EngKan/",
         "fields": [
             {
-                "name": "id"
+                "name": "id",
+                "shouldLoadValue": true
             },
             {
                 "name": "ecId",
+                "shouldLoadValue": true,
                 "source": "mother.eligible_couple.id"
             },
             {
@@ -276,7 +278,8 @@
                 "default_bind_path": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child",
                 "fields": [
                     {
-                        "name": "id"
+                        "name": "id",
+                        "shouldLoadValue": true
                     },
                     {
                         "name": "gender",
