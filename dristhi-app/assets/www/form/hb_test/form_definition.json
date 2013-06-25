@@ -24,6 +24,7 @@
             },
             {
                 "name": "highRiskReason",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Hb_Test_EngKan/case_high_risk_reason"
             },
             {
@@ -32,6 +33,7 @@
             },
             {
                 "name": "isHighRisk",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Hb_Test_EngKan/is_high_risk"
             },
             {
