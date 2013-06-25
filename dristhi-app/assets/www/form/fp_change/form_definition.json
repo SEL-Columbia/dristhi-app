@@ -20,7 +20,6 @@
             },
             {
                 "name": "familyPlanningMethodChangeDate",
-                "shouldLoadValue": false,
                 "bind": "/model/instance/Family_Planning_Change_Method_EngKan/date_familyplanningstart"
             },
             {
@@ -53,7 +52,6 @@
             },
             {
                 "name": "submissionDate",
-                "shouldLoadValue": false,
                 "bind": "/model/instance/Family_Planning_Change_Method_EngKan/today"
             },
             {

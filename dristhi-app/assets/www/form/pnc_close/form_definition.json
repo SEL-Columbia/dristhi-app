@@ -32,7 +32,6 @@
             },
             {
                 "name": "submissionDate",
-                "shouldLoadValue": false,
                 "bind": "/model/instance/PNC_Close_EngKan/today"
             }
         ]

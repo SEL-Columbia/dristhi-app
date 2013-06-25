@@ -36,7 +36,6 @@
             },
             {
                 "name": "submissionDate",
-                "shouldLoadValue": false,
                 "bind": "/model/instance/Hb_Test_EngKan/today"
             }
         ]
