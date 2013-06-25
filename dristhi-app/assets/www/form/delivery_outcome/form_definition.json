@@ -129,7 +129,8 @@
             {
                 "name": "hepB",
                 "shouldLoadValue": true,
-                "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/case_hepb"
+                "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/case_hepb",
+                "source": "mother.eligible_couple.hepB"
             },
             {
                 "name": "isHepBProphylaxisProvided",
