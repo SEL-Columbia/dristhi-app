@@ -9,6 +9,7 @@
             },
             {
                 "name": "currentMethod",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Family_Planning_Renew_Method_EngKan/case_familyplanning_method"
             },
             {
