@@ -45,7 +45,7 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/TTBooster_EngKan/ttbooster_date" required="required"
-               data-type-xml="date"/>
+               data-constraint=".&lt;= /TTBooster_EngKan/today " data-type-xml="date"/>
     </label>
 
     <fieldset id="jr-calculated-items" style="display:none;">
