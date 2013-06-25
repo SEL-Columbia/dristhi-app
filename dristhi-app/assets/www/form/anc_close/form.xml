@@ -89,7 +89,7 @@
                 &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCAA;&#xCBE;&#xCA4;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
             </span>
             <input autocomplete="off" type="date" name="/ANC_Close_EngKan/spontaneous_abortion_group/date_spontaneous"
-                   data-type-xml="date"/>
+                   data-constraint=".&lt;= /ANC_Close_EngKan/today " data-type-xml="date"/>
         </label>
         <fieldset class="restoring-sanity-to-legends ">
             <fieldset>
@@ -263,7 +263,7 @@
                 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
             </span>
             <input autocomplete="off" type="date" name="/ANC_Close_EngKan/induced_abortion_group/date_induced"
-                   data-type-xml="date"/>
+                   data-constraint=".&lt;= /ANC_Close_EngKan/today " data-type-xml="date"/>
         </label>
         <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
             <fieldset>
@@ -311,7 +311,7 @@
                 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
             </span>
             <input autocomplete="off" type="date" name="/ANC_Close_EngKan/maternal_death_group/date_maternal_death"
-                   data-type-xml="date"/>
+                   data-constraint=".&lt;= /ANC_Close_EngKan/today " data-type-xml="date"/>
         </label>
         <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
             <fieldset>
@@ -489,7 +489,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/ANC_Close_EngKan/formhub/uuid"
-                   data-calculate="'b3a2e582eb7c422886ffc1d75ab2edc7'" data-type-xml="string"/>
+                   data-calculate="'687a56b18f914b89a64d62007fba9cf7'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
