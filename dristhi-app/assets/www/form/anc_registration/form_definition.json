@@ -22,10 +22,12 @@
             },
             {
                 "name": "wifeName",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Registration_EngKan/case_woman_name"
             },
             {
                 "name": "numberOfPregnancies",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/ANC_Registration_EngKan/case_num_pregnancies"
             },
             {
