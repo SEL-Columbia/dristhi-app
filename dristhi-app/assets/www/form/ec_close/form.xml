@@ -35,7 +35,8 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/close_reason" value="separation"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Separation &#xC85;&#xC97;&#xCB2;&#xCBF;&#xC95;&#xCC6;</span>
+                <span lang="" class=" active">Divorce / Separation &#xCB5;&#xCBF;&#xCB5;&#xCBE;&#xCB9; &#xCB5;&#xCBF;&#xC9A;&#xCCD;&#xC9B;&#xCC6;&#xCD5;&#xCA6;&#xCA8;
+                    / &#xC85;&#xC97;&#xCB2;&#xCBF;&#xC95;&#xCC6;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/close_reason" value="death_of_wife"
@@ -92,6 +93,7 @@
             &#xCB8;&#xCBE;&#xCB5;&#xCC1; &#xCB8;&#xC82;&#xCAD;&#xCB5;&#xCBF;&#xCB8;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <input autocomplete="off" type="date" name="/EC_Close_EngKan/sterilization_death_date"
+               data-constraint=".&lt;= /EC_Close_EngKan/today "
                data-relevant=" /EC_Close_EngKan/sterilization_death  = 'yes'" data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
@@ -127,6 +129,7 @@
             &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <input autocomplete="off" type="date" name="/EC_Close_EngKan/maternal_death_date"
+               data-constraint=".&lt;= /EC_Close_EngKan/today "
                data-relevant=" /EC_Close_EngKan/maternal_death  = 'yes'" data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
