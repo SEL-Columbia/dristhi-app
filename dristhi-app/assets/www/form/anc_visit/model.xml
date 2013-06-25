@@ -13,8 +13,6 @@
             <anc_visit_person/>
             <risk_observed/>
             <other_risk_observed/>
-            <case_jaundice/>
-            <still_has_jaundice/>
             <vitals_taken/>
             <bp_systolic/>
             <bp_diastolic/>
@@ -38,9 +36,7 @@
             <jaundice/>
             <case_pih/>
             <pih/>
-            <case_multiple_preg/>
             <multiple_preg/>
-            <case_malpresentation/>
             <malpresentation/>
             <case_is_high_risk_till_delivery/>
             <case_is_high_risk_till_delivery_reason/>

@@ -40,14 +40,6 @@
                 "bind": "/model/instance/ANC_Visit_EngKan/other_risk_observed"
             },
             {
-                "name": "hasJaundice",
-                "bind": "/model/instance/ANC_Visit_EngKan/still_has_jaundice"
-            },
-            {
-                "name": "jaundice",
-                "bind": "/model/instance/ANC_Visit_EngKan/case_jaundice"
-            },
-            {
                 "name": "jaundice",
                 "bind": "/model/instance/ANC_Visit_EngKan/jaundice"
             },
@@ -121,15 +113,7 @@
             },
             {
                 "name": "multiplePregnancyReason",
-                "bind": "/model/instance/ANC_Visit_EngKan/case_multiple_preg"
-            },
-            {
-                "name": "multiplePregnancyReason",
                 "bind": "/model/instance/ANC_Visit_EngKan/multiple_preg"
-            },
-            {
-                "name": "malpresentationOfFetusReason",
-                "bind": "/model/instance/ANC_Visit_EngKan/case_malpresentation"
             },
             {
                 "name": "malpresentationOfFetusReason",

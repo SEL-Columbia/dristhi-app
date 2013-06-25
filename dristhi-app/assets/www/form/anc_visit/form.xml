@@ -51,7 +51,7 @@
             ANC &#xCAD;&#xCC7;&#xC9F;&#xCBF; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;</span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/ANC_Visit_EngKan/anc_visit_date" required="required"
-               data-type-xml="date"/>
+               data-constraint=".&lt;= /ANC_Visit_EngKan/today " data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
@@ -179,27 +179,6 @@
         <input autocomplete="off" type="text" name="/ANC_Visit_EngKan/other_risk_observed"
                data-relevant="selected( /ANC_Visit_EngKan/risk_observed , 'others')" data-type-xml="string"/>
     </label>
-    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">Does she still have jaundice? &#xC86;&#xC95;&#xCC6; &#xC87;&#xCA8;&#xCCD;&#xCA8;&#xCC2;
-                    &#xC95;&#xCBE;&#xCAE;&#xCBE;&#xCB2;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCBE;&#xCB3;&#xCC6;&#xCAF;&#xCC7;?
-                </span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/still_has_jaundice" value="yes"
-                       data-relevant=" /ANC_Visit_EngKan/case_jaundice  != '' and not(selected( /ANC_Visit_EngKan/risk_observed , 'jaundice'))"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/still_has_jaundice" value="no"
-                       data-relevant=" /ANC_Visit_EngKan/case_jaundice  != '' and not(selected( /ANC_Visit_EngKan/risk_observed , 'jaundice'))"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-            </label>
-        </fieldset>
-    </fieldset>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
             <legend>
@@ -407,6 +386,7 @@
             &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <input autocomplete="off" type="date" name="/ANC_Visit_EngKan/prasooti1_date"
+               data-constraint=".&lt;= /ANC_Visit_EngKan/today "
                data-relevant=" /ANC_Visit_EngKan/prasooti_payment1  = 'yes'" data-type-xml="date"/>
     </label>
     <fieldset class="trigger jr-branch pre-init" name="/ANC_Visit_EngKan/high_risk_note"
@@ -480,7 +460,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/ANC_Visit_EngKan/jaundice"
-                   data-calculate="if(selected( /ANC_Visit_EngKan/risk_observed , 'jaundice') or  /ANC_Visit_EngKan/still_has_jaundice  = 'yes', 'Jaundice', '')"
+                   data-calculate="if(selected( /ANC_Visit_EngKan/risk_observed , 'jaundice'), 'Jaundice', '')"
                    data-type-xml="string"/>
         </label>
         <label class="">
@@ -490,12 +470,12 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/ANC_Visit_EngKan/multiple_preg"
-                   data-calculate="if( /ANC_Visit_EngKan/multiple_pregnancy  = '',  /ANC_Visit_EngKan/case_multiple_preg , if( /ANC_Visit_EngKan/multiple_pregnancy  = 'yes', 'Multiple_Pregnancy', ''))"
+                   data-calculate="if( /ANC_Visit_EngKan/multiple_pregnancy  = 'yes', 'Multiple_Pregnancy', '')"
                    data-type-xml="string"/>
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/ANC_Visit_EngKan/malpresentation"
-                   data-calculate="if( /ANC_Visit_EngKan/malpresentation_of_fetus  = '',  /ANC_Visit_EngKan/case_malpresentation , if( /ANC_Visit_EngKan/malpresentation_of_fetus  = 'yes', 'Malpresentation', ''))"
+                   data-calculate="if( /ANC_Visit_EngKan/malpresentation_of_fetus  = 'yes', 'Malpresentation', '')"
                    data-type-xml="string"/>
         </label>
         <label class="">
