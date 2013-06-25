@@ -16,23 +16,24 @@
                 <span lang="" class=" active">Reason for PNC close? &#xCAC;&#xCBE;&#xCA3;&#xC82;&#xCA4;&#xCBF; &#xC95;&#xCCD;&#xCB2;&#xCCB;&#xCB8;&#xCCD;
                     &#xCAE;&#xCBE;&#xCA1;&#xCB2;&#xCC1; &#xC95;&#xCBE;&#xCB0;&#xCA3;&#xCB5;&#xCC7;&#xCA8;&#xCC1;?
                 </span>
+                <span class="required">*</span>
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/PNC_Close_EngKan/pnc_close_reason" value="death_of_mother"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Woman died &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;
                     &#xCAE;&#xCB0;&#xCA3;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/PNC_Close_EngKan/pnc_close_reason"
-                       value="permanent_relocation" data-type-xml="select1"/>
+                       value="permanent_relocation" required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Relocation (permanent) &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCBE;&#xC82;&#xCA4;&#xCB0;
                     (&#xCB6;&#xCBE;&#xCB6;&#xCCD;&#xCB5;&#xCA4;)
                 </span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/PNC_Close_EngKan/pnc_close_reason"
-                       value="end_of_pp_period" data-type-xml="select1"/>
+                       value="end_of_pp_period" required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">End of postpartum period &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5;&#xCBE;&#xCA8;&#xC82;&#xCA4;&#xCB0;&#xCA6;
                     &#xC85;&#xCB5;&#xCA7;&#xCBF;&#xCAF;&#xCC1; &#xC85;&#xC82;&#xCA4;&#xCCD;&#xCAF;</span>
             </label>
@@ -43,7 +44,7 @@
         <label class="">
             <span lang="" class=" active">Date of death? &#xCAE;&#xCB0;&#xCA3;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
             <input autocomplete="off" type="date" name="/PNC_Close_EngKan/death_mother_group/death_date"
-                   data-type-xml="date"/>
+                   data-constraint=".&lt;= /PNC_Close_EngKan/today " data-type-xml="date"/>
         </label>
         <fieldset class="restoring-sanity-to-legends ">
             <fieldset>
@@ -142,15 +143,16 @@
                 <span lang="" class=" active">Confirm PNC close? &#xCAC;&#xCBE;&#xCA3;&#xC82;&#xCA4;&#xCBF; &#xC95;&#xCCD;&#xCB2;&#xCCB;&#xCB8;&#xCCD;
                     &#xC96;&#xC9A;&#xCBF;&#xCA4;&#xCB5;&#xCC7;?
                 </span>
+                <span class="required">*</span>
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/PNC_Close_EngKan/confirm_pnc_close" value="yes"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/PNC_Close_EngKan/confirm_pnc_close" value="no"
-                       data-type-xml="select1"/>
+                       required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
             </label>
         </fieldset>
