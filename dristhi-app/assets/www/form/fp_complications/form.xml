@@ -14,8 +14,8 @@
         <span lang="" class=" active">Current FP method is:
             <span class="jr-output" data-value=" /Family_Planning_Complications_EngKan/case_familyplanning_method ">
             </span>
-            &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCC1;&#xCA4; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
-            &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCBE; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;:
+            &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCC1;&#xCA4; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCBE;
+            &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;:
             <span class="jr-output" data-value=" /Family_Planning_Complications_EngKan/case_familyplanning_method ">
             </span>
         </span>
@@ -26,7 +26,8 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Family_Planning_Complications_EngKan/complication_date"
-               required="required" data-type-xml="date"/>
+               required="required" data-constraint=".&lt;= /Family_Planning_Complications_EngKan/today "
+               data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
         <fieldset>
@@ -47,8 +48,7 @@
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio"
-                       name="/Family_Planning_Complications_EngKan/sterilization_failure" value="no"
-                       required="required"
+                       name="/Family_Planning_Complications_EngKan/sterilization_failure" value="no" required="required"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'female_sterilization'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
@@ -63,16 +63,16 @@
                 </span>
             </legend>
             <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Complications_EngKan/condom_sideeffect" value="allergic_reaction"
+                <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/condom_sideeffect"
+                       value="allergic_reaction"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'condom'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Allergic reaction &#xC85;&#xCB2;&#xCB0;&#xCCD;&#xC9C;&#xCBF;&#xCAF;
                     &#xCAA;&#xCCD;&#xCB0;&#xCA4;&#xCBF;&#xC95;&#xCCD;&#xCB0;&#xCBF;&#xCAF;&#xCC6;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Complications_EngKan/condom_sideeffect" value="others"
+                <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/condom_sideeffect"
+                       value="others"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'condom'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
@@ -87,44 +87,44 @@
                 </span>
             </legend>
             <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Complications_EngKan/iud_sideeffect" value="bleeding"
+                <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/iud_sideeffect"
+                       value="bleeding"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Bleeding
                     &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCB8;&#xCCD;&#xCB0;&#xCBE;&#xCB5;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Complications_EngKan/iud_sideeffect" value="nausea"
+                <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/iud_sideeffect"
+                       value="nausea"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Nausea &#xCB5;&#xCBE;&#xC95;&#xCB0;&#xCBF;&#xC95;&#xCC6;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Complications_EngKan/iud_sideeffect" value="headache"
+                <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/iud_sideeffect"
+                       value="headache"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Headache &#xCA4;&#xCB2;&#xCC6;&#xCA8;&#xCCB;&#xCB5;&#xCC1;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Complications_EngKan/iud_sideeffect" value="pain"
+                <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/iud_sideeffect"
+                       value="pain"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Pain &#xCA8;&#xCCB;&#xCB5;&#xCC1;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Complications_EngKan/iud_sideeffect" value="fever"
+                <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/iud_sideeffect"
+                       value="fever"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Fever &#xC9C;&#xCCD;&#xCB5;&#xCB0;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Complications_EngKan/iud_sideeffect" value="others"
+                <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/iud_sideeffect"
+                       value="others"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'iud'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
@@ -139,29 +139,29 @@
                 </span>
             </legend>
             <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Complications_EngKan/ocp_sideeffect" value="spotting_or_bleeding"
+                <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/ocp_sideeffect"
+                       value="spotting_or_bleeding"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'ocp'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Spotting or Bleeding &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCB8;&#xCCD;&#xCB0;&#xCBE;&#xCB5;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Complications_EngKan/ocp_sideeffect" value="jaundice"
+                <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/ocp_sideeffect"
+                       value="jaundice"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'ocp'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Jaundice &#xC95;&#xCBE;&#xCAE;&#xCBE;&#xCB2;&#xCC6;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Complications_EngKan/ocp_sideeffect" value="amenorrhea"
+                <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/ocp_sideeffect"
+                       value="amenorrhea"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'ocp'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Amenorrhea</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Complications_EngKan/ocp_sideeffect" value="others"
+                <input autocomplete="off" type="checkbox" name="/Family_Planning_Complications_EngKan/ocp_sideeffect"
+                       value="others"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'ocp'"
                        data-type-xml="select"/>
                 <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
@@ -331,8 +331,8 @@
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio"
-                       name="/Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan"
-                       value="others" required="required"
+                       name="/Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan" value="others"
+                       required="required"
                        data-relevant=" /Family_Planning_Complications_EngKan/refer_couple_fp_method_complication  = 'no'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
@@ -362,8 +362,7 @@
                    data-type-xml="string"/>
         </label>
         <label class="">
-            <input autocomplete="off" type="hidden"
-                   name="/Family_Planning_Complications_EngKan/needs_referral_followup"
+            <input autocomplete="off" type="hidden" name="/Family_Planning_Complications_EngKan/needs_referral_followup"
                    data-calculate="if( /Family_Planning_Complications_EngKan/refer_couple_fp_method_complication  = 'yes', 'yes', '')"
                    data-type-xml="string"/>
         </label>
