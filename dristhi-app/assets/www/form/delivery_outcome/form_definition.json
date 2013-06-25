@@ -12,11 +12,13 @@
             },
             {
                 "name": "wifeName",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_woman_name",
                 "source": "mother.eligible_couple.wifeName"
             },
             {
                 "name": "referenceDate",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_lmp"
             },
             {
@@ -65,11 +67,13 @@
             },
             {
                 "name": "parity",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_parity",
                 "source": "mother.eligible_couple.parity"
             },
             {
                 "name": "numberOfLiveBirths",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_num_livebirths",
                 "source": "mother.eligible_couple.numberOfLiveBirths"
             },
@@ -80,6 +84,7 @@
             },
             {
                 "name": "numberOfStillBirths",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_num_stillbirths",
                 "source": "mother.eligible_couple.numberOfStillBirths"
             },
@@ -121,6 +126,7 @@
             },
             {
                 "name": "hepB",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/case_hepb"
             },
             {
@@ -141,6 +147,7 @@
             },
             {
                 "name": "isRHNegative",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/woman_survived_group/case_w_rh_negative"
             },
             {
@@ -188,6 +195,7 @@
             },
             {
                 "name": "prasootiPayment1",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_prasooti_payment1"
             },
             {
@@ -208,26 +216,32 @@
             },
             {
                 "name": "isHighRiskTillPNCClose",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_is_high_risk_till_pnc_close"
             },
             {
                 "name": "highRiskTillPNCCloseReason",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_is_high_risk_till_pnc_close_reason"
             },
             {
                 "name": "anemicStatus",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_anaemic_status"
             },
             {
                 "name": "pih",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_pih"
             },
             {
                 "name": "preEclampsia",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_pre_eclampsia"
             },
             {
                 "name": "jaundice",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_jaundice"
             },
             {
@@ -240,6 +254,7 @@
             },
             {
                 "name": "isBirthPlanningDone",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_birth_planning"
             },
             {
