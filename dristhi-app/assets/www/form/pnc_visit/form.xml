@@ -17,6 +17,7 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/PNC_Visit_EngKan/discharge_date" required="required"
+               data-constraint=".&lt;= /PNC_Visit_EngKan/today "
                data-relevant="( /PNC_Visit_EngKan/case_place_delivery  != 'home' and  /PNC_Visit_EngKan/case_discharge_date  = '')"
                data-type-xml="date"/>
     </label>
@@ -26,7 +27,7 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/PNC_Visit_EngKan/pnc_visit_date" required="required"
-               data-type-xml="date"/>
+               data-constraint=".&lt;= /PNC_Visit_EngKan/today " data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
@@ -122,7 +123,8 @@
             &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6; &#xCB9;&#xCA3; &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <input autocomplete="off" type="date" name="/PNC_Visit_EngKan/jsy_date"
-               data-relevant=" /PNC_Visit_EngKan/jsy_payment  = 'yes'" data-type-xml="date"/>
+               data-constraint=".&lt;= /PNC_Visit_EngKan/today " data-relevant=" /PNC_Visit_EngKan/jsy_payment  = 'yes'"
+               data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
         <fieldset>
@@ -155,7 +157,8 @@
             &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <input autocomplete="off" type="date" name="/PNC_Visit_EngKan/madilu_date"
-               data-relevant=" /PNC_Visit_EngKan/madilu_kit  = 'yes'" data-type-xml="date"/>
+               data-constraint=".&lt;= /PNC_Visit_EngKan/today " data-relevant=" /PNC_Visit_EngKan/madilu_kit  = 'yes'"
+               data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
         <fieldset>
@@ -188,6 +191,7 @@
             &#xC86;&#xCB0;&#xCC8;&#xC95;&#xCC6; 2 &#xCB9;&#xCA3; &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <input autocomplete="off" type="date" name="/PNC_Visit_EngKan/prasooti2_date"
+               data-constraint=".&lt;= /PNC_Visit_EngKan/today "
                data-relevant=" /PNC_Visit_EngKan/prasooti_payment2  = 'yes'" data-type-xml="date"/>
     </label>
     <fieldset class="jr-branch pre-init " name="/PNC_Visit_EngKan/pnc_mother_group"
