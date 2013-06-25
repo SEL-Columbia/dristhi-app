@@ -185,8 +185,7 @@ function FakePNCSmartRegistryContext() {
                     ],
                     children: [
                         {
-                            gender: 'female',
-                            weight: '3.5'
+                            gender: 'female'
                         }
                     ]
                 },

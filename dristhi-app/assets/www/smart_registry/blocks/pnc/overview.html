@@ -35,8 +35,8 @@
         <p class="text-left">
             <span>{{child.gender | camelCase}}</span>
             <br/>
-            <span class="text-upper">Birth Wt:</span>
-            <span>{{child.weight}} kg</span>
+            <span class="text-upper" ng-show="child.weight">Birth Wt:</span>
+            <span ng-show="child.weight">{{child.weight}} kg</span>
         </p>
     </div>
 </div>
