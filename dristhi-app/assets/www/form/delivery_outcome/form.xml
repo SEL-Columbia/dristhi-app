@@ -14,7 +14,7 @@
         <span lang="" class=" active">Delivery date? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Delivery_Outcome_EngKan/date_outcome" required="required"
-               data-type-xml="date"/>
+               data-constraint=".&lt;= /Delivery_Outcome_EngKan/today " data-type-xml="date"/>
     </label>
     <label class="">
         <span lang="" class=" active">Delivery registration date? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCBE;&#xCA4;&#xCBF;
@@ -22,6 +22,7 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Delivery_Outcome_EngKan/delivery_reg_date" required="required"
+               data-constraint=".&lt;= /Delivery_Outcome_EngKan/today  and .&gt;=  /Delivery_Outcome_EngKan/date_outcome "
                data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
@@ -527,45 +528,105 @@
                         </label>
                     </fieldset>
                 </fieldset>
+                <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
+                    <fieldset>
+                        <legend>
+                            <span lang="" class=" active">Hep B prophylaxis provided? &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                                &#xCAC;&#xCBF; &#xCB0;&#xCCB;&#xC97;&#xCA8;&#xCBF;&#xCB0;&#xCCB;&#xCA7;&#xC95; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;
+                                &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;&#xCA4;&#xCC7;?
+                            </span>
+                        </legend>
+                        <label class="clearfix ">
+                            <input autocomplete="off" type="radio"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/hepb_prophylaxis_provided"
+                                   value="yes"
+                                   data-relevant=" /Delivery_Outcome_EngKan/live_birth_group/child/case_hepb  != ''"
+                                   data-type-xml="select1"/>
+                            <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
+                        </label>
+                        <label class="clearfix ">
+                            <input autocomplete="off" type="radio"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/hepb_prophylaxis_provided"
+                                   value="no"
+                                   data-relevant=" /Delivery_Outcome_EngKan/live_birth_group/child/case_hepb  != ''"
+                                   data-type-xml="select1"/>
+                            <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+                        </label>
+                    </fieldset>
+                </fieldset>
+                <fieldset class="trigger jr-branch pre-init"
+                          name="/Delivery_Outcome_EngKan/live_birth_group/child/premature_message1"
+                          data-relevant=" /Delivery_Outcome_EngKan/live_birth_group/child/premature  != ''">
+                    <span lang="" class=" active">Instructions:
+                        Baby is premature! Advise kangaroo care and rooming in.
+                        &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
+                        &#xC85;&#xCB5;&#xCA7;&#xCBF;&#xC97;&#xCC6; &#xCAE;&#xCC1;&#xCA8;&#xCCD;&#xCA8; &#xC9C;&#xCA8;&#xCBF;&#xCB8;&#xCBF;&#xCA6;
+                        &#xCAE;&#xC97;&#xCC1;! &#xC95;&#xCBE;&#xC82;&#xC97;&#xCB0;&#xCCB; &#xC86;&#xCB0;&#xCC8;&#xC95;&#xCC6;
+                        &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; &#xC92;&#xC82;&#xCA6;&#xCC7; &#xCB0;&#xCC2;&#xCAE;&#xCBF;&#xCA8;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA1;&#xCC1;&#xCB5;&#xC82;&#xCA4;&#xCC6;
+                        &#xCB8;&#xCB2;&#xCB9;&#xCC6; &#xCA8;&#xCC0;&#xCA1;&#xCBF;.
+                    </span>
+                </fieldset>
+                <fieldset class="trigger jr-branch pre-init"
+                          name="/Delivery_Outcome_EngKan/live_birth_group/child/high_risk_note_baby"
+                          data-relevant=" /Delivery_Outcome_EngKan/live_birth_group/child/is_high_risk_baby1  = 'yes'">
+                    <span lang="" class=" active">Child is at risk because of:
+                        <span class="jr-output"
+                              data-value=" /Delivery_Outcome_EngKan/live_birth_group/child/high_risk_reason_baby ">
+                        </span>
+                        &#xC88;&#xC97; &#xCAE;&#xC97;&#xCC1; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA6;&#xCC6;
+                        &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
+                        <span class="jr-output"
+                              data-value=" /Delivery_Outcome_EngKan/live_birth_group/child/high_risk_reason_baby ">
+                        </span>
+                    </span>
+                </fieldset>
+                <fieldset class="restoring-sanity-to-legends ">
+                    <fieldset>
+                        <legend>
+                            <span lang="" class=" active">Do you want to mark child as HR (High Risk)?
+                                &#xCA8;&#xCC0;&#xCB5;&#xCC1; &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; HR
+                                (&#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;)
+                                &#xC8E;&#xC82;&#xCA6;&#xCC1; &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCC1;
+                                &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCBF;&#xCB0;&#xCBE;?
+                            </span>
+                            <span class="required">*</span>
+                        </legend>
+                        <label class="clearfix ">
+                            <input autocomplete="off" type="radio"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/is_high_risk_baby" value="yes"
+                                   required="required" data-type-xml="select1"/>
+                            <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
+                        </label>
+                        <label class="clearfix ">
+                            <input autocomplete="off" type="radio"
+                                   name="/Delivery_Outcome_EngKan/live_birth_group/child/is_high_risk_baby" value="no"
+                                   required="required" data-type-xml="select1"/>
+                            <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+                        </label>
+                    </fieldset>
+                </fieldset>
+                <fieldset class="trigger jr-branch pre-init"
+                          name="/Delivery_Outcome_EngKan/live_birth_group/child/addl_pnc_visit_message"
+                          data-relevant=" /Delivery_Outcome_EngKan/live_birth_group/child/is_high_risk_baby1  = 'yes'">
+                    <span lang="" class=" active">Instructions:
+                        Child needs 3 more PNC visits on days 14, 21, and 28 because of:
+                        <span class="jr-output"
+                              data-value=" /Delivery_Outcome_EngKan/live_birth_group/child/high_risk_reason_baby ">
+                        </span>
+                        &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
+                        14, 21 &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; 28 &#xCA8;&#xCC7; &#xCA6;&#xCBF;&#xCA8;&#xC97;&#xCB3;&#xCCA;&#xC82;&#xCA6;&#xCC1;
+                        &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6; 3 &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBF;&#xCA8;
+                        &#xCAD;&#xCC7;&#xC9F;&#xCBF;&#xCAF; &#xC85;&#xC97;&#xCA4;&#xCCD;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;,
+                        &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
+                        <span class="jr-output"
+                              data-value=" /Delivery_Outcome_EngKan/live_birth_group/child/high_risk_reason_baby ">
+                        </span>
+                    </span>
+                </fieldset>
             </fieldset>
             <!--end of repeat fieldset with name /Delivery_Outcome_EngKan/live_birth_group/child-->
         </fieldset>
         <!--end of group -->
-        <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
-            <fieldset>
-                <legend>
-                    <span lang="" class=" active">Hep B prophylaxis provided? &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
-                        &#xCAC;&#xCBF; &#xCB0;&#xCCB;&#xC97;&#xCA8;&#xCBF;&#xCB0;&#xCCB;&#xCA7;&#xC95; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;
-                        &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;&#xCA4;&#xCC7;?
-                    </span>
-                </legend>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/Delivery_Outcome_EngKan/live_birth_group/hepb_prophylaxis_provided" value="yes"
-                           data-relevant=" /Delivery_Outcome_EngKan/live_birth_group/case_hepb  != ''"
-                           data-type-xml="select1"/>
-                    <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-                </label>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/Delivery_Outcome_EngKan/live_birth_group/hepb_prophylaxis_provided" value="no"
-                           data-relevant=" /Delivery_Outcome_EngKan/live_birth_group/case_hepb  != ''"
-                           data-type-xml="select1"/>
-                    <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-                </label>
-            </fieldset>
-        </fieldset>
-        <fieldset class="trigger jr-branch pre-init" name="/Delivery_Outcome_EngKan/live_birth_group/premature_message1"
-                  data-relevant=" /Delivery_Outcome_EngKan/live_birth_group/premature  != ''">
-            <span lang="" class=" active">Instructions:
-                Baby is premature! Advise kangaroo care and rooming in.
-                &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                &#xC85;&#xCB5;&#xCA7;&#xCBF;&#xC97;&#xCC6; &#xCAE;&#xCC1;&#xCA8;&#xCCD;&#xCA8; &#xC9C;&#xCA8;&#xCBF;&#xCB8;&#xCBF;&#xCA6;
-                &#xCAE;&#xC97;&#xCC1;! &#xC95;&#xCBE;&#xC82;&#xC97;&#xCB0;&#xCCB; &#xC86;&#xCB0;&#xCC8;&#xC95;&#xCC6;
-                &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; &#xC92;&#xC82;&#xCA6;&#xCC7; &#xCB0;&#xCC2;&#xCAE;&#xCBF;&#xCA8;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA1;&#xCC1;&#xCB5;&#xC82;&#xCA4;&#xCC6;
-                &#xCB8;&#xCB2;&#xCB9;&#xCC6; &#xCA8;&#xCC0;&#xCA1;&#xCBF;.
-            </span>
-        </fieldset>
         <fieldset class="restoring-sanity-to-legends ">
             <fieldset>
                 <legend>
@@ -887,6 +948,7 @@
             &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6; &#xCB9;&#xCA3; &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <input autocomplete="off" type="date" name="/Delivery_Outcome_EngKan/jsy_date"
+               data-constraint=".&lt;= /Delivery_Outcome_EngKan/today "
                data-relevant=" /Delivery_Outcome_EngKan/jsy_payment  = 'yes'" data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
@@ -924,6 +986,7 @@
             &#xC86;&#xCB0;&#xCC8;&#xC95;&#xCC6; 2 &#xCB9;&#xCA3; &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <input autocomplete="off" type="date" name="/Delivery_Outcome_EngKan/prasooti2_date"
+               data-constraint=".&lt;= /Delivery_Outcome_EngKan/today "
                data-relevant=" /Delivery_Outcome_EngKan/prasooti_payment2  = 'yes'" data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
@@ -960,6 +1023,7 @@
             &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <input autocomplete="off" type="date" name="/Delivery_Outcome_EngKan/madilu_date"
+               data-constraint=".&lt;= /Delivery_Outcome_EngKan/today "
                data-relevant=" /Delivery_Outcome_EngKan/madilu_kit  = 'yes'" data-type-xml="date"/>
     </label>
     <fieldset class="trigger jr-branch pre-init" name="/Delivery_Outcome_EngKan/high_risk_note_mother"
@@ -981,68 +1045,23 @@
                     HR (&#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;)
                     &#xC8E;&#xC82;&#xCA6;&#xCC1; &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCC1; &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCBF;&#xCB0;&#xCBE;?
                 </span>
+                <span class="required">*</span>
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Outcome_EngKan/is_high_risk" value="yes"
+                       required="required"
                        data-relevant="( /Delivery_Outcome_EngKan/still_birth_group/woman_survived  = 'yes' or  /Delivery_Outcome_EngKan/live_birth_group/mother_survived  = 'yes')"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Outcome_EngKan/is_high_risk" value="no"
+                       required="required"
                        data-relevant="( /Delivery_Outcome_EngKan/still_birth_group/woman_survived  = 'yes' or  /Delivery_Outcome_EngKan/live_birth_group/mother_survived  = 'yes')"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
             </label>
         </fieldset>
-    </fieldset>
-    <fieldset class="trigger jr-branch pre-init" name="/Delivery_Outcome_EngKan/high_risk_note_baby"
-              data-relevant=" /Delivery_Outcome_EngKan/is_high_risk_baby1  = 'yes'">
-        <span lang="" class=" active">Child is at risk because of:
-            <span class="jr-output" data-value=" /Delivery_Outcome_EngKan/high_risk_reason_baby ">
-            </span>
-            &#xC88;&#xC97; &#xCAE;&#xC97;&#xCC1; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA6;&#xCC6;
-            &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
-            <span class="jr-output" data-value=" /Delivery_Outcome_EngKan/high_risk_reason_baby ">
-            </span>
-        </span>
-    </fieldset>
-    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">Do you want to mark child as HR (High Risk)?
-                    &#xCA8;&#xCC0;&#xCB5;&#xCC1; &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; HR (&#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
-                    &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;) &#xC8E;&#xC82;&#xCA6;&#xCC1; &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCC1;
-                    &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCBF;&#xCB0;&#xCBE;?
-                </span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Delivery_Outcome_EngKan/is_high_risk_baby" value="yes"
-                       data-relevant=" /Delivery_Outcome_EngKan/delivery_outcome  = 'live_birth'"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Delivery_Outcome_EngKan/is_high_risk_baby" value="no"
-                       data-relevant=" /Delivery_Outcome_EngKan/delivery_outcome  = 'live_birth'"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-            </label>
-        </fieldset>
-    </fieldset>
-    <fieldset class="trigger jr-branch pre-init" name="/Delivery_Outcome_EngKan/addl_pnc_visit_message"
-              data-relevant=" /Delivery_Outcome_EngKan/is_high_risk_baby1  = 'yes'">
-        <span lang="" class=" active">Instructions:
-            Child needs 3 more PNC visits on days 14, 21, and 28 because of:
-            <span class="jr-output" data-value=" /Delivery_Outcome_EngKan/high_risk_reason_baby ">
-            </span>
-            &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-            14, 21 &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; 28 &#xCA8;&#xCC7; &#xCA6;&#xCBF;&#xCA8;&#xC97;&#xCB3;&#xCCA;&#xC82;&#xCA6;&#xCC1;
-            &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6; 3 &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBF;&#xCA8;
-            &#xCAD;&#xCC7;&#xC9F;&#xCBF;&#xCAF; &#xC85;&#xC97;&#xCA4;&#xCCD;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;, &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
-            <span class="jr-output" data-value=" /Delivery_Outcome_EngKan/high_risk_reason_baby ">
-            </span>
-        </span>
     </fieldset>
 
     <fieldset id="jr-calculated-items" style="display:none;">
@@ -1061,38 +1080,77 @@
                    data-calculate=" /Delivery_Outcome_EngKan/case_num_stillbirths  + 1" data-type-xml="string"/>
         </label>
         <label class="">
-            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/num_livingchildren"
-                   data-calculate="count( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child )"
+            <input autocomplete="off" type="hidden"
+                   name="/Delivery_Outcome_EngKan/live_birth_group/child/sex_child_female"
+                   data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child  = 'female', 1, '')"
                    data-type-xml="string"/>
         </label>
         <label class="">
             <input autocomplete="off" type="hidden"
-                   name="/Delivery_Outcome_EngKan/live_birth_group/numlivingchildren_female" data-calculate="1"
+                   name="/Delivery_Outcome_EngKan/live_birth_group/child/sex_child_male"
+                   data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child  = 'male', 1, '')"
                    data-type-xml="string"/>
         </label>
         <label class="">
-            <input autocomplete="off" type="hidden"
-                   name="/Delivery_Outcome_EngKan/live_birth_group/numlivingchildren_male" data-calculate="1"
-                   data-type-xml="string"/>
-        </label>
-        <label class="">
-            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/lbw"
+            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/child/lbw"
                    data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/birthweight  &gt;= 1.5 and  /Delivery_Outcome_EngKan/live_birth_group/child/birthweight  &lt; 2.5, 'Low_Birth_Weight','')"
                    data-type-xml="string"/>
         </label>
         <label class="">
-            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/vlbw"
+            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/child/vlbw"
                    data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/birthweight  &lt; 1.5, 'Very_Low_Birth_Weight', '')"
                    data-type-xml="string"/>
         </label>
         <label class="">
-            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/num_preg_days"
+            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/child/num_preg_days"
                    data-calculate="int(date( /Delivery_Outcome_EngKan/date_outcome ) - date( /Delivery_Outcome_EngKan/case_lmp ))"
                    data-type-xml="string"/>
         </label>
         <label class="">
-            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/premature"
-                   data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/num_preg_days  &lt; 259, 'Premature', '')"
+            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/child/premature"
+                   data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/num_preg_days  &lt; 259, 'Premature', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/Delivery_Outcome_EngKan/live_birth_group/child/is_high_risk_baby1"
+                   data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/premature  != '' or  /Delivery_Outcome_EngKan/live_birth_group/child/lbw  != '' or  /Delivery_Outcome_EngKan/live_birth_group/child/vlbw  != '', 'yes', 'no')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/Delivery_Outcome_EngKan/live_birth_group/child/high_risk_reason_baby"
+                   data-calculate="concat( /Delivery_Outcome_EngKan/live_birth_group/child/premature , ' ',  /Delivery_Outcome_EngKan/live_birth_group/child/lbw , ' ',  /Delivery_Outcome_EngKan/live_birth_group/child/vlbw )"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/num_children_born"
+                   data-calculate="count( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child )"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/num_livingchildren"
+                   data-calculate=" /Delivery_Outcome_EngKan/case_num_livingchildren  +  /Delivery_Outcome_EngKan/num_children_born "
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/num_female_children_born"
+                   data-calculate=" /Delivery_Outcome_EngKan/live_birth_group/child/sex_child_female "
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/numlivingchildren_female"
+                   data-calculate=" /Delivery_Outcome_EngKan/case_numlivingchildren_female  +  /Delivery_Outcome_EngKan/num_female_children_born "
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/num_male_children_born"
+                   data-calculate=" /Delivery_Outcome_EngKan/live_birth_group/child/sex_child_male "
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/numlivingchildren_male"
+                   data-calculate=" /Delivery_Outcome_EngKan/case_numlivingchildren_male  +  /Delivery_Outcome_EngKan/num_male_children_born "
                    data-type-xml="string"/>
         </label>
         <label class="">
@@ -1111,18 +1169,8 @@
                    data-type-xml="string"/>
         </label>
         <label class="">
-            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/is_high_risk_baby1"
-                   data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/premature  != '' or  /Delivery_Outcome_EngKan/live_birth_group/lbw  != '' or  /Delivery_Outcome_EngKan/live_birth_group/vlbw  != '', 'yes', 'no')"
-                   data-type-xml="string"/>
-        </label>
-        <label class="">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/high_risk_reason"
                    data-calculate="concat( /Delivery_Outcome_EngKan/case_is_high_risk_till_pnc_close_reason , ' ',  /Delivery_Outcome_EngKan/case_anaemic_status , ' ',  /Delivery_Outcome_EngKan/case_pih , ' ',  /Delivery_Outcome_EngKan/case_pre_eclampsia , ' ',  /Delivery_Outcome_EngKan/case_jaundice )"
-                   data-type-xml="string"/>
-        </label>
-        <label class="">
-            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/high_risk_reason_baby"
-                   data-calculate="concat( /Delivery_Outcome_EngKan/live_birth_group/premature , ' ',  /Delivery_Outcome_EngKan/live_birth_group/lbw , ' ',  /Delivery_Outcome_EngKan/live_birth_group/vlbw )"
                    data-type-xml="string"/>
         </label>
         <label class="">
@@ -1131,7 +1179,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/formhub/uuid"
-                   data-calculate="'e664028bbe1b44f984b592448f8b0436'" data-type-xml="string"/>
+                   data-calculate="'cb3e4cfd567941f7ad6422d6f5b0c98e'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
