@@ -8,10 +8,12 @@
             },
             {
                 "name": "currentMethod",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Family_Planning_Change_Method_EngKan/case_familyplanning_method"
             },
             {
                 "name": "newMethod",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Family_Planning_Change_Method_EngKan/familyplanning_method"
             },
             {
