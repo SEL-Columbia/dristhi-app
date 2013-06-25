@@ -17,7 +17,7 @@
         <span lang="" class=" active">Registration date &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCBE;&#xCA4;&#xCBF; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;</span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/ANC_Registration_OA_EngKan/out_of_area_reg_date"
-               required="required" data-type-xml="date"/>
+               required="required" data-constraint=".&lt;= /ANC_Registration_OA_EngKan/today " data-type-xml="date"/>
     </label>
     <label class="">
         <span lang="" class=" active">Name of original village? &#xCB8;&#xCCD;&#xCB5;&#xC82;&#xCA4; &#xC97;&#xCCD;&#xCB0;&#xCBE;&#xCAE;&#xCA6;
@@ -154,7 +154,8 @@
     <label class="">
         <span lang="" class=" active">Woman's Aadhaar number &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xC86;&#xCA7;&#xCBE;&#xCB0;&#xCCD;
             &#xC95;&#xCBE;&#xCB0;&#xCCD;&#xCA1;&#xCCD; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;</span>
-        <input autocomplete="off" type="text" name="/ANC_Registration_OA_EngKan/aadhaar_number" data-type-xml="string"/>
+        <input autocomplete="off" type="text" name="/ANC_Registration_OA_EngKan/aadhaar_number"
+               data-constraint=".&gt; 99999999999 and .&lt; 1000000000000" data-type-xml="string"/>
     </label>
     <label class="">
         <span lang="" class=" active">Woman's age &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;</span>
@@ -172,7 +173,8 @@
     <label class="">
         <span lang="" class=" active">Contact phone number &#xCB8;&#xC82;&#xCAA;&#xCB0;&#xCCD;&#xC95;&#xCBF;&#xCB8;&#xCC1;&#xCB5;
             &#xCAB;&#xCCB;&#xCA8;&#xCCD; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;</span>
-        <input autocomplete="off" type="text" name="/ANC_Registration_OA_EngKan/phone_no" data-type-xml="string"/>
+        <input autocomplete="off" type="text" name="/ANC_Registration_OA_EngKan/phone_no"
+               data-constraint=".&gt; 999999999 and .&lt; 10000000000" data-type-xml="string"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
         <fieldset>
@@ -211,6 +213,7 @@
         <span lang="" class=" active">Alternative phone number &#xCAC;&#xCC7;&#xCB0;&#xCC7; &#xCAB;&#xCCB;&#xCA8;&#xCCD;
             &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;</span>
         <input autocomplete="off" type="text" name="/ANC_Registration_OA_EngKan/phone_no2"
+               data-constraint=".&gt; 999999999 and .&lt; 10000000000"
                data-relevant=" /ANC_Registration_OA_EngKan/phone_no  != ''" data-type-xml="string"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
@@ -296,13 +299,13 @@
             &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;</span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/ANC_Registration_OA_EngKan/thayi_no" required="required"
-               data-type-xml="int"/>
+               data-constraint=".&gt; 999999 and .&lt; 10000000" data-type-xml="int"/>
     </label>
     <label class="">
         <span lang="" class=" active">ANC Number ANC &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;</span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/ANC_Registration_OA_EngKan/anc_number1" required="required"
-               data-type-xml="int"/>
+               data-constraint=".&gt; 0" data-type-xml="int"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
@@ -331,14 +334,14 @@
     <label class="">
         <span lang="" class=" active">Asha phone number &#xC86;&#xCB6;&#xCBE; &#xCAB;&#xCCB;&#xCA8;&#xCCD; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;</span>
         <input autocomplete="off" type="text" name="/ANC_Registration_OA_EngKan/asha_phone_number"
-               data-type-xml="string"/>
+               data-constraint=".&gt; 999999999 and .&lt; 10000000000" data-type-xml="string"/>
     </label>
     <label class="">
         <span lang="" class=" active">LMP &#xC95;&#xCCA;&#xCA8;&#xCC6;&#xCAF; &#xCAE;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xCA8;
             &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;</span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/ANC_Registration_OA_EngKan/lmp_date" required="required"
-               data-type-xml="date"/>
+               data-constraint=".&lt;= /ANC_Registration_OA_EngKan/today " data-type-xml="date"/>
     </label>
     <fieldset class="trigger " name="/ANC_Registration_OA_EngKan/edd_note">
         <span lang="" class=" active">Expected Date of Delivery is:
