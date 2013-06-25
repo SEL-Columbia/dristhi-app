@@ -1,9 +1,18 @@
 <div class="span3 span-no-margin width-without-margins line-right span-content">
-    <p class="text-left"><span class="text-upper">Date:</span> <span class="text-bold">{{client.deliveryDate | date:'dd/MM/yy'}}</span></p>
-    <p class="text-left"><span class=text-upper>Place:</span> <span class="text-bold">{{client.deliveryPlace}}</span></p>
-    <p class="text-left"><span class="text-upper">Type:</span> <span class="text-bold">{{client.deliveryType}}</span></p>
+    <p class="text-left"><span class="text-upper">Date:</span> <span class="text-bold">{{client.deliveryDate | date:'dd/MM/yy'}}</span>
+    </p>
+
+    <p class="text-left"><span class=text-upper>Place:</span> <span class="text-bold">{{client.deliveryPlace | uppercase}}</span>
+    </p>
+
+    <p class="text-left" ng-show="client.deliveryType">
+        <span class="text-upper">Type:</span>
+        <span class="text-bold">{{client.deliveryType | humanize}}</span>
+    </p>
 </div>
-<div class="span3 span-no-margin width-without-margins line-right span-content">{{client.deliveryComplications | camelCase | humanize}}</div>
+<div class="span3 span-no-margin width-without-margins line-right span-content">{{client.deliveryComplications |
+    camelCase | commaSeparated | humanize}}
+</div>
 <div class="span2 span-no-margin width-without-margins line-right span-content">
     <span class="text-bold">{{client.fp_method | fpMethodName:ecsWithFPMethodServiceModeOptions.options }}</span>
     <br/>

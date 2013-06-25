@@ -42,8 +42,7 @@ function FakePNCSmartRegistryContext() {
                     numberOfCentchromanPillsDelivered: null,
                     deliveryDate: "2013-06-15",
                     deliveryPlace:"PNC",
-                    deliveryType: "Normal", //TODO: what are the options
-                    deliveryComplications: "hemorrhage, placenta_previa, prolonged_or_obstructed_labour",
+                    deliveryComplications: "hemorrhage placenta_previa prolonged_or_obstructed_labour",
                     otherDeliveryComplications: "",
                     alerts: [
                         {
@@ -159,7 +158,7 @@ function FakePNCSmartRegistryContext() {
                     deliveryDate: "2013-06-10",
                     deliveryPlace:"PNC",
                     deliveryType: "Normal", //TODO: what are the options
-                    deliveryComplications: "hemorrhage, placenta_previa, prolonged_or_obstructed_labour",
+                    deliveryComplications: "hemorrhage placenta_previa prolonged_or_obstructed_labour",
                     otherDeliveryComplications: "",
                     alerts: [
                         {
@@ -216,7 +215,7 @@ function FakePNCSmartRegistryContext() {
                     deliveryDate: "2013-06-18",
                     deliveryPlace:"PNC",
                     deliveryType: "Normal", //TODO: what are the options
-                    deliveryComplications: "hemorrhage, placenta_previa, prolonged_or_obstructed_labour",
+                    deliveryComplications: "hemorrhage placenta_previa prolonged_or_obstructed_labour",
                     otherDeliveryComplications: "",
                     alerts: [
                         {
@@ -266,7 +265,7 @@ function FakePNCSmartRegistryContext() {
                     deliveryDate: "2013-06-10",
                     deliveryPlace:"PNC",
                     deliveryType: "Normal", //TODO: what are the options
-                    deliveryComplications: "hemorrhage, placenta_previa, prolonged_or_obstructed_labour",
+                    deliveryComplications: "hemorrhage placenta_previa prolonged_or_obstructed_labour",
                     otherDeliveryComplications: "",
                     alerts: [
                         {

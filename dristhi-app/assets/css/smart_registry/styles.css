@@ -386,3 +386,7 @@ a:focus {
     display: inline-block;
     max-width: 110px;
 }
+
+.new-line-with-margin {
+    margin: 0 0 4px !important;
+}
