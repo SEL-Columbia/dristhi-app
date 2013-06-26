@@ -109,7 +109,7 @@
             },
             {
                 "name": "didMotherSurvive",
-                "bind": "/model/instance/Delivery_Outcome_EngKan/still_birth_group/mother_survived"
+                "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/mother_survived"
             },
             {
                 "name": "didBreastfeedingStart",

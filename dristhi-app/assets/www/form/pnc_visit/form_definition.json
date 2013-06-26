@@ -39,11 +39,13 @@
             },
             {
                 "name": "didWomanSurvive",
-                "bind": "/model/instance/PNC_Visit_EngKan/still_birth_group/woman_survived"
+                "shouldLoadValue": true,
+                "bind": "/model/instance/PNC_Visit_EngKan/case_woman_survived"
             },
             {
                 "name": "didMotherSurvive",
-                "bind": "/model/instance/PNC_Visit_EngKan/still_birth_group/mother_survived"
+                "shouldLoadValue": true,
+                "bind": "/model/instance/PNC_Visit_EngKan/case_mother_survived"
             },
             {
                 "name": "deliveryPlace",
@@ -56,17 +58,18 @@
                 "bind": "/model/instance/PNC_Visit_EngKan/case_discharge_date"
             },
             {
-                "name": "dischargeDate",
-                "bind": "/model/instance/PNC_Visit_EngKan/discharge_date"
-            },
-            {
                 "name": "deliveryType",
-                "bind": "/model/instance/PNC_Visit_EngKan/type_delivery"
+                "shouldLoadValue": true,
+                "bind": "/model/instance/PNC_Visit_EngKan/case_type_delivery"
             },
             {
                 "name": "referenceDate",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/case_delivery_date"
+            },
+            {
+                "name": "dischargeDate",
+                "bind": "/model/instance/PNC_Visit_EngKan/discharge_date"
             },
             {
                 "name": "pncVisitDate",
@@ -214,6 +217,10 @@
                 "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/case_anaemic_status"
             },
             {
+                "name": "anaemicStatus",
+                "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/anaemic_status"
+            },
+            {
                 "name": "pih",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/case_pih"
@@ -230,6 +237,16 @@
             {
                 "name": "preEclampsia",
                 "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/pre_eclampsia"
+            },
+            {
+                "name": "isHighRiskTillPNCClose",
+                "shouldLoadValue": true,
+                "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/case_is_high_risk_till_pnc_close"
+            },
+            {
+                "name": "highRiskTillPNCCloseReason",
+                "shouldLoadValue": true,
+                "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/case_is_high_risk_till_pnc_close_reason"
             },
             {
                 "name": "highRiskReason",
