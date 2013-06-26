@@ -88,12 +88,12 @@ public class ANCSmartRegistryControllerTest {
         EligibleCouple ec2 = new EligibleCouple("EC Case 2", "Woman B", "Husband B", "EC Number 2", "kavalu_hosur", "Bherya SC", emptyMap);
         EligibleCouple ec3 = new EligibleCouple("EC Case 3", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", emptyMap);
         EligibleCouple ec1 = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null, emptyMap);
-        Mother m1 = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25").withDetails(details);
-        Mother m2 = new Mother("Entity Y", "EC Case 2", "thayi 2", "2013-05-25").withDetails(details);
-        Mother m3 = new Mother("Entity Z", "EC Case 3", "thayi 3", "2013-05-25").withDetails(details);
-        ANCClient expectedClient1 = createANCClient("Entity Z", "Woman A", "Bherya", "thayi 3", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 1").withHusbandName("Husband A");
-        ANCClient expectedClient2 = createANCClient("Entity X", "Woman B", "kavalu_hosur", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 2").withHusbandName("Husband B");
-        ANCClient expectedClient3 = createANCClient("Entity Y", "Woman C", "Bherya", "thayi 2", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 3").withHusbandName("Husband C");
+        Mother m1 = new Mother("Entity X", "EC Case 2", "thayi 1", "2013-05-25").withDetails(details);
+        Mother m2 = new Mother("Entity Y", "EC Case 3", "thayi 2", "2013-05-25").withDetails(details);
+        Mother m3 = new Mother("Entity Z", "EC Case 1", "thayi 3", "2013-05-25").withDetails(details);
+        ANCClient expectedClient1 = createANCClient("Entity Z", "Woman A", "Bherya", "thayi 3", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 1").withHusbandName("Husband A").withEntityIdToSavePhoto("EC Case 1");
+        ANCClient expectedClient2 = createANCClient("Entity X", "Woman B", "kavalu_hosur", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 2").withHusbandName("Husband B").withEntityIdToSavePhoto("EC Case 2");
+        ANCClient expectedClient3 = createANCClient("Entity Y", "Woman C", "Bherya", "thayi 2", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 3").withHusbandName("Husband C").withEntityIdToSavePhoto("EC Case 3");
         when(allBeneficiaries.allANCsWithEC()).thenReturn(asList(Pair.of(m1, ec2), Pair.of(m2, ec3), Pair.of(m3, ec1)));
 
         String clients = controller.get();
@@ -106,14 +106,14 @@ public class ANCSmartRegistryControllerTest {
     @Test
     public void shouldMapANCToANCClient() throws Exception {
         Map<String, String> details = create("edd", "Tue, 25 Feb 2014 00:00:00 GMT").put("isHighRisk", "yes").put("ancNumber", "ANC X").put("highRiskReason", "Headache").map();
-        EligibleCouple eligibleCouple = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null,
+        EligibleCouple eligibleCouple = new EligibleCouple("ec id 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null,
                 create("wifeAge", "23")
                         .put("isHighPriority", Boolean.toString(false))
                         .put("caste", "other")
                         .put("economicStatus", "bpl")
                         .map()
         ).asOutOfArea();
-        Mother mother = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25").withDetails(details);
+        Mother mother = new Mother("Entity X", "ec id 1", "thayi 1", "2013-05-25").withDetails(details);
         when(allBeneficiaries.allANCsWithEC()).thenReturn(asList(Pair.of(mother, eligibleCouple)));
         ANCClient expectedANCClient = new ANCClient("Entity X", "Bherya", "Woman A", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25")
                 .withECNumber("EC Number 1")
@@ -127,6 +127,7 @@ public class ANCSmartRegistryControllerTest {
                 .withHighRiskReason("Headache")
                 .withPhotoPath("../../img/woman-placeholder.png")
                 .withEconomicStatus("bpl")
+                .withEntityIdToSavePhoto("ec id 1")
                 .withAlerts(Collections.<AlertDTO>emptyList())
                 .withServicesProvided(Collections.<ServiceProvidedDTO>emptyList());
 
@@ -141,8 +142,7 @@ public class ANCSmartRegistryControllerTest {
     public void shouldCreateANCClientsWithANC1Alert() throws Exception {
         Map<String, String> details = mapOf("edd", "Tue, 25 Feb 2014 00:00:00 GMT");
         EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 1", "Bherya", "Bherya SC", emptyMap);
-        Mother mother = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25").withDetails(details);
-
+        Mother mother = new Mother("Entity X", "entity id 1", "thayi 1", "2013-05-25").withDetails(details);
         Alert anc1Alert = new Alert("entity id 1", "ANC", "ANC 1", normal, "2013-01-01", "2013-02-01");
         when(allBeneficiaries.allANCsWithEC()).thenReturn(asList(Pair.of(mother, ec)));
         when(alertService.findByEntityIdAndAlertNames("Entity X", ANC_ALERTS)).thenReturn(asList(anc1Alert));
@@ -156,6 +156,7 @@ public class ANCSmartRegistryControllerTest {
         ANCClient expectedEC = createANCClient("Entity X", "Woman C", "Bherya", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25")
                 .withECNumber("EC Number 1")
                 .withHusbandName("Husband C")
+                .withEntityIdToSavePhoto("entity id 1")
                 .withAlerts(asList(expectedAlertDto));
         assertEquals(asList(expectedEC), actualClients);
     }
@@ -164,7 +165,7 @@ public class ANCSmartRegistryControllerTest {
     public void shouldCreateANCClientsWithServicesProvided() throws Exception {
         Map<String, String> details = mapOf("edd", "Tue, 25 Feb 2014 00:00:00 GMT");
         EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 1", "Bherya", "Bherya SC", emptyMap);
-        Mother mother = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25").withDetails(details);
+        Mother mother = new Mother("Entity X", "entity id 1", "thayi 1", "2013-05-25").withDetails(details);
         when(allBeneficiaries.allANCsWithEC()).thenReturn(asList(Pair.of(mother, ec)));
         when(alertService.findByEntityIdAndAlertNames("Entity X", ANC_ALERTS)).thenReturn(Collections.<Alert>emptyList());
         when(sericeProvidedService.findByEntityIdAndServiceNames("Entity X", ANC_SERVICES))
@@ -181,6 +182,7 @@ public class ANCSmartRegistryControllerTest {
         ANCClient expectedEC = createANCClient("Entity X", "Woman C", "Bherya", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25")
                 .withECNumber("EC Number 1")
                 .withHusbandName("Husband C")
+                .withEntityIdToSavePhoto("entity id 1")
                 .withServicesProvided(expectedServicesProvided);
         assertEquals(asList(expectedEC), actualClients);
     }

@@ -85,6 +85,7 @@ public class ANCSmartRegistryController {
                             .withCaste(ec.getDetail("caste"))
                             .withEconomicStatus(ec.getDetail("economicStatus"))
                             .withPhotoPath(photoPath)
+                            .withEntityIdToSavePhoto(ec.caseId())
                             .withAlerts(alerts)
                             .withServicesProvided(servicesProvided)
                     );

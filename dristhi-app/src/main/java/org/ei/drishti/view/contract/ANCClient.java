@@ -29,6 +29,7 @@ public class ANCClient {
     private String economicStatus;
     private List<AlertDTO> alerts;
     private List<ServiceProvidedDTO> services_provided;
+    private String entityIdToSavePhoto;
 
     public ANCClient(String entityId, String village, String name, String thayi, String edd, String lmp) {
         this.entityId = entityId;
@@ -105,6 +106,11 @@ public class ANCClient {
 
     public ANCClient withServicesProvided(List<ServiceProvidedDTO> servicesProvided) {
         this.services_provided = servicesProvided;
+        return this;
+    }
+
+    public ANCClient withEntityIdToSavePhoto(String entityIdToSavePhoto) {
+        this.entityIdToSavePhoto = entityIdToSavePhoto;
         return this;
     }
 
