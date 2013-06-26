@@ -41,8 +41,9 @@ function FakePNCSmartRegistryContext() {
                     numberOfOCPDelivered: "8",
                     numberOfCentchromanPillsDelivered: null,
                     deliveryDate: "2013-06-15",
-                    deliveryPlace:"PNC",
-                    deliveryComplications: "hemorrhage placenta_previa prolonged_or_obstructed_labour",
+                    deliveryPlace:"PRIVATE_FACILITY",
+                    deliveryComplications: "hemorrhage placenta_previa prolonged_or_obstructed_labour hemorrhage placenta_previa prolonged_or_obstructed_labour",
+                    deliveryType: "Normal", //TODO: what are the options
                     otherDeliveryComplications: "",
                     alerts: [
                         {

@@ -970,7 +970,7 @@ a.btn-sr.upcoming, a.btn-sr.done {
 
 .content-smart-registry .row-fluid [class*="span"].span-content p {
     font-size: 15px;
-    margin: 0 0 8px;
+    margin: 0 0 4px;
 }
 
 .span-content ul {
