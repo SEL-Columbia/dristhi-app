@@ -179,7 +179,7 @@
                 "name": "numberOfCentchromanPillsSupplied",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/num_centchroman_pills",
-                "source": "mother.eligible_couple.numberOfCondomsSupplied"
+                "source": "mother.eligible_couple.numberOfCentchromanPillsDelivered"
             },
             {
                 "name": "hepB",
