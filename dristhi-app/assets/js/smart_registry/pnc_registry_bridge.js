@@ -19,7 +19,8 @@ function FakePNCSmartRegistryContext() {
         get: function () {
             return JSON.stringify([
                 {
-                    entityId: "entity id 100",
+                    entityId: "entity id 1",
+                    entityIdToSavePhoto: "entity id 1",
                     ec_number: '314',
                     village: 'Chikkabherya',
                     name: 'Carolyn',
@@ -79,7 +80,8 @@ function FakePNCSmartRegistryContext() {
                     ]
                 },
                 {
-                    entityId: "entity id 1",
+                    entityId: "entity id 2",
+                    entityIdToSavePhoto: "entity id 2",
                     ec_number: '314',
                     village: 'Chikkabherya',
                     name: 'Radhia',
@@ -129,11 +131,12 @@ function FakePNCSmartRegistryContext() {
                             data: {
                                 day: 7
                             }
-                        },
+                        }
                     ]
                 },
                 {
-                    entityId: "entity id 1",
+                    entityId: "entity id 3",
+                    entityIdToSavePhoto: "entity id 3",
                     ec_number: '314',
                     village: 'Chikkabherya',
                     name: 'Carolyn',
@@ -189,7 +192,8 @@ function FakePNCSmartRegistryContext() {
                     ]
                 },
                 {
-                    entityId: "entity id 1",
+                    entityId: "entity id 4",
+                    entityIdToSavePhoto: "entity id 4",
                     ec_number: '314',
                     village: 'Chikkabherya',
                     name: 'Carolyn',
@@ -239,7 +243,8 @@ function FakePNCSmartRegistryContext() {
                     ]
                 },
                 {
-                    entityId: "entity id 1",
+                    entityId: "entity id 5",
+                    entityIdToSavePhoto: "entity id 5",
                     ec_number: '314',
                     village: 'Chikkabherya',
                     name: 'Carolyn',
@@ -296,7 +301,8 @@ function FakePNCSmartRegistryContext() {
                     ]
                 },
                 {
-                    entityId: "entity id 1",
+                    entityId: "entity id 6",
+                    entityIdToSavePhoto: "entity id 6",
                     ec_number: '314',
                     village: 'Chikkabherya',
                     name: 'Radhia',
@@ -343,7 +349,8 @@ function FakePNCSmartRegistryContext() {
                     ]
                 },
                 {
-                    entityId: "entity id 1",
+                    entityId: "entity id 7",
+                    entityIdToSavePhoto: "entity id 7",
                     ec_number: '314',
                     village: 'Chikkabherya',
                     name: 'Radhia',
