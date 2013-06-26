@@ -31,7 +31,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     public static final String IS_OUT_OF_AREA_COLUMN = "isOutOfArea";
     private static final String DETAILS_COLUMN = "details";
     private static final String IS_CLOSED_COLUMN = "isClosed";
-    private static final String PHOTO_PATH_COLUMN = "photoPath";
+    public static final String PHOTO_PATH_COLUMN = "photoPath";
     public static final String EC_TABLE_NAME = "eligible_couple";
     public static final String[] EC_TABLE_COLUMNS = new String[]{CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN,
             EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN,
@@ -147,6 +147,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         values.put(IS_OUT_OF_AREA_COLUMN, Boolean.toString(eligibleCouple.isOutOfArea()));
         values.put(DETAILS_COLUMN, new Gson().toJson(eligibleCouple.details()));
         values.put(IS_CLOSED_COLUMN, Boolean.toString(eligibleCouple.isClosed()));
+        values.put(PHOTO_PATH_COLUMN, eligibleCouple.photoPath());
         return values;
     }
 

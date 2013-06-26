@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class MotherRepositoryTest extends AndroidTestCase {
@@ -48,7 +47,7 @@ public class MotherRepositoryTest extends AndroidTestCase {
 
     public void testShouldFetchANCAndCorrespondingEC() throws Exception {
         Map<String, String> details = mapOf("some-key", "some-value");
-        EligibleCouple firstEligibleCouple = new EligibleCouple("EC Case 1", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", details);
+        EligibleCouple firstEligibleCouple = new EligibleCouple("EC Case 1", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", details).withPhotoPath("photo path");
         EligibleCouple secondEligibleCouple = new EligibleCouple("EC Case 2", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", details);
         EligibleCouple thirdEligibleCouple = new EligibleCouple("EC Case 3", "Wife 3", "Husband 3", "EC Number 3", "Village 3", "SubCenter 3", details);
         Mother firstMother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withDetails(details);

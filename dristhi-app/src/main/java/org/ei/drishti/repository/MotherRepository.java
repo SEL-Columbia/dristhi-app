@@ -165,7 +165,7 @@ public class MotherRepository extends DrishtiRepository {
                     }.getType()));
             EligibleCouple eligibleCouple = new EligibleCouple(cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12),
                     new Gson().<Map<String, String>>fromJson(cursor.getString(14), new TypeToken<Map<String, String>>() {
-                    }.getType()));
+                    }.getType())).withPhotoPath(cursor.getString(cursor.getColumnIndex(EligibleCoupleRepository.PHOTO_PATH_COLUMN)));
             if (Boolean.valueOf(cursor.getString(cursor.getColumnIndex(IS_OUT_OF_AREA_COLUMN)))) {
                 eligibleCouple.asOutOfArea();
             }
