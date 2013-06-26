@@ -8,6 +8,7 @@ import java.util.List;
 
 public class FPClient {
     private String entityId;
+    private String entityIdToSavePhoto;
     private String name;
     private String husband_name;
     private String age;
@@ -46,6 +47,7 @@ public class FPClient {
 
     public FPClient(String entityId, String name, String husband_name, String village, String ecNumber) {
         this.entityId = entityId;
+        this.entityIdToSavePhoto = entityId;
         this.name = name;
         this.husband_name = husband_name;
         this.village = village;
