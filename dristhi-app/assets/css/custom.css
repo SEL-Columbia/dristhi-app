@@ -1110,3 +1110,7 @@ img.pnc-child-img {
     background-position: 0 50%;
     background-size: 90%;
 }
+
+.btn-fill-cell {
+    min-height: 70px;
+}

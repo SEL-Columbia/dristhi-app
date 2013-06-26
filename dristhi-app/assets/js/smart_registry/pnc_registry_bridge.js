@@ -19,7 +19,7 @@ function FakePNCSmartRegistryContext() {
         get: function () {
             return JSON.stringify([
                 {
-                    entityId: "entity id 1",
+                    entityId: "entity id 100",
                     ec_number: '314',
                     village: 'Chikkabherya',
                     name: 'Carolyn',
@@ -33,7 +33,6 @@ function FakePNCSmartRegistryContext() {
                     locationStatus: "out_of_area",
                     economicStatus: "bpl",
                     caste: "sc",
-                    fp_method: "ocp",
                     iudPlace: "PNC",
                     iudPerson: "",
                     family_planning_method_change_date: '2013-08-13',
