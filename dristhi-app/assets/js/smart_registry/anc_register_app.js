@@ -7,7 +7,6 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.clients = $scope.getClients();
-        console.log("Clients: " + JSON.stringify($scope.clients));
         $scope.sortOptions = {
             type: "sort",
             options: [
