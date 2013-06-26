@@ -1,6 +1,7 @@
 angular.module("smartRegistry.controllers")
     .controller("ancRegisterController", function ($scope, ANCService) {
         $scope.bridge = new ANCRegistryBridge();
+        $scope.client_type = "woman";
         $scope.getClients = function () {
             return ANCService.preProcess($scope.bridge.getClients());
         };

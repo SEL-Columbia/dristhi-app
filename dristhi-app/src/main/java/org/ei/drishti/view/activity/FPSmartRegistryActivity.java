@@ -7,22 +7,11 @@ import org.ei.drishti.view.controller.FPSmartRegistryController;
 import static org.ei.drishti.event.Event.ON_PHOTO_CAPTURED;
 
 public class FPSmartRegistryActivity extends SmartRegisterActivity {
-    private Listener<CapturedPhotoInformation> photoCaptureListener;
 
     @Override
     protected void onSmartRegisterInitialization() {
         webView.addJavascriptInterface(new FPSmartRegistryController(context.allEligibleCouples(), context.allBeneficiaries(), context.alertService(), context.listCache()), "context");
         webView.loadUrl("file:///android_asset/www/smart_registry/fp_register.html");
-
-        photoCaptureListener = new Listener<CapturedPhotoInformation>() {
-            @Override
-            public void onEvent(CapturedPhotoInformation data) {
-                if (webView != null) {
-                    webView.loadUrl("javascript:pageView.reloadPhoto('" + data.entityId() + "', '" + data.photoPath() + "')");
-                }
-            }
-        };
-        ON_PHOTO_CAPTURED.addListener(photoCaptureListener);
     }
 
     @Override
