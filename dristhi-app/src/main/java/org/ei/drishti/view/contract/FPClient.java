@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.util.List;
 
 public class FPClient {
-    private String entity_id;
+    private String entityId;
     private String name;
     private String husband_name;
     private String age;
@@ -44,8 +44,8 @@ public class FPClient {
     private String highPriorityReason;
 
 
-    public FPClient(String entity_id, String name, String husband_name, String village, String ecNumber) {
-        this.entity_id = entity_id;
+    public FPClient(String entityId, String name, String husband_name, String village, String ecNumber) {
+        this.entityId = entityId;
         this.name = name;
         this.husband_name = husband_name;
         this.village = village;

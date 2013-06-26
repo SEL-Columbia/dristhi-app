@@ -118,7 +118,7 @@ angular.module("smartRegistry.controllers")
         $scope.reloadPhoto = function (entityId, photoPath) {
             $scope.$apply(function () {
                 $scope.clients.filter(function (client) {
-                    return client.entity_id === entityId;
+                    return client.entityId === entityId;
                 })[0]['photo_path'] = photoPath;
             });
         };

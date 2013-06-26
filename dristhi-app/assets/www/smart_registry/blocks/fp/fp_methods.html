@@ -18,7 +18,7 @@
         </div>
         <div class="span4 full-height">
             <button class="btn btn-done btn-sr btn-new-form full-height"
-                    ng-click="openFPChangeModal(client.entity_id)">Update
+                    ng-click="openFPChangeModal(client.entityId)">Update
             </button>
         </div>
     </div>
@@ -37,7 +37,7 @@
         </div>
         <div class="span4 full-height">
             <button class="btn btn-done btn-sr btn-new-form full-height"
-                    ng-click="openForm('fp_complications', client.entity_id)">Side Effects
+                    ng-click="openForm('fp_complications', client.entityId)">Side Effects
             </button>
         </div>
     </div>
@@ -50,7 +50,7 @@
                 <button ng-switch-when="follow-up"
                         class="btn btn-primary btn-block full-height text-align-left"
                         ng-class="client.alerts[client.refill_follow_ups.alert_index].status"
-                        ng-click="openForm('fp_followup', client.entity_id, {'entityId': client.entity_id, 'alertName': client.alerts[client.refill_follow_ups.alert_index].name})">
+                        ng-click="openForm('fp_followup', client.entityId, {'entityId': client.entityId, 'alertName': client.alerts[client.refill_follow_ups.alert_index].name})">
                     <span class="text-bold">Follow Up</span>
                     <br/>
                     <span>due {{client.alerts[client.refill_follow_ups.alert_index].date | date:'dd/MM'}}</span>
@@ -58,7 +58,7 @@
                 <button ng-switch-when="refill"
                         class="btn btn-primary btn-block full-height text-align-left"
                         ng-class="client.alerts[client.refill_follow_ups.alert_index].status"
-                        ng-click="openForm('renew_fp_product', client.entity_id, {'entityId': client.entity_id, 'alertName': client.alerts[client.refill_follow_ups.alert_index].name})">
+                        ng-click="openForm('renew_fp_product', client.entityId, {'entityId': client.entityId, 'alertName': client.alerts[client.refill_follow_ups.alert_index].name})">
                     <span class="text-bold">Refill</span>
                     <br/>
                     <span>due {{client.alerts[client.refill_follow_ups.alert_index].date | date:'dd/MM'}}</span>
@@ -66,7 +66,7 @@
                 <button ng-switch-when="referral"
                         class="btn btn-primary btn-block full-height text-align-left"
                         ng-class="client.alerts[client.refill_follow_ups.alert_index].status"
-                        ng-click="openForm('fp_referral_followup', client.entity_id, {'entityId': client.entity_id, 'alertName': client.alerts[client.refill_follow_ups.alert_index].name})">
+                        ng-click="openForm('fp_referral_followup', client.entityId, {'entityId': client.entityId, 'alertName': client.alerts[client.refill_follow_ups.alert_index].name})">
                     <span class="text-bold">Referral Follow Up</span>
                     <br/>
                     <span>due {{client.alerts[client.refill_follow_ups.alert_index].date | date:'dd/MM'}}</span>

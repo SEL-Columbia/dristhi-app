@@ -19,7 +19,7 @@ function FakeFPSmartRegistryContext() {
         get: function () {
             return JSON.stringify([
                 {
-                    "entity_id": "entity 1",
+                    "entityId": "entity 1",
                     "ec_number": "2",
                     "fp_method": "male_sterilization",
                     "husband_name": "Manikyam",
@@ -54,7 +54,7 @@ function FakeFPSmartRegistryContext() {
                     ]
                 },
                 {
-                    "entity_id": "entity 2",
+                    "entityId": "entity 2",
                     "ec_number": "99",
                     "fp_method": "female_sterilization",
                     "husband_name": "Ramakrishnegowda",
@@ -84,7 +84,7 @@ function FakeFPSmartRegistryContext() {
                     ]
                 },
                 {
-                    "entity_id": "entity 3",
+                    "entityId": "entity 3",
                     "ec_number": "9",
                     "fp_method": "iud",
                     "husband_name": "Umesh",
@@ -116,7 +116,7 @@ function FakeFPSmartRegistryContext() {
                     ]
                 },
                 {
-                    "entity_id": "entity 4",
+                    "entityId": "entity 4",
                     "ec_number": "1",
                     "fp_method": "condom",
                     "husband_name": "Anji",
@@ -152,7 +152,7 @@ function FakeFPSmartRegistryContext() {
                     ]
                 },
                 {
-                    "entity_id": "entity 5",
+                    "entityId": "entity 5",
                     "ec_number": "7",
                     "fp_method": "male_sterilization",
                     "husband_name": "Hemanth",
@@ -181,7 +181,7 @@ function FakeFPSmartRegistryContext() {
                     ]
                 },
                 {
-                    "entity_id": "entity 6",
+                    "entityId": "entity 6",
                     "ec_number": "10",
                     "fp_method": "female_sterilization",
                     "husband_name": "Nandisha",
@@ -203,7 +203,7 @@ function FakeFPSmartRegistryContext() {
                     alerts: []
                 },
                 {
-                    "entity_id": "entity 7",
+                    "entityId": "entity 7",
                     "ec_number": "3",
                     "fp_method": "none",
                     "husband_name": "Biju Nayak",
@@ -226,7 +226,7 @@ function FakeFPSmartRegistryContext() {
                     alerts: []
                 },
                 {
-                    "entity_id": "entity 8",
+                    "entityId": "entity 8",
                     "ec_number": "4",
                     "fp_method": "none",
                     "husband_name": "Naresh",
@@ -248,7 +248,7 @@ function FakeFPSmartRegistryContext() {
                     alerts: []
                 },
                 {
-                    "entity_id": "entity 9",
+                    "entityId": "entity 9",
                     "ec_number": "11",
                     "fp_method": "none",
                     "husband_name": "Suresh",
@@ -270,7 +270,7 @@ function FakeFPSmartRegistryContext() {
                     alerts: []
                 },
                 {
-                    "entity_id": "entity 10",
+                    "entityId": "entity 10",
                     "ec_number": "13",
                     "fp_method": "female_sterilization",
                     "husband_name": "Kalyan",
@@ -293,7 +293,7 @@ function FakeFPSmartRegistryContext() {
                     youngest_child_age: 18
                 },
                 {
-                    "entity_id": "entity 11",
+                    "entityId": "entity 11",
                     "ec_number": "13",
                     "fp_method": "none",
                     "husband_name": "vinod",
@@ -315,7 +315,7 @@ function FakeFPSmartRegistryContext() {
                     alerts: []
                 },
                 {
-                    "entity_id": "entity 12",
+                    "entityId": "entity 12",
                     "ec_number": "8",
                     "fp_method": "female_sterilization",
                     "husband_name": "Raja",
@@ -337,7 +337,7 @@ function FakeFPSmartRegistryContext() {
                     alerts: []
                 },
                 {
-                    "entity_id": "entity 13",
+                    "entityId": "entity 13",
                     "ec_number": "12",
                     "fp_method": "none",
                     "husband_name": "Naresh",
@@ -359,7 +359,7 @@ function FakeFPSmartRegistryContext() {
                     alerts: []
                 },
                 {
-                    "entity_id": "entity 14",
+                    "entityId": "entity 14",
                     "ec_number": "1",
                     "fp_method": "condom",
                     "husband_name": "Raja",
@@ -382,7 +382,7 @@ function FakeFPSmartRegistryContext() {
                     alerts: []
                 },
                 {
-                    "entity_id": "entity 15",
+                    "entityId": "entity 15",
                     "ec_number": "15",
                     "fp_method": "ocp",
                     "husband_name": "Babu",
@@ -405,7 +405,7 @@ function FakeFPSmartRegistryContext() {
                     alerts: []
                 },
                 {
-                    "entity_id": "entity 16",
+                    "entityId": "entity 16",
                     "ec_number": "16",
                     "fp_method": "centchroman",
                     "husband_name": "Raju",
