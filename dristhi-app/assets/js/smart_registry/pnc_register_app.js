@@ -166,7 +166,11 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.daysPP = function(client) {
-            return Math.round(SmartHelper.daysBetween(new Date(Date.parse(client.deliveryDate)), new Date()));
+            return Math.floor(SmartHelper.daysBetween(new Date(Date.parse(client.deliveryDate)), $scope.getToday()));
+        };
+
+        $scope.getToday = function() {
+            return new Date();
         };
 
         $scope.isPNCOutsideFirst7Days = function(service) {
