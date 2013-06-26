@@ -36,6 +36,7 @@ public class PNCClient {
     private List<AlertDTO> alerts;
     private List<ServiceProvidedDTO> services_provided;
     private List<ChildClient> children;
+    private String entityIdToSavePhoto;
 
     public PNCClient(String entityId, String village, String name, String thayi, String deliveryDate) {
         this.entityId = entityId;
@@ -166,6 +167,11 @@ public class PNCClient {
 
     public PNCClient withChildren(List<ChildClient> children) {
         this.children = children;
+        return this;
+    }
+
+    public PNCClient withEntityIdToSavePhoto(String entityIdToSavePhoto) {
+        this.entityIdToSavePhoto = entityIdToSavePhoto;
         return this;
     }
 

@@ -78,6 +78,7 @@ public class PNCSmartRegistryController {
                             .withDeliveryType(pnc.getDetail("deliveryType"))
                             .withDeliveryComplications(pnc.getDetail("deliveryComplications"))
                             .withOtherDeliveryComplications(pnc.getDetail("otherDeliveryComplications"))
+                            .withEntityIdToSavePhoto(ec.caseId())
                             .withAlerts(alerts)
                             .withServicesProvided(servicesProvided)
                             .withChildren(findChildren(pnc.caseId()))

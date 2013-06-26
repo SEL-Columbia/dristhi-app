@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.EMPTY_LIST;
 import static junit.framework.Assert.assertEquals;
 import static org.ei.drishti.dto.AlertStatus.normal;
 import static org.ei.drishti.util.EasyMap.create;
@@ -63,12 +64,12 @@ public class PNCSmartRegistryControllerTest {
         EligibleCouple ec2 = new EligibleCouple("EC Case 2", "Woman B", "Husband B", "EC Number 2", "kavalu_hosur", "Bherya SC", emptyMap);
         EligibleCouple ec3 = new EligibleCouple("EC Case 3", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", emptyMap);
         EligibleCouple ec1 = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null, emptyMap);
-        Mother m1 = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25").withDetails(details);
-        Mother m2 = new Mother("Entity Y", "EC Case 2", "thayi 2", "2013-05-25").withDetails(details);
-        Mother m3 = new Mother("Entity Z", "EC Case 3", "thayi 3", "2013-05-25").withDetails(details);
-        PNCClient expectedClient1 = createPNCClient("Entity Z", "Woman A", "Bherya", "thayi 3", "2013-05-25").withECNumber("EC Number 1").withHusbandName("Husband A").withChildren(Collections.EMPTY_LIST);
-        PNCClient expectedClient2 = createPNCClient("Entity X", "Woman B", "kavalu_hosur", "thayi 1", "2013-05-25").withECNumber("EC Number 2").withHusbandName("Husband B").withChildren(Collections.EMPTY_LIST);
-        PNCClient expectedClient3 = createPNCClient("Entity Y", "Woman C", "Bherya", "thayi 2", "2013-05-25").withECNumber("EC Number 3").withHusbandName("Husband C").withChildren(Collections.EMPTY_LIST);
+        Mother m1 = new Mother("Entity X", "EC Case 2", "thayi 1", "2013-05-25").withDetails(details);
+        Mother m2 = new Mother("Entity Y", "EC Case 3", "thayi 2", "2013-05-25").withDetails(details);
+        Mother m3 = new Mother("Entity Z", "EC Case 1", "thayi 3", "2013-05-25").withDetails(details);
+        PNCClient expectedClient1 = createPNCClient("Entity Z", "Woman A", "Bherya", "thayi 3", "2013-05-25").withECNumber("EC Number 1").withHusbandName("Husband A").withChildren(EMPTY_LIST).withEntityIdToSavePhoto("EC Case 1");
+        PNCClient expectedClient2 = createPNCClient("Entity X", "Woman B", "kavalu_hosur", "thayi 1", "2013-05-25").withECNumber("EC Number 2").withHusbandName("Husband B").withChildren(EMPTY_LIST).withEntityIdToSavePhoto("EC Case 2");
+        PNCClient expectedClient3 = createPNCClient("Entity Y", "Woman C", "Bherya", "thayi 2", "2013-05-25").withECNumber("EC Number 3").withHusbandName("Husband C").withChildren(EMPTY_LIST).withEntityIdToSavePhoto("EC Case 3");
         when(allBeneficiaries.allPNCsWithEC()).thenReturn(asList(Pair.of(m1, ec2), Pair.of(m2, ec3), Pair.of(m3, ec1)));
 
         String clients = controller.get();
@@ -99,8 +100,8 @@ public class PNCSmartRegistryControllerTest {
                 .put("deliveryComplications", "Headache")
                 .put("otherDeliveryComplications", "Vomiting")
                 .map();
-        EligibleCouple eligibleCouple = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null, ecDetails).asOutOfArea();
-        Mother mother = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25").withDetails(motherDetails);
+        EligibleCouple eligibleCouple = new EligibleCouple("entity id 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null, ecDetails).asOutOfArea();
+        Mother mother = new Mother("Entity X", "entity id 1", "thayi 1", "2013-05-25").withDetails(motherDetails);
         when(allBeneficiaries.allPNCsWithEC()).thenReturn(asList(Pair.of(mother, eligibleCouple)));
         when(allBeneficiaries.findAllChildrenByMotherId("Entity X")).thenReturn(asList(new Child("Child 1", "Entity X", "male", mapOf("weight", "2.4")),
                 new Child("Child 2", "Entity X", "female", mapOf("weight", "2.5"))));
@@ -126,6 +127,7 @@ public class PNCSmartRegistryControllerTest {
                 .withDeliveryComplications("Headache")
                 .withOtherDeliveryComplications("Vomiting")
                 .withPhotoPath("../../img/woman-placeholder.png")
+                .withEntityIdToSavePhoto("entity id 1")
                 .withAlerts(Collections.<AlertDTO>emptyList())
                 .withChildren(asList(new ChildClient("male", "2.4"), new ChildClient("female", "2.5")))
                 .withServicesProvided(Collections.<ServiceProvidedDTO>emptyList());
@@ -140,8 +142,7 @@ public class PNCSmartRegistryControllerTest {
     @Test
     public void shouldCreatePNCClientsWithPNC1Alert() throws Exception {
         EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 1", "Bherya", "Bherya SC", emptyMap);
-        Mother mother = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25");
-
+        Mother mother = new Mother("Entity X", "entity id 1", "thayi 1", "2013-05-25");
         Alert pnc1Alert = new Alert("entity id 1", "PNC", "PNC 1", normal, "2013-01-01", "2013-02-01");
         when(allBeneficiaries.allPNCsWithEC()).thenReturn(asList(Pair.of(mother, ec)));
         when(alertService.findByEntityIdAndAlertNames("Entity X", PNC_ALERTS)).thenReturn(asList(pnc1Alert));
@@ -155,15 +156,16 @@ public class PNCSmartRegistryControllerTest {
         PNCClient expectedEC = createPNCClient("Entity X", "Woman C", "Bherya", "thayi 1", "2013-05-25")
                 .withECNumber("EC Number 1")
                 .withHusbandName("Husband C")
+                .withEntityIdToSavePhoto("entity id 1")
                 .withAlerts(asList(expectedAlertDto))
-                .withChildren(Collections.EMPTY_LIST);
+                .withChildren(EMPTY_LIST);
         assertEquals(asList(expectedEC), actualClients);
     }
 
     @Test
     public void shouldCreatePNCClientsWithServicesProvided() throws Exception {
         EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 1", "Bherya", "Bherya SC", emptyMap);
-        Mother mother = new Mother("Entity X", "EC Case 1", "thayi 1", "2013-05-25");
+        Mother mother = new Mother("Entity X", "entity id 1", "thayi 1", "2013-05-25");
         when(allBeneficiaries.allPNCsWithEC()).thenReturn(asList(Pair.of(mother, ec)));
         when(alertService.findByEntityIdAndAlertNames("Entity X", PNC_ALERTS)).thenReturn(Collections.<Alert>emptyList());
         when(serviceProvidedService.findByEntityIdAndServiceNames("Entity X", PNC_SERVICES))
@@ -180,8 +182,9 @@ public class PNCSmartRegistryControllerTest {
         PNCClient expectedEC = createPNCClient("Entity X", "Woman C", "Bherya", "thayi 1", "2013-05-25")
                 .withECNumber("EC Number 1")
                 .withHusbandName("Husband C")
+                .withEntityIdToSavePhoto("entity id 1")
                 .withServicesProvided(expectedServicesProvided)
-                .withChildren(Collections.EMPTY_LIST);
+                .withChildren(EMPTY_LIST);
         assertEquals(asList(expectedEC), actualClients);
     }
 
