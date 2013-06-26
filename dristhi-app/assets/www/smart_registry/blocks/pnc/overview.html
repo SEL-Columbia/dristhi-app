@@ -10,7 +10,7 @@
         <span class="text-bold">{{client.deliveryType | humanize}}</span>
     </p>
 </div>
-<div class="span3 span-no-margin width-without-margins line-right span-content">{{client.deliveryComplications |
+<div class="span3 span-no-margin width-without-margins line-right span-content hide-extra">{{client.deliveryComplications |
     camelCase | commaSeparated | humanize}}
 </div>
 <div class="span2 span-no-margin width-without-margins line-right span-content" ng-show="client.fp_method">
