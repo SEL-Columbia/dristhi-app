@@ -51,6 +51,10 @@
                 </div>
                 <div class="span5 full-height span-no-margin width-without-margins span-content">
                     <!--IFA-->
+                    <button class="btn btn-done btn-sr btn-new-form full-height"
+                            ng-show="(!client.visits.ifa['IFA'] && !client.visits.ifa.next)"
+                            ng-click="openMicroForm('ifa', client.entityId, {'entityId': client.entityId})">IFA
+                    </button>
                     <button class="btn btn-primary btn-sr full-height"
                        ng-show="client.visits.ifa.next && client.visits.ifa.next.status != 'complete'"
                        ng-class="client.visits.ifa.next.status"

@@ -47,11 +47,6 @@ function FakeANCSmartRegistryContext() {
                             status: 'normal'
                         },
                         {
-                            name: 'IFA 2',
-                            date: '26/05',
-                            status: 'upcoming'
-                        },
-                        {
                             name: 'Delivery Plan',
                             date: '2012-05-18',
                             status: 'urgent'
@@ -63,20 +58,6 @@ function FakeANCSmartRegistryContext() {
                             date: '04/04',
                             data: {
                                 dose: '80'
-                            }
-                        },
-                        {
-                            name: 'IFA',
-                            date: '04/04',
-                            data: {
-                                dose: 100
-                            }
-                        },
-                        {
-                            name: 'IFA',
-                            date: '05/04',
-                            data: {
-                                dose: 80
                             }
                         },
                         {
