@@ -19,6 +19,64 @@ function FakeANCSmartRegistryContext() {
         get: function () {
             return JSON.stringify([
                 {
+                    "age": "20",
+                    "alerts": [],
+                    "ancNumber": "1",
+                    "caste": "Others",
+                    "ec_number": "160",
+                    "economicStatus": "BPL",
+                    "edd": "2013-10-03T00:00:00.000",
+                    "entityId": "1f879427-4497-4bac-8193-b151f3a3d55a",
+                    "entityIdToSavePhoto": "ff425878-4998-5adf-c64e-9e1e31cd1311",
+                    "husband_name": "Ajmath",
+                    "village": "half_bherya",
+                    "thayi": "1234567",
+                    "lmp": "2012-12-27",
+                    "locationStatus": "in_area",
+                    "name": "Asma",
+                    "photo_path": "../../img/woman-placeholder.png",
+                    "riskFactors": " Anaemia",
+                    "services_provided": [
+                        {
+                            "data": {
+                                "dose": "TT 1"
+                            },
+                            "date": "2013-06-27",
+                            "name": "TT 1"
+                        },
+                        {
+                            "data": {
+                                "dose": "TT 2"
+                            },
+                            "date": "2013-06-27",
+                            "name": "TT 2"
+                        },
+                        {
+                            "data": {
+                                "hbLevel": "8"
+                            },
+                            "date": "2013-06-27",
+                            "name": "Hb Test"
+                        },
+                        {
+                            "data": {
+                                "hbLevel": "12.5"
+                            },
+                            "date": "2013-06-27",
+                            "name": "Hb Test"
+                        },
+                        {
+                            "data": {
+                                "dose": "30"
+                            },
+                            "date": "2013-06-27",
+                            "name": "IFA"
+                        }
+                    ],
+                    "isHighRisk": false,
+                    "isHighPriority": false
+                },
+                {
                     entityId: "entity id 1",
                     entityIdToSavePhoto: "entity id 1",
                     village: 'Chikkabherya',
