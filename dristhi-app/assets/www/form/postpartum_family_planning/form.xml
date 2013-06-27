@@ -754,7 +754,7 @@
         <label class="">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/lam"
-                   data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/exclusively_bf  = 'yes' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/monthly_bleeding  = 'no' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6mos_pp  = 'yes', 'yes', 'no')"
+                   data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/exclusively_bf  = 'yes' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/monthly_bleeding  = 'no' and ( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6mos_pp  = 'yes' or  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6wks_pp  = 'yes'), 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
         <label class="">
