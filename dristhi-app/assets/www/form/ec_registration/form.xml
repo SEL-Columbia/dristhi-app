@@ -649,7 +649,7 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/EC_Registration_EngKan/youngestchild_date_of_birth"
-               required="required" data-constraint=".&lt; ( /EC_Registration_EngKan/today  - 6570)"
+               required="required" data-constraint=".&gt; ( /EC_Registration_EngKan/today  - 6570)"
                data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0" data-type-xml="date"/>
     </label>
     <fieldset class="trigger jr-branch pre-init" name="/EC_Registration_EngKan/youngestchild_age_note"
