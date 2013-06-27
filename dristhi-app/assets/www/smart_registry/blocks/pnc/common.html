@@ -4,9 +4,9 @@
         <div ng-show="client.isHighPriority" class="flag flag-hp"></div>
         <div ng-show="client.isHighRisk" class="flag flag-hr"></div>
         <div ng-show="client.economicStatus && (client.economicStatus.toUpperCase() == 'BPL')" class="flag flag-bpl"></div>
-        <ng:switch on="client.caste">
-            <div ng-switch-when="sc" class="flag flag-sc"></div>
-            <div ng-switch-when="st" class="flag flag-st"></div>
+        <ng:switch on="client.caste.toUpperCase()">
+            <div ng-switch-when="SC" class="flag flag-sc"></div>
+            <div ng-switch-when="ST" class="flag flag-st"></div>
         </ng:switch>
     </div>
 </div>
