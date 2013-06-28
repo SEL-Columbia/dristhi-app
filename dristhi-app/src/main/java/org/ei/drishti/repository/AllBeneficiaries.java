@@ -93,4 +93,8 @@ public class AllBeneficiaries {
             closeMother(mother.caseId());
         }
     }
+
+    public List<Child> allChildrenWithMotherAndEC() {
+        return null;
+    }
 }

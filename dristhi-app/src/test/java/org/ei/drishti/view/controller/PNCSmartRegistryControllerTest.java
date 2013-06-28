@@ -129,7 +129,7 @@ public class PNCSmartRegistryControllerTest {
                 .withPhotoPath("../../img/woman-placeholder.png")
                 .withEntityIdToSavePhoto("entity id 1")
                 .withAlerts(Collections.<AlertDTO>emptyList())
-                .withChildren(asList(new ChildClient("male", "2.4"), new ChildClient("female", "2.5")))
+                .withChildren(asList(new ChildClient("child id 1", "male", "2.4", "thayi 1"), new ChildClient("child id 2", "female", "2.5", "thayi 1")))
                 .withServicesProvided(Collections.<ServiceProvidedDTO>emptyList());
 
         String clients = controller.get();

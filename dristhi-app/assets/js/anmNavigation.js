@@ -41,6 +41,12 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
+    var bindToChildSmartRegistry = function (callbackToRunBeforeAnyAction, identifierOfElement) {
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
+            anmNavigationBridge.delegateToChildSmartRegistry();
+        });
+    };
+
     var bindToLaunchForm = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function (e) {
             anmNavigationBridge.delegateToFormLaunchView($(e.currentTarget).data("formname"), $(e.currentTarget).data("entityid"));
@@ -95,6 +101,9 @@ function ANMNavigationBridge() {
         delegateToPNCSmartRegistry: function () {
             return anmNavigationContext.startPNCSmartRegistry();
         },
+        delegateToChildSmartRegistry: function () {
+            return anmNavigationContext.startChildSmartRegistry();
+        },
         takePhoto: function (entityId, entityType) {
             return anmNavigationContext.takePhoto(entityId, entityType);
         },
@@ -133,6 +142,9 @@ function FakeANMNavigationContext() {
         },
         startPNCSmartRegistry: function () {
             window.location = "smart_registry/pnc_register.html";
+        },
+        startChildSmartRegistry: function () {
+            window.location = "smart_registry/child_register.html";
         },
         takePhoto: function (entityId, entityType) {
             alert("Taking photo for:" + entityId + " of type: " + entityType);

@@ -14,6 +14,8 @@ public class Child {
     private final String gender;
     private final Map<String, String> details;
     private boolean isClosed;
+    private Mother mother;
+    private EligibleCouple eligibleCouple;
 
     public Child(String caseId, String motherCaseId, String thayiCardNumber, String dateOfBirth, String gender, Map<String, String> details) {
         this.caseId = caseId;
@@ -52,6 +54,14 @@ public class Child {
         return gender;
     }
 
+    public Mother mother() {
+        return mother;
+    }
+
+    public EligibleCouple ec() {
+        return eligibleCouple;
+    }
+
     public Map<String, String> details() {
         return details;
     }
@@ -61,7 +71,7 @@ public class Child {
     }
 
     public boolean isHighRisk() {
-        return "yes".equals(details.get("isHighRiskChild"));
+        return "yes".equals(details.get("isHighRiskBaby"));
     }
 
     public boolean isClosed() {
@@ -100,5 +110,15 @@ public class Child {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
+    }
+
+    public Child withMother(Mother mother) {
+        this.mother = mother;
+        return this;
+    }
+
+    public Child withEC(EligibleCouple eligibleCouple) {
+        this.eligibleCouple = eligibleCouple;
+        return this;
     }
 }

@@ -81,7 +81,7 @@ public class PNCSmartRegistryController {
                             .withEntityIdToSavePhoto(ec.caseId())
                             .withAlerts(alerts)
                             .withServicesProvided(servicesProvided)
-                            .withChildren(findChildren(pnc.caseId()))
+                            .withChildren(findChildren(pnc))
                     );
                 }
                 sortByName(pncClients);
@@ -123,17 +123,17 @@ public class PNCSmartRegistryController {
     private void sortByName(List<PNCClient> pncClients) {
         sort(pncClients, new Comparator<PNCClient>() {
             @Override
-            public int compare(PNCClient oneANCClient, PNCClient anotherANCClient) {
-                return oneANCClient.wifeName().compareToIgnoreCase(anotherANCClient.wifeName());
+            public int compare(PNCClient onePNCClient, PNCClient anotherPNCClient) {
+                return onePNCClient.wifeName().compareToIgnoreCase(anotherPNCClient.wifeName());
             }
         });
     }
 
-    private List<ChildClient> findChildren(String entityId) {
-        List<Child> children = allBeneficiaries.findAllChildrenByMotherId(entityId);
+    private List<ChildClient> findChildren(Mother mother) {
+        List<Child> children = allBeneficiaries.findAllChildrenByMotherId(mother.caseId());
         List<ChildClient> childClientList = new ArrayList<ChildClient>();
         for (Child child : children) {
-            childClientList.add(new ChildClient(child.gender(), child.getDetail("weight")));
+            childClientList.add(new ChildClient(child.caseId(), child.gender(), child.getDetail("weight"), mother.thaayiCardNumber()));
         }
         return childClientList;
     }

@@ -649,7 +649,7 @@ function program35(depth0,data) {
   buffer += escapeExpression(stack2)
     + "\">Close child record</div>\n</div>\n\n<div id=\"content\" class=\"content-detail affected-by-sidepanel\">\n    <div class=\"status-bar affected-by-sidepanel\">\n        <span class=\"left-text\">Child</span>\n        ";
   options = {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data};
-  stack2 = ((stack1 = helpers.ifFalse || depth0.ifFalse),stack1 ? stack1.call(depth0, ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.isHighRiskChild), options) : helperMissing.call(depth0, "ifFalse", ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.isHighRiskChild), options));
+  stack2 = ((stack1 = helpers.ifFalse || depth0.ifFalse),stack1 ? stack1.call(depth0, ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.isHighRiskBaby), options) : helperMissing.call(depth0, "ifFalse", ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.isHighRiskBaby), options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n    </div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span12\">\n                <ul class=\"client-details unstyled\">\n                    <li class=\"big-text\">B/O ";
   options = {hash:{},data:data};
@@ -683,7 +683,7 @@ function program35(depth0,data) {
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n\n        <div class=\"divider\"></div>\n    </div>\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Summary\n        </div>\n        <div class=\"well well-for-beneficiary-details-no-padding\">\n            <div class=\"container-fluid container-no-padding\">\n                <div class=\"row-fluid beneficiary-detail-component\">\n                    <div class=\"beneficiary-detail-content\">\n                        ";
   options = {hash:{},inverse:self.program(27, program27, data),fn:self.program(25, program25, data),data:data};
-  stack2 = ((stack1 = helpers.ifFalse || depth0.ifFalse),stack1 ? stack1.call(depth0, ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.isHighRiskChild), options) : helperMissing.call(depth0, "ifFalse", ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.isHighRiskChild), options));
+  stack2 = ((stack1 = helpers.ifFalse || depth0.ifFalse),stack1 ? stack1.call(depth0, ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.isHighRiskBaby), options) : helperMissing.call(depth0, "ifFalse", ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.isHighRiskBaby), options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "\n                    </div>\n                    <div class=\"divider\"></div>\n                    <div class=\"beneficiary-detail-content\">\n                        <div class=\"span6 text-center right-border padded\">\n                            <span class=\"big-text\">"
     + escapeExpression(((stack1 = ((stack1 = depth0.childDetails),stack1 == null || stack1 === false ? stack1 : stack1.age)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))

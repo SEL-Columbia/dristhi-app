@@ -25,7 +25,7 @@
 <div id="content" class="content-detail affected-by-sidepanel">
     <div class="status-bar affected-by-sidepanel">
         <span class="left-text">Child</span>
-        {{#ifFalse details.isHighRiskChild}}
+        {{#ifFalse details.isHighRiskBaby}}
         <span class="right-text high-risk">High Risk</span>
         {{else}}
         <span class="right-text normal-risk">Normal Risk</span>
@@ -124,7 +124,7 @@
             <div class="container-fluid container-no-padding">
                 <div class="row-fluid beneficiary-detail-component">
                     <div class="beneficiary-detail-content">
-                        {{#ifFalse details.isHighRiskChild}}
+                        {{#ifFalse details.isHighRiskBaby}}
                         <div class="big-text high-risk">
                             <i class="icon-circle-arrow-up priority-indicator-icon"></i> High Risk</span>
                         </div>
