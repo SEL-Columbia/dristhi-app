@@ -9,9 +9,4 @@ public class PNCSmartRegistryActivity extends SmartRegisterActivity {
                 context.allEligibleCouples(), context.allBeneficiaries(), context.listCache()), "context");
         webView.loadUrl("file:///android_asset/www/smart_registry/pnc_register.html");
     }
-
-    @Override
-    protected void onResumption() {
-        webView.loadUrl("javascript:if(window.pageView) {window.pageView.reload();}");
-    }
 }

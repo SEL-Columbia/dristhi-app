@@ -67,4 +67,9 @@ public abstract class SmartRegisterActivity extends SecuredWebActivity {
             Context.getInstance().alertService().changeAlertStatusToInProcess(metaDataMap.get(ENTITY_ID), metaDataMap.get(ALERT_NAME_PARAM));
         }
     }
+
+    @Override
+    protected void onResumption() {
+        webView.loadUrl("javascript:if(window.pageView) {window.pageView.reload();}");
+    }
 }
