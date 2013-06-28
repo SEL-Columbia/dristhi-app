@@ -17,12 +17,6 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
-    var bindToANCList = function (callbackToRunBeforeAnyAction, identifierOfElement) {
-        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
-            anmNavigationBridge.delegateToANCList();
-        });
-    };
-
     var bindToPNCList = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             anmNavigationBridge.delegateToPNCList();
@@ -70,10 +64,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
         populateInto: function (cssIdentifierOfSidePanelElement, displayTemplate, callbackToRunBeforeAnyAction) {
             populateDataInto(cssIdentifierOfSidePanelElement, displayTemplate);
             bindToReports(callbackToRunBeforeAnyAction, "#reportsButton");
-
             bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
-//            bindToANCList(callbackToRunBeforeAnyAction, "#ancMenuOption");
-//            bindToPNCList(callbackToRunBeforeAnyAction, "#pncMenuOption");
             bindToChildList(callbackToRunBeforeAnyAction, "#childMenuOption");
             bindToFPSmartRegistry(callbackToRunBeforeAnyAction, "#fpSmartRegistryOption");
             bindToANCSmartRegistry(callbackToRunBeforeAnyAction, "#ancSmartRegistryOption");
@@ -94,9 +85,6 @@ function ANMNavigationBridge() {
         },
         delegateToECList: function () {
             return anmNavigationContext.startECList();
-        },
-        delegateToANCList: function () {
-            return anmNavigationContext.startANCList();
         },
         delegateToPNCList: function () {
             return anmNavigationContext.startPNCList();
@@ -139,9 +127,6 @@ function FakeANMNavigationContext() {
         },
         startECList: function () {
             window.location.href = "ec_list.html";
-        },
-        startANCList: function () {
-            window.location.href = "anc_list.html";
         },
         startPNCList: function () {
             window.location.href = "pnc_list.html";

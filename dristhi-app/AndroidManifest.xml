@@ -93,10 +93,6 @@
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
             android:screenOrientation="landscape"/>
         <activity
-            android:name=".view.activity.ANCListActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-            android:screenOrientation="landscape"/>
-        <activity
             android:name=".view.activity.ANCDetailActivity"
             android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
             android:screenOrientation="landscape"/>
