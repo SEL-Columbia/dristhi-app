@@ -17,12 +17,6 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
-    var bindToPNCList = function (callbackToRunBeforeAnyAction, identifierOfElement) {
-        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
-            anmNavigationBridge.delegateToPNCList();
-        });
-    };
-
     var bindToChildList = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             anmNavigationBridge.delegateToChildList();
@@ -86,9 +80,6 @@ function ANMNavigationBridge() {
         delegateToECList: function () {
             return anmNavigationContext.startECList();
         },
-        delegateToPNCList: function () {
-            return anmNavigationContext.startPNCList();
-        },
         delegateToChildList: function () {
             return anmNavigationContext.startChildList();
         },
@@ -127,9 +118,6 @@ function FakeANMNavigationContext() {
         },
         startECList: function () {
             window.location.href = "ec_list.html";
-        },
-        startPNCList: function () {
-            window.location.href = "pnc_list.html";
         },
         startChildList: function () {
             window.location.href = "child_list.html";

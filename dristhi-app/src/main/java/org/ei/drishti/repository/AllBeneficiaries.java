@@ -24,10 +24,6 @@ public class AllBeneficiaries {
         this.timelineEventRepository = timelineEventRepository;
     }
 
-    public List<Mother> allPNCs() {
-        return motherRepository.allPNCs();
-    }
-
     public List<Child> allChildren() {
         return childRepository.all();
     }

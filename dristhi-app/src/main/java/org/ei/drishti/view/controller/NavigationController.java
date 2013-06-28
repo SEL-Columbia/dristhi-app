@@ -23,10 +23,6 @@ public class NavigationController {
         activity.startActivity(new Intent(activity, EligibleCoupleListActivity.class));
     }
 
-    public void startPNCList() {
-        activity.startActivity(new Intent(activity, PNCListActivity.class));
-    }
-
     public void startChildList() {
         activity.startActivity(new Intent(activity, ChildListActivity.class));
     }
