@@ -65,7 +65,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
             populateDataInto(cssIdentifierOfSidePanelElement, displayTemplate);
             bindToReports(callbackToRunBeforeAnyAction, "#reportsButton");
             bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
-            bindToChildList(callbackToRunBeforeAnyAction, "#childMenuOption");
+            bindToChildSmartRegistry(callbackToRunBeforeAnyAction, "#childMenuOption");
             bindToFPSmartRegistry(callbackToRunBeforeAnyAction, "#fpSmartRegistryOption");
             bindToANCSmartRegistry(callbackToRunBeforeAnyAction, "#ancSmartRegistryOption");
             bindToPNCSmartRegistry(callbackToRunBeforeAnyAction, "#pncSmartRegistryOption");

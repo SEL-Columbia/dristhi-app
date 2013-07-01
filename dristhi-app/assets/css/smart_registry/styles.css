@@ -226,6 +226,11 @@ a:focus {
     display: inline-block;
 }
 
+.client-parents-name {
+    max-width: 160px;
+    display: inline-block;
+}
+
 .client-age {
     font-size: 100%;
     float: right;
