@@ -41,6 +41,13 @@ public class EligibleCouple {
         return this;
     }
 
+    public EligibleCouple withOutOfArea(String outOfArea) {
+        if (Boolean.parseBoolean(outOfArea)) {
+            isOutOfArea = true;
+        }
+        return this;
+    }
+
     public String wifeName() {
         return wifeName;
     }

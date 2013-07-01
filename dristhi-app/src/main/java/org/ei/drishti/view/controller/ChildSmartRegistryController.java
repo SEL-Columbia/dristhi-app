@@ -46,7 +46,7 @@ public class ChildSmartRegistryController {
                 List<ChildClient> childrenClient = new ArrayList<ChildClient>();
 
                 for (Child child : children) {
-                    String photoPath = child.gender() == "female" ? "../../img/icons/child-girlinfant@3x.png" : "../../img/icons/child-infant@3x.png";
+                    String photoPath = "female".equalsIgnoreCase(child.gender()) ? "../../img/icons/child-girlinfant@3x.png" : "../../img/icons/child-infant@3x.png";
                     List<AlertDTO> alerts = getAlerts(child.caseId());
                     List<ServiceProvidedDTO> servicesProvided = getServicesProvided(child.caseId());
                     ChildClient childClient =

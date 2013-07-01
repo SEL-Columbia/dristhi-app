@@ -2,9 +2,7 @@ package org.ei.drishti.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.Child;
-import org.ei.drishti.domain.TimelineEvent;
+import org.ei.drishti.domain.*;
 import org.ei.drishti.dto.AlertStatus;
 import org.ei.drishti.util.Session;
 
@@ -17,6 +15,8 @@ import static org.ei.drishti.util.EasyMap.mapOf;
 public class ChildRepositoryTest extends AndroidTestCase {
     private ChildRepository repository;
     private TimelineEventRepository timelineEventRepository;
+    private MotherRepository motherRepository;
+    private EligibleCoupleRepository ecRepository;
     private AlertRepository alertRepository;
 
     private static final Map<String, String> EXTRA_DETAILS = mapOf("some-key", "some-value");
@@ -24,11 +24,13 @@ public class ChildRepositoryTest extends AndroidTestCase {
     @Override
     protected void setUp() throws Exception {
         timelineEventRepository = new TimelineEventRepository();
+        motherRepository = new MotherRepository();
+        ecRepository = new EligibleCoupleRepository();
         alertRepository = new AlertRepository();
         repository = new ChildRepository(timelineEventRepository, alertRepository);
 
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
-        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, timelineEventRepository, alertRepository);
+        new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, timelineEventRepository, alertRepository, motherRepository, ecRepository);
     }
 
     public void testShouldInsertChildForExistingMother() throws Exception {
@@ -137,5 +139,26 @@ public class ChildRepositoryTest extends AndroidTestCase {
         List<Child> childrenByCaseIds = repository.findChildrenByCaseIds("CASE A", "CASE C");
 
         assertEquals(asList(child1, child3), childrenByCaseIds);
+    }
+
+    public void testShouldFetchAllChildrenWithECAndMother() throws Exception {
+        Map<String, String> ecDetails = create("wifeAge", "26")
+                .put("caste", "others")
+                .put("economicStatus", "apl")
+                .map();
+        Map<String, String> childDetails = create("weight", "3")
+                .put("name", "chinnu")
+                .put("isHighRiskBaby", "yes")
+                .map();
+        EligibleCouple ec = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, ecDetails).asOutOfArea();
+        Mother mother = new Mother("mother id 1", "ec id 1", "thaayi no 1", "2013-01-01").withDetails(Collections.<String, String>emptyMap());
+        Child child = new Child("child id 1", "mother id 1", "thaayi no 1", "2013-01-02", "female", childDetails).withMother(mother).withEC(ec);
+        repository.add(child);
+        motherRepository.add(mother);
+        ecRepository.add(ec);
+
+        List<Child> children = repository.allChildrenWithMotherAndEC();
+
+        assertTrue(children.contains(child));
     }
 }

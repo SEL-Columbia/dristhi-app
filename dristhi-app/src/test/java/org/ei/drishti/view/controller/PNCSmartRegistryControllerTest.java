@@ -103,8 +103,8 @@ public class PNCSmartRegistryControllerTest {
         EligibleCouple eligibleCouple = new EligibleCouple("entity id 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null, ecDetails).asOutOfArea();
         Mother mother = new Mother("Entity X", "entity id 1", "thayi 1", "2013-05-25").withDetails(motherDetails);
         when(allBeneficiaries.allPNCsWithEC()).thenReturn(asList(Pair.of(mother, eligibleCouple)));
-        when(allBeneficiaries.findAllChildrenByMotherId("Entity X")).thenReturn(asList(new Child("Child 1", "Entity X", "male", mapOf("weight", "2.4")),
-                new Child("Child 2", "Entity X", "female", mapOf("weight", "2.5"))));
+        when(allBeneficiaries.findAllChildrenByMotherId("Entity X")).thenReturn(asList(new Child("child id 1", "Entity X", "male", mapOf("weight", "2.4")),
+                new Child("child id 2", "Entity X", "female", mapOf("weight", "2.5"))));
         PNCClient expectedPNCClient = new PNCClient("Entity X", "Bherya", "Woman A", "thayi 1", "2013-05-25")
                 .withECNumber("EC Number 1")
                 .withIsHighPriority(false)

@@ -22,18 +22,18 @@ import static org.apache.commons.lang3.StringUtils.repeat;
 public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String EC_SQL = "CREATE TABLE eligible_couple(id VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, " +
             "ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR, isClosed VARCHAR, photoPath VARCHAR)";
-    public static final String CASE_ID_COLUMN = "id";
-    private static final String EC_NUMBER_COLUMN = "ecNumber";
-    private static final String WIFE_NAME_COLUMN = "wifeName";
-    private static final String HUSBAND_NAME_COLUMN = "husbandName";
-    private static final String VILLAGE_NAME_COLUMN = "village";
-    private static final String SUBCENTER_NAME_COLUMN = "subCenter";
+    public static final String ID_COLUMN = "id";
+    public static final String EC_NUMBER_COLUMN = "ecNumber";
+    public static final String WIFE_NAME_COLUMN = "wifeName";
+    public static final String HUSBAND_NAME_COLUMN = "husbandName";
+    public static final String VILLAGE_NAME_COLUMN = "village";
+    public static final String SUBCENTER_NAME_COLUMN = "subCenter";
     public static final String IS_OUT_OF_AREA_COLUMN = "isOutOfArea";
-    private static final String DETAILS_COLUMN = "details";
+    public static final String DETAILS_COLUMN = "details";
     private static final String IS_CLOSED_COLUMN = "isClosed";
     public static final String PHOTO_PATH_COLUMN = "photoPath";
     public static final String EC_TABLE_NAME = "eligible_couple";
-    public static final String[] EC_TABLE_COLUMNS = new String[]{CASE_ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN,
+    public static final String[] EC_TABLE_COLUMNS = new String[]{ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN,
             EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN,
             IS_CLOSED_COLUMN, PHOTO_PATH_COLUMN};
 
@@ -60,7 +60,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
 
         ContentValues valuesToUpdate = new ContentValues();
         valuesToUpdate.put(DETAILS_COLUMN, new Gson().toJson(details));
-        database.update(EC_TABLE_NAME, valuesToUpdate, CASE_ID_COLUMN + " = ?", new String[]{caseId});
+        database.update(EC_TABLE_NAME, valuesToUpdate, ID_COLUMN + " = ?", new String[]{caseId});
     }
 
     public void mergeDetails(String caseId, Map<String, String> details) {
@@ -75,7 +75,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         mergedDetails.putAll(details);
         ContentValues valuesToUpdate = new ContentValues();
         valuesToUpdate.put(DETAILS_COLUMN, new Gson().toJson(mergedDetails));
-        database.update(EC_TABLE_NAME, valuesToUpdate, CASE_ID_COLUMN + " = ?", new String[]{caseId});
+        database.update(EC_TABLE_NAME, valuesToUpdate, ID_COLUMN + " = ?", new String[]{caseId});
     }
 
     public List<EligibleCouple> allEligibleCouples() {
@@ -87,14 +87,14 @@ public class EligibleCoupleRepository extends DrishtiRepository {
 
     public List<EligibleCouple> findByCaseIDs(String... caseIds) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)", EC_TABLE_NAME, CASE_ID_COLUMN,
+        Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)", EC_TABLE_NAME, ID_COLUMN,
                 insertPlaceholdersForInClause(caseIds.length)), caseIds);
         return readAllEligibleCouples(cursor);
     }
 
     public EligibleCouple findByCaseID(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, CASE_ID_COLUMN + " = ?", new String[]{caseId},
+        Cursor cursor = database.query(EC_TABLE_NAME, EC_TABLE_COLUMNS, ID_COLUMN + " = ?", new String[]{caseId},
                 null, null, null, null);
         List<EligibleCouple> couples = readAllEligibleCouples(cursor);
         if (couples.isEmpty()) {
@@ -127,18 +127,18 @@ public class EligibleCoupleRepository extends DrishtiRepository {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(PHOTO_PATH_COLUMN, imagePath);
-        database.update(EC_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
+        database.update(EC_TABLE_NAME, values, ID_COLUMN + " = ?", new String[]{caseId});
     }
 
     public void close(String caseId) {
         ContentValues values = new ContentValues();
         values.put(IS_CLOSED_COLUMN, TRUE.toString());
-        masterRepository.getWritableDatabase().update(EC_TABLE_NAME, values, CASE_ID_COLUMN + " = ?", new String[]{caseId});
+        masterRepository.getWritableDatabase().update(EC_TABLE_NAME, values, ID_COLUMN + " = ?", new String[]{caseId});
     }
 
     private ContentValues createValuesFor(EligibleCouple eligibleCouple) {
         ContentValues values = new ContentValues();
-        values.put(CASE_ID_COLUMN, eligibleCouple.caseId());
+        values.put(ID_COLUMN, eligibleCouple.caseId());
         values.put(WIFE_NAME_COLUMN, eligibleCouple.wifeName());
         values.put(HUSBAND_NAME_COLUMN, eligibleCouple.husbandName());
         values.put(EC_NUMBER_COLUMN, eligibleCouple.ecNumber());

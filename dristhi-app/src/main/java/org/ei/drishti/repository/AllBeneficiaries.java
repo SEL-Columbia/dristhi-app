@@ -95,6 +95,6 @@ public class AllBeneficiaries {
     }
 
     public List<Child> allChildrenWithMotherAndEC() {
-        return null;
+        return childRepository.allChildrenWithMotherAndEC();
     }
 }
