@@ -9,16 +9,16 @@ public class ANC {
     private String womanName;
     private String husbandName;
     private String villageName;
-    private String thaayiCardNumber;
+    private String thayiCardNumber;
     private String ecNumber;
     private boolean isHighRisk;
 
-    public ANC(String caseId, String thaayiCardNumber, String womanName, String husbandName, String villageName, String ecNumber, boolean highRisk) {
+    public ANC(String caseId, String thayiCardNumber, String womanName, String husbandName, String villageName, String ecNumber, boolean highRisk) {
         this.caseId = caseId;
         this.womanName = womanName;
         this.husbandName = husbandName;
         this.villageName = villageName;
-        this.thaayiCardNumber = thaayiCardNumber;
+        this.thayiCardNumber = thayiCardNumber;
         this.ecNumber = ecNumber;
         this.isHighRisk = highRisk;
     }

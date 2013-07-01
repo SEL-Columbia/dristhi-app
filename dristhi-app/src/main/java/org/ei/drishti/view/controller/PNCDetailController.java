@@ -50,7 +50,7 @@ public class PNCDetailController {
         LocalDate deliveryDate = LocalDate.parse(mother.referenceDate());
         Days postPartumDuration = Days.daysBetween(deliveryDate, DateUtil.today());
 
-        PNCDetail detail = new PNCDetail(caseId, mother.thaayiCardNumber(),
+        PNCDetail detail = new PNCDetail(caseId, mother.thayiCardNumber(),
                 new CoupleDetails(couple.wifeName(), couple.husbandName(), couple.ecNumber(), couple.isOutOfArea()).withCaste(couple.getDetail("caste")).withEconomicStatus(couple.getDetail("economicStatus")),
                 new LocationDetails(couple.village(), couple.subCenter()),
                 new PregnancyOutcomeDetails(deliveryDate.toString(), postPartumDuration.getDays()))

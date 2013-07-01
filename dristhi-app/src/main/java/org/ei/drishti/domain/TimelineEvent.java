@@ -52,9 +52,9 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC Registered", "LMP: " + formatDate(referenceDate), null);
     }
 
-    public static TimelineEvent forStartOfPregnancyForEC(String ecCaseId, String thaayiCardNumber, String referenceDate) {
+    public static TimelineEvent forStartOfPregnancyForEC(String ecCaseId, String thayiCardNumber, String referenceDate) {
         return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC Registered", "LMP: " + formatDate(referenceDate),
-                "Thayi No: " + thaayiCardNumber);
+                "Thayi No: " + thayiCardNumber);
     }
 
     public static TimelineEvent forChangeOfFPMethod(String caseId, String oldFPMethod, String newFPMethod, String dateOfFPChange) {

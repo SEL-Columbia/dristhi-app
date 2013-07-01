@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class ANCDetail {
     private final String caseId;
-    private final String thaayiCardNumber;
+    private final String thayiCardNumber;
     private final CoupleDetails coupleDetails;
 
     private final LocationDetails location;
@@ -21,9 +21,9 @@ public class ANCDetail {
     private List<TimelineEvent> timelineEvents;
     private Map<String, String> details;
 
-    public ANCDetail(String caseId, String thaayiCardNumber, CoupleDetails coupleDetails, LocationDetails location, PregnancyDetails pregnancyDetails) {
+    public ANCDetail(String caseId, String thayiCardNumber, CoupleDetails coupleDetails, LocationDetails location, PregnancyDetails pregnancyDetails) {
         this.caseId = caseId;
-        this.thaayiCardNumber = thaayiCardNumber;
+        this.thayiCardNumber = thayiCardNumber;
         this.coupleDetails = coupleDetails;
         this.location = location;
         this.pregnancyDetails = pregnancyDetails;

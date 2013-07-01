@@ -58,7 +58,7 @@ public class FPSmartRegistryController {
 
                 for (EligibleCouple ec : ecs) {
                     Mother mother = allBeneficiaries.findMotherByECCaseId(ec.caseId());
-                    String thayiCardNumber = mother == null ? "" : mother.thaayiCardNumber();
+                    String thayiCardNumber = mother == null ? "" : mother.thayiCardNumber();
                     String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
                     List<AlertDTO> alerts = getFPAlertsForEC(ec.caseId());
                     FPClient fpClient = new FPClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), ec.ecNumber())

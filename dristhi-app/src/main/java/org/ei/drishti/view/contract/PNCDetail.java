@@ -8,7 +8,7 @@ import java.util.*;
 
 public class PNCDetail {
     private final String caseId;
-    private final String thaayiCardNumber;
+    private final String thayiCardNumber;
 
     private final LocationDetails location;
     private final CoupleDetails coupleDetails;
@@ -19,9 +19,9 @@ public class PNCDetail {
     private List<TimelineEvent> timelineEvents;
     private Map<String, String> details;
 
-    public PNCDetail(String caseId, String thaayiCardNumber, CoupleDetails coupleDetails, LocationDetails location, PregnancyOutcomeDetails pncDetails) {
+    public PNCDetail(String caseId, String thayiCardNumber, CoupleDetails coupleDetails, LocationDetails location, PregnancyOutcomeDetails pncDetails) {
         this.caseId = caseId;
-        this.thaayiCardNumber = thaayiCardNumber;
+        this.thayiCardNumber = thayiCardNumber;
 
         this.coupleDetails = coupleDetails;
         this.location = location;

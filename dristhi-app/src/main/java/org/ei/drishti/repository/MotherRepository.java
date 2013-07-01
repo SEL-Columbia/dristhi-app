@@ -134,7 +134,7 @@ public class MotherRepository extends DrishtiRepository {
         ContentValues values = new ContentValues();
         values.put(ID_COLUMN, mother.caseId());
         values.put(EC_CASEID_COLUMN, mother.ecCaseId());
-        values.put(THAYI_CARD_NUMBER_COLUMN, mother.thaayiCardNumber());
+        values.put(THAYI_CARD_NUMBER_COLUMN, mother.thayiCardNumber());
         values.put(TYPE_COLUMN, type);
         values.put(REF_DATE_COLUMN, mother.referenceDate());
         values.put(DETAILS_COLUMN, new Gson().toJson(mother.details()));

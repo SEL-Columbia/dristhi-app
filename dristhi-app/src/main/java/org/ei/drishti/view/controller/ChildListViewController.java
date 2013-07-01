@@ -49,7 +49,7 @@ public class ChildListViewController {
                     EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
                     List<org.ei.drishti.view.contract.Child> childListBasedOnRisk = child.isHighRisk() ? highRiskChildren : normalRiskChildren;
 
-                    childListBasedOnRisk.add(new org.ei.drishti.view.contract.Child(child.caseId(), child.thaayiCardNumber(),
+                    childListBasedOnRisk.add(new org.ei.drishti.view.contract.Child(child.caseId(), child.thayiCardNumber(),
                             couple.wifeName(), couple.husbandName(), couple.ecNumber(), couple.village(), child.isHighRisk()));
                 }
 

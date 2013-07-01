@@ -62,7 +62,7 @@ function FakeANCContext() {
         get: function () {
             return JSON.stringify({
                     caseId: "1234",
-                    thaayiCardNumber: "TC Number 1",
+                    thayiCardNumber: "TC Number 1",
                     coupleDetails: {
                         wifeName: "Woman 1",
                         husbandName: "Husband 1",

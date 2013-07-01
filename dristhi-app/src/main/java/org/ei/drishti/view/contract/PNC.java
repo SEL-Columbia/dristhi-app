@@ -8,16 +8,16 @@ public class PNC {
     private String caseId;
     private String womanName;
     private String husbandName;
-    private String thaayiCardNumber;
+    private String thayiCardNumber;
     private String ecNumber;
     private String villageName;
     private boolean isHighRisk;
 
-    public PNC(String caseId, String thaayiCardNumber, String womanName, String husbandName, String ecNumber, String villageName, boolean highRisk) {
+    public PNC(String caseId, String thayiCardNumber, String womanName, String husbandName, String ecNumber, String villageName, boolean highRisk) {
         this.caseId = caseId;
         this.womanName = womanName;
         this.husbandName = husbandName;
-        this.thaayiCardNumber = thaayiCardNumber;
+        this.thayiCardNumber = thayiCardNumber;
         this.ecNumber = ecNumber;
         this.villageName = villageName;
         isHighRisk = highRisk;

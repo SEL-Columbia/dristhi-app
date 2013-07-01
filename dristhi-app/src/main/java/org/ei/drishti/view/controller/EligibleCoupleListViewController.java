@@ -52,7 +52,7 @@ public class EligibleCoupleListViewController {
                 for (EligibleCouple couple : couples) {
                     List<EC> ecListBasedOnPriority = couple.isHighPriority() ? highPriority : normalPriority;
                     Mother mother = allBeneficiaries.findMotherByECCaseId(couple.caseId());
-                    String thayiCardNumber = mother == null ? "" : mother.thaayiCardNumber();
+                    String thayiCardNumber = mother == null ? "" : mother.thayiCardNumber();
                     ecListBasedOnPriority.add(new EC(couple.caseId(), couple.wifeName(), couple.husbandName(), couple.village(),
                             couple.ecNumber(), thayiCardNumber, couple.photoPath(), couple.isHighPriority(), false));
                 }

@@ -29,7 +29,7 @@ public class ChildService {
         List<Child> children = childRepository.findByMotherCaseId(mother.caseId());
 
         for (Child child : children) {
-            childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thaayiCardNumber()).setDateOfBirth(mother.referenceDate()));
+            childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thayiCardNumber()).setDateOfBirth(mother.referenceDate()));
         }
     }
 
@@ -38,7 +38,7 @@ public class ChildService {
         List<Child> children = childRepository.findByMotherCaseId(mother.caseId());
 
         for (Child child : children) {
-            childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thaayiCardNumber()).setDateOfBirth(mother.referenceDate()));
+            childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thayiCardNumber()).setDateOfBirth(mother.referenceDate()));
         }
     }
 

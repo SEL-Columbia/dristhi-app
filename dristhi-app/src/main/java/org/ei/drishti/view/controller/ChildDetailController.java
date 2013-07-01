@@ -50,7 +50,7 @@ public class ChildDetailController {
 
         LocalDate deliveryDate = LocalDate.parse(child.dateOfBirth());
 
-        ChildDetail detail = new ChildDetail(caseId, mother.thaayiCardNumber(),
+        ChildDetail detail = new ChildDetail(caseId, mother.thayiCardNumber(),
                 new CoupleDetails(couple.wifeName(), couple.husbandName(), couple.ecNumber(), couple.isOutOfArea()),
                 new LocationDetails(couple.village(), couple.subCenter()),
                 new BirthDetails(deliveryDate.toString(), calculateAge(deliveryDate), child.gender()))

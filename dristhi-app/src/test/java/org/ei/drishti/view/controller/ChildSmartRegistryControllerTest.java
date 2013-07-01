@@ -162,8 +162,8 @@ public class ChildSmartRegistryControllerTest {
         assertEquals(asList(expectedPNCClient), actualClients);
     }
 
-    private ChildClient createChildClient(String childId, String thaayiCardNumber, String motherName, String ecNumber) {
-        return new ChildClient(childId, "male", null, thaayiCardNumber)
+    private ChildClient createChildClient(String childId, String thayiCardNumber, String motherName, String ecNumber) {
+        return new ChildClient(childId, "male", null, thayiCardNumber)
                 .withEntityIdToSavePhoto(childId)
                 .withMotherName(motherName)
                 .withDOB("2013-01-01")

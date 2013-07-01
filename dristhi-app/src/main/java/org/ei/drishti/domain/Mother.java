@@ -10,15 +10,15 @@ import java.util.Map;
 public class Mother {
     private final String caseId;
     private final String ecCaseId;
-    private final String thaayiCardNumber;
+    private final String thayiCardNumber;
     private String referenceDate;
     private Map<String, String> details;
     private boolean isClosed;
 
-    public Mother(String caseId, String ecCaseId, String thaayiCardNumber, String referenceDate) {
+    public Mother(String caseId, String ecCaseId, String thayiCardNumber, String referenceDate) {
         this.caseId = caseId;
         this.ecCaseId = ecCaseId;
-        this.thaayiCardNumber = thaayiCardNumber;
+        this.thayiCardNumber = thayiCardNumber;
         this.referenceDate = referenceDate;
         this.details = new HashMap<String, String>();
         this.isClosed = false;
@@ -32,8 +32,8 @@ public class Mother {
         return ecCaseId;
     }
 
-    public String thaayiCardNumber() {
-        return thaayiCardNumber;
+    public String thayiCardNumber() {
+        return thayiCardNumber;
     }
 
     public String referenceDate() {

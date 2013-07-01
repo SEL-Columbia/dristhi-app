@@ -24,11 +24,11 @@ import static org.ei.drishti.repository.MotherRepository.MOTHER_TABLE_COLUMNS;
 import static org.ei.drishti.repository.MotherRepository.MOTHER_TABLE_NAME;
 
 public class ChildRepository extends DrishtiRepository {
-    private static final String CHILD_SQL = "CREATE TABLE child(id VARCHAR PRIMARY KEY, motherCaseId VARCHAR, thaayiCardNumber VARCHAR, dateOfBirth VARCHAR, gender VARCHAR, details VARCHAR, isClosed VARCHAR)";
+    private static final String CHILD_SQL = "CREATE TABLE child(id VARCHAR PRIMARY KEY, motherCaseId VARCHAR, thayiCardNumber VARCHAR, dateOfBirth VARCHAR, gender VARCHAR, details VARCHAR, isClosed VARCHAR)";
     public static final String CHILD_TABLE_NAME = "child";
     private static final String ID_COLUMN = "id";
     private static final String MOTHER_ID_COLUMN = "motherCaseId";
-    private static final String THAAYI_CARD_COLUMN = "thaayiCardNumber";
+    private static final String THAAYI_CARD_COLUMN = "thayiCardNumber";
     private static final String DATE_OF_BIRTH_COLUMN = "dateOfBirth";
     private static final String GENDER_COLUMN = "gender";
     private static final String DETAILS_COLUMN = "details";
@@ -142,7 +142,7 @@ public class ChildRepository extends DrishtiRepository {
         ContentValues values = new ContentValues();
         values.put(ID_COLUMN, child.caseId());
         values.put(MOTHER_ID_COLUMN, child.motherCaseId());
-        values.put(THAAYI_CARD_COLUMN, child.thaayiCardNumber());
+        values.put(THAAYI_CARD_COLUMN, child.thayiCardNumber());
         values.put(DATE_OF_BIRTH_COLUMN, child.dateOfBirth());
         values.put(GENDER_COLUMN, child.gender());
         values.put(DETAILS_COLUMN, new Gson().toJson(child.details()));

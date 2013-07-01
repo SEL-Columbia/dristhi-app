@@ -73,7 +73,7 @@ public class ANCSmartRegistryController {
 
                     List<ServiceProvidedDTO> servicesProvided = getServicesProvided(anc.caseId());
                     List<AlertDTO> alerts = getAlerts(anc.caseId());
-                    ancClients.add(new ANCClient(anc.caseId(), ec.village(), ec.wifeName(), anc.thaayiCardNumber(), anc.getDetail("edd"), anc.referenceDate())
+                    ancClients.add(new ANCClient(anc.caseId(), ec.village(), ec.wifeName(), anc.thayiCardNumber(), anc.getDetail("edd"), anc.referenceDate())
                             .withHusbandName(ec.husbandName())
                             .withAge(ec.age())
                             .withECNumber(ec.ecNumber())

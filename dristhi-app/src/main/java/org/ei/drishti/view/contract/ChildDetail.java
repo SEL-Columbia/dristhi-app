@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class ChildDetail {
     private final String caseId;
-    private final String thaayiCardNumber;
+    private final String thayiCardNumber;
 
     private final LocationDetails location;
     private final CoupleDetails coupleDetails;
@@ -21,9 +21,9 @@ public class ChildDetail {
     private List<TimelineEvent> timelineEvents;
     private Map<String, String> details;
 
-    public ChildDetail(String caseId, String thaayiCardNumber, CoupleDetails coupleDetails, LocationDetails location, BirthDetails childDetails) {
+    public ChildDetail(String caseId, String thayiCardNumber, CoupleDetails coupleDetails, LocationDetails location, BirthDetails childDetails) {
         this.caseId = caseId;
-        this.thaayiCardNumber = thaayiCardNumber;
+        this.thayiCardNumber = thayiCardNumber;
 
         this.coupleDetails = coupleDetails;
         this.location = location;

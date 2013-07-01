@@ -42,7 +42,7 @@ public class Child {
         return motherCaseId;
     }
 
-    public String thaayiCardNumber() {
+    public String thayiCardNumber() {
         return thayiCardNumber;
     }
 

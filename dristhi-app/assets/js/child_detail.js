@@ -50,7 +50,7 @@ function FakeChildContext() {
         get: function () {
             return JSON.stringify({
                     caseId: "1234",
-                    thaayiCardNumber: "TC Number 1",
+                    thayiCardNumber: "TC Number 1",
                     coupleDetails: {
                         wifeName: "Mother 1",
                         husbandName: "Husband 1",

@@ -242,8 +242,8 @@ function program29(depth0,data) {
   stack2 = helpers['if'].call(depth0, ((stack1 = depth0.coupleDetails),stack1 == null || stack1 === false ? stack1 : stack1.isInArea), {hash:{},inverse:self.noop,fn:self.program(11, program11, data),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "Thayi\n                        No: ";
-  if (stack2 = helpers.thaayiCardNumber) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.thaayiCardNumber; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (stack2 = helpers.thayiCardNumber) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
+  else { stack2 = depth0.thayiCardNumber; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
     + "\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n\n    <div id=\"todos\" class=\"registry-container container-fluid\">\n        ";
   stack2 = helpers.each.call(depth0, depth0.urgentTodos, {hash:{},inverse:self.noop,fn:self.programWithDepth(13, program13, data, depth0),data:data});
@@ -664,8 +664,8 @@ function program35(depth0,data) {
   stack2 = helpers['if'].call(depth0, ((stack1 = depth0.coupleDetails),stack1 == null || stack1 === false ? stack1 : stack1.isInArea), {hash:{},inverse:self.program(7, program7, data),fn:self.program(5, program5, data),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "Thayi No: ";
-  if (stack2 = helpers.thaayiCardNumber) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.thaayiCardNumber; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (stack2 = helpers.thayiCardNumber) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
+  else { stack2 = depth0.thayiCardNumber; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
     + "</li>\n                </ul>\n            </div>\n        </div>\n    </div>\n    <div class=\"divider\"></div>\n    <div class=\"registry-container container-fluid\">\n        <div class=\"row-fluid\">\n            <div class=\"span3\">\n            ";
   options = {hash:{},inverse:self.program(11, program11, data),fn:self.program(9, program9, data),data:data};
@@ -727,8 +727,8 @@ function program1(depth0,data) {
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.formatText || depth0.formatText),stack1 ? stack1.call(depth0, depth0.fatherName, options) : helperMissing.call(depth0, "formatText", depth0.fatherName, options)))
     + "</li>\n                <li>\n                    Thayi No: ";
-  if (stack2 = helpers.thaayiCardNumber) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.thaayiCardNumber; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (stack2 = helpers.thayiCardNumber) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
+  else { stack2 = depth0.thayiCardNumber; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2);
   stack2 = helpers['if'].call(depth0, depth0.ecNumber, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
@@ -1529,8 +1529,8 @@ function program31(depth0,data) {
   stack2 = helpers['if'].call(depth0, ((stack1 = depth0.coupleDetails),stack1 == null || stack1 === false ? stack1 : stack1.isInArea), {hash:{},inverse:self.program(11, program11, data),fn:self.program(9, program9, data),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += "Thayi No: ";
-  if (stack2 = helpers.thaayiCardNumber) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.thaayiCardNumber; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  if (stack2 = helpers.thayiCardNumber) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
+  else { stack2 = depth0.thayiCardNumber; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
     + "\n                    </li>\n                </ul>\n            </div>\n        </div>\n    </div>\n\n    <div id=\"todos\" class=\"registry-container container-fluid\">\n        ";
   stack2 = helpers.each.call(depth0, depth0.urgentTodos, {hash:{},inverse:self.noop,fn:self.programWithDepth(13, program13, data, depth0),data:data});
@@ -1579,7 +1579,7 @@ function program1(depth0,data) {
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.capitalize || depth0.capitalize),stack1 ? stack1.call(depth0, depth0.husbandName, options) : helperMissing.call(depth0, "capitalize", depth0.husbandName, options)))
     + "</li>\n                        <li>\n                            ";
-  stack2 = helpers['if'].call(depth0, depth0.thaayiCardNumber, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
+  stack2 = helpers['if'].call(depth0, depth0.thayiCardNumber, {hash:{},inverse:self.noop,fn:self.program(4, program4, data),data:data});
   if(stack2 || stack2 === 0) { buffer += stack2; }
   buffer += " ";
   stack2 = helpers['if'].call(depth0, depth0.ecNumber, {hash:{},inverse:self.noop,fn:self.program(6, program6, data),data:data});
@@ -1600,8 +1600,8 @@ function program4(depth0,data) {
   
   var buffer = "", stack1;
   buffer += "Thayi No: ";
-  if (stack1 = helpers.thaayiCardNumber) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.thaayiCardNumber; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
+  if (stack1 = helpers.thayiCardNumber) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
+  else { stack1 = depth0.thayiCardNumber; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1);
   return buffer;
   }

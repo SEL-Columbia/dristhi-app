@@ -37,7 +37,7 @@ function ReportIndicatorListContext() {
                             caseId: "12345",
                             womanName: "Wife 1",
                             husbandName: "Husband 1",
-                            thaayiCardNumber: "TC Number 1",
+                            thayiCardNumber: "TC Number 1",
                             ecNumber: "EC 1",
                             villageName: "chikkabheriya",
                             isHighRisk: true
@@ -46,7 +46,7 @@ function ReportIndicatorListContext() {
                             caseId: "11111",
                             womanName: "Wife 2",
                             husbandName: "Husband 2",
-                            thaayiCardNumber: "TC Number 2",
+                            thayiCardNumber: "TC Number 2",
                             ecNumber: "EC 2",
                             villageName: "munjanahalli",
                             isHighRisk: true

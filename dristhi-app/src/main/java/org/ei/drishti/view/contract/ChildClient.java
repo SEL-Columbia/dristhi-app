@@ -10,7 +10,7 @@ public class ChildClient {
     private final String entityId;
     private String gender;
     private String weight;
-    private final String thaayiCardNumber;
+    private final String thayiCardNumber;
     private String name;
     private String motherName;
     private String dob;
@@ -27,11 +27,11 @@ public class ChildClient {
     private List<ServiceProvidedDTO> servicesProvided;
     private String entityIdToSavePhoto;
 
-    public ChildClient(String entityId, String gender, String weight, String thaayiCardNumber) {
+    public ChildClient(String entityId, String gender, String weight, String thayiCardNumber) {
         this.entityId = entityId;
         this.gender = gender;
         this.weight = weight;
-        this.thaayiCardNumber = thaayiCardNumber;
+        this.thayiCardNumber = thayiCardNumber;
     }
 
     public String motherName() {

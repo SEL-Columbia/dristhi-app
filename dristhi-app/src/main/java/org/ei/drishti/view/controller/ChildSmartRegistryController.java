@@ -54,7 +54,7 @@ public class ChildSmartRegistryController {
                                     child.caseId(),
                                     child.gender(),
                                     child.getDetail("weight"),
-                                    child.mother().thaayiCardNumber())
+                                    child.mother().thayiCardNumber())
                                     .withName(child.getDetail("name"))
                                     .withEntityIdToSavePhoto(child.caseId())
                                     .withMotherName(child.ec().wifeName())

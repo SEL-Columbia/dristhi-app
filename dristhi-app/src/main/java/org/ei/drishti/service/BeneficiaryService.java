@@ -34,7 +34,7 @@ public class BeneficiaryService {
         for (Child child : children) {
             Mother mother = allBeneficiaries.findMotherWithOpenStatus(child.motherCaseId());
             EligibleCouple parents = allEligibleCouples.findByCaseID(mother.ecCaseId());
-            beneficiaries.add(new Beneficiary(child.caseId(), parents.wifeName(), parents.husbandName(), child.thaayiCardNumber(), parents.ecNumber(), parents.village(), child.isHighRisk()));
+            beneficiaries.add(new Beneficiary(child.caseId(), parents.wifeName(), parents.husbandName(), child.thayiCardNumber(), parents.ecNumber(), parents.village(), child.isHighRisk()));
         }
         return beneficiaries;
     }
@@ -44,7 +44,7 @@ public class BeneficiaryService {
         List<Mother> mothers = allBeneficiaries.findAllMothersByCaseIDs(caseIds);
         for (Mother mother : mothers) {
             EligibleCouple ec = allEligibleCouples.findByCaseID(mother.ecCaseId());
-            beneficiaries.add(new Beneficiary(mother.caseId(), ec.wifeName(), ec.husbandName(), mother.thaayiCardNumber(), ec.ecNumber(), ec.village(), mother.isHighRisk()));
+            beneficiaries.add(new Beneficiary(mother.caseId(), ec.wifeName(), ec.husbandName(), mother.thayiCardNumber(), ec.ecNumber(), ec.village(), mother.isHighRisk()));
         }
         return beneficiaries;
     }

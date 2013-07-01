@@ -56,7 +56,7 @@ public class PNCSmartRegistryController {
 
                     List<ServiceProvidedDTO> servicesProvided = getServicesProvided(pnc.caseId());
                     List<AlertDTO> alerts = getAlerts(pnc.caseId());
-                    pncClients.add(new PNCClient(pnc.caseId(), ec.village(), ec.wifeName(), pnc.thaayiCardNumber(), pnc.referenceDate())
+                    pncClients.add(new PNCClient(pnc.caseId(), ec.village(), ec.wifeName(), pnc.thayiCardNumber(), pnc.referenceDate())
                             .withHusbandName(ec.husbandName())
                             .withAge(ec.age())
                             .withWomanDOB(ec.getDetail("womanDOB"))
@@ -133,7 +133,7 @@ public class PNCSmartRegistryController {
         List<Child> children = allBeneficiaries.findAllChildrenByMotherId(mother.caseId());
         List<ChildClient> childClientList = new ArrayList<ChildClient>();
         for (Child child : children) {
-            childClientList.add(new ChildClient(child.caseId(), child.gender(), child.getDetail("weight"), mother.thaayiCardNumber()));
+            childClientList.add(new ChildClient(child.caseId(), child.gender(), child.getDetail("weight"), mother.thayiCardNumber()));
         }
         return childClientList;
     }

@@ -4,7 +4,7 @@ function ChildList(childListBridge, cssIdOf) {
     var searchCriteria = function (child, searchString) {
         return (child.motherName.toUpperCase().indexOf(searchString) == 0
             || child.ecNumber.toUpperCase().indexOf(searchString) == 0
-            || child.thaayiCardNumber.toUpperCase().indexOf(searchString) == 0);
+            || child.thayiCardNumber.toUpperCase().indexOf(searchString) == 0);
     };
 
     var villageFilterCriteria = function (child, appliedVillageFilter) {
@@ -75,7 +75,7 @@ function FakeChildListContext() {
                         caseId: "12345",
                         motherName: "Mother 1",
                         fatherName: "father 1",
-                        thaayiCardNumber: "TC Number 1",
+                        thayiCardNumber: "TC Number 1",
                         villageName: "chikkabheriya",
                         hasTodos: true,
                         ecNumber: "EC 1",
@@ -85,7 +85,7 @@ function FakeChildListContext() {
                         caseId: "11111",
                         motherName: "Mother 2",
                         fatherName: "father 2",
-                        thaayiCardNumber: "TC Number 2",
+                        thayiCardNumber: "TC Number 2",
                         villageName: "munjanahalli",
                         ecNumber: "EC 2",
                         hasTodos: false,
@@ -97,7 +97,7 @@ function FakeChildListContext() {
                         caseId: "12355",
                         motherName: "Mother 4",
                         fatherName: "father 4",
-                        thaayiCardNumber: "TC Number 4",
+                        thayiCardNumber: "TC Number 4",
                         villageName: "chikkabheriya",
                         ecNumber: "EC 3",
                         hasTodos: true,
@@ -107,7 +107,7 @@ function FakeChildListContext() {
                         caseId: "12355",
                         motherName: "Mother 5",
                         fatherName: "father 5",
-                        thaayiCardNumber: "TC Number 5",
+                        thayiCardNumber: "TC Number 5",
                         villageName: "munjanahalli",
                         ecNumber: "EC 4",
                         hasTodos: false,
@@ -117,7 +117,7 @@ function FakeChildListContext() {
                         caseId: "11121",
                         motherName: "Mother 6",
                         fatherName: "father 6",
-                        thaayiCardNumber: "TC Number 6",
+                        thayiCardNumber: "TC Number 6",
                         ecNumber: "EC 5",
                         villageName: "chikkabheriya",
                         hasTodos: true,
