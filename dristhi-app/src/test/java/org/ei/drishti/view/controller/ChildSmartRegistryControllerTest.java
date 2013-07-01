@@ -59,14 +59,14 @@ public class ChildSmartRegistryControllerTest {
     @Test
     public void shouldSortChildrenByMotherName() throws Exception {
         EligibleCouple ec1 = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, emptyMap).asOutOfArea();
-        Mother mother1 = new Mother("mother id 1", "ec id 1", "thaayi no 1", "2013-01-01").withDetails(emptyMap);
+        Mother mother1 = new Mother("mother id 1", "ec id 1", "thayi no 1", "2013-01-01").withDetails(emptyMap);
         Child child1 = new Child("child id 1", "mother id 1", "male", emptyMap).withMother(mother1).withEC(ec1);
-        EligibleCouple ec2 = new EligibleCouple("ec id 2", "thaayi", "appa", "ec no 2", "chikkamagalur", null, emptyMap).asOutOfArea();
-        Mother mother2 = new Mother("mother id 2", "ec id 2", "thaayi no 2", "2013-01-01").withDetails(emptyMap);
+        EligibleCouple ec2 = new EligibleCouple("ec id 2", "thayi", "appa", "ec no 2", "chikkamagalur", null, emptyMap).asOutOfArea();
+        Mother mother2 = new Mother("mother id 2", "ec id 2", "thayi no 2", "2013-01-01").withDetails(emptyMap);
         Child child2 = new Child("child id 2", "mother id 2", "male", emptyMap).withMother(mother2).withEC(ec2);
         when(allBeneficiaries.allChildrenWithMotherAndEC()).thenReturn(asList(child2, child1));
-        ChildClient expectedClient1 = createChildClient("child id 1", "thaayi no 1", "amma", "ec no 1");
-        ChildClient expectedClient2 = createChildClient("child id 2", "thaayi no 2", "thaayi", "ec no 2");
+        ChildClient expectedClient1 = createChildClient("child id 1", "thayi no 1", "amma", "ec no 1");
+        ChildClient expectedClient2 = createChildClient("child id 2", "thayi no 2", "thayi", "ec no 2");
 
         String clients = controller.get();
 
@@ -86,10 +86,10 @@ public class ChildSmartRegistryControllerTest {
                 .put("isHighRiskBaby", "yes")
                 .map();
         EligibleCouple eligibleCouple = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, ecDetails).asOutOfArea();
-        Mother mother = new Mother("mother id 1", "ec id 1", "thaayi no 1", "2013-01-01").withDetails(emptyMap);
+        Mother mother = new Mother("mother id 1", "ec id 1", "thayi no 1", "2013-01-01").withDetails(emptyMap);
         Child child = new Child("child id 1", "mother id 1", "female", childDetails).withMother(mother).withEC(eligibleCouple);
         when(allBeneficiaries.allChildrenWithMotherAndEC()).thenReturn(asList(child));
-        ChildClient expectedPNCClient = new ChildClient("child id 1", "female", "3", "thaayi no 1")
+        ChildClient expectedPNCClient = new ChildClient("child id 1", "female", "3", "thayi no 1")
                 .withEntityIdToSavePhoto("child id 1")
                 .withName("chinnu")
                 .withMotherName("amma")
@@ -116,7 +116,7 @@ public class ChildSmartRegistryControllerTest {
     @Test
     public void shouldCreateChildClientsWithAlerts() throws Exception {
         EligibleCouple eligibleCouple = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, emptyMap).asOutOfArea();
-        Mother mother = new Mother("mother id 1", "ec id 1", "thaayi no 1", "2013-01-01").withDetails(emptyMap);
+        Mother mother = new Mother("mother id 1", "ec id 1", "thayi no 1", "2013-01-01").withDetails(emptyMap);
         Child child = new Child("child id 1", "mother id 1", "male", emptyMap).withMother(mother).withEC(eligibleCouple);
         Alert bcgAlert = new Alert("child id 1", "BCG", "BCG", normal, "2013-01-01", "2013-02-01");
         when(allBeneficiaries.allChildrenWithMotherAndEC()).thenReturn(asList(child));
@@ -128,7 +128,7 @@ public class ChildSmartRegistryControllerTest {
         }.getType());
         verify(alertService).findByEntityIdAndAlertNames("child id 1", CHILD_ALERTS);
         AlertDTO expectedAlertDto = new AlertDTO("BCG", "normal", "2013-01-01");
-        ChildClient expectedPNCClient = new ChildClient("child id 1", "male", null, "thaayi no 1")
+        ChildClient expectedPNCClient = new ChildClient("child id 1", "male", null, "thayi no 1")
                 .withEntityIdToSavePhoto("child id 1")
                 .withMotherName("amma")
                 .withDOB("2013-01-01")
@@ -145,7 +145,7 @@ public class ChildSmartRegistryControllerTest {
     @Test
     public void shouldCreateChildClientsWithServicesProvided() throws Exception {
         EligibleCouple eligibleCouple = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, emptyMap).asOutOfArea();
-        Mother mother = new Mother("mother id 1", "ec id 1", "thaayi no 1", "2013-01-01").withDetails(emptyMap);
+        Mother mother = new Mother("mother id 1", "ec id 1", "thayi no 1", "2013-01-01").withDetails(emptyMap);
         Child child = new Child("child id 1", "mother id 1", "male", emptyMap).withMother(mother).withEC(eligibleCouple);
         when(allBeneficiaries.allChildrenWithMotherAndEC()).thenReturn(asList(child));
         when(alertService.findByEntityIdAndAlertNames("child id 1", CHILD_ALERTS)).thenReturn(Collections.<Alert>emptyList());
@@ -158,7 +158,7 @@ public class ChildSmartRegistryControllerTest {
         }.getType());
         verify(serviceProvidedService).findByEntityIdAndServiceNames("child id 1", CHILD_SERVICES);
         List<ServiceProvidedDTO> expectedServicesProvided = asList(new ServiceProvidedDTO("BCG", "2013-01-01", null));
-        ChildClient expectedPNCClient = createChildClient("child id 1", "thaayi no 1", "amma", "ec no 1").withServicesProvided(expectedServicesProvided);
+        ChildClient expectedPNCClient = createChildClient("child id 1", "thayi no 1", "amma", "ec no 1").withServicesProvided(expectedServicesProvided);
         assertEquals(asList(expectedPNCClient), actualClients);
     }
 

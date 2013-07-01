@@ -28,12 +28,12 @@ public class ChildRepository extends DrishtiRepository {
     public static final String CHILD_TABLE_NAME = "child";
     private static final String ID_COLUMN = "id";
     private static final String MOTHER_ID_COLUMN = "motherCaseId";
-    private static final String THAAYI_CARD_COLUMN = "thayiCardNumber";
+    private static final String THAYI_CARD_COLUMN = "thayiCardNumber";
     private static final String DATE_OF_BIRTH_COLUMN = "dateOfBirth";
     private static final String GENDER_COLUMN = "gender";
     private static final String DETAILS_COLUMN = "details";
     private static final String IS_CLOSED_COLUMN = "isClosed";
-    public static final String[] CHILD_TABLE_COLUMNS = {ID_COLUMN, MOTHER_ID_COLUMN, THAAYI_CARD_COLUMN, DATE_OF_BIRTH_COLUMN, GENDER_COLUMN, DETAILS_COLUMN, IS_CLOSED_COLUMN};
+    public static final String[] CHILD_TABLE_COLUMNS = {ID_COLUMN, MOTHER_ID_COLUMN, THAYI_CARD_COLUMN, DATE_OF_BIRTH_COLUMN, GENDER_COLUMN, DETAILS_COLUMN, IS_CLOSED_COLUMN};
     public static final String NOT_CLOSED = "false";
 
     private TimelineEventRepository timelineEventRepository;
@@ -142,7 +142,7 @@ public class ChildRepository extends DrishtiRepository {
         ContentValues values = new ContentValues();
         values.put(ID_COLUMN, child.caseId());
         values.put(MOTHER_ID_COLUMN, child.motherCaseId());
-        values.put(THAAYI_CARD_COLUMN, child.thayiCardNumber());
+        values.put(THAYI_CARD_COLUMN, child.thayiCardNumber());
         values.put(DATE_OF_BIRTH_COLUMN, child.dateOfBirth());
         values.put(GENDER_COLUMN, child.gender());
         values.put(DETAILS_COLUMN, new Gson().toJson(child.details()));
@@ -171,7 +171,7 @@ public class ChildRepository extends DrishtiRepository {
                     new Child(
                             getColumnValueByAlias(cursor, CHILD_TABLE_NAME, ID_COLUMN),
                             getColumnValueByAlias(cursor, CHILD_TABLE_NAME, MOTHER_ID_COLUMN),
-                            getColumnValueByAlias(cursor, CHILD_TABLE_NAME, THAAYI_CARD_COLUMN),
+                            getColumnValueByAlias(cursor, CHILD_TABLE_NAME, THAYI_CARD_COLUMN),
                             getColumnValueByAlias(cursor, CHILD_TABLE_NAME, DATE_OF_BIRTH_COLUMN),
                             getColumnValueByAlias(cursor, CHILD_TABLE_NAME, GENDER_COLUMN),
                             new Gson().<Map<String, String>>fromJson(getColumnValueByAlias(cursor, CHILD_TABLE_NAME, DETAILS_COLUMN), new TypeToken<Map<String, String>>() {

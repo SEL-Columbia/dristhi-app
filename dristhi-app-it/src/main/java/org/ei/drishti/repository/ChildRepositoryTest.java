@@ -151,8 +151,8 @@ public class ChildRepositoryTest extends AndroidTestCase {
                 .put("isHighRiskBaby", "yes")
                 .map();
         EligibleCouple ec = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, ecDetails).asOutOfArea();
-        Mother mother = new Mother("mother id 1", "ec id 1", "thaayi no 1", "2013-01-01").withDetails(Collections.<String, String>emptyMap());
-        Child child = new Child("child id 1", "mother id 1", "thaayi no 1", "2013-01-02", "female", childDetails).withMother(mother).withEC(ec);
+        Mother mother = new Mother("mother id 1", "ec id 1", "thayi no 1", "2013-01-01").withDetails(Collections.<String, String>emptyMap());
+        Child child = new Child("child id 1", "mother id 1", "thayi no 1", "2013-01-02", "female", childDetails).withMother(mother).withEC(ec);
         repository.add(child);
         motherRepository.add(mother);
         ecRepository.add(ec);
