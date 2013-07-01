@@ -1,6 +1,7 @@
 package org.ei.drishti.view.activity;
 
 import android.app.Activity;
+import org.ei.drishti.util.Log;
 
 import static org.ei.drishti.AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE;
 
@@ -26,5 +27,9 @@ public class FormWebInterface {
     public void goBack() {
         activity.setResult(FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE);
         activity.finish();
+    }
+
+    public void log(String message) {
+        Log.logInfo(message);
     }
 }

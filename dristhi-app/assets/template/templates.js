@@ -1071,7 +1071,11 @@ function program33(depth0,data) {
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "\">Register as ANC</div>\n    <div class=\"modal-row\" data-form=\"ec_close\" data-caseid=\"";
+    + "\">Register as ANC</div>\n    <div class=\"modal-row\" data-form=\"child_registration_ec\" data-caseid=\"";
+  if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
+  else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
+  buffer += escapeExpression(stack2)
+    + "\">Register a child</div>\n    <div class=\"modal-row\" data-form=\"ec_close\" data-caseid=\"";
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)

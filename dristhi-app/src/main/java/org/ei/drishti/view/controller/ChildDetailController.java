@@ -44,7 +44,7 @@ public class ChildDetailController {
 
     public String get() {
         Child child = allBeneficiaries.findChild(caseId);
-        Mother mother = allBeneficiaries.findMother(child.motherCaseId());
+        Mother mother = allBeneficiaries.findMotherWithOpenStatus(child.motherCaseId());
         EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
         List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 

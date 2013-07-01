@@ -64,7 +64,7 @@ public class ANCDetailControllerTest {
         HashMap<String, String> details = new HashMap<String, String>();
         details.put("ashaName", "Shiwani");
 
-        when(allBeneficiaries.findMother(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withDetails(details));
+        when(allBeneficiaries.findMotherWithOpenStatus(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withDetails(details));
         Map<String, String> ecDetails = mapOf("caste", "st");
         ecDetails.put("economicStatus", "bpl");
         when(allEligibleCouples.findByCaseID("EC CASE 1")).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "Village 1", "Subcenter 1", ecDetails));

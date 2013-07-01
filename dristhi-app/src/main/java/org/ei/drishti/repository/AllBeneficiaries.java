@@ -28,8 +28,15 @@ public class AllBeneficiaries {
         return childRepository.all();
     }
 
-    public Mother findMother(String caseId) {
+    public Mother findMotherWithOpenStatus(String caseId) {
         return motherRepository.findOpenCaseByCaseID(caseId);
+    }
+
+    public Mother findMother(String caseId) {
+        List<Mother> mothers = motherRepository.findByCaseIds(caseId);
+        if(mothers.isEmpty())
+            return null;
+        return mothers.get(0);
     }
 
     public Child findChild(String caseId) {

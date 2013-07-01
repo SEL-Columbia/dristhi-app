@@ -72,7 +72,7 @@ public class MotherService {
     }
 
     public void close(FormSubmission submission) {
-        Mother mother = allBeneficiaries.findMother(submission.entityId());
+        Mother mother = allBeneficiaries.findMotherWithOpenStatus(submission.entityId());
         if (mother == null) {
             logWarn("Tried to close non-existent mother. Submission: " + submission);
             return;

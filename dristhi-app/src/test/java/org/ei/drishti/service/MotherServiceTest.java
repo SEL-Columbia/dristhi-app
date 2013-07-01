@@ -107,7 +107,7 @@ public class MotherServiceTest {
     public void shouldNotDoAnythingWhenANCIsClosedAndMotherDoesNotExist() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
-        when(allBeneficiaries.findMother("entity id 1")).thenReturn(null);
+        when(allBeneficiaries.findMotherWithOpenStatus("entity id 1")).thenReturn(null);
 
         service.close(submission);
 
@@ -120,7 +120,7 @@ public class MotherServiceTest {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
         when(submission.getFieldValue("closeReason")).thenReturn("death_of_mother");
-        when(allBeneficiaries.findMother("entity id 1")).thenReturn(new Mother("entity id 1", "ec entity id 1", "thayi 1", "2013-01-01"));
+        when(allBeneficiaries.findMotherWithOpenStatus("entity id 1")).thenReturn(new Mother("entity id 1", "ec entity id 1", "thayi 1", "2013-01-01"));
 
         service.close(submission);
 
@@ -132,7 +132,7 @@ public class MotherServiceTest {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
         when(submission.getFieldValue("closeReason")).thenReturn("death_of_woman");
-        when(allBeneficiaries.findMother("entity id 1")).thenReturn(new Mother("entity id 1", "ec entity id 1", "thayi 1", "2013-01-01"));
+        when(allBeneficiaries.findMotherWithOpenStatus("entity id 1")).thenReturn(new Mother("entity id 1", "ec entity id 1", "thayi 1", "2013-01-01"));
 
         service.close(submission);
 
@@ -144,7 +144,7 @@ public class MotherServiceTest {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
         when(submission.getFieldValue("closeReason")).thenReturn("relocation_permanent");
-        when(allBeneficiaries.findMother("entity id 1")).thenReturn(new Mother("entity id 1", "ec entity id 1", "thayi 1", "2013-01-01"));
+        when(allBeneficiaries.findMotherWithOpenStatus("entity id 1")).thenReturn(new Mother("entity id 1", "ec entity id 1", "thayi 1", "2013-01-01"));
 
         service.close(submission);
 
@@ -156,7 +156,7 @@ public class MotherServiceTest {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
         when(submission.getFieldValue("closeReason")).thenReturn("other_reason");
-        when(allBeneficiaries.findMother("entity id 1")).thenReturn(new Mother("entity id 1", "ec entity id 1", "thayi 1", "2013-01-01"));
+        when(allBeneficiaries.findMotherWithOpenStatus("entity id 1")).thenReturn(new Mother("entity id 1", "ec entity id 1", "thayi 1", "2013-01-01"));
 
         service.close(submission);
 

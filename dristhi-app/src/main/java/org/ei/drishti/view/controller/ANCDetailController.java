@@ -45,7 +45,7 @@ public class ANCDetailController {
     }
 
     public String get() {
-        Mother mother = allBeneficiaries.findMother(caseId);
+        Mother mother = allBeneficiaries.findMotherWithOpenStatus(caseId);
         EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
         List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 
