@@ -97,6 +97,9 @@ describe('Smart Filters', function () {
                 date: '2013-06-14' // within 7 days
             },
             {
+                date: '2013-06-20' // within 7 days
+            },
+            {
                 date: '2013-06-21' // outside 7 days
             }
         ];
@@ -109,9 +112,12 @@ describe('Smart Filters', function () {
             var expected_visits = [
                 {
                     date: '2013-06-14' // within 7 days
+                },
+                {
+                    date: '2013-06-20' // within 7 days
                 }
             ];
-            expect(dateFallsWithin(visits, client.deliveryDate, 'date', 7, undefined)[0]).toEqual(expected_visits[0]);
+            expect(dateFallsWithin(visits, client.deliveryDate, 'date', 7)).toEqual(expected_visits);
         });
 
         it("should return visits whose dates fall outside the specified period if invert is true", function(){
@@ -120,7 +126,7 @@ describe('Smart Filters', function () {
                     date: '2013-06-21' // within 7 days
                 }
             ];
-            expect(dateFallsWithin(visits, client.deliveryDate, 'date', 7, true)[0]).toEqual(expected_visits[0]);
+            expect(dateFallsWithin(visits, client.deliveryDate, 'date', 7, true)).toEqual(expected_visits);
         });
     });
 });

@@ -372,7 +372,7 @@ function FakePNCSmartRegistryContext() {
                     numberOfCondomsSupplied: null,
                     numberOfOCPDelivered: "10",
                     numberOfCentchromanPillsDelivered: null,
-                    deliveryDate: "2013-05-19",
+                    deliveryDate: "2013-06-22",
                     deliveryPlace:"PNC",
                     deliveryType: "Normal", //TODO: what are the options
                     deliveryComplications: "",
@@ -383,58 +383,58 @@ function FakePNCSmartRegistryContext() {
                     services_provided: [
                         {
                             "data": {
-                                "pncVisitNumber": "1"
+                                "pncVisitNumber": "1",
+                                day: 1
                             },
-                            "date": "2013-05-23",
+                            "date": "2013-06-23",
                             "name": "PNC"
                         },
                         {
                             "data": {
-                                "pncVisitNumber": "2"
+                                "pncVisitNumber": "2",
+                                day: 3
                             },
-                            "date": "2013-05-20",
+                            "date": "2013-06-25",
                             "name": "PNC"
                         },
                         {
                             "data": {
-                                "pncVisitNumber": "3"
+                                "pncVisitNumber": "3",
+                                day: 7
                             },
-                            "date": "2013-05-21",
+                            "date": "2013-06-29",
                             "name": "PNC"
                         },
                         {
                             "data": {
-                                "pncVisitNumber": "4"
+                                "pncVisitNumber": "4",
+                                day: 9
                             },
-                            "date": "2013-05-22",
+                            "date": "2013-07-01",
                             "name": "PNC"
                         },
                         {
                             "data": {
-                                "pncVisitNumber": "5"
+                                "pncVisitNumber": "6",
+                                day: 12
                             },
-                            "date": "2013-05-23",
+                            "date": "2013-07-04",
                             "name": "PNC"
                         },
                         {
                             "data": {
-                                "pncVisitNumber": "6"
+                                "pncVisitNumber": "5",
+                                day: 10
                             },
-                            "date": "2013-05-24",
+                            "date": "2013-07-02",
                             "name": "PNC"
                         },
                         {
                             "data": {
-                                "pncVisitNumber": "7"
+                                "pncVisitNumber": "7",
+                                day: 13
                             },
-                            "date": "2013-05-25",
-                            "name": "PNC"
-                        },
-                        {
-                            "data": {
-                                "pncVisitNumber": "8"
-                            },
-                            "date": "2013-05-26",
+                            "date": "2013-07-05",
                             "name": "PNC"
                         }
                     ]
