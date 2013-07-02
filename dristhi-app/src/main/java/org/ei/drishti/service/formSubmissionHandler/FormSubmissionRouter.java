@@ -30,7 +30,8 @@ public class FormSubmissionRouter {
                                 DeliveryOutcomeHandler deliveryOutcomeHandler,
                                 PNCRegistrationOAHandler pncRegistrationOAHandler,
                                 PNCCloseHandler pncCloseHandler,
-                                PNCVisitHandler pncVisitHandler) {
+                                PNCVisitHandler pncVisitHandler,
+                                ChildImmunizationsHandler childImmunizationsHandler) {
         this.formDataRepository = formDataRepository;
         handlerMap = new HashMap<String, FormSubmissionHandler>();
         handlerMap.put(EC_REGISTRATION_FORM_NAME, ecRegistrationHandler);
@@ -51,6 +52,7 @@ public class FormSubmissionRouter {
         handlerMap.put(PNC_REGISTRATION_OA_FORM_NAME, pncRegistrationOAHandler);
         handlerMap.put(PNC_CLOSE_FORM_NAME, pncCloseHandler);
         handlerMap.put(PNC_VISIT_FORM_NAME, pncVisitHandler);
+        handlerMap.put(CHILD_IMMUNIZATIONS_FORM_NAME, childImmunizationsHandler);
     }
 
     public void route(String instanceId) {

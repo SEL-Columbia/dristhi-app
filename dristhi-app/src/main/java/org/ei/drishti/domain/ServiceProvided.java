@@ -65,6 +65,10 @@ public class ServiceProvided {
         );
     }
 
+    public static ServiceProvided forChildImmunization(String entityId, String immunization, String date) {
+        return new ServiceProvided(entityId, immunization, date, null);
+    }
+
     public String name() {
         return name;
     }

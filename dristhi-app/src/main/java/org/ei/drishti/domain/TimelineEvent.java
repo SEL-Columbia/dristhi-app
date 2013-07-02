@@ -91,10 +91,10 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "PNCVISIT", LocalDate.parse(visitDate), "PNC Visit " + visitNumber, detailsString, null);
     }
 
-    public static TimelineEvent forChildImmunization(String caseId, String immunizationsProvided, String immunizationsProvidedDate, String vitaminADose) {
-        String detailString = new DetailBuilder(null).withVaccinations(immunizationsProvided).withVitaminADose(vitaminADose).value();
+    public static TimelineEvent forChildImmunization(String caseId, String immunizationsGiven, String immunizationsGivenDate) {
+        String detailString = new DetailBuilder(null).withImmunizationsGiven(immunizationsGiven).value();
 
-        return new TimelineEvent(caseId, "IMMUNIZATIONSGIVEN", LocalDate.parse(immunizationsProvidedDate), "Immunization Date: " + formatDate(immunizationsProvidedDate), detailString, null);
+        return new TimelineEvent(caseId, "IMMUNIZATIONSGIVEN", LocalDate.parse(immunizationsGivenDate), "Immunization Date: " + formatDate(immunizationsGivenDate), detailString, null);
     }
 
     public static TimelineEvent forFPCondomRenew(String caseId, Map<String, String> details) {
@@ -192,8 +192,8 @@ public class TimelineEvent {
             return this;
         }
 
-        public DetailBuilder withImmunizations(String immunizationsProvided) {
-            String immunizationString = details.get(immunizationsProvided);
+        public DetailBuilder withImmunizations(String immunizationsGiven) {
+            String immunizationString = details.get(immunizationsGiven);
             if (immunizationString == null) {
                 return this;
             }
@@ -214,19 +214,11 @@ public class TimelineEvent {
             return msg;
         }
 
-        public DetailBuilder withVaccinations(String immunizationsProvided) {
-            if (isBlank(immunizationsProvided)) {
+        public DetailBuilder withImmunizationsGiven(String immunizationsGiven) {
+            if (isBlank(immunizationsGiven)) {
                 return this;
             }
-            this.stringBuilder.append(immunizationFormatter(immunizationsProvided));
-            return this;
-        }
-
-        public DetailBuilder withVitaminADose(String vitaminADose) {
-            if (isBlank(vitaminADose)) {
-                return this;
-            }
-            this.stringBuilder.append(", Vitamin A Dose ").append(vitaminADose);
+            this.stringBuilder.append(immunizationFormatter(immunizationsGiven));
             return this;
         }
 

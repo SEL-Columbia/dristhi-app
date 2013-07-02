@@ -31,11 +31,6 @@ public class ActionBuilder {
         return new Action(caseId, "child", "pncVisitHappened", actionData.data(), "0", true, actionData.details());
     }
 
-    public static Action updateImmunizations(String caseId, Map<String, String> details) {
-        ActionData actionData = ActionData.updateImmunizations("bcg opv_0", LocalDate.parse("2012-01-01"), "1", details);
-        return new Action(caseId, "child", "updateImmunizations", actionData.data(), "2012-01-01", true, details);
-    }
-
     public static Action closeChild(String caseId) {
         ActionData actionData = ActionData.deleteChild();
         return new Action(caseId, "child", "deleteChild", actionData.data(), "2012-01-01", true, new HashMap<String, String>());

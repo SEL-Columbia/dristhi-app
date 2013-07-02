@@ -147,10 +147,9 @@ public class TimelineEventTest {
 
     @Test
     public void shouldCreateTimelineEventForUpdateImmunization() throws Exception {
-        TimelineEvent timelineEvent = forChildImmunization("CASE A", "bcg opv_0", "2012-08-01", "1");
+        TimelineEvent timelineEvent = forChildImmunization("CASE A", "bcg opv_0", "2012-08-01");
 
         assertTrue(timelineEvent.detail1().contains("BCG, OPV 0"));
-        assertTrue(timelineEvent.detail1().contains("Vitamin A Dose 1"));
     }
 
     @Test

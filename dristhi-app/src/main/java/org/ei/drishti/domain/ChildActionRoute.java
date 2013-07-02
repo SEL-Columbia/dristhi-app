@@ -10,12 +10,6 @@ public enum ChildActionRoute {
             Context.getInstance().childService().pncVisit(action);
         }
     },
-    UPDATE_IMMUNIZATION("updateImmunizations") {
-        @Override
-        public void direct(Action action) {
-            Context.getInstance().childService().updateImmunizations(action);
-        }
-    },
     DELETE("deleteChild") {
         @Override
         public void direct(Action action) {

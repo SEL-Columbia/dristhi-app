@@ -69,6 +69,7 @@ public class Context {
     private PNCRegistrationOAHandler pncRegistrationOAHandler;
     private PNCCloseHandler pncCloseHandler;
     private PNCVisitHandler pncVisitHandler;
+    private ChildImmunizationsHandler childImmunizationsHandler;
 
     protected Context() {
     }
@@ -129,7 +130,8 @@ public class Context {
             formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(),
                     fpComplicationsHandler(), fpChangeHandler(), renewFPProductHandler(), ecCloseHandler(),
                     ancRegistrationHandler(), ancRegistrationOAHandler(), ancVisitHandler(), ancCloseHandler(),
-                    ttHandler(), ifaHandler(), hbTestHandler(), deliveryOutcomeHandler(), pncRegistrationOAHandler(), pncCloseHandler(), pncVisitHandler());
+                    ttHandler(), ifaHandler(), hbTestHandler(), deliveryOutcomeHandler(), pncRegistrationOAHandler(),
+                    pncCloseHandler(), pncVisitHandler(), childImmunizationsHandler());
         }
         return formSubmissionRouter;
     }
@@ -244,6 +246,13 @@ public class Context {
             pncVisitHandler = new PNCVisitHandler(motherService());
         }
         return pncVisitHandler;
+    }
+
+    private ChildImmunizationsHandler childImmunizationsHandler() {
+        if (childImmunizationsHandler == null) {
+            childImmunizationsHandler = new ChildImmunizationsHandler(childService());
+        }
+        return childImmunizationsHandler;
     }
 
     private ZiggyService ziggyService() {
@@ -441,7 +450,7 @@ public class Context {
 
     public ChildService childService() {
         if (childService == null) {
-            childService = new ChildService(motherRepository(), childRepository(), allTimelineEvents());
+            childService = new ChildService(motherRepository(), childRepository(), allTimelineEvents(), serviceProvidedService());
         }
         return childService;
     }
