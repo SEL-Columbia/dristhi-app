@@ -1,0 +1,16 @@
+<model>
+    <instance xmlns="http://www.w3.org/2002/xforms">
+        <Child_Immunizations_EngKan id="Child_Immunizations_EngKan">
+            <formhub>
+                <uuid/>
+            </formhub>
+            <today/>
+            <immunizations_given/>
+            <immunization_date>${today}</immunization_date>
+            <immunization_place/>
+            <meta>
+                <instanceID/>
+            </meta>
+        </Child_Immunizations_EngKan>
+    </instance>
+</model>

@@ -1,0 +1,196 @@
+<form class="jr" autocomplete="off" id="Child_Immunizations_EngKan">
+    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Child Immunization</h3>
+    <fieldset id="jr-preload-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Child_Immunizations_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
+
+
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Immunizations provided to child &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6;
+                    &#xC87;&#xCAE;&#xCCD;&#xCAF;&#xCC2;&#xCA8;&#xCC8;&#xC9C;&#xCC7;&#xCB7;&#xCA8;&#xCCD; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;:
+                </span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="bcg" data-type-xml="select"/>
+                <span lang="" class=" active">BCG &#xCAC;&#xCBF;&#xCB8;&#xCBF;&#xC9C;&#xCBF;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="opv_0" data-type-xml="select"/>
+                <span lang="" class=" active">OPV 0 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 0</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="hepb_0" data-type-xml="select"/>
+                <span lang="" class=" active">Hep B 0 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                    &#xCAC;&#xCBF; 0
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="opv_1" data-type-xml="select"/>
+                <span lang="" class=" active">OPV 1 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 1</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="dpt_1" data-type-xml="select"/>
+                <span lang="" class=" active">DPT 1 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 1</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="hepb_1" data-type-xml="select"/>
+                <span lang="" class=" active">Hep B 1 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                    &#xCAC;&#xCBF; 1
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="pentavalent_1" data-type-xml="select"/>
+                <span lang="" class=" active">Pentavalent 1 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
+                    1
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="opv_2" data-type-xml="select"/>
+                <span lang="" class=" active">OPV 2 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 2</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="dpt_2" data-type-xml="select"/>
+                <span lang="" class=" active">DPT 2 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 2</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="hepb_2" data-type-xml="select"/>
+                <span lang="" class=" active">Hep B 2 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                    &#xCAC;&#xCBF; 2
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="pentavalent_2" data-type-xml="select"/>
+                <span lang="" class=" active">Pentavalent 2 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
+                    2
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="opv_3" data-type-xml="select"/>
+                <span lang="" class=" active">OPV 3 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 3</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="dpt_3" data-type-xml="select"/>
+                <span lang="" class=" active">DPT 3 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 3</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="hepb_3" data-type-xml="select"/>
+                <span lang="" class=" active">Hep B 3 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                    &#xCAC;&#xCBF; 3
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="pentavalent_3" data-type-xml="select"/>
+                <span lang="" class=" active">Pentavalent 3 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
+                    3
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="measles" data-type-xml="select"/>
+                <span lang="" class=" active">Measles &#xCA6;&#xCA1;&#xCBE;&#xCB0;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="mmr" data-type-xml="select"/>
+                <span lang="" class=" active">MMR
+                    &#xC8E;&#xCAE;&#xCCD;.&#xC8E;&#xCAE;&#xCCD;.&#xC86;&#xCB0;&#xCCD;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="dptbooster_1" data-type-xml="select"/>
+                <span lang="" class=" active">DPT Booster 1 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
+                    1
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="opvbooster" data-type-xml="select"/>
+                <span lang="" class=" active">OPV Booster &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="je" data-type-xml="select"/>
+                <span lang="" class=" active">Japanese Encephalitis (JE)</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="measlesbooster" data-type-xml="select"/>
+                <span lang="" class=" active">Measles Booster &#xCA6;&#xCA1;&#xCBE;&#xCB0; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Immunizations_EngKan/immunizations_given"
+                       value="dptbooster_2" data-type-xml="select"/>
+                <span lang="" class=" active">DPT Booster 2 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
+                    2
+                </span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <label class="">
+        <span lang="" class=" active">Immunization date &#xC87;&#xCAE;&#xCCD;&#xCAF;&#xCC2;&#xCA8;&#xCC8;&#xC9C;&#xCC7;&#xCB7;&#xCA8;&#xCCD;
+            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        </span>
+        <span class="required">*</span>
+        <input autocomplete="off" type="date" name="/Child_Immunizations_EngKan/immunization_date" required="required"
+               data-constraint=".&lt;= /Child_Immunizations_EngKan/today " data-type-xml="date"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Place of immunization &#xC87;&#xCAE;&#xCCD;&#xCAF;&#xCC2;&#xCA8;&#xCC8;&#xC9C;&#xCC7;&#xCB7;&#xCA8;&#xCCD;
+                    &#xCB8;&#xCCD;&#xCA5;&#xCB3;?
+                </span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Immunizations_EngKan/immunization_place"
+                       value="sub_center" data-type-xml="select1"/>
+                <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
+                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Immunizations_EngKan/immunization_place" value="phc"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
+                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Immunizations_EngKan/immunization_place"
+                       value="elsewhere" data-type-xml="select1"/>
+                <span lang="" class=" active">Elsewhere &#xCAC;&#xCC7;&#xCB0;&#xCC6;&#xCA1;&#xCC6;</span>
+            </label>
+        </fieldset>
+    </fieldset>
+
+    <fieldset id="jr-calculated-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Child_Immunizations_EngKan/meta/instanceID"
+                   data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Child_Immunizations_EngKan/formhub/uuid"
+                   data-calculate="'ec455d0dafc9474083a0869ee3804a4f'" data-type-xml="string"/>
+        </label>
+    </fieldset>
+</form>
