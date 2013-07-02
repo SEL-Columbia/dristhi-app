@@ -187,17 +187,6 @@ public class ANCSmartRegistryControllerTest {
         assertEquals(asList(expectedEC), actualClients);
     }
 
-    @Test
-    public void shouldLoadVillages() throws Exception {
-        List<Village> expectedVillages = asList(new Village("village1"), new Village("village2"));
-        when(allEligibleCouples.villages()).thenReturn(asList("village1", "village2"));
-
-        String villages = controller.villages();
-        List<Village> actualVillages = new Gson().fromJson(villages, new TypeToken<List<Village>>() {
-        }.getType());
-        assertEquals(actualVillages, expectedVillages);
-    }
-
     private ANCClient createANCClient(String entityId, String name, String village, String thayi, String edd, String lmp) {
         return new ANCClient(entityId, village, name, thayi, edd, lmp)
                 .withPhotoPath("../../img/woman-placeholder.png")

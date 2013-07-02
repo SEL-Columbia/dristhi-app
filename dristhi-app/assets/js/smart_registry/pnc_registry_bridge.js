@@ -7,9 +7,6 @@ function PNCRegistryBridge() {
     return {
         getClients: function () {
             return JSON.parse(context.get());
-        },
-        getVillages: function () {
-            return JSON.parse(context.villages());
         }
     };
 }
@@ -104,7 +101,7 @@ function FakePNCSmartRegistryContext() {
                     numberOfOCPDelivered: "10",
                     numberOfCentchromanPillsDelivered: null,
                     deliveryDate: "2013-05-13",
-                    deliveryPlace:"PNC",
+                    deliveryPlace: "PNC",
                     deliveryType: "Normal", //TODO: what are the options
                     deliveryComplications: "",
                     otherDeliveryComplications: "",
@@ -159,7 +156,7 @@ function FakePNCSmartRegistryContext() {
                     numberOfOCPDelivered: null,
                     numberOfCentchromanPillsDelivered: null,
                     deliveryDate: "2013-06-10",
-                    deliveryPlace:"PNC",
+                    deliveryPlace: "PNC",
                     deliveryType: "Normal", //TODO: what are the options
                     deliveryComplications: "hemorrhage placenta_previa prolonged_or_obstructed_labour",
                     otherDeliveryComplications: "",
@@ -216,7 +213,7 @@ function FakePNCSmartRegistryContext() {
                     numberOfOCPDelivered: "8",
                     numberOfCentchromanPillsDelivered: null,
                     deliveryDate: "2013-06-18",
-                    deliveryPlace:"PNC",
+                    deliveryPlace: "PNC",
                     deliveryType: "Normal", //TODO: what are the options
                     deliveryComplications: "hemorrhage placenta_previa prolonged_or_obstructed_labour",
                     otherDeliveryComplications: "",
@@ -267,7 +264,7 @@ function FakePNCSmartRegistryContext() {
                     numberOfOCPDelivered: "8",
                     numberOfCentchromanPillsDelivered: null,
                     deliveryDate: "2013-06-10",
-                    deliveryPlace:"PNC",
+                    deliveryPlace: "PNC",
                     deliveryType: "Normal", //TODO: what are the options
                     deliveryComplications: "hemorrhage placenta_previa prolonged_or_obstructed_labour",
                     otherDeliveryComplications: "",
@@ -325,7 +322,7 @@ function FakePNCSmartRegistryContext() {
                     numberOfOCPDelivered: "10",
                     numberOfCentchromanPillsDelivered: null,
                     deliveryDate: "2013-06-16",
-                    deliveryPlace:"PNC",
+                    deliveryPlace: "PNC",
                     deliveryType: "Normal", //TODO: what are the options
                     deliveryComplications: "",
                     otherDeliveryComplications: "",
@@ -440,17 +437,6 @@ function FakePNCSmartRegistryContext() {
                     ]
                 }
             ]);
-        },
-        villages: function () {
-            return JSON.stringify(
-                [
-                    {name: "bherya"},
-                    {name: "chikkahalli"},
-                    {name: "somanahalli_colony"},
-                    {name: "chikkabherya"},
-                    {name: "basavanapura"}
-                ]
-            )
         }
     };
 }

@@ -14,6 +14,7 @@ import org.ei.drishti.sync.UpdateActionsTask;
 import org.ei.drishti.view.InternationalizationContext;
 import org.ei.drishti.view.controller.NavigationController;
 import org.ei.drishti.view.controller.UpdateController;
+import org.ei.drishti.view.controller.VillageController;
 
 import static android.webkit.ConsoleMessage.MessageLevel.ERROR;
 import static java.text.MessageFormat.format;
@@ -115,6 +116,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.addJavascriptInterface(new NavigationController(this, context.anmService()), "navigationContext");
+        webView.addJavascriptInterface(new VillageController(context.allEligibleCouples()), "villageContext");
         webView.addJavascriptInterface(new InternationalizationContext(getResources()), "internationalizationContext");
         webView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

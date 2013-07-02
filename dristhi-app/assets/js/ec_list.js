@@ -1,4 +1,4 @@
-function ECList(ecListBridge, cssIdOf) {
+function ECList(villageBridge, ecListBridge, cssIdOf) {
     var listView;
 
     var searchCriteria = function (ec, searchString) {
@@ -20,7 +20,7 @@ function ECList(ecListBridge, cssIdOf) {
                 defaultOption = 1;
             }
 
-            var appliedVillageFilter = ecListBridge.getAppliedVillageFilter(ecListBridge.getVillages()[defaultOption].name);
+            var appliedVillageFilter = ecListBridge.getAppliedVillageFilter(villageBridge.getVillages()[defaultOption].name);
             listView.filterByVillage(appliedVillageFilter, appliedVillageFilter);
         },
         bindEveryItemToECView: function () {
@@ -34,7 +34,9 @@ function ECList(ecListBridge, cssIdOf) {
             })
         },
         populateVillageFilter: function () {
-            listView.populateVillageFilter(ecListBridge.getVillages());
+            var villages = villageBridge.getVillages();
+            villages.unshift({name: "All"});
+            listView.populateVillageFilter(villages);
         },
         bindVillageFilterOptions: function () {
             listView.bindVillageFilterOptions();
@@ -74,9 +76,6 @@ function ECListBridge() {
         },
         delegateToForm: function (formName, entityId) {
             ecContext.startFormActivity(formName, entityId);
-        },
-        getVillages: function () {
-            return JSON.parse(ecContext.villages());
         },
         delegateToSaveAppliedVillageFilter: function (village) {
             return ecContext.saveAppliedVillageFilter(village);
@@ -144,15 +143,6 @@ function FakeECListContext() {
         },
         startFormActivity: function (formName, entityId) {
             alert("Start form " + formName);
-        },
-        villages: function () {
-            return JSON.stringify(
-                [
-                    {name: "All"},
-                    {name: "munjanahalli"},
-                    {name: "chikkabheriya"}
-                ]
-            )
         },
         saveAppliedVillageFilter: function (village) {
         },

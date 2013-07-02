@@ -11,7 +11,6 @@ import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.contract.AlertDTO;
 import org.ei.drishti.view.contract.FPClient;
-import org.ei.drishti.view.contract.Village;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -129,13 +128,4 @@ public class FPSmartRegistryController {
         });
     }
 
-    public String villages() {
-        List<Village> villagesList = new ArrayList<Village>();
-        List<String> villages = allEligibleCouples.villages();
-        for (String village : villages) {
-            villagesList.add(new Village(village));
-        }
-
-        return new Gson().toJson(villagesList);
-    }
 }

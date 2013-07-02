@@ -188,17 +188,6 @@ public class PNCSmartRegistryControllerTest {
         assertEquals(asList(expectedEC), actualClients);
     }
 
-    @Test
-    public void shouldLoadVillages() throws Exception {
-        List<Village> expectedVillages = asList(new Village("village1"), new Village("village2"));
-        when(allEligibleCouples.villages()).thenReturn(asList("village1", "village2"));
-
-        String villages = controller.villages();
-        List<Village> actualVillages = new Gson().fromJson(villages, new TypeToken<List<Village>>() {
-        }.getType());
-        assertEquals(actualVillages, expectedVillages);
-    }
-
     private PNCClient createPNCClient(String entityId, String name, String village, String thayi, String deliveryDate) {
         return new PNCClient(entityId, village, name, thayi, deliveryDate)
                 .withPhotoPath("../../img/woman-placeholder.png")

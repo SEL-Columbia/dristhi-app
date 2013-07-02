@@ -1,4 +1,4 @@
-function ChildList(childListBridge, cssIdOf) {
+function ChildList(villageBridge, childListBridge, cssIdOf) {
     var listView;
 
     var searchCriteria = function (child, searchString) {
@@ -24,7 +24,9 @@ function ChildList(childListBridge, cssIdOf) {
             });
         },
         populateVillageFilter: function () {
-            listView.populateVillageFilter(childListBridge.getVillages());
+            var villages = villageBridge.getVillages();
+            villages.unshift({name: "All"});
+            listView.populateVillageFilter(villages);
         },
         bindVillageFilterOptions: function () {
             listView.bindVillageFilterOptions();
@@ -53,9 +55,6 @@ function ChildListBridge() {
         },
         delegateToChildDetail: function (caseId) {
             return childContext.startChild(caseId);
-        },
-        getVillages: function () {
-            return JSON.parse(childContext.villages());
         },
         delegateToSaveAppliedVillageFilter: function (village) {
             return childContext.saveAppliedVillageFilter(village);
@@ -128,15 +127,6 @@ function FakeChildListContext() {
         },
         startChild: function (caseId) {
             window.location.href = "child_detail.html";
-        },
-        villages: function () {
-            return JSON.stringify(
-                [
-                    {name: "All"},
-                    {name: "munjanahalli"},
-                    {name: "chikkabheriya"}
-                ]
-            )
         },
         saveAppliedVillageFilter: function (village) {
         },

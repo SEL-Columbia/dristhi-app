@@ -15,7 +15,6 @@ import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.contract.ANCClient;
 import org.ei.drishti.view.contract.AlertDTO;
 import org.ei.drishti.view.contract.ServiceProvidedDTO;
-import org.ei.drishti.view.contract.Village;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -94,15 +93,6 @@ public class ANCSmartRegistryController {
                 return new Gson().toJson(ancClients);
             }
         });
-    }
-
-    public String villages() {
-        List<Village> villagesList = new ArrayList<Village>();
-        List<String> villages = allEligibleCouples.villages();
-        for (String village : villages) {
-            villagesList.add(new Village(village));
-        }
-        return new Gson().toJson(villagesList);
     }
 
     private List<ServiceProvidedDTO> getServicesProvided(String entityId) {

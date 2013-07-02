@@ -53,6 +53,7 @@
             <p id="noItemIndicator" class="text-info text-on-list hidden">
                 No items to display
             </p>
+
             <div id="child-list" class="registry-container container-fluid">
                 <div id="highRiskContainer" class="high-risk-container">
                     <div class="high-risk-header"> HIGH RISK (<span class="count"></span>)</div>
@@ -87,6 +88,7 @@
 <script src="../js/sidePanel.js"></script>
 <script src="../js/list_view.js"></script>
 <script src="../js/international_text.js"></script>
+<script src="../js/village.js"></script>
 
 <script src="../js/child_list.js"></script>
 <script>
@@ -116,7 +118,7 @@
             loadingButton: "#loadingButton"
         };
 
-        var list = new ChildList(new ChildListBridge(), cssIdOf);
+        var list = new ChildList(new VillageBridge(), new ChildListBridge(), cssIdOf);
         list.populateInto();
         list.bindEveryItemToChildView();
 

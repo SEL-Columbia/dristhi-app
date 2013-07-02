@@ -79,6 +79,7 @@
 <script src="../js/list_view.js"></script>
 <script src="../js/international_text.js"></script>
 <script src="../js/page_view.js"></script>
+<script src="../js/village.js"></script>
 
 <script src="../js/ec_list.js"></script>
 <script>
@@ -109,7 +110,7 @@
             loadingButton: "#loadingButton",
             womanPhoto: ".womanPhoto"
         };
-        var ecList = new ECList(new ECListBridge(), cssIdOf);
+        var ecList = new ECList(new VillageBridge(), new ECListBridge(), cssIdOf);
         ecList.populateInto();
         ecList.bindEveryItemToECView();
         ecList.bindItemToForm();

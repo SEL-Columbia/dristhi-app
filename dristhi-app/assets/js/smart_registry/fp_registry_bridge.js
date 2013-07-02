@@ -7,9 +7,6 @@ function FPRegistryBridge() {
     return {
         getClients: function () {
             return JSON.parse(context.get());
-        },
-        getVillages: function () {
-            return JSON.parse(context.villages());
         }
     };
 }
@@ -444,17 +441,6 @@ function FakeFPSmartRegistryContext() {
                     alerts: []
                 }
             ]);
-        },
-        villages: function () {
-            return JSON.stringify(
-                [
-                    {name: "bherya"},
-                    {name: "chikkahalli"},
-                    {name: "somanahalli_colony"},
-                    {name: "chikkabherya"},
-                    {name: "basavanapura"}
-                ]
-            )
         }
     };
 }

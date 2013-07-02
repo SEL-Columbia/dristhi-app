@@ -13,7 +13,6 @@ import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.activity.FormActivity;
 import org.ei.drishti.view.contract.Beneficiaries;
 import org.ei.drishti.view.contract.EC;
-import org.ei.drishti.view.contract.Village;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -73,17 +72,6 @@ public class EligibleCoupleListViewController {
 
     public void startEC(String caseId) {
         navigateToECProfile(context, caseId);
-    }
-
-    public String villages() {
-        List<Village> villagesList = new ArrayList<Village>();
-        List<String> villages = allEligibleCouples.villages();
-        villagesList.add(new Village("All"));
-        for (String village : villages) {
-            villagesList.add(new Village(village));
-        }
-
-        return new Gson().toJson(villagesList);
     }
 
     private void sort(List<EC> normalPriority) {

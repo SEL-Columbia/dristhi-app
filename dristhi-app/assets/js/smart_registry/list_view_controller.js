@@ -3,6 +3,7 @@ angular.module("smartRegistry.controllers")
 
         $scope.navigationBridge = new ANMNavigationBridge();
         $scope.formBridge = new FormBridge();
+        $scope.villageBridge = new VillageBridge();
 
         $scope.sort = function (option) {
             $scope.currentSortOption = option;
@@ -29,12 +30,12 @@ angular.module("smartRegistry.controllers")
             return capitalize(unformattedText).replace(/_/g, " ");
         };
 
-        var getVillageFilterOptions = function () {
+        $scope.getVillageFilterOptions = function () {
             var villageFilterOptions = {
                 type: $scope.defaultVillageOptions.type,
                 options: $scope.defaultVillageOptions.options.slice(0)
             };
-            var villages = $scope.bridge.getVillages();
+            var villages = $scope.villageBridge.getVillages();
             villages.forEach(function (village) {
                 villageFilterOptions.options.push({
                     label: formatText(village.name),
@@ -45,7 +46,7 @@ angular.module("smartRegistry.controllers")
             return  villageFilterOptions;
         };
 
-        $scope.villageOptions = getVillageFilterOptions();
+        $scope.villageOptions = $scope.getVillageFilterOptions();
 
         $scope.filterList = function (client) {
             var searchCondition = true;

@@ -1,5 +1,4 @@
 describe("List view controller", function () {
-
     var controller, scope, bridge = new FPRegistryBridge();
 
     beforeEach(module("smartRegistry.controllers"));
@@ -17,12 +16,6 @@ describe("List view controller", function () {
             ]
         };
         scope.defaultVillageFilterHandler = "defaultFilterByVillageName";
-        spyOn(bridge, "getVillages")
-            .andReturn(
-                [
-                    {name: "village_1"},
-                    {name: "village2"}
-                ]);
         controller = $controller("listViewController", {
             $scope: scope
         });
@@ -251,8 +244,14 @@ describe("List view controller", function () {
                     }
                 ]
             };
+            scope.villageBridge = new VillageBridge();
+            spyOn(scope.villageBridge, "getVillages").andReturn([
+                {name: "village_1"},
+                {name: "village2"}
+            ]);
 
-            expect(JSON.stringify(scope.villageOptions)).toBe(JSON.stringify(expectedVillageOptions));
+            var villageFilterOptions = scope.getVillageFilterOptions();
+            expect(villageFilterOptions).toEqual(expectedVillageOptions);
         });
     });
 

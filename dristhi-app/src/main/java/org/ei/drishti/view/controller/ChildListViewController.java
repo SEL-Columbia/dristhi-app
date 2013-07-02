@@ -64,17 +64,6 @@ public class ChildListViewController {
         navigationToChildProfile(context, caseId);
     }
 
-    public String villages() {
-        List<Village> villagesList = new ArrayList<Village>();
-        List<String> villages = allEligibleCouples.villages();
-        villagesList.add(new Village("All"));
-        for (String village : villages) {
-            villagesList.add(new Village(village));
-        }
-
-        return new Gson().toJson(villagesList);
-    }
-
     private void sort(List<org.ei.drishti.view.contract.Child> children) {
         Collections.sort(children, new Comparator<org.ei.drishti.view.contract.Child>() {
             @Override

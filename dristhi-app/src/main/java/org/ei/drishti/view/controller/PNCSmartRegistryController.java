@@ -90,15 +90,6 @@ public class PNCSmartRegistryController {
         });
     }
 
-    public String villages() {
-        List<Village> villagesList = new ArrayList<Village>();
-        List<String> villages = allEligibleCouples.villages();
-        for (String village : villages) {
-            villagesList.add(new Village(village));
-        }
-        return new Gson().toJson(villagesList);
-    }
-
     private List<ServiceProvidedDTO> getServicesProvided(String entityId) {
         List<ServiceProvided> servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId,
                 PNC_SERVICE_PROVIDED_NAME);
