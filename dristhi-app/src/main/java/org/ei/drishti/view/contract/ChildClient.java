@@ -24,7 +24,7 @@ public class ChildClient {
     private String photo_path;
     private String ecNumber;
     private List<AlertDTO> alerts;
-    private List<ServiceProvidedDTO> servicesProvided;
+    private List<ServiceProvidedDTO> services_provided;
     private String entityIdToSavePhoto;
 
     public ChildClient(String entityId, String gender, String weight, String thayiCardNumber) {
@@ -109,7 +109,7 @@ public class ChildClient {
     }
 
     public ChildClient withServicesProvided(List<ServiceProvidedDTO> servicesProvided) {
-        this.servicesProvided = servicesProvided;
+        this.services_provided = servicesProvided;
         return this;
     }
 
