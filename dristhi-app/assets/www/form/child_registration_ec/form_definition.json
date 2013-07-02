@@ -71,7 +71,7 @@
             },
             {
                 "name": "phoneNumber",
-                "bind": "/model/instance/Child_Registration_EC_EngKan/case_phone_no1",
+                "bind": "/model/instance/Child_Registration_EC_EngKan/case_phone_no",
                 "shouldLoadValue": true
             },
             {
