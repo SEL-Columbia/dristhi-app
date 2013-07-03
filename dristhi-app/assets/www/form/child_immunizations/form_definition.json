@@ -8,6 +8,11 @@
                 "shouldLoadValue": true
             },
             {
+                "name": "previousImmunizations",
+                "shouldLoadValue": true,
+                "source": "child.immunizationsGiven"
+            },
+            {
                 "name": "immunizationsGiven",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Child_Immunizations_EngKan/immunizations_given"
