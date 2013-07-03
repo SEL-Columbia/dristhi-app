@@ -85,10 +85,18 @@ public class PNCSmartRegistryController {
                     );
                 }
                 sortByName(pncClients);
-                String json_string = new Gson().toJson(pncClients);
-                return json_string;
+                return new Gson().toJson(pncClients);
             }
         });
+    }
+
+    public String villages() {
+        List<Village> villagesList = new ArrayList<Village>();
+        List<String> villages = allEligibleCouples.villages();
+        for (String village : villages) {
+            villagesList.add(new Village(village));
+        }
+        return new Gson().toJson(villagesList);
     }
 
     private List<ServiceProvidedDTO> getServicesProvided(String entityId) {
