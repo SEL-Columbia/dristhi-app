@@ -125,6 +125,7 @@ public class AllConstants {
 
     public class ChildRegistrationECFields {
         public static final String MOTHER_ID = "motherId";
+        public static final String CHILD_ID = "childId";
         public static final String DATE_OF_BIRTH = "dateOfBirth";
         public static final String WEIGHT = "weight";
         public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";

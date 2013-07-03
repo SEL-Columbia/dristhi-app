@@ -12,6 +12,7 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.PNCVisitFields.*;
 import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.util.EasyMap.create;
+import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class TimelineEvent {
     private String caseId;
@@ -44,8 +45,8 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), title, detailsString, null);
     }
 
-    public static TimelineEvent forChildBirthInECProfile(String caseId, String dateOfBirth, String gender, Map<String, String> details) {
-        String detailsString = new DetailBuilder(details).withDateOfDelivery("dateOfDelivery").value();
+    public static TimelineEvent forChildBirthInECProfile(String caseId, String dateOfBirth, String gender, String dateOfDelivery) {
+        String detailsString = new DetailBuilder(mapOf("dateOfDelivery", dateOfDelivery)).withDateOfDelivery("dateOfDelivery").value();
         String title = gender.equals("male") ? "Boy" : "Girl" + " Delivered";
         return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), title, detailsString, null);
     }

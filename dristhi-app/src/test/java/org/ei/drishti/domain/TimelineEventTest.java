@@ -117,7 +117,7 @@ public class TimelineEventTest {
 
     @Test
     public void shouldCreateTimelineEventForChildBirthInECProfileWithDetails() throws Exception {
-        TimelineEvent timelineEvent = forChildBirthInECProfile("CASE A", "2012-08-01", "male", detailsWithData);
+        TimelineEvent timelineEvent = forChildBirthInECProfile("CASE A", "2012-08-01", "male", "2012-08-01");
 
         assertTrue(timelineEvent.detail1().contains("On: 01-08-2012"));
     }

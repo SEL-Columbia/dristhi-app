@@ -38,12 +38,14 @@ public class ChildService {
             childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thayiCardNumber()).setDateOfBirth(mother.referenceDate()));
             allTimelines.add(forChildBirthInChildProfile(child.caseId(), mother.referenceDate(), child.getDetail("weight"), child.getDetail("immunizationsGiven")));
             allTimelines.add(forChildBirthInMotherProfile(submission.entityId(), mother.referenceDate(), child.gender(), mother.referenceDate(), mother.getDetail("deliveryPlace")));
+            allTimelines.add(forChildBirthInECProfile(mother.ecCaseId(), mother.referenceDate(), child.gender(), mother.referenceDate()));
         }
     }
 
     public void registerForEC(FormSubmission submission) {
-        allTimelines.add(forChildBirthInChildProfile(submission.entityId(), submission.getFieldValue(DATE_OF_BIRTH), submission.getFieldValue(WEIGHT), submission.getFieldValue(IMMUNIZATIONS_GIVEN)));
+        allTimelines.add(forChildBirthInChildProfile(submission.getFieldValue(CHILD_ID), submission.getFieldValue(DATE_OF_BIRTH), submission.getFieldValue(WEIGHT), submission.getFieldValue(IMMUNIZATIONS_GIVEN)));
         allTimelines.add(forChildBirthInMotherProfile(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(DATE_OF_BIRTH), submission.getFieldValue(GENDER), null, null));
+        allTimelines.add(forChildBirthInECProfile(submission.entityId(), submission.getFieldValue(DATE_OF_BIRTH), submission.getFieldValue(GENDER), null));
     }
 
     public void pncRegistrationOA(FormSubmission submission) {
@@ -56,6 +58,8 @@ public class ChildService {
                     child.getDetail(AllConstants.PNCRegistrationOAFields.WEIGHT), child.getDetail(AllConstants.PNCRegistrationOAFields.IMMUNIZATIONS_GIVEN)));
             allTimelines.add(forChildBirthInMotherProfile(mother.caseId(), mother.referenceDate(), child.gender(),
                     mother.referenceDate(), submission.getFieldValue(AllConstants.PNCRegistrationOAFields.DELIVERY_PLACE)));
+            allTimelines.add(forChildBirthInECProfile(mother.ecCaseId(), mother.referenceDate(), child.gender(),
+                    mother.referenceDate()));
         }
     }
 

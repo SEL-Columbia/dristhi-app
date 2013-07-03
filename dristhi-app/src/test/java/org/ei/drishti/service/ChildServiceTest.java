@@ -18,6 +18,7 @@ import org.mockito.Mock;
 
 import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.TimelineEvent.forChildBirthInChildProfile;
+import static org.ei.drishti.domain.TimelineEvent.forChildBirthInECProfile;
 import static org.ei.drishti.domain.TimelineEvent.forChildBirthInMotherProfile;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
@@ -70,6 +71,7 @@ public class ChildServiceTest {
         verify(allTimelineEvents).add(forChildBirthInChildProfile("Child X", "2012-01-01", "3", "bcg opv_0"));
         verify(allTimelineEvents).add(forChildBirthInChildProfile("Child Y", "2012-01-01", "4", "bcg"));
         verify(allTimelineEvents, times(2)).add(forChildBirthInMotherProfile("Mother X", "2012-01-01", "female", "2012-01-01", "phc"));
+        verify(allTimelineEvents, times(2)).add(forChildBirthInECProfile("EC 1", "2012-01-01", "female", "2012-01-01"));
         verifyNoMoreInteractions(childRepository);
     }
 
@@ -91,6 +93,7 @@ public class ChildServiceTest {
         verify(allTimelineEvents).add(forChildBirthInChildProfile("Child X", "2012-01-01", "3", "bcg opv_0"));
         verify(allTimelineEvents).add(forChildBirthInChildProfile("Child Y", "2012-01-01", "4", "bcg"));
         verify(allTimelineEvents, times(2)).add(forChildBirthInMotherProfile("Mother X", "2012-01-01", "female", "2012-01-01", "subcenter"));
+        verify(allTimelineEvents, times(2)).add(forChildBirthInECProfile("EC X", "2012-01-01", "female", "2012-01-01"));
         verifyNoMoreInteractions(childRepository);
     }
 
@@ -123,8 +126,9 @@ public class ChildServiceTest {
     @Test
     public void shouldAddTimelineEventWhenChildIsRegisteredForEC() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
-        when(submission.entityId()).thenReturn("child id 1");
+        when(submission.entityId()).thenReturn("ec id 1");
         when(submission.getFieldValue("motherId")).thenReturn("mother id 1");
+        when(submission.getFieldValue("childId")).thenReturn("child id 1");
         when(submission.getFieldValue("dateOfBirth")).thenReturn("2013-01-02");
         when(submission.getFieldValue("gender")).thenReturn("female");
         when(submission.getFieldValue("weight")).thenReturn("3");
@@ -134,6 +138,7 @@ public class ChildServiceTest {
 
         verify(allTimelineEvents).add(forChildBirthInChildProfile("child id 1", "2013-01-02", "3", "bcg opv_0"));
         verify(allTimelineEvents).add(forChildBirthInMotherProfile("mother id 1", "2013-01-02", "female", null, null));
+        verify(allTimelineEvents).add(forChildBirthInECProfile("ec id 1", "2013-01-02", "female", null));
     }
 
     @Test
