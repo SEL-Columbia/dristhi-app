@@ -29,7 +29,6 @@ public class TimelineEventTest {
         detailsWithData.put("childWeight", "4");
         detailsWithData.put("dateOfDelivery", "2012-08-01");
         detailsWithData.put("placeOfDelivery", "Govt Hospital");
-        detailsWithData.put("immunizationsProvided", "bcg opv_0 hepb_0");
 
         detailsWithoutData = new HashMap<String, String>();
     }

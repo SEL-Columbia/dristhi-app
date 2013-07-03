@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
-import org.ei.drishti.domain.TimelineEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +51,6 @@ public class ChildRepository extends DrishtiRepository {
     public void add(Child child) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(CHILD_TABLE_NAME, null, createValuesFor(child));
-        timelineEventRepository.add(TimelineEvent.forChildBirthInChildProfile(child.caseId(), child.dateOfBirth(), child.getDetail("weight"), child.getDetail("immunizationsGiven")));
     }
 
     public void update(Child child) {
