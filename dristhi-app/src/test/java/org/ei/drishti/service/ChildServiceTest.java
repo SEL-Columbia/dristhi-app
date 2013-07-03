@@ -18,6 +18,7 @@ import org.mockito.Mock;
 
 import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.TimelineEvent.forChildBirthInChildProfile;
+import static org.ei.drishti.domain.TimelineEvent.forChildBirthInMotherProfile;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.mockito.Mockito.*;
@@ -56,7 +57,7 @@ public class ChildServiceTest {
     public void shouldUpdateEveryChildWhileRegistering() throws Exception {
         Child firstChild = new Child("Child X", "Mother X", "female", create("weight", "3").put("immunizationsGiven", "bcg opv_0").map());
         Child secondChild = new Child("Child Y", "Mother X", "female", create("weight", "4").put("immunizationsGiven", "bcg").map());
-        when(motherRepository.findById("Mother X")).thenReturn(new Mother("Mother X", "EC 1", "TC 1", "2012-01-01"));
+        when(motherRepository.findById("Mother X")).thenReturn(new Mother("Mother X", "EC 1", "TC 1", "2012-01-01").withDetails(mapOf("deliveryPlace", "phc")));
         when(childRepository.findByMotherCaseId("Mother X")).thenReturn(asList(firstChild, secondChild));
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("Mother X");
@@ -68,6 +69,7 @@ public class ChildServiceTest {
         verify(childRepository).update(secondChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
         verify(allTimelineEvents).add(forChildBirthInChildProfile("Child X", "2012-01-01", "3", "bcg opv_0"));
         verify(allTimelineEvents).add(forChildBirthInChildProfile("Child Y", "2012-01-01", "4", "bcg"));
+        verify(allTimelineEvents, times(2)).add(forChildBirthInMotherProfile("Mother X", "2012-01-01", "female", "2012-01-01", "phc"));
         verifyNoMoreInteractions(childRepository);
     }
 
@@ -79,6 +81,7 @@ public class ChildServiceTest {
         when(childRepository.findByMotherCaseId("Mother X")).thenReturn(asList(firstChild, secondChild));
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("EC X");
+        when(submission.getFieldValue("deliveryPlace")).thenReturn("subcenter");
 
         service.pncRegistrationOA(submission);
 
@@ -87,6 +90,7 @@ public class ChildServiceTest {
         verify(childRepository).update(secondChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
         verify(allTimelineEvents).add(forChildBirthInChildProfile("Child X", "2012-01-01", "3", "bcg opv_0"));
         verify(allTimelineEvents).add(forChildBirthInChildProfile("Child Y", "2012-01-01", "4", "bcg"));
+        verify(allTimelineEvents, times(2)).add(forChildBirthInMotherProfile("Mother X", "2012-01-01", "female", "2012-01-01", "subcenter"));
         verifyNoMoreInteractions(childRepository);
     }
 
@@ -120,6 +124,7 @@ public class ChildServiceTest {
     public void shouldAddTimelineEventWhenChildIsRegisteredForEC() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("child id 1");
+        when(submission.getFieldValue("motherId")).thenReturn("mother id 1");
         when(submission.getFieldValue("dateOfBirth")).thenReturn("2013-01-02");
         when(submission.getFieldValue("gender")).thenReturn("female");
         when(submission.getFieldValue("weight")).thenReturn("3");
@@ -128,6 +133,7 @@ public class ChildServiceTest {
         service.registerForEC(submission);
 
         verify(allTimelineEvents).add(forChildBirthInChildProfile("child id 1", "2013-01-02", "3", "bcg opv_0"));
+        verify(allTimelineEvents).add(forChildBirthInMotherProfile("mother id 1", "2013-01-02", "female", null, null));
     }
 
     @Test

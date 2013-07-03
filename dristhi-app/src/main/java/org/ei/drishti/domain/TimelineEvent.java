@@ -37,7 +37,8 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), "Birth Date: " + formatDate(dateOfBirth), detailsString, null);
     }
 
-    public static TimelineEvent forChildBirthInMotherProfile(String caseId, String dateOfBirth, String gender, Map<String, String> details) {
+    public static TimelineEvent forChildBirthInMotherProfile(String caseId, String dateOfBirth, String gender, String dateOfDelivery, String placeOfDelivery) {
+        Map<String, String> details = create("dateOfDelivery", dateOfDelivery).put("placeOfDelivery", placeOfDelivery).map();
         String detailsString = new DetailBuilder(details).withDateOfDelivery("dateOfDelivery").withPlaceOfDelivery("placeOfDelivery").value();
         String title = (gender.equals("male") ? "Boy" : "Girl") + " Delivered";
         return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), title, detailsString, null);

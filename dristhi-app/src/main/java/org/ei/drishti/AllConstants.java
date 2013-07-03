@@ -122,4 +122,18 @@ public class AllConstants {
         public static final String DID_WOMAN_SURVIVE = "didWomanSurvive";
         public static final String DID_MOTHER_SURVIVE = "didMotherSurvive";
     }
+
+    public class ChildRegistrationECFields {
+        public static final String MOTHER_ID = "motherId";
+        public static final String DATE_OF_BIRTH = "dateOfBirth";
+        public static final String WEIGHT = "weight";
+        public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";
+        public static final String GENDER = "gender";
+    }
+
+    public class PNCRegistrationOAFields {
+        public static final String WEIGHT = "weight";
+        public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";
+        public static final String DELIVERY_PLACE = "deliveryPlace";
+    }
 }

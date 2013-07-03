@@ -1,5 +1,6 @@
 package org.ei.drishti.service;
 
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.ServiceProvided;
@@ -11,6 +12,7 @@ import org.ei.drishti.repository.MotherRepository;
 
 import java.util.List;
 
+import static org.ei.drishti.AllConstants.ChildRegistrationECFields.*;
 import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.domain.TimelineEvent.*;
 
@@ -35,11 +37,13 @@ public class ChildService {
         for (Child child : children) {
             childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thayiCardNumber()).setDateOfBirth(mother.referenceDate()));
             allTimelines.add(forChildBirthInChildProfile(child.caseId(), mother.referenceDate(), child.getDetail("weight"), child.getDetail("immunizationsGiven")));
+            allTimelines.add(forChildBirthInMotherProfile(submission.entityId(), mother.referenceDate(), child.gender(), mother.referenceDate(), mother.getDetail("deliveryPlace")));
         }
     }
 
     public void registerForEC(FormSubmission submission) {
-        allTimelines.add(forChildBirthInChildProfile(submission.entityId(), submission.getFieldValue("dateOfBirth"), submission.getFieldValue("weight"), submission.getFieldValue("immunizationsGiven")));
+        allTimelines.add(forChildBirthInChildProfile(submission.entityId(), submission.getFieldValue(DATE_OF_BIRTH), submission.getFieldValue(WEIGHT), submission.getFieldValue(IMMUNIZATIONS_GIVEN)));
+        allTimelines.add(forChildBirthInMotherProfile(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(DATE_OF_BIRTH), submission.getFieldValue(GENDER), null, null));
     }
 
     public void pncRegistrationOA(FormSubmission submission) {
@@ -48,7 +52,10 @@ public class ChildService {
 
         for (Child child : children) {
             childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thayiCardNumber()).setDateOfBirth(mother.referenceDate()));
-            allTimelines.add(forChildBirthInChildProfile(child.caseId(), mother.referenceDate(), child.getDetail("weight"), child.getDetail("immunizationsGiven")));
+            allTimelines.add(forChildBirthInChildProfile(child.caseId(), mother.referenceDate(),
+                    child.getDetail(AllConstants.PNCRegistrationOAFields.WEIGHT), child.getDetail(AllConstants.PNCRegistrationOAFields.IMMUNIZATIONS_GIVEN)));
+            allTimelines.add(forChildBirthInMotherProfile(mother.caseId(), mother.referenceDate(), child.gender(),
+                    mother.referenceDate(), submission.getFieldValue(AllConstants.PNCRegistrationOAFields.DELIVERY_PLACE)));
         }
     }
 
