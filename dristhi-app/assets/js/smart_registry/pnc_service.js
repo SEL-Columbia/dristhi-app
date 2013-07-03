@@ -27,14 +27,24 @@ angular.module("smartRegistry.services")
             end_date.setDate(end_date.getDate() + 7);
 
             /// find PNC services with 7 day window
-            pnc_services = services_provided.filter(function(service){
+            var valid_services = services_provided.filter(function(service){
                 return  service.name === "PNC" && Date.parse(service.date) <= end_date.getTime();
             });
 
-            if(pnc_services.length > 0)
+            if(valid_services.length > 0)
             {
+                // filter out duplicates
+                var service_dates = [];
+                var first_7_days_services = [];
+                valid_services.forEach(function(service){
+                    if(!service_dates.some(function(d){return d === service.date})){
+                        service_dates.push(service.date);
+                        first_7_days_services.push(service);
+                    };
+                });
+
                 /// sort by service date ascending
-                var first_7_days_services = pnc_services.sort(function(a, b){
+                var first_7_days_services = first_7_days_services.sort(function(a, b){
                     return a.date < b.date?-1:1;
                 });
 
@@ -133,7 +143,7 @@ angular.module("smartRegistry.services")
             {
                 client.visits.first_7_days.active_color = 'red';
             }
-            else if(valid_actual_visit_days.filter(function(d){return valid_expected_visit_days.indexOf(d) !== -1}).length === valid_expected_visit_days.length)
+            else if(valid_expected_visit_days.every(function(d){return valid_actual_visit_days.indexOf(d) !== -1}))
             {
                 client.visits.first_7_days.active_color = 'green';
             }
@@ -209,6 +219,7 @@ angular.module("smartRegistry.services")
             getFirst7DaysVisits: getFirst7DaysVisits,
             preProcess: function (clients) {
                 var current_date = new Date();
+                current_date.setHours(0, 0, 0, 0);
                 clients.forEach(function (client) {
                         if(!client.visits)
                             client.visits = {};

@@ -397,6 +397,14 @@ function FakePNCSmartRegistryContext() {
                         {
                             "data": {
                                 "pncVisitNumber": "3",
+                                day: 5
+                            },
+                            "date": "2013-06-27",
+                            "name": "PNC"
+                        },
+                        {
+                            "data": {
+                                "pncVisitNumber": "4",
                                 day: 7
                             },
                             "date": "2013-06-29",
@@ -404,7 +412,7 @@ function FakePNCSmartRegistryContext() {
                         },
                         {
                             "data": {
-                                "pncVisitNumber": "4",
+                                "pncVisitNumber": "5",
                                 day: 9
                             },
                             "date": "2013-07-01",
@@ -420,7 +428,7 @@ function FakePNCSmartRegistryContext() {
                         },
                         {
                             "data": {
-                                "pncVisitNumber": "5",
+                                "pncVisitNumber": "7",
                                 day: 10
                             },
                             "date": "2013-07-02",
@@ -428,7 +436,7 @@ function FakePNCSmartRegistryContext() {
                         },
                         {
                             "data": {
-                                "pncVisitNumber": "7",
+                                "pncVisitNumber": "8",
                                 day: 13
                             },
                             "date": "2013-07-05",

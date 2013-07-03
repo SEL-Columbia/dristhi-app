@@ -85,7 +85,8 @@ public class PNCSmartRegistryController {
                     );
                 }
                 sortByName(pncClients);
-                return new Gson().toJson(pncClients);
+                String json_string = new Gson().toJson(pncClients);
+                return json_string;
             }
         });
     }

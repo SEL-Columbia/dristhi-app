@@ -121,6 +121,55 @@ describe('PNC Service', function () {
                 expect(first_3_visits.length).toEqual(expected_visits.length);
                 expect(first_3_visits[0]).toEqual(expected_visits[0]);
             });
+
+            it("should return unique day values and ignore duplicate visits on the same date", function(){
+                var services_provided = [
+                    {
+                        name: "PNC",
+                        date: '2013-05-20'
+                    },
+                    {
+                        name: "PNC",
+                        date: '2013-05-16'
+                    },
+                    {
+                        name: "PNC",
+                        date: '2013-05-16'
+                    },
+                    {
+                        name: "PNC",
+                        date: '2013-05-14'
+                    }
+                ];
+
+                // TODO: test that days are set appropriately based on offest from delivery date
+                var expected_visits = [
+                    {
+                        name: "PNC",
+                        day: 1,
+                        date: '2013-05-14'
+                    },
+                    {
+                        name: "PNC",
+                        day: 3,
+                        date: '2013-05-16'
+                    },
+                    {
+                        name: "PNC",
+                        day: 7,
+                        date: '2013-05-20'
+                    }
+                ];
+
+                var delivery_date = new Date("2013-05-13");
+
+                var first_3_visits = pncService.getFirst7DaysVisits(delivery_date, services_provided);
+
+                expect(first_3_visits.length).toEqual(expected_visits.length);
+                expect(first_3_visits[0]).toEqual(expected_visits[0]);
+                expect(first_3_visits[1]).toEqual(expected_visits[1]);
+                expect(first_3_visits[2]).toEqual(expected_visits[2]);
+            });
         });
 
         describe("Current date is delivery date", function(){
@@ -548,7 +597,7 @@ describe('PNC Service', function () {
             });
         });
 
-        describe("8th day with all services provided on time", function(){
+        describe("8th day with all services provided on time, and then some", function(){
             var client = {
                 deliveryDate:"2013-05-13",
                 services_provided:[
@@ -565,6 +614,17 @@ describe('PNC Service', function () {
                     {
                         name: "PNC",
                         date: "2013-05-16",
+                        data: {}
+                    },
+                    // spanner in the works, duplicate service date
+                    {
+                        name: "PNC",
+                        date: "2013-05-16",
+                        data: {}
+                    },
+                    {
+                        name: "PNC",
+                        date: "2013-05-15",
                         data: {}
                     },
                     {
@@ -591,6 +651,10 @@ describe('PNC Service', function () {
                 var expected_circles = [
                     {
                         day: 1,
+                        type: 'actual'
+                    },
+                    {
+                        day: 2,
                         type: 'actual'
                     },
                     {
@@ -644,12 +708,8 @@ describe('PNC Service', function () {
                 expect(client.visits.first_7_days.active_color).toEqual('green');
             });
 
-            it("should create ticks on days 2,4,5,6", function () {
+            it("should create ticks on days 4, 5 and 6", function () {
                 var expected_ticks = [
-                    {
-                        day: 2,
-                        type: 'actual'
-                    },
                     {
                         day: 4,
                         type: 'actual'
@@ -691,10 +751,14 @@ describe('PNC Service', function () {
                 expect(client.visits.first_7_days.lines[1]).toEqual(expected_lines[1]);
             });
 
-            it("should show day nos 1, 3, 7 all as actual", function(){
+            it("should show day nos 1, 2, 3 and 7 as actual", function(){
                 var expected_day_nos = [
                     {
                         day:1,
+                        type:'actual'
+                    },
+                    {
+                        day:2,
                         type:'actual'
                     },
                     {
