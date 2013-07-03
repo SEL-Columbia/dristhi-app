@@ -12,6 +12,6 @@ public class PNCRegistrationOAHandler implements FormSubmissionHandler {
 
     @Override
     public void handle(FormSubmission submission) {
-        childService.pncRegistration(submission);
+        childService.pncRegistrationOA(submission);
     }
 }

@@ -52,7 +52,7 @@ public class ChildRepository extends DrishtiRepository {
     public void add(Child child) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(CHILD_TABLE_NAME, null, createValuesFor(child));
-        timelineEventRepository.add(TimelineEvent.forChildBirthInChildProfile(child.caseId(), child.dateOfBirth(), child.detailsAsMap()));
+        timelineEventRepository.add(TimelineEvent.forChildBirthInChildProfile(child.caseId(), child.dateOfBirth(), child.getDetail("weight"), child.getDetail("immunizationsGiven")));
     }
 
     public void update(Child child) {

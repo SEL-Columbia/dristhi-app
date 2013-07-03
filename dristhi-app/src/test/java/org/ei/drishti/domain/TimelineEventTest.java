@@ -131,7 +131,7 @@ public class TimelineEventTest {
 
     @Test
     public void shouldCreateTimelineEventForChildBirthInChildProfileWithDetails() throws Exception {
-        TimelineEvent timelineEvent = forChildBirthInChildProfile("CASE A", "2012-08-01", detailsWithData);
+        TimelineEvent timelineEvent = forChildBirthInChildProfile("CASE A", "2012-08-01", "4", "bcg opv_0 hepb_0");
 
         assertTrue(timelineEvent.detail1().contains("Weight: 4 kg"));
         assertTrue(timelineEvent.detail1().contains("Immunizations: BCG, OPV 0, HepB 0"));
@@ -139,7 +139,7 @@ public class TimelineEventTest {
 
     @Test
     public void shouldCreateTimelineEventForChildBirthInChildProfileExcludingThoseDetailsWhichDoNotHaveValue() throws Exception {
-        TimelineEvent timelineEvent = forChildBirthInChildProfile("CASE A", "2012-01-01", detailsWithoutData);
+        TimelineEvent timelineEvent = forChildBirthInChildProfile("CASE A", "2012-01-01", null, null);
 
         assertFalse(timelineEvent.detail1().contains("Weight:"));
         assertFalse(timelineEvent.detail1().contains("Immunizations:"));

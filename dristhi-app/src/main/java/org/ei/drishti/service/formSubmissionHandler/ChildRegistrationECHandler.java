@@ -12,6 +12,6 @@ public class ChildRegistrationECHandler implements FormSubmissionHandler {
 
     @Override
     public void handle(FormSubmission submission) {
-
+        childService.registerForEC(submission);
     }
 }

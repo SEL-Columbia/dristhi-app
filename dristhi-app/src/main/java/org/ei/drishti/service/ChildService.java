@@ -12,8 +12,7 @@ import org.ei.drishti.repository.MotherRepository;
 import java.util.List;
 
 import static org.ei.drishti.AllConstants.SPACE;
-import static org.ei.drishti.domain.TimelineEvent.forChildImmunization;
-import static org.ei.drishti.domain.TimelineEvent.forChildPNCVisit;
+import static org.ei.drishti.domain.TimelineEvent.*;
 
 public class ChildService {
     private ChildRepository childRepository;
@@ -35,15 +34,21 @@ public class ChildService {
 
         for (Child child : children) {
             childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thayiCardNumber()).setDateOfBirth(mother.referenceDate()));
+            allTimelines.add(forChildBirthInChildProfile(child.caseId(), mother.referenceDate(), child.getDetail("weight"), child.getDetail("immunizationsGiven")));
         }
     }
 
-    public void pncRegistration(FormSubmission submission) {
+    public void registerForEC(FormSubmission submission) {
+        allTimelines.add(forChildBirthInChildProfile(submission.entityId(), submission.getFieldValue("dateOfBirth"), submission.getFieldValue("weight"), submission.getFieldValue("immunizationsGiven")));
+    }
+
+    public void pncRegistrationOA(FormSubmission submission) {
         Mother mother = motherRepository.findAllCasesForEC(submission.entityId()).get(0);
         List<Child> children = childRepository.findByMotherCaseId(mother.caseId());
 
         for (Child child : children) {
             childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thayiCardNumber()).setDateOfBirth(mother.referenceDate()));
+            allTimelines.add(forChildBirthInChildProfile(child.caseId(), mother.referenceDate(), child.getDetail("weight"), child.getDetail("immunizationsGiven")));
         }
     }
 

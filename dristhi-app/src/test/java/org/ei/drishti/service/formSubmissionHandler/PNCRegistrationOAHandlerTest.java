@@ -31,6 +31,6 @@ public class PNCRegistrationOAHandlerTest {
 
         handler.handle(submission);
 
-        verify(childService).pncRegistration(submission);
+        verify(childService).pncRegistrationOA(submission);
     }
 }

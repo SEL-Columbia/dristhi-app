@@ -30,8 +30,9 @@ public class TimelineEvent {
         this.detail2 = detail2;
     }
 
-    public static TimelineEvent forChildBirthInChildProfile(String caseId, String dateOfBirth, Map<String, String> details) {
-        String detailsString = new DetailBuilder(details).withWeight("childWeight").withImmunizations("immunizationsProvided").value();
+    public static TimelineEvent forChildBirthInChildProfile(String caseId, String dateOfBirth, String weight, String immunizationsGiven) {
+        Map<String, String> details = create("childWeight", weight).put("immunizationsGiven", immunizationsGiven).map();
+        String detailsString = new DetailBuilder(details).withWeight("childWeight").withImmunizations("immunizationsGiven").value();
 
         return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), "Birth Date: " + formatDate(dateOfBirth), detailsString, null);
     }

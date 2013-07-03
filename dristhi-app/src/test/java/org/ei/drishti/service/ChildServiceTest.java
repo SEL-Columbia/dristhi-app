@@ -16,9 +16,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import java.util.HashMap;
-
 import static java.util.Arrays.asList;
+import static org.ei.drishti.domain.TimelineEvent.forChildBirthInChildProfile;
+import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -54,8 +54,8 @@ public class ChildServiceTest {
 
     @Test
     public void shouldUpdateEveryChildWhileRegistering() throws Exception {
-        Child firstChild = new Child("Child X", "Mother X", "female", new HashMap<String, String>());
-        Child secondChild = new Child("Child Y", "Mother X", "female", new HashMap<String, String>());
+        Child firstChild = new Child("Child X", "Mother X", "female", create("weight", "3").put("immunizationsGiven", "bcg opv_0").map());
+        Child secondChild = new Child("Child Y", "Mother X", "female", create("weight", "4").put("immunizationsGiven", "bcg").map());
         when(motherRepository.findById("Mother X")).thenReturn(new Mother("Mother X", "EC 1", "TC 1", "2012-01-01"));
         when(childRepository.findByMotherCaseId("Mother X")).thenReturn(asList(firstChild, secondChild));
         FormSubmission submission = mock(FormSubmission.class);
@@ -66,23 +66,27 @@ public class ChildServiceTest {
         verify(childRepository).findByMotherCaseId("Mother X");
         verify(childRepository).update(firstChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
         verify(childRepository).update(secondChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
+        verify(allTimelineEvents).add(forChildBirthInChildProfile("Child X", "2012-01-01", "3", "bcg opv_0"));
+        verify(allTimelineEvents).add(forChildBirthInChildProfile("Child Y", "2012-01-01", "4", "bcg"));
         verifyNoMoreInteractions(childRepository);
     }
 
     @Test
     public void shouldUpdateEveryChildWhilePNCRegistration() throws Exception {
-        Child firstChild = new Child("Child X", "Mother X", "female", new HashMap<String, String>());
-        Child secondChild = new Child("Child Y", "Mother X", "female", new HashMap<String, String>());
+        Child firstChild = new Child("Child X", "Mother X", "female", create("weight", "3").put("immunizationsGiven", "bcg opv_0").map());
+        Child secondChild = new Child("Child Y", "Mother X", "female", create("weight", "4").put("immunizationsGiven", "bcg").map());
         when(motherRepository.findAllCasesForEC("EC X")).thenReturn(asList(new Mother("Mother X", "EC X", "TC 1", "2012-01-01")));
         when(childRepository.findByMotherCaseId("Mother X")).thenReturn(asList(firstChild, secondChild));
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("EC X");
 
-        service.pncRegistration(submission);
+        service.pncRegistrationOA(submission);
 
         verify(childRepository).findByMotherCaseId("Mother X");
         verify(childRepository).update(firstChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
         verify(childRepository).update(secondChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
+        verify(allTimelineEvents).add(forChildBirthInChildProfile("Child X", "2012-01-01", "3", "bcg opv_0"));
+        verify(allTimelineEvents).add(forChildBirthInChildProfile("Child Y", "2012-01-01", "4", "bcg"));
         verifyNoMoreInteractions(childRepository);
     }
 
@@ -110,6 +114,20 @@ public class ChildServiceTest {
 
         verify(serviceProvidedService).add(new ServiceProvided("child id 1", "bcg", "2013-01-01", null));
         verify(serviceProvidedService).add(new ServiceProvided("child id 1", "opv_0", "2013-01-01", null));
+    }
+
+    @Test
+    public void shouldAddTimelineEventWhenChildIsRegisteredForEC() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("child id 1");
+        when(submission.getFieldValue("dateOfBirth")).thenReturn("2013-01-02");
+        when(submission.getFieldValue("gender")).thenReturn("female");
+        when(submission.getFieldValue("weight")).thenReturn("3");
+        when(submission.getFieldValue("immunizationsGiven")).thenReturn("bcg opv_0");
+
+        service.registerForEC(submission);
+
+        verify(allTimelineEvents).add(forChildBirthInChildProfile("child id 1", "2013-01-02", "3", "bcg opv_0"));
     }
 
     @Test
