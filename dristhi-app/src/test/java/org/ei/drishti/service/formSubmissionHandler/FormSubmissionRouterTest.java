@@ -54,6 +54,8 @@ public class FormSubmissionRouterTest {
     @Mock
     private ChildImmunizationsHandler childImmunizationsHandler;
     @Mock
+    private ChildRegistrationECHandler childRegistrationECHandler;
+    @Mock
     private Listener<String> formSubmittedListener;
 
     private FormSubmissionRouter router;
@@ -78,7 +80,7 @@ public class FormSubmissionRouterTest {
                 pncRegistrationOAHandler,
                 pncCloseHandler,
                 pncVisitHandler,
-                childImmunizationsHandler);
+                childImmunizationsHandler, childRegistrationECHandler);
     }
 
     @Test
@@ -305,5 +307,16 @@ public class FormSubmissionRouterTest {
 
         verify(formDataRepository).fetchFromSubmission("instance id 1");
         verify(childImmunizationsHandler).handle(formSubmission);
+    }
+
+    @Test
+    public void shouldDelegateChildRegistrationECFormSubmissionHandlingToChildRegistrationECHandler() throws Exception {
+        FormSubmission formSubmission = create().withFormName("child_registration_ec").withInstanceId("instance id 1").withVersion("122").build();
+        when(formDataRepository.fetchFromSubmission("instance id 1")).thenReturn(formSubmission);
+
+        router.route("instance id 1");
+
+        verify(formDataRepository).fetchFromSubmission("instance id 1");
+        verify(childRegistrationECHandler).handle(formSubmission);
     }
 }
