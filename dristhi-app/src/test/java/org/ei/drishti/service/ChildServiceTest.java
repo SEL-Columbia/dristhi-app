@@ -44,17 +44,6 @@ public class ChildServiceTest {
     }
 
     @Test
-    public void shouldHandlePNCVisitActionForChild() throws Exception {
-        String caseId = "Case Child X";
-        Action action = ActionBuilder.actionForChildPNCVisit(caseId, mapOf("some-key", "some-value"));
-
-        service.pncVisit(action);
-
-        verify(allTimelineEvents).add(TimelineEvent.forChildPNCVisit(caseId, "1", "2012-01-01", mapOf("some-key", "some-value")));
-        verify(childRepository).updateDetails(caseId, mapOf("some-key", "some-value"));
-    }
-
-    @Test
     public void shouldUpdateEveryChildWhileRegistering() throws Exception {
         Child firstChild = new Child("Child X", "Mother X", "female", create("weight", "3").put("immunizationsGiven", "bcg opv_0").map());
         Child secondChild = new Child("Child Y", "Mother X", "female", create("weight", "4").put("immunizationsGiven", "bcg").map());

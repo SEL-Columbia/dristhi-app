@@ -5,13 +5,11 @@ import org.ei.drishti.dto.ActionData;
 import org.ei.drishti.dto.AlertStatus;
 import org.ei.drishti.dto.BeneficiaryType;
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 
 import java.util.HashMap;
-import java.util.Map;
 
-import static org.ei.drishti.dto.ActionData.*;
-import static org.ei.drishti.dto.BeneficiaryType.child;
+import static org.ei.drishti.dto.ActionData.createAlert;
+import static org.ei.drishti.dto.ActionData.markAlertAsClosed;
 
 public class ActionBuilder {
     public static Action actionForCreateAlert(String caseID, String alertStatus, String beneficiaryType, String scheduleName, String visitCode, String startDate, String expiryDate, String index) {
@@ -24,11 +22,6 @@ public class ActionBuilder {
 
     public static Action actionForDeleteAllAlert(String caseID) {
         return new Action(caseID, "alert", "deleteAllAlerts", new HashMap<String, String>(), "0", true, new HashMap<String, String>());
-    }
-
-    public static Action actionForChildPNCVisit(String caseId, Map<String, String> details) {
-        ActionData actionData = pncVisitHappened(child, LocalDate.parse("2012-01-01"), 1, "10", details);
-        return new Action(caseId, "child", "pncVisitHappened", actionData.data(), "0", true, actionData.details());
     }
 
     public static Action closeChild(String caseId) {
