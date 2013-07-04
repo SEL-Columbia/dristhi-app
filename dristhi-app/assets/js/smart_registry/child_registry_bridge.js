@@ -22,16 +22,62 @@ function FakeChildSmartRegistryContext() {
                     thaayiCardNumber: '4636587',
                     name: 'Baby Carolyn',
                     motherName: 'Carolyn',
-                    dob: '2013-06-13',
+                    dob: '2013-05-03',
                     motherAge: '24',
                     fatherName: 'Billy Bob',
                     village: 'Chikkabherya',
-                    locationStatus: "out_of_area",
+                    locationStatus: "in_area",
                     economicStatus: "bpl",
                     caste: "sc",
                     isHighRisk: true,
                     photo_path: "../../img/woman-placeholder.png",
                     ecNumber: "1234",
+                    alerts: [
+                        {
+                            name: 'PNC',
+                            date: '2013-06-26',
+                            status: 'normal'
+                        }
+                    ],
+                    services_provided: [
+                        {
+                            name: 'PNC',
+                            date: '2013-06-16',
+                            data: {
+                                day: 14
+                            }
+                        },
+                        {
+                            name: 'PNC',
+                            date: '2013-06-18',
+                            data: {
+                                day: 18
+                            }
+                        },
+                        {
+                            name: 'Not PNC',
+                            date: '2013-06-09',
+                            data: {}
+                        }
+                    ]
+                },
+                {
+                    entityId: "entity id 2",
+                    gender: "Male",
+                    weight: "4.8",
+                    thaayiCardNumber: '4636589',
+                    name: '',
+                    motherName: 'Sukanya',
+                    dob: '2013-06-13',
+                    motherAge: '24',
+                    fatherName: 'Billy Bob',
+                    village: 'Chikkabherya',
+                    locationStatus: "out_of_area",
+                    economicStatus: "apl",
+                    caste: "st",
+                    isHighRisk: false,
+                    photo_path: "../../img/woman-placeholder.png",
+                    ecNumber: "5678",
                     alerts: [
                         {
                             name: 'PNC',

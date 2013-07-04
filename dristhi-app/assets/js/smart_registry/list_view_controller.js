@@ -8,7 +8,7 @@ angular.module("smartRegistry.controllers")
         $scope.sort = function (option) {
             $scope.currentSortOption = option;
             $scope.sortList = $scope[option.handler];
-            $scope.sortDescending = option.sortDescending;
+            $scope.sortDescending = option.sortDescending || false;
         };
 
         $scope.sortByName = function (client) {
@@ -182,5 +182,10 @@ angular.module("smartRegistry.controllers")
 
         $scope.enterSearchMode = function () {
             $scope.inSearchMode = true;
+        };
+
+        $scope.locationStatusMapping = {
+            "out_of_area":1,
+            "left_the_place":2
         };
     }]);

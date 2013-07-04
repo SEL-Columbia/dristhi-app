@@ -15,13 +15,13 @@ angular.module("smartRegistry.controllers")
             options: [
                 {
                     label: "Name (A to Z)",
-                    handler: "sortByName",
+                    handler: "sortByMothersName",
                     sortDescending: false
                 },
                 {
-                    label: "Date of Delivery",
-                    handler: "sortByDeliveryDate",
-                    sortDescending: false
+                    label: "Age",
+                    handler: "sortByChildsAge",
+                    sortDescending: true
                 },
                 {
                     label: "HR",
@@ -48,8 +48,12 @@ angular.module("smartRegistry.controllers")
         $scope.sortList = $scope.sortByName;
         $scope.sortDescending = true;
 
-        $scope.sortByDeliveryDate = function (item) {
-            return item.deliveryDate;
+        $scope.sortByMothersName = function (client) {
+            return client.motherName;
+        };
+
+        $scope.sortByChildsAge = function (item) {
+            return item.dob;
         };
 
         $scope.sortByRisk = function (item) {
@@ -85,11 +89,6 @@ angular.module("smartRegistry.controllers")
                     handler: "filterByLocationStatus"
                 }
             ]
-        };
-
-        $scope.locationStatusMapping = {
-            "out_of_area": 1,
-            "left_the_place": 2
         };
 
         $scope.defaultVillageFilterHandler = "filterByVillageName";
@@ -145,8 +144,8 @@ angular.module("smartRegistry.controllers")
 
         $scope.searchCriteria = function (client, searchFilterString) {
             return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
-                || (client.ec_number && client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
-                || (client.thayi && client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
+                || (client.ecNumber && client.ecNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
+                || (client.thaayiCardNumber && client.thaayiCardNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
         };
 
         $scope.changeContentBasedOnServiceMode = function (client, serviceModeOptionId) {
@@ -176,5 +175,13 @@ angular.module("smartRegistry.controllers")
 
         $scope.getToday = function() {
             return new Date();
+        };
+
+        $scope.nameOrMothers = function(client) {
+            return client.name || "B/o " + client.motherName;
+        };
+
+        $scope.childsAge = function(client) {
+            return SmartHelper.childsAge(new Date(Date.parse(client.dob)), new Date())
         };
     });

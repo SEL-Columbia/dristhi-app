@@ -69,4 +69,9 @@ angular.module("smartRegistry.filters")
             });
 
         }
+    }])
+    .filter("slice", [function () {
+        return function(input, start, end) {
+            return input.slice(start, end);
+        }
     }]);

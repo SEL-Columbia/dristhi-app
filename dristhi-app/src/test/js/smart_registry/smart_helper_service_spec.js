@@ -40,4 +40,48 @@ describe('Smart Helpers', function () {
             expect(result).toEqual(expected);
         });
     });
+
+    describe("Childs age", function(){
+        it("should return the age in days if less that 28", function () {
+            var dob = new Date(Date.parse("2010-01-02"));
+            var ref_date = new Date(dob);
+            ref_date.setDate(ref_date.getDate() + (7 * 4 - 1));
+
+            expect(smartHelper.childsAge(dob, ref_date)).toEqual("27d");
+        });
+
+        it("should return the age in weeks if between 4 weeks and 16 weeks", function () {
+            var dob = new Date(Date.parse("2010-01-02"));
+            var ref_date = new Date(dob);
+            ref_date.setDate(ref_date.getDate() + (7 * 4));
+
+            expect(smartHelper.childsAge(dob, ref_date)).toEqual("4w");
+
+            ref_date = new Date(dob);
+            ref_date.setDate(ref_date.getDate() + (7 * 17 - 1));
+
+            expect(smartHelper.childsAge(dob, ref_date)).toEqual("16w");
+        });
+
+        it("should return the age in months if between 4 months and 23 months", function () {
+            var dob = new Date(Date.parse("2010-01-02"));
+            var ref_date = new Date(dob);
+            ref_date.setDate(ref_date.getDate() + (7 * 17));
+
+            expect(smartHelper.childsAge(dob, ref_date)).toEqual("4m");
+
+            ref_date = new Date(dob);
+            ref_date.setDate(ref_date.getDate() + (24 * 4 * 7 - 1));
+
+            expect(smartHelper.childsAge(dob, ref_date)).toEqual("23m");
+        });
+
+        it("should return the age in years if older than 23 months", function () {
+            var dob = new Date(Date.parse("2010-01-02"));
+            var ref_date = new Date(dob);
+            ref_date.setDate(ref_date.getDate() + (7 * 4 * 12 * 2));
+
+            expect(smartHelper.childsAge(dob, ref_date)).toEqual("2y");
+        });
+    });
 });
