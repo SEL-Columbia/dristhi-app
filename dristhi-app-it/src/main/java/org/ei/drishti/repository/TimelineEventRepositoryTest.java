@@ -7,22 +7,18 @@ import org.ei.drishti.util.Session;
 
 import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.TimelineEvent.forChildBirthInChildProfile;
 
 public class TimelineEventRepositoryTest extends AndroidTestCase {
     private TimelineEventRepository repository;
-    private Map<String, String> details;
 
     @Override
     protected void setUp() throws Exception {
         repository = new TimelineEventRepository();
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
         new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository);
-        details = new HashMap<String, String>();
     }
 
     public void testShouldInsertTimelineEvents() throws Exception {

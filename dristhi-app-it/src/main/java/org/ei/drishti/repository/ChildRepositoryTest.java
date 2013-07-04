@@ -112,7 +112,6 @@ public class ChildRepositoryTest extends AndroidTestCase {
         repository.close("CASE A");
 
         assertEquals(new ArrayList<TimelineEvent>(), timelineEventRepository.allFor("CASE A"));
-        assertEquals(asList(TimelineEvent.forChildBirthInChildProfile("CASE B", "2012-06-10", null, null)), timelineEventRepository.allFor("CASE B"));
     }
 
     public void testShouldUpdateMotherDetails() throws Exception {
