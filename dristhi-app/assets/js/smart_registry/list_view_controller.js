@@ -165,7 +165,7 @@ angular.module("smartRegistry.controllers")
         pageView.onReload(function () {
             $scope.$apply(function () {
                 $scope.clients = $scope.getClients();
-                $scope.villageOptions = getVillageFilterOptions();
+                $scope.villageOptions = $scope.getVillageFilterOptions();
             });
         });
 
