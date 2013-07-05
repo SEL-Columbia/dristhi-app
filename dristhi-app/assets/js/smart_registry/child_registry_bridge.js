@@ -95,17 +95,38 @@ function FakeChildSmartRegistryContext() {
                         },
                         {
                             name: 'PNC',
-                            date: '2013-06-18',
+                            date: '2013-06-30',
                             data: {
                                 day: 18
                             }
-                        },
-                        {
-                            name: 'Not PNC',
-                            date: '2013-06-09',
-                            data: {}
                         }
                     ]
+                },
+                {
+                    entityId: "entity id 2",
+                    gender: "female",
+                    weight: "4.8",
+                    thaayiCardNumber: '4636593',
+                    name: 'Anu',
+                    motherName: 'Amrutha',
+                    dob: '2013-07-02',
+                    motherAge: '35',
+                    fatherName: 'Billy Bob',
+                    village: 'Chikkabherya',
+                    locationStatus: "out_of_area",
+                    economicStatus: "apl",
+                    caste: "st",
+                    isHighRisk: false,
+                    photo_path: "../../img/woman-placeholder.png",
+                    ecNumber: "5678",
+                    alerts: [
+                        {
+                            name: 'PNC',
+                            date: '2013-06-26',
+                            status: 'normal'
+                        }
+                    ],
+                    services_provided: []
                 }
             ]);
         }
