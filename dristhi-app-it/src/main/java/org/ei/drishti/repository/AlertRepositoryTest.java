@@ -72,7 +72,7 @@ public class AlertRepositoryTest extends AndroidTestCase {
         Alert alert2 = new Alert("Case X", "Ante Natal Care - Normal", "ANC 2", complete, "2012-01-01", "2012-01-11").withCompletionDate(today.toString());
         Alert alert3 = new Alert("Case X", "TT", "TT 1", normal, "2012-01-01", today.plusDays(30).toString());
         Alert alert4 = new Alert("Case X", "IFA", "IFA 1", complete, "2012-01-01", "2012-01-11").withCompletionDate(today.minusDays(2).toString());
-        Alert alert5 = new Alert("Case X", "HEP", "HEP 1", complete, "2012-01-01", "2012-01-11").withCompletionDate(today.minusDays(3).toString());
+        Alert alert5 = new Alert("Case X", "HEP", "HEP 0", complete, "2012-01-01", "2012-01-11").withCompletionDate(today.minusDays(3).toString());
         alertRepository.createAlert(alert1);
         alertRepository.createAlert(alert2);
         alertRepository.createAlert(alert3);

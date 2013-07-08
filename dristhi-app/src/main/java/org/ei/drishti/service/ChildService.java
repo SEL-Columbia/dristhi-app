@@ -76,12 +76,6 @@ public class ChildService {
         immunizationDateFieldsMap.put("opv_2", "opv2Date");
         immunizationDateFieldsMap.put("opv_3", "opv3Date");
         immunizationDateFieldsMap.put("hepb_0", "hepb0Date");
-        immunizationDateFieldsMap.put("hepb_1", "hepb1Date");
-        immunizationDateFieldsMap.put("hepb_2", "hepb2Date");
-        immunizationDateFieldsMap.put("hepb_3", "hepb3Date");
-        immunizationDateFieldsMap.put("dpt_1", "dpt1Date");
-        immunizationDateFieldsMap.put("dpt_2", "dpt2Date");
-        immunizationDateFieldsMap.put("dpt_3", "dpt3Date");
         immunizationDateFieldsMap.put("pentavalent_1", "pentavalent1Date");
         immunizationDateFieldsMap.put("pentavalent_2", "pentavalent2Date");
         immunizationDateFieldsMap.put("pentavalent_3", "pentavalent3Date");

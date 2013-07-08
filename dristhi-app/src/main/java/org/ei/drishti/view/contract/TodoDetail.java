@@ -16,8 +16,6 @@ class TodoDetail {
         map.put("EDD", new TodoDetail("EDD"));
         map.put("OPV 0", new TodoDetail("OPV 0"));
         map.put("HEP B0", new TodoDetail("HEP B 0"));
-        map.put("DPT 0", new TodoDetail("DPT 0"));
-        map.put("Hepatitis B1", new TodoDetail("Hep B 1"));
         map.put("BCG", new TodoDetail("BCG"));
         map.put("IFA 1", new TodoDetail("IFA"));
         map.put("TT 1", new TodoDetail("TT1"));

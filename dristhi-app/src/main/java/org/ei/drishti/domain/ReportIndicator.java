@@ -63,39 +63,6 @@ public enum ReportIndicator {
             return fetchECCaseList(caseIds);
         }
     },
-    DPT1("DPT_1", "DPT 1") {
-        @Override
-        public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
-        }
-
-        @Override
-        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
-            return fetchChildCaseList(caseIds);
-        }
-    },
-    DPT2("DPT_2", "DPT 2") {
-        @Override
-        public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
-        }
-
-        @Override
-        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
-            return fetchChildCaseList(caseIds);
-        }
-    },
-    DPT3("DPT_3", "DPT 3") {
-        @Override
-        public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
-        }
-
-        @Override
-        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
-            return fetchChildCaseList(caseIds);
-        }
-    },
     DPT3_OR_OPV3("DPT3_OPV3", "DPT 3 / OPV 3") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
