@@ -41,6 +41,7 @@ public class ChildService {
                     child.getDetail(AllConstants.ChildRegistrationECFields.WEIGHT), child.getDetail(AllConstants.ChildRegistrationECFields.IMMUNIZATIONS_GIVEN)));
             allTimelines.add(forChildBirthInMotherProfile(mother.caseId(), mother.referenceDate(), child.gender(), mother.referenceDate(), mother.getDetail(AllConstants.ChildRegistrationECFields.DELIVERY_PLACE)));
             allTimelines.add(forChildBirthInECProfile(mother.ecCaseId(), mother.referenceDate(), child.gender(), mother.referenceDate()));
+            serviceProvidedService.add(ServiceProvided.forChildImmunization(child.caseId(), child.getDetail(AllConstants.ChildRegistrationECFields.IMMUNIZATIONS_GIVEN), mother.referenceDate()));
         }
     }
 

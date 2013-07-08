@@ -60,6 +60,8 @@ public class ChildServiceTest {
         verify(allTimelineEvents).add(forChildBirthInChildProfile("Child Y", "2012-01-01", "4", "bcg"));
         verify(allTimelineEvents, times(2)).add(forChildBirthInMotherProfile("Mother X", "2012-01-01", "female", "2012-01-01", "phc"));
         verify(allTimelineEvents, times(2)).add(forChildBirthInECProfile("EC 1", "2012-01-01", "female", "2012-01-01"));
+        verify(serviceProvidedService).add(ServiceProvided.forChildImmunization("Child X", "bcg opv_0", "2012-01-01"));
+        verify(serviceProvidedService).add(ServiceProvided.forChildImmunization("Child Y", "bcg", "2012-01-01"));
         verifyNoMoreInteractions(childRepository);
     }
 
