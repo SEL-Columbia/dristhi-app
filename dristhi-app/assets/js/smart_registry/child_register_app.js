@@ -1,10 +1,10 @@
 angular.module("smartRegistry.controllers")
-    .controller("childRegisterController", function ($scope, SmartHelper, ANCService) {
+    .controller("childRegisterController", function ($scope, SmartHelper, ChildService) {
         $scope.bridge = new ChildRegistryBridge();
         $scope.client_type = "child";
         $scope.getClients = function () {
             var clients = $scope.bridge.getClients();
-            ANCService.preProcess(clients);
+            ChildService.preProcess(clients);
             return clients;
         };
 

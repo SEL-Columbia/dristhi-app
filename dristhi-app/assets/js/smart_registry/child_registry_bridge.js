@@ -34,9 +34,24 @@ function FakeChildSmartRegistryContext() {
                     ecNumber: "1234",
                     alerts: [
                         {
-                            name: 'PNC',
-                            date: '2013-06-26',
+                            name: 'bcg',
+                            date: '2013-07-09',
                             status: 'normal'
+                        },
+                        {
+                            name: 'opv_0',
+                            date: '2013-07-09',
+                            status: 'urgent'
+                        },
+                        {
+                            name: 'hepb_3',
+                            date: '2013-07-09',
+                            status: 'complete'
+                        },
+                        {
+                            name: 'hepb_3',
+                            date: '2013-07-09',
+                            status: 'complete'
                         }
                     ],
                     services_provided: [
@@ -58,6 +73,16 @@ function FakeChildSmartRegistryContext() {
                             name: 'Not PNC',
                             date: '2013-06-09',
                             data: {}
+                        },
+                        {
+                            name: 'BCG',
+                            date: '2013-07-01',
+                            data: {}
+                        },
+                        {
+                            name: 'Hepatitis',
+                            date: '2013-07-01',
+                            data: {}
                         }
                     ]
                 },
@@ -78,13 +103,7 @@ function FakeChildSmartRegistryContext() {
                     isHighRisk: false,
                     photo_path: "../../img/woman-placeholder.png",
                     ecNumber: "5678",
-                    alerts: [
-                        {
-                            name: 'PNC',
-                            date: '2013-06-26',
-                            status: 'normal'
-                        }
-                    ],
+                    alerts: [],
                     services_provided: [
                         {
                             name: 'PNC',
@@ -119,13 +138,7 @@ function FakeChildSmartRegistryContext() {
                     isHighRisk: false,
                     photo_path: "../../img/woman-placeholder.png",
                     ecNumber: "5678",
-                    alerts: [
-                        {
-                            name: 'PNC',
-                            date: '2013-06-26',
-                            status: 'normal'
-                        }
-                    ],
+                    alerts: [],
                     services_provided: []
                 }
             ]);

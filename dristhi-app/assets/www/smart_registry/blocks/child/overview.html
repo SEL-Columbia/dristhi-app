@@ -9,13 +9,25 @@
     </div>
 </div>
 <div class="span3 span-no-margin width-without-margins line-right span-content">
-    <button ng-show="client.visits.pnc.next"
-            class="btn btn-primary btn-large btn-sr complete btn-new-form full-height"
+    <button class="btn btn-primary btn-large btn-sr complete btn-new-form full-height"
             ng-click="openForm('sick_visit', client.entityId);">
         Sick Visit
     </button>
 </div>
-<div class="span3 span-no-margin width-without-margins line-right span-content"></div>
+<div class="span3 span-no-margin width-without-margins line-right span-content">
+    <button ng-show="client.visits.next"
+            class="btn btn-primary btn-large normal btn-sr btn-visit-status"
+            ng-class="client.visits.next.status"
+            ng-click="openForm('pnc_visit', client.entityId);">
+        <span class="text-bold">{{client.visits.next.name}}</span>
+        <br/>
+        <ng-switch on="client.visits.next.status">
+            <span ng-switch-when="complete">due {{client.visits.previous.visit_date | date:"dd/MM"}}</span>
+            <span ng-switch-default>due {{client.visits.previous.visit_date | date:"dd/MM"}}</span>
+        </ng-switch>
+    </button>
+
+</div>
 <div class="span2 span-no-margin width-without-margins line-right span-content">
     <button class="btn btn-primary btn-large normal btn-sr full-height" ng-click="openChildFormModal(client.entityId)">
         <center><i class="icon-pencil icon-large"></i></center>
