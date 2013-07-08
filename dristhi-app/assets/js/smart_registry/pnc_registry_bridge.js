@@ -46,7 +46,7 @@ function FakePNCSmartRegistryContext() {
                         {
                             name: 'PNC',
                             date: '2013-06-26',
-                            status: 'normal'
+                            status: 'urgent'
                         }
                     ],
                     services_provided: [
@@ -106,7 +106,11 @@ function FakePNCSmartRegistryContext() {
                     deliveryComplications: "",
                     otherDeliveryComplications: "",
                     alerts: [
-
+                        {
+                            name: 'PNC',
+                            date: '2013-06-26',
+                            status: 'complete'
+                        }
                     ],
                     services_provided: [
                         {
