@@ -113,6 +113,7 @@ public class AllConstants {
         public static final String BP_SYSTOLIC = "bpSystolic";
         public static final String BP_DIASTOLIC = "bpDiastolic";
         public static final String TEMPERATURE = "temperature";
+        public static final String WEIGHT = "weight";
         public static final String HB_LEVEL = "hbLevel";
         public static final String NUMBER_OF_IFA_TABLETS_GIVEN = "numberOfIFATabletsGiven";
         public static final String IFA_TABLETS_DATE = "ifaTabletsDate";
@@ -130,11 +131,17 @@ public class AllConstants {
         public static final String WEIGHT = "weight";
         public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";
         public static final String GENDER = "gender";
+        public static final String DELIVERY_PLACE = "deliveryPlace";
     }
 
     public class PNCRegistrationOAFields {
         public static final String WEIGHT = "weight";
         public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";
         public static final String DELIVERY_PLACE = "deliveryPlace";
+    }
+
+    public class ChildImmunizationsFields {
+        public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";
+        public static final String IMMUNIZATION_DATE = "immunizationDate";
     }
 }

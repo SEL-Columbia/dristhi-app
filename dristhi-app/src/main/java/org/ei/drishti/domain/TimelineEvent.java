@@ -88,7 +88,8 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "PNCVISIT", LocalDate.parse(visitDate), "PNC Visit " + visitNumber, detailsString, null);
     }
 
-    public static TimelineEvent forChildPNCVisit(String caseId, String visitNumber, String visitDate, Map<String, String> details) {
+    public static TimelineEvent forChildPNCVisit(String caseId, String visitNumber, String visitDate, String weight, String temperature) {
+        Map<String, String> details = create("childWeight", weight).put("childTemperature", temperature).map();
         String detailsString = new DetailBuilder(details).withTemperature("childTemperature").withWeight("childWeight").value();
 
         return new TimelineEvent(caseId, "PNCVISIT", LocalDate.parse(visitDate), "PNC Visit " + visitNumber, detailsString, null);

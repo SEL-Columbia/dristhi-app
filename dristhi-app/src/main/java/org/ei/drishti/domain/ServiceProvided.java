@@ -24,7 +24,6 @@ public class ServiceProvided {
     public static final String ANC_3_SERVICE_PROVIDED_NAME = ANC_SERVICE_PREFIX + "3";
     public static final String ANC_4_SERVICE_PROVIDED_NAME = ANC_SERVICE_PREFIX + "4";
     public static final String PNC_VISIT_DAY = "day";
-
     private final String entityId;
     private final String name;
     private final String date;
@@ -60,6 +59,12 @@ public class ServiceProvided {
     }
 
     public static ServiceProvided forMotherPNCVisit(String entityId, String pncVisitDay, String date) {
+        return new ServiceProvided(entityId, PNC_SERVICE_PROVIDED_NAME, date,
+                mapOf(PNC_VISIT_DAY, pncVisitDay)
+        );
+    }
+
+    public static ServiceProvided forChildPNCVisit(String entityId, String pncVisitDay, String date) {
         return new ServiceProvided(entityId, PNC_SERVICE_PROVIDED_NAME, date,
                 mapOf(PNC_VISIT_DAY, pncVisitDay)
         );

@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.ei.drishti.AllConstants.ChildRegistrationECFields.*;
 import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.domain.TimelineEvent.*;
 
@@ -38,8 +37,9 @@ public class ChildService {
 
         for (Child child : children) {
             childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thayiCardNumber()).setDateOfBirth(mother.referenceDate()));
-            allTimelines.add(forChildBirthInChildProfile(child.caseId(), mother.referenceDate(), child.getDetail("weight"), child.getDetail("immunizationsGiven")));
-            allTimelines.add(forChildBirthInMotherProfile(submission.entityId(), mother.referenceDate(), child.gender(), mother.referenceDate(), mother.getDetail("deliveryPlace")));
+            allTimelines.add(forChildBirthInChildProfile(child.caseId(), mother.referenceDate(),
+                    child.getDetail(AllConstants.ChildRegistrationECFields.WEIGHT), child.getDetail(AllConstants.ChildRegistrationECFields.IMMUNIZATIONS_GIVEN)));
+            allTimelines.add(forChildBirthInMotherProfile(mother.caseId(), mother.referenceDate(), child.gender(), mother.referenceDate(), mother.getDetail(AllConstants.ChildRegistrationECFields.DELIVERY_PLACE)));
             allTimelines.add(forChildBirthInECProfile(mother.ecCaseId(), mother.referenceDate(), child.gender(), mother.referenceDate()));
         }
     }
@@ -47,10 +47,21 @@ public class ChildService {
     public void registerForEC(FormSubmission submission) {
         Map<String, String> immunizationDateFieldMap = createImmunizationDateFieldMap();
 
-        allTimelines.add(forChildBirthInChildProfile(submission.getFieldValue(CHILD_ID), submission.getFieldValue(DATE_OF_BIRTH), submission.getFieldValue(WEIGHT), submission.getFieldValue(IMMUNIZATIONS_GIVEN)));
-        allTimelines.add(forChildBirthInMotherProfile(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(DATE_OF_BIRTH), submission.getFieldValue(GENDER), null, null));
-        allTimelines.add(forChildBirthInECProfile(submission.entityId(), submission.getFieldValue(DATE_OF_BIRTH), submission.getFieldValue(GENDER), null));
-        String immunizationsGiven = submission.getFieldValue("immunizationsGiven");
+        allTimelines.add(forChildBirthInChildProfile(
+                submission.getFieldValue(AllConstants.ChildRegistrationECFields.CHILD_ID),
+                submission.getFieldValue(AllConstants.ChildRegistrationECFields.DATE_OF_BIRTH),
+                submission.getFieldValue(AllConstants.ChildRegistrationECFields.WEIGHT),
+                submission.getFieldValue(AllConstants.ChildRegistrationECFields.IMMUNIZATIONS_GIVEN)));
+        allTimelines.add(forChildBirthInMotherProfile(
+                submission.getFieldValue(AllConstants.ChildRegistrationECFields.MOTHER_ID),
+                submission.getFieldValue(AllConstants.ChildRegistrationECFields.DATE_OF_BIRTH),
+                submission.getFieldValue(AllConstants.ChildRegistrationECFields.GENDER),
+                null, null));
+        allTimelines.add(forChildBirthInECProfile(
+                submission.entityId(),
+                submission.getFieldValue(AllConstants.ChildRegistrationECFields.DATE_OF_BIRTH),
+                submission.getFieldValue(AllConstants.ChildRegistrationECFields.GENDER), null));
+        String immunizationsGiven = submission.getFieldValue(AllConstants.ChildRegistrationECFields.IMMUNIZATIONS_GIVEN);
         for (String immunization : immunizationsGiven.split(SPACE)) {
             serviceProvidedService.add(ServiceProvided.forChildImmunization(submission.entityId(), immunization, submission.getFieldValue(immunizationDateFieldMap.get(immunization))));
         }
@@ -96,27 +107,36 @@ public class ChildService {
                     mother.referenceDate(), submission.getFieldValue(AllConstants.PNCRegistrationOAFields.DELIVERY_PLACE)));
             allTimelines.add(forChildBirthInECProfile(mother.ecCaseId(), mother.referenceDate(), child.gender(),
                     mother.referenceDate()));
-            String immunizationsGiven = child.getDetail("immunizationsGiven");
+            String immunizationsGiven = child.getDetail(AllConstants.PNCRegistrationOAFields.IMMUNIZATIONS_GIVEN);
             for (String immunization : immunizationsGiven.split(SPACE)) {
-                serviceProvidedService.add(ServiceProvided.forChildImmunization(submission.entityId(), immunization, mother.referenceDate()));
+                serviceProvidedService.add(ServiceProvided.forChildImmunization(child.caseId(), immunization, mother.referenceDate()));
             }
         }
     }
 
     public void updateImmunizations(FormSubmission submission) {
-        String immunizationsGiven = submission.getFieldValue("immunizationsGiven");
-        String immunizationDate = submission.getFieldValue("immunizationDate");
+        String immunizationsGiven = submission.getFieldValue(AllConstants.ChildImmunizationsFields.IMMUNIZATIONS_GIVEN);
+        String immunizationDate = submission.getFieldValue(AllConstants.ChildImmunizationsFields.IMMUNIZATION_DATE);
         allTimelines.add(forChildImmunization(submission.entityId(), immunizationsGiven, immunizationDate));
         for (String immunization : immunizationsGiven.split(SPACE)) {
             serviceProvidedService.add(ServiceProvided.forChildImmunization(submission.entityId(), immunization, immunizationDate));
         }
     }
 
-    public void pncVisit(Action action) {
-        allTimelines.add(forChildPNCVisit(action.caseID(), action.get("visitNumber"), action.get("visitDate"), action.details()));
-        childRepository.updateDetails(action.caseID(), action.details());
+    public void pncVisitHappened(FormSubmission submission) {
+        List<Child> children = childRepository.findByMotherCaseId(submission.entityId());
+        for (Child child : children) {
+            allTimelines.add(forChildPNCVisit(child.caseId(), submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DAY),
+                    submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DATE), child.getDetail(AllConstants.PNCVisitFields.WEIGHT), child.getDetail(AllConstants.PNCVisitFields.TEMPERATURE)));
+            serviceProvidedService.add(
+                    ServiceProvided.forChildPNCVisit(
+                            child.caseId(),
+                            submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DAY),
+                            submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DATE)));
+        }
     }
 
+    @Deprecated
     public void delete(Action action) {
         childRepository.close(action.caseID());
     }

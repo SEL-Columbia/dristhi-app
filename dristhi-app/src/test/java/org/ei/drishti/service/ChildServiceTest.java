@@ -18,9 +18,7 @@ import org.mockito.Mock;
 
 import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.ServiceProvided.forChildImmunization;
-import static org.ei.drishti.domain.TimelineEvent.forChildBirthInChildProfile;
-import static org.ei.drishti.domain.TimelineEvent.forChildBirthInECProfile;
-import static org.ei.drishti.domain.TimelineEvent.forChildBirthInMotherProfile;
+import static org.ei.drishti.domain.TimelineEvent.*;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.mockito.Mockito.*;
@@ -86,8 +84,9 @@ public class ChildServiceTest {
         verify(allTimelineEvents, times(2)).add(forChildBirthInMotherProfile("Mother X", "2012-01-01", "female", "2012-01-01", "subcenter"));
         verify(allTimelineEvents, times(2)).add(forChildBirthInECProfile("EC X", "2012-01-01", "female", "2012-01-01"));
 
-        verify(serviceProvidedService, times(2)).add(forChildImmunization("EC X", "bcg", "2012-01-01"));
-        verify(serviceProvidedService).add(forChildImmunization("EC X", "opv_0", "2012-01-01"));
+        verify(serviceProvidedService).add(forChildImmunization("Child X", "bcg", "2012-01-01"));
+        verify(serviceProvidedService).add(forChildImmunization("Child X", "opv_0", "2012-01-01"));
+        verify(serviceProvidedService).add(forChildImmunization("Child Y", "bcg", "2012-01-01"));
         verifyNoMoreInteractions(childRepository);
     }
 
@@ -138,6 +137,38 @@ public class ChildServiceTest {
 
         verify(serviceProvidedService).add(forChildImmunization("ec id 1", "bcg", "2012-01-06"));
         verify(serviceProvidedService).add(forChildImmunization("ec id 1", "opv_0", "2012-01-07"));
+    }
+
+    @Test
+    public void shouldAddPNCVisitTimelineEventWhenPNCVisitHappens() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("mother id 1");
+        when(submission.getFieldValue("pncVisitDay")).thenReturn("2");
+        when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
+        Child firstChild = new Child("child id 1", "Mother X", "female", create("weight", "3").put("temperature", "98").map());
+        Child secondChild = new Child("child id 2", "Mother X", "female", create("weight", "4").put("temperature", "98.1").map());
+        when(childRepository.findByMotherCaseId("mother id 1")).thenReturn(asList(firstChild, secondChild));
+
+        service.pncVisitHappened(submission);
+
+        verify(allTimelineEvents).add(TimelineEvent.forChildPNCVisit("child id 1", "2", "2012-01-01", "3", "98"));
+        verify(allTimelineEvents).add(TimelineEvent.forChildPNCVisit("child id 2", "2", "2012-01-01", "4", "98.1"));
+    }
+
+    @Test
+    public void shouldAddPNCVisitServiceProvidedWhenPNCVisitHappens() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("mother id 1");
+        when(submission.getFieldValue("pncVisitDay")).thenReturn("2");
+        when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
+        Child firstChild = new Child("child id 1", "Mother X", "female", create("weight", "3").put("temperature", "98").map());
+        Child secondChild = new Child("child id 2", "Mother X", "female", create("weight", "4").put("temperature", "98.1").map());
+        when(childRepository.findByMotherCaseId("mother id 1")).thenReturn(asList(firstChild, secondChild));
+
+        service.pncVisitHappened(submission);
+
+        verify(serviceProvidedService).add(new ServiceProvided("child id 1", "PNC", "2012-01-01", mapOf("day", "2")));
+        verify(serviceProvidedService).add(new ServiceProvided("child id 2", "PNC", "2012-01-01", mapOf("day", "2")));
     }
 
     @Test
