@@ -17,6 +17,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import static java.util.Arrays.asList;
+import static org.ei.drishti.domain.ServiceProvided.forChildImmunization;
 import static org.ei.drishti.domain.TimelineEvent.forChildBirthInChildProfile;
 import static org.ei.drishti.domain.TimelineEvent.forChildBirthInECProfile;
 import static org.ei.drishti.domain.TimelineEvent.forChildBirthInMotherProfile;
@@ -68,7 +69,8 @@ public class ChildServiceTest {
     public void shouldUpdateEveryChildWhilePNCRegistration() throws Exception {
         Child firstChild = new Child("Child X", "Mother X", "female", create("weight", "3").put("immunizationsGiven", "bcg opv_0").map());
         Child secondChild = new Child("Child Y", "Mother X", "female", create("weight", "4").put("immunizationsGiven", "bcg").map());
-        when(motherRepository.findAllCasesForEC("EC X")).thenReturn(asList(new Mother("Mother X", "EC X", "TC 1", "2012-01-01")));
+        Mother mother = new Mother("Mother X", "EC X", "TC 1", "2012-01-01");
+        when(motherRepository.findAllCasesForEC("EC X")).thenReturn(asList(mother));
         when(childRepository.findByMotherCaseId("Mother X")).thenReturn(asList(firstChild, secondChild));
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("EC X");
@@ -83,6 +85,9 @@ public class ChildServiceTest {
         verify(allTimelineEvents).add(forChildBirthInChildProfile("Child Y", "2012-01-01", "4", "bcg"));
         verify(allTimelineEvents, times(2)).add(forChildBirthInMotherProfile("Mother X", "2012-01-01", "female", "2012-01-01", "subcenter"));
         verify(allTimelineEvents, times(2)).add(forChildBirthInECProfile("EC X", "2012-01-01", "female", "2012-01-01"));
+
+        verify(serviceProvidedService, times(2)).add(forChildImmunization("EC X", "bcg", "2012-01-01"));
+        verify(serviceProvidedService).add(forChildImmunization("EC X", "opv_0", "2012-01-01"));
         verifyNoMoreInteractions(childRepository);
     }
 
@@ -122,12 +127,17 @@ public class ChildServiceTest {
         when(submission.getFieldValue("gender")).thenReturn("female");
         when(submission.getFieldValue("weight")).thenReturn("3");
         when(submission.getFieldValue("immunizationsGiven")).thenReturn("bcg opv_0");
+        when(submission.getFieldValue("bcgDate")).thenReturn("2012-01-06");
+        when(submission.getFieldValue("opv0Date")).thenReturn("2012-01-07");
 
         service.registerForEC(submission);
 
         verify(allTimelineEvents).add(forChildBirthInChildProfile("child id 1", "2013-01-02", "3", "bcg opv_0"));
         verify(allTimelineEvents).add(forChildBirthInMotherProfile("mother id 1", "2013-01-02", "female", null, null));
         verify(allTimelineEvents).add(forChildBirthInECProfile("ec id 1", "2013-01-02", "female", null));
+
+        verify(serviceProvidedService).add(forChildImmunization("ec id 1", "bcg", "2012-01-06"));
+        verify(serviceProvidedService).add(forChildImmunization("ec id 1", "opv_0", "2012-01-07"));
     }
 
     @Test

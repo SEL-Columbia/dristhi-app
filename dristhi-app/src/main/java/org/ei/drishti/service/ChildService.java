@@ -10,7 +10,9 @@ import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.repository.ChildRepository;
 import org.ei.drishti.repository.MotherRepository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.ei.drishti.AllConstants.ChildRegistrationECFields.*;
 import static org.ei.drishti.AllConstants.SPACE;
@@ -43,9 +45,43 @@ public class ChildService {
     }
 
     public void registerForEC(FormSubmission submission) {
+        Map<String, String> immunizationDateFieldMap = createImmunizationDateFieldMap();
+
         allTimelines.add(forChildBirthInChildProfile(submission.getFieldValue(CHILD_ID), submission.getFieldValue(DATE_OF_BIRTH), submission.getFieldValue(WEIGHT), submission.getFieldValue(IMMUNIZATIONS_GIVEN)));
         allTimelines.add(forChildBirthInMotherProfile(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(DATE_OF_BIRTH), submission.getFieldValue(GENDER), null, null));
         allTimelines.add(forChildBirthInECProfile(submission.entityId(), submission.getFieldValue(DATE_OF_BIRTH), submission.getFieldValue(GENDER), null));
+        String immunizationsGiven = submission.getFieldValue("immunizationsGiven");
+        for (String immunization : immunizationsGiven.split(SPACE)) {
+            serviceProvidedService.add(ServiceProvided.forChildImmunization(submission.entityId(), immunization, submission.getFieldValue(immunizationDateFieldMap.get(immunization))));
+        }
+    }
+
+    private Map<String, String> createImmunizationDateFieldMap() {
+        Map<String, String> immunizationDateFieldsMap = new HashMap<String, String>();
+        immunizationDateFieldsMap.put("bcg", "bcgDate");
+        immunizationDateFieldsMap.put("opv_0", "opv0Date");
+        immunizationDateFieldsMap.put("opv_1", "opv1Date");
+        immunizationDateFieldsMap.put("opv_2", "opv2Date");
+        immunizationDateFieldsMap.put("opv_3", "opv3Date");
+        immunizationDateFieldsMap.put("hepb_0", "hepb0Date");
+        immunizationDateFieldsMap.put("hepb_1", "hepb1Date");
+        immunizationDateFieldsMap.put("hepb_2", "hepb2Date");
+        immunizationDateFieldsMap.put("hepb_3", "hepb3Date");
+        immunizationDateFieldsMap.put("dpt_1", "dpt1Date");
+        immunizationDateFieldsMap.put("dpt_2", "dpt2Date");
+        immunizationDateFieldsMap.put("dpt_3", "dpt3Date");
+        immunizationDateFieldsMap.put("pentavalent_1", "pentavalent1Date");
+        immunizationDateFieldsMap.put("pentavalent_2", "pentavalent2Date");
+        immunizationDateFieldsMap.put("pentavalent_3", "pentavalent3Date");
+        immunizationDateFieldsMap.put("measles", "measlesDate");
+        immunizationDateFieldsMap.put("mmr", "mmrDate");
+        immunizationDateFieldsMap.put("dptbooster_1", "dptbooster1Date");
+        immunizationDateFieldsMap.put("dptbooster_2", "dptbooster2Date");
+        immunizationDateFieldsMap.put("opvbooster", "opvboosterDate");
+        immunizationDateFieldsMap.put("je", "jeDate");
+        immunizationDateFieldsMap.put("measlesbooster", "measlesboosterDate");
+
+        return immunizationDateFieldsMap;
     }
 
     public void pncRegistrationOA(FormSubmission submission) {
@@ -60,6 +96,10 @@ public class ChildService {
                     mother.referenceDate(), submission.getFieldValue(AllConstants.PNCRegistrationOAFields.DELIVERY_PLACE)));
             allTimelines.add(forChildBirthInECProfile(mother.ecCaseId(), mother.referenceDate(), child.gender(),
                     mother.referenceDate()));
+            String immunizationsGiven = child.getDetail("immunizationsGiven");
+            for (String immunization : immunizationsGiven.split(SPACE)) {
+                serviceProvidedService.add(ServiceProvided.forChildImmunization(submission.entityId(), immunization, mother.referenceDate()));
+            }
         }
     }
 
