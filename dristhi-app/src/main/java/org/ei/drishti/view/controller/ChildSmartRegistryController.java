@@ -1,6 +1,7 @@
 package org.ei.drishti.view.controller;
 
 import com.google.gson.Gson;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.ServiceProvided;
@@ -23,8 +24,6 @@ import static java.util.Collections.sort;
 
 public class ChildSmartRegistryController {
     private static final String CHILD_CLIENTS_LIST_CACHE_ENTRY_NAME = "ChildClientList";
-    private static final String BCG_ALERT_NAME = "BCG";
-    private static final String BCG_SERVICE_PROVIDED_NAME = "BCG";
     private final ServiceProvidedService serviceProvidedService;
     private final AlertService alertService;
     private final AllBeneficiaries allBeneficiaries;
@@ -80,8 +79,7 @@ public class ChildSmartRegistryController {
     }
 
     private List<ServiceProvidedDTO> getServicesProvided(String entityId) {
-        List<ServiceProvided> servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId,
-                BCG_SERVICE_PROVIDED_NAME);
+        List<ServiceProvided> servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId, AllConstants.Immunizations.ALL);
         List<ServiceProvidedDTO> serviceProvidedDTOs = new ArrayList<ServiceProvidedDTO>();
         for (ServiceProvided serviceProvided : servicesProvided) {
             serviceProvidedDTOs.add(new ServiceProvidedDTO(serviceProvided.name(), serviceProvided.date(), serviceProvided.data()));
@@ -90,9 +88,7 @@ public class ChildSmartRegistryController {
     }
 
     private List<AlertDTO> getAlerts(String entityId) {
-        List<Alert> alerts = alertService.findByEntityIdAndAlertNames(entityId,
-                BCG_ALERT_NAME
-        );
+        List<Alert> alerts = alertService.findByEntityIdAndAlertNames(entityId, AllConstants.Immunizations.ALL);
         List<AlertDTO> alertDTOs = new ArrayList<AlertDTO>();
         for (Alert alert : alerts) {
             alertDTOs.add(new AlertDTO(alert.visitCode(), valueOf(alert.status()), alert.startDate()));

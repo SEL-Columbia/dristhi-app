@@ -32,10 +32,10 @@ import static org.mockito.MockitoAnnotations.initMocks;
 @RunWith(RobolectricTestRunner.class)
 public class ChildSmartRegistryControllerTest {
     public static final String[] CHILD_ALERTS = new String[]{
-            "BCG"
+            "bcg", "measles", "measlesbooster"
     };
     private static final String[] CHILD_SERVICES = new String[]{
-            "BCG"
+            "bcg", "measles", "measlesbooster"
     };
 
     private final Map<String, String> emptyMap = Collections.emptyMap();
@@ -118,7 +118,7 @@ public class ChildSmartRegistryControllerTest {
         EligibleCouple eligibleCouple = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, emptyMap).asOutOfArea();
         Mother mother = new Mother("mother id 1", "ec id 1", "thayi no 1", "2013-01-01").withDetails(emptyMap);
         Child child = new Child("child id 1", "mother id 1", "male", emptyMap).withMother(mother).withEC(eligibleCouple);
-        Alert bcgAlert = new Alert("child id 1", "BCG", "BCG", normal, "2013-01-01", "2013-02-01");
+        Alert bcgAlert = new Alert("child id 1", "BCG", "bcg", normal, "2013-01-01", "2013-02-01");
         when(allBeneficiaries.allChildrenWithMotherAndEC()).thenReturn(asList(child));
         when(alertService.findByEntityIdAndAlertNames("child id 1", CHILD_ALERTS)).thenReturn(asList(bcgAlert));
 
@@ -127,7 +127,7 @@ public class ChildSmartRegistryControllerTest {
         List<ChildClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<ChildClient>>() {
         }.getType());
         verify(alertService).findByEntityIdAndAlertNames("child id 1", CHILD_ALERTS);
-        AlertDTO expectedAlertDto = new AlertDTO("BCG", "normal", "2013-01-01");
+        AlertDTO expectedAlertDto = new AlertDTO("bcg", "normal", "2013-01-01");
         ChildClient expectedPNCClient = new ChildClient("child id 1", "male", null, "thayi no 1")
                 .withEntityIdToSavePhoto("child id 1")
                 .withMotherName("amma")
@@ -150,14 +150,14 @@ public class ChildSmartRegistryControllerTest {
         when(allBeneficiaries.allChildrenWithMotherAndEC()).thenReturn(asList(child));
         when(alertService.findByEntityIdAndAlertNames("child id 1", CHILD_ALERTS)).thenReturn(Collections.<Alert>emptyList());
         when(serviceProvidedService.findByEntityIdAndServiceNames("child id 1", CHILD_SERVICES))
-                .thenReturn(asList(new ServiceProvided("entity id 1", "BCG", "2013-01-01", null)));
+                .thenReturn(asList(new ServiceProvided("entity id 1", "bcg", "2013-01-01", null)));
 
         String clients = controller.get();
 
         List<ChildClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<ChildClient>>() {
         }.getType());
         verify(serviceProvidedService).findByEntityIdAndServiceNames("child id 1", CHILD_SERVICES);
-        List<ServiceProvidedDTO> expectedServicesProvided = asList(new ServiceProvidedDTO("BCG", "2013-01-01", null));
+        List<ServiceProvidedDTO> expectedServicesProvided = asList(new ServiceProvidedDTO("bcg", "2013-01-01", null));
         ChildClient expectedPNCClient = createChildClient("child id 1", "thayi no 1", "amma", "ec no 1").withServicesProvided(expectedServicesProvided);
         assertEquals(asList(expectedPNCClient), actualClients);
     }

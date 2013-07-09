@@ -144,4 +144,11 @@ public class AllConstants {
         public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";
         public static final String IMMUNIZATION_DATE = "immunizationDate";
     }
+
+    public static class Immunizations {
+        public static final String BCG = "bcg";
+        public static final String MEASLES = "measles";
+        public static final String MEASLES_BOOSTER = "measlesbooster";
+        public static final String[] ALL = new String[]{BCG, MEASLES, MEASLES_BOOSTER};
+    }
 }
