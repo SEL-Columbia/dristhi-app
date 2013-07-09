@@ -395,3 +395,67 @@ a:focus {
 .new-line-with-margin {
     margin: 0 0 4px !important;
 }
+
+.content-videos {
+    margin-top: 48px;
+}
+
+.video-categories {
+    position: fixed;
+    top: 48px;
+    left: 0;
+    bottom: 0;
+    background-color: #3B3B3B;
+    -moz-box-shadow: 1px 0px 10px #000;
+    -webkit-box-shadow: 1px 0px 10px #000;
+    box-shadow: 1px 0px 10px #000;
+}
+
+.video-categories .nav [class^="icon-"], .nav [class*=" icon-"] {
+    padding-top: 8px;
+}
+
+.video-categories .nav-tabs.nav-stacked > li > a {
+    border: none;
+    border-bottom: 1px solid #000;
+    padding: 16px 8px 16px 44px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.video-categories .nav-stacked > li > a:hover,
+.video-categories .nav-stacked > li > a.active {
+    background: #0f89c5;
+    border: none;
+    border-bottom: 1px solid #000;
+}
+
+.videos-container {
+    /*margin: 20px 0 0 241px !important;*/
+    position: absolute;
+    top: 68px;
+    bottom: 0;
+    left: 24%;
+}
+
+ul.video-list li.video-item {
+    width: 29%;
+}
+
+li.video-item .thumbnail {
+    padding: 0;
+}
+
+li.video-item .caption {
+    padding: 6px 12px;
+    color: #ffffff;
+    position: relative;
+}
+
+li.video-item .caption p {
+    margin: 0 0 5px;
+}
+
+.video-item {
+    background-color: #000000;
+}

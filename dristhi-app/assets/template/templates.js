@@ -1236,7 +1236,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   buffer += "\n        </div>\n    </div>\n</div>\n<div class=\"row-fluid with-margin with-padding\" id=\"reports-videos-buttons\">\n    <div class=\"span5\">\n        <a class=\"btn btn-block btn-inverse btn-home\" id=\"reportsButton\"><i class=\"icon-reporting\"></i> ";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.internationalize || depth0.internationalize),stack1 ? stack1.call(depth0, "home_report_label", options) : helperMissing.call(depth0, "internationalize", "home_report_label", options)))
-    + "</a>\n    </div>\n    <div class=\"span5\">\n        <a class=\"btn btn-block btn-inverse btn-home\"><i class=\"icon-tv\"></i> ";
+    + "</a>\n    </div>\n    <div class=\"span5\">\n        <a class=\"btn btn-block btn-inverse btn-home\" id=\"videosButton\"><i class=\"icon-tv\"></i> ";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.internationalize || depth0.internationalize),stack1 ? stack1.call(depth0, "home_videos_label", options) : helperMissing.call(depth0, "internationalize", "home_videos_label", options)))
     + "</a>\n    </div>\n</div>\n";

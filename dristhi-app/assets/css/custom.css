@@ -30,6 +30,14 @@
     background: -webkit-gradient(linear, 0 0, 0 100%, from(#1a93d2), to(#1c83ba));
 }
 
+.navbar-inner.black {
+    background: #000000;
+}
+
+.navbar-inner.black .divider-vertical {
+    border-left: 1px solid #333333;
+}
+
 .navbar .nav > li > a {
     color: #f8f8ff;
     text-shadow: 0 1px 0 #000000;

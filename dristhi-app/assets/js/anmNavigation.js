@@ -11,6 +11,12 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
+    var bindToVideos = function (callbackToRunBeforeAnyAction, identifierOfElement) {
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
+            anmNavigationBridge.delegateToVideos();
+        });
+    };
+
     var bindToEligibleCoupleList = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             anmNavigationBridge.delegateToECList();
@@ -64,6 +70,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
         populateInto: function (cssIdentifierOfSidePanelElement, displayTemplate, callbackToRunBeforeAnyAction) {
             populateDataInto(cssIdentifierOfSidePanelElement, displayTemplate);
             bindToReports(callbackToRunBeforeAnyAction, "#reportsButton");
+            bindToVideos(callbackToRunBeforeAnyAction, "#videosButton");
             bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
             bindToChildSmartRegistry(callbackToRunBeforeAnyAction, "#childMenuOption");
             bindToFPSmartRegistry(callbackToRunBeforeAnyAction, "#fpSmartRegistryOption");
@@ -91,6 +98,9 @@ function ANMNavigationBridge() {
         },
         delegateToReports: function () {
             return anmNavigationContext.startReports();
+        },
+        delegateToVideos: function () {
+            return anmNavigationContext.startVideos();
         },
         delegateToFPSmartRegistry: function () {
             return anmNavigationContext.startFPSmartRegistry();
@@ -133,6 +143,9 @@ function FakeANMNavigationContext() {
         },
         startReports: function () {
             window.location.href = "reports.html";
+        },
+        startVideos: function () {
+            window.location.href = "smart_registry/videos.html";
         },
         startFPSmartRegistry: function () {
             window.location = "smart_registry/fp_register.html";

@@ -73,6 +73,10 @@
                 android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
                 android:screenOrientation="landscape"/>
         <activity
+                android:name=".view.activity.VideosActivity"
+                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+                android:screenOrientation="landscape"/>
+        <activity
                 android:name=".view.activity.ReportIndicatorListViewActivity"
                 android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
                 android:screenOrientation="landscape"/>

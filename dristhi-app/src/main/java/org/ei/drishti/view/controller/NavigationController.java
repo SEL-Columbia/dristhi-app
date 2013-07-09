@@ -31,6 +31,10 @@ public class NavigationController {
         activity.startActivity(new Intent(activity, ReportsActivity.class));
     }
 
+    public void startVideos() {
+        activity.startActivity(new Intent(activity, VideosActivity.class));
+    }
+
     public void startFPSmartRegistry() {
         activity.startActivity(new Intent(activity, FPSmartRegistryActivity.class));
     }
