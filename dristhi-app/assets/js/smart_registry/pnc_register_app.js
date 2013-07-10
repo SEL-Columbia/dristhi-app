@@ -16,18 +16,16 @@ angular.module("smartRegistry.controllers")
             options: [
                 {
                     label: "Name (A to Z)",
-                    handler: "sortByName",
-                    sortDescending: false
+                    handler: "sortByName"
                 },
                 {
                     label: "Date of Delivery",
                     handler: "sortByDeliveryDate",
-                    sortDescending: false
+                    sortDescending: true
                 },
                 {
                     label: "HR",
-                    handler: "sortByRisk",
-                    sortDescending: false
+                    handler: "sortByRisk"
                 },
                 {
                     label: "BPL",

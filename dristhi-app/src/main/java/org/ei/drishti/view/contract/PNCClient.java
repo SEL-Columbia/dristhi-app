@@ -3,6 +3,8 @@ package org.ei.drishti.view.contract;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.joda.time.LocalDateTime;
+import org.joda.time.format.ISODateTimeFormat;
 
 import java.util.List;
 
@@ -43,7 +45,7 @@ public class PNCClient {
         this.village = village;
         this.name = name;
         this.thayi = thayi;
-        this.deliveryDate = deliveryDate;
+        this.deliveryDate = LocalDateTime.parse(deliveryDate).toString(ISODateTimeFormat.dateTime());
     }
 
     public String wifeName() {

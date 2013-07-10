@@ -101,7 +101,7 @@
         <div id="fp-client-list" class="container-fluid container-no-padding client-list">
             <div class="row-fluid client"
                  id="client-{{$index}}"
-                 ng-repeat="client in ((filteredClients = (clients | filter:filterList | orderBy:sortList)) | limitTo:numberOfClientsToShow)">
+                 ng-repeat="client in ((filteredClients = (clients | filter:filterList | orderBy:sortList:sortDescending)) | limitTo:numberOfClientsToShow)">
                 <div class="span4 full-height span-no-margin width-without-margins">
                     <div class="row-fluid full-height" ng-include="'blocks/pnc/common.html'"></div>
                 </div>
