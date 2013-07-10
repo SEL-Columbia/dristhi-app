@@ -1,11 +1,12 @@
 angular.module("smartRegistry.controllers")
     .controller("VideoController", ["$scope", function ($scope) {
-         FAMILY_PLANNING = 1;
-         ANTENATAL = 2;
-         POST_PARTUM = 3;
-         CHILD_WELLNESS = 4;
+        FAMILY_PLANNING = 1;
+        ANTENATAL = 2;
+        POST_PARTUM = 3;
+        CHILD_WELLNESS = 4;
 
         $scope.navigationBridge = new ANMNavigationBridge();
+        $scope.videosBridge = new VideoBridge();
 
         $scope.goBack = function () {
             $scope.navigationBridge.goBack();
@@ -43,90 +44,105 @@ angular.module("smartRegistry.controllers")
 
         $scope.videoList = [
             {
+                id: "Introduction to Family Planning",
                 title: "Introduction to FP",
                 time: "4.42",
                 previewImageUrl: "",
                 category: FAMILY_PLANNING
             },
             {
-                title: "Condom Method",
+                id: "Condom",
+                title: "Condom",
                 time: "4.42",
                 previewImageUrl: "",
                 category: FAMILY_PLANNING
             },
             {
+                id: "OCP",
                 title: "OCP",
                 time: "4.42",
                 previewImageUrl: "",
                 category: FAMILY_PLANNING
             },
             {
+                id: "IUD",
                 title: "IUD",
                 time: "4.42",
                 previewImageUrl: "",
                 category: FAMILY_PLANNING
             },
             {
+                id: "Tubal Ligation",
                 title: "Tubal Ligation",
                 time: "4.42",
                 previewImageUrl: "",
                 category: FAMILY_PLANNING
             },
             {
+                id: "Vasectomy",
                 title: "Vasectomy",
                 time: "4.42",
                 previewImageUrl: "",
                 category: FAMILY_PLANNING
             },
             {
+                id: "ANC General",
                 title: "ANC General",
                 time: "4.42",
                 previewImageUrl: "",
                 category: ANTENATAL
             },
             {
+                id: "IFA",
                 title: "IFA",
                 time: "4.42",
                 previewImageUrl: "",
                 category: ANTENATAL
             },
             {
+                id: "Birth Plan",
                 title: "Birth Plan",
                 time: "4.42",
                 previewImageUrl: "",
                 category: ANTENATAL
             },
             {
+                id: "Danger Signs",
                 title: "Danger Signs",
                 time: "4.42",
                 previewImageUrl: "",
                 category: ANTENATAL
             },
             {
+                id: "Introduction to PNC",
                 title: "Introduction to PNC",
                 time: "4.42",
                 previewImageUrl: "",
                 category: POST_PARTUM
             },
             {
+                id: "Child Overview",
                 title: "Child Overview",
                 time: "4.42",
                 previewImageUrl: "",
                 category: CHILD_WELLNESS
             },
             {
+                id: "Diarrhea",
                 title: "Diarrhea",
                 time: "4.42",
                 previewImageUrl: "",
                 category: CHILD_WELLNESS
             },
             {
+                id: "ARI",
                 title: "ARI",
                 time: "4.42",
                 previewImageUrl: "",
                 category: CHILD_WELLNESS
             },
             {
+                id: "Malnutrition",
                 title: "Malnutrition",
                 time: "4.42",
                 previewImageUrl: "",
@@ -134,11 +150,11 @@ angular.module("smartRegistry.controllers")
             }
         ];
 
-        $scope.setCurrentCategory = function(id) {
+        $scope.setCurrentCategory = function (id) {
             $scope.currentCategoryId = id;
         };
 
-        $scope.videoClicked = function(video_id) {
-            alert("Clicked video '" + video_id + "' ..");
+        $scope.videoClicked = function (videoName) {
+            $scope.videosBridge.play(videoName)
         };
     }]);
