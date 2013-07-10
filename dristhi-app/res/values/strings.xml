@@ -10,7 +10,9 @@
     <string name="loggin_in_dialog_message">Please wait</string>
     <string name="login_failed_dialog_title">Log in failed</string>
     <string name="login_failed_dialog_message">Please check the credentials</string>
-    <string name="form_back_confirm_dialog_message">Are you sure you want to go back? All the data you have entered in this form will be cleared.</string>
+    <string name="form_back_confirm_dialog_message">Are you sure you want to go back? All the data you have entered in
+        this form will be cleared.
+    </string>
     <string name="form_back_confirm_dialog_title">Confirm form close</string>
     <string name="yes_button_label">Yes</string>
     <string name="no_button_label">No</string>
@@ -23,4 +25,9 @@
     <string name="home_report_label">Reporting</string>
     <string name="register_label">Register</string>
     <string name="home_videos_label">Videos</string>
+
+    <string name="videos_cannot_play_video_dialog_title">Cannot play video.</string>
+    <string name="videos_IEC_not_installed_dialog_message">Please install IEC application to play the videos.
+    </string>
+    <string name="videos_unknown_error_dialog_message">Unable to play video due to technical error.</string>
 </resources>
