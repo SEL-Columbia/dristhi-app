@@ -430,6 +430,42 @@ a:focus {
     border-bottom: 1px solid #000;
 }
 
+.video-categories .nav-tabs.nav-stacked > li.icon-video-fp > a {
+    background: url(../../img/smart_registry/icon-fp-inactive.png) no-repeat 4px 50%;
+}
+
+.video-categories .nav-tabs.nav-stacked > li.icon-video-fp > a.active,
+.video-categories .nav-tabs.nav-stacked > li.icon-video-fp > a:hover {
+    background: url(../../img/smart_registry/icon-fp-active.png) #0f89c5 no-repeat 4px 50%;
+}
+
+.video-categories .nav-tabs.nav-stacked > li.icon-video-antenatal > a {
+    background: url(../../img/smart_registry/icon-anc-inactive.png) no-repeat 4px 50%;
+}
+
+.video-categories .nav-tabs.nav-stacked > li.icon-video-antenatal > a.active,
+.video-categories .nav-tabs.nav-stacked > li.icon-video-antenatal > a:hover {
+    background: url(../../img/smart_registry/icon-anc-active.png) #0f89c5 no-repeat 4px 50%;
+}
+
+.video-categories .nav-tabs.nav-stacked > li.icon-video-pp > a {
+    background: url(../../img/smart_registry/icon-pnc-inactive.png) no-repeat 4px 50%;
+}
+
+.video-categories .nav-tabs.nav-stacked > li.icon-video-pp > a.active,
+.video-categories .nav-tabs.nav-stacked > li.icon-video-pp > a:hover {
+    background: url(../../img/smart_registry/icon-pnc-active.png) #0f89c5 no-repeat 4px 50%;
+}
+
+.video-categories .nav-tabs.nav-stacked > li.icon-video-wellness > a {
+    background: url(../../img/smart_registry/icon-child-inactive.png) no-repeat 4px 50%;
+}
+
+.video-categories .nav-tabs.nav-stacked > li.icon-video-wellness > a.active,
+.video-categories .nav-tabs.nav-stacked > li.icon-video-wellness > a:hover {
+    background: url(../../img/smart_registry/icon-child-active.png) #0f89c5 no-repeat 4px 50%;
+}
+
 .videos-container {
     /*margin: 20px 0 0 241px !important;*/
     position: absolute;
