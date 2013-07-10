@@ -47,105 +47,105 @@ angular.module("smartRegistry.controllers")
                 id: "Introduction to Family Planning",
                 title: "Introduction to FP",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/fp-FP-Introduction.jpg",
                 category: FAMILY_PLANNING
             },
             {
                 id: "Condom",
                 title: "Condom",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/fp-Condom.jpg",
                 category: FAMILY_PLANNING
             },
             {
                 id: "OCP",
                 title: "OCP",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/fp-OCP.jpg",
                 category: FAMILY_PLANNING
             },
             {
                 id: "IUD",
                 title: "IUD",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/fp-IUD.jpg",
                 category: FAMILY_PLANNING
             },
             {
                 id: "Tubal Ligation",
                 title: "Tubal Ligation",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/fp-Tubal-ligation.jpg",
                 category: FAMILY_PLANNING
             },
             {
                 id: "Vasectomy",
                 title: "Vasectomy",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/fp-Vasectomy.jpg",
                 category: FAMILY_PLANNING
             },
             {
                 id: "ANC General",
                 title: "ANC General",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/anc-What-to-expect-when-expecting.jpg",
                 category: ANTENATAL
             },
             {
                 id: "IFA",
                 title: "IFA",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/anc-IFA-supplement.jpg",
                 category: ANTENATAL
             },
             {
                 id: "Birth Plan",
                 title: "Birth Plan",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/anc-Birth-plan.jpg",
                 category: ANTENATAL
             },
             {
                 id: "Danger Signs",
                 title: "Danger Signs",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/anc-Danger-signs-pregnancy.jpg",
                 category: ANTENATAL
             },
             {
                 id: "Introduction to PNC",
                 title: "Introduction to PNC",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/pnc-Post-partum.jpg",
                 category: POST_PARTUM
             },
             {
                 id: "Child Overview",
                 title: "Child Overview",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/child-Overview-child-wellness.jpg",
                 category: CHILD_WELLNESS
             },
             {
                 id: "Diarrhea",
                 title: "Diarrhea",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/child-Diarrhoeal-disease.jpg",
                 category: CHILD_WELLNESS
             },
             {
                 id: "ARI",
                 title: "ARI",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/child-Acute-respiratory-infection.jpg",
                 category: CHILD_WELLNESS
             },
             {
                 id: "Malnutrition",
                 title: "Malnutrition",
                 time: "4.42",
-                previewImageUrl: "",
+                previewImageUrl: "../../img/smart_registry/child-Malnutrition.jpg",
                 category: CHILD_WELLNESS
             }
         ];
