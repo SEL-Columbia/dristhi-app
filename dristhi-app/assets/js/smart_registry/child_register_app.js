@@ -1,5 +1,6 @@
 angular.module("smartRegistry.controllers")
     .controller("childRegisterController", function ($scope, SmartHelper, ChildService) {
+        $scope.navigationBridge = new ANMNavigationBridge();
         $scope.bridge = new ChildRegistryBridge();
         $scope.client_type = "child";
         $scope.getClients = function () {
@@ -113,11 +114,11 @@ angular.module("smartRegistry.controllers")
                     id: "immunization_9_plus",
                     handler: "changeContentBasedOnServiceMode"
                 }/*,
-                {
-                    label: "Growth",
-                    id: "growth",
-                    handler: "changeContentBasedOnServiceMode"
-                }*/
+                 {
+                 label: "Growth",
+                 id: "growth",
+                 handler: "changeContentBasedOnServiceMode"
+                 }*/
             ]
         };
 
@@ -159,19 +160,23 @@ angular.module("smartRegistry.controllers")
             $scope.isChildFormModalOpen = false;
         };
 
-        $scope.daysPP = function(client) {
+        $scope.daysPP = function (client) {
             return Math.floor(SmartHelper.daysBetween(new Date(Date.parse(client.deliveryDate)), $scope.getToday()));
         };
 
-        $scope.getToday = function() {
+        $scope.getToday = function () {
             return new Date();
         };
 
-        $scope.nameOrMothers = function(client) {
+        $scope.nameOrMothers = function (client) {
             return client.name || "B/o " + client.motherName;
         };
 
-        $scope.childsAge = function(client) {
+        $scope.childsAge = function (client) {
             return SmartHelper.childsAge(new Date(Date.parse(client.dob)), new Date())
+        };
+
+        $scope.openProfile = function (clientId) {
+            $scope.navigationBridge.delegateToChildProfile(clientId);
         };
     });

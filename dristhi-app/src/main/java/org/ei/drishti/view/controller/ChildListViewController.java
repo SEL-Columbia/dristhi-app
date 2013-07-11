@@ -11,14 +11,13 @@ import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.contract.Beneficiaries;
-import org.ei.drishti.view.contract.Village;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static org.ei.drishti.view.controller.ProfileNavigationController.navigationToChildProfile;
+import static org.ei.drishti.view.controller.ProfileNavigationController.navigateToChildProfile;
 
 public class ChildListViewController {
     public static final String CHILD_LIST = "ChildList";
@@ -61,7 +60,7 @@ public class ChildListViewController {
     }
 
     public void startChild(String caseId) {
-        navigationToChildProfile(context, caseId);
+        navigateToChildProfile(context, caseId);
     }
 
     private void sort(List<org.ei.drishti.view.contract.Child> children) {

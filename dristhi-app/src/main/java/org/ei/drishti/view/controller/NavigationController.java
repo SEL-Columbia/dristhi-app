@@ -9,6 +9,7 @@ import org.ei.drishti.view.activity.*;
 import org.ei.drishti.view.contract.HomeContext;
 
 import static org.ei.drishti.AllConstants.ENTITY_ID;
+import static org.ei.drishti.view.controller.ProfileNavigationController.*;
 
 public class NavigationController {
     private Activity activity;
@@ -64,5 +65,21 @@ public class NavigationController {
 
     public void goBack() {
         activity.finish();
+    }
+
+    public void startEC(String entityId) {
+        navigateToECProfile(activity, entityId);
+    }
+
+    public void startANC(String entityId) {
+        navigateToANCProfile(activity, entityId);
+    }
+
+    public void startPNC(String entityId) {
+        navigateToPNCProfile(activity, entityId);
+    }
+
+    public void startChild(String entityId) {
+        navigateToChildProfile(activity, entityId);
     }
 }

@@ -1,4 +1,4 @@
-<div id="name" class="span6 client-details line-right grid-content-padding span-no-margin width-without-margins">
+<div id="name" ng-click="openProfile(client.entityId)" class="span6 client-details line-right grid-content-padding span-no-margin width-without-margins">
     <ng:include src="'blocks/client_name.html'"></ng:include>
     <div class="flag-container">
         <div ng-show="client.isHighRisk" class="flag flag-hrp"></div>

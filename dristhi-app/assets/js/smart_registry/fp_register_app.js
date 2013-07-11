@@ -1,5 +1,6 @@
 angular.module("smartRegistry.controllers")
     .controller("fpRegisterController", function ($scope, FPService) {
+        $scope.navigationBridge = new ANMNavigationBridge();
         $scope.bridge = new FPRegistryBridge();
         $scope.client_type = "woman";
         $scope.getClients = function () {
@@ -238,5 +239,9 @@ angular.module("smartRegistry.controllers")
 
         $scope.closeFPChangeModal = function () {
             $scope.isFPChangeModalOpen = false;
+        };
+
+        $scope.openProfile = function (clientId) {
+            $scope.navigationBridge.delegateToECProfile(clientId);
         };
     });

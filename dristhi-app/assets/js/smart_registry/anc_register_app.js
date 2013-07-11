@@ -1,5 +1,6 @@
 angular.module("smartRegistry.controllers")
     .controller("ancRegisterController", function ($scope, ANCService) {
+        $scope.navigationBridge = new ANMNavigationBridge();
         $scope.bridge = new ANCRegistryBridge();
         $scope.client_type = "woman";
         $scope.getClients = function () {
@@ -215,5 +216,9 @@ angular.module("smartRegistry.controllers")
                 legend_class = "hb-legend-normal";
             }
             return legend_class;
+        };
+
+        $scope.openProfile = function (clientId) {
+            $scope.navigationBridge.delegateToANCProfile(clientId);
         };
     });

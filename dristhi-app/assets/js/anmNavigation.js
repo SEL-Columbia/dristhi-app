@@ -119,6 +119,18 @@ function ANMNavigationBridge() {
         },
         goBack: function () {
             anmNavigationContext.goBack();
+        },
+        delegateToECProfile: function (entityId) {
+            anmNavigationContext.startEC(entityId);
+        },
+        delegateToANCProfile: function (entityId) {
+            anmNavigationContext.startANC(entityId);
+        },
+        delegateToPNCProfile: function (entityId) {
+            anmNavigationContext.startPNC(entityId);
+        },
+        delegateToChildProfile: function (entityId) {
+            anmNavigationContext.startChild(entityId);
         }
     };
 }
@@ -164,6 +176,18 @@ function FakeANMNavigationContext() {
         },
         goBack: function () {
             window.location.href = "../home.html";
+        },
+        startEC: function (entityId) {
+            window.location.href = "../ec_detail.html";
+        },
+        startANC: function (entityId) {
+            window.location.href = "../anc_detail.html";
+        },
+        startPNC: function (entityId) {
+            window.location.href = "../pnc_detail.html";
+        },
+        startChild: function (entityId) {
+            window.location.href = "../child_detail.html";
         }
     }
 }

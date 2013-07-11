@@ -16,19 +16,19 @@ public class ProfileNavigationController {
         context.startActivity(intent);
     }
 
-    public static void navigationToANCProfile(android.content.Context context, String caseId) {
+    public static void navigateToANCProfile(android.content.Context context, String caseId) {
         Intent intent = new Intent(context.getApplicationContext(), ANCDetailActivity.class);
         intent.putExtra(CASE_ID, caseId);
         context.startActivity(intent);
     }
 
-    public static void navigationToPNCProfile(android.content.Context context, String caseId) {
+    public static void navigateToPNCProfile(android.content.Context context, String caseId) {
         Intent intent = new Intent(context.getApplicationContext(), PNCDetailActivity.class);
         intent.putExtra(CASE_ID, caseId);
         context.startActivity(intent);
     }
 
-    public static void navigationToChildProfile(android.content.Context context, String caseId) {
+    public static void navigateToChildProfile(android.content.Context context, String caseId) {
         Intent intent = new Intent(context.getApplicationContext(), ChildDetailActivity.class);
         intent.putExtra(CASE_ID, caseId);
         context.startActivity(intent);

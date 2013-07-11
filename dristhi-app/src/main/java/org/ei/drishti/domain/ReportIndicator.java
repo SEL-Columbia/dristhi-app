@@ -66,7 +66,7 @@ public enum ReportIndicator {
     DPT3_OR_OPV3("DPT3_OPV3", "DPT 3 / OPV 3") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
+            navigateToChildProfile(context, caseId);
         }
 
         @Override
@@ -77,7 +77,7 @@ public enum ReportIndicator {
     DPT_BOOSTER_OR_OPV_BOOSTER("DPTB_OPVB", "DPT Booster / OPV Booster") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
+            navigateToChildProfile(context, caseId);
         }
 
         @Override
@@ -88,7 +88,7 @@ public enum ReportIndicator {
     DPT_BOOSTER2("DPT_BOOSTER_2", "DPT Booster 2") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
+            navigateToChildProfile(context, caseId);
         }
 
         @Override
@@ -99,7 +99,7 @@ public enum ReportIndicator {
     HEP("HEP", "HEP") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
+            navigateToChildProfile(context, caseId);
         }
 
         @Override
@@ -110,7 +110,7 @@ public enum ReportIndicator {
     OPV("OPV", "OPV") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
+            navigateToChildProfile(context, caseId);
         }
 
 
@@ -122,7 +122,7 @@ public enum ReportIndicator {
     MEASLES("MEASLES", "MEASLES") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
+            navigateToChildProfile(context, caseId);
         }
 
         @Override
@@ -133,7 +133,7 @@ public enum ReportIndicator {
     VIT_A_1("VIT_A_1", "First Dose of Vitamin A") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
+            navigateToChildProfile(context, caseId);
         }
 
         @Override
@@ -144,7 +144,7 @@ public enum ReportIndicator {
     VIT_A_2("VIT_A_1", "Second Dose of Vitamin A") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
+            navigateToChildProfile(context, caseId);
         }
 
         @Override
@@ -155,7 +155,7 @@ public enum ReportIndicator {
     WEIGHED_AT_BIRTH("WEIGHED_AT_BIRTH", "Number of infants weighed at birth") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
+            navigateToChildProfile(context, caseId);
         }
 
         @Override
@@ -166,7 +166,7 @@ public enum ReportIndicator {
     BF_POST_BIRTH("BF_POST_BIRTH", "Exclusively BF within 1 hr of birth") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
+            navigateToChildProfile(context, caseId);
         }
 
         @Override
@@ -177,7 +177,7 @@ public enum ReportIndicator {
     BCG("BCG", "BCG") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
+            navigateToChildProfile(context, caseId);
         }
 
         @Override
@@ -188,7 +188,7 @@ public enum ReportIndicator {
     EARLY_ANC_REGISTRATIONS("ANC<12", "Early ANC Registration") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToANCProfile(context, caseId);
+            navigateToANCProfile(context, caseId);
         }
 
         @Override
@@ -199,7 +199,7 @@ public enum ReportIndicator {
     ANC_REGISTRATIONS("ANC", "Late ANC Registration") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToANCProfile(context, caseId);
+            navigateToANCProfile(context, caseId);
         }
 
         @Override
@@ -210,7 +210,7 @@ public enum ReportIndicator {
     ANC4("ANC4", "Minimum 4 ANC Visits") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToANCProfile(context, caseId);
+            navigateToANCProfile(context, caseId);
         }
 
         @Override
@@ -221,7 +221,7 @@ public enum ReportIndicator {
     SUB_TT("SUB_TT", "TT2 and TT Booster (Pregnant Women)") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToANCProfile(context, caseId);
+            navigateToANCProfile(context, caseId);
         }
 
         @Override
@@ -232,7 +232,7 @@ public enum ReportIndicator {
     TT1("TT1", "TT1") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToANCProfile(context, caseId);
+            navigateToANCProfile(context, caseId);
         }
 
         @Override
@@ -243,7 +243,7 @@ public enum ReportIndicator {
     TT2("TT2", "TT2") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToANCProfile(context, caseId);
+            navigateToANCProfile(context, caseId);
         }
 
         @Override
@@ -254,7 +254,7 @@ public enum ReportIndicator {
     TTB("TTB", "TT Booster") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToANCProfile(context, caseId);
+            navigateToANCProfile(context, caseId);
         }
 
         @Override
@@ -315,7 +315,7 @@ public enum ReportIndicator {
     LIVE_BIRTH("LIVE_BIRTH", "Live Birth") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
@@ -326,7 +326,7 @@ public enum ReportIndicator {
     STILL_BIRTH("STILL_BIRTH", "Still Birth") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
@@ -337,7 +337,7 @@ public enum ReportIndicator {
     LBW("LBW", "Low Birth Weight") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToChildProfile(context, caseId);
+            navigateToChildProfile(context, caseId);
         }
 
         @Override
@@ -348,7 +348,7 @@ public enum ReportIndicator {
     EARLY_ABORTIONS("MTP<12", "Abortions before 12 weeks") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
@@ -359,7 +359,7 @@ public enum ReportIndicator {
     LATE_ABORTIONS("MTP>12", "Abortions after 12 weeks") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
@@ -370,7 +370,7 @@ public enum ReportIndicator {
     SPONTANEOUS_ABORTION("SPONTANEOUS_ABORTION", "Spontaneous abortions") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
@@ -381,7 +381,7 @@ public enum ReportIndicator {
     DELIVERY("DELIVERY", "Total Deliveries") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
@@ -432,7 +432,7 @@ public enum ReportIndicator {
     INSTITUTIONAL_DELIVERY("INSTITUTIONAL_DELIVERY", "Institutional Deliveries") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
@@ -443,7 +443,7 @@ public enum ReportIndicator {
     PNC3("PNC3", "No. of PNC women who received 3 visits") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
@@ -454,7 +454,7 @@ public enum ReportIndicator {
     D_HOM("D_HOM", "Number of deliveries conducted at Home") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
@@ -465,7 +465,7 @@ public enum ReportIndicator {
     D_SC("D_SC", "Number of deliveries conducted at Sub Center") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
@@ -476,7 +476,7 @@ public enum ReportIndicator {
     D_PHC("D_PHC", "Number of deliveries conducted at Public Health Center") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
@@ -487,7 +487,7 @@ public enum ReportIndicator {
     D_CHC("D_CHC", "Number of deliveries conducted at Community Health Center") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
@@ -498,7 +498,7 @@ public enum ReportIndicator {
     D_SDH("D_SDH", "Number of deliveries conducted at Sub District Hospital") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
@@ -509,7 +509,7 @@ public enum ReportIndicator {
     D_DH("D_DH", "Number of deliveries conducted at District Hospital") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
@@ -520,7 +520,7 @@ public enum ReportIndicator {
     D_PRI("D_PRI", "Number of deliveries conducted at Private facility") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
-            navigationToPNCProfile(context, caseId);
+            navigateToPNCProfile(context, caseId);
         }
 
         @Override
