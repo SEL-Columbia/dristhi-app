@@ -384,6 +384,7 @@ function FakeANCSmartRegistryContext() {
                     thayi: '4636543',
                     "photo_path": "../../img/woman-placeholder.png",
                     ec_number: '429',
+                    economicStatus: "bpl",
                     age: '35',
                     husband_name: 'Kiran',
                     weeks_pregnant: '5',

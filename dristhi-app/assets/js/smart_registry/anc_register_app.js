@@ -24,6 +24,18 @@ angular.module("smartRegistry.controllers")
                     label: "HRP",
                     handler: "sortByRisk",
                     sortDescending: false
+                },
+                {
+                    label: "BPL",
+                    handler: "sortByBPL"
+                },
+                {
+                    label: "SC",
+                    handler: "sortBySC"
+                },
+                {
+                    label: "ST",
+                    handler: "sortByST"
                 }
             ]
         };

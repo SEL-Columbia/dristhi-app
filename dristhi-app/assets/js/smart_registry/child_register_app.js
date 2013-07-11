@@ -60,16 +60,6 @@ angular.module("smartRegistry.controllers")
             return !item.isHighRisk;
         };
 
-        $scope.sortByBPL = function (client) {
-            return client.economicStatus !== "bpl";
-        };
-        $scope.sortBySC = function (client) {
-            return client.caste !== "sc";
-        };
-        $scope.sortByST = function (client) {
-            return client.caste !== "st";
-        };
-
         $scope.defaultVillageOptions = {
             type: "filterVillage",
             options: [

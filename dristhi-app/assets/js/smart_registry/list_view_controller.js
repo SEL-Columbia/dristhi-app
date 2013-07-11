@@ -15,6 +15,18 @@ angular.module("smartRegistry.controllers")
             return client.name;
         };
 
+        $scope.sortByBPL = function (client) {
+            return client.economicStatus && client.economicStatus.toUpperCase() !== 'BPL';
+        };
+
+        $scope.sortBySC = function (client) {
+            return client.caste && client.caste.toUpperCase() !== "SC";
+        };
+
+        $scope.sortByST = function (client) {
+            return client.caste && client.caste.toUpperCase() !== "ST";
+        };
+
         $scope.filterVillage = function (option) {
             $scope.villageFilterOption = option;
         };
@@ -185,7 +197,7 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.locationStatusMapping = {
-            "out_of_area":1,
-            "left_the_place":2
+            "out_of_area": 1,
+            "left_the_place": 2
         };
     }]);

@@ -46,15 +46,6 @@ angular.module("smartRegistry.controllers")
         $scope.sortByECNumber = function (client) {
             return parseInt(client.ec_number) || 0;
         };
-        $scope.sortByBPL = function (client) {
-            return client.economicStatus !== "bpl";
-        };
-        $scope.sortBySC = function (client) {
-            return client.caste !== "sc";
-        };
-        $scope.sortByST = function (client) {
-            return client.caste !== "st";
-        };
 
         $scope.defaultVillageOptions = {
             type: "filterVillage",

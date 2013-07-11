@@ -316,7 +316,7 @@ function FakePNCSmartRegistryContext() {
                     isHighPriority: false,
                     isHighRisk: true,
                     locationStatus: "",
-                    economicStatus: "apl",
+                    economicStatus: "bpl",
                     caste: "st",
                     fp_method: "ocp",
                     iudPlace: "PNC",
