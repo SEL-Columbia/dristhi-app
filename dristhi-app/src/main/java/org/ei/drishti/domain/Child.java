@@ -16,6 +16,7 @@ public class Child {
     private boolean isClosed;
     private Mother mother;
     private EligibleCouple eligibleCouple;
+    private String photoPath;
 
     public Child(String caseId, String motherCaseId, String thayiCardNumber, String dateOfBirth, String gender, Map<String, String> details) {
         this.caseId = caseId;
@@ -97,6 +98,10 @@ public class Child {
         return details.get(name);
     }
 
+    public String photoPath() {
+        return photoPath;
+    }
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
@@ -119,6 +124,11 @@ public class Child {
 
     public Child withEC(EligibleCouple eligibleCouple) {
         this.eligibleCouple = eligibleCouple;
+        return this;
+    }
+
+    public Child withPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
         return this;
     }
 }

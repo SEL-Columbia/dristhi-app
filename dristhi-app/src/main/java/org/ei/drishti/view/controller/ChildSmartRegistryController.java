@@ -21,6 +21,7 @@ import java.util.List;
 
 import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
+import static org.apache.commons.lang3.StringUtils.isBlank;
 
 public class ChildSmartRegistryController {
     private static final String CHILD_CLIENTS_LIST_CACHE_ENTRY_NAME = "ChildClientList";
@@ -45,7 +46,7 @@ public class ChildSmartRegistryController {
                 List<ChildClient> childrenClient = new ArrayList<ChildClient>();
 
                 for (Child child : children) {
-                    String photoPath = "female".equalsIgnoreCase(child.gender()) ? "../../img/icons/child-girlinfant@3x.png" : "../../img/icons/child-infant@3x.png";
+                    String photoPath = isBlank(child.photoPath()) ? ("female".equalsIgnoreCase(child.gender()) ? "../../img/icons/child-girlinfant@3x.png" : "../../img/icons/child-infant@3x.png") : child.photoPath();
                     List<AlertDTO> alerts = getAlerts(child.caseId());
                     List<ServiceProvidedDTO> servicesProvided = getServicesProvided(child.caseId());
                     ChildClient childClient =

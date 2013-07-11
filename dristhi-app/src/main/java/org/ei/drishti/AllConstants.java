@@ -18,6 +18,7 @@ public class AllConstants {
     public static final String IS_SYNC_IN_PROGRESS_PREFERENCE_KEY = "isSyncInProgress";
     public static final String TYPE = "type";
     public static final String WOMAN_TYPE = "woman";
+    public static final String CHILD_TYPE = "child";
     public static final String REALM = "Dristhi";
     public static final String AUTHENTICATE_USER_URL_PATH = "/authenticate-user";
 

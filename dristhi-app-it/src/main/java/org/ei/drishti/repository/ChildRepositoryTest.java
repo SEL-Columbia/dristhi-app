@@ -159,4 +159,16 @@ public class ChildRepositoryTest extends AndroidTestCase {
 
         assertTrue(children.contains(child));
     }
+
+    public void testShouldUpdatePhotoPathCase() throws Exception {
+        Child child = new Child("CASE X", "Mother 1", "1234567", "2012-01-01", "female", new HashMap<String, String>());
+        Child anotherChild = new Child("CASE Y", "Mother 2", "1234567", "2012-01-01", "female", new HashMap<String, String>());
+        repository.add(child);
+        repository.add(anotherChild);
+
+        repository.updatePhotoPath("CASE X", "photo/path/to/child/x");
+
+        assertEquals("photo/path/to/child/x", repository.find("CASE X").photoPath());
+        assertEquals(null, repository.find("CASE Y").photoPath());
+    }
 }

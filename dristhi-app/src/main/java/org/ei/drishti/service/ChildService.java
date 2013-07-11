@@ -135,4 +135,8 @@ public class ChildService {
     public void delete(Action action) {
         childRepository.close(action.caseID());
     }
+
+    public void updatePhotoPath(String entityId, String imagePath) {
+        childRepository.updatePhotoPath(entityId, imagePath);
+    }
 }

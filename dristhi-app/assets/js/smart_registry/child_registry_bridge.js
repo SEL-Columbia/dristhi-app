@@ -17,6 +17,7 @@ function FakeChildSmartRegistryContext() {
             return JSON.stringify([
                 {
                     entityId: "entity id 1",
+                    entityIdToSavePhoto: "entity id 1",
                     gender: "Male",
                     weight: "4.8",
                     thaayiCardNumber: '4636587',
@@ -88,6 +89,7 @@ function FakeChildSmartRegistryContext() {
                 },
                 {
                     entityId: "entity id 2",
+                    entityIdToSavePhoto: "entity id 2",
                     gender: "Male",
                     weight: "4.8",
                     thaayiCardNumber: '4636589',
@@ -123,6 +125,7 @@ function FakeChildSmartRegistryContext() {
                 },
                 {
                     entityId: "entity id 2",
+                    entityIdToSavePhoto: "entity id 2",
                     gender: "female",
                     weight: "4.8",
                     thaayiCardNumber: '4636593',

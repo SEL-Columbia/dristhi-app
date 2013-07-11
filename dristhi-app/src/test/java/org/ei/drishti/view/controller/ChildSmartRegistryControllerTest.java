@@ -110,6 +110,7 @@ public class ChildSmartRegistryControllerTest {
                 .withCaste("others")
                 .withIsHighRisk(true)
                 .withPhotoPath("../../img/icons/child-girlinfant@3x.png")
+                .withEntityIdToSavePhoto("child id 1")
                 .withECNumber("ec no 1")
                 .withAlerts(Collections.<AlertDTO>emptyList())
                 .withServicesProvided(Collections.<ServiceProvidedDTO>emptyList());
@@ -144,6 +145,7 @@ public class ChildSmartRegistryControllerTest {
                 .withVillage("chikkamagalur")
                 .withOutOfArea(true)
                 .withPhotoPath("../../img/icons/child-infant@3x.png")
+                .withEntityIdToSavePhoto("child id 1")
                 .withECNumber("ec no 1")
                 .withAlerts(asList(expectedAlertDto))
                 .withServicesProvided(Collections.<ServiceProvidedDTO>emptyList());
@@ -179,6 +181,7 @@ public class ChildSmartRegistryControllerTest {
                 .withVillage("chikkamagalur")
                 .withOutOfArea(true)
                 .withPhotoPath("../../img/icons/child-infant@3x.png")
+                .withEntityIdToSavePhoto(childId)
                 .withECNumber(ecNumber)
                 .withAlerts(Collections.<AlertDTO>emptyList())
                 .withServicesProvided(Collections.<ServiceProvidedDTO>emptyList());

@@ -19,6 +19,7 @@ import static android.os.Environment.DIRECTORY_PICTURES;
 import static android.os.Environment.getExternalStoragePublicDirectory;
 import static org.ei.drishti.AllConstants.ENTITY_ID;
 import static org.ei.drishti.AllConstants.WOMAN_TYPE;
+import static org.ei.drishti.AllConstants.CHILD_TYPE;
 import static org.ei.drishti.event.Event.ON_PHOTO_CAPTURED;
 
 public class CameraLaunchActivity extends SecuredActivity {
@@ -99,8 +100,11 @@ public class CameraLaunchActivity extends SecuredActivity {
     private void updateEntity(String imagePath) {
         if (WOMAN_TYPE.equals(entityType)) {
             context.allEligibleCouples().updatePhotoPath(entityId, imagePath);
-            ON_PHOTO_CAPTURED.notifyListeners(new CapturedPhotoInformation(entityId, imagePath));
         }
+        if(CHILD_TYPE.equals(entityType)) {
+            context.childService().updatePhotoPath(entityId, imagePath);
+        }
+        ON_PHOTO_CAPTURED.notifyListeners(new CapturedPhotoInformation(entityId, imagePath));
     }
 
     private void saveBitmap(Bitmap bitmap, String location) {
