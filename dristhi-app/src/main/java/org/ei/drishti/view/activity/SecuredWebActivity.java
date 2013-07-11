@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import org.ei.drishti.R;
 import org.ei.drishti.sync.SyncAfterFetchListener;
@@ -112,6 +113,8 @@ public abstract class SecuredWebActivity extends SecuredActivity {
             }
         });
 
+        webView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
+        webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
