@@ -32,10 +32,18 @@ import static org.mockito.MockitoAnnotations.initMocks;
 @RunWith(RobolectricTestRunner.class)
 public class ChildSmartRegistryControllerTest {
     public static final String[] CHILD_ALERTS = new String[]{
-            "bcg", "measles", "measlesbooster"
+            "bcg",
+            "measles", "measlesbooster",
+            "opv_0", "opv_1", "opv_2", "opv_3", "opvbooster",
+            "dptbooster_1", "dptbooster_2",
+            "pentavalent_1", "pentavalent_2", "pentavalent_3"
     };
     private static final String[] CHILD_SERVICES = new String[]{
-            "bcg", "measles", "measlesbooster"
+            "bcg",
+            "measles", "measlesbooster",
+            "opv_0", "opv_1", "opv_2", "opv_3", "opvbooster",
+            "dptbooster_1", "dptbooster_2",
+            "pentavalent_1", "pentavalent_2", "pentavalent_3"
     };
 
     private final Map<String, String> emptyMap = Collections.emptyMap();

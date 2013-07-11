@@ -149,6 +149,21 @@ public class AllConstants {
         public static final String BCG = "bcg";
         public static final String MEASLES = "measles";
         public static final String MEASLES_BOOSTER = "measlesbooster";
-        public static final String[] ALL = new String[]{BCG, MEASLES, MEASLES_BOOSTER};
+
+        public static final String OPV_0 = "opv_0";
+        public static final String OPV_1 = "opv_1";
+        public static final String OPV_2 = "opv_2";
+        public static final String OPV_3 = "opv_3";
+        public static final String OPV_BOOSTER = "opvbooster";
+
+        public static final String DPT_BOOSTER_1 = "dptbooster_1";
+        public static final String DPT_BOOSTER_2 = "dptbooster_2";
+
+        public static final String PENTAVALENT_1 = "pentavalent_1";
+        public static final String PENTAVALENT_2 = "pentavalent_2";
+        public static final String PENTAVALENT_3 = "pentavalent_3";
+
+        public static final String[] ALL = new String[]{BCG, MEASLES, MEASLES_BOOSTER, OPV_0, OPV_1, OPV_2, OPV_3,
+                        OPV_BOOSTER, DPT_BOOSTER_1, DPT_BOOSTER_2, PENTAVALENT_1, PENTAVALENT_2, PENTAVALENT_3};
     }
 }
