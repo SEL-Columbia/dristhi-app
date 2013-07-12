@@ -46,14 +46,10 @@
     <div class="divider"></div>
     <div class="registry-container container-fluid">
         <div class="row-fluid">
-            <div class="span3">
-            {{#ifequal childDetails.gender "male"}}
-                <img src="../img/icons/child-infant@3x.png">
-            {{else}}
-                <img src="../img/icons/child-girlinfant@3x.png">
-            {{/ifequal}}
+            <div class="span4">
+                <img id="childPhoto" src="file://{{photo_path}}">
             </div>
-            <div class="span9">
+            <div class="span8">
                 <ul class="client-details unstyled">
                     <li class="big-text-margin">{{#ifequal childDetails.gender "male"}}Boy{{else}}Girl{{/ifequal}}</li>
                     <li class="text-blue">Infant</li>

@@ -14,6 +14,22 @@ function Child(childBridge) {
             var alertItem = $(alertWhoseCheckboxWasClicked);
             childBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
             childBridge.markAsCompleted(alertItem.data("caseid"), alertItem.data("visitcode"));
+        },
+
+        bindToCamera: function (cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).click(function () {
+                childBridge.takePhoto();
+            });
+        },
+
+        bindToDefaultPhoto: function (cssIdentifierOfElement, defaultPhotoPath) {
+            $(cssIdentifierOfElement).on('error', function (e) {
+                e.currentTarget.src = defaultPhotoPath;
+            });
+        },
+
+        reloadPhoto: function (cssIdentifierOfElement, caseId, photoPath) {
+            $(cssIdentifierOfElement).attr('src', photoPath);
         }
     };
 }
@@ -35,6 +51,10 @@ function ChildBridge() {
 
         markAsCompleted: function (caseId, visitCode) {
             childContext.markTodoAsCompleted(caseId, visitCode);
+        },
+
+        takePhoto: function () {
+            childContext.takePhoto();
         }
     };
 }
@@ -125,9 +145,13 @@ function FakeChildContext() {
                             type: "ANCVISIT",
                             date: "2m 3d ago"
                         }
-                    ]
+                    ],
+                    photo_path: "../img/icons/child-girlinfant@3x.png"
                 }
             );
+        },
+        takePhoto: function () {
+            alert("launching camera app.");
         }
     }
 }

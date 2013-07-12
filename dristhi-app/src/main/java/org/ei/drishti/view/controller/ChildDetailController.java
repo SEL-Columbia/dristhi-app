@@ -1,7 +1,9 @@
 package org.ei.drishti.view.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import com.google.gson.Gson;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
@@ -11,6 +13,7 @@ import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.TimelineEventComparator;
+import org.ei.drishti.view.activity.CameraLaunchActivity;
 import org.ei.drishti.view.contract.*;
 import org.joda.time.LocalDate;
 import org.ocpsoft.pretty.time.Duration;
@@ -22,6 +25,9 @@ import java.util.List;
 import java.util.Locale;
 
 import static java.lang.Math.min;
+import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.drishti.AllConstants.CHILD_TYPE;
+import static org.ei.drishti.AllConstants.ENTITY_ID;
 
 public class ChildDetailController {
     private final Context context;
@@ -44,16 +50,21 @@ public class ChildDetailController {
 
     public String get() {
         Child child = allBeneficiaries.findChild(caseId);
-        Mother mother = allBeneficiaries.findMotherWithOpenStatus(child.motherCaseId());
+        Mother mother = allBeneficiaries.findMother(child.motherCaseId());
         EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
         List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 
         LocalDate deliveryDate = LocalDate.parse(child.dateOfBirth());
+        String photoPath = isBlank(child.photoPath()) ?
+                (AllConstants.FEMALE_GENDER.equalsIgnoreCase(child.gender())
+                        ? AllConstants.DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH
+                        : AllConstants.DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH)
+                : child.photoPath();
 
         ChildDetail detail = new ChildDetail(caseId, mother.thayiCardNumber(),
                 new CoupleDetails(couple.wifeName(), couple.husbandName(), couple.ecNumber(), couple.isOutOfArea()),
                 new LocationDetails(couple.village(), couple.subCenter()),
-                new BirthDetails(deliveryDate.toString(), calculateAge(deliveryDate), child.gender()))
+                new BirthDetails(deliveryDate.toString(), calculateAge(deliveryDate), child.gender()), photoPath)
                 .addTimelineEvents(getEvents())
                 .addTodos(todosAndUrgentTodos.get(0))
                 .addUrgentTodos(todosAndUrgentTodos.get(1))
@@ -64,6 +75,13 @@ public class ChildDetailController {
 
     public void markTodoAsCompleted(String caseId, String visitCode) {
         allAlerts.markAsCompleted(caseId, visitCode, LocalDate.now().toString());
+    }
+
+    public void takePhoto() {
+        Intent intent = new Intent(context, CameraLaunchActivity.class);
+        intent.putExtra(AllConstants.TYPE, CHILD_TYPE);
+        intent.putExtra(ENTITY_ID, caseId);
+        context.startActivity(intent);
     }
 
     private List<TimelineEvent> getEvents() {

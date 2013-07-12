@@ -61,8 +61,8 @@ public class ChildDetailControllerTest {
         details.put("isHighRisk", "yes");
         details.put("highRiskReason", "Anaemia");
 
-        when(allBeneficiaries.findChild(caseId)).thenReturn(new Child(caseId, "Mother-Case-Id", "TC 1", "2012-07-28", "male", details));
-        when(allBeneficiaries.findMotherWithOpenStatus("Mother-Case-Id")).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withDetails(details));
+        when(allBeneficiaries.findChild(caseId)).thenReturn(new Child(caseId, "Mother-Case-Id", "TC 1", "2012-07-28", "male", details).withPhotoPath("photo path"));
+        when(allBeneficiaries.findMother("Mother-Case-Id")).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withDetails(details));
         when(allEligibleCouples.findByCaseID("EC CASE 1")).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "Village 1", "Subcenter 1", new HashMap<String, String>()));
         when(allAlerts.fetchAllActiveAlertsForCase(caseId)).thenReturn(asList(asList(todo), asList(urgentTodo)));
         when(allTimelineEvents.forCase(caseId)).thenReturn(asList(birthEvent, ancEvent, eventVeryCloseToCurrentDate));
@@ -70,7 +70,7 @@ public class ChildDetailControllerTest {
         ChildDetail expectedDetail = new ChildDetail(caseId, "TC 1",
                 new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false),
                 new LocationDetails("Village 1", "Subcenter 1"),
-                new BirthDetails("2012-07-28", "4 days", "male"))
+                new BirthDetails("2012-07-28", "4 days", "male"), "photo path")
                 .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "7m 1w ago"), eventFor(birthEvent, "9m 2w ago")))
                 .addTodos(asList(todo))
                 .addUrgentTodos(asList(urgentTodo))

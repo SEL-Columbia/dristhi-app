@@ -11,6 +11,7 @@ import java.util.Map;
 public class ChildDetail {
     private final String caseId;
     private final String thayiCardNumber;
+    private final String photo_path;
 
     private final LocationDetails location;
     private final CoupleDetails coupleDetails;
@@ -21,9 +22,10 @@ public class ChildDetail {
     private List<TimelineEvent> timelineEvents;
     private Map<String, String> details;
 
-    public ChildDetail(String caseId, String thayiCardNumber, CoupleDetails coupleDetails, LocationDetails location, BirthDetails childDetails) {
+    public ChildDetail(String caseId, String thayiCardNumber, CoupleDetails coupleDetails, LocationDetails location, BirthDetails childDetails, String photoPath) {
         this.caseId = caseId;
         this.thayiCardNumber = thayiCardNumber;
+        this.photo_path = photoPath;
 
         this.coupleDetails = coupleDetails;
         this.location = location;

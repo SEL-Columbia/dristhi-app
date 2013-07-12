@@ -32,7 +32,6 @@ public class AllConstants {
 //    public static final int PORT = AuthScope.ANY_PORT;
 //    public static final boolean SHOULD_VERIFY_CERTIFICATE = false;
 
-    public static final String DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH = "../../img/woman-placeholder.png";
     public static final String FORM_NAME_PARAM = "formName";
     public static final String INSTANCE_ID_PARAM = "instanceId";
     public static final String ENTITY_ID_PARAM = "entityId";
@@ -72,6 +71,10 @@ public class AllConstants {
     public static final String ALERT_NAME_PARAM = "alertName";
     public static final String BOOLEAN_FALSE = "no";
     public static final String SPACE = " ";
+    public static final String DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH = "../../img/woman-placeholder.png";
+    public static final String DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH = "../../img/icons/child-girlinfant@3x.png";
+    public static final String DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH = "../../img/icons/child-girlinfant@3x.png";
+    public static final String FEMALE_GENDER = "female";
 
     public class ANCCloseFields {
         public static final String DEATH_OF_WOMAN_FIELD_VALUE = "death_of_woman";
