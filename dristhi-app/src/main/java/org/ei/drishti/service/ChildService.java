@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.domain.TimelineEvent.*;
 
@@ -63,6 +64,7 @@ public class ChildService {
                 submission.getFieldValue(AllConstants.ChildRegistrationECFields.DATE_OF_BIRTH),
                 submission.getFieldValue(AllConstants.ChildRegistrationECFields.GENDER), null));
         String immunizationsGiven = submission.getFieldValue(AllConstants.ChildRegistrationECFields.IMMUNIZATIONS_GIVEN);
+        immunizationsGiven = isBlank(immunizationsGiven) ? "" : immunizationsGiven;
         for (String immunization : immunizationsGiven.split(SPACE)) {
             serviceProvidedService.add(ServiceProvided.forChildImmunization(submission.entityId(), immunization, submission.getFieldValue(immunizationDateFieldMap.get(immunization))));
         }
