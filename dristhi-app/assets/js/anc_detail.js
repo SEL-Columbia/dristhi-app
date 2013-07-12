@@ -17,6 +17,18 @@ function ANC(ancBridge) {
             ancBridge.markAsCompleted(alertItem.data("caseid"), alertItem.data("visitcode"));
         },
 
+        bindToCamera: function (cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).click(function () {
+                ancBridge.takePhoto();
+            });
+        },
+
+        bindToDefaultPhoto: function (cssIdentifierOfElement, defaultPhotoPath) {
+            $(cssIdentifierOfElement).on('error', function (e) {
+                e.currentTarget.src = defaultPhotoPath;
+            });
+        },
+
         bindTimelineEventToShowMoreButton: function (timeLineEventListItem, showMoreButton, minNumberToShow) {
             $(timeLineEventListItem + ':gt(' + (minNumberToShow - 1) + ')').hide();
             if ($(timeLineEventListItem + ':not(:visible)').length == 0) return;
@@ -26,6 +38,10 @@ function ANC(ancBridge) {
                     if ($(timeLineEventListItem + ':not(:visible)').length == 0) $(button).remove();
                 });
             })
+        },
+
+        reloadPhoto: function (cssIdentifierOfElement, caseId, photoPath) {
+            $(cssIdentifierOfElement).attr('src', photoPath);
         }
     };
 }
@@ -47,6 +63,9 @@ function ANCBridge() {
 
         markAsCompleted: function (caseId, visitCode) {
             ancContext.markTodoAsCompleted(caseId, visitCode);
+        },
+        takePhoto: function () {
+            ancContext.takePhoto();
         }
     };
 }
@@ -69,7 +88,8 @@ function FakeANCContext() {
                         ecNumber: "EC Number 1",
                         isInArea: false,
                         caste: "st",
-                        economicStatus: "bpl"
+                        economicStatus: "bpl",
+                        photo_path: "../../img/woman-placeholder.png"
                     },
                     location: {
                         villageName: "village 1",
@@ -239,6 +259,9 @@ function FakeANCContext() {
                     ]
                 }
             );
+        },
+        takePhoto: function () {
+            alert("launching camera app.");
         }
     }
 }

@@ -34,6 +34,7 @@
 <script src="../js/modal.js"></script>
 <script src="../js/alerts.js"></script>
 <script src="../js/international_text.js"></script>
+<script src="../js/page_view.js"></script>
 
 <script type="text/javascript" src="../js/anc_detail.js"></script>
 <script type="text/javascript">
@@ -43,7 +44,13 @@
         anc.bindEveryItemToCommCare("#deliveryOutcomeFormButton");
         anc.bindEveryItemToCommCare(".modal-row");
         anc.bindEveryItemToCommCare(".edit-birth-plan");
+        anc.bindToCamera("#womanPhoto");
+        anc.bindToDefaultPhoto("#womanPhoto", "../img/woman-placeholder.png");
         anc.bindTimelineEventToShowMoreButton(".timelineEvent", ".show-more-button", 5);
+
+        pageView.onReloadPhoto(function (caseId, photoPath) {
+            anc.reloadPhoto("#womanPhoto", caseId, photoPath);
+        });
 
         new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         new Modal().bindToClick();

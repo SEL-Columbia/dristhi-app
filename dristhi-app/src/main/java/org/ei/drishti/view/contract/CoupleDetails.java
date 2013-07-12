@@ -11,12 +11,28 @@ public class CoupleDetails {
     private final boolean isInArea;
     private String caste;
     private String economicStatus;
+    private String photo_path;
 
     public CoupleDetails(String wifeName, String husbandName, String ecNumber, boolean outOfArea) {
         this.wifeName = wifeName;
         this.husbandName = husbandName;
         this.ecNumber = ecNumber;
         this.isInArea = !outOfArea;
+    }
+
+    public CoupleDetails withCaste(String caste) {
+        this.caste = caste;
+        return this;
+    }
+
+    public CoupleDetails withEconomicStatus(String economicStatus) {
+        this.economicStatus = economicStatus;
+        return this;
+    }
+
+    public CoupleDetails withPhotoPath(String photoPath) {
+        this.photo_path = photoPath;
+        return this;
     }
 
     @Override
@@ -32,15 +48,5 @@ public class CoupleDetails {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-    }
-
-    public CoupleDetails withCaste(String caste) {
-        this.caste = caste;
-        return this;
-    }
-
-    public CoupleDetails withEconomicStatus(String economicStatus) {
-        this.economicStatus = economicStatus;
-        return this;
     }
 }

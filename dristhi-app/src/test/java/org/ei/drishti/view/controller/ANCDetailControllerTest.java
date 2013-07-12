@@ -67,12 +67,15 @@ public class ANCDetailControllerTest {
         when(allBeneficiaries.findMotherWithOpenStatus(caseId)).thenReturn(new Mother(caseId, "EC CASE 1", "TC 1", "2011-10-22").withDetails(details));
         Map<String, String> ecDetails = mapOf("caste", "st");
         ecDetails.put("economicStatus", "bpl");
-        when(allEligibleCouples.findByCaseID("EC CASE 1")).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "Village 1", "Subcenter 1", ecDetails));
+        when(allEligibleCouples.findByCaseID("EC CASE 1")).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "Village 1", "Subcenter 1", ecDetails).withPhotoPath("photo path"));
         when(allAlerts.fetchAllActiveAlertsForCase(caseId)).thenReturn(asList(asList(todo), asList(urgentTodo)));
         when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent, ancEvent, eventVeryCloseToCurrentDate));
 
         ANCDetail expectedDetail = new ANCDetail(caseId, "TC 1",
-                new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false).withCaste("st").withEconomicStatus("bpl"),
+                new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false)
+                        .withCaste("st")
+                        .withEconomicStatus("bpl")
+                        .withPhotoPath("photo path"),
                 new LocationDetails("Village 1", "Subcenter 1"),
                 new PregnancyDetails("9", "2012-07-28", 4))
                 .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "7m 1w ago"), eventFor(pregnancyEvent, "9m 2w ago")))
