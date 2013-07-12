@@ -27,13 +27,9 @@
     <div modal="isChildFormModalOpen" close="closeChildFormModal()">
         <div class="modal-body modal-row">
             <ul class="nav nav-tabs nav-stacked">
-                <li><a ng-click="openForm('pnc_visit', currentClientEntityId);closeChildFormModal();">PNC Visit</a>
-                </li>
-                <li><a ng-click="openForm('postpartum_family_planning', currentClientEntityId);closeChildFormModal();">Postpartum family planning</a>
-                </li>
-                <li><a ng-click="openForm('pnc_close', currentClientEntityId);closeChildFormModal();">PNC Close</a>
-                </li>
                 <li><a ng-click="openMicroForm('child_immunizations', currentClientEntityId);closeChildFormModal();">Child Immunizations</a>
+                </li>
+                <li><a ng-click="openMicroForm('child_close', currentClientEntityId);closeChildFormModal();">Child Close</a>
                 </li>
             </ul>
         </div>

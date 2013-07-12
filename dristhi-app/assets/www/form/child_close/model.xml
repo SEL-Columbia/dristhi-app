@@ -1,0 +1,21 @@
+<model>
+    <instance xmlns="http://www.w3.org/2002/xforms">
+        <Child_Close_EngKan id="Child_Close_EngKan">
+            <formhub>
+                <uuid/>
+            </formhub>
+            <today/>
+            <close_reason/>
+            <death_child_group>
+                <child_death_immunization/>
+                <child_death_cause/>
+                <child_death_cause_other/>
+                <child_death_date/>
+            </death_child_group>
+            <confirm_child_close/>
+            <meta>
+                <instanceID/>
+            </meta>
+        </Child_Close_EngKan>
+    </instance>
+</model>
