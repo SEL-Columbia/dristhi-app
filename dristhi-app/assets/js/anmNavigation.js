@@ -114,9 +114,6 @@ function ANMNavigationBridge() {
         delegateToChildSmartRegistry: function () {
             return anmNavigationContext.startChildSmartRegistry();
         },
-        takePhoto: function (entityId, entityType) {
-            return anmNavigationContext.takePhoto(entityId, entityType);
-        },
         goBack: function () {
             anmNavigationContext.goBack();
         },
@@ -170,9 +167,6 @@ function FakeANMNavigationContext() {
         },
         startChildSmartRegistry: function () {
             window.location = "smart_registry/child_register.html";
-        },
-        takePhoto: function (entityId, entityType) {
-            alert("Taking photo for:" + entityId + " of type: " + entityType);
         },
         goBack: function () {
             window.location.href = "../home.html";

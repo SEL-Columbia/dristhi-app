@@ -124,22 +124,6 @@ angular.module("smartRegistry.controllers")
             $scope.formBridge.delegateToMicroFormLaunchView(formName, entityId, JSON.stringify(metaData));
         };
 
-        $scope.capturePicture = function (entityId, entityType) {
-            $scope.navigationBridge.takePhoto(entityId, entityType);
-        };
-
-        $scope.reloadPhoto = function (entityId, photoPath) {
-            $scope.$apply(function () {
-                $scope.clients.filter(function (client) {
-                    return client.entityId === entityId;
-                })[0]['photo_path'] = photoPath;
-            });
-        };
-
-        pageView.onReloadPhoto(function (entityId, photoPath) {
-            $scope.reloadPhoto(entityId, photoPath);
-        });
-
         $scope.reportingPeriodStart = function (date_str) {
             var src_date;
             if (date_str === undefined)

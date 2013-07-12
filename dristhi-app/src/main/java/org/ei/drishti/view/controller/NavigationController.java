@@ -56,13 +56,6 @@ public class NavigationController {
         return new Gson().toJson(new HomeContext(anmService.fetchDetails()));
     }
 
-    public void takePhoto(String entityId, String entityType) {
-        Intent intent = new Intent(activity, CameraLaunchActivity.class);
-        intent.putExtra(AllConstants.TYPE, entityType);
-        intent.putExtra(ENTITY_ID, entityId);
-        activity.startActivity(intent);
-    }
-
     public void goBack() {
         activity.finish();
     }
