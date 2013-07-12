@@ -6,6 +6,7 @@ import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
+import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.repository.ChildRepository;
 import org.ei.drishti.repository.MotherRepository;
@@ -15,17 +16,20 @@ import java.util.List;
 import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.substring;
 import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.domain.TimelineEvent.*;
 
 public class ChildService {
+    private AllBeneficiaries allBeneficiaries;
     private ChildRepository childRepository;
     private MotherRepository motherRepository;
     private AllTimelineEvents allTimelines;
     private ServiceProvidedService serviceProvidedService;
 
-    public ChildService(MotherRepository motherRepository, ChildRepository childRepository,
+    public ChildService(AllBeneficiaries allBeneficiaries, MotherRepository motherRepository, ChildRepository childRepository,
                         AllTimelineEvents allTimelineEvents, ServiceProvidedService serviceProvidedService) {
+        this.allBeneficiaries = allBeneficiaries;
         this.childRepository = childRepository;
         this.motherRepository = motherRepository;
         this.allTimelines = allTimelineEvents;
@@ -133,9 +137,8 @@ public class ChildService {
         }
     }
 
-    @Deprecated
-    public void delete(Action action) {
-        childRepository.close(action.caseID());
+    public void close(FormSubmission submission) {
+        allBeneficiaries.closeChild(submission.entityId());
     }
 
     public void updatePhotoPath(String entityId, String imagePath) {

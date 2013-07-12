@@ -1,6 +1,7 @@
 package org.ei.drishti.repository;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.Mother;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
 import java.util.Collections;
+import java.util.HashMap;
 
 import static java.util.Arrays.asList;
 import static org.mockito.Mockito.*;
@@ -53,6 +55,18 @@ public class AllBeneficiariesTest {
         verify(timelineEventRepository).deleteAllTimelineEventsForEntity("mother id 2");
         verify(motherRepository).close("mother id 1");
         verify(motherRepository).close("mother id 2");
+    }
+
+    @Test
+    public void shouldDeleteTimelineEventsAndAlertsWhenAChildIsClosed() throws Exception {
+        when(childRepository.find("child id 1"))
+                .thenReturn(new Child("child id 1", "mother id 1", "male", new HashMap<String, String>()));
+
+        allBeneficiaries.closeChild("child id 1");
+
+        verify(alertRepository).deleteAllAlertsForEntity("child id 1");
+        verify(timelineEventRepository).deleteAllTimelineEventsForEntity("child id 1");
+        verify(childRepository).close("child id 1");
     }
 
     @Test

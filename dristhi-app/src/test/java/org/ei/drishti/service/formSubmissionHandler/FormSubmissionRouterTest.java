@@ -56,6 +56,8 @@ public class FormSubmissionRouterTest {
     @Mock
     private ChildRegistrationECHandler childRegistrationECHandler;
     @Mock
+    private ChildCloseHandler childCloseHandler;
+    @Mock
     private Listener<String> formSubmittedListener;
 
     private FormSubmissionRouter router;
@@ -80,7 +82,7 @@ public class FormSubmissionRouterTest {
                 pncRegistrationOAHandler,
                 pncCloseHandler,
                 pncVisitHandler,
-                childImmunizationsHandler, childRegistrationECHandler);
+                childImmunizationsHandler, childRegistrationECHandler, childCloseHandler);
     }
 
     @Test
@@ -318,5 +320,16 @@ public class FormSubmissionRouterTest {
 
         verify(formDataRepository).fetchFromSubmission("instance id 1");
         verify(childRegistrationECHandler).handle(formSubmission);
+    }
+
+    @Test
+    public void shouldDelegateChildCloseFormSubmissionHandlingToChildCloseHandler() throws Exception {
+        FormSubmission formSubmission = create().withFormName("child_close").withInstanceId("instance id 1").withVersion("122").build();
+        when(formDataRepository.fetchFromSubmission("instance id 1")).thenReturn(formSubmission);
+
+        router.route("instance id 1");
+
+        verify(formDataRepository).fetchFromSubmission("instance id 1");
+        verify(childCloseHandler).handle(formSubmission);
     }
 }

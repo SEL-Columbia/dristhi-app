@@ -71,6 +71,7 @@ public class Context {
     private PNCVisitHandler pncVisitHandler;
     private ChildImmunizationsHandler childImmunizationsHandler;
     private ChildRegistrationECHandler childRegistrationECHandler;
+    private ChildCloseHandler childCloseHandler;
 
     protected Context() {
     }
@@ -132,9 +133,16 @@ public class Context {
                     fpComplicationsHandler(), fpChangeHandler(), renewFPProductHandler(), ecCloseHandler(),
                     ancRegistrationHandler(), ancRegistrationOAHandler(), ancVisitHandler(), ancCloseHandler(),
                     ttHandler(), ifaHandler(), hbTestHandler(), deliveryOutcomeHandler(), pncRegistrationOAHandler(),
-                    pncCloseHandler(), pncVisitHandler(), childImmunizationsHandler(), childRegistrationECHandler());
+                    pncCloseHandler(), pncVisitHandler(), childImmunizationsHandler(), childRegistrationECHandler(), childCloseHandler());
         }
         return formSubmissionRouter;
+    }
+
+    private ChildCloseHandler childCloseHandler() {
+        if (childCloseHandler == null) {
+            childCloseHandler = new ChildCloseHandler(childService());
+        }
+        return childCloseHandler;
     }
 
     private ECRegistrationHandler ecRegistrationHandler() {
@@ -458,7 +466,7 @@ public class Context {
 
     public ChildService childService() {
         if (childService == null) {
-            childService = new ChildService(motherRepository(), childRepository(), allTimelineEvents(), serviceProvidedService());
+            childService = new ChildService(allBeneficiaries(), motherRepository(), childRepository(), allTimelineEvents(), serviceProvidedService());
         }
         return childService;
     }

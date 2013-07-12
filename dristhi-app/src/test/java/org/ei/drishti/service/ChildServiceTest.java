@@ -7,6 +7,7 @@ import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.Action;
+import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.repository.ChildRepository;
 import org.ei.drishti.repository.MotherRepository;
@@ -34,12 +35,14 @@ public class ChildServiceTest {
     private MotherRepository motherRepository;
     @Mock
     private ServiceProvidedService serviceProvidedService;
+    @Mock
+    private AllBeneficiaries allBeneficiaries;
     private ChildService service;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new ChildService(motherRepository, childRepository, allTimelineEvents, serviceProvidedService);
+        service = new ChildService(allBeneficiaries, motherRepository, childRepository, allTimelineEvents, serviceProvidedService);
     }
 
     @Test
@@ -175,10 +178,11 @@ public class ChildServiceTest {
 
     @Test
     public void shouldCloseChildRecordForDeleteChildAction() throws Exception {
-        Action action = ActionBuilder.closeChild("Case X");
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("child id 1");
 
-        service.delete(action);
+        service.close(submission);
 
-        verify(childRepository).close("Case X");
+        verify(allBeneficiaries).closeChild("child id 1");
     }
 }

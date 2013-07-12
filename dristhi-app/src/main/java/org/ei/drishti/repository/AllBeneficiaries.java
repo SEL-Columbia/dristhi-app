@@ -92,6 +92,12 @@ public class AllBeneficiaries {
         motherRepository.close(entityId);
     }
 
+    public void closeChild(String entityId) {
+        alertRepository.deleteAllAlertsForEntity(entityId);
+        timelineEventRepository.deleteAllTimelineEventsForEntity(entityId);
+        childRepository.close(entityId);
+    }
+
     public void closeAllMothersForEC(String ecId) {
         List<Mother> mothers = motherRepository.findAllCasesForEC(ecId);
         if (mothers == null || mothers.isEmpty())

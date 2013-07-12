@@ -48,6 +48,14 @@ public class ChildRepositoryTest extends AndroidTestCase {
         assertEquals(child, repository.find("CASE A"));
     }
 
+    public void testShouldCloseChild() throws Exception {
+        Child child = new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS).setIsClosed(false);
+        repository.add(child);
+
+        repository.close("CASE A");
+        assertTrue(repository.find("CASE A").isClosed());
+    }
+
     public void testShouldFetchAllOpenChildren() throws Exception {
         Child firstChild = new Child("CASE A", "CASE X", "TC 1", "2012-06-09", "female", EXTRA_DETAILS);
         Child secondChild = new Child("CASE B", "CASE X", "TC 1", "2012-06-10", "female", EXTRA_DETAILS);
@@ -102,7 +110,6 @@ public class ChildRepositoryTest extends AndroidTestCase {
 
         assertEquals(firstChild.setIsClosed(true), repository.find(firstChild.caseId()));
         assertEquals(secondChild, repository.find(secondChild.caseId()));
-        assertEquals(asList(new Alert("CASE B", "Ante Natal Care - Normal", "ANC 1", AlertStatus.normal, "2012-01-01", "2012-01-11")), alertRepository.allAlerts());
     }
 
     public void testShouldDeleteCorrespondingTimelineEventsWhenAChildIsDeleted() throws Exception {

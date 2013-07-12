@@ -62,15 +62,7 @@ public class ActionService {
     }
 
     private void handleAction(Action actionToUse) {
-        if ("child".equals(actionToUse.target())) {
-            runAction(actionToUse, new ActionHandler() {
-                @Override
-                public void run(Action action) {
-                    actionRouter.directChildAction(action);
-                }
-            });
-
-        } else if ("report".equals(actionToUse.target())) {
+        if ("report".equals(actionToUse.target())) {
             runAction(actionToUse, new ActionHandler() {
                 @Override
                 public void run(Action action) {
