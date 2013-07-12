@@ -58,7 +58,7 @@ public class ChildSmartRegistryController {
                                     .withName(child.getDetail("name"))
                                     .withEntityIdToSavePhoto(child.caseId())
                                     .withMotherName(child.ec().wifeName())
-                                    .withDOB(child.mother().referenceDate())
+                                    .withDOB(child.dateOfBirth())
                                     .withMotherAge(child.ec().age())
                                     .withFatherName(child.ec().husbandName())
                                     .withVillage(child.ec().village())

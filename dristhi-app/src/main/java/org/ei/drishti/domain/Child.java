@@ -131,4 +131,9 @@ public class Child {
         this.photoPath = photoPath;
         return this;
     }
+
+    public Child withDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+        return this;
+    }
 }

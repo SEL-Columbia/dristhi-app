@@ -68,10 +68,10 @@ public class ChildSmartRegistryControllerTest {
     public void shouldSortChildrenByMotherName() throws Exception {
         EligibleCouple ec1 = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, emptyMap).asOutOfArea();
         Mother mother1 = new Mother("mother id 1", "ec id 1", "thayi no 1", "2013-01-01").withDetails(emptyMap);
-        Child child1 = new Child("child id 1", "mother id 1", "male", emptyMap).withMother(mother1).withEC(ec1);
+        Child child1 = new Child("child id 1", "mother id 1", "male", emptyMap).withDateOfBirth("2013-01-01").withMother(mother1).withEC(ec1);
         EligibleCouple ec2 = new EligibleCouple("ec id 2", "thayi", "appa", "ec no 2", "chikkamagalur", null, emptyMap).asOutOfArea();
         Mother mother2 = new Mother("mother id 2", "ec id 2", "thayi no 2", "2013-01-01").withDetails(emptyMap);
-        Child child2 = new Child("child id 2", "mother id 2", "male", emptyMap).withMother(mother2).withEC(ec2);
+        Child child2 = new Child("child id 2", "mother id 2", "male", emptyMap).withDateOfBirth("2013-01-01").withMother(mother2).withEC(ec2);
         when(allBeneficiaries.allChildrenWithMotherAndEC()).thenReturn(asList(child2, child1));
         ChildClient expectedClient1 = createChildClient("child id 1", "thayi no 1", "amma", "ec no 1");
         ChildClient expectedClient2 = createChildClient("child id 2", "thayi no 2", "thayi", "ec no 2");
@@ -95,7 +95,7 @@ public class ChildSmartRegistryControllerTest {
                 .map();
         EligibleCouple eligibleCouple = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, ecDetails).asOutOfArea();
         Mother mother = new Mother("mother id 1", "ec id 1", "thayi no 1", "2013-01-01").withDetails(emptyMap);
-        Child child = new Child("child id 1", "mother id 1", "female", childDetails).withMother(mother).withEC(eligibleCouple);
+        Child child = new Child("child id 1", "mother id 1", "female", childDetails).withDateOfBirth("2013-01-01").withMother(mother).withEC(eligibleCouple);
         when(allBeneficiaries.allChildrenWithMotherAndEC()).thenReturn(asList(child));
         ChildClient expectedPNCClient = new ChildClient("child id 1", "female", "3", "thayi no 1")
                 .withEntityIdToSavePhoto("child id 1")
@@ -126,7 +126,7 @@ public class ChildSmartRegistryControllerTest {
     public void shouldCreateChildClientsWithAlerts() throws Exception {
         EligibleCouple eligibleCouple = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, emptyMap).asOutOfArea();
         Mother mother = new Mother("mother id 1", "ec id 1", "thayi no 1", "2013-01-01").withDetails(emptyMap);
-        Child child = new Child("child id 1", "mother id 1", "male", emptyMap).withMother(mother).withEC(eligibleCouple);
+        Child child = new Child("child id 1", "mother id 1", "male", emptyMap).withDateOfBirth("2013-01-01").withMother(mother).withEC(eligibleCouple);
         Alert bcgAlert = new Alert("child id 1", "BCG", "bcg", normal, "2013-01-01", "2013-02-01");
         when(allBeneficiaries.allChildrenWithMotherAndEC()).thenReturn(asList(child));
         when(alertService.findByEntityIdAndAlertNames("child id 1", CHILD_ALERTS)).thenReturn(asList(bcgAlert));
@@ -156,7 +156,7 @@ public class ChildSmartRegistryControllerTest {
     public void shouldCreateChildClientsWithServicesProvided() throws Exception {
         EligibleCouple eligibleCouple = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, emptyMap).asOutOfArea();
         Mother mother = new Mother("mother id 1", "ec id 1", "thayi no 1", "2013-01-01").withDetails(emptyMap);
-        Child child = new Child("child id 1", "mother id 1", "male", emptyMap).withMother(mother).withEC(eligibleCouple);
+        Child child = new Child("child id 1", "mother id 1", "male", emptyMap).withDateOfBirth("2013-01-01").withMother(mother).withEC(eligibleCouple);
         when(allBeneficiaries.allChildrenWithMotherAndEC()).thenReturn(asList(child));
         when(alertService.findByEntityIdAndAlertNames("child id 1", CHILD_ALERTS)).thenReturn(Collections.<Alert>emptyList());
         when(serviceProvidedService.findByEntityIdAndServiceNames("child id 1", CHILD_SERVICES))

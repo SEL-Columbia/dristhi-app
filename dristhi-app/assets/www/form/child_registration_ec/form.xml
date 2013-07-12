@@ -23,7 +23,7 @@
                data-constraint=".&lt;= /Child_Registration_EC_EngKan/today " data-type-xml="date"/>
     </label>
     <fieldset class="trigger " name="/Child_Registration_EC_EngKan/child_age_note">
-        <span lang="" class=" active">Child age (in months) &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;
+        <span lang="" class=" active">Child age (in months), &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;
             (&#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCC1;&#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;):
             <span class="jr-output" data-value=" /Child_Registration_EC_EngKan/child_age ">
             </span>
@@ -57,8 +57,9 @@
         <input autocomplete="off" type="text" name="/Child_Registration_EC_EngKan/child_name" data-type-xml="string"/>
     </label>
     <label class="">
-        <span lang="" class=" active">Thayi card number &#xCA4;&#xCBE;&#xCAF;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCCD;&#xCA1;&#xCCD;
-            &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;</span>
+        <span lang="" class=" active">Thayi card number, &#xCA4;&#xCBE;&#xCAF;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCCD;&#xCA1;&#xCCD;
+            &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;:
+        </span>
         <input autocomplete="off" type="number" name="/Child_Registration_EC_EngKan/thayi_card_number"
                data-constraint=".&gt; 999999 and .&lt; 10000000" data-type-xml="int"/>
     </label>
@@ -660,8 +661,8 @@
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Do you want to mark child as HR (High Risk)?
-                    &#xCA8;&#xCC0;&#xCB5;&#xCC1; &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; HR (&#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
+                <span lang="" class=" active">Do you want to mark child as HR (High Risk)? &#xCA8;&#xCC0;&#xCB5;&#xCC1;
+                    &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; HR (&#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
                     &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;) &#xC8E;&#xC82;&#xCA6;&#xCC1; &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCC1;
                     &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCBF;&#xCB0;&#xCBE;?
                 </span>
@@ -679,8 +680,7 @@
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">High risk reasons:
-            &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF;&#xCAF;
+        <span lang="" class=" active">High risk reasons, &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF;&#xCAF;
             &#xC95;&#xCBE;&#xCB0;&#xCA3;&#xC97;&#xCB3;&#xCC1;:
         </span>
         <input autocomplete="off" type="text" name="/Child_Registration_EC_EngKan/child_high_risk_reasons"
