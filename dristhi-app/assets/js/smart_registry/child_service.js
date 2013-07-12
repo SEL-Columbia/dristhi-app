@@ -31,7 +31,6 @@ angular.module("smartRegistry.services")
                         schedules.forEach(function (schedule) {
                             SmartHelper.preProcessSchedule(client, schedule)
                         });
-                        console.log(client.visits);
                     }
                 );
             }
