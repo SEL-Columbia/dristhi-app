@@ -14,6 +14,22 @@ function PNC(pncBridge) {
             var alertItem = $(alertWhoseCheckboxWasClicked);
             pncBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
             pncBridge.markAsCompleted(alertItem.data("caseid"), alertItem.data("visitcode"));
+        },
+
+        bindToCamera: function (cssIdentifierOfElement) {
+            $(cssIdentifierOfElement).click(function () {
+                pncBridge.takePhoto();
+            });
+        },
+
+        bindToDefaultPhoto: function (cssIdentifierOfElement, defaultPhotoPath) {
+            $(cssIdentifierOfElement).on('error', function (e) {
+                e.currentTarget.src = defaultPhotoPath;
+            });
+        },
+
+        reloadPhoto: function (cssIdentifierOfElement, caseId, photoPath) {
+            $(cssIdentifierOfElement).attr('src', photoPath);
         }
     };
 }
@@ -35,6 +51,10 @@ function PNCBridge() {
 
         markAsCompleted: function (caseId, visitCode) {
             pncContext.markTodoAsCompleted(caseId, visitCode);
+        },
+
+        takePhoto: function () {
+            pncContext.takePhoto();
         }
     };
 }
@@ -129,6 +149,9 @@ function FakePNCContext() {
                     ]
                 }
             );
+        },
+        takePhoto: function () {
+            alert("launching camera app.");
         }
     }
 }

@@ -44,9 +44,9 @@
         anc.bindEveryItemToCommCare("#deliveryOutcomeFormButton");
         anc.bindEveryItemToCommCare(".modal-row");
         anc.bindEveryItemToCommCare(".edit-birth-plan");
+        anc.bindTimelineEventToShowMoreButton(".timelineEvent", ".show-more-button", 5);
         anc.bindToCamera("#womanPhoto");
         anc.bindToDefaultPhoto("#womanPhoto", "../img/woman-placeholder.png");
-        anc.bindTimelineEventToShowMoreButton(".timelineEvent", ".show-more-button", 5);
 
         pageView.onReloadPhoto(function (caseId, photoPath) {
             anc.reloadPhoto("#womanPhoto", caseId, photoPath);

@@ -1,7 +1,9 @@
 package org.ei.drishti.view.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import com.google.gson.Gson;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllAlerts;
@@ -10,6 +12,7 @@ import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.TimelineEventComparator;
+import org.ei.drishti.view.activity.CameraLaunchActivity;
 import org.ei.drishti.view.contract.*;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
@@ -22,6 +25,8 @@ import java.util.List;
 import java.util.Locale;
 
 import static java.lang.Math.min;
+import static org.ei.drishti.AllConstants.ENTITY_ID;
+import static org.ei.drishti.AllConstants.WOMAN_TYPE;
 
 public class PNCDetailController {
     private final Context context;
@@ -51,7 +56,10 @@ public class PNCDetailController {
         Days postPartumDuration = Days.daysBetween(deliveryDate, DateUtil.today());
 
         PNCDetail detail = new PNCDetail(caseId, mother.thayiCardNumber(),
-                new CoupleDetails(couple.wifeName(), couple.husbandName(), couple.ecNumber(), couple.isOutOfArea()).withCaste(couple.getDetail("caste")).withEconomicStatus(couple.getDetail("economicStatus")),
+                new CoupleDetails(couple.wifeName(), couple.husbandName(), couple.ecNumber(), couple.isOutOfArea())
+                        .withCaste(couple.getDetail("caste"))
+                        .withEconomicStatus(couple.getDetail("economicStatus"))
+                        .withPhotoPath(couple.photoPath()),
                 new LocationDetails(couple.village(), couple.subCenter()),
                 new PregnancyOutcomeDetails(deliveryDate.toString(), postPartumDuration.getDays()))
                 .addTimelineEvents(getEvents())
@@ -64,6 +72,14 @@ public class PNCDetailController {
 
     public void markTodoAsCompleted(String caseId, String visitCode) {
         allAlerts.markAsCompleted(caseId, visitCode, LocalDate.now().toString());
+    }
+
+    public void takePhoto() {
+        Intent intent = new Intent(context, CameraLaunchActivity.class);
+        intent.putExtra(AllConstants.TYPE, WOMAN_TYPE);
+        Mother mother = allBeneficiaries.findMotherWithOpenStatus(caseId);
+        intent.putExtra(ENTITY_ID, mother.ecCaseId());
+        context.startActivity(intent);
     }
 
     private List<TimelineEvent> getEvents() {

@@ -16,7 +16,6 @@ import org.ei.drishti.util.Cache;
 import org.ei.drishti.view.contract.ANCClient;
 import org.ei.drishti.view.contract.AlertDTO;
 import org.ei.drishti.view.contract.ServiceProvidedDTO;
-import org.ei.drishti.view.contract.Village;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -79,7 +78,7 @@ public class ANCSmartRegistryControllerTest {
     public void setUp() throws Exception {
         initMocks(this);
         emptyMap = Collections.emptyMap();
-        controller = new ANCSmartRegistryController(sericeProvidedService, alertService, allEligibleCouples, allBeneficiaries, new Cache<String>());
+        controller = new ANCSmartRegistryController(sericeProvidedService, alertService, allBeneficiaries, new Cache<String>());
     }
 
     @Test

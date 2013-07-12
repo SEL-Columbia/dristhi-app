@@ -7,7 +7,8 @@
     <link href="../css/alerts.css" rel="stylesheet">
     <link href="../css/timeline.css" rel="stylesheet">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 
 <body>
@@ -32,6 +33,7 @@
 <script src="../js/modal.js"></script>
 <script src="../js/alerts.js"></script>
 <script src="../js/international_text.js"></script>
+<script src="../js/page_view.js"></script>
 
 <script src="../js/pnc_detail.js"></script>
 <script>
@@ -39,6 +41,12 @@
         var pnc = new PNC(new PNCBridge());
         pnc.populateInto("#mainpanel");
         pnc.bindEveryItemToCommCare(".modal-row");
+        pnc.bindToCamera("#womanPhoto");
+        pnc.bindToDefaultPhoto("#womanPhoto", "../img/woman-placeholder.png");
+
+        pageView.onReloadPhoto(function (caseId, photoPath) {
+            pnc.reloadPhoto("#womanPhoto", caseId, photoPath);
+        });
 
         new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         new Modal().bindToClick();

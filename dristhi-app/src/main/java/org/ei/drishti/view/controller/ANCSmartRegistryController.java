@@ -7,7 +7,6 @@ import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.service.AlertService;
 import org.ei.drishti.service.ServiceProvidedService;
 import org.ei.drishti.util.Cache;
@@ -42,16 +41,14 @@ public class ANCSmartRegistryController {
     private static final String HB_FOLLOWUP_TEST_ALERT_NAME = "Hb Followup Test";
 
     private static final String ANC_CLIENTS_LIST = "ANCClientList";
-    private AllEligibleCouples allEligibleCouples;
     private AllBeneficiaries allBeneficiaries;
     private AlertService alertService;
     private Cache<String> cache;
     private final ServiceProvidedService serviceProvidedService;
 
     public ANCSmartRegistryController(ServiceProvidedService serviceProvidedService, AlertService alertService,
-                                      AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries,
+                                      AllBeneficiaries allBeneficiaries,
                                       Cache<String> cache) {
-        this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.alertService = alertService;
         this.serviceProvidedService = serviceProvidedService;

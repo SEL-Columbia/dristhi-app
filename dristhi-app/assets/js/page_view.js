@@ -15,6 +15,9 @@ var pageView = (function () {
             callbackForReload();
         },
         reloadPhoto: function (caseId, photoPath) {
+            if (!callbackForReloadPhoto) {
+                console.error('No callback registered for callbackForReloadPhoto.');
+            }
             callbackForReloadPhoto(caseId, photoPath);
         },
         startProgressIndicator: function () {
