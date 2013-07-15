@@ -53,12 +53,13 @@
                     <li data-ng-repeat="video in videoList | filter:{category: currentCategoryId}" class="video-item"
                         ng-click="videoClicked(video.id)">
                         <div class="thumbnail">
-                            <img ng-src="{{video.previewImageUrl}}" />
+                            <img ng-src="{{video.previewImageUrl}}" class="video-thumbnail-image" />
+                            <div class="caption">
+                                <p class="video-title text-bold">{{video.title}}</p>
+                                <p class="video-time">{{video.time}}</p>
+                            </div>
                         </div>
-                        <div class="caption">
-                            <p class="video-title text-bold">{{video.title}}</p>
-                            <p class="video-time">{{video.time}}</p>
-                        </div>
+
                     </li>
                 </ul>
             </div>

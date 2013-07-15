@@ -467,7 +467,6 @@ a:focus {
 }
 
 .videos-container {
-    /*margin: 20px 0 0 241px !important;*/
     position: absolute;
     top: 68px;
     bottom: 0;
@@ -480,12 +479,17 @@ ul.video-list li.video-item {
 
 li.video-item .thumbnail {
     padding: 0;
+    position: relative;
+    border: none;
 }
 
 li.video-item .caption {
-    padding: 6px 12px;
     color: #ffffff;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    background: #000;
+    opacity: 0.85;
+    width: 92%;
 }
 
 li.video-item .caption p {
@@ -494,4 +498,10 @@ li.video-item .caption p {
 
 .video-item {
     background-color: #000000;
+    margin-bottom: 40px !important;
+}
+
+li.video-item .video-thumbnail-image {
+    max-width: 100%;
+    max-height: 100%;
 }
