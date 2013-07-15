@@ -136,7 +136,7 @@ angular.module("smartRegistry.controllers")
         $scope.searchCriteria = function (client, searchFilterString) {
             return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
                 || (client.ecNumber && client.ecNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
-                || (client.thaayiCardNumber && client.thaayiCardNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
+                || (client.thayiCardNumber && client.thayiCardNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
         };
 
         $scope.changeContentBasedOnServiceMode = function (client, serviceModeOptionId) {
