@@ -24,11 +24,6 @@ public class ActionBuilder {
         return new Action(caseID, "alert", "deleteAllAlerts", new HashMap<String, String>(), "0", true, new HashMap<String, String>());
     }
 
-    public static Action closeChild(String caseId) {
-        ActionData actionData = ActionData.deleteChild();
-        return new Action(caseId, "child", "deleteChild", actionData.data(), "2012-01-01", true, new HashMap<String, String>());
-    }
-
     public static Action actionForReport(String indicator, String annualTarget) {
         ActionData actionData = ActionData.reportForIndicator(indicator, annualTarget, "some-month-summary-json");
         return new Action("", "report", indicator, actionData.data(), "2012-01-01", true, new HashMap<String, String>());
