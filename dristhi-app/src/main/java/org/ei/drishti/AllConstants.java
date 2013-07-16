@@ -169,7 +169,13 @@ public class AllConstants {
         public static final String PENTAVALENT_2 = "pentavalent_2";
         public static final String PENTAVALENT_3 = "pentavalent_3";
 
+        public static final String HEPATITIS_BIRTH_DOSE = "hepb_0";
+        public static final String DPT_BIRTH_DOSE = "dpt_0";
+        public static final String MMR = "mmr";
+        public static final String JE = "je";
+
         public static final String[] ALL = new String[]{BCG, MEASLES, MEASLES_BOOSTER, OPV_0, OPV_1, OPV_2, OPV_3,
-                        OPV_BOOSTER, DPT_BOOSTER_1, DPT_BOOSTER_2, PENTAVALENT_1, PENTAVALENT_2, PENTAVALENT_3};
+                        OPV_BOOSTER, DPT_BOOSTER_1, DPT_BOOSTER_2, PENTAVALENT_1, PENTAVALENT_2, PENTAVALENT_3,
+                        HEPATITIS_BIRTH_DOSE, DPT_BIRTH_DOSE, JE, MMR};
     }
 }
