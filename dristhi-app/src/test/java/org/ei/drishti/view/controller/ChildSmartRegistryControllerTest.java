@@ -36,14 +36,22 @@ public class ChildSmartRegistryControllerTest {
             "measles", "measlesbooster",
             "opv_0", "opv_1", "opv_2", "opv_3", "opvbooster",
             "dptbooster_1", "dptbooster_2",
-            "pentavalent_1", "pentavalent_2", "pentavalent_3"
+            "pentavalent_1", "pentavalent_2", "pentavalent_3",
+            "hepb_0",
+            "dpt_0",
+            "je",
+            "mmr"
     };
     private static final String[] CHILD_SERVICES = new String[]{
             "bcg",
             "measles", "measlesbooster",
             "opv_0", "opv_1", "opv_2", "opv_3", "opvbooster",
             "dptbooster_1", "dptbooster_2",
-            "pentavalent_1", "pentavalent_2", "pentavalent_3"
+            "pentavalent_1", "pentavalent_2", "pentavalent_3",
+            "hepb_0",
+            "dpt_0",
+            "je",
+            "mmr"
     };
 
     private final Map<String, String> emptyMap = Collections.emptyMap();

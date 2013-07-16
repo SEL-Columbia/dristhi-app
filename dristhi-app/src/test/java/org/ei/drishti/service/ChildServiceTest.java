@@ -6,12 +6,10 @@ import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.domain.form.FormSubmission;
-import org.ei.drishti.dto.Action;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.repository.ChildRepository;
 import org.ei.drishti.repository.MotherRepository;
-import org.ei.drishti.util.ActionBuilder;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,7 +61,8 @@ public class ChildServiceTest {
         verify(allTimelineEvents).add(forChildBirthInChildProfile("Child Y", "2012-01-01", "4", "bcg"));
         verify(allTimelineEvents, times(2)).add(forChildBirthInMotherProfile("Mother X", "2012-01-01", "female", "2012-01-01", "phc"));
         verify(allTimelineEvents, times(2)).add(forChildBirthInECProfile("EC 1", "2012-01-01", "female", "2012-01-01"));
-        verify(serviceProvidedService).add(ServiceProvided.forChildImmunization("Child X", "bcg opv_0", "2012-01-01"));
+        verify(serviceProvidedService).add(ServiceProvided.forChildImmunization("Child X", "bcg", "2012-01-01"));
+        verify(serviceProvidedService).add(ServiceProvided.forChildImmunization("Child X", "opv_0", "2012-01-01"));
         verify(serviceProvidedService).add(ServiceProvided.forChildImmunization("Child Y", "bcg", "2012-01-01"));
         verifyNoMoreInteractions(childRepository);
     }
@@ -99,26 +98,30 @@ public class ChildServiceTest {
     public void shouldAddTimelineEventsWhenChildImmunizationsAreUpdated() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("child id 1");
-        when(submission.getFieldValue("immunizationsGiven")).thenReturn("bcg opv_0");
+        when(submission.getFieldValue("previousImmunizations")).thenReturn("bcg");
+        when(submission.getFieldValue("immunizationsGiven")).thenReturn("bcg opv_0 pentavalent_0");
         when(submission.getFieldValue("immunizationDate")).thenReturn("2013-01-01");
 
         service.updateImmunizations(submission);
 
-        verify(allTimelineEvents).add(TimelineEvent.forChildImmunization("child id 1", "bcg opv_0", "2013-01-01"
-        ));
+        verify(allTimelineEvents).add(TimelineEvent.forChildImmunization("child id 1", "opv_0", "2013-01-01"));
+        verify(allTimelineEvents).add(TimelineEvent.forChildImmunization("child id 1", "pentavalent_0", "2013-01-01"));
+        verifyNoMoreInteractions(allTimelineEvents);
     }
 
     @Test
     public void shouldAddServiceProvidedWhenChildImmunizationsAreUpdated() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("child id 1");
-        when(submission.getFieldValue("immunizationsGiven")).thenReturn("bcg opv_0");
+        when(submission.getFieldValue("previousImmunizations")).thenReturn("bcg");
+        when(submission.getFieldValue("immunizationsGiven")).thenReturn("bcg opv_0 pentavalent_0");
         when(submission.getFieldValue("immunizationDate")).thenReturn("2013-01-01");
 
         service.updateImmunizations(submission);
 
-        verify(serviceProvidedService).add(new ServiceProvided("child id 1", "bcg", "2013-01-01", null));
         verify(serviceProvidedService).add(new ServiceProvided("child id 1", "opv_0", "2013-01-01", null));
+        verify(serviceProvidedService).add(new ServiceProvided("child id 1", "pentavalent_0", "2013-01-01", null));
+        verifyNoMoreInteractions(serviceProvidedService);
     }
 
     @Test

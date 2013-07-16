@@ -130,7 +130,7 @@ public class AllConstants {
         public static final String DID_MOTHER_SURVIVE = "didMotherSurvive";
     }
 
-    public class ChildRegistrationECFields {
+    public class ChildRegistrationFields {
         public static final String MOTHER_ID = "motherId";
         public static final String CHILD_ID = "childId";
         public static final String DATE_OF_BIRTH = "dateOfBirth";
@@ -147,6 +147,7 @@ public class AllConstants {
     }
 
     public class ChildImmunizationsFields {
+        public static final String PREVIOUS_IMMUNIZATIONS_GIVEN = "previousImmunizations";
         public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";
         public static final String IMMUNIZATION_DATE = "immunizationDate";
     }
@@ -175,7 +176,7 @@ public class AllConstants {
         public static final String JE = "je";
 
         public static final String[] ALL = new String[]{BCG, MEASLES, MEASLES_BOOSTER, OPV_0, OPV_1, OPV_2, OPV_3,
-                        OPV_BOOSTER, DPT_BOOSTER_1, DPT_BOOSTER_2, PENTAVALENT_1, PENTAVALENT_2, PENTAVALENT_3,
-                        HEPATITIS_BIRTH_DOSE, DPT_BIRTH_DOSE, JE, MMR};
+                OPV_BOOSTER, DPT_BOOSTER_1, DPT_BOOSTER_2, PENTAVALENT_1, PENTAVALENT_2, PENTAVALENT_3,
+                HEPATITIS_BIRTH_DOSE, DPT_BIRTH_DOSE, JE, MMR};
     }
 }

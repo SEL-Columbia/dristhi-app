@@ -10,7 +10,8 @@
             {
                 "name": "previousImmunizations",
                 "shouldLoadValue": true,
-                "source": "child.immunizationsGiven"
+                "source": "child.immunizationsGiven",
+                "value": ""
             },
             {
                 "name": "immunizationsReceived",
