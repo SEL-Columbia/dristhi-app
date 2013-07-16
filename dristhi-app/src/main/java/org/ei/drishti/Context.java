@@ -466,7 +466,7 @@ public class Context {
 
     public ChildService childService() {
         if (childService == null) {
-            childService = new ChildService(allBeneficiaries(), motherRepository(), childRepository(), allTimelineEvents(), serviceProvidedService());
+            childService = new ChildService(allBeneficiaries(), motherRepository(), childRepository(), allTimelineEvents(), serviceProvidedService(), allAlerts());
         }
         return childService;
     }

@@ -6,10 +6,7 @@ import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.domain.form.FormSubmission;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllTimelineEvents;
-import org.ei.drishti.repository.ChildRepository;
-import org.ei.drishti.repository.MotherRepository;
+import org.ei.drishti.repository.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,13 +31,15 @@ public class ChildServiceTest {
     @Mock
     private ServiceProvidedService serviceProvidedService;
     @Mock
+    private AllAlerts allAlerts;
+    @Mock
     private AllBeneficiaries allBeneficiaries;
     private ChildService service;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new ChildService(allBeneficiaries, motherRepository, childRepository, allTimelineEvents, serviceProvidedService);
+        service = new ChildService(allBeneficiaries, motherRepository, childRepository, allTimelineEvents, serviceProvidedService, allAlerts);
     }
 
     @Test
@@ -122,6 +121,21 @@ public class ChildServiceTest {
         verify(serviceProvidedService).add(new ServiceProvided("child id 1", "opv_0", "2013-01-01", null));
         verify(serviceProvidedService).add(new ServiceProvided("child id 1", "pentavalent_0", "2013-01-01", null));
         verifyNoMoreInteractions(serviceProvidedService);
+    }
+
+    @Test
+    public void shouldMarkRemindersAsInProcessWhenImmunizationsAreProvided() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("child id 1");
+        when(submission.getFieldValue("previousImmunizations")).thenReturn("bcg");
+        when(submission.getFieldValue("immunizationsGiven")).thenReturn("bcg opv_0 pentavalent_0");
+        when(submission.getFieldValue("immunizationDate")).thenReturn("2013-01-01");
+
+        service.updateImmunizations(submission);
+
+        verify(allAlerts).changeAlertStatusToInProcess("child id 1", "opv_0");
+        verify(allAlerts).changeAlertStatusToInProcess("child id 1", "pentavalent_0");
+        verifyNoMoreInteractions(allAlerts);
     }
 
     @Test

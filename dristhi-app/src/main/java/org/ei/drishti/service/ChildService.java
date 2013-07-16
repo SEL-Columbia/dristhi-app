@@ -5,14 +5,10 @@ import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.form.FormSubmission;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllTimelineEvents;
-import org.ei.drishti.repository.ChildRepository;
-import org.ei.drishti.repository.MotherRepository;
+import org.ei.drishti.repository.*;
 
 import java.util.*;
 
-import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.domain.TimelineEvent.*;
 
@@ -22,14 +18,16 @@ public class ChildService {
     private MotherRepository motherRepository;
     private AllTimelineEvents allTimelines;
     private ServiceProvidedService serviceProvidedService;
+    private AllAlerts allAlerts;
 
     public ChildService(AllBeneficiaries allBeneficiaries, MotherRepository motherRepository, ChildRepository childRepository,
-                        AllTimelineEvents allTimelineEvents, ServiceProvidedService serviceProvidedService) {
+                        AllTimelineEvents allTimelineEvents, ServiceProvidedService serviceProvidedService, AllAlerts allAlerts) {
         this.allBeneficiaries = allBeneficiaries;
         this.childRepository = childRepository;
         this.motherRepository = motherRepository;
         this.allTimelines = allTimelineEvents;
         this.serviceProvidedService = serviceProvidedService;
+        this.allAlerts = allAlerts;
     }
 
     public void register(FormSubmission submission) {
@@ -115,16 +113,17 @@ public class ChildService {
 
     public void updateImmunizations(FormSubmission submission) {
         String immunizationDate = submission.getFieldValue(AllConstants.ChildImmunizationsFields.IMMUNIZATION_DATE);
-        List<String> immunizationsGivenList = getListSplitBySpace(submission, AllConstants.ChildImmunizationsFields.IMMUNIZATIONS_GIVEN);
-        List<String> previousImmunizationsList = getListSplitBySpace(submission, AllConstants.ChildImmunizationsFields.PREVIOUS_IMMUNIZATIONS_GIVEN);
+        List<String> immunizationsGivenList = splitFieldValueBySpace(submission, AllConstants.ChildImmunizationsFields.IMMUNIZATIONS_GIVEN);
+        List<String> previousImmunizationsList = splitFieldValueBySpace(submission, AllConstants.ChildImmunizationsFields.PREVIOUS_IMMUNIZATIONS_GIVEN);
         immunizationsGivenList.removeAll(previousImmunizationsList);
         for (String immunization : immunizationsGivenList) {
             allTimelines.add(forChildImmunization(submission.entityId(), immunization, immunizationDate));
             serviceProvidedService.add(ServiceProvided.forChildImmunization(submission.entityId(), immunization, immunizationDate));
+            allAlerts.changeAlertStatusToInProcess(submission.entityId(), immunization);
         }
     }
 
-    private ArrayList<String> getListSplitBySpace(FormSubmission submission, String fieldName) {
+    private ArrayList<String> splitFieldValueBySpace(FormSubmission submission, String fieldName) {
         return new ArrayList<String>(Arrays.asList(submission.getFieldValue(fieldName).split(SPACE)));
     }
 

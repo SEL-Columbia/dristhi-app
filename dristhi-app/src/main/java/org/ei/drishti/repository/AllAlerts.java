@@ -24,6 +24,10 @@ public class AllAlerts {
         repository.markAlertAsClosed(caseId, visitCode, completionDate);
     }
 
+    public void changeAlertStatusToInProcess(String entityId, String alertName) {
+        repository.changeAlertStatusToInProcess(entityId, alertName);
+    }
+
     private List<List<ProfileTodo>> classifyTodosBasedOnUrgency(List<Alert> alerts) {
         List<ProfileTodo> todos = new ArrayList<ProfileTodo>();
         List<ProfileTodo> urgentTodos = new ArrayList<ProfileTodo>();
