@@ -1,9 +1,9 @@
 <div class="span3 span-no-margin width-without-margins line-right span-content"
-        data-ng-repeat="schedule in ['bcg', 'opv', 'hepb', 'dpt']">
+     data-ng-repeat="schedule in ['bcg', 'opv', 'hepb', 'dpt']">
     <button ng-show="client.visits[schedule].next"
             class="btn btn-primary btn-large btn-sr btn-visit-status"
             ng-class="client.visits[schedule].next.status"
-            ng-click="openForm('pnc_visit', client.entityId);">
+            ng-click='openFormWithFieldOverrides("child_immunizations", client.entityId, "{\"immunizationsReceived\":\""+client.visits[schedule].next.name+"\"}");'>
         <span class="text-bold">{{client.visits[schedule].next.name}}</span>
         <br/>
         <ng-switch on="client.visits[schedule].next.status">
@@ -13,7 +13,8 @@
     </button>
     <button class="btn btn-large btn-sr btn-visit-status btn-done btn-new-form"
             ng-show="!client.visits[schedule].next"
-            ng-click="openForm('pnc_visit', client.entityId)">{{schedule}}
+            ng-click='openFormWithFieldOverrides("child_immunizations", client.entityId, "{\"immunizationsReceived\":\"opv_0\"}");'>
+        {{schedule}}
     </button>
     <span ng-show="client.visits[schedule].previous" class="previous-alert">
         <i class="icon-ok green"></i>

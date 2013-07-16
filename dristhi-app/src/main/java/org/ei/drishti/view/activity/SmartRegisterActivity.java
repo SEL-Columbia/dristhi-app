@@ -51,7 +51,16 @@ public abstract class SmartRegisterActivity extends SecuredWebActivity {
         Intent intent = new Intent(this, formType);
         intent.putExtra(FORM_NAME_PARAM, formName);
         intent.putExtra(ENTITY_ID_PARAM, entityId);
+        addFieldOverridesIfExist(intent);
         startActivityForResult(intent, FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE);
+    }
+
+    private void addFieldOverridesIfExist(Intent intent) {
+        Map<String, String> metaDataMap = new Gson().fromJson(this.metaData, new TypeToken<Map<String, String>>() {
+        }.getType());
+        if (metaDataMap.containsKey(FIELD_OVERRIDES_PARAM)) {
+            intent.putExtra(FIELD_OVERRIDES_PARAM, metaDataMap.get(FIELD_OVERRIDES_PARAM));
+        }
     }
 
     @Override

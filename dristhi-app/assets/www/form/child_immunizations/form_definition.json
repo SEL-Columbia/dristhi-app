@@ -13,6 +13,11 @@
                 "source": "child.immunizationsGiven"
             },
             {
+                "name": "immunizationsReceived",
+                "shouldLoadValue": true,
+                "bind": "/model/instance/Child_Immunizations_EngKan/entity_immunizations_received"
+            },
+            {
                 "name": "immunizationsGiven",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Child_Immunizations_EngKan/immunizations_given"

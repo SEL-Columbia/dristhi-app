@@ -6,6 +6,7 @@
             </formhub>
             <today/>
             <immunizations_given/>
+            <entity_immunizations_received/>
             <immunization_date>${today}</immunization_date>
             <immunization_place/>
             <meta>
