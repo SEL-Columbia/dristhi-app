@@ -1,0 +1,16 @@
+<model>
+    <instance xmlns="http://www.w3.org/2002/xforms">
+        <Child_Vitamin_A_EngKan id="Vitamin_A_EngKan">
+            <formhub>
+                <uuid/>
+            </formhub>
+            <today/>
+            <vit_a_dose/>
+            <vit_a_date/>
+            <vit_a_place/>
+            <meta>
+                <instanceID/>
+            </meta>
+        </Child_Vitamin_A_EngKan>
+    </instance>
+</model>

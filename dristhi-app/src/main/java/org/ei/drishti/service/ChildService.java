@@ -10,9 +10,9 @@ import org.ei.drishti.util.EasyMap;
 
 import java.util.*;
 
+import static org.ei.drishti.AllConstants.ChildIllnessFields.*;
 import static org.ei.drishti.AllConstants.ChildRegistrationECFields.*;
 import static org.ei.drishti.AllConstants.Immunizations.*;
-import static org.ei.drishti.AllConstants.ChildIllnessFields.*;
 import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.domain.TimelineEvent.*;
 
@@ -176,5 +176,13 @@ public class ChildService {
                 .put(REPORT_CHILD_DISEASE_PLACE, submission.getFieldValue(REPORT_CHILD_DISEASE_PLACE))
                 .put(CHILD_REFERRAL, submission.getFieldValue(CHILD_REFERRAL))
                 .map();
+    }
+
+    public void updateVitaminAProvided(FormSubmission submission) {
+        serviceProvidedService.add(
+                ServiceProvided.forVitaminAProvided(submission.entityId(),
+                        submission.getFieldValue(AllConstants.VitaminAFields.VITAMIN_A_DATE),
+                        submission.getFieldValue(AllConstants.VitaminAFields.VITAMIN_A_DOSE),
+                        submission.getFieldValue(AllConstants.VitaminAFields.VITAMIN_A_PLACE)));
     }
 }

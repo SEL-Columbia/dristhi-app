@@ -18,6 +18,7 @@ import java.util.Map;
 import static java.util.Arrays.asList;
 import static org.ei.drishti.domain.ServiceProvided.forChildIllnessVisit;
 import static org.ei.drishti.domain.ServiceProvided.forChildImmunization;
+import static org.ei.drishti.domain.ServiceProvided.forVitaminAProvided;
 import static org.ei.drishti.domain.TimelineEvent.*;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
@@ -234,5 +235,23 @@ public class ChildServiceTest {
                 .put("childReferral", "child referral").map();
 
         verify(serviceProvidedService).add(forChildIllnessVisit("child id 1", "2012-01-01", map));
+    }
+
+    @Test
+    public void shouldUpdateVitaminADosagesForUpdateVitaminAProvidedAction() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+
+        when(submission.entityId()).thenReturn("child id 1");
+        when(submission.getFieldValue("vitaminADate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("vitaminADose")).thenReturn("1");
+        when(submission.getFieldValue("vitaminAPlace")).thenReturn("PHC");
+
+        service.updateVitaminAProvided(submission);
+
+        Map<String,String> map = EasyMap.create("vitaminADose", "1")
+                                .put("vitaminAPlace", "PHC")
+                                .map();
+
+        verify(serviceProvidedService).add(forVitaminAProvided("child id 1", "2012-01-01", "1", "PHC"));
     }
 }

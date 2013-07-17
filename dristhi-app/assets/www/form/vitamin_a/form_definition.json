@@ -1,0 +1,28 @@
+{
+    "form": {
+        "bind_type": "child",
+        "default_bind_path": "/model/instance/Vitamin_A_EngKan/",
+        "fields": [
+            {
+                "name": "id",
+                "shouldLoadValue": true
+            },
+            {
+                "name": "vitaminADose",
+                "bind": "/model/instance/Vitamin_A_EngKan/vit_a_dose"
+            },
+            {
+                "name": "vitaminADate",
+                "bind": "/model/instance/Vitamin_A_EngKan/vit_a_dose"
+            },
+            {
+                "name": "vitaminAPlace",
+                "bind": "/model/instance/Vitamin_A_EngKan/vit_a_dose"
+            },
+            {
+                "name": "submissionDate",
+                "bind": "/model/instance/Vitamin_A_EngKan/today"
+            }
+        ]
+    }
+}

@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.mapper.TTMapper;
+import org.ei.drishti.util.EasyMap;
 
 import java.util.Map;
 
@@ -25,6 +26,7 @@ public class ServiceProvided {
     public static final String ANC_4_SERVICE_PROVIDED_NAME = ANC_SERVICE_PREFIX + "4";
     public static final String PNC_VISIT_DAY = "day";
     private static final String CHILD_ILLNESS_SERVICE_PROVIDED_NAME = "Illness Visit";
+    private static final String VITAMIN_A_SERVICE_PROVIDED_NAME = "Vitamin A";
     private final String entityId;
     private final String name;
     private final String date;
@@ -108,5 +110,10 @@ public class ServiceProvided {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
+    }
+
+    public static ServiceProvided forVitaminAProvided(String entityId, String date, String vitaminADose, String vitaminAPlace) {
+        return new ServiceProvided(entityId, VITAMIN_A_SERVICE_PROVIDED_NAME, date,
+                create("vitaminADose", vitaminADose).put("vitaminAPlace", vitaminAPlace).map());
     }
 }

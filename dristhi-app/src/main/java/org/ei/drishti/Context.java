@@ -73,6 +73,7 @@ public class Context {
     private ChildRegistrationECHandler childRegistrationECHandler;
     private ChildCloseHandler childCloseHandler;
     private ChildIllnessHandler childIllnessHandler;
+    private VitaminAHandler vitaminAHandler;
 
     protected Context() {
     }
@@ -134,7 +135,8 @@ public class Context {
                     fpComplicationsHandler(), fpChangeHandler(), renewFPProductHandler(), ecCloseHandler(),
                     ancRegistrationHandler(), ancRegistrationOAHandler(), ancVisitHandler(), ancCloseHandler(),
                     ttHandler(), ifaHandler(), hbTestHandler(), deliveryOutcomeHandler(), pncRegistrationOAHandler(),
-                    pncCloseHandler(), pncVisitHandler(), childImmunizationsHandler(), childRegistrationECHandler(), childCloseHandler(), childIllnessHandler());
+                    pncCloseHandler(), pncVisitHandler(), childImmunizationsHandler(), childRegistrationECHandler(),
+                    childCloseHandler(), childIllnessHandler(), vitaminAHandler());
         }
         return formSubmissionRouter;
     }
@@ -270,6 +272,13 @@ public class Context {
             childIllnessHandler = new ChildIllnessHandler(childService());
         }
         return childIllnessHandler;
+    }
+
+    private VitaminAHandler vitaminAHandler() {
+        if (vitaminAHandler == null) {
+            vitaminAHandler = new VitaminAHandler(childService());
+        }
+        return vitaminAHandler;
     }
 
     private ChildRegistrationECHandler childRegistrationECHandler() {
