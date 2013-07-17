@@ -24,7 +24,7 @@ public class ServiceProvided {
     public static final String ANC_3_SERVICE_PROVIDED_NAME = ANC_SERVICE_PREFIX + "3";
     public static final String ANC_4_SERVICE_PROVIDED_NAME = ANC_SERVICE_PREFIX + "4";
     public static final String PNC_VISIT_DAY = "day";
-    private static final String CHILD_ILLNESS_SERVICE_PROVIDED_NAME = "Child Illness";
+    private static final String CHILD_ILLNESS_SERVICE_PROVIDED_NAME = "Illness Visit";
     private final String entityId;
     private final String name;
     private final String date;
