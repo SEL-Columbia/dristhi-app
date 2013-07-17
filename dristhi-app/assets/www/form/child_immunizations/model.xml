@@ -5,9 +5,10 @@
                 <uuid/>
             </formhub>
             <today/>
-            <immunizations_given/>
+            <entity_immunizations_given/>
             <entity_immunizations_received/>
-            <immunization_date>${today}</immunization_date>
+            <immunizations_given/>
+            <immunization_date/>
             <immunization_place/>
             <meta>
                 <instanceID/>
