@@ -725,6 +725,14 @@ a.btn-sr.upcoming, a.btn-sr.done {
     margin: 3px 4px 0 0;
 }
 
+.btn-sr div.done-icon.right {
+    float: right;
+}
+
+.btn-sr div.done-icon.large {
+    font-size: 25px;
+}
+
 .btn-sr div.done-icon + div.button-text-container, .button-text-container.complete {
     margin-left: 30px;
 }
@@ -1058,6 +1066,20 @@ a.btn-sr.upcoming, a.btn-sr.done {
     background-size: 94%;
     background-repeat: no-repeat;
     background-position: 2px 4px;
+}
+
+.icon-needle {
+    background: url(../img/smart_registry/child-icon-needle.png);
+    display: block !important;
+    width: 20px;
+    height: 25px;
+}
+
+.icon-needle {
+    background: url(../img/smart_registry/child-icon-needle.png);
+    display: block !important;
+    width: 25px;
+    height: 34px;
 }
 
 .text-align-left {

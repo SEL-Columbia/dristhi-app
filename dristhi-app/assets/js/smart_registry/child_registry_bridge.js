@@ -59,6 +59,11 @@ function FakeChildSmartRegistryContext() {
                             date: '2013-07-01',
                             status: 'normal'
                         },
+                        {
+                            name: 'opvbooster',
+                            date: '2013-07-09',
+                            status: 'urgent'
+                        }
                     ],
                     services_provided: [
                         {
@@ -135,6 +140,11 @@ function FakeChildSmartRegistryContext() {
                             name: 'measles',
                             status: 'normal',
                             date: '2012-07-13'
+                        },
+                        {
+                            name: 'opvbooster',
+                            status: 'complete',
+                            date: '2012-07-13'
                         }
                     ],
                     services_provided: [
@@ -154,6 +164,11 @@ function FakeChildSmartRegistryContext() {
                         },
                         {
                             name: 'opv_1',
+                            date: '2013-06-30',
+                            data: {}
+                        },
+                        {
+                            name: 'opvbooster',
                             date: '2013-06-30',
                             data: {}
                         }

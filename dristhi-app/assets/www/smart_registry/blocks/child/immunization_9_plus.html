@@ -1,19 +1,10 @@
 <div class="span3 span-no-margin width-without-margins line-right span-content">
-    <button ng-show="client.visits.measles.next"
-            class="btn btn-primary btn-large btn-sr btn-visit-status full-height"
-            ng-class="client.visits.measles.next.status"
-            ng-click="openForm('child_immunizations', client.entityId)"
-            ng-disabled="client.visits.measles.next.status == 'complete'">
-        <div class="done-icon large full-height" data-ng-class="{'right': client.visits.measles.next.status != 'complete'}">
-            <i data-ng-class="{'icon-ok green': client.visits.measles.next.status == 'complete', 'icon-needle': client.visits.measles.next.status != 'complete'}"></i>
-        </div>
-        <span class="text-bold">{{client.visits.measles.next.name | friendlyName}}</span>
-        <br/>
-        <span>due {{client.visits.measles.next.visit_date | date:"dd/MM"}}</span>
-    </button>
+    <sr-service-button class="full-height" sr-bind="client.visits.measles"
+                       ng-click="openForm('child_immunizations', client.entityId)"></sr-service-button>
 </div>
 <div class="span3 span-no-margin width-without-margins line-right span-content">
-
+    <sr-service-button class="full-height" sr-bind="client.visits.opvbooster"
+                       ng-click="openForm('child_immunizations', client.entityId)"></sr-service-button>
 </div>
 <div class="span3 span-no-margin width-without-margins line-right span-content">
 

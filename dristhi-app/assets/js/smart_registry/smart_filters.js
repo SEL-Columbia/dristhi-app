@@ -16,6 +16,7 @@ var friendlyNameMap = {
     opv_1: 'OPV 1',
     opv_2: 'OPV 2',
     opv_3: 'OPV 3',
+    opvbooster: 'OPV Booster',
     pentavalent_1: 'Pentavalent 1',
     pentavalent_2: 'Pentavalent 2',
     pentavalent_3: 'Pentavalent 3',
