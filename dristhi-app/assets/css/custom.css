@@ -758,10 +758,11 @@ a.btn-sr.upcoming, a.btn-sr.done {
     text-shadow: 0 -1px 0 rgba(236, 232, 232, 0.25);
 }
 
-.complete, .complete:hover, .complete:focus {
+.complete, .complete:hover, .complete:focus, .btn-primary[disabled] {
     background-color: #ececec;
     color: #0d0d0d;
     text-shadow: 0 -1px 0 rgba(236, 232, 232, 0.25);
+    opacity: 1;
 }
 
 .inProcess, .inProcess:hover, .inProcess:focus {

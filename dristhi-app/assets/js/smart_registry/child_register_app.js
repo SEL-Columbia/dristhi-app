@@ -96,8 +96,8 @@ angular.module("smartRegistry.controllers")
             return client.locationStatus === option.id;
         };
 
-        $scope.pncServiceOptions = {
-            type: "pncService",
+        $scope.childServiceOptions = {
+            type: "childService",
             options: [
                 {
                     label: "Overview",
@@ -122,21 +122,21 @@ angular.module("smartRegistry.controllers")
             ]
         };
 
-        $scope.defaultPNCServiceOption = $scope.pncServiceOptions.options[0];
-        $scope.serviceModeOption = $scope.defaultPNCServiceOption;
+        $scope.defaultChildServiceOption = $scope.childServiceOptions.options[2];
+        $scope.serviceModeOption = $scope.defaultChildServiceOption;
 
-        $scope.pncService = function (option) {
+        $scope.childService = function (option) {
             $scope.serviceModeOption = option;
         };
 
         $scope.searchFilterString = "";
 
-        $scope.contentTemplate = $scope.pncServiceOptions.options[0].id;
+        $scope.contentTemplate = $scope.childServiceOptions.options[0].id;
 
         $scope.searchCriteria = function (client, searchFilterString) {
-            return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0) ||
-                (client.ecNumber && client.ecNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0) ||
-                (client.thayiCardNumber && client.thayiCardNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
+            return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
+                || (client.ecNumber && client.ecNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
+                || (client.thayiCardNumber && client.thayiCardNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
         };
 
         $scope.changeContentBasedOnServiceMode = function (client, serviceModeOptionId) {
@@ -173,7 +173,7 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.childsAge = function (client) {
-            return SmartHelper.childsAge(new Date(Date.parse(client.dob)), new Date());
+            return SmartHelper.childsAge(new Date(Date.parse(client.dob)), new Date())
         };
 
         $scope.openProfile = function (clientId) {

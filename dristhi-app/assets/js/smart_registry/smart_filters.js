@@ -10,6 +10,25 @@ var fpMethodMap = {
     lam: 'LAM'
 };
 
+var friendlyNameMap = {
+    bcg: 'BCG',
+    opv_0: 'OPV 0',
+    opv_1: 'OPV 1',
+    opv_2: 'OPV 2',
+    opv_3: 'OPV 3',
+    pentavalent_1: 'Pentavalent 1',
+    pentavalent_2: 'Pentavalent 2',
+    pentavalent_3: 'Pentavalent 3',
+    measles: 'Measles',
+    measles_booster: 'Measles Booster'
+};
+
+var friendlyAbbrevMap = {
+    pentavalent_1: 'Pentav. 1',
+    pentavalent_2: 'Pentav. 2',
+    pentavalent_3: 'Pentav. 3'
+};
+
 angular.module("smartRegistry.filters")
     .filter('humanize', function () {
         return function (input) {
@@ -22,7 +41,7 @@ angular.module("smartRegistry.filters")
             catch (err) {
                 return "";
             }
-        };
+        }
     })
     .filter('camelCase', function () {
         return function (input) {
@@ -37,12 +56,13 @@ angular.module("smartRegistry.filters")
             catch (err) {
                 return "";
             }
-        };
+        }
     })
     .filter('fpMethodName', function () {
         return function (input) {
             return fpMethodMap[input] ? fpMethodMap[input] : input;
-        };
+
+        }
     })
     .filter('commaSeparated', function () {
         return function (input) {
@@ -53,7 +73,7 @@ angular.module("smartRegistry.filters")
             catch (err) {
                 return "";
             }
-        };
+        }
     })
     .filter("dateFallsWithin", [function(){
         return function(input, start_date, date_field, period, invert) {
@@ -66,10 +86,21 @@ angular.module("smartRegistry.filters")
                 else
                     return !val;
             });
-        };
+
+        }
     }])
     .filter("slice", [function () {
         return function(input, start, end) {
             return input.slice(start, end);
-        };
-    }]);
+        }
+    }])
+    .filter('friendlyName', function () {
+        return function (input) {
+            return friendlyNameMap[input] ? friendlyNameMap[input] : input;
+        }
+    })
+    .filter('friendlyAbbrev', function () {
+        return function (input) {
+            return friendlyAbbrevMap[input] || friendlyNameMap[input] || input;
+        }
+    });

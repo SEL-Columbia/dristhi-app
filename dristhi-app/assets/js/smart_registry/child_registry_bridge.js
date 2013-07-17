@@ -35,22 +35,17 @@ function FakeChildSmartRegistryContext() {
                     ecNumber: "1234",
                     alerts: [
                         {
-                            name: 'bcg',
-                            date: '2013-07-09',
-                            status: 'normal'
-                        },
-                        {
                             name: 'opv_0',
                             date: '2013-07-09',
                             status: 'urgent'
                         },
                         {
-                            name: 'hepb_3',
+                            name: 'pentavalent_2',
                             date: '2013-07-09',
-                            status: 'complete'
+                            status: 'urgent'
                         },
                         {
-                            name: 'hepb_3',
+                            name: 'measles_booster',
                             date: '2013-07-09',
                             status: 'complete'
                         }
@@ -76,12 +71,22 @@ function FakeChildSmartRegistryContext() {
                             data: {}
                         },
                         {
-                            name: 'BCG',
+                            name: 'bcg',
                             date: '2013-07-01',
                             data: {}
                         },
                         {
-                            name: 'Hepatitis',
+                            name: 'hepb_0',
+                            date: '2013-07-01',
+                            data: {}
+                        },
+                        {
+                            name: 'pentavalent_1',
+                            date: '2013-07-01',
+                            data: {}
+                        },
+                        {
+                            name: 'measles',
                             date: '2013-07-01',
                             data: {}
                         }
@@ -105,7 +110,23 @@ function FakeChildSmartRegistryContext() {
                     isHighRisk: false,
                     photo_path: "../../img/woman-placeholder.png",
                     ecNumber: "5678",
-                    alerts: [],
+                    alerts: [
+                        {
+                            name: 'bcg',
+                            status: 'urgent',
+                            date: '2012-07-13'
+                        },
+                        {
+                            name: 'opv_3',
+                            status: 'normal',
+                            date: '2012-07-13'
+                        },
+                        {
+                            name: 'measles',
+                            status: 'normal',
+                            date: '2012-07-13'
+                        }
+                    ],
                     services_provided: [
                         {
                             name: 'PNC',
@@ -120,6 +141,11 @@ function FakeChildSmartRegistryContext() {
                             data: {
                                 day: 18
                             }
+                        },
+                        {
+                            name: 'opv_1',
+                            date: '2013-06-30',
+                            data: {}
                         }
                     ]
                 },

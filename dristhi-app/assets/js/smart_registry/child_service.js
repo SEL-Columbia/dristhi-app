@@ -5,20 +5,30 @@ angular.module("smartRegistry.services")
                 {
                     name: "bcg",
                     milestones: ['bcg'],
-                    services: ["BCG"],
-                    is_list: true
-                },
-                {
-                    name: "opv",
-                    milestones: ['opv_0', 'opv_1', 'opv_2'],
-                    services: ["OPV"],
-                    is_list: true
+                    services: ["bcg"],
+                    is_list: false
                 },
                 {
                     name: "hepb",
-                    milestones: ['hepb_0', 'hepb_1', 'hepb_2', 'hepb_3'],
-                    services: ["Hepatitis"],
-                    is_list: true
+                    milestones: [],
+                    services: ["hepb_0"],
+                    is_list: false
+                },
+                {
+                    name: "opv",
+                    milestones: ['opv_0', 'opv_1', 'opv_2', 'opv_3'],
+                    services: ['opv_0', 'opv_1', 'opv_2', 'opv_3'],
+                    is_list: false
+                },
+                {
+                    name: "pentavalent",
+                    milestones: ['pentavalent_1', 'pentavalent_2', 'pentavalent_3'],
+                    services: ['pentavalent_1', 'pentavalent_2', 'pentavalent_3']
+                },
+                {
+                    name: 'measles',
+                    milestones: ['measles', 'measles_booster'],
+                    services: ['measles', 'measles_booster']
                 }
             ];
 
@@ -29,10 +39,10 @@ angular.module("smartRegistry.services")
                         if(!client.visits)
                             client.visits = {};
                         schedules.forEach(function (schedule) {
-                            SmartHelper.preProcessSchedule(client, schedule);
+                            SmartHelper.preProcessSchedule(client, schedule)
                         });
                     }
                 );
             }
-        };
+        }
     });
