@@ -130,6 +130,27 @@ public class AllConstants {
         public static final String DID_MOTHER_SURVIVE = "didMotherSurvive";
     }
 
+    public class ChildRegistrationECFields {
+        public static final String BCG_DATE = "bcgDate";
+        public static final String MEASLES_DATE = "measlesDate";
+        public static final String MEASLESBOOSTER_DATE = "measlesboosterDate";
+        public static final String OPV_0_DATE = "opv0Date";
+        public static final String OPV_1_DATE = "opv1Date";
+        public static final String OPV_2_DATE = "opv2Date";
+        public static final String OPV_3_DATE = "opv3Date";
+        public static final String OPVBOOSTER_DATE = "opvboosterDate";
+        public static final String DPT_BIRTH_DOSE_DATE = "dpt0Date";
+        public static final String DPTBOOSTER_1_DATE = "dptbooster1Date";
+        public static final String DPTBOOSTER_2_DATE = "dptbooster2Date";
+        public static final String PENTAVALENT_1_DATE = "pentavalent1Date";
+        public static final String PENTAVALENT_2_DATE = "pentavalent2Date";
+        public static final String PENTAVALENT_3_DATE = "pentavalent3Date";
+        public static final String HEPB_BIRTH_DOSE_DATE = "hepb0Date";
+
+        public static final String MMR_DATE = "mmrDate";
+        public static final String JE_DATE = "jeDate";
+    }
+
     public class ChildRegistrationFields {
         public static final String MOTHER_ID = "motherId";
         public static final String CHILD_ID = "childId";
@@ -154,6 +175,7 @@ public class AllConstants {
 
     public static class Immunizations {
         public static final String BCG = "bcg";
+
         public static final String MEASLES = "measles";
         public static final String MEASLES_BOOSTER = "measlesbooster";
 
@@ -163,6 +185,7 @@ public class AllConstants {
         public static final String OPV_3 = "opv_3";
         public static final String OPV_BOOSTER = "opvbooster";
 
+        public static final String DPT_BIRTH_DOSE = "dpt_0";
         public static final String DPT_BOOSTER_1 = "dptbooster_1";
         public static final String DPT_BOOSTER_2 = "dptbooster_2";
 
@@ -171,12 +194,17 @@ public class AllConstants {
         public static final String PENTAVALENT_3 = "pentavalent_3";
 
         public static final String HEPATITIS_BIRTH_DOSE = "hepb_0";
-        public static final String DPT_BIRTH_DOSE = "dpt_0";
         public static final String MMR = "mmr";
         public static final String JE = "je";
 
-        public static final String[] ALL = new String[]{BCG, MEASLES, MEASLES_BOOSTER, OPV_0, OPV_1, OPV_2, OPV_3,
-                OPV_BOOSTER, DPT_BOOSTER_1, DPT_BOOSTER_2, PENTAVALENT_1, PENTAVALENT_2, PENTAVALENT_3,
-                HEPATITIS_BIRTH_DOSE, DPT_BIRTH_DOSE, JE, MMR};
+        public static final String[] ALL = new String[]{
+                BCG,
+                MEASLES, MEASLES_BOOSTER,
+                OPV_0, OPV_1, OPV_2, OPV_3, OPV_BOOSTER,
+                DPT_BIRTH_DOSE, DPT_BOOSTER_1, DPT_BOOSTER_2,
+                PENTAVALENT_1, PENTAVALENT_2, PENTAVALENT_3,
+                HEPATITIS_BIRTH_DOSE,
+                JE,
+                MMR};
     }
 }

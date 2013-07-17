@@ -9,6 +9,8 @@ import org.ei.drishti.repository.*;
 
 import java.util.*;
 
+import static org.ei.drishti.AllConstants.ChildRegistrationECFields.*;
+import static org.ei.drishti.AllConstants.Immunizations.*;
 import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.domain.TimelineEvent.*;
 
@@ -72,22 +74,29 @@ public class ChildService {
 
     private Map<String, String> createImmunizationDateFieldMap() {
         Map<String, String> immunizationDateFieldsMap = new HashMap<String, String>();
-        immunizationDateFieldsMap.put("bcg", "bcgDate");
-        immunizationDateFieldsMap.put("opv_0", "opv0Date");
-        immunizationDateFieldsMap.put("opv_1", "opv1Date");
-        immunizationDateFieldsMap.put("opv_2", "opv2Date");
-        immunizationDateFieldsMap.put("opv_3", "opv3Date");
-        immunizationDateFieldsMap.put("hepb_0", "hepb0Date");
-        immunizationDateFieldsMap.put("pentavalent_1", "pentavalent1Date");
-        immunizationDateFieldsMap.put("pentavalent_2", "pentavalent2Date");
-        immunizationDateFieldsMap.put("pentavalent_3", "pentavalent3Date");
-        immunizationDateFieldsMap.put("measles", "measlesDate");
-        immunizationDateFieldsMap.put("mmr", "mmrDate");
-        immunizationDateFieldsMap.put("dptbooster_1", "dptbooster1Date");
-        immunizationDateFieldsMap.put("dptbooster_2", "dptbooster2Date");
-        immunizationDateFieldsMap.put("opvbooster", "opvboosterDate");
-        immunizationDateFieldsMap.put("je", "jeDate");
-        immunizationDateFieldsMap.put("measlesbooster", "measlesboosterDate");
+        immunizationDateFieldsMap.put(BCG, BCG_DATE);
+
+        immunizationDateFieldsMap.put(MEASLES, MEASLES_DATE);
+        immunizationDateFieldsMap.put(MEASLES_BOOSTER, MEASLESBOOSTER_DATE);
+
+        immunizationDateFieldsMap.put(OPV_0, OPV_0_DATE);
+        immunizationDateFieldsMap.put(OPV_1, OPV_1_DATE);
+        immunizationDateFieldsMap.put(OPV_2, OPV_2_DATE);
+        immunizationDateFieldsMap.put(OPV_3, OPV_3_DATE);
+        immunizationDateFieldsMap.put(OPV_BOOSTER, OPVBOOSTER_DATE);
+
+        immunizationDateFieldsMap.put(DPT_BIRTH_DOSE, DPT_BIRTH_DOSE_DATE);
+        immunizationDateFieldsMap.put(DPT_BOOSTER_1, DPTBOOSTER_1_DATE);
+        immunizationDateFieldsMap.put(DPT_BOOSTER_2, DPTBOOSTER_2_DATE);
+
+        immunizationDateFieldsMap.put(HEPATITIS_BIRTH_DOSE, HEPB_BIRTH_DOSE_DATE);
+
+        immunizationDateFieldsMap.put(PENTAVALENT_1, PENTAVALENT_1_DATE);
+        immunizationDateFieldsMap.put(PENTAVALENT_2, PENTAVALENT_2_DATE);
+        immunizationDateFieldsMap.put(PENTAVALENT_3, PENTAVALENT_3_DATE);
+
+        immunizationDateFieldsMap.put(MMR, MMR_DATE);
+        immunizationDateFieldsMap.put(JE, JE_DATE);
 
         return immunizationDateFieldsMap;
     }
