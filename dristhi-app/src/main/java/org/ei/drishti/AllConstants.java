@@ -63,6 +63,7 @@ public class AllConstants {
     public static final String CHILD_IMMUNIZATIONS_FORM_NAME = "child_immunizations";
     public static final String CHILD_REGISTRATION_EC_FORM_NAME = "child_registration_ec";
     public static final String CHILD_CLOSE_FORM_NAME = "child_close";
+    public static final String CHILD_ILLNESS_FORM_NAME = "child_illness";
     public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
     public static final String NEW_FP_METHOD_FIELD_NAME = "newMethod";
     public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME = "familyPlanningMethodChangeDate";
@@ -206,5 +207,16 @@ public class AllConstants {
                 HEPATITIS_BIRTH_DOSE,
                 JE,
                 MMR};
+    }
+
+    public class ChildIllnessFields {
+        public static final String CHILD_SIGNS = "childSigns";
+        public static final String CHILD_SIGNS_OTHER = "childSignsOther";
+        public static final String SICK_VISIT_DATE = "sickVisitDate";
+        public static final String REPORT_CHILD_DISEASE = "reportChildDisease";
+        public static final String REPORT_CHILD_DISEASE_OTHER = "reportChildDiseaseOther";
+        public static final String REPORT_CHILD_DISEASE_DATE = "reportChildDiseaseDate";
+        public static final String REPORT_CHILD_DISEASE_PLACE = "reportChildDiseasePlace";
+        public static final String CHILD_REFERRAL = "childReferral";
     }
 }

@@ -6,11 +6,13 @@ import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.repository.*;
+import org.ei.drishti.util.EasyMap;
 
 import java.util.*;
 
 import static org.ei.drishti.AllConstants.ChildRegistrationECFields.*;
 import static org.ei.drishti.AllConstants.Immunizations.*;
+import static org.ei.drishti.AllConstants.ChildIllnessFields.*;
 import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.domain.TimelineEvent.*;
 
@@ -155,5 +157,25 @@ public class ChildService {
 
     public void updatePhotoPath(String entityId, String imagePath) {
         childRepository.updatePhotoPath(entityId, imagePath);
+    }
+
+    public void updateIllnessStatus(FormSubmission submission) {
+        serviceProvidedService.add(
+                ServiceProvided.forChildIllnessVisit(submission.entityId(),
+                        submission.getFieldValue("submissionDate"),
+                        createChildIllnessMap(submission))
+        );
+    }
+
+    private Map<String, String> createChildIllnessMap(FormSubmission submission) {
+        return EasyMap.create(CHILD_SIGNS, submission.getFieldValue(CHILD_SIGNS))
+                .put(CHILD_SIGNS_OTHER, submission.getFieldValue(CHILD_SIGNS_OTHER))
+                .put(SICK_VISIT_DATE, submission.getFieldValue(SICK_VISIT_DATE))
+                .put(REPORT_CHILD_DISEASE, submission.getFieldValue(REPORT_CHILD_DISEASE))
+                .put(REPORT_CHILD_DISEASE_OTHER, submission.getFieldValue(REPORT_CHILD_DISEASE_OTHER))
+                .put(REPORT_CHILD_DISEASE_DATE, submission.getFieldValue(REPORT_CHILD_DISEASE_DATE))
+                .put(REPORT_CHILD_DISEASE_PLACE, submission.getFieldValue(REPORT_CHILD_DISEASE_PLACE))
+                .put(CHILD_REFERRAL, submission.getFieldValue(CHILD_REFERRAL))
+                .map();
     }
 }

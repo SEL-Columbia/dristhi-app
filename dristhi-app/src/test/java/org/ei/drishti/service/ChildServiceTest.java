@@ -7,12 +7,16 @@ import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.repository.*;
+import org.ei.drishti.util.EasyMap;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
+import java.util.Map;
+
 import static java.util.Arrays.asList;
+import static org.ei.drishti.domain.ServiceProvided.forChildIllnessVisit;
 import static org.ei.drishti.domain.ServiceProvided.forChildImmunization;
 import static org.ei.drishti.domain.TimelineEvent.*;
 import static org.ei.drishti.util.EasyMap.create;
@@ -201,5 +205,34 @@ public class ChildServiceTest {
         service.close(submission);
 
         verify(allBeneficiaries).closeChild("child id 1");
+    }
+
+    @Test
+    public void shouldUpdateIllnessForUpdateIllnessAction() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+
+        when(submission.entityId()).thenReturn("child id 1");
+        when(submission.getFieldValue("submissionDate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("sickVisitDate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("childSigns")).thenReturn("child signs");
+        when(submission.getFieldValue("childSignsOther")).thenReturn("child signs other");
+        when(submission.getFieldValue("reportChildDisease")).thenReturn("report child disease");
+        when(submission.getFieldValue("reportChildDiseaseOther")).thenReturn("report child disease other");
+        when(submission.getFieldValue("reportChildDiseaseDate")).thenReturn("report child disease date");
+        when(submission.getFieldValue("reportChildDiseasePlace")).thenReturn("report child disease place");
+        when(submission.getFieldValue("childReferral")).thenReturn("child referral");
+
+        service.updateIllnessStatus(submission);
+
+        Map<String,String> map = EasyMap.create("sickVisitDate", "2012-01-01")
+                .put("childSignsOther", "child signs other")
+                .put("childSigns", "child signs")
+                .put("reportChildDisease", "report child disease")
+                .put("reportChildDiseaseOther", "report child disease other")
+                .put("reportChildDiseaseDate", "report child disease date")
+                .put("reportChildDiseasePlace", "report child disease place")
+                .put("childReferral", "child referral").map();
+
+        verify(serviceProvidedService).add(forChildIllnessVisit("child id 1", "2012-01-01", map));
     }
 }
