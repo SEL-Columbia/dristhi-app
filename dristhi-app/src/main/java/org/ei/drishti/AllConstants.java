@@ -186,7 +186,6 @@ public class AllConstants {
         public static final String OPV_3 = "opv_3";
         public static final String OPV_BOOSTER = "opvbooster";
 
-        public static final String DPT_BIRTH_DOSE = "dpt_0";
         public static final String DPT_BOOSTER_1 = "dptbooster_1";
         public static final String DPT_BOOSTER_2 = "dptbooster_2";
 
@@ -202,7 +201,7 @@ public class AllConstants {
                 BCG,
                 MEASLES, MEASLES_BOOSTER,
                 OPV_0, OPV_1, OPV_2, OPV_3, OPV_BOOSTER,
-                DPT_BIRTH_DOSE, DPT_BOOSTER_1, DPT_BOOSTER_2,
+                DPT_BOOSTER_1, DPT_BOOSTER_2,
                 PENTAVALENT_1, PENTAVALENT_2, PENTAVALENT_3,
                 HEPATITIS_BIRTH_DOSE,
                 JE,

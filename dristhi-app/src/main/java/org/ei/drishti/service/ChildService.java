@@ -87,7 +87,6 @@ public class ChildService {
         immunizationDateFieldsMap.put(OPV_3, OPV_3_DATE);
         immunizationDateFieldsMap.put(OPV_BOOSTER, OPVBOOSTER_DATE);
 
-        immunizationDateFieldsMap.put(DPT_BIRTH_DOSE, DPT_BIRTH_DOSE_DATE);
         immunizationDateFieldsMap.put(DPT_BOOSTER_1, DPTBOOSTER_1_DATE);
         immunizationDateFieldsMap.put(DPT_BOOSTER_2, DPTBOOSTER_2_DATE);
 
