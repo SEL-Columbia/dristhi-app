@@ -35,6 +35,11 @@ function FakeChildSmartRegistryContext() {
                     ecNumber: "1234",
                     alerts: [
                         {
+                            name: 'bcg',
+                            date: '2013-07-09',
+                            status: 'complete'
+                        },
+                        {
                             name: 'opv_0',
                             date: '2013-07-09',
                             status: 'urgent'
@@ -48,7 +53,12 @@ function FakeChildSmartRegistryContext() {
                             name: 'measles_booster',
                             date: '2013-07-09',
                             status: 'complete'
-                        }
+                        },
+                        {
+                            name: 'hepb_1',
+                            date: '2013-07-01',
+                            status: 'normal'
+                        },
                     ],
                     services_provided: [
                         {
@@ -167,8 +177,25 @@ function FakeChildSmartRegistryContext() {
                     isHighRisk: false,
                     photo_path: "../../img/woman-placeholder.png",
                     ecNumber: "5678",
-                    alerts: [],
-                    services_provided: []
+                    alerts: [
+                        {
+                            name: 'opv_2',
+                            status: 'complete',
+                            date: '2012-07-13'
+                        }
+                    ],
+                    services_provided: [
+                        {
+                            name: 'opv_2',
+                            date: '2013-06-30',
+                            data: {}
+                        },
+                        {
+                            name: 'opv_1',
+                            date: '2013-06-30',
+                            data: {}
+                        }
+                    ]
                 }
             ]);
         }

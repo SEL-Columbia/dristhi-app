@@ -122,7 +122,7 @@ angular.module("smartRegistry.controllers")
             ]
         };
 
-        $scope.defaultChildServiceOption = $scope.childServiceOptions.options[2];
+        $scope.defaultChildServiceOption = $scope.childServiceOptions.options[0];
         $scope.serviceModeOption = $scope.defaultChildServiceOption;
 
         $scope.childService = function (option) {

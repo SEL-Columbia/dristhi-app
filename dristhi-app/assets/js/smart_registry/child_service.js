@@ -16,8 +16,8 @@ angular.module("smartRegistry.services")
                 },
                 {
                     name: "opv",
-                    milestones: ['opv_0', 'opv_1', 'opv_2', 'opv_3'],
-                    services: ['opv_0', 'opv_1', 'opv_2', 'opv_3'],
+                    milestones: ['opv_0', 'opv_1', 'opv_2', 'opv_3', 'opvbooster'],
+                    services: ['opv_0', 'opv_1', 'opv_2', 'opv_3', 'opvbooster'],
                     is_list: false
                 },
                 {
