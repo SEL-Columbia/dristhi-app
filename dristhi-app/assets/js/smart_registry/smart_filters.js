@@ -21,13 +21,19 @@ var friendlyNameMap = {
     pentavalent_2: 'Pentavalent 2',
     pentavalent_3: 'Pentavalent 3',
     measles: 'Measles',
-    measles_booster: 'Measles Booster'
+    measles_booster: 'Measles Booster',
+    dpt_0: 'DPT Birth Dose',
+    dptbooster_1: 'DPT Boost. 1',
+    dptbooster_2: 'DPT Boost. 2'
 };
 
 var friendlyAbbrevMap = {
     pentavalent_1: 'Pentav. 1',
     pentavalent_2: 'Pentav. 2',
-    pentavalent_3: 'Pentav. 3'
+    pentavalent_3: 'Pentav. 3',
+    dpt_0: 'DPT Birth',
+    dptbooster_1: 'DPT Boost. 1',
+    dptbooster_2: 'DPT Boost. 2'
 };
 
 angular.module("smartRegistry.filters")

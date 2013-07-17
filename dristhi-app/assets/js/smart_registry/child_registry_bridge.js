@@ -63,6 +63,11 @@ function FakeChildSmartRegistryContext() {
                             name: 'opvbooster',
                             date: '2013-07-09',
                             status: 'urgent'
+                        },
+                        {
+                            name: 'dptbooster_1',
+                            status: 'urgent',
+                            date: '2012-07-13'
                         }
                     ],
                     services_provided: [
@@ -102,6 +107,11 @@ function FakeChildSmartRegistryContext() {
                         },
                         {
                             name: 'measles',
+                            date: '2013-07-01',
+                            data: {}
+                        },
+                        {
+                            name: 'dpt_0',
                             date: '2013-07-01',
                             data: {}
                         }

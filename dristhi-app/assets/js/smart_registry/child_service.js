@@ -35,6 +35,12 @@ angular.module("smartRegistry.services")
                     name: 'measles',
                     milestones: ['measles', 'measles_booster'],
                     services: ['measles', 'measles_booster']
+                },
+                {
+                    name: "dpt",
+                    milestones: ['dpt_0', 'dptbooster_1', 'dptbooster_2'],
+                    services: ['dpt_0', 'dptbooster_1', 'dptbooster_2'],
+                    is_list: false
                 }
             ];
 

@@ -3,12 +3,31 @@
                        ng-click="openForm('child_immunizations', client.entityId)"></sr-service-button>
 </div>
 <div class="span3 span-no-margin width-without-margins line-right span-content">
-    <sr-service-button class="full-height" sr-bind="client.visits.opvbooster"
-                       ng-click="openForm('child_immunizations', client.entityId)"></sr-service-button>
+    <div class="relative-positioning">
+        <sr-service-button sr-bind="client.visits.opvbooster"
+                           ng-click="openForm('child_immunizations', client.entityId)"></sr-service-button>
+        <span ng-show="client.visits.opv.previous" class="previous-alert">
+        <i class="icon-ok green"></i>
+        <span class="">{{client.visits.opv.previous.name | friendlyAbbrev}}: </span>
+        <span>{{client.visits.opv.previous.visit_date | date:"dd/MM"}}</span>
+    </span>
+    </div>
 </div>
 <div class="span3 span-no-margin width-without-margins line-right span-content">
-
+    <div class="relative-positioning">
+        <sr-service-button sr-bind="client.visits.dpt"
+                           ng-click="openForm('child_immunizations', client.entityId)"></sr-service-button>
+        <span ng-show="client.visits.dpt.previous" class="previous-alert">
+        <i class="icon-ok green"></i>
+        <span class="">{{client.visits.dpt.previous.name | friendlyAbbrev}}: </span>
+        <span>{{client.visits.dpt.previous.visit_date | date:"dd/MM"}}</span>
+    </span>
+    </div>
 </div>
 <div class="span3 span-no-margin width-without-margins line-right span-content">
-
+    <button class="btn btn-primary btn-large btn-sr btn-visit-status full-height normal"
+            ng-click="openForm('child_immunizations', client.entityId);">
+        <div class="done-icon large right full-height"><i class=""></i></div>
+        <span class="text-bold">Vitamin A</span>
+    </button>
 </div>
