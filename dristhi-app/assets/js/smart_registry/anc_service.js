@@ -47,7 +47,7 @@ angular.module("smartRegistry.services")
             UPCOMING: "upcoming"
         };
 
-        var preProcessSchedule = function(client, schedule){
+        var preProcessSchedule = function (client, schedule) {
             var visit = {};
             var alertsForCurrentSchedule = client.alerts.filter(function (alert) {
                 return schedule.milestones.indexOf(alert.name) > -1;
@@ -59,8 +59,8 @@ angular.module("smartRegistry.services")
                     return schedule_alert.name === milestone;
                 });
                 if (milestone_alert !== undefined ||
-                        (milestone_alert !== undefined && visit.next !== undefined &&
-                            milestone_alert.status !== alert_status.COMPLETE)) {
+                    (milestone_alert !== undefined && visit.next !== undefined &&
+                        milestone_alert.status !== alert_status.COMPLETE)) {
                     var next_milestone = {};
                     next_milestone.name = milestone_alert.name;
                     next_milestone.status = milestone_alert.status;
@@ -71,7 +71,7 @@ angular.module("smartRegistry.services")
                         visit_date: next_milestone.visit_date
                     };
                     // only break if status is not complete so we can keep looking for other in-complete milestones
-                    if(milestone_alert.status !== alert_status.COMPLETE)
+                    if (milestone_alert.status !== alert_status.COMPLETE)
                         break;
                 }
             }
@@ -79,17 +79,16 @@ angular.module("smartRegistry.services")
             var servicesForCurrentSchedule = client.services_provided.filter(function (service_provided) {
                 return schedule.services.indexOf(service_provided.name) !== -1;
             });
-            for (var i = schedule.services.length - 1; i > -1; i--) {
+            for (i = schedule.services.length - 1; i > -1; i--) {
                 var service_name = schedule.services[i];
                 var services_provided = servicesForCurrentSchedule.filter(function (service) {
                     return service.name === service_name;
                 });
 
                 if (services_provided.length > 0) {
-                    if(schedule.is_list)
-                    {
+                    if (schedule.is_list) {
                         var services = [];
-                        services_provided.forEach(function(service_provided){
+                        services_provided.forEach(function (service_provided) {
                             var service = {};
                             service.status = alert_status.COMPLETE;
                             service.visit_date = service_provided.date;
@@ -98,10 +97,10 @@ angular.module("smartRegistry.services")
                         });
                         visit[service_name] = services;
                         if (visit.previous === undefined) {
-                            var previous = services_provided.sort(function(a, b){
-                                if(a.date < b.date)
+                            var previous = services_provided.sort(function (a, b) {
+                                if (a.date < b.date)
                                     return 1;
-                                else if(a.date > b.date)
+                                else if (a.date > b.date)
                                     return -1;
                                 else
                                     return 0;
@@ -114,8 +113,7 @@ angular.module("smartRegistry.services")
                             };
                         }
                     }
-                    else
-                    {
+                    else {
                         var service = {};
                         service.status = alert_status.COMPLETE;
                         service.visit_date = services_provided[0].date;
@@ -145,13 +143,12 @@ angular.module("smartRegistry.services")
             preProcessSchedule: preProcessSchedule,
             preProcess: function (clients) {
                 clients.forEach(function (client) {
-                        if(!client.visits)
+                        if (!client.visits)
                             client.visits = {};
                         schedules.forEach(function (schedule) {
-                            preProcessSchedule(client, schedule)
+                            preProcessSchedule(client, schedule);
                         });
                         // calculate days between today and EDD
-                        var days_past_edd;
                         var edd_date = Date.parse(client.edd);
                         if (edd_date) {
                             client.days_past_edd = Math.ceil(SmartHelper.daysBetween(new Date(edd_date), new Date()));
@@ -160,5 +157,5 @@ angular.module("smartRegistry.services")
                 );
                 return clients;
             }
-        }
+        };
     });

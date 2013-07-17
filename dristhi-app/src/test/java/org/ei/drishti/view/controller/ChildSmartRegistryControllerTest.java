@@ -35,10 +35,10 @@ public class ChildSmartRegistryControllerTest {
             "bcg",
             "measles", "measlesbooster",
             "opv_0", "opv_1", "opv_2", "opv_3", "opvbooster",
+            "dpt_0",
             "dptbooster_1", "dptbooster_2",
             "pentavalent_1", "pentavalent_2", "pentavalent_3",
             "hepb_0",
-            "dpt_0",
             "je",
             "mmr"
     };
@@ -46,10 +46,10 @@ public class ChildSmartRegistryControllerTest {
             "bcg",
             "measles", "measlesbooster",
             "opv_0", "opv_1", "opv_2", "opv_3", "opvbooster",
+            "dpt_0",
             "dptbooster_1", "dptbooster_2",
             "pentavalent_1", "pentavalent_2", "pentavalent_3",
             "hepb_0",
-            "dpt_0",
             "je",
             "mmr"
     };

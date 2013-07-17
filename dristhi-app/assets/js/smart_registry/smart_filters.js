@@ -22,7 +22,7 @@ angular.module("smartRegistry.filters")
             catch (err) {
                 return "";
             }
-        }
+        };
     })
     .filter('camelCase', function () {
         return function (input) {
@@ -37,13 +37,12 @@ angular.module("smartRegistry.filters")
             catch (err) {
                 return "";
             }
-        }
+        };
     })
     .filter('fpMethodName', function () {
         return function (input) {
             return fpMethodMap[input] ? fpMethodMap[input] : input;
-
-        }
+        };
     })
     .filter('commaSeparated', function () {
         return function (input) {
@@ -54,7 +53,7 @@ angular.module("smartRegistry.filters")
             catch (err) {
                 return "";
             }
-        }
+        };
     })
     .filter("dateFallsWithin", [function(){
         return function(input, start_date, date_field, period, invert) {
@@ -67,11 +66,10 @@ angular.module("smartRegistry.filters")
                 else
                     return !val;
             });
-
-        }
+        };
     }])
     .filter("slice", [function () {
         return function(input, start, end) {
             return input.slice(start, end);
-        }
+        };
     }]);

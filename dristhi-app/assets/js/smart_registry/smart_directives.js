@@ -1,10 +1,7 @@
-'use strict';
-
 /* Directives */
-
-
 angular.module('smartRegistry.directives', [])
     .directive('childLastService', ['$filter', function ($filter) {
+        'use strict';
         return {
             template: '<div ng-show="services_provided.length > 0"><span>{{service_date | date:\'dd/MM/yy\'}}</span><br/>{{service_name}}</div>',
             replace: true,
@@ -22,5 +19,5 @@ angular.module('smartRegistry.directives', [])
                     scope.service_name = last_service.name;
                 }
             }
-        }
+        };
     }]);

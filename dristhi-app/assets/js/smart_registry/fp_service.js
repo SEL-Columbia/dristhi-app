@@ -60,14 +60,14 @@ angular.module("smartRegistry.services")
                             name: referral_alert.name,
                             alert_index: client.alerts.indexOf(referral_alert),
                             type: "referral"
-                        }
+                        };
                     }
                     else if (fp_followup_alert !== undefined) {
                         client.refill_follow_ups = {
                             name: fp_followup_alert.name,
                             alert_index: client.alerts.indexOf(fp_followup_alert),
                             type: "follow-up"
-                        }
+                        };
                     }
                     else {
                         // find a normal follow-up alert that matches the fp method
@@ -81,7 +81,7 @@ angular.module("smartRegistry.services")
                                 name: follow_up_alert.name,
                                 alert_index: client.alerts.indexOf(follow_up_alert),
                                 type: "follow-up"
-                            }
+                            };
                         }
                         else {
                             var refill_alert = client.alerts.find(function (a) {
@@ -94,12 +94,12 @@ angular.module("smartRegistry.services")
                                     name: refill_alert.name,
                                     alert_index: client.alerts.indexOf(refill_alert),
                                     type: "refill"
-                                }
+                                };
                             }
                         }
                     }
                 });
                 return clients;
             }
-        }
+        };
     });

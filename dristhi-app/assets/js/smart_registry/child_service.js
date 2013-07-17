@@ -29,10 +29,10 @@ angular.module("smartRegistry.services")
                         if(!client.visits)
                             client.visits = {};
                         schedules.forEach(function (schedule) {
-                            SmartHelper.preProcessSchedule(client, schedule)
+                            SmartHelper.preProcessSchedule(client, schedule);
                         });
                     }
                 );
             }
-        }
+        };
     });

@@ -45,7 +45,7 @@ angular.module("smartRegistry.controllers")
             return !client.isHighPriority;
         };
         $scope.sortByECNumber = function (client) {
-            return parseInt(client.ec_number) || 0;
+            return parseInt(client.ec_number, 10) || 0;
         };
 
         $scope.defaultVillageOptions = {
@@ -167,9 +167,9 @@ angular.module("smartRegistry.controllers")
         };
         $scope.filterByFPMethodOther = function (client) {
             $scope.contentTemplate = fpMethodTemplate;
-            return client.fp_method === "lam"
-                || client.fp_method === "traditional"
-                || client.fp_method === "centchroman";
+            return client.fp_method === "lam" ||
+                client.fp_method === "traditional" ||
+                client.fp_method === "centchroman";
         };
         $scope.filterByNoFPMethod = function (client) {
             $scope.contentTemplate = hpECWithoutFPTemplate;
@@ -213,14 +213,14 @@ angular.module("smartRegistry.controllers")
 
         $scope.searchFilterString = "";
         $scope.searchCriteria = function (client, searchFilterString) {
-            return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
-                || (client.ec_number && client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
-                || (client.thayi && client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
+            return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0) ||
+                (client.ec_number && client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0) ||
+                (client.thayi && client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
         };
 
         $scope.getSideEffect = function (client) {
             // get the fp method
-            var fp_method = client['fp_method'];
+            var fp_method = client.fp_method;
             if (fp_method !== undefined) {
                 // get matching side effect
                 var option = $scope.ecsWithFPMethodServiceModeOptions.options.find(function (option) {

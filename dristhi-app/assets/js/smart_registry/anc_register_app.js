@@ -130,9 +130,9 @@ angular.module("smartRegistry.controllers")
         $scope.contentTemplate = $scope.ancServiceOptions.options[0].id;
 
         $scope.searchCriteria = function (client, searchFilterString) {
-            return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
-                || (client.ec_number && client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
-                || (client.thayi && client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
+            return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0) ||
+                (client.ec_number && client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0) ||
+                (client.thayi && client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
         };
 
         $scope.changeContentBasedOnServiceMode = function (client, serviceModeOptionId) {
@@ -156,9 +156,9 @@ angular.module("smartRegistry.controllers")
 
         $scope.sumIFATablets = function (ifaData) {
             var numTablets = 0;
-            if (ifaData['IFA'] !== undefined) {
-                ifaData['IFA'].forEach(function (ifa) {
-                    numTablets += ifa.data['dose'] || 0;
+            if (ifaData.IFA !== undefined) {
+                ifaData.IFA.forEach(function (ifa) {
+                    numTablets += ifa.data.dose || 0;
                 });
             }
             return numTablets;

@@ -134,9 +134,9 @@ angular.module("smartRegistry.controllers")
         $scope.contentTemplate = $scope.pncServiceOptions.options[0].id;
 
         $scope.searchCriteria = function (client, searchFilterString) {
-            return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
-                || (client.ecNumber && client.ecNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
-                || (client.thayiCardNumber && client.thayiCardNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
+            return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0) ||
+                (client.ecNumber && client.ecNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0) ||
+                (client.thayiCardNumber && client.thayiCardNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
         };
 
         $scope.changeContentBasedOnServiceMode = function (client, serviceModeOptionId) {
@@ -173,7 +173,7 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.childsAge = function (client) {
-            return SmartHelper.childsAge(new Date(Date.parse(client.dob)), new Date())
+            return SmartHelper.childsAge(new Date(Date.parse(client.dob)), new Date());
         };
 
         $scope.openProfile = function (clientId) {

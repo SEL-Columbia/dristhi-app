@@ -39,12 +39,13 @@ angular.module("smartRegistry.services")
                 }
             },
             preProcessSchedule: function(client, schedule){
+                var i;
                 var visit = {};
                 var alertsForCurrentSchedule = client.alerts.filter(function (alert) {
                     return schedule.milestones.indexOf(alert.name) > -1;
                 });
 
-                for (var i = schedule.milestones.length - 1; i > -1; i--) {
+                for (i = schedule.milestones.length - 1; i > -1; i--) {
                     var milestone = schedule.milestones[i];
                     var milestone_alert = alertsForCurrentSchedule.find(function (schedule_alert) {
                         return schedule_alert.name === milestone;
@@ -70,7 +71,7 @@ angular.module("smartRegistry.services")
                 var servicesForCurrentSchedule = client.services_provided.filter(function (service_provided) {
                     return schedule.services.indexOf(service_provided.name) !== -1;
                 });
-                for (var i = schedule.services.length - 1; i > -1; i--) {
+                for (i = schedule.services.length - 1; i > -1; i--) {
                     var service_name = schedule.services[i];
                     var services_provided = servicesForCurrentSchedule.filter(function (service) {
                         return service.name === service_name;
@@ -129,5 +130,5 @@ angular.module("smartRegistry.services")
                 }
                 client.visits[schedule.name] = visit;
             }
-        }
+        };
     });

@@ -129,9 +129,9 @@ angular.module("smartRegistry.controllers")
         $scope.contentTemplate = $scope.pncServiceOptions.options[0].id;
 
         $scope.searchCriteria = function (client, searchFilterString) {
-            return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
-                || (client.ec_number && client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
-                || (client.thayi && client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
+            return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0) ||
+                (client.ec_number && client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0) ||
+                (client.thayi && client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
         };
 
         $scope.changeContentBasedOnServiceMode = function (client, serviceModeOptionId) {
@@ -164,7 +164,7 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.isPNCOutsideFirst7Days = function (service) {
-            return service['name'] === "PNC" && SmartHelper.daysBetween(
+            return service.name === "PNC" && SmartHelper.daysBetween(
                 new Date(Date.parse($scope.client.deliveryDate)), new Date(Date.parse(service.date))) > 7;
         };
 
@@ -196,15 +196,15 @@ angular.module("smartRegistry.controllers")
                     .enter()
                     .append('rect')
                     .attr('x', function (d) {
-                        return ((d.start - 1) * x_scale) + x_offset
+                        return ((d.start - 1) * x_scale) + x_offset;
                     })
                     .attr('y', y_offset - thickness / 2)
                     .attr('width', function (d) {
-                        return (d.end - d.start) * x_scale
+                        return (d.end - d.start) * x_scale;
                     })
                     .attr('height', thickness)
                     .attr('fill', function (d) {
-                        return d.type === 'expected' ? grey : color
+                        return d.type === 'expected' ? grey : color;
                     });
 
                 svg.selectAll('.ticks')
@@ -212,13 +212,13 @@ angular.module("smartRegistry.controllers")
                     .enter()
                     .append('rect')
                     .attr('x', function (d) {
-                        return ((d.day - 1) * x_scale) + x_offset
+                        return ((d.day - 1) * x_scale) + x_offset;
                     })
                     .attr('y', y_offset - tick_height / 2)
                     .attr('width', thickness_scaled)
                     .attr('height', tick_height)
                     .attr('fill', function (d) {
-                        return d.type === 'expected' ? grey : color
+                        return d.type === 'expected' ? grey : color;
                     });
 
                 svg.selectAll('.circles')
@@ -226,14 +226,14 @@ angular.module("smartRegistry.controllers")
                     .enter()
                     .append('circle')
                     .attr('cx', function (d) {
-                        return ((d.day - 1) * x_scale) + x_offset
+                        return ((d.day - 1) * x_scale) + x_offset;
                     })
                     .attr('cy', y_offset)
                     .attr('fill', function (d) {
-                        return d.type === 'actual' ? 'black' : (d.colored ? color : grey)
+                        return d.type === 'actual' ? 'black' : (d.colored ? color : grey);
                     })
                     .attr('r', function (d) {
-                        return d.type === 'expected' ? radius : radius_scaled
+                        return d.type === 'expected' ? radius : radius_scaled;
                     });
 
                 svg.selectAll('.statuses')
@@ -241,20 +241,20 @@ angular.module("smartRegistry.controllers")
                     .enter()
                     .append('text')
                     .text(function (d) {
-                        return d.status === 'missed' ? 'X' : 'V'
+                        return d.status === 'missed' ? 'X' : 'V';
                     })
                     .text(function (d) {
-                        return d.status === 'missed' ? '\uf00d' : '\uf00c'
+                        return d.status === 'missed' ? '\uf00d' : '\uf00c';
                     })
                     .style('font-family', 'FontAwesome')
                     .attr('x', function (d) {
-                        return (((d.day - 1) * x_scale) + x_offset) - text_width / 2
+                        return (((d.day - 1) * x_scale) + x_offset) - text_width / 2;
                     })
                     .attr('y', function (d) {
-                        return y_offset - radius * 1.5
+                        return y_offset - radius * 1.5;
                     })
                     .attr('fill', function (d) {
-                        return d.status === 'done' ? green : red
+                        return d.status === 'done' ? green : red;
                     });
 
                 svg.selectAll('.day_nos')
@@ -262,14 +262,14 @@ angular.module("smartRegistry.controllers")
                     .enter()
                     .append('text')
                     .text(function (d) {
-                        return d.day
+                        return d.day;
                     })
                     .attr('x', function (d) {
-                        return (((d.day - 1) * x_scale) + x_offset) - text_width / 3
+                        return (((d.day - 1) * x_scale) + x_offset) - text_width / 3;
                     })
                     .attr('y', (y_offset + radius) * 1.4)
                     .attr('fill', function (d) {
-                        return d.type === 'actual' ? 'black' : grey
+                        return d.type === 'actual' ? 'black' : grey;
                     });
             })(client.visits.first_7_days, g, active_color, colors.red, colors.yellow, colors.green, colors.grey);
         };

@@ -1,55 +1,57 @@
 angular.module("smartRegistry.services")
     .service('PNCService', function (SmartHelper) {
-        var calculateExpectedVisitDates = function(client) {
+        var calculateExpectedVisitDates = function (client) {
             var delivery_date = new Date(Date.parse(client.deliveryDate));
             var visit_days = [1, 3, 7];
 
             var expected_visit_days = [];
-            visit_days.forEach(function(offset){
+            visit_days.forEach(function (offset) {
                 // clone the date
                 var d = new Date(delivery_date.getTime());
                 d.setDate(d.getDate() + offset);
 
                 expected_visit_days.push({
                     day: offset,
-                    date: d.getUTCFullYear() + '-'
-                        + SmartHelper.zeroPad(d.getUTCMonth() + 1) + '-'
-                        + SmartHelper.zeroPad(d.getUTCDate())
+                    date: d.getUTCFullYear() + '-' +
+                        SmartHelper.zeroPad(d.getUTCMonth() + 1) + '-' +
+                        SmartHelper.zeroPad(d.getUTCDate())
                 });
             });
 
             return expected_visit_days;
         };
 
-        var getFirst7DaysVisits = function(delivery_date, services_provided) {
+        var getFirst7DaysVisits = function (delivery_date, services_provided) {
             /// determine the 7 day period end date
+            var first_7_days_services;
             var end_date = new Date(Date.parse(delivery_date));
             end_date.setDate(end_date.getDate() + 7);
 
             /// find PNC services with 7 day window
-            var valid_services = services_provided.filter(function(service){
+            var valid_services = services_provided.filter(function (service) {
                 return  service.name === "PNC" && Date.parse(service.date) <= end_date.getTime();
             });
 
-            if(valid_services.length > 0)
-            {
+            if (valid_services.length > 0) {
                 // filter out duplicates
                 var service_dates = [];
-                var first_7_days_services = [];
-                valid_services.forEach(function(service){
-                    if(!service_dates.some(function(d){return d === service.date})){
+                first_7_days_services = [];
+                valid_services.forEach(function (service) {
+                    if (!service_dates.some(function (d) {
+                        return d === service.date;
+                    })) {
                         service_dates.push(service.date);
                         first_7_days_services.push(service);
-                    };
+                    }
                 });
 
                 /// sort by service date ascending
-                var first_7_days_services = first_7_days_services.sort(function(a, b){
-                    return a.date < b.date?-1:1;
+                first_7_days_services = first_7_days_services.sort(function (a, b) {
+                    return a.date < b.date ? -1 : 1;
                 });
 
                 // determine the day within the 7 day window that the service falls on
-                first_7_days_services.forEach(function(service){
+                first_7_days_services.forEach(function (service) {
                     service.day = Math.floor((Date.parse(service.date) - Date.parse(delivery_date)) / 1000 / 60 / 60 / 24);
                 });
                 return first_7_days_services;
@@ -57,8 +59,7 @@ angular.module("smartRegistry.services")
             return [];
         };
 
-        var preProcessFirst7Days = function(client, expected_visits, current_date)
-        {
+        var preProcessFirst7Days = function (client, expected_visits, current_date) {
             var first_7_days_services = getFirst7DaysVisits(client.deliveryDate, client.services_provided);
 
             var delivery_date_ts = Date.parse(client.deliveryDate);
@@ -67,15 +68,14 @@ angular.module("smartRegistry.services")
             /// create circle data and create status icons (only on expected visits days if the visit was done)
             /// based on expected visits
             var circle_datas = [], status_datas = [];
-            expected_visits.forEach(function(expected_visit){
+            expected_visits.forEach(function (expected_visit) {
                 var expected_visit_ts = Date.parse(expected_visit.date);
                 var expected_visit_day = Math.floor((expected_visit_ts - delivery_date_ts) / 1000 / 60 / 60 / 24);
-                var num_visits = first_7_days_services.filter(function(visit){
+                var num_visits = first_7_days_services.filter(function (visit) {
                     return visit.day === expected_visit_day;
                 }).length;
                 /// check whether the visit date is beyond the current date in which case its always of type expected and color grey
-                if(expected_visit_day >= current_day)
-                {
+                if (expected_visit_day >= current_day) {
                     circle_datas.push({
                         day: expected_visit_day,
                         type: 'expected',
@@ -83,10 +83,8 @@ angular.module("smartRegistry.services")
                     });
                 }
                 /// check if its between delivery date and current date and there is no actual visit on said date
-                else if(expected_visit_day < current_day)
-                {
-                    if(num_visits === 0)
-                    {
+                else if (expected_visit_day < current_day) {
+                    if (num_visits === 0) {
                         circle_datas.push({
                             day: expected_visit_day,
                             type: 'expected',
@@ -100,8 +98,7 @@ angular.module("smartRegistry.services")
                             }
                         );
                     }
-                    else
-                    {
+                    else {
                         status_datas.push(
                             {
                                 day: expected_visit_day,
@@ -113,7 +110,7 @@ angular.module("smartRegistry.services")
             });
 
             /// create circle data based on actual data
-            first_7_days_services.forEach(function(actual_visit){
+            first_7_days_services.forEach(function (actual_visit) {
                 circle_datas.push({
                     day: actual_visit.day,
                     type: 'actual'
@@ -127,44 +124,44 @@ angular.module("smartRegistry.services")
             client.visits.first_7_days.active_color = 'yellow';
 
             var valid_expected_visit_days = expected_visits
-                .filter(function(d){
+                .filter(function (d) {
                     return d.day < current_day;
                 })
-                .map(function(d){
+                .map(function (d) {
                     return d.day;
                 });
 
             var valid_actual_visit_days = first_7_days_services
-                .map(function(d){
+                .map(function (d) {
                     return d.day;
                 });
 
-            if(first_7_days_services.length === 0 && current_day > 1)
-            {
+            if (first_7_days_services.length === 0 && current_day > 1) {
                 client.visits.first_7_days.active_color = 'red';
             }
-            else if(valid_expected_visit_days.every(function(d){return valid_actual_visit_days.indexOf(d) !== -1}))
-            {
+            else if (valid_expected_visit_days.every(function (d) {
+                return valid_actual_visit_days.indexOf(d) !== -1;
+            })) {
                 client.visits.first_7_days.active_color = 'green';
             }
 
             // create tick data, tick only exist where there are no circles and can only exist on days 2,4,5 and 6
-            var tick_days = [2,4,5,6].filter(function(d){
-                return circle_datas.filter(function(circle_data){return circle_data.day === d}).length === 0;
+            var tick_days = [2, 4, 5, 6].filter(function (d) {
+                return circle_datas.filter(function (circle_data) {
+                    return circle_data.day === d;
+                }).length === 0;
             });
 
             var tick_datas = [];
-            tick_days.forEach(function(tick_day){
+            tick_days.forEach(function (tick_day) {
                 /// check if its in the future (TODO: perhaps have a function that determines if we are beyond current date)
-                if(tick_day > current_day)
-                {
+                if (tick_day > current_day) {
                     tick_datas.push({
                         day: tick_day,
                         type: 'expected'
                     });
                 }
-                else
-                {
+                else {
                     tick_datas.push({
                         day: tick_day,
                         type: 'actual'
@@ -177,8 +174,7 @@ angular.module("smartRegistry.services")
             var lines_datas = [];
 
             /// check if we have an actual line from day 1 to current day
-            if(current_day > 1)
-            {
+            if (current_day > 1) {
                 lines_datas.push({
                     start: 1,
                     end: Math.min(7, current_day),
@@ -187,8 +183,7 @@ angular.module("smartRegistry.services")
             }
 
             /// check if we have an expected line from current_day to day 7
-            if(current_day < 7)
-            {
+            if (current_day < 7) {
                 lines_datas.push({
                     start: Math.max(1, current_day),
                     end: 7,
@@ -200,15 +195,15 @@ angular.module("smartRegistry.services")
 
             /// generate day nos - put a number wherever we have a visit and where we have an expected visit in the future
             var day_nos = circle_datas
-                .filter(function(d){
+                .filter(function (d) {
                     return d.type === 'actual' || d.day > current_day;
                 })
-                .map(function(d){
+                .map(function (d) {
                     return {
                         day: d.day,
-                        type:d.type
+                        type: d.type
                     };
-                })
+                });
 
             client.visits.first_7_days.day_nos = day_nos;
         };
@@ -221,9 +216,9 @@ angular.module("smartRegistry.services")
                 var current_date = new Date();
                 current_date.setHours(0, 0, 0, 0);
                 clients.forEach(function (client) {
-                        if(!client.visits)
+                        if (!client.visits)
                             client.visits = {};
-                        client.visits['first_7_days'] = {};
+                        client.visits.first_7_days = {};
 
                         // calculate expected visit data
                         var expected_visits = calculateExpectedVisitDates(client, current_date);
@@ -231,5 +226,5 @@ angular.module("smartRegistry.services")
                     }
                 );
             }
-        }
+        };
     });

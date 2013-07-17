@@ -64,15 +64,16 @@ angular.module("smartRegistry.controllers")
             var searchCondition = true;
             var villageCondition = true;
             var serviceModeCondition = true;
+            var handlerMethod;
             if ($scope.searchFilterString) {
                 searchCondition = $scope.searchCriteria(client, $scope.searchFilterString);
             }
             if ($scope.villageFilterOption.handler) {
-                var handlerMethod = $scope[$scope.villageFilterOption.handler];
+                handlerMethod = $scope[$scope.villageFilterOption.handler];
                 villageCondition = handlerMethod(client, $scope.villageFilterOption);
             }
             if ($scope.serviceModeOption.handler) {
-                var handlerMethod = $scope[$scope.serviceModeOption.handler];
+                handlerMethod = $scope[$scope.serviceModeOption.handler];
                 serviceModeCondition = handlerMethod(client, $scope.serviceModeOption.id);
             }
             return villageCondition && searchCondition && serviceModeCondition;
@@ -120,7 +121,7 @@ angular.module("smartRegistry.controllers")
         $scope.openFormWithFieldOverrides = function (formName, entityId, fields) {
             var fieldOverrides = {
                 fieldOverrides: fields
-            }
+            };
             $scope.formBridge.delegateToFormLaunchView(formName, entityId, JSON.stringify(fieldOverrides));
         };
 
@@ -140,10 +141,10 @@ angular.module("smartRegistry.controllers")
 
             var start_date = new Date(src_date.getTime());
             if (src_date.getDate() <= 25) {
-                start_date.setMonth(start_date.getMonth() - 1, 26)
+                start_date.setMonth(start_date.getMonth() - 1, 26);
             }
             else {
-                start_date.setMonth(start_date.getMonth(), 26)
+                start_date.setMonth(start_date.getMonth(), 26);
             }
             return start_date;
         };

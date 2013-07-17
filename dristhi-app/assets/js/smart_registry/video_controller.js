@@ -155,6 +155,6 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.videoClicked = function (videoName) {
-            $scope.videosBridge.play(videoName)
+            $scope.videosBridge.play(videoName);
         };
     }]);
