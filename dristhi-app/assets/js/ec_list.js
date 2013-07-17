@@ -129,7 +129,7 @@ function FakeECListContext() {
                         wifeName: "Wife 4",
                         husbandName: "Husband 4",
                         ecNumber: "EC Number 4",
-                        villageName: "chikkabheriya",
+                        villageName: "bherya",
                         isHighPriority: false,
                         hasTodos: true,
                         thayiCardNumber: "12345"
