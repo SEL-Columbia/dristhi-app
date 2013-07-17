@@ -1,5 +1,4 @@
 <form class="jr" autocomplete="off" id="Child_Close_EngKan">
-    <?xml version="1.0"?>
     <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Child Close</h3>
@@ -198,11 +197,6 @@
                 <input autocomplete="off" type="radio" name="/Child_Close_EngKan/confirm_child_close" value="yes"
                        required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Child_Close_EngKan/confirm_child_close" value="no"
-                       required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
             </label>
         </fieldset>
     </fieldset>
