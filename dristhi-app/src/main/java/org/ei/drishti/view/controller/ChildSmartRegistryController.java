@@ -105,8 +105,4 @@ public class ChildSmartRegistryController {
             }
         });
     }
-
-    public String villages() {
-        throw new NotImplementedException();
-    }
 }
