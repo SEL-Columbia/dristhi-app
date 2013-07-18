@@ -182,8 +182,8 @@ public class ChildService {
     public void updateVitaminAProvided(FormSubmission submission) {
         serviceProvidedService.add(
                 ServiceProvided.forVitaminAProvided(submission.entityId(),
-                        submission.getFieldValue(AllConstants.VitaminAFields.VITAMIN_A_DOSE),
                         submission.getFieldValue(AllConstants.VitaminAFields.VITAMIN_A_DATE),
+                        submission.getFieldValue(AllConstants.VitaminAFields.VITAMIN_A_DOSE),
                         submission.getFieldValue(AllConstants.VitaminAFields.VITAMIN_A_PLACE)));
     }
 }

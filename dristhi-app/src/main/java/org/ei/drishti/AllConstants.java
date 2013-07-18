@@ -42,29 +42,7 @@ public class AllConstants {
     public static final String FORM_SUBMISSION_ROUTER = "formSubmissionRouter";
 
     public static final String REPOSITORY = "formDataRepositoryContext";
-    public static final String EC_REGISTRATION_FORM_NAME = "ec_registration";
-    public static final String FP_COMPLICATIONS_FORM_NAME = "fp_complications";
-    public static final String FP_CHANGE_FORM_NAME = "fp_change";
-    public static final String RENEW_FP_PRODUCT_FORM_NAME = "renew_fp_product";
-    public static final String EC_CLOSE_FORM_NAME = "ec_close";
-    public static final String ANC_REGISTRATION_FORM_NAME = "anc_registration";
-    public static final String ANC_REGISTRATION_OA_FORM_NAME = "anc_registration_oa";
-    public static final String ANC_VISIT_FORM_NAME = "anc_visit";
-    public static final String ANC_CLOSE_FORM_NAME = "anc_close";
-    public static final String TT_BOOSTER_FORM_NAME = "tt_booster";
-    public static final String TT_1_FORM_NAME = "tt_1";
-    public static final String TT_2_FORM_NAME = "tt_2";
-    public static final String IFA_FORM_NAME = "ifa";
-    public static final String HB_TEST_FORM_NAME = "hb_test";
-    public static final String DELIVERY_OUTCOME_TEST_FORM_NAME = "delivery_outcome";
-    public static final String PNC_REGISTRATION_OA_FORM_NAME = "pnc_registration_oa";
-    public static final String PNC_CLOSE_FORM_NAME = "pnc_close";
-    public static final String PNC_VISIT_FORM_NAME = "pnc_visit";
-    public static final String CHILD_IMMUNIZATIONS_FORM_NAME = "child_immunizations";
-    public static final String CHILD_REGISTRATION_EC_FORM_NAME = "child_registration_ec";
-    public static final String CHILD_CLOSE_FORM_NAME = "child_close";
-    public static final String CHILD_ILLNESS_FORM_NAME = "child_illness";
-    public static final String VITAMIN_A_FORM_NAME = "vitamin_a";
+
     public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
     public static final String NEW_FP_METHOD_FIELD_NAME = "newMethod";
     public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME = "familyPlanningMethodChangeDate";
@@ -78,6 +56,32 @@ public class AllConstants {
     public static final String DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH = "../../img/icons/child-girlinfant@3x.png";
     public static final String DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH = "../../img/icons/child-girlinfant@3x.png";
     public static final String FEMALE_GENDER = "female";
+
+    public class FormNames {
+        public static final String EC_REGISTRATION = "ec_registration";
+        public static final String FP_COMPLICATIONS = "fp_complications";
+        public static final String FP_CHANGE = "fp_change";
+        public static final String RENEW_FP_PRODUCT = "renew_fp_product";
+        public static final String EC_CLOSE = "ec_close";
+        public static final String ANC_REGISTRATION = "anc_registration";
+        public static final String ANC_REGISTRATION_OA = "anc_registration_oa";
+        public static final String ANC_VISIT = "anc_visit";
+        public static final String ANC_CLOSE = "anc_close";
+        public static final String TT_BOOSTER = "tt_booster";
+        public static final String TT_1 = "tt_1";
+        public static final String TT_2 = "tt_2";
+        public static final String IFA = "ifa";
+        public static final String HB_TEST = "hb_test";
+        public static final String DELIVERY_OUTCOME = "delivery_outcome";
+        public static final String PNC_REGISTRATION_OA = "pnc_registration_oa";
+        public static final String PNC_CLOSE = "pnc_close";
+        public static final String PNC_VISIT = "pnc_visit";
+        public static final String CHILD_IMMUNIZATIONS = "child_immunizations";
+        public static final String CHILD_REGISTRATION_EC = "child_registration_ec";
+        public static final String CHILD_CLOSE = "child_close";
+        public static final String CHILD_ILLNESS = "child_illness";
+        public static final String VITAMIN_A = "vitamin_a";
+    }
 
     public class ANCCloseFields {
         public static final String DEATH_OF_WOMAN_FIELD_VALUE = "death_of_woman";
