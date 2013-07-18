@@ -20,7 +20,7 @@ import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
 
-public class FPSmartRegistryController {
+public class FPSmartRegisterController {
     public static final String OCP_REFILL_ALERT_NAME = "OCP Refill";
     public static final String CONDOM_REFILL_ALERT_NAME = "Condom Refill";
     public static final String DMPA_INJECTABLE_REFILL_ALERT_NAME = "DMPA Injectable Refill";
@@ -41,7 +41,7 @@ public class FPSmartRegistryController {
     private Cache<String> cache;
     private final AlertService alertService;
 
-    public FPSmartRegistryController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AlertService alertService, Cache<String> cache) {
+    public FPSmartRegisterController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AlertService alertService, Cache<String> cache) {
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.alertService = alertService;

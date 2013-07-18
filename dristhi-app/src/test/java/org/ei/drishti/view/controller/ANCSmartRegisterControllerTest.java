@@ -35,7 +35,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
-public class ANCSmartRegistryControllerTest {
+public class ANCSmartRegisterControllerTest {
     public static final String[] ANC_ALERTS = new String[]{
             "ANC 1",
             "ANC 2",
@@ -71,14 +71,14 @@ public class ANCSmartRegistryControllerTest {
     @Mock
     private ServiceProvidedService sericeProvidedService;
 
-    private ANCSmartRegistryController controller;
+    private ANCSmartRegisterController controller;
     private Map<String, String> emptyMap;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
         emptyMap = Collections.emptyMap();
-        controller = new ANCSmartRegistryController(sericeProvidedService, alertService, allBeneficiaries, new Cache<String>());
+        controller = new ANCSmartRegisterController(sericeProvidedService, alertService, allBeneficiaries, new Cache<String>());
     }
 
     @Test

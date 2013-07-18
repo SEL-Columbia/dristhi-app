@@ -32,7 +32,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
-public class PNCSmartRegistryControllerTest {
+public class PNCSmartRegisterControllerTest {
     public static final String[] PNC_ALERTS = new String[]{
             "PNC 1"
     };
@@ -48,14 +48,14 @@ public class PNCSmartRegistryControllerTest {
     @Mock
     private ServiceProvidedService serviceProvidedService;
 
-    private PNCSmartRegistryController controller;
+    private PNCSmartRegisterController controller;
     private Map<String, String> emptyMap;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
         emptyMap = Collections.emptyMap();
-        controller = new PNCSmartRegistryController(serviceProvidedService, alertService, allEligibleCouples, allBeneficiaries, new Cache<String>());
+        controller = new PNCSmartRegisterController(serviceProvidedService, alertService, allEligibleCouples, allBeneficiaries, new Cache<String>());
     }
 
     @Test

@@ -3,12 +3,10 @@ package org.ei.drishti.view.controller;
 import android.app.Activity;
 import android.content.Intent;
 import com.google.gson.Gson;
-import org.ei.drishti.AllConstants;
 import org.ei.drishti.service.ANMService;
 import org.ei.drishti.view.activity.*;
 import org.ei.drishti.view.contract.HomeContext;
 
-import static org.ei.drishti.AllConstants.ENTITY_ID;
 import static org.ei.drishti.view.controller.ProfileNavigationController.*;
 
 public class NavigationController {
@@ -37,19 +35,19 @@ public class NavigationController {
     }
 
     public void startFPSmartRegistry() {
-        activity.startActivity(new Intent(activity, FPSmartRegistryActivity.class));
+        activity.startActivity(new Intent(activity, FPSmartRegisterActivity.class));
     }
 
     public void startANCSmartRegistry() {
-        activity.startActivity(new Intent(activity, ANCSmartRegistryActivity.class));
+        activity.startActivity(new Intent(activity, ANCSmartRegisterActivity.class));
     }
 
     public void startPNCSmartRegistry() {
-        activity.startActivity(new Intent(activity, PNCSmartRegistryActivity.class));
+        activity.startActivity(new Intent(activity, PNCSmartRegisterActivity.class));
     }
 
     public void startChildSmartRegistry() {
-        activity.startActivity(new Intent(activity, ChildSmartRegistryActivity.class));
+        activity.startActivity(new Intent(activity, ChildSmartRegisterActivity.class));
     }
 
     public String get() {

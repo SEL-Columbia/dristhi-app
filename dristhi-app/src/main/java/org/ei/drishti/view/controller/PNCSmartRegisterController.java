@@ -22,7 +22,7 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
 import static org.ei.drishti.domain.ServiceProvided.PNC_SERVICE_PROVIDED_NAME;
 
-public class PNCSmartRegistryController {
+public class PNCSmartRegisterController {
     private static final String PNC_1_ALERT_NAME = "PNC 1";
 
     private static final String PNC_CLIENTS_LIST = "PNCClientList";
@@ -32,7 +32,7 @@ public class PNCSmartRegistryController {
     private Cache<String> cache;
     private final ServiceProvidedService serviceProvidedService;
 
-    public PNCSmartRegistryController(ServiceProvidedService serviceProvidedService, AlertService alertService,
+    public PNCSmartRegisterController(ServiceProvidedService serviceProvidedService, AlertService alertService,
                                       AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries,
                                       Cache<String> cache) {
         this.allEligibleCouples = allEligibleCouples;

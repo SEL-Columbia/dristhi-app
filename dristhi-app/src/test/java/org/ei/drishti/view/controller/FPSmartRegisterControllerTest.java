@@ -12,7 +12,6 @@ import org.ei.drishti.service.AlertService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.view.contract.AlertDTO;
 import org.ei.drishti.view.contract.FPClient;
-import org.ei.drishti.view.contract.Village;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +31,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
-public class FPSmartRegistryControllerTest {
+public class FPSmartRegisterControllerTest {
     public static final String[] EC_ALERTS = new String[]{
             "OCP Refill",
             "Condom Refill",
@@ -54,14 +53,14 @@ public class FPSmartRegistryControllerTest {
     @Mock
     private AlertService alertService;
 
-    private FPSmartRegistryController controller;
+    private FPSmartRegisterController controller;
     private Map<String, String> emptyDetails;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
         emptyDetails = Collections.emptyMap();
-        controller = new FPSmartRegistryController(allEligibleCouples, allBeneficiaries, alertService, new Cache<String>());
+        controller = new FPSmartRegisterController(allEligibleCouples, allBeneficiaries, alertService, new Cache<String>());
     }
 
     @Test

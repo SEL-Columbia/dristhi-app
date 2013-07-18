@@ -117,19 +117,19 @@
                 android:theme="@android:style/Theme.Holo.NoActionBar"
                 android:screenOrientation="landscape"/>
         <activity
-                android:name=".view.activity.FPSmartRegistryActivity"
+                android:name=".view.activity.FPSmartRegisterActivity"
                 android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
                 android:screenOrientation="landscape"/>
         <activity
-                android:name=".view.activity.ANCSmartRegistryActivity"
+                android:name=".view.activity.ANCSmartRegisterActivity"
                 android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
                 android:screenOrientation="landscape"/>
         <activity
-                android:name=".view.activity.PNCSmartRegistryActivity"
+                android:name=".view.activity.PNCSmartRegisterActivity"
                 android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
                 android:screenOrientation="landscape"/>
         <activity
-                android:name=".view.activity.ChildSmartRegistryActivity"
+                android:name=".view.activity.ChildSmartRegisterActivity"
                 android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
                 android:screenOrientation="landscape"/>
         <activity

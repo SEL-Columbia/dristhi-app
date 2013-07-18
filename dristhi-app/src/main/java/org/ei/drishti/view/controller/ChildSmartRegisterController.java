@@ -23,14 +23,14 @@ import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
-public class ChildSmartRegistryController {
+public class ChildSmartRegisterController {
     private static final String CHILD_CLIENTS_LIST_CACHE_ENTRY_NAME = "ChildClientList";
     private final ServiceProvidedService serviceProvidedService;
     private final AlertService alertService;
     private final AllBeneficiaries allBeneficiaries;
     private final Cache<String> cache;
 
-    public ChildSmartRegistryController(ServiceProvidedService serviceProvidedService, AlertService alertService,
+    public ChildSmartRegisterController(ServiceProvidedService serviceProvidedService, AlertService alertService,
                                         AllBeneficiaries allBeneficiaries, Cache<String> cache) {
         this.serviceProvidedService = serviceProvidedService;
         this.alertService = alertService;

@@ -25,7 +25,7 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
 import static org.ei.drishti.domain.ServiceProvided.*;
 
-public class ANCSmartRegistryController {
+public class ANCSmartRegisterController {
     private static final String ANC_1_ALERT_NAME = "ANC 1";
     private static final String ANC_2_ALERT_NAME = "ANC 2";
     private static final String ANC_3_ALERT_NAME = "ANC 3";
@@ -46,7 +46,7 @@ public class ANCSmartRegistryController {
     private Cache<String> cache;
     private final ServiceProvidedService serviceProvidedService;
 
-    public ANCSmartRegistryController(ServiceProvidedService serviceProvidedService, AlertService alertService,
+    public ANCSmartRegisterController(ServiceProvidedService serviceProvidedService, AlertService alertService,
                                       AllBeneficiaries allBeneficiaries,
                                       Cache<String> cache) {
         this.allBeneficiaries = allBeneficiaries;

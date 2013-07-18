@@ -30,7 +30,7 @@ import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
-public class ChildSmartRegistryControllerTest {
+public class ChildSmartRegisterControllerTest {
     public static final String[] CHILD_ALERTS = new String[]{
             "bcg",
             "measles", "measlesbooster",
@@ -62,12 +62,12 @@ public class ChildSmartRegistryControllerTest {
     @Mock
     private ServiceProvidedService serviceProvidedService;
 
-    private ChildSmartRegistryController controller;
+    private ChildSmartRegisterController controller;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new ChildSmartRegistryController(serviceProvidedService, alertService, allBeneficiaries, new Cache<String>());
+        controller = new ChildSmartRegisterController(serviceProvidedService, alertService, allBeneficiaries, new Cache<String>());
     }
 
     @Test
