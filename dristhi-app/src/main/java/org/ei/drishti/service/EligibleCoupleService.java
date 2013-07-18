@@ -1,5 +1,6 @@
 package org.ei.drishti.service;
 
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.repository.AllBeneficiaries;
@@ -12,7 +13,6 @@ import static org.ei.drishti.domain.TimelineEvent.forChangeOfFPMethod;
 import static org.ei.drishti.util.EasyMap.mapOf;
 
 public class EligibleCoupleService {
-    private static final String SUBMISSION_DATE_FORM_FIELD_NAME = "submissionDate";
     private final AllEligibleCouples allEligibleCouples;
     private final AllTimelineEvents allTimelineEvents;
     private final AllBeneficiaries allBeneficiaries;
@@ -24,8 +24,8 @@ public class EligibleCoupleService {
     }
 
     public void register(FormSubmission submission) {
-        if (isNotBlank(submission.getFieldValue(SUBMISSION_DATE_FORM_FIELD_NAME))) {
-            allTimelineEvents.add(TimelineEvent.forECRegistered(submission.entityId(), submission.getFieldValue(SUBMISSION_DATE_FORM_FIELD_NAME)));
+        if (isNotBlank(submission.getFieldValue(AllConstants.CommonFormFields.SUBMISSION_DATE))) {
+            allTimelineEvents.add(TimelineEvent.forECRegistered(submission.entityId(), submission.getFieldValue(AllConstants.CommonFormFields.SUBMISSION_DATE)));
         }
     }
 

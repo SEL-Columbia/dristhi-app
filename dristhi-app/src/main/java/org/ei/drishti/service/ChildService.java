@@ -12,6 +12,7 @@ import java.util.*;
 
 import static org.ei.drishti.AllConstants.ChildIllnessFields.*;
 import static org.ei.drishti.AllConstants.ChildRegistrationECFields.*;
+import static org.ei.drishti.AllConstants.CommonFormFields.SUBMISSION_DATE;
 import static org.ei.drishti.AllConstants.Immunizations.*;
 import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.domain.TimelineEvent.*;
@@ -161,7 +162,7 @@ public class ChildService {
     public void updateIllnessStatus(FormSubmission submission) {
         serviceProvidedService.add(
                 ServiceProvided.forChildIllnessVisit(submission.entityId(),
-                        submission.getFieldValue("submissionDate"),
+                        submission.getFieldValue(SUBMISSION_DATE),
                         createChildIllnessMap(submission))
         );
     }
@@ -181,8 +182,8 @@ public class ChildService {
     public void updateVitaminAProvided(FormSubmission submission) {
         serviceProvidedService.add(
                 ServiceProvided.forVitaminAProvided(submission.entityId(),
-                        submission.getFieldValue(AllConstants.VitaminAFields.VITAMIN_A_DATE),
                         submission.getFieldValue(AllConstants.VitaminAFields.VITAMIN_A_DOSE),
+                        submission.getFieldValue(AllConstants.VitaminAFields.VITAMIN_A_DATE),
                         submission.getFieldValue(AllConstants.VitaminAFields.VITAMIN_A_PLACE)));
     }
 }

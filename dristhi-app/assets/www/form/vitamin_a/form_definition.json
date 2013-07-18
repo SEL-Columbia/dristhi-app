@@ -9,15 +9,16 @@
             },
             {
                 "name": "vitaminADose",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Vitamin_A_EngKan/vit_a_dose"
             },
             {
                 "name": "vitaminADate",
-                "bind": "/model/instance/Vitamin_A_EngKan/vit_a_dose"
+                "bind": "/model/instance/Vitamin_A_EngKan/vit_a_date"
             },
             {
                 "name": "vitaminAPlace",
-                "bind": "/model/instance/Vitamin_A_EngKan/vit_a_dose"
+                "bind": "/model/instance/Vitamin_A_EngKan/vit_a_place"
             },
             {
                 "name": "submissionDate",

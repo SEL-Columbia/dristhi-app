@@ -4,11 +4,12 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.mapper.TTMapper;
-import org.ei.drishti.util.EasyMap;
 
 import java.util.Map;
 
 import static org.ei.drishti.AllConstants.ANCVisitFields.*;
+import static org.ei.drishti.AllConstants.VitaminAFields.VITAMIN_A_DOSE;
+import static org.ei.drishti.AllConstants.VitaminAFields.VITAMIN_A_PLACE;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 
@@ -81,6 +82,11 @@ public class ServiceProvided {
         return new ServiceProvided(entityId, CHILD_ILLNESS_SERVICE_PROVIDED_NAME, date, childIllnessMap);
     }
 
+    public static ServiceProvided forVitaminAProvided(String entityId, String date, String vitaminADose, String vitaminAPlace) {
+        return new ServiceProvided(entityId, VITAMIN_A_SERVICE_PROVIDED_NAME, date,
+                create(VITAMIN_A_DOSE, vitaminADose).put(VITAMIN_A_PLACE, vitaminAPlace).map());
+    }
+
     public String name() {
         return name;
     }
@@ -110,10 +116,5 @@ public class ServiceProvided {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-    }
-
-    public static ServiceProvided forVitaminAProvided(String entityId, String date, String vitaminADose, String vitaminAPlace) {
-        return new ServiceProvided(entityId, VITAMIN_A_SERVICE_PROVIDED_NAME, date,
-                create("vitaminADose", vitaminADose).put("vitaminAPlace", vitaminAPlace).map());
     }
 }

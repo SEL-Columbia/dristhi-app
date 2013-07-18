@@ -225,4 +225,8 @@ public class AllConstants {
         public static final String VITAMIN_A_DATE = "vitaminADate";
         public static final String VITAMIN_A_PLACE = "vitaminAPlace";
     }
+
+    public class CommonFormFields {
+        public static final String SUBMISSION_DATE = "submissionDate";
+    }
 }
