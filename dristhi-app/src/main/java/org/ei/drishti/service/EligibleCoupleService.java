@@ -33,9 +33,9 @@ public class EligibleCoupleService {
     }
 
     public void fpChange(FormSubmission submission) {
-        allTimelineEvents.add(forChangeOfFPMethod(submission.entityId(), submission.getFieldValue(CURRENT_FP_METHOD_FIELD_NAME),
-                submission.getFieldValue(NEW_FP_METHOD_FIELD_NAME), submission.getFieldValue(FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME)));
-        allEligibleCouples.mergeDetails(submission.entityId(), mapOf(CURRENT_FP_METHOD_FIELD_NAME, submission.getFieldValue(NEW_FP_METHOD_FIELD_NAME)));
+        allTimelineEvents.add(forChangeOfFPMethod(submission.entityId(), submission.getFieldValue(AllConstants.ECRegistrationFields.CURRENT_FP_METHOD),
+                submission.getFieldValue(NEW_FP_METHOD_FIELD_NAME), submission.getFieldValue(AllConstants.ECRegistrationFields.FAMILY_PLANNING_METHOD_CHANGE_DATE)));
+        allEligibleCouples.mergeDetails(submission.entityId(), mapOf(AllConstants.ECRegistrationFields.CURRENT_FP_METHOD, submission.getFieldValue(NEW_FP_METHOD_FIELD_NAME)));
     }
 
     public void renewFPProduct(FormSubmission submission) {

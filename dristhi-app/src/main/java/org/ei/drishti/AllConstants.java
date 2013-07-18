@@ -43,9 +43,7 @@ public class AllConstants {
 
     public static final String REPOSITORY = "formDataRepositoryContext";
 
-    public static final String CURRENT_FP_METHOD_FIELD_NAME = "currentMethod";
     public static final String NEW_FP_METHOD_FIELD_NAME = "newMethod";
-    public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE_FIELD_NAME = "familyPlanningMethodChangeDate";
 
     public static final String ENTITY_ID = "entityId";
     public static final int FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE = 112;
@@ -81,6 +79,25 @@ public class AllConstants {
         public static final String CHILD_CLOSE = "child_close";
         public static final String CHILD_ILLNESS = "child_illness";
         public static final String VITAMIN_A = "vitamin_a";
+    }
+
+    public class ECRegistrationFields {
+        public static final String CURRENT_FP_METHOD = "currentMethod";
+        public static final String WOMAN_DOB = "womanDOB";
+        public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE = "familyPlanningMethodChangeDate";
+        public static final String IUD_PLACE = "iudPlace";
+        public static final String IUD_PERSON = "iudPerson";
+        public static final String NUMBER_OF_CONDOMS_SUPPLIED = "numberOfCondomsSupplied";
+        public static final String NUMBER_OF_CENTCHROMAN_PILLS_DELIVERED = "numberOfCentchromanPillsDelivered";
+        public static final String NUMBER_OF_OCP_DELIVERED = "numberOfOCPDelivered";
+        public static final String CASTE = "caste";
+        public static final String ECONOMIC_STATUS = "economicStatus";
+        public static final String NUMBER_OF_PREGNANCIES = "numberOfPregnancies";
+        public static final String PARITY = "parity";
+        public static final String NUMBER_OF_LIVING_CHILDREN = "numberOfLivingChildren";
+        public static final String NUMBER_OF_STILL_BIRTHS = "numberOfStillBirths";
+        public static final String NUMBER_OF_ABORTIONS = "numberOfAbortions";
+        public static final String HIGH_PRIORITY_REASON = "highPriorityReason";
     }
 
     public class ANCCloseFields {

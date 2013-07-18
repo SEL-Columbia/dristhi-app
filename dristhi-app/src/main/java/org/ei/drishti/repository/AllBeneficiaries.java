@@ -4,6 +4,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class AllBeneficiaries {
 
     public Mother findMother(String caseId) {
         List<Mother> mothers = motherRepository.findByCaseIds(caseId);
-        if(mothers.isEmpty())
+        if (mothers.isEmpty())
             return null;
         return mothers.get(0);
     }
@@ -110,5 +111,9 @@ public class AllBeneficiaries {
 
     public List<Child> allChildrenWithMotherAndEC() {
         return childRepository.allChildrenWithMotherAndEC();
+    }
+
+    public List<Child> findAllChildrenByECId(String ecId) {
+        throw new NotImplementedException();
     }
 }

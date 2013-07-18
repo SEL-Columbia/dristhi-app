@@ -185,7 +185,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     private long getECsUsingFPMethod(List<Map<String, String>> detailsList) {
         long fpCount = 0;
         for (Map<String, String> details : detailsList) {
-            if (!(isBlank(details.get(AllConstants.CURRENT_FP_METHOD_FIELD_NAME)) || "none".equalsIgnoreCase(details.get(AllConstants.CURRENT_FP_METHOD_FIELD_NAME)))) {
+            if (!(isBlank(details.get(AllConstants.ECRegistrationFields.CURRENT_FP_METHOD)) || "none".equalsIgnoreCase(details.get(AllConstants.ECRegistrationFields.CURRENT_FP_METHOD)))) {
                 fpCount++;
             }
         }

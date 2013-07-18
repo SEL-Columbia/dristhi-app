@@ -32,7 +32,7 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         repository = new FormDataRepository();
         AlertRepository alertRepository = new AlertRepository();
         TimelineEventRepository timelineEventRepository = new TimelineEventRepository();
-        ChildRepository childRepository = new ChildRepository(timelineEventRepository, alertRepository);
+        ChildRepository childRepository = new ChildRepository();
         motherRepository = new MotherRepository();
         eligibleCoupleRepository = new EligibleCoupleRepository();
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());

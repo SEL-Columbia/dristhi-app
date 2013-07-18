@@ -1,12 +1,16 @@
 package org.ei.drishti.view.controller;
 
+import com.google.common.collect.Iterables;
 import com.google.gson.Gson;
+import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
+import org.ei.drishti.view.contract.ECChildClient;
 import org.ei.drishti.view.contract.ECClient;
+import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -15,6 +19,7 @@ import java.util.List;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
+import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
 
 public class ECSmartRegisterController {
     private final AllEligibleCouples allEligibleCouples;
@@ -36,32 +41,50 @@ public class ECSmartRegisterController {
                 List<ECClient> ecClients = new ArrayList<ECClient>();
 
                 for (EligibleCouple ec : ecs) {
-//                    Mother mother = allBeneficiaries.findMotherByECCaseId(ec.caseId());
                     String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
                     ECClient ecClient = new ECClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), ec.ecNumber())
-                            .withDateOfBirth(ec.getDetail("womanDOB"))
-                            .withFPMethod(ec.getDetail("currentMethod"))
-                            .withFamilyPlanningMethodChangeDate(ec.getDetail("familyPlanningMethodChangeDate"))
-                            .withIUDPlace(ec.getDetail("iudPlace"))
-                            .withIUDPerson(ec.getDetail("iudPerson"))
-                            .withNumberOfCondomsSupplied(ec.getDetail("numberOfCondomsSupplied"))
-                            .withNumberOfCentchromanPillsDelivered(ec.getDetail("numberOfCentchromanPillsDelivered"))
-                            .withNumberOfOCPDelivered(ec.getDetail("numberOfOCPDelivered"))
-                            .withCaste(ec.getDetail("caste"))
-                            .withEconomicStatus(ec.getDetail("economicStatus"))
-                            .withNumberOfPregnancies(ec.getDetail("numberOfPregnancies"))
-                            .withParity(ec.getDetail("parity"))
-                            .withNumberOfLivingChildren(ec.getDetail("numberOfLivingChildren"))
-                            .withNumberOfStillBirths(ec.getDetail("numberOfStillBirths"))
-                            .withNumberOfAbortions(ec.getDetail("numberOfAbortions"))
+                            .withDateOfBirth(ec.getDetail(WOMAN_DOB))
+                            .withFPMethod(ec.getDetail(CURRENT_FP_METHOD))
+                            .withFamilyPlanningMethodChangeDate(ec.getDetail(FAMILY_PLANNING_METHOD_CHANGE_DATE))
+                            .withIUDPlace(ec.getDetail(IUD_PLACE))
+                            .withIUDPerson(ec.getDetail(IUD_PERSON))
+                            .withNumberOfCondomsSupplied(ec.getDetail(NUMBER_OF_CONDOMS_SUPPLIED))
+                            .withNumberOfCentchromanPillsDelivered(ec.getDetail(NUMBER_OF_CENTCHROMAN_PILLS_DELIVERED))
+                            .withNumberOfOCPDelivered(ec.getDetail(NUMBER_OF_OCP_DELIVERED))
+                            .withCaste(ec.getDetail(CASTE))
+                            .withEconomicStatus(ec.getDetail(ECONOMIC_STATUS))
+                            .withNumberOfPregnancies(ec.getDetail(NUMBER_OF_PREGNANCIES))
+                            .withParity(ec.getDetail(PARITY))
+                            .withNumberOfLivingChildren(ec.getDetail(NUMBER_OF_LIVING_CHILDREN))
+                            .withNumberOfStillBirths(ec.getDetail(NUMBER_OF_STILL_BIRTHS))
+                            .withNumberOfAbortions(ec.getDetail(NUMBER_OF_ABORTIONS))
                             .withIsHighPriority(ec.isHighPriority())
                             .withPhotoPath(photoPath)
-                            .withHighPriorityReason(ec.getDetail("highPriorityReason"))
+                            .withHighPriorityReason(ec.getDetail(HIGH_PRIORITY_REASON))
                             .withIsOutOfArea(ec.isOutOfArea());
+                    updateChildrenInformation(ecClient);
                     ecClients.add(ecClient);
                 }
                 sortByName(ecClients);
                 return new Gson().toJson(ecClients);
+            }
+        });
+    }
+
+    private void updateChildrenInformation(ECClient ecClient) {
+        List<Child> children = allBeneficiaries.findAllChildrenByECId(ecClient.entityId());
+        sortByDateOfBirth(children);
+        Iterable<Child> youngestTwoChildren = Iterables.skip(children, children.size() < 2 ? 0 : children.size() - 2);
+        for (Child child : youngestTwoChildren) {
+            ecClient.addChild(new ECChildClient(child.caseId(), child.gender(), child.dateOfBirth()));
+        }
+    }
+
+    private void sortByDateOfBirth(List<Child> children) {
+        sort(children, new Comparator<Child>() {
+            @Override
+            public int compare(Child child, Child anotherChild) {
+                return LocalDate.parse(child.dateOfBirth()).compareTo(LocalDate.parse(anotherChild.dateOfBirth()));
             }
         });
     }

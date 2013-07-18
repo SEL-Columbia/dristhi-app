@@ -405,7 +405,7 @@ public class Context {
 
     private ChildRepository childRepository() {
         if (childRepository == null) {
-            childRepository = new ChildRepository(timelineEventRepository(), alertRepository());
+            childRepository = new ChildRepository();
         }
         return childRepository;
     }

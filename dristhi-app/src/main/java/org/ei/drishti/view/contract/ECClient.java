@@ -4,6 +4,9 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ECClient {
     private String entityId;
     private String entityIdToSavePhoto;
@@ -30,6 +33,7 @@ public class ECClient {
     private String numberOfOCPDelivered;
     private String highPriorityReason;
     private String locationStatus;
+    private List<ECChildClient> children;
 
     public ECClient(String entityId, String name, String husbandName, String village, String ecNumber) {
         this.entityId = entityId;
@@ -38,6 +42,7 @@ public class ECClient {
         this.husbandName = husbandName;
         this.village = village;
         this.ecNumber = ecNumber;
+        this.children = new ArrayList<ECChildClient>();
     }
 
     public String wifeName() {
@@ -138,6 +143,20 @@ public class ECClient {
     public ECClient withHighPriorityReason(String highPriorityReason) {
         this.highPriorityReason = highPriorityReason;
         return this;
+    }
+
+    public ECClient withChildren(List<ECChildClient> children) {
+        this.children = children;
+        return this;
+    }
+
+    public ECClient addChild(ECChildClient childClient) {
+        children.add(childClient);
+        return this;
+    }
+
+    public String entityId() {
+        return entityId;
     }
 
     @Override

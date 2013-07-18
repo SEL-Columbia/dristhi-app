@@ -3,10 +3,12 @@ package org.ei.drishti.view.controller;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.util.Cache;
+import org.ei.drishti.view.contract.ECChildClient;
 import org.ei.drishti.view.contract.ECClient;
 import org.junit.Before;
 import org.junit.Test;
@@ -113,5 +115,23 @@ public class ECSmartRegisterControllerTest {
         List<ECClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<ECClient>>() {
         }.getType());
         assertEquals(asList(expectedECClient), actualClients);
+    }
+
+    @Test
+    public void shouldAddYoungestTwoChildrenToECClient() throws Exception {
+        EligibleCouple ec1 = new EligibleCouple("entity id 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null, emptyDetails);
+        Child firstChild = new Child("child id 1", "mother id 1", "1234567", "2010-01-01", "female", emptyDetails);
+        Child secondChild = new Child("child id 2", "mother id 1", "1234568", "2011-01-01", "female", emptyDetails);
+        Child thirdChild = new Child("child id 3", "mother id 1", "1234569", "2012-01-01", "male", emptyDetails);
+        when(allEligibleCouples.all()).thenReturn(asList(ec1));
+        when(allBeneficiaries.findAllChildrenByECId("entity id 1")).thenReturn(asList(firstChild, secondChild, thirdChild));
+        ECClient expectedClient1 = createECClient("entity id 1", "Woman A", "Husband A", "Bherya", "EC Number 1")
+                .withChildren(asList(new ECChildClient("child id 2", "female", "2011-01-01"), new ECChildClient("child id 3", "male", "2012-01-01")));
+
+        String clients = controller.get();
+
+        List<ECClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<ECClient>>() {
+        }.getType());
+        assertEquals(asList(expectedClient1), actualClients);
     }
 }

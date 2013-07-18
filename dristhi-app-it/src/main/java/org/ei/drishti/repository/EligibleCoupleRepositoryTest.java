@@ -25,7 +25,7 @@ public class EligibleCoupleRepositoryTest extends AndroidTestCase {
     protected void setUp() throws Exception {
         alertRepository = new AlertRepository();
         timelineEventRepository = new TimelineEventRepository();
-        childRepository = new ChildRepository(timelineEventRepository, alertRepository);
+        childRepository = new ChildRepository();
         motherRepository = new MotherRepository();
         repository = new EligibleCoupleRepository();
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
