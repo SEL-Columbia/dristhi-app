@@ -1,8 +1,9 @@
-<button class="btn btn-primary btn-large btn-sr btn-visit-status"
-        ng-class="schedule.next.status || 'normal'"
+<button class="btn btn-sr btn-large btn-visit-status {{schedule.next.status}}"
+        ng-class="{'btn-primary': schedule.next, 'btn-done btn-new-form': !schedule.next}" || "
         ng-disabled="schedule.next.status == 'complete'">
-    <div class="done-icon large full-height" data-ng-class="{'right': schedule.next.status != 'complete'}">
-        <i data-ng-class="{'icon-ok green': schedule.next.status == 'complete',
+    <div ng-show="schedule.next" class="done-icon large full-height"
+         ng-class="{'right': schedule.next.status != 'complete'}">
+        <i ng-class="{'icon-ok green': schedule.next.status == 'complete',
             'icon-needle': schedule.next && schedule.next.status != 'complete' && useNeedle,
             'icon-dropper': schedule.next && schedule.next.status != 'complete' && useDropper}"></i>
     </div>
