@@ -11,10 +11,12 @@ angular.module('smartRegistry.directives', [])
             restrict: 'E',
             scope: {
                 schedule: '=srBind',
-                clickFn: '&ngClick'
+                clickFn: '&ngClick',
+                altClickFn: '&srClickAlt'
             },
             link: function(scope, elm, attrs) {
-                elm.bind('click', scope.clickFn);
+                scope.schedule_id = attrs.srBind.split(".")[2]
+                elm.bind('click', scope.schedule.next?scope.clickFn:scope.altClickFn);
             }
         }
     }]);

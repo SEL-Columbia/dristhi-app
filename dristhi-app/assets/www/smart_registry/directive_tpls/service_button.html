@@ -1,15 +1,17 @@
-<button ng-show="schedule.next"
-        class="btn btn-primary btn-large btn-sr btn-visit-status"
-        ng-class="schedule.next.status"
+<button class="btn btn-primary btn-large btn-sr btn-visit-status"
+        ng-class="schedule.next.status || 'normal'"
         ng-disabled="schedule.next.status == 'complete'">
     <div class="done-icon large full-height" data-ng-class="{'right': schedule.next.status != 'complete'}">
         <i data-ng-class="{'icon-ok green': schedule.next.status == 'complete', 'icon-needle': schedule.next.status != 'complete'}"></i>
     </div>
-    <span class="text-bold">{{schedule.next.name | friendlyName}}</span>
+    <span ng-show="schedule.next" class="text-bold">{{schedule.next.name | friendlyName}}</span>
+    <span ng-show="!schedule.next" class="text-bold">{{schedule_id | friendlyName}}</span>
     <br/>
-    <ng-switch on="schedule.next.status">
-        <span ng-switch-when="complete">On</span>
-        <span ng-switch-default>due</span>
-    </ng-switch>
-    <span>{{schedule.next.visit_date | date:"dd/MM"}}</span>
+    <div ng-show="schedule.next">
+        <ng-switch on="schedule.next.status">
+            <span ng-switch-when="complete">On</span>
+            <span ng-switch-default>due</span>
+        </ng-switch>
+        <span>{{schedule.next.visit_date | date:"dd/MM"}}</span>
+    </div>
 </button>

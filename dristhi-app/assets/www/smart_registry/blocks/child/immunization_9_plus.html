@@ -1,12 +1,14 @@
 <div class="span3 span-no-margin width-without-margins line-right span-content">
     <sr-service-button class="full-height" sr-bind="client.visits.measles"
-                       ng-click='openFormWithFieldOverrides("child_immunizations", client.entityId, "{\"immunizationsReceived\":\""+client.visits.measles.next.name+"\"}");'>
+                       ng-click='openFormWithFieldOverrides("child_immunizations", client.entityId, "{\"immunizationsReceived\":\""+client.visits.measles.next.name+"\"}");'
+                       sr-click-alt="openForm('child_immunizations', client.entityId)">
     </sr-service-button>
 </div>
 <div class="span3 span-no-margin width-without-margins line-right span-content">
     <div class="relative-positioning">
         <sr-service-button sr-bind="client.visits.opvbooster"
-                           ng-click='openFormWithFieldOverrides("child_immunizations", client.entityId, "{\"immunizationsReceived\":\""+client.visits.opvbooster.next.name+"\"}");'>
+                           ng-click='openFormWithFieldOverrides("child_immunizations", client.entityId, "{\"immunizationsReceived\":\""+client.visits.opvbooster.next.name+"\"}");'
+                           sr-click-alt="openForm('child_immunizations', client.entityId)">
         </sr-service-button>
         <span ng-show="client.visits.opv.previous" class="previous-alert">
         <i class="icon-ok green"></i>
@@ -18,7 +20,8 @@
 <div class="span3 span-no-margin width-without-margins line-right span-content">
     <div class="relative-positioning">
         <sr-service-button sr-bind="client.visits.dpt"
-                           ng-click='openFormWithFieldOverrides("child_immunizations", client.entityId, "{\"immunizationsReceived\":\""+client.visits.dpt.next.name+"\"}");'>
+                           ng-click='openFormWithFieldOverrides("child_immunizations", client.entityId, "{\"immunizationsReceived\":\""+client.visits.dpt.next.name+"\"}");'
+                           sr-click-alt="openForm('child_immunizations', client.entityId)">
         </sr-service-button>
         <span ng-show="client.visits.dpt.previous" class="previous-alert">
         <i class="icon-ok green"></i>

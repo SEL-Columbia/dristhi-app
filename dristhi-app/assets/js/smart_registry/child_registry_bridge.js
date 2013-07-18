@@ -111,7 +111,7 @@ function FakeChildSmartRegistryContext() {
                             data: {}
                         },
                         {
-                            name: 'dpt_0',
+                            name: 'dptbooster_0',
                             date: '2013-07-01',
                             data: {}
                         }

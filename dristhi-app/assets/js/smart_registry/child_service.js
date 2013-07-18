@@ -38,8 +38,8 @@ angular.module("smartRegistry.services")
                 },
                 {
                     name: "dpt",
-                    milestones: ['dpt_0', 'dptbooster_1', 'dptbooster_2'],
-                    services: ['dpt_0', 'dptbooster_1', 'dptbooster_2'],
+                    milestones: ['dptbooster_1', 'dptbooster_2'],
+                    services: ['dptbooster_1', 'dptbooster_2'],
                     is_list: false
                 }
             ];
