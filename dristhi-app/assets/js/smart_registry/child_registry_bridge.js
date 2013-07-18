@@ -114,6 +114,11 @@ function FakeChildSmartRegistryContext() {
                             name: 'dptbooster_0',
                             date: '2013-07-01',
                             data: {}
+                        },
+                        {
+                            name: 'vitamin_a',
+                            date: '2013-07-01',
+                            data: {}
                         }
                     ]
                 },

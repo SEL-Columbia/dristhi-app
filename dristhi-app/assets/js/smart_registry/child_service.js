@@ -41,6 +41,12 @@ angular.module("smartRegistry.services")
                     milestones: ['dptbooster_1', 'dptbooster_2'],
                     services: ['dptbooster_1', 'dptbooster_2'],
                     is_list: false
+                },
+                {
+                    name: "vitamin_a",
+                    milestones: [],
+                    services: ['vitamin_a'],
+                    is_list: true
                 }
             ];
 
