@@ -2,7 +2,9 @@
         ng-class="schedule.next.status || 'normal'"
         ng-disabled="schedule.next.status == 'complete'">
     <div class="done-icon large full-height" data-ng-class="{'right': schedule.next.status != 'complete'}">
-        <i data-ng-class="{'icon-ok green': schedule.next.status == 'complete', 'icon-needle': schedule.next.status != 'complete'}"></i>
+        <i data-ng-class="{'icon-ok green': schedule.next.status == 'complete',
+            'icon-needle': schedule.next && schedule.next.status != 'complete' && useNeedle,
+            'icon-dropper': schedule.next && schedule.next.status != 'complete' && useDropper}"></i>
     </div>
     <span ng-show="schedule.next" class="text-bold">{{schedule.next.name | friendlyName}}</span>
     <span ng-show="!schedule.next" class="text-bold">{{schedule_id | friendlyName}}</span>

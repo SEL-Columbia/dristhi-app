@@ -1068,8 +1068,8 @@ a.btn-sr.upcoming, a.btn-sr.done {
     background-position: 2px 4px;
 }
 
-.icon-needle {
-    background: url(../img/smart_registry/child-icon-needle.png);
+.icon-dropper {
+    background: url(../img/smart_registry/child-icon-dropper.png);
     display: block !important;
     width: 20px;
     height: 25px;

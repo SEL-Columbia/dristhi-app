@@ -12,9 +12,12 @@ angular.module('smartRegistry.directives', [])
             scope: {
                 schedule: '=srBind',
                 clickFn: '&ngClick',
-                altClickFn: '&srClickAlt'
+                altClickFn: '&srClickAlt',
+                srIcon: '@srIcon'
             },
             link: function(scope, elm, attrs) {
+                scope.useNeedle = attrs.srIcon === 'needle';
+                scope.useDropper = attrs.srIcon === 'dropper';
                 scope.schedule_id = attrs.srBind.split(".")[2]
                 elm.bind('click', scope.schedule.next?scope.clickFn:scope.altClickFn);
             }
