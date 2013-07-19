@@ -3,8 +3,11 @@ package org.ei.drishti.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.AllConstants;
 
 import java.util.Map;
+
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
 public class EligibleCouple {
     private String caseId;
@@ -110,6 +113,16 @@ public class EligibleCouple {
         return details.get(name);
     }
 
+    public String age() {
+        //TODO: Calculate age from DOB
+        return details.get("wifeAge");
+    }
+
+    public boolean hasFPMethod() {
+        String fpMethod = getDetail(AllConstants.ECRegistrationFields.CURRENT_FP_METHOD);
+        return isNotBlank(fpMethod) && !"none".equalsIgnoreCase(fpMethod);
+    }
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
@@ -123,10 +136,5 @@ public class EligibleCouple {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-    }
-
-    public String age() {
-        //TODO: Calculate age from DOB
-        return details.get("wifeAge");
     }
 }

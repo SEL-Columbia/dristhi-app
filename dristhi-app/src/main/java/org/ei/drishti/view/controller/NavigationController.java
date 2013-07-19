@@ -34,6 +34,10 @@ public class NavigationController {
         activity.startActivity(new Intent(activity, VideosActivity.class));
     }
 
+    public void startECSmartRegistry() {
+        activity.startActivity(new Intent(activity, ECSmartRegisterActivity.class));
+    }
+
     public void startFPSmartRegistry() {
         activity.startActivity(new Intent(activity, FPSmartRegisterActivity.class));
     }

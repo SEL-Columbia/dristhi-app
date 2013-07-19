@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.util.Cache;
@@ -22,6 +23,7 @@ import java.util.Map;
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
 import static org.ei.drishti.util.EasyMap.create;
+import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -62,7 +64,8 @@ public class ECSmartRegisterControllerTest {
     private ECClient createECClient(String entityId, String name, String husbandName, String village, String ecNumber) {
         return new ECClient(entityId, name, husbandName, village, ecNumber)
                 .withPhotoPath("../../img/woman-placeholder.png")
-                .withIsOutOfArea(false);
+                .withIsOutOfArea(false)
+                .withStatus(mapOf("type", "ec"));
     }
 
     @Test
@@ -108,6 +111,7 @@ public class ECSmartRegisterControllerTest {
                 .withIsHighPriority(false)
                 .withPhotoPath("new photo path")
                 .withHighPriorityReason("high priority reason")
+                .withStatus(create("date", "2013-01-02").put("type", "fp").map())
                 .withIsOutOfArea(ec.isOutOfArea());
 
         String clients = controller.get();
@@ -127,6 +131,95 @@ public class ECSmartRegisterControllerTest {
         when(allBeneficiaries.findAllChildrenByECId("entity id 1")).thenReturn(asList(firstChild, secondChild, thirdChild));
         ECClient expectedClient1 = createECClient("entity id 1", "Woman A", "Husband A", "Bherya", "EC Number 1")
                 .withChildren(asList(new ECChildClient("child id 2", "female", "2011-01-01"), new ECChildClient("child id 3", "male", "2012-01-01")));
+
+        String clients = controller.get();
+
+        List<ECClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<ECClient>>() {
+        }.getType());
+        assertEquals(asList(expectedClient1), actualClients);
+    }
+
+    @Test
+    public void shouldAddStatusToECClientAsECWhenNoMotherAndNoFPMethod() throws Exception {
+        EligibleCouple ec1 = new EligibleCouple("entity id 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null,
+                create("registrationDate", "2013-02-02").put("currentMethod", "none").map());
+        when(allEligibleCouples.all()).thenReturn(asList(ec1));
+        when(allBeneficiaries.findMotherWithOpenStatusByECId("entity id 1")).thenReturn(null);
+        ECClient expectedClient1 = createECClient("entity id 1", "Woman A", "Husband A", "Bherya", "EC Number 1")
+                .withFPMethod("none")
+                .withStatus(create("type", "ec").put("date", "2013-02-02").map());
+
+        String clients = controller.get();
+
+        List<ECClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<ECClient>>() {
+        }.getType());
+        assertEquals(asList(expectedClient1), actualClients);
+    }
+
+    @Test
+    public void shouldAddStatusToECClientAsECWhenNoMotherAndHasFPMethod() throws Exception {
+        EligibleCouple ec1 = new EligibleCouple("entity id 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null,
+                create("familyPlanningMethodChangeDate", "2013-02-02").put("currentMethod", "condom").map());
+        when(allEligibleCouples.all()).thenReturn(asList(ec1));
+        when(allBeneficiaries.findMotherWithOpenStatusByECId("entity id 1")).thenReturn(null);
+        ECClient expectedClient1 = createECClient("entity id 1", "Woman A", "Husband A", "Bherya", "EC Number 1")
+                .withFamilyPlanningMethodChangeDate("2013-02-02")
+                .withFPMethod("condom")
+                .withStatus(create("type", "fp").put("date", "2013-02-02").map());
+
+        String clients = controller.get();
+
+        List<ECClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<ECClient>>() {
+        }.getType());
+        assertEquals(asList(expectedClient1), actualClients);
+    }
+
+    @Test
+    public void shouldAddStatusToECClientAsANCWhenMotherIsActiveAndIsInANCState() throws Exception {
+        EligibleCouple ec1 = new EligibleCouple("entity id 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null, emptyDetails);
+        Mother mother = new Mother("mother id 1", "entity id 1", "thayi card 1", "2013-01-01").withType("anc").withDetails(mapOf("edd", "Sat, 12 Oct 2013 00:00:00 GMT"));
+        when(allEligibleCouples.all()).thenReturn(asList(ec1));
+        when(allBeneficiaries.findMotherWithOpenStatusByECId("entity id 1")).thenReturn(mother);
+        ECClient expectedClient1 = createECClient("entity id 1", "Woman A", "Husband A", "Bherya", "EC Number 1")
+                .withStatus(create("date", "2013-01-01").put("edd", "2013-10-12").put("type", "anc").map());
+
+        String clients = controller.get();
+
+        List<ECClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<ECClient>>() {
+        }.getType());
+        assertEquals(asList(expectedClient1), actualClients);
+    }
+
+    @Test
+    public void shouldAddStatusToECClientAsPNCWhenMotherIsActiveAndIsInPNCStateAndHasNoFP() throws Exception {
+        EligibleCouple ec1 = new EligibleCouple("entity id 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null, mapOf("currentMethod", "none"));
+        Mother mother = new Mother("mother id 1", "entity id 1", "thayi card 1", "2013-01-01").withType("pnc");
+        when(allEligibleCouples.all()).thenReturn(asList(ec1));
+        when(allBeneficiaries.findMotherWithOpenStatusByECId("entity id 1")).thenReturn(mother);
+        ECClient expectedClient1 = createECClient("entity id 1", "Woman A", "Husband A", "Bherya", "EC Number 1").withFPMethod("none")
+                .withStatus(create("date", "2013-01-01").put("type", "pnc").map());
+
+        String clients = controller.get();
+
+        List<ECClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<ECClient>>() {
+        }.getType());
+        assertEquals(asList(expectedClient1), actualClients);
+    }
+
+    @Test
+    public void shouldAddStatusToECClientAsPNCWhenMotherIsActiveAndIsInPNCStateAndHasFPMethod() throws Exception {
+        EligibleCouple ec1 = new EligibleCouple("entity id 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null,
+                create("familyPlanningMethodChangeDate", "2013-01-01").put("currentMethod", "condom").map());
+        Mother mother = new Mother("mother id 1", "entity id 1", "thayi card 1", "2013-01-01").withType("pnc");
+        when(allEligibleCouples.all()).thenReturn(asList(ec1));
+        when(allBeneficiaries.findMotherWithOpenStatusByECId("entity id 1")).thenReturn(mother);
+        ECClient expectedClient1 = createECClient("entity id 1", "Woman A", "Husband A", "Bherya", "EC Number 1").withFPMethod("condom")
+                .withFamilyPlanningMethodChangeDate("2013-01-01")
+                .withFPMethod("condom")
+                .withStatus(create("type", "pnc/fp")
+                        .put("date", "2013-01-01")
+                        .put("fpMethodDate", "2013-01-01")
+                        .map());
 
         String clients = controller.get();
 

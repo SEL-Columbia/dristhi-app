@@ -2,15 +2,19 @@ package org.ei.drishti.view.controller;
 
 import com.google.common.collect.Iterables;
 import com.google.gson.Gson;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
+import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
+import org.ei.drishti.util.EasyMap;
 import org.ei.drishti.view.contract.ECChildClient;
 import org.ei.drishti.view.contract.ECClient;
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -18,10 +22,18 @@ import java.util.List;
 
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.drishti.AllConstants.ANCRegistrationFields.EDD;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
 import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
 
 public class ECSmartRegisterController {
+    public static final String STATUS_TYPE_FIELD = "type";
+    public static final String STATUS_DATE_FIELD = "date";
+    public static final String EC_STATUS = "ec";
+    public static final String ANC_STATUS = "anc";
+    public static final String PNC_STATUS = "pnc";
+    public static final String PNC_FP_STATUS = "pnc/fp";
+    public static final String STATUS_EDD_FIELD = "edd";
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
     private final Cache<String> cache;
@@ -62,6 +74,7 @@ public class ECSmartRegisterController {
                             .withPhotoPath(photoPath)
                             .withHighPriorityReason(ec.getDetail(HIGH_PRIORITY_REASON))
                             .withIsOutOfArea(ec.isOutOfArea());
+                    updateStatusInformation(ec, ecClient, "fp");
                     updateChildrenInformation(ecClient);
                     ecClients.add(ecClient);
                 }
@@ -96,5 +109,42 @@ public class ECSmartRegisterController {
                 return oneECClient.wifeName().compareToIgnoreCase(anotherECClient.wifeName());
             }
         });
+    }
+
+    //#TODO: Needs refactoring
+    private void updateStatusInformation(EligibleCouple eligibleCouple, ECClient ecClient, String FP_STATUS) {
+        Mother mother = allBeneficiaries.findMotherWithOpenStatusByECId(eligibleCouple.caseId());
+
+        if (mother == null && !eligibleCouple.hasFPMethod()) {
+            ecClient.withStatus(EasyMap.create(STATUS_TYPE_FIELD, EC_STATUS)
+                    .put(STATUS_DATE_FIELD, eligibleCouple.getDetail(REGISTRATION_DATE)).map());
+            return;
+        }
+
+        if (mother == null && eligibleCouple.hasFPMethod()) {
+            ecClient.withStatus(EasyMap.create(STATUS_TYPE_FIELD, FP_STATUS)
+                    .put(STATUS_DATE_FIELD, eligibleCouple.getDetail("familyPlanningMethodChangeDate")).map());
+            return;
+        }
+
+        if (mother != null && mother.isANC()) {
+            ecClient.withStatus(EasyMap.create(STATUS_TYPE_FIELD, ANC_STATUS)
+                    .put(STATUS_DATE_FIELD, mother.referenceDate())
+                    .put(STATUS_EDD_FIELD, LocalDate.parse(mother.getDetail(EDD), DateTimeFormat.forPattern(AllConstants.FORM_DATE_TIME_FORMAT)).toString()).map());
+            return;
+        }
+
+        if (mother != null && mother.isPNC() && !eligibleCouple.hasFPMethod()) {
+            ecClient.withStatus(EasyMap.create(STATUS_TYPE_FIELD, PNC_STATUS)
+                    .put(STATUS_DATE_FIELD, mother.referenceDate()).map());
+            return;
+        }
+
+        if (mother != null && mother.isPNC() && eligibleCouple.hasFPMethod()) {
+            ecClient.withStatus(EasyMap.create(STATUS_TYPE_FIELD, PNC_FP_STATUS)
+                    .put(STATUS_DATE_FIELD, mother.referenceDate())
+                    .put("fpMethodDate", eligibleCouple.getDetail("familyPlanningMethodChangeDate")).map());
+            return;
+        }
     }
 }

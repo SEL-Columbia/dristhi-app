@@ -14,6 +14,7 @@ public class Mother {
     private String referenceDate;
     private Map<String, String> details;
     private boolean isClosed;
+    private String type;
 
     public Mother(String caseId, String ecCaseId, String thayiCardNumber, String referenceDate) {
         this.caseId = caseId;
@@ -62,8 +63,21 @@ public class Mother {
         return this;
     }
 
+    public Mother withType(String type) {
+        this.type = type;
+        return this;
+    }
+
     public String getDetail(String name) {
         return details.get(name);
+    }
+
+    public boolean isANC() {
+        return "anc".equalsIgnoreCase(this.type);
+    }
+
+    public boolean isPNC() {
+        return "pnc".equalsIgnoreCase(this.type);
     }
 
     @Override

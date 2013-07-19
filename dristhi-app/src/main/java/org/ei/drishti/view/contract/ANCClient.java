@@ -3,6 +3,7 @@ package org.ei.drishti.view.contract;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.AllConstants;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.ISODateTimeFormat;
@@ -36,7 +37,7 @@ public class ANCClient {
         this.village = village;
         this.name = name;
         this.thayi = thayi;
-        this.edd = LocalDateTime.parse(edd, DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss ZZZ")).toString(ISODateTimeFormat.dateTime());
+        this.edd = LocalDateTime.parse(edd, DateTimeFormat.forPattern(AllConstants.FORM_DATE_TIME_FORMAT)).toString(ISODateTimeFormat.dateTime());
         this.lmp = lmp;
     }
 

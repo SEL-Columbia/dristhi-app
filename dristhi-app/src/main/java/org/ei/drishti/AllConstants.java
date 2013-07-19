@@ -54,6 +54,7 @@ public class AllConstants {
     public static final String DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH = "../../img/icons/child-girlinfant@3x.png";
     public static final String DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH = "../../img/icons/child-girlinfant@3x.png";
     public static final String FEMALE_GENDER = "female";
+    public static final String FORM_DATE_TIME_FORMAT = "EEE, dd MMM yyyy HH:mm:ss ZZZ";
 
     public class FormNames {
         public static final String EC_REGISTRATION = "ec_registration";
@@ -98,6 +99,7 @@ public class AllConstants {
         public static final String NUMBER_OF_STILL_BIRTHS = "numberOfStillBirths";
         public static final String NUMBER_OF_ABORTIONS = "numberOfAbortions";
         public static final String HIGH_PRIORITY_REASON = "highPriorityReason";
+        public static final String REGISTRATION_DATE = "registrationDate";
     }
 
     public class ANCCloseFields {
@@ -123,6 +125,10 @@ public class AllConstants {
     public class TTFields {
         public static final String TT_DOSE = "ttDose";
         public static final String TT_DATE = "ttDate";
+    }
+
+    public class ANCRegistrationFields {
+        public static final String EDD = "edd";
     }
 
     public class ANCVisitFields {

@@ -178,4 +178,25 @@ public class ChildRepositoryTest extends AndroidTestCase {
         assertEquals("photo/path/to/child/x", repository.find("CASE X").photoPath());
         assertEquals(null, repository.find("CASE Y").photoPath());
     }
+
+    public void testShouldFetchAllChildrenByECId() throws Exception {
+        Map<String, String> ecDetails = create("wifeAge", "26")
+                .put("caste", "others")
+                .put("economicStatus", "apl")
+                .map();
+        Map<String, String> childDetails = create("weight", "3")
+                .put("name", "chinnu")
+                .put("isHighRiskBaby", "yes")
+                .map();
+        EligibleCouple ec = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, ecDetails).asOutOfArea();
+        Mother mother = new Mother("mother id 1", "ec id 1", "thayi no 1", "2013-01-01").withDetails(Collections.<String, String>emptyMap());
+        Child child = new Child("child id 1", "mother id 1", "thayi no 1", "2013-01-02", "female", childDetails);
+        repository.add(child);
+        motherRepository.add(mother);
+        ecRepository.add(ec);
+
+        List<Child> children = repository.findAllChildrenByECId("ec id 1");
+
+        assertTrue(children.contains(child));
+    }
 }

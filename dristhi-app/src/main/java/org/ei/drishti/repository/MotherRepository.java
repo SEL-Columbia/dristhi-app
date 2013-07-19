@@ -149,7 +149,10 @@ public class MotherRepository extends DrishtiRepository {
             Map<String, String> details = new Gson().fromJson(cursor.getString(5), new TypeToken<Map<String, String>>() {
             }.getType());
 
-            mothers.add(new Mother(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(4)).withDetails(details).setIsClosed(Boolean.valueOf(cursor.getString(6))));
+            mothers.add(new Mother(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(4))
+                    .withDetails(details)
+                    .setIsClosed(Boolean.valueOf(cursor.getString(6)))
+                    .withType(cursor.getString(cursor.getColumnIndex(TYPE_COLUMN))));
             cursor.moveToNext();
         }
         cursor.close();
@@ -161,6 +164,7 @@ public class MotherRepository extends DrishtiRepository {
         List<Pair<Mother, EligibleCouple>> ancsWithEC = new ArrayList<Pair<Mother, EligibleCouple>>();
         while (!cursor.isAfterLast()) {
             Mother mother = new Mother(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(4))
+                    .withType(cursor.getString(cursor.getColumnIndex(TYPE_COLUMN)))
                     .withDetails(new Gson().<Map<String, String>>fromJson(cursor.getString(5), new TypeToken<Map<String, String>>() {
                     }.getType()));
             EligibleCouple eligibleCouple = new EligibleCouple(cursor.getString(7), cursor.getString(8), cursor.getString(9), cursor.getString(10), cursor.getString(11), cursor.getString(12),
@@ -191,5 +195,12 @@ public class MotherRepository extends DrishtiRepository {
 
     private String insertPlaceholdersForInClause(int length) {
         return repeat("?", ",", length);
+    }
+
+    public Mother findMotherWithOpenStatusByECId(String ecId) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(MOTHER_TABLE_NAME, MOTHER_TABLE_COLUMNS, EC_CASEID_COLUMN + " = ? AND " + IS_CLOSED_COLUMN + " = ?", new String[]{ecId, NOT_CLOSED}, null, null, null, null);
+        List<Mother> mothers = readAll(cursor);
+        return mothers.isEmpty() ? null : mothers.get(0);
     }
 }

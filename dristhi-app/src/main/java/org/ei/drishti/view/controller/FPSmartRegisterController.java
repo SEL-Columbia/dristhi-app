@@ -54,7 +54,6 @@ public class FPSmartRegisterController {
             public String fetch() {
                 List<EligibleCouple> ecs = allEligibleCouples.all();
                 List<FPClient> fpClients = new ArrayList<FPClient>();
-
                 for (EligibleCouple ec : ecs) {
                     Mother mother = allBeneficiaries.findMotherByECCaseId(ec.caseId());
                     String thayiCardNumber = mother == null ? "" : mother.thayiCardNumber();

@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ECClient {
     private String entityId;
@@ -34,6 +35,7 @@ public class ECClient {
     private String highPriorityReason;
     private String locationStatus;
     private List<ECChildClient> children;
+    private Map<String, String> status;
 
     public ECClient(String entityId, String name, String husbandName, String village, String ecNumber) {
         this.entityId = entityId;
@@ -172,5 +174,10 @@ public class ECClient {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
+    }
+
+    public ECClient withStatus(Map<String, String> status) {
+        this.status = status;
+        return this;
     }
 }

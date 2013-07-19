@@ -166,7 +166,7 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         assertEquals(entityId, "entity id 1");
         Mother savedMother = motherRepository.findById(entityId);
         Map<String, String> expectedDetails = mapOf("isHighPriority", "no");
-        Mother expectedMother = new Mother("entity id 1", "ec 123", "thayi1", "2013-01-05").withDetails(expectedDetails);
+        Mother expectedMother = new Mother("entity id 1", "ec 123", "thayi1", "2013-01-05").withDetails(expectedDetails).withType("ANC");
         assertEquals(expectedMother, savedMother);
     }
 

@@ -160,42 +160,61 @@ public class ChildRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<Child> children = new ArrayList<Child>();
         while (!cursor.isAfterLast()) {
-            children.add(
-                    new Child(
-                            getColumnValueByAlias(cursor, CHILD_TABLE_NAME, ID_COLUMN),
-                            getColumnValueByAlias(cursor, CHILD_TABLE_NAME, MOTHER_ID_COLUMN),
-                            getColumnValueByAlias(cursor, CHILD_TABLE_NAME, THAYI_CARD_COLUMN),
-                            getColumnValueByAlias(cursor, CHILD_TABLE_NAME, DATE_OF_BIRTH_COLUMN),
-                            getColumnValueByAlias(cursor, CHILD_TABLE_NAME, GENDER_COLUMN),
-                            new Gson().<Map<String, String>>fromJson(getColumnValueByAlias(cursor, CHILD_TABLE_NAME, DETAILS_COLUMN), new TypeToken<Map<String, String>>() {
-                            }.getType()))
-                            .setIsClosed(Boolean.valueOf(getColumnValueByAlias(cursor, CHILD_TABLE_NAME, IS_CLOSED_COLUMN)))
-                            .withPhotoPath(getColumnValueByAlias(cursor, CHILD_TABLE_NAME, PHOTO_PATH_COLUMN))
-                            .withMother(
-                                    new Mother(
-                                            getColumnValueByAlias(cursor, MOTHER_TABLE_NAME, MotherRepository.ID_COLUMN),
-                                            getColumnValueByAlias(cursor, MOTHER_TABLE_NAME, MotherRepository.EC_CASEID_COLUMN),
-                                            getColumnValueByAlias(cursor, MOTHER_TABLE_NAME, MotherRepository.THAYI_CARD_NUMBER_COLUMN),
-                                            getColumnValueByAlias(cursor, MOTHER_TABLE_NAME, MotherRepository.REF_DATE_COLUMN))
-                                            .withDetails(new Gson().<Map<String, String>>fromJson(getColumnValueByAlias(cursor, MOTHER_TABLE_NAME, MotherRepository.DETAILS_COLUMN), new TypeToken<Map<String, String>>() {
-                                            }.getType()))
-                            )
-                            .withEC(
-                                    new EligibleCouple(
-                                            getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.ID_COLUMN),
-                                            getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.WIFE_NAME_COLUMN),
-                                            getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.HUSBAND_NAME_COLUMN),
-                                            getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.EC_NUMBER_COLUMN),
-                                            getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.VILLAGE_NAME_COLUMN),
-                                            getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.SUBCENTER_NAME_COLUMN),
-                                            new Gson().<Map<String, String>>fromJson(getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.DETAILS_COLUMN), new TypeToken<Map<String, String>>() {
-                                            }.getType()))
-                                            .withPhotoPath(getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.PHOTO_PATH_COLUMN))
-                                            .withOutOfArea(getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.IS_OUT_OF_AREA_COLUMN))));
+            children.add(childFromCursor(cursor)
+                    .withMother(motherFromCursor(cursor))
+                    .withEC(ecFromCursor(cursor)));
             cursor.moveToNext();
         }
         cursor.close();
         return children;
+    }
+
+    private EligibleCouple ecFromCursor(Cursor cursor) {
+        return new EligibleCouple(
+                getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.ID_COLUMN),
+                getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.WIFE_NAME_COLUMN),
+                getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.HUSBAND_NAME_COLUMN),
+                getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.EC_NUMBER_COLUMN),
+                getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.VILLAGE_NAME_COLUMN),
+                getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.SUBCENTER_NAME_COLUMN),
+                new Gson().<Map<String, String>>fromJson(getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.DETAILS_COLUMN), new TypeToken<Map<String, String>>() {
+                }.getType()))
+                .withPhotoPath(getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.PHOTO_PATH_COLUMN))
+                .withOutOfArea(getColumnValueByAlias(cursor, EC_TABLE_NAME, EligibleCoupleRepository.IS_OUT_OF_AREA_COLUMN));
+    }
+
+    private Mother motherFromCursor(Cursor cursor) {
+        return new Mother(
+                getColumnValueByAlias(cursor, MOTHER_TABLE_NAME, MotherRepository.ID_COLUMN),
+                getColumnValueByAlias(cursor, MOTHER_TABLE_NAME, MotherRepository.EC_CASEID_COLUMN),
+                getColumnValueByAlias(cursor, MOTHER_TABLE_NAME, MotherRepository.THAYI_CARD_NUMBER_COLUMN),
+                getColumnValueByAlias(cursor, MOTHER_TABLE_NAME, MotherRepository.REF_DATE_COLUMN))
+                .withDetails(new Gson().<Map<String, String>>fromJson(getColumnValueByAlias(cursor, MOTHER_TABLE_NAME, MotherRepository.DETAILS_COLUMN), new TypeToken<Map<String, String>>() {
+                }.getType()));
+    }
+
+    private List<Child> readAllChildren(Cursor cursor) {
+        cursor.moveToFirst();
+        List<Child> children = new ArrayList<Child>();
+        while (!cursor.isAfterLast()) {
+            children.add(childFromCursor(cursor));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return children;
+    }
+
+    private Child childFromCursor(Cursor cursor) {
+        return new Child(
+                getColumnValueByAlias(cursor, CHILD_TABLE_NAME, ID_COLUMN),
+                getColumnValueByAlias(cursor, CHILD_TABLE_NAME, MOTHER_ID_COLUMN),
+                getColumnValueByAlias(cursor, CHILD_TABLE_NAME, THAYI_CARD_COLUMN),
+                getColumnValueByAlias(cursor, CHILD_TABLE_NAME, DATE_OF_BIRTH_COLUMN),
+                getColumnValueByAlias(cursor, CHILD_TABLE_NAME, GENDER_COLUMN),
+                new Gson().<Map<String, String>>fromJson(getColumnValueByAlias(cursor, CHILD_TABLE_NAME, DETAILS_COLUMN), new TypeToken<Map<String, String>>() {
+                }.getType()))
+                .setIsClosed(Boolean.valueOf(getColumnValueByAlias(cursor, CHILD_TABLE_NAME, IS_CLOSED_COLUMN)))
+                .withPhotoPath(getColumnValueByAlias(cursor, CHILD_TABLE_NAME, PHOTO_PATH_COLUMN));
     }
 
     private String getColumnValueByAlias(Cursor cursor, String table, String column) {
@@ -211,5 +230,17 @@ public class ChildRepository extends DrishtiRepository {
         ContentValues values = new ContentValues();
         values.put(PHOTO_PATH_COLUMN, imagePath);
         database.update(CHILD_TABLE_NAME, values, ID_COLUMN + " = ?", new String[]{caseId});
+    }
+
+    public List<Child> findAllChildrenByECId(String ecId) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.rawQuery("SELECT " +
+                tableColumnsForQuery(CHILD_TABLE_NAME, CHILD_TABLE_COLUMNS) +
+                " FROM " + CHILD_TABLE_NAME + ", " + MOTHER_TABLE_NAME + ", " + EC_TABLE_NAME +
+                " WHERE " + CHILD_TABLE_NAME + "." + IS_CLOSED_COLUMN + "= '" + NOT_CLOSED + "' AND " +
+                CHILD_TABLE_NAME + "." + MOTHER_ID_COLUMN + " = " + MOTHER_TABLE_NAME + "." + MotherRepository.ID_COLUMN
+                + " AND " + MOTHER_TABLE_NAME + "." + MotherRepository.EC_CASEID_COLUMN + " = " + EC_TABLE_NAME + "." + EligibleCoupleRepository.ID_COLUMN,
+                null);
+        return readAllChildren(cursor);
     }
 }

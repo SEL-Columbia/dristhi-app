@@ -114,6 +114,10 @@ public class AllBeneficiaries {
     }
 
     public List<Child> findAllChildrenByECId(String ecId) {
-        throw new NotImplementedException();
+        return childRepository.findAllChildrenByECId(ecId);
+    }
+
+    public Mother findMotherWithOpenStatusByECId(String ecId) {
+        return motherRepository.findMotherWithOpenStatusByECId(ecId);
     }
 }

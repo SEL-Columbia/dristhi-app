@@ -6,6 +6,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.util.DateUtil;
+import org.ei.drishti.util.EasyMap;
 import org.ei.drishti.util.Session;
 import org.joda.time.LocalDate;
 
@@ -38,7 +39,7 @@ public class MotherRepositoryTest extends AndroidTestCase {
 
     public void testShouldInsertMother() throws Exception {
         Map<String, String> details = mapOf("some-key", "some-value");
-        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withDetails(details);
+        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withDetails(details).withType("ANC");
 
         repository.add(mother);
 
@@ -46,13 +47,13 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldFetchANCAndCorrespondingEC() throws Exception {
-        Map<String, String> details = mapOf("some-key", "some-value");
+        Map<String, String> details = EasyMap.create("some-key", "some-value").map();
         EligibleCouple firstEligibleCouple = new EligibleCouple("EC Case 1", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", details).withPhotoPath("photo path");
         EligibleCouple secondEligibleCouple = new EligibleCouple("EC Case 2", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", details);
         EligibleCouple thirdEligibleCouple = new EligibleCouple("EC Case 3", "Wife 3", "Husband 3", "EC Number 3", "Village 3", "SubCenter 3", details);
-        Mother firstMother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withDetails(details);
-        Mother secondMother = new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08");
-        Mother thirdMother = new Mother("CASE Z", "EC Case 3", "TC 3", "2012-06-08").setIsClosed(true);
+        Mother firstMother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withDetails(details).withType("ANC");
+        Mother secondMother = new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08").withType("ANC");
+        Mother thirdMother = new Mother("CASE Z", "EC Case 3", "TC 3", "2012-06-08").setIsClosed(true).withType("FP");
         eligibleCoupleRepository.add(firstEligibleCouple);
         eligibleCoupleRepository.add(secondEligibleCouple);
         eligibleCoupleRepository.add(thirdEligibleCouple);
@@ -71,9 +72,9 @@ public class MotherRepositoryTest extends AndroidTestCase {
         EligibleCouple firstEligibleCouple = new EligibleCouple("EC Case 1", "Wife 1", "Husband 1", "EC Number 1", "Village 1", "SubCenter 1", details);
         EligibleCouple secondEligibleCouple = new EligibleCouple("EC Case 2", "Wife 2", "Husband 2", "EC Number 2", "Village 2", "SubCenter 2", details);
         EligibleCouple thirdEligibleCouple = new EligibleCouple("EC Case 3", "Wife 3", "Husband 3", "EC Number 3", "Village 3", "SubCenter 3", details);
-        Mother firstMother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withDetails(details);
-        Mother secondMother = new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08");
-        Mother thirdMother = new Mother("CASE Z", "EC Case 3", "TC 3", "2012-06-08").setIsClosed(true);
+        Mother firstMother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withDetails(details).withType("PNC");
+        Mother secondMother = new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08").withType("PNC");
+        Mother thirdMother = new Mother("CASE Z", "EC Case 3", "TC 3", "2012-06-08").setIsClosed(true).withType("ANC");
         eligibleCoupleRepository.add(firstEligibleCouple);
         eligibleCoupleRepository.add(secondEligibleCouple);
         eligibleCoupleRepository.add(thirdEligibleCouple);
@@ -91,17 +92,17 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldLoadAllANCsBasedOnType() throws Exception {
-        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
+        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withType("ANC");
         repository.add(mother);
-        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", today.minusDays(280).toString()));
+        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", today.minusDays(280).toString()).withType("ANC"));
         repository.switchToPNC("CASE Y");
 
         assertEquals(asList(mother), repository.allANCs());
     }
 
     public void testShouldNotLoadClosedANC() throws Exception {
-        Mother firstMother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
-        Mother secondMother = new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08").setIsClosed(true);
+        Mother firstMother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withType("ANC");
+        Mother secondMother = new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08").setIsClosed(true).withType("ANC");
         repository.add(firstMother);
         repository.add(secondMother);
 
@@ -109,13 +110,13 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldSwitchWomanToPNC() throws Exception {
-        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
+        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withType("ANC"));
+        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08").withType("PNC"));
 
         repository.switchToPNC("CASE X");
 
-        assertEquals(asList(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08")), repository.allANCs());
-        assertEquals(asList(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08")), repository.allPNCs());
+        assertEquals(asList(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08").withType("ANC")), repository.allANCs());
+        assertEquals(asList(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withType("PNC")), repository.allPNCs());
     }
 
     public void testShouldNotFetchPNCIfWomanCaseIsClosed() throws Exception {
@@ -127,27 +128,27 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldFindAMotherByCaseId() throws Exception {
-        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08"));
+        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withType("ANC"));
+        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08").withType("ANC"));
 
-        assertEquals(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"), repository.findOpenCaseByCaseID("CASE X"));
-        assertEquals(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08"), repository.findOpenCaseByCaseID("CASE Y"));
+        assertEquals(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withType("ANC"), repository.findOpenCaseByCaseID("CASE X"));
+        assertEquals(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08").withType("ANC"), repository.findOpenCaseByCaseID("CASE Y"));
         assertEquals(null, repository.findOpenCaseByCaseID("CASE NOT FOUND"));
     }
 
     public void testShouldNotFindAClosedMotherByCaseId() throws Exception {
-        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08").setIsClosed(true));
+        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withType("ANC"));
+        repository.add(new Mother("CASE Y", "EC Case 2", "TC 2", "2012-06-08").setIsClosed(true).withType("EC"));
 
-        assertEquals(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"), repository.findOpenCaseByCaseID("CASE X"));
+        assertEquals(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withType("ANC"), repository.findOpenCaseByCaseID("CASE X"));
         assertEquals(null, repository.findOpenCaseByCaseID("CASE Y"));
         assertEquals(null, repository.findOpenCaseByCaseID("CASE NOT FOUND"));
     }
 
     public void testShouldCountANCsAndPNCs() throws Exception {
-        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08"));
-        repository.add(new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08"));
-        repository.add(new Mother("CASE Z", "EC Case 2", "TC 3", "2012-06-08").setIsClosed(true));
+        repository.add(new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withType("ANC"));
+        repository.add(new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08").withType("ANC"));
+        repository.add(new Mother("CASE Z", "EC Case 2", "TC 3", "2012-06-08").setIsClosed(true).withType("ANC"));
         assertEquals(2, repository.ancCount());
         assertEquals(0, repository.pncCount());
 
@@ -166,7 +167,7 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldMarkAsClosedWhenMotherIsClosed() throws Exception {
-        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
+        Mother mother = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withType("ANC");
         repository.add(mother);
 
         repository.close(mother.caseId());
@@ -174,9 +175,9 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldCloseAllMothersForEC() throws Exception {
-        Mother mother1 = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
-        Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
-        Mother mother3 = new Mother("CASE Z", "EC Case 2", "TC 3", "2012-06-08");
+        Mother mother1 = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withType("ANC");
+        Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08").withType("ANC");
+        Mother mother3 = new Mother("CASE Z", "EC Case 2", "TC 3", "2012-06-08").withType("ANC");
 
         repository.add(mother1);
         repository.add(mother2);
@@ -188,9 +189,9 @@ public class MotherRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldFindAllChildrenByCaseIds() {
-        Mother mother1 = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08");
-        Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08");
-        Mother mother3 = new Mother("CASE Z", "EC Case 2", "TC 3", "2012-06-08").setIsClosed(true);
+        Mother mother1 = new Mother("CASE X", "EC Case 1", "TC 1", "2012-06-08").withType("ANC");
+        Mother mother2 = new Mother("CASE Y", "EC Case 1", "TC 2", "2012-06-08").withType("ANC");
+        Mother mother3 = new Mother("CASE Z", "EC Case 2", "TC 3", "2012-06-08").setIsClosed(true).withType("ANC");
         repository.add(mother1);
         repository.add(mother2);
         repository.add(mother3);
@@ -198,5 +199,15 @@ public class MotherRepositoryTest extends AndroidTestCase {
         List<Mother> mothers = repository.findByCaseIds("CASE X", "CASE Z");
 
         assertEquals(asList(mother1, mother3), mothers);
+    }
+
+    public void testShouldFindAOpenMotherByECId() throws Exception {
+        repository.add(new Mother("mother id 1", "ec id 1", "TC 1", "2012-06-08").withType("ANC"));
+        repository.add(new Mother("mother id 3", "ec id 1", "TC 1", "2012-06-08").withType("ANC").setIsClosed(true));
+        repository.add(new Mother("mother id 2 ", "ec id 2", "TC 2", "2012-06-08").setIsClosed(true).withType("EC"));
+
+        assertEquals(new Mother("mother id 1", "ec id 1", "TC 1", "2012-06-08").withType("ANC"), repository.findMotherWithOpenStatusByECId("ec id 1"));
+        assertEquals(null, repository.findMotherWithOpenStatusByECId("ec id 2 "));
+        assertEquals(null, repository.findMotherWithOpenStatusByECId("non existent EC"));
     }
 }
