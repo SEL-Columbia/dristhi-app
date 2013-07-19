@@ -278,7 +278,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 
-  buffer += "<div class=\"span2\" id=\"ec-register\">\n    <a class=\"btn btn-register\" id=\"eligibleCoupleMenuOption\">\n        <span id=\"eligibleCoupleCount\" class=\"register-count\">";
+  buffer += "<div class=\"span2\" id=\"ec-register\">\n    <a class=\"btn btn-register\" id=\"ecSmartRegistryOption\">\n        <span id=\"eligibleCoupleCount\" class=\"register-count\">";
   if (stack1 = helpers.eligibleCoupleCount) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.eligibleCoupleCount; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)

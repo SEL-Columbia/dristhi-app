@@ -35,6 +35,12 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
+    var bindToECSmartRegistry = function (callbackToRunBeforeAnyAction, identifierOfElement) {
+        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
+            anmNavigationBridge.delegateToECSmartRegistry();
+        });
+    };
+
     var bindToANCSmartRegistry = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             anmNavigationBridge.delegateToANCSmartRegistry();
@@ -71,7 +77,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
             populateDataInto(cssIdentifierOfSidePanelElement, displayTemplate);
             bindToReports(callbackToRunBeforeAnyAction, "#reportsButton");
             bindToVideos(callbackToRunBeforeAnyAction, "#videosButton");
-            bindToEligibleCoupleList(callbackToRunBeforeAnyAction, "#eligibleCoupleMenuOption");
+            bindToECSmartRegistry(callbackToRunBeforeAnyAction, "#ecSmartRegistryOption");
             bindToChildSmartRegistry(callbackToRunBeforeAnyAction, "#childMenuOption");
             bindToFPSmartRegistry(callbackToRunBeforeAnyAction, "#fpSmartRegistryOption");
             bindToANCSmartRegistry(callbackToRunBeforeAnyAction, "#ancSmartRegistryOption");
@@ -101,6 +107,9 @@ function ANMNavigationBridge() {
         },
         delegateToVideos: function () {
             return anmNavigationContext.startVideos();
+        },
+        delegateToECSmartRegistry: function () {
+            return anmNavigationContext.startECSmartRegistry();
         },
         delegateToFPSmartRegistry: function () {
             return anmNavigationContext.startFPSmartRegistry();
@@ -155,6 +164,9 @@ function FakeANMNavigationContext() {
         },
         startVideos: function () {
             window.location.href = "smart_registry/videos.html";
+        },
+        startECSmartRegistry: function () {
+            window.location = "smart_registry/ec_register.html";
         },
         startFPSmartRegistry: function () {
             window.location = "smart_registry/fp_register.html";
