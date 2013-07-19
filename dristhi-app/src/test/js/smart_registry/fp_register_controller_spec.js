@@ -293,7 +293,7 @@ describe('FP Register controller', function () {
 
             client = {
                 name: "client2",
-                fp_method: "traditional"
+                fp_method: "traditional_methods"
             };
 
             expect(scope.filterByFPMethodOther(client)).toBeTruthy();

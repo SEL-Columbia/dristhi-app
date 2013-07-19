@@ -168,7 +168,7 @@ angular.module("smartRegistry.controllers")
         $scope.filterByFPMethodOther = function (client) {
             $scope.contentTemplate = fpMethodTemplate;
             return client.fp_method === "lam" ||
-                client.fp_method === "traditional" ||
+                client.fp_method === "traditional_methods" ||
                 client.fp_method === "centchroman";
         };
         $scope.filterByNoFPMethod = function (client) {
