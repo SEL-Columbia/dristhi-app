@@ -137,12 +137,12 @@ angular.module("smartRegistry.controllers")
 
         $scope.openECFormModal = function (clientEntityId) {
             $scope.currentClientEntityId = clientEntityId;
-            $scope.isChildFormModalOpen = true;
+            $scope.isECFormModalOpen = true;
         };
 
         $scope.closeECFormModal = function () {
             $scope.currentClientEntityId = null;
-            $scope.isChildFormModalOpen = false;
+            $scope.isECFormModalOpen = false;
         };
 
         $scope.daysPP = function (client) {
