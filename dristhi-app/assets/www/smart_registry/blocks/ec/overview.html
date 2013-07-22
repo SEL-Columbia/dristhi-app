@@ -28,6 +28,13 @@
     </ng-switch>
 </div>
 <div class="span4 line-right full-height span-no-margin width-without-margins span-content">
+    <button data-ng-repeat="child in client.children | limitTo:2" class="btn btn-sr btn-large btn-visit-status complete btn-primary full-height"
+            data-ng-class="{'btn-half-width': client.children.length > 1, 'left': $index == 0, 'right': $index == 1}">
+        <div class="done-icon right full-height"><i></i></div>
+        <span class="text-bold">{{child.gender | camelCase}}</span>
+        <br/>
+        <span>{{child.age}}</span>
+    </button>
 </div>
 <div class="span4 line-right full-height span-no-margin width-without-margins span-content">
     <ng-switch on="client.status.type">

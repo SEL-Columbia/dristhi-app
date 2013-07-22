@@ -166,6 +166,11 @@ function FakeECSmartRegistryContext() {
                             "id":"guid 2",
                             "gender":"boy",
                             "age":"4 years"         //calculate
+                        },
+                        {
+                            "id":"guid 3",
+                            "gender":"boy",
+                            "age":"8 years"         //calculate
                         }
                     ],
                     "status":{
