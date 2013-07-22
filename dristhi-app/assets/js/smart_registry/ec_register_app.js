@@ -1,10 +1,11 @@
 angular.module("smartRegistry.controllers")
-    .controller("ECRegisterController", function ($scope, SmartHelper) {
+    .controller("ECRegisterController", function ($scope, SmartHelper, ECService) {
         $scope.navigationBridge = new ANMNavigationBridge();
         $scope.bridge = new ECRegistryBridge();
         $scope.client_type = "ec";
         $scope.getClients = function () {
             var clients = $scope.bridge.getClients();
+            ECService.preProcess(clients);
             return clients;
         };
 

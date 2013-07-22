@@ -30,7 +30,6 @@ angular.module('smartRegistry.directives', [])
         restrict: 'E',
         scope: {
             client: '=',
-            statusType: '=',
             clickFn: '&ngClick'
         },
         link: function(scope, elm, attrs) {

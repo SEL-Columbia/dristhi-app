@@ -16,169 +16,151 @@ function FakeECSmartRegistryContext() {
         get: function () {
             return JSON.stringify([
                 {
-                    "entityId":"entity 16",
-                    "name":"Gayathri",
-                    "husbandName":"Raju",
-                    "age":'32',
-                    //calculate this
-                    "village":"bherya",
-                    "ecNumber":"16",
-                    "locationStatus":"out_of_area",
-                    "economicStatus":"bpl",
-                    "caste":"sc",
-                    "isHighPriority":false,
-                    "numPregnancies":'2',
-                    "parity":'2',
-                    "numLivingChildren":'2',
-                    "numStillbirths":'0',
-                    "numAbortions":'0',
-                    "fpMethod":"centchroman",
-                    "familyPlanningMethodChangeDate":"25/04/13",
-                    "iudPlace":"phc",
-                    "iudPerson":"lhv",
-                    "numberOfCondomsSupplied":"30",
-                    "numberOfCentchromanPillsDelivered":"20",
-                    "numberOfOCPDelivered":"1",
-                    "photo_path":"../../img/woman-placeholder.png",
-                    "children":[
+                    "children": [
                         {
-                            "id":"guid 1",
-                            "gender":"boy",
-                            "age":"6 months"         //calculate
+                            "dateOfBirth": "2013-07-10",
+                            "entityId": "ff4fcdd8-3946-4185-8600-b4445608a87b",
+                            "gender": "female"
                         }
                     ],
-                    "status":{
-                        "type":"ec", //ec, fp, anc, pnc, pnc/fp
-                        "date":"2013-01-01",
-                        "lmp":"2013-01-02",
-                        "edd":"2013-10-02"
-                    }
+                    "dateOfBirth": "1984-07-12",
+                    "ecNumber": "5",
+                    "economicStatus": "bpl",
+                    "entityId": "c18c3699-9e90-43f0-8963-d4117fa47a7a",
+                    "entityIdToSavePhoto": "c18c3699-9e90-43f0-8963-d4117fa47a7a",
+                    "familyPlanningMethodChangeDate": "2013-06-12",
+                    "fpMethod": "ocp",
+                    "husbandName": "???",
+                    "village": "basavanapura",
+                    "locationStatus": "in_area",
+                    "name": "??????",
+                    "numAbortions": "0",
+                    "numLivingChildren": "0",
+                    "numPregnancies": "0",
+                    "numStillbirths": "0",
+                    "numberOfOCPDelivered": "1",
+                    "parity": "0",
+                    "photo_path": "../../img/woman-placeholder.png",
+                    "status": {
+                        "date": "2013-06-12",
+                        "type": "fp"
+                    },
+                    "isHighPriority": false
                 },
                 {
-                    "entityId":"entity 19",
-                    "name":"Anu",
-                    "husbandName":"Hemanth",
-                    "age":'27',
-                    //calculate this
-                    "village":"bherya",
-                    "ecNumber":"19",
-                    "locationStatus":"out_of_area",
-                    "economicStatus":"bpl",
-                    "caste":"sc",
-                    "isHighPriority":false,
-                    "numPregnancies":'2',
-                    "parity":'2',
-                    "numLivingChildren":'2',
-                    "numStillbirths":'0',
-                    "numAbortions":'0',
-                    "fpMethod":"centchroman",
-                    "familyPlanningMethodChangeDate":"25/04/13",
-                    "iudPlace":"phc",
-                    "iudPerson":"lhv",
-                    "numberOfCondomsSupplied":"30",
-                    "numberOfCentchromanPillsDelivered":"20",
-                    "numberOfOCPDelivered":"1",
-                    "photo_path":"../../img/woman-placeholder.png",
-                    "children":[
+                    "caste": "sc",
+                    "children": [
                         {
-                            "id":"guid 2",
-                            "gender":"boy",
-                            "age":"4 years"         //calculate
-                        }
-                    ],
-                    "status":{
-                        "type":"anc", //ec, fp, anc, pnc, pnc/fp
-                        "date":"2013-02-01",
-                        "lmp":"2013-04-02",
-                        "edd":"2013-10-02"
-                    }
-                },
-                {
-                    "entityId":"entity 23",
-                    "name":"Bibi",
-                    "husbandName":"Nandisha",
-                    "age":'27',
-                    //calculate this
-                    "village":"bherya",
-                    "ecNumber":"23",
-                    "locationStatus":"out_of_area",
-                    "economicStatus":"bpl",
-                    "caste":"sc",
-                    "isHighPriority":false,
-                    "numPregnancies":'2',
-                    "parity":'2',
-                    "numLivingChildren":'2',
-                    "numStillbirths":'0',
-                    "numAbortions":'0',
-                    "familyPlanningMethodChangeDate":"25/04/13",
-                    "iudPlace":"phc",
-                    "iudPerson":"lhv",
-                    "numberOfCondomsSupplied":"30",
-                    "numberOfCentchromanPillsDelivered":"20",
-                    "numberOfOCPDelivered":"1",
-                    "photo_path":"../../img/woman-placeholder.png",
-                    "children":[
-                        {
-                            "id":"guid 1",
-                            "gender":"girl",
-                            "age":"2 months"         //calculate
-                        }
-                    ],
-                    "status":{
-                        "type":"pnc/fp", //ec, fp, anc, pnc, pnc/fp
-                        "date":"2013-02-01",
-                        "lmp":"2013-04-02",
-                        "delivery":"2013-10-02"
-                    }
-                },
-                {
-                    "entityId":"entity 23",
-                    "name":"Bibi",
-                    "husbandName":"Nandisha",
-                    "age":'27',
-                    //calculate this
-                    "village":"bherya",
-                    "ecNumber":"23",
-                    "locationStatus":"in_area",
-                    "economicStatus":"apl",
-                    "fpMethod":"iud",
-                    "caste":"st",
-                    "isHighPriority":false,
-                    "numPregnancies":'2',
-                    "parity":'2',
-                    "numLivingChildren":'2',
-                    "numStillbirths":'0',
-                    "numAbortions":'0',
-                    "familyPlanningMethodChangeDate":"25/04/13",
-                    "iudPlace":"phc",
-                    "iudPerson":"lhv",
-                    "numberOfCondomsSupplied":"30",
-                    "numberOfCentchromanPillsDelivered":"20",
-                    "numberOfOCPDelivered":"1",
-                    "photo_path":"../../img/woman-placeholder.png",
-                    "children":[
-                        {
-                            "id":"guid 1",
-                            "gender":"girl",
-                            "age":"2 months"         //calculate
+                            "dateOfBirth": "2013-07-10",
+                            "entityId": "ff4fcdd8-3946-4185-8600-b4445608a87b",
+                            "gender": "female"
                         },
                         {
-                            "id":"guid 2",
-                            "gender":"boy",
-                            "age":"4 years"         //calculate
-                        },
-                        {
-                            "id":"guid 3",
-                            "gender":"boy",
-                            "age":"8 years"         //calculate
+                            "dateOfBirth": "2013-03-22",
+                            "entityId": "8a1c44ef-9f8b-40bf-858f-a6ef4c48d943",
+                            "gender": "female"
                         }
                     ],
-                    "status":{
-                        "type":"pnc", //ec, fp, anc, pnc, pnc/fp
-                        "date":"2013-02-01",
-                        "lmp":"2013-04-02",
-                        "delivery":"2013-10-02"
-                    }
+                    "dateOfBirth": "1988-07-12",
+                    "ecNumber": "23",
+                    "economicStatus": "apl",
+                    "entityId": "f4011e26-b29c-42d8-a46f-06216253de06",
+                    "entityIdToSavePhoto": "f4011e26-b29c-42d8-a46f-06216253de06",
+                    "familyPlanningMethodChangeDate": "2013-06-12",
+                    "fpMethod": "ocp",
+                    "husbandName": "yadayya",
+                    "village": "kavalu_hosur",
+                    "locationStatus": "in_area",
+                    "name": "chetha",
+                    "numAbortions": "0",
+                    "numLivingChildren": "0",
+                    "numPregnancies": "1",
+                    "numStillbirths": "0",
+                    "numberOfOCPDelivered": "1",
+                    "parity": "0",
+                    "photo_path": "../../img/woman-placeholder.png",
+                    "status": {
+                        "date": "2013-06-12",
+                        "type": "fp"
+                    },
+                    "isHighPriority": false
+                },
+                {
+                    "children": [
+                        {
+                            "dateOfBirth": "2013-07-10",
+                            "entityId": "ff4fcdd8-3946-4185-8600-b4445608a87b",
+                            "gender": "female"
+                        },
+                        {
+                            "dateOfBirth": "2013-07-22",
+                            "entityId": "8a1c44ef-9f8b-40bf-858f-a6ef4c48d943",
+                            "gender": "female"
+                        }
+                    ],
+                    "dateOfBirth": "1980-07-12",
+                    "ecNumber": "2",
+                    "entityId": "198041d9-3084-4ad8-ad64-fe7b2eca6a03",
+                    "entityIdToSavePhoto": "198041d9-3084-4ad8-ad64-fe7b2eca6a03",
+                    "familyPlanningMethodChangeDate": "2013-07-12",
+                    "fpMethod": "male_sterilization",
+                    "highPriorityReason": "Child_under_2 ",
+                    "husbandName": "krishna",
+                    "village": "hosa_agrahara",
+                    "iudPlace": "chc",
+                    "locationStatus": "in_area",
+                    "name": "kanaka",
+                    "numAbortions": "0",
+                    "numLivingChildren": "2",
+                    "numPregnancies": "1",
+                    "numStillbirths": "0",
+                    "parity": "1",
+                    "photo_path": "../../img/woman-placeholder.png",
+                    "status": {
+                        "date": "2013-07-22",
+                        "type": "pnc/fp",
+                        "fpMethodDate": "2013-07-12"
+                    },
+                    "isHighPriority": false
+                },
+                {
+                    "caste": "c_others",
+                    "children": [
+                        {
+                            "dateOfBirth": "2013-07-10",
+                            "entityId": "ff4fcdd8-3946-4185-8600-b4445608a87b",
+                            "gender": "female"
+                        },
+                        {
+                            "dateOfBirth": "2013-07-22",
+                            "entityId": "8a1c44ef-9f8b-40bf-858f-a6ef4c48d943",
+                            "gender": "female"
+                        }
+                    ],
+                    "dateOfBirth": "1987-09-17",
+                    "ecNumber": "400",
+                    "economicStatus": "apl",
+                    "entityId": "e8e21744-2b9b-4e3e-830a-ba403608eb28",
+                    "entityIdToSavePhoto": "e8e21744-2b9b-4e3e-830a-ba403608eb28",
+                    "familyPlanningMethodChangeDate": "2012-05-20",
+                    "fpMethod": "condom",
+                    "husbandName": "putta",
+                    "village": "munjanahalli",
+                    "locationStatus": "in_area",
+                    "name": "maanu",
+                    "numAbortions": "0",
+                    "numLivingChildren": "0",
+                    "numPregnancies": "0",
+                    "numStillbirths": "0",
+                    "numberOfCondomsSupplied": "20",
+                    "parity": "0",
+                    "photo_path": "../../img/woman-placeholder.png",
+                    "status": {
+                        "date": "2013-02-27",
+                        "type": "anc",
+                        "edd": "2013-12-04"
+                    },
+                    "isHighPriority": false
                 }
             ]);
         }
