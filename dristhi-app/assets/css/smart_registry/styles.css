@@ -221,6 +221,18 @@ a:focus {
     max-width: 138px;
 }
 
+#ec-client-list .client-name {
+    max-width: 100px;
+}
+
+#ec-client-list .client-husband-name {
+    max-width: 105px;
+}
+
+#ec-client-list .client-village {
+    max-width: 105px;
+}
+
 .client-husband-name {
     max-width: 130px;
     display: inline-block;
