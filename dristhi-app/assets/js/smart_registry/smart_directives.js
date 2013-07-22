@@ -22,4 +22,20 @@ angular.module('smartRegistry.directives', [])
                 elm.bind('click', scope.schedule.next?scope.clickFn:scope.altClickFn);
             }
         }
-    }]);
+    }])
+    .directive('srEcStatusButton', ['$filter', function ($filter) {
+    return {
+        templateUrl: 'directive_tpls/ec_status_button.html',
+        replace: true,
+        restrict: 'E',
+        scope: {
+            client: '=',
+            statusType: '=',
+            clickFn: '&ngClick'
+        },
+        link: function(scope, elm, attrs) {
+            scope.statusType = scope.client.status.type === 'pnc/fp'?attrs.statusType:scope.client.status.type;
+            elm.bind('click', scope.clickFn);
+        }
+    }
+}]);

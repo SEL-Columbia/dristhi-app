@@ -702,6 +702,23 @@ body {
     min-height: 50px;
 }
 
+.btn-half-width {
+    width: 48%;
+    float: left;
+    margin-right: 2px;
+}
+
+.btn-half-width.left {
+    float: left;
+    margin-right: 1px;
+}
+
+.btn-half-width.right {
+    float: right;
+    margin-left: 1px;
+    margin-right: 0px;
+}
+
 a.btn-sr {
     width: 90%;
     height: 90%;
