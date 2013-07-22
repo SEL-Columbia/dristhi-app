@@ -10,7 +10,7 @@ public class FPClient {
     private String entityId;
     private String entityIdToSavePhoto;
     private String name;
-    private String husband_name;
+    private String husbandName;
     private String age;
     private String thayi;
     private String ec_number;
@@ -45,11 +45,11 @@ public class FPClient {
     private String highPriorityReason;
 
 
-    public FPClient(String entityId, String name, String husband_name, String village, String ecNumber) {
+    public FPClient(String entityId, String name, String husbandName, String village, String ecNumber) {
         this.entityId = entityId;
         this.entityIdToSavePhoto = entityId;
         this.name = name;
-        this.husband_name = husband_name;
+        this.husbandName = husbandName;
         this.village = village;
         this.ec_number = ecNumber;
     }

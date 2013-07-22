@@ -18,7 +18,7 @@ public class ANCClient {
     private String thayi;
     private String ancNumber;
     private String age;
-    private String husband_name;
+    private String husbandName;
     private String photo_path;
     private String edd;
     private String lmp;
@@ -46,7 +46,7 @@ public class ANCClient {
     }
 
     public ANCClient withHusbandName(String husbandName) {
-        this.husband_name = husbandName;
+        this.husbandName = husbandName;
         return this;
     }
 

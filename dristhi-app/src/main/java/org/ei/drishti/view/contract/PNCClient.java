@@ -16,7 +16,7 @@ public class PNCClient {
     private String thayi;
     private String age;
     private String womanDOB;
-    private String husband_name;
+    private String husbandName;
     private String photo_path;
     private boolean isHighPriority;
     private boolean isHighRisk;
@@ -53,7 +53,7 @@ public class PNCClient {
     }
 
     public PNCClient withHusbandName(String husbandName) {
-        this.husband_name = husbandName;
+        this.husbandName = husbandName;
         return this;
     }
 
