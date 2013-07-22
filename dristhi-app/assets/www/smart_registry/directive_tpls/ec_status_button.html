@@ -3,12 +3,12 @@
     <span class="text-bold">{{statusType | uppercase}}</span>
     <ng-switch on="statusType">
         <div ng-switch-when="anc">
-            <span>LMP: {{client.status.lmp | date:'dd/MM/yy'}}</span>
+            <span>LMP: {{client.status.date | date:'dd/MM/yy'}}</span>
             <br/>
             <span>EDD: {{client.status.edd | date:'dd/MM/yy'}}</span>
         </div>
         <div ng-switch-when="pnc">
-            <span>Delivery: {{client.status.delivery | date:'dd/MM/yy'}}</span>
+            <span>Delivery: {{client.status.date | date:'dd/MM/yy'}}</span>
         </div>
         <div ng-switch-default>
             <span>{{client.status.date | date:'dd/MM/yy'}}</span>
