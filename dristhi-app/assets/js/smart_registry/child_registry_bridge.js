@@ -37,6 +37,24 @@ function FakeChildSmartRegistryContext() {
                             },
                             "date": "2013-07-23",
                             "name": "Vitamin A"
+                        },
+                        {
+                            "name": "Illness Visit",
+                            "date": "2013-07-23",
+                            "data": {
+                                "childSigns": "child signs",
+                                "childSignsOther": "child signs other",
+                                "sickVisitDate": "2012-01-01"
+                            }
+                        },
+                        {
+                            "name": "Illness Visit",
+                            "date": "2013-07-18",
+                            "data": {
+                                "childSigns": "child signs",
+                                "childSignsOther": "child signs other",
+                                "sickVisitDate": "2012-01-01"
+                            }
                         }
                     ],
                     "thayiCardNumber": "4656456",
@@ -80,6 +98,17 @@ function FakeChildSmartRegistryContext() {
                             },
                             "date": "2013-07-17",
                             "name": "Vitamin A"
+                        },
+                        {
+                            "name": "Illness Visit",
+                            "date": "2013-07-23",
+                            "data": {
+                                "reportChildDisease": "report child disease",
+                                "reportChildDiseaseOther": "report child disease other",
+                                "reportChildDiseaseDate": "2013-07-13",
+                                "reportChildDiseasePlace": "report child disease place",
+                                "childReferral": "child referral"
+                            }
                         }
                     ],
                     "thayiCardNumber": "2747833",
