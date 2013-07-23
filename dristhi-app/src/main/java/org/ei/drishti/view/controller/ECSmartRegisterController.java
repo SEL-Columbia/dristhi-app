@@ -34,10 +34,13 @@ public class ECSmartRegisterController {
     public static final String PNC_STATUS = "pnc";
     public static final String PNC_FP_STATUS = "pnc/fp";
     public static final String STATUS_EDD_FIELD = "edd";
+    public static final String FP_STATUS = "fp";
+    public static final String FP_METHOD_DATE_FIELD = "fpMethodDate";
+    private static final String EC_CLIENTS_LIST = "ECClientsList";
+
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
     private final Cache<String> cache;
-    private final static String EC_CLIENTS_LIST = "ECClientsList";
 
     public ECSmartRegisterController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, Cache<String> cache) {
         this.allEligibleCouples = allEligibleCouples;
@@ -74,7 +77,7 @@ public class ECSmartRegisterController {
                             .withPhotoPath(photoPath)
                             .withHighPriorityReason(ec.getDetail(HIGH_PRIORITY_REASON))
                             .withIsOutOfArea(ec.isOutOfArea());
-                    updateStatusInformation(ec, ecClient, "fp");
+                    updateStatusInformation(ec, ecClient);
                     updateChildrenInformation(ecClient);
                     ecClients.add(ecClient);
                 }
@@ -112,7 +115,7 @@ public class ECSmartRegisterController {
     }
 
     //#TODO: Needs refactoring
-    private void updateStatusInformation(EligibleCouple eligibleCouple, ECClient ecClient, String FP_STATUS) {
+    private void updateStatusInformation(EligibleCouple eligibleCouple, ECClient ecClient) {
         Mother mother = allBeneficiaries.findMotherWithOpenStatusByECId(eligibleCouple.caseId());
 
         if (mother == null && !eligibleCouple.hasFPMethod()) {
@@ -123,7 +126,7 @@ public class ECSmartRegisterController {
 
         if (mother == null && eligibleCouple.hasFPMethod()) {
             ecClient.withStatus(EasyMap.create(STATUS_TYPE_FIELD, FP_STATUS)
-                    .put(STATUS_DATE_FIELD, eligibleCouple.getDetail("familyPlanningMethodChangeDate")).map());
+                    .put(STATUS_DATE_FIELD, eligibleCouple.getDetail(FAMILY_PLANNING_METHOD_CHANGE_DATE)).map());
             return;
         }
 
@@ -143,7 +146,7 @@ public class ECSmartRegisterController {
         if (mother != null && mother.isPNC() && eligibleCouple.hasFPMethod()) {
             ecClient.withStatus(EasyMap.create(STATUS_TYPE_FIELD, PNC_FP_STATUS)
                     .put(STATUS_DATE_FIELD, mother.referenceDate())
-                    .put("fpMethodDate", eligibleCouple.getDetail("familyPlanningMethodChangeDate")).map());
+                    .put(FP_METHOD_DATE_FIELD, eligibleCouple.getDetail(FAMILY_PLANNING_METHOD_CHANGE_DATE)).map());
             return;
         }
     }
