@@ -270,7 +270,7 @@
                         "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf"
                     },
                     {
-                        "name": "isHighRisk",
+                        "name": "isChildHighRisk",
                         "shouldLoadValue": true,
                         "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/is_high_risk_baby"
                     }
