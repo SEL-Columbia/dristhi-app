@@ -3,7 +3,7 @@
 </div>
 <div class="names">
     <span class="client-name text-bold ellipsis">{{client.name | humanize | camelCase}}</span>
-    <span class="client-age text-bold">({{client.age}})</span>
+    <span class="client-age text-bold">({{client.age || client.calculatedAge}})</span>
     <br/>
     <span class="client-husband-name ellipsis"
           style="font-size:15px;">{{client.husbandName | humanize | camelCase}}</span>

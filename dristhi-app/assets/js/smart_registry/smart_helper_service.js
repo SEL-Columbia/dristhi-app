@@ -13,6 +13,9 @@ angular.module("smartRegistry.services")
 
         return {
             daysBetween: daysBetween,
+            ageFromDOB: function(dob, ref_date){
+                return Math.floor(daysBetween(dob, ref_date)/365);
+            },
             zeroPad: function(num, size) {
                 if(size === undefined)
                     size = 2;

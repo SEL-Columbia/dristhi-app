@@ -3,8 +3,12 @@ angular.module("smartRegistry.services")
         return {
             preProcess: function (clients) {
                 clients.forEach(function (client) {
+                        // calculate age from DOB
+                        client.calculatedAge = SmartHelper.ageFromDOB(
+                            new Date(Date.parse(client.dateOfBirth)), new Date());
                         client.children.forEach(function(child){
-                           child.calulatedAge = SmartHelper.childsAge(Date.parse(child.dateOfBirth), new Date());
+                           child.calulatedAge = SmartHelper.childsAge(
+                               new Date(Date.parse(child.dateOfBirth)), new Date());
                         });
                     }
                 );
