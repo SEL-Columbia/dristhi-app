@@ -3,6 +3,7 @@ package org.ei.drishti.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.AllConstants;
 
 import java.util.Map;
 
@@ -67,12 +68,8 @@ public class Child {
         return details;
     }
 
-    public Map<String, String> detailsAsMap() {
-        return details;
-    }
-
     public boolean isHighRisk() {
-        return "yes".equals(details.get("isChildHighRisk"));
+        return AllConstants.BOOLEAN_TRUE.equals(details.get("isChildHighRisk"));
     }
 
     public boolean isClosed() {

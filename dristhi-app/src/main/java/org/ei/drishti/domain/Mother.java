@@ -3,6 +3,7 @@ package org.ei.drishti.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.AllConstants;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,7 +48,7 @@ public class Mother {
     }
 
     public boolean isHighRisk() {
-        return "yes".equals(details.get("isHighRisk"));
+        return AllConstants.BOOLEAN_TRUE.equals(details.get("isHighRisk"));
     }
 
     public Map<String, String> details() {

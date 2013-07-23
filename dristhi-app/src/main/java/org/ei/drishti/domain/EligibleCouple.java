@@ -89,7 +89,7 @@ public class EligibleCouple {
 
     private boolean parseDetailFieldValueToBoolean(String fieldName) {
         String isHighPriority = details.get(fieldName);
-        return "1".equals(isHighPriority) || "yes".equals(isHighPriority);
+        return "1".equals(isHighPriority) || AllConstants.BOOLEAN_TRUE.equals(isHighPriority);
     }
 
     public Map<String, String> details() {

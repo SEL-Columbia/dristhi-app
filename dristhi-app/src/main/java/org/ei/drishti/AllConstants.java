@@ -48,11 +48,12 @@ public class AllConstants {
     public static final String ENTITY_ID = "entityId";
     public static final int FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE = 112;
     public static final String ALERT_NAME_PARAM = "alertName";
+    public static final String BOOLEAN_TRUE = "yes";
     public static final String BOOLEAN_FALSE = "no";
     public static final String SPACE = " ";
     public static final String DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH = "../../img/woman-placeholder.png";
     public static final String DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH = "../../img/icons/child-girlinfant@3x.png";
-    public static final String DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH = "../../img/icons/child-girlinfant@3x.png";
+    public static final String DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH = "../../img/icons/child-infant@3x.png";
     public static final String FEMALE_GENDER = "female";
     public static final String FORM_DATE_TIME_FORMAT = "EEE, dd MMM yyyy HH:mm:ss ZZZ";
 
@@ -188,6 +189,7 @@ public class AllConstants {
         public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";
         public static final String GENDER = "gender";
         public static final String DELIVERY_PLACE = "deliveryPlace";
+        public static final String NAME = "name";
     }
 
     public class PNCRegistrationOAFields {

@@ -47,16 +47,16 @@ public class ChildSmartRegisterController {
                 List<ChildClient> childrenClient = new ArrayList<ChildClient>();
 
                 for (Child child : children) {
-                    String photoPath = isBlank(child.photoPath()) ? ("female".equalsIgnoreCase(child.gender()) ? "../../img/icons/child-girlinfant@3x.png" : "../../img/icons/child-infant@3x.png") : child.photoPath();
+                    String photoPath = isBlank(child.photoPath()) ? (AllConstants.FEMALE_GENDER.equalsIgnoreCase(child.gender()) ? AllConstants.DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH : AllConstants.DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH) : child.photoPath();
                     List<AlertDTO> alerts = getAlerts(child.caseId());
                     List<ServiceProvidedDTO> servicesProvided = getServicesProvided(child.caseId());
                     ChildClient childClient =
                             new ChildClient(
                                     child.caseId(),
                                     child.gender(),
-                                    child.getDetail("weight"),
+                                    child.getDetail(AllConstants.ChildRegistrationFields.WEIGHT),
                                     child.mother().thayiCardNumber())
-                                    .withName(child.getDetail("name"))
+                                    .withName(child.getDetail(AllConstants.ChildRegistrationFields.NAME))
                                     .withEntityIdToSavePhoto(child.caseId())
                                     .withMotherName(child.ec().wifeName())
                                     .withDOB(child.dateOfBirth())
@@ -64,8 +64,8 @@ public class ChildSmartRegisterController {
                                     .withFatherName(child.ec().husbandName())
                                     .withVillage(child.ec().village())
                                     .withOutOfArea(child.ec().isOutOfArea())
-                                    .withEconomicStatus(child.ec().getDetail("economicStatus"))
-                                    .withCaste(child.ec().getDetail("caste"))
+                                    .withEconomicStatus(child.ec().getDetail(AllConstants.ECRegistrationFields.ECONOMIC_STATUS))
+                                    .withCaste(child.ec().getDetail(AllConstants.ECRegistrationFields.CASTE))
                                     .withIsHighRisk(child.isHighRisk())
                                     .withPhotoPath(photoPath)
                                     .withECNumber(child.ec().ecNumber())
