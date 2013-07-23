@@ -35,53 +35,26 @@
                 <birthweight/>
                 <child_blood_group/>
                 <immunizations_atbirth/>
+                <lbw/>
+                <vlbw/>
+                <is_child_high_risk1/>
+                <child_high_risk_reasons/>
+                <high_risk_note_child/>
+                <is_child_high_risk/>
+                <addl_pnc_visit_message/>
             </child>
             <breastfeeding_postbirth/>
             <had_delivery_complications/>
             <complications/>
             <delivery_complications_other/>
-            <fp_post_delivery/>
-            <pp_fp_method/>
-            <pp_fp_method_start_date/>
-            <jsy_prasooti_group>
-                <jsy_payment/>
-                <jsy_date/>
-                <prasooti_payment2/>
-                <prasooti2_date/>
-            </jsy_prasooti_group>
-            <madilu_kit/>
-            <madilu_date/>
             <is_high_risk/>
             <high_risk_reason/>
             <stay_in_area/>
             <woman_survived/>
-            <lbw/>
-            <vlbw/>
-            <is_high_risk_baby1/>
-            <high_risk_reason_baby/>
-            <high_risk_note_baby/>
-            <is_high_risk_baby/>
-            <addl_pnc_visit_message/>
             <meta>
                 <instanceID/>
             </meta>
         </PNC_Child_Registration_EngKan>
-    </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="w_caste">
-        <root>
-            <item>
-                <itextId>static_instance-w_caste-0</itextId>
-                <name>sc</name>
-            </item>
-            <item>
-                <itextId>static_instance-w_caste-1</itextId>
-                <name>st</name>
-            </item>
-            <item>
-                <itextId>static_instance-w_caste-2</itextId>
-                <name>c_others</name>
-            </item>
-        </root>
     </instance>
     <instance xmlns="http://www.w3.org/2002/xforms" id="delivery_outcome">
         <root>
@@ -124,10 +97,6 @@
             <item>
                 <itextId>static_instance-place_delivery-6</itextId>
                 <name>private_facility</name>
-            </item>
-            <item>
-                <itextId>static_instance-place_delivery-7</itextId>
-                <name>private_facility2</name>
             </item>
         </root>
     </instance>
@@ -396,22 +365,6 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="prasooti">
-        <root>
-            <item>
-                <itextId>static_instance-prasooti-0</itextId>
-                <name>yes</name>
-            </item>
-            <item>
-                <itextId>static_instance-prasooti-1</itextId>
-                <name>later</name>
-            </item>
-            <item>
-                <itextId>static_instance-prasooti-2</itextId>
-                <name>not_eligible</name>
-            </item>
-        </root>
-    </instance>
     <instance xmlns="http://www.w3.org/2002/xforms" id="phcs">
         <root>
             <item>
@@ -638,47 +591,19 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="madilu">
+    <instance xmlns="http://www.w3.org/2002/xforms" id="w_caste">
         <root>
             <item>
-                <itextId>static_instance-madilu-0</itextId>
-                <name>yes</name>
+                <itextId>static_instance-w_caste-0</itextId>
+                <name>sc</name>
             </item>
             <item>
-                <itextId>static_instance-madilu-1</itextId>
-                <name>later</name>
+                <itextId>static_instance-w_caste-1</itextId>
+                <name>st</name>
             </item>
             <item>
-                <itextId>static_instance-madilu-2</itextId>
-                <name>not_eligible</name>
-            </item>
-        </root>
-    </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="iud_sterilization">
-        <root>
-            <item>
-                <itextId>static_instance-iud_sterilization-0</itextId>
-                <name>iud</name>
-            </item>
-            <item>
-                <itextId>static_instance-iud_sterilization-1</itextId>
-                <name>female_sterilization</name>
-            </item>
-        </root>
-    </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="jsy">
-        <root>
-            <item>
-                <itextId>static_instance-jsy-0</itextId>
-                <name>yes</name>
-            </item>
-            <item>
-                <itextId>static_instance-jsy-1</itextId>
-                <name>later</name>
-            </item>
-            <item>
-                <itextId>static_instance-jsy-2</itextId>
-                <name>not_eligible</name>
+                <itextId>static_instance-w_caste-2</itextId>
+                <name>c_others</name>
             </item>
         </root>
     </instance>
