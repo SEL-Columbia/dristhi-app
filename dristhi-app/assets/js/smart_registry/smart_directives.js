@@ -34,7 +34,7 @@ angular.module('smartRegistry.directives', [])
         },
         link: function(scope, elm, attrs) {
             scope.statusType = scope.client.status.type === 'pnc/fp'?attrs.statusType:scope.client.status.type;
-            elm.bind('click', scope.clickFn);
+            //elm.bind('click', scope.clickFn);
         }
     }
 }]);

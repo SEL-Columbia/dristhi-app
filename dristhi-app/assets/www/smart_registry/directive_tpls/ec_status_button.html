@@ -8,7 +8,8 @@
             <span>EDD: {{client.status.edd | date:'dd/MM/yy'}}</span>
         </div>
         <div ng-switch-when="pnc">
-            <span>Delivery: {{client.status.date | date:'dd/MM/yy'}}</span>
+            <span>Delivery:<br/>
+                {{client.status.date | date:'dd/MM/yy'}}</span>
         </div>
         <div ng-switch-default>
             <span>{{client.status.date | date:'dd/MM/yy'}}</span>
