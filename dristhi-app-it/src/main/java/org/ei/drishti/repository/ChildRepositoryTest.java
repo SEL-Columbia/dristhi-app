@@ -191,12 +191,19 @@ public class ChildRepositoryTest extends AndroidTestCase {
         EligibleCouple ec = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, ecDetails).asOutOfArea();
         Mother mother = new Mother("mother id 1", "ec id 1", "thayi no 1", "2013-01-01").withDetails(Collections.<String, String>emptyMap());
         Child child = new Child("child id 1", "mother id 1", "thayi no 1", "2013-01-02", "female", childDetails);
+        EligibleCouple anotherEC = new EligibleCouple("ec id 2", "amma", "appa", "ec no 1", "chikkamagalur", null, ecDetails).asOutOfArea();
+        Mother anotherMother = new Mother("mother id 2", "ec id 2", "thayi no 1", "2013-01-01").withDetails(Collections.<String, String>emptyMap());
+        Child anotherChild = new Child("child id 2", "mother id 2", "thayi no 1", "2013-01-02", "female", childDetails);
         repository.add(child);
         motherRepository.add(mother);
         ecRepository.add(ec);
+        repository.add(anotherChild);
+        motherRepository.add(anotherMother);
+        ecRepository.add(anotherEC);
 
         List<Child> children = repository.findAllChildrenByECId("ec id 1");
 
         assertTrue(children.contains(child));
+        assertFalse(children.contains(anotherChild));
     }
 }

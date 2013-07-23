@@ -239,8 +239,9 @@ public class ChildRepository extends DrishtiRepository {
                 " FROM " + CHILD_TABLE_NAME + ", " + MOTHER_TABLE_NAME + ", " + EC_TABLE_NAME +
                 " WHERE " + CHILD_TABLE_NAME + "." + IS_CLOSED_COLUMN + "= '" + NOT_CLOSED + "' AND " +
                 CHILD_TABLE_NAME + "." + MOTHER_ID_COLUMN + " = " + MOTHER_TABLE_NAME + "." + MotherRepository.ID_COLUMN
-                + " AND " + MOTHER_TABLE_NAME + "." + MotherRepository.EC_CASEID_COLUMN + " = " + EC_TABLE_NAME + "." + EligibleCoupleRepository.ID_COLUMN,
-                null);
+                + " AND " + MOTHER_TABLE_NAME + "." + MotherRepository.EC_CASEID_COLUMN + " = " + EC_TABLE_NAME + "." +
+                EligibleCoupleRepository.ID_COLUMN + " AND " + EC_TABLE_NAME + "." + EligibleCoupleRepository.ID_COLUMN +
+                "= ? ", new String[]{ecId});
         return readAllChildren(cursor);
     }
 }
