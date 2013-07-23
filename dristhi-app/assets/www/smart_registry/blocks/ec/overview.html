@@ -27,16 +27,16 @@
         </div>
     </ng-switch>
 </div>
-<div class="span4 line-right full-height span-no-margin width-without-margins span-content">
+<div class="span3 line-right full-height span-no-margin width-without-margins span-content">
     <button data-ng-repeat="child in client.children | limitTo:2" class="btn btn-sr btn-large btn-visit-status complete btn-primary full-height"
             data-ng-class="{'btn-half-width': client.children.length > 1, 'left': $index == 0, 'right': $index == 1}">
-        <div class="done-icon right full-height"><i></i></div>
+        <div class="done-icon right full-height" style="margin: 0;"><i></i></div>
         <span class="text-bold">{{child.gender | camelCase}}</span>
         <br/>
         <span>{{child.calulatedAge}}</span>
     </button>
 </div>
-<div class="span4 line-right full-height span-no-margin width-without-margins span-content">
+<div class="span5 line-right full-height span-no-margin width-without-margins span-content">
     <ng-switch on="client.status.type">
         <div ng-switch-when="pnc/fp" class="full-height">
             <sr-ec-status-button client="client" status-type="pnc" class="btn-half-width left"></sr-ec-status-button>
