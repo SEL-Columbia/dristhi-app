@@ -13,15 +13,6 @@
                 "source": "mother.eligible_couple.id"
             },
             {
-                "name": "pncVisitNumber",
-                "shouldLoadValue": true,
-                "bind": "/model/instance/PNC_Visit_EngKan/case_pnc_number"
-            },
-            {
-                "name": "pncVisitNumber",
-                "bind": "/model/instance/PNC_Visit_EngKan/pnc_number"
-            },
-            {
                 "name": "wifeName",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/PNC_Visit_EngKan/case_woman_name",
@@ -88,45 +79,6 @@
                 "bind": "/model/instance/PNC_Visit_EngKan/pnc_visit_person"
             },
             {
-                "name": "jsyPaymentStatus",
-                "shouldLoadValue": true,
-                "bind": "/model/instance/PNC_Visit_EngKan/case_jsy"
-            },
-            {
-                "name": "jsyPaymentStatus",
-                "bind": "/model/instance/PNC_Visit_EngKan/jsy_payment"
-            },
-            {
-                "name": "jsyPaymentDate",
-                "bind": "/model/instance/PNC_Visit_EngKan/jsy_date"
-            },
-            {
-                "name": "madiluKitStatus",
-                "shouldLoadValue": true,
-                "bind": "/model/instance/PNC_Visit_EngKan/case_madilu"
-            },
-            {
-                "name": "madiluKitStatus",
-                "bind": "/model/instance/PNC_Visit_EngKan/madilu_kit"
-            },
-            {
-                "name": "madiluKitDate",
-                "bind": "/model/instance/PNC_Visit_EngKan/madilu_date"
-            },
-            {
-                "name": "prasootiPayment2",
-                "shouldLoadValue": true,
-                "bind": "/model/instance/PNC_Visit_EngKan/case_prasooti_payment2"
-            },
-            {
-                "name": "prasootiPayment2",
-                "bind": "/model/instance/PNC_Visit_EngKan/prasooti_payment2"
-            },
-            {
-                "name": "prasooti2Date",
-                "bind": "/model/instance/PNC_Visit_EngKan/prasooti2_date"
-            },
-            {
                 "name": "difficulties1",
                 "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1"
             },
@@ -145,10 +97,6 @@
             {
                 "name": "breastProblems",
                 "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems"
-            },
-            {
-                "name": "otherProblems",
-                "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_other_problems"
             },
             {
                 "name": "cesareanIncisionArea",
@@ -179,29 +127,12 @@
                 "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/bp_diastolic"
             },
             {
-                "name": "hasBFDifficulties",
-                "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_bf_difficulties"
-            },
-            {
-                "name": "exclusiveBF",
-                "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_exclusive_bf"
-            },
-            {
                 "name": "hbLevel",
                 "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/hb_level"
             },
             {
                 "name": "numberOfIFATabletsGiven",
                 "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/ifa_tablets_given"
-            },
-            {
-                "name": "ifaTabletsDate",
-                "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/ifa_tablets_date"
-            },
-            {
-                "name": "currentMethod",
-                "shouldLoadValue": true,
-                "bind": "/model/instance/PNC_Visit_EngKan/pnc_mother_group/case_pp_fp_method"
             },
             {
                 "name": "immediateReferral",
@@ -286,11 +217,6 @@
                         "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_weight"
                     },
                     {
-                        "name": "bloodGroup",
-                        "shouldLoadValue": true,
-                        "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/case_child_blood_group"
-                    },
-                    {
                         "name": "immunizationsGiven",
                         "shouldLoadValue": true,
                         "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/case_immunizations_atbirth"
@@ -324,10 +250,6 @@
                         "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems"
                     },
                     {
-                        "name": "otherProblems",
-                        "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_other_problems"
-                    },
-                    {
                         "name": "hasFeverSymptoms",
                         "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever_symptoms"
                     },
@@ -342,6 +264,10 @@
                     {
                         "name": "immediateReferralReason",
                         "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_reason_baby"
+                    },
+                    {
+                        "name": "childExclusiveBF",
+                        "bind": "/model/instance/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf"
                     },
                     {
                         "name": "isHighRisk",

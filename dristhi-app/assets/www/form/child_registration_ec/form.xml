@@ -23,8 +23,7 @@
                data-constraint=".&lt;= /Child_Registration_EC_EngKan/today " data-type-xml="date"/>
     </label>
     <fieldset class="trigger " name="/Child_Registration_EC_EngKan/child_age_note">
-        <span lang="" class=" active">Child age (in months), &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;
-            (&#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCC1;&#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;):
+        <span lang="" class=" active">Child age, &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;:
             <span class="jr-output" data-value=" /Child_Registration_EC_EngKan/child_age ">
             </span>
             months &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCC1;
@@ -698,7 +697,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Child_Registration_EC_EngKan/child_age"
-                   data-calculate="int(( /Child_Registration_EC_EngKan/today  -  /Child_Registration_EC_EngKan/child_birth_date ) div 30)"
+                   data-calculate="if( /Child_Registration_EC_EngKan/child_birth_date  = '', '', int(( /Child_Registration_EC_EngKan/today  -  /Child_Registration_EC_EngKan/child_birth_date ) div 30))"
                    data-type-xml="string"/>
         </label>
         <label class="">

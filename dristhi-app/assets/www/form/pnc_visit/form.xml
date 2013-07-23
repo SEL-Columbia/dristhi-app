@@ -64,9 +64,8 @@
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Who did PNC visit?
-                    &#xCAF;&#xCBE;&#xCB0;&#xCC1; &#xCAC;&#xCBE;&#xCA3;&#xC82;&#xCA4;&#xCBF; &#xCAD;&#xCC7;&#xC9F;&#xCBF;
-                    &#xCAE;&#xCBE;&#xCA1;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCBE;&#xCB0;&#xCC6;?
+                <span lang="" class=" active">Who did PNC visit? &#xCAF;&#xCBE;&#xCB0;&#xCC1; &#xCAC;&#xCBE;&#xCA3;&#xC82;&#xCA4;&#xCBF;
+                    &#xCAD;&#xCC7;&#xC9F;&#xCBF; &#xCAE;&#xCBE;&#xCA1;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCBE;&#xCB0;&#xCC6;?
                 </span>
                 <span class="required">*</span>
             </legend>
@@ -92,124 +91,10 @@
             </label>
         </fieldset>
     </fieldset>
-    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">JSY payment given? &#xC9C;&#xCA8;&#xCA8;&#xCBF; &#xCB8;&#xCC1;&#xCB0;&#xC95;&#xCCD;&#xCB7;&#xCBE;
-                    &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6; &#xCB9;&#xCA3; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
-                </span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Visit_EngKan/jsy_payment" value="yes"
-                       data-relevant=" /PNC_Visit_EngKan/case_jsy  = 'later'" data-type-xml="select1"/>
-                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Visit_EngKan/jsy_payment" value="later"
-                       data-relevant=" /PNC_Visit_EngKan/case_jsy  = 'later'" data-type-xml="select1"/>
-                <span lang="" class=" active">Plan to give later &#xCA8;&#xC82;&#xCA4;&#xCB0; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCC1;
-                    &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Visit_EngKan/jsy_payment" value="not_eligible"
-                       data-relevant=" /PNC_Visit_EngKan/case_jsy  = 'later'" data-type-xml="select1"/>
-                <span lang="" class=" active">Not eligible for JSY &#xC9C;&#xCA8;&#xCA8;&#xCBF; &#xCB8;&#xCC1;&#xCB0;&#xC95;&#xCCD;&#xCB7;&#xCBE;
-                    &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6; &#xC97;&#xCC6; &#xC85;&#xCB0;&#xCCD;&#xCB9;&#xCB0;&#xCB2;&#xCCD;&#xCB2;</span>
-            </label>
-        </fieldset>
-    </fieldset>
-    <label class="jr-branch pre-init ">
-        <span lang="" class=" active">JSY payment date? &#xC9C;&#xCA8;&#xCA8;&#xCBF; &#xCB8;&#xCC1;&#xCB0;&#xC95;&#xCCD;&#xCB7;&#xCBE;
-            &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6; &#xCB9;&#xCA3; &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
-        </span>
-        <input autocomplete="off" type="date" name="/PNC_Visit_EngKan/jsy_date"
-               data-constraint=".&lt;= /PNC_Visit_EngKan/today " data-relevant=" /PNC_Visit_EngKan/jsy_payment  = 'yes'"
-               data-type-xml="date"/>
-    </label>
-    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">Madilu kit given? &#xCAE;&#xCA1;&#xCBF;&#xCB2;&#xCC1; &#xC95;&#xCBF;&#xC9F;&#xCCD;
-                    &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
-                </span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Visit_EngKan/madilu_kit" value="yes"
-                       data-relevant=" /PNC_Visit_EngKan/case_madilu  = 'later'" data-type-xml="select1"/>
-                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Visit_EngKan/madilu_kit" value="later"
-                       data-relevant=" /PNC_Visit_EngKan/case_madilu  = 'later'" data-type-xml="select1"/>
-                <span lang="" class=" active">Plan to give later &#xCA8;&#xC82;&#xCA4;&#xCB0; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCC1;
-                    &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Visit_EngKan/madilu_kit" value="not_eligible"
-                       data-relevant=" /PNC_Visit_EngKan/case_madilu  = 'later'" data-type-xml="select1"/>
-                <span lang="" class=" active">Not eligible for Madilu kit &#xCAE;&#xCA1;&#xCBF;&#xCB2;&#xCC1; &#xC95;&#xCBF;&#xC9F;&#xCCD;
-                    &#xC97;&#xCC6; &#xC85;&#xCB0;&#xCCD;&#xCB9;&#xCB0;&#xCB2;&#xCCD;&#xCB2;</span>
-            </label>
-        </fieldset>
-    </fieldset>
-    <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Date Madilu kit given? &#xCAE;&#xCA1;&#xCBF;&#xCB2;&#xCC1; &#xC95;&#xCBF;&#xC9F;&#xCCD;
-            &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
-        </span>
-        <input autocomplete="off" type="date" name="/PNC_Visit_EngKan/madilu_date"
-               data-constraint=".&lt;= /PNC_Visit_EngKan/today " data-relevant=" /PNC_Visit_EngKan/madilu_kit  = 'yes'"
-               data-type-xml="date"/>
-    </label>
-    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">Prasooti Araike payment 2 given? &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCC2;&#xCA4;&#xCBF;
-                    &#xC86;&#xCB0;&#xCC8;&#xC95;&#xCC6; 2 &#xCB9;&#xCA3; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
-                </span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Visit_EngKan/prasooti_payment2" value="yes"
-                       data-relevant=" /PNC_Visit_EngKan/case_prasooti_payment2  = 'later'" data-type-xml="select1"/>
-                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Visit_EngKan/prasooti_payment2" value="later"
-                       data-relevant=" /PNC_Visit_EngKan/case_prasooti_payment2  = 'later'" data-type-xml="select1"/>
-                <span lang="" class=" active">Plan to give later &#xCA8;&#xC82;&#xCA4;&#xCB0; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCC1;
-                    &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Visit_EngKan/prasooti_payment2" value="not_eligible"
-                       data-relevant=" /PNC_Visit_EngKan/case_prasooti_payment2  = 'later'" data-type-xml="select1"/>
-                <span lang="" class=" active">Not eligible for Prasooti Araike &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCC2;&#xCA4;&#xCBF;
-                    &#xC86;&#xCB0;&#xCC8;&#xC95;&#xCC6;&#xC97;&#xCC6; &#xC85;&#xCB0;&#xCCD;&#xCB9;&#xCB0;&#xCB2;&#xCCD;&#xCB2;</span>
-            </label>
-        </fieldset>
-    </fieldset>
-    <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Prasooti Araike payment 2 date? &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCC2;&#xCA4;&#xCBF;
-            &#xC86;&#xCB0;&#xCC8;&#xC95;&#xCC6; 2 &#xCB9;&#xCA3; &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
-        </span>
-        <input autocomplete="off" type="date" name="/PNC_Visit_EngKan/prasooti2_date"
-               data-constraint=".&lt;= /PNC_Visit_EngKan/today "
-               data-relevant=" /PNC_Visit_EngKan/prasooti_payment2  = 'yes'" data-type-xml="date"/>
-    </label>
     <fieldset class="jr-branch pre-init " name="/PNC_Visit_EngKan/pnc_mother_group"
               data-relevant="( /PNC_Visit_EngKan/case_woman_survived  = 'yes' or  /PNC_Visit_EngKan/case_mother_survived  = 'yes')">
         <fieldset class="trigger " name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_group_message">
-            <span lang="" class=" active">Instructions:
-                Go over danger signs with
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/case_woman_name ">
-                </span>
-                and her family.
-                &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF; &#xC9A;&#xCBF;&#xCB9;&#xCCD;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/case_woman_name ">
-                </span>
-                &#xC9C;&#xCCA;&#xCA4;&#xCC6; &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; &#xC86;&#xC95;&#xCC6;&#xCAF;&#xCBE;
-                &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCB8;&#xCA6;&#xCB8;&#xCCD;&#xCAF;&#xCB0;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xC97;&#xCC6;
-                &#xCA8;&#xCCB;&#xCA1;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1; .
-            </span>
+            <span lang="" class=" active">Mother check-up &#xCA4;&#xCBE;&#xCAF;&#xCBF;&#xCAF; &#xCA4;&#xCAA;&#xCBE;&#xCB8;&#xCA3;&#xCC6;:</span>
         </fieldset>
         <fieldset class="restoring-sanity-to-legends ">
             <fieldset>
@@ -395,13 +280,6 @@
                 </label>
             </fieldset>
         </fieldset>
-        <label class="">
-            <span lang="" class=" active">Any other problems? &#xC87;&#xCA4;&#xCB0;&#xCC6; &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCC7;
-                &#xCB8;&#xCAE;&#xCB8;&#xCCD;&#xCAF;&#xCC6;&#xC97;&#xCB3;&#xCC1;?
-            </span>
-            <input autocomplete="off" type="text" name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_other_problems"
-                   data-type-xml="string"/>
-        </label>
         <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
             <fieldset>
                 <legend>
@@ -474,59 +352,12 @@
             <input autocomplete="off" type="number" name="/PNC_Visit_EngKan/pnc_mother_group/temperature"
                    data-type-xml="decimal" step="any"/>
         </label>
-        <fieldset class="trigger jr-branch pre-init"
-                  name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_message"
-                  data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever  != ''">
-            <span lang="" class=" active">Instructions:
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/woman_name ">
-                </span>
-                has high fever! Refer immediately to facility!
-                &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/woman_name ">
-                </span>
-                &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1; &#xC9C;&#xCCD;&#xCB5;&#xCB0;! &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;
-                &#xCA4;&#xC95;&#xCCD;&#xCB7;&#xCA3; &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
-                &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD; &#xCAE;&#xCBE;&#xCA1;&#xCBF;!
-            </span>
-        </fieldset>
-        <fieldset class="trigger jr-branch pre-init"
-                  name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_no_fever_message"
-                  data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever  = '' and  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_symptoms  = 'yes'">
-            <span lang="" class=" active">Instructions:
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/woman_name ">
-                </span>
-                has normal temperature. If she still complains of feeling hot and chills, refer to facility.
-                &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/woman_name ">
-                </span>
-                &#xCB8;&#xCBE;&#xCAE;&#xCBE;&#xCA8;&#xCCD;&#xCAF; &#xCA4;&#xCBE;&#xCAA;&#xCAE;&#xCBE;&#xCA8; &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCC1;.
-                &#xC88;&#xC97;&#xCB2;&#xCC2; &#xC86;&#xC95;&#xCC6; &#xCAC;&#xCBF;&#xCB8;&#xCBF; &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1;
-                &#xCB6;&#xCC0;&#xCA4; &#xC85;&#xCA8;&#xCC1;&#xCAD;&#xCB5; &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;
-                &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6; &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD;
-                &#xCAE;&#xCBE;&#xCA1;&#xCBF;.
-            </span>
-        </fieldset>
         <label class="">
             <span lang="" class=" active">Pulse rate &#xCA8;&#xCBE;&#xCA1;&#xCBF;
                 &#xCAE;&#xCBF;&#xCA1;&#xCBF;&#xCA4;</span>
             <input autocomplete="off" type="number" name="/PNC_Visit_EngKan/pnc_mother_group/pulse_rate"
                    data-type-xml="int"/>
         </label>
-        <fieldset class="trigger jr-branch pre-init"
-                  name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_rapid_pulse_rate_message"
-                  data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_rapid_pulse_rate  != ''">
-            <span lang="" class=" active">Instructions:
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/woman_name ">
-                </span>
-                has dangerously high pulse rate. Refer immediately to facility! &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/woman_name ">
-                </span>
-                &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF; &#xC85;&#xCA7;&#xCBF;&#xC95; &#xCA8;&#xCBE;&#xCA1;&#xCBF;
-                &#xCAE;&#xCBF;&#xCA1;&#xCBF;&#xCA4;&#xCB5;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;.
-                &#xCA4;&#xC95;&#xCCD;&#xCB7;&#xCA3; &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
-                &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD; &#xCAE;&#xCBE;&#xCA1;&#xCBF;!
-            </span>
-        </fieldset>
         <label class="">
             <span lang="" class=" active">BP (systolic) &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;&#xCCA;&#xCA4;&#xCCD;&#xCA4;&#xCA1;
                 (&#xCB8;&#xC82;&#xC95;&#xCCB;&#xC9A;&#xCA8;)
@@ -541,93 +372,6 @@
             <input autocomplete="off" type="number" name="/PNC_Visit_EngKan/pnc_mother_group/bp_diastolic"
                    data-type-xml="int"/>
         </label>
-        <fieldset class="trigger jr-branch pre-init"
-                  name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_low_blood_pressure_message"
-                  data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_low_blood_pressure  != ''">
-            <span lang="" class=" active">Instructions:
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/woman_name ">
-                </span>
-                has dangerously low blood pressure. Refer immediately to facility!
-                &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/woman_name ">
-                </span>
-                &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF; &#xC95;&#xCA1;&#xCBF;&#xCAE;&#xCC6; &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;&#xCCA;&#xCA4;&#xCCD;&#xCA4;&#xCA1;
-                &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;. &#xCA4;&#xC95;&#xCCD;&#xCB7;&#xCA3;
-                &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6; &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD;
-                &#xCAE;&#xCBE;&#xCA1;&#xCBF;!
-            </span>
-        </fieldset>
-        <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
-            <fieldset>
-                <legend>
-                    <span lang="" class=" active">Difficulties with breastfeeding? &#xCB8;&#xCCD;&#xCA4;&#xCA8;&#xCCD;&#xCAF;&#xCAA;&#xCBE;&#xCA8;
-                        &#xCA4;&#xCCA;&#xC82;&#xCA6;&#xCB0;&#xCC6;&#xC97;&#xCB3;&#xCC1;?
-                    </span>
-                </legend>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_bf_difficulties" value="yes"
-                           data-relevant=" /PNC_Visit_EngKan/case_delivery_outcome  = 'live_birth'"
-                           data-type-xml="select1"/>
-                    <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-                </label>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_bf_difficulties" value="no"
-                           data-relevant=" /PNC_Visit_EngKan/case_delivery_outcome  = 'live_birth'"
-                           data-type-xml="select1"/>
-                    <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-                </label>
-            </fieldset>
-        </fieldset>
-        <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
-            <fieldset>
-                <legend>
-                    <span lang="" class=" active">Is
-                        <span class="jr-output" data-value=" /PNC_Visit_EngKan/case_woman_name ">
-                        </span>
-                        exclusively breastfeeding her baby? &#xC8F;&#xC95;&#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;
-                        <span class="jr-output" data-value=" /PNC_Visit_EngKan/case_woman_name ">
-                        </span>
-                        &#xCA4;&#xCA8;&#xCCD;&#xCA8; &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6; &#xCB9;&#xCBE;&#xCB2;&#xCC1;&#xCA3;&#xCBF;&#xCB8;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1;?
-                    </span>
-                </legend>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_exclusive_bf" value="yes"
-                           data-relevant=" /PNC_Visit_EngKan/case_delivery_outcome  = 'live_birth'"
-                           data-type-xml="select1"/>
-                    <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-                </label>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_exclusive_bf" value="no"
-                           data-relevant=" /PNC_Visit_EngKan/case_delivery_outcome  = 'live_birth'"
-                           data-type-xml="select1"/>
-                    <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-                </label>
-            </fieldset>
-        </fieldset>
-        <fieldset class="trigger jr-branch pre-init"
-                  name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_exclusive_bf_message"
-                  data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_exclusive_bf  = 'no'">
-            <span lang="" class=" active">Instructions:
-                Counsel
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/case_woman_name ">
-                </span>
-                on importance of exclusively breastfeeding baby for 6 months. Tell her she can become pregnant if she
-                stops breastfeeding.
-                &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                6 &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCB5;&#xCB0;&#xCC6;&#xC97;&#xCC6; &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6;
-                &#xC8F;&#xC95;&#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0; &#xCB9;&#xCBE;&#xCB2;&#xCC1;&#xCA3;&#xCBF;&#xCB8;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1;
-                &#xCAA;&#xCCD;&#xCB0;&#xCAE;&#xCC1;&#xC96;&#xCB5;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;. &#xCA8;&#xC82;&#xCA4;&#xCB0;
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/case_woman_name ">
-                </span>
-                &#xC85;&#xCB5;&#xCB3;&#xCC1; &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCA6;&#xCB0;&#xCBF;&#xCB8;&#xCBF;&#xCA6;&#xCB0;&#xCC6;
-                &#xCB9;&#xCBE;&#xCB2;&#xCC1;&#xCA3;&#xCBF;&#xCB8;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                &#xCA8;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCB8;&#xCB2;&#xCC1; &#xCA4;&#xCBF;&#xCB3;&#xCBF;&#xCB8;&#xCBF;.
-            </span>
-        </fieldset>
         <label class="">
             <span lang="" class=" active">Hb level (g/dl) &#xCB9;&#xCC6;&#xC9A;&#xCCD;.&#xCAC;&#xCBF; &#xCAE;&#xC9F;&#xCCD;&#xC9F;
                 (&#xC9C;&#xCBF;/&#xCA1;&#xCBF;&#xC8E;&#xCB2;&#xCCD;)
@@ -665,56 +409,25 @@
             <input autocomplete="off" type="number" name="/PNC_Visit_EngKan/pnc_mother_group/ifa_tablets_given"
                    data-type-xml="int"/>
         </label>
-        <label class="jr-branch pre-init ">
-            <span lang="" class=" active">IFA tablet date? &#xC95;&#xCAC;&#xCCD;&#xCAC;&#xCBF;&#xCA3;&#xCBE;&#xC82;&#xCB6;&#xCA6;
-                &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCA6;
-                &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
-            </span>
-            <input autocomplete="off" type="date" name="/PNC_Visit_EngKan/pnc_mother_group/ifa_tablets_date"
-                   data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/ifa_tablets_given  &gt; 0" data-type-xml="date"/>
-        </label>
-        <fieldset class="trigger jr-branch pre-init" name="/PNC_Visit_EngKan/pnc_mother_group/pp_fp_message"
-                  data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/case_pp_fp_method  = ''">
-            <span lang="" class=" active">Instructions:
-                Tell
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/case_woman_name ">
-                </span>
-                the importance of postpartum family planning. When she is ready to select a FP method, open the
-                Postpartum Family Planning form. &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;: &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5;&#xCBE;&#xCA8;&#xC82;&#xCA4;&#xCB0;&#xCA6;
-                &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;&#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF; &#xCAE;&#xCB9;&#xCA4;&#xCCD;&#xCB5;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                &#xCA4;&#xCBF;&#xCB3;&#xCBF;&#xCB8;&#xCBF;.
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/case_woman_name ">
-                </span>
-                &#xC85;&#xCB5;&#xCB3;&#xCC1; &#xCAF;&#xCBE;&#xCB5;&#xCBE;&#xC97; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
-                &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xC86;&#xCAF;&#xCCD;&#xC95;&#xCC6;&#xCAE;&#xCBE;&#xCA1;&#xCBF;&#xC95;&#xCCA;&#xCB3;&#xCCD;&#xCB3;&#xCB2;&#xCC1;
-                &#xCB8;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCBE;&#xCA6;&#xCBE;&#xC97; &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5;&#xCBE;
-                &#xCA8;&#xC82;&#xCA4;&#xCB0;&#xCA6; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;
-                &#xCAB;&#xCBE;&#xCB0;&#xCCD;&#xCAE;&#xCCD;&#x200D;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xC86;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF;.
-            </span>
-        </fieldset>
         <fieldset class="trigger jr-branch pre-init" name="/PNC_Visit_EngKan/pnc_mother_group/immediate_referral_note"
                   data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/immediate_referral  = 'yes'">
-            <span lang="" class=" active">Instructions:
+            <span lang="" class=" active">
                 <span class="jr-output" data-value=" /PNC_Visit_EngKan/woman_name ">
-                </span>
-                has following danger signs:<span class="jr-output"
-                                                 data-value=" /PNC_Visit_EngKan/pnc_mother_group/immediate_referral_reason ">
-                </span>. Refer immediately to health facility! &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
+                </span>has following danger signs,
                 <span class="jr-output" data-value=" /PNC_Visit_EngKan/woman_name ">
                 </span>
                 &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF; &#xC9A;&#xCBF;&#xCB9;&#xCCD;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                 &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;:<span class="jr-output"
                                                                                              data-value=" /PNC_Visit_EngKan/pnc_mother_group/immediate_referral_reason ">
-                </span>. &#xCA4;&#xC95;&#xCCD;&#xCB7;&#xCA3; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
-                &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD; &#xCAE;&#xCBE;&#xCA1;&#xCBF;!
+            </span>. Refer immediately to health facility! &#xCA4;&#xC95;&#xCCD;&#xCB7;&#xCA3; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
+                &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6; &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD;
+                &#xCAE;&#xCBE;&#xCA1;&#xCBF;!
             </span>
         </fieldset>
         <fieldset class="trigger jr-branch pre-init" name="/PNC_Visit_EngKan/pnc_mother_group/high_risk_note_mother"
                   data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/is_high_risk1  = 'yes'">
-            <span lang="" class=" active">Woman is still at risk because of:
-                <span class="jr-output" data-value=" /PNC_Visit_EngKan/pnc_mother_group/high_risk_reason ">
-                </span>
-                &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1; &#xC88;&#xC97;&#xCB2;&#xCC2; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCBE;&#xCB3;&#xCC6;
+            <span lang="" class=" active">Woman is still at risk because of, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1;
+                &#xC88;&#xC97;&#xCB2;&#xCC2; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCBE;&#xCB3;&#xCC6;
                 &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
                 <span class="jr-output" data-value=" /PNC_Visit_EngKan/pnc_mother_group/high_risk_reason ">
                 </span>
@@ -747,25 +460,16 @@
               data-relevant=" /PNC_Visit_EngKan/case_delivery_outcome  = 'live_birth'">
         <fieldset class="jr-repeat " name="/PNC_Visit_EngKan/pnc_child_repeat">
             <fieldset class="trigger " name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_group_message">
-                <span lang="" class=" active">Instructions:
-                    Go over danger signs with child's family. &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                    &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF; &#xC9A;&#xCBF;&#xCB9;&#xCCD;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                    &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;&#xCA6;&#xCB5;&#xCB0;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xC97;&#xCC6;
-                    &#xCA8;&#xCCB;&#xCA1;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1;.
-                </span>
+                <span lang="" class=" active">Baby check-up &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCA4;&#xCAA;&#xCBE;&#xCB8;&#xCA3;&#xCC6;:</span>
             </fieldset>
             <label class="">
-                <span lang="" class=" active">Child info:
-                    Sex:
+                <span lang="" class=" active">Sex &#xCB2;&#xCBF;&#xC82;&#xC97;:
                     <span class="jr-output" data-value=" /PNC_Visit_EngKan/pnc_child_repeat/case_sex_child ">
                     </span>
-                    Birthweight:
+                    Birthweight &#xC9C;&#xCA8;&#xCA8; &#xCA4;&#xCC2;&#xC95;:
                     <span class="jr-output" data-value=" /PNC_Visit_EngKan/pnc_child_repeat/case_birthweight ">
                     </span>
-                    Blood group:
-                    <span class="jr-output" data-value=" /PNC_Visit_EngKan/pnc_child_repeat/case_child_blood_group ">
-                    </span>
-                    Birth immunizations:
+                    Birth immunizations &#xC9C;&#xCA8;&#xCA8;&#xCA6; &#xCB2;&#xCB8;&#xCBF;&#xC95;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
                     <span class="jr-output"
                           data-value=" /PNC_Visit_EngKan/pnc_child_repeat/case_immunizations_atbirth ">
                     </span>
@@ -1012,13 +716,6 @@
                     </label>
                 </fieldset>
             </fieldset>
-            <label class="">
-                <span lang="" class=" active">Any other problems? &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCC7; &#xC87;&#xCA4;&#xCB0;&#xCC6;
-                    &#xCB8;&#xCAE;&#xCB8;&#xCCD;&#xCAF;&#xCC6;&#xC97;&#xCB3;&#xCC1; &#xC87;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
-                </span>
-                <input autocomplete="off" type="text" name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_other_problems"
-                       data-type-xml="string"/>
-            </label>
             <fieldset class="restoring-sanity-to-legends ">
                 <fieldset>
                     <legend>
@@ -1048,82 +745,53 @@
                 <input autocomplete="off" type="number" name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_temperature"
                        data-type-xml="decimal" step="any"/>
             </label>
-            <fieldset class="trigger jr-branch pre-init"
-                      name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever_message"
-                      data-relevant=" /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever  != ''">
-                <span lang="" class=" active">Instructions:
-                    Child has high fever! Refer immediately to facility! &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                    &#xCAE;&#xC97;&#xCC1; &#xC85;&#xCA7;&#xCBF;&#xC95; &#xC9C;&#xCCD;&#xCB5;&#xCB0; &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;!
-                    &#xCA4;&#xC95;&#xCCD;&#xCB7;&#xCA3; &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
-                    &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD; &#xCAE;&#xCBE;&#xCA1;&#xCBF;!
-                </span>
+            <fieldset class="restoring-sanity-to-legends ">
+                <fieldset>
+                    <legend>
+                        <span lang="" class=" active">Is baby exclusively breastfeeding? &#xCAE;&#xC97;&#xCC1; &#xC8F;&#xC95;&#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCB5;&#xCBE;&#xC97;&#xCBF;
+                            &#xC8E;&#xCA6;&#xCC6; &#xCB9;&#xCBE;&#xCB2;&#xCC1; &#xC95;&#xCC1;&#xCA1;&#xCBF;&#xCAF;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
+                        </span>
+                    </legend>
+                    <label class="clearfix ">
+                        <input autocomplete="off" type="radio"
+                               name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf" value="yes"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
+                    </label>
+                    <label class="clearfix ">
+                        <input autocomplete="off" type="radio"
+                               name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf" value="no"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+                    </label>
+                </fieldset>
             </fieldset>
             <fieldset class="trigger jr-branch pre-init"
-                      name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_no_fever_message"
-                      data-relevant=" /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever  = '' and  /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever_symptoms  = 'yes'">
-                <span lang="" class=" active">Instructions:
-                    Child has normal temperature. If child continues to feel hot and have chills, refer to facility.
-                    &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;: &#xCAE;&#xC97;&#xCC1; &#xCB8;&#xCBE;&#xCAE;&#xCBE;&#xCA8;&#xCCD;&#xCAF;
-                    &#xCA4;&#xCBE;&#xCAA;&#xCAE;&#xCBE;&#xCA8; &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCC6; &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6;
-                    &#xCAC;&#xCBF;&#xCB8;&#xCBF; &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; &#xC9A;&#xCB3;&#xCBF;&#xCAF;
-                    &#xC85;&#xCA8;&#xCC1;&#xCAD;&#xCB5; &#xCAE;&#xCC1;&#xC82;&#xCA6;&#xCC1;&#xCB5;&#xCB0;&#xCC6;&#xCA6;&#xCB0;&#xCC6;
-                    &#xCA4;&#xC95;&#xCCD;&#xCB7;&#xCA3; &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
-                    &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD; &#xCAE;&#xCBE;&#xCA1;&#xCBF;.
+                      name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf_message"
+                      data-relevant=" /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf  = 'no'">
+                <span lang="" class=" active">Counsel mother on importance of exclusively breastfeeding baby for 6
+                    months. &#xCA4;&#xCBE;&#xCAF;&#xCBF; 6 &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCB5;&#xCB0;&#xCC6;&#xC97;&#xCC6;
+                    &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6; &#xC8F;&#xC95;&#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;
+                    &#xCB9;&#xCBE;&#xCB2;&#xCC1;&#xCA3;&#xCBF;&#xCB8;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCAE;&#xCC1;&#xC96;&#xCB5;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;.
                 </span>
             </fieldset>
-            <label class="">
-                <span lang="" class=" active">Child weight (in kgs)? &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCA4;&#xCC2;&#xC95;
-                    (&#xC95;&#xCC6;&#xC9C;&#xCBF;)?
-                </span>
-                <input autocomplete="off" type="number" name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_weight"
-                       data-type-xml="decimal" step="any"/>
-            </label>
             <fieldset class="trigger jr-branch pre-init"
                       name="/PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_note_baby"
                       data-relevant=" /PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_baby  = 'yes'">
-                <span lang="" class=" active">Instructions:
-                    Child has following danger signs:<span class="jr-output"
-                                                           data-value=" /PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_reason_baby ">
-                    </span>. Refer immediately to health facility! &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                    &#xCAE;&#xC97;&#xCC1; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF; &#xC9A;&#xCBF;&#xCB9;&#xCCD;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                    &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;:<span class="jr-output"
-                                                                                                 data-value=" /PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_reason_baby ">
-                    </span>. &#xCA4;&#xC95;&#xCCD;&#xCB7;&#xCA3; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
-                    &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD; &#xCAE;&#xCBE;&#xCA1;&#xCBF;!
-                </span>
-            </fieldset>
-            <fieldset class="trigger jr-branch pre-init" name="/PNC_Visit_EngKan/pnc_child_repeat/sick_baby_bf_message"
-                      data-relevant=" /PNC_Visit_EngKan/case_mother_survived  = 'yes' and  /PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_baby  = 'yes'">
-                <span lang="" class=" active">Instructions:
-                    Tell mother importance of exclusively breastfeeding, especially when child is sick. Child needs
-                    nothing except breastmilk, not even water. &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                    &#xC8F;&#xC95;&#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0; &#xCB8;&#xCCD;&#xCA4;&#xCA8;&#xCCD;&#xCAF;&#xCAA;&#xCBE;&#xCA8;&#xCA6;
-                    &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCAE;&#xCC1;&#xC96;&#xCCD;&#xCAF;&#xCA4;&#xCC6;&#xCAF; &#xCAC;&#xC97;&#xCCD;&#xC97;&#xCC6;
-                    &#xCA4;&#xCBE;&#xCAF;&#xCBF;&#xC97;&#xCC6; &#xCA4;&#xCBF;&#xCB3;&#xCBF;&#xCB8;&#xCBF; &#xCAA;&#xCCD;&#xCB0;&#xCAE;&#xCC1;&#xC96;&#xCB5;&#xCBE;&#xC97;&#xCBF;
-                    &#xCAE;&#xC97;&#xCC1; &#xCB0;&#xCCB;&#xC97;&#xC97;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA5;&#xCB5;&#xCBE;&#xC97;&#xCBF;&#xCB0;&#xCC1;&#xCB5;&#xCBE;&#xC97;.
-                    &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6; &#xC8E;&#xCA6;&#xCC6;&#xCB9;&#xCBE;&#xCB2;&#xCBF;&#xCA8;
-                    &#xCB9;&#xCCA;&#xCB0;&#xCA4;&#xCC1; &#xC8F;&#xCA8;&#xCC1; &#xC85;&#xC97;&#xCA4;&#xCCD;&#xCAF;&#xCB5;&#xCBF;&#xCB2;&#xCCD;&#xCB2;,
-                    &#xCA8;&#xCC0;&#xCB0;&#xCC1; &#xC95;&#xCC2;&#xCA1;.
-                </span>
-            </fieldset>
-            <fieldset class="trigger jr-branch pre-init" name="/PNC_Visit_EngKan/pnc_child_repeat/high_risk_note_baby"
-                      data-relevant=" /PNC_Visit_EngKan/pnc_child_repeat/case_is_high_risk_baby  = 'yes'">
-                <span lang="" class=" active">Child is at risk because of:
+                <span lang="" class=" active">Child has following danger signs, &#xCAE;&#xC97;&#xCC1; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF;
+                    &#xC9A;&#xCBF;&#xCB9;&#xCCD;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;:
                     <span class="jr-output"
-                          data-value=" /PNC_Visit_EngKan/pnc_child_repeat/case_high_risk_reason_baby ">
-                    </span>
-                    &#xC88;&#xC97; &#xCAE;&#xC97;&#xCC1; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA6;&#xCC6;
-                    &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
-                    <span class="jr-output"
-                          data-value=" /PNC_Visit_EngKan/pnc_child_repeat/case_high_risk_reason_baby ">
-                    </span>
+                          data-value=" /PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_reason_baby ">
+                    </span>. Refer immediately to health facility! &#xCA4;&#xC95;&#xCCD;&#xCB7;&#xCA3; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
+                    &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6; &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD;
+                    &#xCAE;&#xCBE;&#xCA1;&#xCBF;!
                 </span>
             </fieldset>
             <fieldset class="restoring-sanity-to-legends ">
                 <fieldset>
                     <legend>
-                        <span lang="" class=" active">Do you want to mark child as HR (High Risk)?
-                            &#xCA8;&#xCC0;&#xCB5;&#xCC1; &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; HR (&#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
+                        <span lang="" class=" active">Do you want to mark child as HR (High Risk)? &#xCA8;&#xCC0;&#xCB5;&#xCC1;
+                            &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; HR (&#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
                             &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;) &#xC8E;&#xC82;&#xCA6;&#xCC1;
                             &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCC1; &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCBF;&#xCB0;&#xCBE;?
                         </span>
@@ -1149,11 +817,6 @@
 
     <fieldset id="jr-calculated-items" style="display:none;">
         <label class="">
-            <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_number"
-                   data-calculate="if( /PNC_Visit_EngKan/case_pnc_number  = '', 1,  /PNC_Visit_EngKan/case_pnc_number  + 1)"
-                   data-type-xml="string"/>
-        </label>
-        <label class="">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/woman_name"
                    data-calculate="concat( /PNC_Visit_EngKan/case_woman_name , ' ')" data-type-xml="string"/>
         </label>
@@ -1164,7 +827,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever"
-                   data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/temperature  &gt;= 100.4, 'High_fever', '')"
+                   data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/temperature  &gt;= 100.4 or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_symptoms  = 'yes', 'High_fever', '')"
                    data-type-xml="string"/>
         </label>
         <label class="">
@@ -1181,7 +844,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_mother_group/immediate_referral"
-                   data-calculate="if(( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1 , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2 , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area , 'normal'))) or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_rapid_pulse_rate  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_low_blood_pressure  != '', 'yes', 'no')"
+                   data-calculate="if(( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1 , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2 , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area , 'normal'))) or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_symptoms  = 'yes' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_rapid_pulse_rate  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_low_blood_pressure  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
         <label class="">
@@ -1216,12 +879,12 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever"
-                   data-calculate="if( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_temperature  &gt;= 100.4, 'High_fever', '')"
+                   data-calculate="if( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_temperature  &gt;= 100.4 or  /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever_symptoms  = 'yes', 'High_fever', '')"
                    data-type-xml="string"/>
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_baby"
-                   data-calculate="if(( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems , 'no_problems'))) or  /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever  != '', 'yes', 'no')"
+                   data-calculate="if(( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems , 'no_problems'))) or  /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever_symptoms  = 'yes' or  /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
         <label class="">
