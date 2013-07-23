@@ -45,7 +45,13 @@ angular.module("smartRegistry.services")
                 {
                     name: "vitamin_a",
                     milestones: [],
-                    services: ['vitamin_a'],
+                    services: ['Vitamin A'],
+                    is_list: true
+                },
+                {
+                    name: "child_illness",
+                    milestones: [],
+                    services: ['Illness Visit'],
                     is_list: true
                 }
             ];

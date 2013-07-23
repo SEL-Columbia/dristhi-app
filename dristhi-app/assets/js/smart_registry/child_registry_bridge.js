@@ -116,7 +116,7 @@ function FakeChildSmartRegistryContext() {
                             data: {}
                         },
                         {
-                            name: 'vitamin_a',
+                            name: 'Vitamin A',
                             date: '2013-07-01',
                             data: {}
                         }

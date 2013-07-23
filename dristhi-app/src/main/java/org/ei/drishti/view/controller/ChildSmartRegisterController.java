@@ -1,6 +1,7 @@
 package org.ei.drishti.view.controller;
 
 import com.google.gson.Gson;
+import org.apache.commons.lang3.ArrayUtils;
 import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.Child;
@@ -13,7 +14,6 @@ import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.contract.AlertDTO;
 import org.ei.drishti.view.contract.ChildClient;
 import org.ei.drishti.view.contract.ServiceProvidedDTO;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -22,6 +22,7 @@ import java.util.List;
 import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.drishti.domain.ServiceProvided.*;
 
 public class ChildSmartRegisterController {
     private static final String CHILD_CLIENTS_LIST_CACHE_ENTRY_NAME = "ChildClientList";
@@ -80,7 +81,8 @@ public class ChildSmartRegisterController {
     }
 
     private List<ServiceProvidedDTO> getServicesProvided(String entityId) {
-        List<ServiceProvided> servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId, AllConstants.Immunizations.ALL);
+        List<ServiceProvided> servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId,
+                ArrayUtils.addAll(AllConstants.Immunizations.ALL, VITAMIN_A_SERVICE_PROVIDED_NAME, CHILD_ILLNESS_SERVICE_PROVIDED_NAME));
         List<ServiceProvidedDTO> serviceProvidedDTOs = new ArrayList<ServiceProvidedDTO>();
         for (ServiceProvided serviceProvided : servicesProvided) {
             serviceProvidedDTOs.add(new ServiceProvidedDTO(serviceProvided.name(), serviceProvided.date(), serviceProvided.data()));
