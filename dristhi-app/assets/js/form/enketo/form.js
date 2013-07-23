@@ -835,10 +835,10 @@ function Form(formSelector, dataStr, dataStrToEdit) {
      * This function should be removed as soon as JavaRosa (or maybe just pyxform) fixes the way those formulae
      * are created (or evaluated).
      *
-     * @param  {string} expr  the XPath expression
-     * @param  {string} selector of the (context) node on which expression is evaluated
-     * @param  {number} index of the node with the previous selector in the instance
-     * @return {string} modified expression with injected positions (1-based)
+     * @param  {string} expr        the XPath expression
+     * @param  {string} selector    of the (context) node on which expression is evaluated
+     * @param  {number} index        of the instance node with that selector
+     * @return {string} modified    expression with injected positions (1-based!)
      */
     DataXML.prototype.makeBugCompliant = function (expr, selector, index) {
         var i, parentSelector, parentIndex, $target, $node, nodeName, $siblings, $parents;
@@ -1275,9 +1275,9 @@ function Form(formSelector, dataStr, dataStrToEdit) {
             if ($node.length !== 1) {
                 return console.error('getIndex(): no input node provided or multiple');
             }
+
             inputType = this.getInputType($node);
             name = this.getName($node);
-
             $wrapNode = this.getWrapNodes($node);
 
             if (inputType === 'radio' && name !== $node.attr('name')) {
@@ -1286,6 +1286,9 @@ function Form(formSelector, dataStr, dataStrToEdit) {
             //fieldset.jr-group wraps fieldset.jr-repeat and can have same name attribute!)
             else if (inputType === 'fieldset' && $node.hasClass('jr-repeat')) {
                 $wrapNodesSameName = this.getWrapNodes($form.find('.jr-repeat[name="' + name + '"]'));
+            }
+            else if (inputType === 'fieldset' && $node.hasClass('jr-group')) {
+                $wrapNodesSameName = this.getWrapNodes($form.find('.jr-group[name="' + name + '"]'));
             }
             else {
                 $wrapNodesSameName = this.getWrapNodes($form.find('[name="' + name + '"]'));
@@ -1538,8 +1541,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
          * @return {?boolean}                  [description]
          */
         this.update = function (changedNodeNames) {
-            var i, p, $branchNode, result, namesArr, cleverSelector, insideRepeat, insideRepeatClone,
-                cacheIndex = null,
+            var i, p, $branchNode, result, namesArr, cleverSelector, insideRepeat, insideRepeatClone, cacheIndex,
                 relevantCache = {},
                 alreadyCovered = [],
                 that = this,
@@ -1547,7 +1549,6 @@ function Form(formSelector, dataStr, dataStrToEdit) {
                 clonedRepeatsPresent;
 
             //var profiler = new Profiler('branch update');
-
             namesArr = (typeof changedNodeNames !== 'undefined') ? changedNodeNames.split(',') : [];
             cleverSelector = (namesArr.length > 0) ? [] : ['[data-relevant]'];
 
@@ -1563,6 +1564,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
                     return;
                 }
                 p = {};
+                cacheIndex = null;
 
                 p.relevant = $(this).attr('data-relevant');
                 p.path = parent.input.getName($(this));
@@ -1608,7 +1610,6 @@ function Form(formSelector, dataStr, dataStrToEdit) {
                         //cacheIndex = p.relevant+'__'+p.path+'__'+p.ind;
                     }
                 }
-
                 if (cacheIndex && typeof relevantCache[cacheIndex] !== 'undefined') {
                     result = relevantCache[cacheIndex];
                 }
@@ -2769,9 +2770,9 @@ function Form(formSelector, dataStr, dataStrToEdit) {
             $form.find('.jr-repeat').filter(function (i) {
                 return $(this).parents('.jr-repeat').length === 0;
             }).each(function () {
-                    repLevel = 0;
-                    cloneDefaultReps($(this));
-                });
+                repLevel = 0;
+                cloneDefaultReps($(this));
+            });
         },
         /**
          * clone a repeat group/node
@@ -2805,7 +2806,7 @@ function Form(formSelector, dataStr, dataStrToEdit) {
             $clone.insertAfter($node)
                 .parent('.jr-group').numberRepeats();
 
-            //if not done asynchronously, this code causes a style undefined exception in Jasmine unit tests with jQuery 1.9 and 2.0
+            //if not done asynchronously, this code causes a "style undefined" exception in Jasmine unit tests with jQuery 1.9 and 2.0
             //but this breaks loading of default values inside repeats
             //this is caused by show() not being able to find the 'property "style" of undefined'
             //setTimeout(function(){
@@ -3110,7 +3111,7 @@ Date.prototype.toISOLocalString = function () {
     offset.minstotal = this.getTimezoneOffset();
     offset.direction = (offset.minstotal < 0) ? '+' : '-';
     offset.hrspart = pad2(Math.abs(Math.floor(offset.minstotal / 60)));
-    offset.minspart = pad2(offset.minstotal % 60);
+    offset.minspart = pad2(Math.abs(Math.floor(offset.minstotal % 60)));
 
     return new Date(this.getTime() - (offset.minstotal * 60 * 1000)).toISOString()
         .replace('Z', offset.direction + offset.hrspart + ':' + offset.minspart);
