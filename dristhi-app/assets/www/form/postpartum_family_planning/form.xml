@@ -75,7 +75,7 @@
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Postpartum_FamilyPlanning_EngKan/iud_place1"
-                       value="sub_center" data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method1  = 'iud'"
+                       value="subcenter" data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method1  = 'iud'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
                     &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
@@ -88,15 +88,37 @@
                     &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Postpartum_FamilyPlanning_EngKan/iud_place1"
-                       value="elsewhere" data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method1  = 'iud'"
+                <input autocomplete="off" type="radio" name="/Postpartum_FamilyPlanning_EngKan/iud_place1" value="chc"
+                       data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method1  = 'iud'"
                        data-type-xml="select1"/>
-                <span lang="" class=" active">Elsewhere &#xCAC;&#xCC7;&#xCB0;&#xCC7;&#xCA1;&#xCC6;</span>
+                <span lang="" class=" active">CHC &#xCB8;&#xCAE;&#xCC1;&#xCA6;&#xCBE;&#xCAF; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
+                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Postpartum_FamilyPlanning_EngKan/iud_place1" value="sdh"
+                       data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method1  = 'iud'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">SDH &#xC89;&#xCAA; &#xC9C;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCBE; &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Postpartum_FamilyPlanning_EngKan/iud_place1" value="dh"
+                       data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method1  = 'iud'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">DH &#xC9C;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCBE; &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Postpartum_FamilyPlanning_EngKan/iud_place1"
+                       value="private_facility"
+                       data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method1  = 'iud'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Private &#xC96;&#xCBE;&#xCB8;&#xC97;&#xCBF;</span>
             </label>
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Name of facility where IUD was given?</span>
+        <span lang="" class=" active">Name of facility where IUD was given? &#xC90;.&#xCAF;&#xCC1;.&#xCA1;&#xCBF;
+            &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCA6; &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xCAF;
+            &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;</span>
         <input autocomplete="off" type="text" name="/Postpartum_FamilyPlanning_EngKan/iud_place1_name"
                data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method1  = 'iud'" data-type-xml="string"/>
     </label>
@@ -146,16 +168,16 @@
                data-relevant=" /Postpartum_FamilyPlanning_EngKan/iud_person1  = 'others'" data-type-xml="string"/>
     </label>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Name of IUD inserter:</span>
+        <span lang="" class=" active">Name of IUD inserter? &#xC90;.&#xCAF;&#xCC1;.&#xCA1;&#xCBF; &#xCB9;&#xCBE;&#xC95;&#xCBF;&#xCA6;&#xCB5;&#xCB0;
+            &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?
+        </span>
         <input autocomplete="off" type="text" name="/Postpartum_FamilyPlanning_EngKan/iud_person1_name"
                data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method1  = 'iud'" data-type-xml="string"/>
     </label>
     <fieldset class="trigger jr-branch pre-init" name="/Postpartum_FamilyPlanning_EngKan/iud_message1"
               data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method1  = 'iud'">
-        <span lang="" class=" active">Instructions:
-            Monitor the woman for IUD expulsion. If this does occur, tell them to use a back-up FP method.
-            &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-            &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF; &#xCB9;&#xCCA;&#xCB0;&#xCAC;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCBF;&#xCA6;&#xCC7;&#xCAF;&#xCC7;
+        <span lang="" class=" active">Monitor the woman for IUD expulsion. If this does occur, tell them to use a
+            back-up FP method. &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF; &#xCB9;&#xCCA;&#xCB0;&#xCAC;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCBF;&#xCA6;&#xCC7;&#xCAF;&#xCC7;
             &#xC8E;&#xC82;&#xCAC;&#xCC1;&#xCA6;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xC97;&#xCAE;&#xCA8;&#xCBF;&#xCB8;&#xCBF;.
             &#xC86;&#xC97;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF; &#xC97;&#xCB0;&#xCCD;&#xCAD; &#xCB8;&#xC82;&#xCAD;&#xCB5;&#xCBF;&#xCB8;&#xCAC;&#xCB9;&#xCC1;&#xCA6;&#xCC1;,
             &#xC86;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCBF;&#xC82;&#xCA6; &#xCB9;&#xCBF;&#xC82;&#xCA6;&#xCBF;&#xCA8; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
@@ -205,17 +227,18 @@
                         &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1; &#xC85;&#xCB5;&#xCB3; &#xC8E;&#xCA6;&#xCC6;&#xCB9;&#xCBE;&#xCB2;&#xCC1;
                         &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0; &#xC89;&#xCA3;&#xCCD;&#xCA3;&#xCBF;&#xCB8;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC6;?
                     </span>
+                    <span class="required">*</span>
                 </legend>
                 <label class="clearfix ">
                     <input autocomplete="off" type="radio"
                            name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/exclusively_bf"
-                           value="yes" data-type-xml="select1"/>
+                           value="yes" required="required" data-type-xml="select1"/>
                     <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
                 </label>
                 <label class="clearfix ">
                     <input autocomplete="off" type="radio"
                            name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/exclusively_bf" value="no"
-                           data-type-xml="select1"/>
+                           required="required" data-type-xml="select1"/>
                     <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
                 </label>
             </fieldset>
@@ -244,27 +267,24 @@
                 </label>
             </fieldset>
         </fieldset>
-        <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
+        <fieldset class="restoring-sanity-to-legends ">
             <fieldset>
                 <legend>
                     <span lang="" class=" active">Has monthly bleeding returned? &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;
                         &#xCAE;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC1; &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC6; &#xC86;&#xC97;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCC0;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
                     </span>
+                    <span class="required">*</span>
                 </legend>
                 <label class="clearfix ">
                     <input autocomplete="off" type="radio"
                            name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/monthly_bleeding"
-                           value="yes"
-                           data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/exclusively_bf  = 'yes'"
-                           data-type-xml="select1"/>
+                           value="yes" required="required" data-type-xml="select1"/>
                     <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
                 </label>
                 <label class="clearfix ">
                     <input autocomplete="off" type="radio"
                            name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/monthly_bleeding"
-                           value="no"
-                           data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/exclusively_bf  = 'yes'"
-                           data-type-xml="select1"/>
+                           value="no" required="required" data-type-xml="select1"/>
                     <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
                 </label>
             </fieldset>
@@ -272,16 +292,13 @@
         <fieldset class="trigger jr-branch pre-init"
                   name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/lam_message"
                   data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/lam  = 'yes'">
-            <span lang="" class=" active">Instructions:
-                Woman is following LAM. Tell her she should be safe from pregnancy as long as she follows 3 LAM
-                criteria:
-                &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6; LAM &#xC85;&#xCA8;&#xCC1;&#xCB8;&#xCB0;&#xCBF;&#xCB8;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCC0;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;
+            <span lang="" class=" active">Woman is following LAM. Tell her she should be safe from pregnancy as long as
+                she follows 3 LAM criteria, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6; LAM &#xC85;&#xCA8;&#xCC1;&#xCB8;&#xCB0;&#xCBF;&#xCB8;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCC0;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;
                 &#xC85;&#xCB5;&#xCB3;&#xCBF;&#xC97;&#xCC6; LAM &#xCA8; 3 &#xCAE;&#xCBE;&#xCA8;&#xCA6;&#xC82;&#xCA1;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                 &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCA7;&#xCBE;&#xCB0;&#xCA3;&#xCC6;&#xCAF;&#xCBE; &#xCB8;&#xCC1;&#xCB0;&#xC95;&#xCCD;&#xCB7;&#xCBF;&#xCA4;&#xCC6;&#xC97;&#xCBE;&#xC97;&#xCBF;
                 &#xC85;&#xCA8;&#xCC1;&#xCB8;&#xCB0;&#xCBF;&#xCB8;&#xCC1;&#xCB5;&#xC82;&#xCA4;&#xCC6; &#xCA4;&#xCBF;&#xCB3;&#xCBF;&#xCB8;&#xCBF;:
             </span>
-            <span lang="" class="jr-hint active">1. Exclusively breastfeeding &#xC8F;&#xC95;&#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCB5;&#xCBE;&#xC97;&#xCBF;
+            <span lang="" class="jr-hint active">1. Exclusive breastfeeding &#xC8F;&#xC95;&#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCB5;&#xCBE;&#xC97;&#xCBF;
                 &#xCB8;&#xCCD;&#xCA4;&#xCA8;&#xCCD;&#xCAF;&#xCAA;&#xCBE;&#xCA8;
                 2. No monthly bleeding &#xCAE;&#xCBE;&#xCB8;&#xCBF;&#xC95; &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCB8;&#xCCD;&#xCB0;&#xCBE;&#xCB5;
                 &#xC87;&#xCB2;&#xCCD;&#xCB2;
@@ -316,12 +333,9 @@
         </fieldset>
         <fieldset class="trigger jr-branch pre-init"
                   name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/no_lam_message"
-                  data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/lam  = 'no'">
-            <span lang="" class=" active">Instructions:
-                Woman is not following LAM. She could become pregnant as early as 6 weeks after delivery! Tell her to
-                select a FP method now!
-                &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6; LAM &#xC85;&#xCA8;&#xCC1;&#xCB8;&#xCB0;&#xCBF;&#xCB8;&#xCA6;&#xCCD;&#xCA6;&#xCC0;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;
+                  data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/lam  = 'no' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/exclusively_bf  != '' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/monthly_bleeding  != ''">
+            <span lang="" class=" active">Woman is not following LAM. She could become pregnant as early as 6 weeks
+                after delivery! Tell her to select a FP method now! &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6; LAM &#xC85;&#xCA8;&#xCC1;&#xCB8;&#xCB0;&#xCBF;&#xCB8;&#xCA6;&#xCCD;&#xCA6;&#xCC0;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;
                 &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC6; &#xC85;&#xCB5;&#xCB3;&#xCC1; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xCAF;&#xCBE;&#xCA6;
                 6 &#xCB5;&#xCBE;&#xCB0;&#xC97;&#xCB3;&#xCCA;&#xCB3;&#xC97;&#xCC6; &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBF;&#xCA3;&#xCBF;&#xCAF;&#xCBE;&#xC97;&#xCC1;&#xCB5;
                 &#xCB8;&#xCBE;&#xCA7;&#xCCD;&#xCAF;&#xCA4;&#xCC6;&#xC97;&#xCB3;&#xCBF;&#xCB0;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCB5;&#xCC6;!
@@ -332,7 +346,7 @@
         </fieldset>
         <fieldset class="jr-branch pre-init "
                   name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group"
-                  data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/lam  = 'no' or  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/lam_continue  = 'yes'">
+                  data-relevant="( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/lam  = 'no' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/exclusively_bf  != '' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/monthly_bleeding  != '') or  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/lam_continue  = 'yes'">
             <fieldset class="restoring-sanity-to-legends ">
                 <fieldset>
                     <legend>
@@ -358,14 +372,9 @@
             </fieldset>
             <fieldset class="trigger "
                       name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/use_message">
-                <span lang="" class=" active">Instructions:
-                    Woman can use following methods: Condom
-                    <span class="jr-output"
-                          data-value=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/use ">
-                    </span>
-                    &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                    &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1; &#xC95;&#xCC6;&#xCB3;&#xC97;&#xCBF;&#xCA8; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                    &#xCAC;&#xCB3;&#xCB8;&#xCAC;&#xCB9;&#xCC1;&#xCA6;&#xCC1;: &#xC95;&#xCBE;&#xC82;&#xCA1;&#xCCA;&#xCAE;&#xCCD;
+                <span lang="" class=" active">Woman can use following methods, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1;
+                    &#xC95;&#xCC6;&#xCB3;&#xC97;&#xCBF;&#xCA8; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+                    &#xCAC;&#xCB3;&#xCB8;&#xCAC;&#xCB9;&#xCC1;&#xCA6;&#xCC1;: Condom
                     <span class="jr-output"
                           data-value=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/use ">
                     </span>
@@ -374,13 +383,8 @@
             <fieldset class="trigger jr-branch pre-init"
                       name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/not_recommended_message"
                       data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/dmpa_not_recommended  != ''">
-                <span lang="" class=" active">Instructions:
-                    Woman should not use following methods, unless no other options are available:
-                    <span class="jr-output"
-                          data-value=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/not_recommended ">
-                    </span>
-                    &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                    &#xC88; &#xC95;&#xCC6;&#xCB3;&#xC97;&#xCBF;&#xCA8; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+                <span lang="" class=" active">Woman should not use following methods, unless no other options are
+                    available, &#xC88; &#xC95;&#xCC6;&#xCB3;&#xC97;&#xCBF;&#xCA8; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                     &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1; &#xC89;&#xCAA;&#xCAF;&#xCCB;&#xC97;&#xCBF;&#xCB8;&#xCB2;&#xCC1;
                     &#xCB8;&#xCBE;&#xCA6;&#xCCD;&#xCAF;&#xCB5;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;,
                     &#xCAC;&#xCC7;&#xCB0;&#xCC6; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xC97;&#xCB3;&#xCC1; &#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xCB5;&#xCBF;&#xCB2;&#xCCD;&#xCB2;:
@@ -392,13 +396,8 @@
             <fieldset class="trigger jr-branch pre-init"
                       name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/dont_use_message"
                       data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/female_sterilization_dont_use  != '' or  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/male_sterilization_dont_use  != '' or  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/ocp_dont_use  != '' or  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_dont_use  != ''">
-                <span lang="" class=" active">Instructions:
-                    Woman should not use following methods:
-                    <span class="jr-output"
-                          data-value=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/dont_use ">
-                    </span>
-                    &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                    &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1; &#xC95;&#xCC6;&#xCB3;&#xC97;&#xCBF;&#xCA8; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+                <span lang="" class=" active">Woman should not use following methods, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1;
+                    &#xC95;&#xCC6;&#xCB3;&#xC97;&#xCBF;&#xCA8; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                     &#xC89;&#xCAA;&#xCAF;&#xCCB;&#xC97;&#xCBF;&#xCB8;&#xCB2;&#xCC1; &#xCB8;&#xCBE;&#xCA6;&#xCCD;&#xCAF;&#xCB5;&#xCBF;&#xCB2;&#xCCD;&#xCB2;:
                     <span class="jr-output"
                           data-value=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/dont_use ">
@@ -464,12 +463,6 @@
                     <label class="clearfix ">
                         <input autocomplete="off" type="radio"
                                name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2"
-                               value="lam" required="required" data-type-xml="select1"/>
-                        <span lang="" class=" active">LAM</span>
-                    </label>
-                    <label class="clearfix ">
-                        <input autocomplete="off" type="radio"
-                               name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2"
                                value="centchroman" required="required" data-type-xml="select1"/>
                         <span lang="" class=" active">Centchroman &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCA8;&#xCCD;</span>
                     </label>
@@ -496,7 +489,7 @@
                     <label class="clearfix ">
                         <input autocomplete="off" type="radio"
                                name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_place2"
-                               value="sub_center"
+                               value="subcenter"
                                data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2  = 'iud'"
                                data-type-xml="select1"/>
                         <span lang="" class=" active">Sub Center &#xC89;&#xCAA; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
@@ -513,15 +506,43 @@
                     <label class="clearfix ">
                         <input autocomplete="off" type="radio"
                                name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_place2"
-                               value="elsewhere"
+                               value="chc"
                                data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2  = 'iud'"
                                data-type-xml="select1"/>
-                        <span lang="" class=" active">Elsewhere &#xCAC;&#xCC7;&#xCB0;&#xCC7;&#xCA1;&#xCC6;</span>
+                        <span lang="" class=" active">CHC &#xCB8;&#xCAE;&#xCC1;&#xCA6;&#xCBE;&#xCAF; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
+                            &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                    </label>
+                    <label class="clearfix ">
+                        <input autocomplete="off" type="radio"
+                               name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_place2"
+                               value="sdh"
+                               data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2  = 'iud'"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">SDH &#xC89;&#xCAA; &#xC9C;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCBE;
+                            &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;</span>
+                    </label>
+                    <label class="clearfix ">
+                        <input autocomplete="off" type="radio"
+                               name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_place2"
+                               value="dh"
+                               data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2  = 'iud'"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">DH &#xC9C;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCBE; &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;</span>
+                    </label>
+                    <label class="clearfix ">
+                        <input autocomplete="off" type="radio"
+                               name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_place2"
+                               value="private_facility"
+                               data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2  = 'iud'"
+                               data-type-xml="select1"/>
+                        <span lang="" class=" active">Private &#xC96;&#xCBE;&#xCB8;&#xC97;&#xCBF;</span>
                     </label>
                 </fieldset>
             </fieldset>
             <label class="jr-branch pre-init ">
-                <span lang="" class=" active">Name of facility where IUD was given?</span>
+                <span lang="" class=" active">Name of facility where IUD was given? &#xC90;.&#xCAF;&#xCC1;.&#xCA1;&#xCBF;
+                    &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCA6; &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xCAF;
+                    &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;</span>
                 <input autocomplete="off" type="text"
                        name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_place2_name"
                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2  = 'iud'"
@@ -585,7 +606,9 @@
                        data-type-xml="string"/>
             </label>
             <label class="jr-branch pre-init ">
-                <span lang="" class=" active">Name of IUD inserter:</span>
+                <span lang="" class=" active">Name of IUD inserter? &#xC90;.&#xCAF;&#xCC1;.&#xCA1;&#xCBF; &#xCB9;&#xCBE;&#xC95;&#xCBF;&#xCA6;&#xCB5;&#xCB0;
+                    &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?
+                </span>
                 <input autocomplete="off" type="text"
                        name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_person2_name"
                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2  = 'iud'"
@@ -594,16 +617,15 @@
             <fieldset class="trigger jr-branch pre-init"
                       name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_message2"
                       data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2  = 'iud'">
-                <span lang="" class=" active">Instructions:
-                    Monitor the woman for IUD expulsion. If this does occur, tell them to use a back-up FP method.
-                    &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                    &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF; &#xCB9;&#xCCA;&#xCB0;&#xCAC;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCBF;&#xCA6;&#xCC7;&#xCAF;&#xCC7;
-                    &#xC8E;&#xC82;&#xCAC;&#xCC1;&#xCA6;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xC97;&#xCAE;&#xCA8;&#xCBF;&#xCB8;&#xCBF;.
-                    &#xC86;&#xC97;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF; &#xC97;&#xCB0;&#xCCD;&#xCAD;
-                    &#xCB8;&#xC82;&#xCAD;&#xCB5;&#xCBF;&#xCB8;&#xCAC;&#xCB9;&#xCC1;&#xCA6;&#xCC1;, &#xC86;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCBF;&#xC82;&#xCA6;
-                    &#xCB9;&#xCBF;&#xC82;&#xCA6;&#xCBF;&#xCA8; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;
-                    &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCB5;&#xCA8;&#xCC7; &#xC89;&#xCAA;&#xCAF;&#xCCB;&#xC97;&#xCBF;&#xCB8;&#xCB2;&#xCC1;
-                    &#xC85;&#xCB5;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA4;&#xCBF;&#xCB3;&#xCBF;&#xCB8;&#xCBF;.
+                <span lang="" class=" active">Monitor the woman for IUD expulsion. If this does occur, tell them to use
+                    a back-up FP method. &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF;
+                    &#xCB9;&#xCCA;&#xCB0;&#xCAC;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCBF;&#xCA6;&#xCC7;&#xCAF;&#xCC7; &#xC8E;&#xC82;&#xCAC;&#xCC1;&#xCA6;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+                    &#xC97;&#xCAE;&#xCA8;&#xCBF;&#xCB8;&#xCBF;. &#xC86;&#xC97;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
+                    &#xC97;&#xCB0;&#xCCD;&#xCAD; &#xCB8;&#xC82;&#xCAD;&#xCB5;&#xCBF;&#xCB8;&#xCAC;&#xCB9;&#xCC1;&#xCA6;&#xCC1;,
+                    &#xC86;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCBF;&#xC82;&#xCA6; &#xCB9;&#xCBF;&#xC82;&#xCA6;&#xCBF;&#xCA8;
+                    &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCB5;&#xCA8;&#xCC7;
+                    &#xC89;&#xCAA;&#xCAF;&#xCCB;&#xC97;&#xCBF;&#xCB8;&#xCB2;&#xCC1; &#xC85;&#xCB5;&#xCB0;&#xCBF;&#xC97;&#xCC6;
+                    &#xCA4;&#xCBF;&#xCB3;&#xCBF;&#xCB8;&#xCBF;.
                 </span>
             </fieldset>
             <label class="jr-branch pre-init ">
@@ -710,8 +732,7 @@
     <!--end of group -->
     <fieldset class="trigger jr-branch pre-init" name="/Postpartum_FamilyPlanning_EngKan/hepb_message"
               data-relevant=" /Postpartum_FamilyPlanning_EngKan/entity_hepb  != ''">
-        <span lang="" class=" active">Instructions:
-            Woman has Hep B. Tell her to always use condoms in addition to other FP methods. &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
+        <span lang="" class=" active">Woman has Hep B. Tell her to always use condoms in addition to other FP methods.
             &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1; &#xC85;&#xCB5;&#xCB3;&#xCC1; &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
             &#xCAC;&#xCBF; &#xCAF;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;. &#xC87;&#xCA4;&#xCB0;&#xCC6;
             &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCBF;&#xC82;&#xCA4;
