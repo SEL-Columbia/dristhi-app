@@ -134,7 +134,7 @@ angular.module("smartRegistry.controllers")
         $scope.contentTemplate = $scope.childServiceOptions.options[0].id;
 
         $scope.searchCriteria = function (client, searchFilterString) {
-            return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
+            return ((client.motherName && client.motherName.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
                 || (client.ecNumber && client.ecNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
                 || (client.thayiCardNumber && client.thayiCardNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
         };
