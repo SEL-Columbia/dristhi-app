@@ -49,7 +49,7 @@ public class BeneficiaryServiceTest {
 
     @Test
     public void shouldFetchBeneficiariesFromChildCaseIds() throws Exception {
-        Child child1 = new Child("CASE X", "MOTHER CASE X", "TC 1", "01/01/2008", "male", mapOf("isHighRiskBaby", "yes"));
+        Child child1 = new Child("CASE X", "MOTHER CASE X", "TC 1", "01/01/2008", "male", mapOf("isChildHighRisk", "yes"));
         Mother child1sMother = new Mother("MOTHER CASE X", "EC CASE X", "TC 1", "01-01-2006");
         EligibleCouple child1sEC = new EligibleCouple("EC CASE X", "Wife 1", "Husband 1", "EC 1", "Village 1", "SC 1", mapOf("some-key", "some-value"));
         Child child2 = new Child("CASE Y", "MOTHER CASE Y", "TC 2", "01/02/2008", "female", mapOf("some-key", "some-value"));

@@ -13,12 +13,6 @@
                 "source": "mother.eligible_couple.id"
             },
             {
-                "name": "wifeName",
-                "shouldLoadValue": true,
-                "bind": "/model/instance/Delivery_Outcome_EngKan/case_woman_name",
-                "source": "mother.eligible_couple.wifeName"
-            },
-            {
                 "name": "referenceDate",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_lmp"
@@ -145,54 +139,6 @@
                 "bind": "/model/instance/Delivery_Outcome_EngKan/woman_survived_group/delivery_complications_other"
             },
             {
-                "name": "isFPPostDelivery",
-                "bind": "/model/instance/Delivery_Outcome_EngKan/woman_survived_group/fp_post_delivery"
-            },
-            {
-                "name": "currentMethod",
-                "bind": "/model/instance/Delivery_Outcome_EngKan/woman_survived_group/pp_fp_method",
-                "source": "mother.eligible_couple.currentMethod"
-            },
-            {
-                "name": "familyPlanningMethodChangeDate",
-                "bind": "/model/instance/Delivery_Outcome_EngKan/woman_survived_group/pp_fp_method_start_date",
-                "source": "mother.eligible_couple.familyPlanningMethodChangeDate"
-            },
-            {
-                "name": "iudPlace",
-                "bind": "/model/instance/Delivery_Outcome_EngKan/woman_survived_group/iud_place",
-                "source": "mother.eligible_couple.iudPlace"
-            },
-            {
-                "name": "jsyPaymentStatus",
-                "bind": "/model/instance/Delivery_Outcome_EngKan/jsy_payment"
-            },
-            {
-                "name": "jsyPaymentDate",
-                "bind": "/model/instance/Delivery_Outcome_EngKan/jsy_date"
-            },
-            {
-                "name": "prasootiPayment1",
-                "shouldLoadValue": true,
-                "bind": "/model/instance/Delivery_Outcome_EngKan/case_prasooti_payment1"
-            },
-            {
-                "name": "prasootiPayment2",
-                "bind": "/model/instance/Delivery_Outcome_EngKan/prasooti_payment2"
-            },
-            {
-                "name": "prasooti2Date",
-                "bind": "/model/instance/Delivery_Outcome_EngKan/prasooti2_date"
-            },
-            {
-                "name": "madiluKitStatus",
-                "bind": "/model/instance/Delivery_Outcome_EngKan/madilu_kit"
-            },
-            {
-                "name": "madiluKitDate",
-                "bind": "/model/instance/Delivery_Outcome_EngKan/madilu_date"
-            },
-            {
                 "name": "isHighRiskTillPNCClose",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Outcome_EngKan/case_is_high_risk_till_pnc_close"
@@ -309,16 +255,16 @@
                         "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child/hepb_prophylaxis_provided"
                     },
                     {
-                        "name": "isHighRiskBaby1",
-                        "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child/is_high_risk_baby1"
+                        "name": "isChildHighRisk1",
+                        "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child/is_child_high_risk1"
                     },
                     {
-                        "name": "highRiskReasonBaby",
-                        "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child/high_risk_reason_baby"
+                        "name": "childHighRiskReasons",
+                        "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child/child_high_risk_reasons"
                     },
                     {
-                        "name": "isHighRiskBaby",
-                        "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child/is_high_risk_baby"
+                        "name": "isChildHighRisk",
+                        "bind": "/model/instance/Delivery_Outcome_EngKan/live_birth_group/child/is_child_high_risk"
                     }
                 ]
             }

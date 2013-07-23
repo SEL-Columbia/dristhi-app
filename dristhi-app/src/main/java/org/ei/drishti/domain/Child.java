@@ -72,7 +72,7 @@ public class Child {
     }
 
     public boolean isHighRisk() {
-        return "yes".equals(details.get("isHighRiskBaby"));
+        return "yes".equals(details.get("isChildHighRisk"));
     }
 
     public boolean isClosed() {

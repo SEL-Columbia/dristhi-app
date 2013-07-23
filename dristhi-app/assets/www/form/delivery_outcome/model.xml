@@ -5,7 +5,6 @@
                 <uuid/>
             </formhub>
             <today/>
-            <case_woman_name/>
             <case_lmp/>
             <date_outcome/>
             <delivery_reg_date/>
@@ -44,10 +43,10 @@
                     <num_preg_days/>
                     <premature/>
                     <premature_message1/>
-                    <is_high_risk_baby1/>
-                    <high_risk_reason_baby/>
-                    <high_risk_note_baby/>
-                    <is_high_risk_baby/>
+                    <is_child_high_risk1/>
+                    <child_high_risk_reasons/>
+                    <high_risk_note_child/>
+                    <is_child_high_risk/>
                     <addl_pnc_visit_message/>
                 </child>
                 <mother_survived/>
@@ -72,18 +71,7 @@
                 <had_delivery_complications/>
                 <complications/>
                 <delivery_complications_other/>
-                <fp_post_delivery/>
-                <pp_fp_method/>
-                <pp_fp_method_start_date/>
-                <iud_place/>
             </woman_survived_group>
-            <jsy_payment/>
-            <jsy_date/>
-            <case_prasooti_payment1/>
-            <prasooti_payment2/>
-            <prasooti2_date/>
-            <madilu_kit/>
-            <madilu_date/>
             <case_is_high_risk_till_pnc_close/>
             <case_is_high_risk_till_pnc_close_reason/>
             <case_anaemic_status/>

@@ -153,7 +153,7 @@ public class ChildRepositoryTest extends AndroidTestCase {
                 .map();
         Map<String, String> childDetails = create("weight", "3")
                 .put("name", "chinnu")
-                .put("isHighRiskBaby", "yes")
+                .put("isChildHighRisk", "yes")
                 .map();
         EligibleCouple ec = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, ecDetails).asOutOfArea();
         Mother mother = new Mother("mother id 1", "ec id 1", "thayi no 1", "2013-01-01").withDetails(Collections.<String, String>emptyMap());
@@ -186,7 +186,7 @@ public class ChildRepositoryTest extends AndroidTestCase {
                 .map();
         Map<String, String> childDetails = create("weight", "3")
                 .put("name", "chinnu")
-                .put("isHighRiskBaby", "yes")
+                .put("isChildHighRisk", "yes")
                 .map();
         EligibleCouple ec = new EligibleCouple("ec id 1", "amma", "appa", "ec no 1", "chikkamagalur", null, ecDetails).asOutOfArea();
         Mother mother = new Mother("mother id 1", "ec id 1", "thayi no 1", "2013-01-01").withDetails(Collections.<String, String>emptyMap());

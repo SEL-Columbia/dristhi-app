@@ -48,8 +48,8 @@ public class ChildListViewControllerTest {
     @Test
     public void shouldSortBothNormalAndHighANCsByName() throws Exception {
         when(allBeneficiaries.allChildren()).thenReturn(asList(
-                new Child("Case 1", "Mother Case 1", "TC 1", "2032-01-01", "male", create("isHighRiskBaby", "no").put("deliveryPlace", "Bherya DC").map()),
-                new Child("Case 2", "Mother Case 2", "TC 2", "2032-02-02", "female", create("isHighRiskBaby", "yes").put("deliveryPlace", "Bherya DC").map())));
+                new Child("Case 1", "Mother Case 1", "TC 1", "2032-01-01", "male", create("isChildHighRisk", "no").put("deliveryPlace", "Bherya DC").map()),
+                new Child("Case 2", "Mother Case 2", "TC 2", "2032-02-02", "female", create("isChildHighRisk", "yes").put("deliveryPlace", "Bherya DC").map())));
         when(allEligibleCouples.findByCaseID("EC Case 1")).thenReturn(new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC", new HashMap<String, String>()));
         when(allEligibleCouples.findByCaseID("EC Case 2")).thenReturn(new EligibleCouple("EC Case 2", "woman B", "Husband B", "EC Number 2", "Bherya", "Bherya SC", new HashMap<String, String>()));
         when(allBeneficiaries.findMother("Mother Case 1")).thenReturn(new Mother("Mother Case 1", "EC Case 1", "TC 1", "2031-12-12"));
