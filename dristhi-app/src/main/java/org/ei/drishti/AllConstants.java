@@ -152,7 +152,6 @@ public class AllConstants {
         public static final String WEIGHT = "weight";
         public static final String HB_LEVEL = "hbLevel";
         public static final String NUMBER_OF_IFA_TABLETS_GIVEN = "numberOfIFATabletsGiven";
-        public static final String IFA_TABLETS_DATE = "ifaTabletsDate";
     }
 
     public class DeliveryOutcomeFields {

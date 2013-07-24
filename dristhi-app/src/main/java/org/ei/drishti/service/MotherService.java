@@ -138,7 +138,7 @@ public class MotherService {
 
         String numberOfIFATabletsGiven = submission.getFieldValue(AllConstants.PNCVisitFields.NUMBER_OF_IFA_TABLETS_GIVEN);
         if (tryParse(numberOfIFATabletsGiven, 0) > 0) {
-            allTimelines.add(forIFATabletsGiven(submission.entityId(), numberOfIFATabletsGiven, submission.getFieldValue(AllConstants.PNCVisitFields.IFA_TABLETS_DATE)));
+            allTimelines.add(forIFATabletsGiven(submission.entityId(), numberOfIFATabletsGiven, submission.getFieldValue(AllConstants.CommonFormFields.SUBMISSION_DATE)));
         }
     }
 }

@@ -268,11 +268,11 @@ public class MotherServiceTest {
         when(submission.getFieldValue("pncVisitDay")).thenReturn("2");
         when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("100");
-        when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2012-01-02");
         when(submission.getFieldValue("bpSystolic")).thenReturn("120");
         when(submission.getFieldValue("bpDiastolic")).thenReturn("80");
         when(submission.getFieldValue("temperature")).thenReturn("98.1");
         when(submission.getFieldValue("hbLevel")).thenReturn("10.0");
+        when(submission.getFieldValue("submissionDate")).thenReturn("2013-01-01");
 
         service.pncVisitHappened(submission);
 
@@ -286,11 +286,11 @@ public class MotherServiceTest {
         when(submission.getFieldValue("pncVisitDay")).thenReturn("2");
         when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("100");
-        when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2012-01-02");
         when(submission.getFieldValue("bpSystolic")).thenReturn("120");
         when(submission.getFieldValue("bpDiastolic")).thenReturn("80");
         when(submission.getFieldValue("temperature")).thenReturn("98.1");
         when(submission.getFieldValue("hbLevel")).thenReturn("10.0");
+        when(submission.getFieldValue("submissionDate")).thenReturn("2012-01-02");
 
         service.pncVisitHappened(submission);
 
@@ -304,11 +304,11 @@ public class MotherServiceTest {
         when(submission.getFieldValue("pncVisitDay")).thenReturn("2");
         when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("numberOfIFATabletsGiven")).thenReturn("100");
-        when(submission.getFieldValue("ifaTabletsDate")).thenReturn("2012-01-02");
         when(submission.getFieldValue("bpSystolic")).thenReturn("120");
         when(submission.getFieldValue("bpDiastolic")).thenReturn("80");
         when(submission.getFieldValue("temperature")).thenReturn("98.1");
         when(submission.getFieldValue("hbLevel")).thenReturn("10.0");
+        when(submission.getFieldValue("submissionDate")).thenReturn("2013-01-01");
 
         service.pncVisitHappened(submission);
 
