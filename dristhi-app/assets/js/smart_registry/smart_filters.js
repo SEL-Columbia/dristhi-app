@@ -13,6 +13,7 @@ var fpMethodMap = {
 var friendlyNameMap = {
     vitamin_a: 'Vitamin A',
     bcg: 'BCG',
+    opv: 'OPV',
     opv_0: 'OPV 0',
     opv_1: 'OPV 1',
     opv_2: 'OPV 2',
