@@ -40,7 +40,7 @@ function FakeChildSmartRegistryContext() {
                         },
                         {
                             "name": "Illness Visit",
-                            "date": "2013-07-23",
+                            "date": "2013-07-24",
                             "data": {
                                 "childSigns": "child signs",
                                 "childSignsOther": "child signs other",
