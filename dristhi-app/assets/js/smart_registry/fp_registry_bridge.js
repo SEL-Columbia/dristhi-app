@@ -45,7 +45,7 @@ function FakeFPSmartRegistryContext() {
                     alerts: [
                         {
                             id: "id 1",
-                            name: 'Male Sterilization Followup',
+                            name: 'Male sterilization Followup 1',
                             date: '26/05',
                             status: 'inProcess'
                         }
@@ -76,7 +76,7 @@ function FakeFPSmartRegistryContext() {
                     alerts: [
                         {
                             id: "id 2",
-                            name: 'Female Sterilization Followup',
+                            name: 'Female sterilization Followup 2',
                             date: '24/07',
                             status: 'urgent'
                         }
@@ -176,9 +176,9 @@ function FakeFPSmartRegistryContext() {
                     alerts: [
                         {
                             id: "id 6",
-                            name: "Referral Followup",
+                            name: "FP Referral Followup",
                             date: "2012-05-28",
-                            status: "normal"
+                            status: "upcoming"
                         }
                     ]
                 },
