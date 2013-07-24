@@ -62,7 +62,7 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
         } catch (Exception e) {
             logError(MessageFormat.format("Cannot encode field overrides: {0} due to : {1}", fieldOverrides, e));
         }
-        webView.loadUrl(MessageFormat.format("file:///android_asset/www/form/template.html?{0}={1}&{2}={3}&{4}={5}&{6}={7}&touch=true",
+        webView.loadUrl(MessageFormat.format("file:///android_asset/www/enketo/template.html?{0}={1}&{2}={3}&{4}={5}&{6}={7}&touch=true",
                 FORM_NAME_PARAM, formName,
                 ENTITY_ID_PARAM, entityId,
                 INSTANCE_ID_PARAM, randomUUID(),
