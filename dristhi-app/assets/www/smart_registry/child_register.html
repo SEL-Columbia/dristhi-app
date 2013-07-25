@@ -50,8 +50,8 @@
     <div class="header">
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
-                <ul class="nav">
-                    <li><a ng-click="goBack()" class="btn-back"><i class="icon-white"></i></a></li>
+                <ul class="nav" ng-click="goBack()">
+                    <li><a href="#" class="btn-back"><i class="icon-white"></i></a></li>
                     <li class="separator"></li>
                     <li><a class="brand" href="#">Child: {{reportingPeriodStart() | date:'dd/MM'}} -
                         {{reportingPeriodEnd()
