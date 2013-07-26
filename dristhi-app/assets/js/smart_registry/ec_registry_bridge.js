@@ -24,7 +24,7 @@ function FakeECSmartRegistryContext() {
                         }
                     ],
                     "dateOfBirth": "1984-07-12",
-                    "ecNumber": "5",
+                    "ecNumber": "6",
                     "economicStatus": "bpl",
                     "entityId": "c18c3699-9e90-43f0-8963-d4117fa47a7a",
                     "entityIdToSavePhoto": "c18c3699-9e90-43f0-8963-d4117fa47a7a",
@@ -45,7 +45,7 @@ function FakeECSmartRegistryContext() {
                         "date": "2013-06-12",
                         "type": "fp"
                     },
-                    "isHighPriority": false
+                    "isHighPriority": true
                 },
                 {
                     "caste": "sc",
@@ -121,7 +121,9 @@ function FakeECSmartRegistryContext() {
                         "type": "pnc/fp",
                         "fpMethodDate": "2013-07-12"
                     },
-                    "isHighPriority": false
+                    "isHighPriority": false,
+                    "caste": "st"
+
                 },
                 {
                     "caste": "c_others",
@@ -160,7 +162,7 @@ function FakeECSmartRegistryContext() {
                         "type": "anc",
                         "edd": "2013-12-04"
                     },
-                    "isHighPriority": false
+                    "isHighPriority": true
                 }
             ]);
         }

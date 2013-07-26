@@ -15,6 +15,10 @@ angular.module("smartRegistry.controllers")
             return client.name;
         };
 
+        $scope.sortByPriority = function (client) {
+            return !client.isHighPriority;
+        };
+
         $scope.sortByBPL = function (client) {
             return client.economicStatus && client.economicStatus.toUpperCase() !== 'BPL';
         };
@@ -191,5 +195,10 @@ angular.module("smartRegistry.controllers")
         $scope.locationStatusMapping = {
             "out_of_area": 1,
             "left_the_place": 2
+        };
+
+        $scope.changeContentBasedOnServiceMode = function (client, serviceModeOptionId) {
+            $scope.contentTemplate = serviceModeOptionId;
+            return true;
         };
     }]);

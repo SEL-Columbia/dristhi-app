@@ -135,11 +135,6 @@ angular.module("smartRegistry.controllers")
                 (client.thayi && client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
         };
 
-        $scope.changeContentBasedOnServiceMode = function (client, serviceModeOptionId) {
-            $scope.contentTemplate = serviceModeOptionId;
-            return true;
-        };
-
         $scope.ancStats = function () {
             //var anc_visits = client.anc_visits;
             // max is 4 and we can have gaps in between

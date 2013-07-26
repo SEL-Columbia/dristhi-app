@@ -3,6 +3,7 @@ angular.module("smartRegistry.controllers")
         $scope.navigationBridge = new ANMNavigationBridge();
         $scope.bridge = new ECRegistryBridge();
         $scope.client_type = "ec";
+
         $scope.getClients = function () {
             var clients = $scope.bridge.getClients();
             ECService.preProcess(clients);
@@ -16,18 +17,15 @@ angular.module("smartRegistry.controllers")
             options: [
                 {
                     label: "Name (A to Z)",
-                    handler: "sortByMothersName",
-                    sortDescending: false
+                    handler: "sortByName"
                 },
                 {
-                    label: "Age",
-                    handler: "sortByChildsAge",
-                    sortDescending: true
+                    label: "EC Number",
+                    handler: "sortByECNumber"
                 },
                 {
-                    label: "HR",
-                    handler: "sortByRisk",
-                    sortDescending: false
+                    label: "High Priority (HP)",
+                    handler: "sortByPriority"
                 },
                 {
                     label: "BPL",
@@ -44,22 +42,14 @@ angular.module("smartRegistry.controllers")
             ]
         };
 
+        $scope.sortByECNumber = function (client) {
+            return parseInt(client.ecNumber, 10) || 0;
+        };
+
         $scope.defaultSortOption = $scope.sortOptions.options[0];
         $scope.currentSortOption = $scope.defaultSortOption;
         $scope.sortList = $scope.sortByName;
         $scope.sortDescending = true;
-
-        $scope.sortByMothersName = function (client) {
-            return client.motherName;
-        };
-
-        $scope.sortByChildsAge = function (item) {
-            return item.dob;
-        };
-
-        $scope.sortByRisk = function (item) {
-            return !item.isHighRisk;
-        };
 
         $scope.defaultVillageOptions = {
             type: "filterVillage",
@@ -120,13 +110,7 @@ angular.module("smartRegistry.controllers")
 
         $scope.searchCriteria = function (client, searchFilterString) {
             return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
-                || (client.ecNumber && client.ecNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
-                || (client.thayiCardNumber && client.thayiCardNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
-        };
-
-        $scope.changeContentBasedOnServiceMode = function (client, serviceModeOptionId) {
-            $scope.contentTemplate = serviceModeOptionId;
-            return true;
+                || (client.ecNumber && client.ecNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
         };
 
         $scope.currentOptions = null;
@@ -151,10 +135,6 @@ angular.module("smartRegistry.controllers")
 
         $scope.getToday = function () {
             return new Date();
-        };
-
-        $scope.childsAge = function (client) {
-            return SmartHelper.childsAge(new Date(Date.parse(client.dob)), new Date())
         };
 
         $scope.openProfile = function (clientId) {

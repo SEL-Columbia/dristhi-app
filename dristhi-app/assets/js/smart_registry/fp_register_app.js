@@ -41,9 +41,7 @@ angular.module("smartRegistry.controllers")
         $scope.defaultSortOption = $scope.sortOptions.options[0];
         $scope.currentSortOption = $scope.defaultSortOption;
         $scope.sortList = $scope.sortByName;
-        $scope.sortByPriority = function (client) {
-            return !client.isHighPriority;
-        };
+
         $scope.sortByECNumber = function (client) {
             return parseInt(client.ec_number, 10) || 0;
         };

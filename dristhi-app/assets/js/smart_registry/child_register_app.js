@@ -139,11 +139,6 @@ angular.module("smartRegistry.controllers")
                 || (client.thayiCardNumber && client.thayiCardNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
         };
 
-        $scope.changeContentBasedOnServiceMode = function (client, serviceModeOptionId) {
-            $scope.contentTemplate = serviceModeOptionId;
-            return true;
-        };
-
         $scope.currentOptions = null;
 
         $scope.isModalOpen = false;
