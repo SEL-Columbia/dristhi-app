@@ -2,13 +2,15 @@ package org.ei.drishti.util;
 
 import java.util.Date;
 
+import static org.joda.time.DateTimeConstants.*;
+
 public class Session {
     private String password;
     private String repositoryName = "drishti.db";
     private long sessionExpiryTime = 0;
 
     public long lengthInMilliseconds() {
-        return 30 * 60 * 1000;
+        return 24 * MINUTES_PER_HOUR * SECONDS_PER_MINUTE * MILLIS_PER_SECOND;
     }
 
     public String password() {
