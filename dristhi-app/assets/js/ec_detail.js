@@ -1,12 +1,12 @@
-function EC(ecBridge) {
+function EC(ecBridge, formBridge) {
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.ec_detail(ecBridge.getCurrentEC()));
         },
 
-        bindEveryItemToCommCare: function (cssIdentifierOfElement) {
+        bindEveryItemToForm: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
-                ecBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
+                formBridge.delegateToFormLaunchView($(this).data("form"), $(this).data("caseid"));
             })
         },
 

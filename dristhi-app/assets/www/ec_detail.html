@@ -29,13 +29,14 @@
 <script src="../js/alerts.js"></script>
 <script src="../js/international_text.js"></script>
 <script src="../js/page_view.js"></script>
+<script src="../js/form_context.js"></script>
 
 <script src="../js/ec_detail.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var ec = new EC(new ECBridge());
+        var ec = new EC(new ECBridge(), new FormBridge());
         ec.populateInto("#mainpanel");
-        ec.bindEveryItemToCommCare(".modal-row");
+        ec.bindEveryItemToForm(".modal-row");
         ec.bindToCamera("#womanPhoto");
         ec.bindToDefaultPhoto("#womanPhoto", "../img/woman-placeholder.png");
 
