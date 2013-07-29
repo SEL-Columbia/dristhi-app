@@ -14,7 +14,7 @@ public class ECClient {
     private String name;
     private String husbandName;
     private String dateOfBirth;
-    private String ecNumber;
+    private Integer ecNumber;
     private String village;
     private String fpMethod;
     private String numPregnancies;
@@ -37,7 +37,7 @@ public class ECClient {
     private List<ECChildClient> children;
     private Map<String, String> status;
 
-    public ECClient(String entityId, String name, String husbandName, String village, String ecNumber) {
+    public ECClient(String entityId, String name, String husbandName, String village, Integer ecNumber) {
         this.entityId = entityId;
         this.entityIdToSavePhoto = entityId;
         this.name = name;

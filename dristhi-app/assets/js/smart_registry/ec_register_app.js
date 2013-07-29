@@ -43,7 +43,7 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.sortByECNumber = function (client) {
-            return parseInt(client.ecNumber, 10) || 0;
+            return client.ecNumber;
         };
 
         $scope.defaultSortOption = $scope.sortOptions.options[0];
@@ -110,7 +110,7 @@ angular.module("smartRegistry.controllers")
 
         $scope.searchCriteria = function (client, searchFilterString) {
             return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0)
-                || (client.ecNumber && client.ecNumber.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
+                || (client.ecNumber && client.ecNumber.toString().indexOf(searchFilterString.toUpperCase()) === 0));
         };
 
         $scope.currentOptions = null;

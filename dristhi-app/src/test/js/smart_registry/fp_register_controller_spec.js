@@ -34,26 +34,6 @@ describe('FP Register controller', function () {
         })
     });
 
-    describe("sortByPriority", function () {
-        it("should sort clients by high priority.", function () {
-            var client = {
-                name: "client1",
-                isHighPriority: true
-            };
-
-            var sort = scope.sortByPriority(client);
-
-            expect(sort).toBeFalsy();
-
-            sort = scope.sortByPriority({
-                name: "client1",
-                isHighPriority: false
-            });
-
-            expect(sort).toBeTruthy();
-        });
-    });
-
     describe("filterByPriority", function () {
         it("should allow those clients which are high priority and not using any fp method.", function () {
             var client = {
