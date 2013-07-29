@@ -21,7 +21,6 @@ public abstract class SmartRegisterActivity extends SecuredWebActivity {
 
     @Override
     protected void onInitialization() {
-        webView.addJavascriptInterface(new FormController(this), "formContext");
         onSmartRegisterInitialization();
 
         photoCaptureListener = new Listener<CapturedPhotoInformation>() {
@@ -37,10 +36,12 @@ public abstract class SmartRegisterActivity extends SecuredWebActivity {
 
     protected abstract void onSmartRegisterInitialization();
 
+    @Override
     public void startFormActivity(String formName, String entityId, String metaData) {
         launchForm(formName, entityId, metaData, FormActivity.class);
     }
 
+    @Override
     public void startMicroFormActivity(String formName, String entityId, String metaData) {
         launchForm(formName, entityId, metaData, MicroFormActivity.class);
     }

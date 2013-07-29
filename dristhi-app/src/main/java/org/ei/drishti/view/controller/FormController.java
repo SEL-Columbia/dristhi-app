@@ -1,19 +1,19 @@
 package org.ei.drishti.view.controller;
 
-import org.ei.drishti.view.activity.SmartRegisterActivity;
+import org.ei.drishti.view.activity.SecuredWebActivity;
 
 public class FormController {
-    private SmartRegisterActivity smartRegisterActivity;
+    private SecuredWebActivity activity;
 
-    public FormController(SmartRegisterActivity activity) {
-        this.smartRegisterActivity = activity;
+    public FormController(SecuredWebActivity activity) {
+        this.activity = activity;
     }
 
     public void startFormActivity(String formName, String entityId, String metaData) {
-        smartRegisterActivity.startFormActivity(formName, entityId, metaData);
+        activity.startFormActivity(formName, entityId, metaData);
     }
 
     public void startMicroFormActivity(String formName, String entityId, String metaData) {
-        smartRegisterActivity.startMicroFormActivity(formName, entityId, metaData);
+        activity.startMicroFormActivity(formName, entityId, metaData);
     }
 }
