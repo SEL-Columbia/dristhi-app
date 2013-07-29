@@ -52,7 +52,6 @@ public class ChildDetailController {
         Child child = allBeneficiaries.findChild(caseId);
         Mother mother = allBeneficiaries.findMother(child.motherCaseId());
         EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
-        List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 
         LocalDate deliveryDate = LocalDate.parse(child.dateOfBirth());
         String photoPath = isBlank(child.photoPath()) ?
@@ -66,15 +65,9 @@ public class ChildDetailController {
                 new LocationDetails(couple.village(), couple.subCenter()),
                 new BirthDetails(deliveryDate.toString(), calculateAge(deliveryDate), child.gender()), photoPath)
                 .addTimelineEvents(getEvents())
-                .addTodos(todosAndUrgentTodos.get(0))
-                .addUrgentTodos(todosAndUrgentTodos.get(1))
                 .addExtraDetails(child.details());
 
         return new Gson().toJson(detail);
-    }
-
-    public void markTodoAsCompleted(String caseId, String visitCode) {
-        allAlerts.markAsCompleted(caseId, visitCode, LocalDate.now().toString());
     }
 
     public void takePhoto() {

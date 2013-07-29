@@ -56,10 +56,6 @@ function ANCBridge() {
         getCurrentANC: function () {
             return JSON.parse(ancContext.get());
         },
-
-        markAsCompleted: function (caseId, visitCode) {
-            ancContext.markTodoAsCompleted(caseId, visitCode);
-        },
         takePhoto: function () {
             ancContext.takePhoto();
         }
@@ -68,9 +64,6 @@ function ANCBridge() {
 
 function FakeANCContext() {
     return {
-        markTodoAsCompleted: function (caseId, visitCode) {
-            console.log("markAsCompleted " + caseId + " " + visitCode);
-        },
         get: function () {
             return JSON.stringify({
                     caseId: "1234",
@@ -108,38 +101,6 @@ function FakeANCContext() {
                         isThereABirthCompanion: "yes",
                         isHighRiskStatusReviewed: "yes"
                     },
-                    urgentTodos: [
-                        {
-                            message: "Alert 1",
-                            formToOpen: "ANC_SERVICES",
-                            isCompleted: true,
-                            visitCode: "ANC 1",
-                            todoDate: "2012-10-24"
-                        },
-                        {
-                            message: "Alert 2",
-                            formToOpen: "ANC_SERVICES",
-                            isCompleted: false,
-                            visitCode: "ANC 2",
-                            todoDate: "2012-10-24"
-                        }
-                    ],
-                    todos: [
-                        {
-                            message: "IFA Tablet follow-up",
-                            formToOpen: "ANC_CLOSE",
-                            isCompleted: true,
-                            visitCode: "IFA 1",
-                            todoDate: "2012-10-24"
-                        },
-                        {
-                            message: "ANC Visit #3",
-                            formToOpen: "ANC_SERVICES",
-                            isCompleted: false,
-                            visitCode: "ANC 3",
-                            todoDate: "2012-10-24"
-                        }
-                    ],
                     timelineEvents: [
                         {
                             title: "Event 1",

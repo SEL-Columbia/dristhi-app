@@ -17,8 +17,6 @@ public class ECDetail {
     private boolean isHighPriority;
     private String address;
     private String photoPath;
-    private List<ProfileTodo> todos;
-    private List<ProfileTodo> urgentTodos;
     private List<Child> children;
     private List<TimelineEvent> timelineEvents;
     private Map<String, String> details;
@@ -36,19 +34,7 @@ public class ECDetail {
         this.children = children;
         this.details = details;
 
-        this.todos = new ArrayList<ProfileTodo>();
-        this.urgentTodos = new ArrayList<ProfileTodo>();
         this.timelineEvents = new ArrayList<TimelineEvent>();
-    }
-
-    public ECDetail addTodos(List<ProfileTodo> todos) {
-        this.todos = todos;
-        return this;
-    }
-
-    public ECDetail addUrgentTodos(List<ProfileTodo> urgentTodos) {
-        this.urgentTodos = urgentTodos;
-        return this;
     }
 
     public ECDetail addTimelineEvents(List<TimelineEvent> events) {

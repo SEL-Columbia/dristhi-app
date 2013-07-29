@@ -17,8 +17,6 @@ public class ChildDetail {
     private final CoupleDetails coupleDetails;
     private final BirthDetails childDetails;
 
-    private List<ProfileTodo> todos;
-    private List<ProfileTodo> urgentTodos;
     private List<TimelineEvent> timelineEvents;
     private Map<String, String> details;
 
@@ -31,23 +29,11 @@ public class ChildDetail {
         this.location = location;
         this.childDetails = childDetails;
 
-        this.todos = new ArrayList<ProfileTodo>();
-        this.urgentTodos = new ArrayList<ProfileTodo>();
         this.timelineEvents = new ArrayList<TimelineEvent>();
     }
 
     public ChildDetail addTimelineEvents(List<TimelineEvent> events) {
         this.timelineEvents.addAll(events);
-        return this;
-    }
-
-    public ChildDetail addUrgentTodos(List<ProfileTodo> todos) {
-        this.urgentTodos.addAll(todos);
-        return this;
-    }
-
-    public ChildDetail addTodos(List<ProfileTodo> todos) {
-        this.todos.addAll(todos);
         return this;
     }
 

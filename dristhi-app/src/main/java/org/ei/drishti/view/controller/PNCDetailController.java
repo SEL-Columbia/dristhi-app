@@ -50,7 +50,6 @@ public class PNCDetailController {
     public String get() {
         Mother mother = allBeneficiaries.findMotherWithOpenStatus(caseId);
         EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
-        List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 
         LocalDate deliveryDate = LocalDate.parse(mother.referenceDate());
         Days postPartumDuration = Days.daysBetween(deliveryDate, DateUtil.today());
@@ -63,15 +62,9 @@ public class PNCDetailController {
                 new LocationDetails(couple.village(), couple.subCenter()),
                 new PregnancyOutcomeDetails(deliveryDate.toString(), postPartumDuration.getDays()))
                 .addTimelineEvents(getEvents())
-                .addTodos(todosAndUrgentTodos.get(0))
-                .addUrgentTodos(todosAndUrgentTodos.get(1))
                 .addExtraDetails(mother.details());
 
         return new Gson().toJson(detail);
-    }
-
-    public void markTodoAsCompleted(String caseId, String visitCode) {
-        allAlerts.markAsCompleted(caseId, visitCode, LocalDate.now().toString());
     }
 
     public void takePhoto() {

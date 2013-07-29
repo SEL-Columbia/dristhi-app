@@ -3,7 +3,6 @@ package org.ei.drishti.view.controller;
 import android.content.Context;
 import com.google.gson.Gson;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
@@ -12,7 +11,10 @@ import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.contract.ANCDetail;
+import org.ei.drishti.view.contract.CoupleDetails;
+import org.ei.drishti.view.contract.LocationDetails;
+import org.ei.drishti.view.contract.PregnancyDetails;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,8 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.dto.AlertStatus.normal;
-import static org.ei.drishti.dto.AlertStatus.urgent;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -50,7 +50,7 @@ public class ANCDetailControllerTest {
     public void setUp() throws Exception {
         initMocks(this);
         DateUtil.fakeIt(new LocalDate(2012, 8, 1));
-        controller = new ANCDetailController(context, caseId, allEligibleCouples, allBeneficiaries, allAlerts, allTimelineEvents);
+        controller = new ANCDetailController(context, caseId, allEligibleCouples, allBeneficiaries, allTimelineEvents);
     }
 
     @Test
@@ -58,8 +58,6 @@ public class ANCDetailControllerTest {
         TimelineEvent pregnancyEvent = TimelineEvent.forStartOfPregnancy(caseId, "2011-10-21");
         TimelineEvent ancEvent = TimelineEvent.forANCCareProvided(caseId, "2", "2011-12-22", new HashMap<String, String>());
         TimelineEvent eventVeryCloseToCurrentDate = TimelineEvent.forANCCareProvided(caseId, "2", "2012-07-29", new HashMap<String, String>());
-        ProfileTodo todo = new ProfileTodo(new Alert("Case X", "Ante Natal Care - Normal", "ANC 1", normal, "2012-01-01", "2012-01-11"));
-        ProfileTodo urgentTodo = new ProfileTodo(new Alert("Case X", "Ante Natal Care - Normal", "TT 1", urgent, "2012-02-02", "2012-02-11"));
 
         HashMap<String, String> details = new HashMap<String, String>();
         details.put("ashaName", "Shiwani");
@@ -68,7 +66,6 @@ public class ANCDetailControllerTest {
         Map<String, String> ecDetails = mapOf("caste", "st");
         ecDetails.put("economicStatus", "bpl");
         when(allEligibleCouples.findByCaseID("EC CASE 1")).thenReturn(new EligibleCouple("EC CASE 1", "Woman 1", "Husband 1", "EC Number 1", "Village 1", "Subcenter 1", ecDetails).withPhotoPath("photo path"));
-        when(allAlerts.fetchAllActiveAlertsForCase(caseId)).thenReturn(asList(asList(todo), asList(urgentTodo)));
         when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent, ancEvent, eventVeryCloseToCurrentDate));
 
         ANCDetail expectedDetail = new ANCDetail(caseId, "TC 1",
@@ -79,8 +76,6 @@ public class ANCDetailControllerTest {
                 new LocationDetails("Village 1", "Subcenter 1"),
                 new PregnancyDetails("9", "2012-07-28", 4))
                 .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "7m 1w ago"), eventFor(pregnancyEvent, "9m 2w ago")))
-                .addTodos(asList(todo))
-                .addUrgentTodos(asList(urgentTodo))
                 .addExtraDetails(details);
 
         String actualJson = controller.get();

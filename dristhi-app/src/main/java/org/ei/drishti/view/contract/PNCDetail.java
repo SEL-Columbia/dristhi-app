@@ -14,8 +14,6 @@ public class PNCDetail {
     private final CoupleDetails coupleDetails;
     private final PregnancyOutcomeDetails pncDetails;
 
-    private List<ProfileTodo> todos;
-    private List<ProfileTodo> urgentTodos;
     private List<TimelineEvent> timelineEvents;
     private Map<String, String> details;
 
@@ -27,23 +25,11 @@ public class PNCDetail {
         this.location = location;
         this.pncDetails = pncDetails;
 
-        this.todos = new ArrayList<ProfileTodo>();
-        this.urgentTodos = new ArrayList<ProfileTodo>();
         this.timelineEvents = new ArrayList<TimelineEvent>();
     }
 
     public PNCDetail addTimelineEvents(List<TimelineEvent> events) {
         this.timelineEvents.addAll(events);
-        return this;
-    }
-
-    public PNCDetail addUrgentTodos(List<ProfileTodo> todos) {
-        this.urgentTodos.addAll(todos);
-        return this;
-    }
-
-    public PNCDetail addTodos(List<ProfileTodo> todos) {
-        this.todos.addAll(todos);
         return this;
     }
 

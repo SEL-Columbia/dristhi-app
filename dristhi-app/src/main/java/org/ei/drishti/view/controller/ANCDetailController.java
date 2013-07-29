@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
-import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
@@ -35,16 +34,14 @@ public class ANCDetailController {
     private final String caseId;
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
-    private AllAlerts allAlerts;
     private final AllTimelineEvents allTimelineEvents;
     private PrettyTime prettyTime;
 
-    public ANCDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllAlerts allAlerts, AllTimelineEvents allTimelineEvents) {
+    public ANCDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllTimelineEvents allTimelineEvents) {
         this.context = context;
         this.caseId = caseId;
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
-        this.allAlerts = allAlerts;
         this.allTimelineEvents = allTimelineEvents;
         prettyTime = new PrettyTime(DateUtil.today().toDate(), new Locale("short"));
     }
@@ -52,7 +49,6 @@ public class ANCDetailController {
     public String get() {
         Mother mother = allBeneficiaries.findMotherWithOpenStatus(caseId);
         EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
-        List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 
         LocalDate lmp = LocalDate.parse(mother.referenceDate());
         String edd = lmp.plusWeeks(DURATION_OF_PREGNANCY_IN_WEEKS).toString();
@@ -71,15 +67,9 @@ public class ANCDetailController {
                 new LocationDetails(couple.village(), couple.subCenter()),
                 new PregnancyDetails(String.valueOf(months), edd, daysPastEdd.getDays()))
                 .addTimelineEvents(getEvents())
-                .addTodos(todosAndUrgentTodos.get(0))
-                .addUrgentTodos(todosAndUrgentTodos.get(1))
                 .addExtraDetails(mother.details());
 
         return new Gson().toJson(detail);
-    }
-
-    public void markTodoAsCompleted(String caseId, String visitCode) {
-        allAlerts.markAsCompleted(caseId, visitCode, LocalDate.now().toString());
     }
 
     public void takePhoto() {

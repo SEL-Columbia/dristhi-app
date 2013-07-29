@@ -16,14 +16,6 @@ public class AllAlerts {
         this.repository = repository;
     }
 
-    public List<List<ProfileTodo>> fetchAllActiveAlertsForCase(String caseId) {
-        return classifyTodosBasedOnUrgency(repository.allActiveAlertsForCase(caseId));
-    }
-
-    public void markAsCompleted(String caseId, String visitCode, String completionDate) {
-        repository.markAlertAsClosed(caseId, visitCode, completionDate);
-    }
-
     public void changeAlertStatusToInProcess(String entityId, String alertName) {
         repository.changeAlertStatusToInProcess(entityId, alertName);
     }

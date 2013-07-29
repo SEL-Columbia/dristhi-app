@@ -82,63 +82,6 @@
         </div>
     </div>
 
-    <div id="todos" class="registry-container container-fluid">
-        {{#each urgentTodos}}
-        {{#if isCompleted}}
-        <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}"
-             data-visitcode="{{visitCode}}">
-            <div class="row-fluid">
-                <div class="span2">
-                    <img class="todo-box checked"/>
-                </div>
-                <div class="span10 alert-todo-message">
-                    <div class="detail">{{message}} done on {{formatDate todoDate}}</div>
-                </div>
-            </div>
-        </div>
-        {{else}}
-        <div class="alert alert-todo overdue" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}"
-             data-visitcode="{{visitCode}}">
-            <div class="row-fluid">
-                <div class="span2">
-                    <img class="todo-box"/>
-                </div>
-                <div class="span10 alert-todo-message">
-                    <div class="detail">{{message}} due by {{formatDate todoDate}}</div>
-                </div>
-            </div>
-        </div>
-        {{/if}}
-        {{/each}}
-        {{#each todos}}
-        {{#if isCompleted}}
-        <div class="alert alert-todo completed" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}"
-             data-visitcode="{{visitCode}}">
-            <div class="row-fluid">
-                <div class="span2">
-                    <img class="todo-box checked"/>
-                </div>
-                <div class="span10 alert-todo-message">
-                    <div class="detail">{{message}} done on {{formatDate todoDate}}</div>
-                </div>
-            </div>
-        </div>
-        {{else}}
-        <div class="alert alert-todo upcoming" data-form="{{formToOpen}}" data-caseid="{{../../caseId}}"
-             data-visitcode="{{visitCode}}">
-            <div class="row-fluid">
-                <div class="span2">
-                    <img class="todo-box"/>
-                </div>
-                <div class="span10 alert-todo-message">
-                    <div class="detail">{{message}} due by {{formatDate todoDate}}</div>
-                </div>
-            </div>
-        </div>
-        {{/if}}
-        {{/each}}
-    </div>
-
     <div class="divider"></div>
 
 

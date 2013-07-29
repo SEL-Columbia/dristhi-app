@@ -45,21 +45,14 @@ public class EligibleCoupleDetailController {
 
     public String get() {
         EligibleCouple eligibleCouple = allEligibleCouples.findByCaseID(caseId);
-        List<List<ProfileTodo>> todosAndUrgentTodos = allAlerts.fetchAllActiveAlertsForCase(caseId);
 
         ECDetail ecContext = new ECDetail(caseId, eligibleCouple.village(), eligibleCouple.subCenter(), eligibleCouple.ecNumber(),
                 eligibleCouple.isHighPriority(), null, eligibleCouple.photoPath(), new ArrayList<Child>(), new CoupleDetails(eligibleCouple.wifeName(),
                 eligibleCouple.husbandName(), eligibleCouple.ecNumber(), eligibleCouple.isOutOfArea()),
                 eligibleCouple.details()).
-                addTodos(todosAndUrgentTodos.get(0)).
-                addUrgentTodos(todosAndUrgentTodos.get(1)).
                 addTimelineEvents(getEvents());
 
         return new Gson().toJson(ecContext);
-    }
-
-    public void markTodoAsCompleted(String caseId, String visitCode) {
-        allAlerts.markAsCompleted(caseId, visitCode, LocalDate.now().toString());
     }
 
     public void takePhoto() {
