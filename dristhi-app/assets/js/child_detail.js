@@ -45,10 +45,6 @@ function ChildBridge() {
             return JSON.parse(childContext.get());
         },
 
-        delegateToCommCare: function (formId, caseId) {
-            childContext.startCommCare(formId, caseId);
-        },
-
         markAsCompleted: function (caseId, visitCode) {
             childContext.markTodoAsCompleted(caseId, visitCode);
         },
@@ -61,9 +57,6 @@ function ChildBridge() {
 
 function FakeChildContext() {
     return {
-        startCommCare: function (formId, caseId) {
-            alert("Start CommCare with form " + formId + " on case with caseId: " + caseId);
-        },
         markTodoAsCompleted: function (caseId, visitCode) {
             console.log("markAsCompleted " + caseId + " " + visitCode);
         },

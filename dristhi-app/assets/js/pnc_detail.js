@@ -45,10 +45,6 @@ function PNCBridge() {
             return JSON.parse(pncContext.get());
         },
 
-        delegateToCommCare: function (formId, caseId) {
-            pncContext.startCommCare(formId, caseId);
-        },
-
         markAsCompleted: function (caseId, visitCode) {
             pncContext.markTodoAsCompleted(caseId, visitCode);
         },
@@ -61,9 +57,6 @@ function PNCBridge() {
 
 function FakePNCContext() {
     return {
-        startCommCare: function (formId, caseId) {
-            alert("Start CommCare with form " + formId + " on case with caseId: " + caseId);
-        },
         markTodoAsCompleted: function (caseId, visitCode) {
             console.log("markAsCompleted " + caseId + " " + visitCode);
         },
