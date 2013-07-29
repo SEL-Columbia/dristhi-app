@@ -34,13 +34,14 @@
 <script src="../js/alerts.js"></script>
 <script src="../js/international_text.js"></script>
 <script src="../js/page_view.js"></script>
+<script src="../js/form_context.js"></script>
 
 <script src="../js/pnc_detail.js"></script>
 <script>
     $(document).ready(function () {
-        var pnc = new PNC(new PNCBridge());
+        var pnc = new PNC(new PNCBridge(), new FormBridge());
         pnc.populateInto("#mainpanel");
-        pnc.bindEveryItemToCommCare(".modal-row");
+        pnc.bindEveryItemToForm(".modal-row");
         pnc.bindToCamera("#womanPhoto");
         pnc.bindToDefaultPhoto("#womanPhoto", "../img/woman-placeholder.png");
 

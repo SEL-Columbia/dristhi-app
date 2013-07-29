@@ -1,12 +1,12 @@
-function PNC(pncBridge) {
+function PNC(pncBridge, formBridge) {
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.pnc_detail(pncBridge.getCurrentPNC()));
         },
 
-        bindEveryItemToCommCare: function (cssIdentifierOfElement) {
+        bindEveryItemToForm: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
-                pncBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
+                formBridge.delegateToFormLaunchView($(this).data("form"), $(this).data("caseid"));
             })
         },
 
