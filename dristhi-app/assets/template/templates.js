@@ -10,7 +10,7 @@ function program1(depth0,data) {
   var buffer = "", stack1, stack2;
   buffer += "\n<div id=\"warning\"></div>\n<div id=\"warning-modal-container\" class=\"modal-container\" style=\"display: block;\">\n    <div id=\"modal-goes-here\">\n        <div id=\"ancWarningModal\" class=\"edd-modal-content\">\n            <div class=\"edd-popup\"><img class=\"edd-popup-image\"></div>\n            <div class=\"big-text-black edd-modal-text\">EDD "
     + escapeExpression(((stack1 = ((stack1 = depth0.pregnancyDetails),stack1 == null || stack1 === false ? stack1 : stack1.daysPastEdd)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + " days past due!</div>\n            <div class=\"edd-modal-button\">\n                <button id=\"deliveryOutcomeFormButton\" class=\"btn btn-large btn-primary\" type=\"button\"\n                        data-form=\"ANC_DELIVERY_OUTCOME\" data-caseid=\"";
+    + " days past due!</div>\n            <div class=\"edd-modal-button\">\n                <button id=\"deliveryOutcomeFormButton\" class=\"btn btn-large btn-primary\" type=\"button\"\n                        data-form=\"delivery_outcome\" data-caseid=\"";
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
@@ -207,15 +207,15 @@ function program29(depth0,data) {
   buffer += "\n<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <ul class=\"area-6_5 nav pull-left\">\n            <li><img class=\"sidepanel-icon affected-by-sidepanel\"><img class=\"separator\"></li>\n            <li class=\"area-7_5\">\n                <div class=\"navbar-header affected-by-sidepanel ellipsis\">";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.formatText || depth0.formatText),stack1 ? stack1.call(depth0, ((stack1 = depth0.coupleDetails),stack1 == null || stack1 === false ? stack1 : stack1.wifeName), options) : helperMissing.call(depth0, "formatText", ((stack1 = depth0.coupleDetails),stack1 == null || stack1 === false ? stack1 : stack1.wifeName), options)))
-    + "</div>\n            </li>\n        </ul>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li><img class=\"separator\"></li>\n            <li data-modal-target=\"#ancFormModal\"><img class=\"update-data\"></li>\n        </ul>\n    </div>\n</div>\n\n<div id=\"ancFormModal\" class=\"modal-content\">\n    <div class=\"modal-row\" data-form=\"ANC_SERVICES\" data-caseid=\"";
+    + "</div>\n            </li>\n        </ul>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li><img class=\"separator\"></li>\n            <li data-modal-target=\"#ancFormModal\"><img class=\"update-data\"></li>\n        </ul>\n    </div>\n</div>\n\n<div id=\"ancFormModal\" class=\"modal-content\">\n    <div class=\"modal-row\" data-form=\"anc_visit\" data-caseid=\"";
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "\">ANC visit</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"ANC_DELIVERY_OUTCOME\" data-caseid=\"";
+    + "\">ANC visit</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"delivery_outcome\" data-caseid=\"";
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "\">Delivery outcome</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"ANC_CLOSE\" data-caseid=\"";
+    + "\">Delivery outcome</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"anc_close\" data-caseid=\"";
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
@@ -339,7 +339,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, stack2, options;
-  buffer += "\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        Delivery Plan\n        <div class=\"edit-birth-plan btn btn-primary pull-right\" data-form=\"BIRTH_PLANNING\" data-caseid=\"";
+  buffer += "\n<div class=\"registry-container container-fluid\">\n    <div class=\"big-text row-fluid detail-section-header\">\n        Delivery Plan\n        <div class=\"edit-birth-plan btn btn-primary pull-right\" data-form=\"birth_plan\" data-caseid=\"";
   if (stack1 = helpers.caseId) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
   else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
   buffer += escapeExpression(stack1)
@@ -1061,11 +1061,11 @@ function program33(depth0,data) {
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "\">Register as ANC</div>\n    <div class=\"modal-row\" data-form=\"child_registration_ec\" data-caseid=\"";
+    + "\">Register as ANC</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"child_registration_ec\" data-caseid=\"";
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "\">Register a child</div>\n    <div class=\"modal-row\" data-form=\"ec_close\" data-caseid=\"";
+    + "\">Register a child</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"ec_close\" data-caseid=\"";
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)

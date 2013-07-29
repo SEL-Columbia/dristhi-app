@@ -35,15 +35,15 @@
 <script src="../js/alerts.js"></script>
 <script src="../js/international_text.js"></script>
 <script src="../js/page_view.js"></script>
+<script src="../js/form_context.js"></script>
 
 <script type="text/javascript" src="../js/anc_detail.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var anc = new ANC(new ANCBridge());
+        var anc = new ANC(new ANCBridge(), new FormBridge());
         anc.populateInto("#mainpanel");
-        anc.bindEveryItemToCommCare("#deliveryOutcomeFormButton");
-        anc.bindEveryItemToCommCare(".modal-row");
-        anc.bindEveryItemToCommCare(".edit-birth-plan");
+        anc.bindEveryItemToForm("#deliveryOutcomeFormButton");
+        anc.bindEveryItemToForm(".modal-row");
         anc.bindTimelineEventToShowMoreButton(".timelineEvent", ".show-more-button", 5);
         anc.bindToCamera("#womanPhoto");
         anc.bindToDefaultPhoto("#womanPhoto", "../img/woman-placeholder.png");

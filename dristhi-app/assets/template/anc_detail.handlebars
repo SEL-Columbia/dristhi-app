@@ -7,7 +7,7 @@
             <div class="big-text-black edd-modal-text">EDD {{pregnancyDetails.daysPastEdd}} days past due!</div>
             <div class="edd-modal-button">
                 <button id="deliveryOutcomeFormButton" class="btn btn-large btn-primary" type="button"
-                        data-form="ANC_DELIVERY_OUTCOME" data-caseid="{{caseId}}">
+                        data-form="delivery_outcome" data-caseid="{{caseId}}">
                     <div class="edd-modal-button-text">Delivery Outcome Form</div>
                 </button>
             </div>
@@ -37,11 +37,11 @@
 </div>
 
 <div id="ancFormModal" class="modal-content">
-    <div class="modal-row" data-form="ANC_SERVICES" data-caseid="{{caseId}}">ANC visit</div>
+    <div class="modal-row" data-form="anc_visit" data-caseid="{{caseId}}">ANC visit</div>
     <div class="divider"></div>
-    <div class="modal-row" data-form="ANC_DELIVERY_OUTCOME" data-caseid="{{caseId}}">Delivery outcome</div>
+    <div class="modal-row" data-form="delivery_outcome" data-caseid="{{caseId}}">Delivery outcome</div>
     <div class="divider"></div>
-    <div class="modal-row" data-form="ANC_CLOSE" data-caseid="{{caseId}}">Close ANC record</div>
+    <div class="modal-row" data-form="anc_close" data-caseid="{{caseId}}">Close ANC record</div>
 </div>
 
 <div id="content" class="content-detail affected-by-sidepanel">

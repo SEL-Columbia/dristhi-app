@@ -1,13 +1,13 @@
-function ANC(ancBridge) {
+function ANC(ancBridge, formBridge) {
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             Handlebars.registerPartial("birth_plan", Handlebars.templates.birth_plan);
             $(cssIdentifierOfRootElement).html(Handlebars.templates.anc_detail(ancBridge.getCurrentANC()));
         },
 
-        bindEveryItemToCommCare: function (cssIdentifierOfElement) {
+        bindEveryItemToForm: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
-                ancBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
+                formBridge.delegateToFormLaunchView($(this).data("form"), $(this).data("caseid"));
             })
         },
 
