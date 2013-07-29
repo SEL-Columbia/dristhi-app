@@ -625,15 +625,15 @@ function program31(depth0,data) {
   buffer += "<div class=\"navbar navbar-fixed-top affected-by-sidepanel\">\n    <div class=\"navbar-inner\">\n        <ul class=\"area-6_5 nav pull-left\">\n            <li><img class=\"sidepanel-icon affected-by-sidepanel\"><img class=\"separator\"></li>\n            <li class=\"area-7_5\">\n                <div class=\"navbar-header affected-by-sidepanel ellipsis\">B/O ";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.formatText || depth0.formatText),stack1 ? stack1.call(depth0, ((stack1 = depth0.coupleDetails),stack1 == null || stack1 === false ? stack1 : stack1.wifeName), options) : helperMissing.call(depth0, "formatText", ((stack1 = depth0.coupleDetails),stack1 == null || stack1 === false ? stack1 : stack1.wifeName), options)))
-    + "</div>\n            </li>\n        </ul>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li><img class=\"separator\"></li>\n            <li data-modal-target=\"#childFormModal\"><img class=\"update-data\"></li>\n        </ul>\n    </div>\n</div>\n\n<div id=\"childFormModal\" class=\"modal-content\">\n    <div class=\"modal-row\" data-form=\"PNC_SERVICES\" data-caseid=\"";
+    + "</div>\n            </li>\n        </ul>\n\n        <ul class=\"nav pull-right affected-by-sidepanel\">\n            <li><img class=\"separator\"></li>\n            <li data-modal-target=\"#childFormModal\"><img class=\"update-data\"></li>\n        </ul>\n    </div>\n</div>\n\n<div id=\"childFormModal\" class=\"modal-content\">\n    <div class=\"modal-row\" data-form=\"pnc_visit\" data-caseid=\"";
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "\">PNC visit</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"CHILD_IMMUNIZATION\" data-caseid=\"";
+    + "\">PNC visit</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"child_immunizations\" data-caseid=\"";
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "\">Child immunization</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"CHILD_CLOSE\" data-caseid=\"";
+    + "\">Child immunization</div>\n    <div class=\"divider\"></div>\n    <div class=\"modal-row\" data-form=\"child_close\" data-caseid=\"";
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)

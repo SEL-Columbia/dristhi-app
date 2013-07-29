@@ -1,12 +1,12 @@
-function Child(childBridge) {
+function Child(childBridge, formBridge) {
     return {
         populateInto: function (cssIdentifierOfRootElement) {
             $(cssIdentifierOfRootElement).html(Handlebars.templates.child_detail(childBridge.getCurrentChild()));
         },
 
-        bindEveryItemToCommCare: function (cssIdentifierOfElement) {
+        bindEveryItemToForm: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
-                childBridge.delegateToCommCare($(this).data("form"), $(this).data("caseid"));
+                formBridge.delegateToFormLaunchView($(this).data("form"), $(this).data("caseid"));
             })
         },
 

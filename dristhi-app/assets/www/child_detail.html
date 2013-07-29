@@ -33,13 +33,14 @@
 <script src="../js/alerts.js"></script>
 <script src="../js/international_text.js"></script>
 <script src="../js/page_view.js"></script>
+<script src="../js/form_context.js"></script>
 
 <script src="../js/child_detail.js"></script>
 <script>
     $(document).ready(function () {
-        var child = new Child(new ChildBridge());
+        var child = new Child(new ChildBridge(), new FormBridge());
         child.populateInto("#mainpanel");
-        child.bindEveryItemToCommCare(".modal-row");
+        child.bindEveryItemToForm(".modal-row");
         child.bindToCamera("#childPhoto");
         child.bindToDefaultPhoto("#childPhoto", "../img/icons/child-girlinfant@3x.png");
 
