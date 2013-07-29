@@ -57,10 +57,6 @@ function ANCBridge() {
             return JSON.parse(ancContext.get());
         },
 
-        delegateToCommCare: function (formId, caseId) {
-            ancContext.startCommCare(formId, caseId);
-        },
-
         markAsCompleted: function (caseId, visitCode) {
             ancContext.markTodoAsCompleted(caseId, visitCode);
         },
@@ -72,9 +68,6 @@ function ANCBridge() {
 
 function FakeANCContext() {
     return {
-        startCommCare: function (formId, caseId) {
-            alert("Start CommCare with form " + formId + " on case with caseId: " + caseId);
-        },
         markTodoAsCompleted: function (caseId, visitCode) {
             console.log("markAsCompleted " + caseId + " " + visitCode);
         },
