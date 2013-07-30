@@ -7,7 +7,8 @@ var fpMethodMap = {
     male_sterilization: 'Male Sterilization',
     centchroman: 'Centchroman',
     traditional_methods: 'Traditional Methods',
-    lam: 'LAM'
+    lam: 'LAM',
+    none: 'None'
 };
 
 var friendlyNameMap = {
