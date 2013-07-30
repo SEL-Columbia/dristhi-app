@@ -18,10 +18,6 @@ public class NavigationController {
         this.anmService = anmService;
     }
 
-    public void startChildList() {
-        activity.startActivity(new Intent(activity, ChildListActivity.class));
-    }
-
     public void startReports() {
         activity.startActivity(new Intent(activity, ReportsActivity.class));
     }

@@ -4,7 +4,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 
@@ -23,10 +22,6 @@ public class AllBeneficiaries {
         this.motherRepository = motherRepository;
         this.alertRepository = alertRepository;
         this.timelineEventRepository = timelineEventRepository;
-    }
-
-    public List<Child> allChildren() {
-        return childRepository.all();
     }
 
     //#TODO

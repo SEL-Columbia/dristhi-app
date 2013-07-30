@@ -17,12 +17,6 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
-    var bindToChildList = function (callbackToRunBeforeAnyAction, identifierOfElement) {
-        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
-            anmNavigationBridge.delegateToChildList();
-        });
-    };
-
     var bindToFPSmartRegistry = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             anmNavigationBridge.delegateToFPSmartRegistry();
@@ -91,9 +85,6 @@ function ANMNavigationBridge() {
         getANMInformation: function () {
             return JSON.parse(anmNavigationContext.get());
         },
-        delegateToChildList: function () {
-            return anmNavigationContext.startChildList();
-        },
         delegateToReports: function () {
             return anmNavigationContext.startReports();
         },
@@ -144,9 +135,6 @@ function FakeANMNavigationContext() {
                 eligibleCoupleCount: "7",
                 fpCount: "4"
             });
-        },
-        startChildList: function () {
-            window.location.href = "child_list.html";
         },
         startReports: function () {
             window.location.href = "reports.html";

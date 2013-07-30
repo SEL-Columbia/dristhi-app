@@ -101,10 +101,6 @@
                 android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
                 android:screenOrientation="landscape"/>
         <activity
-                android:name=".view.activity.ChildListActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
-        <activity
                 android:name=".view.activity.ChildDetailActivity"
                 android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
                 android:screenOrientation="landscape"/>
