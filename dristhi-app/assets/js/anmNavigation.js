@@ -17,12 +17,6 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
-    var bindToEligibleCoupleList = function (callbackToRunBeforeAnyAction, identifierOfElement) {
-        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
-            anmNavigationBridge.delegateToECList();
-        });
-    };
-
     var bindToChildList = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             anmNavigationBridge.delegateToChildList();
@@ -59,6 +53,7 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
+    //TODO: #Delete
     var bindToLaunchForm = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function (e) {
             anmNavigationBridge.delegateToFormLaunchView($(e.currentTarget).data("formname"), $(e.currentTarget).data("entityid"));
@@ -95,9 +90,6 @@ function ANMNavigationBridge() {
     return {
         getANMInformation: function () {
             return JSON.parse(anmNavigationContext.get());
-        },
-        delegateToECList: function () {
-            return anmNavigationContext.startECList();
         },
         delegateToChildList: function () {
             return anmNavigationContext.startChildList();
@@ -152,9 +144,6 @@ function FakeANMNavigationContext() {
                 eligibleCoupleCount: "7",
                 fpCount: "4"
             });
-        },
-        startECList: function () {
-            window.location.href = "ec_list.html";
         },
         startChildList: function () {
             window.location.href = "child_list.html";

@@ -1,3 +1,4 @@
+//TODO: #Delete
 function ListView(cssIdOf, listTemplate, beneficiaryLists, searchCriteria, villageFilterCriteria) {
     var NUMBER_OF_BENEFICIARIES_TO_SHOW_INITIALLY = 50;
     var LOAD_ALL_BENEFICIARIES = -1;

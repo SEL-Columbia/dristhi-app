@@ -18,10 +18,6 @@ public class NavigationController {
         this.anmService = anmService;
     }
 
-    public void startECList() {
-        activity.startActivity(new Intent(activity, EligibleCoupleListActivity.class));
-    }
-
     public void startChildList() {
         activity.startActivity(new Intent(activity, ChildListActivity.class));
     }
