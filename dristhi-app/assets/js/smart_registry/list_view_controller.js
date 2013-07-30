@@ -98,22 +98,6 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.numberOfClientsToShow = 10;
-        $scope.loadText = 'Load All';
-
-
-        $scope.loadAll = function () {
-            setTimeout(function () {
-                $scope.$apply(
-                    function () {
-                        $scope.numberOfClientsToShow = $scope.clients.length;
-                    });
-            }, 1);
-            $scope.loadText = 'Loading ...';
-        };
-
-        $scope.allClientsDisplayed = function (filteredClients) {
-            return $scope.numberOfClientsToShow >= filteredClients.length;
-        };
 
         $scope.openForm = function (formName, entityId, metaData) {
             if (!metaData) {

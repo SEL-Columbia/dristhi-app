@@ -222,18 +222,6 @@ describe("List view controller", function () {
         });
     });
 
-    describe("allClientsDisplayed", function () {
-        it("should return true if all clients are displayed.", function () {
-            scope.numberOfClientsToShow = 2;
-            scope.filteredClients = [
-                {name: "client1"},
-                {name: "client2"}
-            ];
-
-            expect(scope.allClientsDisplayed(scope.filteredClients)).toBeTruthy();
-        });
-    });
-
     describe("addVillageNamesToFilterOptions", function () {
         it("should add filter options for every village.", function () {
             var expectedVillageOptions = {
