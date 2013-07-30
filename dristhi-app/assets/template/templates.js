@@ -2,7 +2,7 @@
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['anc_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partials, Handlebars.partials); data = data || {};
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, stack2, options, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
@@ -166,10 +166,7 @@ function program21(depth0,data) {
     + "</span><br><span\n                                class=\"meta-summary-text\">Months Pregnant</span>\n                        </div>\n                        <div class=\"span6 text-center info\">\n                            <span class=\"big-text-numbers\">";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.formatDate || depth0.formatDate),stack1 ? stack1.call(depth0, ((stack1 = depth0.pregnancyDetails),stack1 == null || stack1 === false ? stack1 : stack1.edd), options) : helperMissing.call(depth0, "formatDate", ((stack1 = depth0.pregnancyDetails),stack1 == null || stack1 === false ? stack1 : stack1.edd), options)))
-    + "</span><br><span\n                                class=\"meta-summary-text\">EDD</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    ";
-  stack2 = self.invokePartial(partials.birth_plan, 'birth_plan', depth0, helpers, partials, data);
-  if(stack2 || stack2 === 0) { buffer += stack2; }
-  buffer += "\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Timeline\n        </div>\n        <div class=\"well well-for-beneficiary-details-no-padding\">\n            <div class=\"container-fluid container-no-padding\">\n                ";
+    + "</span><br><span\n                                class=\"meta-summary-text\">EDD</span>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"registry-container container-fluid\">\n        <div class=\"big-text row-fluid detail-section-header\">\n            Timeline\n        </div>\n        <div class=\"well well-for-beneficiary-details-no-padding\">\n            <div class=\"container-fluid container-no-padding\">\n                ";
   options = {hash:{},inverse:self.program(19, program19, data),fn:self.program(17, program17, data),data:data};
   stack2 = ((stack1 = helpers.ifequal || depth0.ifequal),stack1 ? stack1.call(depth0, ((stack1 = depth0.timelineEvents),stack1 == null || stack1 === false ? stack1 : stack1.length), 0, options) : helperMissing.call(depth0, "ifequal", ((stack1 = depth0.timelineEvents),stack1 == null || stack1 === false ? stack1 : stack1.length), 0, options));
   if(stack2 || stack2 === 0) { buffer += stack2; }
