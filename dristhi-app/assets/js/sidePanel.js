@@ -1,3 +1,4 @@
+//TODO: #Delete
 function SidePanel(anmNavigation) {
     var openSidePanel = function (animationDuration) {
         $(".affected-by-sidepanel").addClass("sidepanel-active");

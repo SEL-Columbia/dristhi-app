@@ -3,6 +3,7 @@ package org.ei.drishti.view.contract;
 import java.util.HashMap;
 import java.util.Map;
 
+//TODO: #Delete
 class TodoDetail {
     private final String messagePrefix;
 

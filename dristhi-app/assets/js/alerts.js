@@ -1,3 +1,4 @@
+//TODO: #Delete
 function Alerts() {
     return {
         bindAllCheckboxes: function(cssIdentifierOfCheckboxElementInEachTodo, callBackWhenCheckboxIsClicked) {

@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.Alert;
 
+//TODO: #Delete
 public class ProfileTodo {
     private String message;
     private boolean isCompleted;
