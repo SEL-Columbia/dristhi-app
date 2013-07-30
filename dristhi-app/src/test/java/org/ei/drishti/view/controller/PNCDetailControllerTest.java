@@ -6,7 +6,6 @@ import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;
-import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
@@ -38,8 +37,6 @@ public class PNCDetailControllerTest {
     private AllBeneficiaries allBeneficiaries;
     @Mock
     private AllTimelineEvents allTimelineEvents;
-    @Mock
-    private AllAlerts allAlerts;
 
     private String caseId = "1234-5678-1234";
     private PNCDetailController controller;
@@ -48,7 +45,7 @@ public class PNCDetailControllerTest {
     public void setUp() throws Exception {
         initMocks(this);
         DateUtil.fakeIt(new LocalDate(2012, 8, 1));
-        controller = new PNCDetailController(context, caseId, allEligibleCouples, allBeneficiaries, allAlerts, allTimelineEvents);
+        controller = new PNCDetailController(context, caseId, allEligibleCouples, allBeneficiaries, allTimelineEvents);
     }
 
     @Test

@@ -10,12 +10,6 @@ function Child(childBridge, formBridge) {
             })
         },
 
-        onAlertCheckboxClick: function (alertWhoseCheckboxWasClicked) {
-            var alertItem = $(alertWhoseCheckboxWasClicked);
-            childBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
-            childBridge.markAsCompleted(alertItem.data("caseid"), alertItem.data("visitcode"));
-        },
-
         bindToCamera: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 childBridge.takePhoto();
@@ -45,10 +39,6 @@ function ChildBridge() {
             return JSON.parse(childContext.get());
         },
 
-        markAsCompleted: function (caseId, visitCode) {
-            childContext.markTodoAsCompleted(caseId, visitCode);
-        },
-
         takePhoto: function () {
             childContext.takePhoto();
         }
@@ -57,9 +47,6 @@ function ChildBridge() {
 
 function FakeChildContext() {
     return {
-        markTodoAsCompleted: function (caseId, visitCode) {
-            console.log("markAsCompleted " + caseId + " " + visitCode);
-        },
         get: function () {
             return JSON.stringify({
                     caseId: "1234",

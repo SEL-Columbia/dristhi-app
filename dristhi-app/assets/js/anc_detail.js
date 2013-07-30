@@ -11,12 +11,6 @@ function ANC(ancBridge, formBridge) {
             })
         },
 
-        onAlertCheckboxClick: function (alertWhoseCheckboxWasClicked) {
-            var alertItem = $(alertWhoseCheckboxWasClicked);
-            ancBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
-            ancBridge.markAsCompleted(alertItem.data("caseid"), alertItem.data("visitcode"));
-        },
-
         bindToCamera: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 ancBridge.takePhoto();

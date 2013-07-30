@@ -5,7 +5,6 @@ import com.google.gson.Gson;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.TimelineEvent;
-import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.util.DateUtil;
@@ -34,8 +33,6 @@ public class EligibleCoupleDetailControllerTest {
     private AllEligibleCouples allEligibleCouples;
     @Mock
     private AllTimelineEvents allTimelineEvents;
-    @Mock
-    private AllAlerts allAlerts;
 
     private String caseId = "1234-5678-1234";
     private EligibleCoupleDetailController controller;
@@ -44,7 +41,7 @@ public class EligibleCoupleDetailControllerTest {
     public void setUp() throws Exception {
         initMocks(this);
         DateUtil.fakeIt(new LocalDate(2012, 8, 1));
-        controller = new EligibleCoupleDetailController(context, caseId, allEligibleCouples, allAlerts, allTimelineEvents);
+        controller = new EligibleCoupleDetailController(context, caseId, allEligibleCouples, allTimelineEvents);
     }
 
     @Test

@@ -10,12 +10,6 @@ function PNC(pncBridge, formBridge) {
             })
         },
 
-        onAlertCheckboxClick: function (alertWhoseCheckboxWasClicked) {
-            var alertItem = $(alertWhoseCheckboxWasClicked);
-            pncBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
-            pncBridge.markAsCompleted(alertItem.data("caseid"), alertItem.data("visitcode"));
-        },
-
         bindToCamera: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 pncBridge.takePhoto();
@@ -45,10 +39,6 @@ function PNCBridge() {
             return JSON.parse(pncContext.get());
         },
 
-        markAsCompleted: function (caseId, visitCode) {
-            pncContext.markTodoAsCompleted(caseId, visitCode);
-        },
-
         takePhoto: function () {
             pncContext.takePhoto();
         }
@@ -57,9 +47,6 @@ function PNCBridge() {
 
 function FakePNCContext() {
     return {
-        markTodoAsCompleted: function (caseId, visitCode) {
-            console.log("markAsCompleted " + caseId + " " + visitCode);
-        },
         get: function () {
             return JSON.stringify({
                     caseId: "1234",

@@ -7,7 +7,6 @@ import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
-import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
@@ -34,16 +33,14 @@ public class ChildDetailController {
     private final String caseId;
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
-    private final AllAlerts allAlerts;
     private final AllTimelineEvents allTimelineEvents;
     private PrettyTime prettyTime;
 
-    public ChildDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllAlerts allAlerts, AllTimelineEvents allTimelineEvents) {
+    public ChildDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllTimelineEvents allTimelineEvents) {
         this.context = context;
         this.caseId = caseId;
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
-        this.allAlerts = allAlerts;
         this.allTimelineEvents = allTimelineEvents;
         prettyTime = new PrettyTime(DateUtil.today().toDate(), new Locale("short"));
     }

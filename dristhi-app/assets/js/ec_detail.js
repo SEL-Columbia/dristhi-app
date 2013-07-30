@@ -10,12 +10,6 @@ function EC(ecBridge, formBridge) {
             })
         },
 
-        onAlertCheckboxClick: function (alertWhoseCheckboxWasClicked) {
-            var alertItem = $(alertWhoseCheckboxWasClicked);
-            ecBridge.delegateToCommCare(alertItem.data("form"), alertItem.data("caseid"));
-            ecBridge.markAsCompleted(alertItem.data("caseid"), alertItem.data("visitcode"));
-        },
-
         bindToCamera: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 ecBridge.takePhoto();
@@ -44,9 +38,6 @@ function ECBridge() {
         getCurrentEC: function () {
             return JSON.parse(ecContext.get());
         },
-        markAsCompleted: function (caseId, visitCode) {
-            ecContext.markTodoAsCompleted(caseId, visitCode);
-        },
         takePhoto: function () {
             ecContext.takePhoto();
         }
@@ -55,9 +46,6 @@ function ECBridge() {
 
 function FakeECContext() {
     return {
-        markTodoAsCompleted: function (caseId, visitCode) {
-            console.log("markAsCompleted " + caseId + " " + visitCode);
-        },
         get: function () {
             return JSON.stringify({
                     caseId: "CASE X",

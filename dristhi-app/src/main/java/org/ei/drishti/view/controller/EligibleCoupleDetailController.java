@@ -5,13 +5,15 @@ import android.content.Intent;
 import com.google.gson.Gson;
 import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.TimelineEventComparator;
 import org.ei.drishti.view.activity.CameraLaunchActivity;
-import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.contract.Child;
+import org.ei.drishti.view.contract.CoupleDetails;
+import org.ei.drishti.view.contract.ECDetail;
+import org.ei.drishti.view.contract.TimelineEvent;
 import org.joda.time.LocalDate;
 import org.ocpsoft.pretty.time.Duration;
 import org.ocpsoft.pretty.time.PrettyTime;
@@ -29,16 +31,14 @@ public class EligibleCoupleDetailController {
     private final Context context;
     private String caseId;
     private final AllEligibleCouples allEligibleCouples;
-    private AllAlerts allAlerts;
     private final AllTimelineEvents allTimelineEvents;
     private PrettyTime prettyTime;
 
-    public EligibleCoupleDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllAlerts allAlerts,
+    public EligibleCoupleDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples,
                                           AllTimelineEvents allTimelineEvents) {
         this.context = context;
         this.caseId = caseId;
         this.allEligibleCouples = allEligibleCouples;
-        this.allAlerts = allAlerts;
         this.allTimelineEvents = allTimelineEvents;
         this.prettyTime = new PrettyTime(DateUtil.today().toDate(), new Locale("short"));
     }

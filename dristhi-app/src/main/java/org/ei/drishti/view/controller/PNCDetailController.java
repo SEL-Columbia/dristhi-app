@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
-import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
@@ -33,16 +32,14 @@ public class PNCDetailController {
     private final String caseId;
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
-    private AllAlerts allAlerts;
     private final AllTimelineEvents allTimelineEvents;
     private PrettyTime prettyTime;
 
-    public PNCDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllAlerts allAlerts, AllTimelineEvents allTimelineEvents) {
+    public PNCDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllTimelineEvents allTimelineEvents) {
         this.context = context;
         this.caseId = caseId;
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
-        this.allAlerts = allAlerts;
         this.allTimelineEvents = allTimelineEvents;
         prettyTime = new PrettyTime(DateUtil.today().toDate(), new Locale("short"));
     }

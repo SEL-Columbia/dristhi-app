@@ -495,55 +495,6 @@ function program23(depth0,data) {
   buffer += "\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n";
   return buffer;
   });
-templates['completed_todo'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, stack2, options;
-  buffer += "\n<div class=\"alert completed alert-row ";
-  if (stack1 = helpers.villageName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.villageName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\" data-form=\"";
-  if (stack1 = helpers.formToOpen) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\" data-caseid=\"";
-  if (stack1 = helpers.caseId) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\"\n     data-visitcode=\"";
-  if (stack1 = helpers.visitCode) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\">\n    <div class=\"row-fluid\">\n        <div class=\"span2\">\n            <img class=\"todo-box checked\"/>\n        </div>\n        <div class=\"span10\">\n            <div class=\"dueDate\">";
-  options = {hash:{},data:data};
-  buffer += escapeExpression(((stack1 = helpers.formatDate || depth0.formatDate),stack1 ? stack1.call(depth0, depth0.dueDate, options) : helperMissing.call(depth0, "formatDate", depth0.dueDate, options)))
-    + "</div>\n            <div class=\"beneficiaryName\">";
-  if (stack2 = helpers.beneficiaryName) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.beneficiaryName; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "</div>\n            <div class=\"husbandName\">";
-  if (stack2 = helpers.husbandName) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.husbandName; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "</div>\n            <div class=\"detail\">";
-  if (stack2 = helpers.description) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.description; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "</div>\n        </div>\n    </div>\n</div>\n";
-  return buffer;
-  }
-
-  buffer += "//TODO: #Delete\n";
-  stack1 = helpers.each.call(depth0, depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
-  return buffer;
-  });
 templates['ec_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -777,55 +728,6 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.internationalize || depth0.internationalize),stack1 ? stack1.call(depth0, "home_videos_label", options) : helperMissing.call(depth0, "internationalize", "home_videos_label", options)))
     + "</a>\n    </div>\n</div>\n";
-  return buffer;
-  });
-templates['overdue_todo'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, stack2, options;
-  buffer += "\n<div class=\"alert overdue alert-row ";
-  if (stack1 = helpers.villageName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.villageName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\" data-form=\"";
-  if (stack1 = helpers.formToOpen) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\" data-caseid=\"";
-  if (stack1 = helpers.caseId) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\"\n     data-visitcode=\"";
-  if (stack1 = helpers.visitCode) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\">\n    <div class=\"row-fluid\">\n        <div class=\"span2\">\n            <img class=\"todo-box\"/>\n        </div>\n        <div class=\"span10\">\n            <div class=\"dueDate\">";
-  options = {hash:{},data:data};
-  buffer += escapeExpression(((stack1 = helpers.formatDate || depth0.formatDate),stack1 ? stack1.call(depth0, depth0.dueDate, options) : helperMissing.call(depth0, "formatDate", depth0.dueDate, options)))
-    + "</div>\n            <div class=\"beneficiaryName\">";
-  if (stack2 = helpers.beneficiaryName) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.beneficiaryName; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "</div>\n            <div class=\"husbandName\">";
-  if (stack2 = helpers.husbandName) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.husbandName; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "</div>\n            <div class=\"detail\">";
-  if (stack2 = helpers.description) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.description; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "</div>\n        </div>\n    </div>\n</div>\n";
-  return buffer;
-  }
-
-  buffer += "//TODO: #Delete\n";
-  stack1 = helpers.each.call(depth0, depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
   return buffer;
   });
 templates['pnc_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
@@ -1167,55 +1069,6 @@ function program1(depth0,data) {
   stack1 = helpers.each.call(depth0, depth0.indicatorReports, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    </div>\n</div>\n";
-  return buffer;
-  });
-templates['upcoming_todo'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, stack2, options;
-  buffer += "\n<div class=\"alert upcoming alert-row ";
-  if (stack1 = helpers.villageName) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.villageName; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\" data-form=\"";
-  if (stack1 = helpers.formToOpen) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.formToOpen; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\" data-caseid=\"";
-  if (stack1 = helpers.caseId) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.caseId; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\"\n     data-visitcode=\"";
-  if (stack1 = helpers.visitCode) { stack1 = stack1.call(depth0, {hash:{},data:data}); }
-  else { stack1 = depth0.visitCode; stack1 = typeof stack1 === functionType ? stack1.apply(depth0) : stack1; }
-  buffer += escapeExpression(stack1)
-    + "\">\n    <div class=\"row-fluid\">\n        <div class=\"span2\">\n            <img class=\"todo-box\"/>\n        </div>\n        <div class=\"span10\">\n            <div class=\"dueDate\">";
-  options = {hash:{},data:data};
-  buffer += escapeExpression(((stack1 = helpers.formatDate || depth0.formatDate),stack1 ? stack1.call(depth0, depth0.dueDate, options) : helperMissing.call(depth0, "formatDate", depth0.dueDate, options)))
-    + "</div>\n            <div class=\"beneficiaryName\">";
-  if (stack2 = helpers.beneficiaryName) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.beneficiaryName; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "</div>\n            <div class=\"husbandName\">";
-  if (stack2 = helpers.husbandName) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.husbandName; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "</div>\n            <div class=\"detail\">";
-  if (stack2 = helpers.description) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
-  else { stack2 = depth0.description; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
-  buffer += escapeExpression(stack2)
-    + "</div>\n        </div>\n    </div>\n</div>\n";
-  return buffer;
-  }
-
-  buffer += "//TODO: #Delete\n";
-  stack1 = helpers.each.call(depth0, depth0, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n";
   return buffer;
   });
 })();
