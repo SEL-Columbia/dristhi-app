@@ -47,13 +47,6 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
-    //TODO: #Delete
-    var bindToLaunchForm = function (callbackToRunBeforeAnyAction, identifierOfElement) {
-        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function (e) {
-            anmNavigationBridge.delegateToFormLaunchView($(e.currentTarget).data("formname"), $(e.currentTarget).data("entityid"));
-        });
-    };
-
     var runWithCallBack = function (callbackToRunBeforeAnyAction, identifierOfElement, action) {
         $(identifierOfElement).click(function (e) {
             callbackToRunBeforeAnyAction();
