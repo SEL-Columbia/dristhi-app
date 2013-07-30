@@ -249,4 +249,25 @@ public class ChildServiceTest {
 
         verify(serviceProvidedService).add(forVitaminAProvided("child id 1", "2012-01-01", "1", "PHC"));
     }
+
+    @Test
+    public void shouldAddTimelineEventWhenChildIsRegisteredForOA() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("ec id 1");
+        when(submission.getFieldValue("motherId")).thenReturn("mother id 1");
+        when(submission.getFieldValue("id")).thenReturn("child id 1");
+        when(submission.getFieldValue("dateOfBirth")).thenReturn("2013-01-02");
+        when(submission.getFieldValue("gender")).thenReturn("female");
+        when(submission.getFieldValue("weight")).thenReturn("3");
+        when(submission.getFieldValue("immunizationsGiven")).thenReturn("bcg opv_0");
+        when(submission.getFieldValue("bcgDate")).thenReturn("2012-01-06");
+        when(submission.getFieldValue("opv0Date")).thenReturn("2012-01-07");
+
+        service.registerForOA(submission);
+
+        verify(allTimelineEvents).add(forChildBirthInChildProfile("child id 1", "2013-01-02", "3", "bcg opv_0"));
+
+        verify(serviceProvidedService).add(forChildImmunization("ec id 1", "bcg", "2012-01-06"));
+        verify(serviceProvidedService).add(forChildImmunization("ec id 1", "opv_0", "2012-01-07"));
+    }
 }

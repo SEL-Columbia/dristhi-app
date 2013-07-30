@@ -1,0 +1,906 @@
+<form class="jr" autocomplete="off" id="Child_Registration_EngKan">
+    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <section class="form-logo"></section>
+    <h3 id="form-title">Child Registration - Out of Area</h3>
+    <select id="form-languages" style="display:none;" data-default-lang="default">
+        <option value="default">default</option>
+    </select>
+    <fieldset id="jr-preload-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Child_Registration_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
+
+
+    <label class="">
+        <span lang="" class=" active">Registration date? &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCBE;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+        <span class="required">*</span>
+        <input autocomplete="off" type="date" name="/Child_Registration_EngKan/child_reg_date" required="required"
+               data-constraint=".&lt;= /Child_Registration_EngKan/today " data-type-xml="date"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">PHC, &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
+                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;:
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/phc" value="bherya"
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Bherya &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/phc" value="keelanapura"
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Keelanapura &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Sub Center, &#xC89;&#xCAA; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;:
+                </span>
+                <span class="required">*</span>
+            </legend>
+            <label class="itemset-template"
+                   data-items-path="instance('sub_centers')/root/item[phc= /Child_Registration_EngKan/phc ]">
+                <input type="radio" name="/Child_Registration_EngKan/sub_center" required="required"
+                       data-type-xml="select1" value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-0">Bherya - A &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;
+                    -&#xC8E;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-1">Bherya - B &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;
+                    -&#xCAC;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-2">Hosa Agrahara &#xCB9;&#xCCA;&#xCB8;
+                    &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-3">Munjanahalli &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-4">G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;.
+                    &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-5">Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-6">Keelanapura - A
+                    &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xC8E;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-7">Keelanapura - B
+                    &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xCAC;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-8">Puttegowdanahundi
+                    &#xCAA;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Village, &#xC97;&#xCCD;&#xCB0;&#xCBE;&#xCAE;:</span>
+                <span class="required">*</span>
+            </legend>
+            <label class="itemset-template"
+                   data-items-path="instance('villages')/root/item[phc= /Child_Registration_EngKan/phc  and sub_center= /Child_Registration_EngKan/sub_center ]">
+                <input type="radio" name="/Child_Registration_EngKan/village" required="required"
+                       data-type-xml="select1" value=""/>
+            </label>
+            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-0">Basavanapura &#xCAC;&#xCB8;&#xCB5;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-1">Somanahalli Colony
+                    &#xCB8;&#xCCB;&#xCAE;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF; &#xC95;&#xCBE;&#xCB2;&#xCCB;&#xCA8;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-2">Sambaravalli &#xCB6;&#xC82;&#xCAC;&#xCB0;&#xCB5;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-3">Geradada &#xC97;&#xCC7;&#xCB0;&#xCCD;&#x200D;&#xCA6;&#xCA1;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-4">Ardha Bherya &#xC85;&#xCB0;&#xCCD;&#xCA7;
+                    &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-5">Sugganahalli &#xCB8;&#xCC1;&#xC97;&#xCCD;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-6">Battiganahalli &#xCAC;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-7">Half Bherya &#xCB9;&#xCBE;&#xCAB;&#xCCD;
+                    &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-8">Hosa Agrahara &#xCB9;&#xCCA;&#xCB8;
+                    &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-9">Mandiganahalli &#xCAE;&#xC82;&#xCA1;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-10">Harambanahalli &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-11">Harambanahalli Koppalu
+                    &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-12">Boregowdanakoppalu
+                    &#xCAC;&#xCCB;&#xCB0;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-13">Munjanahalli &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-14">Kavalu Hosur &#xC95;&#xCBE;&#xCB5;&#xCB2;&#xCC1;
+                    &#xCB9;&#xCCA;&#xCB8;&#xCC2;&#xCB0;&#xCC1;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-15">Chikkabherya &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-16">G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;.
+                    &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-17">Udayagiri &#xC89;&#xCA6;&#xCAF;&#xC97;&#xCBF;&#xCB0;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-18">Arakere &#xC85;&#xCB0;&#xC95;&#xCC6;&#xCB0;&#xCC6;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-19">Chikkahalli &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-20">Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-21">Halagayanahundi &#xCB9;&#xCB2;&#xC97;&#xCAF;&#xCCD;&#xCAF;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-22">Keelanapura &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-23">M.C.Hundi &#xC8E;&#xC82;.&#xCB8;&#xCBF;.
+                    &#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-24">Inam Uttanahalli
+                    &#xC87;&#xCA8;&#xCBE;&#xC82;
+                    &#xC89;&#xCA4;&#xCCD;&#xCA4;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-25">Megalapura &#xCAE;&#xCC7;&#xC98;&#xCB2;&#xCAA;&#xCC1;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-26">Madhavagere &#xCAE;&#xCBE;&#xCA6;&#xCB5;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-27">Hosahalli &#xCB9;&#xCCA;&#xCB8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-28">Gurukarapura &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xC95;&#xCBE;&#xCB0;&#xCAA;&#xCC1;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-29">Puttegowdanahundi
+                    &#xCAA;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-30">Lakshmipura &#xCB2;&#xC95;&#xCCD;&#xCB7;&#xCCD;&#xCAE;&#xCC0;&#xCAA;&#xCC1;&#xCB0;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-31">Mahadevi Colony &#xCAE;&#xCBE;&#xCB9;&#xCA6;&#xCC7;&#xCB5;&#xCBF;
+                    &#xC95;&#xCBE;&#xCB2;&#xCCB;&#xCA8;&#xCBF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-32">Duddagere &#xCA6;&#xCC1;&#xCA6;&#xCCD;&#xCA6;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-33">Chattanahallipalya
+                    &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;&#xCAA;&#xCBE;&#xCB3;&#xCCD;&#xCAF;</span>
+                <span lang="default" class=" active" data-itext-id="static_instance-villages-34">Chattanahalli &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+            </span>
+        </fieldset>
+    </fieldset>
+    <label class="">
+        <span lang="" class=" active">Household number, &#xCAE;&#xCA8;&#xCC6; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;:</span>
+        <input autocomplete="off" type="number" name="/Child_Registration_EngKan/hh_number" data-type-xml="int"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Household address, &#xCAE;&#xCA8;&#xCC6; &#xCB5;&#xCBF;&#xCB3;&#xCBE;&#xCB8;:
+        </span>
+        <input autocomplete="off" type="text" name="/Child_Registration_EngKan/hh_address" data-type-xml="string"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Mother's name, &#xCA4;&#xCBE;&#xCAF;&#xCBF;&#xCAF; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;:</span>
+        <span class="required">*</span>
+        <input autocomplete="off" type="text" name="/Child_Registration_EngKan/mother_name" required="required"
+               data-type-xml="string"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Father's name, &#xCA4;&#xC82;&#xCA6;&#xCC6;&#xCAF; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;:</span>
+        <span class="required">*</span>
+        <input autocomplete="off" type="text" name="/Child_Registration_EngKan/father_name" required="required"
+               data-type-xml="string"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Thayi card number, &#xCA4;&#xCBE;&#xCAF;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCCD;&#xCA1;&#xCCD;
+            &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;:
+        </span>
+        <span class="required">*</span>
+        <input autocomplete="off" type="number" name="/Child_Registration_EngKan/thayi_card_number" required="required"
+               data-type-xml="int"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Economic status, &#xC86;&#xCB0;&#xCCD;&#xCA5;&#xCBF;&#xC95; &#xCB8;&#xCCD;&#xCA5;&#xCBF;&#xCA4;&#xCBF;:</span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/economic_status" value="apl"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">APL &#xC8E;.&#xCAA;&#xCBF;.&#xC8E;&#xCB2;&#xCCD;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/economic_status" value="bpl"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">BPL &#xCAC;&#xCBF;.&#xCAA;&#xCBF;.&#xC8E;&#xCB2;&#xCCD;</span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Caste, &#xC9C;&#xCBE;&#xCA4;&#xCBF;:</span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/caste" value="sc"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">SC &#xCAA;&#xCB0;&#xCBF;&#xCB6;&#xCBF;&#xCB7;&#xCCD;&#xC9F; &#xC9C;&#xCBE;&#xCA4;&#xCBF;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/caste" value="st"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">ST &#xCAA;&#xCB0;&#xCBF;&#xCB6;&#xCBF;&#xCB7;&#xCCD;&#xC9F; &#xCAA;&#xC82;&#xC97;&#xCA1;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/caste" value="c_others"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <label class="">
+        <span lang="" class=" active">Contact phone number? &#xCB8;&#xC82;&#xCAA;&#xCB0;&#xCCD;&#xC95;&#xCBF;&#xCB8;&#xCC1;&#xCB5;
+            &#xCAB;&#xCCB;&#xCA8;&#xCCD; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;?
+        </span>
+        <input autocomplete="off" type="text" name="/Child_Registration_EngKan/phone_no" data-type-xml="string"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Child name? &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?</span>
+        <input autocomplete="off" type="text" name="/Child_Registration_EngKan/child_name" data-type-xml="string"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Child birth date? &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xC9C;&#xCA8;&#xCCD;&#xCAE;&#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+        <input autocomplete="off" type="date" name="/Child_Registration_EngKan/child_birth_date"
+               data-constraint=".&lt;= /Child_Registration_EngKan/today " data-type-xml="date"/>
+    </label>
+    <fieldset class="trigger " name="/Child_Registration_EngKan/child_age_note">
+        <span lang="" class=" active">Child age, &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;:
+            <span class="jr-output" data-value=" /Child_Registration_EngKan/child_age ">
+            </span>
+            months &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCC1;
+        </span>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Child's sex? &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB2;&#xCBF;&#xC82;&#xC97;?</span>
+                <span class="required">*</span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/child_sex" value="female"
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Female &#xCB9;&#xCC6;&#xCA3;&#xCCD;&#xCA3;&#xCC1;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/child_sex" value="male"
+                       required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Male &#xC97;&#xC82;&#xCA1;&#xCC1;</span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Child's blood group? &#xCAE;&#xC95;&#xCCD;&#xC95;&#xCB3; &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;
+                    &#xC97;&#xCC1;&#xC82;&#xCAA;&#xCC1;?
+                </span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/child_blood_group"
+                       value="a_positive" data-type-xml="select1"/>
+                <span lang="" class=" active">A+</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/child_blood_group"
+                       value="a_negative" data-type-xml="select1"/>
+                <span lang="" class=" active">A-</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/child_blood_group"
+                       value="b_positive" data-type-xml="select1"/>
+                <span lang="" class=" active">B+</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/child_blood_group"
+                       value="b_negative" data-type-xml="select1"/>
+                <span lang="" class=" active">B-</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/child_blood_group"
+                       value="ab_positive" data-type-xml="select1"/>
+                <span lang="" class=" active">AB+</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/child_blood_group"
+                       value="ab_negative" data-type-xml="select1"/>
+                <span lang="" class=" active">AB-</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/child_blood_group"
+                       value="o_positive" data-type-xml="select1"/>
+                <span lang="" class=" active">O+</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/child_blood_group"
+                       value="o_negative" data-type-xml="select1"/>
+                <span lang="" class=" active">O-</span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <label class="">
+        <span lang="" class=" active">Child's birthweight (in kgs)? &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xC9C;&#xCA8;&#xCA8;
+            &#xCA4;&#xCC2;&#xC95; (&#xC95;&#xCC6;.&#xC9C;&#xCBF; &#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)?
+        </span>
+        <input autocomplete="off" type="number" name="/Child_Registration_EngKan/child_birthweight"
+               data-type-xml="decimal" step="any"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Current weight (in kgs)? &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCC1;&#xCA4;
+            &#xCA4;&#xCC2;&#xC95; (&#xC95;&#xCC6;.&#xC9C;&#xCBF;. &#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)?
+        </span>
+        <input autocomplete="off" type="number" name="/Child_Registration_EngKan/child_weight" data-type-xml="decimal"
+               step="any"/>
+    </label>
+    <label class="">
+        <span lang="" class=" active">Current height (in cms)? &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCC1;&#xCA4;
+            &#xC8E;&#xCA4;&#xCCD;&#xCA4;&#xCB0; (&#xCB8;&#xCC6;.&#xCAE;&#xCC0;. &#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)?
+        </span>
+        <input autocomplete="off" type="number" name="/Child_Registration_EngKan/child_height" data-type-xml="int"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Immunizations already received? &#xC88;&#xC97;&#xCBE;&#xC97;&#xCB2;&#xCC7;
+                    &#xC87;&#xCAE;&#xCCD;&#xCAF;&#xCC1;&#xCA8;&#xCC8;&#xC9C;&#xCC7;&#xCB7;&#xCA8;&#xCCD;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+                    &#xCAA;&#xCA1;&#xCC6;&#xCAF;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
+                </span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="bcg" data-type-xml="select"/>
+                <span lang="" class=" active">BCG &#xCAC;&#xCBF;&#xCB8;&#xCBF;&#xC9C;&#xCBF;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="opv_0" data-type-xml="select"/>
+                <span lang="" class=" active">OPV 0 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 0</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="hepb_0" data-type-xml="select"/>
+                <span lang="" class=" active">Hep B 0 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                    &#xCAC;&#xCBF; 0
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="opv_1" data-type-xml="select"/>
+                <span lang="" class=" active">OPV 1 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 1</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="dpt_1" data-type-xml="select"/>
+                <span lang="" class=" active">DPT 1 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 1</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="hepb_1" data-type-xml="select"/>
+                <span lang="" class=" active">Hep B 1 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                    &#xCAC;&#xCBF; 1
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="pentavalent_1" data-type-xml="select"/>
+                <span lang="" class=" active">Pentavalent 1 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
+                    1
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="opv_2" data-type-xml="select"/>
+                <span lang="" class=" active">OPV 2 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 2</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="dpt_2" data-type-xml="select"/>
+                <span lang="" class=" active">DPT 2 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 2</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="hepb_2" data-type-xml="select"/>
+                <span lang="" class=" active">Hep B 2 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                    &#xCAC;&#xCBF; 2
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="pentavalent_2" data-type-xml="select"/>
+                <span lang="" class=" active">Pentavalent 2 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
+                    2
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="opv_3" data-type-xml="select"/>
+                <span lang="" class=" active">OPV 3 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 3</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="dpt_3" data-type-xml="select"/>
+                <span lang="" class=" active">DPT 3 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 3</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="hepb_3" data-type-xml="select"/>
+                <span lang="" class=" active">Hep B 3 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                    &#xCAC;&#xCBF; 3
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="pentavalent_3" data-type-xml="select"/>
+                <span lang="" class=" active">Pentavalent 3 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
+                    3
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="measles" data-type-xml="select"/>
+                <span lang="" class=" active">Measles &#xCA6;&#xCA1;&#xCBE;&#xCB0;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="mmr" data-type-xml="select"/>
+                <span lang="" class=" active">MMR
+                    &#xC8E;&#xCAE;&#xCCD;.&#xC8E;&#xCAE;&#xCCD;.&#xC86;&#xCB0;&#xCCD;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="dptbooster_1" data-type-xml="select"/>
+                <span lang="" class=" active">DPT Booster 1 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
+                    1
+                </span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="opvbooster" data-type-xml="select"/>
+                <span lang="" class=" active">OPV Booster &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="je" data-type-xml="select"/>
+                <span lang="" class=" active">Japanese Encephalitis (JE)</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="measlesbooster" data-type-xml="select"/>
+                <span lang="" class=" active">Measles Booster &#xCA6;&#xCA1;&#xCBE;&#xCB0; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
+                       value="dptbooster_2" data-type-xml="select"/>
+                <span lang="" class=" active">DPT Booster 2 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
+                    2
+                </span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <fieldset class="jr-branch pre-init " name="/Child_Registration_EngKan/child_immunization_history_group"
+              data-relevant=" /Child_Registration_EngKan/child_immunization_history  != ''">
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">BCG date? &#xCAC;&#xCBF;&#xCB8;&#xCBF;&#xC9C;&#xCBF; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/bcg_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'bcg')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">OPV 0 date? &#xC93;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 0 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/opv_0_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opv_0')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Hep B 0 date? &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC8;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                &#xCAC;&#xCBF; 0 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/hepb_0_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'hepb_0')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">OPV 1 date? &#xC93;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 1 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/opv_1_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opv_1')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">DPT 1 date? &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 1 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/dpt_1_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'dpt_1')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Hep B 1 date? &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC8;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                &#xCAC;&#xCBF; 1 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/hepb_1_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'hepb_1')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Pentavalent 1 date? &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
+                1 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/pentavalent_1_date"
+                   required="required" data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'pentavalent_1')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">OPV 2 date? &#xC93;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 2 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/opv_2_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opv_2')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">DPT 2 date? &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 2 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/dpt_2_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'dpt_2')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Hep B 2 date? &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC8;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                &#xCAC;&#xCBF; 2 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/hepb_2_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'hepb_2')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Pentavalent 2 date? &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
+                2 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/pentavalent_2_date"
+                   required="required" data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'pentavalent_2')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">OPV 3 date? &#xC93;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 3 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/opv_3_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opv_3')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">DPT 3 date? &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 3 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/dpt_3_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'dpt_3')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Hep B 3 date? &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC8;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                &#xCAC;&#xCBF; 3 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/hepb_3_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'hepb_3')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Pentavalent 3 date? &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
+                3 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/pentavalent_3_date"
+                   required="required" data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'pentavalent_3')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Measles date? &#xCA6;&#xCA1;&#xCBE;&#xCB0; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/measles_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'measles')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">MMR date? &#xC8E;&#xCAE;&#xCCD;.&#xC8E;&#xCAE;&#xCCD;.&#xC86;&#xCB0;&#xCCD;
+                &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/mmr_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'mmr')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">DPT Booster 1 date? &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
+                1 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/dptbooster_1_date"
+                   required="required" data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'dptbooster_1')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">OPV Booster date? &#xC93;&#xCAA;&#xCBF;&#xCB5;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
+                &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/opvbooster_date"
+                   required="required" data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opvbooster')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">JE date? JE &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/je_date" required="required"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'je')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Measles Booster date? &#xCA6;&#xCA1;&#xCBE;&#xCB0; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
+                &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/measlesbooster_date"
+                   required="required" data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'measlesbooster')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">DPT Booster 2 date? &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
+                2 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_immunization_history_group/dptbooster_2_date"
+                   required="required" data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'dptbooster_2')"
+                   data-type-xml="date"/>
+        </label>
+    </fieldset>
+    <!--end of group -->
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Vitamin A doses already received? &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD;
+                    '&#xC8E;' &#xCA1;&#xCCB;&#xCB8;&#xCCD; &#xCAA;&#xCA1;&#xCC6;&#xCAF;&#xCB2;&#xCBE;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
+                </span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_vitamin_a_history"
+                       value="1" data-type-xml="select"/>
+                <span lang="" class=" active">1</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_vitamin_a_history"
+                       value="2" data-type-xml="select"/>
+                <span lang="" class=" active">2</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_vitamin_a_history"
+                       value="3" data-type-xml="select"/>
+                <span lang="" class=" active">3</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_vitamin_a_history"
+                       value="4" data-type-xml="select"/>
+                <span lang="" class=" active">4</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_vitamin_a_history"
+                       value="5" data-type-xml="select"/>
+                <span lang="" class=" active">5</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_vitamin_a_history"
+                       value="6" data-type-xml="select"/>
+                <span lang="" class=" active">6</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_vitamin_a_history"
+                       value="7" data-type-xml="select"/>
+                <span lang="" class=" active">7</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_vitamin_a_history"
+                       value="8" data-type-xml="select"/>
+                <span lang="" class=" active">8</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_vitamin_a_history"
+                       value="9" data-type-xml="select"/>
+                <span lang="" class=" active">9</span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <fieldset class="jr-branch pre-init " name="/Child_Registration_EngKan/child_vitamin_a_history_group"
+              data-relevant=" /Child_Registration_EngKan/child_vitamin_a_history  != ''">
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Vitamin A 1 date? &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD; '&#xC8E;'
+                1 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita1_date"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '1')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Vitamin A 2 date? &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD; '&#xC8E;'
+                2 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita2_date"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '2')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Vitamin A 3 date? &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD; '&#xC8E;'
+                3 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita3_date"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '3')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Vitamin A 4 date? &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD; '&#xC8E;'
+                4 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita4_date"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '4')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Vitamin A 5 date? &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD; '&#xC8E;'
+                5 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita5_date"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '5')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Vitamin A 6 date? &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD; '&#xC8E;'
+                6 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita6_date"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '6')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Vitamin A 7 date? &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD; '&#xC8E;'
+                7 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita7_date"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '7')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Vitamin A 8 date? &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD; '&#xC8E;'
+                8 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita8_date"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '8')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">Vitamin A 9 date? &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD; '&#xC8E;'
+                9 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            </span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita9_date"
+                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '9')"
+                   data-type-xml="date"/>
+        </label>
+    </fieldset>
+    <!--end of group -->
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Do you want to mark child as HR (High Risk)? &#xCA8;&#xCC0;&#xCB5;&#xCC1;
+                    &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; HR (&#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
+                    &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;) &#xC8E;&#xC82;&#xCA6;&#xCC1; &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCC1;
+                    &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCBF;&#xCB0;&#xCBE;?
+                </span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/is_child_high_risk" value="yes"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/is_child_high_risk" value="no"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+            </label>
+        </fieldset>
+    </fieldset>
+    <label class="jr-branch pre-init ">
+        <span lang="" class=" active">High risk reasons, &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF;&#xCAF;
+            &#xC95;&#xCBE;&#xCB0;&#xCA3;&#xC97;&#xCB3;&#xCC1;:
+        </span>
+        <input autocomplete="off" type="text" name="/Child_Registration_EngKan/child_high_risk_reasons"
+               data-relevant=" /Child_Registration_EngKan/is_child_high_risk  = 'yes'" data-type-xml="string"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">How long will child stay in area? &#xCAE;&#xC97;&#xCC1; &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1;
+                    &#xC95;&#xCBE;&#xCB2; &#xC88; &#xCAA;&#xCCD;&#xCB0;&#xCA6;&#xCC7;&#xCB6;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
+                    &#xC89;&#xCB3;&#xCBF;&#xCA6;&#xCC1;&#xC95;&#xCCA;&#xCB3;&#xCCD;&#xCB3;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCA6;&#xCC6;?
+                </span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/stay_in_area" value="less_6mos"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Less than 6 mos.
+                    6 &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCBF;&#xC82;&#xCA4; &#xC95;&#xCA1;&#xCBF;&#xCAE;&#xCC6;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/stay_in_area" value="less_1yr"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Less than 1 yr.
+                    1 &#xCB5;&#xCB0;&#xCCD;&#xCB7;&#xC95;&#xCCD;&#xC95;&#xCBF;&#xC82;&#xCA4; &#xC95;&#xCA1;&#xCBF;&#xCAE;&#xCC6;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/stay_in_area" value="more_1yr"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">More than 1 yr.
+                    1 &#xCB5;&#xCB0;&#xCCD;&#xCB7;&#xC95;&#xCCD;&#xC95;&#xCBF;&#xC82;&#xCA4; &#xC9C;&#xCBE;&#xCB8;&#xCCD;&#xCA4;&#xCBF;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Child_Registration_EngKan/stay_in_area" value="dont_know"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Don't know
+                    &#xC97;&#xCCA;&#xCA4;&#xCCD;&#xCA4;&#xCBF;&#xCB2;&#xCCD;&#xCB2;</span>
+            </label>
+        </fieldset>
+    </fieldset>
+
+    <fieldset id="jr-calculated-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Child_Registration_EngKan/child_age"
+                   data-calculate="if( /Child_Registration_EngKan/child_birth_date  = '', '', int(( /Child_Registration_EngKan/today  -  /Child_Registration_EngKan/child_birth_date ) div 30))"
+                   data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Child_Registration_EngKan/meta/instanceID"
+                   data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Child_Registration_EngKan/formhub/uuid"
+                   data-calculate="'96f2023a60684b75be606749fd4554d5'" data-type-xml="string"/>
+        </label>
+    </fieldset>
+</form>

@@ -33,6 +33,7 @@ public class FormSubmissionRouter {
                                 PNCVisitHandler pncVisitHandler,
                                 ChildImmunizationsHandler childImmunizationsHandler,
                                 ChildRegistrationECHandler childRegistrationECHandler,
+                                ChildRegistrationOAHandler childRegistrationOAHandler,
                                 ChildCloseHandler childCloseHandler, ChildIllnessHandler childIllnessHandler,
                                 VitaminAHandler vitaminAHandler) {
         this.formDataRepository = formDataRepository;
@@ -57,6 +58,7 @@ public class FormSubmissionRouter {
         handlerMap.put(PNC_VISIT, pncVisitHandler);
         handlerMap.put(CHILD_IMMUNIZATIONS, childImmunizationsHandler);
         handlerMap.put(CHILD_REGISTRATION_EC, childRegistrationECHandler);
+        handlerMap.put(CHILD_REGISTRATION_OA, childRegistrationOAHandler);
         handlerMap.put(CHILD_CLOSE, childCloseHandler);
         handlerMap.put(CHILD_ILLNESS, childIllnessHandler);
         handlerMap.put(VITAMIN_A, vitaminAHandler);

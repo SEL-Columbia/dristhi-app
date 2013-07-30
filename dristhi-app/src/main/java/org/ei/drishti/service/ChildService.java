@@ -186,4 +186,19 @@ public class ChildService {
                         submission.getFieldValue(AllConstants.VitaminAFields.VITAMIN_A_DOSE),
                         submission.getFieldValue(AllConstants.VitaminAFields.VITAMIN_A_PLACE)));
     }
+
+    public void registerForOA(FormSubmission submission) {
+        Map<String, String> immunizationDateFieldMap = createImmunizationDateFieldMap();
+
+        allTimelines.add(forChildBirthInChildProfile(
+                submission.getFieldValue(AllConstants.ChildRegistrationOAFields.CHILD_ID),
+                submission.getFieldValue(AllConstants.ChildRegistrationOAFields.DATE_OF_BIRTH),
+                submission.getFieldValue(AllConstants.ChildRegistrationOAFields.WEIGHT),
+                submission.getFieldValue(AllConstants.ChildRegistrationOAFields.IMMUNIZATIONS_GIVEN)));
+
+        String immunizationsGiven = submission.getFieldValue(AllConstants.ChildRegistrationOAFields.IMMUNIZATIONS_GIVEN);
+        for (String immunization : immunizationsGiven.split(SPACE)) {
+            serviceProvidedService.add(ServiceProvided.forChildImmunization(submission.entityId(), immunization, submission.getFieldValue(immunizationDateFieldMap.get(immunization))));
+        }
+    }
 }

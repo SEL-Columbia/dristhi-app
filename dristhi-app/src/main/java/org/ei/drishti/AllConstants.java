@@ -78,6 +78,7 @@ public class AllConstants {
         public static final String PNC_VISIT = "pnc_visit";
         public static final String CHILD_IMMUNIZATIONS = "child_immunizations";
         public static final String CHILD_REGISTRATION_EC = "child_registration_ec";
+        public static final String CHILD_REGISTRATION_OA = "child_registration_oa";
         public static final String CHILD_CLOSE = "child_close";
         public static final String CHILD_ILLNESS = "child_illness";
         public static final String VITAMIN_A = "vitamin_a";
@@ -168,7 +169,6 @@ public class AllConstants {
         public static final String OPV_2_DATE = "opv2Date";
         public static final String OPV_3_DATE = "opv3Date";
         public static final String OPVBOOSTER_DATE = "opvboosterDate";
-        public static final String DPT_BIRTH_DOSE_DATE = "dpt0Date";
         public static final String DPTBOOSTER_1_DATE = "dptbooster1Date";
         public static final String DPTBOOSTER_2_DATE = "dptbooster2Date";
         public static final String PENTAVALENT_1_DATE = "pentavalent1Date";
@@ -188,6 +188,14 @@ public class AllConstants {
         public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";
         public static final String GENDER = "gender";
         public static final String DELIVERY_PLACE = "deliveryPlace";
+        public static final String NAME = "name";
+    }
+
+    public class ChildRegistrationOAFields {
+        public static final String CHILD_ID = "id";
+        public static final String DATE_OF_BIRTH = "dateOfBirth";
+        public static final String WEIGHT = "weight";
+        public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";
         public static final String NAME = "name";
     }
 

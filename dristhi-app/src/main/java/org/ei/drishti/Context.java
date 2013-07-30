@@ -71,6 +71,7 @@ public class Context {
     private PNCVisitHandler pncVisitHandler;
     private ChildImmunizationsHandler childImmunizationsHandler;
     private ChildRegistrationECHandler childRegistrationECHandler;
+    private ChildRegistrationOAHandler childRegistrationOAHandler;
     private ChildCloseHandler childCloseHandler;
     private ChildIllnessHandler childIllnessHandler;
     private VitaminAHandler vitaminAHandler;
@@ -136,7 +137,7 @@ public class Context {
                     ancRegistrationHandler(), ancRegistrationOAHandler(), ancVisitHandler(), ancCloseHandler(),
                     ttHandler(), ifaHandler(), hbTestHandler(), deliveryOutcomeHandler(), pncRegistrationOAHandler(),
                     pncCloseHandler(), pncVisitHandler(), childImmunizationsHandler(), childRegistrationECHandler(),
-                    childCloseHandler(), childIllnessHandler(), vitaminAHandler());
+                    childRegistrationOAHandler(), childCloseHandler(), childIllnessHandler(), vitaminAHandler());
         }
         return formSubmissionRouter;
     }
@@ -286,6 +287,13 @@ public class Context {
             childRegistrationECHandler = new ChildRegistrationECHandler(childService());
         }
         return childRegistrationECHandler;
+    }
+
+    private ChildRegistrationOAHandler childRegistrationOAHandler() {
+        if (childRegistrationOAHandler == null) {
+            childRegistrationOAHandler = new ChildRegistrationOAHandler(childService());
+        }
+        return childRegistrationOAHandler;
     }
 
     private ZiggyService ziggyService() {
