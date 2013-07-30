@@ -13,10 +13,8 @@
 
 <body>
 
-<div class="page affected-by-sidepanel">
-    <div id="sidePanelContainer"></div>
-
-    <div id="mainpanel" class="mainpanel affected-by-sidepanel"></div>
+<div class="page">
+    <div id="mainpanel" class="mainpanel"></div>
 </div>
 
 </body>
@@ -28,8 +26,6 @@
 
 <script src="../js/custom.ui.js"></script>
 <script src="../template/templates.js"></script>
-<script src="../js/anmNavigation.js"></script>
-<script src="../js/sidePanel.js"></script>
 <script src="../js/modal.js"></script>
 <script src="../js/alerts.js"></script>
 <script src="../js/international_text.js"></script>
@@ -49,7 +45,6 @@
             pnc.reloadPhoto("#womanPhoto", caseId, photoPath);
         });
 
-        new SidePanel(new ANMNavigationPanel(new ANMNavigationBridge())).populateInto("#sidePanelContainer");
         new Modal().bindToClick();
         new Alerts().bindAllCheckboxes(".todo-box", pnc.onAlertCheckboxClick);
     });

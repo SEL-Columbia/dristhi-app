@@ -1,13 +1,12 @@
-<div class="navbar navbar-fixed-top affected-by-sidepanel">
+<div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <ul class="area-6_5 nav pull-left">
-            <li><img class="sidepanel-icon affected-by-sidepanel"><img class="separator"></li>
             <li class="area-7_5">
-                <div class="navbar-header affected-by-sidepanel ellipsis">{{formatText coupleDetails.wifeName}}</div>
+                <div class="navbar-header ellipsis">{{formatText coupleDetails.wifeName}}</div>
             </li>
         </ul>
 
-        <ul class="nav pull-right affected-by-sidepanel">
+        <ul class="nav pull-right">
             <li><img class="separator"></li>
             <li data-modal-target="#pncFormModal"><img class="update-data"></li>
         </ul>
@@ -20,8 +19,8 @@
     <div class="modal-row" data-form="pnc_close" data-caseid="{{caseId}}">Close PNC</div>
 </div>
 
-<div id="content" class="content-detail affected-by-sidepanel">
-    <div class="status-bar affected-by-sidepanel">
+<div id="content" class="content-detail">
+    <div class="status-bar">
         {{#if coupleDetails.isInArea}}
         <span class="left-text">PNC</span>
         {{else}}
