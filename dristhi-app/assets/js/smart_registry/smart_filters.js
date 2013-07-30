@@ -13,6 +13,9 @@ var fpMethodMap = {
 var friendlyNameMap = {
     vitamin_a: 'Vitamin A',
     bcg: 'BCG',
+    measles: 'Measles',
+    measles_booster: 'Measles Booster',
+    dpt: 'DPT Booster',
     opv: 'OPV',
     opv_0: 'OPV 0',
     opv_1: 'OPV 1',
@@ -23,17 +26,17 @@ var friendlyNameMap = {
     pentavalent_1: 'Pentavalent 1',
     pentavalent_2: 'Pentavalent 2',
     pentavalent_3: 'Pentavalent 3',
-    measles: 'Measles',
-    measles_booster: 'Measles Booster',
-    dpt: 'DPT Booster',
     dptbooster_1: 'DPT Boost. 1',
-    dptbooster_2: 'DPT Boost. 2'
+    dptbooster_2: 'DPT Boost. 2',
+    hepb_0: "Hep. B",
+    je: "JE",
+    mmr: "MMR"
 };
 
 var friendlyAbbrevMap = {
     pentavalent_1: 'Pentav. 1',
     pentavalent_2: 'Pentav. 2',
-    pentavalent_3: 'Pentav. 3',
+    pentavalent_3: 'Pentav. 3'
 };
 
 angular.module("smartRegistry.filters")

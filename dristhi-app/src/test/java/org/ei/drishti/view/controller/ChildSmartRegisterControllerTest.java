@@ -49,7 +49,7 @@ public class ChildSmartRegisterControllerTest {
             "pentavalent_1", "pentavalent_2", "pentavalent_3",
             "hepb_0",
             "je",
-            "mmr", "Vitamin A", "Illness Visit"
+            "mmr", "Vitamin A", "Illness Visit", "PNC"
     };
 
     private final Map<String, String> emptyMap = Collections.emptyMap();
