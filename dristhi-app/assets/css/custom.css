@@ -102,11 +102,6 @@
     font-weight: 500;
 }
 
-.navbar .sidepanel-icon {
-    content: url(../img/icons/sidepanel-icon.png);
-    margin-right: 4px;
-}
-
 .delivery-plan .yes {
     content: url(../img/icons/icon-deliveryplan-yes.png);
     margin-right: 4px;
