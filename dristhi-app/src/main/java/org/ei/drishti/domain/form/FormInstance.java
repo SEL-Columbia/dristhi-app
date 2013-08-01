@@ -5,10 +5,12 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class FormInstance {
+    private String form_data_definition_version;
     private FormData form;
 
-    public FormInstance(FormData form) {
+    public FormInstance(FormData form, String formDataDefinitionVersion) {
         this.form = form;
+        this.form_data_definition_version = formDataDefinitionVersion;
     }
 
     public FormData form() {
