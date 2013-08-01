@@ -32,16 +32,10 @@
                 <opv_0_date/>
                 <hepb_0_date/>
                 <opv_1_date/>
-                <dpt_1_date/>
-                <hepb_1_date/>
                 <pentavalent_1_date/>
                 <opv_2_date/>
-                <dpt_2_date/>
-                <hepb_2_date/>
                 <pentavalent_2_date/>
                 <opv_3_date/>
-                <dpt_3_date/>
-                <hepb_3_date/>
                 <pentavalent_3_date/>
                 <measles_date/>
                 <mmr_date/>
@@ -152,74 +146,50 @@
             </item>
             <item>
                 <itextId>static_instance-immunizations-4</itextId>
-                <name>dpt_1</name>
-            </item>
-            <item>
-                <itextId>static_instance-immunizations-5</itextId>
-                <name>hepb_1</name>
-            </item>
-            <item>
-                <itextId>static_instance-immunizations-6</itextId>
                 <name>pentavalent_1</name>
             </item>
             <item>
-                <itextId>static_instance-immunizations-7</itextId>
+                <itextId>static_instance-immunizations-5</itextId>
                 <name>opv_2</name>
             </item>
             <item>
-                <itextId>static_instance-immunizations-8</itextId>
-                <name>dpt_2</name>
-            </item>
-            <item>
-                <itextId>static_instance-immunizations-9</itextId>
-                <name>hepb_2</name>
-            </item>
-            <item>
-                <itextId>static_instance-immunizations-10</itextId>
+                <itextId>static_instance-immunizations-6</itextId>
                 <name>pentavalent_2</name>
             </item>
             <item>
-                <itextId>static_instance-immunizations-11</itextId>
+                <itextId>static_instance-immunizations-7</itextId>
                 <name>opv_3</name>
             </item>
             <item>
-                <itextId>static_instance-immunizations-12</itextId>
-                <name>dpt_3</name>
-            </item>
-            <item>
-                <itextId>static_instance-immunizations-13</itextId>
-                <name>hepb_3</name>
-            </item>
-            <item>
-                <itextId>static_instance-immunizations-14</itextId>
+                <itextId>static_instance-immunizations-8</itextId>
                 <name>pentavalent_3</name>
             </item>
             <item>
-                <itextId>static_instance-immunizations-15</itextId>
+                <itextId>static_instance-immunizations-9</itextId>
                 <name>measles</name>
             </item>
             <item>
-                <itextId>static_instance-immunizations-16</itextId>
+                <itextId>static_instance-immunizations-10</itextId>
                 <name>mmr</name>
             </item>
             <item>
-                <itextId>static_instance-immunizations-17</itextId>
+                <itextId>static_instance-immunizations-11</itextId>
                 <name>dptbooster_1</name>
             </item>
             <item>
-                <itextId>static_instance-immunizations-18</itextId>
+                <itextId>static_instance-immunizations-12</itextId>
                 <name>opvbooster</name>
             </item>
             <item>
-                <itextId>static_instance-immunizations-19</itextId>
+                <itextId>static_instance-immunizations-13</itextId>
                 <name>je</name>
             </item>
             <item>
-                <itextId>static_instance-immunizations-20</itextId>
+                <itextId>static_instance-immunizations-14</itextId>
                 <name>measlesbooster</name>
             </item>
             <item>
-                <itextId>static_instance-immunizations-21</itextId>
+                <itextId>static_instance-immunizations-15</itextId>
                 <name>dptbooster_2</name>
             </item>
         </root>

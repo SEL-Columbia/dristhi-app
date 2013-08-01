@@ -215,7 +215,8 @@
     </label>
     <label class="">
         <span lang="" class=" active">Child birth date? &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xC9C;&#xCA8;&#xCCD;&#xCAE;&#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
-        <input autocomplete="off" type="date" name="/Child_Registration_EngKan/child_birth_date"
+        <span class="required">*</span>
+        <input autocomplete="off" type="date" name="/Child_Registration_EngKan/child_birth_date" required="required"
                data-constraint=".&lt;= /Child_Registration_EngKan/today " data-type-xml="date"/>
     </label>
     <fieldset class="trigger " name="/Child_Registration_EngKan/child_age_note">
@@ -344,18 +345,6 @@
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
-                       value="dpt_1" data-type-xml="select"/>
-                <span lang="" class=" active">DPT 1 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 1</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
-                       value="hepb_1" data-type-xml="select"/>
-                <span lang="" class=" active">Hep B 1 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
-                    &#xCAC;&#xCBF; 1
-                </span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
                        value="pentavalent_1" data-type-xml="select"/>
                 <span lang="" class=" active">Pentavalent 1 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
                     1
@@ -368,18 +357,6 @@
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
-                       value="dpt_2" data-type-xml="select"/>
-                <span lang="" class=" active">DPT 2 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 2</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
-                       value="hepb_2" data-type-xml="select"/>
-                <span lang="" class=" active">Hep B 2 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
-                    &#xCAC;&#xCBF; 2
-                </span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
                        value="pentavalent_2" data-type-xml="select"/>
                 <span lang="" class=" active">Pentavalent 2 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
                     2
@@ -389,18 +366,6 @@
                 <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
                        value="opv_3" data-type-xml="select"/>
                 <span lang="" class=" active">OPV 3 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 3</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
-                       value="dpt_3" data-type-xml="select"/>
-                <span lang="" class=" active">DPT 3 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 3</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
-                       value="hepb_3" data-type-xml="select"/>
-                <span lang="" class=" active">Hep B 3 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
-                    &#xCAC;&#xCBF; 3
-                </span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Child_Registration_EngKan/child_immunization_history"
@@ -458,7 +423,7 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/bcg_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'bcg')"
                    data-type-xml="date"/>
         </label>
@@ -467,7 +432,7 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/opv_0_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opv_0')"
                    data-type-xml="date"/>
         </label>
@@ -478,7 +443,7 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/hepb_0_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'hepb_0')"
                    data-type-xml="date"/>
         </label>
@@ -487,28 +452,8 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/opv_1_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opv_1')"
-                   data-type-xml="date"/>
-        </label>
-        <label class="jr-branch pre-init ">
-            <span lang="" class=" active">DPT 1 date? &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 1 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
-            <span class="required">*</span>
-            <input autocomplete="off" type="date"
-                   name="/Child_Registration_EngKan/child_immunization_history_group/dpt_1_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
-                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'dpt_1')"
-                   data-type-xml="date"/>
-        </label>
-        <label class="jr-branch pre-init ">
-            <span lang="" class=" active">Hep B 1 date? &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC8;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
-                &#xCAC;&#xCBF; 1 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
-            </span>
-            <span class="required">*</span>
-            <input autocomplete="off" type="date"
-                   name="/Child_Registration_EngKan/child_immunization_history_group/hepb_1_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
-                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'hepb_1')"
                    data-type-xml="date"/>
         </label>
         <label class="jr-branch pre-init ">
@@ -518,7 +463,8 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/pentavalent_1_date"
-                   required="required" data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   required="required"
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'pentavalent_1')"
                    data-type-xml="date"/>
         </label>
@@ -527,28 +473,8 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/opv_2_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opv_2')"
-                   data-type-xml="date"/>
-        </label>
-        <label class="jr-branch pre-init ">
-            <span lang="" class=" active">DPT 2 date? &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 2 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
-            <span class="required">*</span>
-            <input autocomplete="off" type="date"
-                   name="/Child_Registration_EngKan/child_immunization_history_group/dpt_2_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
-                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'dpt_2')"
-                   data-type-xml="date"/>
-        </label>
-        <label class="jr-branch pre-init ">
-            <span lang="" class=" active">Hep B 2 date? &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC8;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
-                &#xCAC;&#xCBF; 2 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
-            </span>
-            <span class="required">*</span>
-            <input autocomplete="off" type="date"
-                   name="/Child_Registration_EngKan/child_immunization_history_group/hepb_2_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
-                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'hepb_2')"
                    data-type-xml="date"/>
         </label>
         <label class="jr-branch pre-init ">
@@ -558,7 +484,8 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/pentavalent_2_date"
-                   required="required" data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   required="required"
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'pentavalent_2')"
                    data-type-xml="date"/>
         </label>
@@ -567,28 +494,8 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/opv_3_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opv_3')"
-                   data-type-xml="date"/>
-        </label>
-        <label class="jr-branch pre-init ">
-            <span lang="" class=" active">DPT 3 date? &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; 3 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
-            <span class="required">*</span>
-            <input autocomplete="off" type="date"
-                   name="/Child_Registration_EngKan/child_immunization_history_group/dpt_3_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
-                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'dpt_3')"
-                   data-type-xml="date"/>
-        </label>
-        <label class="jr-branch pre-init ">
-            <span lang="" class=" active">Hep B 3 date? &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC8;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
-                &#xCAC;&#xCBF; 3 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
-            </span>
-            <span class="required">*</span>
-            <input autocomplete="off" type="date"
-                   name="/Child_Registration_EngKan/child_immunization_history_group/hepb_3_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
-                   data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'hepb_3')"
                    data-type-xml="date"/>
         </label>
         <label class="jr-branch pre-init ">
@@ -598,7 +505,8 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/pentavalent_3_date"
-                   required="required" data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   required="required"
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'pentavalent_3')"
                    data-type-xml="date"/>
         </label>
@@ -607,7 +515,7 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/measles_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'measles')"
                    data-type-xml="date"/>
         </label>
@@ -618,7 +526,7 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/mmr_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'mmr')"
                    data-type-xml="date"/>
         </label>
@@ -629,7 +537,8 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/dptbooster_1_date"
-                   required="required" data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   required="required"
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'dptbooster_1')"
                    data-type-xml="date"/>
         </label>
@@ -640,7 +549,8 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/opvbooster_date"
-                   required="required" data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   required="required"
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'opvbooster')"
                    data-type-xml="date"/>
         </label>
@@ -649,7 +559,7 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/je_date" required="required"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'je')"
                    data-type-xml="date"/>
         </label>
@@ -660,7 +570,8 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/measlesbooster_date"
-                   required="required" data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   required="required"
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'measlesbooster')"
                    data-type-xml="date"/>
         </label>
@@ -671,7 +582,8 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_immunization_history_group/dptbooster_2_date"
-                   required="required" data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   required="required"
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_immunization_history , 'dptbooster_2')"
                    data-type-xml="date"/>
         </label>
@@ -739,7 +651,7 @@
             </span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita1_date"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '1')"
                    data-type-xml="date"/>
         </label>
@@ -749,7 +661,7 @@
             </span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita2_date"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '2')"
                    data-type-xml="date"/>
         </label>
@@ -759,7 +671,7 @@
             </span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita3_date"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '3')"
                    data-type-xml="date"/>
         </label>
@@ -769,7 +681,7 @@
             </span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita4_date"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '4')"
                    data-type-xml="date"/>
         </label>
@@ -779,7 +691,7 @@
             </span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita5_date"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '5')"
                    data-type-xml="date"/>
         </label>
@@ -789,7 +701,7 @@
             </span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita6_date"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '6')"
                    data-type-xml="date"/>
         </label>
@@ -799,7 +711,7 @@
             </span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita7_date"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '7')"
                    data-type-xml="date"/>
         </label>
@@ -809,7 +721,7 @@
             </span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita8_date"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '8')"
                    data-type-xml="date"/>
         </label>
@@ -819,7 +731,7 @@
             </span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EngKan/child_vitamin_a_history_group/vita9_date"
-                   data-constraint=".&lt;= /Child_Registration_EngKan/today "
+                   data-constraint=".&gt;=  /Child_Registration_EngKan/child_birth_date  and .&lt;= /Child_Registration_EngKan/today "
                    data-relevant="selected( /Child_Registration_EngKan/child_vitamin_a_history , '9')"
                    data-type-xml="date"/>
         </label>
