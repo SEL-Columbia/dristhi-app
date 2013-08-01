@@ -3,9 +3,9 @@ package org.ei.drishti.service;
 import com.google.gson.Gson;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
+import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.form.FormSubmissionDTO;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.FormDataRepository;
@@ -50,9 +50,9 @@ public class FormSubmissionSyncServiceTest {
         service = new FormSubmissionSyncService(formSubmissionService, httpAgent, repository, allSettings);
 
         formInstanceJSON = "{form:{bind_type: 'ec'}}";
-        submissions = asList(new FormSubmission("id 1", "entity id 1", "form name", formInstanceJSON, "123", PENDING));
+        submissions = asList(new FormSubmission("id 1", "entity id 1", "form name", formInstanceJSON, "123", PENDING, "1"));
         expectedFormSubmissionsDto = asList(new FormSubmissionDTO(
-                "anm id 1", "id 1", "entity id 1", "form name", formInstanceJSON, "123"));
+                "anm id 1", "id 1", "entity id 1", "form name", formInstanceJSON, "123", "1"));
         when(allSettings.fetchRegisteredANM()).thenReturn("anm id 1");
         when(repository.getPendingFormSubmissions()).thenReturn(submissions);
     }
@@ -95,7 +95,7 @@ public class FormSubmissionSyncServiceTest {
 
     @Test
     public void shouldPullFormSubmissionsFromServerAndDelegateToProcessing() throws Exception {
-        List<FormSubmission> expectedFormSubmissions = asList(new FormSubmission("id 1", "entity id 1", "form name", formInstanceJSON, "123", SYNCED));
+        List<FormSubmission> expectedFormSubmissions = asList(new FormSubmission("id 1", "entity id 1", "form name", formInstanceJSON, "123", SYNCED, "1"));
         when(allSettings.fetchPreviousFormSyncIndex()).thenReturn("122");
         when(httpAgent.fetch("https://drishti.modilabs.org/form-submissions?anm-id=anm id 1&timestamp=122")).thenReturn(new Response<String>(success, new Gson().toJson(this.expectedFormSubmissionsDto)));
 

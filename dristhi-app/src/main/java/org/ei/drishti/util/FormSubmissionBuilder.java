@@ -1,7 +1,7 @@
 package org.ei.drishti.util;
 
-import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.domain.SyncStatus;
+import org.ei.drishti.domain.form.FormSubmission;
 
 import static org.ei.drishti.domain.SyncStatus.SYNCED;
 
@@ -13,13 +13,14 @@ public class FormSubmissionBuilder {
     private String version = "0";
     private SyncStatus syncStatus = SYNCED;
     private String serverVersion = "0";
+    private String formDataDefinitionVersion = "0";
 
     public static FormSubmissionBuilder create() {
         return new FormSubmissionBuilder();
     }
 
     public FormSubmission build() {
-        return new FormSubmission(instanceId, entityId, formName, formInstance, version, serverVersion, syncStatus);
+        return new FormSubmission(instanceId, entityId, formName, formInstance, version, syncStatus, formDataDefinitionVersion, serverVersion);
     }
 
     public FormSubmissionBuilder withInstanceId(String instanceId) {

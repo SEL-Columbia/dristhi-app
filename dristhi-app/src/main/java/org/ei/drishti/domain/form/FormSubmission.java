@@ -11,29 +11,27 @@ public class FormSubmission {
     private String entityId;
     private String formName;
     private String instance;
-    private String version;
+    private String clientVersion;
+    private String formDataDefinitionVersion;
     private String serverVersion;
     private SyncStatus syncStatus;
 
     private FormInstance formInstance;
 
-    public FormSubmission(String instanceId, String entityId, String formName, String instance, String version, SyncStatus syncStatus) {
-        this.instanceId = instanceId;
-        this.entityId = entityId;
-        this.formName = formName;
-        this.instance = instance;
-        this.version = version;
-        this.syncStatus = syncStatus;
+    public FormSubmission(String instanceId, String entityId, String formName, String instance, String clientVersion, SyncStatus syncStatus, String formDataDefinitionVersion) {
+        this(instanceId, entityId, formName, instance, clientVersion, syncStatus, formDataDefinitionVersion, null);
     }
 
-    public FormSubmission(String instanceId, String entityId, String formName, String instance, String version, String serverVersion, SyncStatus syncStatus) {
+    public FormSubmission(String instanceId, String entityId, String formName, String instance, String clientVersion, SyncStatus syncStatus, String formDataDefinitionVersion,
+                          String serverVersion) {
         this.instanceId = instanceId;
         this.entityId = entityId;
         this.formName = formName;
         this.instance = instance;
-        this.version = version;
-        this.serverVersion = serverVersion;
+        this.clientVersion = clientVersion;
         this.syncStatus = syncStatus;
+        this.formDataDefinitionVersion = formDataDefinitionVersion;
+        this.serverVersion = serverVersion;
     }
 
     public String instanceId() {
@@ -53,7 +51,7 @@ public class FormSubmission {
     }
 
     public String version() {
-        return version;
+        return clientVersion;
     }
 
     public String serverVersion() {
@@ -62,6 +60,10 @@ public class FormSubmission {
 
     public SyncStatus syncStatus() {
         return syncStatus;
+    }
+
+    public String formDataDefinitionVersion() {
+        return formDataDefinitionVersion;
     }
 
     public FormSubmission setSyncStatus(SyncStatus syncStatus) {
@@ -83,12 +85,12 @@ public class FormSubmission {
 
     @Override
     public boolean equals(Object o) {
-        return EqualsBuilder.reflectionEquals(this, o, "version");
+        return EqualsBuilder.reflectionEquals(this, o, "clientVersion");
     }
 
     @Override
     public int hashCode() {
-        return HashCodeBuilder.reflectionHashCode(this, "version");
+        return HashCodeBuilder.reflectionHashCode(this, "clientVersion");
     }
 
     @Override

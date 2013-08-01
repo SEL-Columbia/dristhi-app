@@ -75,7 +75,8 @@ public class FormSubmissionSyncService {
         List<org.ei.drishti.dto.form.FormSubmissionDTO> formSubmissions = new ArrayList<org.ei.drishti.dto.form.FormSubmissionDTO>();
         for (FormSubmission pendingFormSubmission : pendingFormSubmissions) {
             formSubmissions.add(new org.ei.drishti.dto.form.FormSubmissionDTO(allSettings.fetchRegisteredANM(), pendingFormSubmission.instanceId(),
-                    pendingFormSubmission.entityId(), pendingFormSubmission.formName(), pendingFormSubmission.instance(), pendingFormSubmission.version()));
+                    pendingFormSubmission.entityId(), pendingFormSubmission.formName(), pendingFormSubmission.instance(), pendingFormSubmission.version(),
+                    pendingFormSubmission.formDataDefinitionVersion()));
         }
         return new Gson().toJson(formSubmissions);
     }
