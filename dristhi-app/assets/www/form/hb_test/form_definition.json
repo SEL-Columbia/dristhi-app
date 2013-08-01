@@ -1,4 +1,5 @@
 {
+    "formDataDefinitionVersion": "1",
     "form": {
         "bind_type": "mother",
         "default_bind_path": "/model/instance/Hb_Test_EngKan/",
