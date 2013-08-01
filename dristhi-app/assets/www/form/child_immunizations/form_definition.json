@@ -39,6 +39,11 @@
             {
                 "name": "submissionDate",
                 "bind": "/model/instance/Child_Immunizations_EngKan/today"
+            },
+            {
+                "name": "dateOfBirth",
+                "bind": "/model/instance/Child_Sick_Visit_EngKan/child_date_of_birth",
+                "shouldLoadValue": true
             }
         ]
     }
