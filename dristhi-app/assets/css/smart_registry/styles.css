@@ -215,6 +215,7 @@ a:focus {
     font-size: 18px !important;
     max-width: 98px;
     display: inline-block;
+    line-height: 22px;
 }
 
 #fp-client-list .client-name {

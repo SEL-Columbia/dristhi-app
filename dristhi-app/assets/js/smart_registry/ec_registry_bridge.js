@@ -33,7 +33,7 @@ function FakeECSmartRegistryContext() {
                     "husbandName": "Battiganahalli",
                     "village": "basavanapura",
                     "locationStatus": "in_area",
-                    "name": "Abidha Banu",
+                    "name": "Mangala",
                     "numAbortions": "0",
                     "numLivingChildren": "0",
                     "numPregnancies": "0",
