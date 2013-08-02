@@ -25,7 +25,7 @@ angular.module("smartRegistry.controllers")
                     sortDescending: true
                 },
                 {
-                    label: "HR",
+                    label: "High Risk (HR)",
                     handler: "sortByRisk"
                 },
                 {

@@ -6,7 +6,7 @@
 
     <p class="text-left">
         <span class=text-upper>Place:</span>
-        <span class="delivery-info ellipsis text-bold">{{client.deliveryPlace | uppercase}}</span>
+        <span class="delivery-info ellipsis text-bold">{{client.deliveryPlace | humanize | uppercase}}</span>
     </p>
 
     <p class="text-left" ng-show="client.deliveryType">
