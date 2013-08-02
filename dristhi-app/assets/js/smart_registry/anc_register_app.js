@@ -153,7 +153,7 @@ angular.module("smartRegistry.controllers")
             var numTablets = 0;
             if (ifaData.IFA !== undefined) {
                 ifaData.IFA.forEach(function (ifa) {
-                    numTablets += ifa.data.dose || 0;
+                    numTablets += parseInt(ifa.data.dose, 10) || 0;
                 });
             }
             return numTablets;
