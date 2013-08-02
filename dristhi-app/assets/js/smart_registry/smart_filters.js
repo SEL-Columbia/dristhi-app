@@ -15,7 +15,7 @@ var friendlyNameMap = {
     vitamin_a: 'Vitamin A',
     bcg: 'BCG',
     measles: 'Measles',
-    measles_booster: 'Measles Booster',
+    measlesbooster: 'Measles Booster',
     dpt: 'DPT Booster',
     opv: 'OPV',
     opv_0: 'OPV 0',
@@ -37,7 +37,11 @@ var friendlyNameMap = {
 var friendlyAbbrevMap = {
     pentavalent_1: 'Pentav. 1',
     pentavalent_2: 'Pentav. 2',
-    pentavalent_3: 'Pentav. 3'
+    pentavalent_3: 'Pentav. 3',
+    dptbooster_1: 'DPT B. 1',
+    dptbooster_2: 'DPT B. 2',
+    opvbooster: 'OPV Boost',
+    measlesbooster: 'Measles B'
 };
 
 angular.module("smartRegistry.filters")

@@ -55,6 +55,10 @@ function FakeChildSmartRegistryContext() {
                                 "childSignsOther": "child signs other",
                                 "sickVisitDate": "2012-01-01"
                             }
+                        },
+                        {
+                            "name": "dptbooster_1",
+                            "date": "2013-07-20"
                         }
                     ],
                     "thayiCardNumber": "4656456",
@@ -229,16 +233,16 @@ function FakeChildSmartRegistryContext() {
                             "name": "bcg"
                         },
                         {
-                            "date": "2013-06-23",
-                            "name": "opv_0"
+                            "date": "2013-07-06",
+                            "name": "opvbooster"
                         },
                         {
                             "date": "2013-06-23",
                             "name": "hepb_0"
                         },
                         {
-                            "date": "2013-07-04",
-                            "name": "opv_1"
+                            "date": "2013-06-23",
+                            "name": "measlesbooster"
                         },
                         {
                             "data": {

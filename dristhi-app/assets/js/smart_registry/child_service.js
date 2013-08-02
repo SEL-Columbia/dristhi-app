@@ -9,10 +9,9 @@ angular.module("smartRegistry.services")
                     is_list: false
                 },
                 {
-                    name: "hepb",
-                    milestones: [],
-                    services: ["hepb_0"],
-                    is_list: false
+                    name: 'measles',
+                    milestones: ['measles', 'measlesbooster'],
+                    services: ['measles', 'measlesbooster']
                 },
                 {
                     name: "opv",
@@ -27,19 +26,20 @@ angular.module("smartRegistry.services")
                     is_list: false
                 },
                 {
+                    name: "dpt",
+                    milestones: ['dptbooster_1', 'dptbooster_2'],
+                    services: ['dptbooster_1', 'dptbooster_2'],
+                    is_list: false
+                },
+                {
                     name: "pentavalent",
                     milestones: ['pentavalent_1', 'pentavalent_2', 'pentavalent_3'],
                     services: ['pentavalent_1', 'pentavalent_2', 'pentavalent_3']
                 },
                 {
-                    name: 'measles',
-                    milestones: ['measles', 'measles_booster'],
-                    services: ['measles', 'measles_booster']
-                },
-                {
-                    name: "dpt",
-                    milestones: ['dptbooster_1', 'dptbooster_2'],
-                    services: ['dptbooster_1', 'dptbooster_2'],
+                    name: "hepb",
+                    milestones: [],
+                    services: ["hepb_0"],
                     is_list: false
                 },
                 {
@@ -67,6 +67,7 @@ angular.module("smartRegistry.services")
                         });
                     }
                 );
+                console.log(JSON.stringify(clients));
             }
         }
     });
