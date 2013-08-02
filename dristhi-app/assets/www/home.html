@@ -28,12 +28,6 @@
     $(document).ready(function () {
         var home = new Home(new ANMNavigationPanel(new ANMNavigationBridge()), new HomeBridge());
 
-        pageView.onStartProgressIndicator(function () {
-            $(".progress-indicator").removeClass("hidden");
-        });
-        pageView.onStopProgressIndicator(function () {
-            $(".progress-indicator").addClass("hidden");
-        });
         pageView.onReload(function () {
             home.populateInto("#template-container", function () {
             });

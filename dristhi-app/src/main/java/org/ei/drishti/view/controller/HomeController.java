@@ -16,10 +16,6 @@ public class HomeController {
         updateController.pageHasFinishedLoading();
     }
 
-    public void startManualSync() {
-        activity.updateFromServer();
-    }
-
     public void log(String text) {
         Log.logInfo(text);
     }

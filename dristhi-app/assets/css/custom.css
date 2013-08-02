@@ -576,11 +576,6 @@ body {
     margin-left: 2px;
 }
 
-.progress-indicator {
-    height: 28px;
-    margin-top: 8px;
-}
-
 .hidden {
     display: none;
 }

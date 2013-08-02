@@ -1,12 +1,7 @@
 function Home(anmNavigation, homeBridge) {
-    var bindToManualSync = function (identifierOfElement) {
-        $(identifierOfElement).click(homeBridge.manualSync);
-    };
-
     return {
         populateInto: function (cssIdentifierOfSidePanelElement, callbackToRunBeforeAnyAction) {
             anmNavigation.populateInto(cssIdentifierOfSidePanelElement, Handlebars.templates.home, callbackToRunBeforeAnyAction);
-            bindToManualSync("#manualSync");
         },
         pageHasFinishedLoading: function () {
             homeBridge.pageHasFinishedLoading();
@@ -23,9 +18,6 @@ function HomeBridge() {
     return {
         pageHasFinishedLoading: function () {
             return homeContext.pageHasFinishedLoading();
-        },
-        manualSync: function () {
-            return homeContext.startManualSync();
         }
 
     };
@@ -34,9 +26,6 @@ function HomeBridge() {
 function FakeHomeContext() {
     return {
         pageHasFinishedLoading: function () {
-        },
-        startManualSync: function () {
-            alert("Sync initiated");
         }
     }
 }
