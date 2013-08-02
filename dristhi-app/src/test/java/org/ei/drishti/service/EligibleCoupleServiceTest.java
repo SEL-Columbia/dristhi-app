@@ -80,4 +80,18 @@ public class EligibleCoupleServiceTest {
         verify(allTimelineEvents).add(TimelineEvent.forChangeOfFPMethod("entity id 1", "condom", "ocp", "2012-01-01"));
         verify(allEligibleCouples).mergeDetails("entity id 1", mapOf("currentMethod", "ocp"));
     }
+
+    @Test
+    public void shouldUseFormSubmissionDateAsChangeDateWhenFPMethodIsChangedAndChangeDateIsBlank() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("currentMethod")).thenReturn("condom");
+        when(submission.getFieldValue("newMethod")).thenReturn("none");
+        when(submission.getFieldValue("submissionDate")).thenReturn("2012-02-01");
+
+        service.fpChange(submission);
+
+        verify(allTimelineEvents).add(TimelineEvent.forChangeOfFPMethod("entity id 1", "condom", "none", "2012-02-01"));
+        verify(allEligibleCouples).mergeDetails("entity id 1", mapOf("currentMethod", "none"));
+    }
 }
