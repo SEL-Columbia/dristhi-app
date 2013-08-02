@@ -40,7 +40,7 @@ function FakePNCSmartRegistryContext() {
                     deliveryDate: "2013-06-15T00:00:00.000",
                     deliveryPlace:"PRIVATE_FACILITY",
                     deliveryComplications: "hemorrhage placenta_previa prolonged_or_obstructed_labour hemorrhage placenta_previa prolonged_or_obstructed_labour",
-                    deliveryType: "Normal", //TODO: what are the options
+                    deliveryType: "instrumental_forcep", //TODO: what are the options
                     otherDeliveryComplications: "",
                     alerts: [
                         {
