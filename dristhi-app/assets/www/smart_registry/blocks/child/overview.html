@@ -8,14 +8,14 @@
 </div>
 <div class="span4 span-no-margin width-without-margins line-right span-content">
     <div ng-show="client.visits.child_illness.previous && client.visits.child_illness.previous.data.sickVisitDate" class="full-height">
-        <span class="text-bold">Illness Visit: </span><span>{{client.visits.child_illness.previous.data.childSigns}}</span>
-        <span ng-show="client.visits.child_illness.previous.data.childSigns">, {{client.visits.child_illness.previous.data.childSignsOther}}</span>
+        <span class="text-bold">Illness Visit: </span><span>{{client.visits.child_illness.previous.data.childSigns | humanize}}</span>
+        <span ng-show="client.visits.child_illness.previous.data.childSigns">, {{client.visits.child_illness.previous.data.childSignsOther | humanize}}</span>
         <br/>
         <span>Date: {{client.visits.child_illness.previous.data.sickVisitDate | date:'dd/MM/yy'}}</span>
     </div>
     <div ng-show="client.visits.child_illness.previous && client.visits.child_illness.previous.data.reportChildDiseaseDate" class="full-height">
-        <span class="text-bold">Illness Report: </span><span>{{client.visits.child_illness.previous.data.reportChildDisease}}</span>
-        <span ng-show="client.visits.child_illness.previous.data.reportChildDiseaseOther">, {{client.visits.child_illness.previous.data.reportChildDiseaseOther}}</span>
+        <span class="text-bold">Illness Report: </span><span>{{client.visits.child_illness.previous.data.reportChildDisease | humanize}}</span>
+        <span ng-show="client.visits.child_illness.previous.data.reportChildDiseaseOther">, {{client.visits.child_illness.previous.data.reportChildDiseaseOther | humanize}}</span>
         <br/>
         <span class="text-bold">Date: </span><span>{{client.visits.child_illness.previous.data.reportChildDiseaseDate | date:'dd/MM/yy'}}</span>
     </div>
