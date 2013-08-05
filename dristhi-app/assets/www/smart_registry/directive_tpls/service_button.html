@@ -7,8 +7,8 @@
             'icon-needle': schedule.next && schedule.next.status != 'complete' && useNeedle,
             'icon-dropper': schedule.next && schedule.next.status != 'complete' && useDropper}"></i>
     </div>
-    <span ng-show="schedule.next" class="text-bold">{{schedule.next.name | friendlyName}}</span>
-    <span ng-show="!schedule.next" class="text-bold">{{schedule_id | friendlyName}}</span>
+    <span ng-show="schedule.next" class="text-bold">{{schedule.next.name | friendlyAbbrev}}</span>
+    <span ng-show="!schedule.next" class="text-bold">{{schedule_id | friendlyAbbrev}}</span>
     <br/>
     <div ng-show="schedule.next">
         <ng-switch on="schedule.next.status">
