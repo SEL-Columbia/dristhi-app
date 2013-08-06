@@ -12,17 +12,13 @@
                 "name": "previousImmunizations",
                 "shouldLoadValue": true,
                 "source": "child.immunizationsGiven",
+                "bind": "/model/instance/Child_Immunizations_EngKan/entity_immunizations_given",
                 "value": ""
             },
             {
                 "name": "immunizationsReceived",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Child_Immunizations_EngKan/entity_immunizations_received"
-            },
-            {
-                "name": "immunizationsGiven",
-                "shouldLoadValue": true,
-                "bind": "/model/instance/Child_Immunizations_EngKan/entity_immunizations_given"
             },
             {
                 "name": "immunizationsGiven",
