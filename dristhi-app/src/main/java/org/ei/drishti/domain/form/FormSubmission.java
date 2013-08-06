@@ -15,7 +15,6 @@ public class FormSubmission {
     private String formDataDefinitionVersion;
     private String serverVersion;
     private SyncStatus syncStatus;
-
     private FormInstance formInstance;
 
     public FormSubmission(String instanceId, String entityId, String formName, String instance, String clientVersion, SyncStatus syncStatus, String formDataDefinitionVersion) {
@@ -32,6 +31,7 @@ public class FormSubmission {
         this.syncStatus = syncStatus;
         this.formDataDefinitionVersion = formDataDefinitionVersion;
         this.serverVersion = serverVersion;
+        this.formInstance = new Gson().fromJson(instance, FormInstance.class);
     }
 
     public String instanceId() {
@@ -77,10 +77,11 @@ public class FormSubmission {
     }
 
     public String getFieldValue(String fieldName) {
-        if (formInstance == null) {
-            formInstance = new Gson().fromJson(instance, FormInstance.class);
-        }
         return formInstance.getFieldValue(fieldName);
+    }
+
+    public SubForm getSubFormByName(String name) {
+        return formInstance.getSubFormByName(name);
     }
 
     @Override

@@ -5,6 +5,7 @@ import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.form.FormSubmission;
+import org.ei.drishti.domain.form.SubForm;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.util.EasyMap;
 
@@ -14,6 +15,7 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.ChildIllnessFields.*;
 import static org.ei.drishti.AllConstants.ChildRegistrationECFields.*;
 import static org.ei.drishti.AllConstants.CommonFormFields.SUBMISSION_DATE;
+import static org.ei.drishti.AllConstants.ENTITY_ID_FIELD_NAME;
 import static org.ei.drishti.AllConstants.Immunizations.*;
 import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.domain.TimelineEvent.*;
@@ -37,18 +39,24 @@ public class ChildService {
     }
 
     public void register(FormSubmission submission) {
+        SubForm subForm = submission.getSubFormByName(AllConstants.DeliveryOutcomeFields.CHILD_REGISTRATION_SUB_FORM_NAME);
+        String referenceDate = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.REFERENCE_DATE);
+        String deliveryPlace = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.DELIVERY_PLACE);
         Mother mother = motherRepository.findById(submission.entityId());
-        List<Child> children = childRepository.findByMotherCaseId(mother.caseId());
-
+        ArrayList<String> childIds = new ArrayList<String>();
+        for (Map<String, String> childFields : subForm.instances()) {
+            childIds.add(childFields.get(ENTITY_ID_FIELD_NAME));
+        }
+        List<Child> children = childRepository.findChildrenByCaseIds(childIds.toArray(new String[childIds.size()]));
         for (Child child : children) {
-            childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thayiCardNumber()).setDateOfBirth(mother.referenceDate()));
-            allTimelines.add(forChildBirthInChildProfile(child.caseId(), mother.referenceDate(),
+            childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thayiCardNumber()).setDateOfBirth(referenceDate));
+            allTimelines.add(forChildBirthInChildProfile(child.caseId(), referenceDate,
                     child.getDetail(AllConstants.ChildRegistrationFields.WEIGHT), child.getDetail(AllConstants.ChildRegistrationFields.IMMUNIZATIONS_GIVEN)));
-            allTimelines.add(forChildBirthInMotherProfile(mother.caseId(), mother.referenceDate(), child.gender(), mother.referenceDate(), mother.getDetail(AllConstants.ChildRegistrationFields.DELIVERY_PLACE)));
-            allTimelines.add(forChildBirthInECProfile(mother.ecCaseId(), mother.referenceDate(), child.gender(), mother.referenceDate()));
+            allTimelines.add(forChildBirthInMotherProfile(mother.caseId(), referenceDate, child.gender(), referenceDate, deliveryPlace));
+            allTimelines.add(forChildBirthInECProfile(mother.ecCaseId(), referenceDate, child.gender(), referenceDate));
             String immunizationsGiven = child.getDetail(AllConstants.ChildRegistrationFields.IMMUNIZATIONS_GIVEN);
             for (String immunization : immunizationsGiven.split(SPACE)) {
-                serviceProvidedService.add(ServiceProvided.forChildImmunization(child.caseId(), immunization, mother.referenceDate()));
+                serviceProvidedService.add(ServiceProvided.forChildImmunization(child.caseId(), immunization, referenceDate));
             }
         }
     }

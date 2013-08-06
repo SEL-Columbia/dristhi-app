@@ -4,25 +4,26 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class FormInstance {
-    private String form_data_definition_version;
-    private FormData form;
+import java.util.List;
+import java.util.Map;
 
-    public FormInstance(FormData form, String formDataDefinitionVersion) {
-        this.form = form;
-        this.form_data_definition_version = formDataDefinitionVersion;
+public class SubForm {
+    private String name;
+    private String bind_type;
+    private String default_bind_path;
+    private List<FormField> fields;
+    private List<Map<String, String>> instances;
+
+    public SubForm(String name) {
+        this.name = name;
     }
 
-    public FormData form() {
-        return form;
+    public List<Map<String, String>> instances() {
+        return instances;
     }
 
-    public String getFieldValue(String name) {
-        return form.getFieldValue(name);
-    }
-
-    public SubForm getSubFormByName(String name) {
-        return form.getSubFormByName(name);
+    public String name() {
+        return name;
     }
 
     @Override

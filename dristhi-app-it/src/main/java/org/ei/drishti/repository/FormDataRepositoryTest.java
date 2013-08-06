@@ -7,6 +7,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
+import org.ei.drishti.domain.form.FormData;
+import org.ei.drishti.domain.form.FormField;
+import org.ei.drishti.domain.form.FormInstance;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.util.FormSubmissionBuilder;
 import org.ei.drishti.util.Session;
@@ -85,10 +88,11 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         Map<String, String> params = create("instanceId", "id 1").put("entityId", "entity id 1").put("formName", "form name").map();
         String paramsJSON = new Gson().toJson(params);
 
-        String instanceId = repository.saveFormSubmission(paramsJSON, "instance", "1");
+        FormInstance instance = new FormInstance(new FormData("entity 1", "default", asList(new FormField("field1.1", "value1.1", "source1.1")), null), "1");
+        String instanceId = repository.saveFormSubmission(paramsJSON, new Gson().toJson(instance), "1");
 
         FormSubmission actualFormSubmission = repository.fetchFromSubmission("id 1");
-        assertEquals(new FormSubmission("id 1", "entity id 1", "form name", "instance", "some version", PENDING, "1"), actualFormSubmission);
+        assertEquals(new FormSubmission("id 1", "entity id 1", "form name", new Gson().toJson(instance), "some version", PENDING, "1"), actualFormSubmission);
         assertNotNull(actualFormSubmission);
         assertEquals("id 1", instanceId);
     }
@@ -171,9 +175,12 @@ public class FormDataRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldFetchPendingFormSubmissions() throws Exception {
-        FormSubmission firstSubmission = new FormSubmission("id 1", "entity id 1", "form name", "instance 1", "some version", PENDING, "1");
-        FormSubmission secondSubmission = new FormSubmission("id 2", "entity id 2", "form name", "instance 2", "some other version", PENDING, "1");
-        FormSubmission thirdSubmission = new FormSubmission("id 3", "entity id 3", "form name", "instance 3", "some other version", SYNCED, "1");
+        FormInstance instance1 = new FormInstance(new FormData("entity 1", "default", asList(new FormField("field1.1", "value1.1", "source1.1")), null), "1");
+        FormInstance instance2 = new FormInstance(new FormData("entity 2", "default", asList(new FormField("field2.1", "value2.1", "source2.1")), null), "1");
+        FormInstance instance3 = new FormInstance(new FormData("entity 3", "default", asList(new FormField("field3.1", "value3.1", "source3.1")), null), "1");
+        FormSubmission firstSubmission = new FormSubmission("id 1", "entity id 1", "form name", new Gson().toJson(instance1), "some version", PENDING, "1");
+        FormSubmission secondSubmission = new FormSubmission("id 2", "entity id 2", "form name", new Gson().toJson(instance2), "some other version", PENDING, "1");
+        FormSubmission thirdSubmission = new FormSubmission("id 3", "entity id 3", "form name", new Gson().toJson(instance3), "some other version", SYNCED, "1");
         repository.saveFormSubmission(firstSubmission);
         repository.saveFormSubmission(secondSubmission);
         repository.saveFormSubmission(thirdSubmission);
@@ -184,9 +191,9 @@ public class FormDataRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldMarkPendingFormSubmissionsAsSynced() throws Exception {
-        FormSubmission firstSubmission = new FormSubmission("id 1", "entity id 1", "form name", "instance 1", "some version", PENDING, "1");
-        FormSubmission secondSubmission = new FormSubmission("id 2", "entity id 2", "form name", "instance 2", "some other version", PENDING, "1");
-        FormSubmission thirdSubmission = new FormSubmission("id 3", "entity id 3", "form name", "instance 3", "some other version", PENDING, "1");
+        FormSubmission firstSubmission = new FormSubmission("id 1", "entity id 1", "form name", "", "some version", PENDING, "1");
+        FormSubmission secondSubmission = new FormSubmission("id 2", "entity id 2", "form name", "", "some other version", PENDING, "1");
+        FormSubmission thirdSubmission = new FormSubmission("id 3", "entity id 3", "form name", "", "some other version", PENDING, "1");
         repository.saveFormSubmission(firstSubmission);
         repository.saveFormSubmission(secondSubmission);
         repository.saveFormSubmission(thirdSubmission);
@@ -199,9 +206,9 @@ public class FormDataRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldMarkPendingFormSubmissionsAsSyncedByInstanceId() throws Exception {
-        FormSubmission firstSubmission = new FormSubmission("instance 1", "entity id 1", "form name", "instance 1", "some version", PENDING, "1");
-        FormSubmission secondSubmission = new FormSubmission("instance 2", "entity id 2", "form name", "instance 2", "some other version", PENDING, "1");
-        FormSubmission thirdSubmission = new FormSubmission("instance 3", "entity id 3", "form name", "instance 3", "some other version", PENDING, "1");
+        FormSubmission firstSubmission = new FormSubmission("instance 1", "entity id 1", "form name", "", "some version", PENDING, "1");
+        FormSubmission secondSubmission = new FormSubmission("instance 2", "entity id 2", "form name", "", "some other version", PENDING, "1");
+        FormSubmission thirdSubmission = new FormSubmission("instance 3", "entity id 3", "form name", "", "some other version", PENDING, "1");
         repository.saveFormSubmission(firstSubmission);
         repository.saveFormSubmission(secondSubmission);
         repository.saveFormSubmission(thirdSubmission);
@@ -215,9 +222,9 @@ public class FormDataRepositoryTest extends AndroidTestCase {
     }
 
     public void testShouldUpdateServerVersionByInstanceId() throws Exception {
-        FormSubmission firstSubmission = new FormSubmission("instance 1", "entity id 1", "form name", "instance 1", "some version", SYNCED, "1");
-        FormSubmission secondSubmission = new FormSubmission("instance 2", "entity id 2", "form name", "instance 2", "some other version", SYNCED, "1");
-        FormSubmission thirdSubmission = new FormSubmission("instance 3", "entity id 3", "form name", "instance 3", "some other version", PENDING, "1");
+        FormSubmission firstSubmission = new FormSubmission("instance 1", "entity id 1", "form name", "", "some version", SYNCED, "1");
+        FormSubmission secondSubmission = new FormSubmission("instance 2", "entity id 2", "form name", "", "some other version", SYNCED, "1");
+        FormSubmission thirdSubmission = new FormSubmission("instance 3", "entity id 3", "form name", "", "some other version", PENDING, "1");
         repository.saveFormSubmission(firstSubmission);
         repository.saveFormSubmission(secondSubmission);
         repository.saveFormSubmission(thirdSubmission);

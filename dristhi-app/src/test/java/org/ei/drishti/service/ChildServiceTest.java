@@ -6,6 +6,7 @@ import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.TimelineEvent;
 import org.ei.drishti.domain.form.FormSubmission;
+import org.ei.drishti.domain.form.SubForm;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.util.EasyMap;
 import org.junit.Before;
@@ -47,17 +48,22 @@ public class ChildServiceTest {
     }
 
     @Test
-    public void shouldUpdateEveryChildWhileRegistering() throws Exception {
+    public void shouldUpdateEveryOnlyNewlyBornChildrenWhileRegistering() throws Exception {
         Child firstChild = new Child("Child X", "Mother X", "female", create("weight", "3").put("immunizationsGiven", "bcg opv_0").map());
         Child secondChild = new Child("Child Y", "Mother X", "female", create("weight", "4").put("immunizationsGiven", "bcg").map());
-        when(motherRepository.findById("Mother X")).thenReturn(new Mother("Mother X", "EC 1", "TC 1", "2012-01-01").withDetails(mapOf("deliveryPlace", "phc")));
-        when(childRepository.findByMotherCaseId("Mother X")).thenReturn(asList(firstChild, secondChild));
         FormSubmission submission = mock(FormSubmission.class);
+        SubForm subForm = mock(SubForm.class);
+        when(motherRepository.findById("Mother X")).thenReturn(new Mother("Mother X", "EC 1", "TC 1", "2012-01-01"));
+        when(childRepository.findChildrenByCaseIds("Child X", "Child Y")).thenReturn(asList(firstChild, secondChild));
         when(submission.entityId()).thenReturn("Mother X");
+        when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("deliveryPlace")).thenReturn("phc");
+        when(submission.getSubFormByName("Child Registration")).thenReturn(subForm);
+        when(subForm.instances()).thenReturn(asList(create("id", "Child X").map(), create("id", "Child Y").map()));
 
         service.register(submission);
 
-        verify(childRepository).findByMotherCaseId("Mother X");
+        verify(childRepository).findChildrenByCaseIds("Child X", "Child Y");
         verify(childRepository).update(firstChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
         verify(childRepository).update(secondChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
         verify(allTimelineEvents).add(forChildBirthInChildProfile("Child X", "2012-01-01", "3", "bcg opv_0"));
@@ -68,6 +74,7 @@ public class ChildServiceTest {
         verify(serviceProvidedService).add(ServiceProvided.forChildImmunization("Child X", "opv_0", "2012-01-01"));
         verify(serviceProvidedService).add(ServiceProvided.forChildImmunization("Child Y", "bcg", "2012-01-01"));
         verifyNoMoreInteractions(childRepository);
+        verifyNoMoreInteractions(allTimelineEvents);
     }
 
     @Test
