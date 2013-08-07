@@ -153,7 +153,7 @@ public class AllConstants {
         public static final String WEIGHT = "weight";
         public static final String HB_LEVEL = "hbLevel";
         public static final String NUMBER_OF_IFA_TABLETS_GIVEN = "numberOfIFATabletsGiven";
-        public static final String CHILD_PNC_VISIT_SUB_FORM_NAME = "Child PNC Visit";
+        public static final String CHILD_PNC_VISIT_SUB_FORM_NAME = "child_pnc_visit";
     }
 
     public class DeliveryOutcomeFields {
@@ -162,7 +162,7 @@ public class AllConstants {
         public static final String REFERENCE_DATE = "referenceDate";
         public static final String DELIVERY_PLACE = "deliveryPlace";
         public static final String DELIVERY_OUTCOME = "deliveryOutcome";
-        public static final String CHILD_REGISTRATION_SUB_FORM_NAME = "Child Registration";
+        public static final String CHILD_REGISTRATION_SUB_FORM_NAME = "child_registration";
         public static final String STILL_BIRTH_VALUE = "still_birth";
     }
 
@@ -208,8 +208,7 @@ public class AllConstants {
     public class PNCRegistrationOAFields {
         public static final String WEIGHT = "weight";
         public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";
-        public static final String DELIVERY_PLACE = "deliveryPlace";
-        public static final String CHILD_REGISTRATION_OA_SUB_FORM_NAME = "Child Registration OA";
+        public static final String CHILD_REGISTRATION_OA_SUB_FORM_NAME = "child_registration_oa";
     }
 
     public class ChildImmunizationsFields {

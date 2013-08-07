@@ -59,7 +59,7 @@ public class ChildServiceTest {
         when(submission.entityId()).thenReturn("Mother X");
         when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("deliveryPlace")).thenReturn("phc");
-        when(submission.getSubFormByName("Child Registration")).thenReturn(subForm);
+        when(submission.getSubFormByName("child_registration")).thenReturn(subForm);
         when(subForm.instances()).thenReturn(asList(mapOf("id", "Child X"), mapOf("id", "Child Y")));
 
         service.register(submission);
@@ -87,7 +87,7 @@ public class ChildServiceTest {
         when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("deliveryPlace")).thenReturn("phc");
         when(submission.getFieldValue("deliveryOutcome")).thenReturn("still_birth");
-        when(submission.getSubFormByName("Child Registration")).thenReturn(subForm);
+        when(submission.getSubFormByName("child_registration")).thenReturn(subForm);
         when(subForm.instances()).thenReturn(asList(mapOf("id", "Child X")));
 
         service.register(submission);
@@ -111,7 +111,7 @@ public class ChildServiceTest {
         when(submission.entityId()).thenReturn("EC X");
         when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("deliveryPlace")).thenReturn("subcenter");
-        when(submission.getSubFormByName("Child Registration OA")).thenReturn(subForm);
+        when(submission.getSubFormByName("child_registration_oa")).thenReturn(subForm);
         when(subForm.instances()).thenReturn(asList(mapOf("id", "Child X"), mapOf("id", "Child Y")));
 
         service.pncRegistrationOA(submission);
@@ -139,7 +139,7 @@ public class ChildServiceTest {
         when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("deliveryPlace")).thenReturn("phc");
         when(submission.getFieldValue("deliveryOutcome")).thenReturn("still_birth");
-        when(submission.getSubFormByName("Child Registration OA")).thenReturn(subForm);
+        when(submission.getSubFormByName("child_registration_oa")).thenReturn(subForm);
         when(subForm.instances()).thenReturn(asList(mapOf("id", "Child X")));
 
         service.pncRegistrationOA(submission);
@@ -225,7 +225,7 @@ public class ChildServiceTest {
         when(submission.entityId()).thenReturn("mother id 1");
         when(submission.getFieldValue("pncVisitDay")).thenReturn("2");
         when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
-        when(submission.getSubFormByName("Child PNC Visit")).thenReturn(subForm);
+        when(submission.getSubFormByName("child_pnc_visit")).thenReturn(subForm);
         when(subForm.instances()).thenReturn(
                 asList(
                         create("id", "child id 1")
@@ -250,7 +250,7 @@ public class ChildServiceTest {
         when(submission.entityId()).thenReturn("mother id 1");
         when(submission.getFieldValue("pncVisitDay")).thenReturn("2");
         when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
-        when(submission.getSubFormByName("Child PNC Visit")).thenReturn(subForm);
+        when(submission.getSubFormByName("child_pnc_visit")).thenReturn(subForm);
         when(subForm.instances()).thenReturn(
                 asList(mapOf("id", "child id 1"), mapOf("id", "child id 2")));
 
