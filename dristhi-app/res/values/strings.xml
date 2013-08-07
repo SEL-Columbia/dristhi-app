@@ -30,4 +30,8 @@
     <string name="videos_IEC_not_installed_dialog_message">Please install IEC application to play the videos.
     </string>
     <string name="videos_unknown_error_dialog_message">Unable to play video due to technical error.</string>
+    <string name="settings_logout_confirm_title">Confirm Log out</string>
+    <string name="settings_logout_confirm_dialog_message">Are you sure you want to log out? All the data will be
+        cleared.
+    </string>
 </resources>
