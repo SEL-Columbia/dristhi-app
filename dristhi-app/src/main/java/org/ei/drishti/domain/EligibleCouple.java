@@ -1,13 +1,18 @@
 package org.ei.drishti.domain;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.AllConstants;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
+import static org.ei.drishti.AllConstants.BOOLEAN_TRUE;
+import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
+import static org.ei.drishti.AllConstants.SPACE;
 
 public class EligibleCouple {
     private String caseId;
@@ -80,7 +85,12 @@ public class EligibleCouple {
     }
 
     public boolean isHighPriority() {
-        return parseDetailFieldValueToBoolean("isHighPriority");
+        return parseDetailFieldValueToBoolean(IS_HIGH_PRIORITY);
+    }
+
+    public String highPriorityReason() {
+        String highRiskReason = details.get(HIGH_PRIORITY_REASON) == null ? "" : details.get(HIGH_PRIORITY_REASON);
+        return StringUtils.join(new HashSet<String>(Arrays.asList(highRiskReason.split(SPACE))).toArray(), SPACE);
     }
 
     public boolean isYoungestChildUnderTwo() {
@@ -89,7 +99,7 @@ public class EligibleCouple {
 
     private boolean parseDetailFieldValueToBoolean(String fieldName) {
         String isHighPriority = details.get(fieldName);
-        return "1".equals(isHighPriority) || AllConstants.BOOLEAN_TRUE.equals(isHighPriority);
+        return "1".equals(isHighPriority) || BOOLEAN_TRUE.equals(isHighPriority);
     }
 
     public Map<String, String> details() {
@@ -119,7 +129,7 @@ public class EligibleCouple {
     }
 
     public boolean hasFPMethod() {
-        String fpMethod = getDetail(AllConstants.ECRegistrationFields.CURRENT_FP_METHOD);
+        String fpMethod = getDetail(CURRENT_FP_METHOD);
         return isNotBlank(fpMethod) && !"none".equalsIgnoreCase(fpMethod);
     }
 

@@ -101,6 +101,7 @@ public class AllConstants {
         public static final String NUMBER_OF_STILL_BIRTHS = "numberOfStillBirths";
         public static final String NUMBER_OF_ABORTIONS = "numberOfAbortions";
         public static final String HIGH_PRIORITY_REASON = "highPriorityReason";
+        public static final String IS_HIGH_PRIORITY = "isHighPriority";
         public static final String REGISTRATION_DATE = "registrationDate";
     }
 
@@ -131,6 +132,8 @@ public class AllConstants {
 
     public class ANCRegistrationFields {
         public static final String EDD = "edd";
+        public static final String HIGH_RISK_REASON = "highRiskReason";
+        public static final String IS_HIGH_RISK = "isHighRisk";
     }
 
     public class ANCVisitFields {
@@ -193,8 +196,9 @@ public class AllConstants {
         public static final String WEIGHT = "weight";
         public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";
         public static final String GENDER = "gender";
-        public static final String DELIVERY_PLACE = "deliveryPlace";
         public static final String NAME = "name";
+        public static final String HIGH_RISK_REASON = "childHighRiskReason";
+        public static final String IS_CHILD_HIGH_RISK = "isChildHighRisk";
     }
 
     public class ChildRegistrationOAFields {

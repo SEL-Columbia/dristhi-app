@@ -1,12 +1,19 @@
 package org.ei.drishti.domain;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.AllConstants;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+
+import static org.ei.drishti.AllConstants.ANCRegistrationFields.HIGH_RISK_REASON;
+import static org.ei.drishti.AllConstants.ANCRegistrationFields.IS_HIGH_RISK;
+import static org.ei.drishti.AllConstants.BOOLEAN_TRUE;
+import static org.ei.drishti.AllConstants.SPACE;
 
 public class Mother {
     private final String caseId;
@@ -48,7 +55,12 @@ public class Mother {
     }
 
     public boolean isHighRisk() {
-        return AllConstants.BOOLEAN_TRUE.equals(details.get("isHighRisk"));
+        return BOOLEAN_TRUE.equals(details.get(IS_HIGH_RISK));
+    }
+
+    public String highRiskReason() {
+        String highRiskReason = details.get(HIGH_RISK_REASON) == null ? "" : details.get(HIGH_RISK_REASON);
+        return StringUtils.join(new HashSet<String>(Arrays.asList(highRiskReason.split(SPACE))).toArray(), SPACE);
     }
 
     public Map<String, String> details() {

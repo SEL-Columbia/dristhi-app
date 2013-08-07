@@ -77,7 +77,7 @@ public class ANCSmartRegisterController {
                             .withIsHighPriority(ec.isHighPriority())
                             .withIsHighRisk(anc.isHighRisk())
                             .withIsOutOfArea(ec.isOutOfArea())
-                            .withHighRiskReason(anc.getDetail("highRiskReason"))
+                            .withHighRiskReason(anc.highRiskReason())
                             .withCaste(ec.getDetail("caste"))
                             .withEconomicStatus(ec.getDetail("economicStatus"))
                             .withPhotoPath(photoPath)

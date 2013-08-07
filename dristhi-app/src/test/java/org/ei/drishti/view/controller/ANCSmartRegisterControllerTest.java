@@ -90,9 +90,9 @@ public class ANCSmartRegisterControllerTest {
         Mother m1 = new Mother("Entity X", "EC Case 2", "thayi 1", "2013-05-25").withDetails(details);
         Mother m2 = new Mother("Entity Y", "EC Case 3", "thayi 2", "2013-05-25").withDetails(details);
         Mother m3 = new Mother("Entity Z", "EC Case 1", "thayi 3", "2013-05-25").withDetails(details);
-        ANCClient expectedClient1 = createANCClient("Entity Z", "Woman A", "Bherya", "thayi 3", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 1").withHusbandName("Husband A").withEntityIdToSavePhoto("EC Case 1");
-        ANCClient expectedClient2 = createANCClient("Entity X", "Woman B", "kavalu_hosur", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 2").withHusbandName("Husband B").withEntityIdToSavePhoto("EC Case 2");
-        ANCClient expectedClient3 = createANCClient("Entity Y", "Woman C", "Bherya", "thayi 2", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 3").withHusbandName("Husband C").withEntityIdToSavePhoto("EC Case 3");
+        ANCClient expectedClient1 = createANCClient("Entity Z", "Woman A", "Bherya", "thayi 3", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 1").withHusbandName("Husband A").withEntityIdToSavePhoto("EC Case 1").withHighRiskReason("");
+        ANCClient expectedClient2 = createANCClient("Entity X", "Woman B", "kavalu_hosur", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 2").withHusbandName("Husband B").withEntityIdToSavePhoto("EC Case 2").withHighRiskReason("");
+        ANCClient expectedClient3 = createANCClient("Entity Y", "Woman C", "Bherya", "thayi 2", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 3").withHusbandName("Husband C").withEntityIdToSavePhoto("EC Case 3").withHighRiskReason("");
         when(allBeneficiaries.allANCsWithEC()).thenReturn(asList(Pair.of(m1, ec2), Pair.of(m2, ec3), Pair.of(m3, ec1)));
 
         String clients = controller.get();
@@ -156,7 +156,8 @@ public class ANCSmartRegisterControllerTest {
                 .withECNumber("EC Number 1")
                 .withHusbandName("Husband C")
                 .withEntityIdToSavePhoto("entity id 1")
-                .withAlerts(asList(expectedAlertDto));
+                .withAlerts(asList(expectedAlertDto))
+                .withHighRiskReason("");
         assertEquals(asList(expectedEC), actualClients);
     }
 
@@ -182,7 +183,8 @@ public class ANCSmartRegisterControllerTest {
                 .withECNumber("EC Number 1")
                 .withHusbandName("Husband C")
                 .withEntityIdToSavePhoto("entity id 1")
-                .withServicesProvided(expectedServicesProvided);
+                .withServicesProvided(expectedServicesProvided)
+                .withHighRiskReason("");
         assertEquals(asList(expectedEC), actualClients);
     }
 

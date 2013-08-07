@@ -1,11 +1,18 @@
 package org.ei.drishti.domain;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.AllConstants;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
+
+import static org.ei.drishti.AllConstants.BOOLEAN_TRUE;
+import static org.ei.drishti.AllConstants.ChildRegistrationFields.HIGH_RISK_REASON;
+import static org.ei.drishti.AllConstants.ChildRegistrationFields.IS_CHILD_HIGH_RISK;
+import static org.ei.drishti.AllConstants.SPACE;
 
 public class Child {
     private final String caseId;
@@ -69,7 +76,7 @@ public class Child {
     }
 
     public boolean isHighRisk() {
-        return AllConstants.BOOLEAN_TRUE.equals(details.get("isChildHighRisk"));
+        return BOOLEAN_TRUE.equals(details.get(IS_CHILD_HIGH_RISK));
     }
 
     public boolean isClosed() {
@@ -79,6 +86,11 @@ public class Child {
     public Child setIsClosed(boolean isClosed) {
         this.isClosed = isClosed;
         return this;
+    }
+
+    public String highRiskReason() {
+        String highRiskReason = details.get(HIGH_RISK_REASON) == null ? "" : details.get(HIGH_RISK_REASON);
+        return StringUtils.join(new HashSet<String>(Arrays.asList(highRiskReason.split(SPACE))).toArray(), SPACE);
     }
 
     public Child setThayiCardNumber(String thayiCardNumber) {
