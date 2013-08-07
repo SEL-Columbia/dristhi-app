@@ -43,12 +43,8 @@ public class ChildService {
         String referenceDate = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.REFERENCE_DATE);
         String deliveryPlace = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.DELIVERY_PLACE);
         Mother mother = motherRepository.findById(submission.entityId());
-        ArrayList<String> childIds = new ArrayList<String>();
-        for (Map<String, String> childFields : subForm.instances()) {
-            childIds.add(childFields.get(ENTITY_ID_FIELD_NAME));
-        }
-        List<Child> children = childRepository.findChildrenByCaseIds(childIds.toArray(new String[childIds.size()]));
-        for (Child child : children) {
+        for (Map<String, String> childInstance : subForm.instances()) {
+            Child child = childRepository.find(childInstance.get(ENTITY_ID_FIELD_NAME));
             childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thayiCardNumber()).setDateOfBirth(referenceDate));
             allTimelines.add(forChildBirthInChildProfile(child.caseId(), referenceDate,
                     child.getDetail(AllConstants.ChildRegistrationFields.WEIGHT), child.getDetail(AllConstants.ChildRegistrationFields.IMMUNIZATIONS_GIVEN)));

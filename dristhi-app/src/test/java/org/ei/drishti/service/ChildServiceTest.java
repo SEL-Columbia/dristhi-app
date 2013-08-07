@@ -54,7 +54,8 @@ public class ChildServiceTest {
         FormSubmission submission = mock(FormSubmission.class);
         SubForm subForm = mock(SubForm.class);
         when(motherRepository.findById("Mother X")).thenReturn(new Mother("Mother X", "EC 1", "TC 1", "2012-01-01"));
-        when(childRepository.findChildrenByCaseIds("Child X", "Child Y")).thenReturn(asList(firstChild, secondChild));
+        when(childRepository.find("Child X")).thenReturn(firstChild);
+        when(childRepository.find("Child Y")).thenReturn(secondChild);
         when(submission.entityId()).thenReturn("Mother X");
         when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("deliveryPlace")).thenReturn("phc");
@@ -63,7 +64,8 @@ public class ChildServiceTest {
 
         service.register(submission);
 
-        verify(childRepository).findChildrenByCaseIds("Child X", "Child Y");
+        verify(childRepository).find("Child X");
+        verify(childRepository).find("Child Y");
         verify(childRepository).update(firstChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
         verify(childRepository).update(secondChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
         verify(allTimelineEvents).add(forChildBirthInChildProfile("Child X", "2012-01-01", "3", "bcg opv_0"));
