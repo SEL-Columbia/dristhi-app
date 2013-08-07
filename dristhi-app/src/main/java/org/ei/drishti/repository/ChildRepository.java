@@ -244,4 +244,9 @@ public class ChildRepository extends DrishtiRepository {
                 "= ? ", new String[]{ecId});
         return readAllChildren(cursor);
     }
+
+    public void delete(String childId) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        database.delete(CHILD_TABLE_NAME, ID_COLUMN + "= ?", new String[]{childId});
+    }
 }

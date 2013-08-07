@@ -161,7 +161,9 @@ public class AllConstants {
         public static final String DID_MOTHER_SURVIVE = "didMotherSurvive";
         public static final String REFERENCE_DATE = "referenceDate";
         public static final String DELIVERY_PLACE = "deliveryPlace";
+        public static final String DELIVERY_OUTCOME = "deliveryOutcome";
         public static final String CHILD_REGISTRATION_SUB_FORM_NAME = "Child Registration";
+        public static final String STILL_BIRTH_VALUE = "still_birth";
     }
 
     public class ChildRegistrationECFields {

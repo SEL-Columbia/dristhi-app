@@ -80,6 +80,25 @@ public class ChildServiceTest {
     }
 
     @Test
+    public void shouldDeleteRegisteredChildWhenDeliveryOutcomeIsStillBirth() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        SubForm subForm = mock(SubForm.class);
+        when(submission.entityId()).thenReturn("Mother X");
+        when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("deliveryPlace")).thenReturn("phc");
+        when(submission.getFieldValue("deliveryOutcome")).thenReturn("still_birth");
+        when(submission.getSubFormByName("Child Registration")).thenReturn(subForm);
+        when(subForm.instances()).thenReturn(asList(mapOf("id", "Child X")));
+
+        service.register(submission);
+
+        verify(childRepository).delete("Child X");
+        verifyNoMoreInteractions(childRepository);
+        verifyNoMoreInteractions(allTimelineEvents);
+        verifyNoMoreInteractions(serviceProvidedService);
+    }
+
+    @Test
     public void shouldUpdateNewlyRegisteredChildrenDuringPNCRegistrationOA() throws Exception {
         Child firstChild = new Child("Child X", "Mother X", "female", create("weight", "3").put("immunizationsGiven", "bcg opv_0").map());
         Child secondChild = new Child("Child Y", "Mother X", "female", create("weight", "4").put("immunizationsGiven", "bcg").map());

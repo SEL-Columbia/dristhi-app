@@ -206,4 +206,12 @@ public class ChildRepositoryTest extends AndroidTestCase {
         assertTrue(children.contains(child));
         assertFalse(children.contains(anotherChild));
     }
+
+    public void testShouldDeleteChild() throws Exception {
+        repository.add(new Child("child id 1", "mother id 1", "TC 1", "2012-06-09", "female", EXTRA_DETAILS));
+
+        repository.delete("child id 1");
+
+        assertTrue(repository.all().isEmpty());
+    }
 }

@@ -40,6 +40,11 @@ public class ChildService {
 
     public void register(FormSubmission submission) {
         SubForm subForm = submission.getSubFormByName(AllConstants.DeliveryOutcomeFields.CHILD_REGISTRATION_SUB_FORM_NAME);
+        if (isDeliveryOutcomeStillBirth(submission)) {
+            String childId = subForm.instances().get(0).get(ENTITY_ID_FIELD_NAME);
+            childRepository.delete(childId);
+            return;
+        }
         String referenceDate = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.REFERENCE_DATE);
         String deliveryPlace = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.DELIVERY_PLACE);
         Mother mother = motherRepository.findById(submission.entityId());
@@ -55,6 +60,10 @@ public class ChildService {
                 serviceProvidedService.add(ServiceProvided.forChildImmunization(child.caseId(), immunization, referenceDate));
             }
         }
+    }
+
+    private boolean isDeliveryOutcomeStillBirth(FormSubmission submission) {
+        return AllConstants.DeliveryOutcomeFields.STILL_BIRTH_VALUE.equalsIgnoreCase(submission.getFieldValue(AllConstants.DeliveryOutcomeFields.DELIVERY_OUTCOME));
     }
 
     public void registerForEC(FormSubmission submission) {
