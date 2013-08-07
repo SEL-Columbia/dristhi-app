@@ -40,11 +40,7 @@ public class ChildService {
 
     public void register(FormSubmission submission) {
         SubForm subForm = submission.getSubFormByName(AllConstants.DeliveryOutcomeFields.CHILD_REGISTRATION_SUB_FORM_NAME);
-        if (isDeliveryOutcomeStillBirth(submission)) {
-            String childId = subForm.instances().get(0).get(ENTITY_ID_FIELD_NAME);
-            childRepository.delete(childId);
-            return;
-        }
+        if (handleStillBirth(submission, subForm)) return;
         String referenceDate = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.REFERENCE_DATE);
         String deliveryPlace = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.DELIVERY_PLACE);
         Mother mother = motherRepository.findById(submission.entityId());
@@ -119,6 +115,8 @@ public class ChildService {
 
     public void pncRegistrationOA(FormSubmission submission) {
         SubForm subForm = submission.getSubFormByName(AllConstants.PNCRegistrationOAFields.CHILD_REGISTRATION_OA_SUB_FORM_NAME);
+        if (handleStillBirth(submission, subForm)) return;
+
         String referenceDate = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.REFERENCE_DATE);
         String deliveryPlace = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.DELIVERY_PLACE);
         Mother mother = motherRepository.findAllCasesForEC(submission.entityId()).get(0);
@@ -137,6 +135,15 @@ public class ChildService {
                 serviceProvidedService.add(ServiceProvided.forChildImmunization(child.caseId(), immunization, referenceDate));
             }
         }
+    }
+
+    private boolean handleStillBirth(FormSubmission submission, SubForm subForm) {
+        if (isDeliveryOutcomeStillBirth(submission)) {
+            String childId = subForm.instances().get(0).get(ENTITY_ID_FIELD_NAME);
+            childRepository.delete(childId);
+            return true;
+        }
+        return false;
     }
 
     public void updateImmunizations(FormSubmission submission) {

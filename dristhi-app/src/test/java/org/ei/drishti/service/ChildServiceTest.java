@@ -60,7 +60,7 @@ public class ChildServiceTest {
         when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("deliveryPlace")).thenReturn("phc");
         when(submission.getSubFormByName("Child Registration")).thenReturn(subForm);
-        when(subForm.instances()).thenReturn(asList(create("id", "Child X").map(), create("id", "Child Y").map()));
+        when(subForm.instances()).thenReturn(asList(mapOf("id", "Child X"), mapOf("id", "Child Y")));
 
         service.register(submission);
 
@@ -112,7 +112,7 @@ public class ChildServiceTest {
         when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("deliveryPlace")).thenReturn("subcenter");
         when(submission.getSubFormByName("Child Registration OA")).thenReturn(subForm);
-        when(subForm.instances()).thenReturn(asList(create("id", "Child X").map(), create("id", "Child Y").map()));
+        when(subForm.instances()).thenReturn(asList(mapOf("id", "Child X"), mapOf("id", "Child Y")));
 
         service.pncRegistrationOA(submission);
 
@@ -129,6 +129,25 @@ public class ChildServiceTest {
         verify(serviceProvidedService).add(forChildImmunization("Child X", "opv_0", "2012-01-01"));
         verify(serviceProvidedService).add(forChildImmunization("Child Y", "bcg", "2012-01-01"));
         verifyNoMoreInteractions(childRepository);
+    }
+
+    @Test
+    public void shouldDeleteRegisteredChildWhenPNCRegistrationOAIsHandledAndDeliveryOutcomeIsStillBirth() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        SubForm subForm = mock(SubForm.class);
+        when(submission.entityId()).thenReturn("Mother X");
+        when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("deliveryPlace")).thenReturn("phc");
+        when(submission.getFieldValue("deliveryOutcome")).thenReturn("still_birth");
+        when(submission.getSubFormByName("Child Registration OA")).thenReturn(subForm);
+        when(subForm.instances()).thenReturn(asList(mapOf("id", "Child X")));
+
+        service.pncRegistrationOA(submission);
+
+        verify(childRepository).delete("Child X");
+        verifyNoMoreInteractions(childRepository);
+        verifyNoMoreInteractions(allTimelineEvents);
+        verifyNoMoreInteractions(serviceProvidedService);
     }
 
     @Test
