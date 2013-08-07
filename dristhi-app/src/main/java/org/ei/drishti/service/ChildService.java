@@ -147,15 +147,13 @@ public class ChildService {
     }
 
     public void pncVisitHappened(FormSubmission submission) {
-        List<Child> children = childRepository.findByMotherCaseId(submission.entityId());
-        for (Child child : children) {
-            allTimelines.add(forChildPNCVisit(child.caseId(), submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DAY),
-                    submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DATE), child.getDetail(AllConstants.PNCVisitFields.WEIGHT), child.getDetail(AllConstants.PNCVisitFields.TEMPERATURE)));
-            serviceProvidedService.add(
-                    ServiceProvided.forChildPNCVisit(
-                            child.caseId(),
-                            submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DAY),
-                            submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DATE)));
+        String pncVisitDate = submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DATE);
+        String pncVisitDay = submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DAY);
+        SubForm subForm = submission.getSubFormByName(AllConstants.PNCVisitFields.CHILD_PNC_VISIT_SUB_FORM_NAME);
+        for (Map<String, String> childInstances : subForm.instances()) {
+            allTimelines.add(forChildPNCVisit(childInstances.get(ENTITY_ID_FIELD_NAME), pncVisitDay,
+                    pncVisitDate, childInstances.get(AllConstants.PNCVisitFields.WEIGHT), childInstances.get(AllConstants.PNCVisitFields.TEMPERATURE)));
+            serviceProvidedService.add(ServiceProvided.forChildPNCVisit(childInstances.get(ENTITY_ID_FIELD_NAME), pncVisitDay, pncVisitDate));
         }
     }
 

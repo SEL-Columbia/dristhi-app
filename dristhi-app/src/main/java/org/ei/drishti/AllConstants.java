@@ -153,6 +153,7 @@ public class AllConstants {
         public static final String WEIGHT = "weight";
         public static final String HB_LEVEL = "hbLevel";
         public static final String NUMBER_OF_IFA_TABLETS_GIVEN = "numberOfIFATabletsGiven";
+        public static final String CHILD_PNC_VISIT_SUB_FORM_NAME = "Child PNC Visit";
     }
 
     public class DeliveryOutcomeFields {

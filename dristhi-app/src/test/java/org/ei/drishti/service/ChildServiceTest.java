@@ -183,12 +183,21 @@ public class ChildServiceTest {
     @Test
     public void shouldAddPNCVisitTimelineEventWhenPNCVisitHappens() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
+        SubForm subForm = mock(SubForm.class);
         when(submission.entityId()).thenReturn("mother id 1");
         when(submission.getFieldValue("pncVisitDay")).thenReturn("2");
         when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
-        Child firstChild = new Child("child id 1", "Mother X", "female", create("weight", "3").put("temperature", "98").map());
-        Child secondChild = new Child("child id 2", "Mother X", "female", create("weight", "4").put("temperature", "98.1").map());
-        when(childRepository.findByMotherCaseId("mother id 1")).thenReturn(asList(firstChild, secondChild));
+        when(submission.getSubFormByName("Child PNC Visit")).thenReturn(subForm);
+        when(subForm.instances()).thenReturn(
+                asList(
+                        create("id", "child id 1")
+                                .put("weight", "3")
+                                .put("temperature", "98")
+                                .map(),
+                        create("id", "child id 2")
+                                .put("weight", "4")
+                                .put("temperature", "98.1")
+                                .map()));
 
         service.pncVisitHappened(submission);
 
@@ -199,12 +208,13 @@ public class ChildServiceTest {
     @Test
     public void shouldAddPNCVisitServiceProvidedWhenPNCVisitHappens() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
+        SubForm subForm = mock(SubForm.class);
         when(submission.entityId()).thenReturn("mother id 1");
         when(submission.getFieldValue("pncVisitDay")).thenReturn("2");
         when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
-        Child firstChild = new Child("child id 1", "Mother X", "female", create("weight", "3").put("temperature", "98").map());
-        Child secondChild = new Child("child id 2", "Mother X", "female", create("weight", "4").put("temperature", "98.1").map());
-        when(childRepository.findByMotherCaseId("mother id 1")).thenReturn(asList(firstChild, secondChild));
+        when(submission.getSubFormByName("Child PNC Visit")).thenReturn(subForm);
+        when(subForm.instances()).thenReturn(
+                asList(mapOf("id", "child id 1"), mapOf("id", "child id 2")));
 
         service.pncVisitHappened(submission);
 
