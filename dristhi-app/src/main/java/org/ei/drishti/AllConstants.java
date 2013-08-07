@@ -206,6 +206,7 @@ public class AllConstants {
         public static final String WEIGHT = "weight";
         public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";
         public static final String DELIVERY_PLACE = "deliveryPlace";
+        public static final String CHILD_REGISTRATION_OA_SUB_FORM_NAME = "Child Registration OA";
     }
 
     public class ChildImmunizationsFields {

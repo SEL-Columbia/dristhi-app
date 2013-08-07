@@ -80,19 +80,25 @@ public class ChildServiceTest {
     }
 
     @Test
-    public void shouldUpdateEveryChildWhilePNCRegistration() throws Exception {
+    public void shouldUpdateNewlyRegisteredChildrenDuringPNCRegistrationOA() throws Exception {
         Child firstChild = new Child("Child X", "Mother X", "female", create("weight", "3").put("immunizationsGiven", "bcg opv_0").map());
         Child secondChild = new Child("Child Y", "Mother X", "female", create("weight", "4").put("immunizationsGiven", "bcg").map());
-        Mother mother = new Mother("Mother X", "EC X", "TC 1", "2012-01-01");
+        Mother mother = new Mother("Mother X", "EC X", "TC 1", "2012-01-02");
         when(motherRepository.findAllCasesForEC("EC X")).thenReturn(asList(mother));
-        when(childRepository.findByMotherCaseId("Mother X")).thenReturn(asList(firstChild, secondChild));
+        when(childRepository.find("Child X")).thenReturn(firstChild);
+        when(childRepository.find("Child Y")).thenReturn(secondChild);
         FormSubmission submission = mock(FormSubmission.class);
+        SubForm subForm = mock(SubForm.class);
         when(submission.entityId()).thenReturn("EC X");
+        when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("deliveryPlace")).thenReturn("subcenter");
+        when(submission.getSubFormByName("Child Registration OA")).thenReturn(subForm);
+        when(subForm.instances()).thenReturn(asList(create("id", "Child X").map(), create("id", "Child Y").map()));
 
         service.pncRegistrationOA(submission);
 
-        verify(childRepository).findByMotherCaseId("Mother X");
+        verify(childRepository).find("Child X");
+        verify(childRepository).find("Child Y");
         verify(childRepository).update(firstChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
         verify(childRepository).update(secondChild.setIsClosed(false).setDateOfBirth("2012-01-01").setThayiCardNumber("TC 1"));
         verify(allTimelineEvents).add(forChildBirthInChildProfile("Child X", "2012-01-01", "3", "bcg opv_0"));

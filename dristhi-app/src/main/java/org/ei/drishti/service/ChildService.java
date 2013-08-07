@@ -109,20 +109,23 @@ public class ChildService {
     }
 
     public void pncRegistrationOA(FormSubmission submission) {
+        SubForm subForm = submission.getSubFormByName(AllConstants.PNCRegistrationOAFields.CHILD_REGISTRATION_OA_SUB_FORM_NAME);
+        String referenceDate = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.REFERENCE_DATE);
+        String deliveryPlace = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.DELIVERY_PLACE);
         Mother mother = motherRepository.findAllCasesForEC(submission.entityId()).get(0);
-        List<Child> children = childRepository.findByMotherCaseId(mother.caseId());
 
-        for (Child child : children) {
-            childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thayiCardNumber()).setDateOfBirth(mother.referenceDate()));
-            allTimelines.add(forChildBirthInChildProfile(child.caseId(), mother.referenceDate(),
+        for (Map<String, String> childInstances : subForm.instances()) {
+            Child child = childRepository.find(childInstances.get(ENTITY_ID_FIELD_NAME));
+            childRepository.update(child.setIsClosed(false).setThayiCardNumber(mother.thayiCardNumber()).setDateOfBirth(referenceDate));
+            allTimelines.add(forChildBirthInChildProfile(child.caseId(), referenceDate,
                     child.getDetail(AllConstants.PNCRegistrationOAFields.WEIGHT), child.getDetail(AllConstants.PNCRegistrationOAFields.IMMUNIZATIONS_GIVEN)));
-            allTimelines.add(forChildBirthInMotherProfile(mother.caseId(), mother.referenceDate(), child.gender(),
-                    mother.referenceDate(), submission.getFieldValue(AllConstants.PNCRegistrationOAFields.DELIVERY_PLACE)));
-            allTimelines.add(forChildBirthInECProfile(mother.ecCaseId(), mother.referenceDate(), child.gender(),
-                    mother.referenceDate()));
+            allTimelines.add(forChildBirthInMotherProfile(mother.caseId(), referenceDate, child.gender(),
+                    referenceDate, deliveryPlace));
+            allTimelines.add(forChildBirthInECProfile(mother.ecCaseId(), referenceDate, child.gender(),
+                    referenceDate));
             String immunizationsGiven = child.getDetail(AllConstants.PNCRegistrationOAFields.IMMUNIZATIONS_GIVEN);
             for (String immunization : immunizationsGiven.split(SPACE)) {
-                serviceProvidedService.add(ServiceProvided.forChildImmunization(child.caseId(), immunization, mother.referenceDate()));
+                serviceProvidedService.add(ServiceProvided.forChildImmunization(child.caseId(), immunization, referenceDate));
             }
         }
     }
