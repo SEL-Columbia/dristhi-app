@@ -3,6 +3,7 @@ package org.ei.drishti.view.activity;
 import android.app.Application;
 import android.content.res.Configuration;
 import org.acra.ACRA;
+import org.acra.ReportingInteractionMode;
 import org.acra.annotation.ReportsCrashes;
 import org.ei.drishti.Context;
 import org.ei.drishti.sync.DrishtiSyncScheduler;
@@ -11,15 +12,23 @@ import java.util.Locale;
 
 import static org.ei.drishti.util.Log.logInfo;
 
-@ReportsCrashes(formKey = "dFdKSGVjdDJ4ZThpRHQ0bm50VkdDeGc6MQ")
+@ReportsCrashes(
+        formKey = "",
+        formUri = "https://drishtiapp.cloudant.com/acra-drishtiapp/_design/acra-storage/_update/report",
+        reportType = org.acra.sender.HttpSender.Type.JSON,
+        httpMethod = org.acra.sender.HttpSender.Method.POST,
+        formUriBasicAuthLogin = "sompleakereepeavoldiftle",
+        formUriBasicAuthPassword = "ecUMrMeTKf1X1ODxHqo3b43W",
+        mode = ReportingInteractionMode.SILENT
+)
 public class DrishtiApplication extends Application {
     private Locale locale = null;
     private Context context;
 
     @Override
     public void onCreate() {
-        ACRA.init(this);
         super.onCreate();
+        ACRA.init(this);
 
         context = Context.getInstance();
         context.updateApplicationContext(getApplicationContext());

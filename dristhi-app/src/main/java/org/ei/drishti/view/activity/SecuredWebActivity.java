@@ -9,6 +9,7 @@ import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import org.acra.ACRA;
 import org.ei.drishti.R;
 import org.ei.drishti.sync.SyncAfterFetchListener;
 import org.ei.drishti.sync.SyncProgressIndicator;
@@ -110,6 +111,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
 
                 if (consoleMessage.messageLevel() == ERROR) {
                     logError(message);
+                    ACRA.getErrorReporter().handleSilentException(new RuntimeException(message));
                 } else {
                     logDebug(message);
                 }
