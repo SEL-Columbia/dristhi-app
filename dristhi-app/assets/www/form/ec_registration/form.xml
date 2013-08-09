@@ -324,21 +324,6 @@
                 <span lang="" class=" active">Christian &#xC95;&#xCCD;&#xCB0;&#xCBF;&#xCB8;&#xCCD;&#xC9A;&#xCBF;&#xCAF;&#xCA8;&#xCCD;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/religion" value="jain"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Jain &#xC9C;&#xCC8;&#xCA8;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/religion" value="sikh"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Sikh &#xCB8;&#xCBF;&#xC96;&#xCCD;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/religion" value="buddhist"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Buddhist &#xCAC;&#xCCC;&#xCA6;&#xCCD;&#xCA7;</span>
-            </label>
-            <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/religion" value="r_others"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
@@ -381,6 +366,11 @@
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level"
+                       value="literate" data-type-xml="select1"/>
+                <span lang="" class=" active">Literate</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level"
                        value="primary" data-type-xml="select1"/>
                 <span lang="" class=" active">Primary School &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
                     &#xCB6;&#xCBE;&#xCB2;&#xCC6;</span>
@@ -404,14 +394,7 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level"
                        value="graduate" data-type-xml="select1"/>
-                <span lang="" class=" active">Graduate
-                    &#xCAA;&#xCA6;&#xCB5;&#xCBF;&#xCA6;&#xCBE;&#xCB0;&#xCB0;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/woman_education_level"
-                       value="post_graduate" data-type-xml="select1"/>
-                <span lang="" class=" active">Post Graduate &#xCB8;&#xCCD;&#xCA8;&#xCBE;&#xCA4;&#xC95;&#xCCB;&#xCA4;&#xCCD;&#xCA4;&#xCB0;
-                    &#xCAA;&#xCA6;&#xCB5;&#xCBF;&#xCA6;&#xCBE;&#xCB0;&#xCB0;&#xCC1;</span>
+                <span lang="" class=" active">Graduate and above</span>
             </label>
         </fieldset>
     </fieldset>
@@ -424,6 +407,11 @@
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/husband_education_level"
                        value="illiterate" data-type-xml="select1"/>
                 <span lang="" class=" active">Illiterate &#xC85;&#xCA8;&#xC95;&#xCCD;&#xCB7;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCB0;&#xCC1;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/husband_education_level"
+                       value="literate" data-type-xml="select1"/>
+                <span lang="" class=" active">Literate</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/husband_education_level"
@@ -450,14 +438,7 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/husband_education_level"
                        value="graduate" data-type-xml="select1"/>
-                <span lang="" class=" active">Graduate
-                    &#xCAA;&#xCA6;&#xCB5;&#xCBF;&#xCA6;&#xCBE;&#xCB0;&#xCB0;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/husband_education_level"
-                       value="post_graduate" data-type-xml="select1"/>
-                <span lang="" class=" active">Post Graduate &#xCB8;&#xCCD;&#xCA8;&#xCBE;&#xCA4;&#xC95;&#xCCB;&#xCA4;&#xCCD;&#xCA4;&#xCB0;
-                    &#xCAA;&#xCA6;&#xCB5;&#xCBF;&#xCA6;&#xCBE;&#xCB0;&#xCB0;&#xCC1;</span>
+                <span lang="" class=" active">Graduate and above</span>
             </label>
         </fieldset>
     </fieldset>
@@ -657,7 +638,8 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/EC_Registration_EngKan/youngestchild_date_of_birth"
-               required="required" data-constraint=".&gt; ( /EC_Registration_EngKan/today  - 6570)"
+               required="required"
+               data-constraint="if( /EC_Registration_EngKan/youngestchild_under2  = 'yes', .&gt; ( /EC_Registration_EngKan/today  - 730), .&gt; ( /EC_Registration_EngKan/today  - 6570) and .&lt; ( /EC_Registration_EngKan/today  - 730))"
                data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0" data-type-xml="date"/>
     </label>
     <fieldset class="trigger jr-branch pre-init" name="/EC_Registration_EngKan/youngestchild_age_note"
@@ -760,9 +742,9 @@
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Date on which FP started? &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;
-            &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF;&#xCA6;
-            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        <span lang="" class=" active">Date on which FP method accepted? &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
+            &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+            &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/EC_Registration_EngKan/date_familyplanningstart"

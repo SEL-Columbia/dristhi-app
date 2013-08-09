@@ -433,27 +433,27 @@
             </item>
             <item>
                 <itextId>static_instance-education-1</itextId>
-                <name>primary</name>
+                <name>literate</name>
             </item>
             <item>
                 <itextId>static_instance-education-2</itextId>
-                <name>middle</name>
+                <name>primary</name>
             </item>
             <item>
                 <itextId>static_instance-education-3</itextId>
-                <name>high</name>
+                <name>middle</name>
             </item>
             <item>
                 <itextId>static_instance-education-4</itextId>
-                <name>puc</name>
+                <name>high</name>
             </item>
             <item>
                 <itextId>static_instance-education-5</itextId>
-                <name>graduate</name>
+                <name>puc</name>
             </item>
             <item>
                 <itextId>static_instance-education-6</itextId>
-                <name>post_graduate</name>
+                <name>graduate</name>
             </item>
         </root>
     </instance>
@@ -485,18 +485,6 @@
             </item>
             <item>
                 <itextId>static_instance-religion-3</itextId>
-                <name>jain</name>
-            </item>
-            <item>
-                <itextId>static_instance-religion-4</itextId>
-                <name>sikh</name>
-            </item>
-            <item>
-                <itextId>static_instance-religion-5</itextId>
-                <name>buddhist</name>
-            </item>
-            <item>
-                <itextId>static_instance-religion-6</itextId>
                 <name>r_others</name>
             </item>
         </root>
