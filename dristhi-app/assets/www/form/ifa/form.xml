@@ -10,40 +10,13 @@
     </fieldset>
 
 
-    <fieldset class="restoring-sanity-to-legends ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">IFA place? &#xC95;&#xCAC;&#xCCD;&#xCAC;&#xCBF;&#xCA3;&#xCBE;&#xC82;&#xCB6;
-                    &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6; &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCB8;&#xCCD;&#xCA5;&#xCB3;?
-                </span>
-                <span class="required">*</span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/IFA_EngKan/ifa_tablets_place" value="sub_center"
-                       required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/IFA_EngKan/ifa_tablets_place" value="phc"
-                       required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/IFA_EngKan/ifa_tablets_place" value="elsewhere"
-                       required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Elsewhere &#xCAC;&#xCC7;&#xCB0;&#xCC6;&#xCA1;&#xCC6;</span>
-            </label>
-        </fieldset>
-    </fieldset>
     <label class="">
         <span lang="" class=" active">No. of IFA tablets given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1; &#xC95;&#xCAC;&#xCCD;&#xCAC;&#xCBF;&#xCA3;&#xCBE;&#xC82;&#xCB6;
             &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/IFA_EngKan/ifa_tablets_given" required="required"
-               data-constraint=".&gt; 0" data-type-xml="int"/>
+               data-constraint=".&gt;= 0" data-type-xml="int"/>
     </label>
     <label class="">
         <span lang="" class=" active">IFA tablet date? &#xC95;&#xCAC;&#xCCD;&#xCAC;&#xCBF;&#xCA3;&#xCBE;&#xC82;&#xCB6;
@@ -54,6 +27,37 @@
         <input autocomplete="off" type="date" name="/IFA_EngKan/ifa_tablets_date" required="required"
                data-constraint=".&lt;= /IFA_EngKan/today " data-type-xml="date"/>
     </label>
+    <label class="jr-appearance-minimal">
+        <span lang="" class=" active">IFA place? &#xC95;&#xCAC;&#xCCD;&#xCAC;&#xCBF;&#xCA3;&#xCBE;&#xC82;&#xCB6; &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;
+            &#xCA8;&#xCC0;&#xCA1;&#xCBF;&#xCA6; &#xCB8;&#xCCD;&#xCA5;&#xCB3;?
+        </span>
+        <select name="/IFA_EngKan/ifa_tablets_place" data-type-xml="select1">
+            <option value="">...</option>
+            <option value="sub_center">Sub Center &#xC89;&#xCAA; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</option>
+            <option value="phc">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
+                &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</option>
+            <option value="elsewhere">Elsewhere &#xCAC;&#xCC7;&#xCB0;&#xCC6;&#xCA1;&#xCC6;</option>
+        </select>
+        <span class="jr-option-translations" style="display:none;">
+        </span>
+    </label>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Are you out of stock of IFA?</span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/IFA_EngKan/ifa_stock_out" value="yes"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/IFA_EngKan/ifa_stock_out" value="no"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+            </label>
+        </fieldset>
+    </fieldset>
 
     <fieldset id="jr-calculated-items" style="display:none;">
         <label class="">
