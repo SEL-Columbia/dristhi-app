@@ -24,7 +24,7 @@ function FakeECSmartRegistryContext() {
                         }
                     ],
                     "dateOfBirth": "1984-07-12",
-                    "ecNumber": "6",
+                    "ecNumber": 6,
                     "economicStatus": "bpl",
                     "entityId": "c18c3699-9e90-43f0-8963-d4117fa47a7a",
                     "entityIdToSavePhoto": "c18c3699-9e90-43f0-8963-d4117fa47a7a",
@@ -62,7 +62,7 @@ function FakeECSmartRegistryContext() {
                         }
                     ],
                     "dateOfBirth": "1988-07-12",
-                    "ecNumber": "23",
+                    "ecNumber": 23,
                     "economicStatus": "apl",
                     "entityId": "f4011e26-b29c-42d8-a46f-06216253de06",
                     "entityIdToSavePhoto": "f4011e26-b29c-42d8-a46f-06216253de06",
@@ -99,7 +99,7 @@ function FakeECSmartRegistryContext() {
                         }
                     ],
                     "dateOfBirth": "1980-07-12",
-                    "ecNumber": "2",
+                    "ecNumber": 2,
                     "entityId": "198041d9-3084-4ad8-ad64-fe7b2eca6a03",
                     "entityIdToSavePhoto": "198041d9-3084-4ad8-ad64-fe7b2eca6a03",
                     "familyPlanningMethodChangeDate": "2013-07-12",
@@ -140,7 +140,7 @@ function FakeECSmartRegistryContext() {
                         }
                     ],
                     "dateOfBirth": "1987-09-17",
-                    "ecNumber": "400",
+                    "ecNumber": 400,
                     "economicStatus": "apl",
                     "entityId": "e8e21744-2b9b-4e3e-830a-ba403608eb28",
                     "entityIdToSavePhoto": "e8e21744-2b9b-4e3e-830a-ba403608eb28",

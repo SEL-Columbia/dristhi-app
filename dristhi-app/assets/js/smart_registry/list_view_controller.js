@@ -7,7 +7,8 @@ angular.module("smartRegistry.controllers")
 
         $scope.sort = function (option) {
             $scope.currentSortOption = option;
-            $scope.sortList = $scope[option.handler];
+            option.secondarySortKey = option.secondarySortKey || 'name';
+            $scope.sortList = [$scope[option.handler], option.secondarySortKey];
             $scope.sortDescending = option.sortDescending || false;
         };
 
