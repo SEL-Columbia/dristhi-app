@@ -5,6 +5,13 @@
                 <uuid/>
             </formhub>
             <today/>
+            <case_child_birth_date/>
+            <three_weeks/>
+            <seven_weeks/>
+            <eleven_weeks/>
+            <eight_months/>
+            <sixteen_months/>
+            <four_years/>
             <entity_immunizations_given/>
             <entity_immunizations_received/>
             <immunizations_given/>

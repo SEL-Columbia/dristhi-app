@@ -135,7 +135,8 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Child_Immunizations_EngKan/immunization_date" required="required"
-               data-constraint=".&lt;= /Child_Immunizations_EngKan/today " data-type-xml="date"/>
+               data-constraint="if(selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'bcg') or selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'opv_0') or selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'hepb_0'), .&gt;=  /Child_Immunizations_EngKan/case_child_birth_date  and .&lt;= /Child_Immunizations_EngKan/today , if(selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'opv_1') or selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'pentavalent_1'), .&gt;=  /Child_Immunizations_EngKan/three_weeks  and .&lt;= /Child_Immunizations_EngKan/today , if(selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'opv_2') or selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'pentavalent_2'), .&gt;= /Child_Immunizations_EngKan/seven_weeks  and .&lt;= /Child_Immunizations_EngKan/today , if(selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'opv_3') or selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'pentavalent_3'), .&gt;= /Child_Immunizations_EngKan/eleven_weeks  and .&lt;= /Child_Immunizations_EngKan/today , if(selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'measles'), .&gt;= /Child_Immunizations_EngKan/eight_months  and .&lt;= /Child_Immunizations_EngKan/today , if(selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'mmr') or selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'dptbooster_1') or selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'opvbooster') or selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'measlesbooster'), .&gt;=  /Child_Immunizations_EngKan/sixteen_months  and .&lt;= /Child_Immunizations_EngKan/today , if(selected( /Child_Immunizations_EngKan/entity_immunizations_received , 'dptbooster_2'), .&gt;= /Child_Immunizations_EngKan/four_years  and .&lt;= /Child_Immunizations_EngKan/today , .&lt;= /Child_Immunizations_EngKan/today )))))))"
+               data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
@@ -165,6 +166,30 @@
     </fieldset>
 
     <fieldset id="jr-calculated-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Child_Immunizations_EngKan/three_weeks"
+                   data-calculate=" /Child_Immunizations_EngKan/case_child_birth_date  + 21" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Child_Immunizations_EngKan/seven_weeks"
+                   data-calculate=" /Child_Immunizations_EngKan/case_child_birth_date  + 49" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Child_Immunizations_EngKan/eleven_weeks"
+                   data-calculate=" /Child_Immunizations_EngKan/case_child_birth_date  + 77" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Child_Immunizations_EngKan/eight_months"
+                   data-calculate=" /Child_Immunizations_EngKan/case_child_birth_date  + 240" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Child_Immunizations_EngKan/sixteen_months"
+                   data-calculate=" /Child_Immunizations_EngKan/case_child_birth_date  + 480" data-type-xml="string"/>
+        </label>
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Child_Immunizations_EngKan/four_years"
+                   data-calculate=" /Child_Immunizations_EngKan/case_child_birth_date  + 1460" data-type-xml="string"/>
+        </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Child_Immunizations_EngKan/immunizations_given"
                    data-calculate="concat( /Child_Immunizations_EngKan/entity_immunizations_given , ' ',  /Child_Immunizations_EngKan/entity_immunizations_received )"

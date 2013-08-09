@@ -39,7 +39,7 @@
             },
             {
                 "name": "dateOfBirth",
-                "bind": "/model/instance/Child_Sick_Visit_EngKan/child_date_of_birth",
+                "bind": "/model/instance/Child_Immunizations_EngKan/case_child_birth_date",
                 "shouldLoadValue": true
             }
         ]
