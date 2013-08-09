@@ -1,22 +1,19 @@
-<form class="jr" autocomplete="off" id="Family_Planning_Renew_Method">
+<form class="jr" autocomplete="off" id="Family_Planning_Refill_Method">
     <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
     <section class="form-logo"></section>
-    <h3 id="form-title">Renew FP Product</h3>
+    <h3 id="form-title">Refill FP Product</h3>
     <fieldset id="jr-preload-items" style="display:none;">
         <label class="">
-            <input autocomplete="off" type="hidden" name="/Family_Planning_Renew_Method_EngKan/today"
+            <input autocomplete="off" type="hidden" name="/Family_Planning_Refill_Method_EngKan/today"
                    data-preload="date" data-preload-params="today" data-type-xml="date"/>
         </label>
     </fieldset>
 
 
-    <fieldset class="trigger " name="/Family_Planning_Renew_Method_EngKan/familyplanning_method_message">
-        <span lang="" class=" active">Current FP method is:
-            <span class="jr-output" data-value=" /Family_Planning_Renew_Method_EngKan/case_familyplanning_method ">
-            </span>
-            &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCC1;&#xCA4; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCBE;
-            &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;:
-            <span class="jr-output" data-value=" /Family_Planning_Renew_Method_EngKan/case_familyplanning_method ">
+    <fieldset class="trigger " name="/Family_Planning_Refill_Method_EngKan/familyplanning_method_message">
+        <span lang="" class=" active">Current FP method is, &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCC1;&#xCA4;
+            &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCBE; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;:
+            <span class="jr-output" data-value=" /Family_Planning_Refill_Method_EngKan/case_familyplanning_method ">
             </span>
         </span>
     </fieldset>
@@ -26,8 +23,8 @@
             &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <span class="required">*</span>
-        <input autocomplete="off" type="date" name="/Family_Planning_Renew_Method_EngKan/fp_renew_method_visit_date"
-               required="required" data-constraint=".&lt;= /Family_Planning_Renew_Method_EngKan/today "
+        <input autocomplete="off" type="date" name="/Family_Planning_Refill_Method_EngKan/fp_renew_method_visit_date"
+               required="required" data-constraint=".&lt;= /Family_Planning_Refill_Method_EngKan/today "
                data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
@@ -39,28 +36,28 @@
                 <span class="required">*</span>
             </legend>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Family_Planning_Renew_Method_EngKan/able_to_renew_method"
+                <input autocomplete="off" type="radio" name="/Family_Planning_Refill_Method_EngKan/able_to_renew_method"
                        value="yes" required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Family_Planning_Renew_Method_EngKan/able_to_renew_method"
+                <input autocomplete="off" type="radio" name="/Family_Planning_Refill_Method_EngKan/able_to_renew_method"
                        value="no" required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
             </label>
         </fieldset>
     </fieldset>
-    <fieldset class="jr-branch pre-init " name="/Family_Planning_Renew_Method_EngKan/renewed_method_group"
-              data-relevant=" /Family_Planning_Renew_Method_EngKan/able_to_renew_method  = 'yes'">
+    <fieldset class="jr-branch pre-init " name="/Family_Planning_Refill_Method_EngKan/renewed_method_group"
+              data-relevant=" /Family_Planning_Refill_Method_EngKan/able_to_renew_method  = 'yes'">
         <label class="jr-branch pre-init ">
             <span lang="" class=" active">DMPA / Injectable date? &#xCA1;&#xCBF;&#xC82;&#xCAA;&#xCBE; / &#xC9A;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
                 &#xCAE;&#xCA6;&#xCCD;&#xCA6;&#xCC1; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
             </span>
             <span class="required">*</span>
             <input autocomplete="off" type="date"
-                   name="/Family_Planning_Renew_Method_EngKan/renewed_method_group/injectable_date" required="required"
-                   data-constraint=".&lt;= /Family_Planning_Renew_Method_EngKan/today "
-                   data-relevant=" /Family_Planning_Renew_Method_EngKan/case_familyplanning_method  = 'dmpa_injectable'"
+                   name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/injectable_date" required="required"
+                   data-constraint=".&lt;= /Family_Planning_Refill_Method_EngKan/today "
+                   data-relevant=" /Family_Planning_Refill_Method_EngKan/case_familyplanning_method  = 'dmpa_injectable'"
                    data-type-xml="date"/>
         </label>
         <label class="jr-branch pre-init ">
@@ -69,9 +66,9 @@
             </span>
             <span class="required">*</span>
             <input autocomplete="off" type="number"
-                   name="/Family_Planning_Renew_Method_EngKan/renewed_method_group/num_condoms" required="required"
+                   name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/num_condoms" required="required"
                    data-constraint=".&gt;= 0"
-                   data-relevant=" /Family_Planning_Renew_Method_EngKan/case_familyplanning_method  = 'condom'"
+                   data-relevant=" /Family_Planning_Refill_Method_EngKan/case_familyplanning_method  = 'condom'"
                    data-type-xml="int"/>
         </label>
         <label class="jr-branch pre-init ">
@@ -80,9 +77,9 @@
             </span>
             <span class="required">*</span>
             <input autocomplete="off" type="number"
-                   name="/Family_Planning_Renew_Method_EngKan/renewed_method_group/num_ocp_strips" required="required"
+                   name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/num_ocp_strips" required="required"
                    data-constraint=".&gt;= 0"
-                   data-relevant=" /Family_Planning_Renew_Method_EngKan/case_familyplanning_method  = 'ocp'"
+                   data-relevant=" /Family_Planning_Refill_Method_EngKan/case_familyplanning_method  = 'ocp'"
                    data-type-xml="int"/>
         </label>
         <label class="jr-branch pre-init ">
@@ -92,9 +89,9 @@
             </span>
             <span class="required">*</span>
             <input autocomplete="off" type="number"
-                   name="/Family_Planning_Renew_Method_EngKan/renewed_method_group/num_centchroman_pills"
+                   name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/num_centchroman_pills"
                    required="required" data-constraint=".&gt;= 0"
-                   data-relevant=" /Family_Planning_Renew_Method_EngKan/case_familyplanning_method  = 'centchroman'"
+                   data-relevant=" /Family_Planning_Refill_Method_EngKan/case_familyplanning_method  = 'centchroman'"
                    data-type-xml="int"/>
         </label>
         <label class="jr-branch pre-init ">
@@ -104,14 +101,14 @@
             </span>
             <span class="required">*</span>
             <input autocomplete="off" type="date"
-                   name="/Family_Planning_Renew_Method_EngKan/renewed_method_group/refill_date1" required="required"
-                   data-relevant=" /Family_Planning_Renew_Method_EngKan/renewed_method_group/num_ocp_strips  &gt; 0"
+                   name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/refill_date1" required="required"
+                   data-relevant=" /Family_Planning_Refill_Method_EngKan/renewed_method_group/num_ocp_strips  &gt; 0"
                    data-type-xml="date"/>
         </label>
     </fieldset>
     <!--end of group -->
-    <fieldset class="jr-branch pre-init " name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group"
-              data-relevant=" /Family_Planning_Renew_Method_EngKan/able_to_renew_method  = 'no'">
+    <fieldset class="jr-branch pre-init " name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group"
+              data-relevant=" /Family_Planning_Refill_Method_EngKan/able_to_renew_method  = 'no'">
         <fieldset class="restoring-sanity-to-legends ">
             <fieldset>
                 <legend>
@@ -122,27 +119,27 @@
                 </legend>
                 <label class="clearfix ">
                     <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
+                           name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
                            value="stock_out" data-type-xml="select1"/>
                     <span lang="" class=" active">Stock out &#xCB8;&#xCCD;&#xC9F;&#xCBE;&#xC95;&#xCCD; &#xC94;&#xC9F;&#xCCD;</span>
                 </label>
                 <label class="clearfix ">
                     <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
+                           name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
                            value="could_not_locate_couple" data-type-xml="select1"/>
                     <span lang="" class=" active">Could not locate couple &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                         &#xCAA;&#xCA4;&#xCCD;&#xCA4;&#xCC6;&#xCAE;&#xCBE;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCB2;&#xCCD;&#xCB2;</span>
                 </label>
                 <label class="clearfix ">
                     <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
+                           name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
                            value="couple_refused_method" data-type-xml="select1"/>
                     <span lang="" class=" active">Couple didn't want method renewal &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
                         &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCA6; &#xCA8;&#xCB5;&#xCC0;&#xC95;&#xCB0;&#xCA3; &#xCAC;&#xCC7;&#xC95;&#xCBE;&#xC97;&#xCBF;&#xCB2;&#xCCD;&#xCB2;</span>
                 </label>
                 <label class="clearfix ">
                     <input autocomplete="off" type="radio"
-                           name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
+                           name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
                            value="others" data-type-xml="select1"/>
                     <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
                 </label>
@@ -151,8 +148,8 @@
         <label class="jr-branch pre-init ">
             <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
             <input autocomplete="off" type="text"
-                   name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason_other"
-                   data-relevant=" /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'others'"
+                   name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason_other"
+                   data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'others'"
                    data-type-xml="string"/>
         </label>
         <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
@@ -164,18 +161,18 @@
                 </legend>
                 <label class="clearfix ">
                     <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
+                           name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
                            value="couple_wants_pregnancy"
-                           data-relevant=" /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                           data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                            data-type-xml="select"/>
                     <span lang="" class=" active">Couple wants to become pregnant &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1;
                         &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBF;&#xCA3;&#xCBF;&#xCAF;&#xCBE;&#xC97;&#xCB2;&#xCC1; &#xCAC;&#xCAF;&#xCB8;&#xCBF;&#xCA6;&#xCB0;&#xCC1;</span>
                 </label>
                 <label class="clearfix ">
                     <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
+                           name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
                            value="woman_husband_having_side_effects"
-                           data-relevant=" /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                           data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                            data-type-xml="select"/>
                     <span lang="" class=" active">Woman / husband was having side-effects from the method &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;
                         / &#xCAA;&#xCA4;&#xCBF;&#xCAF;&#xCC1; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCA6;&#xCBF;&#xC82;&#xCA6;
@@ -184,9 +181,9 @@
                 </label>
                 <label class="clearfix ">
                     <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
+                           name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
                            value="husband_objects_to_fp"
-                           data-relevant=" /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                           data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                            data-type-xml="select"/>
                     <span lang="" class=" active">Husband does not want wife to use family planning &#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCC6;
                         &#xCAA;&#xCA4;&#xCCD;&#xCA8;&#xCBF;&#xCAF;&#xCC1; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
@@ -195,9 +192,9 @@
                 </label>
                 <label class="clearfix ">
                     <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
+                           name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
                            value="family_members_object_to_fp"
-                           data-relevant=" /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                           data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                            data-type-xml="select"/>
                     <span lang="" class=" active">Family members do not want couple to use family planning &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
                         &#xCB8;&#xCA6;&#xCB8;&#xCCD;&#xCAF;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1;
@@ -206,44 +203,44 @@
                 </label>
                 <label class="clearfix ">
                     <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
+                           name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
                            value="husband_away"
-                           data-relevant=" /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                           data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                            data-type-xml="select"/>
                     <span lang="" class=" active">Husband is away &#xC97;&#xC82;&#xCA1; &#xC9C;&#xCCA;&#xCA4;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCB2;&#xCCD;&#xCB2;</span>
                 </label>
                 <label class="clearfix ">
                     <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
+                           name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
                            value="infrequent_sex"
-                           data-relevant=" /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                           data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                            data-type-xml="select"/>
                     <span lang="" class=" active">Having infrequent or no sex &#xC87;&#xCB2;&#xCCD;&#xCB2;&#xCA6;
                         &#xC85;&#xCA5;&#xCB5;&#xCBE; &#xCB5;&#xCBF;&#xCB0;&#xCB3; &#xCB2;&#xCC8;&#xC82;&#xC97;&#xCBF;&#xC95;&#xCA4;&#xCC6;</span>
                 </label>
                 <label class="clearfix ">
                     <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
+                           name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
                            value="postpartum_amenorrhea"
-                           data-relevant=" /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                           data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                            data-type-xml="select"/>
                     <span lang="" class=" active">Postpartum amenorrhea &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;
                         &#xCA8;&#xC82;&#xCA4;&#xCB0; &#xC8B;&#xCA4;&#xCC1;&#xCB8;&#xCCD;&#xCB0;&#xCBE;&#xCB5;&#xCB5;&#xCBE;&#xC97;&#xCA6;&#xCBF;&#xCB0;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1;</span>
                 </label>
                 <label class="clearfix ">
                     <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
+                           name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
                            value="currently_breastfeeding"
-                           data-relevant=" /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                           data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                            data-type-xml="select"/>
                     <span lang="" class=" active">Currently breastfeeding &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xC95;&#xCCD;&#xCA4;
                         &#xC8E;&#xCA6;&#xCC6;&#xCB9;&#xCBE;&#xCB2;&#xCC1;&#xCA3;&#xCBF;&#xCB8;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1;</span>
                 </label>
                 <label class="clearfix ">
                     <input autocomplete="off" type="checkbox"
-                           name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
+                           name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason"
                            value="others"
-                           data-relevant=" /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                           data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                            data-type-xml="select"/>
                     <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
                 </label>
@@ -252,13 +249,13 @@
         <label class="jr-branch pre-init ">
             <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
             <input autocomplete="off" type="text"
-                   name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason_other"
-                   data-relevant="selected( /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'others')"
+                   name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason_other"
+                   data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'others')"
                    data-type-xml="string"/>
         </label>
         <fieldset class="trigger jr-branch pre-init"
-                  name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/side_effects_message"
-                  data-relevant="selected( /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'woman_husband_having_side_effects')">
+                  name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/side_effects_message"
+                  data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'woman_husband_having_side_effects')">
             <span lang="" class=" active">Please report FP side-effects in Record FP Complication form. &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
                 &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF; &#xC85;&#xCA1;&#xCCD;&#xCA1;&#xCAA;&#xCB0;&#xCBF;&#xCA3;&#xCBE;&#xCAE;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                 &#xCA6;&#xCAF;&#xCB5;&#xCBF;&#xC9F;&#xCCD;&#xC9F;&#xCC1; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
@@ -268,8 +265,8 @@
             </span>
         </fieldset>
         <fieldset class="trigger jr-branch pre-init"
-                  name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/fp_objection_message"
-                  data-relevant="selected( /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'husband_objects_to_fp') or selected( /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'family_members_object_to_fp')">
+                  name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/fp_objection_message"
+                  data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'husband_objects_to_fp') or selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'family_members_object_to_fp')">
             <span lang="" class=" active">If there are any misconceptions about family planning methods, please talk to
                 the couple about real and unreal side-effects. Use Dristhi's video library to counsel them on
                 appropriate FP methods. &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;
@@ -286,8 +283,8 @@
             </span>
         </fieldset>
         <fieldset class="trigger jr-branch pre-init"
-                  name="/Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/couple_refused_message"
-                  data-relevant=" /Family_Planning_Renew_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'">
+                  name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/couple_refused_message"
+                  data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'">
             <span lang="" class=" active">If couple wants to stop or change methods, please go to Change FP Method form.
                 &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
                 &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
@@ -303,17 +300,17 @@
     <fieldset id="jr-calculated-items" style="display:none;">
         <label class="">
             <input autocomplete="off" type="hidden"
-                   name="/Family_Planning_Renew_Method_EngKan/renewed_method_group/refill_date"
-                   data-calculate="if( /Family_Planning_Renew_Method_EngKan/renewed_method_group/injectable_date  != '',  /Family_Planning_Renew_Method_EngKan/renewed_method_group/injectable_date ,  /Family_Planning_Renew_Method_EngKan/renewed_method_group/refill_date1 )"
+                   name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/refill_date"
+                   data-calculate="if( /Family_Planning_Refill_Method_EngKan/renewed_method_group/injectable_date  != '',  /Family_Planning_Refill_Method_EngKan/renewed_method_group/injectable_date ,  /Family_Planning_Refill_Method_EngKan/renewed_method_group/refill_date1 )"
                    data-type-xml="string"/>
         </label>
         <label class="">
-            <input autocomplete="off" type="hidden" name="/Family_Planning_Renew_Method_EngKan/meta/instanceID"
+            <input autocomplete="off" type="hidden" name="/Family_Planning_Refill_Method_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
         <label class="">
-            <input autocomplete="off" type="hidden" name="/Family_Planning_Renew_Method_EngKan/formhub/uuid"
-                   data-calculate="'b0299704f59c4d49b097a65e9389ea48'" data-type-xml="string"/>
+            <input autocomplete="off" type="hidden" name="/Family_Planning_Refill_Method_EngKan/formhub/uuid"
+                   data-calculate="'8d454a25e30749cf8fca3b63f3b5cbac'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>

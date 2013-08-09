@@ -1,6 +1,6 @@
 <model>
     <instance xmlns="http://www.w3.org/2002/xforms">
-        <Family_Planning_Renew_Method_EngKan id="Family_Planning_Renew_Method">
+        <Family_Planning_Refill_Method_EngKan id="Family_Planning_Refill_Method">
             <formhub>
                 <uuid/>
             </formhub>
@@ -29,6 +29,6 @@
             <meta>
                 <instanceID/>
             </meta>
-        </Family_Planning_Renew_Method_EngKan>
+        </Family_Planning_Refill_Method_EngKan>
     </instance>
 </model>
