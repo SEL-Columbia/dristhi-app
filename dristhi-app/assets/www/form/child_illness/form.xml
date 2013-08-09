@@ -41,7 +41,8 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/sick_visit_date" required="required"
-                   data-constraint=".&lt;= /Child_Sick_Visit_EngKan/today " data-type-xml="date"/>
+                   data-constraint=".&gt;=  /Child_Sick_Visit_EngKan/child_sickness_management_group/case_child_birth_date  and .&lt;= /Child_Sick_Visit_EngKan/today "
+                   data-type-xml="date"/>
         </label>
         <fieldset class="restoring-sanity-to-legends ">
             <fieldset>
@@ -421,7 +422,9 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease_date"
-                   required="required" data-constraint=".&lt;= /Child_Sick_Visit_EngKan/today " data-type-xml="date"/>
+                   required="required"
+                   data-constraint=".&gt;=  /Child_Sick_Visit_EngKan/child_sickness_management_group/case_child_birth_date  and .&lt;= /Child_Sick_Visit_EngKan/today "
+                   data-type-xml="date"/>
         </label>
         <fieldset class="restoring-sanity-to-legends ">
             <fieldset>
@@ -462,6 +465,27 @@
                    data-relevant=" /Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease  = 'diarrhea_dehydration'"
                    data-type-xml="int"/>
         </label>
+        <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
+            <fieldset>
+                <legend>
+                    <span lang="" class=" active">Are you out of stock of ORS?</span>
+                </legend>
+                <label class="clearfix ">
+                    <input autocomplete="off" type="radio"
+                           name="/Child_Sick_Visit_EngKan/report_child_disease_group/ors_stock_out" value="yes"
+                           data-relevant=" /Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease  = 'diarrhea_dehydration'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
+                </label>
+                <label class="clearfix ">
+                    <input autocomplete="off" type="radio"
+                           name="/Child_Sick_Visit_EngKan/report_child_disease_group/ors_stock_out" value="no"
+                           data-relevant=" /Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease  = 'diarrhea_dehydration'"
+                           data-type-xml="select1"/>
+                    <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+                </label>
+            </fieldset>
+        </fieldset>
         <fieldset class="restoring-sanity-to-legends ">
             <fieldset>
                 <legend>
@@ -485,75 +509,6 @@
         </fieldset>
     </fieldset>
     <!--end of group -->
-    <fieldset class="restoring-sanity-to-legends ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">Do you have a stock out of anything? &#xCA8;&#xCC0;&#xCB5;&#xCC1; &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1;
-                    &#xCB8;&#xCCD;&#xC9F;&#xCBE;&#xC95;&#xCCD; &#xC94;&#xC9F;&#xCCD; &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCC0;&#xCB0;&#xCBE;?
-                </span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Child_Sick_Visit_EngKan/has_stock_out" value="yes"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Child_Sick_Visit_EngKan/has_stock_out" value="no"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-            </label>
-        </fieldset>
-    </fieldset>
-    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">What stock are you out of? &#xCA8;&#xCBF;&#xCAE;&#xC97;&#xCC6; &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCC1;
-                    &#xCB8;&#xCCD;&#xC9F;&#xCBE;&#xC95;&#xCCD; &#xC94;&#xC9F;&#xCCD; &#xC86;&#xC97;&#xCBF;&#xCA6;&#xCC7;?
-                </span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Sick_Visit_EngKan/stock_out_items" value="ifa"
-                       data-relevant=" /Child_Sick_Visit_EngKan/has_stock_out  = 'yes'" data-type-xml="select"/>
-                <span lang="" class=" active">IFA tablets &#xC90;.&#xC8E;&#xCAB;&#xCCD;.&#xC8E; &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xC97;&#xCB3;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Sick_Visit_EngKan/stock_out_items" value="ors"
-                       data-relevant=" /Child_Sick_Visit_EngKan/has_stock_out  = 'yes'" data-type-xml="select"/>
-                <span lang="" class=" active">ORS packets &#xC93;.&#xC86;&#xCB0;&#xCCD;.&#xC8E;&#xCB8;&#xCCD; &#xCAA;&#xCCA;&#xC9F;&#xCCD;&#xC9F;&#xCA3;&#xC97;&#xCB3;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Sick_Visit_EngKan/stock_out_items" value="condom"
-                       data-relevant=" /Child_Sick_Visit_EngKan/has_stock_out  = 'yes'" data-type-xml="select"/>
-                <span lang="" class=" active">Condoms &#xCA8;&#xCBF;&#xCB0;&#xCCB;&#xCA6;&#xCCD;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Sick_Visit_EngKan/stock_out_items" value="ocp"
-                       data-relevant=" /Child_Sick_Visit_EngKan/has_stock_out  = 'yes'" data-type-xml="select"/>
-                <span lang="" class=" active">OCP strips &#xC92;.&#xCB8;&#xCBF;.&#xCAA;&#xCBF; &#xCB8;&#xCCD;&#xC9F;&#xCCD;&#xCB0;&#xCBF;&#xCAA;&#xCCD;&#xCB8;&#xCCD;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Sick_Visit_EngKan/stock_out_items" value="iud"
-                       data-relevant=" /Child_Sick_Visit_EngKan/has_stock_out  = 'yes'" data-type-xml="select"/>
-                <span lang="" class=" active">IUDs &#xC90;.&#xCAF;&#xCC1;.&#xCA1;&#xCBF; &#xC97;&#xCB3;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Sick_Visit_EngKan/stock_out_items"
-                       value="syringe" data-relevant=" /Child_Sick_Visit_EngKan/has_stock_out  = 'yes'"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Syringes &#xCB8;&#xCBF;&#xCB0;&#xCBF;&#xC82;&#xC9C;&#xCC1;&#xC97;&#xCB3;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Sick_Visit_EngKan/stock_out_items" value="others"
-                       data-relevant=" /Child_Sick_Visit_EngKan/has_stock_out  = 'yes'" data-type-xml="select"/>
-                <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
-            </label>
-        </fieldset>
-    </fieldset>
-    <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
-        <input autocomplete="off" type="text" name="/Child_Sick_Visit_EngKan/stock_out_items_others"
-               data-relevant="selected( /Child_Sick_Visit_EngKan/stock_out_items , 'others')" data-type-xml="string"/>
-    </label>
 
     <fieldset id="jr-calculated-items" style="display:none;">
         <label class="">

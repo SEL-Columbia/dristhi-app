@@ -54,11 +54,9 @@
                 <report_child_disease_date/>
                 <report_child_disease_place/>
                 <number_ors_given/>
+                <ors_stock_out/>
                 <child_referral/>
             </report_child_disease_group>
-            <has_stock_out/>
-            <stock_out_items/>
-            <stock_out_items_others/>
             <meta>
                 <instanceID/>
             </meta>
