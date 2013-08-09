@@ -262,7 +262,7 @@
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Outcome_EngKan/type_delivery"
-                       value="istrumental_forcep" data-type-xml="select1"/>
+                       value="instrumental_forcep" data-type-xml="select1"/>
                 <span lang="" class=" active">Instrumental / Forcep &#xC89;&#xCAA;&#xC95;&#xCB0;&#xCA3;&#xC97;&#xCB3;&#xCBF;&#xC82;&#xCA6;
                     &#xCAE;&#xCBE;&#xCA1;&#xCC1;&#xCB5; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;</span>
             </label>
