@@ -6,16 +6,15 @@
             </formhub>
             <today/>
             <case_familyplanning_method/>
-            <familyplanning_method/>
             <iud_removal_date/>
             <iud_removal_place/>
+            <familyplanning_method/>
             <date_familyplanningstart/>
             <lmp_date/>
             <upt_result/>
             <iud_place/>
             <iud_place_name/>
             <iud_person/>
-            <iud_person_other/>
             <iud_person_name/>
             <sterilization_doctor_name/>
             <male_sterilization_type/>
@@ -28,6 +27,7 @@
             <num_condoms/>
             <num_ocp_strips/>
             <num_centchroman_pills/>
+            <fp_method_stock_out/>
             <meta>
                 <instanceID/>
             </meta>

@@ -10,6 +10,54 @@
     </fieldset>
 
 
+    <label class="jr-branch pre-init ">
+        <span lang="" class=" active">IUD removal date? &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF; &#xCA4;&#xCC6;&#xC97;&#xCC6;&#xCAF;&#xCC1;&#xCB5;
+            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        </span>
+        <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/iud_removal_date"
+               data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
+               data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
+               data-type-xml="date"/>
+    </label>
+    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Place of IUD removal? &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF; &#xCA4;&#xCC6;&#xC97;&#xCC6;&#xCAF;&#xCC1;&#xCB5;
+                    &#xCB8;&#xCCD;&#xCA5;&#xCB3;?
+                </span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
+                       value="home"
+                       data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Home &#xCAE;&#xCA8;&#xCC6;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
+                       value="sub_center"
+                       data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
+                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
+                       value="phc"
+                       data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
+                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
+                       value="elsewhere"
+                       data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">Elsewhere &#xCAC;&#xCC7;&#xCB0;&#xCC6;&#xCA1;&#xCC6;</span>
+            </label>
+        </fieldset>
+    </fieldset>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
             <legend>
@@ -85,66 +133,21 @@
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">IUD removal date? &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF; &#xCA4;&#xCC6;&#xC97;&#xCC6;&#xCAF;&#xCC1;&#xCB5;
-            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
-        </span>
-        <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/iud_removal_date"
-               data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
-               data-type-xml="date"/>
-    </label>
-    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">Place of IUD removal? &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF; &#xCA4;&#xCC6;&#xC97;&#xCC6;&#xCAF;&#xCC1;&#xCB5;
-                    &#xCB8;&#xCCD;&#xCA5;&#xCB3;?
-                </span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
-                       value="home"
-                       data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Home &#xCAE;&#xCA8;&#xCC6;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
-                       value="sub_center"
-                       data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
-                       value="phc"
-                       data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
-                       value="elsewhere"
-                       data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Elsewhere &#xCAC;&#xCC7;&#xCB0;&#xCC6;&#xCA1;&#xCC6;</span>
-            </label>
-        </fieldset>
-    </fieldset>
-    <label class="jr-branch pre-init ">
         <span lang="" class=" active">Date FP method started? &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
             &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/date_familyplanningstart"
-               required="required"
+               required="required" data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none'"
                data-type-xml="date"/>
     </label>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">LMP &#xC95;&#xCCA;&#xCA8;&#xCC6;&#xCAF; &#xCAE;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xCA8;
-            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;</span>
+        <span lang="" class=" active">LMP, &#xC95;&#xCCA;&#xCA8;&#xCC6;&#xCAF; &#xCAE;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xCA8;
+            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;:
+        </span>
         <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/lmp_date"
+               data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none'"
                data-type-xml="date"/>
     </label>
@@ -203,7 +206,10 @@
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Name of facility where IUD was given?</span>
+        <span lang="" class=" active">Name of facility where IUD was given? &#xC90;.&#xCAF;&#xCC1;.&#xCA1;&#xCBF;
+            &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCA6; &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xCAF;
+            &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?
+        </span>
         <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/iud_place_name"
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
                data-type-xml="string"/>
@@ -250,12 +256,9 @@
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
-        <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/iud_person_other"
-               data-relevant=" /Family_Planning_Change_Method_EngKan/iud_person  = 'others'" data-type-xml="string"/>
-    </label>
-    <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Name of IUD inserter:</span>
+        <span lang="" class=" active">Name of IUD inserter, &#xC90;.&#xCAF;&#xCC1;.&#xCA1;&#xCBF; &#xCB9;&#xCBE;&#xC95;&#xCBF;&#xCA6;&#xCB5;&#xCB0;
+            &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;:
+        </span>
         <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/iud_person_name"
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
                data-type-xml="string"/>
@@ -324,16 +327,10 @@
         <fieldset class="trigger jr-branch pre-init"
                   name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/male_sterilization_message"
                   data-relevant=" /Family_Planning_Change_Method_EngKan/today  -  /Family_Planning_Change_Method_EngKan/date_familyplanningstart  &lt; 90">
-            <span lang="" class=" active">Instructions:
-                Pregnancy can still happen up to 3 months after male sterilization. Tell the couple to use back-up FP
-                method until 3 months from sterilization date:
-                <span class="jr-output"
-                      data-value=" /Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted ">
-                </span>
-                &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
-                &#xCAA;&#xCC1;&#xCB0;&#xCC1;&#xCB7; &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCBE;&#xCB9;&#xCB0;&#xCA3;
-                &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xCAF;
-                &#xCA8;&#xC82;&#xCA4;&#xCB0; &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCB5;&#xCB8;&#xCCD;&#xCA5;&#xCC6;&#xCAF;&#xCC1;
+            <span lang="" class=" active">Pregnancy can still happen up to 3 months after male sterilization. Tell the
+                couple to use back-up FP method until 3 months from sterilization date, &#xCAA;&#xCC1;&#xCB0;&#xCC1;&#xCB7;
+                &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCBE;&#xCB9;&#xCB0;&#xCA3; &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0;
+                &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xCAF; &#xCA8;&#xC82;&#xCA4;&#xCB0; &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCB5;&#xCB8;&#xCCD;&#xCA5;&#xCC6;&#xCAF;&#xCC1;
                 &#xC87;&#xCA8;&#xCCD;&#xCA8;&#xCC2; 3 &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCB5;&#xCB0;&#xCC6;&#xC97;&#xCC6;
                 &#xCB8;&#xC82;&#xCAD;&#xCB5;&#xCBF;&#xCB8;&#xCAC;&#xCB9;&#xCC1;&#xCA6;&#xCC1;. &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCBE;&#xCB9;&#xCB0;&#xCA3;
                 &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xCAF;
@@ -378,6 +375,37 @@
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'centchroman'"
                data-type-xml="int"/>
     </label>
+    <fieldset class="restoring-sanity-to-legends ">
+        <fieldset>
+            <legend>
+                <span lang="" class=" active">Are you out of stock of any FP method?</span>
+            </legend>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox"
+                       name="/Family_Planning_Change_Method_EngKan/fp_method_stock_out" value="condom"
+                       data-type-xml="select"/>
+                <span lang="" class=" active">Condom &#xCA8;&#xCBF;&#xCB0;&#xCCB;&#xCA7;&#xCCD;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox"
+                       name="/Family_Planning_Change_Method_EngKan/fp_method_stock_out" value="ocp"
+                       data-type-xml="select"/>
+                <span lang="" class=" active">OCP &#xC92;&#xCB8;&#xCBF;&#xCAA;&#xCBF;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox"
+                       name="/Family_Planning_Change_Method_EngKan/fp_method_stock_out" value="iud"
+                       data-type-xml="select"/>
+                <span lang="" class=" active">IUD &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox"
+                       name="/Family_Planning_Change_Method_EngKan/fp_method_stock_out" value="centchroman"
+                       data-type-xml="select"/>
+                <span lang="" class=" active">Centchroman &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCA8;&#xCCD;</span>
+            </label>
+        </fieldset>
+    </fieldset>
 
     <fieldset id="jr-calculated-items" style="display:none;">
         <label class="">
