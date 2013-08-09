@@ -9,6 +9,10 @@
                 "shouldLoadValue": true
             },
             {
+                "name": "registrationDate",
+                "bind": "/model/instance/Child_Registration_EngKan/child_reg_date"
+            },
+            {
                 "name": "phc",
                 "bind": "/model/instance/Child_Registration_EngKan/phc",
                 "source": "child.mother.eligible_couple.phc"
@@ -44,7 +48,7 @@
                 "source": "child.mother.eligible_couple.husbandName"
             },
             {
-                "name": "thayiCardNumer",
+                "name": "thayiCardNumber",
                 "bind": "/model/instance/Child_Registration_EngKan/thayi_card_number",
                 "source": "child.mother.thayiCardNumber"
             },
@@ -60,7 +64,7 @@
             },
             {
                 "name": "phoneNumber",
-                "bind": "/model/instance/Child_Registration_EngKan/phone_number",
+                "bind": "/model/instance/Child_Registration_EngKan/phone_no",
                 "source": "child.mother.eligible_couple.phoneNumber"
             },
             {
@@ -177,7 +181,7 @@
             },
             {
                 "name": "measlesBoosterDate",
-                "bind": "/model/instance/Child_Registration_EngKan/child_immunization_history_group/measles_booster_date"
+                "bind": "/model/instance/Child_Registration_EngKan/child_immunization_history_group/measlesbooster_date"
             },
             {
                 "name": "dptBooster2Date",
