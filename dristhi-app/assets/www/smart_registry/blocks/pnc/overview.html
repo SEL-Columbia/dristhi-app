@@ -25,7 +25,7 @@
     <br/>
     <ng:switch on="client.fp_method">
                 <span ng-switch-when="iud">
-                    <span>{{client.iudPlace | uppercase}}</span>
+                    <span class="iud-place">{{client.iudPlace | uppercase}}</span>
                     <span ng-show="client.iudPlace">, </span>
                     <span>{{client.iudPerson | uppercase}}</span>
                 </span>

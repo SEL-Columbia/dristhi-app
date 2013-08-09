@@ -1155,3 +1155,10 @@ img.pnc-child-img {
 .btn-fill-cell {
     min-height: 70px;
 }
+
+.iud-place {
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
