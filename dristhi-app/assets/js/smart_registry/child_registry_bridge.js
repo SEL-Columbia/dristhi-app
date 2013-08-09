@@ -61,7 +61,7 @@ function FakeChildSmartRegistryContext() {
                             "date": "2013-07-20"
                         }
                     ],
-                    "thayiCardNumber": "4656456",
+                    "thayiCardNumber": "",
                     "village": "kavalu_hosur",
                     "isHighRisk": false
                 },
@@ -115,7 +115,7 @@ function FakeChildSmartRegistryContext() {
                             }
                         }
                     ],
-                    "thayiCardNumber": "2747833",
+                    "thayiCardNumber": "",
                     "village": "hosa_agrahara",
                     "isHighRisk": false
                 },
