@@ -67,7 +67,6 @@ angular.module("smartRegistry.services")
                         });
                     }
                 );
-                console.log(JSON.stringify(clients));
             }
         }
     });
