@@ -63,14 +63,25 @@ describe("List view controller", function () {
             expect(scope.currentSortOption).toBe(sortOption);
         });
 
-        it("should set sort list handler based on the selected sort option.", function () {
+        it("should set sort list handler based on the selected sort option along with name field as secondary sort.", function () {
             var sortOption = {
                 label: "Name (A to Z)",
                 handler: "sortByName"
             };
             scope.sort(sortOption);
 
-            expect(scope.sortList).toBe(scope.sortByName);
+            expect(scope.sortList).toEqual([scope.sortByName, 'name']);
+        });
+
+        it("should set sort list handler based on the selected sort option along with specific secondary sort field.", function () {
+            var sortOption = {
+                label: "Name (A to Z)",
+                handler: "sortByName",
+                secondarySortKey: 'age'
+            };
+            scope.sort(sortOption);
+
+            expect(scope.sortList).toEqual([scope.sortByName, 'age']);
         });
 
         it("should set sort order based on the selected sort option.", function () {
