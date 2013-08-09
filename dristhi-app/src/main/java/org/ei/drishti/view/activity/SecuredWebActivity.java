@@ -104,6 +104,8 @@ public abstract class SecuredWebActivity extends SecuredActivity {
                     progressDialog.dismiss();
             }
 
+
+
             @Override
             public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
                 String message = format("Javascript Log. Message: {0}, lineNumber: {1}, sourceId, {2}", consoleMessage.message(),
@@ -111,7 +113,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
 
                 if (consoleMessage.messageLevel() == ERROR) {
                     logError(message);
-                    ACRA.getErrorReporter().handleSilentException(new RuntimeException(message));
+                    reportException(message);
                 } else {
                     logDebug(message);
                 }
@@ -134,6 +136,10 @@ public abstract class SecuredWebActivity extends SecuredActivity {
                 return true;
             }
         });
+    }
+
+    protected void reportException(String message) {
+        ACRA.getErrorReporter().handleSilentException(new RuntimeException(message));
     }
 
     public void startFormActivity(String formName, String entityId, String metaData) {

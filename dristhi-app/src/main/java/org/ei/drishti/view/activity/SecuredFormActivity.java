@@ -70,6 +70,11 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
     }
 
     @Override
+    protected void reportException(String message) {
+
+    }
+
+    @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)
                 .setMessage(form_back_confirm_dialog_message)
