@@ -1,25 +1,28 @@
-<div id="name" ng-click="openProfile(client.entityId)" class="span8 client-details line-right full-height span-no-margin width-without-margins span-content">
+<div id="name" ng-click="openProfile(client.entityId)"
+     class="span8 client-details line-right full-height span-no-margin width-without-margins span-content">
     <div id="pic">
         <img ng-src="{{client.photo_path}}"/>
     </div>
     <div class="names">
-        <span class="client-name text-bold ellipsis">{{nameOrMothers(client) | humanize | camelCase}}</span>
-        <span class="client-age text-bold">({{childsAge(client)}}, {{client.gender | slice:0:1}})</span>
-        <br/>
-    <span class="client-parents-name ellipsis"
-          style="font-size:15px;">{{client.motherName | humanize | camelCase}} ({{client.motherAge}})
-        <span ng-show="client.fatherName">, {{client.fatherName | humanize | camelCase}}</span>
-    </span>
-        <br/>
-    <span class="client-village ellipsis">
-        {{client.village | humanize | camelCase}}
-    </span>
-        <span class="client-location-status" ng-show="locationStatusMapping[client.locationStatus]">({{villageOptions.options[locationStatusMapping[client.locationStatus]].label}})</span>
+        <div>
+            <span class="client-name text-bold ellipsis">{{nameOrMothers(client) | humanize | camelCase}}</span>
+            <span class="client-age text-bold">({{childsAge(client)}}, {{client.gender | slice:0:1}})</span>
+        </div>
+        <div class="client-parents-name ellipsis" style="font-size:15px;">
+            <span>{{client.motherName | humanize | camelCase}}</span>
+            <span ng-show="client.motherAge">({{client.motherAge}})</span>
+            <span ng-show="client.fatherName">, {{client.fatherName | humanize | camelCase}}</span>
+        </div>
+        <div>
+            <span class="client-village ellipsis">{{client.village | humanize | camelCase}}</span>
+            <span class="client-location-status" ng-show="locationStatusMapping[client.locationStatus]">({{villageOptions.options[locationStatusMapping[client.locationStatus]].label}})</span>
+        </div>
     </div>
     <div class="flag-container">
         <div ng-show="client.isHighPriority" class="flag flag-hp"></div>
         <div ng-show="client.isHighRisk" class="flag flag-hr"></div>
-        <div ng-show="client.economicStatus && (client.economicStatus.toUpperCase() == 'BPL')" class="flag flag-bpl"></div>
+        <div ng-show="client.economicStatus && (client.economicStatus.toUpperCase() == 'BPL')"
+             class="flag flag-bpl"></div>
         <ng:switch on="client.caste.toUpperCase()">
             <div ng-switch-when="SC" class="flag flag-sc"></div>
             <div ng-switch-when="ST" class="flag flag-st"></div>

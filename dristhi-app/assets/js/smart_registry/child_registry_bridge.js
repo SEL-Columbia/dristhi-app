@@ -71,11 +71,11 @@ function FakeChildSmartRegistryContext() {
                     "ecNumber": "2",
                     "entityId": "8a1c44ef-9f8b-40bf-858f-a6ef4c48d943",
                     "entityIdToSavePhoto": "8a1c44ef-9f8b-40bf-858f-a6ef4c48d943",
-                    "fatherName": "krishna",
+                    "fatherName": "krishnaaaaaaaaaaaaaaaaaaaa",
                     "gender": "female",
                     "weight": "",
                     "locationStatus": "in_area",
-                    "motherAge": "33",
+                    "motherAge": null,
                     "motherName": "kanaka",
                     "photo_path": "../../img/icons/child-girlinfant@3x.png",
                     "services_provided": [
