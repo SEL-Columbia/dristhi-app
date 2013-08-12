@@ -36,7 +36,8 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Child_Vitamin_A_EngKan/vit_a_date" required="required"
-               data-constraint=".&lt;= /Child_Vitamin_A_EngKan/today " data-type-xml="date"/>
+               data-constraint=".&gt;=  /Child_Vitamin_A_EngKan/eight_months  and .&lt;= /Child_Vitamin_A_EngKan/today "
+               data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
@@ -66,6 +67,10 @@
     </fieldset>
 
     <fieldset id="jr-calculated-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/Child_Vitamin_A_EngKan/eight_months"
+                   data-calculate=" /Child_Vitamin_A_EngKan/case_child_birth_date  + 240" data-type-xml="string"/>
+        </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Child_Vitamin_A_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
