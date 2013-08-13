@@ -1,8 +1,8 @@
 package org.ei.drishti.repository;
 
 import android.content.Context;
-import info.guardianproject.database.sqlcipher.SQLiteDatabase;
-import info.guardianproject.database.sqlcipher.SQLiteOpenHelper;
+import net.sqlcipher.database.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteOpenHelper;
 import org.ei.drishti.util.Session;
 
 import java.io.File;

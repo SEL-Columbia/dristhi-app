@@ -1,6 +1,6 @@
 package org.ei.drishti.repository;
 
-import info.guardianproject.database.sqlcipher.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteDatabase;
 
 public abstract class DrishtiRepository {
     protected Repository masterRepository;

@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import info.guardianproject.database.sqlcipher.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteDatabase;
 import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.EligibleCouple;
@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static info.guardianproject.database.DatabaseUtils.longForQuery;
 import static java.lang.Boolean.TRUE;
+import static net.sqlcipher.DatabaseUtils.longForQuery;
 import static org.apache.commons.lang3.StringUtils.repeat;
 import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_COLUMNS;
 import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_NAME;

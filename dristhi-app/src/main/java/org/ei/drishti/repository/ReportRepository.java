@@ -2,7 +2,7 @@ package org.ei.drishti.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import info.guardianproject.database.sqlcipher.SQLiteDatabase;
+import net.sqlcipher.database.SQLiteDatabase;
 import org.ei.drishti.domain.Report;
 
 import java.util.ArrayList;

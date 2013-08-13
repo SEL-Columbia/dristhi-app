@@ -2,12 +2,14 @@ package org.ei.drishti.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-import info.guardianproject.database.sqlcipher.SQLiteDatabase;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.util.Session;
 
 import java.util.Date;
 import java.util.List;
+
+import static java.util.Arrays.asList;
+import static org.ei.drishti.dto.AlertStatus.normal;
 
 public class RepositoryTest extends AndroidTestCase {
     public void testShouldCheckPassword() throws Exception {
@@ -26,14 +28,15 @@ public class RepositoryTest extends AndroidTestCase {
         Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
         Repository repository = new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, alertRepository);
 
-        List<Alert> makeCallJustToInitializeRepository = alertRepository.allAlerts();
+        alertRepository.createAlert(new Alert("Case X", "Ante Natal Care - Normal", "ANC 1", normal, "2012-01-01", "2012-01-11"));
+        List<Alert> alerts = alertRepository.allAlerts();
         assertTrue(repository.canUseThisPassword("password"));
+        assertEquals(alerts, asList(new Alert("Case X", "Ante Natal Care - Normal", "ANC 1", normal, "2012-01-01", "2012-01-11")));
 
         repository.deleteRepository();
 
-        assertFalse(repository.canUseThisPassword("password"));
-
-        SQLiteDatabase database = repository.getWritableDatabase();
+        alerts = alertRepository.allAlerts();
+        assertTrue(alerts.isEmpty());
         assertTrue(repository.canUseThisPassword("password"));
     }
 }
