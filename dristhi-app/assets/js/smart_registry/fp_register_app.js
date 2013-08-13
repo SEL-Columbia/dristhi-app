@@ -212,8 +212,7 @@ angular.module("smartRegistry.controllers")
         $scope.searchFilterString = "";
         $scope.searchCriteria = function (client, searchFilterString) {
             return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0) ||
-                (client.ec_number && client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0) ||
-                (client.thayi && client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
+                (client.ec_number && client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
         };
 
         $scope.getSideEffect = function (client) {

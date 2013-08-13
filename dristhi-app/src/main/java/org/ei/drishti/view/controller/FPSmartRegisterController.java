@@ -3,7 +3,6 @@ package org.ei.drishti.view.controller;
 import com.google.gson.Gson;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.service.AlertService;
@@ -55,12 +54,12 @@ public class FPSmartRegisterController {
                 List<EligibleCouple> ecs = allEligibleCouples.all();
                 List<FPClient> fpClients = new ArrayList<FPClient>();
                 for (EligibleCouple ec : ecs) {
-                    Mother mother = allBeneficiaries.findMotherByECCaseId(ec.caseId());
-                    String thayiCardNumber = mother == null ? "" : mother.thayiCardNumber();
+                    if (allBeneficiaries.isPregnant(ec.caseId())) {
+                        continue;
+                    }
                     String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
                     List<AlertDTO> alerts = getFPAlertsForEC(ec.caseId());
                     FPClient fpClient = new FPClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), ec.ecNumber())
-                            .withThayi(thayiCardNumber)
                             .withAge(ec.age())
                             .withFPMethod(ec.getDetail("currentMethod"))
                             .withFamilyPlanningMethodChangeDate(ec.getDetail("familyPlanningMethodChangeDate"))

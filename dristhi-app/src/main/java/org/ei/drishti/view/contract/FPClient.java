@@ -12,7 +12,6 @@ public class FPClient {
     private String name;
     private String husbandName;
     private String age;
-    private String thayi;
     private String ec_number;
     private String village;
     private String fp_method;
@@ -60,11 +59,6 @@ public class FPClient {
 
     public FPClient withAge(String age) {
         this.age = age;
-        return this;
-    }
-
-    public FPClient withThayi(String thayi) {
-        this.thayi = thayi;
         return this;
     }
 

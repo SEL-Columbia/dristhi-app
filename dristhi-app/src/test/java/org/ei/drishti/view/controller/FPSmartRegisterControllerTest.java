@@ -5,7 +5,6 @@ import com.google.gson.reflect.TypeToken;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.service.AlertService;
@@ -25,7 +24,6 @@ import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
 import static org.ei.drishti.dto.AlertStatus.normal;
 import static org.ei.drishti.util.EasyMap.create;
-import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -81,7 +79,7 @@ public class FPSmartRegisterControllerTest {
     }
 
     private FPClient createFPClient(String entityId, String name, String husbandName, String village, String ecNumber) {
-        return new FPClient(entityId, name, husbandName, village, ecNumber).withThayi("").withPhotoPath("../../img/woman-placeholder.png").withAlerts(Collections.<AlertDTO>emptyList());
+        return new FPClient(entityId, name, husbandName, village, ecNumber).withPhotoPath("../../img/woman-placeholder.png").withAlerts(Collections.<AlertDTO>emptyList());
     }
 
     @Test
@@ -117,11 +115,8 @@ public class FPSmartRegisterControllerTest {
                 .map();
         EligibleCouple ec = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC", details)
                 .withPhotoPath("new photo path");
-        Mother mother = new Mother("MOTHER Case 1", "EC Case 1", "12345", "2012-12-12");
         when(allEligibleCouples.all()).thenReturn(asList(ec));
-        when(allBeneficiaries.findMotherByECCaseId("EC Case 1")).thenReturn(mother);
         FPClient expectedFPClient = new FPClient("EC Case 1", "Woman A", "Husband A", "Bherya", "EC Number 1")
-                .withThayi("12345")
                 .withAge("22")
                 .withFPMethod("condom")
                 .withFamilyPlanningMethodChangeDate("2013-01-02")
@@ -175,7 +170,21 @@ public class FPSmartRegisterControllerTest {
         assertEquals(asList(expectedEC), actualClients);
     }
 
-    private Map<String, String> normalPriority() {
-        return mapOf("isHighPriority", "no");
+    @Test
+    public void shouldNotIncludePregnantECsWhenFPClientsIsCreated() throws Exception {
+        EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", emptyDetails);
+        EligibleCouple pregnantEC = new EligibleCouple("entity id 2", "Woman D", "Husband D", "EC Number 4", "Bherya", "Bherya SC", emptyDetails);
+        when(allEligibleCouples.all()).thenReturn(asList(ec, pregnantEC));
+        when(allBeneficiaries.isPregnant("entity id 1")).thenReturn(false);
+        when(allBeneficiaries.isPregnant("entity id 2")).thenReturn(true);
+
+        String clients = controller.get();
+
+        verify(allBeneficiaries).isPregnant("entity id 1");
+        verify(allBeneficiaries).isPregnant("entity id 2");
+        List<FPClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
+        }.getType());
+        FPClient expectedEC = createFPClient("entity id 1", "Woman C", "Husband C", "Bherya", "EC Number 3");
+        assertEquals(asList(expectedEC), actualClients);
     }
 }

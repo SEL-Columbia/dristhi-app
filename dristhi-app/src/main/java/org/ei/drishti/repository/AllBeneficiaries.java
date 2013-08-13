@@ -115,4 +115,8 @@ public class AllBeneficiaries {
     public Mother findMotherWithOpenStatusByECId(String ecId) {
         return motherRepository.findMotherWithOpenStatusByECId(ecId);
     }
+
+    public boolean isPregnant(String ecId) {
+        return motherRepository.findMotherWithOpenStatusByECId(ecId) != null;
+    }
 }
