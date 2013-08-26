@@ -75,7 +75,7 @@ public class HTTPAgent {
             setCredentials(settings.fetchRegisteredANM(), settings.fetchANMPassword());
             HttpPost httpPost = new HttpPost(postURLPath);
             StringEntity entity = new StringEntity(jsonPayload);
-            entity.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+            entity.setContentEncoding("application/json");
             httpPost.setEntity(entity);
             httpPost.setHeader(HTTP.CONTENT_TYPE, "application/json");
 
