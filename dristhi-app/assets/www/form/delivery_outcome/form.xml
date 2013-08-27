@@ -13,7 +13,7 @@
     <label class="">
         <span lang="" class=" active">Delivery date? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
         <span class="required">*</span>
-        <input autocomplete="off" type="date" name="/Delivery_Outcome_EngKan/date_outcome" required="required"
+        <input autocomplete="off" type="date" name="/Delivery_Outcome_EngKan/delivery_date" required="required"
                data-constraint=".&lt;= /Delivery_Outcome_EngKan/today " data-type-xml="date"/>
     </label>
     <label class="">
@@ -22,7 +22,7 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Delivery_Outcome_EngKan/delivery_reg_date" required="required"
-               data-constraint=".&lt;= /Delivery_Outcome_EngKan/today  and .&gt;=  /Delivery_Outcome_EngKan/date_outcome "
+               data-constraint=".&lt;= /Delivery_Outcome_EngKan/today  and .&gt;=  /Delivery_Outcome_EngKan/delivery_date "
                data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
@@ -864,7 +864,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/child/num_preg_days"
-                   data-calculate="int(date( /Delivery_Outcome_EngKan/date_outcome ) - date( /Delivery_Outcome_EngKan/case_lmp ))"
+                   data-calculate="int(date( /Delivery_Outcome_EngKan/delivery_date ) - date( /Delivery_Outcome_EngKan/case_lmp ))"
                    data-type-xml="string"/>
         </label>
         <label class="">

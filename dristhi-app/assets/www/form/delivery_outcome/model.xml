@@ -6,7 +6,7 @@
             </formhub>
             <today/>
             <case_lmp/>
-            <date_outcome/>
+            <delivery_date/>
             <delivery_reg_date/>
             <place_delivery/>
             <name_delivery_facility/>
