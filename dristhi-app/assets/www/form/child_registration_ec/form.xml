@@ -20,7 +20,8 @@
         <span lang="" class=" active">Child birth date? &#xC9C;&#xCA8;&#xCA8; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Child_Registration_EC_EngKan/child_birth_date" required="required"
-               data-constraint=".&lt;= /Child_Registration_EC_EngKan/today " data-type-xml="date"/>
+               data-constraint=".&lt;= /Child_Registration_EC_EngKan/today  and .&lt;= /Child_Registration_EC_EngKan/child_reg_date "
+               data-type-xml="date"/>
     </label>
     <fieldset class="trigger " name="/Child_Registration_EC_EngKan/child_age_note">
         <span lang="" class=" active">Child age, &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;:
@@ -49,10 +50,6 @@
     </fieldset>
     <label class="">
         <span lang="" class=" active">Child name? &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?</span>
-        <span lang="" class="jr-hint active">If no name yet, leave blank. &#xC92;&#xC82;&#xCA6;&#xCC1; &#xCB5;&#xCC7;&#xCB3;&#xCC6;
-            &#xC87;&#xCA8;&#xCCD;&#xCA8;&#xCC2; &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCC7; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;
-            &#xC87;&#xCB2;&#xCCD;&#xCB2;&#xCB5;&#xCBE;&#xCA6;&#xCB0;&#xCC6;, &#xC96;&#xCBE;&#xCB2;&#xCBF; &#xCAC;&#xCBF;&#xCA1;&#xCBF;.
-        </span>
         <input autocomplete="off" type="text" name="/Child_Registration_EC_EngKan/child_name" data-type-xml="string"/>
     </label>
     <label class="">
@@ -62,55 +59,24 @@
         <input autocomplete="off" type="number" name="/Child_Registration_EC_EngKan/thayi_card_number"
                data-constraint=".&gt; 999999 and .&lt; 10000000" data-type-xml="int"/>
     </label>
-    <fieldset class="restoring-sanity-to-legends ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">Child blood group? &#xCAE;&#xC95;&#xCCD;&#xC95;&#xCB3; &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;
-                    &#xC97;&#xCC1;&#xC82;&#xCAA;&#xCC1;?
-                </span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Child_Registration_EC_EngKan/child_blood_group"
-                       value="a_positive" data-type-xml="select1"/>
-                <span lang="" class=" active">A+</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Child_Registration_EC_EngKan/child_blood_group"
-                       value="a_negative" data-type-xml="select1"/>
-                <span lang="" class=" active">A-</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Child_Registration_EC_EngKan/child_blood_group"
-                       value="b_positive" data-type-xml="select1"/>
-                <span lang="" class=" active">B+</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Child_Registration_EC_EngKan/child_blood_group"
-                       value="b_negative" data-type-xml="select1"/>
-                <span lang="" class=" active">B-</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Child_Registration_EC_EngKan/child_blood_group"
-                       value="ab_positive" data-type-xml="select1"/>
-                <span lang="" class=" active">AB+</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Child_Registration_EC_EngKan/child_blood_group"
-                       value="ab_negative" data-type-xml="select1"/>
-                <span lang="" class=" active">AB-</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Child_Registration_EC_EngKan/child_blood_group"
-                       value="o_positive" data-type-xml="select1"/>
-                <span lang="" class=" active">O+</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Child_Registration_EC_EngKan/child_blood_group"
-                       value="o_negative" data-type-xml="select1"/>
-                <span lang="" class=" active">O-</span>
-            </label>
-        </fieldset>
-    </fieldset>
+    <label class="jr-appearance-minimal">
+        <span lang="" class=" active">Child blood group? &#xCAE;&#xC95;&#xCCD;&#xC95;&#xCB3; &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;
+            &#xC97;&#xCC1;&#xC82;&#xCAA;&#xCC1;?
+        </span>
+        <select name="/Child_Registration_EC_EngKan/child_blood_group" data-type-xml="select1">
+            <option value="">...</option>
+            <option value="a_positive">A+</option>
+            <option value="a_negative">A-</option>
+            <option value="b_positive">B+</option>
+            <option value="b_negative">B-</option>
+            <option value="ab_positive">AB+</option>
+            <option value="ab_negative">AB-</option>
+            <option value="o_positive">O+</option>
+            <option value="o_negative">O-</option>
+        </select>
+        <span class="jr-option-translations" style="display:none;">
+        </span>
+    </label>
     <label class="">
         <span lang="" class=" active">Weight (in kgs)? &#xCA4;&#xCC2;&#xC95; (&#xC95;&#xCC6;.&#xC9C;&#xCBF;. &#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)?</span>
         <input autocomplete="off" type="number" name="/Child_Registration_EC_EngKan/child_weight"
@@ -122,125 +88,45 @@
         </span>
         <input autocomplete="off" type="number" name="/Child_Registration_EC_EngKan/child_height" data-type-xml="int"/>
     </label>
-    <fieldset class="restoring-sanity-to-legends ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">Immunizations already received? &#xCAE;&#xC97;&#xCC1; &#xC88;&#xC97;&#xCBE;&#xC97;&#xCB2;&#xCC7;
-                    &#xCB0;&#xCCB;&#xC97;&#xCA8;&#xCBF;&#xCB0;&#xCCB;&#xCA7;&#xC95;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                    &#xCAA;&#xCA6;&#xCC6;&#xCA6;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
-                </span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="bcg"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">BCG &#xCAC;&#xCBF;&#xCB8;&#xCBF;&#xC9C;&#xCBF;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="opv_0"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">OPV 0 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 0</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="hepb_0"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Hep B 0 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
-                    &#xCAC;&#xCBF; 0
-                </span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="opv_1"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">OPV 1 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 1</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="pentavalent_1"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Pentavalent 1 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
-                    1
-                </span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="opv_2"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">OPV 2 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 2</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="pentavalent_2"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Pentavalent 2 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
-                    2
-                </span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="opv_3"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">OPV 3 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 3</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="pentavalent_3"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Pentavalent 3 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
-                    3
-                </span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="measles"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Measles &#xCA6;&#xCA1;&#xCBE;&#xCB0;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="mmr"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">MMR
-                    &#xC8E;&#xCAE;&#xCCD;.&#xC8E;&#xCAE;&#xCCD;.&#xC86;&#xCB0;&#xCCD;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="dptbooster_1"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">DPT Booster 1 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
-                    1
-                </span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="opvbooster"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">OPV Booster &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="je"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Japanese Encephalitis (JE)</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="measlesbooster"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Measles Booster &#xCA6;&#xCA1;&#xCBE;&#xCB0; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Child_Registration_EC_EngKan/child_immunization_history" value="dptbooster_2"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">DPT Booster 2 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
-                    2
-                </span>
-            </label>
-        </fieldset>
-    </fieldset>
+    <label class="jr-appearance-minimal">
+        <span lang="" class=" active">Immunizations already received? &#xCAE;&#xC97;&#xCC1; &#xC88;&#xC97;&#xCBE;&#xC97;&#xCB2;&#xCC7;
+            &#xCB0;&#xCCB;&#xC97;&#xCA8;&#xCBF;&#xCB0;&#xCCB;&#xCA7;&#xC95;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCAA;&#xCA6;&#xCC6;&#xCA6;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
+        </span>
+        <select multiple="multiple" name="/Child_Registration_EC_EngKan/child_immunization_history"
+                data-type-xml="select">
+            <option value="">...</option>
+            <option value="bcg">BCG &#xCAC;&#xCBF;&#xCB8;&#xCBF;&#xC9C;&#xCBF;</option>
+            <option value="opv_0">OPV 0 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 0</option>
+            <option value="hepb_0">Hep B 0 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC6;&#xC9F;&#xCBF;&#xCB8;&#xCCD; &#xCAC;&#xCBF;
+                0
+            </option>
+            <option value="opv_1">OPV 1 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 1</option>
+            <option value="pentavalent_1">Pentavalent 1 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
+                1
+            </option>
+            <option value="opv_2">OPV 2 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 2</option>
+            <option value="pentavalent_2">Pentavalent 2 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
+                2
+            </option>
+            <option value="opv_3">OPV 3 &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 3</option>
+            <option value="pentavalent_3">Pentavalent 3 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
+                3
+            </option>
+            <option value="measles">Measles &#xCA6;&#xCA1;&#xCBE;&#xCB0;</option>
+            <option value="mmr">MMR &#xC8E;&#xCAE;&#xCCD;.&#xC8E;&#xCAE;&#xCCD;.&#xC86;&#xCB0;&#xCCD;</option>
+            <option value="dptbooster_1">DPT Booster 1 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
+                1
+            </option>
+            <option value="opvbooster">OPV Booster &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;</option>
+            <option value="je">Japanese Encephalitis (JE)</option>
+            <option value="measlesbooster">Measles Booster &#xCA6;&#xCA1;&#xCBE;&#xCB0; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;</option>
+            <option value="dptbooster_2">DPT Booster 2 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
+                2
+            </option>
+        </select>
+        <span class="jr-option-translations" style="display:none;">
+        </span>
+    </label>
     <fieldset class="jr-branch pre-init " name="/Child_Registration_EC_EngKan/child_immunization_history_group"
               data-relevant=" /Child_Registration_EC_EngKan/child_immunization_history  != ''">
         <label class="jr-branch pre-init ">
@@ -415,60 +301,25 @@
         </label>
     </fieldset>
     <!--end of group -->
-    <fieldset class="restoring-sanity-to-legends ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">Vitamin A doses already received? &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD;
-                    '&#xC8E;' &#xCA1;&#xCCB;&#xCB8;&#xCCD; &#xCAA;&#xCA1;&#xCC6;&#xCAF;&#xCB2;&#xCBE;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
-                </span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EC_EngKan/child_vitamin_a_history"
-                       value="1" data-type-xml="select"/>
-                <span lang="" class=" active">1</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EC_EngKan/child_vitamin_a_history"
-                       value="2" data-type-xml="select"/>
-                <span lang="" class=" active">2</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EC_EngKan/child_vitamin_a_history"
-                       value="3" data-type-xml="select"/>
-                <span lang="" class=" active">3</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EC_EngKan/child_vitamin_a_history"
-                       value="4" data-type-xml="select"/>
-                <span lang="" class=" active">4</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EC_EngKan/child_vitamin_a_history"
-                       value="5" data-type-xml="select"/>
-                <span lang="" class=" active">5</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EC_EngKan/child_vitamin_a_history"
-                       value="6" data-type-xml="select"/>
-                <span lang="" class=" active">6</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EC_EngKan/child_vitamin_a_history"
-                       value="7" data-type-xml="select"/>
-                <span lang="" class=" active">7</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EC_EngKan/child_vitamin_a_history"
-                       value="8" data-type-xml="select"/>
-                <span lang="" class=" active">8</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/Child_Registration_EC_EngKan/child_vitamin_a_history"
-                       value="9" data-type-xml="select"/>
-                <span lang="" class=" active">9</span>
-            </label>
-        </fieldset>
-    </fieldset>
+    <label class="jr-appearance-minimal">
+        <span lang="" class=" active">Vitamin A doses already received? &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD;
+            '&#xC8E;' &#xCA1;&#xCCB;&#xCB8;&#xCCD; &#xCAA;&#xCA1;&#xCC6;&#xCAF;&#xCB2;&#xCBE;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
+        </span>
+        <select multiple="multiple" name="/Child_Registration_EC_EngKan/child_vitamin_a_history" data-type-xml="select">
+            <option value="">...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select>
+        <span class="jr-option-translations" style="display:none;">
+        </span>
+    </label>
     <fieldset class="jr-branch pre-init " name="/Child_Registration_EC_EngKan/child_vitamin_a_history_group"
               data-relevant=" /Child_Registration_EC_EngKan/child_vitamin_a_history  != ''">
         <label class="jr-branch pre-init ">
