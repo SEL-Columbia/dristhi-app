@@ -375,37 +375,6 @@
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'centchroman'"
                data-type-xml="int"/>
     </label>
-    <fieldset class="restoring-sanity-to-legends ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">Are you out of stock of any FP method?</span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Change_Method_EngKan/fp_method_stock_out" value="condom"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Condom &#xCA8;&#xCBF;&#xCB0;&#xCCB;&#xCA7;&#xCCD;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Change_Method_EngKan/fp_method_stock_out" value="ocp"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">OCP &#xC92;&#xCB8;&#xCBF;&#xCAA;&#xCBF;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Change_Method_EngKan/fp_method_stock_out" value="iud"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">IUD &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox"
-                       name="/Family_Planning_Change_Method_EngKan/fp_method_stock_out" value="centchroman"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Centchroman &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCA8;&#xCCD;</span>
-            </label>
-        </fieldset>
-    </fieldset>
 
     <fieldset id="jr-calculated-items" style="display:none;">
         <label class="">
