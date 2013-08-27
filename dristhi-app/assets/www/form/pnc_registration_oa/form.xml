@@ -166,8 +166,8 @@
         <span lang="" class=" active">Woman's Aadhaar number, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xC86;&#xCA7;&#xCBE;&#xCB0;&#xCCD;
             &#xC95;&#xCBE;&#xCB0;&#xCCD;&#xCA1;&#xCCD; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;:
         </span>
-        <input autocomplete="off" type="text" name="/PNC_Child_Registration_EngKan/aadhaar_number"
-               data-constraint=".&gt; 99999999999 and .&lt; 1000000000000" data-type-xml="string"/>
+        <input autocomplete="off" type="number" name="/PNC_Child_Registration_EngKan/aadhaar_number"
+               data-constraint=".&gt; 99999999999 and .&lt; 1000000000000" data-type-xml="int"/>
     </label>
     <label class="">
         <span lang="" class=" active">Husband's name, &#xC97;&#xC82;&#xCA1;&#xCA8;
@@ -181,8 +181,8 @@
         <span lang="" class=" active">Contact phone number? &#xCB8;&#xC82;&#xCAA;&#xCB0;&#xCCD;&#xC95;&#xCBF;&#xCB8;&#xCAC;&#xCC7;&#xC95;&#xCBE;&#xCA6;
             &#xCAE;&#xCCB;&#xCAC;&#xCC8;&#xCB2;&#xCCD; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;?
         </span>
-        <input autocomplete="off" type="text" name="/PNC_Child_Registration_EngKan/phone_no"
-               data-constraint=".&gt; 999999999 and .&lt; 10000000000" data-type-xml="string"/>
+        <input autocomplete="off" type="number" name="/PNC_Child_Registration_EngKan/phone_no"
+               data-constraint=".&gt; 999999999 and .&lt; 10000000000" data-type-xml="int"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
         <fieldset>
