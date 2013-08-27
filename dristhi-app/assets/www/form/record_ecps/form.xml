@@ -33,23 +33,6 @@
             &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF; &#xCAB;&#xCBE;&#xCB0;&#xCCD;&#xCAE;&#xCCD; &#xCA4;&#xCC6;&#xCB0;&#xCC6;&#xCAF;&#xCBF;&#xCB0;&#xCBF;.
         </span>
     </fieldset>
-    <fieldset class="restoring-sanity-to-legends ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">Are you out of stock of ECPs?</span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Family_Planning_ECPs_EngKan/ecp_stock_out" value="yes"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Family_Planning_ECPs_EngKan/ecp_stock_out" value="no"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-            </label>
-        </fieldset>
-    </fieldset>
 
     <fieldset id="jr-calculated-items" style="display:none;">
         <label class="">
