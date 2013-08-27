@@ -465,27 +465,6 @@
                    data-relevant=" /Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease  = 'diarrhea_dehydration'"
                    data-type-xml="int"/>
         </label>
-        <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
-            <fieldset>
-                <legend>
-                    <span lang="" class=" active">Are you out of stock of ORS?</span>
-                </legend>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/Child_Sick_Visit_EngKan/report_child_disease_group/ors_stock_out" value="yes"
-                           data-relevant=" /Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease  = 'diarrhea_dehydration'"
-                           data-type-xml="select1"/>
-                    <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-                </label>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/Child_Sick_Visit_EngKan/report_child_disease_group/ors_stock_out" value="no"
-                           data-relevant=" /Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease  = 'diarrhea_dehydration'"
-                           data-type-xml="select1"/>
-                    <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-                </label>
-            </fieldset>
-        </fieldset>
         <fieldset class="restoring-sanity-to-legends ">
             <fieldset>
                 <legend>

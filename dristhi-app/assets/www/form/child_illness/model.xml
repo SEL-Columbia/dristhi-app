@@ -7,8 +7,8 @@
             <today/>
             <sick_visit_option/>
             <child_sickness_management_group>
-                <sick_visit_date/>
                 <case_child_birth_date/>
+                <sick_visit_date/>
                 <child_age/>
                 <child_signs/>
                 <child_signs_other/>
@@ -54,7 +54,6 @@
                 <report_child_disease_date/>
                 <report_child_disease_place/>
                 <number_ors_given/>
-                <ors_stock_out/>
                 <child_referral/>
             </report_child_disease_group>
             <meta>
