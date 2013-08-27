@@ -41,23 +41,6 @@
         <span class="jr-option-translations" style="display:none;">
         </span>
     </label>
-    <fieldset class="restoring-sanity-to-legends ">
-        <fieldset>
-            <legend>
-                <span lang="" class=" active">Are you out of stock of IFA?</span>
-            </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/IFA_EngKan/ifa_stock_out" value="yes"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/IFA_EngKan/ifa_stock_out" value="no"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-            </label>
-        </fieldset>
-    </fieldset>
 
     <fieldset id="jr-calculated-items" style="display:none;">
         <label class="">
