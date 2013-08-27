@@ -59,20 +59,20 @@ public class FormSubmissionSyncServiceTest {
 
     @Test
     public void shouldPushPendingFormSubmissionsToServerAndMarkThemAsSynced() throws Exception {
-        when(httpAgent.post("https://drishti.modilabs.org" + "/form-submissions", new Gson().toJson(expectedFormSubmissionsDto)))
+        when(httpAgent.post("https://smartregistries.org" + "/form-submissions", new Gson().toJson(expectedFormSubmissionsDto)))
                 .thenReturn(new Response<String>(success, null));
 
         service.pushToServer();
 
         inOrder(allSettings, httpAgent, repository);
         verify(allSettings).fetchRegisteredANM();
-        verify(httpAgent).post("https://drishti.modilabs.org" + "/form-submissions", new Gson().toJson(expectedFormSubmissionsDto));
+        verify(httpAgent).post("https://smartregistries.org" + "/form-submissions", new Gson().toJson(expectedFormSubmissionsDto));
         verify(repository).markFormSubmissionsAsSynced(submissions);
     }
 
     @Test
     public void shouldNotMarkPendingSubmissionsAsSyncedIfPostFails() throws Exception {
-        when(httpAgent.post("https://drishti.modilabs.org" + "/form-submissions", new Gson().toJson(expectedFormSubmissionsDto)))
+        when(httpAgent.post("https://smartregistries.org" + "/form-submissions", new Gson().toJson(expectedFormSubmissionsDto)))
                 .thenReturn(new Response<String>(ResponseStatus.failure, null));
 
         service.pushToServer();
@@ -97,31 +97,31 @@ public class FormSubmissionSyncServiceTest {
     public void shouldPullFormSubmissionsFromServerAndDelegateToProcessing() throws Exception {
         List<FormSubmission> expectedFormSubmissions = asList(new FormSubmission("id 1", "entity id 1", "form name", formInstanceJSON, "123", SYNCED, "1"));
         when(allSettings.fetchPreviousFormSyncIndex()).thenReturn("122");
-        when(httpAgent.fetch("https://drishti.modilabs.org/form-submissions?anm-id=anm id 1&timestamp=122")).thenReturn(new Response<String>(success, new Gson().toJson(this.expectedFormSubmissionsDto)));
+        when(httpAgent.fetch("https://smartregistries.org/form-submissions?anm-id=anm id 1&timestamp=122")).thenReturn(new Response<String>(success, new Gson().toJson(this.expectedFormSubmissionsDto)));
 
         FetchStatus fetchStatus = service.pullFromServer();
 
         assertEquals(fetched, fetchStatus);
-        verify(httpAgent).fetch("https://drishti.modilabs.org/form-submissions?anm-id=anm id 1&timestamp=122");
+        verify(httpAgent).fetch("https://smartregistries.org/form-submissions?anm-id=anm id 1&timestamp=122");
         verify(formSubmissionService).processSubmissions(expectedFormSubmissions);
     }
 
     @Test
     public void shouldReturnNothingFetchedStatusWhenNoFormSubmissionsAreGotFromServer() throws Exception {
         when(allSettings.fetchPreviousFormSyncIndex()).thenReturn("122");
-        when(httpAgent.fetch("https://drishti.modilabs.org/form-submissions?anm-id=anm id 1&timestamp=122")).thenReturn(new Response<String>(success, new Gson().toJson(Collections.emptyList())));
+        when(httpAgent.fetch("https://smartregistries.org/form-submissions?anm-id=anm id 1&timestamp=122")).thenReturn(new Response<String>(success, new Gson().toJson(Collections.emptyList())));
 
         FetchStatus fetchStatus = service.pullFromServer();
 
         assertEquals(nothingFetched, fetchStatus);
-        verify(httpAgent).fetch("https://drishti.modilabs.org/form-submissions?anm-id=anm id 1&timestamp=122");
+        verify(httpAgent).fetch("https://smartregistries.org/form-submissions?anm-id=anm id 1&timestamp=122");
         verifyZeroInteractions(formSubmissionService);
     }
 
     @Test
     public void shouldNotDelegateToProcessingIfPullFails() throws Exception {
         when(allSettings.fetchPreviousFormSyncIndex()).thenReturn("122");
-        when(httpAgent.fetch("https://drishti.modilabs.org/form-submissions?anm-id=anm id 1&timestamp=122")).thenReturn(new Response<String>(failure, null));
+        when(httpAgent.fetch("https://smartregistries.org/form-submissions?anm-id=anm id 1&timestamp=122")).thenReturn(new Response<String>(failure, null));
 
         FetchStatus fetchStatus = service.pullFromServer();
 
