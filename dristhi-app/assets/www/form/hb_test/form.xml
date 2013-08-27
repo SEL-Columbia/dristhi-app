@@ -51,7 +51,7 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/Hb_Test_EngKan/hb_level" required="required"
-               data-type-xml="decimal" step="any"/>
+               data-constraint=".&gt;0" data-type-xml="decimal" step="any"/>
     </label>
     <fieldset class="trigger jr-branch pre-init" name="/Hb_Test_EngKan/anaemic_message"
               data-relevant=" /Hb_Test_EngKan/hb_level  &gt;= 7 and  /Hb_Test_EngKan/hb_level  &lt; 11">
@@ -70,19 +70,16 @@
             &#xCB0;&#xC95;&#xCCD;&#xCA4; &#xCB9;&#xCC0;&#xCA8;&#xCA4;&#xCC6;! &#xC86;&#xC95;&#xCC6;&#xC97;&#xCC6;
             &#xC95;&#xCAC;&#xCCD;&#xCAC;&#xCBF;&#xCA3;&#xCBE;&#xC82;&#xCB6;&#xCA6; &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xCAF;&#xCBE;
             &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xC95;&#xCBE;&#xCB0;&#xC95; &#xCA1;&#xCCB;&#xCB8;&#xCCD;
-            &#xC85;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF; (&#xCA6;&#xCBF;&#xCA8;&#xC95;&#xCCD;&#xC95;&#xCC6;
-            2 &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xC97;&#xCB3;&#xC82;&#xCA4;&#xCC6;) &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1;
-            &#xCA4;&#xC95;&#xCCD;&#xCB7;&#xCA3; &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xCBE;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
+            &#xC85;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF;
+            (&#xCA6;&#xCBF;&#xCA8;&#xC95;&#xCCD;&#xC95;&#xCC6; 2 &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xC97;&#xCB3;&#xC82;&#xCA4;&#xCC6;)
+            &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; &#xCA4;&#xC95;&#xCCD;&#xCB7;&#xCA3; &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xCBE;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
             &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD; &#xCAE;&#xCBE;&#xCA1;&#xCBF;!
         </span>
     </fieldset>
     <fieldset class="trigger jr-branch pre-init" name="/Hb_Test_EngKan/high_risk_note"
-              data-relevant=" /Hb_Test_EngKan/is_high_risk1  != ''">
-        <span lang="" class=" active">Woman is at risk because of:
-            <span class="jr-output" data-value=" /Hb_Test_EngKan/high_risk_reason ">
-            </span>
-            &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xC97;&#xCC6; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;
-            &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
+              data-relevant=" /Hb_Test_EngKan/is_high_risk1  = 'yes'">
+        <span lang="" class=" active">Woman is at risk because of, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xC97;&#xCC6;
+            &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6; &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
             <span class="jr-output" data-value=" /Hb_Test_EngKan/high_risk_reason ">
             </span>
         </span>
@@ -117,12 +114,12 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Hb_Test_EngKan/is_high_risk1"
-                   data-calculate="if( /Hb_Test_EngKan/anaemic_status  != '' or  /Hb_Test_EngKan/case_high_risk_reason  != '', 'yes', '')"
+                   data-calculate="if( /Hb_Test_EngKan/case_is_high_risk_till_delivery  = 'yes' or  /Hb_Test_EngKan/case_is_high_risk_till_pnc_close  = 'yes' or  /Hb_Test_EngKan/anaemic_status  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Hb_Test_EngKan/high_risk_reason"
-                   data-calculate="concat( /Hb_Test_EngKan/anaemic_status , ' ',  /Hb_Test_EngKan/case_high_risk_reason )"
+                   data-calculate="concat( /Hb_Test_EngKan/anaemic_status , ' ',  /Hb_Test_EngKan/case_is_high_risk_till_delivery_reason , ' ',  /Hb_Test_EngKan/case_is_high_risk_till_pnc_close_reason )"
                    data-type-xml="string"/>
         </label>
         <label class="">
