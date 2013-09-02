@@ -473,7 +473,7 @@ public enum ReportIndicator {
             return fetchMotherCaseList(caseIds);
         }
     },
-    D_PHC("D_PHC", "Number of deliveries conducted at Public Health Center") {
+    D_PHC("D_PHC", "Number of deliveries conducted at PHC") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToPNCProfile(context, caseId);
