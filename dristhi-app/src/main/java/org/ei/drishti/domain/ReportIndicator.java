@@ -152,6 +152,17 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
+    CHILD_DIARRHEA("CHILD_DIARRHEA", "Number of children had diarrhea episode") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
     WEIGHED_AT_BIRTH("WEIGHED_AT_BIRTH", "Number of infants weighed at birth") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
