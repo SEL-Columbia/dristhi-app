@@ -141,7 +141,51 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
+    VIT_A_1_FOR_FEMALE_CHILD("M_VIT_A_1", "Vit A 1 (Female)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    VIT_A_1_FOR_MALE_CHILD("M_VIT_A_1", "Vit A 1 (Male)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
     VIT_A_2("VIT_A_1", "Second Dose of Vitamin A") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    VIT_A_2_FOR_FEMALE_CHILD("M_VIT_A_2", "Vit A 2 (Female)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    VIT_A_2_FOR_MALE_CHILD("M_VIT_A_2", "Vit A 2 (Male)") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToChildProfile(context, caseId);
