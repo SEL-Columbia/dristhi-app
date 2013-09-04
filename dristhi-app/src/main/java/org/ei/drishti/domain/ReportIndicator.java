@@ -174,7 +174,7 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
-    VIT_A_1_FOR_FEMALE_CHILD("M_VIT_A_1", "Vit A 1 (Female)") {
+    VIT_A_1_FOR_FEMALE_CHILD("F_VIT_A_1", "Vit A 1 (Female)") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToChildProfile(context, caseId);
@@ -207,7 +207,7 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
-    VIT_A_2_FOR_FEMALE_CHILD("M_VIT_A_2", "Vit A 2 (Female)") {
+    VIT_A_2_FOR_FEMALE_CHILD("F_VIT_A_2", "Vit A 2 (Female)") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToChildProfile(context, caseId);
@@ -219,6 +219,50 @@ public enum ReportIndicator {
         }
     },
     VIT_A_2_FOR_MALE_CHILD("M_VIT_A_2", "Vit A 2 (Male)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    VIT_A_5_FOR_FEMALE_CHILD("F_VIT_A_5", "Vit A 5 (Female)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    VIT_A_5_FOR_MALE_CHILD("M_VIT_A_5", "Vit A 5 (Male)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    VIT_A_9_FOR_FEMALE_CHILD("F_VIT_A_9", "Vit A 9 (Female)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    VIT_A_9_FOR_MALE_CHILD("M_VIT_A_9", "Vit A 9 (Male)") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToChildProfile(context, caseId);
