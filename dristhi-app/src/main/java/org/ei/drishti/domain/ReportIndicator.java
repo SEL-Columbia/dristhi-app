@@ -63,7 +63,7 @@ public enum ReportIndicator {
             return fetchECCaseList(caseIds);
         }
     },
-    DPT3_OR_OPV3("DPT3_OPV3", "DPT 3 / OPV 3") {
+    PENTAVALENT3_OR_OPV3("PENTAVALENT3_OPV3", "PENTAVALENT 3 / OPV 3") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToChildProfile(context, caseId);
@@ -120,6 +120,39 @@ public enum ReportIndicator {
         }
     },
     MEASLES("MEASLES", "MEASLES") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    PENTAVALENT_1("PENT1", "Pentavalent 1") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    PENTAVALENT_2("PENT2", "Pentavalent 2") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    PENTAVALENT_3("PENT3", "Pentavalent 3") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToChildProfile(context, caseId);
