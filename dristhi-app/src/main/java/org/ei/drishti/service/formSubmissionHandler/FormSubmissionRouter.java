@@ -1,14 +1,18 @@
 package org.ei.drishti.service.formSubmissionHandler;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.repository.FormDataRepository;
+import org.ei.drishti.util.Log;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.text.MessageFormat.format;
 import static org.ei.drishti.AllConstants.FormNames.*;
 import static org.ei.drishti.event.Event.FORM_SUBMITTED;
 import static org.ei.drishti.util.Log.logWarn;
+
 
 public class FormSubmissionRouter {
     private final Map<String, FormSubmissionHandler> handlerMap;
@@ -64,13 +68,20 @@ public class FormSubmissionRouter {
         handlerMap.put(VITAMIN_A, vitaminAHandler);
     }
 
-    public void route(String instanceId) {
+    public void route(String instanceId) throws Exception {
         FormSubmission submission = formDataRepository.fetchFromSubmission(instanceId);
         FormSubmissionHandler handler = handlerMap.get(submission.formName());
         if (handler == null) {
             logWarn("Could not find a handler due to unknown form submission: " + submission);
         } else {
-            handler.handle(submission);
+            try {
+                handler.handle(submission);
+            } catch (Exception e) {
+                Log.logError(format("Handling {0} form submission with instance Id: {1} for entity: {2} failed with exception : {3}",
+                        submission.formName(), submission.instanceId(), submission.entityId(), ExceptionUtils.getStackTrace(e)));
+                throw e;
+            }
+
         }
         FORM_SUBMITTED.notifyListeners(instanceId);
     }
