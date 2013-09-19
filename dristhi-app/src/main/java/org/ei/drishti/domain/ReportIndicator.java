@@ -30,7 +30,51 @@ public enum ReportIndicator {
             return fetchECCaseList(caseIds);
         }
     },
+    CONDOM_QTY("Condom Pieces", "Condom Usage") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToECProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchECCaseList(caseIds);
+        }
+    },
     OCP("OCP", "Oral Pills") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToECProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchECCaseList(caseIds);
+        }
+    },
+    OCP_ST("OCP_ST", "Oral Pills ST") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToECProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchECCaseList(caseIds);
+        }
+    },
+    OCP_SC("OCP_SC", "Oral Pills SC") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToECProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchECCaseList(caseIds);
+        }
+    },
+    OCP_C_OTHERS("OCP_C_OTHERS", "Oral Pills Other Castes") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToECProfile(context, caseId);
@@ -53,6 +97,28 @@ public enum ReportIndicator {
         }
     },
     FEMALE_STERILIZATION("FEMALE_STERILIZATION", "Female Sterilization") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToECProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchECCaseList(caseIds);
+        }
+    },
+    FS_APL("FS_APL", "Female Sterilization APL") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToECProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchECCaseList(caseIds);
+        }
+    },
+    FS_BPL("FS_BPL", "Female Sterilization BPL") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToECProfile(context, caseId);
@@ -196,7 +262,7 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
-    VIT_A_2("VIT_A_1", "Second Dose of Vitamin A") {
+    VIT_A_2("VIT_A_2", "Second Dose of Vitamin A") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToChildProfile(context, caseId);
@@ -543,6 +609,39 @@ public enum ReportIndicator {
             return fetchMotherCaseList(caseIds);
         }
     },
+    CESAREAN("CESAREAN", "Cesareans") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToPNCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
+    CESAREAN_GOV("CESAREAN_GOV", "Cesareans Government Hospital") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToPNCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
+    CESAREAN_PRI("CESAREAN_PRI", "Cesareans Private Hospital") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToPNCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
     MMA("MMA", "Mother mortality (during ANC)") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
@@ -680,6 +779,28 @@ public enum ReportIndicator {
         @Override
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchMotherCaseList(caseIds);
+        }
+    },
+    INFANT_REG("INFANT_REG", "Infant Balance (During Month Registration)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
+    INFANT_LEFT("INFANT_LEFT", "Infant Balance (Left the Place)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
         }
     },
     CHILD_MORTALITY_DUE_TO_DIARRHEA("CMD", "Number of children who died of diarrhea") {
