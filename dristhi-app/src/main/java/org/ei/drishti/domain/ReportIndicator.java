@@ -781,6 +781,17 @@ public enum ReportIndicator {
             return fetchMotherCaseList(caseIds);
         }
     },
+    INFANT_BALANCE_ON_HAND("IB_OH", "Infant Balance (On Hand)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
     INFANT_REG("INFANT_REG", "Infant Balance (During Month Registration)") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
