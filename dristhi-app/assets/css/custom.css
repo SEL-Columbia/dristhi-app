@@ -1187,15 +1187,11 @@ img.pnc-child-img {
 
 .client-village {
   	color: #333333 !important;
-	max-width: 132px !important;
+	max-width: 140px !important;
 }
 
 .client-age {
   color: #333333 !important;
-}
-
-.row-fluid .span2 {
-	width: 15.75% !important;
 }
 
 .row-fluid .offset1:first-child {
@@ -1222,4 +1218,12 @@ small {
 
 .btn-register {
 	height: 236px !important;
+}
+
+#ec-client-list .client-village {
+    max-width: 145px !important;
+}
+
+.client-parents-name {
+    max-width: 190px !important;
 }
