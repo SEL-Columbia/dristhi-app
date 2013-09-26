@@ -1061,7 +1061,7 @@ a.btn-sr.upcoming, a.btn-sr.done {
 }
 
 .previous-alert span {
-    font-size: 100% !important;
+    font-size: 96% !important;
 }
 
 .nav li i.icon-village {
@@ -1217,7 +1217,7 @@ small {
 
 .client-name {
 	font-size: 19px !important;
-	max-width: 118px !important;
+	max-width: 130px !important;
 }
 
 .btn-register {
