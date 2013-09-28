@@ -492,6 +492,17 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
+    INFANT_BALANCE_OA_CHILDREN("IB_OA", "Infant Balance (O/A Infants)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
     ENM("ENM", "Early Neonatal mortality") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
