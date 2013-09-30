@@ -503,6 +503,17 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
+    INFANT_BALANCE_LESS_THAN_ONE_YEAR("IB<1Y", "No. of children (0-1 Year)") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
+    },
     ENM("ENM", "Early Neonatal mortality") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
