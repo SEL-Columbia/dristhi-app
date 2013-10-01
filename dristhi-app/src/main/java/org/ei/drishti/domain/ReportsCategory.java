@@ -27,9 +27,12 @@ public enum ReportsCategory {
             VIT_A_5_FOR_FEMALE_CHILD, VIT_A_5_FOR_MALE_CHILD, VIT_A_9_FOR_FEMALE_CHILD, VIT_A_9_FOR_MALE_CHILD,
             VIT_A_FOR_FEMALE, VIT_A_FOR_MALE,
             CHILD_DIARRHEA,
-            CHILD_MORTALITY_DUE_TO_DIARRHEA)),
+            CHILD_MORTALITY_DUE_TO_DIARRHEA,
+            IB_1Y)),
 
-    MORTALITY("Mortality", asList(ENM, NM, LNM, INFANT_MORTALITY, CHILD_MORTALITY, MMA, MMD, MMP, MM)),;
+    MORTALITY("Mortality", asList(ENM, NM, LNM, INFANT_MORTALITY, CHILD_MORTALITY, MMA, MMD, MMP, MM)),
+
+    BENEFICIARY_SCHEMES("Beneficiary", asList(ANCS_AND_PNCS_WITH_BPL));
 
     private String description;
     private List<ReportIndicator> indicators;

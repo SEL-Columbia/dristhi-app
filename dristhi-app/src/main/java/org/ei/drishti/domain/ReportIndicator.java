@@ -879,6 +879,28 @@ public enum ReportIndicator {
         public List<Beneficiary> fetchCaseList(List<String> caseIds) {
             return fetchChildCaseList(caseIds);
         }
+    },
+    ANCS_AND_PNCS_WITH_BPL("ANCS_AND_PNCS_WITH_BPL", "Number of open ANCs and PNCs who have economic status as BPL") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
+    IB_1Y("IB_1Y", "Number of children turning one year old in the current reporting month"){
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToChildProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchChildCaseList(caseIds);
+        }
     };
 
     private String value;
