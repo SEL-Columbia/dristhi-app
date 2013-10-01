@@ -1,5 +1,5 @@
 <form class="jr" autocomplete="off" id="Family_Planning_Change_Method">
-    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Change FP Method</h3>
     <fieldset id="jr-preload-items" style="display:none;">
@@ -148,7 +148,7 @@
         </span>
         <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/lmp_date"
                data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
-               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none'"
+               data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none' and  /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'male_sterilization'"
                data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
@@ -159,7 +159,7 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/upt_result"
                        value="positive"
-                       data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none'"
+                       data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none' and  /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'male_sterilization'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Positive
                     &#xCB8;&#xC95;&#xCBE;&#xCB0;&#xCBE;&#xCA4;&#xCCD;&#xCAE;&#xC95;</span>
@@ -167,7 +167,7 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/upt_result"
                        value="negative"
-                       data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none'"
+                       data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none' and  /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'male_sterilization'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Negative
                     &#xCA8;&#xC95;&#xCBE;&#xCB0;&#xCBE;&#xCA4;&#xCCD;&#xCAE;&#xC95;</span>
