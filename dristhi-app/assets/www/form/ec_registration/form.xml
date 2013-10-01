@@ -1,5 +1,5 @@
 <form class="jr" autocomplete="off" id="EC_Registration_EngKan">
-    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">EC Registration</h3>
     <select id="form-languages" style="display:none;" data-default-lang="default">
@@ -145,9 +145,7 @@
         <input autocomplete="off" type="text" name="/EC_Registration_EngKan/hh_head" data-type-xml="string"/>
     </label>
     <label class="">
-        <span lang="" class=" active">EC number, &#xC85;&#xCB0;&#xCCD;&#xCB9;&#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;
-            &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;:
-        </span>
+        <span lang="" class=" active">EC number, &#xC85;&#xCB0;&#xCCD;&#xCB9;&#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;:</span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/EC_Registration_EngKan/ec_number" required="required"
                data-constraint=".&gt;0" data-type-xml="int"/>
@@ -189,8 +187,7 @@
     </label>
     <label class="">
         <span lang="" class=" active">Husband's DOB, &#xC97;&#xC82;&#xCA1;&#xCA8; DOB:</span>
-        <span class="required">*</span>
-        <input autocomplete="off" type="date" name="/EC_Registration_EngKan/husband_date_of_birth" required="required"
+        <input autocomplete="off" type="date" name="/EC_Registration_EngKan/husband_date_of_birth"
                data-constraint=".&lt;= ( /EC_Registration_EngKan/today  - 5475)" data-type-xml="date"/>
     </label>
     <fieldset class="trigger " name="/EC_Registration_EngKan/husband_age_note">
