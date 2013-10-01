@@ -1,5 +1,5 @@
 <form class="jr" autocomplete="off" id="Family_Planning_Refill_Method">
-    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Refill FP Product</h3>
     <fieldset id="jr-preload-items" style="display:none;">
@@ -18,9 +18,9 @@
         </span>
     </fieldset>
     <label class="">
-        <span lang="" class=" active">FP renew method visit date? &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;
-            &#xCA8;&#xCB5;&#xCC0;&#xC95;&#xCB0;&#xCA3; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCA6; &#xCAD;&#xCC7;&#xC9F;&#xCBF;&#xCAF;
-            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        <span lang="" class=" active">Refill FP method visit date? &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;
+            &#xCAE;&#xCB0;&#xCC1; &#xCAA;&#xCC2;&#xCB0;&#xCC8;&#xC95;&#xCC6; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCA6;
+            &#xCAD;&#xCC7;&#xC9F;&#xCBF;&#xCAF; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Family_Planning_Refill_Method_EngKan/fp_renew_method_visit_date"
