@@ -1,5 +1,5 @@
 <form class="jr" autocomplete="off" id="PNC_Close_EngKan">
-    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">PNC Close</h3>
     <fieldset id="jr-preload-items" style="display:none;">
@@ -83,7 +83,7 @@
                            value="prolonged_obstructed_labor"
                            data-relevant=" /PNC_Close_EngKan/death_mother_group/maternal_death  = 'yes'"
                            data-type-xml="select1"/>
-                    <span lang="" class=" active">Prolonged / Obstructed Labor &#xCA7;&#xCC0;&#xCB0;&#xCCD;&#xC98;&#xC95;&#xCBE;&#xCB2;&#xCC0;&#xCA8;
+                    <span lang="" class=" active">Prolonged / Obstructed labor &#xCA7;&#xCC0;&#xCB0;&#xCCD;&#xC98;&#xC95;&#xCBE;&#xCB2;&#xCC0;&#xCA8;
                         / &#xC85;&#xCA1;&#xC9A;&#xCA3;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCA4;&#xC82;&#xCA6;&#xCCB;&#xCA1;&#xCCD;&#xCA1;&#xCC1;&#xCB5;
                         &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;</span>
                 </label>
@@ -108,7 +108,7 @@
                            name="/PNC_Close_EngKan/death_mother_group/maternal_death_cause" value="fever_infection"
                            data-relevant=" /PNC_Close_EngKan/death_mother_group/maternal_death  = 'yes'"
                            data-type-xml="select1"/>
-                    <span lang="" class=" active">High Fever / Infection &#xC85;&#xCA7;&#xCBF;&#xC95; &#xC9C;&#xCCD;&#xCB5;&#xCB0;
+                    <span lang="" class=" active">High fever / Infection &#xC85;&#xCA7;&#xCBF;&#xC95; &#xC9C;&#xCCD;&#xCB5;&#xCB0;
                         / &#xCB8;&#xCCB;&#xC82;&#xC95;&#xCC1;</span>
                 </label>
                 <label class="clearfix ">
@@ -128,9 +128,7 @@
             </fieldset>
         </fieldset>
         <label class="jr-branch pre-init ">
-            <span lang="" class=" active">Other cause of maternal death? &#xC87;&#xCA4;&#xCB0;&#xCC6; &#xCA4;&#xCBE;&#xCAF;&#xCBF;&#xCAF;
-                &#xCAE;&#xCB0;&#xCA3;&#xC95;&#xCCD;&#xC95;&#xCC6; &#xC95;&#xCBE;&#xCB0;&#xCA3;&#xCB5;&#xCC7;&#xCA8;&#xCC1;?
-            </span>
+            <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
             <input autocomplete="off" type="text" name="/PNC_Close_EngKan/death_mother_group/other_maternal_death_cause"
                    data-relevant=" /PNC_Close_EngKan/death_mother_group/maternal_death_cause  = 'others'"
                    data-type-xml="string"/>
@@ -150,15 +148,14 @@
                        required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Close_EngKan/confirm_pnc_close" value="no"
-                       required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-            </label>
         </fieldset>
     </fieldset>
 
     <fieldset id="jr-calculated-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden" name="/PNC_Close_EngKan/death_mother_group/woman_survived"
+                   data-calculate="&quot;no&quot;" data-type-xml="string"/>
+        </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/PNC_Close_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
