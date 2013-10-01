@@ -32,7 +32,7 @@ public enum ReportsCategory {
 
     MORTALITY("Mortality", asList(ENM, NM, LNM, INFANT_MORTALITY, CHILD_MORTALITY, MMA, MMD, MMP, MM)),
 
-    BENEFICIARY_SCHEMES("Beneficiary", asList(ANCS_AND_PNCS_WITH_BPL));
+    BENEFICIARY_SCHEMES("Beneficiary Schemes", asList(ANCS_AND_PNCS_WITH_BPL));
 
     private String description;
     private List<ReportIndicator> indicators;
