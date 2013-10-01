@@ -1,5 +1,5 @@
 <form class="jr" autocomplete="off" id="ANC_Visit_EngKan">
-    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">ANC Visit</h3>
     <fieldset id="jr-preload-items" style="display:none;">
@@ -13,8 +13,8 @@
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Which ANC visit is this?
-                    &#xC87;&#xCA6;&#xCC1; &#xCAF;&#xCBE;&#xCB5; ANC &#xCAD;&#xCC7;&#xC9F;&#xCBF;?
+                <span lang="" class=" active">Which ANC visit is this? &#xC87;&#xCA6;&#xCC1; &#xCAF;&#xCBE;&#xCB5; ANC
+                    &#xCAD;&#xCC7;&#xC9F;&#xCBF;?
                 </span>
                 <span class="required">*</span>
             </legend>
@@ -47,8 +47,7 @@
         </fieldset>
     </fieldset>
     <label class="">
-        <span lang="" class=" active">ANC visit date
-            ANC &#xCAD;&#xCC7;&#xC9F;&#xCBF; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;</span>
+        <span lang="" class=" active">ANC visit date? ANC &#xCAD;&#xCC7;&#xC9F;&#xCBF; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/ANC_Visit_EngKan/anc_visit_date" required="required"
                data-constraint=".&lt;= /ANC_Visit_EngKan/today " data-type-xml="date"/>
@@ -56,8 +55,8 @@
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Place of ANC check up?
-                    ANC &#xCA4;&#xCAA;&#xCBE;&#xCB8;&#xCA3;&#xCC6; &#xCB8;&#xCCD;&#xCA5;&#xCB3;?
+                <span lang="" class=" active">Place of ANC visit? ANC &#xCA4;&#xCAA;&#xCBE;&#xCB8;&#xCA3;&#xCC6; &#xCAD;&#xCC7;&#xC9F;&#xCBF;&#xCAF;
+                    &#xCB8;&#xCCD;&#xCA5;&#xCB3;?
                 </span>
                 <span class="required">*</span>
             </legend>
@@ -119,10 +118,10 @@
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Does the woman exhibit any risk symptoms? &#xCA8;&#xCC0;&#xCB5;&#xCC1;
-                    &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF; &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1;
-                    &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCBE;&#xC95;&#xCBE;&#xCB0;&#xCBF; &#xCB0;&#xCCB;&#xC97;&#xCB2;&#xC95;&#xCCD;&#xCB7;&#xCA3;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                    &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCBF;&#xCA6;&#xCC0;&#xCB0;&#xCBE;?
+                <span lang="" class=" active">Does the woman have any risk symptoms? &#xCA8;&#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1;
+                    &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF;
+                    &#xCB0;&#xCCB;&#xC97;&#xCB2;&#xC95;&#xCCD;&#xCB7;&#xCA3;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+                    &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCBE;&#xCB3;&#xCC6;&#xCAF;&#xCC7;?
                 </span>
             </legend>
             <label class="clearfix ">
@@ -213,24 +212,24 @@
         <span lang="" class=" active">BP (systolic) &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;&#xCCA;&#xCA4;&#xCCD;&#xCA4;&#xCA1;
             (&#xCB8;&#xC82;&#xC95;&#xCCB;&#xC9A;&#xCA8;&#xCA6;)
         </span>
-        <input autocomplete="off" type="number" name="/ANC_Visit_EngKan/bp_systolic"
+        <input autocomplete="off" type="number" name="/ANC_Visit_EngKan/bp_systolic" data-constraint=".&gt;0"
                data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'bp')" data-type-xml="int"/>
     </label>
     <label class="jr-branch pre-init ">
         <span lang="" class=" active">BP (diastolic) &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;&#xCCA;&#xCA4;&#xCCD;&#xCA4;&#xCA1;
             (&#xCB5;&#xCCD;&#xCAF;&#xCBE;&#xC95;&#xCCB;&#xC9A;&#xCA8;&#xCA6;)
         </span>
-        <input autocomplete="off" type="number" name="/ANC_Visit_EngKan/bp_diastolic"
+        <input autocomplete="off" type="number" name="/ANC_Visit_EngKan/bp_diastolic" data-constraint=".&gt;0"
                data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'bp')" data-type-xml="int"/>
     </label>
     <label class="jr-branch pre-init ">
         <span lang="" class=" active">Pulse rate &#xCA8;&#xCBE;&#xCA1;&#xCBF;&#xCAE;&#xCBF;&#xCA1;&#xCBF;&#xCA4; &#xCA6;&#xCB0;</span>
-        <input autocomplete="off" type="number" name="/ANC_Visit_EngKan/pulse_rate"
+        <input autocomplete="off" type="number" name="/ANC_Visit_EngKan/pulse_rate" data-constraint=".&gt;0"
                data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'pulse_rate')" data-type-xml="int"/>
     </label>
     <label class="jr-branch pre-init ">
         <span lang="" class=" active">Temperature (F) &#xCA4;&#xCBE;&#xCAA;&#xCAE;&#xCBE;&#xCA8; (F)</span>
-        <input autocomplete="off" type="number" name="/ANC_Visit_EngKan/temperature"
+        <input autocomplete="off" type="number" name="/ANC_Visit_EngKan/temperature" data-constraint=".&gt;0"
                data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'temperature')" data-type-xml="decimal"
                step="any"/>
     </label>
@@ -238,20 +237,16 @@
               data-relevant="selected( /ANC_Visit_EngKan/vitals_taken , 'weight')">
         <label class="">
             <span lang="" class=" active">Weight (in kgs) &#xCA4;&#xCC2;&#xC95; (&#xC95;&#xCC6;.&#xC9C;&#xCBF; &#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)</span>
-            <input autocomplete="off" type="number" name="/ANC_Visit_EngKan/weight_group/weight" data-type-xml="decimal"
-                   step="any"/>
+            <input autocomplete="off" type="number" name="/ANC_Visit_EngKan/weight_group/weight"
+                   data-constraint=".&gt;0" data-type-xml="decimal" step="any"/>
         </label>
         <fieldset class="trigger jr-branch pre-init" name="/ANC_Visit_EngKan/weight_group/weight_change_message"
                   data-relevant=" /ANC_Visit_EngKan/weight_group/case_weight  != ''">
-            <span lang="" class=" active">Weight gain since last visit:
+            <span lang="" class=" active">Weight gain since last visit, &#xC95;&#xCCA;&#xCA8;&#xCC6;&#xCAF; &#xCAD;&#xCC7;&#xC9F;&#xCBF;&#xCAF;
+                &#xCA8;&#xC82;&#xCA4;&#xCB0;&#xCA6;&#xCBF;&#xC82;&#xCA6; &#xCA4;&#xCC2;&#xC95; &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;:
                 <span class="jr-output" data-value=" /ANC_Visit_EngKan/weight_group/weight_change ">
                 </span>
-                kgs
-                &#xC95;&#xCCA;&#xCA8;&#xCC6;&#xCAF; &#xCAD;&#xCC7;&#xC9F;&#xCBF;&#xCAF; &#xCA8;&#xC82;&#xCA4;&#xCB0;&#xCA6;&#xCBF;&#xC82;&#xCA6;
-                &#xCA4;&#xCC2;&#xC95; &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;:
-                <span class="jr-output" data-value=" /ANC_Visit_EngKan/weight_group/weight_change ">
-                </span>
-                &#xC95;&#xCC6;.&#xC9C;&#xCBF;
+                kgs &#xC95;&#xCC6;.&#xC9C;&#xCBF;
             </span>
         </fieldset>
     </fieldset>
@@ -341,12 +336,12 @@
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/malpresentation_of_fetus" value="yes"
-                       data-relevant=" /ANC_Visit_EngKan/num_days_since_lmp  &gt;= 259" data-type-xml="select1"/>
+                       data-relevant=" /ANC_Visit_EngKan/num_days_since_lmp  &gt;= 224" data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/malpresentation_of_fetus" value="no"
-                       data-relevant=" /ANC_Visit_EngKan/num_days_since_lmp  &gt;= 259" data-type-xml="select1"/>
+                       data-relevant=" /ANC_Visit_EngKan/num_days_since_lmp  &gt;= 224" data-type-xml="select1"/>
                 <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
             </label>
         </fieldset>
@@ -393,9 +388,7 @@
               data-relevant=" /ANC_Visit_EngKan/is_high_risk1  = 'yes'">
         <span lang="" class=" active">
             <span class="jr-output" data-value=" /ANC_Visit_EngKan/woman_name ">
-            </span>is at risk because of:
-            <span class="jr-output" data-value=" /ANC_Visit_EngKan/high_risk_reason ">
-            </span>
+            </span>is at risk because of,
             <span class="jr-output" data-value=" /ANC_Visit_EngKan/woman_name ">
             </span>
             &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6; &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
@@ -425,14 +418,12 @@
     </fieldset>
     <fieldset class="trigger jr-branch pre-init" name="/ANC_Visit_EngKan/birth_plan_message"
               data-relevant=" /ANC_Visit_EngKan/num_weeks  &gt;= 34 and  /ANC_Visit_EngKan/case_birth_planning  = ''">
-        <span lang="" class=" active">Instructions:
+        <span lang="" class=" active">
             <span class="jr-output" data-value=" /ANC_Visit_EngKan/woman_name ">
-            </span>
-            is
+            </span>is
             <span class="jr-output" data-value=" /ANC_Visit_EngKan/num_weeks ">
             </span>
             weeks pregnant. Complete Birth Plan form now.
-            &#xCB8;&#xCC2;&#xC9A;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCC1;:
             <span class="jr-output" data-value=" /ANC_Visit_EngKan/woman_name ">
             </span>
             <span class="jr-output" data-value=" /ANC_Visit_EngKan/num_weeks ">
