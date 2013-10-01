@@ -1,5 +1,5 @@
 <form class="jr" autocomplete="off" id="EC_Close_EngKan">
-    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">EC Close</h3>
     <fieldset id="jr-preload-items" style="display:none;">
@@ -21,7 +21,7 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/close_reason" value="age_morethan_49"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Woman's age &gt; 49 &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;
+                <span lang="" class=" active">Woman's age &gt; 49, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;
                     &gt; 49
                 </span>
             </label>
@@ -56,9 +56,7 @@
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Other EC close reason: &#xC85;&#xCB0;&#xCCD;&#xCB9; &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-            &#xCAE;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCB2;&#xCC1; &#xC87;&#xCA4;&#xCB0;&#xCC6; &#xC95;&#xCBE;&#xCB0;&#xCA3;&#xCB5;&#xCC7;&#xCA8;&#xCC1;:
-        </span>
+        <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
         <input autocomplete="off" type="text" name="/EC_Close_EngKan/close_reason_other"
                data-relevant=" /EC_Close_EngKan/close_reason  = 'others'" data-type-xml="string"/>
     </label>
@@ -148,7 +146,7 @@
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/maternal_death_cause"
                        value="prolonged_obstructed_labor" data-relevant=" /EC_Close_EngKan/maternal_death  = 'yes'"
                        data-type-xml="select1"/>
-                <span lang="" class=" active">Prolonged / Obstructed Labor &#xCA7;&#xCC0;&#xCB0;&#xCCD;&#xC98;&#xC95;&#xCBE;&#xCB2;&#xCC0;&#xCA8;
+                <span lang="" class=" active">Prolonged / Obstructed labor &#xCA7;&#xCC0;&#xCB0;&#xCCD;&#xC98;&#xC95;&#xCBE;&#xCB2;&#xCC0;&#xCA8;
                     / &#xC85;&#xCA1;&#xC9A;&#xCA3;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCA4;&#xC82;&#xCA6;&#xCCB;&#xCA1;&#xCCD;&#xCA1;&#xCC1;&#xCB5;
                     &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;</span>
             </label>
@@ -170,7 +168,7 @@
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/maternal_death_cause"
                        value="fever_infection" data-relevant=" /EC_Close_EngKan/maternal_death  = 'yes'"
                        data-type-xml="select1"/>
-                <span lang="" class=" active">High Fever / Infection &#xC85;&#xCA7;&#xCBF;&#xC95; &#xC9C;&#xCCD;&#xCB5;&#xCB0;
+                <span lang="" class=" active">High fever / Infection &#xC85;&#xCA7;&#xCBF;&#xC95; &#xC9C;&#xCCD;&#xCB5;&#xCB0;
                     / &#xCB8;&#xCCB;&#xC82;&#xC95;&#xCC1;</span>
             </label>
             <label class="clearfix ">
@@ -187,16 +185,14 @@
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Describe the other cause of death. &#xCAE;&#xCB0;&#xCA3;&#xC95;&#xCCD;&#xC95;&#xCC6;
-            &#xC87;&#xCA4;&#xCB0;&#xCC6; &#xC95;&#xCBE;&#xCB0;&#xCA3;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCB5;&#xCBF;&#xCB5;&#xCB0;&#xCBF;&#xCB8;&#xCBF;.
-        </span>
+        <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
         <input autocomplete="off" type="text" name="/EC_Close_EngKan/other_maternal_death_cause"
                data-relevant=" /EC_Close_EngKan/maternal_death_cause  = 'others'" data-type-xml="string"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Confirm EC Close? &#xC85;&#xCB0;&#xCCD;&#xCB9; &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+                <span lang="" class=" active">Confirm EC close? &#xC85;&#xCB0;&#xCCD;&#xCB9; &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                     &#xCAE;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;&#xCB5;&#xCBF;&#xC95;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                     &#xC96;&#xC9A;&#xCBF;&#xCA4;&#xCAA;&#xCA1;&#xCBF;&#xCB8;&#xCBF;?
                 </span>
@@ -206,11 +202,6 @@
                 <input autocomplete="off" type="radio" name="/EC_Close_EngKan/confirm_ec_close" value="yes"
                        required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Close_EngKan/confirm_ec_close" value="no"
-                       required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
             </label>
         </fieldset>
     </fieldset>
