@@ -56,9 +56,9 @@ public class BeneficiaryServiceTest {
         Mother child2sMother = new Mother("MOTHER CASE Y", "EC CASE Y", "TC 2", "01-01-2007");
         EligibleCouple child2sEC = new EligibleCouple("EC CASE Y", "Wife 2", "Husband 2", "EC 2", "Village 2", "SC 2", mapOf("some-key", "some-value"));
         when(allBeneficiaries.findAllChildrenByCaseIDs(asList("CASE X", "CASE Y"))).thenReturn(asList(child1, child2));
-        when(allBeneficiaries.findMotherWithOpenStatus("MOTHER CASE X")).thenReturn(child1sMother);
+        when(allBeneficiaries.findMother("MOTHER CASE X")).thenReturn(child1sMother);
         when(allEligibleCouples.findByCaseID("EC CASE X")).thenReturn(child1sEC);
-        when(allBeneficiaries.findMotherWithOpenStatus("MOTHER CASE Y")).thenReturn(child2sMother);
+        when(allBeneficiaries.findMother("MOTHER CASE Y")).thenReturn(child2sMother);
         when(allEligibleCouples.findByCaseID("EC CASE Y")).thenReturn(child2sEC);
 
         List<Beneficiary> beneficiaries = service.fetchFromChildCaseIds(asList("CASE X", "CASE Y"));
