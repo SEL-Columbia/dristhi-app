@@ -30,7 +30,7 @@ public enum ReportIndicator {
             return fetchECCaseList(caseIds);
         }
     },
-    CONDOM_QTY("Condom Pieces", "Condom Usage") {
+    CONDOM_QTY("CONDOM_QTY", "Condom Pieces") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToECProfile(context, caseId);
