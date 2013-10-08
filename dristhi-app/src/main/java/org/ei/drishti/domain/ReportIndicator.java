@@ -416,7 +416,18 @@ public enum ReportIndicator {
             return fetchMotherCaseList(caseIds);
         }
     },
-    ANC_REGISTRATIONS("ANC", "Late ANC Registration") {
+    LATE_ANC_REGISTRATIONS("ANC>12", "Late ANC Registration") {
+        @Override
+        public void startCaseDetailActivity(android.content.Context context, String caseId) {
+            navigateToANCProfile(context, caseId);
+        }
+
+        @Override
+        public List<Beneficiary> fetchCaseList(List<String> caseIds) {
+            return fetchMotherCaseList(caseIds);
+        }
+    },
+    TOTAL_ANC_REGISTRATIONS("ANC", "Total ANC Registration") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToANCProfile(context, caseId);
