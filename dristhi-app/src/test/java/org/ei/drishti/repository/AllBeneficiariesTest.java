@@ -25,6 +25,8 @@ public class AllBeneficiariesTest {
     private AlertRepository alertRepository;
     @Mock
     private TimelineEventRepository timelineEventRepository;
+    @Mock
+    private Child child;
 
     private AllBeneficiaries allBeneficiaries;
 
@@ -79,5 +81,12 @@ public class AllBeneficiariesTest {
         verifyZeroInteractions(alertRepository);
         verifyZeroInteractions(timelineEventRepository);
         verify(motherRepository, times(0)).close(any(String.class));
+    }
+
+    @Test
+    public void shouldDelegateToChildRepositoryWhenUpdateChildIsCalled() throws Exception {
+        allBeneficiaries.updateChild(child);
+
+        verify(childRepository).update(child);
     }
 }

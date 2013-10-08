@@ -14,6 +14,8 @@ import java.util.*;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.ChildIllnessFields.*;
 import static org.ei.drishti.AllConstants.ChildRegistrationECFields.*;
+import static org.ei.drishti.AllConstants.ChildRegistrationOAFields.CHILD_ID;
+import static org.ei.drishti.AllConstants.ChildRegistrationOAFields.THAYI_CARD_NUMBER;
 import static org.ei.drishti.AllConstants.CommonFormFields.SUBMISSION_DATE;
 import static org.ei.drishti.AllConstants.ENTITY_ID_FIELD_NAME;
 import static org.ei.drishti.AllConstants.Immunizations.*;
@@ -210,12 +212,16 @@ public class ChildService {
     }
 
     public void registerForOA(FormSubmission submission) {
+        Child child = allBeneficiaries.findChild(submission.getFieldValue(CHILD_ID));
+        child.setThayiCardNumber(submission.getFieldValue(THAYI_CARD_NUMBER));
+        allBeneficiaries.updateChild(child);
+
         Map<String, String> immunizationDateFieldMap = createImmunizationDateFieldMap();
 
         String immunizationsGiven = submission.getFieldValue(AllConstants.ChildRegistrationOAFields.IMMUNIZATIONS_GIVEN);
         immunizationsGiven = isBlank(immunizationsGiven) ? "" : immunizationsGiven;
         allTimelines.add(forChildBirthInChildProfile(
-                submission.getFieldValue(AllConstants.ChildRegistrationOAFields.CHILD_ID),
+                submission.getFieldValue(CHILD_ID),
                 submission.getFieldValue(AllConstants.ChildRegistrationOAFields.DATE_OF_BIRTH),
                 submission.getFieldValue(AllConstants.ChildRegistrationOAFields.WEIGHT),
                 immunizationsGiven));
