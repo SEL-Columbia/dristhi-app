@@ -22,7 +22,7 @@ describe("List view controller", function () {
     }));
 
     it("should default the number of clients to show.", function () {
-        expect(scope.numberOfClientsToShow).toBe(10);
+        expect(scope.numberOfClientsToShow).toBe(20);
     });
 
     describe("Reporting period", function () {
