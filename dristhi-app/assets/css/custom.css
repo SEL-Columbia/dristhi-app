@@ -228,10 +228,10 @@
 }
 
 .report-medium {
-    font-size: 22px;
+    font-size: 23px;
     line-height: 22px;
-    margin-top: 2px;
-    margin-bottom: 3px;
+    margin-top: 7px;
+    margin-bottom: 6px;
 }
 
 .big-text-margin {
@@ -426,7 +426,6 @@ body {
     background-attachment: scroll;
     background-clip: border-box;
     background-color: #f2f2f2;
-    background-image: url("../img/background.png");
     font-size: 13pt;
     line-height: 18px;
 	color: #000000 !important;
@@ -568,7 +567,7 @@ body {
 }
 
 .meta-summary-text {
-    color: #999999;
+    color: #000;
 }
 
 .meta-summary-text-with-margin {
@@ -1226,4 +1225,8 @@ small {
 
 .client-parents-name {
     max-width: 190px !important;
+}
+
+.table-bordered th, .table-bordered td {
+background-color: #FFF !important;
 }
