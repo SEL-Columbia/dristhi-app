@@ -1092,6 +1092,14 @@ a.btn-sr.upcoming, a.btn-sr.done {
     height: 34px;
 }
 
+.icon-bigger {
+    font-size: 200%;
+}
+
+.icon-block {
+    display: block;
+}
+
 .text-align-left {
     text-align: left;
 }

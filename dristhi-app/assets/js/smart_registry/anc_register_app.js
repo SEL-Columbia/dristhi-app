@@ -110,6 +110,11 @@ angular.module("smartRegistry.controllers")
                     label: "TT",
                     id: "tt",
                     handler: "changeContentBasedOnServiceMode"
+                },
+                {
+                    label: "Delivery Plan",
+                    id: "delivery",
+                    handler: "changeContentBasedOnServiceMode"
                 }
             ]
         };

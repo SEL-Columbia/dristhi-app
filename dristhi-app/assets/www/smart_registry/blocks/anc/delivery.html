@@ -1,83 +1,81 @@
 <div class="span7 full-height width-without-margins span-no-margin">
-        <div ng-show="client.visits.delivery_plan.next" class="row-fluid full-height">
-            <div class="span12 line-right full-height width-without-margins span-no-margin span-content">
-                <!--VISITS-->
-                <button class="btn btn-primary btn-sr full-height"
-                        ng-class="client.visits.delivery_plan.next.status">
-                    <span class="text-bold">Delivery Plan</span>
-                    <br/>
-                    <span>Due {{client.visits.delivery_plan.next.visit_date | date: 'dd/MM'}}</span>
-                </button>
-            </div>
+    <div ng-show="client.visits.delivery_plan.next" class="row-fluid full-height">
+        <div class="span12 line-right full-height width-without-margins span-no-margin span-content">
+            <!--VISITS-->
+            <button class="btn btn-primary btn-sr full-height"
+                    ng-class="client.visits.delivery_plan.next.status">
+                <span class="text-bold">Delivery Plan</span>
+                <br/>
+                <span>Due {{client.visits.delivery_plan.next.visit_date | date: 'dd/MM'}}</span>
+            </button>
         </div>
-        <div ng-show="!client.visits.delivery_plan.next && client.visits.delivery_plan['Delivery Plan']" class="row-fluid full-height">
-            <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
-                <button class="btn btn-primary complete btn-sr btn-center-aligned btn-icon-only" href="#">
-                    <i class=""
-                       ng-class="{'icon-ok green': client.visits.delivery_plan['Delivery Plan'].data.asha_name != null,
-                       'icon-remove red': client.visits.delivery_plan['Delivery Plan'].data.asha_name == null}"></i>
-                </button>
-                <ng:switch on="client.visits.delivery_plan['Delivery Plan'].data.asha_name">
-                    <span ng-switch-when="null" class="">Asha</span>
-                    <span ng-switch-default>{{client.visits.delivery_plan['Delivery Plan'].data.asha_name}}</span>
-                </ng:switch>
-            </div>
-            <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
-                <button class="btn btn-primary complete btn-sr btn-center-aligned btn-icon-only" href="#">
-                    <i class=""
-                       ng-class="{'icon-ok green': client.visits.delivery_plan['Delivery Plan'].data.companion != null,
-                       'icon-remove red': client.visits.delivery_plan['Delivery Plan'].data.companion == null}"></i>
-                </button>
-                <ng:switch on="client.visits.delivery_plan['Delivery Plan'].data.companion">
-                    <span ng-switch-when="null" class="">Companion</span>
-                    <span ng-switch-default>{{client.visits.delivery_plan['Delivery Plan'].data.companion}}</span>
-                </ng:switch>
-            </div>
-            <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
-                <button class="btn btn-primary complete btn-sr btn-center-aligned btn-icon-only" href="#">
-                    <i class=""
-                       ng-class="{'icon-ok green': client.visits.delivery_plan['Delivery Plan'].data.delivery_site != null,
+    </div>
+    <div ng-show="!client.visits.delivery_plan.next && client.visits.delivery_plan['Delivery Plan']"
+         class="row-fluid full-height">
+        <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
+            <i class="icon-bigger icon-block"
+               ng-class="{'icon-ok green': client.visits.delivery_plan['Delivery Plan'].data.delivery_site != null,
                        'icon-remove red': client.visits.delivery_plan['Delivery Plan'].data.delivery_site == null}"></i>
-                </button>
-                <ng:switch on="client.visits.delivery_plan['Delivery Plan'].data.delivery_site">
-                    <span ng-switch-when="null" class="">Delivery Site</span>
-                    <span ng-switch-default>{{client.visits.delivery_plan['Delivery Plan'].data.delivery_site}}</span>
-                </ng:switch>
-            </div>
-            <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
-                <button class="btn btn-primary complete btn-sr btn-center-aligned btn-icon-only" href="#">
-                    <i class=""
-                       ng-class="{'icon-ok green': client.visits.delivery_plan['Delivery Plan'].data.transport != null,
-                       'icon-remove red': client.visits.delivery_plan['Delivery Plan'].data.transport == null}"></i>
-                </button>
-                <ng:switch on="client.visits.delivery_plan['Delivery Plan'].data.transport">
-                    <span ng-switch-when="null" class="">Transport</span>
-                    <span ng-switch-default>{{client.visits.delivery_plan['Delivery Plan'].data.transport}}</span>
-                </ng:switch>
-            </div>
-            <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
-                <button class="btn btn-primary complete btn-sr btn-center-aligned btn-icon-only" href="#">
-                    <i class=""
-                       ng-class="{'icon-ok green': client.visits.delivery_plan['Delivery Plan'].data.contact_no != null,
-                       'icon-remove red': client.visits.delivery_plan['Delivery Plan'].data.contact_no == null}"></i>
-                </button>
-                <ng:switch on="client.visits.delivery_plan['Delivery Plan'].data.contact_no">
-                    <span ng-switch-when="null" class="">Contact No.</span>
-                    <span ng-switch-default>{{client.visits.delivery_plan['Delivery Plan'].data.contact_no}}</span>
-                </ng:switch>
-            </div>
-            <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
-                <button class="btn btn-primary complete btn-sr btn-center-aligned btn-icon-only" href="#">
-                    <i class=""
-                       ng-class="{'icon-ok green': client.visits.delivery_plan['Delivery Plan'].data.review_risks != null,
-                       'icon-remove red': client.visits.delivery_plan['Delivery Plan'].data.review_risks == null}"></i>
-                </button>
-                <ng:switch on="client.visits.delivery_plan['Delivery Plan'].data.review_risks">
-                    <span ng-switch-when="null" class="">Review Risks</span>
-                    <span ng-switch-default>{{client.visits.delivery_plan['Delivery Plan'].data.review_risks}}</span>
-                </ng:switch>
-            </div>
+            <span>Delivery At:</span>
+            <br/>
+            <ng:switch on="client.visits.delivery_plan['Delivery Plan'].data.delivery_site">
+                <span ng-switch-when="null" class="">none</span>
+                <span ng-switch-default>{{client.visits.delivery_plan['Delivery Plan'].data.delivery_site}}</span>
+            </ng:switch>
         </div>
+        <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
+            <i class="icon-bigger icon-block"
+               ng-class="{'icon-ok green': client.visits.delivery_plan['Delivery Plan'].data.transport != null,
+                       'icon-remove red': client.visits.delivery_plan['Delivery Plan'].data.transport == null}"></i>
+            <span>Transport:</span>
+            <br/>
+            <ng:switch on="client.visits.delivery_plan['Delivery Plan'].data.transport">
+                <span ng-switch-when="null" class="">none</span>
+                <span ng-switch-default>{{client.visits.delivery_plan['Delivery Plan'].data.transport}}</span>
+            </ng:switch>
+        </div>
+        <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
+            <i class="icon-bigger icon-block"
+               ng-class="{'icon-ok green': client.visits.delivery_plan['Delivery Plan'].data.companion != null,
+                       'icon-remove red': client.visits.delivery_plan['Delivery Plan'].data.companion == null}"></i>
+            <ng:switch on="client.visits.delivery_plan['Delivery Plan'].data.companion">
+                <span ng-switch-when="null" class="">Doesn't have companion</span>
+                <span ng-switch-default>Has Companion</span>
+            </ng:switch>
+        </div>
+        <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
+            <i class="icon-bigger icon-block"
+               ng-class="{'icon-ok green': client.visits.delivery_plan['Delivery Plan'].data.asha_name != null,
+                       'icon-remove red': client.visits.delivery_plan['Delivery Plan'].data.asha_name == null}"></i>
+            <span>ASHA:</span>
+            <br/>
+            <ng:switch on="client.visits.delivery_plan['Delivery Plan'].data.asha_name">
+                <span ng-switch-when="null" class="">none</span>
+                <span ng-switch-default>{{client.visits.delivery_plan['Delivery Plan'].data.asha_name}}</span>
+            </ng:switch>
+        </div>
+        <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
+            <i class="icon-bigger icon-block"
+               ng-class="{'icon-ok green': client.visits.delivery_plan['Delivery Plan'].data.contact_no != null,
+                       'icon-remove red': client.visits.delivery_plan['Delivery Plan'].data.contact_no == null}"></i>
+            <span>Contact:</span>
+            <ng:switch on="client.visits.delivery_plan['Delivery Plan'].data.contact_no">
+                <span ng-switch-when="null" class="">none</span>
+                <span ng-switch-default>{{client.visits.delivery_plan['Delivery Plan'].data.contact_no}}</span>
+            </ng:switch>
+        </div>
+        <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
+            <i class="icon-bigger icon-block"
+               ng-class="{'icon-ok green': client.visits.delivery_plan['Delivery Plan'].data.review_risks != null,
+                       'icon-remove red': client.visits.delivery_plan['Delivery Plan'].data.review_risks == null}"></i>
+            <span>Risks:</span>
+            <br/>
+            <ng:switch on="client.visits.delivery_plan['Delivery Plan'].data.review_risks">
+                <span ng-switch-when="null" class="">Not Reviewed</span>
+                <span ng-switch-default>{{client.visits.delivery_plan['Delivery Plan'].data.review_risks}}</span>
+            </ng:switch>
+        </div>
+    </div>
 </div>
 
 
