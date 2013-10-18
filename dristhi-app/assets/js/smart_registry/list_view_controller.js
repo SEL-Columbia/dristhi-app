@@ -98,7 +98,7 @@ angular.module("smartRegistry.controllers")
             $scope.isModalOpen = false;
         };
 
-        $scope.numberOfClientsToShow = 10;
+        $scope.numberOfClientsToShow = 20;
 
         $scope.openForm = function (formName, entityId, metaData) {
             if (!metaData) {

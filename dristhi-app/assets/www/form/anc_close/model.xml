@@ -21,6 +21,7 @@
                 <case_w_rh_negative/>
                 <rh_injection_given1/>
                 <threemonths_from_spont_abortion_date/>
+                <threemonths_from_spont_abortion_date_formatted/>
                 <spont_abortion_message/>
             </spontaneous_abortion_group>
             <induced_abortion_group>
@@ -33,7 +34,6 @@
             </induced_abortion_group>
             <maternal_death_group>
                 <date_maternal_death/>
-                <death_trimester/>
                 <maternal_death_cause/>
                 <other_maternal_death_cause/>
             </maternal_death_group>

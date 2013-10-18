@@ -32,7 +32,7 @@ public class BeneficiaryService {
         List<Beneficiary> beneficiaries = new ArrayList<Beneficiary>();
         List<Child> children = allBeneficiaries.findAllChildrenByCaseIDs(caseIds);
         for (Child child : children) {
-            Mother mother = allBeneficiaries.findMotherWithOpenStatus(child.motherCaseId());
+            Mother mother = allBeneficiaries.findMother(child.motherCaseId());
             EligibleCouple parents = allEligibleCouples.findByCaseID(mother.ecCaseId());
             beneficiaries.add(new Beneficiary(child.caseId(), parents.wifeName(), parents.husbandName(), child.thayiCardNumber(), parents.ecNumber(), parents.village(), child.isHighRisk()));
         }

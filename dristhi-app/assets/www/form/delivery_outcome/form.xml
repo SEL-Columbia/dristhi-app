@@ -1,5 +1,5 @@
 <form class="jr" autocomplete="off" id="Delivery_Outcome_EngKan">
-    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Delivery Outcome</h3>
     <fieldset id="jr-preload-items" style="display:none;">
@@ -17,7 +17,7 @@
                data-constraint=".&lt;= /Delivery_Outcome_EngKan/today " data-type-xml="date"/>
     </label>
     <label class="">
-        <span lang="" class=" active">Delivery registration date? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCBE;&#xCA4;&#xCBF;
+        <span lang="" class=" active">PNC registration date? &#xCAC;&#xCBE;&#xCA3;&#xC82;&#xCA4;&#xCBF; &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCBE;&#xCA4;&#xCBF;
             &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <span class="required">*</span>

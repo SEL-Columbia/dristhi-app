@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
+import javax.swing.event.ChangeListener;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
@@ -39,6 +40,8 @@ public class ChildServiceTest {
     private AllAlerts allAlerts;
     @Mock
     private AllBeneficiaries allBeneficiaries;
+    @Mock
+    private Child child;
     private ChildService service;
 
     @Before
@@ -325,9 +328,13 @@ public class ChildServiceTest {
         when(submission.getFieldValue("immunizationsGiven")).thenReturn("bcg opv_0");
         when(submission.getFieldValue("bcgDate")).thenReturn("2012-01-06");
         when(submission.getFieldValue("opv0Date")).thenReturn("2012-01-07");
+        when(submission.getFieldValue("thayiCardNumber")).thenReturn("1234567");
+        when(allBeneficiaries.findChild("child id 1")).thenReturn(child);
 
         service.registerForOA(submission);
 
+        verify(child).setThayiCardNumber("1234567");
+        verify(allBeneficiaries).updateChild(child);
         verify(allTimelineEvents).add(forChildBirthInChildProfile("child id 1", "2013-01-02", "3", "bcg opv_0"));
 
         verify(serviceProvidedService).add(forChildImmunization("ec id 1", "bcg", "2012-01-06"));

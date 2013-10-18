@@ -207,6 +207,7 @@ public class AllConstants {
         public static final String WEIGHT = "weight";
         public static final String IMMUNIZATIONS_GIVEN = "immunizationsGiven";
         public static final String NAME = "name";
+        public static final String THAYI_CARD_NUMBER = "thayiCardNumber";
     }
 
     public class PNCRegistrationOAFields {

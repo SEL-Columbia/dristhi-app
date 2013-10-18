@@ -1,5 +1,5 @@
 {
-    "form_data_definition_version": "1",
+    "form_data_definition_version": "2",
     "form": {
         "bind_type": "child",
         "default_bind_path": "/model/instance/Child_Sick_Visit_EngKan/",
@@ -47,6 +47,10 @@
             },
             {
                 "name": "reportChildDiseasePlace",
+                "bind": "/model/instance/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease_place"
+            },
+            {
+                "name": "serviceProvidedPlace",
                 "bind": "/model/instance/Child_Sick_Visit_EngKan/report_child_disease_group/report_child_disease_place"
             },
             {
