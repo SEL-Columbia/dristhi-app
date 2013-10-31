@@ -27,7 +27,7 @@ public class AllConstants {
     public static final int PORT = 443;
     public static final boolean SHOULD_VERIFY_CERTIFICATE = true;
 
-//    public static final String DRISHTI_BASE_URL = "https://li310-155.members.linode.com";
+//    public static final String DRISHTI_BASE_URL = "https://drishti.modilabs.org";
 //    public static final String HOST = AuthScope.ANY_HOST;
 //    public static final int PORT = AuthScope.ANY_PORT;
 //    public static final boolean SHOULD_VERIFY_CERTIFICATE = false;
