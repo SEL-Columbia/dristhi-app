@@ -631,7 +631,7 @@ public enum ReportIndicator {
             return fetchMotherCaseList(caseIds);
         }
     },
-    LATE_ABORTIONS("MTP>12", "Abortions after 12 weeks") {
+    LATE_ABORTIONS("MTP_GT_12", "Abortions after 12 weeks") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToPNCProfile(context, caseId);
