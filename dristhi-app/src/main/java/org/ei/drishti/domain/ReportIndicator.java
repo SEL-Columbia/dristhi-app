@@ -525,7 +525,7 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
-    INFANT_BALANCE_LESS_THAN_ONE_YEAR("IB<1Y", "No. of children (0-1 Year)") {
+    INFANT_BALANCE_LESS_THAN_ONE_YEAR("IB_LT_1Y", "No. of children (0-1 Year)") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToChildProfile(context, caseId);
