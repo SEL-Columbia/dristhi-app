@@ -405,7 +405,7 @@ public enum ReportIndicator {
             return fetchChildCaseList(caseIds);
         }
     },
-    EARLY_ANC_REGISTRATIONS("ANC<12", "Early ANC Registration") {
+    EARLY_ANC_REGISTRATIONS("ANC_LT_12", "Early ANC Registration") {
         @Override
         public void startCaseDetailActivity(android.content.Context context, String caseId) {
             navigateToANCProfile(context, caseId);
