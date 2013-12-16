@@ -3,7 +3,8 @@
         <div class="span12 line-right full-height width-without-margins span-no-margin span-content">
             <!--VISITS-->
             <button class="btn btn-primary btn-sr full-height"
-                    ng-class="client.visits.delivery_plan.next.status">
+                    ng-class="client.visits.delivery_plan.next.status"
+                    ng-click="openForm('delivery_plan', currentClientEntityId);closeECFormModal();">
                 <span class="text-bold">Delivery Plan</span>
                 <br/>
                 <span>Due {{client.visits.delivery_plan.next.visit_date | date: 'dd/MM'}}</span>

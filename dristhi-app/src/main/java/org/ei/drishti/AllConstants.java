@@ -277,4 +277,13 @@ public class AllConstants {
     public class CommonFormFields {
         public static final String SUBMISSION_DATE = "submissionDate";
     }
+
+    public class DeliveryPlanFields {
+        public static final String DELIVERY_FACILITY_NAME = "deliveryFacilityName";
+        public static final String TRANSPORTATION_PLAN = "transportationPlan";
+        public static final String BIRTH_COMPANION = "birthCompanion";
+        public static final String ASHA_PHONE_NUMBER = "ashaPhoneNumber";
+        public static final String PHONE_NUMBER = "phoneNumber";
+        public static final String REVIEWED_HRP_STATUS = "reviewedHRPStatus";
+    }
 }

@@ -39,6 +39,7 @@ public class ANCSmartRegisterController {
     private static final String HB_TEST_1_ALERT_NAME = "Hb Test 1";
     private static final String HB_TEST_2_ALERT_NAME = "Hb Test 2";
     private static final String HB_FOLLOWUP_TEST_ALERT_NAME = "Hb Followup Test";
+    private static final String DELIVERY_PLAN_ALERT_NAME = "Delivery Plan";
 
     private static final String ANC_CLIENTS_LIST = "ANCClientList";
     private AllBeneficiaries allBeneficiaries;
@@ -124,7 +125,8 @@ public class ANCSmartRegisterController {
                 TT_2_ALERT_NAME,
                 HB_TEST_1_ALERT_NAME,
                 HB_FOLLOWUP_TEST_ALERT_NAME,
-                HB_TEST_2_ALERT_NAME
+                HB_TEST_2_ALERT_NAME,
+                DELIVERY_PLAN_ALERT_NAME
         );
         List<AlertDTO> alertDTOs = new ArrayList<AlertDTO>();
         for (Alert alert : alerts) {

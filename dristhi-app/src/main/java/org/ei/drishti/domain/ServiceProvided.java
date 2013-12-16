@@ -8,6 +8,7 @@ import org.ei.drishti.domain.mapper.TTMapper;
 import java.util.Map;
 
 import static org.ei.drishti.AllConstants.ANCVisitFields.*;
+import static org.ei.drishti.AllConstants.DeliveryPlanFields.*;
 import static org.ei.drishti.AllConstants.VitaminAFields.VITAMIN_A_DOSE;
 import static org.ei.drishti.AllConstants.VitaminAFields.VITAMIN_A_PLACE;
 import static org.ei.drishti.util.EasyMap.create;
@@ -28,6 +29,7 @@ public class ServiceProvided {
     public static final String PNC_VISIT_DAY = "day";
     public static final String CHILD_ILLNESS_SERVICE_PROVIDED_NAME = "Illness Visit";
     public static final String VITAMIN_A_SERVICE_PROVIDED_NAME = "Vitamin A";
+    public static final String DELIVERY_PLAN_SERVICE_PROVIDED_NAME = "Delivery Plan";
     private final String entityId;
     private final String name;
     private final String date;
@@ -65,6 +67,17 @@ public class ServiceProvided {
     public static ServiceProvided forMotherPNCVisit(String entityId, String pncVisitDay, String date) {
         return new ServiceProvided(entityId, PNC_SERVICE_PROVIDED_NAME, date,
                 mapOf(PNC_VISIT_DAY, pncVisitDay)
+        );
+    }
+
+    public static ServiceProvided forDeliveryPlan(String entityId, String deliveryFacilityName, String transportationPlan, String birthCompanion, String ashaPhoneNumber, String familyContactNumber, String highRiskReason, String date) {
+        return new ServiceProvided(entityId, DELIVERY_PLAN_SERVICE_PROVIDED_NAME, date,
+                create(DELIVERY_FACILITY_NAME, deliveryFacilityName)
+                        .put(TRANSPORTATION_PLAN, transportationPlan)
+                        .put(BIRTH_COMPANION, birthCompanion)
+                        .put(ASHA_PHONE_NUMBER, ashaPhoneNumber)
+                        .put(PHONE_NUMBER, familyContactNumber)
+                        .put(REVIEWED_HRP_STATUS, highRiskReason).map()
         );
     }
 

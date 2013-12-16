@@ -11,8 +11,10 @@ import org.ei.drishti.repository.AllTimelineEvents;
 import static org.ei.drishti.AllConstants.ANCCloseFields.*;
 import static org.ei.drishti.AllConstants.ANCVisitFields.*;
 import static org.ei.drishti.AllConstants.BOOLEAN_FALSE;
+import static org.ei.drishti.AllConstants.CommonFormFields.SUBMISSION_DATE;
 import static org.ei.drishti.AllConstants.DeliveryOutcomeFields.DID_MOTHER_SURVIVE;
 import static org.ei.drishti.AllConstants.DeliveryOutcomeFields.DID_WOMAN_SURVIVE;
+import static org.ei.drishti.AllConstants.DeliveryPlanFields.*;
 import static org.ei.drishti.AllConstants.HbTestFields.HB_LEVEL;
 import static org.ei.drishti.AllConstants.HbTestFields.HB_TEST_DATE;
 import static org.ei.drishti.AllConstants.IFAFields.IFA_TABLETS_DATE;
@@ -33,6 +35,8 @@ public class MotherService {
     private AllTimelineEvents allTimelines;
     private AllEligibleCouples allEligibleCouples;
     private ServiceProvidedService serviceProvidedService;
+    public static String submissionDate = "submissionDate";
+
 
     public MotherService(AllBeneficiaries allBeneficiaries, AllEligibleCouples allEligibleCouples,
                          AllTimelineEvents allTimelineEvents, ServiceProvidedService serviceProvidedService) {
@@ -138,7 +142,7 @@ public class MotherService {
 
         String numberOfIFATabletsGiven = submission.getFieldValue(AllConstants.PNCVisitFields.NUMBER_OF_IFA_TABLETS_GIVEN);
         if (tryParse(numberOfIFATabletsGiven, 0) > 0) {
-            allTimelines.add(forIFATabletsGiven(submission.entityId(), numberOfIFATabletsGiven, submission.getFieldValue(AllConstants.CommonFormFields.SUBMISSION_DATE)));
+            allTimelines.add(forIFATabletsGiven(submission.entityId(), numberOfIFATabletsGiven, submission.getFieldValue(SUBMISSION_DATE)));
         }
     }
 
@@ -146,12 +150,24 @@ public class MotherService {
         allTimelines.add(
                 forDeliveryPlan(
                         submission.entityId(),
-                        submission.getFieldValue("deliveryFacilityName"),
-                        submission.getFieldValue("transportationPlan"),
-                        submission.getFieldValue("birthCompanion"),
-                        submission.getFieldValue("ashaPhoneNumber"),
-                        submission.getFieldValue("phoneNumber"),
-                        submission.getFieldValue("reviewedHRPStatus"),
-                        submission.getFieldValue("submissionDate")));
+                        submission.getFieldValue(DELIVERY_FACILITY_NAME),
+                        submission.getFieldValue(TRANSPORTATION_PLAN),
+                        submission.getFieldValue(BIRTH_COMPANION),
+                        submission.getFieldValue(ASHA_PHONE_NUMBER),
+                        submission.getFieldValue(PHONE_NUMBER),
+                        submission.getFieldValue(REVIEWED_HRP_STATUS),
+                        submission.getFieldValue(SUBMISSION_DATE)));
+
+        serviceProvidedService.add(
+                ServiceProvided.forDeliveryPlan(
+                        submission.entityId(),
+                        submission.getFieldValue(DELIVERY_FACILITY_NAME),
+                        submission.getFieldValue(TRANSPORTATION_PLAN),
+                        submission.getFieldValue(BIRTH_COMPANION),
+                        submission.getFieldValue(ASHA_PHONE_NUMBER),
+                        submission.getFieldValue(PHONE_NUMBER),
+                        submission.getFieldValue(REVIEWED_HRP_STATUS),
+                        submission.getFieldValue(SUBMISSION_DATE)
+                        ));
     }
 }

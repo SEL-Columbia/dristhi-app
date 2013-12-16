@@ -14,8 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import static org.ei.drishti.domain.TimelineEvent.forIFATabletsGiven;
-import static org.ei.drishti.domain.TimelineEvent.forTTShotProvided;
+import static org.ei.drishti.domain.TimelineEvent.*;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 import static org.mockito.Mockito.*;
@@ -332,4 +331,39 @@ public class MotherServiceTest {
 
         verify(allTimelineEvents, times(0)).add(forIFATabletsGiven("entity id 1", "2012-01-01", "100"));
     }
+
+    @Test
+    public void shouldAddTimelineEventWhenDeliveryPlanHappens() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("deliveryFacilityName")).thenReturn("Delivery Facility Name");
+        when(submission.getFieldValue("transportationPlan")).thenReturn("Transportation Plan");
+        when(submission.getFieldValue("birthCompanion")).thenReturn("Birth Companion");
+        when(submission.getFieldValue("ashaPhoneNumber")).thenReturn("Asha Phone");
+        when(submission.getFieldValue("phoneNumber")).thenReturn("1234567890");
+        when(submission.getFieldValue("reviewedHRPStatus")).thenReturn("HRP Status");
+        when(submission.getFieldValue("submissionDate")).thenReturn("2012-01-01");
+
+        service.deliveryPlan(submission);
+
+        verify(allTimelineEvents).add(forDeliveryPlan("entity id 1", "Delivery Facility Name", "Transportation Plan", "Birth Companion", "Asha Phone", "1234567890", "HRP Status", "2012-01-01"));
+    }
+
+    @Test
+    public void shouldAddServiceProvidedWhenDeliveryPlanHappens() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("deliveryFacilityName")).thenReturn("Delivery Facility Name");
+        when(submission.getFieldValue("transportationPlan")).thenReturn("Transportation Plan");
+        when(submission.getFieldValue("birthCompanion")).thenReturn("Birth Companion");
+        when(submission.getFieldValue("ashaPhoneNumber")).thenReturn("Asha Phone");
+        when(submission.getFieldValue("phoneNumber")).thenReturn("1234567890");
+        when(submission.getFieldValue("reviewedHRPStatus")).thenReturn("HRP Status");
+        when(submission.getFieldValue("submissionDate")).thenReturn("2012-01-01");
+
+        service.deliveryPlan(submission);
+
+        verify(serviceProvidedService).add(ServiceProvided.forDeliveryPlan("entity id 1", "Delivery Facility Name", "Transportation Plan", "Birth Companion", "Asha Phone", "1234567890", "HRP Status", "2012-01-01"));
+    }
+
 }

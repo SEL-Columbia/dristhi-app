@@ -47,27 +47,31 @@
             },
             {
                 "name": "familyMember",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Plan_EngKan/family_member"
             },
             {
                 "name": "familyMember2",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Plan_EngKan/family_member2"
             },
             {
                 "name": "samePhoneNumber",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Plan_EngKan/same_phone_no"
             },
             {
                 "name": "newPhoneNumber",
+                "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Plan_EngKan/new_phone_no"
             },
             {
-                "name": "phoneNumber",
+                "name": "phoneNumber1",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Plan_EngKan/phone_no1"
             },
             {
-                "name": "phoneNumber",
+                "name": "phoneNumber2",
                 "bind": "/model/instance/Delivery_Plan_EngKan/phone_no2"
             },
             {
@@ -112,12 +116,12 @@
                 "bind": "/model/instance/Delivery_Plan_EngKan/blood_donor_available"
             },
             {
-                "name": "reviewedHRPStatus",
+                "name": "reviewedHRPStatus1",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Plan_EngKan/reviewed_hrp_status1"
             },
             {
-                "name": "reviewedHRPStatus",
+                "name": "reviewedHRPStatus2",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Plan_EngKan/reviewed_hrp_status2"
             },
@@ -126,7 +130,7 @@
                 "bind": "/model/instance/Delivery_Plan_EngKan/reviewed_hrp_status"
             },
             {
-                "name": "didMOVisitHappen",
+                "name": "moVisit",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Plan_EngKan/mo_visit"
             },
@@ -135,12 +139,8 @@
                 "bind": "/model/instance/Delivery_Plan_EngKan/mo_visit_message"
             },
             {
-                "name": "deliveryFacility",
+                "name": "deliveryFacility1",
                 "shouldLoadValue": true,
-                "bind": "/model/instance/Delivery_Plan_EngKan/delivery_facility1"
-            },
-            {
-                "name": "deliveryFacility",
                 "bind": "/model/instance/Delivery_Plan_EngKan/delivery_facility1"
             },
             {
@@ -149,7 +149,7 @@
                 "bind": "/model/instance/Delivery_Plan_EngKan/home_reasons"
             },
             {
-                "name": "deliveryFacilityName",
+                "name": "deliveryFacilityName1",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Plan_EngKan/name_delivery_facility1"
             },
@@ -171,12 +171,12 @@
                 "bind": "/model/instance/Delivery_Plan_EngKan/change_delivery_facility"
             },
             {
-                "name": "deliveryFacility",
+                "name": "deliveryFacility2",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Plan_EngKan/delivery_facility2"
             },
             {
-                "name": "deliveryFacilityName",
+                "name": "deliveryFacilityName2",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Plan_EngKan/name_delivery_facility2"
             },
@@ -189,7 +189,7 @@
                 "bind": "/model/instance/Delivery_Plan_EngKan/name_delivery_facility"
             },
             {
-                "name": "fiveCleansPlan",
+                "name": "fiveDeliveryCleans",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Plan_EngKan/home_delivery_group/five_delivery_cleans"
             },
@@ -203,12 +203,12 @@
                 "bind": "/model/instance/Delivery_Plan_EngKan/home_delivery_group/nearest_24_7_facility_message"
             },
             {
-                "name": "transportationPlan",
+                "name": "transportationPlan1",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Delivery_Plan_EngKan/transportation_plan1"
             },
             {
-                "name": "transportationPlanMessage",
+                "name": "transportationPlan1Message",
                 "bind": "/model/instance/Delivery_Plan_EngKan/transportation_plan1_message"
             },
             {
