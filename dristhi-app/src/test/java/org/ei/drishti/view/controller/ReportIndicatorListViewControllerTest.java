@@ -71,7 +71,7 @@ public class ReportIndicatorListViewControllerTest {
     public void shouldUseCurrentMonthDataForIndicatorReport() throws Exception {
         List<MonthSummaryDatum> monthlySummaries = asList(new MonthSummaryDatum("1", "2012", "2", "2", asList("123", "456")),
                 new MonthSummaryDatum("10", "2012", "2", "4", asList("321", "654")));
-        Report earlyANCRegistrationReport = new Report("ANC<12", "40", new Gson().toJson(monthlySummaries));
+        Report earlyANCRegistrationReport = new Report("ANC_LT_12", "40", new Gson().toJson(monthlySummaries));
         when(allReports.allFor(ANC_SERVICES.indicators())).thenReturn(asList(earlyANCRegistrationReport));
 
         controller = new ReportIndicatorListViewController(context, allReports, ANC_SERVICES.value());
