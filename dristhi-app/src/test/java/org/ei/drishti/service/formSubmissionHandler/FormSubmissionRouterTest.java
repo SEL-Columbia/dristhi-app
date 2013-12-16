@@ -64,6 +64,8 @@ public class FormSubmissionRouterTest {
     @Mock
     private VitaminAHandler vitaminAHandler;
     @Mock
+    private DeliveryPlanHandler deliveryPlanHandler;
+    @Mock
     private Listener<String> formSubmittedListener;
 
     private FormSubmissionRouter router;
@@ -89,7 +91,7 @@ public class FormSubmissionRouterTest {
                 pncCloseHandler,
                 pncVisitHandler,
                 childImmunizationsHandler, childRegistrationECHandler, childRegistrationOAHandler, childCloseHandler,
-                childIllnessHandler, vitaminAHandler);
+                childIllnessHandler, vitaminAHandler, deliveryPlanHandler);
     }
 
     @Test
@@ -371,5 +373,16 @@ public class FormSubmissionRouterTest {
 
         verify(formDataRepository).fetchFromSubmission("instance id 1");
         verify(childRegistrationOAHandler).handle(formSubmission);
+    }
+
+    @Test
+    public void shouldDelegateDeliveryPlanFormSubmissionHandlingToDeliveryPlanHandler() throws Exception {
+        FormSubmission formSubmission = create().withFormName("delivery_plan").withInstanceId("instance id 1").withVersion("122").build();
+        when(formDataRepository.fetchFromSubmission("instance id 1")).thenReturn(formSubmission);
+
+        router.route("instance id 1");
+
+        verify(formDataRepository).fetchFromSubmission("instance id 1");
+        verify(deliveryPlanHandler).handle(formSubmission);
     }
 }

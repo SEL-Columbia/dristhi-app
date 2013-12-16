@@ -82,6 +82,7 @@ public class AllConstants {
         public static final String CHILD_CLOSE = "child_close";
         public static final String CHILD_ILLNESS = "child_illness";
         public static final String VITAMIN_A = "vitamin_a";
+        public static final String DELIVERY_PLAN = "delivery_plan";
     }
 
     public class ECRegistrationFields {

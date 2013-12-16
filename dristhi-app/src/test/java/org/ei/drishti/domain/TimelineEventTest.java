@@ -206,4 +206,17 @@ public class TimelineEventTest {
 
         assertTrue(timelineEvent.detail1().contains("DMPA injection date: 2012-03-03"));
     }
+
+    @Test
+    public void shouldCreateTimelineEventForDeliveryPlan() throws Exception {
+
+
+        TimelineEvent timelineEvent = forDeliveryPlan("Case 1", "Delivery Facility Name", "Transportation Plan", "Birth Companion", "1234567890", "Contact Number", "High Risk Reason", "2012-03-03");
+        assertTrue(timelineEvent.detail1().contains("High Risk Reason: "));
+        assertTrue(timelineEvent.detail1().contains("Phone Number: "));
+        assertTrue(timelineEvent.detail1().contains("Asha Phone Number: "));
+        assertTrue(timelineEvent.detail1().contains("Birth Companion: "));
+        assertTrue(timelineEvent.detail1().contains("Transportation Plan: "));
+        assertTrue(timelineEvent.detail1().contains("Delivery Facility Name: "));
+    }
 }

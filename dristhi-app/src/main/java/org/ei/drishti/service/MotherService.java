@@ -141,4 +141,17 @@ public class MotherService {
             allTimelines.add(forIFATabletsGiven(submission.entityId(), numberOfIFATabletsGiven, submission.getFieldValue(AllConstants.CommonFormFields.SUBMISSION_DATE)));
         }
     }
+
+    public void deliveryPlan(FormSubmission submission) {
+        allTimelines.add(
+                forDeliveryPlan(
+                        submission.entityId(),
+                        submission.getFieldValue("deliveryFacilityName"),
+                        submission.getFieldValue("transportationPlan"),
+                        submission.getFieldValue("birthCompanion"),
+                        submission.getFieldValue("ashaPhoneNumber"),
+                        submission.getFieldValue("phoneNumber"),
+                        submission.getFieldValue("reviewedHRPStatus"),
+                        submission.getFieldValue("submissionDate")));
+    }
 }

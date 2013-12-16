@@ -60,6 +60,26 @@ public class TimelineEvent {
                 "Thayi No: " + thayiCardNumber);
     }
 
+    public static TimelineEvent forDeliveryPlan(String caseId, String deliveryFacilityName, String transportationPlan, String birthCompanion, String ashaPhoneNumber, String familyContactNumber, String highRiskReason, String referenceDate) {
+        Map<String, String> map = create("deliveryFacilityName", deliveryFacilityName)
+                .put("transportationPlan", transportationPlan)
+                .put("birthCompanion", birthCompanion)
+                .put("ashaPhoneNumber", ashaPhoneNumber)
+                .put("phoneNumber", familyContactNumber)
+                .put("reviewedHRPStatus", highRiskReason).map();
+
+        String detailsString = new DetailBuilder(map)
+                .withDeliveryFacilityName("deliveryFacilityName")
+                .withTransportationPlan("transportationPlan")
+                .withBirthCompanion("birthCompanion")
+                .withAshaPhoneNumber("ashaPhoneNumber")
+                .withFamilyContactNumber("phoneNumber")
+                .withHighRiskReason("reviewedHRPStatus")
+                .value();
+
+        return new TimelineEvent(caseId, "DELIVERYPLAN", LocalDate.parse(referenceDate), "Delivery Plan", "Detail: " + detailsString, null);
+    }
+
     public static TimelineEvent forChangeOfFPMethod(String caseId, String oldFPMethod, String newFPMethod, String dateOfFPChange) {
         return new TimelineEvent(caseId, "FPCHANGE", LocalDate.parse(dateOfFPChange), "Changed FP Method", "From: " + oldFPMethod, "To: " + newFPMethod);
     }
@@ -161,6 +181,42 @@ public class TimelineEvent {
         private DetailBuilder withTemperature(String temperature) {
             String temp = "Temp: " + details.get(temperature) + " °F<br />";
             this.stringBuilder.append(checkEmptyField(temp, details.get(temperature)));
+            return this;
+        }
+
+        private DetailBuilder withDeliveryFacilityName(String deliveryFacilityName) {
+            String deliveryFacility = "Delivery Facility Name: " + details.get(deliveryFacilityName);
+            this.stringBuilder.append(checkEmptyField(deliveryFacility, details.get(deliveryFacilityName)));
+            return this;
+        }
+
+        private DetailBuilder withTransportationPlan(String transportationPlan) {
+            String plan = "Transportation Plan: " + details.get(transportationPlan);
+            this.stringBuilder.append(checkEmptyField(plan, details.get(transportationPlan)));
+            return this;
+        }
+
+        private DetailBuilder withBirthCompanion(String birthCompanion) {
+            String companion = "Birth Companion: " + details.get(birthCompanion);
+            this.stringBuilder.append(checkEmptyField(companion, details.get(birthCompanion)));
+            return this;
+        }
+
+        private DetailBuilder withAshaPhoneNumber(String ashaPhoneNumber) {
+            String ashaPhone = "Asha Phone Number: " + details.get(ashaPhoneNumber);
+            this.stringBuilder.append(checkEmptyField(ashaPhone, details.get(ashaPhoneNumber)));
+            return this;
+        }
+
+        private DetailBuilder withFamilyContactNumber(String phoneNumber) {
+            String familyContact = "Phone Number: " + details.get(phoneNumber);
+            this.stringBuilder.append(checkEmptyField(familyContact, details.get(phoneNumber)));
+            return this;
+        }
+
+        private DetailBuilder withHighRiskReason(String highRiskReasons) {
+            String hrpReason = "High Risk Reason: " + details.get(highRiskReasons);
+            this.stringBuilder.append(checkEmptyField(hrpReason, details.get(highRiskReasons)));
             return this;
         }
 

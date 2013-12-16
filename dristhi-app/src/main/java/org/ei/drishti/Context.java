@@ -66,6 +66,7 @@ public class Context {
     private IFAHandler ifaHandler;
     private HBTestHandler hbTestHandler;
     private DeliveryOutcomeHandler deliveryOutcomeHandler;
+    private DeliveryPlanHandler deliveryPlanHandler;
     private PNCRegistrationOAHandler pncRegistrationOAHandler;
     private PNCCloseHandler pncCloseHandler;
     private PNCVisitHandler pncVisitHandler;
@@ -137,7 +138,7 @@ public class Context {
                     ancRegistrationHandler(), ancRegistrationOAHandler(), ancVisitHandler(), ancCloseHandler(),
                     ttHandler(), ifaHandler(), hbTestHandler(), deliveryOutcomeHandler(), pncRegistrationOAHandler(),
                     pncCloseHandler(), pncVisitHandler(), childImmunizationsHandler(), childRegistrationECHandler(),
-                    childRegistrationOAHandler(), childCloseHandler(), childIllnessHandler(), vitaminAHandler());
+                    childRegistrationOAHandler(), childCloseHandler(), childIllnessHandler(), vitaminAHandler(), deliveryPlanHandler());
         }
         return formSubmissionRouter;
     }
@@ -238,6 +239,13 @@ public class Context {
             deliveryOutcomeHandler = new DeliveryOutcomeHandler(motherService(), childService());
         }
         return deliveryOutcomeHandler;
+    }
+
+    private DeliveryPlanHandler deliveryPlanHandler() {
+        if (deliveryPlanHandler == null) {
+            deliveryPlanHandler = new DeliveryPlanHandler(motherService());
+        }
+        return deliveryPlanHandler;
     }
 
     private PNCRegistrationOAHandler pncRegistrationOAHandler() {
