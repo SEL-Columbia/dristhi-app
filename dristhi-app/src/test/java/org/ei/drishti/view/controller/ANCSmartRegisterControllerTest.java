@@ -61,7 +61,8 @@ public class ANCSmartRegisterControllerTest {
             "ANC 1",
             "ANC 2",
             "ANC 3",
-            "ANC 4"
+            "ANC 4",
+            "Delivery Plan"
     };
     @Mock
     private AllEligibleCouples allEligibleCouples;
@@ -139,25 +140,27 @@ public class ANCSmartRegisterControllerTest {
     }
 
     @Test
-    public void shouldCreateANCClientsWithANC1Alert() throws Exception {
+    public void shouldCreateANCClientsWithANC1AlertAndDeliveryPlanAlert() throws Exception {
         Map<String, String> details = mapOf("edd", "Tue, 25 Feb 2014 00:00:00 GMT");
         EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 1", "Bherya", "Bherya SC", emptyMap);
-        Mother mother = new Mother("Entity X", "entity id 1", "thayi 1", "2013-05-25").withDetails(details);
+        Mother mother = new Mother("Entity X", "entity id 1", "thayi 1", "2012-10-25").withDetails(details);
         Alert anc1Alert = new Alert("entity id 1", "ANC", "ANC 1", normal, "2013-01-01", "2013-02-01");
+        Alert deliveryPlanAlert = new Alert("entity id 1", "Delivery Plan", "Delivery Plan", normal, "2012-10-25", "2013-08-25");
         when(allBeneficiaries.allANCsWithEC()).thenReturn(asList(Pair.of(mother, ec)));
-        when(alertService.findByEntityIdAndAlertNames("Entity X", ANC_ALERTS)).thenReturn(asList(anc1Alert));
+        when(alertService.findByEntityIdAndAlertNames("Entity X", ANC_ALERTS)).thenReturn(asList(anc1Alert, deliveryPlanAlert));
 
         String clients = controller.get();
 
         List<ANCClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<ANCClient>>() {
         }.getType());
         verify(alertService).findByEntityIdAndAlertNames("Entity X", ANC_ALERTS);
-        AlertDTO expectedAlertDto = new AlertDTO("ANC 1", "normal", "2013-01-01");
-        ANCClient expectedEC = createANCClient("Entity X", "Woman C", "Bherya", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25")
+        AlertDTO expectedANC1AlertDto = new AlertDTO("ANC 1", "normal", "2013-01-01");
+        AlertDTO expectedDeliveryPlanAlertDto = new AlertDTO("Delivery Plan", "normal", "2012-10-25");
+        ANCClient expectedEC = createANCClient("Entity X", "Woman C", "Bherya", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2012-10-25")
                 .withECNumber("EC Number 1")
                 .withHusbandName("Husband C")
                 .withEntityIdToSavePhoto("entity id 1")
-                .withAlerts(asList(expectedAlertDto))
+                .withAlerts(asList(expectedANC1AlertDto, expectedDeliveryPlanAlertDto))
                 .withHighRiskReason("");
         assertEquals(asList(expectedEC), actualClients);
     }
@@ -170,7 +173,10 @@ public class ANCSmartRegisterControllerTest {
         when(allBeneficiaries.allANCsWithEC()).thenReturn(asList(Pair.of(mother, ec)));
         when(alertService.findByEntityIdAndAlertNames("Entity X", ANC_ALERTS)).thenReturn(Collections.<Alert>emptyList());
         when(sericeProvidedService.findByEntityIdAndServiceNames("Entity X", ANC_SERVICES))
-                .thenReturn(asList(new ServiceProvided("entity id 1", "IFA", "2013-01-01", mapOf("dose", "100")), new ServiceProvided("entity id 1", "TT 1", "2013-02-01", emptyMap)));
+                .thenReturn(asList(new ServiceProvided("entity id 1", "IFA", "2013-01-01", mapOf("dose", "100")),
+                        new ServiceProvided("entity id 1", "TT 1", "2013-02-01", emptyMap),
+                        new ServiceProvided("entity id 1", "Delivery Plan", "2013-02-01", emptyMap)
+                ));
 
         String clients = controller.get();
 
@@ -179,7 +185,7 @@ public class ANCSmartRegisterControllerTest {
         verify(alertService).findByEntityIdAndAlertNames("Entity X", ANC_ALERTS);
         verify(sericeProvidedService).findByEntityIdAndServiceNames("Entity X", ANC_SERVICES);
         List<ServiceProvidedDTO> expectedServicesProvided = asList(new ServiceProvidedDTO("IFA", "2013-01-01", mapOf("dose", "100")),
-                new ServiceProvidedDTO("TT 1", "2013-02-01", emptyMap));
+                new ServiceProvidedDTO("TT 1", "2013-02-01", emptyMap), new ServiceProvidedDTO("Delivery Plan", "2013-02-01", emptyMap));
         ANCClient expectedEC = createANCClient("Entity X", "Woman C", "Bherya", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25")
                 .withECNumber("EC Number 1")
                 .withHusbandName("Husband C")
