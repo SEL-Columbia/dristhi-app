@@ -37,6 +37,8 @@
                     <li><a ng-click="openMicroForm('tt_2', currentClientEntityId);closeANCFormModal();">TT 2</a></li>
                     <li><a ng-click="openMicroForm('tt_booster', currentClientEntityId);closeANCFormModal()">TT
                         Booster</a></li>
+                    <li><a ng-click="openForm('delivery_plan', currentClientEntityId);closeANCFormModal();">Delivery
+                        Plan</a></li>
                     <li><a ng-click="openForm('delivery_outcome', currentClientEntityId);closeANCFormModal();">Delivery
                         outcome</a></li>
                     <li><a ng-click="openForm('anc_close', currentClientEntityId);closeANCFormModal();">ANC Close</a>
@@ -56,7 +58,8 @@
                 </ul>
                 <div class="nav-collapse collapse">
                     <form class="navbar-search pull-right">
-                        <input type="text" class="search-query" placeholder="Search ANC Register" ng-model="searchFilterString"
+                        <input type="text" class="search-query" placeholder="Search ANC Register"
+                               ng-model="searchFilterString"
                                ng-click="enterSearchMode()">
                         <a ng-show="inSearchMode" ng-click="cancelSearch()" class="search-cancel"></a>
                     </form>
