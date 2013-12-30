@@ -523,3 +523,8 @@ li.video-item .video-thumbnail-image {
     width: 65%;
     display: inline-block;
 }
+
+.delivery-plan-info {
+    width: 100%;
+    display: inline-block;
+}

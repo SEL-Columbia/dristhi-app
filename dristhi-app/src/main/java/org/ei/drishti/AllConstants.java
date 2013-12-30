@@ -135,6 +135,8 @@ public class AllConstants {
         public static final String EDD = "edd";
         public static final String HIGH_RISK_REASON = "highRiskReason";
         public static final String IS_HIGH_RISK = "isHighRisk";
+        public static final String ASHA_PHONE_NUMBER = "ashaPhoneNumber";
+        public static final String ANC_NUMBER = "ancNumber";
     }
 
     public class ANCVisitFields {

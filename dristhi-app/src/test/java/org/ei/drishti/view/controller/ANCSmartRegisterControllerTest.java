@@ -106,7 +106,13 @@ public class ANCSmartRegisterControllerTest {
 
     @Test
     public void shouldMapANCToANCClient() throws Exception {
-        Map<String, String> details = create("edd", "Tue, 25 Feb 2014 00:00:00 GMT").put("isHighRisk", "yes").put("ancNumber", "ANC X").put("highRiskReason", "Headache").map();
+        Map<String, String> details =
+                create("edd", "Tue, 25 Feb 2014 00:00:00 GMT")
+                        .put("isHighRisk", "yes")
+                        .put("ancNumber", "ANC X")
+                        .put("highRiskReason", "Headache")
+                        .put("ashaPhoneNumber", "Asha phone number 1")
+                        .map();
         EligibleCouple eligibleCouple = new EligibleCouple("ec id 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null,
                 create("wifeAge", "23")
                         .put("isHighPriority", Boolean.toString(false))
@@ -130,6 +136,7 @@ public class ANCSmartRegisterControllerTest {
                 .withEconomicStatus("bpl")
                 .withEntityIdToSavePhoto("ec id 1")
                 .withAlerts(Collections.<AlertDTO>emptyList())
+                .withAshaPhoneNumber("Asha phone number 1")
                 .withServicesProvided(Collections.<ServiceProvidedDTO>emptyList());
 
         String clients = controller.get();

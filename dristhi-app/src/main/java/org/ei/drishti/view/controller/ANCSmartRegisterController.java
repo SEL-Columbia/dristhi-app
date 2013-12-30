@@ -2,6 +2,7 @@ package org.ei.drishti.view.controller;
 
 import com.google.gson.Gson;
 import org.apache.commons.lang3.tuple.Pair;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
@@ -70,20 +71,21 @@ public class ANCSmartRegisterController {
 
                     List<ServiceProvidedDTO> servicesProvided = getServicesProvided(anc.caseId());
                     List<AlertDTO> alerts = getAlerts(anc.caseId());
-                    ancClients.add(new ANCClient(anc.caseId(), ec.village(), ec.wifeName(), anc.thayiCardNumber(), anc.getDetail("edd"), anc.referenceDate())
+                    ancClients.add(new ANCClient(anc.caseId(), ec.village(), ec.wifeName(), anc.thayiCardNumber(), anc.getDetail(AllConstants.ANCRegistrationFields.EDD), anc.referenceDate())
                             .withHusbandName(ec.husbandName())
                             .withAge(ec.age())
                             .withECNumber(ec.ecNumber())
-                            .withANCNumber(anc.getDetail("ancNumber"))
+                            .withANCNumber(anc.getDetail(AllConstants.ANCRegistrationFields.ANC_NUMBER))
                             .withIsHighPriority(ec.isHighPriority())
                             .withIsHighRisk(anc.isHighRisk())
                             .withIsOutOfArea(ec.isOutOfArea())
                             .withHighRiskReason(anc.highRiskReason())
-                            .withCaste(ec.getDetail("caste"))
-                            .withEconomicStatus(ec.getDetail("economicStatus"))
+                            .withCaste(ec.getDetail(AllConstants.ECRegistrationFields.CASTE))
+                            .withEconomicStatus(ec.getDetail(AllConstants.ECRegistrationFields.ECONOMIC_STATUS))
                             .withPhotoPath(photoPath)
                             .withEntityIdToSavePhoto(ec.caseId())
                             .withAlerts(alerts)
+                            .withAshaPhoneNumber(anc.getDetail(AllConstants.ANCRegistrationFields.ASHA_PHONE_NUMBER))
                             .withServicesProvided(servicesProvided)
                     );
                 }
