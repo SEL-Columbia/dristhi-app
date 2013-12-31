@@ -1,5 +1,5 @@
 <form class="jr" autocomplete="off" id="Child_Immunizations_EngKan">
-    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Child Immunization</h3>
     <fieldset id="jr-preload-items" style="display:none;">
@@ -84,7 +84,13 @@
                 <input autocomplete="off" type="checkbox"
                        name="/Child_Immunizations_EngKan/entity_immunizations_received" value="measles"
                        required="required" data-type-xml="select"/>
-                <span lang="" class=" active">Measles &#xCA6;&#xCA1;&#xCBE;&#xCB0;</span>
+                <span lang="" class=" active">Measles 1 &#xCA6;&#xCA1;&#xCBE;&#xCB0; 1</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="checkbox"
+                       name="/Child_Immunizations_EngKan/entity_immunizations_received" value="je" required="required"
+                       data-type-xml="select"/>
+                <span lang="" class=" active">JE 1</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox"
@@ -109,22 +115,22 @@
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox"
-                       name="/Child_Immunizations_EngKan/entity_immunizations_received" value="je" required="required"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Japanese Encephalitis (JE)</span>
+                       name="/Child_Immunizations_EngKan/entity_immunizations_received" value="measlesbooster"
+                       required="required" data-type-xml="select"/>
+                <span lang="" class=" active">Measles 2 &#xCA6;&#xCA1;&#xCBE;&#xCB0; 2</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox"
-                       name="/Child_Immunizations_EngKan/entity_immunizations_received" value="measlesbooster"
-                       required="required" data-type-xml="select"/>
-                <span lang="" class=" active">Measles Booster &#xCA6;&#xCA1;&#xCBE;&#xCB0; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;</span>
+                       name="/Child_Immunizations_EngKan/entity_immunizations_received" value="je_2" required="required"
+                       data-type-xml="select"/>
+                <span lang="" class=" active">JE 2</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox"
                        name="/Child_Immunizations_EngKan/entity_immunizations_received" value="dptbooster_2"
                        required="required" data-type-xml="select"/>
-                <span lang="" class=" active">DPT Booster 2 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
-                    2
+                <span lang="" class=" active">DPT Booster 2 (5 years) &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
+                    2 (5 &#xCB5;&#xCB0;&#xCCD;&#xCB7;)
                 </span>
             </label>
         </fieldset>
@@ -148,14 +154,13 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Child_Immunizations_EngKan/immunization_place"
                        value="sub_center" data-type-xml="select1"/>
-                <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                <span lang="" class=" active">My Sub Center &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xC89;&#xCAA;&#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Child_Immunizations_EngKan/immunization_place" value="phc"
                        data-type-xml="select1"/>
-                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                <span lang="" class=" active">My PHC &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
+                    &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Child_Immunizations_EngKan/immunization_place"
