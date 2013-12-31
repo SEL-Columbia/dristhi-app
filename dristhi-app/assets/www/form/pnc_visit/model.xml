@@ -55,7 +55,7 @@
                 <high_risk_note_mother/>
                 <is_high_risk/>
             </pnc_mother_group>
-            <pnc_child_repeat jr:template="">
+            <pnc_child_repeat>
                 <pnc_child_group_message/>
                 <case_sex_child/>
                 <case_birthweight/>

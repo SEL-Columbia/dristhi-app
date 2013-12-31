@@ -30,7 +30,7 @@
                 <cause_of_still_birth/>
                 <other_cause_of_still_birth/>
             </still_birth_group>
-            <child jr:template="">
+            <child>
                 <sex_child/>
                 <birthweight/>
                 <child_blood_group/>
