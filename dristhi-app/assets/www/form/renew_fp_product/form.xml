@@ -84,7 +84,7 @@
         </label>
         <label class="jr-branch pre-init ">
             <span lang="" class=" active">Number of Centchroman strips given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1;
-                &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCD;&#xCB0;&#xCCA;&#xCAE;&#xCA8;&#xCCD; &#xCB8;&#xCCD;&#xC9F;&#xCCD;&#xCB0;&#xCBF;&#xCAA;&#xCCD;&#xCB8;&#xCCD;
+                &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCB;&#xC95;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCCD; &#xCB8;&#xCCD;&#xC9F;&#xCCD;&#xCB0;&#xCBF;&#xCAA;&#xCCD;&#xCB8;&#xCCD;
                 &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
             </span>
             <span class="required">*</span>
@@ -102,6 +102,7 @@
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/refill_date1" required="required"
+                   data-constraint=".&gt;= /Family_Planning_Refill_Method_EngKan/fp_renew_method_visit_date "
                    data-relevant=" /Family_Planning_Refill_Method_EngKan/renewed_method_group/num_ocp_strips  &gt; 0"
                    data-type-xml="date"/>
         </label>
