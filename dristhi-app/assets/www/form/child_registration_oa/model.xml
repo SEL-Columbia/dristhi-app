@@ -38,11 +38,12 @@
                 <opv_3_date/>
                 <pentavalent_3_date/>
                 <measles_date/>
+                <je_date/>
                 <mmr_date/>
                 <dptbooster_1_date/>
                 <opvbooster_date/>
-                <je_date/>
                 <measlesbooster_date/>
+                <je_2_date/>
                 <dptbooster_2_date/>
             </child_immunization_history_group>
             <child_vitamin_a_history/>
@@ -170,19 +171,19 @@
             </item>
             <item>
                 <itextId>static_instance-immunizations-10</itextId>
-                <name>mmr</name>
+                <name>je</name>
             </item>
             <item>
                 <itextId>static_instance-immunizations-11</itextId>
-                <name>dptbooster_1</name>
+                <name>mmr</name>
             </item>
             <item>
                 <itextId>static_instance-immunizations-12</itextId>
-                <name>opvbooster</name>
+                <name>dptbooster_1</name>
             </item>
             <item>
                 <itextId>static_instance-immunizations-13</itextId>
-                <name>je</name>
+                <name>opvbooster</name>
             </item>
             <item>
                 <itextId>static_instance-immunizations-14</itextId>
@@ -190,6 +191,10 @@
             </item>
             <item>
                 <itextId>static_instance-immunizations-15</itextId>
+                <name>je_2</name>
+            </item>
+            <item>
+                <itextId>static_instance-immunizations-16</itextId>
                 <name>dptbooster_2</name>
             </item>
         </root>
