@@ -1,5 +1,5 @@
 <form class="jr" autocomplete="off" id="Postpartum_FamilyPlanning_EngKan">
-    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Postpartum Family Planning</h3>
     <fieldset id="jr-preload-items" style="display:none;">
@@ -152,7 +152,7 @@
                 <input autocomplete="off" type="radio" name="/Postpartum_FamilyPlanning_EngKan/iud_person1" value="mo"
                        data-relevant=" /Postpartum_FamilyPlanning_EngKan/pp_fp_method1  = 'iud'"
                        data-type-xml="select1"/>
-                <span lang="" class=" active">MO &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF;&#xCBE; &#xC85;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;</span>
+                <span lang="" class=" active">MO &#xCB5;&#xCC8;&#xCA6;&#xCCD;&#xCAF;&#xCBE;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Postpartum_FamilyPlanning_EngKan/iud_person1"
@@ -464,7 +464,7 @@
                         <input autocomplete="off" type="radio"
                                name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2"
                                value="centchroman" required="required" data-type-xml="select1"/>
-                        <span lang="" class=" active">Centchroman &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCA8;&#xCCD;</span>
+                        <span lang="" class=" active">Centchroman &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCB;&#xC95;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCCD;</span>
                     </label>
                 </fieldset>
             </fieldset>
@@ -585,8 +585,7 @@
                                value="mo"
                                data-relevant=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2  = 'iud'"
                                data-type-xml="select1"/>
-                        <span lang="" class=" active">MO &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF;&#xCBE;
-                            &#xC85;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;</span>
+                        <span lang="" class=" active">MO &#xCB5;&#xCC8;&#xCA6;&#xCCD;&#xCAF;&#xCBE;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;</span>
                     </label>
                     <label class="clearfix ">
                         <input autocomplete="off" type="radio"
@@ -716,7 +715,7 @@
             </label>
             <label class="jr-branch pre-init ">
                 <span lang="" class=" active">Number of Centchroman strips given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1;
-                    &#xCB8;&#xCC6;&#xC82;&#xCA5;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCA8;&#xCCD;&#x200D;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+                    &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCB;&#xC95;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCCD; &#x200D;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                     &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;?
                 </span>
                 <span class="required">*</span>
@@ -817,7 +816,7 @@
         <label class="">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/ocp_dont_use"
-                   data-calculate="if(( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6mos_pp  = 'yes' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/any_bf  = 'yes') or  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_21days_pp  = 'yes', 'OCP', '')"
+                   data-calculate="if(( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6mos_pp  = 'yes' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/any_bf  = 'yes') or ( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6wks_pp  = 'yes' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/any_bf  = 'yes') or  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_21days_pp  = 'yes', 'OCP', '')"
                    data-type-xml="string"/>
         </label>
         <label class="">
