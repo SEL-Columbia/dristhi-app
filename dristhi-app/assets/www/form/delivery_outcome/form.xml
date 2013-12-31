@@ -74,7 +74,7 @@
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Name of delivery place? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xCAF;&#xCA6;
+        <span lang="" class=" active">Name of delivery place? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xCAF;&#xCBE;&#xCA6;
             &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCA6; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?
         </span>
         <input autocomplete="off" type="text" name="/Delivery_Outcome_EngKan/name_delivery_facility"
@@ -843,13 +843,13 @@
         <label class="">
             <input autocomplete="off" type="hidden"
                    name="/Delivery_Outcome_EngKan/live_birth_group/child/sex_child_female"
-                   data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child  = 'female', 1, '')"
+                   data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child  = 'female', 1, 0)"
                    data-type-xml="string"/>
         </label>
         <label class="">
             <input autocomplete="off" type="hidden"
                    name="/Delivery_Outcome_EngKan/live_birth_group/child/sex_child_male"
-                   data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child  = 'male', 1, '')"
+                   data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child  = 'male', 1, 0)"
                    data-type-xml="string"/>
         </label>
         <label class="">
@@ -896,7 +896,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/num_female_children_born"
-                   data-calculate=" /Delivery_Outcome_EngKan/live_birth_group/child/sex_child_female "
+                   data-calculate="sum( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child_female )"
                    data-type-xml="string"/>
         </label>
         <label class="">
@@ -906,7 +906,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/num_male_children_born"
-                   data-calculate=" /Delivery_Outcome_EngKan/live_birth_group/child/sex_child_male "
+                   data-calculate="sum( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child_male )"
                    data-type-xml="string"/>
         </label>
         <label class="">
@@ -930,7 +930,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/formhub/uuid"
-                   data-calculate="'cb3e4cfd567941f7ad6422d6f5b0c98e'" data-type-xml="string"/>
+                   data-calculate="'a54e1845347a4220892909b7a65644e3'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
