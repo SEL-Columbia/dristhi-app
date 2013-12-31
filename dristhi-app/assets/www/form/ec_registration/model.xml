@@ -553,11 +553,11 @@
         <root>
             <item>
                 <itextId>static_instance-fp_method_other-0</itextId>
-                <name>dmpa_injectable</name>
+                <name>traditional_methods</name>
             </item>
             <item>
                 <itextId>static_instance-fp_method_other-1</itextId>
-                <name>traditional_methods</name>
+                <name>dmpa_injectable</name>
             </item>
             <item>
                 <itextId>static_instance-fp_method_other-2</itextId>
@@ -573,23 +573,23 @@
         <root>
             <item>
                 <itextId>static_instance-fp_method-0</itextId>
-                <name>ocp</name>
-            </item>
-            <item>
-                <itextId>static_instance-fp_method-1</itextId>
-                <name>iud</name>
-            </item>
-            <item>
-                <itextId>static_instance-fp_method-2</itextId>
                 <name>condom</name>
             </item>
             <item>
+                <itextId>static_instance-fp_method-1</itextId>
+                <name>ocp</name>
+            </item>
+            <item>
+                <itextId>static_instance-fp_method-2</itextId>
+                <name>iud</name>
+            </item>
+            <item>
                 <itextId>static_instance-fp_method-3</itextId>
-                <name>male_sterilization</name>
+                <name>female_sterilization</name>
             </item>
             <item>
                 <itextId>static_instance-fp_method-4</itextId>
-                <name>female_sterilization</name>
+                <name>male_sterilization</name>
             </item>
             <item>
                 <itextId>static_instance-fp_method-5</itextId>
@@ -598,6 +598,14 @@
             <item>
                 <itextId>static_instance-fp_method-6</itextId>
                 <name>none</name>
+            </item>
+            <item>
+                <itextId>static_instance-fp_method-7</itextId>
+                <name>none_ps</name>
+            </item>
+            <item>
+                <itextId>static_instance-fp_method-8</itextId>
+                <name>none_ss</name>
             </item>
         </root>
     </instance>

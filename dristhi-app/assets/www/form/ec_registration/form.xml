@@ -601,6 +601,11 @@
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_1"
+                       value="condom" required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Condom &#xCA8;&#xCBF;&#xCB0;&#xCCB;&#xCA6;&#xCCD;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_1"
                        value="ocp" required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">OCP &#xC92;&#xCB8;&#xCBF;&#xCAA;&#xCBF;</span>
             </label>
@@ -611,19 +616,14 @@
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_1"
-                       value="condom" required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Condom &#xCA8;&#xCBF;&#xCB0;&#xCCB;&#xCA6;&#xCCD;</span>
+                       value="female_sterilization" required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">Female Sterilization &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6; &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCBE;
+                    &#xCB9;&#xCB0;&#xCA3; &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0;&#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_1"
                        value="male_sterilization" required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">Male Sterilization &#xCAA;&#xCC1;&#xCB0;&#xCC1;&#xCB7; &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCBE;
-                    &#xCB9;&#xCB0;&#xCA3; &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0;&#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_1"
-                       value="female_sterilization" required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Female Sterilization &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6; &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCBE;
                     &#xCB9;&#xCB0;&#xCA3; &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0;&#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;</span>
             </label>
             <label class="clearfix ">
@@ -635,6 +635,18 @@
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_1"
                        value="none" required="required" data-type-xml="select1"/>
                 <span lang="" class=" active">None &#xC8F;&#xCA8;&#xCC2; &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_1"
+                       value="none_ps" required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">None - PS &#xC8F;&#xCA8;&#xCC1; &#xC87;&#xCB2;&#xCCD;&#xCB2; - &#xCAA;&#xCCD;&#xCB0;&#xCA5;&#xCAE;
+                    &#xCAC;&#xC82;&#xC9C;&#xCC6;&#xCA4;&#xCA8;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_1"
+                       value="none_ss" required="required" data-type-xml="select1"/>
+                <span lang="" class=" active">None - SS &#xC8F;&#xCA8;&#xCC1; &#xC87;&#xCB2;&#xCCD;&#xCB2; - &#xCA6;&#xCCD;&#xCB5;&#xCC0;&#xCA4;&#xCBF;&#xCAF;
+                    &#xCAC;&#xC82;&#xC9C;&#xCC6;&#xCA4;&#xCA8;</span>
             </label>
         </fieldset>
     </fieldset>
@@ -650,19 +662,19 @@
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_other"
-                       value="dmpa_injectable" required="required"
-                       data-relevant=" /EC_Registration_EngKan/familyplanning_method_1  = 'others'"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">DMPA / Injectable &#xCA1;&#xCBF;&#xC82;&#xCAA;&#xCBE; / &#xC9A;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
-                    &#xCAE;&#xCA6;&#xCCD;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_other"
                        value="traditional_methods" required="required"
                        data-relevant=" /EC_Registration_EngKan/familyplanning_method_1  = 'others'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Traditional methods &#xCB8;&#xCBE;&#xC82;&#xCAA;&#xCCD;&#xCB0;&#xCA6;&#xCBE;&#xCAF;&#xCBF;&#xC95;
                     &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;</span>
+            </label>
+            <label class="clearfix ">
+                <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_other"
+                       value="dmpa_injectable" required="required"
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method_1  = 'others'"
+                       data-type-xml="select1"/>
+                <span lang="" class=" active">DMPA / Injectable &#xCA1;&#xCBF;&#xC82;&#xCAA;&#xCBE; / &#xC9A;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
+                    &#xCAE;&#xCA6;&#xCCD;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_other"
@@ -676,7 +688,7 @@
                        value="centchroman" required="required"
                        data-relevant=" /EC_Registration_EngKan/familyplanning_method_1  = 'others'"
                        data-type-xml="select1"/>
-                <span lang="" class=" active">Centchroman &#xCB8;&#xCC6;&#xC82;&#xCA4;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCA8;&#xCCD;</span>
+                <span lang="" class=" active">Centchroman &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCB;&#xC95;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCCD;</span>
             </label>
         </fieldset>
     </fieldset>
@@ -688,7 +700,8 @@
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/EC_Registration_EngKan/date_familyplanningstart"
                required="required" data-constraint=".&lt;= /EC_Registration_EngKan/today "
-               data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none'" data-type-xml="date"/>
+               data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ps' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ss'"
+               data-type-xml="date"/>
     </label>
     <label class="jr-branch pre-init ">
         <span lang="" class=" active">LMP, &#xC95;&#xCCA;&#xCA8;&#xCC6;&#xCAF; &#xCAE;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xCA8;
@@ -696,7 +709,8 @@
         </span>
         <input autocomplete="off" type="date" name="/EC_Registration_EngKan/lmp_date"
                data-constraint=".&lt;= /EC_Registration_EngKan/today "
-               data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none'" data-type-xml="date"/>
+               data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ps' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ss'"
+               data-type-xml="date"/>
     </label>
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
         <fieldset>
@@ -705,14 +719,14 @@
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/upt_result" value="positive"
-                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none'"
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ps' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ss'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Positive
                     &#xCB8;&#xC95;&#xCBE;&#xCB0;&#xCBE;&#xCA4;&#xCCD;&#xCAE;&#xC95;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/upt_result" value="negative"
-                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none'"
+                       data-relevant=" /EC_Registration_EngKan/familyplanning_method  != 'none' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ps' and  /EC_Registration_EngKan/familyplanning_method  != 'none_ss'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Negative
                     &#xCA8;&#xC95;&#xCBE;&#xCB0;&#xCBE;&#xCA4;&#xCCD;&#xCAE;&#xC95;</span>
@@ -729,14 +743,13 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/iud_place" value="sub_center"
                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="select1"/>
-                <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                <span lang="" class=" active">My Sub Center &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xC89;&#xCAA;&#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/iud_place" value="phc"
                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="select1"/>
-                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                <span lang="" class=" active">My PHC &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
+                    &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/iud_place" value="elsewhere"
@@ -779,7 +792,7 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/iud_person" value="mo"
                        data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="select1"/>
-                <span lang="" class=" active">MO &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF;&#xCBE; &#xC85;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;</span>
+                <span lang="" class=" active">MO &#xCB5;&#xCC8;&#xCA6;&#xCCD;&#xCAF;&#xCBE;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/iud_person" value="others"
@@ -905,7 +918,7 @@
                data-type-xml="int"/>
     </label>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Number of Centchroman strips given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1; &#xCB8;&#xCC6;&#xC82;&#xCA4;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCA8;&#xCCD;
+        <span lang="" class=" active">Number of Centchroman strips given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1; &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCB;&#xC95;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCCD;
             &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;?
         </span>
         <span class="required">*</span>
