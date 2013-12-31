@@ -6,8 +6,8 @@
             </formhub>
             <today/>
             <tt_dose/>
-            <tt2_injection_place/>
             <tt2_date/>
+            <tt2_injection_place/>
             <meta>
                 <instanceID/>
             </meta>
