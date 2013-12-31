@@ -1,5 +1,5 @@
 <form class="jr" autocomplete="off" id="ANC_Registration_EngKan">
-    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">ANC Registration</h3>
     <fieldset id="jr-preload-items" style="display:none;">
@@ -27,14 +27,13 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/reg_place" value="sub_center"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                <span lang="" class=" active">My Sub Center &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xC89;&#xCAA;&#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/reg_place" value="phc"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                <span lang="" class=" active">My PHC &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
+                    &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/reg_place" value="elsewhere"
@@ -241,15 +240,10 @@
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Does
-                    <span class="jr-output" data-value=" /ANC_Registration_EngKan/case_woman_name ">
-                    </span>
-                    have any of the following medical conditions? &#xC85;&#xCB5;&#xCB3;&#xCC1;
-                    <span class="jr-output" data-value=" /ANC_Registration_EngKan/case_woman_name ">
-                    </span>
-                    &#xC95;&#xCC6;&#xCB3;&#xC97;&#xCBF;&#xCA8; &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1;
-                    &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF;&#xCBE; &#xCAA;&#xCB0;&#xCBF;&#xCB8;&#xCCD;&#xCA5;&#xCBF;&#xCA4;&#xCBF;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                    &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB3;&#xCBE;?
+                <span lang="" class=" active">Does woman have any of the following medical conditions? &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xC97;&#xCC6;
+                    &#xC88; &#xC95;&#xCC6;&#xCB3;&#xC97;&#xCBF;&#xCA8; &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1;
+                    &#xCB5;&#xCC8;&#xCA6;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF; &#xCB8;&#xCCD;&#xCA5;&#xCBF;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1;
+                    &#xC89;&#xC82;&#xC9F;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB5;&#xCC7;?
                 </span>
             </legend>
             <label class="clearfix ">
