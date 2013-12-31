@@ -43,11 +43,12 @@
                 <opv_3_date/>
                 <pentavalent_3_date/>
                 <measles_date/>
+                <je_date/>
                 <mmr_date/>
                 <dptbooster_1_date/>
                 <opvbooster_date/>
-                <je_date/>
                 <measlesbooster_date/>
+                <je_2_date/>
                 <dptbooster_2_date/>
             </child_immunization_history_group>
             <child_vitamin_a_history/>

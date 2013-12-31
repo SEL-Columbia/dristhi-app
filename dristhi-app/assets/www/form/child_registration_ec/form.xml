@@ -1,5 +1,5 @@
 <form class="jr" autocomplete="off" id="Child_Registration_EC_EngKan">
-    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Child Registration - EC</h3>
     <fieldset id="jr-preload-items" style="display:none;">
@@ -20,7 +20,7 @@
         <span lang="" class=" active">Child birth date? &#xC9C;&#xCA8;&#xCA8; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Child_Registration_EC_EngKan/child_birth_date" required="required"
-               data-constraint=".&lt;= /Child_Registration_EC_EngKan/today  and .&lt;= /Child_Registration_EC_EngKan/child_reg_date "
+               data-constraint=".&gt; ( /Child_Registration_EC_EngKan/today  - 1825) and .&lt;= /Child_Registration_EC_EngKan/today  and .&lt;= /Child_Registration_EC_EngKan/child_reg_date "
                data-type-xml="date"/>
     </label>
     <fieldset class="trigger " name="/Child_Registration_EC_EngKan/child_age_note">
@@ -112,16 +112,17 @@
             <option value="pentavalent_3">Pentavalent 3 &#xCAA;&#xCC6;&#xC82;&#xC9F;&#xCB5;&#xCBE;&#xCB2;&#xCC6;&#xC82;&#xC9F;&#xCCD;
                 3
             </option>
-            <option value="measles">Measles &#xCA6;&#xCA1;&#xCBE;&#xCB0;</option>
+            <option value="measles">Measles 1 &#xCA6;&#xCA1;&#xCBE;&#xCB0; 1</option>
+            <option value="je">JE 1</option>
             <option value="mmr">MMR &#xC8E;&#xCAE;&#xCCD;.&#xC8E;&#xCAE;&#xCCD;.&#xC86;&#xCB0;&#xCCD;</option>
             <option value="dptbooster_1">DPT Booster 1 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
                 1
             </option>
             <option value="opvbooster">OPV Booster &#xC92;&#xCAA;&#xCBF;&#xCB5;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;</option>
-            <option value="je">Japanese Encephalitis (JE)</option>
-            <option value="measlesbooster">Measles Booster &#xCA6;&#xCA1;&#xCBE;&#xCB0; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;</option>
-            <option value="dptbooster_2">DPT Booster 2 &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
-                2
+            <option value="measlesbooster">Measles 2 &#xCA6;&#xCA1;&#xCBE;&#xCB0; 2</option>
+            <option value="je_2">JE 2</option>
+            <option value="dptbooster_2">DPT Booster 2 (5 years) &#xCA1;&#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF;
+                &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95; 2 (5 &#xCB5;&#xCB0;&#xCCD;&#xCB7;)
             </option>
         </select>
         <span class="jr-option-translations" style="display:none;">
@@ -222,13 +223,22 @@
                    data-type-xml="date"/>
         </label>
         <label class="jr-branch pre-init ">
-            <span lang="" class=" active">Measles date? &#xCA6;&#xCA1;&#xCBE;&#xCB0; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+            <span lang="" class=" active">Measles 1 date? &#xCA6;&#xCA1;&#xCBE;&#xCB0; 1 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EC_EngKan/child_immunization_history_group/measles_date"
                    required="required"
                    data-constraint=".&gt;=  /Child_Registration_EC_EngKan/child_birth_date  and .&lt;= /Child_Registration_EC_EngKan/today "
                    data-relevant="selected( /Child_Registration_EC_EngKan/child_immunization_history , 'measles')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">JE 1 date? JE 1 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EC_EngKan/child_immunization_history_group/je_date" required="required"
+                   data-constraint=".&gt;=  /Child_Registration_EC_EngKan/child_birth_date  and .&lt;= /Child_Registration_EC_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EC_EngKan/child_immunization_history , 'je')"
                    data-type-xml="date"/>
         </label>
         <label class="jr-branch pre-init ">
@@ -267,18 +277,7 @@
                    data-type-xml="date"/>
         </label>
         <label class="jr-branch pre-init ">
-            <span lang="" class=" active">JE date? JE &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
-            <span class="required">*</span>
-            <input autocomplete="off" type="date"
-                   name="/Child_Registration_EC_EngKan/child_immunization_history_group/je_date" required="required"
-                   data-constraint=".&gt;=  /Child_Registration_EC_EngKan/child_birth_date  and .&lt;= /Child_Registration_EC_EngKan/today "
-                   data-relevant="selected( /Child_Registration_EC_EngKan/child_immunization_history , 'je')"
-                   data-type-xml="date"/>
-        </label>
-        <label class="jr-branch pre-init ">
-            <span lang="" class=" active">Measles Booster date? &#xCA6;&#xCA1;&#xCBE;&#xCB0; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
-                &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
-            </span>
+            <span lang="" class=" active">Measles 2 date? &#xCA6;&#xCA1;&#xCBE;&#xCB0; 2 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Child_Registration_EC_EngKan/child_immunization_history_group/measlesbooster_date"
@@ -288,8 +287,17 @@
                    data-type-xml="date"/>
         </label>
         <label class="jr-branch pre-init ">
-            <span lang="" class=" active">DPT Booster 2 date? &#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF; &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95;
-                2 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+            <span lang="" class=" active">JE 2 date? JE 2 &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+            <span class="required">*</span>
+            <input autocomplete="off" type="date"
+                   name="/Child_Registration_EC_EngKan/child_immunization_history_group/je_2_date" required="required"
+                   data-constraint=".&gt;=  /Child_Registration_EC_EngKan/child_birth_date  and .&lt;= /Child_Registration_EC_EngKan/today "
+                   data-relevant="selected( /Child_Registration_EC_EngKan/child_immunization_history , 'je_2')"
+                   data-type-xml="date"/>
+        </label>
+        <label class="jr-branch pre-init ">
+            <span lang="" class=" active">DPT Booster 2 (5 years) date? &#xCA1;&#xCA1;&#xCBF;&#xCAA;&#xCBF;&#xC9F;&#xCBF;
+                &#xCAC;&#xCB2;&#xCB5;&#xCB0;&#xCCD;&#xCA7;&#xC95; 2 (5 &#xCB5;&#xCB0;&#xCCD;&#xCB7;) &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
             </span>
             <span class="required">*</span>
             <input autocomplete="off" type="date"
