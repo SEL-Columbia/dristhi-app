@@ -14,8 +14,8 @@
         <fieldset>
             <legend>
                 <span lang="" class=" active">Is there a family member who can join this discussion? &#xC88; &#xC9A;&#xCB0;&#xCCD;&#xC9A;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-                    &#xCAF;&#xCBE;&#xCB0;&#xCBE;&#xCA6;&#xCB0;&#xCC1; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
-                    &#xCB8;&#xCA6;&#xCB8;&#xCCD;&#xCAF;&#xCB0;&#xCC1; &#xCAD;&#xCBE;&#xC97;&#xCB5;&#xCB9;&#xCBF;&#xCB8;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC7;?
+                    &#xCAF;&#xCBE;&#xCB0;&#xCBE;&#xCA6;&#xCB0;&#xCC1; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCB8;&#xCA6;&#xCB8;&#xCCD;&#xCAF;&#xCB0;&#xCC1;
+                    &#xCAD;&#xCBE;&#xC97;&#xCB5;&#xCB9;&#xCBF;&#xCB8;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC7;?
                 </span>
             </legend>
             <label class="clearfix ">
@@ -33,13 +33,12 @@
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">The family plays an important role in preparing for a safe delivery.
-                    Is there a family member who can join this discussion? &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;&#xCB5;&#xCC1;
-                    &#xCB8;&#xCC1;&#xCB0;&#xC95;&#xCCD;&#xCB7;&#xCBF;&#xCA4; &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5;
-                    &#xCA4;&#xCAF;&#xCBE;&#xCB0;&#xCBF;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF; &#xCAA;&#xCCD;&#xCB0;&#xCAE;&#xCC1;&#xC96;
-                    &#xCAA;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCB5;&#xCB9;&#xCBF;&#xCB8;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCA6;&#xCC6;.
-                    &#xC88; &#xC9A;&#xCB0;&#xCCD;&#xC9A;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF; &#xCAF;&#xCBE;&#xCB0;&#xCBE;&#xCA6;&#xCB0;&#xCC1;
-                    &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCB8;&#xCA6;&#xCB8;&#xCCD;&#xCAF;&#xCB0;&#xCC1;
+                <span lang="" class=" active">The family plays an important role in preparing for a safe delivery. Is
+                    there a family member who can join this discussion? &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;&#xCB5;&#xCC1;
+                    &#xCB8;&#xCC1;&#xCB0;&#xC95;&#xCCD;&#xCB7;&#xCBF;&#xCA4; &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5; &#xCA4;&#xCAF;&#xCBE;&#xCB0;&#xCBF;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
+                    &#xCAA;&#xCCD;&#xCB0;&#xCAE;&#xCC1;&#xC96; &#xCAA;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+                    &#xCB5;&#xCB9;&#xCBF;&#xCB8;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCA6;&#xCC6;. &#xC88; &#xC9A;&#xCB0;&#xCCD;&#xC9A;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
+                    &#xCAF;&#xCBE;&#xCB0;&#xCBE;&#xCA6;&#xCB0;&#xCC1; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCB8;&#xCA6;&#xCB8;&#xCCD;&#xCAF;&#xCB0;&#xCC1;
                     &#xCAD;&#xCBE;&#xC97;&#xCB5;&#xCB9;&#xCBF;&#xCB8;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC7;?
                 </span>
             </legend>
@@ -104,22 +103,20 @@
                 </span>
             </legend>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/same_asha_phone_number"
-                       value="yes" data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  != ''"
-                       data-type-xml="select1"/>
+                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/same_asha_phone_number" value="yes"
+                       data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  != ''" data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/same_asha_phone_number"
-                       value="no" data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  != ''"
-                       data-type-xml="select1"/>
+                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/same_asha_phone_number" value="no"
+                       data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  != ''" data-type-xml="select1"/>
                 <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
             </label>
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">What is new ASHA phone number? &#xC86;&#xCB6;&#xCBE; &#xCB9;&#xCCA;&#xCB8;
-            &#xCAB;&#xCCB;&#xCA8;&#xCCD; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6; &#xC8F;&#xCA8;&#xCC1;?
+        <span lang="" class=" active">What is new ASHA phone number? &#xC86;&#xCB6;&#xCBE; &#xCB9;&#xCCA;&#xCB8; &#xCAB;&#xCCB;&#xCA8;&#xCCD;
+            &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6; &#xC8F;&#xCA8;&#xCC1;?
         </span>
         <input autocomplete="off" type="number" name="/Delivery_Plan_EngKan/new_asha_phone_number"
                data-constraint=".&gt; 999999999 and .&lt; 10000000000"
@@ -177,8 +174,8 @@
                 </span>
             </legend>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/blood_donor_available"
-                       value="yes" data-type-xml="select1"/>
+                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/blood_donor_available" value="yes"
+                       data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
@@ -222,9 +219,9 @@
     <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">It is very important for the family to understand reasons for high
-                    risk pregnancy, so they can be ready for delivery complications. Did you review high risk
-                    reasons with them? &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCA7;&#xCBE;&#xCB0;&#xCA3;&#xCC6; &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBF;&#xCA8;
+                <span lang="" class=" active">It is very important for the family to understand reasons for high risk
+                    pregnancy, so they can be ready for delivery complications. Did you review high risk reasons with
+                    them? &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCA7;&#xCBE;&#xCB0;&#xCA3;&#xCC6; &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBF;&#xCA8;
                     &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCA6; &#xC95;&#xCBE;&#xCB0;&#xCA3;&#xC97;&#xCB3; &#xCAC;&#xC97;&#xCCD;&#xC97;&#xCC6;
                     &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;&#xCB5;&#xCC1; &#xC85;&#xCB0;&#xCCD;&#xCA5; &#xCAE;&#xCBE;&#xCA1;&#xCBF;&#xC95;&#xCCA;&#xCB3;&#xCCD;&#xCB3;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1;
                     &#xCAC;&#xCB9;&#xCB3; &#xCAE;&#xCC1;&#xC96;&#xCCD;&#xCAF;. &#xCA8;&#xCC0;&#xCB5;&#xCC1; &#xC85;&#xCB5;&#xCB0;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xC97;&#xCC6;
@@ -234,14 +231,12 @@
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/reviewed_hrp_status2" value="yes"
-                       data-relevant=" /Delivery_Plan_EngKan/reviewed_hrp_status1  != 'yes'"
-                       data-type-xml="select1"/>
+                       data-relevant=" /Delivery_Plan_EngKan/reviewed_hrp_status1  != 'yes'" data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/reviewed_hrp_status2" value="no"
-                       data-relevant=" /Delivery_Plan_EngKan/reviewed_hrp_status1  != 'yes'"
-                       data-type-xml="select1"/>
+                       data-relevant=" /Delivery_Plan_EngKan/reviewed_hrp_status1  != 'yes'" data-type-xml="select1"/>
                 <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
             </label>
         </fieldset>
@@ -269,21 +264,18 @@
     </fieldset>
     <label class="jr-branch pre-init ">
         <span lang="" class=" active">Every pregnant woman should have one ANC visit with the MO between 28 and 34
-            weeks. Please accompany the woman to an ANC visit with the MO. &#xCAA;&#xCCD;&#xCB0;&#xCA4;&#xCBF;
-            &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBF;&#xCA3;&#xCBF; &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1;
-            &#xC92;&#xC82;&#xCA6;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5; &#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCB5;
-            &#xC86;&#xCB0;&#xCC8;&#xC95;&#xCC6; &#xCAD;&#xCC7;&#xC9F;&#xCBF;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCBE;&#xCA6;&#xCB0;&#xCC2;
-            &#xCB5;&#xCC8;&#xCA6;&#xCCD;&#xCAF;&#xCBE;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;&#xC97;&#xCB3;
-            &#xCAC;&#xCB3;&#xCBF; 28 &#xCB0;&#xCBF;&#xC82;&#xCA6; 34 &#xCB5;&#xCBE;&#xCB0;&#xCA6;&#xCCA;&#xCB3;&#xC97;&#xCC6;
-            &#xCAD;&#xCC7;&#xC9F;&#xCBF; &#xCAE;&#xCBE;&#xCA1;&#xCAC;&#xCC7;&#xC95;&#xCC1;. &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1;
-            &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5;&#xCBE; &#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCB5; &#xC86;&#xCB0;&#xCC8;&#xC95;&#xCC6;&#xC97;&#xCBE;&#xC97;&#xCBF;
-            &#xCB5;&#xCC8;&#xCA6;&#xCCD;&#xCAF;&#xCBE;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+            weeks. Please accompany the woman to an ANC visit with the MO. &#xCAA;&#xCCD;&#xCB0;&#xCA4;&#xCBF; &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBF;&#xCA3;&#xCBF;
+            &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1; &#xC92;&#xC82;&#xCA6;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5;
+            &#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCB5; &#xC86;&#xCB0;&#xCC8;&#xC95;&#xCC6; &#xCAD;&#xCC7;&#xC9F;&#xCBF;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCBE;&#xCA6;&#xCB0;&#xCC2;
+            &#xCB5;&#xCC8;&#xCA6;&#xCCD;&#xCAF;&#xCBE;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;&#xC97;&#xCB3; &#xCAC;&#xCB3;&#xCBF;
+            28 &#xCB0;&#xCBF;&#xC82;&#xCA6; 34 &#xCB5;&#xCBE;&#xCB0;&#xCA6;&#xCCA;&#xCB3;&#xC97;&#xCC6; &#xCAD;&#xCC7;&#xC9F;&#xCBF;
+            &#xCAE;&#xCBE;&#xCA1;&#xCAC;&#xCC7;&#xC95;&#xCC1;. &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5;&#xCBE;
+            &#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCB5; &#xC86;&#xCB0;&#xCC8;&#xC95;&#xCC6;&#xC97;&#xCBE;&#xC97;&#xCBF; &#xCB5;&#xCC8;&#xCA6;&#xCCD;&#xCAF;&#xCBE;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
             &#xCAC;&#xCC7;&#xC9F;&#xCBF; &#xCAE;&#xCBE;&#xCA1;&#xCB2;&#xCC1; &#xCA6;&#xCAF;&#xCB5;&#xCBF;&#xC9F;&#xCCD;&#xC9F;&#xCC1;
             &#xC9C;&#xCCA;&#xCA4;&#xCC6;&#xC97;&#xCC2;&#xCA1;&#xCBF;.
         </span>
         <input autocomplete="off" type="text" name="/Delivery_Plan_EngKan/mo_visit_message"
-               data-relevant=" /Delivery_Plan_EngKan/mo_visit  != 'yes'" data-type-xml="string"
-               readonly="readonly"/>
+               data-relevant=" /Delivery_Plan_EngKan/mo_visit  != 'yes'" data-type-xml="string" readonly="readonly"/>
     </label>
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
@@ -348,15 +340,15 @@
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Delivery_Plan_EngKan/home_reasons"
-                       value="facility_poor_quality"
-                       data-relevant=" /Delivery_Plan_EngKan/delivery_facility1  = 'home'" data-type-xml="select"/>
+                       value="facility_poor_quality" data-relevant=" /Delivery_Plan_EngKan/delivery_facility1  = 'home'"
+                       data-type-xml="select"/>
                 <span lang="" class=" active">Poor quality of care at facility &#xC95;&#xCB3;&#xCAA;&#xCC6; &#xC97;&#xCC1;&#xCA3;&#xCAE;&#xC9F;&#xCCD;&#xC9F;&#xCA6;
                     &#xC86;&#xCB0;&#xCC8;&#xC95;&#xCC6; &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Delivery_Plan_EngKan/home_reasons"
-                       value="facility_lack_privacy"
-                       data-relevant=" /Delivery_Plan_EngKan/delivery_facility1  = 'home'" data-type-xml="select"/>
+                       value="facility_lack_privacy" data-relevant=" /Delivery_Plan_EngKan/delivery_facility1  = 'home'"
+                       data-type-xml="select"/>
                 <span lang="" class=" active">Lack of privacy at facility &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
                     &#xC97;&#xCCC;&#xCAA;&#xCCD;&#xCAF;&#xCA4;&#xCC6; &#xC87;&#xCB2;&#xCCD;&#xCB2;&#xCA6;&#xCBF;&#xCB0;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1;</span>
             </label>
@@ -376,15 +368,15 @@
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Delivery_Plan_EngKan/home_reasons"
-                       value="facility_too_costly"
-                       data-relevant=" /Delivery_Plan_EngKan/delivery_facility1  = 'home'" data-type-xml="select"/>
+                       value="facility_too_costly" data-relevant=" /Delivery_Plan_EngKan/delivery_facility1  = 'home'"
+                       data-type-xml="select"/>
                 <span lang="" class=" active">Too costly to deliver at facility &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xCAF;
                     &#xCB8;&#xCCC;&#xC95;&#xCB0;&#xCCD;&#xCAF; &#xCA4;&#xCC1;&#xC82;&#xCAC;&#xCBE; &#xCA6;&#xCC1;&#xCAD;&#xCBE;&#xCB0;&#xCBF;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/Delivery_Plan_EngKan/home_reasons"
-                       value="family_member_insists"
-                       data-relevant=" /Delivery_Plan_EngKan/delivery_facility1  = 'home'" data-type-xml="select"/>
+                       value="family_member_insists" data-relevant=" /Delivery_Plan_EngKan/delivery_facility1  = 'home'"
+                       data-type-xml="select"/>
                 <span lang="" class=" active">Family member insists on home delivery &#xCAE;&#xCA8;&#xCC6; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xC97;&#xCC6;
                     &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;&#xCA6; &#xCB8;&#xCA6;&#xCB8;&#xCCD;&#xCAF;&#xCB0;&#xCC1;
                     &#xC92;&#xCA4;&#xCCD;&#xCA4;&#xCBE;&#xCAF; &#xCAE;&#xCBE;&#xCA1;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCBE;&#xCB0;&#xCC6;</span>
@@ -401,9 +393,8 @@
             &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?
         </span>
         <span class="required">*</span>
-        <input autocomplete="off" type="text" name="/Delivery_Plan_EngKan/name_delivery_facility1"
-               required="required" data-relevant=" /Delivery_Plan_EngKan/delivery_facility1  != 'home'"
-               data-type-xml="string"/>
+        <input autocomplete="off" type="text" name="/Delivery_Plan_EngKan/name_delivery_facility1" required="required"
+               data-relevant=" /Delivery_Plan_EngKan/delivery_facility1  != 'home'" data-type-xml="string"/>
     </label>
     <label class="jr-branch pre-init ">
         <span lang="" class=" active">
@@ -411,11 +402,10 @@
             </span>has high risk pregnancy. Tell her to deliver at SDH or DH for her safety and safety of child!
             <span class="jr-output" data-value=" /Delivery_Plan_EngKan/woman_name ">
             </span>
-            &#xC87;&#xCA6;&#xCC1; &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBF;&#xCA8; &#xC85;&#xCAA;&#xCBE;&#xCAF;
-            &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCA7;&#xCBE;&#xCB0;&#xCA3;&#xCC6; &#xCAF;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;.
-            &#xCA4;&#xCAE;&#xCCD;&#xCAE; &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; &#xCA4;&#xCAE;&#xCCD;&#xCAE; &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8;
-            &#xCB8;&#xCC1;&#xCB0;&#xC95;&#xCCD;&#xCB7;&#xCA4;&#xCC6;&#xC97;&#xCBE;&#xC97;&#xCBF; SDH &#xC85;&#xCA5;&#xCB5;&#xCBE;
-            DH&#xC97;&#xCC6; &#xCA4;&#xCB2;&#xCC1;&#xCAA;&#xCB2;&#xCC1; &#xC85;&#xCB5;&#xCB0;&#xCBF;&#xC97;&#xCC6;
+            &#xC87;&#xCA6;&#xCC1; &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBF;&#xCA8; &#xC85;&#xCAA;&#xCBE;&#xCAF; &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCA7;&#xCBE;&#xCB0;&#xCA3;&#xCC6;
+            &#xCAF;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;. &#xCA4;&#xCAE;&#xCCD;&#xCAE; &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1;
+            &#xCA4;&#xCAE;&#xCCD;&#xCAE; &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB8;&#xCC1;&#xCB0;&#xC95;&#xCCD;&#xCB7;&#xCA4;&#xCC6;&#xC97;&#xCBE;&#xC97;&#xCBF;
+            SDH &#xC85;&#xCA5;&#xCB5;&#xCBE; DH&#xC97;&#xCC6; &#xCA4;&#xCB2;&#xCC1;&#xCAA;&#xCB2;&#xCC1; &#xC85;&#xCB5;&#xCB0;&#xCBF;&#xC97;&#xCC6;
             &#xCB9;&#xCC7;&#xCB3;&#xCBF;!
         </span>
         <input autocomplete="off" type="text" name="/Delivery_Plan_EngKan/hrp_delivery_facility_message"
@@ -429,13 +419,13 @@
             blood transfusion before labor starts.
             <span class="jr-output" data-value=" /Delivery_Plan_EngKan/woman_name ">
             </span>
-            &#xC87;&#xCA6;&#xCC1; &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBF;&#xCA8; &#xC85;&#xCAA;&#xCBE;&#xCAF;
-            &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; &#xCA4;&#xCC0;&#xCB5;&#xCCD;&#xCB0;&#xCA4;&#xCB5;&#xCBE;&#xCA6;
-            &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCB9;&#xCC0;&#xCA8;&#xCA4;&#xCC6; &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCC6;.
-            &#xC85;&#xCB5;&#xCB3;&#xCBF;&#xC97;&#xCC6; &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; &#xC85;&#xCB5;&#xCB3;
-            &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;&#xCA6;&#xCB5;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xC97;&#xCC6;
-            SDH &#xC85;&#xCA5;&#xCB5;&#xCBE; DH&#xC97;&#xCC6; &#xCB9;&#xCCB;&#xC97;&#xCB2;&#xCC1; &#xCA4;&#xCBF;&#xCB3;&#xCBF;&#xCB8;&#xCBF;.
-            &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA8;&#xCCB;&#xCB5;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCB5;&#xCBE;&#xC97;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xC95;&#xCCD;&#xC95;&#xCC2;
+            &#xC87;&#xCA6;&#xCC1; &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBF;&#xCA8; &#xC85;&#xCAA;&#xCBE;&#xCAF; &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1;
+            &#xCA4;&#xCC0;&#xCB5;&#xCCD;&#xCB0;&#xCA4;&#xCB5;&#xCBE;&#xCA6; &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCB9;&#xCC0;&#xCA8;&#xCA4;&#xCC6;
+            &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCC6;. &#xC85;&#xCB5;&#xCB3;&#xCBF;&#xC97;&#xCC6; &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1;
+            &#xC85;&#xCB5;&#xCB3; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;&#xCA6;&#xCB5;&#xCB0;&#xCBF;&#xC97;&#xCC6;
+            &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xC97;&#xCC6; SDH &#xC85;&#xCA5;&#xCB5;&#xCBE; DH&#xC97;&#xCC6;
+            &#xCB9;&#xCCB;&#xC97;&#xCB2;&#xCC1; &#xCA4;&#xCBF;&#xCB3;&#xCBF;&#xCB8;&#xCBF;. &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;
+            &#xCA8;&#xCCB;&#xCB5;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCB5;&#xCBE;&#xC97;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xC95;&#xCCD;&#xC95;&#xCC2;
             &#xCAE;&#xCC1;&#xCA8;&#xCCD;&#xCA8; &#xCB0;&#xC95;&#xCCD;&#xCA4; &#xCB5;&#xCB0;&#xCCD;&#xC97;&#xCBE;&#xCB5;&#xCA3;&#xCC6;
             &#xCAE;&#xCBE;&#xCA1;&#xCAC;&#xCC7;&#xC95;&#xCBE;&#xC97;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCA6;&#xCC6;.
         </span>
@@ -478,15 +468,15 @@
                 <span class="required">*</span>
             </legend>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/change_delivery_facility"
-                       value="yes" required="required"
+                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/change_delivery_facility" value="yes"
+                       required="required"
                        data-relevant="(( /Delivery_Plan_EngKan/entity_is_high_risk  = 'yes' or  /Delivery_Plan_EngKan/entity_anaemic_status  = 'Severe_Anaemia') and ( /Delivery_Plan_EngKan/delivery_facility1  != 'dh' and  /Delivery_Plan_EngKan/delivery_facility1  != 'sdh')) or ( /Delivery_Plan_EngKan/delivery_facility1  = 'home' or  /Delivery_Plan_EngKan/delivery_facility1  = 'sub_center')"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/change_delivery_facility"
-                       value="no" required="required"
+                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/change_delivery_facility" value="no"
+                       required="required"
                        data-relevant="(( /Delivery_Plan_EngKan/entity_is_high_risk  = 'yes' or  /Delivery_Plan_EngKan/entity_anaemic_status  = 'Severe_Anaemia') and ( /Delivery_Plan_EngKan/delivery_facility1  != 'dh' and  /Delivery_Plan_EngKan/delivery_facility1  != 'sdh')) or ( /Delivery_Plan_EngKan/delivery_facility1  = 'home' or  /Delivery_Plan_EngKan/delivery_facility1  = 'sub_center')"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
@@ -560,8 +550,7 @@
             &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?
         </span>
         <span class="required">*</span>
-        <input autocomplete="off" type="text" name="/Delivery_Plan_EngKan/name_delivery_facility2"
-               required="required"
+        <input autocomplete="off" type="text" name="/Delivery_Plan_EngKan/name_delivery_facility2" required="required"
                data-relevant=" /Delivery_Plan_EngKan/change_delivery_facility  = 'yes' and  /Delivery_Plan_EngKan/delivery_facility2  != 'home'"
                data-type-xml="string"/>
     </label>
@@ -619,19 +608,19 @@
                 &#xCB9;&#xCA4;&#xCCD;&#xCA4;&#xCBF;&#xCB0;&#xCA6; 24/7 &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xC95;&#xCCD;&#xC95;&#xCC6;
                 &#xCB9;&#xCCB;&#xC97;&#xCBF;?
             </span>
-            <input autocomplete="off" type="text"
-                   name="/Delivery_Plan_EngKan/home_delivery_group/nearest_24_7_facility" data-type-xml="string"/>
+            <input autocomplete="off" type="text" name="/Delivery_Plan_EngKan/home_delivery_group/nearest_24_7_facility"
+                   data-type-xml="string"/>
         </label>
         <label class="">
-            <span lang="" class=" active">Provide family with contact information and instructions for 24/7 facility
-                in case of delivery complications. &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA4;&#xCCA;&#xCA1;&#xC95;&#xCC1;&#xC97;&#xCB3;&#xCBE;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
+            <span lang="" class=" active">Provide family with contact information and instructions for 24/7 facility in
+                case of delivery complications. &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA4;&#xCCA;&#xCA1;&#xC95;&#xCC1;&#xC97;&#xCB3;&#xCBE;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
                 &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;&#xCA6;&#xCB5;&#xCB0;&#xCBF;&#xC97;&#xCC6; 24/7 &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xCA6;
                 &#xCAE;&#xCBE;&#xCB9;&#xCBF;&#xCA4;&#xCBF; &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; &#xCB8;&#xC82;&#xCAA;&#xCB0;&#xCCD;&#xC95;
                 &#xCAE;&#xCBE;&#xCB9;&#xCBF;&#xCA4;&#xCBF;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xC92;&#xCA6;&#xC97;&#xCBF;&#xCB8;&#xCBF;.
             </span>
             <input autocomplete="off" type="text"
-                   name="/Delivery_Plan_EngKan/home_delivery_group/nearest_24_7_facility_message"
-                   data-type-xml="string" readonly="readonly"/>
+                   name="/Delivery_Plan_EngKan/home_delivery_group/nearest_24_7_facility_message" data-type-xml="string"
+                   readonly="readonly"/>
         </label>
     </fieldset>
     <!--end of group -->
@@ -673,15 +662,12 @@
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Transportation plan? &#xCB8;&#xCBE;&#xCB0;&#xCBF;&#xC97;&#xCC6;
-                    &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;?
-                </span>
+                <span lang="" class=" active">Transportation plan? &#xCB8;&#xCBE;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;?</span>
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/transportation_plan"
                        value="family_vehicle" data-type-xml="select1"/>
-                <span lang="" class=" active">Family Vehicle &#xCAE;&#xCA8;&#xCC6;
-                    &#xCB5;&#xCBE;&#xCB9;&#xCA8;</span>
+                <span lang="" class=" active">Family Vehicle &#xCAE;&#xCA8;&#xCC6; &#xCB5;&#xCBE;&#xCB9;&#xCA8;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/transportation_plan"
@@ -701,8 +687,8 @@
                 </span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/transportation_plan"
-                       value="others" data-type-xml="select1"/>
+                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/transportation_plan" value="others"
+                       data-type-xml="select1"/>
                 <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
             </label>
         </fieldset>
@@ -749,8 +735,8 @@
             <legend>
                 <span lang="" class=" active">
                     <span class="jr-output" data-value=" /Delivery_Plan_EngKan/woman_name ">
-                    </span>will have a better birth outcome if she has a birth companion during delivery. Does she
-                    have a birth companion?
+                    </span>will have a better birth outcome if she has a birth companion during delivery. Does she have
+                    a birth companion?
                     <span class="jr-output" data-value=" /Delivery_Plan_EngKan/woman_name ">
                     </span>
                     &#xC86;&#xC95;&#xCC6; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xCAF; &#xCB5;&#xCC7;&#xCB3;&#xCC6;
@@ -783,8 +769,8 @@
             &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;
             <span class="jr-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
             </span>
-            &#xC85;&#xCB5;&#xCB3; &#xC86;&#xCAF;&#xCCD;&#xC95;&#xCC6; &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCC1;
-            &#xC8E;&#xC82;&#xCA6;&#xCC1; &#xCA4;&#xCBF;&#xCB3;&#xCBF;&#xCB8;&#xCBF;.
+            &#xC85;&#xCB5;&#xCB3; &#xC86;&#xCAF;&#xCCD;&#xC95;&#xCC6; &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCC1; &#xC8E;&#xC82;&#xCA6;&#xCC1;
+            &#xCA4;&#xCBF;&#xCB3;&#xCBF;&#xCB8;&#xCBF;.
         </span>
         <input autocomplete="off" type="text" name="/Delivery_Plan_EngKan/pp_fp_message" data-type-xml="string"
                readonly="readonly"/>
@@ -804,8 +790,8 @@
                 </span>
             </legend>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/ready_to_select_pp_fp"
-                       value="yes" data-type-xml="select1"/>
+                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/ready_to_select_pp_fp" value="yes"
+                       data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
@@ -830,26 +816,22 @@
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/pp_fp_method" value="ocp"
-                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
-                       data-type-xml="select1"/>
+                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'" data-type-xml="select1"/>
                 <span lang="" class=" active">OCP &#xCA8;&#xCC1;&#xC82;&#xC97;&#xCC1;&#xCB5; &#xC97;&#xCC1;&#xCB3;&#xCBF;&#xC97;&#xCC6;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/pp_fp_method" value="iud"
-                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
-                       data-type-xml="select1"/>
+                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'" data-type-xml="select1"/>
                 <span lang="" class=" active">IUD &#xCB5;&#xC82;&#xC95;&#xCBF;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/pp_fp_method" value="condom"
-                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
-                       data-type-xml="select1"/>
+                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'" data-type-xml="select1"/>
                 <span lang="" class=" active">Condom &#xCA8;&#xCBF;&#xCB0;&#xCCB;&#xCA6;&#xCCD;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/pp_fp_method"
-                       value="male_sterilization"
-                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
+                       value="male_sterilization" data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Male Sterilization &#xCAA;&#xCC1;&#xCB0;&#xCC1;&#xCB7; &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;
                     &#xCB9;&#xCB0;&#xCA3; &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0;&#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;</span>
@@ -857,36 +839,31 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/pp_fp_method"
                        value="female_sterilization"
-                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Female Sterilization &#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0;&#xCC0;
-                    &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8; &#xCB9;&#xCB0;&#xCA3; &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0;&#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;</span>
+                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'" data-type-xml="select1"/>
+                <span lang="" class=" active">Female Sterilization &#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0;&#xCC0; &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;
+                    &#xCB9;&#xCB0;&#xCA3; &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0;&#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;</span>
             </label>
             <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/pp_fp_method"
-                       value="dmpa_injectable" data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
-                       data-type-xml="select1"/>
+                <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/pp_fp_method" value="dmpa_injectable"
+                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'" data-type-xml="select1"/>
                 <span lang="" class=" active">DMPA / Injectable &#xCA1;&#xCBF;&#xC82;&#xCAA;&#xCBE; / &#xC9A;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
                     &#xCAE;&#xCA6;&#xCCD;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/pp_fp_method"
-                       value="traditional_methods"
-                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
+                       value="traditional_methods" data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Traditional Methods &#xCB8;&#xCBE;&#xC82;&#xCAA;&#xCCD;&#xCB0;&#xCA6;&#xCBE;&#xCAF;&#xCBF;&#xC95;
                     &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/pp_fp_method" value="lam"
-                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
-                       data-type-xml="select1"/>
+                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'" data-type-xml="select1"/>
                 <span lang="" class=" active">LAM &#xCB2;&#xCCD;&#xCAF;&#xCBE;&#xCAE;&#xCCD;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/pp_fp_method" value="centchroman"
-                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
-                       data-type-xml="select1"/>
+                       data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'" data-type-xml="select1"/>
                 <span lang="" class=" active">Centchroman &#xCB8;&#xCC6;&#xC82;&#xCA4;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCA8;&#xCCD;</span>
             </label>
         </fieldset>
