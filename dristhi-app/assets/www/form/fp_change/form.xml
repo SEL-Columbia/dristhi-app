@@ -38,16 +38,15 @@
                        value="sub_center"
                        data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
                        data-type-xml="select1"/>
-                <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                <span lang="" class=" active">My Sub Center &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xC89;&#xCAA;&#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
                        value="phc"
                        data-relevant=" /Family_Planning_Change_Method_EngKan/case_familyplanning_method  = 'iud'"
                        data-type-xml="select1"/>
-                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                <span lang="" class=" active">My PHC &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
+                    &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_removal_place"
@@ -122,7 +121,7 @@
                 <input autocomplete="off" type="radio"
                        name="/Family_Planning_Change_Method_EngKan/familyplanning_method" value="centchroman"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Centchroman &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCA8;&#xCCD;</span>
+                <span lang="" class=" active">Centchroman &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCB;&#xC95;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCCD;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio"
@@ -137,7 +136,7 @@
             &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <span class="required">*</span>
-        <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/date_familyplanningstart"
+        <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/date_familyplanningstart1"
                required="required" data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  != 'none'"
                data-type-xml="date"/>
@@ -186,15 +185,14 @@
                        value="sub_center"
                        data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
                        data-type-xml="select1"/>
-                <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                <span lang="" class=" active">My Sub Center &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xC89;&#xCAA;&#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_place"
                        value="phc" data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
                        data-type-xml="select1"/>
-                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                <span lang="" class=" active">My PHC &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
+                    &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_place"
@@ -244,7 +242,7 @@
                 <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_person"
                        value="mo" data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
                        data-type-xml="select1"/>
-                <span lang="" class=" active">MO &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF;&#xCBE; &#xC85;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;</span>
+                <span lang="" class=" active">MO &#xCB5;&#xCC8;&#xCA6;&#xCCD;&#xCAF;&#xCBE;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/Family_Planning_Change_Method_EngKan/iud_person"
@@ -366,7 +364,7 @@
                data-type-xml="int"/>
     </label>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Number of Centchroman strips given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1; &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCD;&#xCB0;&#xCCA;&#xCAE;&#xCA8;&#xCCD;
+        <span lang="" class=" active">Number of Centchroman strips given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1; &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCB;&#xC95;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCCD;
             &#xCB8;&#xCCD;&#xC9F;&#xCCD;&#xCB0;&#xCBF;&#xCAA;&#xCCD;&#xCB8;&#xCCD; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
         </span>
         <span class="required">*</span>
@@ -377,6 +375,12 @@
     </label>
 
     <fieldset id="jr-calculated-items" style="display:none;">
+        <label class="">
+            <input autocomplete="off" type="hidden"
+                   name="/Family_Planning_Change_Method_EngKan/date_familyplanningstart"
+                   data-calculate="if( /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'none', ' ',  /Family_Planning_Change_Method_EngKan/date_familyplanningstart1 )"
+                   data-type-xml="string"/>
+        </label>
         <label class="">
             <input autocomplete="off" type="hidden"
                    name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date"
@@ -395,7 +399,7 @@
         </label>
         <label class="">
             <input autocomplete="off" type="hidden" name="/Family_Planning_Change_Method_EngKan/formhub/uuid"
-                   data-calculate="'89a5746d9f434f7681cde818eaab7e3a'" data-type-xml="string"/>
+                   data-calculate="'fb64bf30134446529edf5fca17432d14'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
