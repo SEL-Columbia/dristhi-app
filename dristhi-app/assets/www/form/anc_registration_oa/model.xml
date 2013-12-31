@@ -69,7 +69,6 @@
             <is_high_risk/>
             <num_days_since_lmp/>
             <num_weeks/>
-            <case_birth_planning/>
             <birth_plan_message/>
             <meta>
                 <instanceID/>

@@ -1,5 +1,5 @@
 <form class="jr" autocomplete="off" id="ANC_Registration_OA_EngKan">
-    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">ANC Registration - Out of Area</h3>
     <select id="form-languages" style="display:none;" data-default-lang="default">
@@ -542,8 +542,8 @@
             <legend>
                 <span lang="" class=" active">Does the woman have any of the following medical conditions? &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xC97;&#xCC6;
                     &#xC88; &#xC95;&#xCC6;&#xCB3;&#xC97;&#xCBF;&#xCA8; &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1;
-                    &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF;&#xCBE; &#xCB8;&#xCCD;&#xCA5;&#xCBF;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1;
-                    &#xC89;&#xC82;&#xC9F;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB5;&#xCC6;?
+                    &#xCB5;&#xCC8;&#xCA6;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF; &#xCB8;&#xCCD;&#xCA5;&#xCBF;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1;
+                    &#xC89;&#xC82;&#xC9F;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB5;&#xCC7;?
                 </span>
             </legend>
             <label class="clearfix ">
@@ -724,19 +724,19 @@
         </fieldset>
     </fieldset>
     <fieldset class="trigger jr-branch pre-init" name="/ANC_Registration_OA_EngKan/birth_plan_message"
-              data-relevant=" /ANC_Registration_OA_EngKan/num_weeks  &gt;= 34 and  /ANC_Registration_OA_EngKan/case_birth_planning  = ''">
+              data-relevant=" /ANC_Registration_OA_EngKan/num_weeks  &gt;= 34">
         <span lang="" class=" active">
             <span class="jr-output" data-value=" /ANC_Registration_OA_EngKan/woman_name ">
             </span>is
             <span class="jr-output" data-value=" /ANC_Registration_OA_EngKan/num_weeks ">
             </span>
-            weeks pregnant. Complete Birth Plan form now.
+            weeks pregnant. Complete Delivery Plan form now.
             <span class="jr-output" data-value=" /ANC_Registration_OA_EngKan/woman_name ">
             </span>
             <span class="jr-output" data-value=" /ANC_Registration_OA_EngKan/num_weeks ">
             </span>
             &#xCB5;&#xCBE;&#xCB0;&#xC97;&#xCB3; &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBF;&#xCA3;&#xCBF;. &#xC88;&#xC97;
-            &#xCB8;&#xC82;&#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCA3; &#xC9C;&#xCA8;&#xCCD;&#xCAE; &#xCAF;&#xCCA;&#xC9C;&#xCA8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+            &#xCB8;&#xC82;&#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCA3; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCAF;&#xCCA;&#xC9C;&#xCA8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
             &#xCB0;&#xCC2;&#xCAA;&#xCBF;&#xCB8;&#xCBF;.
         </span>
     </fieldset>
