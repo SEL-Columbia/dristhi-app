@@ -1,5 +1,5 @@
 <form class="jr" autocomplete="off" id="PNC_Child_Registration_EngKan">
-    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">PNC Registration - Out of Area</h3>
     <select id="form-languages" style="display:none;" data-default-lang="default">
@@ -736,9 +736,9 @@
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">How long will woman stay in area? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1;
-                    &#xCA6;&#xCBF;&#xCA8;&#xCA6;&#xCBF;&#xC82;&#xCA6; &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6; &#xC87;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-                    &#xCB5;&#xCBE;&#xCB8;&#xCB5;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCBE;&#xCB0;&#xCC6;?
+                <span lang="" class=" active">How long will woman stay in area? &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;
+                    &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1; &#xC95;&#xCBE;&#xCB2; &#xC87;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
+                    &#xCB5;&#xCBE;&#xCB8;&#xCB5;&#xCBE;&#xC97;&#xCBF;&#xCB0;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCBE;&#xCB0;&#xCC6;?
                 </span>
             </legend>
             <label class="clearfix ">

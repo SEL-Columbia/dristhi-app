@@ -30,7 +30,7 @@
                 <cause_of_still_birth/>
                 <other_cause_of_still_birth/>
             </still_birth_group>
-            <child template="">
+            <child jr:template="">
                 <sex_child/>
                 <birthweight/>
                 <child_blood_group/>
@@ -346,22 +346,6 @@
             <item>
                 <itextId>static_instance-delivery_complications-6</itextId>
                 <name>others</name>
-            </item>
-        </root>
-    </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="place">
-        <root>
-            <item>
-                <itextId>static_instance-place-0</itextId>
-                <name>sub_center</name>
-            </item>
-            <item>
-                <itextId>static_instance-place-1</itextId>
-                <name>phc</name>
-            </item>
-            <item>
-                <itextId>static_instance-place-2</itextId>
-                <name>elsewhere</name>
             </item>
         </root>
     </instance>
