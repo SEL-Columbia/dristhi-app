@@ -63,14 +63,13 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/anc_visit_place" value="sub_center"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                <span lang="" class=" active">My Sub Center &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xC89;&#xCAA;&#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/anc_visit_place" value="phc"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                <span lang="" class=" active">My PHC &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
+                    &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/anc_visit_place" value="elsewhere"
@@ -106,7 +105,7 @@
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/anc_visit_person" value="mo"
                        required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">MO &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF;&#xCBE; &#xC85;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;</span>
+                <span lang="" class=" active">MO &#xCB5;&#xCC8;&#xCA6;&#xCCD;&#xCAF;&#xCBE;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio" name="/ANC_Visit_EngKan/anc_visit_person" value="others"
@@ -118,8 +117,8 @@
     <fieldset class="restoring-sanity-to-legends ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Does the woman have any risk symptoms? &#xCA8;&#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1;
-                    &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF;
+                <span lang="" class=" active">Does the woman have any risk symptoms? &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1;
+                    &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF;
                     &#xCB0;&#xCCB;&#xC97;&#xCB2;&#xC95;&#xCCD;&#xCB7;&#xCA3;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                     &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCBE;&#xCB3;&#xCC6;&#xCAF;&#xCC7;?
                 </span>
@@ -128,13 +127,13 @@
                 <input autocomplete="off" type="checkbox" name="/ANC_Visit_EngKan/risk_observed" value="pallor"
                        data-constraint="(selected(., 'none') and (count-selected(.) = 1) or (not(selected(., 'none'))))"
                        data-type-xml="select"/>
-                <span lang="" class=" active">Pallor &#xCAC;&#xCBF;&#xCB3;&#xC9A;&#xCBF;&#xC95;&#xCCB;&#xCB3;&#xCCD;&#xCB3;&#xCC1;&#xCB5;&#xCBF;&#xC95;&#xCC6;</span>
+                <span lang="" class=" active">Pallor &#xCAC;&#xCBF;&#xCB3;&#xCC1;&#xC9A;&#xCBF;&#xC95;&#xCCA;&#xCB3;&#xCCD;&#xCB3;&#xCC1;&#xCB5;&#xCBF;&#xC95;&#xCC6;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Visit_EngKan/risk_observed" value="swelling"
                        data-constraint="(selected(., 'none') and (count-selected(.) = 1) or (not(selected(., 'none'))))"
                        data-type-xml="select"/>
-                <span lang="" class=" active">Swelling / Edema &#xC8A;&#xCA4; / &#xCAC;&#xCBE;&#xCB9;&#xCC1;</span>
+                <span lang="" class=" active">Swelling / Edema &#xC8A;&#xCA4; / &#xCAC;&#xCBE;&#xCB5;&#xCC1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="checkbox" name="/ANC_Visit_EngKan/risk_observed" value="bleeding"
@@ -423,13 +422,13 @@
             </span>is
             <span class="jr-output" data-value=" /ANC_Visit_EngKan/num_weeks ">
             </span>
-            weeks pregnant. Complete Birth Plan form now.
+            weeks pregnant. Complete Delivery Plan form now.
             <span class="jr-output" data-value=" /ANC_Visit_EngKan/woman_name ">
             </span>
             <span class="jr-output" data-value=" /ANC_Visit_EngKan/num_weeks ">
             </span>
             &#xCB5;&#xCBE;&#xCB0;&#xC97;&#xCB3; &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBF;&#xCA3;&#xCBF;. &#xC88;&#xC97;
-            &#xCB8;&#xC82;&#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCA3; &#xC9C;&#xCA8;&#xCCD;&#xCAE; &#xCAF;&#xCCA;&#xC9C;&#xCA8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+            &#xCB8;&#xC82;&#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCA3; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCAF;&#xCCA;&#xC9C;&#xCA8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
             &#xCB0;&#xCC2;&#xCAA;&#xCBF;&#xCB8;&#xCBF;.
         </span>
     </fieldset>
