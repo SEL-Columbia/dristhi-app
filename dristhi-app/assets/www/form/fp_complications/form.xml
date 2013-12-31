@@ -1,5 +1,5 @@
 <form class="jr" autocomplete="off" id="Family_Planning_Complications_EngKan">
-    <!--This form was created by transforming a javaRosa-style (X)Form using an XSLT sheet created by Aid Web Solutions.-->
+    <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Record FP Complication</h3>
     <fieldset id="jr-preload-items" style="display:none;">
@@ -11,11 +11,8 @@
 
 
     <fieldset class="trigger " name="/Family_Planning_Complications_EngKan/case_familyplanning_method_note">
-        <span lang="" class=" active">Current FP method is:
-            <span class="jr-output" data-value=" /Family_Planning_Complications_EngKan/case_familyplanning_method ">
-            </span>
-            &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCC1;&#xCA4; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCBE;
-            &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;:
+        <span lang="" class=" active">Current FP method is, &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCC1;&#xCA4;
+            &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCBE; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;:
             <span class="jr-output" data-value=" /Family_Planning_Complications_EngKan/case_familyplanning_method ">
             </span>
         </span>
@@ -36,19 +33,17 @@
                     &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;
                     &#xCB5;&#xCBF;&#xCAB;&#xCB2;&#xCB5;&#xCBE;&#xCA6; &#xCB5;&#xCB0;&#xCA6;&#xCBF;?
                 </span>
-                <span class="required">*</span>
             </legend>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio"
                        name="/Family_Planning_Complications_EngKan/sterilization_failure" value="yes"
-                       required="required"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'female_sterilization'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
             </label>
             <label class="clearfix ">
                 <input autocomplete="off" type="radio"
-                       name="/Family_Planning_Complications_EngKan/sterilization_failure" value="no" required="required"
+                       name="/Family_Planning_Complications_EngKan/sterilization_failure" value="no"
                        data-relevant=" /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'male_sterilization' or  /Family_Planning_Complications_EngKan/case_familyplanning_method  = 'female_sterilization'"
                        data-type-xml="select1"/>
                 <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
@@ -283,9 +278,7 @@
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Other referral place &#xC87;&#xCA4;&#xCB0;&#xCC6; &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCB2;&#xCCD;
-            &#xCB8;&#xCCD;&#xCA5;&#xCB3;:
-        </span>
+        <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
         <input autocomplete="off" type="text"
                name="/Family_Planning_Complications_EngKan/refer_couple_fp_method_complication_place_other"
                data-relevant=" /Family_Planning_Complications_EngKan/refer_couple_fp_method_complication_place  = 'others'"
@@ -340,7 +333,7 @@
         </fieldset>
     </fieldset>
     <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Other treatment &#xC87;&#xCA4;&#xCB0;&#xCC6; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;:</span>
+        <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
         <input autocomplete="off" type="text"
                name="/Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan_other"
                data-relevant=" /Family_Planning_Complications_EngKan/fp_method_complication_treatment_plan  = 'others'"
