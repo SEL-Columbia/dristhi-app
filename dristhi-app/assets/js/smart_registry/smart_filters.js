@@ -40,7 +40,7 @@ var friendlyAbbrevMap = {
     pentavalent_3: 'Pentav. 3',
     dptbooster_1: 'DPT B. 1',
     dptbooster_2: 'DPT B. 2',
-    opvbooster: 'OPV Boost',
+    opvbooster: 'OPV Booster',
     measlesbooster: 'Measles B'
 };
 
