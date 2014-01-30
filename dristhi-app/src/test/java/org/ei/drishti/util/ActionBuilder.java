@@ -20,6 +20,10 @@ public class ActionBuilder {
         return new Action(caseID, "alert", "closeAlert", markAlertAsClosed(visitCode, completionDate).data(), index, true, new HashMap<String, String>());
     }
 
+    public static Action actionForCloseMother(String caseID) {
+        return new Action(caseID, "mother", "close", ActionData.closeMother("close reason").data(), "0", true, new HashMap<String, String>());
+    }
+
     public static Action actionForDeleteAllAlert(String caseID) {
         return new Action(caseID, "alert", "deleteAllAlerts", new HashMap<String, String>(), "0", true, new HashMap<String, String>());
     }

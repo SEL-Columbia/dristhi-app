@@ -76,16 +76,20 @@ public class MotherService {
     }
 
     public void close(FormSubmission submission) {
-        Mother mother = allBeneficiaries.findMotherWithOpenStatus(submission.entityId());
+        close(submission.entityId(), submission.getFieldValue(CLOSE_REASON_FIELD_NAME));
+    }
+
+    public void close(String entityId, String reason) {
+        Mother mother = allBeneficiaries.findMotherWithOpenStatus(entityId);
         if (mother == null) {
-            logWarn("Tried to close non-existent mother. Submission: " + submission);
+            logWarn("Tried to close non-existent mother. Entity ID: " + entityId);
             return;
         }
 
-        allBeneficiaries.closeMother(submission.entityId());
-        if (DEATH_OF_WOMAN_FIELD_VALUE.equalsIgnoreCase(submission.getFieldValue(CLOSE_REASON_FIELD_NAME))
-                || DEATH_OF_MOTHER_FIELD_VALUE.equalsIgnoreCase(submission.getFieldValue(CLOSE_REASON_FIELD_NAME))
-                || PERMANENT_RELOCATION_FIELD_VALUE.equalsIgnoreCase(submission.getFieldValue(CLOSE_REASON_FIELD_NAME))) {
+        allBeneficiaries.closeMother(entityId);
+        if (DEATH_OF_WOMAN_FIELD_VALUE.equalsIgnoreCase(reason)
+                || DEATH_OF_MOTHER_FIELD_VALUE.equalsIgnoreCase(reason)
+                || PERMANENT_RELOCATION_FIELD_VALUE.equalsIgnoreCase(reason)) {
             allEligibleCouples.close(mother.ecCaseId());
         }
     }
@@ -168,6 +172,6 @@ public class MotherService {
                         submission.getFieldValue(PHONE_NUMBER),
                         submission.getFieldValue(REVIEWED_HRP_STATUS),
                         submission.getFieldValue(SUBMISSION_DATE)
-                        ));
+                ));
     }
 }

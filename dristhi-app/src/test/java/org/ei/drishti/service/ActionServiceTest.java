@@ -1,13 +1,13 @@
 package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
-import org.ei.drishti.router.ActionRouter;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllReports;
 import org.ei.drishti.repository.AllSettings;
+import org.ei.drishti.router.ActionRouter;
 import org.ei.drishti.util.ActionBuilder;
 import org.junit.Before;
 import org.junit.Test;
@@ -102,12 +102,14 @@ public class ActionServiceTest {
     public void shouldHandleDifferentKindsOfActions() throws Exception {
         Action reportAction = actionForReport("Case X", "annual target");
         Action alertAction = actionForCreateAlert("Case X", "normal", "mother", "Ante Natal Care - Normal", "ANC 1", "2012-01-01", null, "0");
-        setupActions(success, asList(reportAction, alertAction));
+        Action closeMotherAction = actionForCloseMother("Case X");
+        setupActions(success, asList(reportAction, alertAction, closeMotherAction));
 
         service.fetchNewActions();
 
         verify(allReports).handleAction(reportAction);
         verify(actionRouter).directAlertAction(alertAction);
+        verify(actionRouter).directMotherAction(closeMotherAction);
     }
 
     private void setupActions(ResponseStatus status, List<Action> list) {

@@ -78,6 +78,14 @@ public class ActionService {
                 }
             });
 
+        } else if ("mother".equals(actionToUse.target())) {
+            runAction(actionToUse, new ActionHandler() {
+                @Override
+                public void run(Action action) {
+                    actionRouter.directMotherAction(action);
+                }
+            });
+
         } else {
             Log.logWarn("Unknown action " + actionToUse.target());
         }

@@ -17,6 +17,7 @@ public class Cache<T> {
     private final Listener<String> formSubmittedListener;
     private final Listener<FetchStatus> actionsFetchedListener;
     private final Listener<CapturedPhotoInformation> photoCapturedListener;
+    private final Listener<String> actionHandledListener;
 
     public Cache() {
         actionsFetchedListener = new Listener<FetchStatus>() {
@@ -35,15 +36,23 @@ public class Cache<T> {
                 value.clear();
             }
         };
-        ON_DATA_FETCHED.addListener(actionsFetchedListener);
-        FORM_SUBMITTED.addListener(formSubmittedListener);
         photoCapturedListener = new Listener<CapturedPhotoInformation>() {
             @Override
             public void onEvent(CapturedPhotoInformation data) {
                 value.clear();
             }
         };
+        actionHandledListener = new Listener<String>() {
+            @Override
+            public void onEvent(String data) {
+                logWarn(format("List cache invalidated as Action handled: {0}", data));
+                value.clear();
+            }
+        };
+        ON_DATA_FETCHED.addListener(actionsFetchedListener);
+        FORM_SUBMITTED.addListener(formSubmittedListener);
         ON_PHOTO_CAPTURED.addListener(photoCapturedListener);
+        ACTION_HANDLED.addListener(actionHandledListener);
     }
 
     public T get(String key, CacheableData<T> cacheableData) {
