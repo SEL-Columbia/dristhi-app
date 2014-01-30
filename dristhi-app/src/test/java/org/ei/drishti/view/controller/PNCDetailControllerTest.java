@@ -70,7 +70,7 @@ public class PNCDetailControllerTest {
                 new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false).withCaste("c_others").withEconomicStatus("apl").withPhotoPath("photo path"),
                 new LocationDetails("Village 1", "Subcenter 1"),
                 new PregnancyOutcomeDetails("2012-07-28", 4))
-                .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(ancEvent, "7m 1w ago"), eventFor(pregnancyEvent, "9m 2w ago")))
+                .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "29-07-2012"), eventFor(ancEvent, "22-12-2011"), eventFor(pregnancyEvent, "21-10-2011")))
                 .addExtraDetails(details);
 
         String actualJson = controller.get();

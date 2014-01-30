@@ -15,13 +15,14 @@ import org.ei.drishti.util.TimelineEventComparator;
 import org.ei.drishti.view.activity.CameraLaunchActivity;
 import org.ei.drishti.view.contract.*;
 import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.ocpsoft.pretty.time.Duration;
 import org.ocpsoft.pretty.time.PrettyTime;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 import static java.lang.Math.min;
 import static org.apache.commons.lang3.StringUtils.isBlank;
@@ -34,7 +35,6 @@ public class ChildDetailController {
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
     private final AllTimelineEvents allTimelineEvents;
-    private PrettyTime prettyTime;
 
     public ChildDetailController(Context context, String caseId, AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, AllTimelineEvents allTimelineEvents) {
         this.context = context;
@@ -42,7 +42,6 @@ public class ChildDetailController {
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.allTimelineEvents = allTimelineEvents;
-        prettyTime = new PrettyTime(DateUtil.today().toDate(), new Locale("short"));
     }
 
     public String get() {
@@ -81,15 +80,11 @@ public class ChildDetailController {
         Collections.sort(events, new TimelineEventComparator());
 
         for (org.ei.drishti.domain.TimelineEvent event : events) {
-            timelineEvents.add(new TimelineEvent(event.type(), event.title(), new String[]{event.detail1(), event.detail2()}, formatDate(event.referenceDate())));
+            DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("dd-MM-YYYY");
+            timelineEvents.add(new TimelineEvent(event.type(), event.title(), new String[]{event.detail1(), event.detail2()}, event.referenceDate().toString(dateTimeFormatter)));
         }
 
         return timelineEvents;
-    }
-
-    private String formatDate(LocalDate date) {
-        List<Duration> durationComponents = prettyTime.calculatePreciseDuration(date.toDate());
-        return prettyTime.format(durationComponents.subList(0, min(durationComponents.size(), 2))).replaceAll(" _", "");
     }
 
     private String calculateAge(LocalDate deliveryDate) {

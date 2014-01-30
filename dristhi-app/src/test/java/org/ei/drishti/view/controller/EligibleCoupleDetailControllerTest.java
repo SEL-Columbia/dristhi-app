@@ -58,7 +58,7 @@ public class EligibleCoupleDetailControllerTest {
         when(allTimelineEvents.forCase(caseId)).thenReturn(asList(pregnancyEvent, fpEvent, eventVeryCloseToCurrentDate));
 
         ECDetail expectedDetail = new ECDetail(caseId, "Village 1", "Subcenter 1", "EC Number 1", true, null, null, new ArrayList<Child>(), new CoupleDetails("Woman 1", "Husband 1", "EC Number 1", false), details)
-                .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "3d ago"), eventFor(fpEvent, "7m 1w ago"), eventFor(pregnancyEvent, "9m 2w ago")));
+                .addTimelineEvents(asList(eventFor(eventVeryCloseToCurrentDate, "29-07-2012"), eventFor(fpEvent, "22-12-2011"), eventFor(pregnancyEvent, "21-10-2011")));
 
         String actualJson = controller.get();
         ECDetail actualDetail = new Gson().fromJson(actualJson, ECDetail.class);
