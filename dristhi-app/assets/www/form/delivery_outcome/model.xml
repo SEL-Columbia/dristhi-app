@@ -29,7 +29,7 @@
                 <woman_survived/>
             </still_birth_group>
             <live_birth_group>
-                <child>
+                <child template="">
                     <sex_child/>
                     <sex_child_female/>
                     <sex_child_male/>
