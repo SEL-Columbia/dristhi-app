@@ -1,5 +1,6 @@
 package org.ei.drishti.service;
 
+import org.ei.drishti.DristhiConfiguration;
 import org.ei.drishti.domain.LoginResponse;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.Repository;
@@ -13,12 +14,14 @@ public class UserService {
     private final AllSettings allSettings;
     private HTTPAgent httpAgent;
     private Session session;
+    private DristhiConfiguration configuration;
 
-    public UserService(Repository repository, AllSettings allSettings, HTTPAgent httpAgent, Session session) {
+    public UserService(Repository repository, AllSettings allSettings, HTTPAgent httpAgent, Session session, DristhiConfiguration configuration) {
         this.repository = repository;
         this.allSettings = allSettings;
         this.httpAgent = httpAgent;
         this.session = session;
+        this.configuration = configuration;
     }
 
     public boolean isValidLocalLogin(String userName, String password) {
@@ -26,7 +29,7 @@ public class UserService {
     }
 
     public LoginResponse isValidRemoteLogin(String userName, String password) {
-        return httpAgent.urlCanBeAccessWithGivenCredentials(DRISHTI_BASE_URL + AUTHENTICATE_USER_URL_PATH, userName, password);
+        return httpAgent.urlCanBeAccessWithGivenCredentials(configuration.dristhiBaseURL() + AUTHENTICATE_USER_URL_PATH, userName, password);
     }
 
     public void loginWith(String userName, String password) {

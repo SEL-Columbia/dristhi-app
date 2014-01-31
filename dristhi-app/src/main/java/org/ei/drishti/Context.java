@@ -7,7 +7,6 @@ import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
-import static org.ei.drishti.AllConstants.DRISHTI_BASE_URL;
 
 public class Context {
     private android.content.Context applicationContext;
@@ -77,6 +76,8 @@ public class Context {
     private ChildIllnessHandler childIllnessHandler;
     private VitaminAHandler vitaminAHandler;
 
+    private DristhiConfiguration configuration;
+
     protected Context() {
     }
 
@@ -110,7 +111,7 @@ public class Context {
 
     protected DrishtiService drishtiService() {
         if (drishtiService == null) {
-            drishtiService = new DrishtiService(httpAgent(), DRISHTI_BASE_URL);
+            drishtiService = new DrishtiService(httpAgent(), configuration().dristhiBaseURL());
         }
         return drishtiService;
     }
@@ -321,14 +322,14 @@ public class Context {
 
     public FormSubmissionSyncService formSubmissionSyncService() {
         if (formSubmissionSyncService == null) {
-            formSubmissionSyncService = new FormSubmissionSyncService(formSubmissionService(), httpAgent(), formDataRepository(), allSettings());
+            formSubmissionSyncService = new FormSubmissionSyncService(formSubmissionService(), httpAgent(), formDataRepository(), allSettings(), configuration());
         }
         return formSubmissionSyncService;
     }
 
     private HTTPAgent httpAgent() {
         if (httpAgent == null) {
-            httpAgent = new HTTPAgent(applicationContext, allSettings());
+            httpAgent = new HTTPAgent(applicationContext, allSettings(), configuration());
         }
         return httpAgent;
     }
@@ -464,7 +465,7 @@ public class Context {
     public UserService userService() {
         if (userService == null) {
             Repository repo = initRepository();
-            userService = new UserService(repo, allSettings(), httpAgent(), session());
+            userService = new UserService(repo, allSettings(), httpAgent(), session(), configuration());
         }
         return userService;
     }
@@ -527,5 +528,12 @@ public class Context {
 
     public Boolean IsUserLoggedOut() {
         return userService().hasSessionExpired();
+    }
+
+    public DristhiConfiguration configuration() {
+        if (configuration == null) {
+            configuration = new DristhiConfiguration(getInstance().applicationContext().getAssets());
+        }
+        return configuration;
     }
 }

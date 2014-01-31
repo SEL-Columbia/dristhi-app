@@ -21,6 +21,7 @@ import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HTTP;
+import org.ei.drishti.DristhiConfiguration;
 import org.ei.drishti.client.GZipEncodingHttpClient;
 import org.ei.drishti.domain.LoginResponse;
 import org.ei.drishti.domain.Response;
@@ -41,10 +42,13 @@ public class HTTPAgent {
     private final GZipEncodingHttpClient httpClient;
     private Context context;
     private AllSettings settings;
+    private DristhiConfiguration configuration;
 
-    public HTTPAgent(Context context, AllSettings settings) {
+
+    public HTTPAgent(Context context, AllSettings settings, DristhiConfiguration configuration) {
         this.context = context;
         this.settings = settings;
+        this.configuration = configuration;
 
         BasicHttpParams basicHttpParams = new BasicHttpParams();
         HttpConnectionParams.setConnectionTimeout(basicHttpParams, 30000);
@@ -107,7 +111,7 @@ public class HTTPAgent {
     }
 
     private void setCredentials(String userName, String password) {
-        httpClient.getCredentialsProvider().setCredentials(new AuthScope(HOST, PORT, REALM),
+        httpClient.getCredentialsProvider().setCredentials(new AuthScope(configuration.host(), configuration.port(), REALM),
                 new UsernamePasswordCredentials(userName, password));
     }
 
@@ -126,7 +130,7 @@ public class HTTPAgent {
                 @Override
                 public void verify(String host, String[] cns, String[] subjectAlts) throws SSLException {
                     for (String cn : cns) {
-                        if (!SHOULD_VERIFY_CERTIFICATE || host.equals(cn)) {
+                        if (!configuration.shouldVerifyCertificate() || host.equals(cn)) {
                             return;
                         }
                     }

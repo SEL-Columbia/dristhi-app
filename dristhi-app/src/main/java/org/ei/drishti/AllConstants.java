@@ -22,16 +22,6 @@ public class AllConstants {
     public static final String REALM = "Dristhi";
     public static final String AUTHENTICATE_USER_URL_PATH = "/authenticate-user";
 
-    public static final String DRISHTI_BASE_URL = "https://smartregistries.org";
-    public static final String HOST = "smartregistries.org";
-    public static final int PORT = 443;
-    public static final boolean SHOULD_VERIFY_CERTIFICATE = true;
-
-//    public static final String DRISHTI_BASE_URL = "https://drishti.modilabs.org";
-//    public static final String HOST = AuthScope.ANY_HOST;
-//    public static final int PORT = AuthScope.ANY_PORT;
-//    public static final boolean SHOULD_VERIFY_CERTIFICATE = false;
-
     public static final String FORM_NAME_PARAM = "formName";
     public static final String INSTANCE_ID_PARAM = "instanceId";
     public static final String ENTITY_ID_PARAM = "entityId";

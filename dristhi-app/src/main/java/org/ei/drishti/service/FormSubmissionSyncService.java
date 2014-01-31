@@ -2,9 +2,10 @@ package org.ei.drishti.service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.ei.drishti.DristhiConfiguration;
 import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.domain.Response;
+import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.form.FormSubmissionDTO;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.FormDataRepository;
@@ -13,11 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.text.MessageFormat.format;
-import static org.ei.drishti.AllConstants.DRISHTI_BASE_URL;
 import static org.ei.drishti.convertor.FormSubmissionConvertor.toDomain;
-import static org.ei.drishti.domain.FetchStatus.fetched;
-import static org.ei.drishti.domain.FetchStatus.fetchedFailed;
-import static org.ei.drishti.domain.FetchStatus.nothingFetched;
+import static org.ei.drishti.domain.FetchStatus.*;
 import static org.ei.drishti.util.Log.logError;
 import static org.ei.drishti.util.Log.logInfo;
 
@@ -27,12 +25,14 @@ public class FormSubmissionSyncService {
     private final FormDataRepository formDataRepository;
     private AllSettings allSettings;
     private FormSubmissionService formSubmissionService;
+    private DristhiConfiguration configuration;
 
-    public FormSubmissionSyncService(FormSubmissionService formSubmissionService, HTTPAgent httpAgent, FormDataRepository formDataRepository, AllSettings allSettings) {
+    public FormSubmissionSyncService(FormSubmissionService formSubmissionService, HTTPAgent httpAgent, FormDataRepository formDataRepository, AllSettings allSettings, DristhiConfiguration configuration) {
         this.formSubmissionService = formSubmissionService;
         this.httpAgent = httpAgent;
         this.formDataRepository = formDataRepository;
         this.allSettings = allSettings;
+        this.configuration = configuration;
     }
 
     public FetchStatus sync() {
@@ -46,7 +46,7 @@ public class FormSubmissionSyncService {
             return;
         }
         String jsonPayload = mapToFormSubmissionDTO(pendingFormSubmissions);
-        Response<String> response = httpAgent.post(DRISHTI_BASE_URL + FORM_SUBMISSIONS_PATH, jsonPayload);
+        Response<String> response = httpAgent.post(configuration.dristhiBaseURL() + FORM_SUBMISSIONS_PATH, jsonPayload);
         if (response.isFailure()) {
             logError(format("Form submissions sync failed. Submissions:  {0}", pendingFormSubmissions));
             return;
@@ -56,7 +56,7 @@ public class FormSubmissionSyncService {
     }
 
     public FetchStatus pullFromServer() {
-        String uri = DRISHTI_BASE_URL + FORM_SUBMISSIONS_PATH + "?anm-id=" + allSettings.fetchRegisteredANM() + "&timestamp=" + allSettings.fetchPreviousFormSyncIndex();
+        String uri = configuration.dristhiBaseURL() + FORM_SUBMISSIONS_PATH + "?anm-id=" + allSettings.fetchRegisteredANM() + "&timestamp=" + allSettings.fetchPreviousFormSyncIndex();
         Response<String> response = httpAgent.fetch(uri);
         if (response.isFailure()) {
             logError(format("Form submissions pull failed."));

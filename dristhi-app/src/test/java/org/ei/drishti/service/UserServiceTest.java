@@ -1,6 +1,7 @@
 package org.ei.drishti.service;
 
 import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.DristhiConfiguration;
 import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
@@ -31,20 +32,22 @@ public class UserServiceTest {
     private Session session;
     @Mock
     private HTTPAgent httpAgent;
+    @Mock
+    private DristhiConfiguration configuration;
 
     private UserService userService;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        userService = new UserService(repository, allSettings, httpAgent, session);
+        userService = new UserService(repository, allSettings, httpAgent, session, configuration);
     }
 
     @Test
     public void shouldUseHttpAgentToDoRemoteLoginCheck() {
+        when(configuration.dristhiBaseURL()).thenReturn("http://dristhi_base_url");
         userService.isValidRemoteLogin("user X", "password Y");
-
-        verify(httpAgent).urlCanBeAccessWithGivenCredentials("https://smartregistries.org/authenticate-user", "user X", "password Y");
+        verify(httpAgent).urlCanBeAccessWithGivenCredentials("http://dristhi_base_url/authenticate-user", "user X", "password Y");
     }
 
     @Test
