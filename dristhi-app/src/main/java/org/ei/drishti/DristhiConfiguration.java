@@ -1,6 +1,7 @@
 package org.ei.drishti;
 
 import android.content.res.AssetManager;
+import org.ei.drishti.util.IntegerUtil;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -11,10 +12,11 @@ public class DristhiConfiguration {
     private static final String HOST = "HOST";
     private static final String PORT = "PORT";
     private static final String SHOULD_VERIFY_CERTIFICATE = "SHOULD_VERIFY_CERTIFICATE";
+    private static final String SYNC_DOWNLOAD_BATCH_SIZE = "SYNC_DOWNLOAD_BATCH_SIZE";
 
     private Properties properties = new Properties();
 
-    public DristhiConfiguration(AssetManager assetManager)  {
+    public DristhiConfiguration(AssetManager assetManager) {
         try {
             properties.load(assetManager.open("app.properties"));
         } catch (IOException e) {
@@ -40,5 +42,9 @@ public class DristhiConfiguration {
 
     public String dristhiBaseURL() {
         return this.get(DRISHTI_BASE_URL);
+    }
+
+    public int syncDownloadBatchSize() {
+        return IntegerUtil.tryParse(this.get(SYNC_DOWNLOAD_BATCH_SIZE), 100);
     }
 }

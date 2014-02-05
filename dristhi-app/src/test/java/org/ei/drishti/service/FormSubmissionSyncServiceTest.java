@@ -98,34 +98,45 @@ public class FormSubmissionSyncServiceTest {
     }
 
     @Test
-    public void shouldPullFormSubmissionsFromServerAndDelegateToProcessing() throws Exception {
-        List<FormSubmission> expectedFormSubmissions = asList(new FormSubmission("id 1", "entity id 1", "form name", formInstanceJSON, "123", SYNCED, "1"));
+    public void shouldPullFormSubmissionsFromServerInBatchesAndDelegateToProcessing() throws Exception {
+        this.expectedFormSubmissionsDto = asList(new FormSubmissionDTO(
+                "anm id 1", "id 1", "entity id 1", "form name", formInstanceJSON, "123", "1"));
+        List<FormSubmission> expectedFormSubmissions = asList(new FormSubmission("id 1", "entity id 1", "form name",
+                formInstanceJSON, "123", SYNCED, "1"));
+        when(configuration.syncDownloadBatchSize()).thenReturn(1);
         when(allSettings.fetchPreviousFormSyncIndex()).thenReturn("122");
-        when(httpAgent.fetch("http://dristhi_base_url/form-submissions?anm-id=anm id 1&timestamp=122")).thenReturn(new Response<String>(success, new Gson().toJson(this.expectedFormSubmissionsDto)));
+        when(httpAgent.fetch("http://dristhi_base_url/form-submissions?anm-id=anm id 1&timestamp=122&batch-size=1"))
+                .thenReturn(new Response<String>(success, new Gson().toJson(this.expectedFormSubmissionsDto)),
+                        new Response<String>(success, new Gson().toJson(Collections.emptyList())));
 
         FetchStatus fetchStatus = service.pullFromServer();
 
         assertEquals(fetched, fetchStatus);
-        verify(httpAgent).fetch("http://dristhi_base_url/form-submissions?anm-id=anm id 1&timestamp=122");
+        verify(httpAgent, times(2))
+                .fetch("http://dristhi_base_url/form-submissions?anm-id=anm id 1&timestamp=122&batch-size=1");
         verify(formSubmissionService).processSubmissions(expectedFormSubmissions);
     }
 
     @Test
     public void shouldReturnNothingFetchedStatusWhenNoFormSubmissionsAreGotFromServer() throws Exception {
+        when(configuration.syncDownloadBatchSize()).thenReturn(1);
         when(allSettings.fetchPreviousFormSyncIndex()).thenReturn("122");
-        when(httpAgent.fetch("http://dristhi_base_url/form-submissions?anm-id=anm id 1&timestamp=122")).thenReturn(new Response<String>(success, new Gson().toJson(Collections.emptyList())));
+        when(httpAgent.fetch("http://dristhi_base_url/form-submissions?anm-id=anm id 1&timestamp=122&batch-size=1"))
+                .thenReturn(new Response<String>(success, new Gson().toJson(Collections.emptyList())));
 
         FetchStatus fetchStatus = service.pullFromServer();
 
         assertEquals(nothingFetched, fetchStatus);
-        verify(httpAgent).fetch("http://dristhi_base_url/form-submissions?anm-id=anm id 1&timestamp=122");
+        verify(httpAgent).fetch("http://dristhi_base_url/form-submissions?anm-id=anm id 1&timestamp=122&batch-size=1");
         verifyZeroInteractions(formSubmissionService);
     }
 
     @Test
     public void shouldNotDelegateToProcessingIfPullFails() throws Exception {
+        when(configuration.syncDownloadBatchSize()).thenReturn(1);
         when(allSettings.fetchPreviousFormSyncIndex()).thenReturn("122");
-        when(httpAgent.fetch("http://dristhi_base_url/form-submissions?anm-id=anm id 1&timestamp=122")).thenReturn(new Response<String>(failure, null));
+        when(httpAgent.fetch("http://dristhi_base_url/form-submissions?anm-id=anm id 1&timestamp=122&batch-size=1"))
+                .thenReturn(new Response<String>(failure, null));
 
         FetchStatus fetchStatus = service.pullFromServer();
 
