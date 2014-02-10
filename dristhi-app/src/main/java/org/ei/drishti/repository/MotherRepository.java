@@ -186,8 +186,9 @@ public class MotherRepository extends DrishtiRepository {
     }
 
     private String[] prepend(String[] input, String textToPrepend) {
-        String[] output = new String[input.length];
-        for (int index = 0; index < input.length; index++) {
+        int length = input.length;
+        String[] output = new String[length];
+        for (int index = 0; index < length; index++) {
             output[index] = textToPrepend + input[index];
         }
         return output;

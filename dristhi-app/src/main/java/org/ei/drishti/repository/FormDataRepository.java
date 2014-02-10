@@ -193,7 +193,8 @@ public class FormDataRepository extends DrishtiRepository {
         if (cursor.isAfterLast())
             return columnValues;
         String[] columns = cursor.getColumnNames();
-        for (int index = 0; index < columns.length; index++) {
+        int numberOfColumns = columns.length;
+        for (int index = 0; index < numberOfColumns; index++) {
             if (DETAILS_COLUMN_NAME.equalsIgnoreCase(columns[index])) {
                 Map<String, String> details = new Gson().fromJson(cursor.getString(index), new TypeToken<Map<String, String>>() {
                 }.getType());
