@@ -61,7 +61,8 @@ public class ChildService {
     }
 
     private boolean isDeliveryOutcomeStillBirth(FormSubmission submission) {
-        return AllConstants.DeliveryOutcomeFields.STILL_BIRTH_VALUE.equalsIgnoreCase(submission.getFieldValue(AllConstants.DeliveryOutcomeFields.DELIVERY_OUTCOME));
+        return AllConstants.DeliveryOutcomeFields.STILL_BIRTH_VALUE
+                .equalsIgnoreCase(submission.getFieldValue(AllConstants.DeliveryOutcomeFields.DELIVERY_OUTCOME));
     }
 
     public void registerForEC(FormSubmission submission) {
@@ -140,12 +141,14 @@ public class ChildService {
     }
 
     private boolean handleStillBirth(FormSubmission submission, SubForm subForm) {
-        if (isDeliveryOutcomeStillBirth(submission)) {
+        if (!isDeliveryOutcomeStillBirth(submission)) {
+            return false;
+        }
+        if (!subForm.instances().isEmpty()) {
             String childId = subForm.instances().get(0).get(ENTITY_ID_FIELD_NAME);
             childRepository.delete(childId);
-            return true;
         }
-        return false;
+        return true;
     }
 
     public void updateImmunizations(FormSubmission submission) {

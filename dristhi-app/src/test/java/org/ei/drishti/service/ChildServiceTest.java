@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import javax.swing.event.ChangeListener;
+import java.util.ArrayList;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
@@ -148,6 +148,24 @@ public class ChildServiceTest {
         service.pncRegistrationOA(submission);
 
         verify(childRepository).delete("Child X");
+        verifyNoMoreInteractions(childRepository);
+        verifyNoMoreInteractions(allTimelineEvents);
+        verifyNoMoreInteractions(serviceProvidedService);
+    }
+
+    @Test
+    public void shouldCheckForEmptyInstanceInTheCaseOfStillBirth() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        SubForm subForm = mock(SubForm.class);
+        when(submission.entityId()).thenReturn("Mother X");
+        when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("deliveryPlace")).thenReturn("phc");
+        when(submission.getFieldValue("deliveryOutcome")).thenReturn("still_birth");
+        when(submission.getSubFormByName("child_registration_oa")).thenReturn(subForm);
+        when(subForm.instances()).thenReturn(new ArrayList<Map<String, String>>());
+
+        service.pncRegistrationOA(submission);
+
         verifyNoMoreInteractions(childRepository);
         verifyNoMoreInteractions(allTimelineEvents);
         verifyNoMoreInteractions(serviceProvidedService);
