@@ -190,6 +190,22 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         assertEquals(asList(firstSubmission, secondSubmission), pendingFormSubmissions);
     }
 
+    public void testShouldFetchPendingFormSubmissionsCount() throws Exception {
+        FormInstance instance1 = new FormInstance(new FormData("entity 1", "default", asList(new FormField("field1.1", "value1.1", "source1.1")), null), "1");
+        FormInstance instance2 = new FormInstance(new FormData("entity 2", "default", asList(new FormField("field2.1", "value2.1", "source2.1")), null), "1");
+        FormInstance instance3 = new FormInstance(new FormData("entity 3", "default", asList(new FormField("field3.1", "value3.1", "source3.1")), null), "1");
+        FormSubmission firstSubmission = new FormSubmission("id 1", "entity id 1", "form name", new Gson().toJson(instance1), "some version", PENDING, "1");
+        FormSubmission secondSubmission = new FormSubmission("id 2", "entity id 2", "form name", new Gson().toJson(instance2), "some other version", PENDING, "1");
+        FormSubmission thirdSubmission = new FormSubmission("id 3", "entity id 3", "form name", new Gson().toJson(instance3), "some other version", SYNCED, "1");
+        repository.saveFormSubmission(firstSubmission);
+        repository.saveFormSubmission(secondSubmission);
+        repository.saveFormSubmission(thirdSubmission);
+
+        long pendingFormSubmissionsCount = repository.getPendingFormSubmissionsCount();
+
+        assertEquals(2, pendingFormSubmissionsCount);
+    }
+
     public void testShouldMarkPendingFormSubmissionsAsSynced() throws Exception {
         FormSubmission firstSubmission = new FormSubmission("id 1", "entity id 1", "form name", "", "some version", PENDING, "1");
         FormSubmission secondSubmission = new FormSubmission("id 2", "entity id 2", "form name", "", "some other version", PENDING, "1");

@@ -34,4 +34,5 @@
     <string name="settings_logout_confirm_dialog_message">Are you sure you want to log out? All the data will be
         cleared.
     </string>
+    <string name="unsynced_forms_count_message">forms unsynced</string>
 </resources>

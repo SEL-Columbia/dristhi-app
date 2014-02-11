@@ -4,16 +4,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
+import org.ei.drishti.service.PendingFormSubmissionService;
 import org.ei.drishti.view.controller.HomeController;
 
 import static org.ei.drishti.event.Event.*;
 
 public class HomeActivity extends SecuredWebActivity {
     private MenuItem updateMenuItem;
+    private MenuItem remainingFormsToSyncMenuItem;
+    private PendingFormSubmissionService pendingFormSubmissionService;
 
     private Listener<Boolean> onSyncStartListener = new Listener<Boolean>() {
         @Override
         public void onEvent(Boolean data) {
+            updateRemainingFormsToSyncCount();
             updateMenuItem.setActionView(R.layout.progress);
         }
     };
@@ -21,6 +25,7 @@ public class HomeActivity extends SecuredWebActivity {
     private Listener<Boolean> onSyncCompleteListener = new Listener<Boolean>() {
         @Override
         public void onEvent(Boolean data) {
+            updateRemainingFormsToSyncCount();
             updateMenuItem.setActionView(null);
         }
     };
@@ -28,6 +33,7 @@ public class HomeActivity extends SecuredWebActivity {
     private Listener<String> onFormSubmittedListener = new Listener<String>() {
         @Override
         public void onEvent(String instanceId) {
+            updateRemainingFormsToSyncCount();
             updateController.updateANMDetails();
         }
     };
@@ -52,6 +58,8 @@ public class HomeActivity extends SecuredWebActivity {
 
     @Override
     protected void onResumption() {
+        if (remainingFormsToSyncMenuItem != null)
+            updateRemainingFormsToSyncCount();
         if (updateMenuItem != null) {
             if (context.allSettings().fetchIsSyncInProgress()) {
                 updateMenuItem.setActionView(R.layout.progress);
@@ -64,6 +72,19 @@ public class HomeActivity extends SecuredWebActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         updateMenuItem = menu.findItem(R.id.updateMenuItem);
+        remainingFormsToSyncMenuItem = menu.findItem(R.id.remainingFormsToSyncMenuItem);
+        pendingFormSubmissionService = context.pendingFormSubmissionService();
+        updateRemainingFormsToSyncCount();
         return true;
+    }
+
+    private void updateRemainingFormsToSyncCount() {
+        long size = pendingFormSubmissionService.pendingFormSubmissionCount();
+        if (size > 0) {
+            remainingFormsToSyncMenuItem.setTitle(String.valueOf(size) + " " + getString(R.string.unsynced_forms_count_message));
+            remainingFormsToSyncMenuItem.setVisible(true);
+        } else {
+            remainingFormsToSyncMenuItem.setVisible(false);
+        }
     }
 }

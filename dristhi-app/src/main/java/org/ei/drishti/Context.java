@@ -44,6 +44,7 @@ public class Context {
     private ANMService anmService;
     private BeneficiaryService beneficiaryService;
     private ServiceProvidedService serviceProvidedService;
+    private PendingFormSubmissionService pendingFormSubmissionService;
 
     private Session session;
     private Cache<String> listCache;
@@ -535,5 +536,12 @@ public class Context {
             configuration = new DristhiConfiguration(getInstance().applicationContext().getAssets());
         }
         return configuration;
+    }
+
+    public PendingFormSubmissionService pendingFormSubmissionService() {
+        if(pendingFormSubmissionService == null) {
+            pendingFormSubmissionService = new PendingFormSubmissionService(formDataRepository());
+        }
+        return pendingFormSubmissionService;
     }
 }
