@@ -265,6 +265,23 @@ public class ChildServiceTest {
     }
 
     @Test
+    public void shouldHandleStillBirthWhenPNCVisitHappens() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        SubForm subForm = mock(SubForm.class);
+        when(submission.entityId()).thenReturn("mother id 1");
+        when(submission.getFieldValue("pncVisitDay")).thenReturn("2");
+        when(submission.getFieldValue("pncVisitDate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("deliveryOutcome")).thenReturn("still_birth");
+        when(submission.getSubFormByName("child_pnc_visit")).thenReturn(subForm);
+        when(subForm.instances()).thenReturn(asList(create("id", "child id 1").map()));
+
+        service.pncVisitHappened(submission);
+
+        verify(childRepository).delete("child id 1");
+        verifyNoMoreInteractions(allTimelineEvents);
+    }
+
+    @Test
     public void shouldAddPNCVisitServiceProvidedWhenPNCVisitHappens() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         SubForm subForm = mock(SubForm.class);
