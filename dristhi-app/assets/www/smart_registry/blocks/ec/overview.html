@@ -5,7 +5,7 @@
             <span class="text-bold">Pregnant</span>
         </div>
         <div ng-switch-default>
-            <div ng-show="client.fpMethod">
+            <div ng-if="client.fpMethod">
                 <span class="text-bold">{{client.fpMethod | fpMethodName:ecsWithFPMethodServiceModeOptions.options }}</span>
                 <br/>
                 <span>{{client.familyPlanningMethodChangeDate | date:'dd/MM/yy'}}</span>
@@ -13,15 +13,15 @@
                 <ng:switch on="client.fpMethod">
                     <span ng-switch-when="iud">
                         <span>{{client.iudPlace | uppercase}}</span>
-                        <span ng-show="client.iudPlace">, </span>
+                        <span ng-if="client.iudPlace">, </span>
                         <span>{{client.iudPerson | uppercase}}</span>
                     </span>
-                    <span ng-switch-when="ocp" ng-show="client.numberOfOCPDelivered">No. strips: {{client.numberOfOCPDelivered}}</span>
-                    <span ng-switch-when="condom" ng-show="client.numberOfCondomsSupplied">No. given: {{client.numberOfCondomsSupplied}}</span>
-                    <span ng-switch-when="centchroman" ng-show="client.numberOfCentchromanPillsDelivered">No. strips: {{client.numberOfCentchromanPillsDelivered}}</span>
+                    <span ng-switch-when="ocp" ng-if="client.numberOfOCPDelivered">No. strips: {{client.numberOfOCPDelivered}}</span>
+                    <span ng-switch-when="condom" ng-if="client.numberOfCondomsSupplied">No. given: {{client.numberOfCondomsSupplied}}</span>
+                    <span ng-switch-when="centchroman" ng-if="client.numberOfCentchromanPillsDelivered">No. strips: {{client.numberOfCentchromanPillsDelivered}}</span>
                 </ng:switch>
             </div>
-            <div ng-show="!client.fpMethod">
+            <div ng-if="!client.fpMethod">
                 <span style="color: #ff0000" class="text-bold">No FP</span>
             </div>
         </div>

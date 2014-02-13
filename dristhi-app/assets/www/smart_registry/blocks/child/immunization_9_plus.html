@@ -4,7 +4,7 @@
                        sr-click-alt="openForm('child_immunizations', client.entityId)"
                        sr-icon="needle">
     </sr-service-button>
-    <span ng-show="client.visits.measles.previous" class="previous-alert">
+    <span ng-if="client.visits.measles.previous" class="previous-alert">
     <i class="icon-ok green"></i>
     <span class="">{{client.visits.measles.previous.name | friendlyAbbrev}}: </span>
     <span>{{client.visits.measles.previous.visit_date | date:"dd/MM"}}</span>
@@ -16,7 +16,7 @@
                            sr-click-alt="openForm('child_immunizations', client.entityId)"
                            sr-icon="dropper">
         </sr-service-button>
-        <span ng-show="client.visits.opvbooster.previous" class="previous-alert">
+        <span ng-if="client.visits.opvbooster.previous" class="previous-alert">
         <i class="icon-ok green"></i>
         <span class="">{{client.visits.opvbooster.previous.name | friendlyAbbrev}}: </span>
         <span>{{client.visits.opvbooster.previous.visit_date | date:"dd/MM"}}</span>
@@ -30,7 +30,7 @@
                            sr-click-alt="openForm('child_immunizations', client.entityId)"
                            sr-icon="needle">
         </sr-service-button>
-        <span ng-show="client.visits.dpt.previous" class="previous-alert">
+        <span ng-if="client.visits.dpt.previous" class="previous-alert">
         <i class="icon-ok green"></i>
         <span class="">{{client.visits.dpt.previous.name | friendlyAbbrev}}: </span>
         <span>{{client.visits.dpt.previous.visit_date | date:"dd/MM"}}</span>
@@ -42,7 +42,7 @@
             ng-click="openForm('vitamin_a', client.entityId);">
         <span class="text-bold">Vitamin A</span>
     </button>
-    <span ng-show="client.visits.vitamin_a.previous" class="previous-alert">
+    <span ng-if="client.visits.vitamin_a.previous" class="previous-alert">
         <i class="icon-ok green"></i>
         <span class="">{{client.visits.vitamin_a.previous.name | friendlyAbbrev}}: </span>
         <span>{{client.visits.vitamin_a.previous.visit_date | date:"dd/MM"}}</span>

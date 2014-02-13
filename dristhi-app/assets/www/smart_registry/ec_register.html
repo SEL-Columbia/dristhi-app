@@ -59,7 +59,7 @@
                     <form class="navbar-search pull-right">
                         <input type="text" class="search-query" placeholder="Search EC Register" ng-model="searchFilterString"
                                ng-click="enterSearchMode()">
-                        <a ng-show="inSearchMode" ng-click="cancelSearch()" class="search-cancel"></a>
+                        <a ng-if="inSearchMode" ng-click="cancelSearch()" class="search-cancel"></a>
                     </form>
                     <ul class="nav pull-right">
                         <li><a>{{serviceModeOption.label}}</a></li>

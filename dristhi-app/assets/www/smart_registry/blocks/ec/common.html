@@ -2,8 +2,8 @@
      ng-click="openProfile(client.entityId)">
     <ng:include src="'blocks/client_name.html'"></ng:include>
     <div class="flag-container">
-        <div ng-show="client.isHighPriority" class="flag flag-hp"></div>
-        <div ng-show="client.economicStatus && (client.economicStatus.toUpperCase() == 'BPL')" class="flag flag-bpl"></div>
+        <div ng-if="client.isHighPriority" class="flag flag-hp"></div>
+        <div ng-if="client.economicStatus && (client.economicStatus.toUpperCase() == 'BPL')" class="flag flag-bpl"></div>
         <ng:switch on="client.caste.toUpperCase()">
             <div ng-switch-when="SC" class="flag flag-sc"></div>
             <div ng-switch-when="ST" class="flag flag-st"></div>

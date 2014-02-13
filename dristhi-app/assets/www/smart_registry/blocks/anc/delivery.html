@@ -1,5 +1,5 @@
 <div class="span7 full-height width-without-margins span-no-margin">
-    <div ng-show="client.visits.delivery_plan.next && client.visits.delivery_plan.next.status !== 'complete'"
+    <div ng-if="client.visits.delivery_plan.next && client.visits.delivery_plan.next.status !== 'complete'"
          class="row-fluid full-height">
         <div class="span12 line-right full-height width-without-margins span-no-margin span-content">
             <!--VISITS-->
@@ -12,7 +12,7 @@
             </button>
         </div>
     </div>
-    <div ng-show="(!client.visits.delivery_plan.next || client.visits.delivery_plan.next.status==='complete') && client.visits.delivery_plan['Delivery Plan']"
+    <div ng-if="(!client.visits.delivery_plan.next || client.visits.delivery_plan.next.status==='complete') && client.visits.delivery_plan['Delivery Plan']"
          class="row-fluid full-height">
         <div class="span2 line-right full-height width-without-margins span-no-margin span-content">
             <i class="icon-bigger icon-block"

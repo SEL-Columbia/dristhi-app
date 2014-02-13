@@ -61,7 +61,7 @@
                         <input type="text" class="search-query" placeholder="Search ANC Register"
                                ng-model="searchFilterString"
                                ng-click="enterSearchMode()">
-                        <a ng-show="inSearchMode" ng-click="cancelSearch()" class="search-cancel"></a>
+                        <a ng-if="inSearchMode" ng-click="cancelSearch()" class="search-cancel"></a>
                     </form>
                     <ul class="nav pull-right">
                         <li><a id="anc-service-modes" ng-click="openModal(ancServiceOptions)">{{serviceModeOption.label}}

@@ -9,7 +9,7 @@
         <span class="delivery-info ellipsis text-bold">{{client.deliveryPlace | humanize | uppercase}}</span>
     </p>
 
-    <p class="text-left" ng-show="client.deliveryType">
+    <p class="text-left" ng-if="client.deliveryType">
         <span>Type:</span>
         <span class="delivery-info text-bold ellipsis">{{client.deliveryType | humanize}}</span>
     </p>
@@ -18,7 +18,7 @@
     {{client.deliveryComplications |
     camelCase | commaSeparated | humanize}}
 </div>
-<div class="span2 span-no-margin width-without-margins line-right span-content" ng-show="client.fp_method">
+<div class="span2 span-no-margin width-without-margins line-right span-content" ng-if="client.fp_method">
     <span class="text-bold">{{client.fp_method | fpMethodName:ecsWithFPMethodServiceModeOptions.options }}</span>
     <br/>
     <span>{{client.family_planning_method_change_date | date:'dd/MM/yy'}}</span>
@@ -26,7 +26,7 @@
     <ng:switch on="client.fp_method">
                 <span ng-switch-when="iud">
                     <span class="iud-place">{{client.iudPlace | uppercase}}</span>
-                    <span ng-show="client.iudPlace">, </span>
+                    <span ng-if="client.iudPlace">, </span>
                     <span>{{client.iudPerson | uppercase}}</span>
                 </span>
         <span ng-switch-when="ocp">No. Strips: {{client.numberOfOCPDelivered}}</span>
@@ -34,8 +34,8 @@
         <span ng-switch-when="centchroman">No. Strips: {{client.numberOfCentchromanPillsDelivered}}</span>
     </ng:switch>
 </div>
-<div class="span2 span-no-margin width-without-margins line-right span-content" ng-show="!client.fp_method">
-    <button class="btn btn-large btn-sr btn-fill-cell btn-done btn-new-form" ng-show="!client.fp_method"
+<div class="span2 span-no-margin width-without-margins line-right span-content" ng-if="!client.fp_method">
+    <button class="btn btn-large btn-sr btn-fill-cell btn-done btn-new-form" ng-if="!client.fp_method"
             ng-click="openForm('postpartum_family_planning', client.entityId);" style="">PP FP
     </button>
 </div>
@@ -45,8 +45,8 @@
         <p class="text-left">
             <span>{{child.gender | camelCase}}</span>
             <br/>
-            <span ng-show="child.weight">Birth Wt:</span>
-            <span ng-show="child.weight">{{child.weight}} kg</span>
+            <span ng-if="child.weight">Birth Wt:</span>
+            <span ng-if="child.weight">{{child.weight}} kg</span>
         </p>
     </div>
 </div>

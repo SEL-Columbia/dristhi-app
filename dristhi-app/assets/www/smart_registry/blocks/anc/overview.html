@@ -7,13 +7,13 @@
              class="visits span3 line-right span-no-margin width-without-margins span-content">
             <div class="relative-positioning">
                 <button class="btn btn-primary btn-sr"
-                        ng-show="client.visits[schedule].next && useMicroForm(schedule)"
+                        ng-if="client.visits[schedule].next && useMicroForm(schedule)"
                         ng-class="client.visits[schedule].next.status"
                         ng-click="client.visits[schedule].next.status == 'complete'
                                 || openMicroForm(milestoneForm[client.visits[schedule].next.name], client.entityId, {'entityId': client.entityId, 'alertName': client.visits[schedule].next.name})">
                     <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
                     <br/>
-                    <span ng-show="client.visits[schedule].next.status == 'normal'
+                    <span ng-if="client.visits[schedule].next.status == 'normal'
                             || client.visits[schedule].next.status == 'urgent'
                             || client.visits[schedule].next.status == 'upcoming'">
                         Due
@@ -21,20 +21,20 @@
                     <span> {{client.visits[schedule].next.visit_date | date:'dd/MM'}}</span>
                 </button>
                 <button class="btn btn-primary btn-sr"
-                        ng-show="client.visits[schedule].next && !useMicroForm(schedule)"
+                        ng-if="client.visits[schedule].next && !useMicroForm(schedule)"
                         ng-class="client.visits[schedule].next.status"
                         ng-click="client.visits[schedule].next.status == 'complete'
                                 || openForm(milestoneForm[client.visits[schedule].next.name], client.entityId, {'entityId': client.entityId, 'alertName': client.visits[schedule].next.name})">
                     <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
                     <br/>
-                    <span ng-show="client.visits[schedule].next.status == 'normal'
+                    <span ng-if="client.visits[schedule].next.status == 'normal'
                             || client.visits[schedule].next.status == 'urgent'
                             || client.visits[schedule].next.status == 'upcoming'">
                         Due
                     </span>
                     <span> {{client.visits[schedule].next.visit_date | date:'dd/MM'}}</span>
                 </button>
-                <span ng-show="client.visits[schedule].previous" class="previous-alert">
+                <span ng-if="client.visits[schedule].previous" class="previous-alert">
                     <i class="icon-ok green"></i>
                     <ng:switch on="client.visits[schedule].previous.name">
                         <span ng-switch-default class="text-upper">{{client.visits[schedule].previous.name}}:</span>

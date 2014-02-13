@@ -50,7 +50,7 @@
                     <form class="navbar-search pull-right">
                         <input type="text" class="search-query" placeholder="Search FP Register" ng-model="searchFilterString"
                                ng-click="enterSearchMode()"/>
-                        <a ng-show="inSearchMode" ng-click="cancelSearch()" class="search-cancel"></a>
+                        <a ng-if="inSearchMode" ng-click="cancelSearch()" class="search-cancel"></a>
                     </form>
                     <ul class="nav pull-right">
                         <li>
@@ -113,7 +113,7 @@
                     </li>
                 </ul>
                 <div id="fp-method-options">
-                    <ul ng-show="isFPMethodsOptionSelected" class="nav nav-tabs nav-stacked">
+                    <ul ng-if="isFPMethodsOptionSelected" class="nav nav-tabs nav-stacked">
                         <li ng-repeat="option in ecsWithFPMethodServiceModeOptions.options">
                             <a ng-click="onFPModalOptionClick(option, currentFPOption.type)">{{option.label}}<i
                                     class="icon-chevron-right" style="float: right"></i></a>
@@ -121,7 +121,7 @@
                     </ul>
                 </div>
                 <div id="fp-prioritization-options">
-                    <ul ng-show="!isFPMethodsOptionSelected" class="nav nav-tabs nav-stacked">
+                    <ul ng-if="!isFPMethodsOptionSelected" class="nav nav-tabs nav-stacked">
                         <li ng-repeat="option in ecsWithoutFPMethodServiceModeOptions.options">
                             <a ng-click="onFPModalOptionClick(option, currentFPOption.type)">{{option.label}}<i
                                     class="icon-chevron-right" style="float: right"></i></a>

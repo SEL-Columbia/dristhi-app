@@ -41,7 +41,7 @@
                            sr-click-alt="openForm('child_immunizations', client.entityId)"
                            sr-icon="dropper">
         </sr-service-button>
-    <span ng-show="client.visits.opv.previous" class="previous-alert">
+    <span ng-if="client.visits.opv.previous" class="previous-alert">
         <i class="icon-ok green"></i>
         <span class="">{{client.visits.opv.previous.name | friendlyAbbrev}}: </span>
         <span>{{client.visits.opv.previous.visit_date | date:"dd/MM"}}</span>
@@ -55,7 +55,7 @@
                            sr-click-alt="openForm('child_immunizations', client.entityId)"
                            sr-icon="needle">
         </sr-service-button>
-    <span ng-show="client.visits.pentavalent.previous" class="previous-alert">
+    <span ng-if="client.visits.pentavalent.previous" class="previous-alert">
         <i class="icon-ok green"></i>
         <span class="">{{client.visits.pentavalent.previous.name | friendlyAbbrev}}: </span>
         <span>{{client.visits.pentavalent.previous.visit_date | date:"dd/MM"}}</span>

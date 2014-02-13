@@ -11,5 +11,5 @@
     <span class="client-village ellipsis">
         {{client.village | humanize | camelCase}}
     </span>
-    <span class="client-location-status" ng-show="locationStatusMapping[client.locationStatus]">({{villageOptions.options[locationStatusMapping[client.locationStatus]].label}})</span>
+    <span class="client-location-status" ng-if="locationStatusMapping[client.locationStatus]">({{villageOptions.options[locationStatusMapping[client.locationStatus]].label}})</span>
 </div>
