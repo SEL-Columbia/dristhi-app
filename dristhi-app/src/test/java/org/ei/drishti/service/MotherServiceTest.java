@@ -151,6 +151,18 @@ public class MotherServiceTest {
     }
 
     @Test
+    public void shouldCloseECWhenMotherIsClosedUsingPNCCloseAndReasonIsPermanentRelocation() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("entity id 1");
+        when(submission.getFieldValue("closeReason")).thenReturn("permanent_relocation");
+        when(allBeneficiaries.findMotherWithOpenStatus("entity id 1")).thenReturn(new Mother("entity id 1", "ec entity id 1", "thayi 1", "2013-01-01"));
+
+        service.close(submission);
+
+        verify(allEligibleCouples).close("ec entity id 1");
+    }
+
+    @Test
     public void shouldNotCloseECWhenMotherIsClosedForOtherReasons() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");

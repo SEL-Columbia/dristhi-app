@@ -104,6 +104,7 @@ public class AllConstants {
 
     public class PNCCloseFields {
         public static final String DEATH_OF_MOTHER_FIELD_VALUE = "death_of_mother";
+        public static final String PERMANENT_RELOCATION_FIELD_VALUE = "permanent_relocation";
     }
 
     public class IFAFields {

@@ -8,7 +8,8 @@ import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllTimelineEvents;
 
-import static org.ei.drishti.AllConstants.ANCCloseFields.*;
+import static org.ei.drishti.AllConstants.ANCCloseFields.CLOSE_REASON_FIELD_NAME;
+import static org.ei.drishti.AllConstants.ANCCloseFields.DEATH_OF_WOMAN_FIELD_VALUE;
 import static org.ei.drishti.AllConstants.ANCVisitFields.*;
 import static org.ei.drishti.AllConstants.BOOLEAN_FALSE;
 import static org.ei.drishti.AllConstants.CommonFormFields.SUBMISSION_DATE;
@@ -89,7 +90,8 @@ public class MotherService {
         allBeneficiaries.closeMother(entityId);
         if (DEATH_OF_WOMAN_FIELD_VALUE.equalsIgnoreCase(reason)
                 || DEATH_OF_MOTHER_FIELD_VALUE.equalsIgnoreCase(reason)
-                || PERMANENT_RELOCATION_FIELD_VALUE.equalsIgnoreCase(reason)) {
+                || AllConstants.ANCCloseFields.PERMANENT_RELOCATION_FIELD_VALUE.equalsIgnoreCase(reason)
+                || AllConstants.PNCCloseFields.PERMANENT_RELOCATION_FIELD_VALUE.equalsIgnoreCase(reason)) {
             allEligibleCouples.close(mother.ecCaseId());
         }
     }
