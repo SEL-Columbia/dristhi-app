@@ -160,6 +160,8 @@ angular.module("smartRegistry.services")
                         client.displayAge = client.age || client.calculatedAge;
                         client.displayHusbandName = $filter('camelCase')($filter('humanize')(client.husbandName));
                         client.displayVillage = $filter('camelCase')($filter('humanize')(client.village));
+                        client.isSC = client.caste && client.caste.toUpperCase() === "SC";
+                        client.isST = client.caste && client.caste.toUpperCase() === "ST";
                     }
                 );
                 return clients;

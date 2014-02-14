@@ -21,15 +21,15 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.sortByBPL = function (client) {
-            return client.economicStatus && client.economicStatus.toUpperCase() !== 'BPL';
+            return !client.isBPL;
         };
 
         $scope.sortBySC = function (client) {
-            return client.caste && client.caste.toUpperCase() !== "SC";
+            return !client.isSC;
         };
 
         $scope.sortByST = function (client) {
-            return client.caste && client.caste.toUpperCase() !== "ST";
+            return !client.isST;
         };
 
         $scope.filterVillage = function (option) {
