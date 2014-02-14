@@ -240,36 +240,39 @@ public class MotherServiceTest {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
         when(submission.getFieldValue("didWomanSurvive")).thenReturn("yes");
-
+        when(allBeneficiaries.findMotherWithOpenStatus("entity id 1")).thenReturn(new Mother("entity id 1", "ec id 1", "1234567", "2014-01-01"));
         service.deliveryOutcome(submission);
 
         verify(allBeneficiaries).switchMotherToPNC("entity id 1");
     }
 
     @Test
-    public void shouldCloseMotherIfDeadDuringDeliveryOutcome() throws Exception {
+    public void shouldCloseMotherAndECIfDeadDuringDeliveryOutcome() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
+        when(allBeneficiaries.findMotherWithOpenStatus("entity id 1"))
+                .thenReturn(new Mother("entity id 1", "ec id 1", "1234567", "2014-01-01"));
         when(submission.getFieldValue("didWomanSurvive")).thenReturn("");
         when(submission.getFieldValue("didMotherSurvive")).thenReturn("no");
 
         service.deliveryOutcome(submission);
 
-        verify(allBeneficiaries).closeMother("entity id 1");
-        verifyNoMoreInteractions(allBeneficiaries);
+        verify(allBeneficiaries, times(1)).closeMother("entity id 1");
+        verify(allEligibleCouples, times(1)).close("ec id 1");
     }
 
     @Test
     public void shouldCloseWomanIfDeadDuringDeliveryOutcome() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
         when(submission.entityId()).thenReturn("entity id 1");
+        when(allBeneficiaries.findMotherWithOpenStatus("entity id 1")).thenReturn(new Mother("entity id 1", "ec id 1", "1234567", "2014-01-01"));
         when(submission.getFieldValue("didWomanSurvive")).thenReturn("no");
         when(submission.getFieldValue("didMotherSurvive")).thenReturn("");
 
         service.deliveryOutcome(submission);
 
-        verify(allBeneficiaries).closeMother("entity id 1");
-        verifyNoMoreInteractions(allBeneficiaries);
+        verify(allBeneficiaries, times(1)).closeMother("entity id 1");
+        verify(allEligibleCouples, times(1)).close("ec id 1");
     }
 
     @Test

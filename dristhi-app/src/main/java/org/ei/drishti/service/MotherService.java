@@ -122,8 +122,14 @@ public class MotherService {
     }
 
     public void deliveryOutcome(FormSubmission submission) {
+        Mother mother = allBeneficiaries.findMotherWithOpenStatus(submission.entityId());
+        if (mother == null) {
+            logWarn("Failed to handle delivery outcome for mother. Entity ID: " + submission.entityId());
+            return;
+        }
         if (BOOLEAN_FALSE.equals(submission.getFieldValue(DID_WOMAN_SURVIVE)) || BOOLEAN_FALSE.equals(submission.getFieldValue(DID_MOTHER_SURVIVE))) {
             allBeneficiaries.closeMother(submission.entityId());
+            allEligibleCouples.close(mother.ecCaseId());
             return;
         }
 
