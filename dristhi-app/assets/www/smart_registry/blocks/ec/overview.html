@@ -8,7 +8,7 @@
             <div ng-if="client.fpMethod">
                 <span class="text-bold">{{client.fpMethod | fpMethodName:ecsWithFPMethodServiceModeOptions.options }}</span>
                 <br/>
-                <span>{{client.familyPlanningMethodChangeDate | date:'dd/MM/yy'}}</span>
+                <span>{{client.familyPlanningMethodChangeDate}}</span>
                 <br/>
                 <ng:switch on="client.fpMethod">
                     <span ng-switch-when="iud">

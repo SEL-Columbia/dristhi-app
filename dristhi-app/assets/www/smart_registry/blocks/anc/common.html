@@ -2,7 +2,7 @@
     <ng:include src="'blocks/client_name.html'"></ng:include>
     <div class="flag-container">
         <div ng-if="client.isHighRisk" class="flag flag-hrp"></div>
-        <div ng-if="client.economicStatus && (client.economicStatus.toUpperCase() == 'BPL')" class="flag flag-bpl"></div>
+        <div ng-if="client.isBPL" class="flag flag-bpl"></div>
         <ng:switch on="client.caste.toUpperCase()">
             <div ng-switch-when="SC" class="flag flag-sc"></div>
             <div ng-switch-when="ST" class="flag flag-st"></div>
@@ -26,10 +26,10 @@
                 <b><span style="font-size: 20px">weeks</span></b>
             </div>
             <div ng-if="client.days_past_edd <= 0" style="margin-top: 2px" class="text-bold">
-                LMP: {{client.lmp | date:'dd/MM/yy'}}
+                LMP: {{client.lmp}}
             </div>
             <div style="margin-top: 2px" class="text-bold">
-                EDD: {{client.edd | date:'dd/MM/yy'}}
+                EDD: {{client.edd}}
             </div>
             <div ng-if="client.days_past_edd > 0" style="margin-top: 4px"><b><span style="font-size: 20px">{{client.days_past_edd}}</span></b>
                 <b><span style="font-size: 16px">day(s) past due</span></b>

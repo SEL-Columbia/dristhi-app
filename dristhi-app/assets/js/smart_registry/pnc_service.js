@@ -1,5 +1,5 @@
 angular.module("smartRegistry.services")
-    .service('PNCService', function (SmartHelper) {
+    .service('PNCService', function ($filter, SmartHelper) {
         var calculateExpectedVisitDates = function (client) {
             var delivery_date = new Date(Date.parse(client.deliveryDate));
             var visit_days = [1, 3, 7];
@@ -223,6 +223,15 @@ angular.module("smartRegistry.services")
                         // calculate expected visit data
                         var expected_visits = calculateExpectedVisitDates(client, current_date);
                         preProcessFirst7Days(client, expected_visits, current_date);
+                        var deliveryDate = client.deliveryDate;
+                        client.deliveryDate = $filter('date')(deliveryDate, 'dd/MM/yy');
+                        client.deliveryDateSmallFormat = $filter('date')(deliveryDate, 'dd/MM/yy');
+                        client.familyPlanningMethodChangeDate = $filter('date')(client.familyPlanningMethodChangeDate, 'dd/MM/yy');
+                        client.isBPL = client.economicStatus && (client.economicStatus.toUpperCase() == 'BPL');
+                        client.displayName = $filter('camelCase')($filter('humanize')(client.name));
+                        client.displayAge = client.age || client.calculatedAge;
+                        client.displayHusbandName = $filter('camelCase')($filter('humanize')(client.husbandName));
+                        client.displayVillage = $filter('camelCase')($filter('humanize')(client.village));
                     }
                 );
             }

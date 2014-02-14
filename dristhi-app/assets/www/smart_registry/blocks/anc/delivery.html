@@ -8,7 +8,7 @@
                     ng-click="openForm('delivery_plan', client.entityId, {'entityId': client.entityId, 'alertName': 'Delivery Plan'});closeECFormModal();">
                 <span class="text-bold">Delivery Plan</span>
                 <br/>
-                <span>Due {{client.visits.delivery_plan.next.visit_date | date: 'dd/MM'}}</span>
+                <span>Due {{client.visits.delivery_plan.next.visit_date}}</span>
             </button>
         </div>
     </div>

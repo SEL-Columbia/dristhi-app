@@ -1,5 +1,5 @@
 angular.module("smartRegistry.services")
-    .service('ChildService', function (SmartHelper) {
+    .service('ChildService', function ($filter, SmartHelper) {
         var schedules =
             [
                 {
@@ -60,13 +60,19 @@ angular.module("smartRegistry.services")
             schedules: schedules,
             preProcess: function (clients) {
                 clients.forEach(function (client) {
-                        if(!client.visits)
+                        if (!client.visits)
                             client.visits = {};
                         schedules.forEach(function (schedule) {
                             SmartHelper.preProcessSchedule(client, schedule)
                         });
+                        client.isBPL = client.economicStatus && (client.economicStatus.toUpperCase() == 'BPL');
+                        client.displayName = $filter('camelCase')($filter('humanize')(client.name));
+                        client.displayAge = client.age || client.calculatedAge;
+                        client.displayHusbandName = $filter('camelCase')($filter('humanize')(client.husbandName));
+                        client.displayVillage = $filter('camelCase')($filter('humanize')(client.village));
                     }
                 );
             }
+
         }
     });

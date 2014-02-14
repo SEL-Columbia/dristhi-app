@@ -3,7 +3,7 @@
         <div class="span8 full-height">
             <span class="text-bold">{{client.fp_method | fpMethodName:ecsWithFPMethodServiceModeOptions.options }}</span>
             <br/>
-            <span>{{client.family_planning_method_change_date | date:'dd/MM/yy'}}</span>
+            <span>{{client.family_planning_method_change_date}}</span>
             <br/>
             <ng:switch on="client.fp_method">
                 <span ng-switch-when="iud">
@@ -27,7 +27,7 @@
     <div class="row-fluid full-height">
         <div class="span8 full-height">
             <span ng-if="client.complication_date" class="text-bold">
-                {{client.complication_date | date:"dd/MM/yy"}}
+                {{client.complication_date}}
                 <br/>
             </span>
             <ng-switch on="client.refill_follow_ups.type">

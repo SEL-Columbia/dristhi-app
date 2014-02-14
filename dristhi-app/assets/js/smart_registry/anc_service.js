@@ -1,5 +1,5 @@
 angular.module("smartRegistry.services")
-    .service('ANCService', function (SmartHelper) {
+    .service('ANCService', function ($filter, SmartHelper) {
         var schedules =
             [
                 {
@@ -64,11 +64,11 @@ angular.module("smartRegistry.services")
                     var next_milestone = {};
                     next_milestone.name = milestone_alert.name;
                     next_milestone.status = milestone_alert.status;
-                    next_milestone.visit_date = milestone_alert.date;
+                    next_milestone.visit_date = $filter('date')(milestone_alert.date, 'dd/MM');
                     visit.next = next_milestone;
                     visit[next_milestone.name] = {
                         status: next_milestone.status,
-                        visit_date: next_milestone.visit_date
+                        visit_date: $filter('date')(next_milestone.visit_date, 'dd/MM')
                     };
                     // only break if status is not complete so we can keep looking for other in-complete milestones
                     if (milestone_alert.status !== alert_status.COMPLETE)
@@ -91,7 +91,7 @@ angular.module("smartRegistry.services")
                         services_provided.forEach(function (service_provided) {
                             var service = {};
                             service.status = alert_status.COMPLETE;
-                            service.visit_date = service_provided.date;
+                            service.visit_date = $filter('date')(service_provided.date, 'dd/MM');
                             service.data = service_provided.data;
                             services.push(service);
                         });
@@ -108,7 +108,7 @@ angular.module("smartRegistry.services")
                             visit.previous = {
                                 name: previous.name,
                                 status: alert_status.COMPLETE,
-                                visit_date: previous.date,
+                                visit_date: $filter('date')(previous.date, 'dd/MM'),
                                 data: previous.data
                             };
                         }
@@ -116,7 +116,7 @@ angular.module("smartRegistry.services")
                     else {
                         var service = {};
                         service.status = alert_status.COMPLETE;
-                        service.visit_date = services_provided[0].date;
+                        service.visit_date = $filter('date')(services_provided[0].date, 'dd/MM');
                         service.data = services_provided[0].data;
                         visit[services_provided[0].name] = service;
 
@@ -127,7 +127,7 @@ angular.module("smartRegistry.services")
                             visit.previous = {
                                 name: services_provided[0].name,
                                 status: alert_status.COMPLETE,
-                                visit_date: services_provided[0].date,
+                                visit_date: $filter('date')(services_provided[0].date, 'dd/MM'),
                                 data: services_provided[0].data
                             };
                         }
@@ -153,6 +153,13 @@ angular.module("smartRegistry.services")
                         if (edd_date) {
                             client.days_past_edd = Math.ceil(SmartHelper.daysBetween(new Date(edd_date), new Date()));
                         }
+                        client.lmp = $filter('date')(client.lmp, 'dd/MM/yy');
+                        client.edd = $filter('date')(client.edd, 'dd/MM/yy');
+                        client.isBPL = client.economicStatus && (client.economicStatus.toUpperCase() == 'BPL');
+                        client.displayName = $filter('camelCase')($filter('humanize')(client.name));
+                        client.displayAge = client.age || client.calculatedAge;
+                        client.displayHusbandName = $filter('camelCase')($filter('humanize')(client.husbandName));
+                        client.displayVillage = $filter('camelCase')($filter('humanize')(client.village));
                     }
                 );
                 return clients;

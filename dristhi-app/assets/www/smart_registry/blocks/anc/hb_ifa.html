@@ -9,7 +9,7 @@
                              ng-class="hbLegendClass(hb.data.hbLevel)">
                         </div>
                         <div class="span5 span-no-margin width-without-margins hb-content">
-                            <span>{{hb.visit_date | date:'dd/MM' }}</span>
+                            <span>{{hb.visit_date}}</span>
                         </div>
                         <div class="span6 span-no-margin width-without-margins hb-content hb-content-right-aligned">
                             <span>{{hb.data.hbLevel}} g/dl</span>
@@ -24,7 +24,7 @@
                         <div class="button-text-container">
                             <span class="text-bold">Hb Test</span>
                             <br/>
-                            <span>Due {{client.visits.hb.next.visit_date | date: 'dd/MM'}}</span>
+                            <span>Due {{client.visits.hb.next.visit_date}}</span>
                         </div>
                     </button>
                     <button class="btn btn-done btn-sr btn-new-form full-height"
@@ -41,7 +41,7 @@
                          data-ng-repeat="ifa in client.visits.ifa['IFA'] | orderBy:'-visit_date' | limitTo: 3">
                         <div class="row-fluid hb">
                             <div class="span4 span-no-margin width-without-margins hb-content">
-                                {{ifa.visit_date | date: 'dd/MM'}}
+                                {{ifa.visit_date}}
                             </div>
                             <div class="span8 span-no-margin width-without-margins hb-content hb-content-right-aligned">
                                 <i class="icon-ok green"></i> {{ifa.data.dose}} Tablets
@@ -62,7 +62,7 @@
                         <div class="button-text-container">
                             <span class="text-bold">IFA Tablets</span>
                             <br/>
-                            <span>Due {{client.visits.ifa.next.visit_date | date: 'dd/MM'}}</span>
+                            <span>Due {{client.visits.ifa.next.visit_date}}</span>
                         </div>
                     </button>
                     <button class="btn btn-primary btn-sr full-height complete"
@@ -74,7 +74,7 @@
                         <div class="button-text-container">
                             <span class="text-bold">IFA {{sumIFATablets(client.visits.ifa)}}</span>
                             <br/>
-                            <span>On {{client.visits.ifa.previous.visit_date | date: 'dd/MM'}}</span>
+                            <span>On {{client.visits.ifa.previous.visit_date}}</span>
                         </div>
                     </button>
                 </div>

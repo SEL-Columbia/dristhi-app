@@ -6,7 +6,7 @@
             <div class="done-icon large full-height"><i class="icon-ok green"></i></div>
             <span class="text-bold">BCG</span>
             <br/>
-            <span>on {{client.visits.bcg.bcg.visit_date | date:"dd/MM"}}</span>
+            <span>on {{client.visits.bcg.bcg.visit_date}}</span>
         </button>
         <button ng-switch-default
                 class="btn btn-primary btn-large btn-sr btn-visit-status full-height normal"
@@ -24,7 +24,7 @@
             <div class="done-icon large full-height"><i class="icon-ok green"></i></div>
             <span class="text-bold">Hep B Birth</span>
             <br/>
-            <span>on {{client.visits.hepb.hepb_0.visit_date | date:"dd/MM"}}</span>
+            <span>on {{client.visits.hepb.hepb_0.visit_date}}</span>
         </button>
         <button ng-switch-default
                 class="btn btn-primary btn-large btn-sr btn-visit-status full-height normal"
@@ -44,7 +44,7 @@
     <span ng-if="client.visits.opv.previous" class="previous-alert">
         <i class="icon-ok green"></i>
         <span class="">{{client.visits.opv.previous.name | friendlyAbbrev}}: </span>
-        <span>{{client.visits.opv.previous.visit_date | date:"dd/MM"}}</span>
+        <span>{{client.visits.opv.previous.visit_date}}</span>
     </span>
     </div>
 </div>
@@ -58,7 +58,7 @@
     <span ng-if="client.visits.pentavalent.previous" class="previous-alert">
         <i class="icon-ok green"></i>
         <span class="">{{client.visits.pentavalent.previous.name | friendlyAbbrev}}: </span>
-        <span>{{client.visits.pentavalent.previous.visit_date | date:"dd/MM"}}</span>
+        <span>{{client.visits.pentavalent.previous.visit_date}}</span>
     </span>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="span3 span-no-margin width-without-margins line-right span-content">
     <p class="text-left">
         <span>Date:</span>
-        <span class="delivery-info ellipsis text-bold">{{client.deliveryDate | date:'dd/MM/yy'}}</span>
+        <span class="delivery-info ellipsis text-bold">{{client.deliveryDate}}</span>
     </p>
 
     <p class="text-left">
@@ -21,7 +21,7 @@
 <div class="span2 span-no-margin width-without-margins line-right span-content" ng-if="client.fp_method">
     <span class="text-bold">{{client.fp_method | fpMethodName:ecsWithFPMethodServiceModeOptions.options }}</span>
     <br/>
-    <span>{{client.family_planning_method_change_date | date:'dd/MM/yy'}}</span>
+    <span>{{client.family_planning_method_change_date}}</span>
     <br/>
     <ng:switch on="client.fp_method">
                 <span ng-switch-when="iud">

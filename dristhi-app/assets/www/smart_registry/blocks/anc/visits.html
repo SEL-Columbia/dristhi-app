@@ -11,7 +11,7 @@
                         <ng:switch on="client.visits.anc[milestone].status">
                             <div ng-switch-when="complete" class="full-height">
                                 <div class="done-icon full-height"><i class="icon-ok green"></i></div>
-                                <span class="text-bold">{{client.visits.anc[milestone].visit_date | date:'dd/MM'}}</span>
+                                <span class="text-bold">{{client.visits.anc[milestone].visit_date}}</span>
                                 <br/>
                                 <span ng-if="client.visits.anc[milestone].data.bpSystolic && client.visits.anc[milestone].data.bpDiastolic">
                                     BP {{client.visits.anc[milestone].data.bpSystolic}}/{{client.visits.anc[milestone].data.bpDiastolic}}
@@ -26,7 +26,7 @@
                                     <span ng-switch-when="complete">Done </span>
                                     <span ng-switch-default>Due </span>
                                 </ng:switch>
-                                <span>{{client.visits.anc[milestone].visit_date | date:'dd/MM'}}</span>
+                                <span>{{client.visits.anc[milestone].visit_date}}</span>
                             </div>
                         </ng:switch>
                     </button>
