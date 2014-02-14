@@ -1,13 +1,14 @@
-describe('FP Service', function () {
+describe('FP Service:', function () {
 
     var fpSrvc;
 
     beforeEach(module("smartRegistry.services"));
+    beforeEach(module("smartRegistry.filters"));
     beforeEach(inject(function (FPService) {
         fpSrvc = FPService;
     }));
 
-    describe("Pre-process Clients", function () {
+    describe("Pre-process Clients:", function () {
         it("should set referral data if a referral alert exists", function () {
             var clients = [
                 {

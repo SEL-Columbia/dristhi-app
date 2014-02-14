@@ -121,7 +121,7 @@ angular.module("smartRegistry.controllers")
             $scope.formBridge.delegateToMicroFormLaunchView(formName, entityId, JSON.stringify(metaData));
         };
 
-        var getReportPeriodStartDate = function (date_str) {
+        $scope.getReportPeriodStartDate = function (date_str) {
             var src_date;
             if (date_str === undefined)
                 src_date = new Date();
@@ -138,7 +138,7 @@ angular.module("smartRegistry.controllers")
             return $filter('date')(start_date, 'dd/MM');
         };
 
-        var getReportingPeriodEnd = function (date_str) {
+        $scope.getReportingPeriodEnd = function (date_str) {
             var src_date;
             if (date_str === undefined)
                 src_date = new Date();
@@ -155,8 +155,8 @@ angular.module("smartRegistry.controllers")
             return $filter('date')(end_date, 'dd/MM');
         };
 
-        $scope.reportingPeriodStart = getReportPeriodStartDate();
-        $scope.reportingPeriodEnd = getReportingPeriodEnd();
+        $scope.reportingPeriodStart = $scope.getReportPeriodStartDate();
+        $scope.reportingPeriodEnd = $scope.getReportingPeriodEnd();
 
         pageView.onReload(function () {
             $scope.$apply(function () {

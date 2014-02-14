@@ -1,9 +1,10 @@
-describe('ANC Register controller', function () {
+describe('ANC Register controller: ', function () {
 
     var controller, scope;
 
     beforeEach(module("smartRegistry.controllers"));
     beforeEach(module("smartRegistry.services"));
+    beforeEach(module("smartRegistry.filters"));
     beforeEach(inject(function ($controller, $rootScope) {
         scope = $rootScope.$new();
         controller = $controller("ancRegisterController", {

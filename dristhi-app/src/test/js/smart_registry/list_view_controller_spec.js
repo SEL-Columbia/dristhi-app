@@ -1,7 +1,8 @@
-describe("List view controller", function () {
+describe("List view controller:", function () {
     var controller, scope, bridge = new FPRegistryBridge();
 
     beforeEach(module("smartRegistry.controllers"));
+    beforeEach(module("smartRegistry.filters"));
     beforeEach(inject(function ($controller, $rootScope) {
         scope = $rootScope.$new();
         scope.bridge = bridge;
@@ -25,30 +26,30 @@ describe("List view controller", function () {
         expect(scope.numberOfClientsToShow).toBe(20);
     });
 
-    describe("Reporting period", function () {
+    describe("Reporting period:", function () {
         it("should start on the 26th of the previous month if the specified day is on or before the 25th", function () {
             var date_str = '2012-02-25';
-            expect(Date.parse(scope.reportingPeriodStart(date_str))).toEqual(Date.parse("2012-01-26"));
+            expect(scope.getReportPeriodStartDate(date_str)).toEqual("26/01");
         });
 
         it("should end on the 25th of the current month if the day is on or before the 25th", function () {
             var date_str = '2012-02-25';
-            expect(Date.parse(scope.reportingPeriodEnd(date_str))).toEqual(Date.parse("2012-02-25"));
+            expect(scope.getReportingPeriodEnd(date_str)).toEqual("25/02");
         });
 
         it("should start on the 26th of the current month if the specified day is after the 25th", function () {
             var date_str = '2012-02-26';
-            expect(Date.parse(scope.reportingPeriodStart(date_str))).toEqual(Date.parse("2012-02-26"));
+            expect(scope.getReportPeriodStartDate(date_str)).toEqual("26/02");
         });
 
         it("should end on the 25th of the next month if the day is after the 25th", function () {
             var date_str = '2012-02-26';
-            expect(Date.parse(scope.reportingPeriodEnd(date_str))).toEqual(Date.parse("2012-03-25"));
+            expect(scope.getReportingPeriodEnd(date_str)).toEqual("25/03");
         });
 
         it("should end in Jan of the next year if the next month is january", function () {
             var date_str = '2012-12-26';
-            expect(Date.parse(scope.reportingPeriodEnd(date_str))).toEqual(Date.parse("2013-01-25"));
+            expect(scope.getReportingPeriodEnd(date_str)).toEqual("25/01");
         });
     });
 
@@ -103,13 +104,13 @@ describe("List view controller", function () {
         });
     });
 
-    describe("sortByName", function () {
+    describe("sortByName:", function () {
         it("should sort by name field.", function () {
             expect(scope.sortByName({name: "name1"})).toBe("name1");
         });
     });
 
-    describe("sortByPriority", function () {
+    describe("sortByPriority:", function () {
         it("should sort clients by high priority.", function () {
             var client = {
                 name: "client1",
@@ -129,7 +130,7 @@ describe("List view controller", function () {
         });
     });
 
-    describe("filterVillage", function () {
+    describe("filterVillage:", function () {
         it("should set villageFilterOption to selected one.", function () {
             var option = {};
 
@@ -139,7 +140,7 @@ describe("List view controller", function () {
         });
     });
 
-    describe("filterList", function () {
+    describe("filterList:", function () {
         it("should allow a client when it passes applied search criteria.", function () {
             scope.searchCriteria = function () {
                 return true;
@@ -233,7 +234,7 @@ describe("List view controller", function () {
         });
     });
 
-    describe("addVillageNamesToFilterOptions", function () {
+    describe("addVillageNamesToFilterOptions:", function () {
         it("should add filter options for every village.", function () {
             var expectedVillageOptions = {
                 type: "filterVillage",
@@ -266,7 +267,7 @@ describe("List view controller", function () {
         });
     });
 
-    describe("search", function () {
+    describe("search:", function () {
         it("should not be in search mode when user has not tapped on search box", function () {
             expect(scope.inSearchMode).toBeFalsy();
         });
@@ -294,16 +295,18 @@ describe("List view controller", function () {
         });
     });
 
-    describe("sort by BPL", function () {
+    describe("sort by BPL:", function () {
         it("should sort clients by BPL.", inject(function ($filter) {
             var clients = [
                 {
                     name: "client1",
-                    economicStatus: ""
+                    economicStatus: "",
+                    isBPL: "" && ("".toUpperCase() == 'BPL')
                 },
                 {
                     name: "client2",
-                    economicStatus: "bpl"
+                    economicStatus: "bpl",
+                    isBPL: "bpl" && ("bpl".toUpperCase() == 'BPL')
                 }
             ];
 
@@ -314,16 +317,18 @@ describe("List view controller", function () {
         }));
     });
 
-    describe("sort by SC", function () {
+    describe("sort by SC:", function () {
         it("should sort clients by SC.", inject(function ($filter) {
             var clients = [
                 {
                     name: "client1",
-                    caste: "st"
+                    caste: "st",
+                    isSC: "st" && "st".toUpperCase() === "SC"
                 },
                 {
                     name: "client2",
-                    caste: "sc"
+                    caste: "sc",
+                    isSC: "sc" && "sc".toUpperCase() === "SC"
                 }
             ];
 
@@ -334,16 +339,18 @@ describe("List view controller", function () {
         }));
     });
 
-    describe("sort by BPL", function () {
-        it("should sort clients by BPL.", inject(function ($filter) {
+    describe("sort by ST:", function () {
+        it("should sort clients by ST.", inject(function ($filter) {
             var clients = [
                 {
                     name: "client1",
-                    caste: "sc"
+                    caste: "sc",
+                    isST: "sc" && "sc".toUpperCase() === "ST"
                 },
                 {
                     name: "client2",
-                    caste: "st"
+                    caste: "st",
+                    isST: "st" && "st".toUpperCase() === "ST"
                 }
             ];
 

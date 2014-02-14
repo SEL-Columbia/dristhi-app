@@ -1,4 +1,4 @@
-describe('ANC Service', function () {
+describe('ANC Service:', function () {
     var ancService, smartHelper;
 
     beforeEach(module("smartRegistry.services"));
@@ -7,7 +7,7 @@ describe('ANC Service', function () {
         smartHelper = SmartHelper;
     }));
 
-    describe("Pre-process client", function () {
+    describe("Pre-process client:", function () {
         it("should create a next visit from an existing alert", function () {
             var client = {
                 alerts:[
@@ -24,11 +24,11 @@ describe('ANC Service', function () {
                     next:{
                         name:'ANC 1',
                         status:'normal',
-                        visit_date:'2012-10-24'
+                        visit_date:'24/10'
                     },
                     'ANC 1':{
                         status:'normal',
-                        visit_date:'2012-10-24'
+                        visit_date:'24/10'
                     }
                 }
             };
@@ -36,6 +36,8 @@ describe('ANC Service', function () {
             var schedule = ancService.schedules[0];
             client.visits = {};
             ancService.preProcessSchedule(client, schedule);
+            JSON.stringify('expected: ' + expected_visits);
+            JSON.stringify('actual: ' + client.visits);
             expect(client.visits).toEqual(expected_visits);
         });
 
@@ -73,7 +75,7 @@ describe('ANC Service', function () {
             var expected_visits = {
                 anc:{
                     'ANC 1': {
-                        visit_date: '2011-10-24',
+                        visit_date: '24/10',
                         status: ancService.status.COMPLETE,
                         data: {
                             bp: '120/79',
@@ -82,7 +84,7 @@ describe('ANC Service', function () {
                     },
                     previous: {
                         name: 'ANC 1',
-                        visit_date: '2011-10-24',
+                        visit_date: '24/10',
                         status: ancService.status.COMPLETE,
                         data: {
                             bp: '120/79',
@@ -124,10 +126,10 @@ describe('ANC Service', function () {
                     next: {
                         name: 'ANC 1',
                         status: 'complete',
-                        visit_date: '2012-10-24'
+                        visit_date: '24/10'
                     },
                     'ANC 1': {
-                        visit_date: '2011-10-24',
+                        visit_date: '24/10',
                         status: ancService.status.COMPLETE,
                         data: {
                             bp: '120/79',
@@ -170,20 +172,20 @@ describe('ANC Service', function () {
                 'ifa': {
                     next: {
                         name: 'IFA 3',
-                        visit_date: '2012-06-24',
+                        visit_date: '24/06',
                         status: 'normal'
                     },
                     'IFA 3': {
-                        visit_date: '2012-06-24',
+                        visit_date: '24/06',
                         status: 'normal'
                     },
                     'IFA': [
-                        {visit_date: '2012-05-13', status: ancService.status.COMPLETE, data: {}},
-                        {visit_date: '2012-05-26', status: ancService.status.COMPLETE, data: {}}
+                        {visit_date: '13/05', status: ancService.status.COMPLETE, data: {}},
+                        {visit_date: '26/05', status: ancService.status.COMPLETE, data: {}}
                     ],
                     previous: {
                         name: 'IFA',
-                        visit_date: '2012-05-26',
+                        visit_date: '26/05',
                         status: 'complete',
                         data: {}
                     }
@@ -217,15 +219,15 @@ describe('ANC Service', function () {
                 ifa: {
                     next: {
                         name: 'IFA 2',
-                        visit_date: '2012-06-24',
+                        visit_date: '24/06',
                         status: 'urgent'
                     },
                     'IFA 2': {
-                        visit_date: '2012-06-24',
+                        visit_date: '24/06',
                         status: 'urgent'
                     },
                     'IFA 3': {
-                        visit_date: '2012-06-24',
+                        visit_date: '24/06',
                         status: 'complete'
                     }
                 }

@@ -4,6 +4,7 @@ describe('PNC Register controller', function () {
 
     beforeEach(module("smartRegistry.controllers"));
     beforeEach(module("smartRegistry.services"));
+    beforeEach(module("smartRegistry.filters"));
     beforeEach(inject(function ($controller, $rootScope, SmartHelper, ANCService,  PNCService) {
         scope = $rootScope.$new();
         controller = $controller("pncRegisterController", {

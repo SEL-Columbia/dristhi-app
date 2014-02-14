@@ -1,9 +1,10 @@
-describe('FP Register controller', function () {
+describe('FP Register controller:', function () {
 
-    var controller, scope, fpService;
+    var controller, scope;
 
     beforeEach(module("smartRegistry.controllers"));
     beforeEach(module("smartRegistry.services"));
+    beforeEach(module("smartRegistry.filters"));
     beforeEach(inject(function ($controller, $rootScope, FPService) {
         scope = $rootScope.$new();
         controller = $controller("fpRegisterController", {
