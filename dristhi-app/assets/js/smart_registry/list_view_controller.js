@@ -1,5 +1,5 @@
 angular.module("smartRegistry.controllers")
-    .controller("listViewController", ["$scope", function ($scope) {
+    .controller("listViewController", ["$scope", "$filter", function ($scope, $filter) {
 
         $scope.navigationBridge = new ANMNavigationBridge();
         $scope.formBridge = new FormBridge();
@@ -121,7 +121,7 @@ angular.module("smartRegistry.controllers")
             $scope.formBridge.delegateToMicroFormLaunchView(formName, entityId, JSON.stringify(metaData));
         };
 
-        $scope.reportingPeriodStart = function (date_str) {
+        var getReportPeriodStartDate = function (date_str) {
             var src_date;
             if (date_str === undefined)
                 src_date = new Date();
@@ -135,10 +135,10 @@ angular.module("smartRegistry.controllers")
             else {
                 start_date.setMonth(start_date.getMonth(), 26);
             }
-            return start_date;
+            return $filter('date')(start_date, 'dd/MM');
         };
 
-        $scope.reportingPeriodEnd = function (date_str) {
+        var getReportingPeriodEnd = function (date_str) {
             var src_date;
             if (date_str === undefined)
                 src_date = new Date();
@@ -152,8 +152,11 @@ angular.module("smartRegistry.controllers")
             else {
                 end_date.setMonth(end_date.getMonth() + 1, 25);
             }
-            return end_date;
+            return $filter('date')(end_date, 'dd/MM');
         };
+
+        $scope.reportingPeriodStart = getReportPeriodStartDate();
+        $scope.reportingPeriodEnd = getReportingPeriodEnd();
 
         pageView.onReload(function () {
             $scope.$apply(function () {
