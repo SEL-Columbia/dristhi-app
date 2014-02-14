@@ -1,5 +1,5 @@
 angular.module("smartRegistry.controllers")
-    .controller("listViewController", ["$scope", "$filter", function ($scope, $filter) {
+    .controller("listViewController", ["$scope", "$filter", "$debounce", function ($scope, $filter, $debounce) {
 
         $scope.navigationBridge = new ANMNavigationBridge();
         $scope.formBridge = new FormBridge();
@@ -171,7 +171,19 @@ angular.module("smartRegistry.controllers")
 
         $scope.inSearchMode = false;
 
+        $scope.$watch('searchFilterStringInput', function (newValue, oldValue) {
+            if (newValue === oldValue) {
+                return;
+            }
+            $debounce(applySearch, 800);
+        });
+
+        var applySearch = function () {
+            $scope.searchFilterString = $scope.searchFilterStringInput;
+        };
+
         $scope.cancelSearch = function () {
+            $scope.searchFilterStringInput = "";
             $scope.searchFilterString = "";
             $scope.inSearchMode = false;
         };
