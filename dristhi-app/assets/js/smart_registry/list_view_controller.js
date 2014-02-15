@@ -4,6 +4,36 @@ angular.module("smartRegistry.controllers")
         $scope.navigationBridge = new ANMNavigationBridge();
         $scope.formBridge = new FormBridge();
         $scope.villageBridge = new VillageBridge();
+        $scope.currentPage = 0;
+        $scope.pageSize = 10;
+
+        $scope.filteredClients = $scope.clients;
+        $scope.numberOfPages = Math.round($scope.filteredClients.length / $scope.pageSize);
+
+        var updateClientListAndPageInformation = function () {
+            console.log('filter called');
+            $scope.filteredClients = $scope.clients.filter($scope.filterList);
+            $scope.currentPage = 0;
+            if ($scope.filteredClients.length === 0) {
+                $scope.currentPage = -1;
+            }
+            if ($scope.filteredClients.length > 0 && $scope.filteredClients.length <= $scope.pageSize) {
+                $scope.numberOfPages = 1;
+            } else {
+                $scope.numberOfPages = Math.round($scope.filteredClients.length / $scope.pageSize);
+            }
+        };
+
+        var capitalize = function (text) {
+            return text.slice(0, 1).toUpperCase() + text.slice(1);
+        };
+
+        var formatText = function (unformattedText) {
+            if (typeof unformattedText === "undefined" || unformattedText === null) {
+                return "";
+            }
+            return capitalize(unformattedText).replace(/_/g, " ");
+        };
 
         $scope.sort = function (option) {
             $scope.currentSortOption = option;
@@ -34,17 +64,6 @@ angular.module("smartRegistry.controllers")
 
         $scope.filterVillage = function (option) {
             $scope.villageFilterOption = option;
-        };
-
-        var capitalize = function (text) {
-            return text.slice(0, 1).toUpperCase() + text.slice(1);
-        };
-
-        var formatText = function (unformattedText) {
-            if (typeof unformattedText === "undefined" || unformattedText === null) {
-                return "";
-            }
-            return capitalize(unformattedText).replace(/_/g, " ");
         };
 
         $scope.getVillageFilterOptions = function () {
@@ -86,6 +105,7 @@ angular.module("smartRegistry.controllers")
 
         $scope.onModalOptionClick = function (option, type) {
             $scope[type](option);
+            updateClientListAndPageInformation();
             $scope.isModalOpen = false;
         };
 
@@ -161,6 +181,7 @@ angular.module("smartRegistry.controllers")
         pageView.onReload(function () {
             $scope.$apply(function () {
                 $scope.clients = $scope.getClients();
+                $scope.filteredClients = $scope.clients;
                 $scope.villageOptions = $scope.getVillageFilterOptions();
             });
         });
@@ -180,6 +201,7 @@ angular.module("smartRegistry.controllers")
 
         var applySearch = function () {
             $scope.searchFilterString = $scope.searchFilterStringInput;
+            updateClientListAndPageInformation();
         };
 
         $scope.cancelSearch = function () {

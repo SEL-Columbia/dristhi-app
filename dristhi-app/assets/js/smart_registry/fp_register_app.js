@@ -194,10 +194,6 @@ angular.module("smartRegistry.controllers")
             $scope.isFPMethodsOptionSelected = fpMethodOptionSelected;
             $scope.isFPPrioritizationOptionSelected = !fpMethodOptionSelected;
         };
-        $scope.onFPModalOptionClick = function (option, type) {
-            $scope[type](option);
-            $scope.isFPModalOpen = false;
-        };
         $scope.openFPModal = function (option) {
             $scope.isFPModalOpen = true;
             $scope.isModalOpen = false;

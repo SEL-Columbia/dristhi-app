@@ -111,15 +111,16 @@
 
         <div class="container-fluid container-no-padding client-list">
             <div class="row-fluid client"
-                 ng-repeat="client in (clients | filter:filterList | orderBy:sortList:sortDescending | limitTo:numberOfClientsToShow)">
+                 ng-repeat="client in (filteredClients| orderBy:sortList:sortDescending | startFrom:currentPage*pageSize | limitTo:pageSize)">
                 <div class="span5 full-height span-no-margin width-without-margins">
                     <div class="row-fluid full-height" ng-include="'blocks/anc/common.html'"></div>
                 </div>
                 <ng:include src="'blocks/anc/'+ contentTemplate + '.html'">
                 </ng:include>
             </div>
+            <ng:include src="'blocks/pagination.html'">
+            </ng:include>
         </div>
-
     </div>
 </div>
 </body>

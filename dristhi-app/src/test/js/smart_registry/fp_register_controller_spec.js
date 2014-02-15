@@ -352,20 +352,6 @@ describe('FP Register controller:', function () {
         });
     });
 
-    describe("onFPModalOptionClick", function () {
-        it("should close the FP modal once the click is handled.", function () {
-            scope.isFPModalOpen = true;
-
-            scope.onFPModalOptionClick({
-                label: "Condom",
-                id: "condom",
-                handler: "filterByFPMethod"
-            }, "filterFPMethod");
-
-            expect(scope.isFPModalOpen).toBeFalsy();
-        });
-    });
-
     describe("openFPModal", function () {
         it("should open FP modal and close other modals.", function () {
             var option = {

@@ -8,6 +8,7 @@ angular.module("smartRegistry.controllers")
         };
 
         $scope.clients = $scope.getClients();
+
         $scope.sortOptions = {
             type: "sort",
             options: [
@@ -185,10 +186,7 @@ angular.module("smartRegistry.controllers")
         $scope.microformSchedules = ['tt', 'ifa'];
 
         $scope.useMicroForm = function (schedule) {
-            if ($scope.microformSchedules.indexOf(schedule) !== -1) {
-                return true;
-            }
-            return false;
+            return $scope.microformSchedules.indexOf(schedule) !== -1;
         };
 
         $scope.milestoneForm = {

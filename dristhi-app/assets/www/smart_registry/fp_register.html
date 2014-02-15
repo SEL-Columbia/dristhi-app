@@ -48,7 +48,8 @@
                 </ul>
                 <div class="nav-collapse collapse">
                     <form class="navbar-search pull-right">
-                        <input type="text" class="search-query" placeholder="Search FP Register" ng-model="searchFilterStringInput"
+                        <input type="text" class="search-query" placeholder="Search FP Register"
+                               ng-model="searchFilterStringInput"
                                ng-click="enterSearchMode()"/>
                         <a ng-if="inSearchMode" ng-click="cancelSearch()" class="search-cancel"></a>
                     </form>
@@ -115,7 +116,7 @@
                 <div id="fp-method-options">
                     <ul ng-if="isFPMethodsOptionSelected" class="nav nav-tabs nav-stacked">
                         <li ng-repeat="option in ecsWithFPMethodServiceModeOptions.options">
-                            <a ng-click="onFPModalOptionClick(option, currentFPOption.type)">{{option.label}}<i
+                            <a ng-click="onModalOptionClick(option, currentFPOption.type);closeFPModal()">{{option.label}}<i
                                     class="icon-chevron-right" style="float: right"></i></a>
                         </li>
                     </ul>
@@ -123,17 +124,16 @@
                 <div id="fp-prioritization-options">
                     <ul ng-if="!isFPMethodsOptionSelected" class="nav nav-tabs nav-stacked">
                         <li ng-repeat="option in ecsWithoutFPMethodServiceModeOptions.options">
-                            <a ng-click="onFPModalOptionClick(option, currentFPOption.type)">{{option.label}}<i
+                            <a ng-click="onModalOptionClick(option, currentFPOption.type);closeFPModal()">{{option.label}}<i
                                     class="icon-chevron-right" style="float: right"></i></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-
         <div id="fp-client-list" class="container-fluid container-no-padding client-list">
             <div class="row-fluid client"
-                 ng-repeat="client in (clients | filter:filterList | orderBy:sortList:sortDescending | limitTo:numberOfClientsToShow)">
+                 ng-repeat="client in (filteredClients| orderBy:sortList:sortDescending | startFrom:currentPage*pageSize | limitTo:pageSize)">
                 <div class="span5 full-height span-no-margin width-without-margins">
                     <div class="row-fluid full-height" ng-include="'blocks/fp/common.html'"></div>
                 </div>
@@ -141,8 +141,9 @@
                     <div class="row-fluid full-height" ng-include="'blocks/fp/'+ contentTemplate + '.html'"></div>
                 </div>
             </div>
+            <ng:include src="'blocks/pagination.html'">
+            </ng:include>
         </div>
-
     </div>
 </div>
 </body>

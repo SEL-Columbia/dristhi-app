@@ -90,13 +90,13 @@ angular.module("smartRegistry.filters")
             }
         }
     })
-    .filter("dateFallsWithin", [function(){
-        return function(input, start_date, date_field, period, invert) {
-            return input.filter(function(item){
+    .filter("dateFallsWithin", [function () {
+        return function (input, start_date, date_field, period, invert) {
+            return input.filter(function (item) {
                 var end_date = item[date_field];
                 var val = ((Date.parse(end_date) - Date.parse(start_date)) / 1000 / 60 / 60 / 24) <= period;
                 // if invert is undefined or false return val, else return  !val
-                if(!invert)
+                if (!invert)
                     return val;
                 else
                     return !val;
@@ -105,7 +105,7 @@ angular.module("smartRegistry.filters")
         }
     }])
     .filter("slice", [function () {
-        return function(input, start, end) {
+        return function (input, start, end) {
             return input.slice(start, end);
         }
     }])
@@ -114,8 +114,13 @@ angular.module("smartRegistry.filters")
             return friendlyNameMap[input] ? friendlyNameMap[input] : input;
         }
     })
-    .filter('friendlyAbbrev', function () {
+    .filter('friendlyAbbrev',function () {
         return function (input) {
             return friendlyAbbrevMap[input] || friendlyNameMap[input] || input;
         }
+    }).filter('startFrom', function () {
+        return function (input, start) {
+            start = +start;
+            return input.slice(start);
+        };
     });

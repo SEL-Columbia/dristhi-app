@@ -102,7 +102,7 @@
         <div id="fp-client-list" class="container-fluid container-no-padding client-list">
             <div class="row-fluid client"
                  id="client-{{$index}}"
-                 ng-repeat="client in (clients | filter:filterList | orderBy:sortList:sortDescending | limitTo:numberOfClientsToShow)">
+                 ng-repeat="client in (filteredClients| orderBy:sortList:sortDescending | startFrom:currentPage*pageSize | limitTo:pageSize)">
                 <div class="span5 full-height span-no-margin width-without-margins">
                     <div class="row-fluid full-height" ng-include="'blocks/child/common.html'"></div>
                 </div>
@@ -110,6 +110,8 @@
                     <div class="row-fluid full-height" ng-include="'blocks/child/'+ contentTemplate + '.html'"></div>
                 </div>
             </div>
+            <ng:include src="'blocks/pagination.html'">
+            </ng:include>
         </div>
     </div>
 
