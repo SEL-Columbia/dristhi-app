@@ -3,9 +3,16 @@ describe("List view controller:", function () {
 
     beforeEach(module("smartRegistry.controllers"));
     beforeEach(module("smartRegistry.filters"));
+    beforeEach(module("smartRegistry.services"));
     beforeEach(inject(function ($controller, $rootScope) {
         scope = $rootScope.$new();
         scope.bridge = bridge;
+        scope.clients = [
+            {name: 'name 1'},
+            {name: 'name 2'}
+        ];
+        scope.villageFilterOption = {};
+        scope.serviceModeOption = {};
         scope.defaultVillageOptions = {
             type: "filterVillage",
             options: [
@@ -22,9 +29,11 @@ describe("List view controller:", function () {
         });
     }));
 
-    it("should default page size and current page.", function () {
-        expect(scope.pageSize).toBe(10);
-        expect(scope.currentPage).toBe(0);
+    describe("Initialisation:", function () {
+        it("should default page size and current page.", function () {
+            expect(scope.currentPage).toBe(0);
+            expect(scope.pageSize).toBe(10);
+        });
     });
 
     describe("Reporting period:", function () {
