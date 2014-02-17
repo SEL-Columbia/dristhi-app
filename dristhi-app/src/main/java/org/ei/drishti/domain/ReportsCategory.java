@@ -28,7 +28,7 @@ public enum ReportsCategory {
             VIT_A_FOR_FEMALE, VIT_A_FOR_MALE,
             CHILD_DIARRHEA,
             CHILD_MORTALITY_DUE_TO_DIARRHEA,
-            IB_1Y)),
+            IB_1Y, OPV3, OPV_BOOSTER, JE, DPT_BOOSTER1)),
 
     MORTALITY("Mortality", asList(ENM, NM, LNM, INFANT_MORTALITY, CHILD_MORTALITY, MMA, MMD, MMP, MM)),
 
