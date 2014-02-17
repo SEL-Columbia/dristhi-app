@@ -223,9 +223,8 @@ angular.module("smartRegistry.services")
                         // calculate expected visit data
                         var expected_visits = calculateExpectedVisitDates(client, current_date);
                         preProcessFirst7Days(client, expected_visits, current_date);
-                        var deliveryDate = client.deliveryDate;
-                        client.deliveryDate = $filter('date')(deliveryDate, 'dd/MM/yy');
-                        client.deliveryDateSmallFormat = $filter('date')(deliveryDate, 'dd/MM/yy');
+                        client.deliveryDateLongFormat = $filter('date')(client.deliveryDate, 'dd/MM/yy');
+                        client.deliveryDateSmallFormat = $filter('date')(client.deliveryDate, 'dd/MM');
                         client.familyPlanningMethodChangeDate = $filter('date')(client.familyPlanningMethodChangeDate, 'dd/MM/yy');
                         client.isBPL = client.economicStatus && (client.economicStatus.toUpperCase() == 'BPL');
                         client.displayName = $filter('camelCase')($filter('humanize')(client.name));
