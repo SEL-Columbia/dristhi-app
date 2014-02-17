@@ -98,7 +98,7 @@
         <div id="ec-client-list" class="container-fluid container-no-padding client-list">
             <div class="row-fluid client"
                  id="client-{{$index}}"
-                 ng-repeat="client in (filteredClients | orderBy:sortList:sortDescending | startFrom:currentPage*pageSize | limitTo:pageSize)">
+                 ng-repeat="client in filteredClients">
                 <div class="span5 full-height span-no-margin width-without-margins">
                     <div class="row-fluid full-height" ng-include="'blocks/ec/common.html'"></div>
                 </div>

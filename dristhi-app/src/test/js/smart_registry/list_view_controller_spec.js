@@ -22,8 +22,9 @@ describe("List view controller:", function () {
         });
     }));
 
-    it("should default the number of clients to show.", function () {
-        expect(scope.numberOfClientsToShow).toBe(20);
+    it("should default page size and current page.", function () {
+        expect(scope.pageSize).toBe(10);
+        expect(scope.currentPage).toBe(0);
     });
 
     describe("Reporting period:", function () {

@@ -76,12 +76,15 @@ angular.module("smartRegistry.controllers")
 
         $scope.defaultVillage = $scope.defaultVillageOptions.options[0];
         $scope.villageFilterOption = $scope.defaultVillage;
-        $scope.filterByInAreaLocationStatus = function (client, option) {
+
+        $scope.filterByInAreaLocationStatus = function (client) {
             return client.locationStatus !== "left_the_place";
         };
+
         $scope.filterByVillageName = function (client, option) {
             return client.village.toUpperCase() === option.id.toUpperCase();
         };
+
         $scope.filterByLocationStatus = function (client, option) {
             return client.locationStatus === option.id;
         };
@@ -127,14 +130,6 @@ angular.module("smartRegistry.controllers")
         $scope.closeECFormModal = function () {
             $scope.currentClientEntityId = null;
             $scope.isECFormModalOpen = false;
-        };
-
-        $scope.daysPP = function (client) {
-            return Math.floor(SmartHelper.daysBetween(new Date(Date.parse(client.deliveryDate)), $scope.getToday()));
-        };
-
-        $scope.getToday = function () {
-            return new Date();
         };
 
         $scope.openProfile = function (clientId) {

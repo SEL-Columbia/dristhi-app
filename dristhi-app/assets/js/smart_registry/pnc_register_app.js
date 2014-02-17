@@ -3,6 +3,7 @@ angular.module("smartRegistry.controllers")
         $scope.navigationBridge = new ANMNavigationBridge();
         $scope.bridge = new PNCRegistryBridge();
         $scope.client_type = "woman";
+
         $scope.getClients = function () {
             var clients = $scope.bridge.getClients();
             ANCService.preProcess(clients);
@@ -86,12 +87,15 @@ angular.module("smartRegistry.controllers")
 
         $scope.defaultVillage = $scope.defaultVillageOptions.options[0];
         $scope.villageFilterOption = $scope.defaultVillage;
-        $scope.filterByInAreaLocationStatus = function (client, option) {
+
+        $scope.filterByInAreaLocationStatus = function (client) {
             return client.locationStatus !== "left_the_place";
         };
+
         $scope.filterByVillageName = function (client, option) {
             return client.village.toUpperCase() === option.id.toUpperCase();
         };
+
         $scope.filterByLocationStatus = function (client, option) {
             return client.locationStatus === option.id;
         };

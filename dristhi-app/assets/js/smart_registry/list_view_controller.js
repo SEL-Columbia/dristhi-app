@@ -7,21 +7,23 @@ angular.module("smartRegistry.controllers")
         $scope.currentPage = 0;
         $scope.pageSize = 10;
 
-        $scope.filteredClients = $scope.clients;
-        $scope.numberOfPages = Math.round($scope.filteredClients.length / $scope.pageSize);
+        var updateClientListAndPageInformation = function (currentPage) {
+            var filteredClients = $scope.clients.filter($scope.filterList);
+            var sortedClients = $filter('orderBy')(filteredClients, $scope.sortList, $scope.sortDescending);
 
-        var updateClientListAndPageInformation = function () {
-            console.log('filter called');
-            $scope.filteredClients = $scope.clients.filter($scope.filterList);
-            $scope.currentPage = 0;
-            if ($scope.filteredClients.length === 0) {
+            $scope.currentPage = currentPage || 0;
+            if (sortedClients.length === 0) {
                 $scope.currentPage = -1;
             }
-            if ($scope.filteredClients.length > 0 && $scope.filteredClients.length <= $scope.pageSize) {
+
+            if (sortedClients.length > 0 && sortedClients.length <= $scope.pageSize) {
                 $scope.numberOfPages = 1;
             } else {
-                $scope.numberOfPages = Math.round($scope.filteredClients.length / $scope.pageSize);
+                $scope.numberOfPages = Math.round(sortedClients.length / $scope.pageSize);
             }
+
+            $scope.filteredClients = sortedClients
+                .slice($scope.currentPage * $scope.pageSize, ($scope.currentPage * $scope.pageSize) + $scope.pageSize);
         };
 
         var capitalize = function (text) {
@@ -33,6 +35,25 @@ angular.module("smartRegistry.controllers")
                 return "";
             }
             return capitalize(unformattedText).replace(/_/g, " ");
+        };
+
+        $scope.filterList = function (client) {
+            var searchCondition = true;
+            var villageCondition = true;
+            var serviceModeCondition = true;
+            var handlerMethod;
+            if ($scope.searchFilterString) {
+                searchCondition = $scope.searchCriteria(client, $scope.searchFilterString);
+            }
+            if ($scope.villageFilterOption.handler) {
+                handlerMethod = $scope[$scope.villageFilterOption.handler];
+                villageCondition = handlerMethod(client, $scope.villageFilterOption);
+            }
+            if ($scope.serviceModeOption.handler) {
+                handlerMethod = $scope[$scope.serviceModeOption.handler];
+                serviceModeCondition = handlerMethod(client, $scope.serviceModeOption.id);
+            }
+            return villageCondition && searchCondition && serviceModeCondition;
         };
 
         $scope.sort = function (option) {
@@ -84,25 +105,6 @@ angular.module("smartRegistry.controllers")
 
         $scope.villageOptions = $scope.getVillageFilterOptions();
 
-        $scope.filterList = function (client) {
-            var searchCondition = true;
-            var villageCondition = true;
-            var serviceModeCondition = true;
-            var handlerMethod;
-            if ($scope.searchFilterString) {
-                searchCondition = $scope.searchCriteria(client, $scope.searchFilterString);
-            }
-            if ($scope.villageFilterOption.handler) {
-                handlerMethod = $scope[$scope.villageFilterOption.handler];
-                villageCondition = handlerMethod(client, $scope.villageFilterOption);
-            }
-            if ($scope.serviceModeOption.handler) {
-                handlerMethod = $scope[$scope.serviceModeOption.handler];
-                serviceModeCondition = handlerMethod(client, $scope.serviceModeOption.id);
-            }
-            return villageCondition && searchCondition && serviceModeCondition;
-        };
-
         $scope.onModalOptionClick = function (option, type) {
             $scope[type](option);
             updateClientListAndPageInformation();
@@ -117,8 +119,6 @@ angular.module("smartRegistry.controllers")
         $scope.closeModal = function () {
             $scope.isModalOpen = false;
         };
-
-        $scope.numberOfClientsToShow = 20;
 
         $scope.openForm = function (formName, entityId, metaData) {
             if (!metaData) {
@@ -181,8 +181,10 @@ angular.module("smartRegistry.controllers")
         pageView.onReload(function () {
             $scope.$apply(function () {
                 $scope.clients = $scope.getClients();
-                $scope.filteredClients = $scope.clients;
                 $scope.villageOptions = $scope.getVillageFilterOptions();
+                $scope.currentPage = 0;
+
+                updateClientListAndPageInformation($scope.currentPage);
             });
         });
 
@@ -196,10 +198,10 @@ angular.module("smartRegistry.controllers")
             if (newValue === oldValue) {
                 return;
             }
-            $debounce(applySearch, 800);
+            $debounce(performSearch, 800);
         });
 
-        var applySearch = function () {
+        var performSearch = function () {
             $scope.searchFilterString = $scope.searchFilterStringInput;
             updateClientListAndPageInformation();
         };
@@ -223,4 +225,16 @@ angular.module("smartRegistry.controllers")
             $scope.contentTemplate = serviceModeOptionId;
             return true;
         };
+
+        $scope.showNextPage = function () {
+            $scope.currentPage = $scope.currentPage + 1;
+            updateClientListAndPageInformation($scope.currentPage);
+        };
+
+        $scope.showPreviousPage = function () {
+            $scope.currentPage = $scope.currentPage - 1;
+            updateClientListAndPageInformation($scope.currentPage);
+        };
+
+        updateClientListAndPageInformation();
     }]);

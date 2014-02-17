@@ -3,6 +3,7 @@ angular.module("smartRegistry.controllers")
         $scope.navigationBridge = new ANMNavigationBridge();
         $scope.bridge = new ChildRegistryBridge();
         $scope.client_type = "child";
+
         $scope.getClients = function () {
             var clients = $scope.bridge.getClients();
             ChildService.preProcess(clients);
@@ -92,7 +93,7 @@ angular.module("smartRegistry.controllers")
 
         $scope.defaultVillage = $scope.defaultVillageOptions.options[0];
         $scope.villageFilterOption = $scope.defaultVillage;
-        $scope.filterByInAreaLocationStatus = function (client, option) {
+        $scope.filterByInAreaLocationStatus = function (client) {
             return client.locationStatus !== "left_the_place";
         };
         $scope.filterByVillageName = function (client, option) {
@@ -159,14 +160,6 @@ angular.module("smartRegistry.controllers")
         $scope.closeChildFormModal = function () {
             $scope.currentClientEntityId = null;
             $scope.isChildFormModalOpen = false;
-        };
-
-        $scope.daysPP = function (client) {
-            return Math.floor(SmartHelper.daysBetween(new Date(Date.parse(client.deliveryDate)), $scope.getToday()));
-        };
-
-        $scope.getToday = function () {
-            return new Date();
         };
 
         $scope.nameOrMothers = function (client) {

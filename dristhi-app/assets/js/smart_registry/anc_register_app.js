@@ -79,12 +79,15 @@ angular.module("smartRegistry.controllers")
 
         $scope.defaultVillage = $scope.defaultVillageOptions.options[0];
         $scope.villageFilterOption = $scope.defaultVillage;
-        $scope.filterByInAreaLocationStatus = function (client, option) {
+
+        $scope.filterByInAreaLocationStatus = function (client) {
             return client.locationStatus !== "left_the_place";
         };
+
         $scope.filterByVillageName = function (client, option) {
             return client.village.toUpperCase() === option.id.toUpperCase();
         };
+
         $scope.filterByLocationStatus = function (client, option) {
             return client.locationStatus === option.id;
         };
@@ -119,6 +122,7 @@ angular.module("smartRegistry.controllers")
                 }
             ]
         };
+
         $scope.locationStatusMapping = {
             "out_of_area": 1,
             "left_the_place": 2
@@ -139,16 +143,6 @@ angular.module("smartRegistry.controllers")
             return ((client.name && client.name.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0) ||
                 (client.ec_number && client.ec_number.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0) ||
                 (client.thayi && client.thayi.toUpperCase().indexOf(searchFilterString.toUpperCase()) === 0));
-        };
-
-        $scope.ancStats = function () {
-            //var anc_visits = client.anc_visits;
-            // max is 4 and we can have gaps in between
-            // sort the keys
-            angular.forEach(values, function (value, key) {
-
-            });
-            return 4;
         };
 
         $scope.currentOptions = null;

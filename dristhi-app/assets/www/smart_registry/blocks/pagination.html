@@ -1,12 +1,12 @@
 <ul style="list-style-type: none;">
     <li style="float: left; margin: 10px;">
-        <button class="btn-large" ng-disabled="currentPage <= 0" ng-click="currentPage=currentPage-1">
+        <button class="btn-large" ng-disabled="currentPage <= 0" ng-click="showPreviousPage()">
             Previous
         </button>
     </li>
     <li style="float: left; margin: 10px;">
         <button class="btn-primary btn-large" ng-disabled="currentPage >= numberOfPages-1"
-                ng-click="currentPage=currentPage+1">Next
+                ng-click="showNextPage()">Next
         </button>
     </li>
     <li style="float: left; margin: 10px;align-content: center">
