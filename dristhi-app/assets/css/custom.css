@@ -428,7 +428,7 @@ body {
     background-color: #f2f2f2;
     font-size: 13pt;
     line-height: 18px;
-	color: #000000 !important;
+    color: #000000 !important;
 }
 
 .container-section {
@@ -680,7 +680,7 @@ body {
     border: none;
     line-height: 19px !important;
     /*box-shadow:inset 0 0px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05) !important;*/
-    box-shadow:none !important;
+    box-shadow: none !important;
     text-shadow: 0 0px 0px rgba(255, 255, 255, 0.0) !important;
 }
 
@@ -940,7 +940,7 @@ a.btn-sr.upcoming, a.btn-sr.done {
 
 .header .row-fluid [class*="span"] {
     min-height: 22px;
-	max-height: 22px;
+    max-height: 22px;
 }
 
 .row-fluid .span1.width-without-margins {
@@ -1011,7 +1011,7 @@ a.btn-sr.upcoming, a.btn-sr.done {
 
 .content-smart-registry .row-fluid [class*="span"] [class*="span"] span {
     font-size: 100%;
-	line-height: 124%;
+    line-height: 124%;
 }
 
 .content-smart-registry .row-fluid [class*="span"] [class*="span"] span.text-bigger {
@@ -1151,7 +1151,7 @@ img.pnc-child-img {
 
 .text-upper {
     text-transform: uppercase;
-	overflow: hidden;
+    overflow: hidden;
 }
 
 .btn-back {
@@ -1185,46 +1185,46 @@ img.pnc-child-img {
 }
 
 .navbar .navbar-inner .brand {
-	text-shadow: 0pt 0pt 0pt !important;
+    text-shadow: 0pt 0pt 0pt !important;
 }
 
 .navbar .nav > li > a:focus, .navbar .nav > li > a:hover {
-	color: #FFFFFF !important;
+    color: #FFFFFF !important;
 }
 
 .client-village {
-  	color: #333333 !important;
-	max-width: 130px !important;
+    color: #333333 !important;
+    max-width: 130px !important;
 }
 
 .client-age {
-  color: #333333 !important;
+    color: #333333 !important;
 }
 
 .row-fluid .offset1:first-child {
-	margin-left: 6% !important;
+    margin-left: 6% !important;
 }
 
 .btn-inverse {
-	background-color: #505050 !important;
+    background-color: #505050 !important;
 }
 
 small {
-	font-size: 100% !important;
+    font-size: 100% !important;
 }
 
 .complete, .complete:hover, .complete:focus, .btn-primary[disabled] {
-	color: #000000 !important;
-	text-shadow: 0 0 0 rgba(255, 255, 255, 0.0) !important;
+    color: #000000 !important;
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0.0) !important;
 }
 
 .client-name {
-	font-size: 19px !important;
-	max-width: 130px !important;
+    font-size: 19px !important;
+    max-width: 130px !important;
 }
 
 .btn-register {
-	height: 236px !important;
+    height: 236px !important;
 }
 
 #ec-client-list .client-village {
@@ -1236,5 +1236,56 @@ small {
 }
 
 .table-bordered th, .table-bordered td {
-background-color: #FFF !important;
+    background-color: #FFF !important;
+}
+
+.navigation-container {
+    padding-left: 40%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+ul#navigation {
+    list-style-type: none;
+    background-color: #ff0000;
+    margin: 0;
+}
+
+ul#navigation li {
+    display: block;
+    color: #FFF;
+    padding: .2em 0;
+    text-align: center;
+    text-decoration: none;
+}
+
+ul#navigation button {
+    width: 150px;
+    border: hidden;
+    background: none;
+    color: #000000;
+}
+
+ul#navigation .left {
+    padding-left: 10px;
+    float: left;
+}
+
+ul#navigation .right {
+    padding-right: 10px;
+    float: right;
+}
+
+ul#navigation .center {
+    color: #000000;
+    position: absolute;
+    padding-top: 15px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 30%;
+}
+
+ul#navigation .pages {
+    font: 12pt/1 RobotoRegular, sans-serif
 }
