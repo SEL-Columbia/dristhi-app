@@ -3,6 +3,7 @@ package org.ei.drishti.view.controller;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.util.Cache;
 import org.ei.drishti.view.contract.Village;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +24,7 @@ public class VillageControllerTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new VillageController(allEligibleCouples);
+        controller = new VillageController(allEligibleCouples, new Cache<String>());
     }
 
     @Test
