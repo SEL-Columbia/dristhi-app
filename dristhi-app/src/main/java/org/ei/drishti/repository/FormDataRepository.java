@@ -16,6 +16,7 @@ import java.util.Map;
 import static java.lang.System.currentTimeMillis;
 import static java.util.Arrays.asList;
 import static java.util.UUID.randomUUID;
+import static net.sqlcipher.DatabaseUtils.longForQuery;
 import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.domain.SyncStatus.PENDING;
 import static org.ei.drishti.domain.SyncStatus.SYNCED;
@@ -101,12 +102,9 @@ public class FormDataRepository extends DrishtiRepository {
     }
 
     public long getPendingFormSubmissionsCount() {
-        SQLiteDatabase database = masterRepository.getReadableDatabase();
-        Cursor cursor = database.query(FORM_SUBMISSION_TABLE_NAME, FORM_SUBMISSION_TABLE_COLUMNS,
-                SYNC_STATUS_COLUMN + " = ?", new String[]{PENDING.value()}, null, null, null);
-        int count = cursor.getCount();
-        cursor.close();
-        return count;
+        return longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + FORM_SUBMISSION_TABLE_NAME
+                + " WHERE " + SYNC_STATUS_COLUMN + " = ? ",
+                new String[]{PENDING.value()});
     }
 
     public void markFormSubmissionsAsSynced(List<FormSubmission> formSubmissions) {
