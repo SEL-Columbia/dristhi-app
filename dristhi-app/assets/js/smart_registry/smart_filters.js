@@ -35,6 +35,7 @@ var friendlyNameMap = {
 };
 
 var friendlyAbbrevMap = {
+    hepb: "Hep. B",
     pentavalent_1: 'Pentav. 1',
     pentavalent_2: 'Pentav. 2',
     pentavalent_3: 'Pentav. 3',
