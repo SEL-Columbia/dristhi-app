@@ -115,13 +115,6 @@ public class FormDataRepository extends DrishtiRepository {
         }
     }
 
-    public void markFormSubmissionAsSynced(String instanceId) {
-        SQLiteDatabase database = masterRepository.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(SYNC_STATUS_COLUMN, SYNCED.value());
-        database.update(FORM_SUBMISSION_TABLE_NAME, values, INSTANCE_ID_COLUMN + " = ?", new String[]{instanceId});
-    }
-
     public void updateServerVersion(String instanceId, String serverVersion) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -171,7 +164,11 @@ public class FormDataRepository extends DrishtiRepository {
         values.put(INSTANCE_COLUMN, data);
         values.put(VERSION_COLUMN, currentTimeMillis());
         values.put(FORM_DATA_DEFINITION_VERSION_COLUMN, formDataDefinitionVersion);
-        values.put(SYNC_STATUS_COLUMN, PENDING.value());
+        String syncStatus = PENDING.value();
+        if (params.containsKey(SYNC_STATUS)) {
+            syncStatus = params.get(SYNC_STATUS);
+        }
+        values.put(SYNC_STATUS_COLUMN, syncStatus);
         return values;
     }
 

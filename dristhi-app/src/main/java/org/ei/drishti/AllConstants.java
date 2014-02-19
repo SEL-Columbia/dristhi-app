@@ -27,6 +27,7 @@ public class AllConstants {
     public static final String ENTITY_ID_PARAM = "entityId";
     public static final String FIELD_OVERRIDES_PARAM = "fieldOverrides";
     public static final String VERSION_PARAM = "version";
+    public static final String SYNC_STATUS = "sync_status";
     public static final String ENTITY_ID_FIELD_NAME = "id";
     public static final String ZIGGY_FILE_LOADER = "ziggyFileLoader";
     public static final String FORM_SUBMISSION_ROUTER = "formSubmissionRouter";

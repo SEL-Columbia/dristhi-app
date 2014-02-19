@@ -92,8 +92,21 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         String instanceId = repository.saveFormSubmission(paramsJSON, new Gson().toJson(instance), "1");
 
         FormSubmission actualFormSubmission = repository.fetchFromSubmission("id 1");
-        assertEquals(new FormSubmission("id 1", "entity id 1", "form name", new Gson().toJson(instance), "some version", PENDING, "1"), actualFormSubmission);
         assertNotNull(actualFormSubmission);
+        assertEquals(new FormSubmission("id 1", "entity id 1", "form name", new Gson().toJson(instance), "some version", PENDING, "1"), actualFormSubmission);
+        assertEquals("id 1", instanceId);
+    }
+
+    public void testShouldCheckForSyncStatusWhenSavingFormSubmission() throws Exception {
+        Map<String, String> params = create("instanceId", "id 1").put("entityId", "entity id 1").put("formName", "form name").put( "sync_status", SYNCED.value()).map();
+        String paramsJSON = new Gson().toJson(params);
+
+        FormInstance instance = new FormInstance(new FormData("entity 1", "default", asList(new FormField("field1.1", "value1.1", "source1.1")), null), "1");
+        String instanceId = repository.saveFormSubmission(paramsJSON, new Gson().toJson(instance), "1");
+
+        FormSubmission actualFormSubmission = repository.fetchFromSubmission("id 1");
+        assertNotNull(actualFormSubmission);
+        assertEquals(new FormSubmission("id 1", "entity id 1", "form name", new Gson().toJson(instance), "some version", SYNCED, "1"), actualFormSubmission);
         assertEquals("id 1", instanceId);
     }
 
@@ -219,22 +232,6 @@ public class FormDataRepositoryTest extends AndroidTestCase {
         assertEquals(firstSubmission.setSyncStatus(SYNCED), repository.fetchFromSubmission("id 1"));
         assertEquals(secondSubmission.setSyncStatus(SYNCED), repository.fetchFromSubmission("id 2"));
         assertEquals(thirdSubmission, repository.fetchFromSubmission("id 3"));
-    }
-
-    public void testShouldMarkPendingFormSubmissionsAsSyncedByInstanceId() throws Exception {
-        FormSubmission firstSubmission = new FormSubmission("instance 1", "entity id 1", "form name", "", "some version", PENDING, "1");
-        FormSubmission secondSubmission = new FormSubmission("instance 2", "entity id 2", "form name", "", "some other version", PENDING, "1");
-        FormSubmission thirdSubmission = new FormSubmission("instance 3", "entity id 3", "form name", "", "some other version", PENDING, "1");
-        repository.saveFormSubmission(firstSubmission);
-        repository.saveFormSubmission(secondSubmission);
-        repository.saveFormSubmission(thirdSubmission);
-
-        repository.markFormSubmissionAsSynced("instance 1");
-        repository.markFormSubmissionAsSynced("instance 2");
-
-        assertEquals(firstSubmission.setSyncStatus(SYNCED), repository.fetchFromSubmission("instance 1"));
-        assertEquals(secondSubmission.setSyncStatus(SYNCED), repository.fetchFromSubmission("instance 2"));
-        assertEquals(thirdSubmission, repository.fetchFromSubmission("instance 3"));
     }
 
     public void testShouldUpdateServerVersionByInstanceId() throws Exception {

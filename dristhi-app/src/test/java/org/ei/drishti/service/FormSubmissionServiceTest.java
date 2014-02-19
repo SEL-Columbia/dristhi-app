@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static org.ei.drishti.domain.SyncStatus.SYNCED;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.FormSubmissionBuilder.create;
 import static org.mockito.Mockito.*;
@@ -45,20 +46,20 @@ public class FormSubmissionServiceTest {
                         .put("entityId", "entity id 1")
                         .put("formName", "form name 1")
                         .put("version", "122")
+                        .put("sync_status", SYNCED.value())
                         .map());
         String paramsForSecondSubmission = new Gson().toJson(
                 create("instanceId", "instance id 2")
                         .put("entityId", "entity id 1")
                         .put("formName", "form name 1")
+                        .put("sync_status", SYNCED.value())
                         .put("version", "123")
                         .map());
         InOrder inOrder = inOrder(ziggyService, allSettings, formDataRepository);
         inOrder.verify(ziggyService).saveForm(paramsForFirstSubmission, "{}");
-        inOrder.verify(formDataRepository).markFormSubmissionAsSynced("instance id 1");
         inOrder.verify(formDataRepository).updateServerVersion("instance id 1", "0");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("0");
         inOrder.verify(ziggyService).saveForm(paramsForSecondSubmission, "{}");
-        inOrder.verify(formDataRepository).markFormSubmissionAsSynced("instance id 2");
         inOrder.verify(formDataRepository).updateServerVersion("instance id 2", "0");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("0");
     }
@@ -78,20 +79,20 @@ public class FormSubmissionServiceTest {
                         .put("entityId", "entity id 1")
                         .put("formName", "form name 1")
                         .put("version", "122")
+                        .put("sync_status", SYNCED.value())
                         .map());
         String paramsForSecondSubmission = new Gson().toJson(
                 create("instanceId", "instance id 2")
                         .put("entityId", "entity id 1")
                         .put("formName", "form name 1")
                         .put("version", "123")
+                        .put("sync_status", SYNCED.value())
                         .map());
         InOrder inOrder = inOrder(ziggyService, allSettings, formDataRepository);
         inOrder.verify(ziggyService, times(0)).saveForm(paramsForFirstSubmission, "{}");
-        inOrder.verify(formDataRepository, times(0)).markFormSubmissionAsSynced("instance id 1");
         inOrder.verify(formDataRepository).updateServerVersion("instance id 1", "0");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("0");
         inOrder.verify(ziggyService).saveForm(paramsForSecondSubmission, "{}");
-        inOrder.verify(formDataRepository).markFormSubmissionAsSynced("instance id 2");
         inOrder.verify(formDataRepository).updateServerVersion("instance id 2", "1");
         inOrder.verify(allSettings).savePreviousFormSyncIndex("1");
     }

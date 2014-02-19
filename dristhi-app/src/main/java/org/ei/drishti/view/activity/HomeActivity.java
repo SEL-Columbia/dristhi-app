@@ -17,7 +17,6 @@ public class HomeActivity extends SecuredWebActivity {
     private Listener<Boolean> onSyncStartListener = new Listener<Boolean>() {
         @Override
         public void onEvent(Boolean data) {
-            updateRemainingFormsToSyncCount();
             updateMenuItem.setActionView(R.layout.progress);
         }
     };
@@ -25,6 +24,7 @@ public class HomeActivity extends SecuredWebActivity {
     private Listener<Boolean> onSyncCompleteListener = new Listener<Boolean>() {
         @Override
         public void onEvent(Boolean data) {
+            //#TODO: RemainingFormsToSyncCount cannot be updated from a back ground thread!!
             updateRemainingFormsToSyncCount();
             updateMenuItem.setActionView(null);
         }
@@ -33,7 +33,6 @@ public class HomeActivity extends SecuredWebActivity {
     private Listener<String> onFormSubmittedListener = new Listener<String>() {
         @Override
         public void onEvent(String instanceId) {
-            updateRemainingFormsToSyncCount();
             updateController.updateANMDetails();
         }
     };
@@ -47,6 +46,7 @@ public class HomeActivity extends SecuredWebActivity {
 
     @Override
     protected void onInitialization() {
+        pendingFormSubmissionService = context.pendingFormSubmissionService();
         SYNC_STARTED.addListener(onSyncStartListener);
         SYNC_COMPLETED.addListener(onSyncCompleteListener);
         FORM_SUBMITTED.addListener(onFormSubmittedListener);
@@ -58,8 +58,33 @@ public class HomeActivity extends SecuredWebActivity {
 
     @Override
     protected void onResumption() {
-        if (remainingFormsToSyncMenuItem != null)
-            updateRemainingFormsToSyncCount();
+        updateSyncIndicator();
+        updateRemainingFormsToSyncCount();
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        updateMenuItem = menu.findItem(R.id.updateMenuItem);
+        remainingFormsToSyncMenuItem = menu.findItem(R.id.remainingFormsToSyncMenuItem);
+
+        updateController.updateANMDetails();
+        updateSyncIndicator();
+        updateRemainingFormsToSyncCount();
+        return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        SYNC_STARTED.removeListener(onSyncStartListener);
+        SYNC_COMPLETED.removeListener(onSyncCompleteListener);
+        FORM_SUBMITTED.removeListener(onFormSubmittedListener);
+        ACTION_HANDLED.removeListener(updateANMDetailsListener);
+    }
+
+    private void updateSyncIndicator() {
         if (updateMenuItem != null) {
             if (context.allSettings().fetchIsSyncInProgress()) {
                 updateMenuItem.setActionView(R.layout.progress);
@@ -68,17 +93,11 @@ public class HomeActivity extends SecuredWebActivity {
         }
     }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        updateMenuItem = menu.findItem(R.id.updateMenuItem);
-        remainingFormsToSyncMenuItem = menu.findItem(R.id.remainingFormsToSyncMenuItem);
-        pendingFormSubmissionService = context.pendingFormSubmissionService();
-        updateRemainingFormsToSyncCount();
-        return true;
-    }
-
     private void updateRemainingFormsToSyncCount() {
+        if (remainingFormsToSyncMenuItem == null) {
+            return;
+        }
+
         long size = pendingFormSubmissionService.pendingFormSubmissionCount();
         if (size > 0) {
             remainingFormsToSyncMenuItem.setTitle(String.valueOf(size) + " " + getString(R.string.unsynced_forms_count_message));

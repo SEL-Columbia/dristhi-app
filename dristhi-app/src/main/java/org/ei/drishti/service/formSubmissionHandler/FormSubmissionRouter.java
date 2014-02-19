@@ -82,7 +82,6 @@ public class FormSubmissionRouter {
                         submission.formName(), submission.instanceId(), submission.entityId(), ExceptionUtils.getStackTrace(e)));
                 throw e;
             }
-
         }
         FORM_SUBMITTED.notifyListeners(instanceId);
     }

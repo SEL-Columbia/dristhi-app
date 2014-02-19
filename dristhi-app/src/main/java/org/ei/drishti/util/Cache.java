@@ -31,8 +31,8 @@ public class Cache<T> {
         };
         formSubmittedListener = new Listener<String>() {
             @Override
-            public void onEvent(String instanceId) {
-                logWarn(format("List cache invalidated as form with instanceId ''{0}'' was submitted.", instanceId));
+            public void onEvent(String reason) {
+                logWarn(format("List cache invalidated: {0}.", reason));
                 value.clear();
             }
         };
