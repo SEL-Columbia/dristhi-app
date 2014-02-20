@@ -15,8 +15,8 @@
             <entity_immunizations_given/>
             <entity_immunizations_received/>
             <immunizations_given/>
-            <immunization_date/>
             <immunization_place/>
+            <immunization_date/>
             <meta>
                 <instanceID/>
             </meta>
