@@ -2,12 +2,6 @@
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">ANC Close</h3>
-    <fieldset id="or-preload-items" style="display:none;">
-        <label class="non-select ">
-            <input autocomplete="off" type="hidden" name="/ANC_Close_EngKan/today" data-preload="date"
-                   data-preload-params="today" data-type-xml="date"/>
-        </label>
-    </fieldset>
 
 
     <fieldset class="question ">
@@ -443,52 +437,58 @@
         </fieldset>
     </fieldset>
 
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/ANC_Close_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Close_EngKan/num_abortions"
                    data-relevant=" /ANC_Close_EngKan/close_reason  = 'induced_abortion' or  /ANC_Close_EngKan/close_reason  = 'spontaneous_abortion'"
                    data-calculate=" /ANC_Close_EngKan/case_num_abortions  + 1" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/ANC_Close_EngKan/spontaneous_abortion_group/num_abortions_spontaneous"
                    data-calculate=" /ANC_Close_EngKan/spontaneous_abortion_group/case_num_abortions_spontaneous  + 1"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/ANC_Close_EngKan/spontaneous_abortion_group/num_weeks_spontaneous"
                    data-calculate="int(( /ANC_Close_EngKan/spontaneous_abortion_group/date_spontaneous  -  /ANC_Close_EngKan/spontaneous_abortion_group/case_lmp ) div 7)"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/ANC_Close_EngKan/spontaneous_abortion_group/threemonths_from_spont_abortion_date"
                    data-calculate="date( /ANC_Close_EngKan/spontaneous_abortion_group/date_spontaneous  + 90)"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/ANC_Close_EngKan/spontaneous_abortion_group/threemonths_from_spont_abortion_date_formatted"
                    data-calculate="format-date( /ANC_Close_EngKan/spontaneous_abortion_group/threemonths_from_spont_abortion_date , '%Y-%n-%e')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/ANC_Close_EngKan/induced_abortion_group/num_abortions_induced"
                    data-calculate=" /ANC_Close_EngKan/induced_abortion_group/case_num_abortions_induced  + 1"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Close_EngKan/rh_injection_given"
                    data-calculate="if( /ANC_Close_EngKan/close_reason  = 'spontaneous_abortion',  /ANC_Close_EngKan/spontaneous_abortion_group/rh_injection_given1 ,  /ANC_Close_EngKan/induced_abortion_group/rh_injection_given2 )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Close_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Close_EngKan/formhub/uuid"
                    data-calculate="'6ff7b8c453a448cd8a91b3545a56798b'" data-type-xml="string"/>
         </label>
