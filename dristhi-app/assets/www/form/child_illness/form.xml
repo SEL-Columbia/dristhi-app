@@ -2,12 +2,6 @@
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Child Illness</h3>
-    <fieldset id="or-preload-items" style="display:none;">
-        <label class="non-select ">
-            <input autocomplete="off" type="hidden" name="/Child_Sick_Visit_EngKan/today" data-preload="date"
-                   data-preload-params="today" data-type-xml="date"/>
-        </label>
-    </fieldset>
 
 
     <fieldset class="question ">
@@ -534,96 +528,102 @@
     </section>
     <!--end of group -->
 
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Child_Sick_Visit_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/child_age"
                    data-calculate="int(( /Child_Sick_Visit_EngKan/child_sickness_management_group/sick_visit_date  -  /Child_Sick_Visit_EngKan/child_sickness_management_group/case_child_birth_date ) div 30)"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/fast_breathing"
                    data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_age  &lt; 12 and  /Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/breaths_per_minute  &gt;= 50, 'yes', if( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_age  &gt;=12 and  /Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/breaths_per_minute  &gt;= 40, 'yes', ''))"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_cough"
                    data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/days_of_cough  &gt;= 21, 'Cough_for_21_days_or_more', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea"
                    data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_group/days_of_diarrhea  &gt;= 14, 'Diarrhea_for_14_days_or_more', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_blood_in_stool"
                    data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_group/blood_in_stool  = 'yes', 'Blood_in_stool', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever"
                    data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/fever_group/days_of_fever  &gt;= 7, 'Fever_for_7_days_or_more', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_convulsions"
                    data-calculate="if(selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'convulsions'), 'Convulsions', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_not_able_drink_feed"
                    data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/drink_feed_nothing  = 'yes', 'Not_able_to_drink_or_feed_anything', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_vomiting_everything"
                    data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/vomiting_everything  = 'yes', 'Vomiting_everything', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing"
                    data-calculate="if(selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'chest_indrawing'), 'Chest_indrawing', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_sleepy_unconscious"
                    data-calculate="if(selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'sleepy_unconscious'), 'Unusually_sleepy_or_unconscious', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_swelling_feet"
                    data-calculate="if(selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'swelling_both_feet'), 'Swelling_of_both_feet', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/immediate_referral"
                    data-calculate="if( /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_cough  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_blood_in_stool  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_convulsions  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_not_able_drink_feed  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_vomiting_everything  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_sleepy_unconscious  != '' or  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_swelling_feet  != '', 'yes', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/immediate_referral_reason"
                    data-calculate="concat( /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_cough , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_blood_in_stool , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_convulsions , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_not_able_drink_feed , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_vomiting_everything , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_sleepy_unconscious , ' ',  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_swelling_feet )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Child_Sick_Visit_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Child_Sick_Visit_EngKan/formhub/uuid"
                    data-calculate="'d0b0a9bb3bcf45119c18b76a9345c2de'" data-type-xml="string"/>
         </label>
