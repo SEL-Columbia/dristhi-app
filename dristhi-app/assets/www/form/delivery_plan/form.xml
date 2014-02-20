@@ -2,12 +2,6 @@
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Delivery Plan</h3>
-    <fieldset id="or-preload-items" style="display:none;">
-        <label class="non-select ">
-            <input autocomplete="off" type="hidden" name="/Delivery_Plan_EngKan/today" data-preload="date"
-                   data-preload-params="today" data-type-xml="date"/>
-        </label>
-    </fieldset>
 
 
     <fieldset class="question ">
@@ -967,57 +961,63 @@
         </fieldset>
     </fieldset>
 
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Delivery_Plan_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Plan_EngKan/woman_name"
                    data-calculate="concat( /Delivery_Plan_EngKan/entity_woman_name , ' ')" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Plan_EngKan/phone_no2"
                    data-relevant=" /Delivery_Plan_EngKan/entity_phone_no  != ''"
                    data-calculate="if( /Delivery_Plan_EngKan/same_phone_no  = 'no',  /Delivery_Plan_EngKan/new_phone_no ,  /Delivery_Plan_EngKan/entity_phone_no )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Plan_EngKan/phone_no"
                    data-calculate="if( /Delivery_Plan_EngKan/entity_phone_no  = '',  /Delivery_Plan_EngKan/phone_no1 ,  /Delivery_Plan_EngKan/phone_no2 )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Plan_EngKan/asha_phone_number2"
                    data-relevant=" /Delivery_Plan_EngKan/entity_asha_phone_number  != ''"
                    data-calculate="if( /Delivery_Plan_EngKan/same_asha_phone_number  = 'no',  /Delivery_Plan_EngKan/new_asha_phone_number ,  /Delivery_Plan_EngKan/entity_asha_phone_number )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Plan_EngKan/asha_phone_number"
                    data-calculate="if( /Delivery_Plan_EngKan/entity_asha_phone_number  = '',  /Delivery_Plan_EngKan/asha_phone_number1 ,  /Delivery_Plan_EngKan/asha_phone_number2 )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Plan_EngKan/reviewed_hrp_status"
                    data-calculate="if( /Delivery_Plan_EngKan/reviewed_hrp_status1  = 'yes' or  /Delivery_Plan_EngKan/reviewed_hrp_status2  = 'yes', 'yes', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Plan_EngKan/delivery_facility"
                    data-calculate="if( /Delivery_Plan_EngKan/change_delivery_facility  = 'yes',  /Delivery_Plan_EngKan/delivery_facility2 ,  /Delivery_Plan_EngKan/delivery_facility1 )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Plan_EngKan/name_delivery_facility"
                    data-calculate="if( /Delivery_Plan_EngKan/change_delivery_facility  = 'yes',  /Delivery_Plan_EngKan/name_delivery_facility2 ,  /Delivery_Plan_EngKan/name_delivery_facility1 )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Plan_EngKan/birth_planning"
                    data-calculate="&quot;yes&quot;" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Plan_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Plan_EngKan/formhub/uuid"
                    data-calculate="'18568ca14b0942bf864b89290cc80571'" data-type-xml="string"/>
         </label>
