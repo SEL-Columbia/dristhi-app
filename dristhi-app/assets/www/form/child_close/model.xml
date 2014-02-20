@@ -7,6 +7,8 @@
             <today/>
             <close_reason/>
             <death_child_group>
+                <case_num_livingchildren/>
+                <num_livingchildren/>
                 <child_death_immunization/>
                 <child_death_cause/>
                 <child_death_cause_other/>
