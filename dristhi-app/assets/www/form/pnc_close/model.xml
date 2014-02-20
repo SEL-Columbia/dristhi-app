@@ -1,5 +1,5 @@
 <model>
-    <instance xmlns="http://www.w3.org/2002/xforms">
+    <instance>
         <PNC_Close_EngKan id="PNC_Close_EngKan">
             <formhub>
                 <uuid/>

@@ -1,5 +1,5 @@
 <model>
-    <instance xmlns="http://www.w3.org/2002/xforms">
+    <instance>
         <Child_Registration_EC_EngKan id="Child_Registration_EC_EngKan">
             <formhub>
                 <uuid/>

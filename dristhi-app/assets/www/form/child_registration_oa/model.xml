@@ -1,5 +1,5 @@
 <model>
-    <instance xmlns="http://www.w3.org/2002/xforms">
+    <instance>
         <Child_Registration_EngKan id="Child_Registration_EngKan">
             <formhub>
                 <uuid/>
@@ -66,7 +66,7 @@
             </meta>
         </Child_Registration_EngKan>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="sub_centers">
+    <instance id="sub_centers">
         <root>
             <item>
                 <itextId>static_instance-sub_centers-0</itextId>
@@ -115,7 +115,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="economic_status">
+    <instance id="economic_status">
         <root>
             <item>
                 <itextId>static_instance-economic_status-0</itextId>
@@ -127,7 +127,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="immunizations">
+    <instance id="immunizations">
         <root>
             <item>
                 <itextId>static_instance-immunizations-0</itextId>
@@ -199,7 +199,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="child_sex">
+    <instance id="child_sex">
         <root>
             <item>
                 <itextId>static_instance-child_sex-0</itextId>
@@ -211,7 +211,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="blood_group">
+    <instance id="blood_group">
         <root>
             <item>
                 <itextId>static_instance-blood_group-0</itextId>
@@ -247,7 +247,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="villages">
+    <instance id="villages">
         <root>
             <item>
                 <itextId>static_instance-villages-0</itextId>
@@ -461,7 +461,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="vitamin_a">
+    <instance id="vitamin_a">
         <root>
             <item>
                 <itextId>static_instance-vitamin_a-0</itextId>
@@ -501,7 +501,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="stay">
+    <instance id="stay">
         <root>
             <item>
                 <itextId>static_instance-stay-0</itextId>
@@ -521,7 +521,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="phcs">
+    <instance id="phcs">
         <root>
             <item>
                 <itextId>static_instance-phcs-0</itextId>
@@ -533,7 +533,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="caste">
+    <instance id="caste">
         <root>
             <item>
                 <itextId>static_instance-caste-0</itextId>
@@ -549,7 +549,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="yes_no">
+    <instance id="yes_no">
         <root>
             <item>
                 <itextId>static_instance-yes_no-0</itextId>

@@ -1,5 +1,5 @@
 <model>
-    <instance xmlns="http://www.w3.org/2002/xforms">
+    <instance>
         <ANC_Registration_EngKan id="ANC_Registration_EngKan">
             <formhub>
                 <uuid/>

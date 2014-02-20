@@ -1,5 +1,5 @@
 <model>
-    <instance xmlns="http://www.w3.org/2002/xforms">
+    <instance>
         <PNC_Child_Registration_EngKan id="PNC_Child_Registration_EngKan">
             <formhub>
                 <uuid/>
@@ -56,7 +56,7 @@
             </meta>
         </PNC_Child_Registration_EngKan>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="delivery_outcome">
+    <instance id="delivery_outcome">
         <root>
             <item>
                 <itextId>static_instance-delivery_outcome-0</itextId>
@@ -68,7 +68,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="place_delivery">
+    <instance id="place_delivery">
         <root>
             <item>
                 <itextId>static_instance-place_delivery-0</itextId>
@@ -100,7 +100,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="economic_status">
+    <instance id="economic_status">
         <root>
             <item>
                 <itextId>static_instance-economic_status-0</itextId>
@@ -112,7 +112,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="immunizations">
+    <instance id="immunizations">
         <root>
             <item>
                 <itextId>static_instance-immunizations-0</itextId>
@@ -128,7 +128,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="sub_centers">
+    <instance id="sub_centers">
         <root>
             <item>
                 <itextId>static_instance-sub_centers-0</itextId>
@@ -177,7 +177,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="child_sex">
+    <instance id="child_sex">
         <root>
             <item>
                 <itextId>static_instance-child_sex-0</itextId>
@@ -189,7 +189,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="blood_group">
+    <instance id="blood_group">
         <root>
             <item>
                 <itextId>static_instance-blood_group-0</itextId>
@@ -225,7 +225,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="type_delivery">
+    <instance id="type_delivery">
         <root>
             <item>
                 <itextId>static_instance-type_delivery-0</itextId>
@@ -241,7 +241,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="phone_owner">
+    <instance id="phone_owner">
         <root>
             <item>
                 <itextId>static_instance-phone_owner-0</itextId>
@@ -265,7 +265,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="still_birth_cause">
+    <instance id="still_birth_cause">
         <root>
             <item>
                 <itextId>static_instance-still_birth_cause-0</itextId>
@@ -297,7 +297,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="stay">
+    <instance id="stay">
         <root>
             <item>
                 <itextId>static_instance-stay-0</itextId>
@@ -317,7 +317,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="delivery_complications">
+    <instance id="delivery_complications">
         <root>
             <item>
                 <itextId>static_instance-delivery_complications-0</itextId>
@@ -349,7 +349,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="phcs">
+    <instance id="phcs">
         <root>
             <item>
                 <itextId>static_instance-phcs-0</itextId>
@@ -361,7 +361,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="villages">
+    <instance id="villages">
         <root>
             <item>
                 <itextId>static_instance-villages-0</itextId>
@@ -575,7 +575,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="w_caste">
+    <instance id="w_caste">
         <root>
             <item>
                 <itextId>static_instance-w_caste-0</itextId>
@@ -591,7 +591,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="yes_no">
+    <instance id="yes_no">
         <root>
             <item>
                 <itextId>static_instance-yes_no-0</itextId>

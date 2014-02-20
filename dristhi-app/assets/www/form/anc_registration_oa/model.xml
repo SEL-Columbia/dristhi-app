@@ -1,5 +1,5 @@
 <model>
-    <instance xmlns="http://www.w3.org/2002/xforms">
+    <instance>
         <ANC_Registration_OA_EngKan id="ANC_Registration_OA_EngKan">
             <formhub>
                 <uuid/>
@@ -75,7 +75,7 @@
             </meta>
         </ANC_Registration_OA_EngKan>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="tobacco_user">
+    <instance id="tobacco_user">
         <root>
             <item>
                 <itextId>static_instance-tobacco_user-0</itextId>
@@ -91,7 +91,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="sub_centers">
+    <instance id="sub_centers">
         <root>
             <item>
                 <itextId>static_instance-sub_centers-0</itextId>
@@ -140,7 +140,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="economic_status">
+    <instance id="economic_status">
         <root>
             <item>
                 <itextId>static_instance-economic_status-0</itextId>
@@ -152,7 +152,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="prevpreg_complication">
+    <instance id="prevpreg_complication">
         <root>
             <item>
                 <itextId>static_instance-prevpreg_complication-0</itextId>
@@ -196,7 +196,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="villages">
+    <instance id="villages">
         <root>
             <item>
                 <itextId>static_instance-villages-0</itextId>
@@ -410,7 +410,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="w_caste">
+    <instance id="w_caste">
         <root>
             <item>
                 <itextId>static_instance-w_caste-0</itextId>
@@ -426,7 +426,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="medical_history">
+    <instance id="medical_history">
         <root>
             <item>
                 <itextId>static_instance-medical_history-0</itextId>
@@ -446,7 +446,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="phcs">
+    <instance id="phcs">
         <root>
             <item>
                 <itextId>static_instance-phcs-0</itextId>
@@ -458,7 +458,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="blood_groups">
+    <instance id="blood_groups">
         <root>
             <item>
                 <itextId>static_instance-blood_groups-0</itextId>
@@ -494,7 +494,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="phone_owner">
+    <instance id="phone_owner">
         <root>
             <item>
                 <itextId>static_instance-phone_owner-0</itextId>
@@ -518,7 +518,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="yes_no">
+    <instance id="yes_no">
         <root>
             <item>
                 <itextId>static_instance-yes_no-0</itextId>

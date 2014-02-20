@@ -1,5 +1,5 @@
 <model>
-    <instance xmlns="http://www.w3.org/2002/xforms">
+    <instance>
         <TTBooster_EngKan id="TTBooster_EngKan">
             <formhub>
                 <uuid/>

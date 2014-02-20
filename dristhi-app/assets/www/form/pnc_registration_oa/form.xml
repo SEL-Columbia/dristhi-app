@@ -1,511 +1,581 @@
-<form class="jr" autocomplete="off" id="PNC_Child_Registration_EngKan">
+<form autocomplete="off" novalidate="novalidate" class="or clearfix" id="PNC_Child_Registration_EngKan">
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">PNC Registration - Out of Area</h3>
     <select id="form-languages" style="display:none;" data-default-lang="default">
         <option value="default">default</option>
     </select>
-    <fieldset id="jr-preload-items" style="display:none;">
-        <label class="">
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/today" data-preload="date"
                    data-preload-params="today" data-type-xml="date"/>
         </label>
     </fieldset>
 
 
-    <label class="">
-        <span lang="" class=" active">Registration date? &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCBE;&#xCA4;&#xCBF;&#xCAF;
+    <label class="question non-select ">
+        <span lang="" class="question-label active">Registration date? &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCBE;&#xCA4;&#xCBF;&#xCAF;
             &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/PNC_Child_Registration_EngKan/pnc_reg_date" required="required"
                data-constraint=".&lt;= /PNC_Child_Registration_EngKan/today " data-type-xml="date"/>
     </label>
-    <fieldset class="restoring-sanity-to-legends ">
+    <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">PHC, &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;:
+                <span lang="" class="question-label active">PHC, &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
+                    &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;:
                 </span>
                 <span class="required">*</span>
             </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phc" value="bherya"
-                       required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Bherya &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phc" value="keelanapura"
-                       required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Keelanapura &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
-            </label>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phc"
+                           data-name="/PNC_Child_Registration_EngKan/phc" value="bherya" required="required"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Bherya &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phc"
+                           data-name="/PNC_Child_Registration_EngKan/phc" value="keelanapura" required="required"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Keelanapura &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
+                </label>
+            </div>
         </fieldset>
     </fieldset>
-    <fieldset class="restoring-sanity-to-legends ">
+    <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Sub Center, &#xC89;&#xCAA; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;:
+                <span lang="" class="question-label active">Sub Center, &#xC89;&#xCAA; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;:</span>
+                <span class="required">*</span>
+            </legend>
+            <div class="option-wrapper">
+                <label class="itemset-template"
+                       data-items-path="instance('sub_centers')/root/item[phc= /PNC_Child_Registration_EngKan/phc ]">
+                    <input type="radio" name="/PNC_Child_Registration_EngKan/sub_center"
+                           data-name="/PNC_Child_Registration_EngKan/sub_center" required="required"
+                           data-type-xml="select1" value=""/>
+                </label>
+                <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-0">Bherya - A
+                        &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF; -&#xC8E;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-1">Bherya - B
+                        &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF; -&#xCAC;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-2">Hosa Agrahara
+                        &#xCB9;&#xCCA;&#xCB8; &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-3">Munjanahalli
+                        &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-4">G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;.
+                        &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-5">Vajamangala
+                        &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-6">Keelanapura - A
+                        &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xC8E;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-7">Keelanapura - B
+                        &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xCAC;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-8">Puttegowdanahundi
+                        &#xCAA;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
                 </span>
-                <span class="required">*</span>
-            </legend>
-            <label class="itemset-template"
-                   data-items-path="instance('sub_centers')/root/item[phc= /PNC_Child_Registration_EngKan/phc ]">
-                <input type="radio" name="/PNC_Child_Registration_EngKan/sub_center" required="required"
-                       data-type-xml="select1" value=""/>
-            </label>
-            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
-                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-0">Bherya - A &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;
-                    -&#xC8E;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-1">Bherya - B &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;
-                    -&#xCAC;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-2">Hosa Agrahara &#xCB9;&#xCCA;&#xCB8;
-                    &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-3">Munjanahalli &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-4">G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;.
-                    &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-5">Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-6">Keelanapura - A
-                    &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xC8E;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-7">Keelanapura - B
-                    &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xCAC;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-8">Puttegowdanahundi
-                    &#xCAA;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
-            </span>
+            </div>
         </fieldset>
     </fieldset>
-    <fieldset class="restoring-sanity-to-legends ">
+    <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Village, &#xC97;&#xCCD;&#xCB0;&#xCBE;&#xCAE;:</span>
+                <span lang="" class="question-label active">Village, &#xC97;&#xCCD;&#xCB0;&#xCBE;&#xCAE;:</span>
                 <span class="required">*</span>
             </legend>
-            <label class="itemset-template"
-                   data-items-path="instance('villages')/root/item[phc= /PNC_Child_Registration_EngKan/phc  and sub_center= /PNC_Child_Registration_EngKan/sub_center ]">
-                <input type="radio" name="/PNC_Child_Registration_EngKan/village" required="required"
-                       data-type-xml="select1" value=""/>
-            </label>
-            <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-0">Basavanapura &#xCAC;&#xCB8;&#xCB5;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-1">Somanahalli Colony
-                    &#xCB8;&#xCCB;&#xCAE;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF; &#xC95;&#xCBE;&#xCB2;&#xCCB;&#xCA8;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-2">Sambaravalli &#xCB6;&#xC82;&#xCAC;&#xCB0;&#xCB5;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-3">Geradada &#xC97;&#xCC7;&#xCB0;&#xCCD;&#x200D;&#xCA6;&#xCA1;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-4">Ardha Bherya &#xC85;&#xCB0;&#xCCD;&#xCA7;
-                    &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-5">Sugganahalli &#xCB8;&#xCC1;&#xC97;&#xCCD;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-6">Battiganahalli &#xCAC;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-7">Half Bherya &#xCB9;&#xCBE;&#xCAB;&#xCCD;
-                    &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-8">Hosa Agrahara &#xCB9;&#xCCA;&#xCB8;
-                    &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-9">Mandiganahalli &#xCAE;&#xC82;&#xCA1;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-10">Harambanahalli &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-11">Harambanahalli Koppalu
-                    &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-12">Boregowdanakoppalu
-                    &#xCAC;&#xCCB;&#xCB0;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-13">Munjanahalli &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-14">Kavalu Hosur &#xC95;&#xCBE;&#xCB5;&#xCB2;&#xCC1;
-                    &#xCB9;&#xCCA;&#xCB8;&#xCC2;&#xCB0;&#xCC1;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-15">Chikkabherya &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-16">G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;.
-                    &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-17">Udayagiri &#xC89;&#xCA6;&#xCAF;&#xC97;&#xCBF;&#xCB0;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-18">Arakere &#xC85;&#xCB0;&#xC95;&#xCC6;&#xCB0;&#xCC6;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-19">Chikkahalli &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-20">Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-21">Halagayanahundi &#xCB9;&#xCB2;&#xC97;&#xCAF;&#xCCD;&#xCAF;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-22">Keelanapura &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-23">M.C.Hundi &#xC8E;&#xC82;.&#xCB8;&#xCBF;.
-                    &#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-24">Inam Uttanahalli
-                    &#xC87;&#xCA8;&#xCBE;&#xC82;
-                    &#xC89;&#xCA4;&#xCCD;&#xCA4;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-25">Megalapura &#xCAE;&#xCC7;&#xC98;&#xCB2;&#xCAA;&#xCC1;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-26">Madhavagere &#xCAE;&#xCBE;&#xCA6;&#xCB5;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-27">Hosahalli &#xCB9;&#xCCA;&#xCB8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-28">Gurukarapura &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xC95;&#xCBE;&#xCB0;&#xCAA;&#xCC1;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-29">Puttegowdanahundi
-                    &#xCAA;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-30">Lakshmipura &#xCB2;&#xC95;&#xCCD;&#xCB7;&#xCCD;&#xCAE;&#xCC0;&#xCAA;&#xCC1;&#xCB0;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-31">Mahadevi Colony &#xCAE;&#xCBE;&#xCB9;&#xCA6;&#xCC7;&#xCB5;&#xCBF;
-                    &#xC95;&#xCBE;&#xCB2;&#xCCB;&#xCA8;&#xCBF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-32">Duddagere &#xCA6;&#xCC1;&#xCA6;&#xCCD;&#xCA6;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-33">Chattanahallipalya
-                    &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;&#xCAA;&#xCBE;&#xCB3;&#xCCD;&#xCAF;</span>
-                <span lang="default" class=" active" data-itext-id="static_instance-villages-34">Chattanahalli &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-            </span>
+            <div class="option-wrapper">
+                <label class="itemset-template"
+                       data-items-path="instance('villages')/root/item[phc= /PNC_Child_Registration_EngKan/phc  and sub_center= /PNC_Child_Registration_EngKan/sub_center ]">
+                    <input type="radio" name="/PNC_Child_Registration_EngKan/village"
+                           data-name="/PNC_Child_Registration_EngKan/village" required="required"
+                           data-type-xml="select1" value=""/>
+                </label>
+                <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-0">Basavanapura &#xCAC;&#xCB8;&#xCB5;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-1">Somanahalli Colony
+                        &#xCB8;&#xCCB;&#xCAE;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF; &#xC95;&#xCBE;&#xCB2;&#xCCB;&#xCA8;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-2">Sambaravalli &#xCB6;&#xC82;&#xCAC;&#xCB0;&#xCB5;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-3">Geradada &#xC97;&#xCC7;&#xCB0;&#xCCD;&#x200D;&#xCA6;&#xCA1;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-4">Ardha Bherya &#xC85;&#xCB0;&#xCCD;&#xCA7;
+                        &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-5">Sugganahalli &#xCB8;&#xCC1;&#xC97;&#xCCD;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-6">Battiganahalli
+                        &#xCAC;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-7">Half Bherya &#xCB9;&#xCBE;&#xCAB;&#xCCD;
+                        &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-8">Hosa Agrahara
+                        &#xCB9;&#xCCA;&#xCB8; &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-9">Mandiganahalli
+                        &#xCAE;&#xC82;&#xCA1;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-10">Harambanahalli
+                        &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-11">Harambanahalli
+                        Koppalu &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-12">Boregowdanakoppalu
+                        &#xCAC;&#xCCB;&#xCB0;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-13">Munjanahalli
+                        &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-14">Kavalu Hosur
+                        &#xC95;&#xCBE;&#xCB5;&#xCB2;&#xCC1; &#xCB9;&#xCCA;&#xCB8;&#xCC2;&#xCB0;&#xCC1;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-15">Chikkabherya
+                        &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-16">G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;.
+                        &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-17">Udayagiri &#xC89;&#xCA6;&#xCAF;&#xC97;&#xCBF;&#xCB0;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-18">Arakere &#xC85;&#xCB0;&#xC95;&#xCC6;&#xCB0;&#xCC6;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-19">Chikkahalli &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-20">Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-21">Halagayanahundi
+                        &#xCB9;&#xCB2;&#xC97;&#xCAF;&#xCCD;&#xCAF;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-22">Keelanapura &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-23">M.C.Hundi &#xC8E;&#xC82;.&#xCB8;&#xCBF;.
+                        &#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-24">Inam Uttanahalli
+                        &#xC87;&#xCA8;&#xCBE;&#xC82; &#xC89;&#xCA4;&#xCCD;&#xCA4;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-25">Megalapura &#xCAE;&#xCC7;&#xC98;&#xCB2;&#xCAA;&#xCC1;&#xCB0;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-26">Madhavagere &#xCAE;&#xCBE;&#xCA6;&#xCB5;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-27">Hosahalli &#xCB9;&#xCCA;&#xCB8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-28">Gurukarapura
+                        &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xC95;&#xCBE;&#xCB0;&#xCAA;&#xCC1;&#xCB0;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-29">Puttegowdanahundi
+                        &#xCAA;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-30">Lakshmipura &#xCB2;&#xC95;&#xCCD;&#xCB7;&#xCCD;&#xCAE;&#xCC0;&#xCAA;&#xCC1;&#xCB0;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-31">Mahadevi Colony
+                        &#xCAE;&#xCBE;&#xCB9;&#xCA6;&#xCC7;&#xCB5;&#xCBF;
+                        &#xC95;&#xCBE;&#xCB2;&#xCCB;&#xCA8;&#xCBF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-32">Duddagere &#xCA6;&#xCC1;&#xCA6;&#xCCD;&#xCA6;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-33">Chattanahallipalya
+                        &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;&#xCAA;&#xCBE;&#xCB3;&#xCCD;&#xCAF;</span>
+                    <span lang="default" class=" active" data-itext-id="static_instance-villages-34">Chattanahalli
+                        &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                </span>
+            </div>
         </fieldset>
     </fieldset>
-    <label class="">
-        <span lang="" class=" active">Household address, &#xCAE;&#xCA8;&#xCC6; &#xCB5;&#xCBF;&#xCB3;&#xCBE;&#xCB8;:
-        </span>
+    <label class="question non-select ">
+        <span lang="" class="question-label active">Household address, &#xCAE;&#xCA8;&#xCC6; &#xCB5;&#xCBF;&#xCB3;&#xCBE;&#xCB8;:</span>
         <input autocomplete="off" type="text" name="/PNC_Child_Registration_EngKan/hh_address" data-type-xml="string"/>
     </label>
-    <label class="">
-        <span lang="" class=" active">Woman's name, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;:</span>
+    <label class="question non-select ">
+        <span lang="" class="question-label active">Woman's name, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;:</span>
         <span class="required">*</span>
         <input autocomplete="off" type="text" name="/PNC_Child_Registration_EngKan/woman_name" required="required"
                data-type-xml="string"/>
     </label>
-    <label class="">
-        <span lang="" class=" active">Woman's age, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;:</span>
+    <label class="question non-select ">
+        <span lang="" class="question-label active">Woman's age, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;:</span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/PNC_Child_Registration_EngKan/woman_age" required="required"
                data-constraint=".&gt;=15 and .&lt;=49" data-type-xml="int"/>
     </label>
-    <label class="">
-        <span lang="" class=" active">Thayi card number, &#xCA4;&#xCBE;&#xCAF;&#xCBF; &#xC95;&#xCBE;&#xCB0;&#xCCD;&#xCA1;&#xCCD;
+    <label class="question non-select ">
+        <span lang="" class="question-label active">Thayi card number, &#xCA4;&#xCBE;&#xCAF;&#xCBF; &#xC95;&#xCBE;&#xCB0;&#xCCD;&#xCA1;&#xCCD;
             &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;:
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/PNC_Child_Registration_EngKan/thayi_card_number"
                required="required" data-constraint=".&gt; 999999 and .&lt; 10000000" data-type-xml="int"/>
     </label>
-    <label class="">
-        <span lang="" class=" active">Woman's Aadhaar number, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xC86;&#xCA7;&#xCBE;&#xCB0;&#xCCD;
-            &#xC95;&#xCBE;&#xCB0;&#xCCD;&#xCA1;&#xCCD; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;:
+    <label class="question non-select ">
+        <span lang="" class="question-label active">Woman's Aadhaar number, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;
+            &#xC86;&#xCA7;&#xCBE;&#xCB0;&#xCCD; &#xC95;&#xCBE;&#xCB0;&#xCCD;&#xCA1;&#xCCD; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;:
         </span>
         <input autocomplete="off" type="number" name="/PNC_Child_Registration_EngKan/aadhaar_number"
                data-constraint=".&gt; 99999999999 and .&lt; 1000000000000" data-type-xml="int"/>
     </label>
-    <label class="">
-        <span lang="" class=" active">Husband's name, &#xC97;&#xC82;&#xCA1;&#xCA8;
-            &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;:
-        </span>
+    <label class="question non-select ">
+        <span lang="" class="question-label active">Husband's name, &#xC97;&#xC82;&#xCA1;&#xCA8; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;:</span>
         <span class="required">*</span>
         <input autocomplete="off" type="text" name="/PNC_Child_Registration_EngKan/husband_name" required="required"
                data-type-xml="string"/>
     </label>
-    <label class="">
-        <span lang="" class=" active">Contact phone number? &#xCB8;&#xC82;&#xCAA;&#xCB0;&#xCCD;&#xC95;&#xCBF;&#xCB8;&#xCAC;&#xCC7;&#xC95;&#xCBE;&#xCA6;
+    <label class="question non-select ">
+        <span lang="" class="question-label active">Contact phone number? &#xCB8;&#xC82;&#xCAA;&#xCB0;&#xCCD;&#xC95;&#xCBF;&#xCB8;&#xCAC;&#xCC7;&#xC95;&#xCBE;&#xCA6;
             &#xCAE;&#xCCB;&#xCAC;&#xCC8;&#xCB2;&#xCCD; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;?
         </span>
         <input autocomplete="off" type="number" name="/PNC_Child_Registration_EngKan/phone_no"
                data-constraint=".&gt; 999999999 and .&lt; 10000000000" data-type-xml="int"/>
     </label>
-    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
+    <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Who owns this phone? &#xC88; &#xCAE;&#xCCB;&#xCAC;&#xCC8;&#xCB2;&#xCCD;
+                <span lang="" class="question-label active">Who owns this phone? &#xC88; &#xCAE;&#xCCB;&#xCAC;&#xCC8;&#xCB2;&#xCCD;
                     &#xCAF;&#xCBE;&#xCB0;&#xCA6;&#xCC1;?
                 </span>
             </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phone_owner"
-                       value="woman_self" data-relevant=" /PNC_Child_Registration_EngKan/phone_no  != ''"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Woman (Self) &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6; (&#xCB8;&#xCCD;&#xCB5;&#xC82;&#xCA4;)</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phone_owner" value="parent"
-                       data-relevant=" /PNC_Child_Registration_EngKan/phone_no  != ''" data-type-xml="select1"/>
-                <span lang="" class=" active">Parent &#xCAA;&#xCCB;&#xCB7;&#xC95;&#xCB0;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phone_owner"
-                       value="relative" data-relevant=" /PNC_Child_Registration_EngKan/phone_no  != ''"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Relative
-                    &#xCB8;&#xC82;&#xCAC;&#xC82;&#xCA7;&#xCBF;&#xC95;&#xCB0;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phone_owner"
-                       value="neighbor" data-relevant=" /PNC_Child_Registration_EngKan/phone_no  != ''"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Neighbor &#xCA8;&#xCC6;&#xCB0;&#xCC6;-&#xCB9;&#xCCA;&#xCB0;&#xCC6;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phone_owner" value="others"
-                       data-relevant=" /PNC_Child_Registration_EngKan/phone_no  != ''" data-type-xml="select1"/>
-                <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
-            </label>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phone_owner"
+                           data-name="/PNC_Child_Registration_EngKan/phone_owner" value="woman_self"
+                           data-relevant=" /PNC_Child_Registration_EngKan/phone_no  != ''" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Woman (Self) &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6; (&#xCB8;&#xCCD;&#xCB5;&#xC82;&#xCA4;)</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phone_owner"
+                           data-name="/PNC_Child_Registration_EngKan/phone_owner" value="parent"
+                           data-relevant=" /PNC_Child_Registration_EngKan/phone_no  != ''" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Parent &#xCAA;&#xCCB;&#xCB7;&#xC95;&#xCB0;&#xCC1;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phone_owner"
+                           data-name="/PNC_Child_Registration_EngKan/phone_owner" value="relative"
+                           data-relevant=" /PNC_Child_Registration_EngKan/phone_no  != ''" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Relative &#xCB8;&#xC82;&#xCAC;&#xC82;&#xCA7;&#xCBF;&#xC95;&#xCB0;&#xCC1;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phone_owner"
+                           data-name="/PNC_Child_Registration_EngKan/phone_owner" value="neighbor"
+                           data-relevant=" /PNC_Child_Registration_EngKan/phone_no  != ''" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Neighbor &#xCA8;&#xCC6;&#xCB0;&#xCC6;-&#xCB9;&#xCCA;&#xCB0;&#xCC6;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phone_owner"
+                           data-name="/PNC_Child_Registration_EngKan/phone_owner" value="others"
+                           data-relevant=" /PNC_Child_Registration_EngKan/phone_no  != ''" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
+                </label>
+            </div>
         </fieldset>
     </fieldset>
-    <fieldset class="restoring-sanity-to-legends ">
+    <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Economic status, &#xC86;&#xCB0;&#xCCD;&#xCA5;&#xCBF;&#xC95; &#xCB8;&#xCCD;&#xCA5;&#xCBF;&#xCA4;&#xCBF;:</span>
+                <span lang="" class="question-label active">Economic status, &#xC86;&#xCB0;&#xCCD;&#xCA5;&#xCBF;&#xC95;
+                    &#xCB8;&#xCCD;&#xCA5;&#xCBF;&#xCA4;&#xCBF;:
+                </span>
             </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/economic_status" value="apl"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">APL &#xC8E;.&#xCAA;&#xCBF;.&#xC8E;&#xCB2;&#xCCD;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/economic_status" value="bpl"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">BPL &#xCAC;&#xCBF;.&#xCAA;&#xCBF;.&#xC8E;&#xCB2;&#xCCD;</span>
-            </label>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/economic_status"
+                           data-name="/PNC_Child_Registration_EngKan/economic_status" value="apl"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">APL &#xC8E;.&#xCAA;&#xCBF;.&#xC8E;&#xCB2;&#xCCD;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/economic_status"
+                           data-name="/PNC_Child_Registration_EngKan/economic_status" value="bpl"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">BPL
+                        &#xCAC;&#xCBF;.&#xCAA;&#xCBF;.&#xC8E;&#xCB2;&#xCCD;</span>
+                </label>
+            </div>
         </fieldset>
     </fieldset>
-    <label class="jr-branch pre-init ">
-        <span lang="" class=" active">BPL card number, &#xCAC;&#xCBF;.&#xCAA;&#xCBF;.&#xC8E;&#xCB2;&#xCCD; &#xC95;&#xCBE;&#xCB0;&#xCCD;&#xCA1;&#xCCD;
-            &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;:
+    <label class="question or-branch pre-init non-select ">
+        <span lang="" class="question-label active">BPL card number, &#xCAC;&#xCBF;.&#xCAA;&#xCBF;.&#xC8E;&#xCB2;&#xCCD;
+            &#xC95;&#xCBE;&#xCB0;&#xCCD;&#xCA1;&#xCCD; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;:
         </span>
         <input autocomplete="off" type="text" name="/PNC_Child_Registration_EngKan/bpl_card_number"
                data-relevant=" /PNC_Child_Registration_EngKan/economic_status  = 'bpl'" data-type-xml="string"/>
     </label>
-    <fieldset class="restoring-sanity-to-legends ">
+    <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Caste, &#xC9C;&#xCBE;&#xCA4;&#xCBF;:</span>
+                <span lang="" class="question-label active">Caste, &#xC9C;&#xCBE;&#xCA4;&#xCBF;:</span>
             </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/caste" value="sc"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">SC &#xCAA;&#xCB0;&#xCBF;&#xCB6;&#xCBF;&#xCB7;&#xCCD;&#xC9F; &#xC9C;&#xCBE;&#xCA4;&#xCBF;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/caste" value="st"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">ST &#xCAA;&#xCB0;&#xCBF;&#xCB6;&#xCBF;&#xCB7;&#xCCD;&#xC9F; &#xCAA;&#xC82;&#xC97;&#xCA1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/caste" value="c_others"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
-            </label>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/caste"
+                           data-name="/PNC_Child_Registration_EngKan/caste" value="sc" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">SC &#xCAA;&#xCB0;&#xCBF;&#xCB6;&#xCBF;&#xCB7;&#xCCD;&#xC9F;
+                        &#xC9C;&#xCBE;&#xCA4;&#xCBF;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/caste"
+                           data-name="/PNC_Child_Registration_EngKan/caste" value="st" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">ST &#xCAA;&#xCB0;&#xCBF;&#xCB6;&#xCBF;&#xCB7;&#xCCD;&#xC9F;
+                        &#xCAA;&#xC82;&#xC97;&#xCA1;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/caste"
+                           data-name="/PNC_Child_Registration_EngKan/caste" value="c_others" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
+                </label>
+            </div>
         </fieldset>
     </fieldset>
-    <label class="">
-        <span lang="" class=" active">Delivery date? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
+    <label class="question non-select ">
+        <span lang="" class="question-label active">Delivery date? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/PNC_Child_Registration_EngKan/delivery_date" required="required"
                data-constraint=".&lt;= /PNC_Child_Registration_EngKan/today " data-type-xml="date"/>
     </label>
-    <fieldset class="restoring-sanity-to-legends ">
+    <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Place of delivery? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xCAF;&#xCBE;&#xCA6;
+                <span lang="" class="question-label active">Place of delivery? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xCAF;&#xCBE;&#xCA6;
                     &#xCB8;&#xCCD;&#xCA5;&#xCB3;?
                 </span>
                 <span class="required">*</span>
             </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/place_delivery" value="home"
-                       required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Home &#xCAE;&#xCA8;&#xCC6;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/place_delivery"
-                       value="subcenter" required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Sub Center &#xC89;&#xCAA;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/place_delivery" value="phc"
-                       required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/place_delivery" value="chc"
-                       required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">CHC &#xCB8;&#xCAE;&#xCC1;&#xCA6;&#xCBE;&#xCAF; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
-                    &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/place_delivery" value="sdh"
-                       required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">SDH &#xC89;&#xCAA; &#xC9C;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCBE; &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/place_delivery" value="dh"
-                       required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">DH &#xC9C;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCBE; &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/place_delivery"
-                       value="private_facility" required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Private &#xC96;&#xCBE;&#xCB8;&#xC97;&#xCBF;</span>
-            </label>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/place_delivery"
+                           data-name="/PNC_Child_Registration_EngKan/place_delivery" value="home" required="required"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Home &#xCAE;&#xCA8;&#xCC6;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/place_delivery"
+                           data-name="/PNC_Child_Registration_EngKan/place_delivery" value="subcenter"
+                           required="required" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Sub Center &#xC89;&#xCAA; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/place_delivery"
+                           data-name="/PNC_Child_Registration_EngKan/place_delivery" value="phc" required="required"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
+                        &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/place_delivery"
+                           data-name="/PNC_Child_Registration_EngKan/place_delivery" value="chc" required="required"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">CHC &#xCB8;&#xCAE;&#xCC1;&#xCA6;&#xCBE;&#xCAF; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
+                        &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/place_delivery"
+                           data-name="/PNC_Child_Registration_EngKan/place_delivery" value="sdh" required="required"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">SDH &#xC89;&#xCAA; &#xC9C;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCBE;
+                        &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/place_delivery"
+                           data-name="/PNC_Child_Registration_EngKan/place_delivery" value="dh" required="required"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">DH &#xC9C;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCBE; &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/place_delivery"
+                           data-name="/PNC_Child_Registration_EngKan/place_delivery" value="private_facility"
+                           required="required" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Private &#xC96;&#xCBE;&#xCB8;&#xC97;&#xCBF;</span>
+                </label>
+            </div>
         </fieldset>
     </fieldset>
-    <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Name of delivery place? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xCAF;&#xCBE;&#xCA6;
+    <label class="question or-branch pre-init non-select ">
+        <span lang="" class="question-label active">Name of delivery place? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xCAF;&#xCBE;&#xCA6;
             &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCA6; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?
         </span>
         <input autocomplete="off" type="text" name="/PNC_Child_Registration_EngKan/name_delivery_facility"
                data-relevant=" /PNC_Child_Registration_EngKan/place_delivery  != 'home'" data-type-xml="string"/>
     </label>
-    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
+    <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Delivery attended by SBA?
+                <span lang="" class="question-label active">Delivery attended by SBA?
                     SBA &#xCAF;&#xCB5;&#xCB0;&#xCC1; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCAE;&#xCBE;&#xCA1;&#xCBF;&#xCA6;&#xCB0;&#xCC6;?
                 </span>
                 <span class="required">*</span>
             </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/skilled_delivery"
-                       value="yes" required="required"
-                       data-relevant=" /PNC_Child_Registration_EngKan/place_delivery  = 'home'"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/skilled_delivery" value="no"
-                       required="required" data-relevant=" /PNC_Child_Registration_EngKan/place_delivery  = 'home'"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-            </label>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/skilled_delivery"
+                           data-name="/PNC_Child_Registration_EngKan/skilled_delivery" value="yes" required="required"
+                           data-relevant=" /PNC_Child_Registration_EngKan/place_delivery  = 'home'"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/skilled_delivery"
+                           data-name="/PNC_Child_Registration_EngKan/skilled_delivery" value="no" required="required"
+                           data-relevant=" /PNC_Child_Registration_EngKan/place_delivery  = 'home'"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+                </label>
+            </div>
         </fieldset>
     </fieldset>
-    <fieldset class="restoring-sanity-to-legends ">
+    <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Type of delivery? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xCAF;
+                <span lang="" class="question-label active">Type of delivery? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xCAF;
                     &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;?
                 </span>
             </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/type_delivery"
-                       value="normal" data-type-xml="select1"/>
-                <span lang="" class=" active">Normal &#xCB8;&#xCBE;&#xCAE;&#xCBE;&#xCA8;&#xCCD;&#xCAF;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/type_delivery"
-                       value="cesarean" data-type-xml="select1"/>
-                <span lang="" class=" active">Cesarean
-                    &#xCB8;&#xCBF;&#xCB8;&#xCC7;&#xCB0;&#xCBF;&#xCAF;&#xCA8;&#xCCD;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/type_delivery"
-                       value="istrumental_forcep" data-type-xml="select1"/>
-                <span lang="" class=" active">Instrumental / Forcep &#xC89;&#xCAA;&#xC95;&#xCB0;&#xCA3;&#xC97;&#xCB3;&#xCBF;&#xC82;&#xCA6;
-                    &#xCAE;&#xCBE;&#xCA1;&#xCC1;&#xCB5; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;</span>
-            </label>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/type_delivery"
+                           data-name="/PNC_Child_Registration_EngKan/type_delivery" value="normal"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Normal
+                        &#xCB8;&#xCBE;&#xCAE;&#xCBE;&#xCA8;&#xCCD;&#xCAF;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/type_delivery"
+                           data-name="/PNC_Child_Registration_EngKan/type_delivery" value="cesarean"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Cesarean &#xCB8;&#xCBF;&#xCB8;&#xCC7;&#xCB0;&#xCBF;&#xCAF;&#xCA8;&#xCCD;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/type_delivery"
+                           data-name="/PNC_Child_Registration_EngKan/type_delivery" value="istrumental_forcep"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Instrumental / Forcep &#xC89;&#xCAA;&#xC95;&#xCB0;&#xCA3;&#xC97;&#xCB3;&#xCBF;&#xC82;&#xCA6;
+                        &#xCAE;&#xCBE;&#xCA1;&#xCC1;&#xCB5; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;</span>
+                </label>
+            </div>
         </fieldset>
     </fieldset>
-    <fieldset class="restoring-sanity-to-legends ">
+    <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Delivery outcome? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCAB;&#xCB2;&#xCBF;&#xCA4;&#xCBE;&#xC82;&#xCB6;&#xCB5;&#xCC7;&#xCA8;&#xCC1;?</span>
+                <span lang="" class="question-label active">Delivery outcome? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;
+                    &#xCAB;&#xCB2;&#xCBF;&#xCA4;&#xCBE;&#xC82;&#xCB6;&#xCB5;&#xCC7;&#xCA8;&#xCC1;?
+                </span>
                 <span class="required">*</span>
             </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/delivery_outcome"
-                       value="live_birth" required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Live Birth &#xC9C;&#xCC0;&#xCB5;&#xC82;&#xCA4;
-                    &#xC9C;&#xCA8;&#xCA8;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/delivery_outcome"
-                       value="still_birth" required="required" data-type-xml="select1"/>
-                <span lang="" class=" active">Still Birth &#xCA8;&#xCC0;&#xCB0;&#xCCD;&#xC9C;&#xCBF;&#xCB5; &#xC9C;&#xCA8;&#xCA8;</span>
-            </label>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/delivery_outcome"
+                           data-name="/PNC_Child_Registration_EngKan/delivery_outcome" value="live_birth"
+                           required="required" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Live Birth &#xC9C;&#xCC0;&#xCB5;&#xC82;&#xCA4; &#xC9C;&#xCA8;&#xCA8;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/delivery_outcome"
+                           data-name="/PNC_Child_Registration_EngKan/delivery_outcome" value="still_birth"
+                           required="required" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Still Birth &#xCA8;&#xCC0;&#xCB0;&#xCCD;&#xC9C;&#xCBF;&#xCB5;
+                        &#xC9C;&#xCA8;&#xCA8;</span>
+                </label>
+            </div>
         </fieldset>
     </fieldset>
-    <fieldset class="jr-branch pre-init " name="/PNC_Child_Registration_EngKan/still_birth_group"
-              data-relevant=" /PNC_Child_Registration_EngKan/delivery_outcome  = 'still_birth'">
-        <fieldset class="restoring-sanity-to-legends ">
+    <section class="or-group-data or-branch pre-init " name="/PNC_Child_Registration_EngKan/still_birth_group"
+             data-relevant=" /PNC_Child_Registration_EngKan/delivery_outcome  = 'still_birth'">
+        <fieldset class="question ">
             <fieldset>
                 <legend>
-                    <span lang="" class=" active">Cause of still birth? &#xCA8;&#xCC0;&#xCB0;&#xCCD;&#xC9C;&#xCBF;&#xCB5;
+                    <span lang="" class="question-label active">Cause of still birth? &#xCA8;&#xCC0;&#xCB0;&#xCCD;&#xC9C;&#xCBF;&#xCB5;
                         &#xC9C;&#xCA8;&#xCA8;&#xC95;&#xCCD;&#xC95;&#xCC6; &#xC95;&#xCBE;&#xCB0;&#xCA3;?
                     </span>
                 </legend>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
-                           value="infection_during_preg" data-type-xml="select1"/>
-                    <span lang="" class=" active">Infection during pregnancy &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBE;&#xCB5;&#xCB8;&#xCCD;&#xCA5;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-                        &#xCB8;&#xCCB;&#xC82;&#xC95;&#xCC1;</span>
-                </label>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
-                           value="gest_hypertension" data-type-xml="select1"/>
-                    <span lang="" class=" active">Gestational hypertension &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBE;&#xCA7;&#xCBE;&#xCB0;&#xCA3;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA8;
-                        &#xC85;&#xCA7;&#xCBF;&#xC95; &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;&#xCCA;&#xCA4;&#xCCD;&#xCA4;&#xCA1;</span>
-                </label>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
-                           value="gest_diabetes" data-type-xml="select1"/>
-                    <span lang="" class=" active">Gestational diabetes &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBE;&#xCA7;&#xCBE;&#xCB0;&#xCA3;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA8;
-                        &#xCB8;&#xC95;&#xCCD;&#xC95;&#xCB0;&#xCC6; &#xC95;&#xCBE;&#xCAF;&#xCBF;&#xCB2;&#xCC6;</span>
-                </label>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
-                           value="fetal_growth_restriction" data-type-xml="select1"/>
-                    <span lang="" class=" active">Fetal growth restriction &#xCAD;&#xCCD;&#xCB0;&#xCC2;&#xCA3;&#xCA6;
-                        &#xCAC;&#xCC6;&#xCB3;&#xCB5;&#xCA3;&#xCBF;&#xC97;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-                        &#xCA8;&#xCBF;&#xCB0;&#xCCD;&#xCAC;&#xC82;&#xCA7;</span>
-                </label>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
-                           value="birth_defects" data-type-xml="select1"/>
-                    <span lang="" class=" active">Birth defects &#xC9C;&#xCA8;&#xCCD;&#xCAE; &#xCA8;&#xCCD;&#xCAF;&#xCC2;&#xCA8;&#xCCD;&#xCAF;&#xCA4;&#xCC6;&#xC97;&#xCB3;&#xCC1;</span>
-                </label>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth" value="unknown"
-                           data-type-xml="select1"/>
-                    <span lang="" class=" active">Cause not identified &#xC95;&#xCBE;&#xCB0;&#xCA3;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                        &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCCD;&#xCAA;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xCB2;&#xCCD;&#xCB2;</span>
-                </label>
-                <label class="clearfix ">
-                    <input autocomplete="off" type="radio"
-                           name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth" value="others"
-                           data-type-xml="select1"/>
-                    <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
-                </label>
+                <div class="option-wrapper">
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
+                               data-name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
+                               value="infection_during_preg" data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Infection during pregnancy &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBE;&#xCB5;&#xCB8;&#xCCD;&#xCA5;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
+                            &#xCB8;&#xCCB;&#xC82;&#xC95;&#xCC1;</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
+                               data-name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
+                               value="gest_hypertension" data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Gestational hypertension &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBE;&#xCA7;&#xCBE;&#xCB0;&#xCA3;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA8;
+                            &#xC85;&#xCA7;&#xCBF;&#xC95; &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;&#xCCA;&#xCA4;&#xCCD;&#xCA4;&#xCA1;</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
+                               data-name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
+                               value="gest_diabetes" data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Gestational diabetes &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBE;&#xCA7;&#xCBE;&#xCB0;&#xCA3;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA8;
+                            &#xCB8;&#xC95;&#xCCD;&#xC95;&#xCB0;&#xCC6; &#xC95;&#xCBE;&#xCAF;&#xCBF;&#xCB2;&#xCC6;</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
+                               data-name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
+                               value="fetal_growth_restriction" data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Fetal growth restriction &#xCAD;&#xCCD;&#xCB0;&#xCC2;&#xCA3;&#xCA6;
+                            &#xCAC;&#xCC6;&#xCB3;&#xCB5;&#xCA3;&#xCBF;&#xC97;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
+                            &#xCA8;&#xCBF;&#xCB0;&#xCCD;&#xCAC;&#xC82;&#xCA7;</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
+                               data-name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
+                               value="birth_defects" data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Birth defects &#xC9C;&#xCA8;&#xCCD;&#xCAE; &#xCA8;&#xCCD;&#xCAF;&#xCC2;&#xCA8;&#xCCD;&#xCAF;&#xCA4;&#xCC6;&#xC97;&#xCB3;&#xCC1;</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
+                               data-name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
+                               value="unknown" data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Cause not identified &#xC95;&#xCBE;&#xCB0;&#xCA3;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
+                            &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCCD;&#xCAA;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xCB2;&#xCCD;&#xCB2;</span>
+                    </label>
+                    <label class="">
+                        <input autocomplete="off" type="radio"
+                               name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
+                               data-name="/PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth"
+                               value="others" data-type-xml="select1"/>
+                        <span lang="" class="option-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
+                    </label>
+                </div>
             </fieldset>
         </fieldset>
-        <label class="jr-branch pre-init ">
-            <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
+        <label class="question or-branch pre-init non-select ">
+            <span lang="" class="question-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
             <input autocomplete="off" type="text"
                    name="/PNC_Child_Registration_EngKan/still_birth_group/other_cause_of_still_birth"
                    data-relevant=" /PNC_Child_Registration_EngKan/still_birth_group/cause_of_still_birth  = 'others'"
                    data-type-xml="string"/>
         </label>
-    </fieldset>
+    </section>
     <!--end of group -->
-    <fieldset class="jr-group jr-branch pre-init " name="/PNC_Child_Registration_EngKan/child"
-              data-relevant=" /PNC_Child_Registration_EngKan/delivery_outcome  = 'live_birth'">
+    <section class="or-group or-branch pre-init " name="/PNC_Child_Registration_EngKan/child"
+             data-relevant=" /PNC_Child_Registration_EngKan/delivery_outcome  = 'live_birth'">
         <h4>
-            <span lang="" class=" active">Please enter birth information for each child born. &#xC9C;&#xCA8;&#xCA8;&#xCB5;&#xCBE;&#xCA6;
+            <span lang="" class="question-label active">Please enter birth information for each child born. &#xC9C;&#xCA8;&#xCA8;&#xCB5;&#xCBE;&#xCA6;
                 &#xCAA;&#xCCD;&#xCB0;&#xCA4;&#xCBF; &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xC9C;&#xCA8;&#xCCD;&#xCAE;
                 &#xCAE;&#xCBE;&#xCB9;&#xCBF;&#xCA4;&#xCBF;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCA6;&#xCAF;&#xCB5;&#xCBF;&#xC9F;&#xCCD;&#xC9F;&#xCC1;
                 &#xCA8;&#xCAE;&#xCC2;&#xCA6;&#xCBF;&#xCB8;&#xCBF;.
             </span>
         </h4>
-        <fieldset class="jr-repeat " name="/PNC_Child_Registration_EngKan/child">
-            <fieldset class="restoring-sanity-to-legends ">
+        <section class="or-repeat " name="/PNC_Child_Registration_EngKan/child">
+            <fieldset class="question ">
                 <fieldset>
                     <legend>
-                        <span lang="" class=" active">Sex of child? &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB2;&#xCBF;&#xC82;&#xC97;?</span>
+                        <span lang="" class="question-label active">Sex of child? &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8;
+                            &#xCB2;&#xCBF;&#xC82;&#xC97;?
+                        </span>
                         <span class="required">*</span>
                     </legend>
-                    <label class="clearfix ">
-                        <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/child/sex_child"
-                               value="female" required="required" data-type-xml="select1"/>
-                        <span lang="" class=" active">Female &#xCB9;&#xCC6;&#xCA3;&#xCCD;&#xCA3;&#xCC1;</span>
-                    </label>
-                    <label class="clearfix ">
-                        <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/child/sex_child"
-                               value="male" required="required" data-type-xml="select1"/>
-                        <span lang="" class=" active">Male &#xC97;&#xC82;&#xCA1;&#xCC1;</span>
-                    </label>
+                    <div class="option-wrapper">
+                        <label class="">
+                            <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/child/sex_child"
+                                   data-name="/PNC_Child_Registration_EngKan/child/sex_child" value="female"
+                                   required="required" data-type-xml="select1"/>
+                            <span lang="" class="option-label active">Female
+                                &#xCB9;&#xCC6;&#xCA3;&#xCCD;&#xCA3;&#xCC1;</span>
+                        </label>
+                        <label class="">
+                            <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/child/sex_child"
+                                   data-name="/PNC_Child_Registration_EngKan/child/sex_child" value="male"
+                                   required="required" data-type-xml="select1"/>
+                            <span lang="" class="option-label active">Male &#xC97;&#xC82;&#xCA1;&#xCC1;</span>
+                        </label>
+                    </div>
                 </fieldset>
             </fieldset>
-            <label class="">
-                <span lang="" class=" active">Child birthweight (in kgs)? &#xCB9;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xCA6;
+            <label class="question non-select ">
+                <span lang="" class="question-label active">Child birthweight (in kgs)? &#xCB9;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xCA6;
                     &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCA4;&#xCC2;&#xC95; (&#xC95;&#xCC6;.&#xC9C;&#xCBF;.
                     &#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)?
                 </span>
                 <input autocomplete="off" type="number" name="/PNC_Child_Registration_EngKan/child/birthweight"
                        data-type-xml="decimal" step="any"/>
             </label>
-            <label class="jr-appearance-minimal">
-                <span lang="" class=" active">Child blood group? &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;
-                    &#xC97;&#xCC1;&#xC82;&#xCAA;&#xCC1;?
+            <label class="question or-appearance-minimal ">
+                <span lang="" class="question-label active">Child blood group? &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8;
+                    &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6; &#xC97;&#xCC1;&#xC82;&#xCAA;&#xCC1;?
                 </span>
-                <select name="/PNC_Child_Registration_EngKan/child/child_blood_group" data-type-xml="select1">
+                <select name="/PNC_Child_Registration_EngKan/child/child_blood_group"
+                        data-name="/PNC_Child_Registration_EngKan/child/child_blood_group" data-type-xml="select1">
                     <option value="">...</option>
                     <option value="a_positive">A+</option>
                     <option value="a_negative">A-</option>
@@ -516,288 +586,317 @@
                     <option value="o_positive">O+</option>
                     <option value="o_negative">O-</option>
                 </select>
-                <span class="jr-option-translations" style="display:none;">
+                <span class="or-option-translations" style="display:none;">
                 </span>
             </label>
-            <fieldset class="restoring-sanity-to-legends ">
+            <fieldset class="question ">
                 <fieldset>
                     <legend>
-                        <span lang="" class=" active">Immunizations provided at birth? &#xCB9;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xCA6;
+                        <span lang="" class="question-label active">Immunizations provided at birth? &#xCB9;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xCA6;
                             &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6; &#xC87;&#xCAE;&#xCCD;&#xCAF;&#xCC1;&#xCA8;&#xCC8;&#xC9C;&#xCC7;&#xCB7;&#xCA8;&#xCCD;
                             &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC6;?
                         </span>
                     </legend>
-                    <label class="clearfix ">
-                        <input autocomplete="off" type="checkbox"
-                               name="/PNC_Child_Registration_EngKan/child/immunizations_atbirth" value="bcg"
-                               data-type-xml="select"/>
-                        <span lang="" class=" active">BCG &#xCAC;&#xCBF;&#xCB8;&#xCBF;&#xC9C;&#xCBF;</span>
-                    </label>
-                    <label class="clearfix ">
-                        <input autocomplete="off" type="checkbox"
-                               name="/PNC_Child_Registration_EngKan/child/immunizations_atbirth" value="opv_0"
-                               data-type-xml="select"/>
-                        <span lang="" class=" active">OPV 0 &#xC93;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 0</span>
-                    </label>
-                    <label class="clearfix ">
-                        <input autocomplete="off" type="checkbox"
-                               name="/PNC_Child_Registration_EngKan/child/immunizations_atbirth" value="hepb_0"
-                               data-type-xml="select"/>
-                        <span lang="" class=" active">Hep B 0 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC8;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
-                            &#xCAC;&#xCBF; 0
-                        </span>
-                    </label>
+                    <div class="option-wrapper">
+                        <label class="">
+                            <input autocomplete="off" type="checkbox"
+                                   name="/PNC_Child_Registration_EngKan/child/immunizations_atbirth" value="bcg"
+                                   data-type-xml="select"/>
+                            <span lang="" class="option-label active">BCG
+                                &#xCAC;&#xCBF;&#xCB8;&#xCBF;&#xC9C;&#xCBF;</span>
+                        </label>
+                        <label class="">
+                            <input autocomplete="off" type="checkbox"
+                                   name="/PNC_Child_Registration_EngKan/child/immunizations_atbirth" value="opv_0"
+                                   data-type-xml="select"/>
+                            <span lang="" class="option-label active">OPV 0 &#xC93;&#xCAA;&#xCBF;&#xCB5;&#xCBF; 0</span>
+                        </label>
+                        <label class="">
+                            <input autocomplete="off" type="checkbox"
+                                   name="/PNC_Child_Registration_EngKan/child/immunizations_atbirth" value="hepb_0"
+                                   data-type-xml="select"/>
+                            <span lang="" class="option-label active">Hep B 0 &#xCB9;&#xCC6;&#xCAA;&#xC9F;&#xCC8;&#xC9F;&#xCBF;&#xCB8;&#xCCD;
+                                &#xCAC;&#xCBF; 0
+                            </span>
+                        </label>
+                    </div>
                 </fieldset>
             </fieldset>
-            <fieldset class="trigger jr-branch pre-init"
+            <fieldset class="trigger or-branch pre-init"
                       name="/PNC_Child_Registration_EngKan/child/high_risk_note_child"
                       data-relevant=" /PNC_Child_Registration_EngKan/child/is_child_high_risk1  = 'yes'">
-                <span lang="" class=" active">Child is at risk because of, &#xC88;&#xC97; &#xCAE;&#xC97;&#xCC1; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA6;&#xCC6;
-                    &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
-                    <span class="jr-output" data-value=" /PNC_Child_Registration_EngKan/child/child_high_risk_reasons ">
+                <span lang="" class="question-label active">Child is at risk because of, &#xC88;&#xC97; &#xCAE;&#xC97;&#xCC1;
+                    &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA6;&#xCC6; &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
+                    <span class="or-output" data-value=" /PNC_Child_Registration_EngKan/child/child_high_risk_reasons ">
                     </span>
                 </span>
             </fieldset>
-            <fieldset class="restoring-sanity-to-legends ">
+            <fieldset class="question ">
                 <fieldset>
                     <legend>
-                        <span lang="" class=" active">Do you want to mark child as HR (High Risk)? &#xCA8;&#xCC0;&#xCB5;&#xCC1;
+                        <span lang="" class="question-label active">Do you want to mark child as HR (High Risk)? &#xCA8;&#xCC0;&#xCB5;&#xCC1;
                             &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; HR (&#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
                             &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;) &#xC8E;&#xC82;&#xCA6;&#xCC1;
                             &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCC1; &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCBF;&#xCB0;&#xCBE;?
                         </span>
                     </legend>
-                    <label class="clearfix ">
-                        <input autocomplete="off" type="radio"
-                               name="/PNC_Child_Registration_EngKan/child/is_child_high_risk" value="yes"
-                               data-type-xml="select1"/>
-                        <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-                    </label>
-                    <label class="clearfix ">
-                        <input autocomplete="off" type="radio"
-                               name="/PNC_Child_Registration_EngKan/child/is_child_high_risk" value="no"
-                               data-type-xml="select1"/>
-                        <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-                    </label>
+                    <div class="option-wrapper">
+                        <label class="">
+                            <input autocomplete="off" type="radio"
+                                   name="/PNC_Child_Registration_EngKan/child/is_child_high_risk"
+                                   data-name="/PNC_Child_Registration_EngKan/child/is_child_high_risk" value="yes"
+                                   data-type-xml="select1"/>
+                            <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
+                        </label>
+                        <label class="">
+                            <input autocomplete="off" type="radio"
+                                   name="/PNC_Child_Registration_EngKan/child/is_child_high_risk"
+                                   data-name="/PNC_Child_Registration_EngKan/child/is_child_high_risk" value="no"
+                                   data-type-xml="select1"/>
+                            <span lang="" class="option-label active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+                        </label>
+                    </div>
                 </fieldset>
             </fieldset>
-            <fieldset class="trigger jr-branch pre-init"
+            <fieldset class="trigger or-branch pre-init"
                       name="/PNC_Child_Registration_EngKan/child/addl_pnc_visit_message"
                       data-relevant=" /PNC_Child_Registration_EngKan/child/is_child_high_risk1  = 'yes'">
-                <span lang="" class=" active">Child needs 3 more PNC visits on days 14, 21, and 28 because of, 14, 21
-                    &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; 28 &#xCA8;&#xCC7; &#xCA6;&#xCBF;&#xCA8;&#xC97;&#xCB3;&#xCCA;&#xC82;&#xCA6;&#xCC1;
+                <span lang="" class="question-label active">Child needs 3 more PNC visits on days 14, 21, and 28 because
+                    of, 14, 21 &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; 28 &#xCA8;&#xCC7; &#xCA6;&#xCBF;&#xCA8;&#xC97;&#xCB3;&#xCCA;&#xC82;&#xCA6;&#xCC1;
                     &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6; 3 &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBF;&#xCA8;
                     &#xCAD;&#xCC7;&#xC9F;&#xCBF;&#xCAF; &#xC85;&#xC97;&#xCA4;&#xCCD;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;,
                     &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
-                    <span class="jr-output" data-value=" /PNC_Child_Registration_EngKan/child/child_high_risk_reasons ">
+                    <span class="or-output" data-value=" /PNC_Child_Registration_EngKan/child/child_high_risk_reasons ">
                     </span>
                 </span>
             </fieldset>
-        </fieldset>
+        </section>
         <!--end of repeat fieldset with name /PNC_Child_Registration_EngKan/child-->
-    </fieldset>
+    </section>
     <!--end of group -->
-    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
+    <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Was breastfeeding started within 1 hr of birth? &#xC92;&#xC82;&#xCA6;&#xCC1;
+                <span lang="" class="question-label active">Was breastfeeding started within 1 hr of birth? &#xC92;&#xC82;&#xCA6;&#xCC1;
                     &#xC97;&#xC82;&#xC9F;&#xCC6;&#xCAF;&#xCCA;&#xCB3;&#xC97;&#xCC6; &#xC8E;&#xCA6;&#xCC6;&#xCB9;&#xCBE;&#xCB2;&#xCC1;
                     &#xC95;&#xCC1;&#xCA1;&#xCBF;&#xCB8;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC7;?
                 </span>
             </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/breastfeeding_postbirth"
-                       value="yes" data-relevant=" /PNC_Child_Registration_EngKan/delivery_outcome  = 'live_birth'"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/breastfeeding_postbirth"
-                       value="no" data-relevant=" /PNC_Child_Registration_EngKan/delivery_outcome  = 'live_birth'"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-            </label>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/breastfeeding_postbirth"
+                           data-name="/PNC_Child_Registration_EngKan/breastfeeding_postbirth" value="yes"
+                           data-relevant=" /PNC_Child_Registration_EngKan/delivery_outcome  = 'live_birth'"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/breastfeeding_postbirth"
+                           data-name="/PNC_Child_Registration_EngKan/breastfeeding_postbirth" value="no"
+                           data-relevant=" /PNC_Child_Registration_EngKan/delivery_outcome  = 'live_birth'"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+                </label>
+            </div>
         </fieldset>
     </fieldset>
-    <fieldset class="restoring-sanity-to-legends ">
+    <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Were there delivery complications? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
+                <span lang="" class="question-label active">Were there delivery complications? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
                     &#xCA4;&#xCCA;&#xCA1;&#xC95;&#xCC1;&#xC82;&#xC9F;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC6;?
                 </span>
             </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/had_delivery_complications"
-                       value="yes" data-type-xml="select1"/>
-                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/had_delivery_complications"
-                       value="no" data-type-xml="select1"/>
-                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-            </label>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/PNC_Child_Registration_EngKan/had_delivery_complications"
+                           data-name="/PNC_Child_Registration_EngKan/had_delivery_complications" value="yes"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio"
+                           name="/PNC_Child_Registration_EngKan/had_delivery_complications"
+                           data-name="/PNC_Child_Registration_EngKan/had_delivery_complications" value="no"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+                </label>
+            </div>
         </fieldset>
     </fieldset>
-    <fieldset class="restoring-sanity-to-legends jr-branch pre-init ">
+    <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">What delivery complications were there? &#xC8F;&#xCA8;&#xCC1; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;
-                    &#xCA4;&#xCCA;&#xC82;&#xCA6;&#xCB0;&#xCC6;&#xCAF;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
+                <span lang="" class="question-label active">What delivery complications were there? &#xC8F;&#xCA8;&#xCC1;
+                    &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA4;&#xCCA;&#xC82;&#xCA6;&#xCB0;&#xCC6;&#xCAF;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
                 </span>
             </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/PNC_Child_Registration_EngKan/complications"
-                       value="hemorrhage"
-                       data-relevant=" /PNC_Child_Registration_EngKan/had_delivery_complications  = 'yes'"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Hemorrhage
-                    &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCB8;&#xCCD;&#xCB0;&#xCBE;&#xCB5;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/PNC_Child_Registration_EngKan/complications"
-                       value="placenta_previa"
-                       data-relevant=" /PNC_Child_Registration_EngKan/had_delivery_complications  = 'yes'"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Placenta previa &#xCB9;&#xCBF;&#xC82;&#xCA6;&#xCBF;&#xCA8; &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-                    &#xCAE;&#xCBE;&#xCB8;&#xCC1; &#xCAE;&#xCC1;&#xC82;&#xCA6;&#xCBF;&#xCB0;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/PNC_Child_Registration_EngKan/complications"
-                       value="cord_prolapse"
-                       data-relevant=" /PNC_Child_Registration_EngKan/had_delivery_complications  = 'yes'"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Cord prolapse &#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF;&#xCAF; &#xCB8;&#xCB0;&#xCBF;&#xCA4;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/PNC_Child_Registration_EngKan/complications"
-                       value="prolonged_labor"
-                       data-relevant=" /PNC_Child_Registration_EngKan/had_delivery_complications  = 'yes'"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Prolonged / obstructed labor &#xCA6;&#xCBF;&#xCD5;&#xCB0;&#xCCD;&#xC98;&#xC95;&#xCBE;&#xCB2;&#xCBF;&#xCD5;&#xCA8;
-                    / &#xC85;&#xCA1;&#xC9A;&#xCA3;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCA4;&#xC82;&#xCA6;&#xCC6;&#xCC2;&#xCA1;&#xCCD;&#xCA1;&#xCC1;&#xCB5;
-                    &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA8;&#xCCB;&#xCB5;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/PNC_Child_Registration_EngKan/complications"
-                       value="abnormal_presentation"
-                       data-relevant=" /PNC_Child_Registration_EngKan/had_delivery_complications  = 'yes'"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Abnormal presentation &#xC85;&#xCAA;&#xCB8;&#xCBE;&#xCAE;&#xCBE;&#xCA8;&#xCCD;&#xCAF;
-                    &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCC1;&#xCA4;&#xCBF;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/PNC_Child_Registration_EngKan/complications"
-                       value="perineal_tear"
-                       data-relevant=" /PNC_Child_Registration_EngKan/had_delivery_complications  = 'yes'"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Perineal tear (2, 3, or 4 degree)</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="checkbox" name="/PNC_Child_Registration_EngKan/complications"
-                       value="others"
-                       data-relevant=" /PNC_Child_Registration_EngKan/had_delivery_complications  = 'yes'"
-                       data-type-xml="select"/>
-                <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
-            </label>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="checkbox" name="/PNC_Child_Registration_EngKan/complications"
+                           value="hemorrhage"
+                           data-relevant=" /PNC_Child_Registration_EngKan/had_delivery_complications  = 'yes'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Hemorrhage &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCB8;&#xCCD;&#xCB0;&#xCBE;&#xCB5;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox" name="/PNC_Child_Registration_EngKan/complications"
+                           value="placenta_previa"
+                           data-relevant=" /PNC_Child_Registration_EngKan/had_delivery_complications  = 'yes'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Placenta previa &#xCB9;&#xCBF;&#xC82;&#xCA6;&#xCBF;&#xCA8;
+                        &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF; &#xCAE;&#xCBE;&#xCB8;&#xCC1;
+                        &#xCAE;&#xCC1;&#xC82;&#xCA6;&#xCBF;&#xCB0;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox" name="/PNC_Child_Registration_EngKan/complications"
+                           value="cord_prolapse"
+                           data-relevant=" /PNC_Child_Registration_EngKan/had_delivery_complications  = 'yes'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Cord prolapse &#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF;&#xCAF;
+                        &#xCB8;&#xCB0;&#xCBF;&#xCA4;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox" name="/PNC_Child_Registration_EngKan/complications"
+                           value="prolonged_labor"
+                           data-relevant=" /PNC_Child_Registration_EngKan/had_delivery_complications  = 'yes'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Prolonged / obstructed labor &#xCA6;&#xCBF;&#xCD5;&#xCB0;&#xCCD;&#xC98;&#xC95;&#xCBE;&#xCB2;&#xCBF;&#xCD5;&#xCA8;
+                        / &#xC85;&#xCA1;&#xC9A;&#xCA3;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCA4;&#xC82;&#xCA6;&#xCC6;&#xCC2;&#xCA1;&#xCCD;&#xCA1;&#xCC1;&#xCB5;
+                        &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA8;&#xCCB;&#xCB5;&#xCC1;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox" name="/PNC_Child_Registration_EngKan/complications"
+                           value="abnormal_presentation"
+                           data-relevant=" /PNC_Child_Registration_EngKan/had_delivery_complications  = 'yes'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Abnormal presentation &#xC85;&#xCAA;&#xCB8;&#xCBE;&#xCAE;&#xCBE;&#xCA8;&#xCCD;&#xCAF;
+                        &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCC1;&#xCA4;&#xCBF;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox" name="/PNC_Child_Registration_EngKan/complications"
+                           value="perineal_tear"
+                           data-relevant=" /PNC_Child_Registration_EngKan/had_delivery_complications  = 'yes'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Perineal tear (2, 3, or 4 degree)</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="checkbox" name="/PNC_Child_Registration_EngKan/complications"
+                           value="others"
+                           data-relevant=" /PNC_Child_Registration_EngKan/had_delivery_complications  = 'yes'"
+                           data-type-xml="select"/>
+                    <span lang="" class="option-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
+                </label>
+            </div>
         </fieldset>
     </fieldset>
-    <label class="jr-branch pre-init ">
-        <span lang="" class=" active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
+    <label class="question or-branch pre-init non-select ">
+        <span lang="" class="question-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
         <input autocomplete="off" type="text" name="/PNC_Child_Registration_EngKan/delivery_complications_other"
                data-relevant="selected( /PNC_Child_Registration_EngKan/complications , 'others')"
                data-type-xml="string"/>
     </label>
-    <fieldset class="restoring-sanity-to-legends ">
+    <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">Do you want to mark woman as HR (High Risk)? &#xCA8;&#xCC0;&#xCB5;&#xCC1;
+                <span lang="" class="question-label active">Do you want to mark woman as HR (High Risk)? &#xCA8;&#xCC0;&#xCB5;&#xCC1;
                     &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1; HR (&#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
                     &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;) &#xC8E;&#xC82;&#xCA6;&#xCC1; &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCC1;
                     &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCBF;&#xCB0;&#xCBE;?
                 </span>
             </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/is_high_risk" value="yes"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/is_high_risk" value="no"
-                       data-type-xml="select1"/>
-                <span lang="" class=" active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-            </label>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/is_high_risk"
+                           data-name="/PNC_Child_Registration_EngKan/is_high_risk" value="yes" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/is_high_risk"
+                           data-name="/PNC_Child_Registration_EngKan/is_high_risk" value="no" data-type-xml="select1"/>
+                    <span lang="" class="option-label active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+                </label>
+            </div>
         </fieldset>
     </fieldset>
-    <label class="jr-branch pre-init ">
-        <span lang="" class=" active">High risk reasons, &#xCA4;&#xCCA;&#xCA1;&#xC95;&#xCBF;&#xC97;&#xCC6; &#xC95;&#xCBE;&#xCB0;&#xCA3;&#xCB5;&#xCC7;&#xCA8;&#xCC1;:</span>
+    <label class="question or-branch pre-init non-select ">
+        <span lang="" class="question-label active">High risk reasons, &#xCA4;&#xCCA;&#xCA1;&#xC95;&#xCBF;&#xC97;&#xCC6;
+            &#xC95;&#xCBE;&#xCB0;&#xCA3;&#xCB5;&#xCC7;&#xCA8;&#xCC1;:
+        </span>
         <input autocomplete="off" type="text" name="/PNC_Child_Registration_EngKan/high_risk_reason"
                data-relevant=" /PNC_Child_Registration_EngKan/is_high_risk  = 'yes'" data-type-xml="string"/>
     </label>
-    <fieldset class="restoring-sanity-to-legends ">
+    <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class=" active">How long will woman stay in area? &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;
+                <span lang="" class="question-label active">How long will woman stay in area? &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;
                     &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1; &#xC95;&#xCBE;&#xCB2; &#xC87;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
                     &#xCB5;&#xCBE;&#xCB8;&#xCB5;&#xCBE;&#xC97;&#xCBF;&#xCB0;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCBE;&#xCB0;&#xCC6;?
                 </span>
             </legend>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/stay_in_area"
-                       value="less_6mos" data-type-xml="select1"/>
-                <span lang="" class=" active">Less than 6 months, 6 &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCBF;&#xC82;&#xCA4;
-                    &#xC95;&#xCA1;&#xCBF;&#xCAE;&#xCC6;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/stay_in_area"
-                       value="less_1yr" data-type-xml="select1"/>
-                <span lang="" class=" active">Less than 1 year, 1 &#xCB5;&#xCB0;&#xCCD;&#xCB7;&#xC95;&#xCCD;&#xC95;&#xCBF;&#xC82;&#xCA4;
-                    &#xC95;&#xCA1;&#xCBF;&#xCAE;&#xCC6;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/stay_in_area"
-                       value="more_1yr" data-type-xml="select1"/>
-                <span lang="" class=" active">More than 1 year, 1 &#xCB5;&#xCB0;&#xCCD;&#xCB7;&#xC95;&#xCCD;&#xC95;&#xCBF;&#xC82;&#xCA4;
-                    &#xC9C;&#xCBE;&#xCB8;&#xCCD;&#xCA4;&#xCBF;</span>
-            </label>
-            <label class="clearfix ">
-                <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/stay_in_area"
-                       value="dont_know" data-type-xml="select1"/>
-                <span lang="" class=" active">Don't know
-                    &#xC97;&#xCCA;&#xCA4;&#xCCD;&#xCA4;&#xCBF;&#xCB2;&#xCCD;&#xCB2;</span>
-            </label>
+            <div class="option-wrapper">
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/stay_in_area"
+                           data-name="/PNC_Child_Registration_EngKan/stay_in_area" value="less_6mos"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Less than 6 months, 6 &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCBF;&#xC82;&#xCA4;
+                        &#xC95;&#xCA1;&#xCBF;&#xCAE;&#xCC6;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/stay_in_area"
+                           data-name="/PNC_Child_Registration_EngKan/stay_in_area" value="less_1yr"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Less than 1 year, 1 &#xCB5;&#xCB0;&#xCCD;&#xCB7;&#xC95;&#xCCD;&#xC95;&#xCBF;&#xC82;&#xCA4;
+                        &#xC95;&#xCA1;&#xCBF;&#xCAE;&#xCC6;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/stay_in_area"
+                           data-name="/PNC_Child_Registration_EngKan/stay_in_area" value="more_1yr"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">More than 1 year, 1 &#xCB5;&#xCB0;&#xCCD;&#xCB7;&#xC95;&#xCCD;&#xC95;&#xCBF;&#xC82;&#xCA4;
+                        &#xC9C;&#xCBE;&#xCB8;&#xCCD;&#xCA4;&#xCBF;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/stay_in_area"
+                           data-name="/PNC_Child_Registration_EngKan/stay_in_area" value="dont_know"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Don't know &#xC97;&#xCCA;&#xCA4;&#xCCD;&#xCA4;&#xCBF;&#xCB2;&#xCCD;&#xCB2;</span>
+                </label>
+            </div>
         </fieldset>
     </fieldset>
 
-    <fieldset id="jr-calculated-items" style="display:none;">
-        <label class="">
+    <fieldset id="or-calculated-items" style="display:none;">
+        <label class="non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/child/lbw"
                    data-calculate="if( /PNC_Child_Registration_EngKan/child/birthweight  &gt;= 1.5 and  /PNC_Child_Registration_EngKan/child/birthweight  &lt; 2.5, 'Low_Birth_Weight','')"
                    data-type-xml="string"/>
         </label>
-        <label class="">
+        <label class="non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/child/vlbw"
                    data-calculate="if( /PNC_Child_Registration_EngKan/child/birthweight  &lt; 1.5, 'Very_Low_Birth_Weight', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="">
+        <label class="non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/child/is_child_high_risk1"
                    data-calculate="if( /PNC_Child_Registration_EngKan/child/lbw  != '' or  /PNC_Child_Registration_EngKan/child/vlbw  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
-        <label class="">
+        <label class="non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/child/child_high_risk_reasons"
                    data-calculate="concat( /PNC_Child_Registration_EngKan/child/lbw , ' ',  /PNC_Child_Registration_EngKan/child/vlbw )"
                    data-type-xml="string"/>
         </label>
-        <label class="">
+        <label class="non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/woman_survived"
                    data-calculate="&quot;yes&quot;" data-type-xml="string"/>
         </label>
-        <label class="">
+        <label class="non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
-        <label class="">
+        <label class="non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/formhub/uuid"
                    data-calculate="'d24e936c3474449eae592ff8241d0eca'" data-type-xml="string"/>
         </label>

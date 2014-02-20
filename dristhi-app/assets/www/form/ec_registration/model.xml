@@ -1,5 +1,5 @@
 <model>
-    <instance xmlns="http://www.w3.org/2002/xforms">
+    <instance>
         <EC_Registration_EngKan id="EC_Registration_EngKan">
             <formhub>
                 <uuid/>
@@ -90,7 +90,7 @@
             </meta>
         </EC_Registration_EngKan>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="positive_negative">
+    <instance id="positive_negative">
         <root>
             <item>
                 <itextId>static_instance-positive_negative-0</itextId>
@@ -102,7 +102,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="sub_centers">
+    <instance id="sub_centers">
         <root>
             <item>
                 <itextId>static_instance-sub_centers-0</itextId>
@@ -151,7 +151,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="economic_status">
+    <instance id="economic_status">
         <root>
             <item>
                 <itextId>static_instance-economic_status-0</itextId>
@@ -163,7 +163,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="phcs">
+    <instance id="phcs">
         <root>
             <item>
                 <itextId>static_instance-phcs-0</itextId>
@@ -175,7 +175,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="female_sterilization">
+    <instance id="female_sterilization">
         <root>
             <item>
                 <itextId>static_instance-female_sterilization-0</itextId>
@@ -187,7 +187,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="villages">
+    <instance id="villages">
         <root>
             <item>
                 <itextId>static_instance-villages-0</itextId>
@@ -401,7 +401,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="phone_owner">
+    <instance id="phone_owner">
         <root>
             <item>
                 <itextId>static_instance-phone_owner-0</itextId>
@@ -425,7 +425,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="education">
+    <instance id="education">
         <root>
             <item>
                 <itextId>static_instance-education-0</itextId>
@@ -457,7 +457,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="male_sterilization">
+    <instance id="male_sterilization">
         <root>
             <item>
                 <itextId>static_instance-male_sterilization-0</itextId>
@@ -469,7 +469,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="religion">
+    <instance id="religion">
         <root>
             <item>
                 <itextId>static_instance-religion-0</itextId>
@@ -489,7 +489,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="iud_place">
+    <instance id="iud_place">
         <root>
             <item>
                 <itextId>static_instance-iud_place-0</itextId>
@@ -505,7 +505,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="numbers">
+    <instance id="numbers">
         <root>
             <item>
                 <itextId>static_instance-numbers-0</itextId>
@@ -549,7 +549,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="fp_method_other">
+    <instance id="fp_method_other">
         <root>
             <item>
                 <itextId>static_instance-fp_method_other-0</itextId>
@@ -569,7 +569,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="fp_method">
+    <instance id="fp_method">
         <root>
             <item>
                 <itextId>static_instance-fp_method-0</itextId>
@@ -609,7 +609,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="caste">
+    <instance id="caste">
         <root>
             <item>
                 <itextId>static_instance-caste-0</itextId>
@@ -625,7 +625,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="iud_person">
+    <instance id="iud_person">
         <root>
             <item>
                 <itextId>static_instance-iud_person-0</itextId>
@@ -649,7 +649,7 @@
             </item>
         </root>
     </instance>
-    <instance xmlns="http://www.w3.org/2002/xforms" id="yes_no">
+    <instance id="yes_no">
         <root>
             <item>
                 <itextId>static_instance-yes_no-0</itextId>

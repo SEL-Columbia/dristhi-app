@@ -1,5 +1,5 @@
 <model>
-    <instance xmlns="http://www.w3.org/2002/xforms">
+    <instance>
         <Child_Immunizations_EngKan id="Child_Immunizations_EngKan">
             <formhub>
                 <uuid/>

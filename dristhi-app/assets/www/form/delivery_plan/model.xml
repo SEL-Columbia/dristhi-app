@@ -1,5 +1,5 @@
 <model>
-    <instance xmlns="http://www.w3.org/2002/xforms">
+    <instance>
         <Delivery_Plan_EngKan id="Delivery_Plan_EngKan">
             <formhub>
                 <uuid/>
