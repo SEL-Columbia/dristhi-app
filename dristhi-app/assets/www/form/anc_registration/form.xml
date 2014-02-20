@@ -2,12 +2,6 @@
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">ANC Registration</h3>
-    <fieldset id="or-preload-items" style="display:none;">
-        <label class="non-select ">
-            <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/today" data-preload="date"
-                   data-preload-params="today" data-type-xml="date"/>
-        </label>
-    </fieldset>
 
 
     <label class="question non-select ">
@@ -470,88 +464,94 @@
         </fieldset>
     </fieldset>
 
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/woman_name"
                    data-calculate="concat( /ANC_Registration_EngKan/case_woman_name , ' ')" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/num_pregnancies"
                    data-calculate=" /ANC_Registration_EngKan/case_num_pregnancies  + 1" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/edd"
                    data-calculate="date( /ANC_Registration_EngKan/lmp_date +280)" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/edd_formatted"
                    data-calculate="format-date( /ANC_Registration_EngKan/edd , '%Y-%n-%e')" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/w_rh_negative"
                    data-calculate="if( /ANC_Registration_EngKan/w_blood_group  = 'a_negative' or  /ANC_Registration_EngKan/w_blood_group  = 'b_negative' or  /ANC_Registration_EngKan/w_blood_group  = 'ab_negative' or  /ANC_Registration_EngKan/w_blood_group  = 'o_negative', 'yes', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/rh_incompatible_couple"
                    data-calculate="if( /ANC_Registration_EngKan/h_blood_group  = 'a_positive' or  /ANC_Registration_EngKan/h_blood_group  = 'b_positive' or  /ANC_Registration_EngKan/h_blood_group  = 'ab_positive' or  /ANC_Registration_EngKan/h_blood_group  = 'o_positive', 'yes', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/weight_risk"
                    data-calculate="if( /ANC_Registration_EngKan/weight_startofpregnancy  &lt; 45 or  /ANC_Registration_EngKan/weight_startofpregnancy  &gt;= 90, 'Weight', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/height_risk"
                    data-calculate="if( /ANC_Registration_EngKan/height  &lt;= 145, 'Height', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/tobacco_risk"
                    data-calculate="if( /ANC_Registration_EngKan/tobacco_use  = 'yes', 'Tobacco_use', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/rh_incompatible"
                    data-calculate="if( /ANC_Registration_EngKan/rh_incompatible_couple  != '', 'Rh_incompatible_couple', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/is_high_risk_till_delivery"
                    data-calculate="if( /ANC_Registration_EngKan/case_would_be_high_risk  = 'yes' or  /ANC_Registration_EngKan/weight_risk  != '' or  /ANC_Registration_EngKan/height_risk  != '' or  /ANC_Registration_EngKan/rh_incompatible  != '' or  /ANC_Registration_EngKan/complication  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/is_high_risk_till_delivery_reason"
                    data-calculate="concat( /ANC_Registration_EngKan/case_would_be_high_risk_reason , ' ',  /ANC_Registration_EngKan/weight_risk , ' ',  /ANC_Registration_EngKan/height_risk , ' ',  /ANC_Registration_EngKan/rh_incompatible , ' ', string( /ANC_Registration_EngKan/complication ))"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/is_high_risk_till_pnc_close"
                    data-calculate="if( /ANC_Registration_EngKan/tobacco_risk  != '' or  /ANC_Registration_EngKan/medical_histories  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/is_high_risk_till_pnc_close_reason"
                    data-calculate="concat( /ANC_Registration_EngKan/tobacco_risk , ' ', string( /ANC_Registration_EngKan/medical_histories ))"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/is_high_risk1"
                    data-calculate="if( /ANC_Registration_EngKan/is_high_risk_till_delivery  = 'yes' or  /ANC_Registration_EngKan/is_high_risk_till_pnc_close  = 'yes', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/high_risk_reason"
                    data-calculate="concat( /ANC_Registration_EngKan/is_high_risk_till_delivery_reason , ' ',  /ANC_Registration_EngKan/is_high_risk_till_pnc_close_reason )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/formhub/uuid"
                    data-calculate="'c8e2b1d37bf54df18af55d51f6be2bdd'" data-type-xml="string"/>
         </label>
