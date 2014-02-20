@@ -9,21 +9,16 @@ import org.mozilla.javascript.ScriptableObject;
 import java.util.Map;
 
 import static java.text.MessageFormat.format;
-import static org.ei.drishti.AllConstants.FORM_SUBMISSION_ROUTER;
-import static org.ei.drishti.AllConstants.REPOSITORY;
-import static org.ei.drishti.AllConstants.ZIGGY_FILE_LOADER;
+import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.util.Log.logError;
 import static org.ei.drishti.util.Log.logInfo;
 import static org.mozilla.javascript.Context.*;
 
 public class ZiggyService {
     private static final String SAVE_METHOD_NAME = "save";
-    private static final String JS_INIT_SCRIPT = "var formDataRepository = new enketo.FormDataRepository();\n" +
-            "    var controller = new enketo.FormDataController(\n" +
-            "        new enketo.EntityRelationshipLoader(),\n" +
-            "        new enketo.FormDefinitionLoader(),\n" +
-            "        new enketo.FormModelMapper(formDataRepository, new enketo.SQLQueryBuilder(formDataRepository), new enketo.IdFactory(new enketo.IdFactoryBridge())),\n" +
-            "        formDataRepository, new enketo.FormSubmissionRouter());";
+    private static final String JS_INIT_SCRIPT = "require([\"ziggy/FormDataController\"], function (FormDataController) {\n" +
+            "    controller = FormDataController;\n" +
+            "});";
 
     private ZiggyFileLoader ziggyFileLoader;
     private FormDataRepository dataRepository;
