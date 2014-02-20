@@ -2,12 +2,6 @@
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Change FP Method</h3>
-    <fieldset id="or-preload-items" style="display:none;">
-        <label class="non-select ">
-            <input autocomplete="off" type="hidden" name="/Family_Planning_Change_Method_EngKan/today"
-                   data-preload="date" data-preload-params="today" data-type-xml="date"/>
-        </label>
-    </fieldset>
 
 
     <label class="question or-branch pre-init non-select ">
@@ -420,30 +414,36 @@
                data-type-xml="int"/>
     </label>
 
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Family_Planning_Change_Method_EngKan/today"
+                   data-preload="date" data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Family_Planning_Change_Method_EngKan/date_familyplanningstart"
                    data-calculate="if( /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'none', ' ',  /Family_Planning_Change_Method_EngKan/date_familyplanningstart1 )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date"
                    data-calculate="date( /Family_Planning_Change_Method_EngKan/date_familyplanningstart  + 90)"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted"
                    data-calculate="format-date( /Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date , '%Y-%n-%e')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Family_Planning_Change_Method_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Family_Planning_Change_Method_EngKan/formhub/uuid"
                    data-calculate="'fb64bf30134446529edf5fca17432d14'" data-type-xml="string"/>
         </label>
