@@ -153,8 +153,8 @@ angular.module("smartRegistry.services")
                         if (edd_date) {
                             client.days_past_edd = Math.ceil(SmartHelper.daysBetween(new Date(edd_date), new Date()));
                         }
-                        client.lmp = $filter('date')(client.lmp, 'dd/MM/yy');
-                        client.edd = $filter('date')(client.edd, 'dd/MM/yy');
+                        client.lmpLongFormat = $filter('date')(client.lmp, 'dd/MM/yy');
+                        client.eddLongFormat = $filter('date')(client.edd, 'dd/MM/yy');
                         client.isBPL = client.economicStatus && (client.economicStatus.toUpperCase() == 'BPL');
                         client.displayName = $filter('camelCase')($filter('humanize')(client.name));
                         client.displayAge = client.age || client.calculatedAge;
