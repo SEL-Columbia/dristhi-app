@@ -2,12 +2,6 @@
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">PNC Visit</h3>
-    <fieldset id="or-preload-items" style="display:none;">
-        <label class="non-select ">
-            <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/today" data-preload="date"
-                   data-preload-params="today" data-type-xml="date"/>
-        </label>
-    </fieldset>
 
 
     <label class="question or-branch pre-init non-select ">
@@ -899,89 +893,95 @@
     </section>
     <!--end of group -->
 
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/woman_name"
                    data-calculate="concat( /PNC_Visit_EngKan/case_woman_name , ' ')" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_visit_day"
                    data-calculate="int( /PNC_Visit_EngKan/pnc_visit_date  -  /PNC_Visit_EngKan/case_delivery_date )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever"
                    data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/temperature  &gt;= 100.4 or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_symptoms  = 'yes', 'High_fever', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_rapid_pulse_rate"
                    data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/pulse_rate  &gt; 100, 'Rapid_heart_rate', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_low_blood_pressure"
                    data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/bp_systolic  &lt; 90 or  /PNC_Visit_EngKan/pnc_mother_group/bp_diastolic  &lt; 60, 'Very_low_blood_pressure', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_mother_group/immediate_referral"
                    data-calculate="if(( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1 , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2 , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area  != '' and not(selected( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area , 'normal'))) or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever_symptoms  = 'yes' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_rapid_pulse_rate  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_low_blood_pressure  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_mother_group/immediate_referral_reason"
                    data-calculate="concat(string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties1 ), ' ', string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_abdominal_problems ), ' ', string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_vaginal_problems ), ' ', string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_difficulties2 ), ' ', string( /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_breast_problems ), ' ', string( /PNC_Visit_EngKan/pnc_mother_group/cesarean_incision_area ), ' ',  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_has_fever , ' ',  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_rapid_pulse_rate , ' ',  /PNC_Visit_EngKan/pnc_mother_group/pnc_mother_low_blood_pressure )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_mother_group/anaemic_status"
                    data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/hb_level  = '',  /PNC_Visit_EngKan/pnc_mother_group/case_anaemic_status , if( /PNC_Visit_EngKan/pnc_mother_group/hb_level  &lt; 7, 'Severe_Anaemia', if( /PNC_Visit_EngKan/pnc_mother_group/hb_level  &gt;= 7 and  /PNC_Visit_EngKan/pnc_mother_group/hb_level  &lt; 11, 'Anaemia', '')))"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_mother_group/pih"
                    data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/case_pih  = '', '', if( /PNC_Visit_EngKan/pnc_mother_group/bp_systolic  &lt; 140 and  /PNC_Visit_EngKan/pnc_mother_group/bp_diastolic  &lt; 90, '', 'Hypertension'))"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_mother_group/pre_eclampsia"
                    data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/case_pre_eclampsia  = '', '', if( /PNC_Visit_EngKan/pnc_mother_group/bp_systolic  &lt; 140 and  /PNC_Visit_EngKan/pnc_mother_group/bp_diastolic  &lt; 90, '', 'Pre_eclampsia'))"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_mother_group/is_high_risk1"
                    data-calculate="if( /PNC_Visit_EngKan/pnc_mother_group/anaemic_status  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pih  != '' or  /PNC_Visit_EngKan/pnc_mother_group/pre_eclampsia  != '' or  /PNC_Visit_EngKan/pnc_mother_group/case_is_high_risk_till_pnc_close  = 'yes', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_mother_group/high_risk_reason"
                    data-calculate="concat( /PNC_Visit_EngKan/pnc_mother_group/anaemic_status , ' ',  /PNC_Visit_EngKan/pnc_mother_group/pih , ' ',  /PNC_Visit_EngKan/pnc_mother_group/pre_eclampsia , ' ',  /PNC_Visit_EngKan/pnc_mother_group/case_is_high_risk_till_pnc_close_reason )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever"
                    data-calculate="if( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_temperature  &gt;= 100.4 or  /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever_symptoms  = 'yes', 'High_fever', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_baby"
                    data-calculate="if(( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems , 'no_problems'))) or ( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems  != '' and not(selected( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems , 'no_problems'))) or  /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever_symptoms  = 'yes' or  /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_reason_baby"
                    data-calculate="concat(string( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_urine_stool_problems ), ' ', string( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_activity_problems ), ' ', string( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_breathing_problems ), ' ', string( /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_skin_problems ), ' ',  /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_has_fever )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/formhub/uuid"
                    data-calculate="'f38f3fe5ad294f17824ee18a2b7483eb'" data-type-xml="string"/>
         </label>
