@@ -117,7 +117,7 @@ public class AllBeneficiaries {
     }
 
     public boolean isPregnant(String ecId) {
-        return motherRepository.findMotherWithOpenStatusByECId(ecId) != null;
+        return motherRepository.isPregnant(ecId);
     }
 
     public void updateChild(Child child) {

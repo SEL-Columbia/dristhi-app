@@ -210,4 +210,18 @@ public class MotherRepositoryTest extends AndroidTestCase {
         assertEquals(null, repository.findMotherWithOpenStatusByECId("ec id 2 "));
         assertEquals(null, repository.findMotherWithOpenStatusByECId("non existent EC"));
     }
+
+    public void testShouldFindIfTheMotherIsPregnantByECId() throws Exception {
+        repository.add(new Mother("mother id 1", "ec id 1", "TC 1", "2012-06-08").withType("ANC"));
+        repository.add(new Mother("mother id 2 ", "ec id 2", "TC 2", "2012-06-08").setIsClosed(true).withType("EC"));
+        repository.add(new Mother("mother id 3", "ec id 3", "TC 1", "2012-06-08").withType("ANC").setIsClosed(true));
+        Mother pnc = new Mother("mother id 4 ", "ec id 4", "TC 4", "2012-06-08");
+        repository.add(pnc);
+        repository.switchToPNC(pnc.caseId());
+
+        assertTrue(repository.isPregnant("ec id 1"));
+        assertFalse(repository.isPregnant("ec id 2"));
+        assertFalse(repository.isPregnant("ec id 3"));
+        assertFalse(repository.isPregnant("ec id 4"));
+    }
 }
