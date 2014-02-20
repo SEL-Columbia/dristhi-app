@@ -2,12 +2,6 @@
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Child Registration - EC</h3>
-    <fieldset id="or-preload-items" style="display:none;">
-        <label class="non-select ">
-            <input autocomplete="off" type="hidden" name="/Child_Registration_EC_EngKan/today" data-preload="date"
-                   data-preload-params="today" data-type-xml="date"/>
-        </label>
-    </fieldset>
 
 
     <label class="question non-select ">
@@ -470,25 +464,31 @@
                data-relevant=" /Child_Registration_EC_EngKan/is_child_high_risk  = 'yes'" data-type-xml="string"/>
     </label>
 
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Child_Registration_EC_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Child_Registration_EC_EngKan/mother_name"
                    data-calculate=" /Child_Registration_EC_EngKan/case_woman_name " data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Child_Registration_EC_EngKan/father_name"
                    data-calculate=" /Child_Registration_EC_EngKan/case_husband_name " data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Child_Registration_EC_EngKan/child_age"
                    data-calculate="if( /Child_Registration_EC_EngKan/child_birth_date  = '', '', int(( /Child_Registration_EC_EngKan/today  -  /Child_Registration_EC_EngKan/child_birth_date ) div 30))"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Child_Registration_EC_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Child_Registration_EC_EngKan/formhub/uuid"
                    data-calculate="'997e6d6effb2428199d26c2b152d7654'" data-type-xml="string"/>
         </label>
