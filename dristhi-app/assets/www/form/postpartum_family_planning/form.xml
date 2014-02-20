@@ -2,12 +2,6 @@
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Postpartum Family Planning</h3>
-    <fieldset id="or-preload-items" style="display:none;">
-        <label class="non-select ">
-            <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/today" data-preload="date"
-                   data-preload-params="today" data-type-xml="date"/>
-        </label>
-    </fieldset>
 
 
     <fieldset class="question ">
@@ -832,193 +826,199 @@
         </span>
     </fieldset>
 
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/any_bf"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/exclusively_bf  = 'yes' or  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/partially_bf  = 'yes', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/num_days_pp"
                    data-calculate="int( /Postpartum_FamilyPlanning_EngKan/today  -  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/entity_delivery_date )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6mos_pp"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/num_days_pp  &gt;= 42 and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/num_days_pp  &lt; 180, 'yes', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6wks_pp"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/num_days_pp  &lt; 42, 'yes', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_21days_pp"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/num_days_pp  &lt; 21, 'yes', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/lam"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/exclusively_bf  = 'yes' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/monthly_bleeding  = 'no' and ( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6mos_pp  = 'yes' or  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6wks_pp  = 'yes'), 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/pp_fp_method3"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/lam_continue  = 'no', 'lam', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/pp_fp_method3_start_date"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/pp_fp_method3  != '',  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/entity_delivery_date , '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/female_sterilization_use"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/preference_future_children  = 'no' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6wks_pp  = 'no', 'Female_Sterilization', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/female_sterilization_dont_use"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/preference_future_children  = 'yes' or  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6wks_pp  = 'yes', 'Female_Sterilization', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/male_sterilization_use"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/preference_future_children  = 'no', 'Male_Sterilization', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/male_sterilization_dont_use"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/preference_future_children  = 'yes', 'Male_Sterilization', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/ocp_dont_use"
                    data-calculate="if(( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6mos_pp  = 'yes' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/any_bf  = 'yes') or ( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6wks_pp  = 'yes' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/any_bf  = 'yes') or  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_21days_pp  = 'yes', 'OCP', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/ocp_use"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/ocp_dont_use  = '', 'OCP', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/dmpa_not_recommended"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6wks_pp  = 'yes' and  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/any_bf  = 'yes', 'DMPA/Injectable', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/dmpa_use"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/dmpa_not_recommended  = '', 'DMPA/Injectable', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_dont_use"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/less_than_6wks_pp  = 'yes', 'IUD', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_use"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_dont_use  = '', 'IUD', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/use"
                    data-calculate="concat( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/female_sterilization_use , ' ',  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/male_sterilization_use , ' ',  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/ocp_use , ' ',  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/dmpa_use , ' ',  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_use )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/not_recommended"
                    data-calculate=" /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/dmpa_not_recommended "
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/dont_use"
                    data-calculate="concat( /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/female_sterilization_dont_use , ' ',  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/male_sterilization_dont_use , ' ',  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/ocp_dont_use , ' ',  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_dont_use )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method4"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes',  /Postpartum_FamilyPlanning_EngKan/pp_fp_method1 ,  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/pp_fp_method3 )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/pp_fp_method4  = '',  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2 ,  /Postpartum_FamilyPlanning_EngKan/pp_fp_method4 )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method4_start_date"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes',  /Postpartum_FamilyPlanning_EngKan/pp_fp_method1_start_date ,  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/pp_fp_method3_start_date )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/pp_fp_method_start_date"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/pp_fp_method4_start_date  = '',  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/pp_fp_method2_start_date ,  /Postpartum_FamilyPlanning_EngKan/pp_fp_method4_start_date )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/iud_place"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes',  /Postpartum_FamilyPlanning_EngKan/iud_place1 ,  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_place2 )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/iud_place_name"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes',  /Postpartum_FamilyPlanning_EngKan/iud_place1_name ,  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_place2_name )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/iud_person"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes',  /Postpartum_FamilyPlanning_EngKan/iud_person1 ,  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_person2 )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/iud_person_other"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes',  /Postpartum_FamilyPlanning_EngKan/iud_person1_other ,  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_person2_other )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/iud_person_name"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes',  /Postpartum_FamilyPlanning_EngKan/iud_person1_name ,  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/iud_person2_name )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/sterilization_doctor_name"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes',  /Postpartum_FamilyPlanning_EngKan/sterilization_doctor_name1 ,  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/sterilization_doctor_name2 )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/female_sterilization_type"
                    data-calculate="if( /Postpartum_FamilyPlanning_EngKan/fp_post_delivery  = 'yes',  /Postpartum_FamilyPlanning_EngKan/female_sterilization_type1 ,  /Postpartum_FamilyPlanning_EngKan/no_fp_after_delivery_group/fp_method_selection_group/female_sterilization_type2 )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Postpartum_FamilyPlanning_EngKan/formhub/uuid"
                    data-calculate="'b54d5c4984244ee7a72e2e577495ec27'" data-type-xml="string"/>
         </label>
