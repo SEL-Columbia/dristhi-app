@@ -5,12 +5,6 @@
     <select id="form-languages" style="display:none;" data-default-lang="default">
         <option value="default">default</option>
     </select>
-    <fieldset id="or-preload-items" style="display:none;">
-        <label class="non-select ">
-            <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/today" data-preload="date"
-                   data-preload-params="today" data-type-xml="date"/>
-        </label>
-    </fieldset>
 
 
     <label class="question non-select ">
@@ -59,24 +53,24 @@
                            data-type-xml="select1" value=""/>
                 </label>
                 <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
-                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-0">Bherya - A
-                        &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF; -&#xC8E;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-1">Bherya - B
-                        &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF; -&#xCAC;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-2">Hosa Agrahara
-                        &#xCB9;&#xCCA;&#xCB8; &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-3">Munjanahalli
-                        &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-4">G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;.
-                        &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-5">Vajamangala
-                        &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-6">Keelanapura - A
-                        &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xC8E;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-7">Keelanapura - B
-                        &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xCAC;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-sub_centers-8">Puttegowdanahundi
-                        &#xCAA;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-0">
+                        Bherya - A &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF; -&#xC8E;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-1">
+                        Bherya - B &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF; -&#xCAC;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-2">Hosa
+                        Agrahara &#xCB9;&#xCCA;&#xCB8; &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-3">
+                        Munjanahalli &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-4">
+                        G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;. &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-5">
+                        Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-6">
+                        Keelanapura - A &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xC8E;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-7">
+                        Keelanapura - B &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xCAC;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-8">
+                        Puttegowdanahundi &#xCAA;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
                 </span>
             </div>
         </fieldset>
@@ -95,63 +89,78 @@
                            data-type-xml="select1" value=""/>
                 </label>
                 <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-0">Basavanapura &#xCAC;&#xCB8;&#xCB5;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-1">Somanahalli Colony
-                        &#xCB8;&#xCCB;&#xCAE;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF; &#xC95;&#xCBE;&#xCB2;&#xCCB;&#xCA8;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-2">Sambaravalli &#xCB6;&#xC82;&#xCAC;&#xCB0;&#xCB5;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-3">Geradada &#xC97;&#xCC7;&#xCB0;&#xCCD;&#x200D;&#xCA6;&#xCA1;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-4">Ardha Bherya &#xC85;&#xCB0;&#xCCD;&#xCA7;
-                        &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-5">Sugganahalli &#xCB8;&#xCC1;&#xC97;&#xCCD;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-6">Battiganahalli
-                        &#xCAC;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-7">Half Bherya &#xCB9;&#xCBE;&#xCAB;&#xCCD;
-                        &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-8">Hosa Agrahara
-                        &#xCB9;&#xCCA;&#xCB8; &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-9">Mandiganahalli
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-0">
+                        Basavanapura &#xCAC;&#xCB8;&#xCB5;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-1">
+                        Somanahalli Colony &#xCB8;&#xCCB;&#xCAE;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF; &#xC95;&#xCBE;&#xCB2;&#xCCB;&#xCA8;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-2">
+                        Sambaravalli &#xCB6;&#xC82;&#xCAC;&#xCB0;&#xCB5;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-3">Geradada
+                        &#xC97;&#xCC7;&#xCB0;&#xCCD;&#x200D;&#xCA6;&#xCA1;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-4">Ardha
+                        Bherya &#xC85;&#xCB0;&#xCCD;&#xCA7; &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-5">
+                        Sugganahalli
+                        &#xCB8;&#xCC1;&#xC97;&#xCCD;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-6">
+                        Battiganahalli &#xCAC;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-7">Half
+                        Bherya &#xCB9;&#xCBE;&#xCAB;&#xCCD; &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-8">Hosa
+                        Agrahara &#xCB9;&#xCCA;&#xCB8; &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-9">
+                        Mandiganahalli
                         &#xCAE;&#xC82;&#xCA1;&#xCBF;&#xC97;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-10">Harambanahalli
-                        &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-11">Harambanahalli
-                        Koppalu &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-12">Boregowdanakoppalu
-                        &#xCAC;&#xCCB;&#xCB0;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-13">Munjanahalli
-                        &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-14">Kavalu Hosur
-                        &#xC95;&#xCBE;&#xCB5;&#xCB2;&#xCC1; &#xCB9;&#xCCA;&#xCB8;&#xCC2;&#xCB0;&#xCC1;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-15">Chikkabherya
-                        &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-16">G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;.
-                        &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-17">Udayagiri &#xC89;&#xCA6;&#xCAF;&#xC97;&#xCBF;&#xCB0;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-18">Arakere &#xC85;&#xCB0;&#xC95;&#xCC6;&#xCB0;&#xCC6;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-19">Chikkahalli &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-20">Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-21">Halagayanahundi
-                        &#xCB9;&#xCB2;&#xC97;&#xCAF;&#xCCD;&#xCAF;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-22">Keelanapura &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-23">M.C.Hundi &#xC8E;&#xC82;.&#xCB8;&#xCBF;.
-                        &#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-24">Inam Uttanahalli
-                        &#xC87;&#xCA8;&#xCBE;&#xC82; &#xC89;&#xCA4;&#xCCD;&#xCA4;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-25">Megalapura &#xCAE;&#xCC7;&#xC98;&#xCB2;&#xCAA;&#xCC1;&#xCB0;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-26">Madhavagere &#xCAE;&#xCBE;&#xCA6;&#xCB5;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-27">Hosahalli &#xCB9;&#xCCA;&#xCB8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-28">Gurukarapura
-                        &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xC95;&#xCBE;&#xCB0;&#xCAA;&#xCC1;&#xCB0;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-29">Puttegowdanahundi
-                        &#xCAA;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-30">Lakshmipura &#xCB2;&#xC95;&#xCCD;&#xCB7;&#xCCD;&#xCAE;&#xCC0;&#xCAA;&#xCC1;&#xCB0;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-31">Mahadevi Colony
-                        &#xCAE;&#xCBE;&#xCB9;&#xCA6;&#xCC7;&#xCB5;&#xCBF;
-                        &#xC95;&#xCBE;&#xCB2;&#xCCB;&#xCA8;&#xCBF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-32">Duddagere &#xCA6;&#xCC1;&#xCA6;&#xCCD;&#xCA6;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-33">Chattanahallipalya
-                        &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;&#xCAA;&#xCBE;&#xCB3;&#xCCD;&#xCAF;</span>
-                    <span lang="default" class=" active" data-itext-id="static_instance-villages-34">Chattanahalli
-                        &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-10">
+                        Harambanahalli &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-11">
+                        Harambanahalli Koppalu &#xCB9;&#xCBE;&#xCB0;&#xC82;&#xCAC;&#xCB3;&#xCCD;&#xCB3;&#xCBF; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-12">
+                        Boregowdanakoppalu &#xCAC;&#xCCB;&#xCB0;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8; &#xC95;&#xCCA;&#xCAA;&#xCCD;&#xCAA;&#xCB2;&#xCC1;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-13">
+                        Munjanahalli &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-14">Kavalu
+                        Hosur &#xC95;&#xCBE;&#xCB5;&#xCB2;&#xCC1; &#xCB9;&#xCCA;&#xCB8;&#xCC2;&#xCB0;&#xCC1;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-15">
+                        Chikkabherya &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-16">
+                        G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;. &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-17">
+                        Udayagiri &#xC89;&#xCA6;&#xCAF;&#xC97;&#xCBF;&#xCB0;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-18">Arakere
+                        &#xC85;&#xCB0;&#xC95;&#xCC6;&#xCB0;&#xCC6;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-19">
+                        Chikkahalli &#xC9A;&#xCBF;&#xC95;&#xCCD;&#xC95;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-20">
+                        Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-21">
+                        Halagayanahundi &#xCB9;&#xCB2;&#xC97;&#xCAF;&#xCCD;&#xCAF;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-22">
+                        Keelanapura &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-23">
+                        M.C.Hundi &#xC8E;&#xC82;.&#xCB8;&#xCBF;. &#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-24">Inam
+                        Uttanahalli &#xC87;&#xCA8;&#xCBE;&#xC82; &#xC89;&#xCA4;&#xCCD;&#xCA4;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-25">
+                        Megalapura &#xCAE;&#xCC7;&#xC98;&#xCB2;&#xCAA;&#xCC1;&#xCB0;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-26">
+                        Madhavagere &#xCAE;&#xCBE;&#xCA6;&#xCB5;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-27">
+                        Hosahalli &#xCB9;&#xCCA;&#xCB8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-28">
+                        Gurukarapura &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xC95;&#xCBE;&#xCB0;&#xCAA;&#xCC1;&#xCB0;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-29">
+                        Puttegowdanahundi &#xCAA;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-30">
+                        Lakshmipura &#xCB2;&#xC95;&#xCCD;&#xCB7;&#xCCD;&#xCAE;&#xCC0;&#xCAA;&#xCC1;&#xCB0;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-31">
+                        Mahadevi Colony &#xCAE;&#xCBE;&#xCB9;&#xCA6;&#xCC7;&#xCB5;&#xCBF; &#xC95;&#xCBE;&#xCB2;&#xCCB;&#xCA8;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-32">
+                        Duddagere &#xCA6;&#xCC1;&#xCA6;&#xCCD;&#xCA6;&#xC97;&#xCC6;&#xCB0;&#xCC6;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-33">
+                        Chattanahallipalya &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;&#xCAA;&#xCBE;&#xCB3;&#xCCD;&#xCAF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-34">
+                        Chattanahalli &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
                 </span>
             </div>
         </fieldset>
@@ -867,36 +876,42 @@
         </fieldset>
     </fieldset>
 
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/child/lbw"
                    data-calculate="if( /PNC_Child_Registration_EngKan/child/birthweight  &gt;= 1.5 and  /PNC_Child_Registration_EngKan/child/birthweight  &lt; 2.5, 'Low_Birth_Weight','')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/child/vlbw"
                    data-calculate="if( /PNC_Child_Registration_EngKan/child/birthweight  &lt; 1.5, 'Very_Low_Birth_Weight', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/child/is_child_high_risk1"
                    data-calculate="if( /PNC_Child_Registration_EngKan/child/lbw  != '' or  /PNC_Child_Registration_EngKan/child/vlbw  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/child/child_high_risk_reasons"
                    data-calculate="concat( /PNC_Child_Registration_EngKan/child/lbw , ' ',  /PNC_Child_Registration_EngKan/child/vlbw )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/woman_survived"
                    data-calculate="&quot;yes&quot;" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/formhub/uuid"
                    data-calculate="'d24e936c3474449eae592ff8241d0eca'" data-type-xml="string"/>
         </label>
