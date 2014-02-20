@@ -21,6 +21,8 @@
             <parity/>
             <case_num_livebirths/>
             <num_livebirths/>
+            <youngestchild_date_of_birth/>
+            <youngestchild_age/>
             <case_num_stillbirths/>
             <num_stillbirths/>
             <still_birth_group>

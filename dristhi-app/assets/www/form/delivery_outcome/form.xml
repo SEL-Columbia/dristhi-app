@@ -2,12 +2,6 @@
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Delivery Outcome</h3>
-    <fieldset id="or-preload-items" style="display:none;">
-        <label class="non-select ">
-            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/today" data-preload="date"
-                   data-preload-params="today" data-type-xml="date"/>
-        </label>
-    </fieldset>
 
 
     <label class="question non-select ">
@@ -929,112 +923,128 @@
         </fieldset>
     </fieldset>
 
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/parity"
                    data-calculate=" /Delivery_Outcome_EngKan/case_parity  + 1" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/num_livebirths"
                    data-relevant=" /Delivery_Outcome_EngKan/delivery_outcome  = 'live_birth'"
                    data-calculate=" /Delivery_Outcome_EngKan/case_num_livebirths  + 1" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/youngestchild_date_of_birth"
+                   data-relevant=" /Delivery_Outcome_EngKan/delivery_outcome  = 'live_birth'"
+                   data-calculate=" /Delivery_Outcome_EngKan/delivery_date " data-type-xml="string"/>
+        </label>
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/youngestchild_age"
+                   data-calculate="int(( /Delivery_Outcome_EngKan/today  -  /Delivery_Outcome_EngKan/youngestchild_date_of_birth ) div 30)"
+                   data-type-xml="string"/>
+        </label>
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/num_stillbirths"
                    data-relevant=" /Delivery_Outcome_EngKan/delivery_outcome  = 'still_birth'"
                    data-calculate=" /Delivery_Outcome_EngKan/case_num_stillbirths  + 1" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Delivery_Outcome_EngKan/live_birth_group/child/sex_child_female"
                    data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child  = 'female', 1, 0)"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Delivery_Outcome_EngKan/live_birth_group/child/sex_child_male"
                    data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child  = 'male', 1, 0)"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/child/lbw"
                    data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/birthweight  &gt;= 1.5 and  /Delivery_Outcome_EngKan/live_birth_group/child/birthweight  &lt; 2.5, 'Low_Birth_Weight','')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/child/vlbw"
                    data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/birthweight  &lt; 1.5, 'Very_Low_Birth_Weight', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/child/num_preg_days"
                    data-calculate="int(date( /Delivery_Outcome_EngKan/delivery_date ) - date( /Delivery_Outcome_EngKan/case_lmp ))"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/live_birth_group/child/premature"
                    data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/num_preg_days  &lt; 259, 'Premature', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Delivery_Outcome_EngKan/live_birth_group/child/is_child_high_risk1"
                    data-calculate="if( /Delivery_Outcome_EngKan/live_birth_group/child/premature  != '' or  /Delivery_Outcome_EngKan/live_birth_group/child/lbw  != '' or  /Delivery_Outcome_EngKan/live_birth_group/child/vlbw  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Delivery_Outcome_EngKan/live_birth_group/child/child_high_risk_reasons"
                    data-calculate="concat( /Delivery_Outcome_EngKan/live_birth_group/child/premature , ' ',  /Delivery_Outcome_EngKan/live_birth_group/child/lbw , ' ',  /Delivery_Outcome_EngKan/live_birth_group/child/vlbw )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/num_children_born"
                    data-calculate="count( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/num_livingchildren"
                    data-calculate=" /Delivery_Outcome_EngKan/case_num_livingchildren  +  /Delivery_Outcome_EngKan/num_children_born "
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/num_female_children_born"
                    data-calculate="sum( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child_female )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/numlivingchildren_female"
                    data-calculate=" /Delivery_Outcome_EngKan/case_numlivingchildren_female  +  /Delivery_Outcome_EngKan/num_female_children_born "
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/num_male_children_born"
                    data-calculate="sum( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child_male )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/numlivingchildren_male"
                    data-calculate=" /Delivery_Outcome_EngKan/case_numlivingchildren_male  +  /Delivery_Outcome_EngKan/num_male_children_born "
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/is_high_risk1"
                    data-calculate="if( /Delivery_Outcome_EngKan/case_is_high_risk_till_pnc_close  = 'yes' or  /Delivery_Outcome_EngKan/case_anaemic_status  != '' or  /Delivery_Outcome_EngKan/case_pih  != '' or  /Delivery_Outcome_EngKan/case_pre_eclampsia  != '' or  /Delivery_Outcome_EngKan/case_jaundice  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/high_risk_reason"
                    data-calculate="concat( /Delivery_Outcome_EngKan/case_is_high_risk_till_pnc_close_reason , ' ',  /Delivery_Outcome_EngKan/case_anaemic_status , ' ',  /Delivery_Outcome_EngKan/case_pih , ' ',  /Delivery_Outcome_EngKan/case_pre_eclampsia , ' ',  /Delivery_Outcome_EngKan/case_jaundice )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/formhub/uuid"
-                   data-calculate="'a54e1845347a4220892909b7a65644e3'" data-type-xml="string"/>
+                   data-calculate="'c5920a1a3abe4f8fb8227e1e42b48142'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
