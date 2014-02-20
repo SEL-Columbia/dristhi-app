@@ -2,12 +2,6 @@
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">Record ECPs</h3>
-    <fieldset id="or-preload-items" style="display:none;">
-        <label class="non-select ">
-            <input autocomplete="off" type="hidden" name="/Family_Planning_ECPs_EngKan/today" data-preload="date"
-                   data-preload-params="today" data-type-xml="date"/>
-        </label>
-    </fieldset>
 
 
     <label class="question non-select ">
@@ -36,12 +30,18 @@
         </span>
     </fieldset>
 
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Family_Planning_ECPs_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Family_Planning_ECPs_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Family_Planning_ECPs_EngKan/formhub/uuid"
                    data-calculate="'78173cd9aab74f3fbf87fc62e40b3482'" data-type-xml="string"/>
         </label>
