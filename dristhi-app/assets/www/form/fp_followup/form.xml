@@ -2,12 +2,6 @@
     <!--This form was created by transforming a OpenRosa-flavored (X)Form using an XSLT sheet created by Enketo LLC.-->
     <section class="form-logo"></section>
     <h3 id="form-title">FP Follow-up</h3>
-    <fieldset id="or-preload-items" style="display:none;">
-        <label class="non-select ">
-            <input autocomplete="off" type="hidden" name="/Family_Planning_Followup_EngKan/today" data-preload="date"
-                   data-preload-params="today" data-type-xml="date"/>
-        </label>
-    </fieldset>
 
 
     <fieldset class="trigger " name="/Family_Planning_Followup_EngKan/case_familyplanning_method_note">
@@ -362,28 +356,34 @@
         </span>
     </fieldset>
 
+    <fieldset id="or-preload-items" style="display:none;">
+        <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/Family_Planning_Followup_EngKan/today" data-preload="date"
+                   data-preload-params="today" data-type-xml="date"/>
+        </label>
+    </fieldset>
     <fieldset id="or-calculated-items" style="display:none;">
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Family_Planning_Followup_EngKan/first_time_followup_group/side_effects"
                    data-calculate="concat(string( /Family_Planning_Followup_EngKan/first_time_followup_group/iud_sideeffect ), ' ', string( /Family_Planning_Followup_EngKan/first_time_followup_group/sterilization_sideeffect ), ' ',  /Family_Planning_Followup_EngKan/first_time_followup_group/other_sideeffect )"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Family_Planning_Followup_EngKan/needs_referral_followup"
                    data-calculate="if( /Family_Planning_Followup_EngKan/refer_couple_fp_method_complication  = 'yes', 'yes', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Family_Planning_Followup_EngKan/needs_followup"
                    data-calculate="if( /Family_Planning_Followup_EngKan/refer_couple_fp_method_complication  = 'no', 'yes', '')"
                    data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Family_Planning_Followup_EngKan/meta/instanceID"
                    data-calculate="concat('uuid:', uuid())" data-type-xml="string"/>
         </label>
-        <label class="non-select ">
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Family_Planning_Followup_EngKan/formhub/uuid"
                    data-calculate="'4dc2a1103936401a9b94e1d8f9685926'" data-type-xml="string"/>
         </label>
