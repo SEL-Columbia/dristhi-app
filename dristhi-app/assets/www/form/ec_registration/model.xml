@@ -15,13 +15,11 @@
             <woman_name/>
             <woman_name2/>
             <aadhaar_number/>
-            <woman_date_of_birth/>
             <woman_age/>
-            <woman_age_note/>
+            <woman_date_of_birth/>
             <husband_name/>
-            <husband_date_of_birth/>
             <husband_age/>
-            <husband_age_note/>
+            <husband_date_of_birth/>
             <phone_no/>
             <phone_owner/>
             <phone_no2/>
