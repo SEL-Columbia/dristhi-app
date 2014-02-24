@@ -51,6 +51,7 @@ public class FormSubmissionRouter {
         handlerMap.put(ANC_REGISTRATION_OA, ancRegistrationOAHandler);
         handlerMap.put(ANC_VISIT, ancVisitHandler);
         handlerMap.put(ANC_CLOSE, ancCloseHandler);
+        handlerMap.put(TT, ttHandler);
         handlerMap.put(TT_BOOSTER, ttHandler);
         handlerMap.put(TT_1, ttHandler);
         handlerMap.put(TT_2, ttHandler);
