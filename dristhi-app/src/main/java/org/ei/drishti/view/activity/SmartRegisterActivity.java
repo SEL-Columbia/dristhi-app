@@ -7,7 +7,6 @@ import org.ei.drishti.AllConstants;
 import org.ei.drishti.Context;
 import org.ei.drishti.event.CapturedPhotoInformation;
 import org.ei.drishti.event.Listener;
-import org.ei.drishti.view.controller.FormController;
 
 import java.util.Map;
 

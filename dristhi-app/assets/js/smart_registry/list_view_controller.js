@@ -134,6 +134,14 @@ angular.module("smartRegistry.controllers")
             $scope.formBridge.delegateToFormLaunchView(formName, entityId, JSON.stringify(fieldOverrides));
         };
 
+        $scope.openFormWithFieldOverridesAndMetaData = function (formName, entityId, metaData, fields) {
+            if (!metaData) {
+                metaData = {};
+            }
+            metaData.fieldOverrides = fields;
+            $scope.formBridge.delegateToFormLaunchView(formName, entityId, JSON.stringify(metaData));
+        };
+
         $scope.openMicroForm = function (formName, entityId, metaData) {
             if (!metaData) {
                 metaData = {};

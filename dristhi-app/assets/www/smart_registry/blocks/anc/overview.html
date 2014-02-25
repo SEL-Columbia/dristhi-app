@@ -9,7 +9,11 @@
                 <button class="btn btn-primary btn-sr"
                         ng-if="schedule === 'tt' && client.visits[schedule].next"
                         ng-class="client.visits[schedule].next.status"
-                        ng-click='client.visits[schedule].next.status == "complete" || openFormWithFieldOverrides("tt", client.entityId, "{\"ttDose\":\""+client.visits[schedule].next.reminder_form_value+"\"}");'>
+                        ng-click='client.visits[schedule].next.status == "complete"
+                        || openFormWithFieldOverridesAndMetaData("tt",
+                        client.entityId,
+                        {"entityId": client.entityId, "alertName": client.visits[schedule].next.name},
+                        "{\"ttDose\":\""+client.visits[schedule].next.reminder_form_value+"\"}")'>
                     <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
                     <br/>
                         <span ng-if="client.visits[schedule].next.status == 'normal'
