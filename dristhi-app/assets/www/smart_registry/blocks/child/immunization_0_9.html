@@ -19,7 +19,7 @@
 <div class="span3 span-no-margin width-without-margins line-right span-content">
     <div class="relative-positioning">
         <sr-service-button sr-bind="client.visits.hepb"
-                           ng-click='openFormWithFieldOverrides("child_immunizations", client.entityId, "{\"immunizationsReceived\":\"hepb_0\"}");'
+                           sr-click='openFormWithFieldOverrides("child_immunizations", client.entityId, "{\"immunizationsReceived\":\"hepb_0\"}");'
                            sr-click-alt="openForm('child_immunizations', client.entityId)"
                            sr-icon="dropper">
         </sr-service-button>
@@ -33,7 +33,7 @@
 <div class="span3 span-no-margin width-without-margins line-right span-content">
     <div class="relative-positioning">
         <sr-service-button sr-bind="client.visits.opv"
-                           ng-click='openFormWithFieldOverrides("child_immunizations", client.entityId, "{\"immunizationsReceived\":\""+client.visits.opv.next.name+"\"}");'
+                           sr-click='openFormWithFieldOverrides("child_immunizations", client.entityId, "{\"immunizationsReceived\":\""+client.visits.opv.next.name+"\"}");'
                            sr-click-alt="openForm('child_immunizations', client.entityId)"
                            sr-icon="dropper">
         </sr-service-button>
@@ -47,7 +47,7 @@
 <div class="span3 span-no-margin width-without-margins line-right span-content">
     <div class="relative-positioning">
         <sr-service-button sr-bind="client.visits.pentavalent"
-                           ng-click='openFormWithFieldOverrides("child_immunizations", client.entityId, "{\"immunizationsReceived\":\""+client.visits.pentavalent.next.name+"\"}");'
+                           sr-click='openFormWithFieldOverrides("child_immunizations", client.entityId, "{\"immunizationsReceived\":\""+client.visits.pentavalent.next.name+"\"}");'
                            sr-click-alt="openForm('child_immunizations', client.entityId)"
                            sr-icon="needle">
         </sr-service-button>

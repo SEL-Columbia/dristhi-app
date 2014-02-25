@@ -11,15 +11,15 @@ angular.module('smartRegistry.directives', [])
             restrict: 'E',
             scope: {
                 schedule: '=srBind',
-                clickFn: '&ngClick',
+                clickFn: '&srClick',
                 altClickFn: '&srClickAlt',
                 srIcon: '@srIcon'
             },
-            link: function(scope, elm, attrs) {
+            link: function (scope, elm, attrs) {
                 scope.useNeedle = attrs.srIcon === 'needle';
                 scope.useDropper = attrs.srIcon === 'dropper';
-                scope.schedule_id = attrs.srBind.split(".")[2]
-                elm.bind('click', scope.schedule.next?scope.clickFn:scope.altClickFn);
+                scope.schedule_id = attrs.srBind.split(".")[2];
+                elm.bind('click', scope.schedule.next ? scope.clickFn : scope.altClickFn);
             }
         }
     }])
@@ -32,8 +32,8 @@ angular.module('smartRegistry.directives', [])
                 client: '=',
                 clickFn: '&ngClick'
             },
-            link: function(scope, elm, attrs) {
-                scope.statusType = scope.client.status.type === 'pnc/fp'?attrs.statusType:scope.client.status.type;
+            link: function (scope, elm, attrs) {
+                scope.statusType = scope.client.status.type === 'pnc/fp' ? attrs.statusType : scope.client.status.type;
                 //elm.bind('click', scope.clickFn);
             }
         }
@@ -46,11 +46,10 @@ angular.module('smartRegistry.directives', [])
             scope: {
                 services_provided: '=bind'
             },
-            link: function(scope, elm, attrs) {
-                if(scope.services_provided.length > 0)
-                {
-                    scope.last_service = scope.services_provided.sort(function(a, b){
-                        return a.date < b.date?1:-1;
+            link: function (scope, elm, attrs) {
+                if (scope.services_provided.length > 0) {
+                    scope.last_service = scope.services_provided.sort(function (a, b) {
+                        return a.date < b.date ? 1 : -1;
                     })[0];
                 }
             }
