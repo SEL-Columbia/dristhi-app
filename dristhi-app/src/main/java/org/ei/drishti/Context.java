@@ -5,6 +5,7 @@ import org.ei.drishti.service.*;
 import org.ei.drishti.service.formSubmissionHandler.*;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
+import org.ei.drishti.view.controller.ANMController;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
@@ -76,6 +77,8 @@ public class Context {
     private ChildCloseHandler childCloseHandler;
     private ChildIllnessHandler childIllnessHandler;
     private VitaminAHandler vitaminAHandler;
+
+    private ANMController anmController;
 
     private DristhiConfiguration configuration;
 
@@ -539,9 +542,16 @@ public class Context {
     }
 
     public PendingFormSubmissionService pendingFormSubmissionService() {
-        if(pendingFormSubmissionService == null) {
+        if (pendingFormSubmissionService == null) {
             pendingFormSubmissionService = new PendingFormSubmissionService(formDataRepository());
         }
         return pendingFormSubmissionService;
+    }
+
+    public ANMController anmController() {
+        if (anmController == null) {
+            anmController = new ANMController(anmService(), listCache());
+        }
+        return anmController;
     }
 }

@@ -17,6 +17,7 @@ public class ANMService {
     }
 
     public ANM fetchDetails() {
-        return new ANM(allSettings.fetchRegisteredANM(), allEligibleCouples.count(), allEligibleCouples.fpCount(), allBeneficiaries.ancCount(), allBeneficiaries.pncCount(), allBeneficiaries.childCount());
+        return new ANM(allSettings.fetchRegisteredANM(), allEligibleCouples.count(), allEligibleCouples.fpCount(),
+                allBeneficiaries.ancCount(), allBeneficiaries.pncCount(), allBeneficiaries.childCount());
     }
 }

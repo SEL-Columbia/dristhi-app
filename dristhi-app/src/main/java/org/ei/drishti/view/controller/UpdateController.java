@@ -1,10 +1,7 @@
 package org.ei.drishti.view.controller;
 
 import android.webkit.WebView;
-import com.google.gson.Gson;
 import org.ei.drishti.Context;
-import org.ei.drishti.domain.ANM;
-import org.ei.drishti.view.contract.HomeContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,13 +35,12 @@ public class UpdateController {
     }
 
     public void updateANMDetails() {
-        UpdateANMDetailsTask task = new UpdateANMDetailsTask(Context.getInstance().anmService());
+        UpdateANMDetailsTask task = new UpdateANMDetailsTask(Context.getInstance().anmController());
         task.fetch(new AfterANMDetailsFetchListener() {
             @Override
-            public void afterFetch(ANM anm) {
-                String anmDetailsJSON = new Gson().toJson(new HomeContext(anm));
+            public void afterFetch(String anmDetails) {
                 if (webView != null)
-                    webView.loadUrl("javascript:pageView.updateANMDetails('" + anmDetailsJSON + "')");
+                    webView.loadUrl("javascript:pageView.updateANMDetails('" + anmDetails + "')");
             }
         });
     }

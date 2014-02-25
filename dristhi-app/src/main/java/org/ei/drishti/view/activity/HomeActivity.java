@@ -68,7 +68,6 @@ public class HomeActivity extends SecuredWebActivity {
         updateMenuItem = menu.findItem(R.id.updateMenuItem);
         remainingFormsToSyncMenuItem = menu.findItem(R.id.remainingFormsToSyncMenuItem);
 
-        updateController.updateANMDetails();
         updateSyncIndicator();
         updateRemainingFormsToSyncCount();
         return true;

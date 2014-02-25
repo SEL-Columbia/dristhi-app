@@ -2,20 +2,17 @@ package org.ei.drishti.view.controller;
 
 import android.app.Activity;
 import android.content.Intent;
-import com.google.gson.Gson;
-import org.ei.drishti.service.ANMService;
 import org.ei.drishti.view.activity.*;
-import org.ei.drishti.view.contract.HomeContext;
 
 import static org.ei.drishti.view.controller.ProfileNavigationController.*;
 
 public class NavigationController {
     private Activity activity;
-    private ANMService anmService;
+    private ANMController anmController;
 
-    public NavigationController(Activity activity, ANMService anmService) {
+    public NavigationController(Activity activity, ANMController anmController) {
         this.activity = activity;
-        this.anmService = anmService;
+        this.anmController = anmController;
     }
 
     public void startReports() {
@@ -47,7 +44,7 @@ public class NavigationController {
     }
 
     public String get() {
-        return new Gson().toJson(new HomeContext(anmService.fetchDetails()));
+        return anmController.get();
     }
 
     public void goBack() {
