@@ -11,6 +11,11 @@ angular.module("smartRegistry.services")
                 {
                     name: "tt",
                     milestones: ["TT 1", "TT 2", "TT Booster"],
+                    reminder_to_form_map: {
+                        "TT 1": "tt1",
+                        "TT 2": "tt2",
+                        "TT Booster": "ttbooster"
+                    },
                     services: ["TT 1", "TT 2", "TT Booster"],
                     is_list: false
                 },
@@ -63,6 +68,7 @@ angular.module("smartRegistry.services")
                         milestone_alert.status !== alert_status.COMPLETE)) {
                     var next_milestone = {};
                     next_milestone.name = milestone_alert.name;
+                    next_milestone.reminder_form_value = schedule.reminder_to_form_map ? schedule.reminder_to_form_map[milestone_alert.name] : milestone_alert.name;
                     next_milestone.status = milestone_alert.status;
                     next_milestone.visit_date = $filter('date')(milestone_alert.date, 'dd/MM');
                     visit.next = next_milestone;

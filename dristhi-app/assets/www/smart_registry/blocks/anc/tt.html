@@ -6,9 +6,8 @@
             <button class="btn btn-primary btn-sr full-height"
                     ng-if="client.visits.tt[milestone]"
                     ng-class="client.visits.tt[milestone].status"
-                    ng-click="client.visits.tt[milestone].status == 'complete'
-                        || openForm('tt', client.entityId, {'entityId': client.entityId, 'alertName': milestone})">
-                          <!--|| openFormWithFieldOverrides('tt', client.entityId, '{\'ttDose\':\''+ client.visits.schedule.next.name+'\'});">-->
+                    ng-click='client.visits.tt[milestone].status == "complete"
+                        || openFormWithFieldOverrides("tt", client.entityId, "{\"ttDose\":\""+client.visits.tt.next.reminder_form_value+"\"}")'>
                 <ng-switch on="client.visits.tt[milestone].status">
                     <div ng-switch-when="complete" class="done-icon full-height">
                         <i class="icon-ok green icon-large"></i>

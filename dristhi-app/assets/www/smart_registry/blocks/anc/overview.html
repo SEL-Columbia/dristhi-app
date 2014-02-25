@@ -6,56 +6,47 @@
         <div data-ng-repeat="schedule in ['anc', 'tt', 'ifa']"
              class="visits span3 line-right span-no-margin width-without-margins span-content">
             <div class="relative-positioning">
-                <ng:switch on="schedule">
-                    <button class="btn btn-primary btn-sr"
-                            ng-switch-when="tt"
-                            ng-if="client.visits[schedule].next"
-                            ng-class="client.visits[schedule].next.status"
-                            ng-click="client.visits[schedule].next.status == 'complete'
-                                                    || openForm('tt', client.entityId, {'entityId': client.entityId, 'alertName': milestone})">
-                        <!--|| openFormWithFieldOverrides('tt', client.entityId, '{\'ttDose\':\''+ client.visits.schedule.next.name+'\'});">-->
-                        <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
-                        <br/>
-                    <span ng-if="client.visits[schedule].next.status == 'normal'
-                            || client.visits[schedule].next.status == 'urgent'
-                            || client.visits[schedule].next.status == 'upcoming'">
-                        Due
-                    </span>
-                        <span> {{client.visits[schedule].next.visit_date}}</span>
-                    </button>
-
-                    <span ng-switch-default>
-                        <button class="btn btn-primary btn-sr"
-                                ng-if="client.visits[schedule].next && useMicroForm(schedule)"
-                                ng-class="client.visits[schedule].next.status"
-                                ng-click="client.visits[schedule].next.status == 'complete'
-                                || openForm(milestoneForm[client.visits[schedule].next.name], client.entityId, {'entityId': client.entityId, 'alertName': client.visits[schedule].next.name})">
-                            <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
-                            <br/>
+                <button class="btn btn-primary btn-sr"
+                        ng-if="schedule === 'tt' && client.visits[schedule].next"
+                        ng-class="client.visits[schedule].next.status"
+                        ng-click='client.visits[schedule].next.status == "complete" || openFormWithFieldOverrides("tt", client.entityId, "{\"ttDose\":\""+client.visits[schedule].next.reminder_form_value+"\"}");'>
+                    <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
+                    <br/>
                         <span ng-if="client.visits[schedule].next.status == 'normal'
                                 || client.visits[schedule].next.status == 'urgent'
                                 || client.visits[schedule].next.status == 'upcoming'">
                             Due
                         </span>
-                            <span> {{client.visits[schedule].next.visit_date}}</span>
-                        </button>
-                        <button class="btn btn-primary btn-sr"
-                                ng-if="client.visits[schedule].next && !useMicroForm(schedule)"
-                                ng-class="client.visits[schedule].next.status"
-                                ng-click="client.visits[schedule].next.status == 'complete'
+                    <span> {{client.visits[schedule].next.visit_date}}</span>
+                </button>
+                <button class="btn btn-primary btn-sr"
+                        ng-if="schedule !== 'tt' && client.visits[schedule].next && useMicroForm(schedule)"
+                        ng-class="client.visits[schedule].next.status"
+                        ng-click="client.visits[schedule].next.status == 'complete'
                                 || openForm(milestoneForm[client.visits[schedule].next.name], client.entityId, {'entityId': client.entityId, 'alertName': client.visits[schedule].next.name})">
-                            <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
-                            <br/>
+                    <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
+                    <br/>
                         <span ng-if="client.visits[schedule].next.status == 'normal'
                                 || client.visits[schedule].next.status == 'urgent'
                                 || client.visits[schedule].next.status == 'upcoming'">
                             Due
                         </span>
-                            <span> {{client.visits[schedule].next.visit_date}}</span>
-                        </button>
-                    </span>
-                </ng:switch>
-
+                    <span> {{client.visits[schedule].next.visit_date}}</span>
+                </button>
+                <button class="btn btn-primary btn-sr"
+                        ng-if="schedule !== 'tt' && client.visits[schedule].next && !useMicroForm(schedule)"
+                        ng-class="client.visits[schedule].next.status"
+                        ng-click="client.visits[schedule].next.status == 'complete'
+                                || openForm(milestoneForm[client.visits[schedule].next.name], client.entityId, {'entityId': client.entityId, 'alertName': client.visits[schedule].next.name})">
+                    <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
+                    <br/>
+                        <span ng-if="client.visits[schedule].next.status == 'normal'
+                                || client.visits[schedule].next.status == 'urgent'
+                                || client.visits[schedule].next.status == 'upcoming'">
+                            Due
+                        </span>
+                    <span> {{client.visits[schedule].next.visit_date}}</span>
+                </button>
                 <span ng-if="client.visits[schedule].previous" class="previous-alert">
                     <i class="icon-ok green"></i>
                     <ng:switch on="client.visits[schedule].previous.name">
