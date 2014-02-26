@@ -32,7 +32,7 @@ describe("List view controller:", function () {
     describe("Initialisation:", function () {
         it("should default page size and current page.", function () {
             expect(scope.currentPage).toBe(0);
-            expect(scope.pageSize).toBe(10);
+            expect(scope.pageSize).toBe(20);
         });
     });
 

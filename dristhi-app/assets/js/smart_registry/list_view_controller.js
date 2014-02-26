@@ -5,7 +5,7 @@ angular.module("smartRegistry.controllers")
         $scope.formBridge = new FormBridge();
         $scope.villageBridge = new VillageBridge();
         $scope.currentPage = 0;
-        $scope.pageSize = 10;
+        $scope.pageSize = 20;
 
         var updateClientListAndPageInformation = function (currentPage) {
             var filteredClients = $scope.clients.filter($scope.filterList);
