@@ -19,7 +19,7 @@ angular.module("smartRegistry.controllers")
             if (sortedClients.length > 0 && sortedClients.length <= $scope.pageSize) {
                 $scope.numberOfPages = 1;
             } else {
-                $scope.numberOfPages = Math.round(sortedClients.length / $scope.pageSize);
+                $scope.numberOfPages = Math.ceil(sortedClients.length / $scope.pageSize);
             }
 
             $scope.filteredClients = sortedClients
