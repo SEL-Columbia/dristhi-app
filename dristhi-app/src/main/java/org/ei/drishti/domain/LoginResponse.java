@@ -6,6 +6,7 @@ public enum LoginResponse {
     UNKNOWN_RESPONSE("Dristhi login failed. Try later"),
     UNAUTHORIZED("Please check the credentials");
 
+    private String payload;
     private String message;
 
     private LoginResponse(String message) {
@@ -14,5 +15,14 @@ public enum LoginResponse {
 
     public String message() {
         return message;
+    }
+
+    public String payload() {
+        return payload;
+    }
+
+    public LoginResponse withPayload(String payload) {
+        this.payload = payload;
+        return this;
     }
 }

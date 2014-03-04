@@ -1,15 +1,14 @@
 package org.ei.drishti.client;
 
-import org.apache.http.HeaderElement;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.ei.drishti.util.HttpResponseUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.zip.GZIPInputStream;
 
 import static org.apache.http.HttpStatus.SC_OK;
 
@@ -30,15 +29,7 @@ public class GZipEncodingHttpClient {
             throw new IOException("Invalid status code: " + response.getStatusLine().getStatusCode());
         }
 
-        if (response.getEntity() != null && response.getEntity().getContentEncoding() != null) {
-            HeaderElement[] codecs = response.getEntity().getContentEncoding().getElements();
-            for (HeaderElement codec : codecs) {
-                if (codec.getName().equalsIgnoreCase("gzip")) {
-                    return new GZIPInputStream(response.getEntity().getContent());
-                }
-            }
-        }
-        return response.getEntity().getContent();
+        return HttpResponseUtil.getResponseStream(response);
     }
 
     public HttpResponse execute(HttpGet request) throws IOException {

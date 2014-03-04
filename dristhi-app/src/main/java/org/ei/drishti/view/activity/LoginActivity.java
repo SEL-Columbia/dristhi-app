@@ -113,7 +113,7 @@ public class LoginActivity extends Activity {
 
     private void localLogin(View view, String userName, String password) {
         if (context.userService().isValidLocalLogin(userName, password)) {
-            loginWith(userName, password);
+            localLoginWith(userName, password);
         } else {
             showErrorDialog(getString(R.string.login_failed_dialog_message));
             view.setClickable(true);
@@ -124,7 +124,7 @@ public class LoginActivity extends Activity {
         tryRemoteLogin(userName, password, new Listener<LoginResponse>() {
             public void onEvent(LoginResponse loginResponse) {
                 if (loginResponse == SUCCESS) {
-                    loginWith(userName, password);
+                    remoteLoginWith(userName, password, loginResponse.payload());
                 } else {
                     if (loginResponse == null) {
                         showErrorDialog("Login failed. Unknown reason. Try Again");
@@ -186,8 +186,14 @@ public class LoginActivity extends Activity {
         inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), HIDE_NOT_ALWAYS);
     }
 
-    private void loginWith(String userName, String password) {
-        context.userService().loginWith(userName, password);
+    private void localLoginWith(String userName, String password) {
+        context.userService().localLogin(userName, password);
+        goToHome();
+        DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
+    }
+
+    private void remoteLoginWith(String userName, String password, String anmLocation) {
+        context.userService().remoteLogin(userName, password, anmLocation);
         goToHome();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
