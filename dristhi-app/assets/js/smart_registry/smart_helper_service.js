@@ -24,21 +24,24 @@ angular.module("smartRegistry.services")
             },
             childsAge: function(dob, ref_date) {
                 var days_since = daysBetween(dob, ref_date);
-                if(days_since < 28)
+                var DAYS_THRESHOLD = 28;
+                var WEEKS_THRESHOLD = 119;
+                var MONTHS_THRESHOLD = 720;
+                if(days_since < DAYS_THRESHOLD)
                 {
                     return Math.floor(days_since) + "d";
                 }
-                else if(days_since < 119)
+                else if(days_since < WEEKS_THRESHOLD)
                 {
                     return Math.floor(days_since/7) + "w";
                 }
-                else if(days_since < 672)
+                else if(days_since < MONTHS_THRESHOLD)
                 {
-                    return Math.floor(days_since/7/4) + "m";
+                    return Math.floor(days_since/30) + "m";
                 }
                 else
                 {
-                    return Math.floor(days_since/7/4/12) + "y";
+                    return Math.floor(days_since/365) + "y";
                 }
             },
             preProcessSchedule: function(client, schedule){

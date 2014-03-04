@@ -66,12 +66,13 @@ describe('Smart Helpers', function () {
         it("should return the age in months if between 4 months and 23 months", function () {
             var dob = new Date(Date.parse("2010-01-02"));
             var ref_date = new Date(dob);
-            ref_date.setDate(ref_date.getDate() + (7 * 17));
+            var NO_OF_DAYS_IN_A_WEEK = 7;
+            var NO_OF_WEEKS = 17;
+            ref_date.setDate(ref_date.getDate() + (NO_OF_DAYS_IN_A_WEEK * NO_OF_WEEKS));
 
-            expect(smartHelper.childsAge(dob, ref_date)).toEqual("4m");
+            expect(smartHelper.childsAge(dob, ref_date)).toEqual("3m");
 
-            ref_date = new Date(dob);
-            ref_date.setDate(ref_date.getDate() + (24 * 4 * 7 - 1));
+            ref_date = new Date(Date.parse("2011-11-23"));
 
             expect(smartHelper.childsAge(dob, ref_date)).toEqual("23m");
         });
@@ -79,7 +80,7 @@ describe('Smart Helpers', function () {
         it("should return the age in years if older than 23 months", function () {
             var dob = new Date(Date.parse("2010-01-02"));
             var ref_date = new Date(dob);
-            ref_date.setDate(ref_date.getDate() + (7 * 4 * 12 * 2));
+            ref_date.setDate(ref_date.getDate() + (365 * 2));
 
             expect(smartHelper.childsAge(dob, ref_date)).toEqual("2y");
         });
