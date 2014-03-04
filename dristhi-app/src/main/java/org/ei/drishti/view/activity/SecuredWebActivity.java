@@ -22,8 +22,7 @@ import org.ei.drishti.view.controller.VillageController;
 
 import static android.webkit.ConsoleMessage.MessageLevel.ERROR;
 import static java.text.MessageFormat.format;
-import static org.ei.drishti.AllConstants.ENTITY_ID_PARAM;
-import static org.ei.drishti.AllConstants.FORM_NAME_PARAM;
+import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.util.Log.logDebug;
 import static org.ei.drishti.util.Log.logError;
 
@@ -105,7 +104,6 @@ public abstract class SecuredWebActivity extends SecuredActivity {
             }
 
 
-
             @Override
             public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
                 String message = format("Javascript Log. Message: {0}, lineNumber: {1}, sourceId, {2}", consoleMessage.message(),
@@ -130,6 +128,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         webView.addJavascriptInterface(new NavigationController(this, context.anmController()), "navigationContext");
         webView.addJavascriptInterface(new VillageController(context.allEligibleCouples(), context.listCache()), "villageContext");
         webView.addJavascriptInterface(new InternationalizationContext(getResources()), "internationalizationContext");
+        webView.addJavascriptInterface(context.anmLocationController(), ANM_LOCATION_CONTROLLER);
         webView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {

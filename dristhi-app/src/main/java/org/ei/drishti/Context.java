@@ -7,6 +7,7 @@ import org.ei.drishti.sync.SaveANMLocationTask;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
 import org.ei.drishti.view.controller.ANMController;
+import org.ei.drishti.view.controller.ANMLocationController;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
@@ -81,6 +82,7 @@ public class Context {
     private SaveANMLocationTask saveANMLocationTask;
 
     private ANMController anmController;
+    private ANMLocationController anmLocationController;
 
     private DristhiConfiguration configuration;
 
@@ -562,5 +564,12 @@ public class Context {
             anmController = new ANMController(anmService(), listCache());
         }
         return anmController;
+    }
+
+    public ANMLocationController anmLocationController() {
+        if (anmLocationController == null) {
+            anmLocationController = new ANMLocationController(allSettings(), listCache());
+        }
+        return anmLocationController;
     }
 }

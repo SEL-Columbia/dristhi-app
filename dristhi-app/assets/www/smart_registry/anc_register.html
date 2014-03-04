@@ -21,6 +21,7 @@
     <script src="../../js/smart_registry/anc_registry_bridge.js" type="text/javascript"></script>
     <script src="../../js/smart_registry/list_view_controller.js" type="text/javascript"></script>
     <script src="../../js/smart_registry/anc_service.js" type="text/javascript"></script>
+    <script src="../../js/smart_registry/anm_location_bridge.js" type="text/javascript"></script>
     <script src="../../js/smart_registry/anc_register_app.js" type="text/javascript"></script>
 </head>
 <body ng-controller="ancRegisterController">
@@ -71,7 +72,7 @@
                             <i class="icon-village icon-white"></i></a>
                         </li>
                         <li class="separator"></li>
-                        <li><a ng-click="openForm('anc_registration_oa', '')"><i class="icon-plus icon-white"></i></a>
+                        <li><a ng-click='openFormWithFieldOverrides("anc_registration_oa", null, "{\"district\":\""+anmLocation.district+"\",\"phc\":\""+anmLocation.phcIdentifier+"\",\"subCenter\":\""+anmLocation.subCenter+"\"}")'><i class="icon-plus icon-white"></i></a>
                         </li>
                         <li class="separator"></li>
                     </ul>
