@@ -4,6 +4,7 @@ angular.module("smartRegistry.controllers")
         $scope.navigationBridge = new ANMNavigationBridge();
         $scope.formBridge = new FormBridge();
         $scope.villageBridge = new VillageBridge();
+        $scope.anmLocation = new ANMLocationBridge().get();
         $scope.currentPage = 0;
         $scope.pageSize = 20;
 

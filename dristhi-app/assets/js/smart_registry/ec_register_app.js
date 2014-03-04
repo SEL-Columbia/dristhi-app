@@ -135,4 +135,5 @@ angular.module("smartRegistry.controllers")
         $scope.openProfile = function (clientId) {
             $scope.navigationBridge.delegateToECProfile(clientId);
         };
+
     });

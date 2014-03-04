@@ -76,4 +76,8 @@ public class AllSettings {
     public void saveANMLocation(String anmLocation) {
         settingsRepository.updateSetting(ANM_LOCATION, anmLocation);
     }
+
+    public String fetchANMLocation() {
+        return settingsRepository.querySetting(ANM_LOCATION, "");
+    }
 }
