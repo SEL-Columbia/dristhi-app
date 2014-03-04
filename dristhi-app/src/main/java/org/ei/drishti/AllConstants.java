@@ -20,7 +20,7 @@ public class AllConstants {
     public static final String WOMAN_TYPE = "woman";
     public static final String CHILD_TYPE = "child";
     public static final String REALM = "Dristhi";
-    public static final String AUTHENTICATE_USER_URL_PATH = "/authenticate-user";
+    public static final String AUTHENTICATE_USER_URL_PATH = "/anm-villages?anm-id=";
 
     public static final String FORM_NAME_PARAM = "formName";
     public static final String INSTANCE_ID_PARAM = "instanceId";

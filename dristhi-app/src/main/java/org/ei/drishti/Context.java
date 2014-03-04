@@ -3,6 +3,7 @@ package org.ei.drishti;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
 import org.ei.drishti.service.formSubmissionHandler.*;
+import org.ei.drishti.sync.SaveANMLocationTask;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
 import org.ei.drishti.view.controller.ANMController;
@@ -77,6 +78,7 @@ public class Context {
     private ChildCloseHandler childCloseHandler;
     private ChildIllnessHandler childIllnessHandler;
     private VitaminAHandler vitaminAHandler;
+    private SaveANMLocationTask saveANMLocationTask;
 
     private ANMController anmController;
 
@@ -469,9 +471,16 @@ public class Context {
     public UserService userService() {
         if (userService == null) {
             Repository repo = initRepository();
-            userService = new UserService(repo, allSettings(), httpAgent(), session(), configuration());
+            userService = new UserService(repo, allSettings(), httpAgent(), session(), configuration(), saveANMLocationTask());
         }
         return userService;
+    }
+
+    private SaveANMLocationTask saveANMLocationTask() {
+        if (saveANMLocationTask == null) {
+            saveANMLocationTask = new SaveANMLocationTask(allSettings());
+        }
+        return saveANMLocationTask;
     }
 
     public AlertService alertService() {

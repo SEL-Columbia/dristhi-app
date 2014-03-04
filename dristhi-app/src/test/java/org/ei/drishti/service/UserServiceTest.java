@@ -6,13 +6,15 @@ import org.ei.drishti.repository.AllAlerts;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.Repository;
+import org.ei.drishti.sync.SaveANMLocationTask;
 import org.ei.drishti.util.Session;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import static org.ei.drishti.AllConstants.*;
+import static org.ei.drishti.AllConstants.ENGLISH_LOCALE;
+import static org.ei.drishti.AllConstants.KANNADA_LOCALE;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
@@ -34,20 +36,31 @@ public class UserServiceTest {
     private HTTPAgent httpAgent;
     @Mock
     private DristhiConfiguration configuration;
+    @Mock
+    private SaveANMLocationTask saveANMLocationTask;
 
     private UserService userService;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        userService = new UserService(repository, allSettings, httpAgent, session, configuration);
+        userService = new UserService(repository, allSettings, httpAgent, session, configuration, saveANMLocationTask);
     }
 
     @Test
     public void shouldUseHttpAgentToDoRemoteLoginCheck() {
         when(configuration.dristhiBaseURL()).thenReturn("http://dristhi_base_url");
-        userService.isValidRemoteLogin("user X", "password Y");
-        verify(httpAgent).urlCanBeAccessWithGivenCredentials("http://dristhi_base_url/authenticate-user", "user X", "password Y");
+
+        userService.isValidRemoteLogin("userX", "password Y");
+
+        verify(httpAgent).urlCanBeAccessWithGivenCredentials("http://dristhi_base_url/anm-villages?anm-id=userX", "userX", "password Y");
+    }
+
+    @Test
+    public void shouldSaveANMLocationWhenRemoteLoginIsSuccessful() {
+        userService.remoteLogin("userX", "password Y", "anm location");
+
+        verify(saveANMLocationTask).save("anm location");
     }
 
     @Test
@@ -84,7 +97,7 @@ public class UserServiceTest {
 
     @Test
     public void shouldRegisterANewUser() {
-        userService.loginWith("user X", "password Y");
+        userService.remoteLogin("user X", "password Y", "");
 
         verify(allSettings).registerANM("user X", "password Y");
         verify(session).setPassword("password Y");

@@ -18,7 +18,7 @@ public class FakeUserService extends UserService {
     private Session session;
 
     public FakeUserService() {
-        super(null, null, null, null, null);
+        super(null, null, null, null, null, null);
     }
 
     @Override
@@ -36,7 +36,14 @@ public class FakeUserService extends UserService {
     }
 
     @Override
-    public void loginWith(String userName, String password) {
+    public void localLogin(String userName, String password) {
+        super.setupContextForLogin(userName, password);
+        actualCalls.add("login");
+        assertExpectedCredentials(userName, password);
+    }
+
+    @Override
+    public void remoteLogin(String userName, String password, String anmLocation) {
         super.setupContextForLogin(userName, password);
         actualCalls.add("login");
         assertExpectedCredentials(userName, password);

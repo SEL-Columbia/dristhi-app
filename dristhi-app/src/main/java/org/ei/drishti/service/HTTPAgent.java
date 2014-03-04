@@ -33,8 +33,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyStore;
 
-import static org.ei.drishti.AllConstants.*;
+import static org.ei.drishti.AllConstants.REALM;
 import static org.ei.drishti.domain.LoginResponse.*;
+import static org.ei.drishti.util.HttpResponseUtil.getResponseBody;
 import static org.ei.drishti.util.Log.logError;
 import static org.ei.drishti.util.Log.logWarn;
 
@@ -96,7 +97,7 @@ public class HTTPAgent {
             HttpResponse response = httpClient.execute(new HttpGet(requestURL));
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode == HttpStatus.SC_OK) {
-                return SUCCESS;
+                return SUCCESS.withPayload(getResponseBody(response));
             } else if (statusCode == HttpStatus.SC_UNAUTHORIZED) {
                 logError("Invalid credentials for: " + userName + " using " + requestURL);
                 return UNAUTHORIZED;
