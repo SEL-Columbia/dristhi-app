@@ -15,65 +15,23 @@
         <input autocomplete="off" type="date" name="/PNC_Child_Registration_EngKan/pnc_reg_date" required="required"
                data-constraint=".&lt;= /PNC_Child_Registration_EngKan/today " data-type-xml="date"/>
     </label>
-    <fieldset class="question ">
-        <fieldset>
-            <legend>
-                <span lang="" class="question-label active">PHC, &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
-                    &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;:
-                </span>
-                <span class="required">*</span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phc"
-                           data-name="/PNC_Child_Registration_EngKan/phc" value="bherya" required="required"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Bherya &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF;</span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/PNC_Child_Registration_EngKan/phc"
-                           data-name="/PNC_Child_Registration_EngKan/phc" value="keelanapura" required="required"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Keelanapura &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;</span>
-                </label>
-            </div>
-        </fieldset>
+    <fieldset class="trigger " name="/PNC_Child_Registration_EngKan/district">
+        <span lang="" class="question-label active">District:
+            <span class="or-output" data-value=" /PNC_Child_Registration_EngKan/district ">
+            </span>
+        </span>
     </fieldset>
-    <fieldset class="question ">
-        <fieldset>
-            <legend>
-                <span lang="" class="question-label active">Sub Center, &#xC89;&#xCAA; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;:</span>
-                <span class="required">*</span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="itemset-template"
-                       data-items-path="instance('sub_centers')/root/item[phc= /PNC_Child_Registration_EngKan/phc ]">
-                    <input type="radio" name="/PNC_Child_Registration_EngKan/sub_center"
-                           data-name="/PNC_Child_Registration_EngKan/sub_center" required="required"
-                           data-type-xml="select1" value=""/>
-                </label>
-                <span class="itemset-labels" data-value-ref="name" data-label-type="itext" data-label-ref="itextId">
-                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-0">
-                        Bherya - A &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF; -&#xC8E;</span>
-                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-1">
-                        Bherya - B &#xCAD;&#xCC7;&#xCB0;&#xCCD;&#xCAF; -&#xCAC;&#xCBF;</span>
-                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-2">Hosa
-                        Agrahara &#xCB9;&#xCCA;&#xCB8; &#xC85;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBE;&#xCB0;</span>
-                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-3">
-                        Munjanahalli &#xCAE;&#xCC1;&#xC82;&#xC9C;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
-                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-4">
-                        G.A.Guppe &#xC9C;&#xCBF;.&#xC8E;. &#xC97;&#xCC1;&#xCAA;&#xCCD;&#xCAA;&#xCC6;</span>
-                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-5">
-                        Vajamangala &#xCB5;&#xCBE;&#xC9C;&#xCAE;&#xC82;&#xC97;&#xCB2;</span>
-                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-6">
-                        Keelanapura - A &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xC8E;</span>
-                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-7">
-                        Keelanapura - B &#xC95;&#xCC0;&#xCB3;&#xCA8;&#xCAA;&#xCC1;&#xCB0;-&#xCAC;&#xCBF;</span>
-                    <span lang="default" class="option-label active" data-itext-id="static_instance-sub_centers-8">
-                        Puttegowdanahundi &#xCAA;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCC6;&#xC97;&#xCCC;&#xCA1;&#xCA8;&#xCB9;&#xCC1;&#xC82;&#xCA1;&#xCBF;</span>
-                </span>
-            </div>
-        </fieldset>
+    <fieldset class="trigger " name="/PNC_Child_Registration_EngKan/phc">
+        <span lang="" class="question-label active">PHC:
+            <span class="or-output" data-value=" /PNC_Child_Registration_EngKan/phc ">
+            </span>
+        </span>
+    </fieldset>
+    <fieldset class="trigger " name="/PNC_Child_Registration_EngKan/sub_center">
+        <span lang="" class="question-label active">Sub-Center:
+            <span class="or-output" data-value=" /PNC_Child_Registration_EngKan/sub_center ">
+            </span>
+        </span>
     </fieldset>
     <fieldset class="question ">
         <fieldset>
@@ -83,7 +41,7 @@
             </legend>
             <div class="option-wrapper">
                 <label class="itemset-template"
-                       data-items-path="instance('villages')/root/item[phc= /PNC_Child_Registration_EngKan/phc  and sub_center= /PNC_Child_Registration_EngKan/sub_center ]">
+                       data-items-path="instance('villages')/root/item[district= /PNC_Child_Registration_EngKan/district  and phc= /PNC_Child_Registration_EngKan/phc  and sub_center= /PNC_Child_Registration_EngKan/sub_center ]">
                     <input type="radio" name="/PNC_Child_Registration_EngKan/village"
                            data-name="/PNC_Child_Registration_EngKan/village" required="required"
                            data-type-xml="select1" value=""/>
@@ -161,6 +119,676 @@
                         Chattanahallipalya &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;&#xCAA;&#xCBE;&#xCB3;&#xCCD;&#xCAF;</span>
                     <span lang="default" class="option-label active" data-itext-id="static_instance-villages-34">
                         Chattanahalli &#xC9A;&#xC9F;&#xCCD;&#xC9F;&#xCA8;&#xCB9;&#xCB3;&#xCCD;&#xCB3;&#xCBF;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-35">
+                        bahaddurbandi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-36">
+                        belavinala
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-37">
+                        chukankal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-38">
+                        hosahalli
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-39">
+                        huvinhal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-40">hyati
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-41">
+                        muddaballi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-42">
+                        new_gondabal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-43">
+                        old_gondabal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-44">
+                        anganwadi_2
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-45">
+                        anganwadi_3
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-46">
+                        anganwadi_7
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-47">
+                        anganwadi_11
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-48">
+                        anganwadi_12
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-49">
+                        anganwadi_14
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-50">
+                        anganwadi_16
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-51">
+                        anganwadi_18
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-52">
+                        anganwadi_19
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-53">
+                        anganwadi_5
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-54">
+                        anganwadi_9
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-55">
+                        hosgudda
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-56">
+                        hulihyder
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-57">
+                        kanakapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-58">
+                        layadhunsi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-59">
+                        varankhed
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-60">
+                        anganwadi_1
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-61">
+                        anganwadi_15
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-62">
+                        anganwadi_17
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-63">
+                        hanmanhal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-64">
+                        marlanahalli
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-65">
+                        mari_camp
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-66">
+                        hulkihal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-67">
+                        ramnagar
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-68">
+                        karatagi_b
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-69">
+                        hosa_juratagi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-70">
+                        hale_juratgi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-71">
+                        salunchimara
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-72">
+                        anganwadi_2
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-73">
+                        anganwadi_10
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-74">sirur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-75">
+                        muthalu
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-76">
+                        chendoor
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-77">
+                        arkeri
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-78">
+                        anganwadi_6
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-79">
+                        anganwadi_4
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-80">
+                        guntakal_camp
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-81">
+                        sriramnagar_a
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-82">
+                        anjuri_camp
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-83">
+                        dangeri_camp
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-84">
+                        renuka_coliny
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-85">
+                        sriramnagar_b
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-86">
+                        modal_camp
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-87">
+                        anganwadi_5
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-88">
+                        anganwadi_10
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-89">
+                        anganwadi_13
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-90">
+                        anganwadi_14
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-91">
+                        anganwadi_15
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-92">
+                        anganwadi_2
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-93">
+                        anganwadi_4
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-94">
+                        anganwadi_6
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-95">
+                        anganwadi_7
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-96">
+                        anganwadi_8
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-97">
+                        gadderatti
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-98">
+                        handral
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-99">
+                        mainahalli
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-100">
+                        hanwal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-101">
+                        bikanhalli
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-102">
+                        ramdurg
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-103">
+                        kurihatti
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-104">
+                        basvandurg
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-105">
+                        krishnapuradiggi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-106">
+                        ramdurg_camp
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-107">
+                        karmudi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-108">
+                        tondihal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-109">
+                        bandihal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-110">
+                        veerapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-111">
+                        benakal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-112">
+                        adaramaggi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-113">
+                        belur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-114">
+                        gudlanuru
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-115">
+                        katarki
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-116">
+                        ojanhalli
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-117">
+                        bhagyanagar
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-118">
+                        timmapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-119">
+                        shesagiri_camp
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-120">
+                        rajeev_camp
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-121">
+                        devicamp
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-122">
+                        budgumpa
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-123">
+                        halasamudra
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-124">
+                        lakshmi_camp
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-125">
+                        topalkatti
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-126">
+                        vanageri
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-127">
+                        benkanhal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-128">
+                        kalalbandi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-129">
+                        madikera
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-130">
+                        yelbunchi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-131">
+                        zhoolkatti
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-132">
+                        kordakera
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-133">
+                        talugeri
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-134">
+                        shakapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-135">
+                        benchamatti
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-136">
+                        byalihal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-137">
+                        madalgatti
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-138">
+                        nidsesi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-139">
+                        gandhal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-140">
+                        bukkanhatti
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-141">
+                        katgihalli
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-142">
+                        hire_waddarkal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-143">
+                        mannerhal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-144">
+                        beelagi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-145">
+                        hanamsagar_a
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-146">
+                        develapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-147">
+                        rampur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-148">
+                        vakkandurga
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-149">
+                        masbinkurbanhal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-150">
+                        mittalkod
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-151">
+                        nirlakoppa
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-152">
+                        tuggaldoni
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-153">
+                        shadalgera
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-154">
+                        basapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-155">
+                        bommanhal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-156">
+                        nilogal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-157">
+                        ganganhal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-158">
+                        hiresulikeri
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-159">
+                        uplapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-160">
+                        arsinkera
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-161">
+                        arsinkera_thanda
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-162">
+                        chamalapura
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-163">
+                        chilkmukki
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-164">
+                        gosaldoddi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-165">
+                        hasgal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-166">
+                        hosur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-167">
+                        jinnapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-168">
+                        jinnapur_chickthanda
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-169">
+                        jinnapur_thanda
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-170">
+                        metgal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-171">
+                        sidaganhalli
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-172">
+                        venktapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-173">
+                        achartimmapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-174">
+                        challari
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-175">
+                        chikbommanhal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-176">
+                        chiksulikeri
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-177">
+                        hirebommanhal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-178">
+                        narsapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-179">
+                        tumrikoppa
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-180">
+                        varikal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-181">
+                        chickgonnagar
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-182">
+                        habalkatti
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-183">
+                        hiregonnagar
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-184">
+                        gonhal_k
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-185">
+                        gudadur_m
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-186">
+                        tengunti
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-187">
+                        madapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-188">
+                        hosur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-189">
+                        gumgeri
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-190">
+                        hiremannapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-191">
+                        ganganhal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-192">
+                        basapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-193">
+                        mohammad_nagar
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-194">
+                        agalkera
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-195">
+                        hosabandiharlapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-196">
+                        kouli
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-197">
+                        shivapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-198">
+                        hitnal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-199">
+                        kampasagar
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-200">
+                        old_shivapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-201">
+                        batterhanchnal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-202">
+                        gonal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-203">
+                        galemmacamp
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-204">
+                        b_r_camp
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-205">
+                        herur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-206">
+                        katapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-207">
+                        kalgonhal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-208">
+                        kabbargi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-209">
+                        kodadhal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-210">
+                        hanmanhatti
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-211">
+                        yelamgera
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-212">
+                        wadderhatti
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-213">
+                        taad_kanakapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-214">
+                        irkalgada
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-215">
+                        muddalgundi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-216">
+                        amarapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-217">
+                        kalmalli
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-218">
+                        kidadur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-219">
+                        muddalgundi_thanda
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-220">
+                        sompur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-221">
+                        mudhol
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-222">
+                        hiremyageri
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-223">
+                        danapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-224">
+                        hebbal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-225">
+                        hosahalli
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-226">
+                        majjigi_camp
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-227">
+                        chikka_jantkal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-228">
+                        nagarhalli
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-229">
+                        vinoob_nagar
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-230">
+                        devlapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-231">
+                        gouripur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-232">
+                        somsagara
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-233">
+                        advibhavi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-234">
+                        a_b_doddatanda
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-235">
+                        a_b_chiktanda
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-236">
+                        rampur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-237">
+                        ramdurg
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-238">
+                        obalbanda
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-239">
+                        naglapur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-240">
+                        kannermadu
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-241">
+                        hulejali
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-242">
+                        bailakampur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-243">
+                        basrihal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-244">
+                        chikka_wadderkal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-245">
+                        old_kalgudi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-246">
+                        chikka_dankankal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-247">
+                        new_kalgudi
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-248">
+                        kalgudi_camp
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-249">
+                        jeeral
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-250">
+                        gandhi_nagar
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-251">
+                        kallur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-252">
+                        sanganhal
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-253">
+                        murdi_thanda
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-254">
+                        talur
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-255">
+                        talur_thanda
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-256">
+                        hulegudda
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-257">
+                        makkahalli
+                    </span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-258">
+                        salbhavi
+                    </span>
                 </span>
             </div>
         </fieldset>
@@ -913,7 +1541,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Child_Registration_EngKan/formhub/uuid"
-                   data-calculate="'d24e936c3474449eae592ff8241d0eca'" data-type-xml="string"/>
+                   data-calculate="'3cfbcdf4de164dafba63e470e92794ec'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
