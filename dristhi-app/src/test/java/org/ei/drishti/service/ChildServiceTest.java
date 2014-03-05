@@ -235,8 +235,8 @@ public class ChildServiceTest {
         verify(allTimelineEvents).add(forChildBirthInMotherProfile("mother id 1", "2013-01-02", "female", null, null));
         verify(allTimelineEvents).add(forChildBirthInECProfile("ec id 1", "2013-01-02", "female", null));
 
-        verify(serviceProvidedService).add(forChildImmunization("ec id 1", "bcg", "2012-01-06"));
-        verify(serviceProvidedService).add(forChildImmunization("ec id 1", "opv_0", "2012-01-07"));
+        verify(serviceProvidedService).add(forChildImmunization("child id 1", "bcg", "2012-01-06"));
+        verify(serviceProvidedService).add(forChildImmunization("child id 1", "opv_0", "2012-01-07"));
     }
 
     @Test

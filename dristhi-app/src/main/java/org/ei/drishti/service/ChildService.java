@@ -84,7 +84,10 @@ public class ChildService {
                 submission.getFieldValue(AllConstants.ChildRegistrationFields.GENDER), null));
         String immunizationsGiven = submission.getFieldValue(AllConstants.ChildRegistrationFields.IMMUNIZATIONS_GIVEN);
         for (String immunization : immunizationsGiven.split(SPACE)) {
-            serviceProvidedService.add(ServiceProvided.forChildImmunization(submission.entityId(), immunization, submission.getFieldValue(immunizationDateFieldMap.get(immunization))));
+            serviceProvidedService.add(ServiceProvided.forChildImmunization(
+                    submission.getFieldValue(AllConstants.ChildRegistrationFields.CHILD_ID),
+                    immunization,
+                    submission.getFieldValue(immunizationDateFieldMap.get(immunization))));
         }
     }
 
