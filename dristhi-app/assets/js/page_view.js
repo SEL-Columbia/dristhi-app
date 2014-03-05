@@ -44,5 +44,5 @@ var pageView = (function () {
         onUpdateANMDetails: function (callBack) {
             callbackForUpdateANMDetails = callBack;
         }
-    }
+    };
 })();

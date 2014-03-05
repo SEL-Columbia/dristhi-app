@@ -1,3 +1,5 @@
+/* globals Handlebars, $, window, alert */
+
 function Child(childBridge, formBridge) {
     return {
         populateInto: function (cssIdentifierOfRootElement) {
@@ -7,7 +9,7 @@ function Child(childBridge, formBridge) {
         bindEveryItemToForm: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 formBridge.delegateToFormLaunchView($(this).data("form"), $(this).data("caseid"));
-            })
+            });
         },
 
         bindToCamera: function (cssIdentifierOfElement) {
@@ -133,5 +135,5 @@ function FakeChildContext() {
         takePhoto: function () {
             alert("launching camera app.");
         }
-    }
+    };
 }

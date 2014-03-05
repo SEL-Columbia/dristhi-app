@@ -1,5 +1,8 @@
-if (!drishti)
+/* globals window */
+
+if (!drishti) {
     var drishti = {};
+}
 drishti.it = new InternationalText(new InternationalTextBridge());
 
 function InternationalText(bridge) {
@@ -7,9 +10,9 @@ function InternationalText(bridge) {
 
     return {
         getLabel: function (key) {
-            if (!internationalizedLabels)
+            if (!internationalizedLabels) {
                 internationalizedLabels = JSON.parse(bridge.getInternationalizedLabels());
-
+            }
             return internationalizedLabels[key];
         }
     };
@@ -35,7 +38,7 @@ function FakeInternationalisationContext() {
 
     return {
         getInternationalizedLabels: function () {
-            if (language === "en")
+            if (language === "en") {
                 return JSON.stringify({
                     "home_ec_label": "EC",
                     "home_anc_label": "ANC",
@@ -46,7 +49,8 @@ function FakeInternationalisationContext() {
                     "register_label": "Register",
                     "home_videos_label": "Videos"
                 });
-            else
+            }
+            else {
                 return JSON.stringify({
                     "home_ec_label": "ಅರ್ಹ ದಂಪತಿಗಳು",
                     "home_anc_label": "ಎಎನ್ ಸಿ",
@@ -54,9 +58,10 @@ function FakeInternationalisationContext() {
                     "home_child_label": "ಮಗು",
                     "home_report_label": "ವರದಿ",
                     "home_fp_label": "",
-                    "register_label": "" ,
+                    "register_label": "",
                     "home_videos_label": ""
                 });
+            }
         }
-    }
+    };
 }

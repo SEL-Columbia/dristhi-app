@@ -1,3 +1,5 @@
+/* globals Handlebars, $, window */
+
 function ReportIndicatorDetail(reportIndicatorDetailBridge, cssIdOf) {
     return {
         populateInto: function () {
@@ -57,8 +59,8 @@ function ReportIndicatorDetailContext() {
                     ]}
             );
         },
-        startReportIndicatorCaseList: function (month) {
+        startReportIndicatorCaseList: function () {
             window.location.href = "report_indicator_case_list.html";
         }
-    }
+    };
 }

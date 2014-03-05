@@ -1,3 +1,5 @@
+/* globals Handlebars, $, window, alert */
+
 function PNC(pncBridge, formBridge) {
     return {
         populateInto: function (cssIdentifierOfRootElement) {
@@ -7,7 +9,7 @@ function PNC(pncBridge, formBridge) {
         bindEveryItemToForm: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 formBridge.delegateToFormLaunchView($(this).data("form"), $(this).data("caseid"));
-            })
+            });
         },
 
         bindToCamera: function (cssIdentifierOfElement) {
@@ -133,5 +135,5 @@ function FakePNCContext() {
         takePhoto: function () {
             alert("launching camera app.");
         }
-    }
+    };
 }

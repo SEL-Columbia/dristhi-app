@@ -1,3 +1,5 @@
+/* globals Handlebars, $, window */
+
 function ANMNavigationPanel(anmNavigationBridge) {
 
     var populateDataInto = function (cssIdentifierOfRootElement, displayTemplate) {
@@ -153,17 +155,17 @@ function FakeANMNavigationContext() {
         goBack: function () {
             window.location.href = "../home.html";
         },
-        startEC: function (entityId) {
+        startEC: function () {
             window.location.href = "../ec_detail.html";
         },
-        startANC: function (entityId) {
+        startANC: function () {
             window.location.href = "../anc_detail.html";
         },
-        startPNC: function (entityId) {
+        startPNC: function () {
             window.location.href = "../pnc_detail.html";
         },
-        startChild: function (entityId) {
+        startChild: function () {
             window.location.href = "../child_detail.html";
         }
-    }
+    };
 }

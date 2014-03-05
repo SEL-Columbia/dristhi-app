@@ -1,3 +1,5 @@
+/* globals Handlebars, $, window, alert */
+
 function EC(ecBridge, formBridge) {
     return {
         populateInto: function (cssIdentifierOfRootElement) {
@@ -7,7 +9,7 @@ function EC(ecBridge, formBridge) {
         bindEveryItemToForm: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 formBridge.delegateToFormLaunchView($(this).data("form"), $(this).data("caseid"));
-            })
+            });
         },
 
         bindToCamera: function (cssIdentifierOfElement) {
@@ -143,5 +145,5 @@ function FakeECContext() {
         takePhoto: function () {
             alert("launching camera app.");
         }
-    }
+    };
 }

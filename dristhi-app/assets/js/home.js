@@ -1,3 +1,5 @@
+/* globals Handlebars, window */
+
 function Home(anmNavigation, homeBridge) {
     return {
         populateInto: function (cssIdentifierOfSidePanelElement, callbackToRunBeforeAnyAction) {
@@ -6,7 +8,7 @@ function Home(anmNavigation, homeBridge) {
         pageHasFinishedLoading: function () {
             homeBridge.pageHasFinishedLoading();
         }
-    }
+    };
 }
 
 function HomeBridge() {
@@ -27,5 +29,5 @@ function FakeHomeContext() {
     return {
         pageHasFinishedLoading: function () {
         }
-    }
+    };
 }

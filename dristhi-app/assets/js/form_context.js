@@ -1,3 +1,5 @@
+/* globals window, alert */
+
 function FormBridge() {
     var formContext = window.formContext;
     if (typeof formContext === "undefined" && typeof FakeFormContext !== "undefined") {
@@ -22,5 +24,5 @@ function FakeFormContext() {
         startMicroFormActivity: function (formName, entityId, metaData) {
             alert("Launching micro form: " + formName + ", for entityId: '" + entityId + "'" + ", with metaData: '" + metaData + "'");
         }
-    }
+    };
 }

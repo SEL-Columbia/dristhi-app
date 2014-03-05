@@ -1,3 +1,5 @@
+/* globals Handlebars, $, window */
+
 function ReportIndicatorCaseList(reportIndicatorCaseListBridge, cssIdOf) {
     return {
         populateInto: function () {
@@ -55,8 +57,8 @@ function ReportIndicatorListContext() {
                 }
             );
         },
-        startReportIndicatorCaseDetail: function (caseId) {
+        startReportIndicatorCaseDetail: function () {
             window.location.href = "ec_detail.html";
         }
-    }
+    };
 }

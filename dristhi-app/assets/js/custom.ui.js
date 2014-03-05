@@ -1,7 +1,10 @@
+/* globals Handlebars, $, drishti */
+/* jshint -W065 */
+
 var months = [ "JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC" ];
 
 Handlebars.registerHelper('ifNotZero', function (context, options) {
-    if (context != 0) {
+    if (context !== 0) {
         return options.fn(this);
     }
 });
@@ -87,19 +90,21 @@ Handlebars.registerHelper('shortYear', function (year) {
 
 Handlebars.registerHelper('formatSocialVulnerability', function (caste, economicStatus) {
     var formattedText = "";
-    if (caste && (caste.toUpperCase() == "SC" || caste.toUpperCase() == "ST")) {
+    if (caste && (caste.toUpperCase() === "SC" || caste.toUpperCase() === "ST")) {
         formattedText += caste.toUpperCase();
-        if (economicStatus && economicStatus.toUpperCase() == "BPL")
+        if (economicStatus && economicStatus.toUpperCase() === "BPL"){
             formattedText += ", " + economicStatus.toUpperCase();
+        }
     }
-    else if (economicStatus && economicStatus.toUpperCase() == "BPL")
+    else if (economicStatus && economicStatus.toUpperCase() === "BPL"){
         formattedText += economicStatus.toUpperCase();
+    }
 
     return formattedText;
 });
 
 Handlebars.registerHelper('percentage', function (value1, value2) {
-    if (value2 == "NA") {
+    if (value2 === "NA") {
         return "NA";
     }
     return (Math.floor((parseInt(value1) * 100)/parseInt(value2))).toString() + "%";

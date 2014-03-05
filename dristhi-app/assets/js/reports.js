@@ -1,3 +1,5 @@
+/* globals $, window */
+
 function Reports(reportsBridge) {
     return {
         bindEveryItemToItsIndicatorListView: function (cssIdentifierOfElement) {
@@ -23,7 +25,7 @@ function ReportsBridge() {
 
 function FakeReportsContext() {
     return {
-        startIndicatorListViewFor: function (category) {
+        startIndicatorListViewFor: function () {
                 window.location.href = "report_indicator_list.html";
         }
     };

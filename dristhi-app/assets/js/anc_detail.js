@@ -1,3 +1,5 @@
+/* globals Handlebars, $, window, alert */
+
 function ANC(ancBridge, formBridge) {
     return {
         populateInto: function (cssIdentifierOfRootElement) {
@@ -8,7 +10,7 @@ function ANC(ancBridge, formBridge) {
         bindEveryItemToForm: function (cssIdentifierOfElement) {
             $(cssIdentifierOfElement).click(function () {
                 formBridge.delegateToFormLaunchView($(this).data("form"), $(this).data("caseid"));
-            })
+            });
         },
 
         bindToCamera: function (cssIdentifierOfElement) {
@@ -25,13 +27,17 @@ function ANC(ancBridge, formBridge) {
 
         bindTimelineEventToShowMoreButton: function (timeLineEventListItem, showMoreButton, minNumberToShow) {
             $(timeLineEventListItem + ':gt(' + (minNumberToShow - 1) + ')').hide();
-            if ($(timeLineEventListItem + ':not(:visible)').length == 0) return;
+            if ($(timeLineEventListItem + ':not(:visible)').length === 0) {
+                return;
+            }
             $(showMoreButton).css('display', 'block').click(function () {
                 var button = this;
                 $(timeLineEventListItem + ':not(:visible):lt(' + minNumberToShow + ')').fadeIn(function () {
-                    if ($(timeLineEventListItem + ':not(:visible)').length == 0) $(button).remove();
+                    if ($(timeLineEventListItem + ':not(:visible)').length === 0) {
+                        $(button).remove();
+                    }
                 });
-            })
+            });
         },
 
         reloadPhoto: function (cssIdentifierOfElement, caseId, photoPath) {
@@ -211,5 +217,5 @@ function FakeANCContext() {
         takePhoto: function () {
             alert("launching camera app.");
         }
-    }
+    };
 }

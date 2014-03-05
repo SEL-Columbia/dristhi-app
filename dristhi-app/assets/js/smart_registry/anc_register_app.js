@@ -1,3 +1,5 @@
+/* globals angular, ANMNavigationBridge, ANCRegistryBridge */
+
 angular.module("smartRegistry.controllers")
     .controller("ancRegisterController", function ($scope, ANCService) {
         $scope.navigationBridge = new ANMNavigationBridge();

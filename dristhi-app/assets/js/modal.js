@@ -1,3 +1,5 @@
+/* globals $, window */
+
 function Modal() {
 
     var hideModal = function (targetModalToShow) {
@@ -29,7 +31,7 @@ function Modal() {
 
     var initializeModalContainer = function () {
         $("body").prepend($('<div id="blur"></div><div id="modal-container" class="modal-container"><img src="../img/triangle.png" class="modal-triangle"/><div id="modal-goes-here"></div></div>'));
-    }
+    };
 
     initializeModalContainer();
     return {
