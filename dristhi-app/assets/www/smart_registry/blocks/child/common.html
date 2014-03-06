@@ -6,7 +6,7 @@
     <div class="names">
         <div>
             <span class="client-name text-bold ellipsis">{{nameOrMothers(client) | humanize | camelCase}}</span>
-            <span class="client-age text-bold">({{childsAge(client)}}, {{client.gender | slice:0:1}})</span>
+            <span class="client-age text-bold">({{childsAge(client)}}, {{client.gender | slice:0:1 | uppercase }})</span>
         </div>
         <div class="client-parents-name ellipsis" style="font-size:15px;">
             <span>{{client.motherName | humanize | camelCase}}</span>
