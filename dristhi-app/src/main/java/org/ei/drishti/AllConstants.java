@@ -130,6 +130,7 @@ public class AllConstants {
         public static final String IS_HIGH_RISK = "isHighRisk";
         public static final String ASHA_PHONE_NUMBER = "ashaPhoneNumber";
         public static final String ANC_NUMBER = "ancNumber";
+        public static final String REGISTRATION_DATE = "registrationDate";
     }
 
     public class ANCVisitFields {

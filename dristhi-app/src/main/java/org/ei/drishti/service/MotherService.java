@@ -10,6 +10,7 @@ import org.ei.drishti.repository.AllTimelineEvents;
 
 import static org.ei.drishti.AllConstants.ANCCloseFields.CLOSE_REASON_FIELD_NAME;
 import static org.ei.drishti.AllConstants.ANCCloseFields.DEATH_OF_WOMAN_FIELD_VALUE;
+import static org.ei.drishti.AllConstants.ANCRegistrationFields.REGISTRATION_DATE;
 import static org.ei.drishti.AllConstants.ANCVisitFields.*;
 import static org.ei.drishti.AllConstants.BOOLEAN_FALSE;
 import static org.ei.drishti.AllConstants.CommonFormFields.SUBMISSION_DATE;
@@ -110,8 +111,8 @@ public class MotherService {
     }
 
     private void addTimelineEventsForMotherRegistration(FormSubmission submission) {
-        allTimelines.add(forStartOfPregnancy(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(REFERENCE_DATE)));
-        allTimelines.add(forStartOfPregnancyForEC(submission.entityId(), submission.getFieldValue(THAYI_CARD_NUMBER), submission.getFieldValue(REFERENCE_DATE)));
+        allTimelines.add(forStartOfPregnancy(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(REGISTRATION_DATE)));
+        allTimelines.add(forStartOfPregnancyForEC(submission.entityId(), submission.getFieldValue(THAYI_CARD_NUMBER), submission.getFieldValue(REGISTRATION_DATE)));
     }
 
     public void hbTest(FormSubmission submission) {
