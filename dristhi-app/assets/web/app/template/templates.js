@@ -690,7 +690,7 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   var buffer = "", stack1, options, self=this, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"row-fluid with-margin with-padding\" id=\"logo-and-buttons\">\n    <div class=\"span10\">\n        <div class=\"row-fluid with-margin\" id=\"drishti-logo\">\n            <div class=\"span10\">\n                <center><img src=\"../img/smart_registry/logo.png\"></center>\n            </div>\n        </div>\n        <div class=\"row-fluid with-margin\">\n            ";
+  buffer += "<div class=\"row-fluid with-margin with-padding\" id=\"logo-and-buttons\">\n    <div class=\"span10\">\n        <div class=\"row-fluid with-margin\" id=\"drishti-logo\">\n            <div class=\"span10\">\n                <center><img src=\"../images/smart_registry/logo.png\"></center>\n            </div>\n        </div>\n        <div class=\"row-fluid with-margin\">\n            ";
   stack1 = self.invokePartial(partials.anm_navigation, 'anm_navigation', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n        </div>\n    </div>\n</div>\n<div class=\"row-fluid with-margin with-padding\" id=\"reports-videos-buttons\">\n    <div class=\"span5\">\n        <a class=\"btn btn-block btn-inverse btn-home\" id=\"reportsButton\"><i class=\"icon-reporting\"></i> ";

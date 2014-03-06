@@ -8,15 +8,21 @@ module.exports = function (grunt) {
     // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
 
+    var yeomanConfig = {
+        app: 'app',
+        dist: 'dist'
+    };
+
+    try {
+        yeomanConfig.app = require('./bower.json').appPath || yeomanConfig.app;
+    } catch (e) {
+    }
+
     // Define the configuration for all the tasks
     grunt.initConfig({
 
         // Project settings
-        yeoman: {
-            // Configurable paths
-            app: 'app',
-            dist: 'dist'
-        },
+        yeoman: yeomanConfig,
 
         // Watches files for changes and runs tasks based on the changed files
         watch: {
@@ -121,45 +127,23 @@ module.exports = function (grunt) {
             }
         },
 
-        // Automatically inject Bower components into the HTML file
-        'bower-install': {
-            app: {
-                html: '<%= yeoman.app %>/index.html',
-                ignorePath: '<%= yeoman.app %>/'
-            }
-        },
-
-        // Renames files for browser caching purposes
-        rev: {
-            dist: {
-                files: {
-                    src: [
-                        '<%= yeoman.dist %>/scripts/{,*/}*.js',
-                        '<%= yeoman.dist %>/styles/{,*/}*.css',
-                        '<%= yeoman.dist %>/images/{,*/}*.{gif,jpeg,jpg,png,webp}',
-                        '<%= yeoman.dist %>/styles/fonts/{,*/}*.*'
-                    ]
-                }
-            }
-        },
-
         // Reads HTML for usemin blocks to enable smart builds that automatically
         // concat, minify and revision files. Creates configurations in memory so
         // additional tasks can operate on them
         useminPrepare: {
+            html: '<%= yeoman.app %>/home.html',
             options: {
                 dest: '<%= yeoman.dist %>'
-            },
-            html: '<%= yeoman.app %>/index.html'
+            }
         },
 
         // Performs rewrites based on rev and the useminPrepare configuration
         usemin: {
+            html: ['<%= yeoman.dist %>/{,*/}*.html', '<%= yeoman.dist %>/views/{,*/}*.html'],
+            css: ['<%= yeoman.app %>/styles/{,*/}*.css'],
             options: {
-                assetsDirs: ['<%= yeoman.dist %>']
-            },
-            html: ['<%= yeoman.dist %>/{,*/}*.html'],
-            css: ['<%= yeoman.dist %>/styles/{,*/}*.css']
+                dirs: ['<%= yeoman.dist %>']
+            }
         },
 
         // The following *-min tasks produce minified files in the dist folder
@@ -189,28 +173,28 @@ module.exports = function (grunt) {
         },
         htmlmin: {
             dist: {
-                options: {
-                    collapseBooleanAttributes: true,
-                    collapseWhitespace: true,
-                    removeAttributeQuotes: true,
-                    removeCommentsFromCDATA: true,
-                    removeEmptyAttributes: true,
-                    removeOptionalTags: true,
-                    removeRedundantAttributes: true,
-                    useShortDoctype: true
-                },
+                options: {/*
+                 collapseBooleanAttributes: true,
+                 collapseWhitespace: true,
+                 removeAttributeQuotes: true,
+                 removeCommentsFromCDATA: true,
+                 removeEmptyAttributes: true,
+                 removeOptionalTags: true,
+                 removeRedundantAttributes: true,
+                 useShortDoctype: true
+                 */},
                 files: [
                     {
                         expand: true,
-                        cwd: '<%= yeoman.dist %>',
-                        src: '{,*/}*.html',
+                        cwd: '<%= yeoman.app %>',
+                        src: ['*.html', 'views/*.html', 'views/**/*.html'],
                         dest: '<%= yeoman.dist %>'
                     }
                 ]
             }
         },
 
-        // By default, your `index.html`'s <!-- Usemin block --> will take care of
+        // By default, your `index.html1`'s <!-- Usemin block --> will take care of
         // minification. These next options are pre-configured if you do not wish
         // to use the Usemin blocks.
         // cssmin: {
@@ -248,8 +232,8 @@ module.exports = function (grunt) {
                         src: [
                             '*.{ico,png,txt}',
                             '.htaccess',
+                            'bower_components/**/*',
                             'images/{,*/}*.webp',
-                            '{,*/}*.html',
                             'styles/fonts/{,*/}*.*'
                         ]
                     }
@@ -272,7 +256,8 @@ module.exports = function (grunt) {
             ],
             dist: [
                 'imagemin',
-                'svgmin'
+                'svgmin',
+                'htmlmin'
             ]
         }
     });
@@ -301,18 +286,14 @@ module.exports = function (grunt) {
         'clean:dist',
         'useminPrepare',
         'concurrent:dist',
-        'autoprefixer',
         'concat',
+        'copy',
         'cssmin',
         'uglify',
-        'copy:dist',
-        'rev',
-        'usemin',
-        'htmlmin'
+        'usemin'
     ]);
 
     grunt.registerTask('default', [
-        'newer:jshint',
         'build'
     ]);
 };

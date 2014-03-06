@@ -1,19 +1,19 @@
 @font-face {
     font-family: 'RobotoRegular';
-    src: url('../font/roboto/Roboto-Regular.ttf') format('truetype');
+    src: url('fonts/roboto/Roboto-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'RobotoRegular';
-    src: url('../font/roboto/Roboto-Bold.ttf') format('truetype');
+    src: url('fonts/roboto/Roboto-Bold.ttf') format('truetype');
     font-weight: bold;
 }
 
 @font-face {
     font-family: 'RobotoRegular';
-    src: url('../font/roboto/Roboto-Medium.ttf') format('truetype');
+    src: url('fonts/roboto/Roboto-Medium.ttf') format('truetype');
     font-weight: 500;
 }
 
@@ -103,14 +103,14 @@
 }
 
 .delivery-plan .yes {
-    content: url(../img/icons/icon-deliveryplan-yes.png);
+    content: url(../images/icons/icon-deliveryplan-yes.png);
     margin-right: 4px;
     margin-left: 8px;
     width: 30px;
 }
 
 .delivery-plan .no {
-    content: url(../img/icons/icon-deliveryplan-no.png);
+    content: url(../images/icons/icon-deliveryplan-no.png);
     margin-right: 4px;
     margin-left: 8px;
     width: 30px;
@@ -125,12 +125,12 @@
 }
 
 .navbar .separator {
-    content: url(../img/icons/separator.gif);
+    content: url(../images/icons/separator.gif);
     margin-right: 4px;
 }
 
 .navbar .update-data {
-    content: url(../img/icons/update-data.png);
+    content: url(../images/icons/update-data.png);
     margin-right: 4px;
     height: 40px;
     width: 65px;
@@ -875,7 +875,7 @@ a.btn-sr.upcoming, a.btn-sr.done {
 }
 
 .edd-popup-image {
-    content: url(../img/edd-past-due-image.png);
+    content: url(../images/edd-past-due-image.png);
 }
 
 .edd-modal-button {
@@ -1064,11 +1064,11 @@ a.btn-sr.upcoming, a.btn-sr.done {
 }
 
 .nav li i.icon-village {
-    background-image: url(../img/smart_registry/icon-villagefilter.png);
+    background-image: url(../images/smart_registry/icon-villagefilter.png);
 }
 
 .nav li i.icon-sort-custom {
-    background: url(../img/smart_registry/icon-sort.png) no-repeat;
+    background: url(../images/smart_registry/icon-sort.png) no-repeat;
 }
 
 .nav li i.icon-sort-custom, .nav li i.icon-village {
@@ -1081,14 +1081,14 @@ a.btn-sr.upcoming, a.btn-sr.done {
 }
 
 .icon-dropper {
-    background: url(../img/smart_registry/child-icon-dropper.png);
+    background: url(../images/smart_registry/child-icon-dropper.png);
     display: block !important;
     width: 20px;
     height: 25px;
 }
 
 .icon-needle {
-    background: url(../img/smart_registry/child-icon-needle.png);
+    background: url(../images/smart_registry/child-icon-needle.png);
     display: block !important;
     width: 25px;
     height: 34px;
@@ -1155,7 +1155,7 @@ img.pnc-child-img {
 }
 
 .btn-back {
-    background: url("../img/smart_registry/homestacks.png") no-repeat;
+    background: url("../images/smart_registry/homestacks.png") no-repeat;
     background-position: 0 50%;
     background-size: 90%;
 }
@@ -1194,7 +1194,7 @@ img.pnc-child-img {
 
 .client-village {
     color: #333333 !important;
-    max-width: 130px !important;
+    max-width: 85px !important;
 }
 
 .client-age {
@@ -1220,7 +1220,7 @@ small {
 
 .client-name {
     font-size: 19px !important;
-    max-width: 130px !important;
+    max-width: 85px !important;
 }
 
 .btn-register {

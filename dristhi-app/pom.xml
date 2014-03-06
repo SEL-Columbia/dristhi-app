@@ -173,7 +173,7 @@
                         </goals>
                         <configuration>
                             <executable>grunt</executable>
-                            <workingDirectory>${project.basedir}/web/</workingDirectory>
+                            <workingDirectory>assets/web/</workingDirectory>
                         </configuration>
                     </execution>
                 </executions>
