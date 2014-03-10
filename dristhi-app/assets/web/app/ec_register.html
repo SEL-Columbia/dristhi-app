@@ -1,26 +1,40 @@
 <!doctype html>
 <html ng-app="smartRegistry">
 <head>
-    <link href="../../css/smart_registry/reset.css" media="all" rel="stylesheet" type="text/css"/>
-    <link href="../../css/smart_registry/styles.css" media="all" rel="stylesheet" type="text/css"/>
-    <link href="../../css/smart_registry/smart_registry.css" media="all" rel="stylesheet" type="text/css"/>
-    <link href="../../css/flat-bootstrap.css" rel="stylesheet">
-    <link href="../../css/custom.css" rel="stylesheet">
-    <script src="../../js/lib/angular.min.js" type="text/javascript"></script>
-    <script src="../../js/lib/ui-bootstrap-tpls-0.3.0.min.js"></script>
-    <script src="../../js/page_view.js"></script>
-    <script src="../../js/village.js"></script>
-    <script src="../../js/anmNavigation.js" type="text/javascript"></script>
-    <script src="../../js/form_context.js" type="text/javascript"></script>
-    <script src="../../js/smart_registry/app.js" type="text/javascript"></script>
-    <script src="../../js/smart_registry/smart_filters.js" type="text/javascript"></script>
-    <script src="../../js/smart_registry/smart_helper_service.js" type="text/javascript"></script>
-    <script src="../../js/smart_registry/smart_directives.js" type="text/javascript"></script>
-    <script src="../../js/smart_registry/debounce_service.js" type="text/javascript"></script>
-    <script src="../../js/smart_registry/ec_service.js" type="text/javascript"></script>
-    <script src="../../js/smart_registry/list_view_controller.js" type="text/javascript"></script>
-    <script src="../../js/smart_registry/ec_registry_bridge.js" type="text/javascript"></script>
-    <script src="../../js/smart_registry/ec_register_app.js" type="text/javascript"></script>
+    <!-- build:css({.tmp,app}) styles/ec_register.css -->
+    <link href="styles/smart_registry/reset.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="styles/smart_registry/styles.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="styles/smart_registry/smart_registry.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="styles/flat-bootstrap.css" rel="stylesheet">
+    <link href="styles/custom.css" rel="stylesheet">
+    <!-- endbuild -->
+
+
+    <script src="bower_components/angular/angular.js" type="text/javascript"></script>
+
+    <!-- build:js({.tmp,app}) scripts/ui-bootstrap-tpls-0.3.0.js -->
+    <script src="scripts/lib/ui-bootstrap-tpls-0.3.0.min.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/ec_register_non_angular.js -->
+    <script src="scripts/page_view.js"></script>
+    <script src="scripts/village.js"></script>
+    <script src="scripts/anmNavigation.js" type="text/javascript"></script>
+    <script src="scripts/form_context.js" type="text/javascript"></script>
+    <script src="scripts/smart_registry/ec_registry_bridge.js" type="text/javascript"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/ec_register.js -->
+    <script src="scripts/smart_registry/app.js" type="text/javascript"></script>
+    <script src="scripts/smart_registry/smart_filters.js" type="text/javascript"></script>
+    <script src="scripts/smart_registry/smart_helper_service.js" type="text/javascript"></script>
+    <script src="scripts/smart_registry/smart_directives.js" type="text/javascript"></script>
+    <script src="scripts/smart_registry/debounce_service.js" type="text/javascript"></script>
+    <script src="scripts/smart_registry/ec_service.js" type="text/javascript"></script>
+    <script src="scripts/smart_registry/list_view_controller.js" type="text/javascript"></script>
+    <script src="scripts/smart_registry/ec_register_app.js" type="text/javascript"></script>
+    <!-- endbuild -->
+
 </head>
 <body ng-controller="ECRegisterController">
 <div ng-controller="listViewController">
@@ -85,10 +99,10 @@
         <div class="container-fluid container-no-padding column-header-container">
             <div class="tableheaders row-fluid">
                 <div class="span5 full-height span-no-margin width-without-margins">
-                    <div class="row-fluid" ng-include="'blocks/ec/common_header.html'"></div>
+                    <div class="row-fluid" ng-include="'views/smart_registry/blocks/ec/common_header.html'"></div>
                 </div>
                 <div class="span7 full-height span-no-margin width-without-margins">
-                    <div class="row-fluid" ng-include="'blocks/ec/'+ contentTemplate + '_header.html'"></div>
+                    <div class="row-fluid" ng-include="'views/smart_registry/blocks/ec/'+ contentTemplate + '_header.html'"></div>
                 </div>
             </div>
         </div>
@@ -100,14 +114,15 @@
                  id="client-{{$index}}"
                  ng-repeat="client in filteredClients">
                 <div class="span5 full-height span-no-margin width-without-margins">
-                    <div class="row-fluid full-height" ng-include="'blocks/ec/common.html'"></div>
+                    <div class="row-fluid full-height" ng-include="'views/smart_registry/blocks/ec/common.html'"></div>
                 </div>
                 <div class="span7 full-height span-no-margin width-without-margins">
-                    <div class="row-fluid full-height" ng-include="'blocks/ec/'+ contentTemplate + '.html'"></div>
+                    <div class="row-fluid full-height"
+                         ng-include="'views/smart_registry/blocks/ec/'+ contentTemplate + '.html'"></div>
                 </div>
             </div>
         </div>
-        <ng:include src="'blocks/pagination.html'">
+        <ng:include src="'views/smart_registry/blocks/pagination.html'">
         </ng:include>
     </div>
 </div>

@@ -25,7 +25,7 @@ angular.module('smartRegistry.directives', [])
     }])
     .directive('srEcStatusButton', ['$filter', function ($filter) {
         return {
-            templateUrl: 'directive_tpls/ec_status_button.html',
+            templateUrl: 'views/smart_registry/directive_tpls/ec_status_button.html',
             replace: true,
             restrict: 'E',
             scope: {

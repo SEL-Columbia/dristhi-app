@@ -42,9 +42,9 @@ public class AllConstants {
     public static final String BOOLEAN_TRUE = "yes";
     public static final String BOOLEAN_FALSE = "no";
     public static final String SPACE = " ";
-    public static final String DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH = "../../img/woman-placeholder.png";
-    public static final String DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH = "../../img/icons/child-girlinfant@3x.png";
-    public static final String DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH = "../../img/icons/child-infant@3x.png";
+    public static final String DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH = "images/woman-placeholder.png";
+    public static final String DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH = "images/icons/child-girlinfant@3x.png";
+    public static final String DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH = "images/icons/child-infant@3x.png";
     public static final String FEMALE_GENDER = "female";
     public static final String FORM_DATE_TIME_FORMAT = "EEE, dd MMM yyyy HH:mm:ss ZZZ";
 

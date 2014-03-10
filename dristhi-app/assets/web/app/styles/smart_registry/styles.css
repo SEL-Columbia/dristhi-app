@@ -180,31 +180,31 @@ a:focus {
 }
 
 .client-details .flag-container .flag-hp {
-    background: url("../../img/smart_registry/flag-hp.png") no-repeat;
+    background: url("../../images/smart_registry/flag-hp.png") no-repeat;
 }
 
 .client-details .flag-container .flag-hr {
-    background: url("../../img/smart_registry/flag-hr.png") no-repeat;
+    background: url("../../images/smart_registry/flag-hr.png") no-repeat;
 }
 
 .client-details .flag-container .flag-hrp {
-    background: url("../../img/smart_registry/flag-hrp.png") no-repeat;
+    background: url("../../images/smart_registry/flag-hrp.png") no-repeat;
 }
 
 .client-details .flag-container .flag-bpl {
-    background: url("../../img/smart_registry/flag-bpl.png") no-repeat;
+    background: url("../../images/smart_registry/flag-bpl.png") no-repeat;
 }
 
 .client-details .flag-container .flag-apl {
-    background: url("../../img/smart_registry/flag-apl.png") no-repeat;
+    background: url("../../images/smart_registry/flag-apl.png") no-repeat;
 }
 
 .client-details .flag-container .flag-sc {
-    background: url("../../img/smart_registry/flag-sc.png") no-repeat;
+    background: url("../../images/smart_registry/flag-sc.png") no-repeat;
 }
 
 .client-details .flag-container .flag-st {
-    background: url("../../img/smart_registry/flag-st.png") no-repeat;
+    background: url("../../images/smart_registry/flag-st.png") no-repeat;
 }
 
 .client:last-child {
@@ -355,7 +355,7 @@ a:focus {
 }
 
 .search-cancel {
-    content: url("../../img/smart_registry/icon-cross.png");
+    content: url("../../images/smart_registry/icon-cross.png");
     position: absolute;
     right: 5px;
     top: -3px;
@@ -395,7 +395,7 @@ a:focus {
 }
 
 .btn-back {
-    background: url("../../img/smart_registry/homestacks.png") no-repeat;
+    background: url("../../images/smart_registry/homestacks.png") no-repeat;
     background-position: 0 50%;
     background-size: 90%;
 }
@@ -444,39 +444,39 @@ a:focus {
 }
 
 .video-categories .nav-tabs.nav-stacked > li.icon-video-fp > a {
-    background: url(../../img/smart_registry/icon-fp-inactive.png) no-repeat 4px 50%;
+    background: url(../../images/smart_registry/icon-fp-inactive.png) no-repeat 4px 50%;
 }
 
 .video-categories .nav-tabs.nav-stacked > li.icon-video-fp > a.active,
 .video-categories .nav-tabs.nav-stacked > li.icon-video-fp > a:hover {
-    background: url(../../img/smart_registry/icon-fp-active.png) #0f89c5 no-repeat 4px 50%;
+    background: url(../../images/smart_registry/icon-fp-active.png) #0f89c5 no-repeat 4px 50%;
 }
 
 .video-categories .nav-tabs.nav-stacked > li.icon-video-antenatal > a {
-    background: url(../../img/smart_registry/icon-anc-inactive.png) no-repeat 4px 50%;
+    background: url(../../images/smart_registry/icon-anc-inactive.png) no-repeat 4px 50%;
 }
 
 .video-categories .nav-tabs.nav-stacked > li.icon-video-antenatal > a.active,
 .video-categories .nav-tabs.nav-stacked > li.icon-video-antenatal > a:hover {
-    background: url(../../img/smart_registry/icon-anc-active.png) #0f89c5 no-repeat 4px 50%;
+    background: url(../../images/smart_registry/icon-anc-active.png) #0f89c5 no-repeat 4px 50%;
 }
 
 .video-categories .nav-tabs.nav-stacked > li.icon-video-pp > a {
-    background: url(../../img/smart_registry/icon-pnc-inactive.png) no-repeat 4px 50%;
+    background: url(../../images/smart_registry/icon-pnc-inactive.png) no-repeat 4px 50%;
 }
 
 .video-categories .nav-tabs.nav-stacked > li.icon-video-pp > a.active,
 .video-categories .nav-tabs.nav-stacked > li.icon-video-pp > a:hover {
-    background: url(../../img/smart_registry/icon-pnc-active.png) #0f89c5 no-repeat 4px 50%;
+    background: url(../../images/smart_registry/icon-pnc-active.png) #0f89c5 no-repeat 4px 50%;
 }
 
 .video-categories .nav-tabs.nav-stacked > li.icon-video-wellness > a {
-    background: url(../../img/smart_registry/icon-child-inactive.png) no-repeat 4px 50%;
+    background: url(../../images/smart_registry/icon-child-inactive.png) no-repeat 4px 50%;
 }
 
 .video-categories .nav-tabs.nav-stacked > li.icon-video-wellness > a.active,
 .video-categories .nav-tabs.nav-stacked > li.icon-video-wellness > a:hover {
-    background: url(../../img/smart_registry/icon-child-active.png) #0f89c5 no-repeat 4px 50%;
+    background: url(../../images/smart_registry/icon-child-active.png) #0f89c5 no-repeat 4px 50%;
 }
 
 .videos-container {

@@ -40,7 +40,7 @@ function FakeECSmartRegistryContext() {
                     "numStillbirths": "0",
                     "numberOfOCPDelivered": "1",
                     "parity": "0",
-                    "photo_path": "../../img/woman-placeholder.png",
+                    "photo_path": "../../images/woman-placeholder.png",
                     "status": {
                         "date": "2013-06-12",
                         "type": "fp"
@@ -78,7 +78,7 @@ function FakeECSmartRegistryContext() {
                     "numStillbirths": "0",
                     "numberOfOCPDelivered": "1",
                     "parity": "0",
-                    "photo_path": "../../img/woman-placeholder.png",
+                    "photo_path": "../../images/woman-placeholder.png",
                     "status": {
                         "date": "2013-06-12",
                         "type": "fp"
@@ -115,7 +115,7 @@ function FakeECSmartRegistryContext() {
                     "numPregnancies": "1",
                     "numStillbirths": "0",
                     "parity": "1",
-                    "photo_path": "../../img/woman-placeholder.png",
+                    "photo_path": "../../images/woman-placeholder.png",
                     "status": {
                         "date": "2013-07-22",
                         "type": "pnc/fp",
@@ -156,7 +156,7 @@ function FakeECSmartRegistryContext() {
                     "numStillbirths": "0",
                     "numberOfCondomsSupplied": "20",
                     "parity": "0",
-                    "photo_path": "../../img/woman-placeholder.png",
+                    "photo_path": "../../images/woman-placeholder.png",
                     "status": {
                         "date": "2013-02-27",
                         "type": "anc",

@@ -52,7 +52,7 @@ public class HomeActivity extends SecuredWebActivity {
         FORM_SUBMITTED.addListener(onFormSubmittedListener);
         ACTION_HANDLED.addListener(updateANMDetailsListener);
 
-        webView.loadUrl("file:///android_asset/www/home.html");
+        webView.loadUrl("file:///android_asset/web/dist/home.html");
         webView.addJavascriptInterface(new HomeController(updateController), "context");
     }
 

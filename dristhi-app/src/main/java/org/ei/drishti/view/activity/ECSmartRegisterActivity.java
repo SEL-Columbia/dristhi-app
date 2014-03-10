@@ -6,6 +6,6 @@ public class ECSmartRegisterActivity extends SmartRegisterActivity {
     @Override
     protected void onSmartRegisterInitialization() {
         webView.addJavascriptInterface(new ECSmartRegisterController(context.allEligibleCouples(), context.allBeneficiaries(), context.listCache()), "context");
-        webView.loadUrl("file:///android_asset/www/smart_registry/ec_register.html");
+        webView.loadUrl("file:///android_asset/web/dist/ec_register.html");
     }
 }

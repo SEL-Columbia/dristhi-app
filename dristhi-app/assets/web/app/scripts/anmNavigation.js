@@ -136,7 +136,7 @@ function FakeANMNavigationContext() {
             window.location.href = "smart_registry/videos.html";
         },
         startECSmartRegistry: function () {
-            window.location = "smart_registry/ec_register.html";
+            window.location = "ec_register.html";
         },
         startFPSmartRegistry: function () {
             window.location = "smart_registry/fp_register.html";
