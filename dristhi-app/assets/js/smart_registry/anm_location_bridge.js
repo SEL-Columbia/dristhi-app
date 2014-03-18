@@ -15,6 +15,7 @@ function FakeANMLocationContext() {
     return {
         get: function () {
             return JSON.stringify({
+                "district": "mysore",
                 "phcName": "Bherya",
                 "phcIdentifier": "bherya",
                 "subCenter": "munjanahalli",
