@@ -53,7 +53,8 @@
             android:label="@string/app_name"
             android:icon="@drawable/icon"
             android:clearTaskOnLaunch="true"
-            android:name=".view.activity.DrishtiApplication">
+            android:name=".view.activity.DrishtiApplication"
+            android:largeHeap="true">
         <activity
                 android:name=".view.activity.LoginActivity"
                 android:theme="@android:style/Theme.Holo.NoActionBar"
