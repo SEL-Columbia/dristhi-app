@@ -1,11 +1,13 @@
 package org.ei.drishti.domain;
 
+import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 import static org.ei.drishti.domain.TimelineEvent.*;
@@ -41,6 +43,22 @@ public class TimelineEventTest {
         assertTrue(timelineEvent.detail1().contains("Temp: 98 °F"));
         assertTrue(timelineEvent.detail1().contains("Weight: 48 kg"));
         assertTrue(timelineEvent.detail1().contains("Hb Level: 11"));
+    }
+
+    @Test
+    public void shouldCreateTimelineEventForStartOfPregnancyWithReferenceDateAndRegistrationDate() throws Exception {
+        TimelineEvent timelineEvent = TimelineEvent.forStartOfPregnancy("CASE A", "2012-01-02", "2012-01-01");
+
+        assertEquals(LocalDate.parse("2012-01-02"), timelineEvent.referenceDate());
+        assertTrue(timelineEvent.detail1().contains("LMP Date: 01-01-2012"));
+    }
+
+    @Test
+    public void shouldCreateTimelineEventForStartOfPregnancyForECWithReferenceDateAndRegistrationDate() throws Exception {
+        TimelineEvent timelineEvent = TimelineEvent.forStartOfPregnancyForEC("CASE A","1234567", "2012-01-02", "2012-01-01");
+
+        assertEquals(LocalDate.parse("2012-01-02"), timelineEvent.referenceDate());
+        assertTrue(timelineEvent.detail1().contains("LMP Date: 01-01-2012"));
     }
 
     @Test

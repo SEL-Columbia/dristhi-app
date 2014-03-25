@@ -111,8 +111,8 @@ public class MotherService {
     }
 
     private void addTimelineEventsForMotherRegistration(FormSubmission submission) {
-        allTimelines.add(forStartOfPregnancy(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(REGISTRATION_DATE)));
-        allTimelines.add(forStartOfPregnancyForEC(submission.entityId(), submission.getFieldValue(THAYI_CARD_NUMBER), submission.getFieldValue(REGISTRATION_DATE)));
+        allTimelines.add(forStartOfPregnancy(submission.getFieldValue(MOTHER_ID), submission.getFieldValue(REGISTRATION_DATE), submission.getFieldValue(REFERENCE_DATE)));
+        allTimelines.add(forStartOfPregnancyForEC(submission.entityId(), submission.getFieldValue(THAYI_CARD_NUMBER), submission.getFieldValue(REGISTRATION_DATE), submission.getFieldValue(REFERENCE_DATE)));
     }
 
     public void hbTest(FormSubmission submission) {

@@ -51,12 +51,12 @@ public class TimelineEvent {
         return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), title, detailsString, null);
     }
 
-    public static TimelineEvent forStartOfPregnancy(String caseId, String referenceDate) {
-        return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC Registered", "Registration Date: " + formatDate(referenceDate), null);
+    public static TimelineEvent forStartOfPregnancy(String caseId, String registrationDate, String referenceDate) {
+        return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(registrationDate), "ANC Registered", "LMP Date: " + formatDate(referenceDate), null);
     }
 
-    public static TimelineEvent forStartOfPregnancyForEC(String ecCaseId, String thayiCardNumber, String referenceDate) {
-        return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(referenceDate), "ANC Registered", "Registration Date: " + formatDate(referenceDate),
+    public static TimelineEvent forStartOfPregnancyForEC(String ecCaseId, String thayiCardNumber, String registrationDate, String referenceDate) {
+        return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(registrationDate), "ANC Registered", "LMP Date: " + formatDate(referenceDate),
                 "Thayi No: " + thayiCardNumber);
     }
 

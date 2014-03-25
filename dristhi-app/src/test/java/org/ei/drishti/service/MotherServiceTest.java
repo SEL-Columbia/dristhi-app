@@ -47,12 +47,13 @@ public class MotherServiceTest {
         when(submission.entityId()).thenReturn("entity id 1");
         when(submission.getFieldValue("motherId")).thenReturn("mother id 1");
         when(submission.getFieldValue("thayiCardNumber")).thenReturn("thayi 1");
-        when(submission.getFieldValue("registrationDate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("registrationDate")).thenReturn("2012-01-02");
+        when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
 
         service.registerANC(submission);
 
-        allTimelineEvents.add(TimelineEvent.forStartOfPregnancy("mother id 1", "2012-01-01"));
-        allTimelineEvents.add(TimelineEvent.forStartOfPregnancyForEC("entity id 1", "thayi 1", "2012-01-01"));
+        allTimelineEvents.add(TimelineEvent.forStartOfPregnancy("mother id 1", "2012-01-02", "2012-01-01"));
+        allTimelineEvents.add(TimelineEvent.forStartOfPregnancyForEC("entity id 1", "thayi 1", "2012-01-02", "2012-01-01"));
     }
 
     @Test
@@ -61,12 +62,13 @@ public class MotherServiceTest {
         when(submission.entityId()).thenReturn("entity id 1");
         when(submission.getFieldValue("motherId")).thenReturn("mother id 1");
         when(submission.getFieldValue("thayiCardNumber")).thenReturn("thayi 1");
-        when(submission.getFieldValue("registrationDate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("registrationDate")).thenReturn("2012-01-02");
+        when(submission.getFieldValue("referenceDate")).thenReturn("2012-01-01");
 
         service.registerOutOfAreaANC(submission);
 
-        allTimelineEvents.add(TimelineEvent.forStartOfPregnancy("mother id 1", "2012-01-01"));
-        allTimelineEvents.add(TimelineEvent.forStartOfPregnancyForEC("entity id 1", "thayi 1", "2012-01-01"));
+        allTimelineEvents.add(TimelineEvent.forStartOfPregnancy("mother id 1", "2012-01-02", "2012-01-01"));
+        allTimelineEvents.add(TimelineEvent.forStartOfPregnancyForEC("entity id 1", "thayi 1", "2012-01-02", "2012-01-01"));
     }
 
     @Test
