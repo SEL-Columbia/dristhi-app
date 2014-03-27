@@ -33,6 +33,7 @@
                 <li><a ng-click="openForm('fp_change', currentClientEntityId);closeECFormModal();">Register FP</a></li>
                 <li><a ng-click="openForm('child_registration_ec', currentClientEntityId);closeECFormModal();">Register
                     Child</a></li>
+                <li><a ng-click='openFormWithFieldOverrides("ec_edit", currentClientEntityId, "{\"district\":\""+anmLocation.district+"\",\"phc\":\""+anmLocation.phcIdentifier+"\",\"subCenter\":\""+anmLocation.subCenter+"\"}");closeECFormModal();'>Edit EC</a></li>
                 <li><a ng-click="openForm('ec_close', currentClientEntityId);closeECFormModal();">Close EC</a></li>
             </ul>
         </div>
