@@ -14,17 +14,17 @@
             },
             {
                 "name": "phc",
-                "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/phc",
+                "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/case_phc",
                 "shouldLoadValue": true
             },
             {
                 "name": "subCenter",
-                "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/sub_center",
+                "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/case_sub_center",
                 "shouldLoadValue": true
             },
             {
                 "name": "village",
-                "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/village",
+                "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/case_village",
                 "source": "eligible_couple.village",
                 "shouldLoadValue": true
             },
@@ -44,12 +44,6 @@
                 "name": "headOfHousehold",
                 "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/hh_head",
                 "source": "eligible_couple.headOfHousehold",
-                "shouldLoadValue": true
-            },
-            {
-                "name": "ecNumber",
-                "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/ec_number",
-                "source": "eligible_couple.ecNumber",
                 "shouldLoadValue": true
             },
             {
@@ -97,27 +91,9 @@
                 "shouldLoadValue": true
             },
             {
-                "name": "economicStatus",
-                "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/economic_status",
-                "source": "eligible_couple.economicStatus",
-                "shouldLoadValue": true
-            },
-            {
-                "name": "bplCardNumber",
-                "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/bpl_card_number",
-                "source": "eligible_couple.bplCardNumber",
-                "shouldLoadValue": true
-            },
-            {
                 "name": "religion",
                 "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/religion",
                 "source": "eligible_couple.religion",
-                "shouldLoadValue": true
-            },
-            {
-                "name": "caste",
-                "bind": "/model/instance/EC_Edit_EngKan/ec_edit_group/caste",
-                "source": "eligible_couple.caste",
                 "shouldLoadValue": true
             },
             {
