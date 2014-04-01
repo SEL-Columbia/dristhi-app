@@ -1000,7 +1000,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/num_children_born"
-                   data-calculate="count( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child )"
+                   data-calculate="if( /Delivery_Outcome_EngKan/delivery_outcome  = 'still_birth', 0, count( /Delivery_Outcome_EngKan/live_birth_group/child/sex_child ))"
                    data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
@@ -1044,7 +1044,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Delivery_Outcome_EngKan/formhub/uuid"
-                   data-calculate="'c5920a1a3abe4f8fb8227e1e42b48142'" data-type-xml="string"/>
+                   data-calculate="'44de7ba45d984a14b71740d2087ec9ce'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
