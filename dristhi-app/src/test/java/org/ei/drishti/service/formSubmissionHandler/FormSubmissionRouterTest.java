@@ -66,6 +66,10 @@ public class FormSubmissionRouterTest {
     @Mock
     private DeliveryPlanHandler deliveryPlanHandler;
     @Mock
+    private ECEditHandler ecEditHandler;
+    @Mock
+    private ANCInvestigationsHandler ancInvestigationsHandler;
+    @Mock
     private Listener<String> formSubmittedListener;
 
     private FormSubmissionRouter router;
@@ -91,7 +95,7 @@ public class FormSubmissionRouterTest {
                 pncCloseHandler,
                 pncVisitHandler,
                 childImmunizationsHandler, childRegistrationECHandler, childRegistrationOAHandler, childCloseHandler,
-                childIllnessHandler, vitaminAHandler, deliveryPlanHandler);
+                childIllnessHandler, vitaminAHandler, deliveryPlanHandler, ecEditHandler, ancInvestigationsHandler);
     }
 
     @Test
@@ -395,5 +399,27 @@ public class FormSubmissionRouterTest {
 
         verify(formDataRepository).fetchFromSubmission("instance id 1");
         verify(deliveryPlanHandler).handle(formSubmission);
+    }
+
+    @Test
+    public void shouldDelegateECEditFormSubmissionHandlingToECEditHandler() throws Exception {
+        FormSubmission formSubmission = create().withFormName("ec_edit").withInstanceId("instance id 1").withVersion("122").build();
+        when(formDataRepository.fetchFromSubmission("instance id 1")).thenReturn(formSubmission);
+
+        router.route("instance id 1");
+
+        verify(formDataRepository).fetchFromSubmission("instance id 1");
+        verify(ecEditHandler).handle(formSubmission);
+    }
+
+    @Test
+    public void shouldDelegateANCInvestigationsFormSubmissionHandlingToANCInvestigationsHandler() throws Exception {
+        FormSubmission formSubmission = create().withFormName("anc_investigations").withInstanceId("instance id 1").withVersion("122").build();
+        when(formDataRepository.fetchFromSubmission("instance id 1")).thenReturn(formSubmission);
+
+        router.route("instance id 1");
+
+        verify(formDataRepository).fetchFromSubmission("instance id 1");
+        verify(ancInvestigationsHandler).handle(formSubmission);
     }
 }

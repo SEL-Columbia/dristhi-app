@@ -79,6 +79,8 @@ public class Context {
     private ChildCloseHandler childCloseHandler;
     private ChildIllnessHandler childIllnessHandler;
     private VitaminAHandler vitaminAHandler;
+    private ECEditHandler ecEditHandler;
+    private ANCInvestigationsHandler ancInvestigationsHandler;
     private SaveANMLocationTask saveANMLocationTask;
 
     private ANMController anmController;
@@ -147,7 +149,8 @@ public class Context {
                     ancRegistrationHandler(), ancRegistrationOAHandler(), ancVisitHandler(), ancCloseHandler(),
                     ttHandler(), ifaHandler(), hbTestHandler(), deliveryOutcomeHandler(), pncRegistrationOAHandler(),
                     pncCloseHandler(), pncVisitHandler(), childImmunizationsHandler(), childRegistrationECHandler(),
-                    childRegistrationOAHandler(), childCloseHandler(), childIllnessHandler(), vitaminAHandler(), deliveryPlanHandler());
+                    childRegistrationOAHandler(), childCloseHandler(), childIllnessHandler(), vitaminAHandler(),
+                    deliveryPlanHandler(), ecEditHandler(), ancInvestigationsHandler());
         }
         return formSubmissionRouter;
     }
@@ -311,6 +314,20 @@ public class Context {
             childRegistrationOAHandler = new ChildRegistrationOAHandler(childService());
         }
         return childRegistrationOAHandler;
+    }
+
+    private ECEditHandler ecEditHandler() {
+        if (ecEditHandler == null) {
+            ecEditHandler = new ECEditHandler();
+        }
+        return ecEditHandler;
+    }
+
+    private ANCInvestigationsHandler ancInvestigationsHandler() {
+        if (ancInvestigationsHandler == null) {
+            ancInvestigationsHandler = new ANCInvestigationsHandler();
+        }
+        return ancInvestigationsHandler;
     }
 
     private ZiggyService ziggyService() {

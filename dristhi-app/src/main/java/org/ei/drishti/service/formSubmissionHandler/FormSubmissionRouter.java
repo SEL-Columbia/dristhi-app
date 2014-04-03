@@ -39,7 +39,8 @@ public class FormSubmissionRouter {
                                 ChildRegistrationECHandler childRegistrationECHandler,
                                 ChildRegistrationOAHandler childRegistrationOAHandler,
                                 ChildCloseHandler childCloseHandler, ChildIllnessHandler childIllnessHandler,
-                                VitaminAHandler vitaminAHandler, DeliveryPlanHandler deliveryPlanHandler) {
+                                VitaminAHandler vitaminAHandler, DeliveryPlanHandler deliveryPlanHandler,
+                                ECEditHandler ecEditHandler, ANCInvestigationsHandler ancInvestigationsHandler) {
         this.formDataRepository = formDataRepository;
         handlerMap = new HashMap<String, FormSubmissionHandler>();
         handlerMap.put(EC_REGISTRATION, ecRegistrationHandler);
@@ -68,6 +69,8 @@ public class FormSubmissionRouter {
         handlerMap.put(CHILD_ILLNESS, childIllnessHandler);
         handlerMap.put(VITAMIN_A, vitaminAHandler);
         handlerMap.put(DELIVERY_PLAN, deliveryPlanHandler);
+        handlerMap.put(EC_EDIT, ecEditHandler);
+        handlerMap.put(ANC_INVESTIGATIONS, ancInvestigationsHandler);
     }
 
     public void route(String instanceId) throws Exception {
