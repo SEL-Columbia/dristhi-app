@@ -7,14 +7,27 @@
              class="visits span3 line-right span-no-margin width-without-margins span-content">
             <div class="relative-positioning">
                 <button class="btn btn-primary btn-sr"
-                        ng-if="schedule === 'tt' && client.visits[schedule].next"
+                        ng-if="schedule === 'tt' && client.visits[schedule].next && (client.visits[schedule].next.name === 'TT 1' || client.visits[schedule].next.name === 'TT Booster')"
+                        ng-class="client.visits[schedule].next.status"
+                        ng-click='client.visits[schedule].next.status === "inProcess" || openFormWithFieldOverridesAndMetaData("tt", client.entityId, {"entityId": client.entityId, "alertName": client.visits[schedule].next.name});'>
+                    <span class="text-bold text-upper" ng-if='client.visits[schedule].next.status === "complete"'>{{client.visits[schedule].next.name}}</span>
+                    <span class="text-bold text-upper" ng-if='client.visits[schedule].next.status != "complete"'>TT</span>
+                    <br/>
+                        <span ng-if="client.visits[schedule].next.status == 'normal'
+                                || client.visits[schedule].next.status == 'urgent'
+                                || client.visits[schedule].next.status == 'upcoming'">
+                            Due
+                        </span>
+                    <span> {{client.visits[schedule].next.visit_date}}</span>
+                </button>
+                <button class="btn btn-primary btn-sr"
+                        ng-if="schedule === 'tt' && client.visits[schedule].next && (client.visits[schedule].next.name !== 'TT 1' && client.visits[schedule].next.name !== 'TT Booster')"
                         ng-class="client.visits[schedule].next.status"
                         ng-click='client.visits[schedule].next.status == "complete"
-                        || openFormWithFieldOverridesAndMetaData("tt",
-                        client.entityId,
+                        || openFormWithFieldOverridesAndMetaData("tt", client.entityId,
                         {"entityId": client.entityId, "alertName": client.visits[schedule].next.name},
                         "{\"ttDose\":\""+client.visits[schedule].next.reminder_form_value+"\"}")'>
-                    <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
+                    <span class="text-bold text-upper">{{ client.visits[schedule].next.name }}</span>
                     <br/>
                         <span ng-if="client.visits[schedule].next.status == 'normal'
                                 || client.visits[schedule].next.status == 'urgent'
@@ -26,9 +39,9 @@
                 <button class="btn btn-primary btn-sr"
                         ng-if="schedule !== 'tt' && client.visits[schedule].next && useMicroForm(schedule)"
                         ng-class="client.visits[schedule].next.status"
-                        ng-click="client.visits[schedule].next.status == 'complete'
-                                || openForm(milestoneForm[client.visits[schedule].next.name], client.entityId, {'entityId': client.entityId, 'alertName': client.visits[schedule].next.name})">
-                    <span class="text-bold text-upper">{{client.visits[schedule].next.name}}</span>
+                        ng-click="">
+                    <span class="text-boldclient.visits[schedule].next.status == 'complete'
+                                || openFormWithFieldOverridesAndMetaData(milestoneForm[client.visits[schedule].next.name], client.entityId, {'entityId': client.entityId, 'alertName': client.visits[schedule].next.name}) text-upper">{{client.visits[schedule].next.name}}</span>
                     <br/>
                         <span ng-if="client.visits[schedule].next.status == 'normal'
                                 || client.visits[schedule].next.status == 'urgent'
