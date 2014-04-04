@@ -1,8 +1,6 @@
 package org.ei.drishti.view.activity;
 
-import android.app.Activity;
 import android.database.DataSetObserver;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -13,7 +11,7 @@ import org.ei.drishti.R;
 import org.ei.drishti.adapter.WrappedSmartRegisterPaginatedAdapter;
 import org.ei.drishti.provider.WrappedSmartRegisterClientsProvider;
 
-public abstract class SecuredNativeSmartRegisterActivity extends Activity implements View.OnClickListener {
+public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity implements View.OnClickListener {
 
     public static final String SORT_BY_NAME = "Name";
     public static final String SORT_BY_AGE = "Age";
@@ -43,14 +41,16 @@ public abstract class SecuredNativeSmartRegisterActivity extends Activity implem
     private TextView mTxtSortedByView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    protected void onCreation() {
         setContentView(R.layout.smart_register_activity);
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         setupViews();
+    }
+
+    @Override
+    protected void onResumption() {
     }
 
     private void setupViews() {
@@ -116,11 +116,11 @@ public abstract class SecuredNativeSmartRegisterActivity extends Activity implem
 
         for (int i = 0; i < columnCount; i++) {
             listHeader.addView(getColumnHeaderView(i, weights, headerTxtResIds));
-            listHeader.addView(getSeperatorView());
+            listHeader.addView(getSeparatorView());
         }
     }
 
-    private View getSeperatorView() {
+    private View getSeparatorView() {
         ImageView iv = new ImageView(this);
         iv.setLayoutParams(getDividerLayoutParams());
         iv.setImageResource(R.color.list_divider_color);
@@ -145,7 +145,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends Activity implem
         tv.setLayoutParams(lp);
         tv.setText(headerTxtResIds[i]);
         tv.setPadding(10, 0, 0, 0);
-
 
         return tv;
     }

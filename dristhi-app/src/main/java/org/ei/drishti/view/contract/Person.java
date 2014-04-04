@@ -78,10 +78,6 @@ public class Person {
         return largeDataset;
     }
 
-    public static Person[] getVillagePeople() {
-        return testData;
-    }
-
     public int id;
     public String name;
     public String husbandName;
