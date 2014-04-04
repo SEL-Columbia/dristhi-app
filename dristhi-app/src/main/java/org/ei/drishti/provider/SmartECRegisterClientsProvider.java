@@ -104,11 +104,6 @@ public class SmartECRegisterClientsProvider
         return results;
     }
 
-    @Override
-    public ViewGroup getFooterView() {
-        return (ViewGroup) inflater.inflate(R.layout.smart_register_pagination, null);
-    }
-
     public LayoutInflater inflater() {
         return inflater;
     }

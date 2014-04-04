@@ -1,7 +1,7 @@
 package org.ei.drishti.view.activity;
 
 import org.ei.drishti.R;
-import org.ei.drishti.adapter.WrappedSmartRegisterPaginatedAdapter;
+import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.provider.SmartECRegisterClientsProvider;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.controller.ECSmartRegisterController;
@@ -20,7 +20,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             R.string.header_fp, R.string.header_children, R.string.header_status,
             R.string.header_edit};
 
-    private SmartRegisterClientsProvider listItemProvider = null;
+    private SmartRegisterClientsProvider clientProvider = null;
     private ECSmartRegisterController controller;
 
     @Override
@@ -44,16 +44,16 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    protected WrappedSmartRegisterPaginatedAdapter adapter() {
-        return new WrappedSmartRegisterPaginatedAdapter(this, listItemProvider());
+    protected SmartRegisterPaginatedAdapter adapter() {
+        return new SmartRegisterPaginatedAdapter(this, clientProvider());
     }
 
     @Override
-    protected SmartRegisterClientsProvider listItemProvider() {
-        if (listItemProvider == null) {
-            listItemProvider = new SmartECRegisterClientsProvider(this, controller.getClients());
+    protected SmartRegisterClientsProvider clientProvider() {
+        if (clientProvider == null) {
+            clientProvider = new SmartECRegisterClientsProvider(this, controller.getClients());
         }
-        return listItemProvider;
+        return clientProvider;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     @Override
     protected String[] getFilterOptions() {
         // TODO: check for better way to merge two list.
-        List<String> villageNames = listItemProvider.getAllUniqueVillageNames();
+        List<String> villageNames = clientProvider.getAllUniqueVillageNames();
         List<String> combinedList = new ArrayList<String>(villageNames.size() + DEFAULT_FILTER_OPTIONS.length);
         combinedList.addAll(Arrays.asList(DEFAULT_FILTER_OPTIONS));
         combinedList.addAll(villageNames);

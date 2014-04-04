@@ -20,7 +20,5 @@ public interface SmartRegisterClientsProvider {
 
     public ECClients filter(CharSequence cs);
 
-    ViewGroup getFooterView();
-
     public void showSection(String section);
 }

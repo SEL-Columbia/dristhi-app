@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.*;
 import org.ei.drishti.R;
-import org.ei.drishti.adapter.WrappedSmartRegisterPaginatedAdapter;
+import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 
 public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity implements View.OnClickListener {
@@ -24,7 +24,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     public static final String[] DEFAULT_FILTER_OPTIONS = {FILTER_BY_ALL, FILTER_BY_OA, FILTER_BY_LP};
 
     private ListView clientsView;
-    private WrappedSmartRegisterPaginatedAdapter clientsAdapter;
+    private SmartRegisterPaginatedAdapter clientsAdapter;
 
     private View villageFilterView;
     private View sortView;
@@ -36,6 +36,10 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     private TextView appliedVillageFilterView;
     private TextView appliedSortView;
+
+    private Button nextPageView;
+    private Button previousPageView;
+    private TextView pageInfoView;
 
     @Override
     protected void onCreation() {
@@ -61,7 +65,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         layoutHeaderView();
 
         clientsView = (ListView) findViewById(R.id.list);
-
+        setupFooterView();
         setupAdapter();
 
         EditText searchCriteria = (EditText) findViewById(R.id.edt_search);
@@ -80,8 +84,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             }
         });
 
-        clientsAdapter.updateFooter();
-
         villageFilterView = findViewById(R.id.filter_selection);
         villageFilterView.setOnClickListener(this);
         sortView = findViewById(R.id.sort_selection);
@@ -93,8 +95,40 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         appliedSortView = (TextView) findViewById(R.id.sorted_by);
         appliedVillageFilterView = (TextView) findViewById(R.id.village);
 
+        updateFooter();
         updateStatusBar();
+    }
 
+    private void setupFooterView() {
+        ViewGroup footerView = getFooterView();
+        nextPageView = (Button) footerView.findViewById(R.id.btn_next_page);
+        previousPageView = (Button) footerView.findViewById(R.id.btn_previous_page);
+        pageInfoView = (TextView) footerView.findViewById(R.id.txt_page_info);
+
+        nextPageView.setOnClickListener(this);
+        previousPageView.setOnClickListener(this);
+
+        clientsView.addFooterView(footerView);
+    }
+
+    public ViewGroup getFooterView() {
+        return (ViewGroup) getLayoutInflater().inflate(R.layout.smart_register_pagination, null);
+    }
+
+    public void updateFooter() {
+        pageInfoView.setText((clientsAdapter.currentPage() + 1) + " of " + (clientsAdapter.pageCount() + 1));
+        nextPageView.setEnabled(clientsAdapter.hasNextPage());
+        previousPageView.setEnabled(clientsAdapter.hasPreviousPage());
+    }
+
+    private void goToPreviousPage() {
+        clientsAdapter.previousPage();
+        clientsAdapter.notifyDataSetChanged();
+    }
+
+    private void goToNextPage() {
+        clientsAdapter.nextPage();
+        clientsAdapter.notifyDataSetChanged();
     }
 
     private void updateStatusBar() {
@@ -152,17 +186,18 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         clientsAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
-                clientsAdapter.updateFooter();
+                updateFooter();
             }
         });
     }
 
-    protected WrappedSmartRegisterPaginatedAdapter adapter() {
-        return new WrappedSmartRegisterPaginatedAdapter(this, listItemProvider());
+    protected SmartRegisterPaginatedAdapter adapter() {
+        return new SmartRegisterPaginatedAdapter(this, clientProvider());
     }
 
-    protected abstract SmartRegisterClientsProvider listItemProvider();
+    protected abstract SmartRegisterClientsProvider clientProvider();
 
+    //#TODO: Try inline attaching of events
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -178,6 +213,12 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                 break;
             case R.id.section_type_selection:
                 showTypeSelectionView(serviceModeView);
+                break;
+            case R.id.btn_next_page:
+                goToNextPage();
+                break;
+            case R.id.btn_previous_page:
+                goToPreviousPage();
                 break;
         }
     }
