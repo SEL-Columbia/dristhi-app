@@ -57,7 +57,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     protected String getDefaultTypeName() {
-        return "All Eligible Couples";
+        return getResources().getString(R.string.couple_selection);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     protected String getRegisterTitle() {
-        return "EC REGISTER";
+        return getResources().getString(R.string.ec_register_title);
     }
 
     @Override
