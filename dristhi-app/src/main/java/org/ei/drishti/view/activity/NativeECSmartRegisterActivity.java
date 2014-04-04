@@ -12,35 +12,30 @@ import java.util.List;
 
 public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
-    public static final int COLUMN_COUNT = 7;
-    public static final int COLUMN_WEIGHT_SUM = 140;
-    public static final int[] COLUMN_WEIGHTS = {30, 10, 20, 20, 20, 30, 10};
-    public static final int[] COLUMN_HEADER_RES_IDS = {
-            R.string.header_name, R.string.header_ec_no, R.string.header_gplsa,
-            R.string.header_fp, R.string.header_children, R.string.header_status,
-            R.string.header_edit};
-
     private SmartRegisterClientsProvider clientProvider = null;
     private ECSmartRegisterController controller;
 
     @Override
     public int getColumnCount() {
-        return COLUMN_COUNT;
+        return 7;
     }
 
     @Override
     public int getColumnWeightSum() {
-        return COLUMN_WEIGHT_SUM;
+        return 140;
     }
 
     @Override
     public int[] getColumnWeights() {
-        return COLUMN_WEIGHTS;
+        return new int[]{30, 10, 20, 20, 20, 30, 10};
     }
 
     @Override
     protected int[] getColumnHeaderTextResourceIds() {
-        return COLUMN_HEADER_RES_IDS;
+        return new int[]{
+                R.string.header_name, R.string.header_ec_no, R.string.header_gplsa,
+                R.string.header_fp, R.string.header_children, R.string.header_status,
+                R.string.header_edit};
     }
 
     @Override
@@ -78,8 +73,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     protected String[] getSortingOptions() {
-
-        return DEFAULT_SORT_OPTIONS;
+        return new String[]{SORT_BY_NAME, SORT_BY_AGE, SORT_BY_EC_NO};
     }
 
     @Override

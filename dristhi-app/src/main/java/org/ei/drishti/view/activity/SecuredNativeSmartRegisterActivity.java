@@ -20,7 +20,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     public static final String FILTER_BY_OA = "O/A";
     public static final String FILTER_BY_LP = "L/P";
 
-    public static final String[] DEFAULT_SORT_OPTIONS = {SORT_BY_NAME, SORT_BY_AGE, SORT_BY_EC_NO};
     public static final String[] DEFAULT_FILTER_OPTIONS = {FILTER_BY_ALL, FILTER_BY_OA, FILTER_BY_LP};
 
     private ListView clientsView;
@@ -62,7 +61,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         title.setText(getRegisterTitle());
 
         clientsHeaderLayout = (LinearLayout) findViewById(R.id.clients_header_layout);
-        layoutHeaderView();
+        populateClientListHeaderView();
 
         clientsView = (ListView) findViewById(R.id.list);
         setupFooterView();
@@ -136,7 +135,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         appliedVillageFilterView.setText(getDefaultVillageFilterOption());
     }
 
-    private void layoutHeaderView() {
+    private void populateClientListHeaderView() {
         LinearLayout listHeader = clientsHeaderLayout;
         listHeader.removeAllViewsInLayout();
 
@@ -145,7 +144,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         int[] weights = getColumnWeights();
         int[] headerTxtResIds = getColumnHeaderTextResourceIds();
 
-        for (int i = 0; i < columnCount; i++) {
+        for (int i = 0; i < columnCount-1; i++) {
             listHeader.addView(getColumnHeaderView(i, weights, headerTxtResIds));
             listHeader.addView(getSeparatorView());
         }
@@ -316,7 +315,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 pw.dismiss();
                 onTypeSelection(((TextView) view).getText().toString());
-                layoutHeaderView();
+                populateClientListHeaderView();
             }
         });
 
