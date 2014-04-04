@@ -4,4 +4,28 @@
         <item name="android:layout_marginLeft">5dp</item>
         <item name="android:layout_marginRight">5dp</item>
     </style>
+
+    <style name="TextAppearance.Header" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/list_header_font_size</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingLeft">@dimen/list_item_text_padding_left_size</item>
+    </style>
+
+    <style name="TextAppearance.ListView.Item" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/list_item_text_font_size</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingLeft">@dimen/list_item_text_padding_left_size</item>
+    </style>
+
+    <style name="TextAppearance.ListView.Item.Name" parent="TextAppearance.ListView.Item">
+        <item name="android:textSize">@dimen/list_main_text_font_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.MainHeader" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/list_main_header_size</item>
+        <item name="android:gravity">left</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

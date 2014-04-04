@@ -137,6 +137,11 @@
                 android:name=".view.activity.MicroFormActivity"
                 android:theme="@android:style/Theme.Holo.Dialog.NoActionBar"
                 android:screenOrientation="landscape"/>
+        <activity
+                android:name=".view.activity.NativeECSmartRegisterActivity"
+                android:screenOrientation="landscape"
+                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
+        </activity>
 
         <receiver android:name=".view.receiver.SyncBroadcastReceiver"/>
         <receiver android:name=".view.receiver.ConnectivityChangeReceiver">

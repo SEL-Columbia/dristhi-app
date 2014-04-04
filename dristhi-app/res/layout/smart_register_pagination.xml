@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/ec_bottom_bar_height"
+    android:padding="@dimen/list_bottom_bar_padding"
+    android:background="#ffd3d3d3">
+
+    <Button
+        android:id="@+id/btn_previous_page"
+        android:layout_width="@dimen/bottom_bar_button_width"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:background="@android:drawable/btn_default_small"
+        android:gravity="center"
+        android:text="@string/str_previous"
+        android:textSize="@dimen/bottom_bar_text_size"
+        android:focusable="true"
+        android:clickable="true"/>
+
+    <TextView
+        android:id="@+id/txt_page_info"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textSize="@dimen/bottom_bar_text_size" />
+
+    <Button
+        android:id="@+id/btn_next_page"
+        android:layout_width="@dimen/bottom_bar_button_width"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:background="@android:drawable/btn_default_small"
+        android:gravity="center"
+        android:text="@string/str_next"
+        android:textSize="@dimen/bottom_bar_text_size"
+        android:focusable="true"
+        android:clickable="true"/>
+</RelativeLayout>
+    

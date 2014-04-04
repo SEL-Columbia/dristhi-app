@@ -66,4 +66,8 @@ public class NavigationController {
     public void startChild(String entityId) {
         navigateToChildProfile(activity, entityId);
     }
+
+    public void startNativeECRegister() {
+        activity.startActivity(new Intent(activity, NativeECSmartRegisterActivity.class));
+    }
 }

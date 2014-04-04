@@ -3,4 +3,45 @@
     <dimen name="actionbar_height">60dip</dimen>
     <dimen name="actionbar_item_height">60dip</dimen>
     <dimen name="actionbar_item_width">100dip</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="list_profile_box_width">0dp</dimen>
+    <dimen name="list_ec_no_view_width">0dp</dimen>
+    <dimen name="list_gplsa_view_width">0dp</dimen>
+    <dimen name="list_fp_view_width">0dp</dimen>
+    <dimen name="list_children_view_width">0dp</dimen>
+    <dimen name="list_status_view_width">0dp</dimen>
+    <dimen name="list_edit_icon_view_width">0dp</dimen>
+    <dimen name="list_item_defult_width">0dp</dimen>
+
+    <dimen name="list_item_height">80dp</dimen>
+    <dimen name="list_item_margin">10dp</dimen>
+
+    <dimen name="list_profile_pic_width">50dp</dimen>
+    <dimen name="list_text_margin_from_profile_pic">10dp</dimen>
+    <dimen name="list_item_text_font_size">15sp</dimen>
+    <dimen name="list_main_text_font_size">15sp</dimen>
+    <dimen name="list_header_font_size">15sp</dimen>
+
+    <dimen name="ec_main_header_height">40dp</dimen>
+    <dimen name="ec_sub_header_height">20dp</dimen>
+    <dimen name="list_header_height">25dp</dimen>
+
+    <dimen name="ec_bottom_bar_height">25dp</dimen>
+
+    <dimen name="ec_main_header_search_box_width">250dp</dimen>
+    <dimen name="list_item_divider_height">2dp</dimen>
+    <dimen name="bottom_bar_text_size">20sp</dimen>
+    <dimen name="bottom_bar_button_width">150dp</dimen>
+    <dimen name="main_header_item_padding">10dp</dimen>
+    <dimen name="list_item_text_padding_left_size">10dp</dimen>
+
+    <dimen name="list_main_header_size">22sp</dimen>
+    <dimen name="home_register_title_text_size">24sp</dimen>
+    <dimen name="home_padding_top_bottom">60dp</dimen>
+    <dimen name="home_register_sub_title_text_size">15sp</dimen>
+    <dimen name="home_padding_top_bottom_for_sub_title">90dp</dimen>
+    <dimen name="list_bottom_bar_padding">5dp</dimen>
 </resources>

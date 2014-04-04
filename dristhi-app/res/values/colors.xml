@@ -5,4 +5,6 @@
     <color name="actionbar_background_end">#808080</color>
     <color name="actionbar_background_item_pressed_start">#808080</color>
     <color name="actionbar_background_item_pressed_end">#808080</color>
+
+    <color name="list_divider_color">#ff883399</color>
 </resources>

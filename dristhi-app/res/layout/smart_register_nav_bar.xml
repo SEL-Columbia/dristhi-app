@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/ec_main_header_height"
+    android:background="#ff00bfff"
+    android:focusableInTouchMode="true" >
+
+    <ImageButton
+        android:id="@+id/btn_back_to_home"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/homestacks" />
+
+    <Button
+        android:id="@+id/btn_title"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_toRightOf="@id/btn_back_to_home"
+        android:paddingLeft="@dimen/main_header_item_padding"
+        android:paddingRight="@dimen/main_header_item_padding"
+        android:text="@string/ec_register_title"
+        style="@style/TextAppearance.MainHeader" />
+
+    <EditText
+        android:id="@+id/edt_search"
+        android:layout_width="@dimen/ec_main_header_search_box_width"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/main_header_item_padding"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:paddingLeft="10dp"
+        android:background="@drawable/rounded_edit_text_normal"
+        android:hint="@string/str_search_hint"/>
+
+    <ImageButton
+        android:id="@+id/filter_selection"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_toLeftOf="@id/edt_search"
+        android:paddingRight="@dimen/main_header_item_padding"
+        android:gravity="center"
+        android:src="@drawable/icon_village_filter" />
+
+    <ImageButton
+        android:id="@+id/sort_selection"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_toLeftOf="@id/filter_selection"
+        android:paddingRight="@dimen/main_header_item_padding"
+        android:gravity="center"
+        android:src="@drawable/icon_sort" />
+
+    <Button
+        android:id="@+id/section_type_selection"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_toLeftOf="@id/sort_selection"
+        android:paddingRight="@dimen/main_header_item_padding"
+        android:gravity="center"
+        android:text="@string/couple_selection" />
+</RelativeLayout>

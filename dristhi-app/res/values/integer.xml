@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="ec_list_item_weight_count">140</integer>
+    <integer name="ec_list_profile_box_weight">30</integer>
+    <integer name="ec_list_ec_no_view_weight">10</integer>
+    <integer name="ec_list_gplsa_view_weight">20</integer>
+    <integer name="ec_list_fp_view_weight">20</integer>
+    <integer name="ec_list_children_view_weight">20</integer>
+    <integer name="ec_list_status_view_weight">30</integer>
+    <integer name="ec_list_edit_icon_view_weight">10</integer>
+</resources>

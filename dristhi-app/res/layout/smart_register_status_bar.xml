@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/ec_sub_header_height"
+    android:background="#ff696969"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/label_sorted_by"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/label_sorted_by"/>
+
+    <TextView
+        android:id="@+id/sorted_by"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/label_village"/>
+
+    <TextView
+        android:id="@+id/village"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textStyle="bold"/>
+
+</LinearLayout>

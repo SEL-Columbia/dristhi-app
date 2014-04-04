@@ -693,13 +693,13 @@ helpers = this.merge(helpers, Handlebars.helpers); partials = this.merge(partial
   buffer += "<div class=\"row-fluid with-margin with-padding\" id=\"logo-and-buttons\">\n    <div class=\"span10\">\n        <div class=\"row-fluid with-margin\" id=\"drishti-logo\">\n            <div class=\"span10\">\n                <center><img src=\"../img/smart_registry/logo.png\"></center>\n            </div>\n        </div>\n        <div class=\"row-fluid with-margin\">\n            ";
   stack1 = self.invokePartial(partials.anm_navigation, 'anm_navigation', depth0, helpers, partials, data);
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n        </div>\n    </div>\n</div>\n<div class=\"row-fluid with-margin with-padding\" id=\"reports-videos-buttons\">\n    <div class=\"span5\">\n        <a class=\"btn btn-block btn-inverse btn-home\" id=\"reportsButton\"><i class=\"icon-reporting\"></i> ";
+  buffer += "\n        </div>\n    </div>\n</div>\n<div class=\"row-fluid with-margin with-padding\" id=\"reports-videos-buttons\">\n    <div class=\"span3\">\n        <a class=\"btn btn-block btn-inverse btn-home\" id=\"reportsButton\"><i class=\"icon-reporting\"></i> ";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.internationalize || depth0.internationalize),stack1 ? stack1.call(depth0, "home_report_label", options) : helperMissing.call(depth0, "internationalize", "home_report_label", options)))
-    + "</a>\n    </div>\n    <div class=\"span5\">\n        <a class=\"btn btn-block btn-inverse btn-home\" id=\"videosButton\"><i class=\"icon-tv\"></i> ";
+    + "</a>\n    </div>\n    <div class=\"span3\">\n        <a class=\"btn btn-block btn-inverse btn-home\" id=\"videosButton\"><i class=\"icon-tv\"></i> ";
   options = {hash:{},data:data};
   buffer += escapeExpression(((stack1 = helpers.internationalize || depth0.internationalize),stack1 ? stack1.call(depth0, "home_videos_label", options) : helperMissing.call(depth0, "internationalize", "home_videos_label", options)))
-    + "</a>\n    </div>\n</div>\n";
+    + "</a>\n    </div>\n    <div class=\"span4\">\n        <a class=\"btn btn-block btn-inverse btn-home\" id=\"nativeECRegisterButton\"><i class=\"icon-tv\"></i>\n            Native EC Register</a>\n    </div>\n</div>\n";
   return buffer;
   });
 templates['pnc_detail'] = template(function (Handlebars,depth0,helpers,partials,data) {
