@@ -3,7 +3,7 @@ package org.ei.drishti.view.activity;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.WrappedSmartRegisterPaginatedAdapter;
 import org.ei.drishti.provider.SmartECRegisterClientsProvider;
-import org.ei.drishti.provider.WrappedSmartRegisterClientsProvider;
+import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.Person;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             R.string.header_fp, R.string.header_children, R.string.header_status,
             R.string.header_edit};
 
-    private WrappedSmartRegisterClientsProvider listItemProvider = null;
+    private SmartRegisterClientsProvider listItemProvider = null;
 
     @Override
     public int getColumnCount() {
@@ -48,7 +48,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    protected WrappedSmartRegisterClientsProvider listItemProvider() {
+    protected SmartRegisterClientsProvider listItemProvider() {
         if (listItemProvider == null) {
             listItemProvider = new SmartECRegisterClientsProvider(this, Person.getCityPeople());
         }

@@ -9,7 +9,7 @@ import android.view.WindowManager;
 import android.widget.*;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.WrappedSmartRegisterPaginatedAdapter;
-import org.ei.drishti.provider.WrappedSmartRegisterClientsProvider;
+import org.ei.drishti.provider.SmartRegisterClientsProvider;
 
 public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity implements View.OnClickListener {
 
@@ -161,7 +161,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         return new WrappedSmartRegisterPaginatedAdapter(this, listItemProvider());
     }
 
-    protected abstract WrappedSmartRegisterClientsProvider listItemProvider();
+    protected abstract SmartRegisterClientsProvider listItemProvider();
 
     @Override
     public void onClick(View view) {

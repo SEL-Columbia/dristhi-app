@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
-import org.ei.drishti.provider.WrappedSmartRegisterClientsProvider;
+import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.Person;
 
 import java.util.List;
@@ -21,9 +21,9 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filter
 
     private List<Person> peopleInView;
 
-    protected final WrappedSmartRegisterClientsProvider listItemProvider;
+    protected final SmartRegisterClientsProvider listItemProvider;
 
-    public SmartRegisterPaginatedAdapter(Context context, WrappedSmartRegisterClientsProvider listItemProvider) {
+    public SmartRegisterPaginatedAdapter(Context context, SmartRegisterClientsProvider listItemProvider) {
         this.context = context;
 
         this.listItemProvider = listItemProvider;
