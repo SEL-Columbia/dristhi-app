@@ -4,7 +4,7 @@ import org.ei.drishti.R;
 import org.ei.drishti.adapter.WrappedSmartRegisterPaginatedAdapter;
 import org.ei.drishti.provider.SmartECRegisterClientsProvider;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.contract.Person;
+import org.ei.drishti.view.controller.ECSmartRegisterController;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +21,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             R.string.header_edit};
 
     private SmartRegisterClientsProvider listItemProvider = null;
+    private ECSmartRegisterController controller;
 
     @Override
     public int getColumnCount() {
@@ -50,7 +51,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     @Override
     protected SmartRegisterClientsProvider listItemProvider() {
         if (listItemProvider == null) {
-            listItemProvider = new SmartECRegisterClientsProvider(this, Person.getCityPeople());
+            listItemProvider = new SmartECRegisterClientsProvider(this, controller.getClients());
         }
         return listItemProvider;
     }
@@ -96,5 +97,12 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     @Override
     protected String[] getTypeOptions() {
         return new String[]{};
+    }
+
+    @Override
+    protected void onInitialization() {
+        controller = new ECSmartRegisterController(context.allEligibleCouples(),
+                context.allBeneficiaries(), context.listCache(),
+                context.ecClientsCache());
     }
 }

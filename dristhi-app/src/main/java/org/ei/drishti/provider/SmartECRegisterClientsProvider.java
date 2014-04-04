@@ -8,28 +8,31 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import org.ei.drishti.R;
 import org.ei.drishti.view.activity.NativeECSmartRegisterActivity;
-import org.ei.drishti.view.contract.Person;
+import org.ei.drishti.view.contract.ECClient;
+import org.ei.drishti.view.contract.ECClients;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import static java.text.MessageFormat.format;
 
 public class SmartECRegisterClientsProvider
         implements SmartRegisterClientsProvider, View.OnClickListener {
 
     private final LayoutInflater inflater;
     private final Context context;
-    protected Person[] people;
+    protected ECClients clients;
 
-    public SmartECRegisterClientsProvider(Context context, Person[] people) {
-        this.people = people;
+    public SmartECRegisterClientsProvider(Context context, ECClients clients) {
+        this.clients = clients;
         this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
-    public View getView(Person person, View convertView, ViewGroup viewGroup) {
+    public View getView(ECClient client, View convertView, ViewGroup viewGroup) {
         ViewGroup itemView;
         BaseViewHolder holder;
         if (convertView == null || isFooterView(convertView)) {
@@ -41,11 +44,12 @@ public class SmartECRegisterClientsProvider
             holder = (BaseViewHolder) itemView.getTag();
         }
 
-        holder.txtNameView.setText(person.name);
-        holder.txtHusbandNameView.setText(person.husbandName);
-        holder.txtVillageNameView.setText(person.villageName);
-        holder.txtAgeView.setText("(" + person.age + ")");
-        holder.txtEcNumberView.setText(String.valueOf(person.ecNumber));
+        holder.txtNameView.setText(client.name());
+        holder.txtHusbandNameView.setText(client.husbandName());
+        holder.txtVillageNameView.setText(client.village());
+        holder.txtAgeView.setText(
+                format(context.getResources().getString(R.string.ec_register_wife_age), client.age()));
+        holder.txtEcNumberView.setText(String.valueOf(client.ecNumber()));
 
         return itemView;
     }
@@ -63,8 +67,8 @@ public class SmartECRegisterClientsProvider
     @Override
     public List<String> getAllUniqueVillageNames() {
         List<String> villages = new ArrayList<String>();
-        for (int i = 0; i < people.length; i++) {
-            String village = people[i].villageName;
+        for (ECClient client : clients) {
+            String village = client.village();
             if (!isVillageNameAlreadyPresent(villages, village)) {
                 villages.add(village);
             }
@@ -73,29 +77,29 @@ public class SmartECRegisterClientsProvider
     }
 
     @Override
-    public List<Person> getListItems() {
-        return Arrays.asList(people);
+    public ECClients getListItems() {
+        return clients;
     }
 
     @Override
     public void sort(String sortBy) {
-        Arrays.sort(people, getComparator(sortBy));
+        Collections.sort(clients, getComparator(sortBy));
     }
 
     @Override
-    public List<Person> filter(CharSequence cs) {
-        List<Person> results;
+    public ECClients filter(CharSequence cs) {
+        ECClients results;
         if (cs.length() > 0) {
             String filter = cs.toString().toLowerCase();
-            List<Person> filteredPeople = new ArrayList<Person>();
-            for (Person aPeople : people) {
+            ECClients filteredPeople = new ECClients();
+            for (ECClient aPeople : clients) {
                 if (aPeople.willFilterMatches(filter)) {
                     filteredPeople.add(aPeople);
                 }
             }
             results = filteredPeople;
         } else {
-            results = Arrays.asList(people);
+            results = clients;
         }
         return results;
     }
@@ -128,13 +132,11 @@ public class SmartECRegisterClientsProvider
         return found;
     }
 
-    private Comparator<? super Person> getComparator(String sortBy) {
-        if (sortBy.equalsIgnoreCase(NativeECSmartRegisterActivity.SORT_BY_AGE)) {
-            return Person.AGE_COMPARATOR;
-        } else if (sortBy.equalsIgnoreCase(NativeECSmartRegisterActivity.SORT_BY_EC_NO)) {
-            return Person.EC_NO_COMPARATOR;
+    private Comparator<? super ECClient> getComparator(String sortBy) {
+        if (sortBy.equalsIgnoreCase(NativeECSmartRegisterActivity.SORT_BY_EC_NO)) {
+            return ECClient.EC_NUMBER_COMPARATOR;
         }
-        return Person.NAME_COMPARATOR;
+        return ECClient.NAME_COMPARATOR;
     }
 
     protected static class BaseViewHolder {

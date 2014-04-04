@@ -42,7 +42,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         setContentView(R.layout.smart_register_activity);
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
+        onInitialization();
         setupViews();
     }
 
@@ -339,5 +339,5 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     protected abstract String[] getSortingOptions();
 
-
+    protected abstract void onInitialization();
 }

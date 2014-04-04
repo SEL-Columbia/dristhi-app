@@ -14,6 +14,7 @@ import org.ei.drishti.util.EasyMap;
 import org.ei.drishti.util.IntegerUtil;
 import org.ei.drishti.view.contract.ECChildClient;
 import org.ei.drishti.view.contract.ECClient;
+import org.ei.drishti.view.contract.ECClients;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 
@@ -42,11 +43,15 @@ public class ECSmartRegisterController {
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
     private final Cache<String> cache;
+    private final Cache<ECClients> ecClientsCache;
 
-    public ECSmartRegisterController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, Cache<String> cache) {
+    public ECSmartRegisterController(AllEligibleCouples allEligibleCouples,
+                                     AllBeneficiaries allBeneficiaries, Cache<String> cache,
+                                     Cache<ECClients> ecClientsCache) {
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.cache = cache;
+        this.ecClientsCache = ecClientsCache;
     }
 
     public String get() {
@@ -84,6 +89,46 @@ public class ECSmartRegisterController {
                 }
                 sortByName(ecClients);
                 return new Gson().toJson(ecClients);
+            }
+        });
+    }
+
+    //#TODO: Remove duplication
+    public ECClients getClients() {
+        return ecClientsCache.get(EC_CLIENTS_LIST, new CacheableData<ECClients>() {
+            @Override
+            public ECClients fetch() {
+                List<EligibleCouple> ecs = allEligibleCouples.all();
+                ECClients ecClients = new ECClients();
+
+                for (EligibleCouple ec : ecs) {
+                    String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
+                    ECClient ecClient = new ECClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), IntegerUtil.tryParse(ec.ecNumber(), 0))
+                            .withDateOfBirth(ec.getDetail(WOMAN_DOB))
+                            .withFPMethod(ec.getDetail(CURRENT_FP_METHOD))
+                            .withFamilyPlanningMethodChangeDate(ec.getDetail(FAMILY_PLANNING_METHOD_CHANGE_DATE))
+                            .withIUDPlace(ec.getDetail(IUD_PLACE))
+                            .withIUDPerson(ec.getDetail(IUD_PERSON))
+                            .withNumberOfCondomsSupplied(ec.getDetail(NUMBER_OF_CONDOMS_SUPPLIED))
+                            .withNumberOfCentchromanPillsDelivered(ec.getDetail(NUMBER_OF_CENTCHROMAN_PILLS_DELIVERED))
+                            .withNumberOfOCPDelivered(ec.getDetail(NUMBER_OF_OCP_DELIVERED))
+                            .withCaste(ec.getDetail(CASTE))
+                            .withEconomicStatus(ec.getDetail(ECONOMIC_STATUS))
+                            .withNumberOfPregnancies(ec.getDetail(NUMBER_OF_PREGNANCIES))
+                            .withParity(ec.getDetail(PARITY))
+                            .withNumberOfLivingChildren(ec.getDetail(NUMBER_OF_LIVING_CHILDREN))
+                            .withNumberOfStillBirths(ec.getDetail(NUMBER_OF_STILL_BIRTHS))
+                            .withNumberOfAbortions(ec.getDetail(NUMBER_OF_ABORTIONS))
+                            .withIsHighPriority(ec.isHighPriority())
+                            .withPhotoPath(photoPath)
+                            .withHighPriorityReason(ec.getDetail(HIGH_PRIORITY_REASON))
+                            .withIsOutOfArea(ec.isOutOfArea());
+                    updateStatusInformation(ec, ecClient);
+                    updateChildrenInformation(ecClient);
+                    ecClients.add(ecClient);
+                }
+                sortByName(ecClients);
+                return ecClients;
             }
         });
     }

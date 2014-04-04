@@ -7,9 +7,8 @@ import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.contract.Person;
-
-import java.util.List;
+import org.ei.drishti.view.contract.ECClient;
+import org.ei.drishti.view.contract.ECClients;
 
 public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filterable {
     private int peopleCount;
@@ -19,7 +18,7 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filter
 
     protected final Context context;
 
-    private List<Person> peopleInView;
+    private ECClients filteredClients;
 
     protected final SmartRegisterClientsProvider listItemProvider;
 
@@ -31,9 +30,9 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filter
         setupPeopleInView(listItemProvider.getListItems());
     }
 
-    private void setupPeopleInView(List<Person> people) {
-        this.peopleInView = people;
-        peopleCount = peopleInView.size();
+    private void setupPeopleInView(ECClients people) {
+        this.filteredClients = people;
+        peopleCount = filteredClients.size();
         pageCount = peopleCount / peoplePerPage;
     }
 
@@ -49,7 +48,7 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filter
 
     @Override
     public Object getItem(int i) {
-        return peopleInView.get(i);
+        return filteredClients.get(i);
     }
 
     @Override
@@ -59,7 +58,7 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filter
 
     @Override
     public View getView(int i, View parentView, ViewGroup viewGroup) {
-        return listItemProvider.getView((Person) getItem(actualPosition(i)), parentView, viewGroup);
+        return listItemProvider.getView((ECClient) getItem(actualPosition(i)), parentView, viewGroup);
     }
 
     private int actualPosition(int i) {
@@ -120,7 +119,7 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filter
         @Override
         protected void publishResults(CharSequence charSequence, Filter.FilterResults
                 filterResults) {
-            setupPeopleInView((List<Person>) filterResults.values);
+            setupPeopleInView((ECClients) filterResults.values);
             notifyDataSetChanged();
         }
     };

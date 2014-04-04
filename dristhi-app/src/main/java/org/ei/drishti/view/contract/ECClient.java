@@ -3,8 +3,11 @@ package org.ei.drishti.view.contract;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.joda.time.LocalDate;
+import org.joda.time.Period;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -49,6 +52,29 @@ public class ECClient {
 
     public String wifeName() {
         return name;
+    }
+
+    public String village() {
+        return village;
+    }
+
+    public String name() {
+        return name;
+    }
+
+    public String husbandName() {
+        return husbandName;
+    }
+
+    //#TODO: Write unit test
+    public int age() {
+        LocalDate dob = LocalDate.parse(dateOfBirth);
+        LocalDate now = LocalDate.now();
+        return new Period(dob, now).getYears();
+    }
+
+    public Integer ecNumber() {
+        return ecNumber;
     }
 
     public ECClient withDateOfBirth(String dateOfBirth) {
@@ -161,6 +187,34 @@ public class ECClient {
         return entityId;
     }
 
+    public ECClient withStatus(Map<String, String> status) {
+        this.status = status;
+        return this;
+    }
+
+    public boolean willFilterMatches(String filter) {
+        return name.toLowerCase().startsWith(filter)
+                || String.valueOf(ecNumber).startsWith(filter)
+                || village.toLowerCase().startsWith(filter);
+    }
+
+    //#TODO: Write unit test
+    public static final Comparator<ECClient> NAME_COMPARATOR = new Comparator<ECClient>() {
+        @Override
+        public int compare(ECClient person, ECClient anotherPerson) {
+            return person.name.compareToIgnoreCase(anotherPerson.name);
+        }
+    };
+
+    //#TODO: Write unit test
+    public static final Comparator<ECClient> EC_NUMBER_COMPARATOR = new Comparator<ECClient>() {
+        @Override
+        public int compare(ECClient person, ECClient anotherPerson) {
+            return person.ecNumber.compareTo(anotherPerson.ecNumber);
+        }
+    };
+
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
@@ -174,10 +228,5 @@ public class ECClient {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-    }
-
-    public ECClient withStatus(Map<String, String> status) {
-        this.status = status;
-        return this;
     }
 }

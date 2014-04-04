@@ -11,6 +11,7 @@ import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.view.contract.ECChildClient;
 import org.ei.drishti.view.contract.ECClient;
+import org.ei.drishti.view.contract.ECClients;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,7 +42,7 @@ public class ECSmartRegisterControllerTest {
     public void setUp() throws Exception {
         initMocks(this);
         emptyDetails = Collections.emptyMap();
-        controller = new ECSmartRegisterController(allEligibleCouples, allBeneficiaries, new Cache<String>());
+        controller = new ECSmartRegisterController(allEligibleCouples, allBeneficiaries, new Cache<String>(), new Cache<ECClients>());
     }
 
     @Test
