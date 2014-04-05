@@ -21,12 +21,12 @@
 
     <dimen name="list_profile_pic_width">50dp</dimen>
     <dimen name="list_text_margin_from_profile_pic">10dp</dimen>
-    <dimen name="list_item_text_font_size">15sp</dimen>
-    <dimen name="list_main_text_font_size">15sp</dimen>
+    <dimen name="list_item_text_font_size">16sp</dimen>
+    <dimen name="list_main_text_font_size">19sp</dimen>
     <dimen name="list_header_font_size">15sp</dimen>
 
     <dimen name="ec_main_header_height">40dp</dimen>
-    <dimen name="ec_sub_header_height">20dp</dimen>
+    <dimen name="smart_register_status_bar_height">20dp</dimen>
     <dimen name="list_header_height">25dp</dimen>
 
     <dimen name="ec_bottom_bar_height">25dp</dimen>

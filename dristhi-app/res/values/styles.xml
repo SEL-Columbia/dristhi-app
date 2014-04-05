@@ -21,6 +21,7 @@
     <style name="TextAppearance.ListView.Item.Strong" parent="TextAppearance.ListView.Item">
         <item name="android:textSize">@dimen/list_main_text_font_size</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">RobotoRegular</item>
     </style>
 
     <style name="TextAppearance.MainHeader" parent="@android:style/Widget.TextView">
