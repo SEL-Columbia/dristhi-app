@@ -1,5 +1,6 @@
 package org.ei.drishti.view.contract;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -55,15 +56,15 @@ public class ECClient {
     }
 
     public String village() {
-        return village;
+        return StringUtils.capitalize(village);
     }
 
     public String name() {
-        return name;
+        return StringUtils.capitalize(name);
     }
 
     public String husbandName() {
-        return husbandName;
+        return StringUtils.capitalize(husbandName);
     }
 
     //#TODO: Write unit test
