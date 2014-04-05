@@ -32,7 +32,7 @@
     <dimen name="ec_bottom_bar_height">25dp</dimen>
 
     <dimen name="ec_main_header_search_box_width">250dp</dimen>
-    <dimen name="list_item_divider_height">2dp</dimen>
+    <dimen name="smart_register_client_divider_height">1dp</dimen>
     <dimen name="bottom_bar_text_size">20sp</dimen>
     <dimen name="bottom_bar_button_width">150dp</dimen>
     <dimen name="main_header_item_padding">10dp</dimen>

@@ -39,7 +39,7 @@
     <string name="str_next">Next</string>
     <string name="str_previous">Previous</string>
     <string name="str_name">Name</string>
-    <string name="header_ec_no">EC_NO</string>
+    <string name="header_ec_no">EC NO.</string>
     <string name="header_gplsa">GPLSA</string>
     <string name="header_fp">FP METHOD</string>
     <string name="header_children">CHILDREN</string>

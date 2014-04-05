@@ -9,9 +9,9 @@
     <include layout="@layout/smart_register_client_name" />
 
     <ImageView
-        android:layout_width="@dimen/list_item_divider_height"
+        android:layout_width="@dimen/smart_register_client_divider_height"
         android:layout_height="fill_parent"
-        android:src="@color/list_divider_color"/>
+        android:src="@color/smart_register_client_divider_color"/>
 
     <TextView
         android:id="@+id/txt_ec_number"
@@ -21,9 +21,9 @@
         style="@style/TextAppearance.ListView.Item.Strong"/>
 
     <ImageView
-        android:layout_width="@dimen/list_item_divider_height"
+        android:layout_width="@dimen/smart_register_client_divider_height"
         android:layout_height="fill_parent"
-        android:src="@color/list_divider_color"/>
+        android:src="@color/smart_register_client_divider_color"/>
 
     <TextView
         android:id="@+id/txt_gplsa"
@@ -33,9 +33,9 @@
         style="@style/TextAppearance.ListView.Item"/>
 
     <ImageView
-        android:layout_width="@dimen/list_item_divider_height"
+        android:layout_width="@dimen/smart_register_client_divider_height"
         android:layout_height="fill_parent"
-        android:src="@color/list_divider_color"/>
+        android:src="@color/smart_register_client_divider_color"/>
 
     <TextView
         android:id="@+id/txt_fp"
@@ -45,9 +45,9 @@
         style="@style/TextAppearance.ListView.Item"/>
 
     <ImageView
-        android:layout_width="@dimen/list_item_divider_height"
+        android:layout_width="@dimen/smart_register_client_divider_height"
         android:layout_height="fill_parent"
-        android:src="@color/list_divider_color"/>
+        android:src="@color/smart_register_client_divider_color"/>
 
 
     <TextView
@@ -58,9 +58,9 @@
         style="@style/TextAppearance.ListView.Item"/>
 
     <ImageView
-        android:layout_width="@dimen/list_item_divider_height"
+        android:layout_width="@dimen/smart_register_client_divider_height"
         android:layout_height="fill_parent"
-        android:src="@color/list_divider_color"/>
+        android:src="@color/smart_register_client_divider_color"/>
 
     <TextView
         android:id="@+id/txt_status"
@@ -70,9 +70,9 @@
         style="@style/TextAppearance.ListView.Item"/>
 
     <ImageView
-        android:layout_width="@dimen/list_item_divider_height"
+        android:layout_width="@dimen/smart_register_client_divider_height"
         android:layout_height="fill_parent"
-        android:src="@color/list_divider_color"/>
+        android:src="@color/smart_register_client_divider_color"/>
 
     <ImageButton
         android:id="@+id/btn_edit_record"

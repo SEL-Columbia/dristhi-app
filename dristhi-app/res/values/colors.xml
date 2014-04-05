@@ -6,7 +6,7 @@
     <color name="actionbar_background_item_pressed_start">#808080</color>
     <color name="actionbar_background_item_pressed_end">#808080</color>
 
-    <color name="list_divider_color">#ff883399</color>
+    <color name="smart_register_client_divider_color">#d9d9d9</color>
     <color name="status_bar_background_dark_grey">#494949</color>
     <color name="status_bar_text_almost_white">#f5f5f5</color>
     <color name="client_age">#333333</color>
