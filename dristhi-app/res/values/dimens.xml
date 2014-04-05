@@ -37,6 +37,7 @@
     <dimen name="bottom_bar_button_width">150dp</dimen>
     <dimen name="main_header_item_padding">10dp</dimen>
     <dimen name="list_item_text_padding_left_size">10dp</dimen>
+    <dimen name="client_age_padding">2dp</dimen>
 
     <dimen name="list_main_header_size">22sp</dimen>
     <dimen name="home_register_title_text_size">24sp</dimen>

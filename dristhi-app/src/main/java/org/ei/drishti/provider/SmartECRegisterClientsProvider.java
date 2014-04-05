@@ -143,7 +143,7 @@ public class SmartECRegisterClientsProvider
 
         public static BaseViewHolder getViewHolder(ViewGroup itemView) {
             BaseViewHolder viewHolder = new BaseViewHolder();
-            viewHolder.txtNameView = (TextView) itemView.findViewById(R.id.txt_person_name);
+            viewHolder.txtNameView = (TextView) itemView.findViewById(R.id.txt_wife_name);
             viewHolder.txtHusbandNameView = (TextView) itemView.findViewById(R.id.txt_husband_name);
             viewHolder.txtVillageNameView = (TextView) itemView.findViewById(R.id.txt_village_name);
             viewHolder.txtAgeView = (TextView) itemView.findViewById(R.id.txt_age);

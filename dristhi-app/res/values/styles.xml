@@ -18,10 +18,17 @@
         <item name="android:paddingLeft">@dimen/list_item_text_padding_left_size</item>
     </style>
 
+    <style name="TextAppearance.ListView.Item.Age" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/list_item_text_font_size</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingLeft">@dimen/list_item_text_padding_left_size</item>
+        <item name="android:textColor">@color/client_age</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="TextAppearance.ListView.Item.Strong" parent="TextAppearance.ListView.Item">
         <item name="android:textSize">@dimen/list_main_text_font_size</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:fontFamily">RobotoRegular</item>
     </style>
 
     <style name="TextAppearance.MainHeader" parent="@android:style/Widget.TextView">
