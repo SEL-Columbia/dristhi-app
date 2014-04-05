@@ -18,8 +18,7 @@
         android:layout_width="@dimen/list_ec_no_view_width"
         android:layout_height="fill_parent"
         android:layout_weight="@integer/ec_list_ec_no_view_weight"
-        android:text="000"
-        style="@style/TextAppearance.ListView.Item"/>
+        style="@style/TextAppearance.ListView.Item.Strong"/>
 
     <ImageView
         android:layout_width="@dimen/list_item_divider_height"

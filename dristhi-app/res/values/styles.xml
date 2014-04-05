@@ -18,7 +18,7 @@
         <item name="android:paddingLeft">@dimen/list_item_text_padding_left_size</item>
     </style>
 
-    <style name="TextAppearance.ListView.Item.Name" parent="TextAppearance.ListView.Item">
+    <style name="TextAppearance.ListView.Item.Strong" parent="TextAppearance.ListView.Item">
         <item name="android:textSize">@dimen/list_main_text_font_size</item>
         <item name="android:textStyle">bold</item>
     </style>
