@@ -1,9 +1,15 @@
 package org.ei.drishti.view.viewModel;
 
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.ei.drishti.R;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.ei.drishti.view.controller.ECSmartRegisterController.*;
 
 public class NativeECSmartRegisterViewModel {
     private TextView txtNameView;
@@ -23,7 +29,7 @@ public class NativeECSmartRegisterViewModel {
     private TextView FPMethodView;
     private TextView maleChildrenView;
     private TextView femaleChildrenView;
-    private TextView statusView;
+    private Map<String, ViewGroup> statusLayouts;
 
     public NativeECSmartRegisterViewModel(ViewGroup itemView) {
         this.txtNameView = (TextView) itemView.findViewById(R.id.txt_wife_name);
@@ -43,7 +49,18 @@ public class NativeECSmartRegisterViewModel {
         this.FPMethodView = (TextView) itemView.findViewById(R.id.txt_fp);
         this.maleChildrenView = (TextView) itemView.findViewById(R.id.txt_male_children);
         this.femaleChildrenView = (TextView) itemView.findViewById(R.id.txt_female_children);
-        this.statusView = (TextView) itemView.findViewById(R.id.txt_status);
+
+        this.statusLayouts = new HashMap<String, ViewGroup>();
+        this.statusLayouts
+                .put(EC_STATUS, (ViewGroup) itemView.findViewById(R.id.ec_and_fp_status_layout));
+        this.statusLayouts
+                .put(FP_STATUS, (ViewGroup) itemView.findViewById(R.id.ec_and_fp_status_layout));
+        this.statusLayouts
+                .put(ANC_STATUS, (ViewGroup) itemView.findViewById(R.id.anc_status_layout));
+        this.statusLayouts
+                .put(PNC_STATUS, (ViewGroup) itemView.findViewById(R.id.pnc_status_layout));
+        this.statusLayouts
+                .put(PNC_FP_STATUS, (ViewGroup) itemView.findViewById(R.id.pnc_and_fp_status_layout));
     }
 
     public TextView txtNameView() {
@@ -114,7 +131,29 @@ public class NativeECSmartRegisterViewModel {
         return femaleChildrenView;
     }
 
-    public TextView statusView() {
-        return statusView;
+    public ViewGroup statusLayout(String statusType) {
+        return statusLayouts.get(statusType);
+    }
+
+    public void hideAllStatusLayouts() {
+        for (String statusLayout : statusLayouts.keySet()) {
+            statusLayouts.get(statusLayout).setVisibility(View.GONE);
+        }
+    }
+
+    public TextView getStatusDateView(ViewGroup statusViewGroup) {
+        return ((TextView) statusViewGroup.findViewById(R.id.txt_status_date));
+    }
+
+    public TextView getStatusTypeView(ViewGroup statusViewGroup) {
+        return ((TextView) statusViewGroup.findViewById(R.id.txt_status_type));
+    }
+
+    public TextView getANCStatusEDDDateView(ViewGroup statusViewGroup) {
+        return ((TextView) statusViewGroup.findViewById(R.id.txt_anc_status_edd_date));
+    }
+
+    public TextView getFPStatusDateView(ViewGroup statusViewGroup) {
+        return ((TextView) statusViewGroup.findViewById(R.id.txt_fp_status_date));
     }
 }

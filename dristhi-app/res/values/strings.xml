@@ -56,6 +56,12 @@
 
     <string name="ec_register_male_child">Male\n{0}M</string>
     <string name="ec_register_female_child">Female\n{0}M</string>
-    <string name="ec_register_status">{0}\n{1}\n{2}</string>
     <string name="ec_register_no_fp">No FP</string>
+
+    <string name="status_delivery">Delivery:</string>
+    <string name="str_lmp">LMP:</string>
+    <string name="str_edd">EDD:</string>
+    <string name="str_anc">ANC</string>
+    <string name="str_pnc">PNC</string>
+    <string name="str_fp">FP</string>
 </resources>

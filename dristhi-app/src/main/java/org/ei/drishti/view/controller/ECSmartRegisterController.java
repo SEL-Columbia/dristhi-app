@@ -35,8 +35,8 @@ public class ECSmartRegisterController {
     public static final String ANC_STATUS = "anc";
     public static final String PNC_STATUS = "pnc";
     public static final String PNC_FP_STATUS = "pnc/fp";
-    public static final String STATUS_EDD_FIELD = "edd";
     public static final String FP_STATUS = "fp";
+    public static final String STATUS_EDD_FIELD = "edd";
     public static final String FP_METHOD_DATE_FIELD = "fpMethodDate";
     private static final String EC_CLIENTS_LIST = "ECClientsList";
 
@@ -193,7 +193,6 @@ public class ECSmartRegisterController {
             ecClient.withStatus(EasyMap.create(STATUS_TYPE_FIELD, PNC_FP_STATUS)
                     .put(STATUS_DATE_FIELD, mother.referenceDate())
                     .put(FP_METHOD_DATE_FIELD, eligibleCouple.getDetail(FAMILY_PLANNING_METHOD_CHANGE_DATE)).map());
-            return;
         }
     }
 }

@@ -150,7 +150,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
                 android:layout_margin="5dp"
-                android:background="@color/list_background_color"
+                android:background="@color/status_bar_text_almost_white"
                 style="@style/TextAppearance.ListView.Item"/>
 
         <TextView
@@ -159,7 +159,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="50"
                 android:layout_margin="5dp"
-                android:background="@color/list_background_color"
+                android:background="@color/status_bar_text_almost_white"
                 style="@style/TextAppearance.ListView.Item"/>
     </LinearLayout>
 
@@ -169,14 +169,29 @@
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
 
-    <TextView
-            android:id="@+id/txt_status"
+    <FrameLayout
             android:layout_width="@dimen/list_status_view_width"
             android:layout_height="fill_parent"
             android:layout_weight="@integer/ec_list_status_view_weight"
             android:layout_margin="5dp"
-            android:background="@color/list_background_color"
-            style="@style/TextAppearance.ListView.Item"/>
+            android:background="@color/status_bar_text_almost_white">
+
+        <include
+                android:id="@+id/ec_and_fp_status_layout"
+                layout="@layout/smart_register_client_status_ec_and_fp"/>
+
+        <include
+                android:id="@+id/anc_status_layout"
+                layout="@layout/smart_register_client_status_anc"/>
+
+        <include
+                android:id="@+id/pnc_status_layout"
+                layout="@layout/smart_register_client_status_pnc"/>
+
+        <include
+                android:id="@+id/pnc_and_fp_status_layout"
+                layout="@layout/smart_register_client_status_pnc_and_fp"/>
+    </FrameLayout>
 
     <ImageView
             android:layout_width="@dimen/smart_register_client_divider_height"

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.R;
 import org.ei.drishti.view.activity.NativeECSmartRegisterActivity;
 import org.ei.drishti.view.contract.ECChildClient;
@@ -13,9 +14,13 @@ import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.ECClients;
 import org.ei.drishti.view.viewModel.NativeECSmartRegisterViewModel;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import static java.text.MessageFormat.format;
+import static org.ei.drishti.view.controller.ECSmartRegisterController.*;
 
 public class ECSmartRegisterClientsProvider
         implements SmartRegisterClientsProvider, View.OnClickListener {
@@ -63,24 +68,24 @@ public class ECSmartRegisterClientsProvider
         viewModel.fpMethodView().setText(fpMethod);
     }
 
-    private void setupStatusView(ECClient client, NativeECSmartRegisterViewModel holder) {
-        Map<String, String> status = client.status();
-        Set<Map.Entry<String, String>> statusSet = status.entrySet();
-        Iterator statusIterator = statusSet.iterator();
+    private void setupStatusView(ECClient client, NativeECSmartRegisterViewModel viewModel) {
+        String statusType = client.status().get(STATUS_TYPE_FIELD);
+        String statusDate = client.status().get(STATUS_DATE_FIELD);
+        viewModel.hideAllStatusLayouts();
+        ViewGroup statusViewGroup = viewModel.statusLayout(statusType);
+        statusViewGroup.setVisibility(View.VISIBLE);
+        viewModel.getStatusDateView(statusViewGroup).setText(statusDate);
 
-        String[] values = new String[statusSet.size()];
-        int i = 0;
-        while (statusIterator.hasNext()) {
-            Map.Entry<String, String> entry = (Map.Entry<String, String>) statusIterator.next();
-            String key = entry.getKey();
-            String value = entry.getValue();
-
-            if (key != null && value != null && !value.isEmpty()) {
-                values[i++] = value;
-            }
+        if (EC_STATUS.equalsIgnoreCase(statusType) || FP_STATUS.equalsIgnoreCase(statusType)) {
+            viewModel.getStatusTypeView(statusViewGroup)
+                    .setText(StringUtils.upperCase(statusType));
+        } else if (ANC_STATUS.equalsIgnoreCase(statusType)) {
+            viewModel.getANCStatusEDDDateView(statusViewGroup)
+                    .setText(client.status().get(STATUS_EDD_FIELD));
+        } else if (PNC_FP_STATUS.equalsIgnoreCase(statusType)) {
+            viewModel.getFPStatusDateView(statusViewGroup)
+                    .setText(client.status().get(FP_METHOD_DATE_FIELD));
         }
-        holder.statusView().setText(
-                format(context.getResources().getString(R.string.ec_register_status), "a", "b", "c"));
     }
 
     private void setupClientProfileView(ECClient client, NativeECSmartRegisterViewModel viewModel) {

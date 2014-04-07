@@ -237,7 +237,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     @Override
     public void onBackPressed() {
-         super.onBackPressed();
+        super.onBackPressed();
     }
 
     void showFragmentDialog(int dialogId, String[] options) {
