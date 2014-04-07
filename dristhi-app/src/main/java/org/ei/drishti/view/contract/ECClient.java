@@ -1,9 +1,9 @@
 package org.ei.drishti.view.contract;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.util.StringUtil;
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
 
@@ -56,15 +56,15 @@ public class ECClient {
     }
 
     public String village() {
-        return StringUtils.capitalize(village);
+        return StringUtil.humanize(village);
     }
 
     public String name() {
-        return StringUtils.capitalize(name);
+        return StringUtil.humanize(name);
     }
 
     public String husbandName() {
-        return StringUtils.capitalize(husbandName);
+        return StringUtil.humanize(husbandName);
     }
 
     //#TODO: Write unit test
