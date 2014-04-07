@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="@dimen/ec_main_header_height"
-    android:background="#ff00bfff"
+    android:background="@color/light_blue"
     android:focusableInTouchMode="true" >
 
     <ImageButton
@@ -39,7 +39,9 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_toLeftOf="@id/edt_search"
-        android:paddingRight="@dimen/main_header_item_padding"
+        android:layout_marginRight="@dimen/main_header_item_padding"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:gravity="center"
         android:src="@drawable/icon_village_filter" />
 
@@ -48,7 +50,9 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_toLeftOf="@id/filter_selection"
-        android:paddingRight="@dimen/main_header_item_padding"
+        android:layout_marginRight="@dimen/main_header_item_padding"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:gravity="center"
         android:src="@drawable/icon_sort" />
 
@@ -57,7 +61,10 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_toLeftOf="@id/sort_selection"
-        android:paddingRight="@dimen/main_header_item_padding"
+        android:layout_marginRight="@dimen/main_header_item_padding"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:gravity="center"
-        android:text="@string/couple_selection" />
+        android:text="@string/couple_selection"
+        android:background="@color/light_blue"/>
 </RelativeLayout>

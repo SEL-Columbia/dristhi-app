@@ -6,5 +6,11 @@
     <color name="actionbar_background_item_pressed_start">#808080</color>
     <color name="actionbar_background_item_pressed_end">#808080</color>
 
-    <color name="list_divider_color">#ff883399</color>
+    <color name="list_divider_color">#ff505050</color>
+    <color name="list_background_color">#ffd3d3d3</color>
+    <color name="light_blue">#ff00bfff</color>
+
+    <color name="blue_button_normal">#ff00bfff</color>
+    <color name="blue_button_pressed">#ff00bfbf</color>
+
 </resources>

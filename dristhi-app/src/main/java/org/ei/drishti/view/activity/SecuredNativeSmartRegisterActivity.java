@@ -1,5 +1,8 @@
 package org.ei.drishti.view.activity;
 
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.database.DataSetObserver;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,8 +13,10 @@ import android.widget.*;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
+import org.ei.drishti.view.dialog.SmartRegisterDialogFragment;
 
-public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity implements View.OnClickListener {
+public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
+        implements View.OnClickListener {
 
     public static final String SORT_BY_NAME = "Name";
     public static final String SORT_BY_AGE = "Age";
@@ -19,6 +24,11 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     public static final String FILTER_BY_ALL = "All";
     public static final String FILTER_BY_OA = "O/A";
     public static final String FILTER_BY_LP = "L/P";
+
+    private static final String DIALOG_TAG = "dialog";
+    private static final int DIALOG_SORT = 1;
+    private static final int DIALOG_FILTER = 2;
+    private static final int DIALOG_SERVICE_MODE = 3;
 
     public static final String[] DEFAULT_FILTER_OPTIONS = {FILTER_BY_ALL, FILTER_BY_OA, FILTER_BY_LP};
 
@@ -29,10 +39,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private View sortView;
     private Button serviceModeView;
     private LinearLayout clientsHeaderLayout;
-    private ListPopupWindow villageFilterOptionsView = null;
-    private ListPopupWindow sortOptionsView = null;
-    private ListPopupWindow serviceModeOptionsView = null;
-
     private TextView appliedVillageFilterView;
     private TextView appliedSortView;
 
@@ -144,39 +150,23 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         int[] weights = getColumnWeights();
         int[] headerTxtResIds = getColumnHeaderTextResourceIds();
 
-        for (int i = 0; i < columnCount-1; i++) {
+        for (int i = 0; i < columnCount - 1; i++) {
             listHeader.addView(getColumnHeaderView(i, weights, headerTxtResIds));
-            listHeader.addView(getSeparatorView());
         }
     }
 
-    private View getSeparatorView() {
-        ImageView iv = new ImageView(this);
-        iv.setLayoutParams(getDividerLayoutParams());
-        iv.setImageResource(R.color.list_divider_color);
-        return iv;
-    }
-
-    private LinearLayout.LayoutParams getDividerLayoutParams() {
-        return new LinearLayout.LayoutParams(
-                (int) getResources().getDimension(R.dimen.list_item_divider_height),
-                ViewGroup.LayoutParams.MATCH_PARENT);
-
-    }
-
     private View getColumnHeaderView(int i, int[] weights, int[] headerTxtResIds) {
-        TextView tv = new TextView(this, null, R.style.TextAppearance_Header);
+        TextView header = new TextView(this, null, R.style.TextAppearance_Header);
         LinearLayout.LayoutParams lp =
                 new LinearLayout.LayoutParams(
                         0,
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         weights[i]);
 
-        tv.setLayoutParams(lp);
-        tv.setText(headerTxtResIds[i]);
-        tv.setPadding(10, 0, 0, 0);
-
-        return tv;
+        header.setLayoutParams(lp);
+        header.setText(headerTxtResIds[i]);
+        header.setPadding(10, 0, 0, 0);
+        return header;
     }
 
     private void setupAdapter() {
@@ -205,13 +195,13 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                 goBack();
                 break;
             case R.id.filter_selection:
-                showFilterSelectionView(villageFilterView);
+                showFragmentDialog(DIALOG_FILTER, getDialogDataSet(DIALOG_FILTER));
                 break;
             case R.id.sort_selection:
-                showSortSelectionView(sortView);
+                showFragmentDialog(DIALOG_SORT, getDialogDataSet(DIALOG_SORT));
                 break;
             case R.id.section_type_selection:
-                showTypeSelectionView(serviceModeView);
+                showFragmentDialog(DIALOG_SERVICE_MODE, getDialogDataSet(DIALOG_SERVICE_MODE));
                 break;
             case R.id.btn_next_page:
                 goToNextPage();
@@ -222,104 +212,25 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }
     }
 
-    private void showTypeSelectionView(View typeSelectionView) {
-        typeSelectionPopupWindow(typeSelectionView).show();
-    }
-
-    protected void onTypeSelection(String type) {
+    protected void onServiceModeSelection(String type) {
         clientsAdapter.showSection(type);
         clientsAdapter.notifyDataSetChanged();
-        serviceModeView.setText(type);
-    }
 
-    private void showSortSelectionView(View sortSelectionView) {
-        sortSelectionPopupWindow(sortSelectionView).show();
+        serviceModeView.setText(type);
     }
 
     protected void onSortSelection(String sortBy) {
         clientsAdapter.sortBy(sortBy);
         clientsAdapter.notifyDataSetChanged();
-        appliedSortView.setText(sortBy);
-    }
 
-    private void showFilterSelectionView(View filterSelectionView) {
-        filterSelectionPopupWindow(filterSelectionView).show();
+        appliedSortView.setText(sortBy);
     }
 
     protected void onFilterSelection(String filter) {
         clientsAdapter.getFilter().filter(filter);
         clientsAdapter.notifyDataSetChanged();
+
         appliedVillageFilterView.setText(filter);
-    }
-
-    private ListPopupWindow filterSelectionPopupWindow(View anchorView) {
-        if (villageFilterOptionsView == null) {
-            villageFilterOptionsView = createFilterSelectionPopupWindow(anchorView);
-        }
-        return villageFilterOptionsView;
-    }
-
-    private ListPopupWindow sortSelectionPopupWindow(View anchorView) {
-        if (sortOptionsView == null) {
-            sortOptionsView = createSortSelectionPopupWindow(anchorView);
-        }
-        return sortOptionsView;
-    }
-
-    private ListPopupWindow typeSelectionPopupWindow(View anchorView) {
-        if (serviceModeOptionsView == null) {
-            serviceModeOptionsView = createTypeSelectionPopupWindow(anchorView);
-        }
-        return serviceModeOptionsView;
-    }
-
-    private ListPopupWindow createFilterSelectionPopupWindow(View anchorView) {
-        final ListPopupWindow pw = new ListPopupWindow(this);
-        pw.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_checked, getFilterOptions()));
-        pw.setAnchorView(anchorView);
-        pw.setContentWidth(250);
-        pw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                pw.dismiss();
-                onFilterSelection(((TextView) view).getText().toString());
-            }
-        });
-        return pw;
-    }
-
-    private ListPopupWindow createSortSelectionPopupWindow(View anchorView) {
-        final ListPopupWindow pw = new ListPopupWindow(this);
-        pw.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_checked, getSortingOptions()));
-        pw.setAnchorView(anchorView);
-        pw.setContentWidth(150);
-        pw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                pw.dismiss();
-                onSortSelection(((TextView) view).getText().toString());
-
-            }
-        });
-        return pw;
-    }
-
-    private ListPopupWindow createTypeSelectionPopupWindow(View anchorView) {
-        final ListPopupWindow pw = new ListPopupWindow(this);
-        pw.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_checked, getTypeOptions()));
-        pw.setAnchorView(serviceModeView);
-        pw.setContentWidth(150);
-
-        pw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                pw.dismiss();
-                onTypeSelection(((TextView) view).getText().toString());
-                populateClientListHeaderView();
-            }
-        });
-
-        return pw;
     }
 
     private void goBack() {
@@ -328,32 +239,51 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     @Override
     public void onBackPressed() {
-        if (isAnyPopupIsShowing()) {
-            closeAllPopups();
-        } else {
-            super.onBackPressed();
+         super.onBackPressed();
+    }
+
+    void showFragmentDialog(int dialogId, String[] options) {
+        if (options.length <= 0) {
+            return;
+        }
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag(DIALOG_TAG);
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+
+        DialogFragment newFragment = SmartRegisterDialogFragment.newInstance(this, dialogId, options);
+        newFragment.show(ft, DIALOG_TAG);
+    }
+
+    public void onDialogOptionSelected(int dialogId, String option) {
+        switch (dialogId) {
+            case DIALOG_SORT:
+                onSortSelection(option);
+                break;
+            case DIALOG_FILTER:
+                onFilterSelection(option);
+                break;
+            default:
+            case DIALOG_SERVICE_MODE:
+                onServiceModeSelection(option);
+                break;
         }
     }
 
-    private void closeAllPopups() {
-        closePopup(villageFilterOptionsView);
-        closePopup(sortOptionsView);
-        closePopup(serviceModeOptionsView);
-    }
+    private String[] getDialogDataSet(int dialogId) {
+        switch (dialogId) {
+            case DIALOG_SORT:
+                return getSortingOptions();
 
-    private boolean isAnyPopupIsShowing() {
-        return isPopupShowing(villageFilterOptionsView)
-                || isPopupShowing(sortOptionsView)
-                || isPopupShowing(serviceModeOptionsView);
-    }
+            case DIALOG_FILTER:
+                return getFilterOptions();
 
-    private boolean isPopupShowing(ListPopupWindow popup) {
-        return (popup != null && popup.isShowing());
-    }
-
-    private void closePopup(ListPopupWindow popup) {
-        if (popup != null && popup.isShowing()) {
-            popup.dismiss();
+            default:
+            case DIALOG_SERVICE_MODE:
+                return getServiceModeOptions();
         }
     }
 
@@ -363,11 +293,11 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     protected abstract String getDefaultSortOption();
 
-    public abstract int getColumnCount();
+    protected abstract int getColumnCount();
 
-    public abstract int getColumnWeightSum();
+    protected abstract int getColumnWeightSum();
 
-    public abstract int[] getColumnWeights();
+    protected abstract int[] getColumnWeights();
 
     protected abstract int[] getColumnHeaderTextResourceIds();
 
@@ -375,7 +305,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     protected abstract String[] getFilterOptions();
 
-    protected abstract String[] getTypeOptions();
+    protected abstract String[] getServiceModeOptions();
 
     protected abstract String[] getSortingOptions();
 

@@ -77,6 +77,38 @@ public class ECClient {
         return ecNumber;
     }
 
+    public boolean isSC() {
+        return caste != null && caste.equalsIgnoreCase("SC");
+    }
+
+    public boolean isST() {
+        return caste != null && caste.equalsIgnoreCase("ST");
+    }
+
+    public boolean isHighPriority() {
+        return isHighPriority;
+    }
+
+    public boolean isBPL() {
+        return economicStatus != null && economicStatus.equalsIgnoreCase("BPL");
+    }
+
+    public String FPMethod() {
+        return fpMethod;
+    }
+
+    public List<ECChildClient> children() {
+        return children;
+    }
+
+    public Map<String, String> status() {
+        return status;
+    }
+
+    public String gplsa() {
+        return "GPLSA";
+    }
+
     public ECClient withDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
         return this;

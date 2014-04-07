@@ -89,7 +89,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    protected String[] getTypeOptions() {
+    protected String[] getServiceModeOptions() {
         return new String[]{};
     }
 
