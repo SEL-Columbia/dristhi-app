@@ -64,4 +64,6 @@
     <string name="str_anc">ANC</string>
     <string name="str_pnc">PNC</string>
     <string name="str_fp">FP</string>
+    <string name="str_number_of_strips">No. strips:</string>
+    <string name="str_comma_separator">, </string>
 </resources>

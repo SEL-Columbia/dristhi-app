@@ -29,7 +29,6 @@
             android:layout_width="@dimen/list_gplsa_view_width"
             android:layout_height="fill_parent"
             android:layout_weight="@integer/ec_list_gplsa_view_weight"
-            style="@style/TextAppearance.ListView.Item"
             android:orientation="vertical">
 
         <LinearLayout
@@ -124,6 +123,59 @@
             android:layout_width="@dimen/smart_register_client_divider_height"
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
+
+    <LinearLayout
+            android:layout_width="@dimen/list_fp_view_width"
+            android:layout_height="fill_parent"
+            android:layout_weight="@integer/ec_list_fp_view_weight"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/txt_fp_method"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.ListView.Item.Medium"/>
+
+        <TextView
+                android:id="@+id/txt_fp_method_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.ListView.Item"/>
+
+        <TextView
+                android:id="@+id/txt_fp_method_quantity_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.ListView.Item"
+                android:text="@string/str_number_of_strips"/>
+
+        <TextView
+                android:id="@+id/txt_fp_method_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.ListView.Item"/>
+
+        <TextView
+                android:id="@+id/txt_iud_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.ListView.Item"/>
+
+        <TextView
+                android:id="@+id/txt_iud_place_person_separator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.ListView.Item"
+                android:text="@string/str_comma_separator"/>
+
+        <TextView
+                android:id="@+id/txt_iud_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.ListView.Item"/>
+
+    </LinearLayout>
+
 
     <TextView
             android:id="@+id/txt_fp"

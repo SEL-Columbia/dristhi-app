@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.R;
+import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.view.activity.NativeECSmartRegisterActivity;
 import org.ei.drishti.view.contract.ECChildClient;
 import org.ei.drishti.view.contract.ECClient;
@@ -58,14 +59,40 @@ public class ECSmartRegisterClientsProvider
     }
 
     private void setupFPMethodView(ECClient client, NativeECSmartRegisterViewModel viewModel) {
-        String fpMethod = client.FPMethod();
-        if (fpMethod == null || fpMethod.isEmpty()) {
-            fpMethod = context().getResources().getString(R.string.ec_register_no_fp);
+        FPMethod fpMethod = client.fpMethod();
+        viewModel.refreshAllFPMethodDetailViews(context.getResources().getColor(R.color.text_black));
+        viewModel.fpMethodView().setText(fpMethod.displayName());
+        viewModel.fpMethodDateView().setVisibility(View.VISIBLE);
+        viewModel.fpMethodDateView().setText(client.familyPlanningMethodChangeDate());
+
+        if (fpMethod == FPMethod.NONE) {
             viewModel.fpMethodView().setTextColor(Color.RED);
-        } else {
-            viewModel.fpMethodView().setTextColor(Color.BLACK);
+            viewModel.fpMethodDateView().setVisibility(View.GONE);
+        } else if (fpMethod == FPMethod.OCP) {
+            viewModel.fpMethodQuantityLabelView().setVisibility(View.VISIBLE);
+            viewModel.fpMethodQuantityView().setVisibility(View.VISIBLE);
+            viewModel.fpMethodQuantityView().setText(client.numberOfOCPDelivered());
+        } else if (fpMethod == FPMethod.CONDOM) {
+            viewModel.fpMethodQuantityLabelView().setVisibility(View.VISIBLE);
+            viewModel.fpMethodQuantityView().setVisibility(View.VISIBLE);
+            viewModel.fpMethodQuantityView().setText(client.numberOfCondomsSupplied());
+        } else if (fpMethod == FPMethod.CENTCHROMAN) {
+            viewModel.fpMethodQuantityLabelView().setVisibility(View.VISIBLE);
+            viewModel.fpMethodQuantityView().setVisibility(View.VISIBLE);
+            viewModel.fpMethodQuantityView().setText(client.numberOfCondomsSupplied());
+        } else if (fpMethod == FPMethod.IUD) {
+            if (StringUtils.isNotBlank(client.iudPerson())) {
+                viewModel.iudPersonView().setVisibility(View.VISIBLE);
+                viewModel.iudPersonView().setText(client.iudPerson());
+            }
+            if (StringUtils.isNotBlank(client.iudPlace())) {
+                viewModel.iudPlaceView().setVisibility(View.VISIBLE);
+                viewModel.iudPlaceView().setText(client.iudPlace());
+            }
+            if (StringUtils.isNotBlank(client.iudPerson()) && StringUtils.isNotBlank(client.iudPlace())) {
+                viewModel.iudPlacePersonSeparatorView().setVisibility(View.VISIBLE);
+            }
         }
-        viewModel.fpMethodView().setText(fpMethod);
     }
 
     private void setupStatusView(ECClient client, NativeECSmartRegisterViewModel viewModel) {
@@ -193,10 +220,6 @@ public class ECSmartRegisterClientsProvider
 
     public LayoutInflater inflater() {
         return inflater;
-    }
-
-    public Context context() {
-        return context;
     }
 
     @Override

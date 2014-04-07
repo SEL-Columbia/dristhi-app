@@ -85,5 +85,5 @@
             android:layout_alignParentRight="true"
             android:paddingRight="@dimen/list_item_text_padding_left_size"
             android:paddingTop="@dimen/client_age_padding"
-            style="@style/TextAppearance.ListView.Item.Age"/>
+            style="@style/TextAppearance.ListView.Item.Medium"/>
 </RelativeLayout>

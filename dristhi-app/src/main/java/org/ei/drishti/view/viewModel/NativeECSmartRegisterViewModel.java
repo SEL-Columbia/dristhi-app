@@ -26,7 +26,13 @@ public class NativeECSmartRegisterViewModel {
     private ImageView badgeBPLView;
     private ImageView badgeSCView;
     private ImageView badgeSTView;
-    private TextView FPMethodView;
+    private TextView fpMethodView;
+    private TextView fpMethodDateView;
+    private TextView fpMethodQuantityLabelView;
+    private TextView fpMethodQuantityView;
+    private TextView iudPlaceView;
+    private TextView iudPlacePersonSeparatorView;
+    private TextView iudPersonView;
     private TextView maleChildrenView;
     private TextView femaleChildrenView;
     private Map<String, ViewGroup> statusLayouts;
@@ -46,7 +52,13 @@ public class NativeECSmartRegisterViewModel {
         this.badgeBPLView = (ImageView) itemView.findViewById(R.id.img_bpl_badge);
         this.badgeSCView = (ImageView) itemView.findViewById(R.id.img_sc_badge);
         this.badgeSTView = (ImageView) itemView.findViewById(R.id.img_st_badge);
-        this.FPMethodView = (TextView) itemView.findViewById(R.id.txt_fp);
+        this.fpMethodView = (TextView) itemView.findViewById(R.id.txt_fp_method);
+        this.fpMethodDateView = (TextView) itemView.findViewById(R.id.txt_fp_method_date);
+        this.fpMethodQuantityLabelView = (TextView) itemView.findViewById(R.id.txt_fp_method_quantity_label);
+        this.fpMethodQuantityView = (TextView) itemView.findViewById(R.id.txt_fp_method_quantity);
+        this.iudPlaceView = (TextView) itemView.findViewById(R.id.txt_iud_place);
+        this.iudPersonView = (TextView) itemView.findViewById(R.id.txt_iud_person);
+        this.iudPlacePersonSeparatorView = (TextView) itemView.findViewById(R.id.txt_iud_place_person_separator);
         this.maleChildrenView = (TextView) itemView.findViewById(R.id.txt_male_children);
         this.femaleChildrenView = (TextView) itemView.findViewById(R.id.txt_female_children);
 
@@ -120,7 +132,31 @@ public class NativeECSmartRegisterViewModel {
     }
 
     public TextView fpMethodView() {
-        return FPMethodView;
+        return fpMethodView;
+    }
+
+    public TextView fpMethodDateView() {
+        return fpMethodDateView;
+    }
+
+    public TextView fpMethodQuantityLabelView() {
+        return fpMethodQuantityLabelView;
+    }
+
+    public TextView fpMethodQuantityView() {
+        return fpMethodQuantityView;
+    }
+
+    public TextView iudPlaceView() {
+        return iudPlaceView;
+    }
+
+    public TextView iudPlacePersonSeparatorView() {
+        return iudPlacePersonSeparatorView;
+    }
+
+    public TextView iudPersonView() {
+        return iudPersonView;
     }
 
     public TextView maleChildrenView() {
@@ -155,5 +191,15 @@ public class NativeECSmartRegisterViewModel {
 
     public TextView getFPStatusDateView(ViewGroup statusViewGroup) {
         return ((TextView) statusViewGroup.findViewById(R.id.txt_fp_status_date));
+    }
+
+    public void refreshAllFPMethodDetailViews(int fpMethodTextColor) {
+        fpMethodView.setTextColor(fpMethodTextColor);
+        fpMethodDateView.setVisibility(View.GONE);
+        fpMethodQuantityLabelView.setVisibility(View.GONE);
+        fpMethodQuantityView.setVisibility(View.GONE);
+        iudPersonView.setVisibility(View.GONE);
+        iudPlaceView.setVisibility(View.GONE);
+        iudPlacePersonSeparatorView.setVisibility(View.GONE);
     }
 }

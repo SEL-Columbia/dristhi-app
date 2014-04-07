@@ -3,6 +3,7 @@ package org.ei.drishti.view.contract;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.util.StringUtil;
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
@@ -94,8 +95,8 @@ public class ECClient {
         return economicStatus != null && economicStatus.equalsIgnoreCase("BPL");
     }
 
-    public String FPMethod() {
-        return fpMethod;
+    public FPMethod fpMethod() {
+        return FPMethod.tryParse(this.fpMethod, FPMethod.NONE);
     }
 
     public List<ECChildClient> children() {
@@ -128,6 +129,26 @@ public class ECClient {
 
     public String numberOfAbortions() {
         return numAbortions;
+    }
+
+    public String familyPlanningMethodChangeDate() {
+        return familyPlanningMethodChangeDate;
+    }
+
+    public String numberOfOCPDelivered() {
+        return numberOfOCPDelivered;
+    }
+
+    public String numberOfCondomsSupplied() {
+        return numberOfCondomsSupplied;
+    }
+
+    public String iudPerson() {
+        return iudPerson;
+    }
+
+    public String iudPlace() {
+        return iudPlace;
     }
 
     public ECClient withDateOfBirth(String dateOfBirth) {
