@@ -5,11 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import org.ei.drishti.R;
 import org.ei.drishti.view.activity.NativeECSmartRegisterActivity;
 import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.ECClients;
+import org.ei.drishti.view.viewModel.NativeECSmartRegisterViewModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,22 +34,22 @@ public class SmartECRegisterClientsProvider
     @Override
     public View getView(ECClient client, View convertView, ViewGroup viewGroup) {
         ViewGroup itemView;
-        BaseViewHolder holder;
+        NativeECSmartRegisterViewModel viewModel;
         if (convertView == null || isFooterView(convertView)) {
             itemView = (ViewGroup) inflater().inflate(R.layout.smart_register_ec_client, null);
-            holder = BaseViewHolder.getViewHolder(itemView);
-            itemView.setTag(holder);
+            viewModel = new NativeECSmartRegisterViewModel(itemView);
+            itemView.setTag(viewModel);
         } else {
             itemView = (ViewGroup) convertView;
-            holder = (BaseViewHolder) itemView.getTag();
+            viewModel = (NativeECSmartRegisterViewModel) itemView.getTag();
         }
 
-        holder.txtNameView.setText(client.name());
-        holder.txtHusbandNameView.setText(client.husbandName());
-        holder.txtVillageNameView.setText(client.village());
-        holder.txtAgeView.setText(
+        viewModel.txtNameView().setText(client.name());
+        viewModel.txtHusbandNameView().setText(client.husbandName());
+        viewModel.txtVillageNameView().setText(client.village());
+        viewModel.txtAgeView().setText(
                 format(context.getResources().getString(R.string.ec_register_wife_age), client.age()));
-        holder.txtEcNumberView.setText(String.valueOf(client.ecNumber()));
+        viewModel.txtECNumberView().setText(String.valueOf(client.ecNumber()));
 
         return itemView;
     }
@@ -132,23 +132,5 @@ public class SmartECRegisterClientsProvider
             return ECClient.EC_NUMBER_COMPARATOR;
         }
         return ECClient.NAME_COMPARATOR;
-    }
-
-    protected static class BaseViewHolder {
-        TextView txtNameView;
-        TextView txtHusbandNameView;
-        TextView txtVillageNameView;
-        TextView txtAgeView;
-        TextView txtEcNumberView;
-
-        public static BaseViewHolder getViewHolder(ViewGroup itemView) {
-            BaseViewHolder viewHolder = new BaseViewHolder();
-            viewHolder.txtNameView = (TextView) itemView.findViewById(R.id.txt_wife_name);
-            viewHolder.txtHusbandNameView = (TextView) itemView.findViewById(R.id.txt_husband_name);
-            viewHolder.txtVillageNameView = (TextView) itemView.findViewById(R.id.txt_village_name);
-            viewHolder.txtAgeView = (TextView) itemView.findViewById(R.id.txt_age);
-            viewHolder.txtEcNumberView = (TextView) itemView.findViewById(R.id.txt_ec_number);
-            return viewHolder;
-        }
     }
 }
