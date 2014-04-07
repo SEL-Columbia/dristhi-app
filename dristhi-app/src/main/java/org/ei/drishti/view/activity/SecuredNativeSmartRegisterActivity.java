@@ -35,8 +35,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private ListView clientsView;
     private SmartRegisterPaginatedAdapter clientsAdapter;
 
-    private View villageFilterView;
-    private View sortView;
     private Button serviceModeView;
     private LinearLayout clientsHeaderLayout;
     private TextView appliedVillageFilterView;
@@ -89,9 +87,9 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             }
         });
 
-        villageFilterView = findViewById(R.id.filter_selection);
+        View villageFilterView = findViewById(R.id.filter_selection);
         villageFilterView.setOnClickListener(this);
-        sortView = findViewById(R.id.sort_selection);
+        View sortView = findViewById(R.id.sort_selection);
         sortView.setOnClickListener(this);
         serviceModeView = (Button) findViewById(R.id.section_type_selection);
         serviceModeView.setOnClickListener(this);
@@ -156,7 +154,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     private View getColumnHeaderView(int i, int[] weights, int[] headerTxtResIds) {
-        TextView header = new TextView(this, null, R.style.TextAppearance_Header);
+        TextView header = new TextView(this, null, R.style.SmartRegister_Header);
         LinearLayout.LayoutParams lp =
                 new LinearLayout.LayoutParams(
                         0,

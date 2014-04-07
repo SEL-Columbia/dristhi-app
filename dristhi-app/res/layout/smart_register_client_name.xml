@@ -15,7 +15,6 @@
                 android:id="@+id/img_profile"
                 android:layout_width="@dimen/list_profile_pic_width"
                 android:layout_height="fill_parent"
-                android:layout_alignParentLeft="true"
                 android:scaleType="center"
                 android:src="@drawable/woman_placeholder"/>
 
@@ -53,19 +52,19 @@
     </FrameLayout>
 
     <TextView
-            android:id="@+id/txt_person_name"
+            android:id="@+id/txt_wife_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@id/img_profile_layout"
             android:text="@string/str_name"
-            style="@style/TextAppearance.ListView.Item.Name"/>
+            style="@style/TextAppearance.ListView.Item.Strong"/>
 
     <TextView
             android:id="@+id/txt_husband_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txt_person_name"
+            android:layout_below="@id/txt_wife_name"
             android:layout_toRightOf="@id/img_profile_layout"
             android:text="@string/str_name"
             style="@style/TextAppearance.ListView.Item"/>
@@ -85,6 +84,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:paddingRight="@dimen/list_item_text_padding_left_size"
-            android:paddingTop="@dimen/list_item_text_padding_left_size"
-            style="@style/TextAppearance.ListView.Item"/>
+            android:paddingTop="@dimen/client_age_padding"
+            style="@style/TextAppearance.ListView.Item.Age"/>
 </RelativeLayout>

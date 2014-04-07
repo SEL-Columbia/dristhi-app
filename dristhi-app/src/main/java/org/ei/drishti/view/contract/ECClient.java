@@ -3,6 +3,7 @@ package org.ei.drishti.view.contract;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.util.StringUtil;
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
 
@@ -55,15 +56,15 @@ public class ECClient {
     }
 
     public String village() {
-        return village;
+        return StringUtil.humanize(village);
     }
 
     public String name() {
-        return name;
+        return StringUtil.humanize(name);
     }
 
     public String husbandName() {
-        return husbandName;
+        return StringUtil.humanize(husbandName);
     }
 
     //#TODO: Write unit test
@@ -105,8 +106,28 @@ public class ECClient {
         return status;
     }
 
-    public String gplsa() {
-        return "GPLSA";
+    public String entityId() {
+        return entityId;
+    }
+
+    public String numberOfPregnancies() {
+        return numPregnancies;
+    }
+
+    public String parity() {
+        return parity;
+    }
+
+    public String numberOfLivingChildren() {
+        return numLivingChildren;
+    }
+
+    public String numberOfStillbirths() {
+        return numStillbirths;
+    }
+
+    public String numberOfAbortions() {
+        return numAbortions;
     }
 
     public ECClient withDateOfBirth(String dateOfBirth) {
@@ -213,10 +234,6 @@ public class ECClient {
     public ECClient addChild(ECChildClient childClient) {
         children.add(childClient);
         return this;
-    }
-
-    public String entityId() {
-        return entityId;
     }
 
     public ECClient withStatus(Map<String, String> status) {

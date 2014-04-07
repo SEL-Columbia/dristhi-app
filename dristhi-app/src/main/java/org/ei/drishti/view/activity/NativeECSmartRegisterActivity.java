@@ -2,7 +2,7 @@ package org.ei.drishti.view.activity;
 
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
-import org.ei.drishti.provider.SmartECRegisterClientsProvider;
+import org.ei.drishti.provider.ECSmartRegisterClientsProvider;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.controller.ECSmartRegisterController;
 
@@ -46,7 +46,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     @Override
     protected SmartRegisterClientsProvider clientProvider() {
         if (clientProvider == null) {
-            clientProvider = new SmartECRegisterClientsProvider(this, controller.getClients());
+            clientProvider = new ECSmartRegisterClientsProvider(this, controller.getClients());
         }
         return clientProvider;
     }
