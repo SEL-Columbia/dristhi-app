@@ -1,87 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/list_item_height"
-    android:weightSum="@integer/ec_list_item_weight_count">
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/list_item_height"
+              android:weightSum="@integer/ec_list_item_weight_count">
 
-    <include layout="@layout/smart_register_client_name" />
+    <include layout="@layout/smart_register_client_name"/>
 
     <ImageView
-        android:layout_width="@dimen/smart_register_client_divider_height"
-        android:layout_height="fill_parent"
-        android:src="@color/smart_register_client_divider_color"/>
+            android:layout_width="@dimen/smart_register_client_divider_height"
+            android:layout_height="fill_parent"
+            android:src="@color/smart_register_client_divider_color"/>
 
     <TextView
-        android:id="@+id/txt_ec_number"
-        android:layout_width="@dimen/list_ec_no_view_width"
-        android:layout_height="fill_parent"
-        android:layout_weight="@integer/ec_list_ec_no_view_weight"
-        style="@style/TextAppearance.ListView.Item.Strong"/>
+            android:id="@+id/txt_ec_number"
+            android:layout_width="@dimen/list_ec_no_view_width"
+            android:layout_height="fill_parent"
+            android:layout_weight="@integer/ec_list_ec_no_view_weight"
+            style="@style/TextAppearance.ListView.Item.Strong"/>
 
     <ImageView
-        android:layout_width="@dimen/smart_register_client_divider_height"
-        android:layout_height="fill_parent"
-        android:src="@color/smart_register_client_divider_color"/>
+            android:layout_width="@dimen/smart_register_client_divider_height"
+            android:layout_height="fill_parent"
+            android:src="@color/smart_register_client_divider_color"/>
+
+    <LinearLayout
+            android:layout_width="@dimen/list_gplsa_view_width"
+            android:layout_height="fill_parent"
+            android:layout_weight="@integer/ec_list_gplsa_view_weight"
+            style="@style/TextAppearance.ListView.Item"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="5"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    style="@style/TextAppearance.ListView.Item"
+                    android:text="G"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    style="@style/TextAppearance.ListView.Item"
+                    android:text="P"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    style="@style/TextAppearance.ListView.Item"
+                    android:text="L"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    style="@style/TextAppearance.ListView.Item"
+                    android:text="S"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    style="@style/TextAppearance.ListView.Item"
+                    android:text="A"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="5"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:id="@+id/txt_gravida"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    style="@style/TextAppearance.ListView.Item"/>
+
+            <TextView
+                    android:id="@+id/txt_parity"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    style="@style/TextAppearance.ListView.Item"/>
+
+            <TextView
+                    android:id="@+id/txt_number_of_living_children"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    style="@style/TextAppearance.ListView.Item"/>
+
+            <TextView
+                    android:id="@+id/txt_number_of_still_births"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    style="@style/TextAppearance.ListView.Item"/>
+
+            <TextView
+                    android:id="@+id/txt_number_of_abortions"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    style="@style/TextAppearance.ListView.Item"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+            android:layout_width="@dimen/smart_register_client_divider_height"
+            android:layout_height="fill_parent"
+            android:src="@color/smart_register_client_divider_color"/>
 
     <TextView
-        android:id="@+id/txt_gplsa"
-        android:layout_width="@dimen/list_gplsa_view_width"
-        android:layout_height="fill_parent"
-        android:layout_weight="@integer/ec_list_gplsa_view_weight"
-        style="@style/TextAppearance.ListView.Item"/>
+            android:id="@+id/txt_fp"
+            android:layout_width="@dimen/list_fp_view_width"
+            android:layout_height="fill_parent"
+            android:layout_weight="@integer/ec_list_fp_view_weight"
+            style="@style/TextAppearance.ListView.Item"/>
 
     <ImageView
-        android:layout_width="@dimen/smart_register_client_divider_height"
-        android:layout_height="fill_parent"
-        android:src="@color/smart_register_client_divider_color"/>
-
-    <TextView
-        android:id="@+id/txt_fp"
-        android:layout_width="@dimen/list_fp_view_width"
-        android:layout_height="fill_parent"
-        android:layout_weight="@integer/ec_list_fp_view_weight"
-        style="@style/TextAppearance.ListView.Item"/>
-
-    <ImageView
-        android:layout_width="@dimen/smart_register_client_divider_height"
-        android:layout_height="fill_parent"
-        android:src="@color/smart_register_client_divider_color"/>
+            android:layout_width="@dimen/smart_register_client_divider_height"
+            android:layout_height="fill_parent"
+            android:src="@color/smart_register_client_divider_color"/>
 
 
     <TextView
-        android:id="@+id/txt_children"
-        android:layout_width="@dimen/list_children_view_width"
-        android:layout_height="fill_parent"
-        android:layout_weight="@integer/ec_list_children_view_weight"
-        style="@style/TextAppearance.ListView.Item"/>
+            android:id="@+id/txt_children"
+            android:layout_width="@dimen/list_children_view_width"
+            android:layout_height="fill_parent"
+            android:layout_weight="@integer/ec_list_children_view_weight"
+            style="@style/TextAppearance.ListView.Item"/>
 
     <ImageView
-        android:layout_width="@dimen/smart_register_client_divider_height"
-        android:layout_height="fill_parent"
-        android:src="@color/smart_register_client_divider_color"/>
+            android:layout_width="@dimen/smart_register_client_divider_height"
+            android:layout_height="fill_parent"
+            android:src="@color/smart_register_client_divider_color"/>
 
     <TextView
-        android:id="@+id/txt_status"
-        android:layout_width="@dimen/list_status_view_width"
-        android:layout_height="fill_parent"
-        android:layout_weight="@integer/ec_list_status_view_weight"
-        style="@style/TextAppearance.ListView.Item"/>
+            android:id="@+id/txt_status"
+            android:layout_width="@dimen/list_status_view_width"
+            android:layout_height="fill_parent"
+            android:layout_weight="@integer/ec_list_status_view_weight"
+            style="@style/TextAppearance.ListView.Item"/>
 
     <ImageView
-        android:layout_width="@dimen/smart_register_client_divider_height"
-        android:layout_height="fill_parent"
-        android:src="@color/smart_register_client_divider_color"/>
+            android:layout_width="@dimen/smart_register_client_divider_height"
+            android:layout_height="fill_parent"
+            android:src="@color/smart_register_client_divider_color"/>
 
     <ImageButton
-        android:id="@+id/btn_edit_record"
-        android:layout_width="@dimen/list_edit_icon_view_width"
-        android:layout_height="fill_parent"
-        android:layout_weight="@integer/ec_list_edit_icon_view_weight"
-        android:scaleType="center"
-        android:gravity="center"
-        android:src="@drawable/ic_menu_edit"
-        android:clickable="true"
-        android:focusable="true"/>
+            android:id="@+id/btn_edit_record"
+            android:layout_width="@dimen/list_edit_icon_view_width"
+            android:layout_height="fill_parent"
+            android:layout_weight="@integer/ec_list_edit_icon_view_weight"
+            android:scaleType="center"
+            android:gravity="center"
+            android:src="@drawable/ic_menu_edit"
+            android:clickable="true"
+            android:focusable="true"/>
 </LinearLayout>

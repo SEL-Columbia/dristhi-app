@@ -18,14 +18,14 @@ import java.util.List;
 
 import static java.text.MessageFormat.format;
 
-public class SmartECRegisterClientsProvider
+public class ECSmartRegisterClientsProvider
         implements SmartRegisterClientsProvider, View.OnClickListener {
 
     private final LayoutInflater inflater;
     private final Context context;
     protected ECClients clients;
 
-    public SmartECRegisterClientsProvider(Context context, ECClients clients) {
+    public ECSmartRegisterClientsProvider(Context context, ECClients clients) {
         this.clients = clients;
         this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -50,6 +50,11 @@ public class SmartECRegisterClientsProvider
         viewModel.txtAgeView().setText(
                 format(context.getResources().getString(R.string.ec_register_wife_age), client.age()));
         viewModel.txtECNumberView().setText(String.valueOf(client.ecNumber()));
+        viewModel.txtGravida().setText(client.numberOfPregnancies());
+        viewModel.txtParity().setText(client.parity());
+        viewModel.txtNumberOfLivingChildren().setText(client.numberOfLivingChildren());
+        viewModel.txtNumberOfStillBirths().setText(client.numberOfStillbirths());
+        viewModel.txtNumberOfAbortions().setText(client.numberOfAbortions());
 
         return itemView;
     }

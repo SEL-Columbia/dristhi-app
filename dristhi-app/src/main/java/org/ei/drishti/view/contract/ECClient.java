@@ -78,6 +78,30 @@ public class ECClient {
         return ecNumber;
     }
 
+    public String entityId() {
+        return entityId;
+    }
+
+    public String numberOfPregnancies() {
+        return numPregnancies;
+    }
+
+    public String parity() {
+        return parity;
+    }
+
+    public String numberOfLivingChildren() {
+        return numLivingChildren;
+    }
+
+    public String numberOfStillbirths() {
+        return numStillbirths;
+    }
+
+    public String numberOfAbortions() {
+        return numAbortions;
+    }
+
     public ECClient withDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
         return this;
@@ -182,10 +206,6 @@ public class ECClient {
     public ECClient addChild(ECChildClient childClient) {
         children.add(childClient);
         return this;
-    }
-
-    public String entityId() {
-        return entityId;
     }
 
     public ECClient withStatus(Map<String, String> status) {

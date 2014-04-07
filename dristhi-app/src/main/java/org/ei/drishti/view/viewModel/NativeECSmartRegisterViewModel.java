@@ -10,6 +10,11 @@ public class NativeECSmartRegisterViewModel {
     private TextView txtVillageNameView;
     private TextView txtAgeView;
     private TextView txtECNumberView;
+    private TextView txtGravida;
+    private TextView txtParity;
+    private TextView txtNumberOfLivingChildren;
+    private TextView txtNumberOfStillBirths;
+    private TextView txtNumberOfAbortions;
 
     public NativeECSmartRegisterViewModel(ViewGroup itemView) {
         this.txtNameView = (TextView) itemView.findViewById(R.id.txt_wife_name);
@@ -17,7 +22,11 @@ public class NativeECSmartRegisterViewModel {
         this.txtVillageNameView = (TextView) itemView.findViewById(R.id.txt_village_name);
         this.txtAgeView = (TextView) itemView.findViewById(R.id.txt_age);
         this.txtECNumberView = (TextView) itemView.findViewById(R.id.txt_ec_number);
-        this.txtECNumberView = (TextView) itemView.findViewById(R.id.txt_ec_number);
+        this.txtGravida = (TextView) itemView.findViewById(R.id.txt_gravida);
+        this.txtParity = (TextView) itemView.findViewById(R.id.txt_parity);
+        this.txtNumberOfLivingChildren = (TextView) itemView.findViewById(R.id.txt_number_of_living_children);
+        this.txtNumberOfStillBirths = (TextView) itemView.findViewById(R.id.txt_number_of_still_births);
+        this.txtNumberOfAbortions = (TextView) itemView.findViewById(R.id.txt_number_of_abortions);
     }
 
     public TextView txtNameView() {
@@ -38,5 +47,25 @@ public class NativeECSmartRegisterViewModel {
 
     public TextView txtECNumberView() {
         return txtECNumberView;
+    }
+
+    public TextView txtGravida() {
+        return txtGravida;
+    }
+
+    public TextView txtParity() {
+        return txtParity;
+    }
+
+    public TextView txtNumberOfLivingChildren() {
+        return txtNumberOfLivingChildren;
+    }
+
+    public TextView txtNumberOfStillBirths() {
+        return txtNumberOfStillBirths;
+    }
+
+    public TextView txtNumberOfAbortions() {
+        return txtNumberOfAbortions;
     }
 }
