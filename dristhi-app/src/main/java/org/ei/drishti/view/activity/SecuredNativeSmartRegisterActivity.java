@@ -146,22 +146,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
         for (int i = 0; i < columnCount-1; i++) {
             listHeader.addView(getColumnHeaderView(i, weights, headerTxtResIds));
-            listHeader.addView(getSeparatorView());
         }
-    }
-
-    private View getSeparatorView() {
-        ImageView iv = new ImageView(this);
-        iv.setLayoutParams(getDividerLayoutParams());
-        iv.setImageResource(R.color.smart_register_client_divider_color);
-        return iv;
-    }
-
-    private LinearLayout.LayoutParams getDividerLayoutParams() {
-        return new LinearLayout.LayoutParams(
-                (int) getResources().getDimension(R.dimen.smart_register_client_divider_height),
-                ViewGroup.LayoutParams.MATCH_PARENT);
-
     }
 
     private View getColumnHeaderView(int i, int[] weights, int[] headerTxtResIds) {
