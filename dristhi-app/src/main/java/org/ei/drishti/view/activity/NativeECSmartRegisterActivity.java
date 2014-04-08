@@ -74,6 +74,16 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
+    protected DialogOption getDefaultServiceModeOption() {
+        return new AllEligibleCoupleServiceMode();
+    }
+
+    @Override
+    protected DialogOption getDefaultSearchOption() {
+        return new ECSearchOption(null);
+    }
+
+    @Override
     protected String getRegisterTitle() {
         return getResources().getString(R.string.ec_register_title);
     }

@@ -274,8 +274,7 @@ public class ECClient implements SmartRegisterClient {
 
     public boolean satisfiesFilter(String filter) {
         return name.toLowerCase().startsWith(filter)
-                || String.valueOf(ecNumber).startsWith(filter)
-                || village.toLowerCase().startsWith(filter);
+                || String.valueOf(ecNumber).startsWith(filter);
     }
 
     @Override

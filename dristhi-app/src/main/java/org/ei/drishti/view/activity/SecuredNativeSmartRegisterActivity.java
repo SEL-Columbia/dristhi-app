@@ -12,10 +12,7 @@ import android.widget.*;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.dialog.AllClientsFilter;
-import org.ei.drishti.view.dialog.DialogOption;
-import org.ei.drishti.view.dialog.OutOfAreaFilter;
-import org.ei.drishti.view.dialog.SmartRegisterDialogFragment;
+import org.ei.drishti.view.dialog.*;
 
 import java.util.List;
 
@@ -43,6 +40,11 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private Button nextPageView;
     private Button previousPageView;
     private TextView pageInfoView;
+
+    private DialogOption currentVillageFilter;
+    private DialogOption currentSortOption;
+    private DialogOption currentSearchFilter;
+    private DialogOption currentServiceModeOption;
 
     @Override
     protected void onCreation() {
@@ -79,7 +81,10 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
             @Override
             public void onTextChanged(CharSequence cs, int start, int before, int count) {
-                clientsAdapter.getFilter().filter(cs);
+                currentSearchFilter = new ECSearchOption(cs.toString());
+                clientsAdapter
+                        .refreshList(currentVillageFilter, currentServiceModeOption,
+                                currentSearchFilter, currentSortOption);
             }
 
             @Override
@@ -100,6 +105,14 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
         updateFooter();
         updateStatusBar();
+        updateDefaultOptions();
+    }
+
+    private void updateDefaultOptions() {
+        currentSearchFilter = getDefaultSearchOption();
+        currentVillageFilter = getDefaultVillageFilterOption();
+        currentServiceModeOption = getDefaultServiceModeOption();
+        currentSortOption = getDefaultSortOption();
     }
 
     private void setupFooterView() {
@@ -210,24 +223,18 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }
     }
 
-    protected void onServiceModeSelection(String type) {
-        clientsAdapter.showSection(type);
-        clientsAdapter.notifyDataSetChanged();
-
-        serviceModeView.setText(type);
+    protected void onServiceModeSelection(DialogOption serviceModeOption) {
+        currentServiceModeOption = serviceModeOption;
+        serviceModeView.setText(serviceModeOption.name());
     }
 
     protected void onSortSelection(DialogOption sortBy) {
-        clientsAdapter.sortBy(sortBy);
-        clientsAdapter.notifyDataSetChanged();
-
+        currentSortOption = sortBy;
         appliedSortView.setText(sortBy.name());
     }
 
     protected void onFilterSelection(DialogOption filter) {
-        clientsAdapter.filterBy(filter);
-        clientsAdapter.notifyDataSetChanged();
-
+        currentVillageFilter = filter;
         appliedVillageFilterView.setText(filter.name());
     }
 
@@ -267,9 +274,12 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                 break;
             default:
             case DIALOG_SERVICE_MODE:
-                onServiceModeSelection(option.name());
+                onServiceModeSelection(option);
                 break;
         }
+        clientsAdapter
+                .refreshList(currentVillageFilter, currentServiceModeOption,
+                        currentSearchFilter, currentSortOption);
     }
 
     private DialogOption[] getDialogDataSet(int dialogId) {
@@ -288,9 +298,13 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     protected abstract String getDefaultTypeName();
 
-    protected abstract AllClientsFilter getDefaultVillageFilterOption();
+    protected abstract DialogOption getDefaultVillageFilterOption();
 
     protected abstract DialogOption getDefaultSortOption();
+
+    protected abstract DialogOption getDefaultServiceModeOption();
+
+    protected abstract DialogOption getDefaultSearchOption();
 
     protected abstract int getColumnCount();
 

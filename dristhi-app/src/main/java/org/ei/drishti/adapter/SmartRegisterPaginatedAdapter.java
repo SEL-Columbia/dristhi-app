@@ -4,14 +4,12 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
 import org.ei.drishti.view.dialog.DialogOption;
 
-public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filterable {
+public class SmartRegisterPaginatedAdapter extends BaseAdapter {
     private int clientCount;
     private int pageCount;
     private int currentPage = 0;
@@ -20,7 +18,6 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filter
     protected final Context context;
 
     private SmartRegisterClients filteredClients;
-    private SearchFilter searchFilter = new SearchFilter();
     protected final SmartRegisterClientsProvider listItemProvider;
 
     public SmartRegisterPaginatedAdapter(Context context, SmartRegisterClientsProvider listItemProvider) {
@@ -93,36 +90,10 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filter
         return currentPage > 0;
     }
 
-    @Override
-    public Filter getFilter() {
-        return searchFilter;
+    public void refreshList(DialogOption villageFilter, DialogOption serviceModeOption,
+                            DialogOption searchFilter, DialogOption sortOption) {
+        refreshClients(listItemProvider
+                .updateClients(villageFilter, serviceModeOption, searchFilter, sortOption));
+        notifyDataSetChanged();
     }
-
-    public void sortBy(DialogOption sortBy) {
-        refreshClients(listItemProvider.sortBy(sortBy));
-    }
-
-    public void filterBy(DialogOption filterBy) {
-        refreshClients(listItemProvider.filterBy(filterBy));
-    }
-
-    public void showSection(String section) {
-        listItemProvider.showSection(section);
-    }
-
-    private class SearchFilter extends Filter {
-        @Override
-        protected Filter.FilterResults performFiltering(CharSequence cs) {
-            FilterResults results = new FilterResults();
-            results.values = listItemProvider.filter(cs, filteredClients);
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence charSequence, Filter.FilterResults
-                filterResults) {
-            refreshClients((SmartRegisterClients) filterResults.values);
-            notifyDataSetChanged();
-        }
-    };
 }

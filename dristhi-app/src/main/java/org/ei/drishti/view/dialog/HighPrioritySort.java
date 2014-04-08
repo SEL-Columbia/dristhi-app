@@ -2,6 +2,7 @@ package org.ei.drishti.view.dialog;
 
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
+import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
 
 import java.util.Collections;
@@ -15,8 +16,13 @@ public class HighPrioritySort implements DialogOption {
     }
 
     @Override
-    public SmartRegisterClients apply(SmartRegisterClients allClients) {
+    public SmartRegisterClients sort(SmartRegisterClients allClients) {
         Collections.sort(allClients, HIGH_PRIORITY_COMPARATOR);
         return allClients;
+    }
+
+    @Override
+    public boolean filter(SmartRegisterClient client) {
+        return true;
     }
 }

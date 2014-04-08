@@ -26,7 +26,7 @@ public class ECSmartRegisterClientsProvider
 
     private final LayoutInflater inflater;
     private final Context context;
-    protected ECClients clients;
+    protected SmartRegisterClients clients;
 
     public ECSmartRegisterClientsProvider(Context context, ECClients clients) {
         this.clients = clients;
@@ -176,31 +176,17 @@ public class ECSmartRegisterClientsProvider
     }
 
     @Override
-    public ECClients getListItems() {
+    public SmartRegisterClients getListItems() {
         return clients;
     }
 
     @Override
-    public SmartRegisterClients sortBy(DialogOption sortBy) {
-        return sortBy.apply(clients);
-    }
-
-    @Override
-    public SmartRegisterClients filterBy(DialogOption filterBy) {
-        return filterBy.apply(clients);
-    }
-
-    @Override
-    public SmartRegisterClients filter(CharSequence cs, SmartRegisterClients currentClientsList) {
-        return clients.applyFilter(cs.toString().toLowerCase());
+    public SmartRegisterClients updateClients(DialogOption villageFilter, DialogOption serviceModeOption,
+                                              DialogOption searchFilter, DialogOption sortOption) {
+        return clients.applyFilter(villageFilter, serviceModeOption, searchFilter, sortOption);
     }
 
     public LayoutInflater inflater() {
         return inflater;
-    }
-
-    @Override
-    public void showSection(String section) {
-        // do Nothing;
     }
 }

@@ -1,5 +1,6 @@
 package org.ei.drishti.view.dialog;
 
+import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
 
 public class VillageFilter implements DialogOption {
@@ -15,7 +16,12 @@ public class VillageFilter implements DialogOption {
     }
 
     @Override
-    public SmartRegisterClients apply(SmartRegisterClients allClients) {
+    public SmartRegisterClients sort(SmartRegisterClients allClients) {
         return allClients.ecsBelongingToVillage(filter);
+    }
+
+    @Override
+    public boolean filter(SmartRegisterClient client) {
+        return client.village().equalsIgnoreCase(filter);
     }
 }
