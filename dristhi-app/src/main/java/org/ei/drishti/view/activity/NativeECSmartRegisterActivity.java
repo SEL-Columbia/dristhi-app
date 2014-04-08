@@ -80,7 +80,9 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     protected DialogOption[] getSortingOptions() {
-        return new DialogOption[]{new NameSort(), new ECNumberSort()};
+        return new DialogOption[]{new NameSort(), new ECNumberSort(),
+                new HighPrioritySort(), new BPLSort(),
+                new SCSort(), new STSort()};
     }
 
     @Override

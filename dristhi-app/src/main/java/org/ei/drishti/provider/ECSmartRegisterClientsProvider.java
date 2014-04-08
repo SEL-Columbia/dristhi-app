@@ -191,9 +191,8 @@ public class ECSmartRegisterClientsProvider
     }
 
     @Override
-    public ECClients filter(CharSequence cs) {
-        String filterCriterion = cs.toString().toLowerCase();
-        return clients.applyFilter(filterCriterion);
+    public SmartRegisterClients filter(CharSequence cs, SmartRegisterClients currentClientsList) {
+        return clients.applyFilter(cs.toString().toLowerCase());
     }
 
     public LayoutInflater inflater() {

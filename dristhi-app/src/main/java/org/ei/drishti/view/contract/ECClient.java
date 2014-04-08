@@ -85,18 +85,22 @@ public class ECClient implements SmartRegisterClient {
         return locationStatus;
     }
 
+    @Override
     public boolean isSC() {
         return caste != null && caste.equalsIgnoreCase("SC");
     }
 
+    @Override
     public boolean isST() {
         return caste != null && caste.equalsIgnoreCase("ST");
     }
 
+    @Override
     public boolean isHighPriority() {
         return isHighPriority;
     }
 
+    @Override
     public boolean isBPL() {
         return economicStatus != null && economicStatus.equalsIgnoreCase("BPL");
     }

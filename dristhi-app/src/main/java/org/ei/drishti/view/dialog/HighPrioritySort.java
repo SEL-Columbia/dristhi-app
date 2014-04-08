@@ -6,17 +6,17 @@ import org.ei.drishti.view.contract.SmartRegisterClients;
 
 import java.util.Collections;
 
-import static org.ei.drishti.view.contract.SmartRegisterClient.EC_NUMBER_COMPARATOR;
+import static org.ei.drishti.view.contract.SmartRegisterClient.HIGH_PRIORITY_COMPARATOR;
 
-public class ECNumberSort implements DialogOption {
+public class HighPrioritySort implements DialogOption {
     @Override
     public String name() {
-        return Context.getInstance().getStringResource(R.string.sort_by_ec_number_label);
+        return Context.getInstance().getStringResource(R.string.sort_by_high_priority_label);
     }
 
     @Override
     public SmartRegisterClients apply(SmartRegisterClients allClients) {
-        Collections.sort(allClients, EC_NUMBER_COMPARATOR);
+        Collections.sort(allClients, HIGH_PRIORITY_COMPARATOR);
         return allClients;
     }
 }

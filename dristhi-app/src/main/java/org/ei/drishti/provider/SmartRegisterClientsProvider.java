@@ -15,7 +15,7 @@ public interface SmartRegisterClientsProvider {
 
     public SmartRegisterClients sortBy(DialogOption sortBy);
 
-    public ECClients filter(CharSequence cs);
+    public SmartRegisterClients filter(CharSequence cs, SmartRegisterClients currentClientsList);
 
     public void showSection(String section);
 

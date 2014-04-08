@@ -8,7 +8,6 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.ECClient;
-import org.ei.drishti.view.contract.ECClients;
 import org.ei.drishti.view.contract.SmartRegisterClients;
 import org.ei.drishti.view.dialog.DialogOption;
 
@@ -21,7 +20,7 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filter
     protected final Context context;
 
     private SmartRegisterClients filteredClients;
-
+    private SearchFilter searchFilter = new SearchFilter();
     protected final SmartRegisterClientsProvider listItemProvider;
 
     public SmartRegisterPaginatedAdapter(Context context, SmartRegisterClientsProvider listItemProvider) {
@@ -65,7 +64,6 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filter
     private int actualPosition(int i) {
         return i + (currentPage * CLIENTS_PER_PAGE);
     }
-
 
     public int pageCount() {
         return pageCount;
@@ -112,18 +110,18 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filter
         listItemProvider.showSection(section);
     }
 
-    Filter searchFilter = new Filter() {
+    private class SearchFilter extends Filter {
         @Override
         protected Filter.FilterResults performFiltering(CharSequence cs) {
             FilterResults results = new FilterResults();
-            results.values = listItemProvider.filter(cs);
+            results.values = listItemProvider.filter(cs, filteredClients);
             return results;
         }
 
         @Override
         protected void publishResults(CharSequence charSequence, Filter.FilterResults
                 filterResults) {
-            refreshClients((ECClients) filterResults.values);
+            refreshClients((SmartRegisterClients) filterResults.values);
             notifyDataSetChanged();
         }
     };

@@ -592,4 +592,8 @@ public class Context {
         }
         return villagesCache;
     }
+
+    public String getStringResource(int id) {
+        return applicationContext().getResources().getString(id);
+    }
 }

@@ -29,7 +29,7 @@
                     android:id="@+id/img_hp_badge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/flag_hr"/>
+                    android:src="@drawable/flag_hp"/>
 
             <ImageView
                     android:id="@+id/img_bpl_badge"

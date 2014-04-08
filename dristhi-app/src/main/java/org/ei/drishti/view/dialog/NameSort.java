@@ -1,5 +1,7 @@
 package org.ei.drishti.view.dialog;
 
+import org.ei.drishti.Context;
+import org.ei.drishti.R;
 import org.ei.drishti.view.contract.SmartRegisterClients;
 
 import java.util.Collections;
@@ -9,7 +11,7 @@ import static org.ei.drishti.view.contract.SmartRegisterClient.NAME_COMPARATOR;
 public class NameSort implements DialogOption {
     @Override
     public String name() {
-        return "Name (A to Z)";
+        return Context.getInstance().getStringResource(R.string.sort_by_name_label);
     }
 
     @Override

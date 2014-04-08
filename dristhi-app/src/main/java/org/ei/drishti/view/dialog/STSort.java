@@ -4,14 +4,19 @@ import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.view.contract.SmartRegisterClients;
 
-public class AllClientsFilter implements DialogOption {
+import java.util.Collections;
+
+import static org.ei.drishti.view.contract.SmartRegisterClient.ST_COMPARATOR;
+
+public class STSort implements DialogOption {
     @Override
     public String name() {
-        return Context.getInstance().getStringResource(R.string.filter_by_all_label);
+        return Context.getInstance().getStringResource(R.string.sort_by_st_label);
     }
 
     @Override
     public SmartRegisterClients apply(SmartRegisterClients allClients) {
+        Collections.sort(allClients, ST_COMPARATOR);
         return allClients;
     }
 }

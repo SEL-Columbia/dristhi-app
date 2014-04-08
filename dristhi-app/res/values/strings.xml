@@ -71,4 +71,14 @@
     <string name="str_number_of_living_children">L</string>
     <string name="str_number_of_still_births">S</string>
     <string name="str_number_of_abortions">A</string>
+
+    <string name="sort_by_name_label">Name (A to Z)</string>
+    <string name="sort_by_ec_number_label">EC Number</string>
+    <string name="sort_by_sc_label">SC</string>
+    <string name="sort_by_st_label">ST</string>
+    <string name="sort_by_high_priority_label">High Priority (HP)</string>
+    <string name="sort_by_bpl_label">BPL</string>
+
+    <string name="filter_by_all_label">All</string>
+    <string name="filter_by_out_of_area_label">O/A</string>
 </resources>

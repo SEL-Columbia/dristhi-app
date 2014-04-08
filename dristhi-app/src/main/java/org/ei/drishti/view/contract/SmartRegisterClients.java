@@ -5,6 +5,7 @@ import com.google.common.collect.Iterables;
 
 import java.util.ArrayList;
 
+import static com.google.common.collect.Iterables.filter;
 import static org.ei.drishti.view.contract.ECClient.OUT_OF_AREA;
 
 public class SmartRegisterClients extends ArrayList<SmartRegisterClient> {
@@ -30,5 +31,20 @@ public class SmartRegisterClients extends ArrayList<SmartRegisterClient> {
         }));
         return results;
 
+    }
+
+    public SmartRegisterClients applyFilter(final String filterCriterion) {
+        if (filterCriterion.isEmpty()) {
+            return this;
+        } else {
+            ECClients results = new ECClients();
+            Iterables.addAll(results, filter(this, new Predicate<SmartRegisterClient>() {
+                @Override
+                public boolean apply(SmartRegisterClient ecClient) {
+                    return ecClient.satisfiesFilter(filterCriterion);
+                }
+            }));
+            return results;
+        }
     }
 }
