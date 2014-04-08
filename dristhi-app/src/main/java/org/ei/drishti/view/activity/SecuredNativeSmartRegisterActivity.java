@@ -41,10 +41,10 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private Button previousPageView;
     private TextView pageInfoView;
 
-    private DialogOption currentVillageFilter;
-    private DialogOption currentSortOption;
-    private DialogOption currentSearchFilter;
-    private DialogOption currentServiceModeOption;
+    private FilterOption currentVillageFilter;
+    private SortOption currentSortOption;
+    private FilterOption currentSearchFilter;
+    private ServiceModeOption currentServiceModeOption;
 
     @Override
     protected void onCreation() {
@@ -223,17 +223,17 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }
     }
 
-    protected void onServiceModeSelection(DialogOption serviceModeOption) {
+    protected void onServiceModeSelection(ServiceModeOption serviceModeOption) {
         currentServiceModeOption = serviceModeOption;
         serviceModeView.setText(serviceModeOption.name());
     }
 
-    protected void onSortSelection(DialogOption sortBy) {
+    protected void onSortSelection(SortOption sortBy) {
         currentSortOption = sortBy;
         appliedSortView.setText(sortBy.name());
     }
 
-    protected void onFilterSelection(DialogOption filter) {
+    protected void onFilterSelection(FilterOption filter) {
         currentVillageFilter = filter;
         appliedVillageFilterView.setText(filter.name());
     }
@@ -267,14 +267,14 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     public void onDialogOptionSelected(int dialogId, DialogOption option) {
         switch (dialogId) {
             case DIALOG_SORT:
-                onSortSelection(option);
+                onSortSelection((SortOption) option);
                 break;
             case DIALOG_FILTER:
-                onFilterSelection(option);
+                onFilterSelection((FilterOption) option);
                 break;
             default:
             case DIALOG_SERVICE_MODE:
-                onServiceModeSelection(option);
+                onServiceModeSelection((ServiceModeOption) option);
                 break;
         }
         clientsAdapter
@@ -298,13 +298,13 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     protected abstract String getDefaultTypeName();
 
-    protected abstract DialogOption getDefaultVillageFilterOption();
+    protected abstract FilterOption getDefaultVillageFilterOption();
 
-    protected abstract DialogOption getDefaultSortOption();
+    protected abstract SortOption getDefaultSortOption();
 
-    protected abstract DialogOption getDefaultServiceModeOption();
+    protected abstract ServiceModeOption getDefaultServiceModeOption();
 
-    protected abstract DialogOption getDefaultSearchOption();
+    protected abstract FilterOption getDefaultSearchOption();
 
     protected abstract int getColumnCount();
 

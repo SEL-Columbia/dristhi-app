@@ -5,6 +5,9 @@ import android.view.ViewGroup;
 import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
 import org.ei.drishti.view.dialog.DialogOption;
+import org.ei.drishti.view.dialog.FilterOption;
+import org.ei.drishti.view.dialog.ServiceModeOption;
+import org.ei.drishti.view.dialog.SortOption;
 
 public interface SmartRegisterClientsProvider {
 
@@ -12,6 +15,6 @@ public interface SmartRegisterClientsProvider {
 
     public SmartRegisterClients getListItems();
 
-    SmartRegisterClients updateClients(DialogOption villageFilter, DialogOption serviceModeOption,
-                                       DialogOption searchFilter, DialogOption sortOption);
+    SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
+                                       FilterOption searchFilter, SortOption sortOption);
 }

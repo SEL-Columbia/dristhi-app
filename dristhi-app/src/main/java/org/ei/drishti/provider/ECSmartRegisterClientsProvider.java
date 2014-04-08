@@ -13,7 +13,9 @@ import org.ei.drishti.view.contract.ECChildClient;
 import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.ECClients;
 import org.ei.drishti.view.contract.SmartRegisterClients;
-import org.ei.drishti.view.dialog.DialogOption;
+import org.ei.drishti.view.dialog.FilterOption;
+import org.ei.drishti.view.dialog.ServiceModeOption;
+import org.ei.drishti.view.dialog.SortOption;
 import org.ei.drishti.view.viewModel.NativeECSmartRegisterViewModel;
 
 import java.util.List;
@@ -181,8 +183,8 @@ public class ECSmartRegisterClientsProvider
     }
 
     @Override
-    public SmartRegisterClients updateClients(DialogOption villageFilter, DialogOption serviceModeOption,
-                                              DialogOption searchFilter, DialogOption sortOption) {
+    public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
+                                              FilterOption searchFilter, SortOption sortOption) {
         return clients.applyFilter(villageFilter, serviceModeOption, searchFilter, sortOption);
     }
 

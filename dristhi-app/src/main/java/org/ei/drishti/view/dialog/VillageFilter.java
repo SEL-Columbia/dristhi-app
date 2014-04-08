@@ -1,9 +1,8 @@
 package org.ei.drishti.view.dialog;
 
 import org.ei.drishti.view.contract.SmartRegisterClient;
-import org.ei.drishti.view.contract.SmartRegisterClients;
 
-public class VillageFilter implements DialogOption {
+public class VillageFilter implements FilterOption {
     private final String filter;
 
     public VillageFilter(String filter) {
@@ -13,11 +12,6 @@ public class VillageFilter implements DialogOption {
     @Override
     public String name() {
         return filter;
-    }
-
-    @Override
-    public SmartRegisterClients sort(SmartRegisterClients allClients) {
-        return allClients.ecsBelongingToVillage(filter);
     }
 
     @Override

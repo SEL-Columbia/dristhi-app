@@ -7,7 +7,9 @@ import android.widget.BaseAdapter;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
-import org.ei.drishti.view.dialog.DialogOption;
+import org.ei.drishti.view.dialog.FilterOption;
+import org.ei.drishti.view.dialog.ServiceModeOption;
+import org.ei.drishti.view.dialog.SortOption;
 
 public class SmartRegisterPaginatedAdapter extends BaseAdapter {
     private int clientCount;
@@ -90,8 +92,8 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter {
         return currentPage > 0;
     }
 
-    public void refreshList(DialogOption villageFilter, DialogOption serviceModeOption,
-                            DialogOption searchFilter, DialogOption sortOption) {
+    public void refreshList(FilterOption villageFilter, ServiceModeOption serviceModeOption,
+                            FilterOption searchFilter, SortOption sortOption) {
         refreshClients(listItemProvider
                 .updateClients(villageFilter, serviceModeOption, searchFilter, sortOption));
         notifyDataSetChanged();

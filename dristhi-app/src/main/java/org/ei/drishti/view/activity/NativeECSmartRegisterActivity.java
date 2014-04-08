@@ -64,22 +64,22 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    protected AllClientsFilter getDefaultVillageFilterOption() {
+    protected FilterOption getDefaultVillageFilterOption() {
         return new AllClientsFilter();
     }
 
     @Override
-    protected DialogOption getDefaultSortOption() {
+    protected SortOption getDefaultSortOption() {
         return new NameSort();
     }
 
     @Override
-    protected DialogOption getDefaultServiceModeOption() {
+    protected ServiceModeOption getDefaultServiceModeOption() {
         return new AllEligibleCoupleServiceMode();
     }
 
     @Override
-    protected DialogOption getDefaultSearchOption() {
+    protected FilterOption getDefaultSearchOption() {
         return new ECSearchOption(null);
     }
 
