@@ -23,7 +23,9 @@
     <dimen name="list_text_margin_from_profile_pic">10dp</dimen>
     <dimen name="list_item_text_font_size">16sp</dimen>
     <dimen name="list_main_text_font_size">19sp</dimen>
-    <dimen name="list_header_font_size">15sp</dimen>
+
+    <dimen name="list_header_font_size">24sp</dimen>
+    <dimen name="list_service_mode_font_size">20sp</dimen>
 
     <dimen name="ec_main_header_height">50dp</dimen>
     <dimen name="smart_register_status_bar_height">30dp</dimen>
@@ -49,4 +51,5 @@
 
     <dimen name="smart_register_dialog_list_item_height">50dp</dimen>
     <dimen name="smart_register_dialog_list_item_width">550dp</dimen>
+    <dimen name="nav_bar_go_back_button_width">52px</dimen>
 </resources>

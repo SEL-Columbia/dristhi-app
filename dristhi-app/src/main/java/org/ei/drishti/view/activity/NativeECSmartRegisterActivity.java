@@ -45,6 +45,11 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
+    protected String getRegisterTitleInShortForm() {
+        return getResources().getString(R.string.ec_register_title_in_short);
+    }
+
+    @Override
     protected SmartRegisterPaginatedAdapter adapter() {
         return new SmartRegisterPaginatedAdapter(this, clientProvider());
     }

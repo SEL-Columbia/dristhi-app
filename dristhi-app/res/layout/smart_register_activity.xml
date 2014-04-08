@@ -26,7 +26,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/white"
+        android:background="@android:color/white"
         android:divider="@color/smart_register_client_divider_color"
         android:dividerHeight="@dimen/smart_register_client_divider_height" />
 

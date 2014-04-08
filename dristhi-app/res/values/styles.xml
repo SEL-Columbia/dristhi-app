@@ -8,9 +8,14 @@
 
     <style name="SmartRegister.Header" parent="@android:style/Widget.TextView">
         <item name="android:textSize">@dimen/list_header_font_size</item>
-        <item name="android:gravity">left</item>
+        <item name="android:gravity">left|center_vertical</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:paddingLeft">@dimen/list_item_text_padding_left_size</item>
+    </style>
+
+    <style name="SmartRegister.Header.ServiceMode" parent="SmartRegister.Header">
+        <item name="android:textSize">@dimen/list_service_mode_font_size</item>
     </style>
 
     <style name="TextAppearance.ListView.Item" parent="@android:style/Widget.TextView">

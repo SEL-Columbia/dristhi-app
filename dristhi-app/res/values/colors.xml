@@ -6,7 +6,7 @@
     <color name="actionbar_background_item_pressed_start">#808080</color>
     <color name="actionbar_background_item_pressed_end">#808080</color>
 
-    <color name="light_blue">#ff00bfff</color>
+    <color name="light_blue">#1a93d2</color>
 
     <color name="blue_button_normal">#ff00bfff</color>
     <color name="blue_button_pressed">#ff00bfbf</color>
@@ -15,5 +15,4 @@
     <color name="status_bar_background_dark_grey">#494949</color>
     <color name="status_bar_text_almost_white">#f5f5f5</color>
     <color name="text_black">#333333</color>
-    <color name="white">#ffffffff</color>
 </resources>

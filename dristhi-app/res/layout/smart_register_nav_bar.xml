@@ -1,70 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="@dimen/ec_main_header_height"
-    android:background="@color/light_blue"
-    android:focusableInTouchMode="true" >
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/ec_main_header_height"
+                android:background="@color/light_blue"
+                android:focusableInTouchMode="true">
 
     <ImageButton
-        android:id="@+id/btn_back_to_home"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/homestacks" />
+            android:id="@+id/btn_back_to_home"
+            android:layout_width="@dimen/nav_bar_go_back_button_width"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/homestacks"
+            android:background="@android:color/transparent"/>
 
-    <Button
-        android:id="@+id/btn_title"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_toRightOf="@id/btn_back_to_home"
-        android:paddingLeft="@dimen/main_header_item_padding"
-        android:paddingRight="@dimen/main_header_item_padding"
-        android:text="@string/ec_register_title"
-        style="@style/TextAppearance.MainHeader" />
+    <LinearLayout
+            android:id="@+id/title_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toRightOf="@id/btn_back_to_home"
+            android:paddingLeft="@dimen/main_header_item_padding"
+            android:paddingRight="@dimen/main_header_item_padding"
+            android:orientation="horizontal">
+
+        <TextView
+                android:id="@+id/txt_title_label"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                style="@style/SmartRegister.Header"/>
+
+        <TextView
+                android:id="@+id/btn_report_month_start_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                style="@style/SmartRegister.Header"/>
+    </LinearLayout>
 
     <EditText
-        android:id="@+id/edt_search"
-        android:layout_width="@dimen/ec_main_header_search_box_width"
-        android:layout_height="fill_parent"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/main_header_item_padding"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:paddingLeft="10dp"
-        android:background="@drawable/rounded_edit_text_normal"
-        android:hint="@string/str_search_hint"/>
+            android:id="@+id/edt_search"
+            android:layout_width="@dimen/ec_main_header_search_box_width"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/main_header_item_padding"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/rounded_edit_text_normal"
+            android:hint="@string/str_search_hint"/>
 
     <ImageButton
-        android:id="@+id/filter_selection"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_toLeftOf="@id/edt_search"
-        android:layout_marginRight="@dimen/main_header_item_padding"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:gravity="center"
-        android:src="@drawable/icon_village_filter" />
+            android:id="@+id/filter_selection"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@id/edt_search"
+            android:layout_marginRight="@dimen/main_header_item_padding"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center"
+            android:src="@drawable/icon_village_filter"/>
 
     <ImageButton
-        android:id="@+id/sort_selection"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_toLeftOf="@id/filter_selection"
-        android:layout_marginRight="@dimen/main_header_item_padding"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:gravity="center"
-        android:src="@drawable/icon_sort" />
+            android:id="@+id/sort_selection"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@id/filter_selection"
+            android:layout_marginRight="@dimen/main_header_item_padding"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center"
+            android:src="@drawable/icon_sort"/>
 
     <Button
-        android:id="@+id/section_type_selection"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_toLeftOf="@id/sort_selection"
-        android:layout_marginRight="@dimen/main_header_item_padding"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:gravity="center"
-        android:text="@string/couple_selection"
-        android:background="@color/light_blue"/>
+            android:id="@+id/section_type_selection"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@id/sort_selection"
+            android:layout_marginRight="@dimen/main_header_item_padding"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center"
+            android:text="@string/couple_selection"
+            android:background="@android:color/transparent"
+            style="@style/SmartRegister.Header.ServiceMode"/>
 </RelativeLayout>

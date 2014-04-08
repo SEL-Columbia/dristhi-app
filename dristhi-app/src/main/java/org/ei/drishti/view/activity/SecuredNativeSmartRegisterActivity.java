@@ -11,8 +11,10 @@ import android.view.WindowManager;
 import android.widget.*;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.drishti.domain.ReportMonth;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.dialog.*;
+import org.joda.time.LocalDate;
 
 import java.util.List;
 
@@ -62,9 +64,14 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private void setupViews() {
         findViewById(R.id.btn_back_to_home).setOnClickListener(this);
 
-        TextView title = (TextView) findViewById(R.id.btn_title);
-        title.setOnClickListener(this);
-        title.setText(getRegisterTitle());
+        ViewGroup titleLayout = (ViewGroup) findViewById(R.id.title_layout);
+        titleLayout.setOnClickListener(this);
+
+        TextView titleLabelView = (TextView) findViewById(R.id.txt_title_label);
+        titleLabelView.setText(getRegisterTitleInShortForm());
+
+        TextView reportMonthStartView = (TextView) findViewById(R.id.btn_report_month_start_date);
+        setReportDates(reportMonthStartView);
 
         clientsHeaderLayout = (LinearLayout) findViewById(R.id.clients_header_layout);
         populateClientListHeaderView();
@@ -106,6 +113,15 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         updateFooter();
         updateStatusBar();
         updateDefaultOptions();
+    }
+
+    protected abstract String getRegisterTitleInShortForm();
+
+    private void setReportDates(TextView titleView) {
+        ReportMonth report = new ReportMonth();
+        titleView.setText(report.startOfCurrentReportMonth(LocalDate.now()).toString("dd/MM")
+                + " - "
+                + report.endOfCurrentReportMonth(LocalDate.now()).toString("dd/MM"));
     }
 
     private void updateDefaultOptions() {
@@ -201,7 +217,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_title:
+            case R.id.title_layout:
             case R.id.btn_back_to_home:
                 goBack();
                 break;
