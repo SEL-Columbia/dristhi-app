@@ -1,19 +1,25 @@
 package org.ei.drishti.view.activity;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Iterables;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.provider.ECSmartRegisterClientsProvider;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
+import org.ei.drishti.util.StringUtil;
+import org.ei.drishti.view.contract.Village;
 import org.ei.drishti.view.controller.ECSmartRegisterController;
+import org.ei.drishti.view.controller.VillageController;
+import org.ei.drishti.view.dialog.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import static com.google.common.collect.Iterables.concat;
+import static com.google.common.collect.Iterables.toArray;
 
 public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
     private SmartRegisterClientsProvider clientProvider = null;
     private ECSmartRegisterController controller;
+    private VillageController villageController;
 
     @Override
     public int getColumnCount() {
@@ -46,7 +52,8 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     @Override
     protected SmartRegisterClientsProvider clientProvider() {
         if (clientProvider == null) {
-            clientProvider = new ECSmartRegisterClientsProvider(this, controller.getClients());
+            clientProvider = new ECSmartRegisterClientsProvider(this,
+                    controller.getClients());
         }
         return clientProvider;
     }
@@ -57,13 +64,13 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    protected String getDefaultVillageFilterOption() {
-        return FILTER_BY_ALL;
+    protected AllClientsFilter getDefaultVillageFilterOption() {
+        return new AllClientsFilter();
     }
 
     @Override
-    protected String getDefaultSortOption() {
-        return SORT_BY_NAME;
+    protected DialogOption getDefaultSortOption() {
+        return new NameSort();
     }
 
     @Override
@@ -72,25 +79,27 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    protected String[] getSortingOptions() {
-        return new String[]{SORT_BY_NAME, SORT_BY_AGE, SORT_BY_EC_NO};
+    protected DialogOption[] getSortingOptions() {
+        return new DialogOption[]{new NameSort(), new ECNumberSort()};
     }
 
     @Override
-    protected String[] getFilterOptions() {
-        // TODO: check for better way to merge two list.
-        List<String> villageNames = clientProvider.getAllUniqueVillageNames();
-        List<String> combinedList = new ArrayList<String>(villageNames.size() + DEFAULT_FILTER_OPTIONS.length);
-        combinedList.addAll(Arrays.asList(DEFAULT_FILTER_OPTIONS));
-        combinedList.addAll(villageNames);
-        String[] toArray = new String[combinedList.size()];
-        combinedList.toArray(toArray);
-        return toArray;
+    protected DialogOption[] getFilterOptions() {
+        Iterable<Village> villages = villageController.getVillages();
+        Iterable<? extends DialogOption> villageNames =
+                Iterables.transform(villages, new Function<Village, DialogOption>() {
+                    @Override
+                    public DialogOption apply(Village village) {
+                        return new VillageFilter(StringUtil.humanize(village.name()));
+                    }
+                });
+
+        return toArray(concat(DEFAULT_FILTER_OPTIONS, villageNames), DialogOption.class);
     }
 
     @Override
-    protected String[] getServiceModeOptions() {
-        return new String[]{};
+    protected DialogOption[] getServiceModeOptions() {
+        return new DialogOption[]{};
     }
 
     @Override
@@ -98,5 +107,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         controller = new ECSmartRegisterController(context.allEligibleCouples(),
                 context.allBeneficiaries(), context.listCache(),
                 context.ecClientsCache());
+        villageController = new VillageController(context.allEligibleCouples(),
+                context.listCache(), context.villagesCache());
     }
 }

@@ -1,6 +1,5 @@
 package org.ei.drishti.view.activity;
 
-import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.database.DataSetObserver;
@@ -13,24 +12,25 @@ import android.widget.*;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
+import org.ei.drishti.view.dialog.AllClientsFilter;
+import org.ei.drishti.view.dialog.DialogOption;
+import org.ei.drishti.view.dialog.OutOfAreaFilter;
 import org.ei.drishti.view.dialog.SmartRegisterDialogFragment;
+
+import java.util.List;
+
+import static java.util.Arrays.asList;
 
 public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         implements View.OnClickListener {
-
-    public static final String SORT_BY_NAME = "Name";
-    public static final String SORT_BY_AGE = "Age";
-    public static final String SORT_BY_EC_NO = "EC No";
-    public static final String FILTER_BY_ALL = "All";
-    public static final String FILTER_BY_OA = "O/A";
-    public static final String FILTER_BY_LP = "L/P";
 
     private static final String DIALOG_TAG = "dialog";
     private static final int DIALOG_SORT = 1;
     private static final int DIALOG_FILTER = 2;
     private static final int DIALOG_SERVICE_MODE = 3;
 
-    public static final String[] DEFAULT_FILTER_OPTIONS = {FILTER_BY_ALL, FILTER_BY_OA, FILTER_BY_LP};
+    public static final List<? extends DialogOption> DEFAULT_FILTER_OPTIONS =
+            asList(new AllClientsFilter(), new OutOfAreaFilter());
 
     private ListView clientsView;
     private SmartRegisterPaginatedAdapter clientsAdapter;
@@ -135,8 +135,8 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     private void updateStatusBar() {
-        appliedSortView.setText(getDefaultSortOption());
-        appliedVillageFilterView.setText(getDefaultVillageFilterOption());
+        appliedSortView.setText(getDefaultSortOption().name());
+        appliedVillageFilterView.setText(getDefaultVillageFilterOption().name());
     }
 
     private void populateClientListHeaderView() {
@@ -217,18 +217,18 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         serviceModeView.setText(type);
     }
 
-    protected void onSortSelection(String sortBy) {
+    protected void onSortSelection(DialogOption sortBy) {
         clientsAdapter.sortBy(sortBy);
         clientsAdapter.notifyDataSetChanged();
 
-        appliedSortView.setText(sortBy);
+        appliedSortView.setText(sortBy.name());
     }
 
-    protected void onFilterSelection(String filter) {
-        clientsAdapter.getFilter().filter(filter);
+    protected void onFilterSelection(DialogOption filter) {
+        clientsAdapter.filterBy(filter);
         clientsAdapter.notifyDataSetChanged();
 
-        appliedVillageFilterView.setText(filter);
+        appliedVillageFilterView.setText(filter.name());
     }
 
     private void goBack() {
@@ -240,7 +240,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         super.onBackPressed();
     }
 
-    void showFragmentDialog(int dialogId, String[] options) {
+    void showFragmentDialog(int dialogId, DialogOption[] options) {
         if (options.length <= 0) {
             return;
         }
@@ -252,11 +252,12 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }
         ft.addToBackStack(null);
 
-        DialogFragment newFragment = SmartRegisterDialogFragment.newInstance(this, dialogId, options);
-        newFragment.show(ft, DIALOG_TAG);
+        SmartRegisterDialogFragment
+                .newInstance(this, dialogId, options)
+                .show(ft, DIALOG_TAG);
     }
 
-    public void onDialogOptionSelected(int dialogId, String option) {
+    public void onDialogOptionSelected(int dialogId, DialogOption option) {
         switch (dialogId) {
             case DIALOG_SORT:
                 onSortSelection(option);
@@ -266,12 +267,12 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                 break;
             default:
             case DIALOG_SERVICE_MODE:
-                onServiceModeSelection(option);
+                onServiceModeSelection(option.name());
                 break;
         }
     }
 
-    private String[] getDialogDataSet(int dialogId) {
+    private DialogOption[] getDialogDataSet(int dialogId) {
         switch (dialogId) {
             case DIALOG_SORT:
                 return getSortingOptions();
@@ -287,9 +288,9 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     protected abstract String getDefaultTypeName();
 
-    protected abstract String getDefaultVillageFilterOption();
+    protected abstract AllClientsFilter getDefaultVillageFilterOption();
 
-    protected abstract String getDefaultSortOption();
+    protected abstract DialogOption getDefaultSortOption();
 
     protected abstract int getColumnCount();
 
@@ -301,11 +302,11 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     protected abstract String getRegisterTitle();
 
-    protected abstract String[] getFilterOptions();
+    protected abstract DialogOption[] getFilterOptions();
 
-    protected abstract String[] getServiceModeOptions();
+    protected abstract DialogOption[] getServiceModeOptions();
 
-    protected abstract String[] getSortingOptions();
+    protected abstract DialogOption[] getSortingOptions();
 
     protected abstract void onInitialization();
 }

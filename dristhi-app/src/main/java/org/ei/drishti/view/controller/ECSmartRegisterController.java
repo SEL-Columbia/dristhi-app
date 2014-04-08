@@ -15,6 +15,7 @@ import org.ei.drishti.util.IntegerUtil;
 import org.ei.drishti.view.contract.ECChildClient;
 import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.ECClients;
+import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 
@@ -151,10 +152,10 @@ public class ECSmartRegisterController {
         });
     }
 
-    private void sortByName(List<ECClient> ecClients) {
-        sort(ecClients, new Comparator<ECClient>() {
+    private void sortByName(List<? extends SmartRegisterClient> ecClients) {
+        sort(ecClients, new Comparator<SmartRegisterClient>() {
             @Override
-            public int compare(ECClient oneECClient, ECClient anotherECClient) {
+            public int compare(SmartRegisterClient oneECClient, SmartRegisterClient anotherECClient) {
                 return oneECClient.wifeName().compareToIgnoreCase(anotherECClient.wifeName());
             }
         });

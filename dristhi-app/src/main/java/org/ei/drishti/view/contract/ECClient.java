@@ -9,11 +9,12 @@ import org.joda.time.LocalDate;
 import org.joda.time.Period;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public class ECClient {
+public class ECClient implements SmartRegisterClient {
+    public static final String OUT_OF_AREA = "out_of_area";
+    public static final String IN_AREA = "in_area";
     private String entityId;
     private String entityIdToSavePhoto;
     private String name;
@@ -56,6 +57,7 @@ public class ECClient {
         return name;
     }
 
+    @Override
     public String village() {
         return StringUtil.humanize(village);
     }
@@ -77,6 +79,10 @@ public class ECClient {
 
     public Integer ecNumber() {
         return ecNumber;
+    }
+
+    public String locationStatus() {
+        return locationStatus;
     }
 
     public boolean isSC() {
@@ -157,7 +163,7 @@ public class ECClient {
     }
 
     public ECClient withIsOutOfArea(boolean outOfArea) {
-        this.locationStatus = outOfArea ? "out_of_area" : "in_area";
+        this.locationStatus = outOfArea ? OUT_OF_AREA : IN_AREA;
         return this;
     }
 
@@ -262,28 +268,11 @@ public class ECClient {
         return this;
     }
 
-    public boolean willFilterMatches(String filter) {
+    public boolean satisfiesFilter(String filter) {
         return name.toLowerCase().startsWith(filter)
                 || String.valueOf(ecNumber).startsWith(filter)
                 || village.toLowerCase().startsWith(filter);
     }
-
-    //#TODO: Write unit test
-    public static final Comparator<ECClient> NAME_COMPARATOR = new Comparator<ECClient>() {
-        @Override
-        public int compare(ECClient person, ECClient anotherPerson) {
-            return person.name.compareToIgnoreCase(anotherPerson.name);
-        }
-    };
-
-    //#TODO: Write unit test
-    public static final Comparator<ECClient> EC_NUMBER_COMPARATOR = new Comparator<ECClient>() {
-        @Override
-        public int compare(ECClient person, ECClient anotherPerson) {
-            return person.ecNumber.compareTo(anotherPerson.ecNumber);
-        }
-    };
-
 
     @Override
     public boolean equals(Object o) {

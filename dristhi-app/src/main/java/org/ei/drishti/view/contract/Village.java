@@ -11,6 +11,10 @@ public class Village {
         this.name = village;
     }
 
+    public String name() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);

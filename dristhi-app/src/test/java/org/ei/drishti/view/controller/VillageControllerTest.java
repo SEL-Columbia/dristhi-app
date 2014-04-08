@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.view.contract.Village;
+import org.ei.drishti.view.contract.Villages;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -24,7 +25,7 @@ public class VillageControllerTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new VillageController(allEligibleCouples, new Cache<String>());
+        controller = new VillageController(allEligibleCouples, new Cache<String>(), new Cache<Villages>());
     }
 
     @Test

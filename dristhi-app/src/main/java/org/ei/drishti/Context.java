@@ -7,6 +7,7 @@ import org.ei.drishti.sync.SaveANMLocationTask;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
 import org.ei.drishti.view.contract.ECClients;
+import org.ei.drishti.view.contract.Villages;
 import org.ei.drishti.view.controller.ANMController;
 import org.ei.drishti.view.controller.ANMLocationController;
 
@@ -53,6 +54,7 @@ public class Context {
     private Session session;
     private Cache<String> listCache;
     private Cache<ECClients> ecClientsCache;
+    private Cache<Villages> villagesCache;
 
     private HTTPAgent httpAgent;
     private ZiggyFileLoader ziggyFileLoader;
@@ -582,5 +584,12 @@ public class Context {
         }
         return ecClientsCache;
 
+    }
+
+    public Cache<Villages> villagesCache() {
+        if (villagesCache == null) {
+            villagesCache = new Cache<Villages>();
+        }
+        return villagesCache;
     }
 }

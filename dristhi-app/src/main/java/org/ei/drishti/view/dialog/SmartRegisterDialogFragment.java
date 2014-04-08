@@ -15,16 +15,17 @@ import org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity;
 public class SmartRegisterDialogFragment extends DialogFragment {
     private final SecuredNativeSmartRegisterActivity parentActivity;
     private int dialogId;
-    private final String[] options;
+    private final DialogOption[] options;
 
-    private SmartRegisterDialogFragment(SecuredNativeSmartRegisterActivity activity, int dialogId, String[] options) {
+    private SmartRegisterDialogFragment(SecuredNativeSmartRegisterActivity activity,
+                                        int dialogId, DialogOption[] options) {
         this.parentActivity = activity;
         this.dialogId = dialogId;
         this.options = options;
     }
 
     public static SmartRegisterDialogFragment newInstance(
-            SecuredNativeSmartRegisterActivity activity, int dialogId, String[] options) {
+            SecuredNativeSmartRegisterActivity activity, int dialogId, DialogOption[] options) {
         return new SmartRegisterDialogFragment(activity, dialogId, options);
     }
 
@@ -41,7 +42,7 @@ public class SmartRegisterDialogFragment extends DialogFragment {
         ListView listView = (ListView) dialogView.findViewById(R.id.dialog_list);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        final ArrayAdapter<DialogOption> adapter = new ArrayAdapter<DialogOption>(
                 parentActivity, R.layout.smart_register_dialog_list_item, options) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -52,7 +53,8 @@ public class SmartRegisterDialogFragment extends DialogFragment {
                     itemView = (ViewGroup) convertView;
                 }
 
-                ((TextView) itemView.findViewById(R.id.dialog_list_option)).setText(getItem(position));
+                ((TextView) itemView.findViewById(R.id.dialog_list_option))
+                        .setText(getItem(position).name());
                 return itemView;
             }
         };

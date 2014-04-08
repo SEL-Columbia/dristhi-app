@@ -126,7 +126,8 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         webView.addJavascriptInterface(new FormController(this), "formContext");
         webView.addJavascriptInterface(new NavigationController(this, context.anmController()), "navigationContext");
-        webView.addJavascriptInterface(new VillageController(context.allEligibleCouples(), context.listCache()), "villageContext");
+        webView.addJavascriptInterface(new VillageController(context.allEligibleCouples(), context.listCache(),
+                context.villagesCache()), "villageContext");
         webView.addJavascriptInterface(new InternationalizationContext(getResources()), "internationalizationContext");
         webView.addJavascriptInterface(context.anmLocationController(), ANM_LOCATION_CONTROLLER);
         webView.setOnLongClickListener(new View.OnLongClickListener() {

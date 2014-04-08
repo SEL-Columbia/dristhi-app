@@ -9,15 +9,13 @@ import android.widget.LinearLayout;
 import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.FPMethod;
-import org.ei.drishti.view.activity.NativeECSmartRegisterActivity;
 import org.ei.drishti.view.contract.ECChildClient;
 import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.ECClients;
+import org.ei.drishti.view.contract.SmartRegisterClients;
+import org.ei.drishti.view.dialog.DialogOption;
 import org.ei.drishti.view.viewModel.NativeECSmartRegisterViewModel;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import static java.text.MessageFormat.format;
@@ -177,45 +175,25 @@ public class ECSmartRegisterClientsProvider
     public void onClick(View view) {
     }
 
-    //#TODO: Very inefficient - Try some good algorithm
-    @Override
-    public List<String> getAllUniqueVillageNames() {
-        List<String> villages = new ArrayList<String>();
-        for (ECClient client : clients) {
-            String village = client.village();
-            if (!isVillageNameAlreadyPresent(villages, village)) {
-                villages.add(village);
-            }
-        }
-        return villages;
-    }
-
     @Override
     public ECClients getListItems() {
         return clients;
     }
 
     @Override
-    public void sort(String sortBy) {
-        Collections.sort(clients, getComparator(sortBy));
+    public SmartRegisterClients sortBy(DialogOption sortBy) {
+        return sortBy.apply(clients);
+    }
+
+    @Override
+    public SmartRegisterClients filterBy(DialogOption filterBy) {
+        return filterBy.apply(clients);
     }
 
     @Override
     public ECClients filter(CharSequence cs) {
-        ECClients results;
-        if (cs.length() > 0) {
-            String filter = cs.toString().toLowerCase();
-            ECClients filteredPeople = new ECClients();
-            for (ECClient aPeople : clients) {
-                if (aPeople.willFilterMatches(filter)) {
-                    filteredPeople.add(aPeople);
-                }
-            }
-            results = filteredPeople;
-        } else {
-            results = clients;
-        }
-        return results;
+        String filterCriterion = cs.toString().toLowerCase();
+        return clients.applyFilter(filterCriterion);
     }
 
     public LayoutInflater inflater() {
@@ -225,22 +203,5 @@ public class ECSmartRegisterClientsProvider
     @Override
     public void showSection(String section) {
         // do Nothing;
-    }
-
-    private boolean isVillageNameAlreadyPresent(List<String> villages, String newVillage) {
-        boolean found = false;
-        for (String village : villages) {
-            if (village.equalsIgnoreCase(newVillage)) {
-                found = true;
-            }
-        }
-        return found;
-    }
-
-    private Comparator<? super ECClient> getComparator(String sortBy) {
-        if (sortBy.equalsIgnoreCase(NativeECSmartRegisterActivity.SORT_BY_EC_NO)) {
-            return ECClient.EC_NUMBER_COMPARATOR;
-        }
-        return ECClient.NAME_COMPARATOR;
     }
 }

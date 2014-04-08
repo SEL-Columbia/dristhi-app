@@ -4,21 +4,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.ECClients;
-
-import java.util.List;
+import org.ei.drishti.view.contract.SmartRegisterClients;
+import org.ei.drishti.view.dialog.DialogOption;
 
 public interface SmartRegisterClientsProvider {
 
     public View getView(ECClient client, View parentView, ViewGroup viewGroup);
 
-    //#TODO: Very inefficient - Try some good algorithm
-    List<String> getAllUniqueVillageNames();
-
     public ECClients getListItems();
 
-    public void sort(String sortBy);
+    public SmartRegisterClients sortBy(DialogOption sortBy);
 
     public ECClients filter(CharSequence cs);
 
     public void showSection(String section);
+
+    SmartRegisterClients filterBy(DialogOption filterBy);
 }

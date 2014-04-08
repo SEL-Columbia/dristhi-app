@@ -9,43 +9,44 @@ import android.widget.Filterable;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.ECClients;
+import org.ei.drishti.view.contract.SmartRegisterClients;
+import org.ei.drishti.view.dialog.DialogOption;
 
 public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filterable {
-    private int peopleCount;
+    private int clientCount;
     private int pageCount;
     private int currentPage = 0;
-    protected static final int peoplePerPage = 20;
+    protected static final int CLIENTS_PER_PAGE = 20;
 
     protected final Context context;
 
-    private ECClients filteredClients;
+    private SmartRegisterClients filteredClients;
 
     protected final SmartRegisterClientsProvider listItemProvider;
 
     public SmartRegisterPaginatedAdapter(Context context, SmartRegisterClientsProvider listItemProvider) {
         this.context = context;
-
         this.listItemProvider = listItemProvider;
-
-        setupPeopleInView(listItemProvider.getListItems());
+        refreshClients(listItemProvider.getListItems());
     }
 
-    private void setupPeopleInView(ECClients people) {
-        this.filteredClients = people;
-        peopleCount = filteredClients.size();
-        pageCount = peopleCount / peoplePerPage;
+    protected void refreshClients(SmartRegisterClients filteredClients) {
+        this.filteredClients = filteredClients;
+        clientCount = this.filteredClients.size();
+        pageCount = clientCount / CLIENTS_PER_PAGE;
     }
 
     @Override
     public int getCount() {
-        if (peopleCount <= peoplePerPage) {
-            return peopleCount;
+        if (clientCount <= CLIENTS_PER_PAGE) {
+            return clientCount;
         } else if (currentPage == pageCount) {
-            return peopleCount % peoplePerPage;
+            return clientCount % CLIENTS_PER_PAGE;
         }
-        return peoplePerPage;
+        return CLIENTS_PER_PAGE;
     }
 
+    //#TODO: Fix filter from second page of smart register
     @Override
     public Object getItem(int i) {
         return filteredClients.get(i);
@@ -62,7 +63,7 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filter
     }
 
     private int actualPosition(int i) {
-        return i + (currentPage * peoplePerPage);
+        return i + (currentPage * CLIENTS_PER_PAGE);
     }
 
 
@@ -99,9 +100,12 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filter
         return searchFilter;
     }
 
-    public void sortBy(String sortBy) {
-        //Toast.makeText(context, "sort by : " + sortBy, Toast.LENGTH_SHORT).show();
-        listItemProvider.sort(sortBy);
+    public void sortBy(DialogOption sortBy) {
+        refreshClients(listItemProvider.sortBy(sortBy));
+    }
+
+    public void filterBy(DialogOption filterBy) {
+        refreshClients(listItemProvider.filterBy(filterBy));
     }
 
     public void showSection(String section) {
@@ -119,9 +123,8 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter implements Filter
         @Override
         protected void publishResults(CharSequence charSequence, Filter.FilterResults
                 filterResults) {
-            setupPeopleInView((ECClients) filterResults.values);
+            refreshClients((ECClients) filterResults.values);
             notifyDataSetChanged();
         }
     };
-
 }
