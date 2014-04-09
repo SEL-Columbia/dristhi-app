@@ -20,6 +20,7 @@ import org.joda.time.LocalDate;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         implements View.OnClickListener {
@@ -49,6 +50,8 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private SortOption currentSortOption;
     private FilterOption currentSearchFilter;
     private ServiceModeOption currentServiceModeOption;
+    private EditText searchView;
+    private View searchCancelView;
 
     @Override
     protected void onCreation() {
@@ -82,8 +85,8 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         setupFooterView();
         setupAdapter();
 
-        EditText searchCriteria = (EditText) findViewById(R.id.edt_search);
-        searchCriteria.addTextChangedListener(new TextWatcher() {
+        searchView = (EditText) findViewById(R.id.edt_search);
+        searchView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             }
@@ -94,12 +97,17 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                 clientsAdapter
                         .refreshList(currentVillageFilter, currentServiceModeOption,
                                 currentSearchFilter, currentSortOption);
+
+                searchCancelView.setVisibility(isEmpty(cs) ? View.INVISIBLE : View.VISIBLE);
+
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
             }
         });
+        searchCancelView = findViewById(R.id.btn_search_cancel);
+        searchCancelView.setOnClickListener(this);
 
         View villageFilterView = findViewById(R.id.filter_selection);
         villageFilterView.setOnClickListener(this);
@@ -239,7 +247,14 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             case R.id.btn_previous_page:
                 goToPreviousPage();
                 break;
+            case R.id.btn_search_cancel:
+                clearSearch();
+                break;
         }
+    }
+
+    private void clearSearch() {
+        searchView.setText("");
     }
 
     protected void onServiceModeSelection(ServiceModeOption serviceModeOption) {

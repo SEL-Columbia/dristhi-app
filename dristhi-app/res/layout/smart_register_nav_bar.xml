@@ -12,7 +12,7 @@
             android:layout_alignParentLeft="true"
             android:scaleType="fitCenter"
             android:src="@drawable/homestacks"
-            android:background="@android:color/transparent"/>
+            android:background="@drawable/button_background_transparent"/>
 
     <LinearLayout
             android:id="@+id/title_layout"
@@ -21,7 +21,8 @@
             android:layout_toRightOf="@id/btn_back_to_home"
             android:paddingLeft="@dimen/main_header_item_padding"
             android:paddingRight="@dimen/main_header_item_padding"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/button_background_transparent">
 
         <TextView
                 android:id="@+id/txt_title_label"
@@ -38,9 +39,9 @@
                 style="@style/SmartRegister.Header"/>
     </LinearLayout>
 
-    <EditText
-            android:id="@+id/edt_search"
-            android:layout_width="@dimen/ec_main_header_search_box_width"
+    <LinearLayout
+            android:id="@+id/search_layout"
+            android:layout_width="@dimen/ec_main_header_search_layout_width"
             android:layout_height="fill_parent"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/main_header_item_padding"
@@ -48,17 +49,36 @@
             android:layout_marginBottom="5dp"
             android:paddingLeft="10dp"
             android:background="@drawable/rounded_edit_text_normal"
-            android:hint="@string/str_search_hint"/>
+            android:orientation="horizontal">
+
+        <EditText
+                android:id="@+id/edt_search"
+                android:layout_width="@dimen/ec_main_header_search_box_width"
+                android:layout_height="fill_parent"
+                android:hint="@string/str_search_hint"
+                android:background="@android:color/transparent"/>
+
+        <Button
+                android:id="@+id/btn_search_cancel"
+                android:layout_width="@dimen/ec_main_header_search_cancel_button_width"
+                android:layout_height="fill_parent"
+                android:paddingRight="5dp"
+                android:textSize="25sp"
+                android:text="x"
+                android:background="@android:color/transparent"
+                android:visibility="invisible"/>
+    </LinearLayout>
 
     <ImageButton
             android:id="@+id/filter_selection"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_toLeftOf="@id/edt_search"
+            android:layout_toLeftOf="@id/search_layout"
             android:layout_marginRight="@dimen/main_header_item_padding"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:gravity="center"
+            android:background="@drawable/button_background_transparent"
             android:src="@drawable/icon_village_filter"/>
 
     <ImageButton
@@ -70,6 +90,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:gravity="center"
+            android:background="@drawable/button_background_transparent"
             android:src="@drawable/icon_sort"/>
 
     <Button
@@ -82,6 +103,6 @@
             android:paddingRight="10dp"
             android:gravity="center"
             android:text="@string/couple_selection"
-            android:background="@android:color/transparent"
+            android:background="@drawable/button_background_transparent"
             style="@style/SmartRegister.Header.ServiceMode"/>
 </RelativeLayout>

@@ -18,4 +18,5 @@
     <color name="gray">#f2f2f2</color>
     <color name="client_list_header_dark_grey">#e6e6e6</color>
     <color name="smart_register_blue">#389cc8</color>
+    <color name="button_pressed_color">#44ffffff</color>
 </resources>
