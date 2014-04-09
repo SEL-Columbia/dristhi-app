@@ -5,91 +5,96 @@
         android:layout_width="@dimen/list_gplsa_view_width"
         android:layout_height="fill_parent"
         android:layout_weight="@integer/ec_list_gplsa_view_weight"
+        android:paddingTop="5dp"
         android:orientation="vertical">
 
     <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:weightSum="5"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:weightSum="5">
 
         <TextView
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                style="@style/TextAppearance.ListView.Item"
+                style="@style/TextAppearance.ListView.Item.GPLSA"
                 android:text="@string/str_gravida"/>
 
         <TextView
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                style="@style/TextAppearance.ListView.Item"
+                style="@style/TextAppearance.ListView.Item.GPLSA"
                 android:text="@string/str_parity"/>
 
         <TextView
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                style="@style/TextAppearance.ListView.Item"
+                style="@style/TextAppearance.ListView.Item.GPLSA"
                 android:text="@string/str_number_of_living_children"/>
 
         <TextView
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                style="@style/TextAppearance.ListView.Item"
+                style="@style/TextAppearance.ListView.Item.GPLSA"
                 android:text="@string/str_number_of_still_births"/>
 
         <TextView
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                style="@style/TextAppearance.ListView.Item"
+                style="@style/TextAppearance.ListView.Item.GPLSA"
                 android:text="@string/str_number_of_abortions"/>
 
     </LinearLayout>
 
     <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:weightSum="5"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:weightSum="5">
 
         <TextView
                 android:id="@+id/txt_gravida"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                style="@style/TextAppearance.ListView.Item"/>
+                style="@style/TextAppearance.ListView.Item.GPLSA"/>
 
         <TextView
                 android:id="@+id/txt_parity"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                style="@style/TextAppearance.ListView.Item"/>
+                style="@style/TextAppearance.ListView.Item.GPLSA"/>
 
         <TextView
                 android:id="@+id/txt_number_of_living_children"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                style="@style/TextAppearance.ListView.Item"/>
-
+                style="@style/TextAppearance.ListView.Item.GPLSA"/>
+e
         <TextView
                 android:id="@+id/txt_number_of_still_births"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                style="@style/TextAppearance.ListView.Item"/>
+                style="@style/TextAppearance.ListView.Item.GPLSA"/>
 
         <TextView
                 android:id="@+id/txt_number_of_abortions"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                style="@style/TextAppearance.ListView.Item"/>
+                style="@style/TextAppearance.ListView.Item.GPLSA"/>
 
     </LinearLayout>
 

@@ -21,7 +21,29 @@
         <item name="android:textSize">@dimen/list_item_text_font_size</item>
         <item name="android:gravity">left</item>
         <item name="android:paddingLeft">@dimen/list_item_text_padding_left_size</item>
+        <item name="android:paddingRight">@dimen/list_item_text_padding_left_size</item>
         <item name="android:textColor">@color/text_black</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="TextAppearance.ListView.Item.GPLSA" parent="@style/TextAppearance.ListView.Item">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingRight">2dp</item>
+        <item name="android:ellipsize">none</item>
+    </style>
+
+    <style name="TextAppearance.ListView.Item.Small" parent="@style/TextAppearance.ListView.Item">
+        <item name="android:textSize">@dimen/list_item_text_font_size</item>
+        <item name="android:height">19px</item>
+    </style>
+
+    <style name="TextAppearance.ListView.Item.TwoLine" parent="@style/TextAppearance.ListView.Item">
+        <item name="android:maxLines">2</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:ellipsize">none</item>
     </style>
 
     <style name="TextAppearance.ListView.Item.Medium" parent="@android:style/Widget.TextView">

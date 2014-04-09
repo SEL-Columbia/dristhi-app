@@ -66,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:paddingRight="@dimen/wife_name_padding_right_due_to_age_display"
             android:layout_toRightOf="@id/img_profile_layout"
             style="@style/TextAppearance.ListView.Item.Strong"/>
 
@@ -79,7 +80,7 @@
 
     <TextView
             android:id="@+id/txt_village_name"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_husband_name"
             android:layout_toRightOf="@id/img_profile_layout"
@@ -90,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:paddingRight="@dimen/list_item_text_padding_left_size"
+            android:layout_alignParentTop="true"
             android:paddingTop="@dimen/client_age_padding"
             style="@style/TextAppearance.ListView.Item.Medium"/>
 </RelativeLayout>

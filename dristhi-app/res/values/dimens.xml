@@ -27,9 +27,11 @@
     <dimen name="client_profile_badge_width">30dp</dimen>
     <dimen name="client_profile_badge_height">22dp</dimen>
     <dimen name="client_profile_badge_layout_margin_top">5dp</dimen>
+    <dimen name="wife_name_padding_right_due_to_age_display">30dp</dimen>
 
     <dimen name="list_text_margin_from_profile_pic">10dp</dimen>
     <dimen name="list_item_text_font_size">16sp</dimen>
+    <dimen name="list_item_text_font_size_small">14sp</dimen>
     <dimen name="list_main_text_font_size">19sp</dimen>
 
     <dimen name="list_header_font_size">24sp</dimen>
