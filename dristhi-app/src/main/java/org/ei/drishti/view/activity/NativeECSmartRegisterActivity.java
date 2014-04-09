@@ -28,12 +28,12 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     public int getColumnWeightSum() {
-        return 140;
+        return 1000;
     }
 
     @Override
     public int[] getColumnWeights() {
-        return new int[]{30, 10, 20, 20, 20, 30, 10};
+        return new int[]{239, 73, 103, 107, 158, 221, 87};
     }
 
     @Override

@@ -57,7 +57,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@id/img_profile_layout"
-            android:text="@string/str_name"
             style="@style/TextAppearance.ListView.Item.Strong"/>
 
     <TextView
@@ -66,7 +65,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_wife_name"
             android:layout_toRightOf="@id/img_profile_layout"
-            android:text="@string/str_name"
             style="@style/TextAppearance.ListView.Item"/>
 
     <TextView
@@ -75,7 +73,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_husband_name"
             android:layout_toRightOf="@id/img_profile_layout"
-            android:text="@string/str_name"
             style="@style/TextAppearance.ListView.Item"/>
 
     <TextView

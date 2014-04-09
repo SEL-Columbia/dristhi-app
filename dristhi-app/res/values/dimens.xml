@@ -16,7 +16,7 @@
     <dimen name="list_edit_icon_view_width">0dp</dimen>
     <dimen name="list_item_defult_width">0dp</dimen>
 
-    <dimen name="list_item_height">80dp</dimen>
+    <dimen name="list_item_height">82dp</dimen>
     <dimen name="list_item_margin">10dp</dimen>
 
     <dimen name="list_profile_pic_width">50dp</dimen>

@@ -171,13 +171,12 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private void populateClientListHeaderView() {
         LinearLayout listHeader = clientsHeaderLayout;
         listHeader.removeAllViewsInLayout();
-
         listHeader.setWeightSum(getColumnWeightSum());
         int columnCount = getColumnCount();
         int[] weights = getColumnWeights();
         int[] headerTxtResIds = getColumnHeaderTextResourceIds();
 
-        for (int i = 0; i < columnCount - 1; i++) {
+        for (int i = 0; i < columnCount; i++) {
             listHeader.addView(getColumnHeaderView(i, weights, headerTxtResIds));
         }
     }
@@ -192,7 +191,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
         header.setLayoutParams(lp);
         header.setText(headerTxtResIds[i]);
-        header.setPadding(10, 0, 0, 0);
         return header;
     }
 

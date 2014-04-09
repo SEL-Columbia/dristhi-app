@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.R;
@@ -54,6 +55,10 @@ public class ECSmartRegisterClientsProvider
         setupFPMethodView(client, viewModel);
         setupChildrenView(client, viewModel);
         setupStatusView(client, viewModel);
+
+        AbsListView.LayoutParams layoutParams = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                (int) context.getResources().getDimension(R.dimen.list_item_height));
+        itemView.setLayoutParams(layoutParams);
 
         return itemView;
     }

@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              android:background="@color/gray">
+              android:background="@color/client_list_header_dark_grey">
 
     <include layout="@layout/smart_register_nav_bar"/>
 
@@ -14,7 +14,8 @@
             android:id="@+id/clients_header_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/list_header_height"
-            android:background="@color/client_list_header_dark_grey"
+            android:layout_marginLeft="@dimen/list_view_margin_left_and_right"
+            android:layout_marginRight="@dimen/list_view_margin_left_and_right"
             android:orientation="horizontal"/>
 
     <ImageView

@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="@dimen/ec_bottom_bar_height"
     android:padding="@dimen/list_bottom_bar_padding"
-    android:background="@color/gray">
+    android:background="@color/client_list_header_dark_grey">
 
     <Button
         android:id="@+id/btn_previous_page"
