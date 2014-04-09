@@ -45,7 +45,6 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter {
         return CLIENTS_PER_PAGE;
     }
 
-    //#TODO: Fix filter from second page of smart register
     @Override
     public Object getItem(int i) {
         return filteredClients.get(i);
@@ -62,7 +61,11 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter {
     }
 
     private int actualPosition(int i) {
-        return i + (currentPage * CLIENTS_PER_PAGE);
+        if (clientCount <= CLIENTS_PER_PAGE) {
+            return i;
+        } else {
+            return i + (currentPage * CLIENTS_PER_PAGE);
+        }
     }
 
     public int pageCount() {
