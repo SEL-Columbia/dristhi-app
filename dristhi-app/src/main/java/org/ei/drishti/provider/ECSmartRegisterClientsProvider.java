@@ -16,7 +16,7 @@ import org.ei.drishti.view.contract.SmartRegisterClients;
 import org.ei.drishti.view.dialog.FilterOption;
 import org.ei.drishti.view.dialog.ServiceModeOption;
 import org.ei.drishti.view.dialog.SortOption;
-import org.ei.drishti.view.viewModel.NativeECSmartRegisterViewModel;
+import org.ei.drishti.view.viewHolder.NativeECSmartRegisterViewHolder;
 
 import java.util.List;
 
@@ -39,14 +39,14 @@ public class ECSmartRegisterClientsProvider
     @Override
     public View getView(ECClient client, View convertView, ViewGroup viewGroup) {
         ViewGroup itemView;
-        NativeECSmartRegisterViewModel viewModel;
+        NativeECSmartRegisterViewHolder viewModel;
         if (convertView == null) {
             itemView = (ViewGroup) inflater().inflate(R.layout.smart_register_ec_client, null);
-            viewModel = new NativeECSmartRegisterViewModel(itemView);
+            viewModel = new NativeECSmartRegisterViewHolder(itemView);
             itemView.setTag(viewModel);
         } else {
             itemView = (ViewGroup) convertView;
-            viewModel = (NativeECSmartRegisterViewModel) itemView.getTag();
+            viewModel = (NativeECSmartRegisterViewHolder) itemView.getTag();
         }
 
         setupClientProfileView(client, viewModel);
@@ -58,7 +58,7 @@ public class ECSmartRegisterClientsProvider
         return itemView;
     }
 
-    private void setupFPMethodView(ECClient client, NativeECSmartRegisterViewModel viewModel) {
+    private void setupFPMethodView(ECClient client, NativeECSmartRegisterViewHolder viewModel) {
         FPMethod fpMethod = client.fpMethod();
         viewModel.refreshAllFPMethodDetailViews(context.getResources().getColor(R.color.text_black));
         viewModel.fpMethodView().setText(fpMethod.displayName());
@@ -95,7 +95,7 @@ public class ECSmartRegisterClientsProvider
         }
     }
 
-    private void setupStatusView(ECClient client, NativeECSmartRegisterViewModel viewModel) {
+    private void setupStatusView(ECClient client, NativeECSmartRegisterViewHolder viewModel) {
         String statusType = client.status().get(STATUS_TYPE_FIELD);
         String statusDate = client.status().get(STATUS_DATE_FIELD);
         viewModel.hideAllStatusLayouts();
@@ -115,7 +115,7 @@ public class ECSmartRegisterClientsProvider
         }
     }
 
-    private void setupClientProfileView(ECClient client, NativeECSmartRegisterViewModel viewModel) {
+    private void setupClientProfileView(ECClient client, NativeECSmartRegisterViewHolder viewModel) {
         viewModel.txtNameView().setText(client.name());
         viewModel.txtHusbandNameView().setText(client.husbandName());
         viewModel.txtVillageNameView().setText(client.village());
@@ -128,7 +128,7 @@ public class ECSmartRegisterClientsProvider
         viewModel.badgeSTView().setVisibility(client.isST() ? View.VISIBLE : View.GONE);
     }
 
-    private void setupGPLSAView(ECClient client, NativeECSmartRegisterViewModel viewModel) {
+    private void setupGPLSAView(ECClient client, NativeECSmartRegisterViewHolder viewModel) {
         viewModel.txtGravida().setText(client.numberOfPregnancies());
         viewModel.txtParity().setText(client.parity());
         viewModel.txtNumberOfLivingChildren().setText(client.numberOfLivingChildren());
@@ -136,7 +136,7 @@ public class ECSmartRegisterClientsProvider
         viewModel.txtNumberOfAbortions().setText(client.numberOfAbortions());
     }
 
-    private void setupChildrenView(ECClient client, NativeECSmartRegisterViewModel viewModel) {
+    private void setupChildrenView(ECClient client, NativeECSmartRegisterViewHolder viewModel) {
         List<ECChildClient> children = client.children();
         if (children.size() == 0) {
             viewModel.maleChildrenView().setVisibility(View.GONE);
@@ -159,7 +159,7 @@ public class ECSmartRegisterClientsProvider
         }
     }
 
-    private void setupChildView(NativeECSmartRegisterViewModel viewModel, ECChildClient child) {
+    private void setupChildView(NativeECSmartRegisterViewHolder viewModel, ECChildClient child) {
         if (child.isMale()) {
             viewModel.maleChildrenView().setVisibility(View.VISIBLE);
             viewModel.maleChildrenView().setText(

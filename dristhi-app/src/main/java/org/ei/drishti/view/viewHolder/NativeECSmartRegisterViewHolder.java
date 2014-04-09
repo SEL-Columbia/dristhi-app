@@ -1,4 +1,4 @@
-package org.ei.drishti.view.viewModel;
+package org.ei.drishti.view.viewHolder;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static org.ei.drishti.view.controller.ECSmartRegisterController.*;
 
-public class NativeECSmartRegisterViewModel {
+public class NativeECSmartRegisterViewHolder {
     private TextView txtNameView;
     private TextView txtHusbandNameView;
     private TextView txtVillageNameView;
@@ -37,7 +37,7 @@ public class NativeECSmartRegisterViewModel {
     private TextView femaleChildrenView;
     private Map<String, ViewGroup> statusLayouts;
 
-    public NativeECSmartRegisterViewModel(ViewGroup itemView) {
+    public NativeECSmartRegisterViewHolder(ViewGroup itemView) {
         this.txtNameView = (TextView) itemView.findViewById(R.id.txt_wife_name);
         this.txtHusbandNameView = (TextView) itemView.findViewById(R.id.txt_husband_name);
         this.txtVillageNameView = (TextView) itemView.findViewById(R.id.txt_village_name);
