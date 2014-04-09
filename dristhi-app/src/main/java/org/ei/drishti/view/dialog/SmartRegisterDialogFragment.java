@@ -16,17 +16,19 @@ public class SmartRegisterDialogFragment extends DialogFragment {
     private final SecuredNativeSmartRegisterActivity parentActivity;
     private int dialogId;
     private final DialogOption[] options;
+    private final Object tag;
 
     private SmartRegisterDialogFragment(SecuredNativeSmartRegisterActivity activity,
-                                        int dialogId, DialogOption[] options) {
+                                        int dialogId, DialogOption[] options, Object tag) {
         this.parentActivity = activity;
         this.dialogId = dialogId;
         this.options = options;
+        this.tag = tag;
     }
 
     public static SmartRegisterDialogFragment newInstance(
-            SecuredNativeSmartRegisterActivity activity, int dialogId, DialogOption[] options) {
-        return new SmartRegisterDialogFragment(activity, dialogId, options);
+            SecuredNativeSmartRegisterActivity activity, int dialogId, DialogOption[] options, Object tag) {
+        return new SmartRegisterDialogFragment(activity, dialogId, options, tag);
     }
 
     @Override
@@ -64,11 +66,10 @@ public class SmartRegisterDialogFragment extends DialogFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 dismiss();
-                parentActivity.onDialogOptionSelected(dialogId, options[i]);
+                parentActivity.onDialogOptionSelected(dialogId, options[i], tag);
             }
         });
 
         return dialogView;
     }
-
 }

@@ -101,7 +101,7 @@
             android:src="@color/smart_register_client_divider_color"/>
 
     <ImageButton
-            android:id="@+id/btn_edit_record"
+            android:id="@+id/btn_edit"
             android:layout_width="@dimen/list_edit_icon_view_width"
             android:layout_height="fill_parent"
             android:layout_weight="@integer/ec_list_edit_icon_view_weight"

@@ -29,9 +29,13 @@ public class ECSmartRegisterClientsProvider
 
     private final LayoutInflater inflater;
     private final Context context;
+    private final View.OnClickListener onClickListener;
     protected SmartRegisterClients clients;
 
-    public ECSmartRegisterClientsProvider(Context context, ECClients clients) {
+    public ECSmartRegisterClientsProvider(Context context,
+                                          View.OnClickListener onClickListener,
+                                          ECClients clients) {
+        this.onClickListener = onClickListener;
         this.clients = clients;
         this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -55,6 +59,7 @@ public class ECSmartRegisterClientsProvider
         setupFPMethodView(client, viewModel);
         setupChildrenView(client, viewModel);
         setupStatusView(client, viewModel);
+        setupEditView(client, viewModel);
 
         AbsListView.LayoutParams layoutParams = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 (int) context.getResources().getDimension(R.dimen.list_item_height));
@@ -176,6 +181,11 @@ public class ECSmartRegisterClientsProvider
                     format(context.getResources().getString(R.string.ec_register_female_child),
                             child.getAgeInMonths()));
         }
+    }
+
+    private void setupEditView(ECClient client, NativeECSmartRegisterViewHolder viewModel) {
+        viewModel.editButton().setOnClickListener(onClickListener);
+        viewModel.editButton().setTag(client);
     }
 
     @Override

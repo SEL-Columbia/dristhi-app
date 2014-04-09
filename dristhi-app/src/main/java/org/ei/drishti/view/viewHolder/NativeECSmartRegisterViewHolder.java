@@ -2,6 +2,7 @@ package org.ei.drishti.view.viewHolder;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.ei.drishti.R;
@@ -35,6 +36,7 @@ public class NativeECSmartRegisterViewHolder {
     private TextView iudPersonView;
     private TextView maleChildrenView;
     private TextView femaleChildrenView;
+    private ImageButton editButton;
     private Map<String, ViewGroup> statusLayouts;
 
     public NativeECSmartRegisterViewHolder(ViewGroup itemView) {
@@ -61,6 +63,7 @@ public class NativeECSmartRegisterViewHolder {
         this.iudPlacePersonSeparatorView = (TextView) itemView.findViewById(R.id.txt_iud_place_person_separator);
         this.maleChildrenView = (TextView) itemView.findViewById(R.id.txt_male_children);
         this.femaleChildrenView = (TextView) itemView.findViewById(R.id.txt_female_children);
+        this.editButton = (ImageButton) itemView.findViewById(R.id.btn_edit);
 
         this.statusLayouts = new HashMap<String, ViewGroup>();
         this.statusLayouts
@@ -165,6 +168,10 @@ public class NativeECSmartRegisterViewHolder {
 
     public TextView femaleChildrenView() {
         return femaleChildrenView;
+    }
+
+    public ImageButton editButton() {
+        return editButton;
     }
 
     public ViewGroup statusLayout(String statusType) {

@@ -14,6 +14,7 @@ import org.ei.drishti.view.dialog.*;
 
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
+import static org.ei.drishti.AllConstants.FormNames.*;
 
 public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -57,7 +58,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     @Override
     protected SmartRegisterClientsProvider clientProvider() {
         if (clientProvider == null) {
-            clientProvider = new ECSmartRegisterClientsProvider(this,
+            clientProvider = new ECSmartRegisterClientsProvider(this, this,
                     controller.getClients());
         }
         return clientProvider;
@@ -89,11 +90,6 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    protected String getRegisterTitle() {
-        return getResources().getString(R.string.ec_register_title);
-    }
-
-    @Override
     protected DialogOption[] getSortingOptions() {
         return new DialogOption[]{new NameSort(), new ECNumberSort(),
                 new HighPrioritySort(), new BPLSort(),
@@ -117,6 +113,17 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     @Override
     protected DialogOption[] getServiceModeOptions() {
         return new DialogOption[]{};
+    }
+
+    @Override
+    protected DialogOption[] getEditOptions() {
+        return new DialogOption[]{
+                new OpenFormOption(getString(R.string.str_register_anc_form), ANC_REGISTRATION, formController),
+                new OpenFormOption(getString(R.string.str_register_fp_form), FP_CHANGE, formController),
+                new OpenFormOption(getString(R.string.str_register_child_form), CHILD_REGISTRATION_EC, formController),
+                new OpenFormOption(getString(R.string.str_edit_ec_form), EC_EDIT, formController),
+                new OpenFormOption(getString(R.string.str_close_ec_form), EC_CLOSE, formController),
+        };
     }
 
     @Override

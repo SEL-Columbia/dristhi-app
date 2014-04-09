@@ -22,7 +22,8 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter {
     private SmartRegisterClients filteredClients;
     protected final SmartRegisterClientsProvider listItemProvider;
 
-    public SmartRegisterPaginatedAdapter(Context context, SmartRegisterClientsProvider listItemProvider) {
+    public SmartRegisterPaginatedAdapter(Context context,
+                                         SmartRegisterClientsProvider listItemProvider) {
         this.context = context;
         this.listItemProvider = listItemProvider;
         refreshClients(listItemProvider.getListItems());

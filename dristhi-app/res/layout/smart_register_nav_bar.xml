@@ -73,7 +73,7 @@
             android:src="@drawable/icon_sort"/>
 
     <Button
-            android:id="@+id/section_type_selection"
+            android:id="@+id/service_mode_selection"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_toLeftOf="@id/sort_selection"

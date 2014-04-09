@@ -13,6 +13,7 @@ import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.domain.ReportMonth;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
+import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.dialog.*;
 import org.joda.time.LocalDate;
 
@@ -27,6 +28,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private static final int DIALOG_SORT = 1;
     private static final int DIALOG_FILTER = 2;
     private static final int DIALOG_SERVICE_MODE = 3;
+    private static final int DIALOG_EDIT = 4;
 
     public static final List<? extends DialogOption> DEFAULT_FILTER_OPTIONS =
             asList(new AllClientsFilter(), new OutOfAreaFilter());
@@ -103,7 +105,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         villageFilterView.setOnClickListener(this);
         View sortView = findViewById(R.id.sort_selection);
         sortView.setOnClickListener(this);
-        serviceModeView = (Button) findViewById(R.id.section_type_selection);
+        serviceModeView = (Button) findViewById(R.id.service_mode_selection);
         serviceModeView.setOnClickListener(this);
         serviceModeView.setText(getDefaultTypeName());
 
@@ -225,8 +227,11 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             case R.id.sort_selection:
                 showFragmentDialog(DIALOG_SORT, getDialogDataSet(DIALOG_SORT));
                 break;
-            case R.id.section_type_selection:
+            case R.id.service_mode_selection:
                 showFragmentDialog(DIALOG_SERVICE_MODE, getDialogDataSet(DIALOG_SERVICE_MODE));
+                break;
+            case R.id.btn_edit:
+                showFragmentDialog(DIALOG_EDIT, getDialogDataSet(DIALOG_EDIT), view.getTag());
                 break;
             case R.id.btn_next_page:
                 goToNextPage();
@@ -252,6 +257,10 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         appliedVillageFilterView.setText(filter.name());
     }
 
+    protected void onEditSelection(EditOption editOption, SmartRegisterClient client) {
+        editOption.doEdit(client);
+    }
+
     private void goBack() {
         finish();
     }
@@ -262,6 +271,10 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     void showFragmentDialog(int dialogId, DialogOption[] options) {
+        showFragmentDialog(dialogId, options, null);
+    }
+
+    void showFragmentDialog(int dialogId, DialogOption[] options, Object tag) {
         if (options.length <= 0) {
             return;
         }
@@ -274,22 +287,27 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         ft.addToBackStack(null);
 
         SmartRegisterDialogFragment
-                .newInstance(this, dialogId, options)
+                .newInstance(this, dialogId, options, tag)
                 .show(ft, DIALOG_TAG);
     }
 
-    public void onDialogOptionSelected(int dialogId, DialogOption option) {
+    public void onDialogOptionSelected(int dialogId, DialogOption option, Object tag) {
         switch (dialogId) {
             case DIALOG_SORT:
                 onSortSelection((SortOption) option);
                 break;
+
             case DIALOG_FILTER:
                 onFilterSelection((FilterOption) option);
                 break;
-            default:
+
             case DIALOG_SERVICE_MODE:
                 onServiceModeSelection((ServiceModeOption) option);
                 break;
+
+            case DIALOG_EDIT:
+                onEditSelection((EditOption) option, (SmartRegisterClient) tag);
+                return;
         }
         clientsAdapter
                 .refreshList(currentVillageFilter, currentServiceModeOption,
@@ -304,9 +322,12 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             case DIALOG_FILTER:
                 return getFilterOptions();
 
-            default:
             case DIALOG_SERVICE_MODE:
                 return getServiceModeOptions();
+
+            default:
+            case DIALOG_EDIT:
+                return getEditOptions();
         }
     }
 
@@ -328,13 +349,13 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     protected abstract int[] getColumnHeaderTextResourceIds();
 
-    protected abstract String getRegisterTitle();
-
     protected abstract DialogOption[] getFilterOptions();
 
     protected abstract DialogOption[] getServiceModeOptions();
 
     protected abstract DialogOption[] getSortingOptions();
+
+    protected abstract DialogOption[] getEditOptions();
 
     protected abstract void onInitialization();
 }

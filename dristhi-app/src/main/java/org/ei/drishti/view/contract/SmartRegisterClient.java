@@ -72,4 +72,6 @@ public interface SmartRegisterClient {
     public boolean isBPL();
 
     public String locationStatus();
+
+    public String entityId();
 }

@@ -10,13 +10,17 @@ import android.widget.Toast;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
+import org.ei.drishti.view.controller.FormController;
 
 import static android.widget.Toast.LENGTH_SHORT;
+import static org.ei.drishti.AllConstants.ENTITY_ID_PARAM;
+import static org.ei.drishti.AllConstants.FORM_NAME_PARAM;
 import static org.ei.drishti.event.Event.ON_LOGOUT;
 
 public abstract class SecuredActivity extends Activity {
     protected Context context;
     protected Listener<Boolean> logoutListener;
+    protected FormController formController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,7 @@ public abstract class SecuredActivity extends Activity {
             context.userService().logoutSession();
             return;
         }
-
+        formController = new FormController(this);
         onCreation();
     }
 
@@ -79,4 +83,18 @@ public abstract class SecuredActivity extends Activity {
     protected abstract void onCreation();
 
     protected abstract void onResumption();
+
+    public void startFormActivity(String formName, String entityId, String metaData) {
+        Intent intent = new Intent(getApplicationContext(), FormActivity.class);
+        intent.putExtra(FORM_NAME_PARAM, formName);
+        intent.putExtra(ENTITY_ID_PARAM, entityId);
+        startActivity(intent);
+    }
+
+    public void startMicroFormActivity(String formName, String entityId, String metaData) {
+        Intent intent = new Intent(getApplicationContext(), MicroFormActivity.class);
+        intent.putExtra(FORM_NAME_PARAM, formName);
+        intent.putExtra(ENTITY_ID_PARAM, entityId);
+        startActivity(intent);
+    }
 }
