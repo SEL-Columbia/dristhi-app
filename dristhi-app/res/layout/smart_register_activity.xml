@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/gray">
 
-    <include layout="@layout/smart_register_nav_bar" />
+    <include layout="@layout/smart_register_nav_bar"/>
 
-    <include layout="@layout/smart_register_status_bar" />
+    <include layout="@layout/smart_register_status_bar"/>
 
     <LinearLayout
-        android:id="@+id/clients_header_layout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/list_header_height"
-        android:background="#ffd3d3d3"
-        android:orientation="horizontal"/>
+            android:id="@+id/clients_header_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_header_height"
+            android:background="@color/client_list_header_dark_grey"
+            android:orientation="horizontal"/>
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/smart_register_client_divider_height"
-        android:src="@color/smart_register_client_divider_color" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/smart_register_client_divider_height"
+            android:src="@color/smart_register_client_divider_color"/>
 
     <ListView
-        android:id="@+id/list"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@android:color/white"
-        android:divider="@color/smart_register_client_divider_color"
-        android:dividerHeight="@dimen/smart_register_client_divider_height" />
+            android:id="@+id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/white"
+            android:divider="@color/smart_register_client_divider_color"
+            android:layout_marginLeft="@dimen/list_view_margin_left_and_right"
+            android:layout_marginRight="@dimen/list_view_margin_left_and_right"
+            android:dividerHeight="@dimen/smart_register_client_divider_height"/>
 
 </LinearLayout>

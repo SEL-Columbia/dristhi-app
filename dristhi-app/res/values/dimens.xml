@@ -27,7 +27,7 @@
     <dimen name="list_header_font_size">24sp</dimen>
     <dimen name="list_service_mode_font_size">20sp</dimen>
 
-    <dimen name="ec_main_header_height">50dp</dimen>
+    <dimen name="ec_main_header_height">49dp</dimen>
     <dimen name="smart_register_status_bar_height">30dp</dimen>
 
     <dimen name="list_header_height">25dp</dimen>
@@ -51,5 +51,6 @@
 
     <dimen name="smart_register_dialog_list_item_height">50dp</dimen>
     <dimen name="smart_register_dialog_list_item_width">550dp</dimen>
-    <dimen name="nav_bar_go_back_button_width">52px</dimen>
+    <dimen name="nav_bar_go_back_button_width">52dp</dimen>
+    <dimen name="list_view_margin_left_and_right">10dp</dimen>
 </resources>
