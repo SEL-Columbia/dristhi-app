@@ -8,45 +8,55 @@
 
     <FrameLayout
             android:id="@+id/img_profile_layout"
-            android:layout_width="@dimen/list_profile_pic_width"
+            android:layout_width="@dimen/client_profile_pic_width"
             android:layout_height="fill_parent">
 
         <ImageView
                 android:id="@+id/img_profile"
-                android:layout_width="@dimen/list_profile_pic_width"
-                android:layout_height="fill_parent"
-                android:scaleType="center"
+                android:layout_width="@dimen/client_profile_pic_width"
+                android:layout_height="@dimen/client_profile_pic_height"
+                android:layout_marginLeft="@dimen/client_profile_pic_margin_left"
+                android:layout_marginRight="@dimen/client_profile_pic_margin_right"
+                android:layout_marginTop="@dimen/client_profile_pic_margin_top"
                 android:src="@drawable/woman_placeholder"/>
 
         <LinearLayout
                 android:id="@+id/badges_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
+                android:layout_height="match_parent"
+                android:paddingTop="@dimen/client_profile_badge_layout_margin_top"
                 android:orientation="vertical">
 
             <ImageView
                     android:id="@+id/img_hp_badge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/client_profile_badge_width"
+                    android:layout_height="@dimen/client_profile_badge_height"
+                    android:layout_marginBottom="-5dp"
+                    android:scaleType="fitStart"
                     android:src="@drawable/flag_hp"/>
 
             <ImageView
                     android:id="@+id/img_bpl_badge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/client_profile_badge_width"
+                    android:layout_height="@dimen/client_profile_badge_height"
+                    android:layout_marginBottom="-5dp"
+                    android:scaleType="fitStart"
                     android:src="@drawable/flag_bpl"/>
 
             <ImageView
                     android:id="@+id/img_sc_badge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/client_profile_badge_width"
+                    android:layout_height="@dimen/client_profile_badge_height"
+                    android:layout_marginBottom="-5dp"
+                    android:scaleType="fitStart"
                     android:src="@drawable/flag_sc"/>
 
             <ImageView
                     android:id="@+id/img_st_badge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/client_profile_badge_width"
+                    android:layout_height="@dimen/client_profile_badge_height"
+                    android:scaleType="fitStart"
+                    android:layout_marginBottom="-5dp"
                     android:src="@drawable/flag_st"/>
         </LinearLayout>
     </FrameLayout>

@@ -19,7 +19,15 @@
     <dimen name="list_item_height">82dp</dimen>
     <dimen name="list_item_margin">10dp</dimen>
 
-    <dimen name="list_profile_pic_width">50dp</dimen>
+    <dimen name="client_profile_pic_width">60dp</dimen>
+    <dimen name="client_profile_pic_height">60dp</dimen>
+    <dimen name="client_profile_pic_margin_left">5dp</dimen>
+    <dimen name="client_profile_pic_margin_right">5dp</dimen>
+    <dimen name="client_profile_pic_margin_top">5dp</dimen>
+    <dimen name="client_profile_badge_width">30dp</dimen>
+    <dimen name="client_profile_badge_height">22dp</dimen>
+    <dimen name="client_profile_badge_layout_margin_top">5dp</dimen>
+
     <dimen name="list_text_margin_from_profile_pic">10dp</dimen>
     <dimen name="list_item_text_font_size">16sp</dimen>
     <dimen name="list_main_text_font_size">19sp</dimen>
