@@ -75,7 +75,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         TextView titleLabelView = (TextView) findViewById(R.id.txt_title_label);
         titleLabelView.setText(getRegisterTitleInShortForm());
 
-        TextView reportMonthStartView = (TextView) findViewById(R.id.btn_report_month_start_date);
+        TextView reportMonthStartView = (TextView) findViewById(R.id.btn_report_month);
         setReportDates(reportMonthStartView);
 
         clientsHeaderLayout = (LinearLayout) findViewById(R.id.clients_header_layout);
@@ -115,7 +115,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         sortView.setOnClickListener(this);
         serviceModeView = (Button) findViewById(R.id.service_mode_selection);
         serviceModeView.setOnClickListener(this);
-        serviceModeView.setText(getDefaultTypeName());
+        serviceModeView.setText(getDefaultServiceModeName());
 
         appliedSortView = (TextView) findViewById(R.id.sorted_by);
         appliedVillageFilterView = (TextView) findViewById(R.id.village);
@@ -346,7 +346,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }
     }
 
-    protected abstract String getDefaultTypeName();
+    protected abstract String getDefaultServiceModeName();
 
     protected abstract FilterOption getDefaultVillageFilterOption();
 

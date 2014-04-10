@@ -7,20 +7,32 @@
 
     <ImageButton
             android:id="@+id/btn_back_to_home"
-            android:layout_width="@dimen/nav_bar_go_back_button_width"
-            android:layout_height="fill_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:scaleType="fitCenter"
+            android:layout_centerVertical="true"
+            android:scaleType="center"
             android:src="@drawable/homestacks"
-            android:background="@drawable/button_background_transparent"/>
+            android:background="@drawable/button_background_transparent"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"/>
+
+    <ImageView
+            android:layout_width="2dp"
+            android:layout_marginLeft="6dp"
+            android:layout_height="fill_parent"
+            android:src="@drawable/separator"
+            android:scaleType="fitXY"
+            android:layout_toRightOf="@+id/btn_back_to_home"/>
 
     <LinearLayout
             android:id="@+id/title_layout"
+            android:layout_marginLeft="2dp"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_toRightOf="@id/btn_back_to_home"
-            android:paddingLeft="@dimen/main_header_item_padding"
-            android:paddingRight="@dimen/main_header_item_padding"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
             android:orientation="horizontal"
             android:background="@drawable/button_background_transparent">
 
@@ -29,14 +41,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                style="@style/SmartRegister.Header"/>
+                style="@style/SmartRegister.Header"
+                android:text="@string/ec_register_title_in_short"/>
 
         <TextView
-                android:id="@+id/btn_report_month_start_date"
+                android:id="@+id/btn_report_month"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                style="@style/SmartRegister.Header"/>
+                style="@style/SmartRegister.Header"
+                android:text="@string/report_month_sample_text"/>
     </LinearLayout>
 
     <LinearLayout
@@ -44,10 +58,11 @@
             android:layout_width="@dimen/ec_main_header_search_layout_width"
             android:layout_height="fill_parent"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/main_header_item_padding"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:paddingLeft="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:paddingLeft="15dp"
             android:background="@drawable/rounded_edit_text_normal"
             android:orientation="horizontal">
 
@@ -56,53 +71,93 @@
                 android:layout_width="@dimen/ec_main_header_search_box_width"
                 android:layout_height="fill_parent"
                 android:hint="@string/str_search_hint"
+                android:textSize="17sp"
                 android:background="@android:color/transparent"/>
 
-        <Button
+        <ImageButton
                 android:id="@+id/btn_search_cancel"
                 android:layout_width="@dimen/ec_main_header_search_cancel_button_width"
                 android:layout_height="fill_parent"
-                android:paddingRight="5dp"
-                android:textSize="25sp"
-                android:text="x"
+                android:paddingRight="40dp"
+                android:paddingLeft="15dp"
+                android:src="@drawable/ic_cross"
                 android:background="@android:color/transparent"
-                android:visibility="invisible"/>
+                android:visibility="visible"/>
     </LinearLayout>
+
+    <ImageButton
+            android:id="@+id/register_client"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@id/search_layout"
+            android:layout_marginRight="6dp"
+            android:layout_marginLeft="6dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center"
+            android:src="@drawable/ic_plus"
+            android:background="@drawable/button_background_transparent"/>
+
+    <ImageView
+            android:layout_width="2dp"
+            android:layout_height="fill_parent"
+            android:src="@drawable/separator"
+            android:scaleType="fitXY"
+            android:layout_toRightOf="@+id/register_client"/>
 
     <ImageButton
             android:id="@+id/filter_selection"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_toLeftOf="@id/search_layout"
-            android:layout_marginRight="@dimen/main_header_item_padding"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:layout_toLeftOf="@id/register_client"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:gravity="center"
-            android:background="@drawable/button_background_transparent"
-            android:src="@drawable/icon_village_filter"/>
+            android:src="@drawable/ic_village_filter"
+            android:background="@drawable/button_background_transparent"/>
+
+    <ImageView
+            android:layout_width="2dp"
+            android:layout_height="fill_parent"
+            android:src="@drawable/separator"
+            android:scaleType="fitXY"
+            android:layout_toRightOf="@+id/filter_selection"/>
 
     <ImageButton
             android:id="@+id/sort_selection"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_toLeftOf="@id/filter_selection"
-            android:layout_marginRight="@dimen/main_header_item_padding"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:gravity="center"
-            android:background="@drawable/button_background_transparent"
-            android:src="@drawable/icon_sort"/>
+            android:src="@drawable/ic_sort"
+            android:background="@drawable/button_background_transparent"/>
+
+    <ImageView
+            android:layout_width="2dp"
+            android:layout_height="fill_parent"
+            android:src="@drawable/separator"
+            android:scaleType="fitXY"
+            android:layout_toRightOf="@+id/sort_selection"/>
 
     <Button
             android:id="@+id/service_mode_selection"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_toLeftOf="@id/sort_selection"
-            android:layout_marginRight="@dimen/main_header_item_padding"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:gravity="center"
             android:text="@string/couple_selection"
             android:background="@drawable/button_background_transparent"
-            style="@style/SmartRegister.Header.ServiceMode"/>
+            style="@style/SmartRegister.Header.ServiceMode"
+            android:layout_alignParentTop="true"/>
+
+    <ImageView
+            android:layout_width="2dp"
+            android:layout_height="fill_parent"
+            android:src="@drawable/separator"
+            android:scaleType="fitXY"
+            android:layout_toRightOf="@+id/service_mode_selection"/>
 </RelativeLayout>

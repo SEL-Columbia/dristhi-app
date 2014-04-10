@@ -51,7 +51,7 @@
 
     <application
             android:label="@string/app_name"
-            android:icon="@drawable/icon"
+            android:icon="@drawable/ic_dristhi_logo"
             android:clearTaskOnLaunch="true"
             android:name=".view.activity.DrishtiApplication"
             android:largeHeap="true">

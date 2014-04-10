@@ -109,7 +109,7 @@
             android:scaleType="center"
             android:gravity="center"
             android:layout_margin="5dp"
-            android:src="@drawable/pencil_white"
+            android:src="@drawable/ic_pencil"
             android:clickable="true"
             android:focusable="true"
             android:background="@color/smart_register_blue"/>

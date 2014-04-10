@@ -65,7 +65,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    protected String getDefaultTypeName() {
+    protected String getDefaultServiceModeName() {
         return getResources().getString(R.string.couple_selection);
     }
 
