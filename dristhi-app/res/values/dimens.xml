@@ -65,4 +65,5 @@
     <dimen name="smart_register_dialog_list_item_width">550dp</dimen>
     <dimen name="nav_bar_go_back_button_width">68dp</dimen>
     <dimen name="list_view_margin_left_and_right">10dp</dimen>
+    <dimen name="smart_register_nav_bar_separator">3dp</dimen>
 </resources>

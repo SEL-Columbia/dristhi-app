@@ -8,7 +8,7 @@
     <ImageButton
             android:id="@+id/btn_back_to_home"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:scaleType="center"
@@ -18,8 +18,8 @@
             android:paddingRight="8dp"/>
 
     <ImageView
-            android:layout_width="2dp"
-            android:layout_marginLeft="6dp"
+            android:id="@+id/home_title_separator"
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
             android:layout_height="fill_parent"
             android:src="@drawable/separator"
             android:scaleType="fitXY"
@@ -27,11 +27,10 @@
 
     <LinearLayout
             android:id="@+id/title_layout"
-            android:layout_marginLeft="2dp"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:layout_toRightOf="@id/btn_back_to_home"
-            android:paddingLeft="13dp"
+            android:layout_toRightOf="@id/home_title_separator"
+            android:paddingLeft="11dp"
             android:paddingRight="13dp"
             android:orientation="horizontal"
             android:background="@drawable/button_background_transparent">
@@ -82,7 +81,7 @@
                 android:paddingLeft="15dp"
                 android:src="@drawable/ic_cross"
                 android:background="@android:color/transparent"
-                android:visibility="visible"/>
+                android:visibility="invisible"/>
     </LinearLayout>
 
     <ImageButton
@@ -90,16 +89,14 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_toLeftOf="@id/search_layout"
-            android:layout_marginRight="6dp"
-            android:layout_marginLeft="6dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
             android:gravity="center"
             android:src="@drawable/ic_plus"
             android:background="@drawable/button_background_transparent"/>
 
     <ImageView
-            android:layout_width="2dp"
+            android:layout_width="@dimen/ec_main_header_search_layout_width"
             android:layout_height="fill_parent"
             android:src="@drawable/separator"
             android:scaleType="fitXY"
@@ -110,14 +107,14 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_toLeftOf="@id/register_client"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
             android:gravity="center"
             android:src="@drawable/ic_village_filter"
             android:background="@drawable/button_background_transparent"/>
 
     <ImageView
-            android:layout_width="2dp"
+            android:layout_width="@dimen/ec_main_header_search_layout_width"
             android:layout_height="fill_parent"
             android:src="@drawable/separator"
             android:scaleType="fitXY"
@@ -128,14 +125,14 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_toLeftOf="@id/filter_selection"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
             android:gravity="center"
             android:src="@drawable/ic_sort"
             android:background="@drawable/button_background_transparent"/>
 
     <ImageView
-            android:layout_width="2dp"
+            android:layout_width="@dimen/ec_main_header_search_layout_width"
             android:layout_height="fill_parent"
             android:src="@drawable/separator"
             android:scaleType="fitXY"
@@ -146,8 +143,8 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_toLeftOf="@id/sort_selection"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
             android:gravity="center"
             android:text="@string/couple_selection"
             android:background="@drawable/button_background_transparent"
@@ -155,7 +152,7 @@
             android:layout_alignParentTop="true"/>
 
     <ImageView
-            android:layout_width="2dp"
+            android:layout_width="@dimen/ec_main_header_search_layout_width"
             android:layout_height="fill_parent"
             android:src="@drawable/separator"
             android:scaleType="fitXY"
