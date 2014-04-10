@@ -4,7 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.joda.time.LocalDate;
-import org.joda.time.Period;
+import org.joda.time.Months;
 
 public class ECChildClient {
     private final String entityId;
@@ -26,9 +26,7 @@ public class ECChildClient {
     }
 
     public int getAgeInMonths() {
-        LocalDate dob = LocalDate.parse(dateOfBirth);
-        LocalDate now = LocalDate.now();
-        return new Period(dob, now).getMonths();
+        return Months.monthsBetween(LocalDate.parse(dateOfBirth), LocalDate.now()).getMonths();
     }
 
     @Override

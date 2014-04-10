@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.FPMethod;
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
+import org.joda.time.Years;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,11 +74,8 @@ public class ECClient implements SmartRegisterClient {
         return humanize(husbandName);
     }
 
-    //#TODO: Write unit test
     public int age() {
-        LocalDate dob = LocalDate.parse(dateOfBirth);
-        LocalDate now = LocalDate.now();
-        return new Period(dob, now).getYears();
+        return Years.yearsBetween(LocalDate.parse(dateOfBirth), LocalDate.now()).getYears();
     }
 
     public Integer ecNumber() {
