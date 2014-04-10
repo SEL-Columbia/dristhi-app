@@ -207,7 +207,12 @@ public class MotherRepository extends DrishtiRepository {
 
     public boolean isPregnant(String ecId) {
         return longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + MOTHER_TABLE_NAME
-                + " WHERE " + EC_CASEID_COLUMN + " = ? AND " + IS_CLOSED_COLUMN + " = ? AND " + TYPE_COLUMN + " = ?",
+                        + " WHERE " + EC_CASEID_COLUMN + " = ? AND " + IS_CLOSED_COLUMN + " = ? AND " + TYPE_COLUMN + " = ?",
                 new String[]{ecId, NOT_CLOSED, TYPE_ANC}) > 0;
+    }
+
+    public void update(Mother mother) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        database.update(MOTHER_TABLE_NAME, createValuesFor(mother, TYPE_ANC), ID_COLUMN + " = ?", new String[]{mother.caseId()});
     }
 }

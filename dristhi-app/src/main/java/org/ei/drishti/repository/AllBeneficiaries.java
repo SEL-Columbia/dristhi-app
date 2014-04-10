@@ -123,4 +123,8 @@ public class AllBeneficiaries {
     public void updateChild(Child child) {
         childRepository.update(child);
     }
+
+    public void updateMother(Mother mother) {
+        motherRepository.update(mother);
+    }
 }

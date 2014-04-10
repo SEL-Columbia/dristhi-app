@@ -27,6 +27,8 @@ public class AllBeneficiariesTest {
     private TimelineEventRepository timelineEventRepository;
     @Mock
     private Child child;
+    @Mock
+    private Mother mother;
 
     private AllBeneficiaries allBeneficiaries;
 
@@ -88,5 +90,12 @@ public class AllBeneficiariesTest {
         allBeneficiaries.updateChild(child);
 
         verify(childRepository).update(child);
+    }
+
+    @Test
+    public void shouldDelegateToMotherRepositoryWhenUpdateMotherIsCalled() throws Exception {
+        allBeneficiaries.updateMother(mother);
+
+        verify(motherRepository).update(mother);
     }
 }

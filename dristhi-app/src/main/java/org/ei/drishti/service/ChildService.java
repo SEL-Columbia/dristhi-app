@@ -66,8 +66,11 @@ public class ChildService {
     }
 
     public void registerForEC(FormSubmission submission) {
-        Map<String, String> immunizationDateFieldMap = createImmunizationDateFieldMap();
+        if (shouldCloseMother(submission.getFieldValue(SHOULD_CLOSE_MOTHER))) {
+            closeMother(submission.getFieldValue(AllConstants.ChildRegistrationFields.MOTHER_ID));
+        }
 
+        Map<String, String> immunizationDateFieldMap = createImmunizationDateFieldMap();
         allTimelines.add(forChildBirthInChildProfile(
                 submission.getFieldValue(AllConstants.ChildRegistrationFields.CHILD_ID),
                 submission.getFieldValue(AllConstants.ChildRegistrationFields.DATE_OF_BIRTH),
@@ -89,6 +92,16 @@ public class ChildService {
                     immunization,
                     submission.getFieldValue(immunizationDateFieldMap.get(immunization))));
         }
+    }
+
+    private void closeMother(String id) {
+        Mother mother = allBeneficiaries.findMother(id);
+        mother.setIsClosed(true);
+        allBeneficiaries.updateMother(mother);
+    }
+
+    private boolean shouldCloseMother(String shouldCloseMother) {
+        return isBlank(shouldCloseMother) || Boolean.parseBoolean(shouldCloseMother);
     }
 
     private Map<String, String> createImmunizationDateFieldMap() {
@@ -175,7 +188,7 @@ public class ChildService {
         String pncVisitDay = submission.getFieldValue(AllConstants.PNCVisitFields.PNC_VISIT_DAY);
         SubForm subForm = submission.getSubFormByName(AllConstants.PNCVisitFields.CHILD_PNC_VISIT_SUB_FORM_NAME);
 
-        if(handleStillBirth(submission, subForm)) return;
+        if (handleStillBirth(submission, subForm)) return;
 
         for (Map<String, String> childInstances : subForm.instances()) {
             allTimelines.add(forChildPNCVisit(childInstances.get(ENTITY_ID_FIELD_NAME), pncVisitDay,

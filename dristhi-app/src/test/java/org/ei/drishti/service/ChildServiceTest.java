@@ -219,6 +219,7 @@ public class ChildServiceTest {
     @Test
     public void shouldAddTimelineEventWhenChildIsRegisteredForEC() throws Exception {
         FormSubmission submission = mock(FormSubmission.class);
+        Mother mother = new Mother("mother id 1", "ec id 1", "thayi card number", "2013-01-01");
         when(submission.entityId()).thenReturn("ec id 1");
         when(submission.getFieldValue("motherId")).thenReturn("mother id 1");
         when(submission.getFieldValue("childId")).thenReturn("child id 1");
@@ -228,6 +229,33 @@ public class ChildServiceTest {
         when(submission.getFieldValue("immunizationsGiven")).thenReturn("bcg opv_0");
         when(submission.getFieldValue("bcgDate")).thenReturn("2012-01-06");
         when(submission.getFieldValue("opv0Date")).thenReturn("2012-01-07");
+        when(submission.getFieldValue("shouldCloseMother")).thenReturn("");
+        when(allBeneficiaries.findMother("mother id 1")).thenReturn(mother);
+
+        service.registerForEC(submission);
+
+        verify(allBeneficiaries).updateMother(mother.setIsClosed(true));
+        verify(allTimelineEvents).add(forChildBirthInChildProfile("child id 1", "2013-01-02", "3", "bcg opv_0"));
+        verify(allTimelineEvents).add(forChildBirthInMotherProfile("mother id 1", "2013-01-02", "female", null, null));
+        verify(allTimelineEvents).add(forChildBirthInECProfile("ec id 1", "2013-01-02", "female", null));
+
+        verify(serviceProvidedService).add(forChildImmunization("child id 1", "bcg", "2012-01-06"));
+        verify(serviceProvidedService).add(forChildImmunization("child id 1", "opv_0", "2012-01-07"));
+    }
+
+    @Test
+    public void shouldNotCloseMotherWhenAnOpenANCAlreadyExistWhileRegisteringAChildForEC() throws Exception {
+        FormSubmission submission = mock(FormSubmission.class);
+        when(submission.entityId()).thenReturn("ec id 1");
+        when(submission.getFieldValue("motherId")).thenReturn("mother id 1");
+        when(submission.getFieldValue("childId")).thenReturn("child id 1");
+        when(submission.getFieldValue("dateOfBirth")).thenReturn("2013-01-02");
+        when(submission.getFieldValue("gender")).thenReturn("female");
+        when(submission.getFieldValue("weight")).thenReturn("3");
+        when(submission.getFieldValue("immunizationsGiven")).thenReturn("bcg opv_0");
+        when(submission.getFieldValue("bcgDate")).thenReturn("2012-01-06");
+        when(submission.getFieldValue("opv0Date")).thenReturn("2012-01-07");
+        when(submission.getFieldValue("shouldCloseMother")).thenReturn("false");
 
         service.registerForEC(submission);
 

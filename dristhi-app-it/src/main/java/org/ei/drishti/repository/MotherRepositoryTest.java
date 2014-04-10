@@ -224,4 +224,14 @@ public class MotherRepositoryTest extends AndroidTestCase {
         assertFalse(repository.isPregnant("ec id 3"));
         assertFalse(repository.isPregnant("ec id 4"));
     }
+
+    public void testShouldUpdateMother() throws Exception {
+        Mother mother = new Mother("mother id 1", "ec id 1", "TC 1", "2012-06-08").withType("ANC").setIsClosed(false);
+        repository.add(mother);
+
+        mother.setIsClosed(true);
+        repository.update(mother);
+
+        assertEquals(mother, repository.findById("mother id 1"));
+    }
 }

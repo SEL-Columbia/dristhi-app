@@ -184,7 +184,7 @@ public class AllConstants {
         public static final String PENTAVALENT_2_DATE = "pentavalent2Date";
         public static final String PENTAVALENT_3_DATE = "pentavalent3Date";
         public static final String HEPB_BIRTH_DOSE_DATE = "hepb0Date";
-
+        public static final String SHOULD_CLOSE_MOTHER = "shouldCloseMother";
         public static final String MMR_DATE = "mmrDate";
         public static final String JE_DATE = "jeDate";
     }
