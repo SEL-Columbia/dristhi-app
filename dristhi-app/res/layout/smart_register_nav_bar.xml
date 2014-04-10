@@ -13,7 +13,7 @@
             android:layout_centerVertical="true"
             android:scaleType="center"
             android:src="@drawable/homestacks"
-            android:background="@drawable/button_background_transparent"
+            android:background="@drawable/transparent_gray_background"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"/>
 
@@ -33,7 +33,7 @@
             android:paddingLeft="11dp"
             android:paddingRight="13dp"
             android:orientation="horizontal"
-            android:background="@drawable/button_background_transparent">
+            android:background="@drawable/transparent_gray_background">
 
         <TextView
                 android:id="@+id/txt_title_label"
@@ -93,7 +93,7 @@
             android:paddingRight="22dp"
             android:gravity="center"
             android:src="@drawable/ic_plus"
-            android:background="@drawable/button_background_transparent"/>
+            android:background="@drawable/transparent_gray_background"/>
 
     <ImageView
             android:layout_width="@dimen/smart_register_nav_bar_separator"
@@ -111,7 +111,7 @@
             android:paddingRight="22dp"
             android:gravity="center"
             android:src="@drawable/ic_village_filter"
-            android:background="@drawable/button_background_transparent"/>
+            android:background="@drawable/transparent_gray_background"/>
 
     <ImageView
             android:layout_width="@dimen/smart_register_nav_bar_separator"
@@ -129,7 +129,7 @@
             android:paddingRight="22dp"
             android:gravity="center"
             android:src="@drawable/ic_sort"
-            android:background="@drawable/button_background_transparent"/>
+            android:background="@drawable/transparent_gray_background"/>
 
     <ImageView
             android:layout_width="@dimen/smart_register_nav_bar_separator"
@@ -147,7 +147,7 @@
             android:paddingRight="22dp"
             android:gravity="center"
             android:text="@string/couple_selection"
-            android:background="@drawable/button_background_transparent"
+            android:background="@drawable/transparent_gray_background"
             style="@style/SmartRegister.Header.ServiceMode"
             android:layout_alignParentTop="true"/>
 

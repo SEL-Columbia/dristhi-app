@@ -36,8 +36,9 @@
     </string>
     <string name="unsynced_forms_count_message">forms unsynced</string>
 
-    <string name="str_next">Next</string>
-    <string name="str_previous">Previous</string>
+    <string name="str_next">"Next &gt;&gt;"</string>
+    <string name="str_previous">"&lt;&lt; Previous"</string>
+    <string name="str_page_info">Page {0} of {1}</string>
 
     <string name="header_name">NAME</string>
     <string name="header_ec_no">EC NO.</string>

@@ -3,11 +3,11 @@
     <item
         android:state_pressed="true"
         android:state_enabled="true"
-        android:drawable="@color/button_pressed_color" />
+        android:drawable="@color/transparent_blue" />
     <item
         android:state_focused="true"
         android:state_enabled="true"
-        android:drawable="@color/button_pressed_color" />
+        android:drawable="@color/transparent_blue" />
     <item
         android:state_enabled="true"
         android:drawable="@android:color/transparent" />

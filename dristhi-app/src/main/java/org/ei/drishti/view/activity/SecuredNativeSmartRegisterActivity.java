@@ -17,6 +17,7 @@ import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.dialog.*;
 import org.joda.time.LocalDate;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -150,6 +151,9 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         nextPageView.setOnClickListener(this);
         previousPageView.setOnClickListener(this);
 
+        footerView.setLayoutParams(new AbsListView.LayoutParams(
+                AbsListView.LayoutParams.MATCH_PARENT,
+                (int) getResources().getDimension(R.dimen.pagination_bar_height)));
         clientsView.addFooterView(footerView);
     }
 
@@ -158,9 +162,12 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     public void updateFooter() {
-        pageInfoView.setText((clientsAdapter.currentPage() + 1) + " of " + (clientsAdapter.pageCount() + 1));
-        nextPageView.setEnabled(clientsAdapter.hasNextPage());
-        previousPageView.setEnabled(clientsAdapter.hasPreviousPage());
+        pageInfoView.setText(MessageFormat.
+                format(getResources().getString(R.string.str_page_info),
+                        (clientsAdapter.currentPage() + 1),
+                        (clientsAdapter.pageCount() + 1)));
+        nextPageView.setVisibility(clientsAdapter.hasNextPage() ? View.VISIBLE : View.INVISIBLE);
+        previousPageView.setVisibility(clientsAdapter.hasPreviousPage() ? View.VISIBLE : View.INVISIBLE);
     }
 
     private void goToPreviousPage() {
