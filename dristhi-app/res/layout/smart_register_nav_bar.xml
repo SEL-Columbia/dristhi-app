@@ -96,7 +96,7 @@
             android:background="@drawable/button_background_transparent"/>
 
     <ImageView
-            android:layout_width="@dimen/ec_main_header_search_layout_width"
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
             android:layout_height="fill_parent"
             android:src="@drawable/separator"
             android:scaleType="fitXY"
@@ -114,7 +114,7 @@
             android:background="@drawable/button_background_transparent"/>
 
     <ImageView
-            android:layout_width="@dimen/ec_main_header_search_layout_width"
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
             android:layout_height="fill_parent"
             android:src="@drawable/separator"
             android:scaleType="fitXY"
@@ -132,7 +132,7 @@
             android:background="@drawable/button_background_transparent"/>
 
     <ImageView
-            android:layout_width="@dimen/ec_main_header_search_layout_width"
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
             android:layout_height="fill_parent"
             android:src="@drawable/separator"
             android:scaleType="fitXY"
@@ -152,7 +152,7 @@
             android:layout_alignParentTop="true"/>
 
     <ImageView
-            android:layout_width="@dimen/ec_main_header_search_layout_width"
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
             android:layout_height="fill_parent"
             android:src="@drawable/separator"
             android:scaleType="fitXY"
