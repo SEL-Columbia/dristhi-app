@@ -100,9 +100,6 @@ public class ECSmartRegisterClientsProvider
                 viewModel.iudPlaceView().setVisibility(View.VISIBLE);
                 viewModel.iudPlaceView().setText(client.iudPlace());
             }
-            if (StringUtils.isNotBlank(client.iudPerson()) && StringUtils.isNotBlank(client.iudPlace())) {
-                viewModel.iudPlacePersonSeparatorView().setVisibility(View.VISIBLE);
-            }
         }
     }
 

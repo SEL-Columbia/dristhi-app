@@ -41,13 +41,6 @@
             style="@style/TextAppearance.ListView.Item.Small"/>
 
     <TextView
-            android:id="@+id/txt_iud_place_person_separator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/TextAppearance.ListView.Item.Small"
-            android:text="@string/str_comma_separator"/>
-
-    <TextView
             android:id="@+id/txt_iud_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -4,7 +4,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.FPMethod;
-import org.ei.drishti.util.StringUtil;
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
 
@@ -12,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static org.apache.commons.lang3.StringUtils.upperCase;
 import static org.ei.drishti.util.DateUtil.formatDate;
+import static org.ei.drishti.util.StringUtil.humanize;
 
 public class ECClient implements SmartRegisterClient {
     public static final String OUT_OF_AREA = "out_of_area";
@@ -61,15 +62,15 @@ public class ECClient implements SmartRegisterClient {
 
     @Override
     public String village() {
-        return StringUtil.humanize(village);
+        return humanize(village);
     }
 
     public String name() {
-        return StringUtil.humanize(name);
+        return humanize(name);
     }
 
     public String husbandName() {
-        return StringUtil.humanize(husbandName);
+        return humanize(husbandName);
     }
 
     //#TODO: Write unit test
@@ -156,11 +157,11 @@ public class ECClient implements SmartRegisterClient {
     }
 
     public String iudPerson() {
-        return iudPerson;
+        return upperCase(iudPerson);
     }
 
     public String iudPlace() {
-        return iudPlace;
+        return upperCase(iudPlace);
     }
 
     public ECClient withDateOfBirth(String dateOfBirth) {

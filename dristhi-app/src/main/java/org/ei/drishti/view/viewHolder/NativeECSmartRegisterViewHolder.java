@@ -33,7 +33,6 @@ public class NativeECSmartRegisterViewHolder {
     private TextView fpMethodQuantityLabelView;
     private TextView fpMethodQuantityView;
     private TextView iudPlaceView;
-    private TextView iudPlacePersonSeparatorView;
     private TextView iudPersonView;
     private TextView maleChildrenView;
     private TextView femaleChildrenView;
@@ -63,7 +62,6 @@ public class NativeECSmartRegisterViewHolder {
         this.fpMethodQuantityView = (TextView) itemView.findViewById(R.id.txt_fp_method_quantity);
         this.iudPlaceView = (TextView) itemView.findViewById(R.id.txt_iud_place);
         this.iudPersonView = (TextView) itemView.findViewById(R.id.txt_iud_person);
-        this.iudPlacePersonSeparatorView = (TextView) itemView.findViewById(R.id.txt_iud_place_person_separator);
         this.maleChildrenView = (TextView) itemView.findViewById(R.id.txt_male_children);
         this.femaleChildrenView = (TextView) itemView.findViewById(R.id.txt_female_children);
         this.editButton = (ImageButton) itemView.findViewById(R.id.btn_edit);
@@ -161,10 +159,6 @@ public class NativeECSmartRegisterViewHolder {
         return iudPlaceView;
     }
 
-    public TextView iudPlacePersonSeparatorView() {
-        return iudPlacePersonSeparatorView;
-    }
-
     public TextView iudPersonView() {
         return iudPersonView;
     }
@@ -214,6 +208,5 @@ public class NativeECSmartRegisterViewHolder {
         fpMethodQuantityView.setVisibility(View.GONE);
         iudPersonView.setVisibility(View.GONE);
         iudPlaceView.setVisibility(View.GONE);
-        iudPlacePersonSeparatorView.setVisibility(View.GONE);
     }
 }
