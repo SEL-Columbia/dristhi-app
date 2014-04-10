@@ -121,6 +121,8 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         appliedSortView = (TextView) findViewById(R.id.sorted_by);
         appliedVillageFilterView = (TextView) findViewById(R.id.village);
 
+        findViewById(R.id.register_client).setOnClickListener(this);
+
         updateFooter();
         updateStatusBar();
         updateDefaultOptions();
@@ -236,6 +238,9 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             case R.id.btn_back_to_home:
                 goBack();
                 break;
+            case R.id.register_client:
+                startRegistration();
+                break;
             case R.id.filter_selection:
                 showFragmentDialog(DIALOG_FILTER, getDialogDataSet(DIALOG_FILTER));
                 break;
@@ -257,8 +262,10 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             case R.id.btn_search_cancel:
                 clearSearch();
                 break;
+
         }
     }
+
 
     private void clearSearch() {
         searchView.setText("");
@@ -380,4 +387,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     protected abstract DialogOption[] getEditOptions();
 
     protected abstract void onInitialization();
+
+    protected abstract void startRegistration();
 }

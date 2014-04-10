@@ -11,6 +11,7 @@ import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
 import org.ei.drishti.view.controller.FormController;
+import org.ei.drishti.view.controller.NavigationController;
 
 import static android.widget.Toast.LENGTH_SHORT;
 import static org.ei.drishti.AllConstants.ENTITY_ID_PARAM;
@@ -21,6 +22,7 @@ public abstract class SecuredActivity extends Activity {
     protected Context context;
     protected Listener<Boolean> logoutListener;
     protected FormController formController;
+    protected NavigationController navigationController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public abstract class SecuredActivity extends Activity {
             return;
         }
         formController = new FormController(this);
+        navigationController = new NavigationController(this, context.anmController());
         onCreation();
     }
 

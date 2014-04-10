@@ -13,6 +13,7 @@ import java.util.Map;
 import static org.ei.drishti.view.controller.ECSmartRegisterController.*;
 
 public class NativeECSmartRegisterViewHolder {
+    private ViewGroup profileInfoLayout;
     private TextView txtNameView;
     private TextView txtHusbandNameView;
     private TextView txtVillageNameView;
@@ -40,10 +41,12 @@ public class NativeECSmartRegisterViewHolder {
     private Map<String, ViewGroup> statusLayouts;
 
     public NativeECSmartRegisterViewHolder(ViewGroup itemView) {
-        this.txtNameView = (TextView) itemView.findViewById(R.id.txt_wife_name);
-        this.txtHusbandNameView = (TextView) itemView.findViewById(R.id.txt_husband_name);
-        this.txtVillageNameView = (TextView) itemView.findViewById(R.id.txt_village_name);
-        this.txtAgeView = (TextView) itemView.findViewById(R.id.txt_age);
+        this.profileInfoLayout = (ViewGroup) itemView.findViewById(R.id.profile_info_layout);
+        this.txtNameView = (TextView) profileInfoLayout.findViewById(R.id.txt_wife_name);
+        this.txtHusbandNameView = (TextView) profileInfoLayout.findViewById(R.id.txt_husband_name);
+        this.txtVillageNameView = (TextView) profileInfoLayout.findViewById(R.id.txt_village_name);
+        this.txtAgeView = (TextView) profileInfoLayout.findViewById(R.id.txt_age);
+
         this.txtECNumberView = (TextView) itemView.findViewById(R.id.txt_ec_number);
         this.txtGravida = (TextView) itemView.findViewById(R.id.txt_gravida);
         this.txtParity = (TextView) itemView.findViewById(R.id.txt_parity);
@@ -76,6 +79,10 @@ public class NativeECSmartRegisterViewHolder {
                 .put(PNC_STATUS, (ViewGroup) itemView.findViewById(R.id.pnc_status_layout));
         this.statusLayouts
                 .put(PNC_FP_STATUS, (ViewGroup) itemView.findViewById(R.id.pnc_and_fp_status_layout));
+    }
+
+    public ViewGroup profileInfoLayout() {
+        return profileInfoLayout;
     }
 
     public TextView txtNameView() {

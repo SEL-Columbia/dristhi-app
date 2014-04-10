@@ -136,6 +136,8 @@ public class ECSmartRegisterClientsProvider
         viewModel.badgeBPLView().setVisibility(client.isBPL() ? View.VISIBLE : View.GONE);
         viewModel.badgeSCView().setVisibility(client.isSC() ? View.VISIBLE : View.GONE);
         viewModel.badgeSTView().setVisibility(client.isST() ? View.VISIBLE : View.GONE);
+        viewModel.profileInfoLayout().setOnClickListener(onClickListener);
+        viewModel.profileInfoLayout().setTag(client);
     }
 
     private void setupGPLSAView(ECClient client, NativeECSmartRegisterViewHolder viewModel) {

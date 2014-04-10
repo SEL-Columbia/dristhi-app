@@ -1,5 +1,6 @@
 package org.ei.drishti.view.activity;
 
+import android.view.View;
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
 import org.ei.drishti.R;
@@ -7,6 +8,7 @@ import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.provider.ECSmartRegisterClientsProvider;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.util.StringUtil;
+import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.Village;
 import org.ei.drishti.view.controller.ECSmartRegisterController;
 import org.ei.drishti.view.controller.VillageController;
@@ -133,5 +135,27 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 context.ecClientsCache());
         villageController = new VillageController(context.allEligibleCouples(),
                 context.listCache(), context.villagesCache());
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.profile_info_layout:
+                showProfileView((ECClient) view.getTag());
+                break;
+
+            default:
+                super.onClick(view);
+        }
+    }
+
+    private void showProfileView(ECClient client) {
+        navigationController.startEC(client.entityId());
+    }
+
+    @Override
+    protected void startRegistration() {
+        startFormActivity(EC_REGISTRATION, null, null);
+
     }
 }
