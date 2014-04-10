@@ -22,6 +22,7 @@ import org.ei.drishti.view.viewHolder.NativeECSmartRegisterViewHolder;
 import java.util.List;
 
 import static java.text.MessageFormat.format;
+import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.view.controller.ECSmartRegisterController.*;
 
 public class ECSmartRegisterClientsProvider
@@ -107,7 +108,7 @@ public class ECSmartRegisterClientsProvider
 
     private void setupStatusView(ECClient client, NativeECSmartRegisterViewHolder viewModel) {
         String statusType = client.status().get(STATUS_TYPE_FIELD);
-        String statusDate = client.status().get(STATUS_DATE_FIELD);
+        String statusDate = formatDate(client.status().get(STATUS_DATE_FIELD));
         viewModel.hideAllStatusLayouts();
         ViewGroup statusViewGroup = viewModel.statusLayout(statusType);
         statusViewGroup.setVisibility(View.VISIBLE);
@@ -118,10 +119,10 @@ public class ECSmartRegisterClientsProvider
                     .setText(StringUtils.upperCase(statusType));
         } else if (ANC_STATUS.equalsIgnoreCase(statusType)) {
             viewModel.getANCStatusEDDDateView(statusViewGroup)
-                    .setText(client.status().get(STATUS_EDD_FIELD));
+                    .setText(formatDate(client.status().get(STATUS_EDD_FIELD)));
         } else if (PNC_FP_STATUS.equalsIgnoreCase(statusType)) {
             viewModel.getFPStatusDateView(statusViewGroup)
-                    .setText(client.status().get(FP_METHOD_DATE_FIELD));
+                    .setText(formatDate(client.status().get(FP_METHOD_DATE_FIELD)));
         }
     }
 

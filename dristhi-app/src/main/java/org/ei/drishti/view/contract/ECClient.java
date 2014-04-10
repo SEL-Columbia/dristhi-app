@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static org.ei.drishti.util.DateUtil.formatDate;
+
 public class ECClient implements SmartRegisterClient {
     public static final String OUT_OF_AREA = "out_of_area";
     public static final String IN_AREA = "in_area";
@@ -142,7 +144,7 @@ public class ECClient implements SmartRegisterClient {
     }
 
     public String familyPlanningMethodChangeDate() {
-        return familyPlanningMethodChangeDate;
+        return formatDate(familyPlanningMethodChangeDate);
     }
 
     public String numberOfOCPDelivered() {
