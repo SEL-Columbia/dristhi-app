@@ -8,9 +8,6 @@
 
     <color name="light_blue">#1a93d2</color>
 
-    <color name="blue_button_normal">#ff00bfff</color>
-    <color name="blue_button_pressed">#ff00bfbf</color>
-
     <color name="smart_register_client_divider_color">#d9d9d9</color>
     <color name="status_bar_background_dark_grey">#494949</color>
     <color name="status_bar_text_almost_white">#f5f5f5</color>
@@ -21,4 +18,5 @@
 
     <color name="transparent_gray">#44ffffff</color>
     <color name="transparent_blue">#44389cc8</color>
+    <color name="transparent_blue_for_edit_button">#bb389cc8</color>
 </resources>

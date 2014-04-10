@@ -112,5 +112,5 @@
             android:src="@drawable/ic_pencil"
             android:clickable="true"
             android:focusable="true"
-            android:background="@color/smart_register_blue"/>
+            android:background="@drawable/edit_button_background"/>
 </LinearLayout>

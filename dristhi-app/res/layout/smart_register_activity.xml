@@ -28,7 +28,7 @@
             android:layout_width="fill_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@android:color/white"
+            android:background="@drawable/listview_background_rounded"
             android:divider="@color/smart_register_client_divider_color"
             android:layout_marginLeft="@dimen/list_view_margin_left_and_right"
             android:layout_marginRight="@dimen/list_view_margin_left_and_right"
