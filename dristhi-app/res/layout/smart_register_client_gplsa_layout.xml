@@ -81,7 +81,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 style="@style/TextAppearance.ListView.Item.GPLSA"/>
-e
+
         <TextView
                 android:id="@+id/txt_number_of_still_births"
                 android:layout_width="0dp"
