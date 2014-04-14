@@ -33,6 +33,7 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     private final View.OnClickListener onClickListener;
     protected SmartRegisterClients clients;
     private Drawable womanPlaceHolderDrawable;
+    private Drawable iconPencilDrawable;
 
     public ECSmartRegisterClientsProvider(Context context,
                                           View.OnClickListener onClickListener,
@@ -190,6 +191,10 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     }
 
     private void setupEditView(ECClient client, NativeECSmartRegisterViewHolder viewModel) {
+        if (iconPencilDrawable == null) {
+            iconPencilDrawable = context.getResources().getDrawable(R.drawable.ic_pencil);
+        }
+        viewModel.editButton().setImageDrawable(iconPencilDrawable);
         viewModel.editButton().setOnClickListener(onClickListener);
         viewModel.editButton().setTag(client);
     }
