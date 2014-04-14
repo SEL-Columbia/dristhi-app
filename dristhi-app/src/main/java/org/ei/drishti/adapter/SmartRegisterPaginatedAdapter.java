@@ -33,6 +33,7 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter {
         this.filteredClients = filteredClients;
         clientCount = this.filteredClients.size();
         pageCount = clientCount / CLIENTS_PER_PAGE;
+        currentPage = 0;
     }
 
     @Override
@@ -98,8 +99,9 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter {
 
     public void refreshList(FilterOption villageFilter, ServiceModeOption serviceModeOption,
                             FilterOption searchFilter, SortOption sortOption) {
-        refreshClients(listItemProvider
-                .updateClients(villageFilter, serviceModeOption, searchFilter, sortOption));
+        SmartRegisterClients filteredClients = listItemProvider
+                .updateClients(villageFilter, serviceModeOption, searchFilter, sortOption);
+        refreshClients(filteredClients);
         notifyDataSetChanged();
     }
 }
