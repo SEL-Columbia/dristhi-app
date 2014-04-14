@@ -44,7 +44,7 @@ public class CustomFontTextView extends TextView {
             @Override
             public Typeface fetch() {
                 return Typeface.createFromAsset(
-                        getContext().getAssets(),
+                        org.ei.drishti.Context.getInstance().applicationContext().getAssets(),
                         variant.fontFile());
 
             }
