@@ -7,39 +7,31 @@
               android:orientation="horizontal"
               android:paddingLeft="10dp">
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/label_sorted_by"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="@color/status_bar_text_almost_white"
             android:text="@string/label_sorted_by"
-            android:textSize="16sp"
-            android:gravity="center_vertical"/>
+            style="@style/CustomFontTextViewStyle.StatusBar.Bold"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/sorted_by"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="@color/status_bar_text_almost_white"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:gravity="center"/>
+            android:paddingLeft="5dp"
+            style="@style/CustomFontTextViewStyle.StatusBar.Black"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="@color/status_bar_text_almost_white"
             android:text="@string/label_village"
-            android:textSize="16sp"
-            android:gravity="center"/>
+            style="@style/CustomFontTextViewStyle.StatusBar.Bold"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/village"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textColor="@color/status_bar_text_almost_white"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:gravity="center"/>
+            android:paddingLeft="5dp"
+            style="@style/CustomFontTextViewStyle.StatusBar.Black"/>
 
 </LinearLayout>

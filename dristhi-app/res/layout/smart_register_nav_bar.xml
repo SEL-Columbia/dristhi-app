@@ -35,20 +35,21 @@
             android:orientation="horizontal"
             android:background="@drawable/transparent_gray_background">
 
-        <TextView
+        <org.ei.drishti.view.customControls.CustomFontTextView
                 android:id="@+id/txt_title_label"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                style="@style/SmartRegister.Header"
+                style="@style/CustomFontTextViewStyle.NavBar.Black"
                 android:text="@string/ec_register_title_in_short"/>
 
-        <TextView
+        <org.ei.drishti.view.customControls.CustomFontTextView
                 android:id="@+id/btn_report_month"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:paddingLeft="7dp"
                 android:background="@android:color/transparent"
-                style="@style/SmartRegister.Header"
+                style="@style/CustomFontTextViewStyle.NavBar.Black"
                 android:text="@string/report_month_sample_text"/>
     </LinearLayout>
 
@@ -138,17 +139,17 @@
             android:scaleType="fitXY"
             android:layout_toRightOf="@+id/sort_selection"/>
 
-    <Button
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/service_mode_selection"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_toLeftOf="@id/sort_selection"
-            android:paddingLeft="22dp"
-            android:paddingRight="22dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
             android:gravity="center"
             android:text="@string/couple_selection"
             android:background="@drawable/transparent_gray_background"
-            style="@style/SmartRegister.Header.ServiceMode"
+            style="@style/CustomFontTextViewStyle.NavBar.Bold"
             android:layout_alignParentTop="true"/>
 
     <ImageView

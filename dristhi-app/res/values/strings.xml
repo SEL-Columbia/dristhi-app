@@ -48,7 +48,7 @@
     <string name="header_status">STATUS</string>
     <string name="header_edit"></string>
 
-    <string name="couple_selection">All Eligible Couple</string>
+    <string name="couple_selection">All Eligible Couples</string>
     <string name="str_search_hint">Search EC Register</string>
     <string name="label_sorted_by">Sorted By: </string>
     <string name="label_village">, Village: </string>
@@ -81,7 +81,7 @@
 
     <string name="filter_by_all_label">All</string>
     <string name="filter_by_out_of_area_label">O/A</string>
-    <string name="ec_register_title_in_short">EC:</string>
+    <string name="ec_register_title_in_short">EC: </string>
 
     <string name="str_register_anc_form">Register ANC</string>
     <string name="str_register_fp_form">Register FP</string>

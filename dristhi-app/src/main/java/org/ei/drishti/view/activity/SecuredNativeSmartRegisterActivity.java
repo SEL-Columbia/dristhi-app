@@ -14,6 +14,8 @@ import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.domain.ReportMonth;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.drishti.view.customControls.CustomFontTextView;
+import org.ei.drishti.view.customControls.FontVariant;
 import org.ei.drishti.view.dialog.*;
 import org.joda.time.LocalDate;
 
@@ -38,7 +40,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private ListView clientsView;
     private SmartRegisterPaginatedAdapter clientsAdapter;
 
-    private Button serviceModeView;
+    private TextView serviceModeView;
     private LinearLayout clientsHeaderLayout;
     private TextView appliedVillageFilterView;
     private TextView appliedSortView;
@@ -114,7 +116,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         villageFilterView.setOnClickListener(this);
         View sortView = findViewById(R.id.sort_selection);
         sortView.setOnClickListener(this);
-        serviceModeView = (Button) findViewById(R.id.service_mode_selection);
+        serviceModeView = (TextView) findViewById(R.id.service_mode_selection);
         serviceModeView.setOnClickListener(this);
         serviceModeView.setText(getDefaultServiceModeName());
 
@@ -201,7 +203,10 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     private View getColumnHeaderView(int i, int[] weights, int[] headerTxtResIds) {
-        TextView header = new TextView(this, null, R.style.SmartRegister_Header);
+        CustomFontTextView header = new CustomFontTextView(this, null, R.style.CustomFontTextViewStyle_Header_Black);
+        header.setFontVariant(FontVariant.BLACK);
+        header.setTextSize(16);
+        header.setTextColor(getResources().getColor(R.color.client_list_header_text_color));
         LinearLayout.LayoutParams lp =
                 new LinearLayout.LayoutParams(
                         0,
