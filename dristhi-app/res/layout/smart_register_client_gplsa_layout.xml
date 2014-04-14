@@ -10,85 +10,85 @@
         android:paddingRight="5dp"
         android:orientation="vertical">
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/label_gravida"
             android:layout_width="@dimen/gplsa_item_width"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            style="@style/TextAppearance.ListView.Item.GPLSA"
+            style="@style/CustomFontTextViewStyle.ListView.Normal.GPLSA"
             android:text="@string/str_gravida"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/label_parity"
             android:layout_width="@dimen/gplsa_item_width"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/label_gravida"
-            style="@style/TextAppearance.ListView.Item.GPLSA"
+            style="@style/CustomFontTextViewStyle.ListView.Normal.GPLSA"
             android:text="@string/str_parity"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/label_number_of_living_children"
             android:layout_width="@dimen/gplsa_item_width"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/label_parity"
-            style="@style/TextAppearance.ListView.Item.GPLSA"
+            style="@style/CustomFontTextViewStyle.ListView.Normal.GPLSA"
             android:text="@string/str_number_of_living_children"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/label_number_of_still_births"
             android:layout_width="@dimen/gplsa_item_width"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/label_number_of_living_children"
-            style="@style/TextAppearance.ListView.Item.GPLSA"
+            style="@style/CustomFontTextViewStyle.ListView.Normal.GPLSA"
             android:text="@string/str_number_of_still_births"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/label_number_of_abortions"
             android:layout_width="@dimen/gplsa_item_width"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/label_number_of_still_births"
-            style="@style/TextAppearance.ListView.Item.GPLSA"
+            style="@style/CustomFontTextViewStyle.ListView.Normal.GPLSA"
             android:text="@string/str_number_of_abortions"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_gravida"
             android:layout_width="@dimen/gplsa_item_width"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/label_gravida"
-            style="@style/TextAppearance.ListView.Item.GPLSA"/>
+            style="@style/CustomFontTextViewStyle.ListView.Normal.GPLSA"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_parity"
             android:layout_width="@dimen/gplsa_item_width"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/txt_gravida"
             android:layout_below="@id/label_parity"
-            style="@style/TextAppearance.ListView.Item.GPLSA"/>
+            style="@style/CustomFontTextViewStyle.ListView.Normal.GPLSA"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_number_of_living_children"
             android:layout_width="@dimen/gplsa_item_width"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/txt_parity"
             android:layout_below="@id/label_number_of_living_children"
-            style="@style/TextAppearance.ListView.Item.GPLSA"/>
+            style="@style/CustomFontTextViewStyle.ListView.Normal.GPLSA"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_number_of_still_births"
             android:layout_width="@dimen/gplsa_item_width"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/txt_number_of_living_children"
             android:layout_below="@id/label_number_of_still_births"
-            style="@style/TextAppearance.ListView.Item.GPLSA"/>
+            style="@style/CustomFontTextViewStyle.ListView.Normal.GPLSA"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_number_of_abortions"
             android:layout_width="@dimen/gplsa_item_width"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/txt_number_of_still_births"
             android:layout_below="@id/label_number_of_abortions"
-            style="@style/TextAppearance.ListView.Item.GPLSA"/>
+            style="@style/CustomFontTextViewStyle.ListView.Normal.GPLSA"/>
 
 </RelativeLayout>
     

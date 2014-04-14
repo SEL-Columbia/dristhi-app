@@ -1,5 +1,6 @@
 package org.ei.drishti;
 
+import android.graphics.Typeface;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
 import org.ei.drishti.service.formSubmissionHandler.*;
@@ -55,6 +56,7 @@ public class Context {
     private Cache<String> listCache;
     private Cache<ECClients> ecClientsCache;
     private Cache<Villages> villagesCache;
+    private Cache<Typeface> typefaceCache;
 
     private HTTPAgent httpAgent;
     private ZiggyFileLoader ziggyFileLoader;
@@ -591,6 +593,13 @@ public class Context {
             villagesCache = new Cache<Villages>();
         }
         return villagesCache;
+    }
+
+    public Cache<Typeface> typefaceCache() {
+        if (typefaceCache == null) {
+            typefaceCache = new Cache<Typeface>();
+        }
+        return typefaceCache;
     }
 
     public String getStringResource(int id) {

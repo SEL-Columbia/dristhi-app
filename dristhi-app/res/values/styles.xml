@@ -1,89 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="ActionBarItem">
-        <item name="android:layout_marginLeft">5dp</item>
-        <item name="android:layout_marginRight">5dp</item>
+    <style name="CustomFontTextViewStyle" parent="@android:style/Widget.TextView">
+        <item name="fontVariant">regular</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:paddingLeft">10dp</item>
     </style>
 
-    <style name="SmartRegister.Header" parent="@android:style/Widget.TextView">
-        <item name="android:textSize">@dimen/list_header_font_size</item>
-        <item name="android:gravity">left|center_vertical</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@android:color/white</item>
+    <style name="CustomFontTextViewStyle.ListView.Normal" parent="CustomFontTextViewStyle" >
+        <item name="fontVariant">medium</item>
+        <item name="android:textSize">17sp</item>
     </style>
 
-    <style name="SmartRegister.Header.ServiceMode" parent="SmartRegister.Header">
-        <item name="android:textSize">@dimen/list_service_mode_font_size</item>
-    </style>
-
-    <style name="TextAppearance.ListView.Item" parent="@android:style/Widget.TextView">
-        <item name="android:textSize">@dimen/list_item_text_font_size</item>
-        <item name="android:gravity">left</item>
-        <item name="android:paddingLeft">@dimen/list_item_text_padding_left_size</item>
-        <item name="android:paddingRight">@dimen/list_item_text_padding_left_size</item>
-        <item name="android:textColor">@color/text_black</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:ellipsize">end</item>
-    </style>
-
-    <style name="TextAppearance.ListView.Item.GPLSA" parent="@style/TextAppearance.ListView.Item">
+    <style name="CustomFontTextViewStyle.ListView.Normal.GPLSA" parent="CustomFontTextViewStyle.ListView.Normal" >
+        <item name="fontVariant">medium</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingLeft">3dp</item>
         <item name="android:paddingRight">3dp</item>
         <item name="android:ellipsize">none</item>
     </style>
 
-    <style name="TextAppearance.ListView.Item.Small" parent="@style/TextAppearance.ListView.Item">
-        <item name="android:textSize">@dimen/list_item_text_font_size</item>
-        <item name="android:height">19dp</item>
+    <style name="CustomFontTextViewStyle.ListView.Medium" parent="CustomFontTextViewStyle" >
+        <item name="fontVariant">bold</item>
+        <item name="android:textSize">17sp</item>
     </style>
 
-    <style name="TextAppearance.ListView.Item.TwoLine" parent="@style/TextAppearance.ListView.Item">
+    <style name="CustomFontTextViewStyle.ListView.Medium.TwoLine" parent="CustomFontTextViewStyle.ListView.Medium" >
         <item name="android:maxLines">2</item>
         <item name="android:paddingLeft">5dp</item>
         <item name="android:paddingRight">5dp</item>
         <item name="android:ellipsize">none</item>
     </style>
 
-    <style name="TextAppearance.ListView.Item.Medium" parent="@android:style/Widget.TextView">
-        <item name="android:textSize">15sp</item>
-        <item name="android:gravity">left</item>
-        <item name="android:paddingLeft">@dimen/list_item_text_padding_left_size</item>
-        <item name="android:textColor">@color/text_black</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="TextAppearance.ListView.Item.Strong" parent="TextAppearance.ListView.Item">
-        <item name="android:textSize">@dimen/list_main_text_font_size</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="TextAppearance.MainHeader" parent="@android:style/Widget.TextView">
-        <item name="android:textSize">@dimen/list_main_header_size</item>
-        <item name="android:gravity">left</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-
-
-    <style name="CustomFontTextViewStyle" parent="@android:style/Widget.TextView">
-        <item name="fontVariant">regular</item>
-        <item name="android:typeface">monospace</item>
-        <item name="android:textColor">@android:color/black</item>
-    </style>
-
-    <style name="CustomFontTextViewStyle.Medium" parent="CustomFontTextViewStyle" >
-        <item name="fontVariant">medium</item>
-        <item name="android:textSize">17sp</item>
-    </style>
-
-    <style name="CustomFontTextViewStyle.Bold" parent="CustomFontTextViewStyle" >
-        <item name="fontVariant">bold</item>
-        <item name="android:textSize">17sp</item>
-    </style>
-
-    <style name="CustomFontTextViewStyle.Black" parent="CustomFontTextViewStyle" >
+    <style name="CustomFontTextViewStyle.ListView.Bold" parent="CustomFontTextViewStyle" >
         <item name="fontVariant">bold</item>
         <item name="android:textSize">20sp</item>
     </style>

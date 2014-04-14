@@ -5,23 +5,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_status_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/str_pnc"
-            style="@style/TextAppearance.ListView.Item"/>
+            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/status_delivery"
-            style="@style/TextAppearance.ListView.Item"/>
+            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_status_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.ListView.Item"/>
+            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 </LinearLayout>
     

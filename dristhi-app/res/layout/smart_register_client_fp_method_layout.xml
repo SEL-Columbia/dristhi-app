@@ -9,42 +9,42 @@
         android:layout_marginTop="5dp"
         android:orientation="vertical">
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_fp_method"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.ListView.Item.Medium"/>
+            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_fp_method_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.ListView.Item.Small"/>
+            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_fp_method_quantity_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.ListView.Item.Small"
+            style="@style/CustomFontTextViewStyle.ListView.Normal"
             android:text="@string/str_number_of_strips"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_fp_method_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.ListView.Item.Small"/>
+            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_iud_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.ListView.Item.Small"/>
+            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_iud_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.ListView.Item.Small"/>
+            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 
 </LinearLayout>
 

@@ -6,7 +6,7 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="@integer/ec_list_profile_box_weight"
                 android:background="@drawable/transparent_blue_background">
-
+~
     <FrameLayout
             android:id="@+id/img_profile_layout"
             android:layout_width="@dimen/client_profile_pic_width"
@@ -61,37 +61,37 @@
         </LinearLayout>
     </FrameLayout>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_wife_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:paddingRight="@dimen/wife_name_padding_right_due_to_age_display"
             android:layout_toRightOf="@id/img_profile_layout"
-            style="@style/TextAppearance.ListView.Item.Strong"/>
+            style="@style/CustomFontTextViewStyle.ListView.Bold"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_husband_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_wife_name"
             android:layout_toRightOf="@id/img_profile_layout"
-            style="@style/TextAppearance.ListView.Item"/>
+            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_village_name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_husband_name"
             android:layout_toRightOf="@id/img_profile_layout"
-            style="@style/TextAppearance.ListView.Item"/>
+            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:paddingTop="@dimen/client_age_padding"
-            style="@style/TextAppearance.ListView.Item.Medium"/>
+            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
 </RelativeLayout>

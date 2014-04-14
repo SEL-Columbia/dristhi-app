@@ -6,8 +6,12 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 import org.ei.drishti.R;
+import org.ei.drishti.util.Cache;
+import org.ei.drishti.util.CacheableData;
 
 public class CustomFontTextView extends TextView {
+
+    private Cache<Typeface> cache;
 
     @SuppressWarnings("UnusedDeclaration")
     public CustomFontTextView(Context context) {
@@ -21,7 +25,7 @@ public class CustomFontTextView extends TextView {
 
     public CustomFontTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-
+        cache = org.ei.drishti.Context.getInstance().typefaceCache();
         TypedArray attributes = context.obtainStyledAttributes(
                 attrs, R.styleable.org_ei_drishti_view_customControls_CustomFontTextView, defStyle, 0);
         int variant = attributes.getInt(
@@ -35,10 +39,15 @@ public class CustomFontTextView extends TextView {
         setFontVariant(FontVariant.tryParse(variant, FontVariant.REGULAR));
     }
 
-    public void setFontVariant(FontVariant variant) {
-        setTypeface(
-                Typeface.createFromAsset(
+    public void setFontVariant(final FontVariant variant) {
+        setTypeface(cache.get(variant.name(), new CacheableData<Typeface>() {
+            @Override
+            public Typeface fetch() {
+                return Typeface.createFromAsset(
                         getContext().getAssets(),
-                        variant.fontFile()));
+                        variant.fontFile());
+
+            }
+        }));
     }
 }

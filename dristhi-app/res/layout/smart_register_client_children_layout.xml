@@ -9,21 +9,21 @@
         android:orientation="horizontal"
         android:weightSum="100">
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_male_children"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="50"
             android:layout_margin="5dp"
             android:background="@color/status_bar_text_almost_white"
-            style="@style/TextAppearance.ListView.Item.TwoLine"/>
+            style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_female_children"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="50"
             android:layout_margin="5dp"
             android:background="@color/status_bar_text_almost_white"
-            style="@style/TextAppearance.ListView.Item.TwoLine"/>
+            style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"/>
 </LinearLayout>

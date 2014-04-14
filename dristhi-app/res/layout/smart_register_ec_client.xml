@@ -13,13 +13,13 @@
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
 
-    <TextView
+    <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_ec_number"
             android:layout_width="@dimen/list_ec_no_view_width"
             android:layout_height="fill_parent"
             android:layout_weight="@integer/ec_list_ec_no_view_weight"
             android:layout_marginTop="3dp"
-            style="@style/TextAppearance.ListView.Item.Medium"/>
+            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
 
     <ImageView
             android:layout_width="@dimen/smart_register_client_divider_height"
