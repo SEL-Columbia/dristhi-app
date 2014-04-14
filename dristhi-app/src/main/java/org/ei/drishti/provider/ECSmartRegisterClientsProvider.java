@@ -13,8 +13,8 @@ import org.ei.drishti.R;
 import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.view.contract.ECChildClient;
 import org.ei.drishti.view.contract.ECClient;
-import org.ei.drishti.view.contract.ECClients;
 import org.ei.drishti.view.contract.SmartRegisterClients;
+import org.ei.drishti.view.controller.ECSmartRegisterController;
 import org.ei.drishti.view.dialog.FilterOption;
 import org.ei.drishti.view.dialog.ServiceModeOption;
 import org.ei.drishti.view.dialog.SortOption;
@@ -31,15 +31,15 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     private final LayoutInflater inflater;
     private final Context context;
     private final View.OnClickListener onClickListener;
-    protected SmartRegisterClients clients;
+    protected ECSmartRegisterController controller;
     private Drawable womanPlaceHolderDrawable;
     private Drawable iconPencilDrawable;
 
     public ECSmartRegisterClientsProvider(Context context,
                                           View.OnClickListener onClickListener,
-                                          ECClients clients) {
+                                          ECSmartRegisterController controller) {
         this.onClickListener = onClickListener;
-        this.clients = clients;
+        this.controller = controller;
         this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -155,6 +155,8 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
 
     private void setupChildrenView(ECClient client, NativeECSmartRegisterViewHolder viewModel) {
         List<ECChildClient> children = client.children();
+
+
         if (children.size() == 0) {
             viewModel.maleChildrenView().setVisibility(View.GONE);
             viewModel.femaleChildrenView().setVisibility(View.GONE);
@@ -201,13 +203,13 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
 
     @Override
     public SmartRegisterClients getClients() {
-        return clients;
+        return controller.getClients();
     }
 
     @Override
     public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
                                               FilterOption searchFilter, SortOption sortOption) {
-        return clients.applyFilter(villageFilter, serviceModeOption, searchFilter, sortOption);
+        return getClients().applyFilter(villageFilter, serviceModeOption, searchFilter, sortOption);
     }
 
     public LayoutInflater inflater() {

@@ -13,6 +13,9 @@ import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.domain.ReportMonth;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
+import org.ei.drishti.view.BackgroundAction;
+import org.ei.drishti.view.LockingBackgroundTask;
+import org.ei.drishti.view.ProgressIndicator;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.customControls.CustomFontTextView;
 import org.ei.drishti.view.customControls.FontVariant;
@@ -38,6 +41,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             asList(new AllClientsFilter(), new OutOfAreaFilter());
 
     private ListView clientsView;
+    private ProgressBar clientsProgressView;
     private SmartRegisterPaginatedAdapter clientsAdapter;
 
     private TextView serviceModeView;
@@ -84,9 +88,8 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         clientsHeaderLayout = (LinearLayout) findViewById(R.id.clients_header_layout);
         populateClientListHeaderView();
 
+        clientsProgressView = (ProgressBar) findViewById(R.id.client_list_progress);
         clientsView = (ListView) findViewById(R.id.list);
-        setupFooterView();
-        setupAdapter();
 
         searchView = (EditText) findViewById(R.id.edt_search);
         searchView.addTextChangedListener(new TextWatcher() {
@@ -125,9 +128,41 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
         findViewById(R.id.register_client).setOnClickListener(this);
 
-        updateFooter();
+        setupFooterView();
         updateStatusBar();
         updateDefaultOptions();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+        new LockingBackgroundTask(new ProgressIndicator() {
+            @Override
+            public void setVisible() {
+                clientsProgressView.setVisibility(View.VISIBLE);
+                clientsView.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void setInvisible() {
+                clientsProgressView.setVisibility(View.GONE);
+                clientsView.setVisibility(View.VISIBLE);
+            }
+        }).doActionInBackground(new BackgroundAction<Object>() {
+            @Override
+            public Object actionToDoInBackgroundThread() {
+                setupAdapter();
+                return null;
+            }
+
+            @Override
+            public void postExecuteInUIThread(Object result) {
+                clientsView.setAdapter(clientsAdapter);
+                clientsView.setVisibility(View.VISIBLE);
+                updateFooter();
+            }
+        });
     }
 
     protected abstract String getRegisterTitleInShortForm();
@@ -220,7 +255,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     private void setupAdapter() {
         clientsAdapter = adapter();
-        clientsView.setAdapter(clientsAdapter);
         clientsAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {

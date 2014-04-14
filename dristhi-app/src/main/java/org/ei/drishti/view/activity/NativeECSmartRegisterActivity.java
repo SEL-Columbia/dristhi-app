@@ -61,7 +61,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     protected SmartRegisterClientsProvider clientProvider() {
         if (clientProvider == null) {
             clientProvider = new ECSmartRegisterClientsProvider(this, this,
-                    controller.getClients());
+                    controller);
         }
         return clientProvider;
     }
