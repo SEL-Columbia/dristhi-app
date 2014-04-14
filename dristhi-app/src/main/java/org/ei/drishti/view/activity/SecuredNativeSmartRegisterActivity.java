@@ -204,7 +204,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         pageInfoView.setText(MessageFormat.
                 format(getResources().getString(R.string.str_page_info),
                         (clientsAdapter.currentPage() + 1),
-                        (clientsAdapter.pageCount() + 1)));
+                        (clientsAdapter.pageCount())));
         nextPageView.setVisibility(clientsAdapter.hasNextPage() ? View.VISIBLE : View.INVISIBLE);
         previousPageView.setVisibility(clientsAdapter.hasPreviousPage() ? View.VISIBLE : View.INVISIBLE);
     }

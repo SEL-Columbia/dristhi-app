@@ -1,6 +1,7 @@
 package org.ei.drishti.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -31,8 +32,8 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter {
 
     protected void refreshClients(SmartRegisterClients filteredClients) {
         this.filteredClients = filteredClients;
-        clientCount = this.filteredClients.size();
-        pageCount = clientCount / CLIENTS_PER_PAGE;
+        clientCount = filteredClients.size();
+        pageCount = (int) Math.ceil((double)clientCount / (double)CLIENTS_PER_PAGE);
         currentPage = 0;
     }
 
@@ -40,7 +41,7 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter {
     public int getCount() {
         if (clientCount <= CLIENTS_PER_PAGE) {
             return clientCount;
-        } else if (currentPage == pageCount) {
+        } else if (currentPage == pageCount() - 1) {
             return clientCount % CLIENTS_PER_PAGE;
         }
         return CLIENTS_PER_PAGE;
@@ -90,7 +91,7 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter {
     }
 
     public boolean hasNextPage() {
-        return currentPage < pageCount;
+        return currentPage < pageCount() - 1;
     }
 
     public boolean hasPreviousPage() {
