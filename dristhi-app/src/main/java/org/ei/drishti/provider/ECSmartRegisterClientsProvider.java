@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import org.apache.commons.lang3.StringUtils;
@@ -25,8 +26,7 @@ import static java.text.MessageFormat.format;
 import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.view.controller.ECSmartRegisterController.*;
 
-public class ECSmartRegisterClientsProvider
-        implements SmartRegisterClientsProvider, View.OnClickListener {
+public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvider {
 
     private final LayoutInflater inflater;
     private final Context context;
@@ -107,6 +107,7 @@ public class ECSmartRegisterClientsProvider
         String statusType = client.status().get(STATUS_TYPE_FIELD);
         String statusDate = formatDate(client.status().get(STATUS_DATE_FIELD));
         viewModel.hideAllStatusLayouts();
+
         ViewGroup statusViewGroup = viewModel.statusLayout(statusType);
         statusViewGroup.setVisibility(View.VISIBLE);
         viewModel.getStatusDateView(statusViewGroup).setText(statusDate);
@@ -189,11 +190,7 @@ public class ECSmartRegisterClientsProvider
     }
 
     @Override
-    public void onClick(View view) {
-    }
-
-    @Override
-    public SmartRegisterClients getListItems() {
+    public SmartRegisterClients getClients() {
         return clients;
     }
 

@@ -2,6 +2,7 @@ package org.ei.drishti.view.viewHolder;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,7 +38,7 @@ public class NativeECSmartRegisterViewHolder {
     private TextView maleChildrenView;
     private TextView femaleChildrenView;
     private ImageButton editButton;
-    private Map<String, ViewGroup> statusLayouts;
+    private Map<String, ViewStubInflater> statusLayouts;
 
     public NativeECSmartRegisterViewHolder(ViewGroup itemView) {
         this.profileInfoLayout = (ViewGroup) itemView.findViewById(R.id.profile_info_layout);
@@ -66,17 +67,19 @@ public class NativeECSmartRegisterViewHolder {
         this.femaleChildrenView = (TextView) itemView.findViewById(R.id.txt_female_children);
         this.editButton = (ImageButton) itemView.findViewById(R.id.btn_edit);
 
-        this.statusLayouts = new HashMap<String, ViewGroup>();
+        this.statusLayouts = new HashMap<String, ViewStubInflater>();
+        ViewStubInflater commonECAndFPLayout = new ViewStubInflater((ViewStub) itemView.findViewById(R.id.ec_and_fp_status_layout));
+
         this.statusLayouts
-                .put(EC_STATUS, (ViewGroup) itemView.findViewById(R.id.ec_and_fp_status_layout));
+                .put(EC_STATUS, commonECAndFPLayout);
         this.statusLayouts
-                .put(FP_STATUS, (ViewGroup) itemView.findViewById(R.id.ec_and_fp_status_layout));
+                .put(FP_STATUS, commonECAndFPLayout);
         this.statusLayouts
-                .put(ANC_STATUS, (ViewGroup) itemView.findViewById(R.id.anc_status_layout));
+                .put(ANC_STATUS, new ViewStubInflater((ViewStub) itemView.findViewById(R.id.anc_status_layout)));
         this.statusLayouts
-                .put(PNC_STATUS, (ViewGroup) itemView.findViewById(R.id.pnc_status_layout));
+                .put(PNC_STATUS, new ViewStubInflater((ViewStub) itemView.findViewById(R.id.pnc_status_layout)));
         this.statusLayouts
-                .put(PNC_FP_STATUS, (ViewGroup) itemView.findViewById(R.id.pnc_and_fp_status_layout));
+                .put(PNC_FP_STATUS, new ViewStubInflater((ViewStub) itemView.findViewById(R.id.pnc_and_fp_status_layout)));
     }
 
     public ViewGroup profileInfoLayout() {
@@ -176,7 +179,7 @@ public class NativeECSmartRegisterViewHolder {
     }
 
     public ViewGroup statusLayout(String statusType) {
-        return statusLayouts.get(statusType);
+        return statusLayouts.get(statusType).get();
     }
 
     public void hideAllStatusLayouts() {

@@ -13,7 +13,7 @@ public interface SmartRegisterClientsProvider {
 
     public View getView(ECClient client, View parentView, ViewGroup viewGroup);
 
-    public SmartRegisterClients getListItems();
+    public SmartRegisterClients getClients();
 
     SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
                                        FilterOption searchFilter, SortOption sortOption);
