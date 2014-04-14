@@ -18,8 +18,7 @@
                 android:layout_height="@dimen/client_profile_pic_height"
                 android:layout_marginLeft="@dimen/client_profile_pic_margin_left"
                 android:layout_marginRight="@dimen/client_profile_pic_margin_right"
-                android:layout_marginTop="@dimen/client_profile_pic_margin_top"
-                android:src="@drawable/woman_placeholder"/>
+                android:layout_marginTop="@dimen/client_profile_pic_margin_top"/>
 
         <LinearLayout
                 android:id="@+id/badges_layout"

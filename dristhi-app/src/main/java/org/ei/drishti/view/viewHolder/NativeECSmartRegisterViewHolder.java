@@ -15,6 +15,7 @@ import static org.ei.drishti.view.controller.ECSmartRegisterController.*;
 
 public class NativeECSmartRegisterViewHolder {
     private ViewGroup profileInfoLayout;
+    private ImageView imgProfileView;
     private TextView txtNameView;
     private TextView txtHusbandNameView;
     private TextView txtVillageNameView;
@@ -42,6 +43,7 @@ public class NativeECSmartRegisterViewHolder {
 
     public NativeECSmartRegisterViewHolder(ViewGroup itemView) {
         this.profileInfoLayout = (ViewGroup) itemView.findViewById(R.id.profile_info_layout);
+        this.imgProfileView = (ImageView) profileInfoLayout.findViewById(R.id.img_profile);
         this.txtNameView = (TextView) profileInfoLayout.findViewById(R.id.txt_wife_name);
         this.txtHusbandNameView = (TextView) profileInfoLayout.findViewById(R.id.txt_husband_name);
         this.txtVillageNameView = (TextView) profileInfoLayout.findViewById(R.id.txt_village_name);
@@ -84,6 +86,10 @@ public class NativeECSmartRegisterViewHolder {
 
     public ViewGroup profileInfoLayout() {
         return profileInfoLayout;
+    }
+
+    public ImageView imgProfileView() {
+        return imgProfileView;
     }
 
     public TextView txtNameView() {

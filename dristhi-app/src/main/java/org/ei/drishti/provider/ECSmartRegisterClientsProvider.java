@@ -2,10 +2,10 @@ package org.ei.drishti.provider;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import org.apache.commons.lang3.StringUtils;
@@ -32,6 +32,7 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     private final Context context;
     private final View.OnClickListener onClickListener;
     protected SmartRegisterClients clients;
+    private Drawable womanPlaceHolderDrawable;
 
     public ECSmartRegisterClientsProvider(Context context,
                                           View.OnClickListener onClickListener,
@@ -125,6 +126,10 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     }
 
     private void setupClientProfileView(ECClient client, NativeECSmartRegisterViewHolder viewModel) {
+        if (womanPlaceHolderDrawable == null) {
+            womanPlaceHolderDrawable = context.getResources().getDrawable(R.drawable.woman_placeholder);
+        }
+        viewModel.imgProfileView().setBackground(womanPlaceHolderDrawable);
         viewModel.txtNameView().setText(client.name());
         viewModel.txtHusbandNameView().setText(client.husbandName());
         viewModel.txtVillageNameView().setText(client.village());
