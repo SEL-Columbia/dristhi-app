@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.FPMethod;
+import org.ei.drishti.util.IntegerUtil;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
@@ -123,23 +124,23 @@ public class ECClient implements SmartRegisterClient {
     }
 
     public String numberOfPregnancies() {
-        return numPregnancies;
+        return IntegerUtil.tryParse(numPregnancies, "");
     }
 
     public String parity() {
-        return parity;
+        return IntegerUtil.tryParse(parity, "");
     }
 
     public String numberOfLivingChildren() {
-        return numLivingChildren;
+        return IntegerUtil.tryParse(numLivingChildren, "");
     }
 
     public String numberOfStillbirths() {
-        return numStillbirths;
+        return IntegerUtil.tryParse(numStillbirths, "");
     }
 
     public String numberOfAbortions() {
-        return numAbortions;
+        return IntegerUtil.tryParse(numAbortions, "");
     }
 
     public String familyPlanningMethodChangeDate() {
