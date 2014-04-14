@@ -48,4 +48,5 @@
     <dimen name="smart_register_dialog_list_item_width">540dp</dimen>
     <dimen name="list_view_margin_left_and_right">10dp</dimen>
     <dimen name="smart_register_nav_bar_separator">3dp</dimen>
+    <dimen name="gplsa_item_width">18dp</dimen>
 </resources>
