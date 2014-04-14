@@ -14,8 +14,6 @@ import org.ei.drishti.sync.SyncAfterFetchListener;
 import org.ei.drishti.sync.SyncProgressIndicator;
 import org.ei.drishti.sync.UpdateActionsTask;
 import org.ei.drishti.view.InternationalizationContext;
-import org.ei.drishti.view.controller.FormController;
-import org.ei.drishti.view.controller.NavigationController;
 import org.ei.drishti.view.controller.UpdateController;
 import org.ei.drishti.view.controller.VillageController;
 
