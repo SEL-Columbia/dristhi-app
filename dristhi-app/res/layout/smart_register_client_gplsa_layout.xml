@@ -56,8 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/label_gravida"
-            style="@style/TextAppearance.ListView.Item.GPLSA"
-            android:text="1"/>
+            style="@style/TextAppearance.ListView.Item.GPLSA"/>
 
     <TextView
             android:id="@+id/txt_parity"
@@ -65,8 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/txt_gravida"
             android:layout_below="@id/label_parity"
-            style="@style/TextAppearance.ListView.Item.GPLSA"
-            android:text="1"/>
+            style="@style/TextAppearance.ListView.Item.GPLSA"/>
 
     <TextView
             android:id="@+id/txt_number_of_living_children"
@@ -74,8 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/txt_parity"
             android:layout_below="@id/label_number_of_living_children"
-            style="@style/TextAppearance.ListView.Item.GPLSA"
-            android:text="1"/>
+            style="@style/TextAppearance.ListView.Item.GPLSA"/>
 
     <TextView
             android:id="@+id/txt_number_of_still_births"
@@ -83,8 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/txt_number_of_living_children"
             android:layout_below="@id/label_number_of_still_births"
-            style="@style/TextAppearance.ListView.Item.GPLSA"
-            android:text="1"/>
+            style="@style/TextAppearance.ListView.Item.GPLSA"/>
 
     <TextView
             android:id="@+id/txt_number_of_abortions"
@@ -92,8 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/txt_number_of_still_births"
             android:layout_below="@id/label_number_of_abortions"
-            style="@style/TextAppearance.ListView.Item.GPLSA"
-            android:text="1"/>
+            style="@style/TextAppearance.ListView.Item.GPLSA"/>
 
 </RelativeLayout>
     

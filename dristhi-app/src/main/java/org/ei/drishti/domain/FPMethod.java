@@ -1,5 +1,9 @@
 package org.ei.drishti.domain;
 
+import org.ei.drishti.Context;
+import org.ei.drishti.R;
+
+import java.util.Locale;
 import java.util.Map;
 
 import static org.ei.drishti.domain.TimelineEvent.*;
@@ -133,7 +137,7 @@ public enum FPMethod {
 
         @Override
         public String displayName() {
-            return "No FP";
+            return Context.getInstance().applicationContext().getString(R.string.ec_register_no_fp);
         }
     };
 
@@ -143,7 +147,7 @@ public enum FPMethod {
 
     public static FPMethod tryParse(String method, FPMethod defaultMethod) {
         try {
-            return FPMethod.valueOf(method.toUpperCase());
+            return FPMethod.valueOf(method.toUpperCase(Locale.getDefault()));
         } catch (IllegalArgumentException e) {
             logWarn("Unknown current FP method : " + method + " Exception : " + e);
             return defaultMethod;

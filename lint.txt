@@ -1,0 +1,452 @@
+
+Scanning dristhi-app: .Warning: Ignoring platform '.DS_Store', not a folder.
+.............................................................................................................................................................................................................................................................................
+Scanning dristhi-app (Phase 2): ..........................................
+src/main/java/org/ei/drishti/view/contract/ECClient.java:277: Warning: Implicitly using the default locale is a common source of bugs: Use toLowerCase(Locale) instead [DefaultLocale]
+        return name.toLowerCase().startsWith(filter)
+                    ~~~~~~~~~~~
+src/main/java/org/ei/drishti/domain/FPMethod.java:146: Warning: Implicitly using the default locale is a common source of bugs: Use toUpperCase(Locale) instead [DefaultLocale]
+            return FPMethod.valueOf(method.toUpperCase());
+                                           ~~~~~~~~~~~
+AndroidManifest.xml:48: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+    <uses-sdk
+    ^
+src/main/java/org/ei/drishti/view/activity/LoginActivity.java:215: Warning: To get local formatting use getDateInstance(), getDateTimeInstance(), or getTimeInstance(), or use new SimpleDateFormat(String template, Locale locale) with for example Locale.US for ASCII dates. [SimpleDateFormat]
+        return new SimpleDateFormat("dd MMM yyyy").format(new java.util.Date(ze.getTime()));
+                   ~~~~~~~~~~~~~~~~
+res/layout-land/login.xml:39: Warning: Should use "sp" instead of "dp" for text sizes [SpUsage]
+            android:textSize="16dp"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+res/layout/login.xml:67: Warning: Should use "sp" instead of "dp" for text sizes [SpUsage]
+        android:textSize="20dp"
+        ~~~~~~~~~~~~~~~~~~~~~~~
+res/layout/login.xml:84: Warning: Should use "sp" instead of "dp" for text sizes [SpUsage]
+        android:textSize="16dp"
+        ~~~~~~~~~~~~~~~~~~~~~~~
+res/layout-land/login.xml:115: Warning: Should use "sp" instead of "dp" for text sizes [SpUsage]
+            android:textSize="20dp"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+res/layout/login.xml:31: Warning: android:editable is deprecated: <EditText> is already editable [Deprecated]
+        android:editable="true"
+        ~~~~~~~~~~~~~~~~~~~~~~~
+res/layout-land/login.xml:77: Warning: android:editable is deprecated: <EditText> is already editable [Deprecated]
+            android:editable="true"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+res/values/styles.xml:39: Warning: Avoid using "px" as units; use "dp" instead [PxUsage]
+        <item name="android:height">19px</item>
+                                    ^
+res/values/strings.xml:13: Error: "form_back_confirm_dialog_message" is not translated in kn [MissingTranslation]
+    <string name="form_back_confirm_dialog_message">Are you sure you want to go back? All the data you have entered in
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:16: Error: "form_back_confirm_dialog_title" is not translated in kn [MissingTranslation]
+    <string name="form_back_confirm_dialog_title">Confirm form close</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:17: Error: "yes_button_label" is not translated in kn [MissingTranslation]
+    <string name="yes_button_label">Yes</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:18: Error: "no_button_label" is not translated in kn [MissingTranslation]
+    <string name="no_button_label">No</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:21: Error: "home_fp_label" is not translated in kn [MissingTranslation]
+    <string name="home_fp_label">FP</string>
+            ~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:26: Error: "register_label" is not translated in kn [MissingTranslation]
+    <string name="register_label">Register</string>
+            ~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:27: Error: "home_videos_label" is not translated in kn [MissingTranslation]
+    <string name="home_videos_label">Videos</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:29: Error: "videos_cannot_play_video_dialog_title" is not translated in kn [MissingTranslation]
+    <string name="videos_cannot_play_video_dialog_title">Cannot play video.</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:30: Error: "videos_IEC_not_installed_dialog_message" is not translated in kn [MissingTranslation]
+    <string name="videos_IEC_not_installed_dialog_message">Please install IEC application to play the videos.
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:32: Error: "videos_unknown_error_dialog_message" is not translated in kn [MissingTranslation]
+    <string name="videos_unknown_error_dialog_message">Unable to play video due to technical error.</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:33: Error: "settings_logout_confirm_title" is not translated in kn [MissingTranslation]
+    <string name="settings_logout_confirm_title">Confirm Log out</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:34: Error: "settings_logout_confirm_dialog_message" is not translated in kn [MissingTranslation]
+    <string name="settings_logout_confirm_dialog_message">Are you sure you want to log out? All the data will be
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:37: Error: "unsynced_forms_count_message" is not translated in kn [MissingTranslation]
+    <string name="unsynced_forms_count_message">forms unsynced</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:39: Error: "str_next" is not translated in kn [MissingTranslation]
+    <string name="str_next">"Next &gt;&gt;"</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:40: Error: "str_previous" is not translated in kn [MissingTranslation]
+    <string name="str_previous">"&lt;&lt; Previous"</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:41: Error: "str_page_info" is not translated in kn [MissingTranslation]
+    <string name="str_page_info">Page {0} of {1}</string>
+            ~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:43: Error: "header_name" is not translated in kn [MissingTranslation]
+    <string name="header_name">NAME</string>
+            ~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:44: Error: "header_ec_no" is not translated in kn [MissingTranslation]
+    <string name="header_ec_no">EC NO.</string>
+            ~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:45: Error: "header_gplsa" is not translated in kn [MissingTranslation]
+    <string name="header_gplsa">GPLSA</string>
+            ~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:46: Error: "header_fp" is not translated in kn [MissingTranslation]
+    <string name="header_fp">FP METHOD</string>
+            ~~~~~~~~~~~~~~~~
+res/values/strings.xml:47: Error: "header_children" is not translated in kn [MissingTranslation]
+    <string name="header_children">CHILDREN</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:48: Error: "header_status" is not translated in kn [MissingTranslation]
+    <string name="header_status">STATUS</string>
+            ~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:49: Error: "header_edit" is not translated in kn [MissingTranslation]
+    <string name="header_edit"></string>
+            ~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:51: Error: "couple_selection" is not translated in kn [MissingTranslation]
+    <string name="couple_selection">All Eligible Couples</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:52: Error: "str_search_hint" is not translated in kn [MissingTranslation]
+    <string name="str_search_hint">Search EC Register</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:53: Error: "label_sorted_by" is not translated in kn [MissingTranslation]
+    <string name="label_sorted_by">Sorted By: </string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:54: Error: "label_village" is not translated in kn [MissingTranslation]
+    <string name="label_village">, Village: </string>
+            ~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:55: Error: "ec_register_wife_age" is not translated in kn [MissingTranslation]
+    <string name="ec_register_wife_age">({0})</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:57: Error: "ec_register_male_child" is not translated in kn [MissingTranslation]
+    <string name="ec_register_male_child">Male\n{0}m</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:58: Error: "ec_register_female_child" is not translated in kn [MissingTranslation]
+    <string name="ec_register_female_child">Female\n{0}m</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:59: Error: "ec_register_no_fp" is not translated in kn [MissingTranslation]
+    <string name="ec_register_no_fp">No FP</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:61: Error: "status_delivery" is not translated in kn [MissingTranslation]
+    <string name="status_delivery">Delivery:</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:62: Error: "str_lmp" is not translated in kn [MissingTranslation]
+    <string name="str_lmp">LMP:</string>
+            ~~~~~~~~~~~~~~
+res/values/strings.xml:63: Error: "str_edd" is not translated in kn [MissingTranslation]
+    <string name="str_edd">EDD:</string>
+            ~~~~~~~~~~~~~~
+res/values/strings.xml:64: Error: "str_anc" is not translated in kn [MissingTranslation]
+    <string name="str_anc">ANC</string>
+            ~~~~~~~~~~~~~~
+res/values/strings.xml:65: Error: "str_pnc" is not translated in kn [MissingTranslation]
+    <string name="str_pnc">PNC</string>
+            ~~~~~~~~~~~~~~
+res/values/strings.xml:66: Error: "str_fp" is not translated in kn [MissingTranslation]
+    <string name="str_fp">FP</string>
+            ~~~~~~~~~~~~~
+res/values/strings.xml:67: Error: "str_number_of_strips" is not translated in kn [MissingTranslation]
+    <string name="str_number_of_strips">No. strips:</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:68: Error: "str_comma_separator" is not translated in kn [MissingTranslation]
+    <string name="str_comma_separator">, </string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:69: Error: "str_gravida" is not translated in kn [MissingTranslation]
+    <string name="str_gravida">G</string>
+            ~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:70: Error: "str_parity" is not translated in kn [MissingTranslation]
+    <string name="str_parity">P</string>
+            ~~~~~~~~~~~~~~~~~
+res/values/strings.xml:71: Error: "str_number_of_living_children" is not translated in kn [MissingTranslation]
+    <string name="str_number_of_living_children">L</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:72: Error: "str_number_of_still_births" is not translated in kn [MissingTranslation]
+    <string name="str_number_of_still_births">S</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:73: Error: "str_number_of_abortions" is not translated in kn [MissingTranslation]
+    <string name="str_number_of_abortions">A</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:75: Error: "sort_by_name_label" is not translated in kn [MissingTranslation]
+    <string name="sort_by_name_label">Name (A to Z)</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:76: Error: "sort_by_ec_number_label" is not translated in kn [MissingTranslation]
+    <string name="sort_by_ec_number_label">EC Number</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:77: Error: "sort_by_sc_label" is not translated in kn [MissingTranslation]
+    <string name="sort_by_sc_label">SC</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:78: Error: "sort_by_st_label" is not translated in kn [MissingTranslation]
+    <string name="sort_by_st_label">ST</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:79: Error: "sort_by_high_priority_label" is not translated in kn [MissingTranslation]
+    <string name="sort_by_high_priority_label">High Priority (HP)</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:80: Error: "sort_by_bpl_label" is not translated in kn [MissingTranslation]
+    <string name="sort_by_bpl_label">BPL</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:82: Error: "filter_by_all_label" is not translated in kn [MissingTranslation]
+    <string name="filter_by_all_label">All</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:83: Error: "filter_by_out_of_area_label" is not translated in kn [MissingTranslation]
+    <string name="filter_by_out_of_area_label">O/A</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:84: Error: "ec_register_title_in_short" is not translated in kn [MissingTranslation]
+    <string name="ec_register_title_in_short">EC: </string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:86: Error: "str_register_anc_form" is not translated in kn [MissingTranslation]
+    <string name="str_register_anc_form">Register ANC</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:87: Error: "str_register_fp_form" is not translated in kn [MissingTranslation]
+    <string name="str_register_fp_form">Register FP</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:88: Error: "str_register_child_form" is not translated in kn [MissingTranslation]
+    <string name="str_register_child_form">Register Child</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:89: Error: "str_edit_ec_form" is not translated in kn [MissingTranslation]
+    <string name="str_edit_ec_form">Edit EC</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:90: Error: "str_close_ec_form" is not translated in kn [MissingTranslation]
+    <string name="str_close_ec_form">Close EC</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:91: Error: "report_month_sample_text" is not translated in kn [MissingTranslation]
+    <string name="report_month_sample_text">26/03 - 25/04</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main/java/org/ei/drishti/view/activity/SecuredFormActivity.java:50: Warning: Using setJavaScriptEnabled can introduce XSS vulnerabilities into you application, review carefully. [SetJavaScriptEnabled]
+        webViewSettings.setJavaScriptEnabled(true);
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/main/java/org/ei/drishti/view/activity/SecuredWebActivity.java:123: Warning: Using setJavaScriptEnabled can introduce XSS vulnerabilities into you application, review carefully. [SetJavaScriptEnabled]
+        webView.getSettings().setJavaScriptEnabled(true);
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+AndroidManifest.xml:52: Warning: Should explicitly set android:allowBackup to true or false (it's true by default, and that can have some security implications for the application's data) [AllowBackup]
+    <application
+    ^
+src/main/java/org/ei/drishti/view/customControls/CustomFontTextView.java:23: Warning: This TypedArray should be recycled after use with #recycle() [Recycle]
+        TypedArray attributes = context.obtainStyledAttributes(
+                                        ~~~~~~~~~~~~~~~~~~~~~~
+res/layout-land/login.xml:22: Warning: Nested weights are bad for performance [NestedWeights]
+            android:layout_weight="1"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+res/layout-land/login.xml:63: Warning: Nested weights are bad for performance [NestedWeights]
+            android:layout_weight="1"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+res/layout/smart_register_activity.xml:7: Warning: Possible overdraw: Root element paints background @color/client_list_header_dark_grey with a theme that also paints a background (inferred theme is @android:style/Theme.Holo) [Overdraw]
+              android:background="@color/client_list_header_dark_grey">
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/layout/smart_register_client_status_layout.xml:10: Warning: Possible overdraw: Root element paints background @color/status_bar_text_almost_white with a theme that also paints a background (inferred theme is @android:style/Theme.Holo) [Overdraw]
+        android:background="@color/status_bar_text_almost_white">
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/layout/smart_register_client_status_pnc_and_fp.xml:9: Warning: Possible overdraw: Root element paints background @android:color/white with a theme that also paints a background (inferred theme is @android:style/Theme.Holo) [Overdraw]
+        android:background="@android:color/white">
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/layout/smart_register_dialog_view.xml:7: Warning: Possible overdraw: Root element paints background @android:color/white with a theme that also paints a background (inferred theme is @android:style/Theme.Holo) [Overdraw]
+             android:background="@android:color/white">
+             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/layout/smart_register_nav_bar.xml:5: Warning: Possible overdraw: Root element paints background @color/light_blue with a theme that also paints a background (inferred theme is @android:style/Theme.Holo) [Overdraw]
+                android:background="@color/light_blue"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/layout/smart_register_pagination.xml:6: Warning: Possible overdraw: Root element paints background @color/client_list_header_dark_grey with a theme that also paints a background (inferred theme is @android:style/Theme.Holo) [Overdraw]
+    android:background="@color/client_list_header_dark_grey">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/layout/smart_register_status_bar.xml:6: Warning: Possible overdraw: Root element paints background @color/status_bar_background_dark_grey with a theme that also paints a background (inferred theme is @android:style/Theme.Holo) [Overdraw]
+              android:background="@color/status_bar_background_dark_grey"
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/colors.xml:3: Warning: The resource R.color.actionbar_separator appears to be unused [UnusedResources]
+    <color name="actionbar_separator">#808080</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/colors.xml:4: Warning: The resource R.color.actionbar_background_start appears to be unused [UnusedResources]
+    <color name="actionbar_background_start">#808080</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/colors.xml:5: Warning: The resource R.color.actionbar_background_end appears to be unused [UnusedResources]
+    <color name="actionbar_background_end">#808080</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/colors.xml:6: Warning: The resource R.color.actionbar_background_item_pressed_start appears to be unused [UnusedResources]
+    <color name="actionbar_background_item_pressed_start">#808080</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/colors.xml:7: Warning: The resource R.color.actionbar_background_item_pressed_end appears to be unused [UnusedResources]
+    <color name="actionbar_background_item_pressed_end">#808080</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/colors.xml:15: Warning: The resource R.color.gray appears to be unused [UnusedResources]
+    <color name="gray">#f2f2f2</color>
+           ~~~~~~~~~~~
+res/values/dimens.xml:3: Warning: The resource R.dimen.actionbar_height appears to be unused [UnusedResources]
+    <dimen name="actionbar_height">60dip</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:4: Warning: The resource R.dimen.actionbar_item_height appears to be unused [UnusedResources]
+    <dimen name="actionbar_item_height">60dip</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:5: Warning: The resource R.dimen.actionbar_item_width appears to be unused [UnusedResources]
+    <dimen name="actionbar_item_width">100dip</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:7: Warning: The resource R.dimen.activity_horizontal_margin appears to be unused [UnusedResources]
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:8: Warning: The resource R.dimen.activity_vertical_margin appears to be unused [UnusedResources]
+    <dimen name="activity_vertical_margin">16dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:17: Warning: The resource R.dimen.list_item_defult_width appears to be unused [UnusedResources]
+    <dimen name="list_item_defult_width">0dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:20: Warning: The resource R.dimen.list_item_margin appears to be unused [UnusedResources]
+    <dimen name="list_item_margin">10dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:32: Warning: The resource R.dimen.list_text_margin_from_profile_pic appears to be unused [UnusedResources]
+    <dimen name="list_text_margin_from_profile_pic">10dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:34: Warning: The resource R.dimen.list_item_text_font_size_small appears to be unused [UnusedResources]
+    <dimen name="list_item_text_font_size_small">14sp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:53: Warning: The resource R.dimen.main_header_item_padding appears to be unused [UnusedResources]
+    <dimen name="main_header_item_padding">25dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:58: Warning: The resource R.dimen.home_register_title_text_size appears to be unused [UnusedResources]
+    <dimen name="home_register_title_text_size">24sp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:59: Warning: The resource R.dimen.home_padding_top_bottom appears to be unused [UnusedResources]
+    <dimen name="home_padding_top_bottom">60dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:60: Warning: The resource R.dimen.home_register_sub_title_text_size appears to be unused [UnusedResources]
+    <dimen name="home_register_sub_title_text_size">15sp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:61: Warning: The resource R.dimen.home_padding_top_bottom_for_sub_title appears to be unused [UnusedResources]
+    <dimen name="home_padding_top_bottom_for_sub_title">90dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:62: Warning: The resource R.dimen.list_bottom_bar_padding appears to be unused [UnusedResources]
+    <dimen name="list_bottom_bar_padding">5dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/dimens.xml:66: Warning: The resource R.dimen.nav_bar_go_back_button_width appears to be unused [UnusedResources]
+    <dimen name="nav_bar_go_back_button_width">68dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/layout/form_layout.xml: Warning: The resource R.layout.form_layout appears to be unused [UnusedResources]
+res/drawable-mdpi/ic_menu_settings.png: Warning: The resource R.drawable.ic_menu_settings appears to be unused [UnusedResources]
+res/drawable/rounded_edit_text.xml: Warning: The resource R.drawable.rounded_edit_text appears to be unused [UnusedResources]
+res/xml/settings.xml: Warning: The resource R.xml.settings appears to be unused [UnusedResources]
+res/values/strings.xml:13: Warning: The resource R.string.form_back_confirm_dialog_message appears to be unused [UnusedResources]
+    <string name="form_back_confirm_dialog_message">Are you sure you want to go back? All the data you have entered in
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:16: Warning: The resource R.string.form_back_confirm_dialog_title appears to be unused [UnusedResources]
+    <string name="form_back_confirm_dialog_title">Confirm form close</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:17: Warning: The resource R.string.yes_button_label appears to be unused [UnusedResources]
+    <string name="yes_button_label">Yes</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:18: Warning: The resource R.string.no_button_label appears to be unused [UnusedResources]
+    <string name="no_button_label">No</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:33: Warning: The resource R.string.settings_logout_confirm_title appears to be unused [UnusedResources]
+    <string name="settings_logout_confirm_title">Confirm Log out</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:34: Warning: The resource R.string.settings_logout_confirm_dialog_message appears to be unused [UnusedResources]
+    <string name="settings_logout_confirm_dialog_message">Are you sure you want to log out? All the data will be
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:59: Warning: The resource R.string.ec_register_no_fp appears to be unused [UnusedResources]
+    <string name="ec_register_no_fp">No FP</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:68: Warning: The resource R.string.str_comma_separator appears to be unused [UnusedResources]
+    <string name="str_comma_separator">, </string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/values/strings.xml:91: Warning: Replace "-" with an "en dash" character (?, &#8211;) ? [TypographyDashes]
+    <string name="report_month_sample_text">26/03 - 25/04</string>
+                                            ^
+res/drawable-mdpi/separator.gif: Warning: Using the .gif format for bitmaps is discouraged [GifUsage]
+res/drawable-hdpi/ic_dristhi_logo.png: Warning: The image ic_dristhi_logo.png varies significantly in its density-independent (dip) size across the various density versions: drawable-mdpi/ic_dristhi_logo.png: 72x72 dp (72x72 px), drawable-ldpi/ic_dristhi_logo.png: 48x48 dp (36x36 px), drawable-hdpi/ic_dristhi_logo.png: 48x48 dp (72x72 px) [IconDipSize]
+res/drawable-mdpi/ic_dristhi_logo.png: Warning: The ic_dristhi_logo.png icon has identical contents in the following configuration folders: drawable-hdpi, drawable-mdpi [IconDuplicatesConfig]
+res/drawable-hdpi: Warning: Missing the following drawables in drawable-hdpi: badge.png, flag_bpl.png, flag_hp.png, flag_hr.png, flag_hrp.png... (15 more) [IconDensities]
+res: Warning: Missing density variation folders in res: drawable-xhdpi [IconMissingDensityFolder]
+res/layout/smart_register_activity.xml:21: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+    ^
+res/layout/smart_register_client_name.xml:15: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+        ^
+res/layout/smart_register_client_name.xml:30: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+            ^
+res/layout/smart_register_client_name.xml:38: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+            ^
+res/layout/smart_register_client_name.xml:46: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+            ^
+res/layout/smart_register_client_name.xml:54: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+            ^
+res/layout/smart_register_dialog_list_item.xml:20: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+    ^
+res/layout/smart_register_ec_client.xml:11: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+    ^
+res/layout/smart_register_ec_client.xml:24: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+    ^
+res/layout/smart_register_ec_client.xml:31: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+    ^
+res/layout/smart_register_ec_client.xml:38: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+    ^
+res/layout/smart_register_ec_client.xml:45: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+    ^
+res/layout/smart_register_ec_client.xml:52: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+    ^
+res/layout/smart_register_ec_client.xml:57: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageButton
+    ^
+res/layout/smart_register_nav_bar.xml:8: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageButton
+    ^
+res/layout/smart_register_nav_bar.xml:20: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+    ^
+res/layout/smart_register_nav_bar.xml:77: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+        <ImageButton
+        ^
+res/layout/smart_register_nav_bar.xml:88: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageButton
+    ^
+res/layout/smart_register_nav_bar.xml:99: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+    ^
+res/layout/smart_register_nav_bar.xml:106: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageButton
+    ^
+res/layout/smart_register_nav_bar.xml:117: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+    ^
+res/layout/smart_register_nav_bar.xml:124: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageButton
+    ^
+res/layout/smart_register_nav_bar.xml:135: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+    ^
+res/layout/smart_register_nav_bar.xml:155: Warning: [Accessibility] Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+    ^
+res/menu/main_menu.xml:3: Warning: [I18N] Hardcoded string "Default Text", should use @string resource [HardcodedText]
+    <item android:id="@+id/remainingFormsToSyncMenuItem" android:title="Default Text"  android:showAsAction="ifRoom" android:orderInCategory="100" android:visible="false"></item>
+                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/menu/main_menu.xml:4: Warning: [I18N] Hardcoded string "Update", should use @string resource [HardcodedText]
+    <item android:id="@+id/updateMenuItem" android:title="Update" android:icon="@drawable/refresh" android:showAsAction="always" android:orderInCategory="100"></item>
+                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/menu/main_menu.xml:5: Warning: [I18N] Hardcoded string "Switch Language", should use @string resource [HardcodedText]
+    <item android:id="@+id/switchLanguageMenuItem" android:title="Switch Language" android:icon="@drawable/ic_menu_edit"></item>
+                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+res/layout/smart_register_client_gplsa_layout.xml:60: Warning: [I18N] Hardcoded string "1", should use @string resource [HardcodedText]
+            android:text="1"/>
+            ~~~~~~~~~~~~~~~~
+res/layout/smart_register_client_gplsa_layout.xml:69: Warning: [I18N] Hardcoded string "1", should use @string resource [HardcodedText]
+            android:text="1"/>
+            ~~~~~~~~~~~~~~~~
+res/layout/smart_register_client_gplsa_layout.xml:78: Warning: [I18N] Hardcoded string "1", should use @string resource [HardcodedText]
+            android:text="1"/>
+            ~~~~~~~~~~~~~~~~
+res/layout/smart_register_client_gplsa_layout.xml:87: Warning: [I18N] Hardcoded string "1", should use @string resource [HardcodedText]
+            android:text="1"/>
+            ~~~~~~~~~~~~~~~~
+res/layout/smart_register_client_gplsa_layout.xml:96: Warning: [I18N] Hardcoded string "1", should use @string resource [HardcodedText]
+            android:text="1"/>
+            ~~~~~~~~~~~~~~~~
+59 errors, 96 warnings

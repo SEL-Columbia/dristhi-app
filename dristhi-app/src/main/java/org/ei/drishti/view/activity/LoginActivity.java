@@ -26,6 +26,7 @@ import org.ei.drishti.view.ProgressIndicator;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -212,6 +213,6 @@ public class LoginActivity extends Activity {
         ApplicationInfo applicationInfo = getPackageManager().getApplicationInfo(getPackageName(), 0);
         ZipFile zf = new ZipFile(applicationInfo.sourceDir);
         ZipEntry ze = zf.getEntry("classes.dex");
-        return new SimpleDateFormat("dd MMM yyyy").format(new java.util.Date(ze.getTime()));
+        return new SimpleDateFormat("dd MMM yyyy", Locale.getDefault()).format(new java.util.Date(ze.getTime()));
     }
 }

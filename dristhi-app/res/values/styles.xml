@@ -36,7 +36,7 @@
 
     <style name="TextAppearance.ListView.Item.Small" parent="@style/TextAppearance.ListView.Item">
         <item name="android:textSize">@dimen/list_item_text_font_size</item>
-        <item name="android:height">19px</item>
+        <item name="android:height">19dp</item>
     </style>
 
     <style name="TextAppearance.ListView.Item.TwoLine" parent="@style/TextAppearance.ListView.Item">

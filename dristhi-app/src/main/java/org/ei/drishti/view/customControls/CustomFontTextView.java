@@ -9,10 +9,12 @@ import org.ei.drishti.R;
 
 public class CustomFontTextView extends TextView {
 
+    @SuppressWarnings("UnusedDeclaration")
     public CustomFontTextView(Context context) {
         this(context, null, 0);
     }
 
+    @SuppressWarnings("UnusedDeclaration")
     public CustomFontTextView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
@@ -24,6 +26,7 @@ public class CustomFontTextView extends TextView {
                 attrs, R.styleable.org_ei_drishti_view_customControls_CustomFontTextView, defStyle, 0);
         int variant = attributes.getInt(
                 R.styleable.org_ei_drishti_view_customControls_CustomFontTextView_fontVariant, 0);
+        attributes.recycle();
 
         setFontVariant(variant);
     }

@@ -5,11 +5,11 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.FPMethod;
 import org.joda.time.LocalDate;
-import org.joda.time.Period;
 import org.joda.time.Years;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.upperCase;
@@ -274,7 +274,7 @@ public class ECClient implements SmartRegisterClient {
     }
 
     public boolean satisfiesFilter(String filter) {
-        return name.toLowerCase().startsWith(filter)
+        return name.toLowerCase(Locale.getDefault()).startsWith(filter)
                 || String.valueOf(ecNumber).startsWith(filter);
     }
 
