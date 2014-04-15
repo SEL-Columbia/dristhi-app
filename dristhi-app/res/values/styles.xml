@@ -11,6 +11,12 @@
         <item name="android:textSize">17sp</item>
     </style>
 
+    <style name="CustomFontTextViewStyle.ListView.Small" parent="CustomFontTextViewStyle" >
+        <item name="fontVariant">medium</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:height">18dp</item>
+    </style>
+
     <style name="CustomFontTextViewStyle.ListView.Normal.GPLSA" parent="CustomFontTextViewStyle.ListView.Normal" >
         <item name="fontVariant">medium</item>
         <item name="android:textSize">17sp</item>
