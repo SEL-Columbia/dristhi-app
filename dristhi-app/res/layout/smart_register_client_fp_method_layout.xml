@@ -13,7 +13,7 @@
             android:id="@+id/txt_fp_method"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+            style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"/>
 
     <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_fp_method_date"
