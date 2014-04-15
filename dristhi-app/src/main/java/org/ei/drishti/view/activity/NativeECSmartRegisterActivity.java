@@ -1,15 +1,11 @@
 package org.ei.drishti.view.activity;
 
 import android.view.View;
-import com.google.common.base.Function;
-import com.google.common.collect.Iterables;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.provider.ECSmartRegisterClientsProvider;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.util.StringUtil;
 import org.ei.drishti.view.contract.ECClient;
-import org.ei.drishti.view.contract.Village;
 import org.ei.drishti.view.controller.ECSmartRegisterController;
 import org.ei.drishti.view.controller.VillageController;
 import org.ei.drishti.view.dialog.*;
@@ -23,6 +19,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     private SmartRegisterClientsProvider clientProvider = null;
     private ECSmartRegisterController controller;
     private VillageController villageController;
+    private DialogOptionMapper dialogOptionMapper;
 
     @Override
     public int getColumnCount() {
@@ -100,16 +97,9 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     protected DialogOption[] getFilterOptions() {
-        Iterable<Village> villages = villageController.getVillages();
-        Iterable<? extends DialogOption> villageNames =
-                Iterables.transform(villages, new Function<Village, DialogOption>() {
-                    @Override
-                    public DialogOption apply(Village village) {
-                        return new VillageFilter(StringUtil.humanize(village.name()));
-                    }
-                });
-
-        return toArray(concat(DEFAULT_FILTER_OPTIONS, villageNames), DialogOption.class);
+        Iterable<? extends DialogOption> villageFilterOptions =
+                dialogOptionMapper.mapToVillageFilterOptions(villageController.getVillages());
+        return toArray(concat(DEFAULT_FILTER_OPTIONS, villageFilterOptions), DialogOption.class);
     }
 
     @Override
@@ -135,6 +125,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 context.ecClientsCache());
         villageController = new VillageController(context.allEligibleCouples(),
                 context.listCache(), context.villagesCache());
+        dialogOptionMapper = new DialogOptionMapper();
     }
 
     @Override
@@ -156,6 +147,5 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     @Override
     protected void startRegistration() {
         startFormActivity(EC_REGISTRATION, null, null);
-
     }
 }
