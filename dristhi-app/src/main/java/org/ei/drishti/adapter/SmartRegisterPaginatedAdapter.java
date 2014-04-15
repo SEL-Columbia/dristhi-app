@@ -1,7 +1,6 @@
 package org.ei.drishti.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -33,7 +32,7 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter {
     protected void refreshClients(SmartRegisterClients filteredClients) {
         this.filteredClients = filteredClients;
         clientCount = filteredClients.size();
-        pageCount = (int) Math.ceil((double)clientCount / (double)CLIENTS_PER_PAGE);
+        pageCount = (int) Math.ceil((double) clientCount / (double) CLIENTS_PER_PAGE);
         currentPage = 0;
     }
 

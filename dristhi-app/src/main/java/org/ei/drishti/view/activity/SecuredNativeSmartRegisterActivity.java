@@ -20,21 +20,18 @@ import org.ei.drishti.view.customControls.FontVariant;
 import org.ei.drishti.view.dialog.*;
 import org.joda.time.LocalDate;
 
-import java.text.MessageFormat;
 import java.util.List;
 
 import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
+import static java.text.MessageFormat.format;
 import static java.util.Arrays.asList;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.ei.drishti.AllConstants.SHORT_DATE_FORMAT;
 
 public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         implements View.OnClickListener {
 
     private static final String DIALOG_TAG = "dialog";
-    private static final int DIALOG_SORT = 1;
-    private static final int DIALOG_FILTER = 2;
-    private static final int DIALOG_SERVICE_MODE = 3;
-    private static final int DIALOG_EDIT = 4;
 
     public static final List<? extends DialogOption> DEFAULT_FILTER_OPTIONS =
             asList(new AllClientsFilter(), new OutOfAreaFilter());
@@ -44,7 +41,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private SmartRegisterPaginatedAdapter clientsAdapter;
 
     private TextView serviceModeView;
-    private LinearLayout clientsHeaderLayout;
     private TextView appliedVillageFilterView;
     private TextView appliedSortView;
 
@@ -75,6 +71,35 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private void setupViews() {
         findViewById(R.id.btn_back_to_home).setOnClickListener(this);
 
+        setupTitleView();
+        populateClientListHeaderView();
+
+        clientsProgressView = (ProgressBar) findViewById(R.id.client_list_progress);
+        clientsView = (ListView) findViewById(R.id.list);
+
+        setupSearchView();
+
+        View villageFilterView = findViewById(R.id.filter_selection);
+        villageFilterView.setOnClickListener(this);
+
+        View sortView = findViewById(R.id.sort_selection);
+        sortView.setOnClickListener(this);
+
+        serviceModeView = (TextView) findViewById(R.id.service_mode_selection);
+        serviceModeView.setOnClickListener(this);
+        serviceModeView.setText(getDefaultServiceModeName());
+
+        appliedSortView = (TextView) findViewById(R.id.sorted_by);
+        appliedVillageFilterView = (TextView) findViewById(R.id.village);
+
+        findViewById(R.id.register_client).setOnClickListener(this);
+
+        setupFooterView();
+        updateStatusBar();
+        updateDefaultOptions();
+    }
+
+    private void setupTitleView() {
         ViewGroup titleLayout = (ViewGroup) findViewById(R.id.title_layout);
         titleLayout.setOnClickListener(this);
 
@@ -83,13 +108,9 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
         TextView reportMonthStartView = (TextView) findViewById(R.id.btn_report_month);
         setReportDates(reportMonthStartView);
+    }
 
-        clientsHeaderLayout = (LinearLayout) findViewById(R.id.clients_header_layout);
-        populateClientListHeaderView();
-
-        clientsProgressView = (ProgressBar) findViewById(R.id.client_list_progress);
-        clientsView = (ListView) findViewById(R.id.list);
-
+    private void setupSearchView() {
         searchView = (EditText) findViewById(R.id.edt_search);
         searchView.addTextChangedListener(new TextWatcher() {
             @Override
@@ -104,7 +125,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                                 currentSearchFilter, currentSortOption);
 
                 searchCancelView.setVisibility(isEmpty(cs) ? View.INVISIBLE : View.VISIBLE);
-
             }
 
             @Override
@@ -113,23 +133,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         });
         searchCancelView = findViewById(R.id.btn_search_cancel);
         searchCancelView.setOnClickListener(this);
-
-        View villageFilterView = findViewById(R.id.filter_selection);
-        villageFilterView.setOnClickListener(this);
-        View sortView = findViewById(R.id.sort_selection);
-        sortView.setOnClickListener(this);
-        serviceModeView = (TextView) findViewById(R.id.service_mode_selection);
-        serviceModeView.setOnClickListener(this);
-        serviceModeView.setText(getDefaultServiceModeName());
-
-        appliedSortView = (TextView) findViewById(R.id.sorted_by);
-        appliedVillageFilterView = (TextView) findViewById(R.id.village);
-
-        findViewById(R.id.register_client).setOnClickListener(this);
-
-        setupFooterView();
-        updateStatusBar();
-        updateDefaultOptions();
     }
 
     @Override
@@ -166,9 +169,9 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     private void setReportDates(TextView titleView) {
         ReportMonth report = new ReportMonth();
-        titleView.setText(report.startOfCurrentReportMonth(LocalDate.now()).toString("dd/MM")
+        titleView.setText(report.startOfCurrentReportMonth(LocalDate.now()).toString(SHORT_DATE_FORMAT)
                 + " - "
-                + report.endOfCurrentReportMonth(LocalDate.now()).toString("dd/MM"));
+                + report.endOfCurrentReportMonth(LocalDate.now()).toString(SHORT_DATE_FORMAT));
     }
 
     private void updateDefaultOptions() {
@@ -198,7 +201,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     public void updateFooter() {
-        pageInfoView.setText(MessageFormat.
+        pageInfoView.setText(
                 format(getResources().getString(R.string.str_page_info),
                         (clientsAdapter.currentPage() + 1),
                         (clientsAdapter.pageCount())));
@@ -222,15 +225,15 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     private void populateClientListHeaderView() {
-        LinearLayout listHeader = clientsHeaderLayout;
-        listHeader.removeAllViewsInLayout();
-        listHeader.setWeightSum(getColumnWeightSum());
+        LinearLayout clientsHeaderLayout = (LinearLayout) findViewById(R.id.clients_header_layout);
+        clientsHeaderLayout.removeAllViewsInLayout();
+        clientsHeaderLayout.setWeightSum(getColumnWeightSum());
         int columnCount = getColumnCount();
         int[] weights = getColumnWeights();
         int[] headerTxtResIds = getColumnHeaderTextResourceIds();
 
         for (int i = 0; i < columnCount; i++) {
-            listHeader.addView(getColumnHeaderView(i, weights, headerTxtResIds));
+            clientsHeaderLayout.addView(getColumnHeaderView(i, weights, headerTxtResIds));
         }
     }
 
@@ -278,16 +281,17 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                 startRegistration();
                 break;
             case R.id.filter_selection:
-                showFragmentDialog(DIALOG_FILTER, getDialogDataSet(DIALOG_FILTER));
+                showFragmentDialog(new FilterDialogOptionModel());
                 break;
             case R.id.sort_selection:
-                showFragmentDialog(DIALOG_SORT, getDialogDataSet(DIALOG_SORT));
+                showFragmentDialog(new SortDialogOptionModel());
                 break;
             case R.id.service_mode_selection:
-                showFragmentDialog(DIALOG_SERVICE_MODE, getDialogDataSet(DIALOG_SERVICE_MODE));
+                showFragmentDialog(new ServiceModeDialogOptionModel());
                 break;
             case R.id.btn_edit:
-                showFragmentDialog(DIALOG_EDIT, getDialogDataSet(DIALOG_EDIT), view.getTag());
+                showFragmentDialog(new EditDialogOptionModel(),
+                        view.getTag());
                 break;
             case R.id.btn_next_page:
                 goToNextPage();
@@ -298,7 +302,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             case R.id.btn_search_cancel:
                 clearSearch();
                 break;
-
         }
     }
 
@@ -310,16 +313,25 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     protected void onServiceModeSelection(ServiceModeOption serviceModeOption) {
         currentServiceModeOption = serviceModeOption;
         serviceModeView.setText(serviceModeOption.name());
+        clientsAdapter
+                .refreshList(currentVillageFilter, currentServiceModeOption,
+                        currentSearchFilter, currentSortOption);
     }
 
     protected void onSortSelection(SortOption sortBy) {
         currentSortOption = sortBy;
         appliedSortView.setText(sortBy.name());
+        clientsAdapter
+                .refreshList(currentVillageFilter, currentServiceModeOption,
+                        currentSearchFilter, currentSortOption);
     }
 
     protected void onFilterSelection(FilterOption filter) {
         currentVillageFilter = filter;
         appliedVillageFilterView.setText(filter.name());
+        clientsAdapter
+                .refreshList(currentVillageFilter, currentServiceModeOption,
+                        currentSearchFilter, currentSortOption);
     }
 
     protected void onEditSelection(EditOption editOption, SmartRegisterClient client) {
@@ -335,12 +347,12 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         super.onBackPressed();
     }
 
-    void showFragmentDialog(int dialogId, DialogOption[] options) {
-        showFragmentDialog(dialogId, options, null);
+    void showFragmentDialog(DialogOptionModel dialogOptionModel) {
+        showFragmentDialog(dialogOptionModel, null);
     }
 
-    void showFragmentDialog(int dialogId, DialogOption[] options, Object tag) {
-        if (options.length <= 0) {
+    void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+        if (dialogOptionModel.getDialogOptions().length <= 0) {
             return;
         }
 
@@ -352,48 +364,8 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         ft.addToBackStack(null);
 
         SmartRegisterDialogFragment
-                .newInstance(this, dialogId, options, tag)
+                .newInstance(this, dialogOptionModel, tag)
                 .show(ft, DIALOG_TAG);
-    }
-
-    public void onDialogOptionSelected(int dialogId, DialogOption option, Object tag) {
-        switch (dialogId) {
-            case DIALOG_SORT:
-                onSortSelection((SortOption) option);
-                break;
-
-            case DIALOG_FILTER:
-                onFilterSelection((FilterOption) option);
-                break;
-
-            case DIALOG_SERVICE_MODE:
-                onServiceModeSelection((ServiceModeOption) option);
-                break;
-
-            case DIALOG_EDIT:
-                onEditSelection((EditOption) option, (SmartRegisterClient) tag);
-                return;
-        }
-        clientsAdapter
-                .refreshList(currentVillageFilter, currentServiceModeOption,
-                        currentSearchFilter, currentSortOption);
-    }
-
-    private DialogOption[] getDialogDataSet(int dialogId) {
-        switch (dialogId) {
-            case DIALOG_SORT:
-                return getSortingOptions();
-
-            case DIALOG_FILTER:
-                return getFilterOptions();
-
-            case DIALOG_SERVICE_MODE:
-                return getServiceModeOptions();
-
-            default:
-            case DIALOG_EDIT:
-                return getEditOptions();
-        }
     }
 
     protected abstract String getDefaultServiceModeName();
@@ -425,4 +397,52 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     protected abstract void onInitialization();
 
     protected abstract void startRegistration();
+
+    private class FilterDialogOptionModel implements DialogOptionModel {
+        @Override
+        public DialogOption[] getDialogOptions() {
+            return getFilterOptions();
+        }
+
+        @Override
+        public void onDialogOptionSelection(DialogOption option, Object tag) {
+            onFilterSelection((FilterOption) option);
+        }
+    }
+
+    private class SortDialogOptionModel implements DialogOptionModel {
+        @Override
+        public DialogOption[] getDialogOptions() {
+            return getSortingOptions();
+        }
+
+        @Override
+        public void onDialogOptionSelection(DialogOption option, Object tag) {
+            onSortSelection((SortOption) option);
+        }
+    }
+
+    private class ServiceModeDialogOptionModel implements DialogOptionModel {
+        @Override
+        public DialogOption[] getDialogOptions() {
+            return getServiceModeOptions();
+        }
+
+        @Override
+        public void onDialogOptionSelection(DialogOption option, Object tag) {
+            onServiceModeSelection((ServiceModeOption) option);
+        }
+    }
+
+    private class EditDialogOptionModel implements DialogOptionModel {
+        @Override
+        public DialogOption[] getDialogOptions() {
+            return getEditOptions();
+        }
+
+        @Override
+        public void onDialogOptionSelection(DialogOption option, Object tag) {
+            onEditSelection((EditOption) option, (SmartRegisterClient) tag);
+        }
+    }
 }

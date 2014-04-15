@@ -14,21 +14,23 @@ import org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity;
 
 public class SmartRegisterDialogFragment extends DialogFragment {
     private final SecuredNativeSmartRegisterActivity parentActivity;
-    private int dialogId;
     private final DialogOption[] options;
+    private final DialogOptionModel dialogOptionModel;
     private final Object tag;
 
     private SmartRegisterDialogFragment(SecuredNativeSmartRegisterActivity activity,
-                                        int dialogId, DialogOption[] options, Object tag) {
+                                        DialogOptionModel dialogOptionModel,
+                                        Object tag) {
         this.parentActivity = activity;
-        this.dialogId = dialogId;
-        this.options = options;
+        this.options = dialogOptionModel.getDialogOptions();
+        this.dialogOptionModel = dialogOptionModel;
         this.tag = tag;
     }
 
     public static SmartRegisterDialogFragment newInstance(
-            SecuredNativeSmartRegisterActivity activity, int dialogId, DialogOption[] options, Object tag) {
-        return new SmartRegisterDialogFragment(activity, dialogId, options, tag);
+            SecuredNativeSmartRegisterActivity activity,
+            DialogOptionModel dialogOptionModel, Object tag) {
+        return new SmartRegisterDialogFragment(activity, dialogOptionModel, tag);
     }
 
     @Override
@@ -66,7 +68,7 @@ public class SmartRegisterDialogFragment extends DialogFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 dismiss();
-                parentActivity.onDialogOptionSelected(dialogId, options[i], tag);
+                dialogOptionModel.onDialogOptionSelection(options[i], tag);
             }
         });
 
