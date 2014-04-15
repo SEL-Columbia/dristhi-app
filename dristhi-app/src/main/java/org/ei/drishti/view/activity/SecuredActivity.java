@@ -7,22 +7,28 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
 import org.ei.drishti.view.controller.FormController;
 import org.ei.drishti.view.controller.NavigationController;
 
+import java.util.Map;
+
 import static android.widget.Toast.LENGTH_SHORT;
-import static org.ei.drishti.AllConstants.ENTITY_ID_PARAM;
-import static org.ei.drishti.AllConstants.FORM_NAME_PARAM;
+import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.event.Event.ON_LOGOUT;
+import static org.ei.drishti.util.Log.logInfo;
 
 public abstract class SecuredActivity extends Activity {
     protected Context context;
     protected Listener<Boolean> logoutListener;
     protected FormController formController;
     protected NavigationController navigationController;
+    private String metaData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,16 +94,42 @@ public abstract class SecuredActivity extends Activity {
     protected abstract void onResumption();
 
     public void startFormActivity(String formName, String entityId, String metaData) {
-        Intent intent = new Intent(getApplicationContext(), FormActivity.class);
-        intent.putExtra(FORM_NAME_PARAM, formName);
-        intent.putExtra(ENTITY_ID_PARAM, entityId);
-        startActivity(intent);
+        launchForm(formName, entityId, metaData, FormActivity.class);
     }
 
     public void startMicroFormActivity(String formName, String entityId, String metaData) {
-        Intent intent = new Intent(getApplicationContext(), MicroFormActivity.class);
+        launchForm(formName, entityId, metaData, MicroFormActivity.class);
+    }
+
+    private void launchForm(String formName, String entityId, String metaData, Class formType) {
+        this.metaData = metaData;
+
+        Intent intent = new Intent(this, formType);
         intent.putExtra(FORM_NAME_PARAM, formName);
         intent.putExtra(ENTITY_ID_PARAM, entityId);
-        startActivity(intent);
+        addFieldOverridesIfExist(intent);
+        startActivityForResult(intent, FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE);
+    }
+
+    private void addFieldOverridesIfExist(Intent intent) {
+        Map<String, String> metaDataMap = new Gson().fromJson(this.metaData, new TypeToken<Map<String, String>>() {
+        }.getType());
+        if (metaDataMap.containsKey(FIELD_OVERRIDES_PARAM)) {
+            intent.putExtra(FIELD_OVERRIDES_PARAM, metaDataMap.get(FIELD_OVERRIDES_PARAM));
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE) {
+            return;
+        }
+        logInfo("Form successfully saved. MetaData: " + metaData);
+        Map<String, String> metaDataMap = new Gson().fromJson(metaData, new TypeToken<Map<String, String>>() {
+        }.getType());
+        if (metaDataMap.containsKey(ENTITY_ID) && metaDataMap.containsKey(ALERT_NAME_PARAM)) {
+            Context.getInstance().alertService().changeAlertStatusToInProcess(metaDataMap.get(ENTITY_ID), metaDataMap.get(ALERT_NAME_PARAM));
+        }
     }
 }

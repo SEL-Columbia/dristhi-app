@@ -3,6 +3,7 @@ package org.ei.drishti.view.activity;
 import android.view.View;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.drishti.domain.form.FieldOverrides;
 import org.ei.drishti.provider.ECSmartRegisterClientsProvider;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.ECClient;
@@ -146,6 +147,8 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     protected void startRegistration() {
-        startFormActivity(EC_REGISTRATION, null, null);
+        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
+        startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
     }
+
 }
