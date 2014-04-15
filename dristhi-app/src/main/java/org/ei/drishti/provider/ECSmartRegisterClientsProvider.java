@@ -22,6 +22,7 @@ import org.ei.drishti.view.viewHolder.NativeECSmartRegisterViewHolder;
 
 import java.util.List;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static java.text.MessageFormat.format;
 import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.view.controller.ECSmartRegisterController.*;
@@ -31,7 +32,15 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     private final LayoutInflater inflater;
     private final Context context;
     private final View.OnClickListener onClickListener;
+
+    private final String wifeAgeFormatString;
+    private final String maleChildAgeFormatString;
+    private final String femaleChildAgeFormatString;
+    private final int txtColorBlack;
+    private final AbsListView.LayoutParams clientViewLayoutParams;
+
     protected ECSmartRegisterController controller;
+
     private Drawable womanPlaceHolderDrawable;
     private Drawable iconPencilDrawable;
 
@@ -42,6 +51,13 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         this.controller = controller;
         this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        wifeAgeFormatString = context.getResources().getString(R.string.ec_register_wife_age);
+        maleChildAgeFormatString = context.getResources().getString(R.string.ec_register_male_child);
+        femaleChildAgeFormatString = context.getResources().getString(R.string.ec_register_female_child);
+        clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
+                (int) context.getResources().getDimension(R.dimen.list_item_height));
+        txtColorBlack = context.getResources().getColor(R.color.text_black);
     }
 
     @Override
@@ -64,16 +80,13 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         setupStatusView(client, viewModel);
         setupEditView(client, viewModel);
 
-        AbsListView.LayoutParams layoutParams = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                (int) context.getResources().getDimension(R.dimen.list_item_height));
-        itemView.setLayoutParams(layoutParams);
-
+        itemView.setLayoutParams(clientViewLayoutParams);
         return itemView;
     }
 
     private void setupFPMethodView(ECClient client, NativeECSmartRegisterViewHolder viewModel) {
         FPMethod fpMethod = client.fpMethod();
-        viewModel.refreshAllFPMethodDetailViews(context.getResources().getColor(R.color.text_black));
+        viewModel.refreshAllFPMethodDetailViews(txtColorBlack);
         viewModel.fpMethodView().setText(fpMethod.displayName());
         viewModel.fpMethodDateView().setVisibility(View.VISIBLE);
         viewModel.fpMethodDateView().setText(client.familyPlanningMethodChangeDate());
@@ -134,8 +147,7 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         viewModel.txtNameView().setText(client.name());
         viewModel.txtHusbandNameView().setText(client.husbandName());
         viewModel.txtVillageNameView().setText(client.village());
-        viewModel.txtAgeView().setText(
-                format(context.getResources().getString(R.string.ec_register_wife_age), client.age()));
+        viewModel.txtAgeView().setText(format(wifeAgeFormatString, client.age()));
         viewModel.txtECNumberView().setText(String.valueOf(client.ecNumber()));
         viewModel.badgeHPView().setVisibility(client.isHighPriority() ? View.VISIBLE : View.GONE);
         viewModel.badgeBPLView().setVisibility(client.isBPL() ? View.VISIBLE : View.GONE);
@@ -155,8 +167,6 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
 
     private void setupChildrenView(ECClient client, NativeECSmartRegisterViewHolder viewModel) {
         List<ECChildClient> children = client.children();
-
-
         if (children.size() == 0) {
             viewModel.maleChildrenView().setVisibility(View.GONE);
             viewModel.femaleChildrenView().setVisibility(View.GONE);
@@ -182,13 +192,11 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         if (child.isMale()) {
             viewModel.maleChildrenView().setVisibility(View.VISIBLE);
             viewModel.maleChildrenView().setText(
-                    format(context.getResources().getString(R.string.ec_register_male_child),
-                            child.getAgeInMonths()));
+                    format(maleChildAgeFormatString, child.getAgeInMonths()));
         } else {
             viewModel.femaleChildrenView().setVisibility(View.VISIBLE);
             viewModel.femaleChildrenView().setText(
-                    format(context.getResources().getString(R.string.ec_register_female_child),
-                            child.getAgeInMonths()));
+                    format(femaleChildAgeFormatString, child.getAgeInMonths()));
         }
     }
 
