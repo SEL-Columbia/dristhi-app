@@ -3,6 +3,7 @@ package org.ei.drishti.view.activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.database.DataSetObserver;
+import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -13,9 +14,6 @@ import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.domain.ReportMonth;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.BackgroundAction;
-import org.ei.drishti.view.LockingBackgroundTask;
-import org.ei.drishti.view.ProgressIndicator;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.customControls.CustomFontTextView;
 import org.ei.drishti.view.customControls.FontVariant;
@@ -25,6 +23,7 @@ import org.joda.time.LocalDate;
 import java.text.MessageFormat;
 import java.util.List;
 
+import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
 import static java.util.Arrays.asList;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
@@ -137,32 +136,30 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     protected void onPostResume() {
         super.onPostResume();
 
-        new LockingBackgroundTask(new ProgressIndicator() {
+        new AsyncTask<Void, Void, Void>() {
             @Override
-            public void setVisible() {
-                clientsProgressView.setVisibility(View.VISIBLE);
-                clientsView.setVisibility(View.INVISIBLE);
-            }
-
-            @Override
-            public void setInvisible() {
-                clientsProgressView.setVisibility(View.GONE);
-                clientsView.setVisibility(View.VISIBLE);
-            }
-        }).doActionInBackground(new BackgroundAction<Object>() {
-            @Override
-            public Object actionToDoInBackgroundThread() {
+            protected Void doInBackground(Void... params) {
+                publishProgress();
                 setupAdapter();
                 return null;
             }
 
             @Override
-            public void postExecuteInUIThread(Object result) {
-                clientsView.setAdapter(clientsAdapter);
-                clientsView.setVisibility(View.VISIBLE);
-                updateFooter();
+            protected void onPreExecute() {
+                super.onPreExecute();
+                clientsProgressView.setVisibility(View.VISIBLE);
+                clientsView.setVisibility(View.INVISIBLE);
             }
-        });
+
+            @Override
+            protected void onPostExecute(Void result) {
+                clientsView.setAdapter(clientsAdapter);
+                updateFooter();
+                clientsProgressView.setVisibility(View.GONE);
+                clientsView.setVisibility(View.VISIBLE);
+
+            }
+        }.executeOnExecutor(THREAD_POOL_EXECUTOR);
     }
 
     protected abstract String getRegisterTitleInShortForm();
