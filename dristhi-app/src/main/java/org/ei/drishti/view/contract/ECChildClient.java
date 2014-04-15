@@ -3,6 +3,7 @@ package org.ei.drishti.view.contract;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Months;
 
@@ -25,8 +26,27 @@ public class ECChildClient {
         return !isMale();
     }
 
-    public int getAgeInMonths() {
-        return Months.monthsBetween(LocalDate.parse(dateOfBirth), LocalDate.now()).getMonths();
+    public int getAgeInDays() {
+        return Days.daysBetween(LocalDate.parse(dateOfBirth), LocalDate.now()).getDays();
+    }
+
+    public String getAgeInString() {
+        return format(getAgeInDays());
+    }
+
+    public String format(int days_since) {
+        int DAYS_THRESHOLD = 28;
+        int WEEKS_THRESHOLD = 119;
+        int MONTHS_THRESHOLD = 720;
+        if (days_since < DAYS_THRESHOLD) {
+            return (int)Math.floor(days_since) + "d";
+        } else if (days_since < WEEKS_THRESHOLD) {
+            return (int)Math.floor(days_since / 7) + "w";
+        } else if (days_since < MONTHS_THRESHOLD) {
+            return (int)Math.floor(days_since / 30) + "m";
+        } else {
+            return (int)Math.floor(days_since / 365) + "y";
+        }
     }
 
     @Override

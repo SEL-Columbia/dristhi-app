@@ -54,8 +54,8 @@
     <string name="label_village">, Village: </string>
     <string name="ec_register_wife_age">({0})</string>
 
-    <string name="ec_register_male_child">Male\n{0}m</string>
-    <string name="ec_register_female_child">Female\n{0}m</string>
+    <string name="ec_register_male_child">Male\n{0}</string>
+    <string name="ec_register_female_child">Female\n{0}</string>
     <string name="ec_register_no_fp">No FP</string>
 
     <string name="status_delivery">Delivery:</string>

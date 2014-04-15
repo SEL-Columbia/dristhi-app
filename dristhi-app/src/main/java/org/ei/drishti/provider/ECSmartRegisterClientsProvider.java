@@ -192,11 +192,11 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         if (child.isMale()) {
             viewModel.maleChildrenView().setVisibility(View.VISIBLE);
             viewModel.maleChildrenView().setText(
-                    format(maleChildAgeFormatString, child.getAgeInMonths()));
+                    format(maleChildAgeFormatString, child.getAgeInString()));
         } else {
             viewModel.femaleChildrenView().setVisibility(View.VISIBLE);
             viewModel.femaleChildrenView().setText(
-                    format(femaleChildAgeFormatString, child.getAgeInMonths()));
+                    format(femaleChildAgeFormatString, child.getAgeInString()));
         }
     }
 
