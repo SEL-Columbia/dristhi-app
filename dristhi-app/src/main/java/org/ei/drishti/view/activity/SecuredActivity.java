@@ -112,6 +112,9 @@ public abstract class SecuredActivity extends Activity {
     }
 
     private void addFieldOverridesIfExist(Intent intent) {
+        if (this.metaData == null) {
+            return;
+        }
         Map<String, String> metaDataMap = new Gson().fromJson(this.metaData, new TypeToken<Map<String, String>>() {
         }.getType());
         if (metaDataMap.containsKey(FIELD_OVERRIDES_PARAM)) {
@@ -122,7 +125,7 @@ public abstract class SecuredActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE) {
+        if (resultCode != AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE || this.metaData == null) {
             return;
         }
         logInfo("Form successfully saved. MetaData: " + metaData);
