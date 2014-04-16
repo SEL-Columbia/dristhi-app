@@ -19,6 +19,7 @@ import org.ei.drishti.view.dialog.FilterOption;
 import org.ei.drishti.view.dialog.ServiceModeOption;
 import org.ei.drishti.view.dialog.SortOption;
 import org.ei.drishti.view.viewHolder.NativeECSmartRegisterViewHolder;
+import org.ei.drishti.view.viewHolder.ProfilePhotoLoader;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     private final LayoutInflater inflater;
     private final Context context;
     private final View.OnClickListener onClickListener;
+    private final ProfilePhotoLoader photoLoader;
 
     private final String wifeAgeFormatString;
     private final String maleChildAgeFormatString;
@@ -41,7 +43,6 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
 
     protected ECSmartRegisterController controller;
 
-    private Drawable womanPlaceHolderDrawable;
     private Drawable iconPencilDrawable;
 
     public ECSmartRegisterClientsProvider(Context context,
@@ -51,6 +52,9 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         this.controller = controller;
         this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        photoLoader = new ProfilePhotoLoader(context.getResources(),
+                context.getResources().getDrawable(R.drawable.woman_placeholder));
 
         wifeAgeFormatString = context.getResources().getString(R.string.ec_register_wife_age);
         maleChildAgeFormatString = context.getResources().getString(R.string.ec_register_male_child);
@@ -105,7 +109,7 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         } else if (fpMethod == FPMethod.CENTCHROMAN) {
             viewModel.fpMethodQuantityLabelView().setVisibility(View.VISIBLE);
             viewModel.fpMethodQuantityView().setVisibility(View.VISIBLE);
-            viewModel.fpMethodQuantityView().setText(client.numberOfCondomsSupplied());
+            viewModel.fpMethodQuantityView().setText(client.numberOfCentchromanPillsDelivered());
         } else if (fpMethod == FPMethod.IUD) {
             if (StringUtils.isNotBlank(client.iudPerson())) {
                 viewModel.iudPersonView().setVisibility(View.VISIBLE);
@@ -140,10 +144,7 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     }
 
     private void setupClientProfileView(ECClient client, NativeECSmartRegisterViewHolder viewModel) {
-        if (womanPlaceHolderDrawable == null) {
-            womanPlaceHolderDrawable = context.getResources().getDrawable(R.drawable.woman_placeholder);
-        }
-        viewModel.imgProfileView().setBackground(womanPlaceHolderDrawable);
+        viewModel.imgProfileView().setBackground(photoLoader.get(client));
         viewModel.txtNameView().setText(client.name());
         viewModel.txtHusbandNameView().setText(client.husbandName());
         viewModel.txtVillageNameView().setText(client.village());

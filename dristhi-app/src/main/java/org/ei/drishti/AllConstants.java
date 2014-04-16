@@ -99,6 +99,9 @@ public class AllConstants {
         public static final String HIGH_PRIORITY_REASON = "highPriorityReason";
         public static final String IS_HIGH_PRIORITY = "isHighPriority";
         public static final String REGISTRATION_DATE = "registrationDate";
+        public static final String BPL_VALUE = "BPL";
+        public static final String SC_VALUE = "SC";
+        public static final String ST_VALUE = "ST";
     }
 
     public class ANCCloseFields {

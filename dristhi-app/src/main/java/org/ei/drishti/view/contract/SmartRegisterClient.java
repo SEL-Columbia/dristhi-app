@@ -74,4 +74,6 @@ public interface SmartRegisterClient {
     public String locationStatus();
 
     public String entityId();
+
+    public String profilePhotoPath();
 }

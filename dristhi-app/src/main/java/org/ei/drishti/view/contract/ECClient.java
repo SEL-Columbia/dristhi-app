@@ -14,6 +14,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.upperCase;
+import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
 import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.util.StringUtil.humanize;
 
@@ -89,12 +90,12 @@ public class ECClient implements SmartRegisterClient {
 
     @Override
     public boolean isSC() {
-        return caste != null && caste.equalsIgnoreCase("SC");
+        return caste != null && caste.equalsIgnoreCase(SC_VALUE);
     }
 
     @Override
     public boolean isST() {
-        return caste != null && caste.equalsIgnoreCase("ST");
+        return caste != null && caste.equalsIgnoreCase(ST_VALUE);
     }
 
     @Override
@@ -104,7 +105,12 @@ public class ECClient implements SmartRegisterClient {
 
     @Override
     public boolean isBPL() {
-        return economicStatus != null && economicStatus.equalsIgnoreCase("BPL");
+        return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
+    }
+
+    @Override
+    public String profilePhotoPath() {
+        return photo_path;
     }
 
     public FPMethod fpMethod() {
@@ -153,6 +159,10 @@ public class ECClient implements SmartRegisterClient {
 
     public String numberOfCondomsSupplied() {
         return numberOfCondomsSupplied;
+    }
+
+    public String numberOfCentchromanPillsDelivered() {
+        return numberOfCentchromanPillsDelivered;
     }
 
     public String iudPerson() {
