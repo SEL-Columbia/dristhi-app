@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,11 +13,9 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
 
 public class ProfilePhotoLoader {
-
-    private Resources resources;
-    private Drawable defaultPlaceHolder;
-    private Map<String, Drawable> drawableMap = new HashMap<String, Drawable>();
-
+    private final Resources resources;
+    private final Drawable defaultPlaceHolder;
+    private final Map<String, Drawable> drawableMap = new HashMap<String, Drawable>();
 
     public ProfilePhotoLoader(Resources res, Drawable placeHolder) {
         this.resources = res;
@@ -28,13 +27,23 @@ public class ProfilePhotoLoader {
             return drawableMap.get(client.entityId());
         }
 
-        String photoPath = client.profilePhotoPath();
-        if (isBlank(photoPath) || photoPath.contains(DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH)) {
+        String photoPath = client.profilePhotoPath().replace("file:///", "/");
+        if (isBlank(photoPath)
+                || isThisDefaultProfilePhoto(photoPath)
+                || !isFileExists(photoPath)) {
             return defaultPlaceHolder;
         }
 
-        Drawable profilePhoto = new BitmapDrawable(resources, photoPath.replace("file:///mnt/", "/"));
+        Drawable profilePhoto = new BitmapDrawable(resources, photoPath);
         drawableMap.put(client.entityId(), profilePhoto);
         return profilePhoto;
+    }
+
+    private boolean isFileExists(String path) {
+        return new File(path).exists();
+    }
+
+    private boolean isThisDefaultProfilePhoto(String photoPath) {
+        return photoPath.contains(DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH);
     }
 }
