@@ -43,12 +43,6 @@ function ANMNavigationPanel(anmNavigationBridge) {
         });
     };
 
-    var bindToNativeECSmartRegistry = function (callbackToRunBeforeAnyAction, identifierOfElement) {
-        runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
-            anmNavigationBridge.delegateToNativeECSmartRegistry();
-        });
-    };
-
     var bindToChildSmartRegistry = function (callbackToRunBeforeAnyAction, identifierOfElement) {
         runWithCallBack(callbackToRunBeforeAnyAction, identifierOfElement, function () {
             anmNavigationBridge.delegateToChildSmartRegistry();
@@ -72,7 +66,6 @@ function ANMNavigationPanel(anmNavigationBridge) {
             bindToFPSmartRegistry(callbackToRunBeforeAnyAction, "#fpSmartRegistryOption");
             bindToANCSmartRegistry(callbackToRunBeforeAnyAction, "#ancSmartRegistryOption");
             bindToPNCSmartRegistry(callbackToRunBeforeAnyAction, "#pncSmartRegistryOption");
-            bindToNativeECSmartRegistry(callbackToRunBeforeAnyAction, "#nativeECRegisterButton");
         }
     };
 }
@@ -122,9 +115,6 @@ function ANMNavigationBridge() {
         },
         delegateToChildProfile: function (entityId) {
             anmNavigationContext.startChild(entityId);
-        },
-        delegateToNativeECSmartRegistry: function () {
-            anmNavigationContext.startNativeECRegister();
         }
     };
 }
@@ -176,9 +166,6 @@ function FakeANMNavigationContext() {
         },
         startChild: function () {
             window.location.href = "../child_detail.html";
-        },
-        startNativeECRegister: function () {
-            window.location = "smart_registry/ec_register.html";
         }
     };
 }
