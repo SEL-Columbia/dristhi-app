@@ -23,6 +23,8 @@ import org.joda.time.LocalDate;
 import java.util.List;
 
 import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 import static java.text.MessageFormat.format;
 import static java.util.Arrays.asList;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
@@ -40,9 +42,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private TextView serviceModeView;
     private TextView appliedVillageFilterView;
     private TextView appliedSortView;
-    private Button nextPageView;
-    private Button previousPageView;
-    private TextView pageInfoView;
     private EditText searchView;
     private View searchCancelView;
     private TextView titleLabelView;
@@ -54,7 +53,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private FilterOption currentSearchFilter;
     private ServiceModeOption currentServiceModeOption;
 
-    private final PaginationHandler paginationHandler = new PaginationHandler();
+    private final PaginationViewHandler paginationViewHandler = new PaginationViewHandler();
     private final NavBarActionsHandler navBarActionsHandler = new NavBarActionsHandler();
     private final SearchCancelHandler searchCancelHandler = new SearchCancelHandler();
 
@@ -122,16 +121,16 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                clientsProgressView.setVisibility(View.VISIBLE);
-                clientsView.setVisibility(View.INVISIBLE);
+                clientsProgressView.setVisibility(VISIBLE);
+                clientsView.setVisibility(INVISIBLE);
             }
 
             @Override
             protected void onPostExecute(Void result) {
                 clientsView.setAdapter(clientsAdapter);
-                updateFooter();
+                paginationViewHandler.refresh();
                 clientsProgressView.setVisibility(View.GONE);
-                clientsView.setVisibility(View.VISIBLE);
+                clientsView.setVisibility(VISIBLE);
 
             }
         }.executeOnExecutor(THREAD_POOL_EXECUTOR);
@@ -145,7 +144,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         clientsView = (ListView) findViewById(R.id.list);
 
         setupStatusBarViews();
-        setupFooterView();
+        paginationViewHandler.addPagination(clientsView);
 
         updateDefaultOptions();
     }
@@ -198,7 +197,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                         .refreshList(currentVillageFilter, currentServiceModeOption,
                                 currentSearchFilter, currentSortOption);
 
-                searchCancelView.setVisibility(isEmpty(cs) ? View.INVISIBLE : View.VISIBLE);
+                searchCancelView.setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
             }
 
             @Override
@@ -226,34 +225,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         appliedVillageFilterView.setText(currentVillageFilter.name());
         serviceModeView.setText(currentServiceModeOption.name());
         titleLabelView.setText(defaultOptionProvider.nameInShortFormForTitle());
-    }
-
-    private void setupFooterView() {
-        ViewGroup footerView = getFooterView();
-        nextPageView = (Button) footerView.findViewById(R.id.btn_next_page);
-        previousPageView = (Button) footerView.findViewById(R.id.btn_previous_page);
-        pageInfoView = (TextView) footerView.findViewById(R.id.txt_page_info);
-
-        nextPageView.setOnClickListener(paginationHandler);
-        previousPageView.setOnClickListener(paginationHandler);
-
-        footerView.setLayoutParams(new AbsListView.LayoutParams(
-                AbsListView.LayoutParams.MATCH_PARENT,
-                (int) getResources().getDimension(R.dimen.pagination_bar_height)));
-        clientsView.addFooterView(footerView);
-    }
-
-    public ViewGroup getFooterView() {
-        return (ViewGroup) getLayoutInflater().inflate(R.layout.smart_register_pagination, null);
-    }
-
-    public void updateFooter() {
-        pageInfoView.setText(
-                format(getResources().getString(R.string.str_page_info),
-                        (clientsAdapter.currentPage() + 1),
-                        (clientsAdapter.pageCount())));
-        nextPageView.setVisibility(clientsAdapter.hasNextPage() ? View.VISIBLE : View.INVISIBLE);
-        previousPageView.setVisibility(clientsAdapter.hasPreviousPage() ? View.VISIBLE : View.INVISIBLE);
     }
 
     private void populateClientListHeaderView() {
@@ -290,7 +261,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         clientsAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
-                updateFooter();
+                paginationViewHandler.refresh();
             }
         });
     }
@@ -352,7 +323,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                 .show(ft, DIALOG_TAG);
     }
 
-
     protected abstract ClientsHeaderProvider getClientsHeaderProvider();
 
     protected abstract DefaultOptionsProvider getDefaultOptionsProvider();
@@ -401,27 +371,59 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }
     }
 
-    private class PaginationHandler implements View.OnClickListener {
+    private class PaginationViewHandler implements View.OnClickListener {
+        private Button nextPageView;
+        private Button previousPageView;
+        private TextView pageInfoView;
+
+        private void addPagination(ListView clientsView) {
+            ViewGroup footerView = getPaginationView();
+            nextPageView = (Button) footerView.findViewById(R.id.btn_next_page);
+            previousPageView = (Button) footerView.findViewById(R.id.btn_previous_page);
+            pageInfoView = (TextView) footerView.findViewById(R.id.txt_page_info);
+
+            nextPageView.setOnClickListener(this);
+            previousPageView.setOnClickListener(this);
+
+            footerView.setLayoutParams(new AbsListView.LayoutParams(
+                    AbsListView.LayoutParams.MATCH_PARENT,
+                    (int) getResources().getDimension(R.dimen.pagination_bar_height)));
+
+            clientsView.addFooterView(footerView);
+        }
+
+        private ViewGroup getPaginationView() {
+            return (ViewGroup) getLayoutInflater().inflate(R.layout.smart_register_pagination, null);
+        }
+
+        public void refresh() {
+            pageInfoView.setText(
+                    format(getResources().getString(R.string.str_page_info),
+                            (clientsAdapter.currentPage() + 1),
+                            (clientsAdapter.pageCount())));
+            nextPageView.setVisibility(clientsAdapter.hasNextPage() ? VISIBLE : INVISIBLE);
+            previousPageView.setVisibility(clientsAdapter.hasPreviousPage() ? VISIBLE : INVISIBLE);
+        }
 
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btn_next_page:
-                    goToNextPage();
+                    gotoNextPage();
                     break;
                 case R.id.btn_previous_page:
-                    goToPreviousPage();
+                    goBackToPreviousPage();
                     break;
             }
         }
 
-        private void goToPreviousPage() {
-            clientsAdapter.previousPage();
+        private void gotoNextPage() {
+            clientsAdapter.nextPage();
             clientsAdapter.notifyDataSetChanged();
         }
 
-        private void goToNextPage() {
-            clientsAdapter.nextPage();
+        private void goBackToPreviousPage() {
+            clientsAdapter.previousPage();
             clientsAdapter.notifyDataSetChanged();
         }
     }
