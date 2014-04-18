@@ -1,6 +1,10 @@
 package org.ei.drishti.view.contract;
 
+import org.ei.drishti.domain.FPMethod;
+
 import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 
 public interface SmartRegisterClient {
     //#TODO: Write unit test
@@ -57,9 +61,37 @@ public interface SmartRegisterClient {
 
     public String village();
 
+    public String numberOfPregnancies();
+
+    public String parity();
+
+    public String numberOfLivingChildren();
+
+    public String numberOfStillbirths();
+
+    public String numberOfAbortions();
+
+    public String familyPlanningMethodChangeDate();
+
+    public String numberOfOCPDelivered();
+
+    public String numberOfCondomsSupplied();
+
+    public String numberOfCentchromanPillsDelivered();
+
+    public String iudPerson();
+
+    public String iudPlace();
+
     public boolean satisfiesFilter(String filterCriterion);
 
     public String wifeName();
+
+    public String name();
+
+    public String husbandName();
+
+    public int age();
 
     public Integer ecNumber();
 
@@ -72,6 +104,12 @@ public interface SmartRegisterClient {
     public boolean isBPL();
 
     public String locationStatus();
+
+    public FPMethod fpMethod();
+
+    public List<ECChildClient> children();
+
+    public Map<String, String> status();
 
     public String entityId();
 

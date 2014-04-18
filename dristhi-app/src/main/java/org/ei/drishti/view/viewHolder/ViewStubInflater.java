@@ -7,11 +7,11 @@ public class ViewStubInflater {
     ViewStub stub;
     ViewGroup inflatedLayout = null;
 
-    ViewStubInflater(ViewStub stub) {
+    public ViewStubInflater(ViewStub stub) {
         this.stub = stub;
     }
 
-    public ViewGroup get () {
+    public ViewGroup get() {
         if (!isInflated()) {
             this.inflatedLayout = (ViewGroup) stub.inflate();
         }

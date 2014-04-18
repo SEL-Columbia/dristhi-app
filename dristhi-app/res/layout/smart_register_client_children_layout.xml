@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<LinearLayout
+<org.ei.drishti.view.customControls.ClientChildrenView
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/children_layout"
         android:layout_width="@dimen/list_children_view_width"
         android:layout_height="fill_parent"
         android:layout_weight="@integer/ec_list_children_view_weight"
@@ -10,7 +11,7 @@
         android:weightSum="100">
 
     <org.ei.drishti.view.customControls.CustomFontTextView
-            android:id="@+id/txt_male_children"
+            android:id="@+id/txt_children_age_left"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="50"
@@ -19,11 +20,11 @@
             style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"/>
 
     <org.ei.drishti.view.customControls.CustomFontTextView
-            android:id="@+id/txt_female_children"
+            android:id="@+id/txt_children_age_right"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="50"
             android:layout_margin="5dp"
             android:background="@color/status_bar_text_almost_white"
             style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"/>
-</LinearLayout>
+</org.ei.drishti.view.customControls.ClientChildrenView>

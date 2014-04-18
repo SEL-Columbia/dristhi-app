@@ -68,14 +68,17 @@ public class ECClient implements SmartRegisterClient {
         return humanize(village);
     }
 
+    @Override
     public String name() {
         return humanize(name);
     }
 
+    @Override
     public String husbandName() {
         return humanize(husbandName);
     }
 
+    @Override
     public int age() {
         return Years.yearsBetween(LocalDate.parse(dateOfBirth), LocalDate.now()).getYears();
     }
@@ -113,14 +116,17 @@ public class ECClient implements SmartRegisterClient {
         return photo_path;
     }
 
+    @Override
     public FPMethod fpMethod() {
         return FPMethod.tryParse(this.fpMethod, FPMethod.NONE);
     }
 
+    @Override
     public List<ECChildClient> children() {
         return children;
     }
 
+    @Override
     public Map<String, String> status() {
         return status;
     }
@@ -129,46 +135,57 @@ public class ECClient implements SmartRegisterClient {
         return entityId;
     }
 
+    @Override
     public String numberOfPregnancies() {
         return IntegerUtil.tryParse(numPregnancies, "");
     }
 
+    @Override
     public String parity() {
         return IntegerUtil.tryParse(parity, "");
     }
 
+    @Override
     public String numberOfLivingChildren() {
         return IntegerUtil.tryParse(numLivingChildren, "");
     }
 
+    @Override
     public String numberOfStillbirths() {
         return IntegerUtil.tryParse(numStillbirths, "");
     }
 
+    @Override
     public String numberOfAbortions() {
         return IntegerUtil.tryParse(numAbortions, "");
     }
 
+    @Override
     public String familyPlanningMethodChangeDate() {
         return formatDate(familyPlanningMethodChangeDate);
     }
 
+    @Override
     public String numberOfOCPDelivered() {
         return numberOfOCPDelivered;
     }
 
+    @Override
     public String numberOfCondomsSupplied() {
         return numberOfCondomsSupplied;
     }
 
+    @Override
     public String numberOfCentchromanPillsDelivered() {
         return numberOfCentchromanPillsDelivered;
     }
 
+    @Override
     public String iudPerson() {
         return upperCase(iudPerson);
     }
 
+    @Override
     public String iudPlace() {
         return upperCase(iudPlace);
     }

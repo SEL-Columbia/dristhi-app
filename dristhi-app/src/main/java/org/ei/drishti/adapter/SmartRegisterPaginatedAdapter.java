@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.ECClient;
+import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
 import org.ei.drishti.view.dialog.FilterOption;
 import org.ei.drishti.view.dialog.ServiceModeOption;
@@ -58,7 +59,7 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View parentView, ViewGroup viewGroup) {
-        return listItemProvider.getView((ECClient) getItem(actualPosition(i)), parentView, viewGroup);
+        return listItemProvider.getView((SmartRegisterClient) getItem(actualPosition(i)), parentView, viewGroup);
     }
 
     private int actualPosition(int i) {
