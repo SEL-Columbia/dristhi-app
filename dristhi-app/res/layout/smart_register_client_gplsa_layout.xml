@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<org.ei.drishti.view.customControls.ClientGPLSAView
+<org.ei.drishti.view.customControls.ClientGplsaView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/gplsa_layout"
         android:layout_width="@dimen/list_gplsa_view_width"
@@ -91,5 +91,5 @@
             android:layout_below="@id/label_number_of_abortions"
             style="@style/CustomFontTextViewStyle.ListView.Normal.GPLSA"/>
 
-</org.ei.drishti.view.customControls.ClientGPLSAView>
+</org.ei.drishti.view.customControls.ClientGplsaView>
     

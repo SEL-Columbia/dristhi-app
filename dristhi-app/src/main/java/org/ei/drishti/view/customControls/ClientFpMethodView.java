@@ -11,7 +11,7 @@ import org.ei.drishti.R;
 import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 
-public class ClientFPMethodView extends LinearLayout {
+public class ClientFpMethodView extends LinearLayout {
     private TextView fpMethodView;
     private TextView fpMethodDateView;
     private TextView fpMethodQuantityLabelView;
@@ -20,16 +20,16 @@ public class ClientFPMethodView extends LinearLayout {
     private TextView iudPersonView;
 
     @SuppressWarnings("UnusedDeclaration")
-    public ClientFPMethodView(Context context) {
+    public ClientFpMethodView(Context context) {
         this(context, null, 0);
     }
 
     @SuppressWarnings("UnusedDeclaration")
-    public ClientFPMethodView(Context context, AttributeSet attrs) {
+    public ClientFpMethodView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ClientFPMethodView(Context context, AttributeSet attrs, int defStyle) {
+    public ClientFpMethodView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

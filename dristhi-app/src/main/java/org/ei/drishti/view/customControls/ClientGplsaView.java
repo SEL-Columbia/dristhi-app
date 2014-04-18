@@ -7,7 +7,7 @@ import android.widget.TextView;
 import org.ei.drishti.R;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 
-public class ClientGPLSAView extends RelativeLayout {
+public class ClientGplsaView extends RelativeLayout {
     private TextView txtGravida;
     private TextView txtParity;
     private TextView txtNumberOfLivingChildren;
@@ -15,16 +15,16 @@ public class ClientGPLSAView extends RelativeLayout {
     private TextView txtNumberOfAbortions;
 
     @SuppressWarnings("UnusedDeclaration")
-    public ClientGPLSAView(Context context) {
+    public ClientGplsaView(Context context) {
         this(context, null, 0);
     }
 
     @SuppressWarnings("UnusedDeclaration")
-    public ClientGPLSAView(Context context, AttributeSet attrs) {
+    public ClientGplsaView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ClientGPLSAView(Context context, AttributeSet attrs, int defStyle) {
+    public ClientGplsaView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

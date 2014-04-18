@@ -9,8 +9,8 @@ import org.ei.drishti.view.customControls.*;
 public class NativeECSmartRegisterViewHolder {
     private final ClientProfileView profileInfoLayout;
     private final TextView txtECNumberView;
-    private final ClientGPLSAView gplsaLayout;
-    private final ClientFPMethodView fpMethodview;
+    private final ClientGplsaView gplsaLayout;
+    private final ClientFpMethodView fpMethodview;
     private final ClientChildrenView childrenView;
     private final ClientStatusView statusView;
     private final ImageButton editButton;
@@ -22,10 +22,10 @@ public class NativeECSmartRegisterViewHolder {
 
         this.txtECNumberView = (TextView) itemView.findViewById(R.id.txt_ec_number);
 
-        this.gplsaLayout = (ClientGPLSAView) itemView.findViewById(R.id.gplsa_layout);
+        this.gplsaLayout = (ClientGplsaView) itemView.findViewById(R.id.gplsa_layout);
         this.gplsaLayout.initialize();
 
-        fpMethodview = (ClientFPMethodView) itemView.findViewById(R.id.fp_method_layout);
+        fpMethodview = (ClientFpMethodView) itemView.findViewById(R.id.fp_method_layout);
         fpMethodview.initialize();
 
 
@@ -46,11 +46,11 @@ public class NativeECSmartRegisterViewHolder {
         return txtECNumberView;
     }
 
-    public ClientGPLSAView gplsaLayout() {
+    public ClientGplsaView gplsaLayout() {
         return gplsaLayout;
     }
 
-    public ClientFPMethodView fpMethodView() {
+    public ClientFpMethodView fpMethodView() {
         return fpMethodview;
     }
 

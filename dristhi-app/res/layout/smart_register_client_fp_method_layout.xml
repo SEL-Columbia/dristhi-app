@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<org.ei.drishti.view.customControls.ClientFPMethodView
+<org.ei.drishti.view.customControls.ClientFpMethodView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/fp_method_layout"
         android:layout_width="@dimen/list_fp_view_width"
@@ -47,6 +47,6 @@
             android:layout_height="wrap_content"
             style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
-</org.ei.drishti.view.customControls.ClientFPMethodView>
+</org.ei.drishti.view.customControls.ClientFpMethodView>
 
     
