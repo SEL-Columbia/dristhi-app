@@ -7,7 +7,7 @@ import org.ei.drishti.view.contract.SmartRegisterClient;
 public class AllEligibleCoupleServiceMode implements ServiceModeOption {
     @Override
     public String name() {
-        return Context.getInstance().getStringResource(R.string.filter_by_all_label);
+        return Context.getInstance().getStringResource(R.string.couple_selection);
     }
 
     @Override

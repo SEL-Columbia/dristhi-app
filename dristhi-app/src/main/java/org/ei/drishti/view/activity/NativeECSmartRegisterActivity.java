@@ -26,40 +26,91 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
 
     @Override
-    public int getColumnCount() {
-        return 7;
-    }
-
-    @Override
-    public int getColumnWeightSum() {
-        return 1000;
-    }
-
-    @Override
-    public int[] getColumnWeights() {
-        return new int[]{239, 73, 103, 107, 158, 221, 87};
-    }
-
-    @Override
-    protected int[] getColumnHeaderTextResourceIds() {
-        return new int[]{
-                R.string.header_name, R.string.header_ec_no, R.string.header_gplsa,
-                R.string.header_fp, R.string.header_children, R.string.header_status,
-                R.string.header_edit};
-    }
-
-    @Override
-    protected String getRegisterTitleInShortForm() {
-        return getResources().getString(R.string.ec_register_title_in_short);
-    }
-
-    @Override
     protected SmartRegisterPaginatedAdapter adapter() {
-        return new SmartRegisterPaginatedAdapter(this, clientProvider());
+        return new SmartRegisterPaginatedAdapter(this, getClientsProvider());
     }
 
     @Override
-    protected SmartRegisterClientsProvider clientProvider() {
+    protected ClientsHeaderProvider getClientsHeaderProvider() {
+        return new ClientsHeaderProvider() {
+            @Override
+            public int count() {
+                return 7;
+            }
+
+            @Override
+            public int weightSum() {
+                return 1000;
+            }
+
+            @Override
+            public int[] weights() {
+                return new int[]{239, 73, 103, 107, 158, 221, 87};
+            }
+
+            @Override
+            public int[] headerTextResourceIds() {
+                return new int[]{
+                        R.string.header_name, R.string.header_ec_no, R.string.header_gplsa,
+                        R.string.header_fp, R.string.header_children, R.string.header_status,
+                        R.string.header_edit};
+            }
+        };
+    }
+
+    @Override
+    protected DefaultOptionsProvider getDefaultOptionsProvider() {
+        return new DefaultOptionsProvider() {
+
+            @Override
+            public ServiceModeOption serviceMode() {
+                return new AllEligibleCoupleServiceMode();
+            }
+
+            @Override
+            public FilterOption villageFilter() {
+                return new AllClientsFilter();
+            }
+
+            @Override
+            public SortOption sortOption() {
+                return new NameSort();
+            }
+
+            @Override
+            public String nameInShortFormForTitle() {
+                return getResources().getString(R.string.ec_register_title_in_short);
+            }
+        };
+    }
+
+    @Override
+    protected NavBarOptionsProvider getNavBarOptionsProvider() {
+        return new NavBarOptionsProvider() {
+
+            @Override
+            public DialogOption[] filterOptions() {
+                Iterable<? extends DialogOption> villageFilterOptions =
+                        dialogOptionMapper.mapToVillageFilterOptions(villageController.getVillages());
+                return toArray(concat(DEFAULT_FILTER_OPTIONS, villageFilterOptions), DialogOption.class);
+            }
+
+            @Override
+            public DialogOption[] serviceModeOptions() {
+                return new DialogOption[]{};
+            }
+
+            @Override
+            public DialogOption[] sortingOptions() {
+                return new DialogOption[]{new NameSort(), new ECNumberSort(),
+                        new HighPrioritySort(), new BPLSort(),
+                        new SCSort(), new STSort()};
+            }
+        };
+    }
+
+    @Override
+    protected SmartRegisterClientsProvider getClientsProvider() {
         if (clientProvider == null) {
             clientProvider = new ECSmartRegisterClientsProvider(
                     this, clientActionHandler, controller);
@@ -67,52 +118,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         return clientProvider;
     }
 
-    @Override
-    protected String getDefaultServiceModeName() {
-        return getResources().getString(R.string.couple_selection);
-    }
-
-    @Override
-    protected FilterOption getDefaultVillageFilterOption() {
-        return new AllClientsFilter();
-    }
-
-    @Override
-    protected SortOption getDefaultSortOption() {
-        return new NameSort();
-    }
-
-    @Override
-    protected ServiceModeOption getDefaultServiceModeOption() {
-        return new AllEligibleCoupleServiceMode();
-    }
-
-    @Override
-    protected FilterOption getDefaultSearchOption() {
-        return new ECSearchOption(null);
-    }
-
-    @Override
-    protected DialogOption[] getSortingOptions() {
-        return new DialogOption[]{new NameSort(), new ECNumberSort(),
-                new HighPrioritySort(), new BPLSort(),
-                new SCSort(), new STSort()};
-    }
-
-    @Override
-    protected DialogOption[] getFilterOptions() {
-        Iterable<? extends DialogOption> villageFilterOptions =
-                dialogOptionMapper.mapToVillageFilterOptions(villageController.getVillages());
-        return toArray(concat(DEFAULT_FILTER_OPTIONS, villageFilterOptions), DialogOption.class);
-    }
-
-    @Override
-    protected DialogOption[] getServiceModeOptions() {
-        return new DialogOption[]{};
-    }
-
-    @Override
-    protected DialogOption[] getEditOptions() {
+    private DialogOption[] getEditOptions() {
         return new DialogOption[]{
                 new OpenFormOption(getString(R.string.str_register_anc_form), ANC_REGISTRATION, formController),
                 new OpenFormOption(getString(R.string.str_register_fp_form), FP_CHANGE, formController),

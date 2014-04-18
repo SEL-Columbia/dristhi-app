@@ -37,33 +37,75 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     private ListView clientsView;
     private ProgressBar clientsProgressView;
-    private SmartRegisterPaginatedAdapter clientsAdapter;
-
     private TextView serviceModeView;
     private TextView appliedVillageFilterView;
     private TextView appliedSortView;
-
     private Button nextPageView;
     private Button previousPageView;
     private TextView pageInfoView;
+    private EditText searchView;
+    private View searchCancelView;
+    private TextView titleLabelView;
+
+    private SmartRegisterPaginatedAdapter clientsAdapter;
 
     private FilterOption currentVillageFilter;
     private SortOption currentSortOption;
     private FilterOption currentSearchFilter;
     private ServiceModeOption currentServiceModeOption;
-    private EditText searchView;
-    private View searchCancelView;
 
     private final PaginationHandler paginationHandler = new PaginationHandler();
     private final NavBarActionsHandler navBarActionsHandler = new NavBarActionsHandler();
     private final SearchCancelHandler searchCancelHandler = new SearchCancelHandler();
+
+    public interface ClientsHeaderProvider {
+
+        public abstract int count();
+
+        public abstract int weightSum();
+
+        public abstract int[] weights();
+
+        public abstract int[] headerTextResourceIds();
+    }
+
+    public interface DefaultOptionsProvider {
+
+        public abstract ServiceModeOption serviceMode();
+
+        public abstract FilterOption villageFilter();
+
+        public abstract SortOption sortOption();
+
+        public abstract String nameInShortFormForTitle();
+
+    }
+
+    public interface NavBarOptionsProvider {
+
+        public abstract DialogOption[] filterOptions();
+
+        public abstract DialogOption[] serviceModeOptions();
+
+        public abstract DialogOption[] sortingOptions();
+    }
+
+    private ClientsHeaderProvider headerProvider;
+    private DefaultOptionsProvider defaultOptionProvider;
+    private NavBarOptionsProvider navBarOptionsProvider;
 
     @Override
     protected void onCreation() {
         setContentView(R.layout.smart_register_activity);
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         onInitialization();
+
+        defaultOptionProvider = getDefaultOptionsProvider();
+        navBarOptionsProvider = getNavBarOptionsProvider();
+        headerProvider = getClientsHeaderProvider();
+
         setupViews();
     }
 
@@ -104,7 +146,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
         setupStatusBarViews();
         setupFooterView();
-        updateStatusBar();
+
         updateDefaultOptions();
     }
 
@@ -126,7 +168,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
         serviceModeView = (TextView) findViewById(R.id.service_mode_selection);
         serviceModeView.setOnClickListener(navBarActionsHandler);
-        serviceModeView.setText(getDefaultServiceModeName());
 
         findViewById(R.id.register_client).setOnClickListener(navBarActionsHandler);
 
@@ -137,8 +178,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         ViewGroup titleLayout = (ViewGroup) findViewById(R.id.title_layout);
         titleLayout.setOnClickListener(navBarActionsHandler);
 
-        TextView titleLabelView = (TextView) findViewById(R.id.txt_title_label);
-        titleLabelView.setText(getRegisterTitleInShortForm());
+        titleLabelView = (TextView) findViewById(R.id.txt_title_label);
 
         TextView reportMonthStartView = (TextView) findViewById(R.id.btn_report_month);
         setReportDates(reportMonthStartView);
@@ -177,10 +217,15 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     private void updateDefaultOptions() {
-        currentSearchFilter = getDefaultSearchOption();
-        currentVillageFilter = getDefaultVillageFilterOption();
-        currentServiceModeOption = getDefaultServiceModeOption();
-        currentSortOption = getDefaultSortOption();
+        currentSearchFilter = new ECSearchOption(null);
+        currentVillageFilter =  defaultOptionProvider.villageFilter();
+        currentServiceModeOption = defaultOptionProvider.serviceMode();
+        currentSortOption = defaultOptionProvider.sortOption();
+
+        appliedSortView.setText(currentSortOption.name());
+        appliedVillageFilterView.setText(currentVillageFilter.name());
+        serviceModeView.setText(currentServiceModeOption.name());
+        titleLabelView.setText(defaultOptionProvider.nameInShortFormForTitle());
     }
 
     private void setupFooterView() {
@@ -211,19 +256,13 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         previousPageView.setVisibility(clientsAdapter.hasPreviousPage() ? View.VISIBLE : View.INVISIBLE);
     }
 
-    private void updateStatusBar() {
-        appliedSortView.setText(getDefaultSortOption().name());
-        appliedVillageFilterView.setText(getDefaultVillageFilterOption().name());
-    }
-
-
     private void populateClientListHeaderView() {
         LinearLayout clientsHeaderLayout = (LinearLayout) findViewById(R.id.clients_header_layout);
         clientsHeaderLayout.removeAllViewsInLayout();
-        clientsHeaderLayout.setWeightSum(getColumnWeightSum());
-        int columnCount = getColumnCount();
-        int[] weights = getColumnWeights();
-        int[] headerTxtResIds = getColumnHeaderTextResourceIds();
+        int columnCount = headerProvider.count();
+        int[] weights = headerProvider.weights();
+        int[] headerTxtResIds = headerProvider.headerTextResourceIds();
+        clientsHeaderLayout.setWeightSum(headerProvider.weightSum());
 
         for (int i = 0; i < columnCount; i++) {
             clientsHeaderLayout.addView(getColumnHeaderView(i, weights, headerTxtResIds));
@@ -257,7 +296,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     protected SmartRegisterPaginatedAdapter adapter() {
-        return new SmartRegisterPaginatedAdapter(this, clientProvider());
+        return new SmartRegisterPaginatedAdapter(this, getClientsProvider());
     }
 
     protected void onServiceModeSelection(ServiceModeOption serviceModeOption) {
@@ -313,44 +352,23 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                 .show(ft, DIALOG_TAG);
     }
 
-    protected abstract String getDefaultServiceModeName();
 
-    protected abstract FilterOption getDefaultVillageFilterOption();
+    protected abstract ClientsHeaderProvider getClientsHeaderProvider();
 
-    protected abstract SortOption getDefaultSortOption();
+    protected abstract DefaultOptionsProvider getDefaultOptionsProvider();
 
-    protected abstract ServiceModeOption getDefaultServiceModeOption();
+    protected abstract NavBarOptionsProvider getNavBarOptionsProvider();
 
-    protected abstract FilterOption getDefaultSearchOption();
-
-    protected abstract int getColumnCount();
-
-    protected abstract int getColumnWeightSum();
-
-    protected abstract int[] getColumnWeights();
-
-    protected abstract int[] getColumnHeaderTextResourceIds();
-
-    protected abstract DialogOption[] getFilterOptions();
-
-    protected abstract DialogOption[] getServiceModeOptions();
-
-    protected abstract DialogOption[] getSortingOptions();
-
-    protected abstract DialogOption[] getEditOptions();
+    protected abstract SmartRegisterClientsProvider getClientsProvider();
 
     protected abstract void onInitialization();
 
     protected abstract void startRegistration();
 
-    protected abstract SmartRegisterClientsProvider clientProvider();
-
-    protected abstract String getRegisterTitleInShortForm();
-
     private class FilterDialogOptionModel implements DialogOptionModel {
         @Override
         public DialogOption[] getDialogOptions() {
-            return getFilterOptions();
+            return navBarOptionsProvider.filterOptions();
         }
 
         @Override
@@ -362,7 +380,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private class SortDialogOptionModel implements DialogOptionModel {
         @Override
         public DialogOption[] getDialogOptions() {
-            return getSortingOptions();
+            return navBarOptionsProvider.sortingOptions();
         }
 
         @Override
@@ -374,7 +392,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private class ServiceModeDialogOptionModel implements DialogOptionModel {
         @Override
         public DialogOption[] getDialogOptions() {
-            return getServiceModeOptions();
+            return navBarOptionsProvider.serviceModeOptions();
         }
 
         @Override
