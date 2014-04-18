@@ -1,11 +1,14 @@
 package org.ei.drishti;
 
+import android.graphics.Typeface;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
 import org.ei.drishti.service.formSubmissionHandler.*;
 import org.ei.drishti.sync.SaveANMLocationTask;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
+import org.ei.drishti.view.contract.ECClients;
+import org.ei.drishti.view.contract.Villages;
 import org.ei.drishti.view.controller.ANMController;
 import org.ei.drishti.view.controller.ANMLocationController;
 
@@ -51,6 +54,9 @@ public class Context {
 
     private Session session;
     private Cache<String> listCache;
+    private Cache<ECClients> ecClientsCache;
+    private Cache<Villages> villagesCache;
+    private Cache<Typeface> typefaceCache;
 
     private HTTPAgent httpAgent;
     private ZiggyFileLoader ziggyFileLoader;
@@ -588,5 +594,32 @@ public class Context {
             anmLocationController = new ANMLocationController(allSettings(), listCache());
         }
         return anmLocationController;
+    }
+
+    //#TODO: Refactor to use one cache object
+    public Cache<ECClients> ecClientsCache() {
+        if (ecClientsCache == null) {
+            ecClientsCache = new Cache<ECClients>();
+        }
+        return ecClientsCache;
+
+    }
+
+    public Cache<Villages> villagesCache() {
+        if (villagesCache == null) {
+            villagesCache = new Cache<Villages>();
+        }
+        return villagesCache;
+    }
+
+    public Cache<Typeface> typefaceCache() {
+        if (typefaceCache == null) {
+            typefaceCache = new Cache<Typeface>();
+        }
+        return typefaceCache;
+    }
+
+    public String getStringResource(int id) {
+        return applicationContext().getResources().getString(id);
     }
 }

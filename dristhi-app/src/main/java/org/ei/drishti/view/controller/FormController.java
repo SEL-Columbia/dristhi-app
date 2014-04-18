@@ -1,11 +1,11 @@
 package org.ei.drishti.view.controller;
 
-import org.ei.drishti.view.activity.SecuredWebActivity;
+import org.ei.drishti.view.activity.SecuredActivity;
 
 public class FormController {
-    private SecuredWebActivity activity;
+    private SecuredActivity activity;
 
-    public FormController(SecuredWebActivity activity) {
+    public FormController(SecuredActivity activity) {
         this.activity = activity;
     }
 

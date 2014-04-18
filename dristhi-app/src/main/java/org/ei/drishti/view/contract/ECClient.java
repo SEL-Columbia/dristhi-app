@@ -3,12 +3,24 @@ package org.ei.drishti.view.contract;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.domain.FPMethod;
+import org.ei.drishti.util.IntegerUtil;
+import org.joda.time.LocalDate;
+import org.joda.time.Years;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
-public class ECClient {
+import static org.apache.commons.lang3.StringUtils.upperCase;
+import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
+import static org.ei.drishti.util.DateUtil.formatDate;
+import static org.ei.drishti.util.StringUtil.humanize;
+
+public class ECClient implements SmartRegisterClient {
+    public static final String OUT_OF_AREA = "out_of_area";
+    public static final String IN_AREA = "in_area";
     private String entityId;
     private String entityIdToSavePhoto;
     private String name;
@@ -51,13 +63,140 @@ public class ECClient {
         return name;
     }
 
+    @Override
+    public String village() {
+        return humanize(village);
+    }
+
+    @Override
+    public String name() {
+        return humanize(name);
+    }
+
+    @Override
+    public String husbandName() {
+        return humanize(husbandName);
+    }
+
+    @Override
+    public int age() {
+        return Years.yearsBetween(LocalDate.parse(dateOfBirth), LocalDate.now()).getYears();
+    }
+
+    public Integer ecNumber() {
+        return ecNumber;
+    }
+
+    public String locationStatus() {
+        return locationStatus;
+    }
+
+    @Override
+    public boolean isSC() {
+        return caste != null && caste.equalsIgnoreCase(SC_VALUE);
+    }
+
+    @Override
+    public boolean isST() {
+        return caste != null && caste.equalsIgnoreCase(ST_VALUE);
+    }
+
+    @Override
+    public boolean isHighPriority() {
+        return isHighPriority;
+    }
+
+    @Override
+    public boolean isBPL() {
+        return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
+    }
+
+    @Override
+    public String profilePhotoPath() {
+        return photo_path;
+    }
+
+    @Override
+    public FPMethod fpMethod() {
+        return FPMethod.tryParse(this.fpMethod, FPMethod.NONE);
+    }
+
+    @Override
+    public List<ECChildClient> children() {
+        return children;
+    }
+
+    @Override
+    public Map<String, String> status() {
+        return status;
+    }
+
+    public String entityId() {
+        return entityId;
+    }
+
+    @Override
+    public String numberOfPregnancies() {
+        return IntegerUtil.tryParse(numPregnancies, "");
+    }
+
+    @Override
+    public String parity() {
+        return IntegerUtil.tryParse(parity, "");
+    }
+
+    @Override
+    public String numberOfLivingChildren() {
+        return IntegerUtil.tryParse(numLivingChildren, "");
+    }
+
+    @Override
+    public String numberOfStillbirths() {
+        return IntegerUtil.tryParse(numStillbirths, "");
+    }
+
+    @Override
+    public String numberOfAbortions() {
+        return IntegerUtil.tryParse(numAbortions, "");
+    }
+
+    @Override
+    public String familyPlanningMethodChangeDate() {
+        return formatDate(familyPlanningMethodChangeDate);
+    }
+
+    @Override
+    public String numberOfOCPDelivered() {
+        return numberOfOCPDelivered;
+    }
+
+    @Override
+    public String numberOfCondomsSupplied() {
+        return numberOfCondomsSupplied;
+    }
+
+    @Override
+    public String numberOfCentchromanPillsDelivered() {
+        return numberOfCentchromanPillsDelivered;
+    }
+
+    @Override
+    public String iudPerson() {
+        return upperCase(iudPerson);
+    }
+
+    @Override
+    public String iudPlace() {
+        return upperCase(iudPlace);
+    }
+
     public ECClient withDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
         return this;
     }
 
     public ECClient withIsOutOfArea(boolean outOfArea) {
-        this.locationStatus = outOfArea ? "out_of_area" : "in_area";
+        this.locationStatus = outOfArea ? OUT_OF_AREA : IN_AREA;
         return this;
     }
 
@@ -157,8 +296,14 @@ public class ECClient {
         return this;
     }
 
-    public String entityId() {
-        return entityId;
+    public ECClient withStatus(Map<String, String> status) {
+        this.status = status;
+        return this;
+    }
+
+    public boolean satisfiesFilter(String filter) {
+        return name.toLowerCase(Locale.getDefault()).startsWith(filter)
+                || String.valueOf(ecNumber).startsWith(filter);
     }
 
     @Override
@@ -174,10 +319,5 @@ public class ECClient {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-    }
-
-    public ECClient withStatus(Map<String, String> status) {
-        this.status = status;
-        return this;
     }
 }

@@ -2,7 +2,6 @@ package org.ei.drishti.view.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.ConsoleMessage;
@@ -15,14 +14,12 @@ import org.ei.drishti.sync.SyncAfterFetchListener;
 import org.ei.drishti.sync.SyncProgressIndicator;
 import org.ei.drishti.sync.UpdateActionsTask;
 import org.ei.drishti.view.InternationalizationContext;
-import org.ei.drishti.view.controller.FormController;
-import org.ei.drishti.view.controller.NavigationController;
 import org.ei.drishti.view.controller.UpdateController;
 import org.ei.drishti.view.controller.VillageController;
 
 import static android.webkit.ConsoleMessage.MessageLevel.ERROR;
 import static java.text.MessageFormat.format;
-import static org.ei.drishti.AllConstants.*;
+import static org.ei.drishti.AllConstants.ANM_LOCATION_CONTROLLER;
 import static org.ei.drishti.util.Log.logDebug;
 import static org.ei.drishti.util.Log.logError;
 
@@ -124,9 +121,10 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        webView.addJavascriptInterface(new FormController(this), "formContext");
-        webView.addJavascriptInterface(new NavigationController(this, context.anmController()), "navigationContext");
-        webView.addJavascriptInterface(new VillageController(context.allEligibleCouples(), context.listCache()), "villageContext");
+        webView.addJavascriptInterface(formController, "formContext");
+        webView.addJavascriptInterface(navigationController, "navigationContext");
+        webView.addJavascriptInterface(new VillageController(context.allEligibleCouples(), context.listCache(),
+                context.villagesCache()), "villageContext");
         webView.addJavascriptInterface(new InternationalizationContext(getResources()), "internationalizationContext");
         webView.addJavascriptInterface(context.anmLocationController(), ANM_LOCATION_CONTROLLER);
         webView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -141,17 +139,4 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         ACRA.getErrorReporter().handleSilentException(new RuntimeException(message));
     }
 
-    public void startFormActivity(String formName, String entityId, String metaData) {
-        Intent intent = new Intent(getApplicationContext(), FormActivity.class);
-        intent.putExtra(FORM_NAME_PARAM, formName);
-        intent.putExtra(ENTITY_ID_PARAM, entityId);
-        startActivity(intent);
-    }
-
-    public void startMicroFormActivity(String formName, String entityId, String metaData) {
-        Intent intent = new Intent(getApplicationContext(), MicroFormActivity.class);
-        intent.putExtra(FORM_NAME_PARAM, formName);
-        intent.putExtra(ENTITY_ID_PARAM, entityId);
-        startActivity(intent);
-    }
 }

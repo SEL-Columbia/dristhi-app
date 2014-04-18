@@ -8,4 +8,12 @@ public class IntegerUtil {
             return defaultValue;
         }
     }
+
+    public static String tryParse(String value, String defaultValue) {
+        try {
+            return String.valueOf(Integer.parseInt(value));
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
 }

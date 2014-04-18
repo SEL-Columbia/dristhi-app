@@ -35,4 +35,58 @@
         cleared.
     </string>
     <string name="unsynced_forms_count_message">forms unsynced</string>
+
+    <string name="str_next">"Next &gt;&gt;"</string>
+    <string name="str_previous">"&lt;&lt; Previous"</string>
+    <string name="str_page_info">Page {0} of {1}</string>
+
+    <string name="header_name">NAME</string>
+    <string name="header_ec_no">EC NO.</string>
+    <string name="header_gplsa">GPLSA</string>
+    <string name="header_fp">FP METHOD</string>
+    <string name="header_children">CHILDREN</string>
+    <string name="header_status">STATUS</string>
+    <string name="header_edit"></string>
+
+    <string name="couple_selection">All Eligible Couples</string>
+    <string name="str_search_hint">Search EC Register</string>
+    <string name="label_sorted_by">Sorted By: </string>
+    <string name="label_village">, Village: </string>
+    <string name="ec_register_wife_age">({0})</string>
+
+    <string name="ec_register_male_child">Male\n{0}</string>
+    <string name="ec_register_female_child">Female\n{0}</string>
+    <string name="ec_register_no_fp">No FP</string>
+
+    <string name="status_delivery">Delivery:</string>
+    <string name="str_lmp">LMP:</string>
+    <string name="str_edd">EDD:</string>
+    <string name="str_anc">ANC</string>
+    <string name="str_pnc">PNC</string>
+    <string name="str_fp">FP</string>
+    <string name="str_number_of_strips">No. strips:</string>
+    <string name="str_gravida">G</string>
+    <string name="str_parity">P</string>
+    <string name="str_number_of_living_children">L</string>
+    <string name="str_number_of_still_births">S</string>
+    <string name="str_number_of_abortions">A</string>
+
+    <string name="sort_by_name_label">Name (A to Z)</string>
+    <string name="sort_by_ec_number_label">EC Number</string>
+    <string name="sort_by_sc_label">SC</string>
+    <string name="sort_by_st_label">ST</string>
+    <string name="sort_by_high_priority_label">High Priority (HP)</string>
+    <string name="sort_by_bpl_label">BPL</string>
+
+    <string name="filter_by_all_label">All</string>
+    <string name="filter_by_out_of_area_label">O/A</string>
+    <string name="ec_register_title_in_short">EC: </string>
+
+    <string name="str_register_anc_form">Register ANC</string>
+    <string name="str_register_fp_form">Register FP</string>
+    <string name="str_register_child_form">Register Child</string>
+    <string name="str_edit_ec_form">Edit EC</string>
+    <string name="str_close_ec_form">Close EC</string>
+    <string name="report_month_sample_text">26/03 - 25/04</string>
+    <string name="str_switch_language">Switch Language</string>
 </resources>

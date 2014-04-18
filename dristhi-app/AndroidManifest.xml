@@ -51,7 +51,7 @@
 
     <application
             android:label="@string/app_name"
-            android:icon="@drawable/icon"
+            android:icon="@drawable/ic_dristhi_logo"
             android:clearTaskOnLaunch="true"
             android:name=".view.activity.DrishtiApplication"
             android:largeHeap="true">
@@ -137,6 +137,11 @@
                 android:name=".view.activity.MicroFormActivity"
                 android:theme="@android:style/Theme.Holo.Dialog.NoActionBar"
                 android:screenOrientation="landscape"/>
+        <activity
+                android:name=".view.activity.NativeECSmartRegisterActivity"
+                android:screenOrientation="landscape"
+                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+        </activity>
 
         <receiver android:name=".view.receiver.SyncBroadcastReceiver"/>
         <receiver android:name=".view.receiver.ConnectivityChangeReceiver">

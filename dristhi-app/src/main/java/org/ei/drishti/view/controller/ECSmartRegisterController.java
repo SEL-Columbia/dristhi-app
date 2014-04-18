@@ -14,6 +14,8 @@ import org.ei.drishti.util.EasyMap;
 import org.ei.drishti.util.IntegerUtil;
 import org.ei.drishti.view.contract.ECChildClient;
 import org.ei.drishti.view.contract.ECClient;
+import org.ei.drishti.view.contract.ECClients;
+import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 
@@ -34,19 +36,23 @@ public class ECSmartRegisterController {
     public static final String ANC_STATUS = "anc";
     public static final String PNC_STATUS = "pnc";
     public static final String PNC_FP_STATUS = "pnc/fp";
-    public static final String STATUS_EDD_FIELD = "edd";
     public static final String FP_STATUS = "fp";
+    public static final String STATUS_EDD_FIELD = "edd";
     public static final String FP_METHOD_DATE_FIELD = "fpMethodDate";
     private static final String EC_CLIENTS_LIST = "ECClientsList";
 
     private final AllEligibleCouples allEligibleCouples;
     private final AllBeneficiaries allBeneficiaries;
     private final Cache<String> cache;
+    private final Cache<ECClients> ecClientsCache;
 
-    public ECSmartRegisterController(AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries, Cache<String> cache) {
+    public ECSmartRegisterController(AllEligibleCouples allEligibleCouples,
+                                     AllBeneficiaries allBeneficiaries, Cache<String> cache,
+                                     Cache<ECClients> ecClientsCache) {
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.cache = cache;
+        this.ecClientsCache = ecClientsCache;
     }
 
     public String get() {
@@ -88,6 +94,46 @@ public class ECSmartRegisterController {
         });
     }
 
+    //#TODO: Remove duplication
+    public ECClients getClients() {
+        return ecClientsCache.get(EC_CLIENTS_LIST, new CacheableData<ECClients>() {
+            @Override
+            public ECClients fetch() {
+                List<EligibleCouple> ecs = allEligibleCouples.all();
+                ECClients ecClients = new ECClients();
+
+                for (EligibleCouple ec : ecs) {
+                    String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
+                    ECClient ecClient = new ECClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), IntegerUtil.tryParse(ec.ecNumber(), 0))
+                            .withDateOfBirth(ec.getDetail(WOMAN_DOB))
+                            .withFPMethod(ec.getDetail(CURRENT_FP_METHOD))
+                            .withFamilyPlanningMethodChangeDate(ec.getDetail(FAMILY_PLANNING_METHOD_CHANGE_DATE))
+                            .withIUDPlace(ec.getDetail(IUD_PLACE))
+                            .withIUDPerson(ec.getDetail(IUD_PERSON))
+                            .withNumberOfCondomsSupplied(ec.getDetail(NUMBER_OF_CONDOMS_SUPPLIED))
+                            .withNumberOfCentchromanPillsDelivered(ec.getDetail(NUMBER_OF_CENTCHROMAN_PILLS_DELIVERED))
+                            .withNumberOfOCPDelivered(ec.getDetail(NUMBER_OF_OCP_DELIVERED))
+                            .withCaste(ec.getDetail(CASTE))
+                            .withEconomicStatus(ec.getDetail(ECONOMIC_STATUS))
+                            .withNumberOfPregnancies(ec.getDetail(NUMBER_OF_PREGNANCIES))
+                            .withParity(ec.getDetail(PARITY))
+                            .withNumberOfLivingChildren(ec.getDetail(NUMBER_OF_LIVING_CHILDREN))
+                            .withNumberOfStillBirths(ec.getDetail(NUMBER_OF_STILL_BIRTHS))
+                            .withNumberOfAbortions(ec.getDetail(NUMBER_OF_ABORTIONS))
+                            .withIsHighPriority(ec.isHighPriority())
+                            .withPhotoPath(photoPath)
+                            .withHighPriorityReason(ec.getDetail(HIGH_PRIORITY_REASON))
+                            .withIsOutOfArea(ec.isOutOfArea());
+                    updateStatusInformation(ec, ecClient);
+                    updateChildrenInformation(ecClient);
+                    ecClients.add(ecClient);
+                }
+                sortByName(ecClients);
+                return ecClients;
+            }
+        });
+    }
+
     private void updateChildrenInformation(ECClient ecClient) {
         List<Child> children = allBeneficiaries.findAllChildrenByECId(ecClient.entityId());
         sortByDateOfBirth(children);
@@ -106,10 +152,10 @@ public class ECSmartRegisterController {
         });
     }
 
-    private void sortByName(List<ECClient> ecClients) {
-        sort(ecClients, new Comparator<ECClient>() {
+    private void sortByName(List<? extends SmartRegisterClient> ecClients) {
+        sort(ecClients, new Comparator<SmartRegisterClient>() {
             @Override
-            public int compare(ECClient oneECClient, ECClient anotherECClient) {
+            public int compare(SmartRegisterClient oneECClient, SmartRegisterClient anotherECClient) {
                 return oneECClient.wifeName().compareToIgnoreCase(anotherECClient.wifeName());
             }
         });
@@ -148,7 +194,6 @@ public class ECSmartRegisterController {
             ecClient.withStatus(EasyMap.create(STATUS_TYPE_FIELD, PNC_FP_STATUS)
                     .put(STATUS_DATE_FIELD, mother.referenceDate())
                     .put(FP_METHOD_DATE_FIELD, eligibleCouple.getDetail(FAMILY_PLANNING_METHOD_CHANGE_DATE)).map());
-            return;
         }
     }
 }

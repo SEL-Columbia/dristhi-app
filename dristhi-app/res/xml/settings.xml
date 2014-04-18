@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference
-            android:key="anmIdentifier"
-            android:title="ANM ID"
-            android:summary="Identifier of the ANM"
-            android:dialogTitle="Please enter your ID" />
-</PreferenceScreen>

@@ -13,8 +13,20 @@ public class DateUtil {
         return dateUtility.today();
     }
 
+    public static String formatDateForTimelineEvent(String unformattedDate) {
+        return formatDate(unformattedDate, "dd-MM-yyyy");
+    }
+
     public static String formatDate(String unformattedDate) {
-        return LocalDate.parse(unformattedDate).toString("dd-MM-yyyy");
+        return formatDate(unformattedDate, "dd/MM/yyyy");
+    }
+
+    public static String formatDate(String date, String pattern) {
+        try {
+            return LocalDate.parse(date).toString(pattern);
+        } catch (Exception e) {
+            return "";
+        }
     }
 }
 

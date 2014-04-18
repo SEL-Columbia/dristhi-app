@@ -3,6 +3,7 @@ package org.ei.drishti.domain;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.util.DateUtil;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
@@ -10,7 +11,6 @@ import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.PNCVisitFields.*;
-import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
 
@@ -35,7 +35,7 @@ public class TimelineEvent {
         Map<String, String> details = create("childWeight", weight).put("immunizationsGiven", immunizationsGiven).map();
         String detailsString = new DetailBuilder(details).withWeight("childWeight").withImmunizations("immunizationsGiven").value();
 
-        return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), "Birth Date: " + formatDate(dateOfBirth), detailsString, null);
+        return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), "Birth Date: " + DateUtil.formatDateForTimelineEvent(dateOfBirth), detailsString, null);
     }
 
     public static TimelineEvent forChildBirthInMotherProfile(String caseId, String dateOfBirth, String gender, String dateOfDelivery, String placeOfDelivery) {
@@ -52,11 +52,11 @@ public class TimelineEvent {
     }
 
     public static TimelineEvent forStartOfPregnancy(String caseId, String registrationDate, String referenceDate) {
-        return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(registrationDate), "ANC Registered", "LMP Date: " + formatDate(referenceDate), null);
+        return new TimelineEvent(caseId, "PREGNANCY", LocalDate.parse(registrationDate), "ANC Registered", "LMP Date: " + DateUtil.formatDateForTimelineEvent(referenceDate), null);
     }
 
     public static TimelineEvent forStartOfPregnancyForEC(String ecCaseId, String thayiCardNumber, String registrationDate, String referenceDate) {
-        return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(registrationDate), "ANC Registered", "LMP Date: " + formatDate(referenceDate),
+        return new TimelineEvent(ecCaseId, "PREGNANCY", LocalDate.parse(registrationDate), "ANC Registered", "LMP Date: " + DateUtil.formatDateForTimelineEvent(referenceDate),
                 "Thayi No: " + thayiCardNumber);
     }
 
@@ -118,7 +118,7 @@ public class TimelineEvent {
     public static TimelineEvent forChildImmunization(String caseId, String immunizationsGiven, String immunizationsGivenDate) {
         String detailString = new DetailBuilder(null).withImmunizationsGiven(immunizationsGiven).value();
 
-        return new TimelineEvent(caseId, "IMMUNIZATIONSGIVEN", LocalDate.parse(immunizationsGivenDate), "Immunization Date: " + formatDate(immunizationsGivenDate), detailString, null);
+        return new TimelineEvent(caseId, "IMMUNIZATIONSGIVEN", LocalDate.parse(immunizationsGivenDate), "Immunization Date: " + DateUtil.formatDateForTimelineEvent(immunizationsGivenDate), detailString, null);
     }
 
     public static TimelineEvent forFPCondomRenew(String caseId, Map<String, String> details) {
@@ -242,7 +242,7 @@ public class TimelineEvent {
             if (isBlank(details.get(dateOfDelivery))) {
                 return this;
             }
-            this.stringBuilder.append("On: ").append(formatDate(details.get(dateOfDelivery))).append("<br />");
+            this.stringBuilder.append("On: ").append(DateUtil.formatDateForTimelineEvent(details.get(dateOfDelivery))).append("<br />");
             return this;
         }
 
