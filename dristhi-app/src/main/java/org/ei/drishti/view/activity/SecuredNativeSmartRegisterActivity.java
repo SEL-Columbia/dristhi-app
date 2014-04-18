@@ -28,8 +28,7 @@ import static java.util.Arrays.asList;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 import static org.ei.drishti.AllConstants.SHORT_DATE_FORMAT;
 
-public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
-        implements View.OnClickListener {
+public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity {
 
     private static final String DIALOG_TAG = "dialog";
 
@@ -55,6 +54,10 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private EditText searchView;
     private View searchCancelView;
 
+    private final PaginationHandler paginationHandler = new PaginationHandler();
+    private final NavBarActionsHandler navBarActionsHandler = new NavBarActionsHandler();
+    private final SearchCancelHandler searchCancelHandler = new SearchCancelHandler();
+
     @Override
     protected void onCreation() {
         setContentView(R.layout.smart_register_activity);
@@ -66,42 +69,73 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     @Override
     protected void onResumption() {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                publishProgress();
+                setupAdapter();
+                return null;
+            }
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                clientsProgressView.setVisibility(View.VISIBLE);
+                clientsView.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                clientsView.setAdapter(clientsAdapter);
+                updateFooter();
+                clientsProgressView.setVisibility(View.GONE);
+                clientsView.setVisibility(View.VISIBLE);
+
+            }
+        }.executeOnExecutor(THREAD_POOL_EXECUTOR);
     }
 
     private void setupViews() {
-        findViewById(R.id.btn_back_to_home).setOnClickListener(this);
-
-        setupTitleView();
+        setupNavBarViews();
         populateClientListHeaderView();
 
         clientsProgressView = (ProgressBar) findViewById(R.id.client_list_progress);
         clientsView = (ListView) findViewById(R.id.list);
 
-        setupSearchView();
-
-        View villageFilterView = findViewById(R.id.filter_selection);
-        villageFilterView.setOnClickListener(this);
-
-        View sortView = findViewById(R.id.sort_selection);
-        sortView.setOnClickListener(this);
-
-        serviceModeView = (TextView) findViewById(R.id.service_mode_selection);
-        serviceModeView.setOnClickListener(this);
-        serviceModeView.setText(getDefaultServiceModeName());
-
-        appliedSortView = (TextView) findViewById(R.id.sorted_by);
-        appliedVillageFilterView = (TextView) findViewById(R.id.village);
-
-        findViewById(R.id.register_client).setOnClickListener(this);
-
+        setupStatusBarViews();
         setupFooterView();
         updateStatusBar();
         updateDefaultOptions();
     }
 
+    private void setupStatusBarViews() {
+        appliedSortView = (TextView) findViewById(R.id.sorted_by);
+        appliedVillageFilterView = (TextView) findViewById(R.id.village);
+    }
+
+    private void setupNavBarViews() {
+        findViewById(R.id.btn_back_to_home).setOnClickListener(navBarActionsHandler);
+
+        setupTitleView();
+
+        View villageFilterView = findViewById(R.id.filter_selection);
+        villageFilterView.setOnClickListener(navBarActionsHandler);
+
+        View sortView = findViewById(R.id.sort_selection);
+        sortView.setOnClickListener(navBarActionsHandler);
+
+        serviceModeView = (TextView) findViewById(R.id.service_mode_selection);
+        serviceModeView.setOnClickListener(navBarActionsHandler);
+        serviceModeView.setText(getDefaultServiceModeName());
+
+        findViewById(R.id.register_client).setOnClickListener(navBarActionsHandler);
+
+        setupSearchView();
+    }
+
     private void setupTitleView() {
         ViewGroup titleLayout = (ViewGroup) findViewById(R.id.title_layout);
-        titleLayout.setOnClickListener(this);
+        titleLayout.setOnClickListener(navBarActionsHandler);
 
         TextView titleLabelView = (TextView) findViewById(R.id.txt_title_label);
         titleLabelView.setText(getRegisterTitleInShortForm());
@@ -132,40 +166,8 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             }
         });
         searchCancelView = findViewById(R.id.btn_search_cancel);
-        searchCancelView.setOnClickListener(this);
+        searchCancelView.setOnClickListener(searchCancelHandler);
     }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                publishProgress();
-                setupAdapter();
-                return null;
-            }
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                clientsProgressView.setVisibility(View.VISIBLE);
-                clientsView.setVisibility(View.INVISIBLE);
-            }
-
-            @Override
-            protected void onPostExecute(Void result) {
-                clientsView.setAdapter(clientsAdapter);
-                updateFooter();
-                clientsProgressView.setVisibility(View.GONE);
-                clientsView.setVisibility(View.VISIBLE);
-
-            }
-        }.executeOnExecutor(THREAD_POOL_EXECUTOR);
-    }
-
-    protected abstract String getRegisterTitleInShortForm();
 
     private void setReportDates(TextView titleView) {
         ReportMonth report = new ReportMonth();
@@ -187,8 +189,8 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         previousPageView = (Button) footerView.findViewById(R.id.btn_previous_page);
         pageInfoView = (TextView) footerView.findViewById(R.id.txt_page_info);
 
-        nextPageView.setOnClickListener(this);
-        previousPageView.setOnClickListener(this);
+        nextPageView.setOnClickListener(paginationHandler);
+        previousPageView.setOnClickListener(paginationHandler);
 
         footerView.setLayoutParams(new AbsListView.LayoutParams(
                 AbsListView.LayoutParams.MATCH_PARENT,
@@ -209,20 +211,11 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         previousPageView.setVisibility(clientsAdapter.hasPreviousPage() ? View.VISIBLE : View.INVISIBLE);
     }
 
-    private void goToPreviousPage() {
-        clientsAdapter.previousPage();
-        clientsAdapter.notifyDataSetChanged();
-    }
-
-    private void goToNextPage() {
-        clientsAdapter.nextPage();
-        clientsAdapter.notifyDataSetChanged();
-    }
-
     private void updateStatusBar() {
         appliedSortView.setText(getDefaultSortOption().name());
         appliedVillageFilterView.setText(getDefaultVillageFilterOption().name());
     }
+
 
     private void populateClientListHeaderView() {
         LinearLayout clientsHeaderLayout = (LinearLayout) findViewById(R.id.clients_header_layout);
@@ -267,49 +260,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         return new SmartRegisterPaginatedAdapter(this, clientProvider());
     }
 
-    protected abstract SmartRegisterClientsProvider clientProvider();
-
-    //#TODO: Try inline attaching of events
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.title_layout:
-            case R.id.btn_back_to_home:
-                goBack();
-                break;
-            case R.id.register_client:
-                startRegistration();
-                break;
-            case R.id.filter_selection:
-                showFragmentDialog(new FilterDialogOptionModel());
-                break;
-            case R.id.sort_selection:
-                showFragmentDialog(new SortDialogOptionModel());
-                break;
-            case R.id.service_mode_selection:
-                showFragmentDialog(new ServiceModeDialogOptionModel());
-                break;
-            case R.id.btn_edit:
-                showFragmentDialog(new EditDialogOptionModel(),
-                        view.getTag());
-                break;
-            case R.id.btn_next_page:
-                goToNextPage();
-                break;
-            case R.id.btn_previous_page:
-                goToPreviousPage();
-                break;
-            case R.id.btn_search_cancel:
-                clearSearch();
-                break;
-        }
-    }
-
-
-    private void clearSearch() {
-        searchView.setText("");
-    }
-
     protected void onServiceModeSelection(ServiceModeOption serviceModeOption) {
         currentServiceModeOption = serviceModeOption;
         serviceModeView.setText(serviceModeOption.name());
@@ -340,11 +290,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     private void goBack() {
         finish();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 
     void showFragmentDialog(DialogOptionModel dialogOptionModel) {
@@ -398,6 +343,10 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     protected abstract void startRegistration();
 
+    protected abstract SmartRegisterClientsProvider clientProvider();
+
+    protected abstract String getRegisterTitleInShortForm();
+
     private class FilterDialogOptionModel implements DialogOptionModel {
         @Override
         public DialogOption[] getDialogOptions() {
@@ -434,15 +383,65 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }
     }
 
-    private class EditDialogOptionModel implements DialogOptionModel {
-        @Override
-        public DialogOption[] getDialogOptions() {
-            return getEditOptions();
-        }
+    private class PaginationHandler implements View.OnClickListener {
 
         @Override
-        public void onDialogOptionSelection(DialogOption option, Object tag) {
-            onEditSelection((EditOption) option, (SmartRegisterClient) tag);
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.btn_next_page:
+                    goToNextPage();
+                    break;
+                case R.id.btn_previous_page:
+                    goToPreviousPage();
+                    break;
+            }
+        }
+
+        private void goToPreviousPage() {
+            clientsAdapter.previousPage();
+            clientsAdapter.notifyDataSetChanged();
+        }
+
+        private void goToNextPage() {
+            clientsAdapter.nextPage();
+            clientsAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public class NavBarActionsHandler implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.title_layout:
+                case R.id.btn_back_to_home:
+                    goBack();
+                    break;
+                case R.id.register_client:
+                    startRegistration();
+                    break;
+                case R.id.filter_selection:
+                    showFragmentDialog(new FilterDialogOptionModel());
+                    break;
+                case R.id.sort_selection:
+                    showFragmentDialog(new SortDialogOptionModel());
+                    break;
+                case R.id.service_mode_selection:
+                    showFragmentDialog(new ServiceModeDialogOptionModel());
+                    break;
+            }
+        }
+    }
+
+    public class SearchCancelHandler implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            clearSearchText();
+        }
+
+        private void clearSearchText() {
+            searchView.setText("");
         }
     }
 }

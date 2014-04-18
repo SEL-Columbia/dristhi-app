@@ -7,6 +7,7 @@ import org.ei.drishti.domain.form.FieldOverrides;
 import org.ei.drishti.provider.ECSmartRegisterClientsProvider;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.ECClient;
+import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.controller.ECSmartRegisterController;
 import org.ei.drishti.view.controller.VillageController;
 import org.ei.drishti.view.dialog.*;
@@ -21,6 +22,8 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     private ECSmartRegisterController controller;
     private VillageController villageController;
     private DialogOptionMapper dialogOptionMapper;
+
+    private final ClientActionHandler clientActionHandler = new ClientActionHandler();
 
     @Override
     public int getColumnCount() {
@@ -58,8 +61,8 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     @Override
     protected SmartRegisterClientsProvider clientProvider() {
         if (clientProvider == null) {
-            clientProvider = new ECSmartRegisterClientsProvider(this, this,
-                    controller);
+            clientProvider = new ECSmartRegisterClientsProvider(
+                    this, clientActionHandler, controller);
         }
         return clientProvider;
     }
@@ -129,21 +132,6 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         dialogOptionMapper = new DialogOptionMapper();
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.profile_info_layout:
-                showProfileView((ECClient) view.getTag());
-                break;
-
-            default:
-                super.onClick(view);
-        }
-    }
-
-    private void showProfileView(ECClient client) {
-        navigationController.startEC(client.entityId());
-    }
 
     @Override
     protected void startRegistration() {
@@ -151,4 +139,33 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
     }
 
+    private class ClientActionHandler implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.profile_info_layout:
+                    showProfileView((ECClient) view.getTag());
+                    break;
+                case R.id.btn_edit:
+                    showFragmentDialog(new EditDialogOptionModel(), view.getTag());
+                    break;
+            }
+        }
+
+        private void showProfileView(ECClient client) {
+            navigationController.startEC(client.entityId());
+        }
+    }
+
+    private class EditDialogOptionModel implements DialogOptionModel {
+        @Override
+        public DialogOption[] getDialogOptions() {
+            return getEditOptions();
+        }
+
+        @Override
+        public void onDialogOptionSelection(DialogOption option, Object tag) {
+            onEditSelection((EditOption) option, (SmartRegisterClient) tag);
+        }
+    }
 }
