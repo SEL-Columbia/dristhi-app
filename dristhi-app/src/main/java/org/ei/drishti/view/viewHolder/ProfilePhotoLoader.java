@@ -27,14 +27,14 @@ public class ProfilePhotoLoader {
             return drawableMap.get(client.entityId());
         }
 
-        String photoPath = client.profilePhotoPath().replace("file:///", "/");
+        String photoPath = client.profilePhotoPath();
         if (isBlank(photoPath)
                 || isThisDefaultProfilePhoto(photoPath)
                 || !isFileExists(photoPath)) {
             return defaultPlaceHolder;
         }
 
-        Drawable profilePhoto = new BitmapDrawable(resources, photoPath);
+        Drawable profilePhoto = new BitmapDrawable(resources, photoPath.replace("file:///", "/"));
         drawableMap.put(client.entityId(), profilePhoto);
         return profilePhoto;
     }
