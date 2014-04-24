@@ -2,7 +2,7 @@ package org.ei.drishti.view.controller;
 
 import android.content.Context;
 import com.google.gson.Gson;
-import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.TimelineEvent;

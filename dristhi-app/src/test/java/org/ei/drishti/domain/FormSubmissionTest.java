@@ -1,7 +1,7 @@
 package org.ei.drishti.domain;
 
 import com.google.gson.Gson;
-import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.form.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;

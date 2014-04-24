@@ -3,6 +3,7 @@ package org.ei.drishti.view.activity;
 import android.test.ActivityInstrumentationTestCase2;
 import org.ei.drishti.Context;
 import org.ei.drishti.repository.AllSettings;
+import org.ei.drishti.repository.AllSharedPreferences;
 import org.ei.drishti.util.DrishtiSolo;
 import org.ei.drishti.util.FakeDrishtiService;
 import org.ei.drishti.util.FakeUserService;
@@ -31,11 +32,12 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<HomeA
     }
 
     public void testShouldRegisterANM() throws Exception {
+        AllSharedPreferences preferences = Context.getInstance().allSharedPreferences();
         AllSettings settings = Context.getInstance().allSettings();
 
         settings.registerANM("XYZ", "password Y");
 
-        assertEquals("XYZ", settings.fetchRegisteredANM());
+        assertEquals("XYZ", preferences.fetchRegisteredANM());
     }
 
     @Override

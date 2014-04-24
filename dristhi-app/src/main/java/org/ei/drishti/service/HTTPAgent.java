@@ -27,6 +27,7 @@ import org.ei.drishti.domain.LoginResponse;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.repository.AllSettings;
+import org.ei.drishti.repository.AllSharedPreferences;
 
 import javax.net.ssl.SSLException;
 import java.io.IOException;
@@ -43,12 +44,14 @@ public class HTTPAgent {
     private final GZipEncodingHttpClient httpClient;
     private Context context;
     private AllSettings settings;
+    private AllSharedPreferences allSharedPreferences;
     private DristhiConfiguration configuration;
 
 
-    public HTTPAgent(Context context, AllSettings settings, DristhiConfiguration configuration) {
+    public HTTPAgent(Context context, AllSettings settings, AllSharedPreferences allSharedPreferences, DristhiConfiguration configuration) {
         this.context = context;
         this.settings = settings;
+        this.allSharedPreferences = allSharedPreferences;
         this.configuration = configuration;
 
         BasicHttpParams basicHttpParams = new BasicHttpParams();
@@ -65,7 +68,7 @@ public class HTTPAgent {
 
     public Response<String> fetch(String requestURLPath) {
         try {
-            setCredentials(settings.fetchRegisteredANM(), settings.fetchANMPassword());
+            setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
             String responseContent = IOUtils.toString(httpClient.fetchContent(new HttpGet(requestURLPath)));
             return new Response<String>(ResponseStatus.success, responseContent);
         } catch (Exception e) {
@@ -76,7 +79,7 @@ public class HTTPAgent {
 
     public Response<String> post(String postURLPath, String jsonPayload) {
         try {
-            setCredentials(settings.fetchRegisteredANM(), settings.fetchANMPassword());
+            setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
             HttpPost httpPost = new HttpPost(postURLPath);
             StringEntity entity = new StringEntity(jsonPayload);
             entity.setContentEncoding("application/json");
