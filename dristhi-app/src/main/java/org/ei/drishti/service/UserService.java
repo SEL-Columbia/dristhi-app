@@ -3,6 +3,7 @@ package org.ei.drishti.service;
 import org.ei.drishti.DristhiConfiguration;
 import org.ei.drishti.domain.LoginResponse;
 import org.ei.drishti.repository.AllSettings;
+import org.ei.drishti.repository.AllSharedPreferences;
 import org.ei.drishti.repository.Repository;
 import org.ei.drishti.sync.SaveANMLocationTask;
 import org.ei.drishti.util.Session;
@@ -13,15 +14,17 @@ import static org.ei.drishti.event.Event.ON_LOGOUT;
 public class UserService {
     private final Repository repository;
     private final AllSettings allSettings;
+    private final AllSharedPreferences allSharedPreferences;
     private HTTPAgent httpAgent;
     private Session session;
     private DristhiConfiguration configuration;
     private SaveANMLocationTask saveANMLocationTask;
 
-    public UserService(Repository repository, AllSettings allSettings, HTTPAgent httpAgent, Session session,
+    public UserService(Repository repository, AllSettings allSettings, AllSharedPreferences allSharedPreferences, HTTPAgent httpAgent, Session session,
                        DristhiConfiguration configuration, SaveANMLocationTask saveANMLocationTask) {
         this.repository = repository;
         this.allSettings = allSettings;
+        this.allSharedPreferences = allSharedPreferences;
         this.httpAgent = httpAgent;
         this.session = session;
         this.configuration = configuration;
@@ -29,7 +32,7 @@ public class UserService {
     }
 
     public boolean isValidLocalLogin(String userName, String password) {
-        return allSettings.fetchRegisteredANM().equals(userName) && repository.canUseThisPassword(password);
+        return allSharedPreferences.fetchRegisteredANM().equals(userName) && repository.canUseThisPassword(password);
     }
 
     public LoginResponse isValidRemoteLogin(String userName, String password) {
@@ -52,7 +55,7 @@ public class UserService {
     }
 
     public boolean hasARegisteredUser() {
-        return !allSettings.fetchRegisteredANM().equals("");
+        return !allSharedPreferences.fetchRegisteredANM().equals("");
     }
 
     public void logout() {
@@ -81,12 +84,12 @@ public class UserService {
     }
 
     public String switchLanguagePreference() {
-        String preferredLocale = allSettings.fetchLanguagePreference();
+        String preferredLocale = allSharedPreferences.fetchLanguagePreference();
         if (ENGLISH_LOCALE.equals(preferredLocale)) {
-            allSettings.saveLanguagePreference(KANNADA_LOCALE);
+            allSharedPreferences.saveLanguagePreference(KANNADA_LOCALE);
             return KANNADA_LANGUAGE;
         } else {
-            allSettings.saveLanguagePreference(ENGLISH_LOCALE);
+            allSharedPreferences.saveLanguagePreference(ENGLISH_LOCALE);
             return ENGLISH_LANGUAGE;
         }
     }

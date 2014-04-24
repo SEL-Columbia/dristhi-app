@@ -1,6 +1,6 @@
 package org.ei.drishti.service;
 
-import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.dto.BeneficiaryType;

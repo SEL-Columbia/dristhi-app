@@ -8,6 +8,7 @@ import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.dto.form.FormSubmissionDTO;
 import org.ei.drishti.repository.AllSettings;
+import org.ei.drishti.repository.AllSharedPreferences;
 import org.ei.drishti.repository.FormDataRepository;
 
 import java.util.ArrayList;
@@ -24,16 +25,18 @@ public class FormSubmissionSyncService {
     private final HTTPAgent httpAgent;
     private final FormDataRepository formDataRepository;
     private AllSettings allSettings;
+    private AllSharedPreferences allSharedPreferences;
     private FormSubmissionService formSubmissionService;
     private DristhiConfiguration configuration;
 
     public FormSubmissionSyncService(FormSubmissionService formSubmissionService, HTTPAgent httpAgent,
                                      FormDataRepository formDataRepository, AllSettings allSettings,
-                                     DristhiConfiguration configuration) {
+                                     AllSharedPreferences allSharedPreferences, DristhiConfiguration configuration) {
         this.formSubmissionService = formSubmissionService;
         this.httpAgent = httpAgent;
         this.formDataRepository = formDataRepository;
         this.allSettings = allSettings;
+        this.allSharedPreferences = allSharedPreferences;
         this.configuration = configuration;
     }
 
@@ -63,7 +66,7 @@ public class FormSubmissionSyncService {
 
     public FetchStatus pullFromServer() {
         FetchStatus dataStatus = nothingFetched;
-        String anmId = allSettings.fetchRegisteredANM();
+        String anmId = allSharedPreferences.fetchRegisteredANM();
         int downloadBatchSize = configuration.syncDownloadBatchSize();
         String baseURL = configuration.dristhiBaseURL();
         while (true) {
@@ -93,7 +96,7 @@ public class FormSubmissionSyncService {
     private String mapToFormSubmissionDTO(List<FormSubmission> pendingFormSubmissions) {
         List<org.ei.drishti.dto.form.FormSubmissionDTO> formSubmissions = new ArrayList<org.ei.drishti.dto.form.FormSubmissionDTO>();
         for (FormSubmission pendingFormSubmission : pendingFormSubmissions) {
-            formSubmissions.add(new org.ei.drishti.dto.form.FormSubmissionDTO(allSettings.fetchRegisteredANM(), pendingFormSubmission.instanceId(),
+            formSubmissions.add(new org.ei.drishti.dto.form.FormSubmissionDTO(allSharedPreferences.fetchRegisteredANM(), pendingFormSubmission.instanceId(),
                     pendingFormSubmission.entityId(), pendingFormSubmission.formName(), pendingFormSubmission.instance(), pendingFormSubmission.version(),
                     pendingFormSubmission.formDataDefinitionVersion()));
         }

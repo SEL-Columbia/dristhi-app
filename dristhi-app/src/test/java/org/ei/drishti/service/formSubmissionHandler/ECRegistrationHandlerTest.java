@@ -1,6 +1,6 @@
 package org.ei.drishti.service.formSubmissionHandler;
 
-import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.service.EligibleCoupleService;
 import org.junit.Before;

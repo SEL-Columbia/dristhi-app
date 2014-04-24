@@ -38,7 +38,7 @@ public class DrishtiApplication extends Application {
 
     private void cleanUpSyncState() {
         DrishtiSyncScheduler.stop(getApplicationContext());
-        context.allSettings().saveIsSyncInProgress(false);
+        context.allSharedPreferences().saveIsSyncInProgress(false);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class DrishtiApplication extends Application {
     private void applyUserLanguagePreference() {
         Configuration config = getBaseContext().getResources().getConfiguration();
 
-        String lang = context.allSettings().fetchLanguagePreference();
+        String lang = context.allSharedPreferences().fetchLanguagePreference();
         if (!"".equals(lang) && !config.locale.getLanguage().equals(lang)) {
             locale = new Locale(lang);
             updateConfiguration(config);

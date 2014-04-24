@@ -30,6 +30,7 @@ public class Context {
     private ServiceProvidedRepository serviceProvidedRepository;
 
     private AllSettings allSettings;
+    private AllSharedPreferences allSharedPreferences;
     private AllAlerts allAlerts;
     private AllEligibleCouples allEligibleCouples;
     private AllBeneficiaries allBeneficiaries;
@@ -134,7 +135,7 @@ public class Context {
 
     public ActionService actionService() {
         if (actionService == null) {
-            actionService = new ActionService(drishtiService(), allSettings(), allReports());
+            actionService = new ActionService(drishtiService(), allSettings(), allSharedPreferences(), allReports());
         }
         return actionService;
     }
@@ -353,14 +354,14 @@ public class Context {
 
     public FormSubmissionSyncService formSubmissionSyncService() {
         if (formSubmissionSyncService == null) {
-            formSubmissionSyncService = new FormSubmissionSyncService(formSubmissionService(), httpAgent(), formDataRepository(), allSettings(), configuration());
+            formSubmissionSyncService = new FormSubmissionSyncService(formSubmissionService(), httpAgent(), formDataRepository(), allSettings(), allSharedPreferences(), configuration());
         }
         return formSubmissionSyncService;
     }
 
     private HTTPAgent httpAgent() {
         if (httpAgent == null) {
-            httpAgent = new HTTPAgent(applicationContext, allSettings(), configuration());
+            httpAgent = new HTTPAgent(applicationContext, allSettings(), allSharedPreferences(), configuration());
         }
         return httpAgent;
     }
@@ -393,9 +394,16 @@ public class Context {
     public AllSettings allSettings() {
         initRepository();
         if (allSettings == null) {
-            allSettings = new AllSettings(getDefaultSharedPreferences(this.applicationContext), settingsRepository());
+            allSettings = new AllSettings(allSharedPreferences(), settingsRepository());
         }
         return allSettings;
+    }
+
+    public AllSharedPreferences allSharedPreferences() {
+        if (allSharedPreferences == null) {
+            allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(this.applicationContext));
+        }
+        return allSharedPreferences;
     }
 
     public AllBeneficiaries allBeneficiaries() {
@@ -496,7 +504,7 @@ public class Context {
     public UserService userService() {
         if (userService == null) {
             Repository repo = initRepository();
-            userService = new UserService(repo, allSettings(), httpAgent(), session(), configuration(), saveANMLocationTask());
+            userService = new UserService(repo, allSettings(), allSharedPreferences(), httpAgent(), session(), configuration(), saveANMLocationTask());
         }
         return userService;
     }
@@ -552,7 +560,7 @@ public class Context {
 
     public ANMService anmService() {
         if (anmService == null) {
-            anmService = new ANMService(allSettings(), allBeneficiaries(), allEligibleCouples());
+            anmService = new ANMService(allSettings(), allSharedPreferences(), allBeneficiaries(), allEligibleCouples());
         }
         return anmService;
     }

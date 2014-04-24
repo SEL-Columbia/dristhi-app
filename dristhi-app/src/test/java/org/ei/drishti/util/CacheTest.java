@@ -1,6 +1,6 @@
 package org.ei.drishti.util;
 
-import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.ei.drishti.event.Event;
 import org.junit.Before;
 import org.junit.Test;

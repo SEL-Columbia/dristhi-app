@@ -1,6 +1,5 @@
 package org.ei.drishti.service;
 
-import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Mother;
 import org.ei.drishti.domain.ServiceProvided;
 import org.ei.drishti.domain.TimelineEvent;
@@ -13,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.robolectric.RobolectricTestRunner;
 
 import static org.ei.drishti.domain.TimelineEvent.*;
 import static org.ei.drishti.util.EasyMap.create;
@@ -382,5 +382,4 @@ public class MotherServiceTest {
 
         verify(serviceProvidedService).add(ServiceProvided.forDeliveryPlan("entity id 1", "Delivery Facility Name", "Transportation Plan", "Birth Companion", "Asha Phone", "1234567890", "HRP Status", "2012-01-01"));
     }
-
 }

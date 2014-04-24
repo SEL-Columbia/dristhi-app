@@ -1,6 +1,6 @@
 package org.ei.drishti.repository;
 
-import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Child;
 import org.ei.drishti.domain.Mother;
 import org.junit.Before;

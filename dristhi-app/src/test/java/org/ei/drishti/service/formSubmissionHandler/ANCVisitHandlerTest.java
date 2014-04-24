@@ -1,12 +1,12 @@
 package org.ei.drishti.service.formSubmissionHandler;
 
-import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.service.MotherService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.robolectric.RobolectricTestRunner;
 
 import static org.ei.drishti.util.FormSubmissionBuilder.create;
 import static org.mockito.Mockito.verify;

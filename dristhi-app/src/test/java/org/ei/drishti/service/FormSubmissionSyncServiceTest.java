@@ -1,7 +1,8 @@
 package org.ei.drishti.service;
 
 import com.google.gson.Gson;
-import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.repository.AllSharedPreferences;
+import org.robolectric.RobolectricTestRunner;
 import org.ei.drishti.DristhiConfiguration;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.Response;
@@ -38,6 +39,8 @@ public class FormSubmissionSyncServiceTest {
     @Mock
     private AllSettings allSettings;
     @Mock
+    private AllSharedPreferences allSharedPreferences;
+    @Mock
     private FormSubmissionService formSubmissionService;
     @Mock
     private DristhiConfiguration configuration;
@@ -50,14 +53,14 @@ public class FormSubmissionSyncServiceTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new FormSubmissionSyncService(formSubmissionService, httpAgent, repository, allSettings, configuration);
+        service = new FormSubmissionSyncService(formSubmissionService, httpAgent, repository, allSettings, allSharedPreferences, configuration);
 
         formInstanceJSON = "{form:{bind_type: 'ec'}}";
         submissions = asList(new FormSubmission("id 1", "entity id 1", "form name", formInstanceJSON, "123", PENDING, "1"));
         expectedFormSubmissionsDto = asList(new FormSubmissionDTO(
                 "anm id 1", "id 1", "entity id 1", "form name", formInstanceJSON, "123", "1"));
         when(configuration.dristhiBaseURL()).thenReturn("http://dristhi_base_url");
-        when(allSettings.fetchRegisteredANM()).thenReturn("anm id 1");
+        when(allSharedPreferences.fetchRegisteredANM()).thenReturn("anm id 1");
         when(repository.getPendingFormSubmissions()).thenReturn(submissions);
     }
 
@@ -69,7 +72,7 @@ public class FormSubmissionSyncServiceTest {
         service.pushToServer();
 
         inOrder(allSettings, httpAgent, repository);
-        verify(allSettings).fetchRegisteredANM();
+        verify(allSharedPreferences).fetchRegisteredANM();
         verify(httpAgent).post("http://dristhi_base_url" + "/form-submissions", new Gson().toJson(expectedFormSubmissionsDto));
         verify(repository).markFormSubmissionsAsSynced(submissions);
     }

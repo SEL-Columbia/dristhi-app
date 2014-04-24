@@ -1,6 +1,7 @@
 package org.ei.drishti.service;
 
-import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.repository.AllSharedPreferences;
+import org.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.dto.Action;
@@ -34,6 +35,8 @@ public class ActionServiceTest {
     @Mock
     private AllSettings allSettings;
     @Mock
+    private AllSharedPreferences allSharedPreferences;
+    @Mock
     private AllEligibleCouples allEligibleCouples;
     @Mock
     private AllReports allReports;
@@ -45,7 +48,7 @@ public class ActionServiceTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        service = new ActionService(drishtiService, allSettings, allReports, actionRouter);
+        service = new ActionService(drishtiService, allSettings, allSharedPreferences, allReports, actionRouter);
     }
 
     @Test
@@ -114,7 +117,7 @@ public class ActionServiceTest {
 
     private void setupActions(ResponseStatus status, List<Action> list) {
         when(allSettings.fetchPreviousFetchIndex()).thenReturn("1234");
-        when(allSettings.fetchRegisteredANM()).thenReturn("ANM X");
+        when(allSharedPreferences.fetchRegisteredANM()).thenReturn("ANM X");
         when(drishtiService.fetchNewActions("ANM X", "1234")).thenReturn(new Response<List<Action>>(status, list));
     }
 }

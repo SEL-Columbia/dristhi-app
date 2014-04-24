@@ -1,6 +1,6 @@
 package org.ei.drishti.repository;
 
-import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Report;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.util.ActionBuilder;

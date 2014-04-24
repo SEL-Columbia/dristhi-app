@@ -1,11 +1,8 @@
 package org.ei.drishti.service;
 
-import com.xtremelabs.robolectric.RobolectricTestRunner;
+import org.ei.drishti.repository.*;
+import org.robolectric.RobolectricTestRunner;
 import org.ei.drishti.DristhiConfiguration;
-import org.ei.drishti.repository.AllAlerts;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.repository.Repository;
 import org.ei.drishti.sync.SaveANMLocationTask;
 import org.ei.drishti.util.Session;
 import org.junit.Before;
@@ -27,6 +24,8 @@ public class UserServiceTest {
     @Mock
     private AllSettings allSettings;
     @Mock
+    private AllSharedPreferences allSharedPreferences;
+    @Mock
     private AllAlerts allAlerts;
     @Mock
     private AllEligibleCouples allEligibleCouples;
@@ -44,7 +43,7 @@ public class UserServiceTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        userService = new UserService(repository, allSettings, httpAgent, session, configuration, saveANMLocationTask);
+        userService = new UserService(repository, allSettings, allSharedPreferences, httpAgent, session, configuration, saveANMLocationTask);
     }
 
     @Test
@@ -65,33 +64,33 @@ public class UserServiceTest {
 
     @Test
     public void shouldConsiderALocalLoginValidWhenUsernameMatchesRegisteredUserAndPasswordMatchesTheOneInDB() {
-        when(allSettings.fetchRegisteredANM()).thenReturn("ANM X");
+        when(allSharedPreferences.fetchRegisteredANM()).thenReturn("ANM X");
         when(repository.canUseThisPassword("password Z")).thenReturn(true);
 
         assertTrue(userService.isValidLocalLogin("ANM X", "password Z"));
 
-        verify(allSettings).fetchRegisteredANM();
+        verify(allSharedPreferences).fetchRegisteredANM();
         verify(repository).canUseThisPassword("password Z");
     }
 
     @Test
     public void shouldConsiderALocalLoginInvalidWhenRegisteredUserDoesNotMatch() {
-        when(allSettings.fetchRegisteredANM()).thenReturn("ANM X");
+        when(allSharedPreferences.fetchRegisteredANM()).thenReturn("ANM X");
 
         assertFalse(userService.isValidLocalLogin("SOME OTHER ANM", "password"));
 
-        verify(allSettings).fetchRegisteredANM();
+        verify(allSharedPreferences).fetchRegisteredANM();
         verifyZeroInteractions(repository);
     }
 
     @Test
     public void shouldConsiderALocalLoginInvalidWhenRegisteredUserMatchesButNotThePassword() {
-        when(allSettings.fetchRegisteredANM()).thenReturn("ANM X");
+        when(allSharedPreferences.fetchRegisteredANM()).thenReturn("ANM X");
         when(repository.canUseThisPassword("password Z")).thenReturn(false);
 
         assertFalse(userService.isValidLocalLogin("ANM X", "password Z"));
 
-        verify(allSettings).fetchRegisteredANM();
+        verify(allSharedPreferences).fetchRegisteredANM();
         verify(repository).canUseThisPassword("password Z");
     }
 
@@ -114,19 +113,19 @@ public class UserServiceTest {
 
     @Test
     public void shouldSwitchLanguageToKannada() throws Exception {
-        when(allSettings.fetchLanguagePreference()).thenReturn(ENGLISH_LOCALE);
+        when(allSharedPreferences.fetchLanguagePreference()).thenReturn(ENGLISH_LOCALE);
 
         userService.switchLanguagePreference();
 
-        verify(allSettings).saveLanguagePreference(KANNADA_LOCALE);
+        verify(allSharedPreferences).saveLanguagePreference(KANNADA_LOCALE);
     }
 
     @Test
     public void shouldSwitchLanguageToEnglish() throws Exception {
-        when(allSettings.fetchLanguagePreference()).thenReturn(KANNADA_LOCALE);
+        when(allSharedPreferences.fetchLanguagePreference()).thenReturn(KANNADA_LOCALE);
 
         userService.switchLanguagePreference();
 
-        verify(allSettings).saveLanguagePreference(ENGLISH_LOCALE);
+        verify(allSharedPreferences).saveLanguagePreference(ENGLISH_LOCALE);
     }
 }

@@ -6,6 +6,7 @@ import org.ei.drishti.domain.Response;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.repository.AllReports;
 import org.ei.drishti.repository.AllSettings;
+import org.ei.drishti.repository.AllSharedPreferences;
 import org.ei.drishti.router.ActionRouter;
 import org.ei.drishti.util.Log;
 
@@ -19,25 +20,24 @@ public class ActionService {
     private final ActionRouter actionRouter;
     private DrishtiService drishtiService;
     private AllSettings allSettings;
+    private AllSharedPreferences allSharedPreference;
     private AllReports allReports;
 
-    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllReports allReports) {
-        this.drishtiService = drishtiService;
-        this.allSettings = allSettings;
-        this.allReports = allReports;
-        this.actionRouter = new ActionRouter();
+    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllSharedPreferences allSharedPreferences, AllReports allReports) {
+       this(drishtiService, allSettings, allSharedPreferences, allReports, null);
     }
 
-    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllReports allReports, ActionRouter actionRouter) {
+    public ActionService(DrishtiService drishtiService, AllSettings allSettings, AllSharedPreferences allSharedPreferences, AllReports allReports, ActionRouter actionRouter) {
         this.drishtiService = drishtiService;
         this.allSettings = allSettings;
+        this.allSharedPreference = allSharedPreferences;
         this.allReports = allReports;
-        this.actionRouter = actionRouter;
+        this.actionRouter = actionRouter == null ? new ActionRouter() : actionRouter;
     }
 
     public FetchStatus fetchNewActions() {
         String previousFetchIndex = allSettings.fetchPreviousFetchIndex();
-        Response<List<Action>> response = drishtiService.fetchNewActions(allSettings.fetchRegisteredANM(), previousFetchIndex);
+        Response<List<Action>> response = drishtiService.fetchNewActions(allSharedPreference.fetchRegisteredANM(), previousFetchIndex);
 
         if (response.isFailure()) {
             return fetchedFailed;

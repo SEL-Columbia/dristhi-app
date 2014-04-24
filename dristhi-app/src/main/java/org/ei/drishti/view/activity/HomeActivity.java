@@ -85,7 +85,7 @@ public class HomeActivity extends SecuredWebActivity {
 
     private void updateSyncIndicator() {
         if (updateMenuItem != null) {
-            if (context.allSettings().fetchIsSyncInProgress()) {
+            if (context.allSharedPreferences().fetchIsSyncInProgress()) {
                 updateMenuItem.setActionView(R.layout.progress);
             } else
                 updateMenuItem.setActionView(null);

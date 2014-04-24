@@ -1,8 +1,8 @@
 package org.ei.drishti.view;
 
 import android.content.Context;
-import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.FetchStatus;
+import org.ei.drishti.repository.AllSharedPreferences;
 import org.ei.drishti.service.ActionService;
 import org.ei.drishti.service.FormSubmissionSyncService;
 import org.ei.drishti.sync.AfterFetchListener;
@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
+import org.robolectric.RobolectricTestRunner;
 
 import static org.ei.drishti.domain.FetchStatus.fetched;
 import static org.ei.drishti.domain.FetchStatus.nothingFetched;
@@ -32,6 +33,8 @@ public class UpdateActionsTaskTest {
     private org.ei.drishti.Context context;
     @Mock
     private FormSubmissionSyncService formSubmissionSyncService;
+    @Mock
+    private AllSharedPreferences allSharedPreferences;
 
     @Before
     public void setUp() throws Exception {
@@ -43,6 +46,8 @@ public class UpdateActionsTaskTest {
         progressIndicator = mock(ProgressIndicator.class);
         org.ei.drishti.Context.setInstance(context);
         when(context.IsUserLoggedOut()).thenReturn(false);
+        when(context.allSharedPreferences()).thenReturn(allSharedPreferences);
+        when(allSharedPreferences.fetchLanguagePreference()).thenReturn("en");
         when(actionService.fetchNewActions()).thenReturn(fetched);
         when(formSubmissionSyncService.sync()).thenReturn(fetched);
 
@@ -63,6 +68,8 @@ public class UpdateActionsTaskTest {
     public void shouldNotUpdateDisplayIfNothingWasFetched() throws Exception {
         org.ei.drishti.Context.setInstance(context);
         when(context.IsUserLoggedOut()).thenReturn(false);
+        when(context.allSharedPreferences()).thenReturn(allSharedPreferences);
+        when(allSharedPreferences.fetchLanguagePreference()).thenReturn("en");
         when(actionService.fetchNewActions()).thenReturn(nothingFetched);
         when(formSubmissionSyncService.sync()).thenReturn(nothingFetched);
 
@@ -78,6 +85,8 @@ public class UpdateActionsTaskTest {
     public void shouldNotUpdateWhenUserIsNotLoggedIn() throws Exception {
         org.ei.drishti.Context.setInstance(context);
         when(context.IsUserLoggedOut()).thenReturn(true);
+        when(context.allSharedPreferences()).thenReturn(allSharedPreferences);
+        when(allSharedPreferences.fetchLanguagePreference()).thenReturn("en");
 
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(androidContext, actionService, formSubmissionSyncService, progressIndicator);
         updateActionsTask.updateFromServer(new AfterFetchListener() {
@@ -93,6 +102,8 @@ public class UpdateActionsTaskTest {
     public void shouldSyncFormSubmissionsWithServer() throws Exception {
         org.ei.drishti.Context.setInstance(context);
         when(context.IsUserLoggedOut()).thenReturn(false);
+        when(context.allSharedPreferences()).thenReturn(allSharedPreferences);
+        when(allSharedPreferences.fetchLanguagePreference()).thenReturn("en");
 
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(androidContext, actionService, formSubmissionSyncService, progressIndicator);
         updateActionsTask.updateFromServer(new AfterFetchListener() {
