@@ -53,24 +53,26 @@ public class ClientStatusView extends FrameLayout {
     }
 
     public void bindData(SmartRegisterClient client) {
-        String statusType = client.status().get(STATUS_TYPE_FIELD);
-        String statusDate = formatDate(client.status().get(STATUS_DATE_FIELD));
-
         hideAllLayout();
 
-        ViewGroup statusViewGroup = statusLayout(statusType);
-        statusViewGroup.setVisibility(View.VISIBLE);
-        dateView(statusViewGroup).setText(statusDate);
+        if (client.status().containsKey(STATUS_TYPE_FIELD)) {
+            String statusType = client.status().get(STATUS_TYPE_FIELD);
+            String statusDate = formatDate(client.status().get(STATUS_DATE_FIELD));
 
-        if (EC_STATUS.equalsIgnoreCase(statusType) || FP_STATUS.equalsIgnoreCase(statusType)) {
-            typeView(statusViewGroup)
-                    .setText(StringUtils.upperCase(statusType));
-        } else if (ANC_STATUS.equalsIgnoreCase(statusType)) {
-            eddDateView(statusViewGroup)
-                    .setText(formatDate(client.status().get(STATUS_EDD_FIELD)));
-        } else if (PNC_FP_STATUS.equalsIgnoreCase(statusType)) {
-            fpDateView(statusViewGroup)
-                    .setText(formatDate(client.status().get(FP_METHOD_DATE_FIELD)));
+            ViewGroup statusViewGroup = statusLayout(statusType);
+            statusViewGroup.setVisibility(View.VISIBLE);
+            dateView(statusViewGroup).setText(statusDate);
+
+            if (EC_STATUS.equalsIgnoreCase(statusType) || FP_STATUS.equalsIgnoreCase(statusType)) {
+                typeView(statusViewGroup)
+                        .setText(StringUtils.upperCase(statusType));
+            } else if (ANC_STATUS.equalsIgnoreCase(statusType)) {
+                eddDateView(statusViewGroup)
+                        .setText(formatDate(client.status().get(STATUS_EDD_FIELD)));
+            } else if (PNC_FP_STATUS.equalsIgnoreCase(statusType)) {
+                fpDateView(statusViewGroup)
+                        .setText(formatDate(client.status().get(FP_METHOD_DATE_FIELD)));
+            }
         }
     }
 

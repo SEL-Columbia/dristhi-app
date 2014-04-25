@@ -1,5 +1,6 @@
 package org.ei.drishti.domain;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 
@@ -147,7 +148,7 @@ public enum FPMethod {
 
     public static FPMethod tryParse(String method, FPMethod defaultMethod) {
         try {
-            return FPMethod.valueOf(method.toUpperCase(Locale.getDefault()));
+            return StringUtils.isBlank(method) ? defaultMethod : FPMethod.valueOf(method.toUpperCase(Locale.getDefault()));
         } catch (IllegalArgumentException e) {
             logWarn("Unknown current FP method : " + method + " Exception : " + e);
             return defaultMethod;

@@ -16,7 +16,7 @@ import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class Context {
     private android.content.Context applicationContext;
-    private static Context context;
+    private static Context context = new Context();
 
     private Repository repository;
     private EligibleCoupleRepository eligibleCoupleRepository;
@@ -102,10 +102,8 @@ public class Context {
         return applicationContext;
     }
 
+
     public static Context getInstance() {
-        if (context == null) {
-            context = new Context();
-        }
         return context;
     }
 

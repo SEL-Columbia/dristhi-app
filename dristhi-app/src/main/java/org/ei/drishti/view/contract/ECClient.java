@@ -1,5 +1,6 @@
 package org.ei.drishti.view.contract;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -8,10 +9,7 @@ import org.ei.drishti.util.IntegerUtil;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.upperCase;
 import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
@@ -47,7 +45,7 @@ public class ECClient implements SmartRegisterClient {
     private String highPriorityReason;
     private String locationStatus;
     private List<ECChildClient> children;
-    private Map<String, String> status;
+    private Map<String, String> status = new HashMap<String, String>();
 
     public ECClient(String entityId, String name, String husbandName, String village, Integer ecNumber) {
         this.entityId = entityId;
@@ -80,7 +78,7 @@ public class ECClient implements SmartRegisterClient {
 
     @Override
     public int age() {
-        return Years.yearsBetween(LocalDate.parse(dateOfBirth), LocalDate.now()).getYears();
+        return StringUtils.isBlank(dateOfBirth) ? 0 : Years.yearsBetween(LocalDate.parse(dateOfBirth), LocalDate.now()).getYears();
     }
 
     public Integer ecNumber() {

@@ -24,10 +24,10 @@ public class CustomFontTextView extends TextView {
     }
 
     public CustomFontTextView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+        super(context, attrs, 0);
         cache = org.ei.drishti.Context.getInstance().typefaceCache();
         TypedArray attributes = context.obtainStyledAttributes(
-                attrs, R.styleable.org_ei_drishti_view_customControls_CustomFontTextView, defStyle, 0);
+                attrs, R.styleable.org_ei_drishti_view_customControls_CustomFontTextView, 0, defStyle);
         int variant = attributes.getInt(
                 R.styleable.org_ei_drishti_view_customControls_CustomFontTextView_fontVariant, 0);
         attributes.recycle();
