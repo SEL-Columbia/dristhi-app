@@ -560,7 +560,7 @@ public class Context {
 
     public ANMService anmService() {
         if (anmService == null) {
-            anmService = new ANMService(allSettings(), allSharedPreferences(), allBeneficiaries(), allEligibleCouples());
+            anmService = new ANMService(allSharedPreferences(), allBeneficiaries(), allEligibleCouples());
         }
         return anmService;
     }
