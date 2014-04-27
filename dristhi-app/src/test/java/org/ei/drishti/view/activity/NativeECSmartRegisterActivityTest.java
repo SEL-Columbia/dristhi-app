@@ -315,7 +315,7 @@ public class NativeECSmartRegisterActivityTest {
     }
 
     @Test
-    @Config(shadows = {ShadowECSmartRegisterControllerFor25ProperClients.class})
+    @Config(shadows = {ShadowECSmartRegisterControllerFor25ProperUnSortedClients.class})
     public void paginationShouldBeCascadeWhenSearchIsInProgress() {
         final ListView list = (ListView) ecActivity.findViewById(R.id.list);
         assertEquals(21, list.getAdapter().getCount());

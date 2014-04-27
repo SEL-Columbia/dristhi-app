@@ -267,7 +267,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     protected SmartRegisterPaginatedAdapter adapter() {
-        return new SmartRegisterPaginatedAdapter(this, getClientsProvider());
+        return new SmartRegisterPaginatedAdapter(getClientsProvider());
     }
 
     protected void onServiceModeSelection(ServiceModeOption serviceModeOption) {

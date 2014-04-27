@@ -27,7 +27,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     protected SmartRegisterPaginatedAdapter adapter() {
-        return new SmartRegisterPaginatedAdapter(this, getClientsProvider());
+        return new SmartRegisterPaginatedAdapter(getClientsProvider());
     }
 
     @Override

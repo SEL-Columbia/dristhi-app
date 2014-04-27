@@ -1,11 +1,9 @@
 package org.ei.drishti.adapter;
 
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
 import org.ei.drishti.view.dialog.FilterOption;
@@ -13,38 +11,42 @@ import org.ei.drishti.view.dialog.ServiceModeOption;
 import org.ei.drishti.view.dialog.SortOption;
 
 public class SmartRegisterPaginatedAdapter extends BaseAdapter {
+    private static final int CLIENTS_PER_PAGE = 20;
+
     private int clientCount;
     private int pageCount;
     private int currentPage = 0;
-    protected static final int CLIENTS_PER_PAGE = 20;
-
-    protected final Context context;
-
     private SmartRegisterClients filteredClients;
-    protected final SmartRegisterClientsProvider listItemProvider;
 
-    public SmartRegisterPaginatedAdapter(Context context,
-                                         SmartRegisterClientsProvider listItemProvider) {
-        this.context = context;
+    private final int clientsPerPage;
+    private final SmartRegisterClientsProvider listItemProvider;
+
+    public SmartRegisterPaginatedAdapter(SmartRegisterClientsProvider listItemProvider) {
+        this(CLIENTS_PER_PAGE, listItemProvider);
+    }
+
+    public SmartRegisterPaginatedAdapter(
+            int clientsPerPage, SmartRegisterClientsProvider listItemProvider) {
+        this.clientsPerPage = clientsPerPage;
         this.listItemProvider = listItemProvider;
         refreshClients(listItemProvider.getClients());
     }
 
-    protected void refreshClients(SmartRegisterClients filteredClients) {
+    private void refreshClients(SmartRegisterClients filteredClients) {
         this.filteredClients = filteredClients;
         clientCount = filteredClients.size();
-        pageCount = (int) Math.ceil((double) clientCount / (double) CLIENTS_PER_PAGE);
+        pageCount = (int) Math.ceil((double) clientCount / (double) clientsPerPage);
         currentPage = 0;
     }
 
     @Override
     public int getCount() {
-        if (clientCount <= CLIENTS_PER_PAGE) {
+        if (clientCount <= clientsPerPage) {
             return clientCount;
         } else if (currentPage == pageCount() - 1) {
-            return clientCount % CLIENTS_PER_PAGE;
+            return clientCount % clientsPerPage;
         }
-        return CLIENTS_PER_PAGE;
+        return clientsPerPage;
     }
 
     @Override
@@ -63,10 +65,10 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter {
     }
 
     private int actualPosition(int i) {
-        if (clientCount <= CLIENTS_PER_PAGE) {
+        if (clientCount <= clientsPerPage) {
             return i;
         } else {
-            return i + (currentPage * CLIENTS_PER_PAGE);
+            return i + (currentPage * clientsPerPage);
         }
     }
 
