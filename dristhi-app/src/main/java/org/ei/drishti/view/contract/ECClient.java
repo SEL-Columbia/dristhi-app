@@ -300,7 +300,7 @@ public class ECClient implements SmartRegisterClient {
     }
 
     public boolean satisfiesFilter(String filter) {
-        return name.toLowerCase(Locale.getDefault()).startsWith(filter)
+        return name.toLowerCase(Locale.getDefault()).startsWith(filter.toLowerCase())
                 || String.valueOf(ecNumber).startsWith(filter);
     }
 

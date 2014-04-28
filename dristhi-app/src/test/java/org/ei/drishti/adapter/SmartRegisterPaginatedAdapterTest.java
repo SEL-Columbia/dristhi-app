@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 public class SmartRegisterPaginatedAdapterTest {
 
     @Test
-    public void shouldReturn0ForPageCountFor0Clients() {
+    public void shouldReturn0PageCountFor0Clients() {
         SmartRegisterPaginatedAdapter adapter = getAdapterWithFakeClients(0);
 
         assertEquals(adapter.getCount(), 0);
@@ -30,17 +30,7 @@ public class SmartRegisterPaginatedAdapterTest {
     }
 
     @Test
-    public void shouldReturn1ForPageCountFor10Clients() {
-        SmartRegisterPaginatedAdapter adapter = getAdapterWithFakeClients(10);
-        assertEquals(adapter.getCount(), 10);
-        assertEquals(adapter.pageCount(), 1);
-        assertEquals(adapter.currentPage(), 0);
-        assertFalse(adapter.hasNextPage());
-        assertFalse(adapter.hasPreviousPage());
-    }
-
-    @Test
-    public void shouldReturn1ForPageCountFor20Clients() {
+    public void shouldReturn1PageCountFor20Clients() {
         SmartRegisterPaginatedAdapter adapter = getAdapterWithFakeClients(20);
         assertEquals(adapter.getCount(), 20);
         assertEquals(adapter.pageCount(), 1);
@@ -50,7 +40,7 @@ public class SmartRegisterPaginatedAdapterTest {
     }
 
     @Test
-    public void shouldReturn2ForPageCountFor21Clients() {
+    public void shouldReturn2PageCountFor21Clients() {
         SmartRegisterPaginatedAdapter adapter = getAdapterWithFakeClients(21);
         assertEquals(adapter.getCount(), 20);
         assertEquals(adapter.pageCount(), 2);
@@ -73,54 +63,16 @@ public class SmartRegisterPaginatedAdapterTest {
     }
 
     @Test
-    public void shouldReturn3ForPageCountFor50Clients() {
+    public void shouldReturn3PageCountFor50Clients() {
         SmartRegisterPaginatedAdapter adapter = getAdapterWithFakeClients(50);
-        assertEquals(adapter.getCount(), 20);
         assertEquals(adapter.pageCount(), 3);
-        assertEquals(adapter.currentPage(), 0);
-        assertTrue(adapter.hasNextPage());
-        assertFalse(adapter.hasPreviousPage());
-
-        adapter.nextPage();
-
-        assertEquals(adapter.getCount(), 20);
-        assertEquals(adapter.currentPage(), 1);
-        assertTrue(adapter.hasNextPage());
-        assertTrue(adapter.hasPreviousPage());
-
-        adapter.nextPage();
-
-        assertEquals(adapter.getCount(), 10);
-        assertEquals(adapter.currentPage(), 2);
-        assertFalse(adapter.hasNextPage());
-        assertTrue(adapter.hasPreviousPage());
-
-        adapter.previousPage();
-
-        assertEquals(adapter.getCount(), 20);
-        assertEquals(adapter.currentPage(), 1);
-        assertTrue(adapter.hasNextPage());
-        assertTrue(adapter.hasPreviousPage());
-
-        adapter.previousPage();
-
-        assertEquals(adapter.getCount(), 20);
-        assertEquals(adapter.pageCount(), 3);
-        assertEquals(adapter.currentPage(), 0);
-        assertTrue(adapter.hasNextPage());
-        assertFalse(adapter.hasPreviousPage());
     }
 
     @Test
     public void getItemShouldReturnRespectiveItem() {
         SmartRegisterPaginatedAdapter adapter = getAdapterWithFakeClients(50);
         assertEquals(((ECClient) adapter.getItem(0)).name(), "Name0");
-        assertEquals(((ECClient) adapter.getItem(25)).name(), "Name25");
         assertEquals(((ECClient) adapter.getItem(49)).name(), "Name49");
-    }
-
-    private SmartRegisterPaginatedAdapter getAdapterWithFakeClients(int clientsCount) {
-        return getAdapter(getFakeProvider(getSmartRegisterClients(clientsCount)));
     }
 
     @Test
@@ -162,6 +114,21 @@ public class SmartRegisterPaginatedAdapterTest {
         assertEquals(5, adapter.getCount());
     }
 
+    @Test
+    public void paginationShouldWorkFor25ClientsPerPage() {
+        SmartRegisterPaginatedAdapter adapter = getAdapterWithFakeClients(50, 25);
+        assertEquals(2, adapter.pageCount());
+        assertEquals(25, adapter.getCount());
+    }
+
+    private SmartRegisterPaginatedAdapter getAdapterWithFakeClients(int clientsCount) {
+        return getAdapter(getFakeProvider(getSmartRegisterClients(clientsCount)));
+    }
+
+    private SmartRegisterPaginatedAdapter getAdapterWithFakeClients(int clientsCount, int clientsPerPage) {
+        return getAdapter(clientsPerPage, getFakeProvider(getSmartRegisterClients(clientsCount)));
+    }
+
     private SmartRegisterClients getSmartRegisterClients(int count) {
         SmartRegisterClients clients = new SmartRegisterClients();
         for (int i = 0; i < count; i++) {
@@ -180,6 +147,10 @@ public class SmartRegisterPaginatedAdapterTest {
 
     private SmartRegisterPaginatedAdapter getAdapter(FakeClientsProvider provider) {
         return new SmartRegisterPaginatedAdapter(provider);
+    }
+
+    private SmartRegisterPaginatedAdapter getAdapter(int clientsPerPage, FakeClientsProvider provider) {
+        return new SmartRegisterPaginatedAdapter(clientsPerPage, provider);
     }
 
     private class FakeClientsProvider implements SmartRegisterClientsProvider {

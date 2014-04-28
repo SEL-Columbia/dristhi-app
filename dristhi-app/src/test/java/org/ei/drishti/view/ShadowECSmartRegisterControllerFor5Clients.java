@@ -8,7 +8,7 @@ import org.robolectric.annotation.Implementation;
 import org.robolectric.annotation.Implements;
 
 @Implements(ECSmartRegisterController.class)
-public class ShadowECSmartRegisterControllerFor5ProperClients {
+public class ShadowECSmartRegisterControllerFor5Clients {
 
     @Implementation
     public ECClients getClients() {

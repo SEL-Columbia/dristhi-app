@@ -1,11 +1,12 @@
 package org.ei.drishti.view.contract;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.util.DateUtil;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
-import org.joda.time.Months;
 
 public class ECChildClient {
     private final String entityId;
@@ -27,7 +28,7 @@ public class ECChildClient {
     }
 
     public int getAgeInDays() {
-        return Days.daysBetween(LocalDate.parse(dateOfBirth), LocalDate.now()).getDays();
+        return StringUtils.isBlank(dateOfBirth) ? 0 : Days.daysBetween(LocalDate.parse(dateOfBirth), DateUtil.today()).getDays();
     }
 
     public String getAgeInString() {

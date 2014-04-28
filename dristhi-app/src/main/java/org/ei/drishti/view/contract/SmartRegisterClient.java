@@ -35,27 +35,36 @@ public interface SmartRegisterClient {
     Comparator<SmartRegisterClient> BPL_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            return client.isBPL() && anotherClient.isBPL()
-                    ? client.wifeName().compareToIgnoreCase(anotherClient.wifeName())
-                    : anotherClient.isBPL() ? 1 : -1;
+            if ((client.isBPL() && anotherClient.isBPL())
+                    || (!client.isBPL() && !anotherClient.isBPL())) {
+                return client.wifeName().compareToIgnoreCase(anotherClient.wifeName());
+            } else {
+                return anotherClient.isBPL() ? 1 : -1;
+            }
         }
     };
 
     Comparator<SmartRegisterClient> SC_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            return client.isSC() && anotherClient.isSC()
-                    ? client.wifeName().compareToIgnoreCase(anotherClient.wifeName())
-                    : anotherClient.isSC() ? 1 : -1;
+            if ((client.isSC() && anotherClient.isSC())
+                    || (!client.isSC() && !anotherClient.isSC())) {
+                return client.wifeName().compareToIgnoreCase(anotherClient.wifeName());
+            } else {
+                return anotherClient.isSC() ? 1 : -1;
+            }
         }
     };
 
     Comparator<SmartRegisterClient> ST_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            return client.isST() && anotherClient.isST()
-                    ? client.wifeName().compareToIgnoreCase(anotherClient.wifeName())
-                    : anotherClient.isST() ? 1 : -1;
+            if ((client.isST() && anotherClient.isST())
+                    || (!client.isST() && !anotherClient.isST())) {
+                return client.wifeName().compareToIgnoreCase(anotherClient.wifeName());
+            } else {
+                return anotherClient.isST() ? 1 : -1;
+            }
         }
     };
 
