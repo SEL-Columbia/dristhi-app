@@ -1,4 +1,4 @@
-package org.ei.drishti.view;
+package org.ei.drishti.setup;
 
 import org.robolectric.bytecode.ClassInfo;
 import org.robolectric.bytecode.Setup;

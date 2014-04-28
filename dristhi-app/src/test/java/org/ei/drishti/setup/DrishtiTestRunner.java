@@ -1,4 +1,4 @@
-package org.ei.drishti.view;
+package org.ei.drishti.setup;
 
 import org.junit.runners.model.InitializationError;
 import org.robolectric.RobolectricTestRunner;

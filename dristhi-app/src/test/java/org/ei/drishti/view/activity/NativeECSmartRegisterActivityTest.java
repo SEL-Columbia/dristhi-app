@@ -8,10 +8,13 @@ import android.view.ViewGroup;
 import android.widget.*;
 import org.ei.drishti.AllConstants;
 import org.ei.drishti.R;
-import org.ei.drishti.view.*;
+import org.ei.drishti.setup.DrishtiTestRunner;
+import org.ei.drishti.shadows.ShadowContext;
 import org.ei.drishti.view.contract.ECClient;
+import org.ei.drishti.view.contract.ECClients;
 import org.ei.drishti.view.contract.Village;
 import org.ei.drishti.view.contract.Villages;
+import org.ei.drishti.view.controller.ECSmartRegisterController;
 import org.ei.drishti.view.controller.VillageController;
 import org.ei.drishti.view.viewHolder.NativeECSmartRegisterViewHolder;
 import org.junit.Before;
@@ -173,7 +176,7 @@ public class NativeECSmartRegisterActivityTest {
     }
 
     @Test
-    @Config(shadows = {ShadowECSmartRegisterControllerFor25ProperUnSortedClients.class})
+    @Config(shadows = {ShadowECSmartRegisterControllerFor25Clients.class})
     public void paginationShouldBeCascadeWhenSearchIsInProgress() {
         final ListView list = (ListView) ecActivity.findViewById(R.id.list);
         ViewGroup footer = (ViewGroup) list.getAdapter().getView(20, null, null);
@@ -308,6 +311,86 @@ public class NativeECSmartRegisterActivityTest {
 
         assertEquals(FormActivity.class.getName(), shadowIntent.getComponent().getClassName());
         assertEquals(client.entityId(), shadowIntent.getStringExtra(ENTITY_ID_PARAM));
+    }
+
+    public static ECClients createClients(int clientCount) {
+        ECClients clients = new ECClients();
+        for (int i = 0; i < clientCount; i++) {
+            clients.add(new ECClient("CASE " + i, "Wife 1" + i, "Husband 1" + i, "Village 1" + i, 100 + i));
+        }
+        return clients;
+    }
+
+    @Implements(ECSmartRegisterController.class)
+    public static class ShadowECSmartRegisterControllerWithZeroClients {
+
+        @Implementation
+        public ECClients getClients() {
+            return new ECClients();
+        }
+
+    }
+
+    @Implements(ECSmartRegisterController.class)
+    public static class ShadowECSmartRegisterControllerFor1Clients {
+
+        @Implementation
+        public ECClients getClients() {
+            return createClients(1);
+        }
+    }
+
+    @Implements(ECSmartRegisterController.class)
+    public static class ShadowECSmartRegisterControllerFor20Clients {
+
+        @Implementation
+        public ECClients getClients() {
+            return createClients(20);
+        }
+
+    }
+
+    @Implements(ECSmartRegisterController.class)
+    public static class ShadowECSmartRegisterControllerFor21Clients {
+
+        @Implementation
+        public ECClients getClients() {
+            return createClients(21);
+        }
+
+    }
+
+    @Implements(ECSmartRegisterController.class)
+    public static class ShadowECSmartRegisterControllerFor5Clients {
+
+        @Implementation
+        public ECClients getClients() {
+            ECClients clients = new ECClients();
+            clients.add(new ECClient("abcd1", "Adhiti", "Rama", "Battiganahalli", 69));
+            clients.add(new ECClient("abcd2", "Akshara", "Rajesh", "Half bherya", 500));
+            clients.add(new ECClient("abcd3", "Anitha", "Chandan", "Half bherya", 87));
+            clients.add(new ECClient("abcd4", "Bhagya", "Ramesh", "Hosa agrahara", 140));
+            clients.add(new ECClient("abcd5", "Chaitra", "Rams", "Somanahalli colony", 36));
+            return clients;
+        }
+    }
+
+    @Implements(ECSmartRegisterController.class)
+    public static class ShadowECSmartRegisterControllerFor25Clients {
+
+        @Implementation
+        public ECClients getClients() {
+            ECClients clients = new ECClients();
+            clients.add(new ECClient("abcd4", "Bhagya", "Ramesh", "Hosa agrahara", 140));
+            clients.add(new ECClient("abcd5", "Chaitra", "Rams", "Somanahalli colony", 36));
+            for (int i = 0; i < 20; i++) {
+                clients.add(new ECClient("abcd2" + i, "wife" + i, "husband" + i, "Village" + i, 1001 + i));
+            }
+            clients.add(new ECClient("abcd1", "Adhiti", "Rama", "Battiganahalli", 69));
+            clients.add(new ECClient("abcd2", "Akshara", "Rajesh", "Half bherya", 500));
+            clients.add(new ECClient("abcd3", "Anitha", "Chandan", "Half bherya", 87));
+            return clients;
+        }
     }
 
     @Implements(VillageController.class)

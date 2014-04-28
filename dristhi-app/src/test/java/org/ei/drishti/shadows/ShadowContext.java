@@ -1,4 +1,4 @@
-package org.ei.drishti.view;
+package org.ei.drishti.shadows;
 
 import org.ei.drishti.Context;
 import org.ei.drishti.repository.AllBeneficiaries;
