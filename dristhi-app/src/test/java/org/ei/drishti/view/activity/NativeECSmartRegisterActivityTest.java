@@ -64,6 +64,7 @@ public class NativeECSmartRegisterActivityTest {
     @Config(shadows = {ShadowECSmartRegisterControllerWithZeroClients.class})
     public void listViewShouldContainNoItemsIfNoClientPresent() {
         final ListView list = (ListView) ecActivity.findViewById(R.id.list);
+        tryGetAdapter(list);
 
         assertEquals(1, list.getCount());
     }
@@ -73,7 +74,7 @@ public class NativeECSmartRegisterActivityTest {
     public void listViewShouldNotHavePagingFor20Items() throws InterruptedException {
         final ListView list = (ListView) ecActivity.findViewById(R.id.list);
 
-        ViewGroup footer = (ViewGroup) list.getAdapter().getView(20, null, null);
+        ViewGroup footer = (ViewGroup) tryGetAdapter(list).getView(20, null, null);
         Button nextButton = (Button) footer.findViewById(R.id.btn_next_page);
         Button previousButton = (Button) footer.findViewById(R.id.btn_previous_page);
         TextView info = (TextView) footer.findViewById(R.id.txt_page_info);
@@ -89,12 +90,12 @@ public class NativeECSmartRegisterActivityTest {
     public void listViewShouldHavePagingFor21Items() throws InterruptedException {
         final ListView list = (ListView) ecActivity.findViewById(R.id.list);
 
-        ViewGroup footer = (ViewGroup) list.getAdapter().getView(20, null, null);
+        ViewGroup footer = (ViewGroup) tryGetAdapter(list).getView(20, null, null);
         Button nextButton = (Button) footer.findViewById(R.id.btn_next_page);
         Button previousButton = (Button) footer.findViewById(R.id.btn_previous_page);
         TextView info = (TextView) footer.findViewById(R.id.txt_page_info);
 
-        assertEquals(21, list.getAdapter().getCount());
+        assertEquals(21, tryGetAdapter(list).getCount());
         assertSame(View.VISIBLE, nextButton.getVisibility());
         assertNotSame(View.VISIBLE, previousButton.getVisibility());
         assertEquals("Page 1 of 2", info.getText());
@@ -104,19 +105,19 @@ public class NativeECSmartRegisterActivityTest {
     @Config(shadows = {ShadowECSmartRegisterControllerFor21Clients.class})
     public void listViewNavigationShouldWorkIfClientsSpanMoreThanOnePage() throws InterruptedException {
         final ListView list = (ListView) ecActivity.findViewById(R.id.list);
-        ViewGroup footer = (ViewGroup) list.getAdapter().getView(20, null, null);
+        ViewGroup footer = (ViewGroup) tryGetAdapter(list).getView(20, null, null);
         Button nextButton = (Button) footer.findViewById(R.id.btn_next_page);
         Button previousButton = (Button) footer.findViewById(R.id.btn_previous_page);
         TextView info = (TextView) footer.findViewById(R.id.txt_page_info);
 
         nextButton.performClick();
-        assertEquals(2, list.getAdapter().getCount());
+        assertEquals(2, tryGetAdapter(list).getCount());
         assertNotSame(View.VISIBLE, nextButton.getVisibility());
         assertSame(View.VISIBLE, previousButton.getVisibility());
         assertEquals("Page 2 of 2", info.getText());
 
         previousButton.performClick();
-        assertEquals(21, list.getAdapter().getCount());
+        assertEquals(21, tryGetAdapter(list).getCount());
         assertSame(View.VISIBLE, nextButton.getVisibility());
         assertNotSame(View.VISIBLE, previousButton.getVisibility());
         assertEquals("Page 1 of 2", info.getText());
@@ -127,10 +128,10 @@ public class NativeECSmartRegisterActivityTest {
     public void listViewHeaderAndListViewItemWeightsShouldMatch() throws InterruptedException {
         final ListView list = (ListView) ecActivity.findViewById(R.id.list);
 
-        LinearLayout listItem = (LinearLayout) list.getAdapter().getView(0, null, null);
+        LinearLayout listItem = (LinearLayout) tryGetAdapter(list).getView(0, null, null);
         LinearLayout header = (LinearLayout) ecActivity.findViewById(R.id.clients_header_layout);
 
-        assertEquals(2, list.getAdapter().getCount());
+        assertEquals(2, tryGetAdapter(list).getCount());
         int separatorCount = 6;
         assertEquals(listItem.getChildCount() - separatorCount, header.getChildCount());
         assertEquals((int) listItem.getWeightSum(), (int) header.getWeightSum());
@@ -166,38 +167,38 @@ public class NativeECSmartRegisterActivityTest {
 
         searchText.setText("adh");
         assertTrue("Adh".equalsIgnoreCase(searchText.getText().toString()));
-        assertEquals(2, list.getAdapter().getCount());
+        assertEquals(2, tryGetAdapter(list).getCount());
 
         ecActivity
                 .findViewById(R.id.btn_search_cancel)
                 .performClick();
         assertEquals("", searchText.getText().toString());
-        assertEquals(6, list.getAdapter().getCount());
+        assertEquals(6, tryGetAdapter(list).getCount());
     }
 
     @Test
     @Config(shadows = {ShadowECSmartRegisterControllerFor25Clients.class})
     public void paginationShouldBeCascadeWhenSearchIsInProgress() {
         final ListView list = (ListView) ecActivity.findViewById(R.id.list);
-        ViewGroup footer = (ViewGroup) list.getAdapter().getView(20, null, null);
+        ViewGroup footer = (ViewGroup) tryGetAdapter(list).getView(20, null, null);
         Button nextButton = (Button) footer.findViewById(R.id.btn_next_page);
         Button previousButton = (Button) footer.findViewById(R.id.btn_previous_page);
         TextView info = (TextView) footer.findViewById(R.id.txt_page_info);
         EditText searchText = (EditText) ecActivity.findViewById(R.id.edt_search);
 
-        assertEquals(21, list.getAdapter().getCount());
+        assertEquals(21, tryGetAdapter(list).getCount());
 
         searchText.setText("a");
 
-        assertEquals(4, list.getAdapter().getCount());
-        ViewGroup listItem = (ViewGroup) list.getAdapter().getView(0, null, null);
+        assertEquals(4, tryGetAdapter(list).getCount());
+        ViewGroup listItem = (ViewGroup) tryGetAdapter(list).getView(0, null, null);
         assertEquals(((TextView) listItem.findViewById(R.id.txt_wife_name)).getText(), "Adhiti");
         assertNotSame(View.VISIBLE, nextButton.getVisibility());
         assertNotSame(View.VISIBLE, previousButton.getVisibility());
         assertEquals("Page 1 of 1", info.getText());
 
         searchText.setText("no match criteria");
-        assertEquals(1, list.getAdapter().getCount());
+        assertEquals(1, tryGetAdapter(list).getCount());
     }
 
     @Test
@@ -211,10 +212,10 @@ public class NativeECSmartRegisterActivityTest {
         TextView sortedByInStatusBar = (TextView) ecActivity.findViewById(R.id.sorted_by);
 
         assertTrue(fragment.isVisible());
-        assertEquals(6, list.getAdapter().getCount());
+        assertEquals(6, tryGetAdapter(list).getCount());
         assertEquals("Name (A to Z)", sortedByInStatusBar.getText());
 
-        ViewGroup item1View = (ViewGroup) list.getAdapter().getView(1, null, null);
+        ViewGroup item1View = (ViewGroup) tryGetAdapter(list).getView(1, null, null);
         assertEquals("EC Number", ((TextView) item1View.findViewById(R.id.dialog_list_option)).getText().toString());
 
         list.performItemClick(item1View, 1, 1);
@@ -234,10 +235,10 @@ public class NativeECSmartRegisterActivityTest {
         int defaultFilterOptions = 2;
 
         assertTrue(fragment.isVisible());
-        assertEquals(4 + defaultFilterOptions, list.getAdapter().getCount());
+        assertEquals(4 + defaultFilterOptions, tryGetAdapter(list).getCount());
         assertEquals("All", villageInStatusBar.getText());
 
-        ViewGroup item1View = (ViewGroup) list.getAdapter().getView(3, null, null);
+        ViewGroup item1View = (ViewGroup) tryGetAdapter(list).getView(3, null, null);
         assertEquals("Mysore", ((TextView) item1View.findViewById(R.id.dialog_list_option)).getText().toString());
 
         list.performItemClick(item1View, 3, 3);
@@ -271,7 +272,7 @@ public class NativeECSmartRegisterActivityTest {
     @Config(shadows = {ShadowECSmartRegisterControllerFor5Clients.class})
     public void pressingClientProfileLayoutShouldLaunchProfileActivity() {
         ListView list = (ListView) ecActivity.findViewById(R.id.list);
-        ViewGroup item1 = (ViewGroup) list.getChildAt(0);
+        ViewGroup item1 = (ViewGroup) tryGetAdapter(list).getView(0, null, null);
         item1.findViewById(R.id.profile_info_layout)
                 .performClick();
 
@@ -290,8 +291,9 @@ public class NativeECSmartRegisterActivityTest {
     @Test
     @Config(shadows = {ShadowECSmartRegisterControllerFor1Clients.class})
     public void pressingClientEditOptionShouldOpenDialogFragmentAndSelectingAnOptionShouldLaunchRespectiveActivity() {
-        ((ListView) ecActivity.findViewById(R.id.list))
-                .getChildAt(0).findViewById(R.id.btn_edit)
+        ListView list = (ListView) ecActivity.findViewById(R.id.list);
+        View client1 = tryGetAdapter(list).getView(0, null, null);
+        client1.findViewById(R.id.btn_edit)
                 .performClick();
 
         Fragment fragment = ecActivity.getFragmentManager().findFragmentByTag("dialog");
@@ -304,13 +306,20 @@ public class NativeECSmartRegisterActivityTest {
 
         ShadowIntent shadowIntent = Robolectric.shadowOf(
                 Robolectric.shadowOf(ecActivity).getNextStartedActivity());
-        final ECClient client = (ECClient)
-                ((NativeECSmartRegisterViewHolder) ((ListView) ecActivity.findViewById(R.id.list)).getChildAt(0).getTag())
-                        .editButton()
-                        .getTag();
+
+        final ECClient client = (ECClient) ((NativeECSmartRegisterViewHolder) client1.getTag()).editButton().getTag();
 
         assertEquals(FormActivity.class.getName(), shadowIntent.getComponent().getClassName());
         assertEquals(client.entityId(), shadowIntent.getStringExtra(ENTITY_ID_PARAM));
+    }
+
+    private ListAdapter tryGetAdapter(final ListView list) {
+        ListAdapter adapter = list.getAdapter();
+        while (adapter == null) {
+            Robolectric.idleMainLooper(1000);
+            adapter = list.getAdapter();
+        }
+        return adapter;
     }
 
     public static ECClients createClients(int clientCount) {
