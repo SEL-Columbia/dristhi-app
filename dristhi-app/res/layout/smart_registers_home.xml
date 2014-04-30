@@ -167,8 +167,8 @@
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/icon_tv"
                 android:drawablePadding="5dp"
-                android:paddingLeft="170dp"
-                android:paddingRight="170dp"
+                android:paddingLeft="175dp"
+                android:paddingRight="175dp"
                 android:text="@string/str_reporting"
                 style="@style/CustomFontTextViewStyle.Home.Buttons"/>
 
