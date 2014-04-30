@@ -89,4 +89,7 @@
     <string name="str_close_ec_form">Close EC</string>
     <string name="report_month_sample_text">26/03 - 25/04</string>
     <string name="str_switch_language">Switch Language</string>
+
+    <string name="str_reporting">Reporting</string>
+    <string name="str_videos">Videos</string>
 </resources>

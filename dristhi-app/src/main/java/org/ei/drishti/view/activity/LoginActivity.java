@@ -200,7 +200,7 @@ public class LoginActivity extends Activity {
     }
 
     private void goToHome() {
-        startActivity(new Intent(this, HomeActivity.class));
+        startActivity(new Intent(this, NativeHomeActivity.class));
         finish();
     }
 

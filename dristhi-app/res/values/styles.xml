@@ -82,4 +82,40 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/client_list_header_text_color</item>
     </style>
+
+    <style name="CustomFontTextViewStyle.Home">
+        <item name="fontVariant">medium</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">top|center_horizontal</item>
+    </style>
+
+    <style name="CustomFontTextViewStyle.Home.RegisterName">
+        <item name="fontVariant">black</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:paddingTop">65dp</item>
+    </style>
+
+    <style name="CustomFontTextViewStyle.Home.RegisterLabel">
+        <item name="fontVariant">regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">90dp</item>
+    </style>
+
+    <style name="ImageButton.Home.Register" parent="@android:style/Widget.ImageButton">
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@drawable/transparent_blue_background</item>
+    </style>
+
+    <style name="CustomFontTextViewStyle.Home.Buttons">
+        <item name="fontVariant">black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/home_button_background</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:clickable">true</item>
+    </style>
 </resources>
