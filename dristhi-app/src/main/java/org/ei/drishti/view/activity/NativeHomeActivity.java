@@ -1,6 +1,5 @@
 package org.ei.drishti.view.activity;
 
-import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,7 +25,7 @@ public class NativeHomeActivity extends SecuredActivity {
         public void onEvent(Boolean data) {
             Log.d(TAG, "onSyncStartListener::onEvent:" + data);
             if (updateMenuItem != null) {
-            updateMenuItem.setActionView(R.layout.progress);
+                updateMenuItem.setActionView(R.layout.progress);
             }
         }
     };
@@ -38,7 +37,7 @@ public class NativeHomeActivity extends SecuredActivity {
             //#TODO: RemainingFormsToSyncCount cannot be updated from a back ground thread!!
             updateRemainingFormsToSyncCount();
             if (updateMenuItem != null) {
-            updateMenuItem.setActionView(null);
+                updateMenuItem.setActionView(null);
             }
         }
     };
@@ -82,6 +81,9 @@ public class NativeHomeActivity extends SecuredActivity {
         findViewById(R.id.btn_anc_register).setOnClickListener(onRegisterStartListener);
         findViewById(R.id.btn_fp_register).setOnClickListener(onRegisterStartListener);
         findViewById(R.id.btn_child_register).setOnClickListener(onRegisterStartListener);
+
+        findViewById(R.id.btn_reporting).setOnClickListener(onButtonsClickListener);
+        findViewById(R.id.btn_videos).setOnClickListener(onButtonsClickListener);
     }
 
     @Override
@@ -156,35 +158,47 @@ public class NativeHomeActivity extends SecuredActivity {
         }
     }
 
-    private View.OnClickListener onRegisterStartListener  = new View.OnClickListener() {
+    private View.OnClickListener onRegisterStartListener = new View.OnClickListener() {
 
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.btn_ec_register:
-                    startRegister(NativeECSmartRegisterActivity.class);
+                    navigationController.startECSmartRegistry();
                     break;
 
                 case R.id.btn_anc_register:
-                    startRegister(ANCSmartRegisterActivity.class);
+                    navigationController.startANCSmartRegistry();
                     break;
 
                 case R.id.btn_pnc_register:
-                    startRegister(PNCSmartRegisterActivity.class);
+                    navigationController.startPNCSmartRegistry();
                     break;
 
                 case R.id.btn_child_register:
-                    startRegister(ChildSmartRegisterActivity.class);
+                    navigationController.startChildSmartRegistry();
                     break;
 
                 case R.id.btn_fp_register:
-                    startRegister(FPSmartRegisterActivity.class);
+                    navigationController.startFPSmartRegistry();
                     break;
             }
         }
+    };
 
-        private <T> void startRegister(Class<T> register) {
-            startActivity(new Intent(NativeHomeActivity.this, register));
+    private View.OnClickListener onButtonsClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.btn_reporting:
+                    navigationController.startReports();
+                    break;
+
+                case R.id.btn_videos:
+                    navigationController.startVideos();
+                    break;
+            }
         }
     };
 }
