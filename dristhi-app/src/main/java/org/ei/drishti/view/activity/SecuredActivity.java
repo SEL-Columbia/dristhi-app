@@ -13,6 +13,7 @@ import org.ei.drishti.AllConstants;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
+import org.ei.drishti.view.controller.ANMController;
 import org.ei.drishti.view.controller.FormController;
 import org.ei.drishti.view.controller.NavigationController;
 
@@ -27,6 +28,7 @@ public abstract class SecuredActivity extends Activity {
     protected Context context;
     protected Listener<Boolean> logoutListener;
     protected FormController formController;
+    protected ANMController anmController;
     protected NavigationController navigationController;
     private String metaData;
 
@@ -49,7 +51,8 @@ public abstract class SecuredActivity extends Activity {
             return;
         }
         formController = new FormController(this);
-        navigationController = new NavigationController(this, context.anmController());
+        anmController = context.anmController();
+        navigationController = new NavigationController(this, anmController);
         onCreation();
     }
 

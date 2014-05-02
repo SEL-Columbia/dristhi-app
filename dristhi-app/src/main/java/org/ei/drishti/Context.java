@@ -8,6 +8,7 @@ import org.ei.drishti.sync.SaveANMLocationTask;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
 import org.ei.drishti.view.contract.ECClients;
+import org.ei.drishti.view.contract.HomeContext;
 import org.ei.drishti.view.contract.Villages;
 import org.ei.drishti.view.controller.ANMController;
 import org.ei.drishti.view.controller.ANMLocationController;
@@ -55,6 +56,7 @@ public class Context {
 
     private Session session;
     private Cache<String> listCache;
+    private Cache<HomeContext> homeContextCache;
     private Cache<ECClients> ecClientsCache;
     private Cache<Villages> villagesCache;
     private Cache<Typeface> typefaceCache;
@@ -570,6 +572,13 @@ public class Context {
         return listCache;
     }
 
+    public Cache<HomeContext> homeContextCache() {
+        if (homeContextCache == null) {
+            homeContextCache = new Cache<HomeContext>();
+        }
+        return homeContextCache;
+    }
+
     public Boolean IsUserLoggedOut() {
         return userService().hasSessionExpired();
     }
@@ -590,7 +599,7 @@ public class Context {
 
     public ANMController anmController() {
         if (anmController == null) {
-            anmController = new ANMController(anmService(), listCache());
+            anmController = new ANMController(anmService(), listCache(), homeContextCache());
         }
         return anmController;
     }

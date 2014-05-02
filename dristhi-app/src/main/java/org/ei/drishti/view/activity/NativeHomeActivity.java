@@ -1,9 +1,9 @@
 package org.ei.drishti.view.activity;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
 import org.ei.drishti.service.PendingFormSubmissionService;
@@ -14,7 +14,6 @@ import org.ei.drishti.sync.UpdateActionsTask;
 import static org.ei.drishti.event.Event.*;
 
 public class NativeHomeActivity extends SecuredActivity {
-    public static final String TAG = "NativeHomeActivity";
 
     private MenuItem updateMenuItem;
     private MenuItem remainingFormsToSyncMenuItem;
@@ -23,7 +22,6 @@ public class NativeHomeActivity extends SecuredActivity {
     private Listener<Boolean> onSyncStartListener = new Listener<Boolean>() {
         @Override
         public void onEvent(Boolean data) {
-            Log.d(TAG, "onSyncStartListener::onEvent:" + data);
             if (updateMenuItem != null) {
                 updateMenuItem.setActionView(R.layout.progress);
             }
@@ -33,7 +31,6 @@ public class NativeHomeActivity extends SecuredActivity {
     private Listener<Boolean> onSyncCompleteListener = new Listener<Boolean>() {
         @Override
         public void onEvent(Boolean data) {
-            Log.d(TAG, "onSyncCompleteListener::onEvent:" + data);
             //#TODO: RemainingFormsToSyncCount cannot be updated from a back ground thread!!
             updateRemainingFormsToSyncCount();
             if (updateMenuItem != null) {
@@ -45,16 +42,22 @@ public class NativeHomeActivity extends SecuredActivity {
     private Listener<String> onFormSubmittedListener = new Listener<String>() {
         @Override
         public void onEvent(String instanceId) {
-            //updateController.updateANMDetails();
+            updateRegisterCounts();
         }
     };
 
     private Listener<String> updateANMDetailsListener = new Listener<String>() {
         @Override
         public void onEvent(String data) {
-            //updateController.updateANMDetails();
+            updateRegisterCounts();
         }
     };
+
+    private TextView ecRegisterClientCountView;
+    private TextView ancRegisterClientCountView;
+    private TextView pncRegisterClientCountView;
+    private TextView fpRegisterClientCountView;
+    private TextView childRegisterClientCountView;
 
     private void initialize() {
         pendingFormSubmissionService = context.pendingFormSubmissionService();
@@ -66,12 +69,8 @@ public class NativeHomeActivity extends SecuredActivity {
 
     @Override
     protected void onCreation() {
-        Log.d(TAG, "onCreation:");
-
         setContentView(R.layout.smart_registers_home);
-
         setupViews();
-
         initialize();
     }
 
@@ -84,33 +83,42 @@ public class NativeHomeActivity extends SecuredActivity {
 
         findViewById(R.id.btn_reporting).setOnClickListener(onButtonsClickListener);
         findViewById(R.id.btn_videos).setOnClickListener(onButtonsClickListener);
+
+        ecRegisterClientCountView = (TextView) findViewById(R.id.txt_ec_register_client_count);
+        pncRegisterClientCountView = (TextView) findViewById(R.id.txt_pnc_register_client_count);
+        ancRegisterClientCountView = (TextView) findViewById(R.id.txt_anc_register_client_count);
+        fpRegisterClientCountView = (TextView) findViewById(R.id.txt_fp_register_client_count);
+        childRegisterClientCountView = (TextView) findViewById(R.id.txt_child_register_client_count);
     }
 
     @Override
     protected void onResumption() {
-        Log.d(TAG, "onResumption:");
+        updateRegisterCounts();
         updateSyncIndicator();
         updateRemainingFormsToSyncCount();
     }
 
+    private void updateRegisterCounts() {
+        ecRegisterClientCountView.setText(String.valueOf(anmController.getHomeContext().eligibleCoupleCount()));
+        ancRegisterClientCountView.setText(String.valueOf(anmController.getHomeContext().ancCount()));
+        pncRegisterClientCountView.setText(String.valueOf(anmController.getHomeContext().pncCount()));
+        fpRegisterClientCountView.setText(String.valueOf(anmController.getHomeContext().fpCount()));
+        childRegisterClientCountView.setText(String.valueOf(anmController.getHomeContext().childCount()));
+    }
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        Log.d(TAG, "onPrepareOptionsMenu: entry");
         super.onPrepareOptionsMenu(menu);
         updateMenuItem = menu.findItem(R.id.updateMenuItem);
         remainingFormsToSyncMenuItem = menu.findItem(R.id.remainingFormsToSyncMenuItem);
 
         updateSyncIndicator();
         updateRemainingFormsToSyncCount();
-
-        Log.d(TAG, "onPrepareOptionsMenu:" + menu.size());
-
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.d(TAG, "onOptionsItemSelected:");
         switch (item.getItemId()) {
             case R.id.updateMenuItem:
                 updateFromServer();

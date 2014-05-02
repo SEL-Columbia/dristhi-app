@@ -47,6 +47,12 @@
                         android:layout_height="wrap_content"
                         android:text="REGISTER"
                         style="@style/CustomFontTextViewStyle.Home.RegisterLabel"/>
+
+                <org.ei.drishti.view.customControls.CustomFontTextView
+                        android:id="@+id/txt_ec_register_client_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomFontTextViewStyle.Badge"/>
             </FrameLayout>
 
             <FrameLayout
@@ -72,6 +78,12 @@
                         android:layout_height="wrap_content"
                         android:text="REGISTER"
                         style="@style/CustomFontTextViewStyle.Home.RegisterLabel"/>
+
+                <org.ei.drishti.view.customControls.CustomFontTextView
+                        android:id="@+id/txt_fp_register_client_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomFontTextViewStyle.Badge"/>
             </FrameLayout>
 
             <FrameLayout
@@ -97,6 +109,12 @@
                         android:layout_height="wrap_content"
                         android:text="REGISTER"
                         style="@style/CustomFontTextViewStyle.Home.RegisterLabel"/>
+
+                <org.ei.drishti.view.customControls.CustomFontTextView
+                        android:id="@+id/txt_anc_register_client_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomFontTextViewStyle.Badge"/>
             </FrameLayout>
 
             <FrameLayout
@@ -122,6 +140,12 @@
                         android:layout_height="wrap_content"
                         android:text="REGISTER"
                         style="@style/CustomFontTextViewStyle.Home.RegisterLabel"/>
+
+                <org.ei.drishti.view.customControls.CustomFontTextView
+                        android:id="@+id/txt_pnc_register_client_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomFontTextViewStyle.Badge"/>
             </FrameLayout>
 
             <FrameLayout
@@ -147,6 +171,12 @@
                         android:layout_height="wrap_content"
                         android:text="REGISTER"
                         style="@style/CustomFontTextViewStyle.Home.RegisterLabel"/>
+
+                <org.ei.drishti.view.customControls.CustomFontTextView
+                        android:id="@+id/txt_child_register_client_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomFontTextViewStyle.Badge"/>
 
             </FrameLayout>
 
