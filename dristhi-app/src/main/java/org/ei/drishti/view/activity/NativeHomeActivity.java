@@ -4,6 +4,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.event.Listener;
 import org.ei.drishti.service.PendingFormSubmissionService;
@@ -11,6 +12,8 @@ import org.ei.drishti.sync.SyncAfterFetchListener;
 import org.ei.drishti.sync.SyncProgressIndicator;
 import org.ei.drishti.sync.UpdateActionsTask;
 import org.ei.drishti.view.contract.HomeContext;
+import org.ei.drishti.view.controller.NativeAfterANMDetailsFetchListener;
+import org.ei.drishti.view.controller.NativeUpdateANMDetailsTask;
 
 import static java.lang.String.valueOf;
 import static org.ei.drishti.event.Event.*;
@@ -43,14 +46,14 @@ public class NativeHomeActivity extends SecuredActivity {
     private Listener<String> onFormSubmittedListener = new Listener<String>() {
         @Override
         public void onEvent(String instanceId) {
-            updateRegisterCountsOnUiThread();
+            updateRegisterCounts();
         }
     };
 
     private Listener<String> updateANMDetailsListener = new Listener<String>() {
         @Override
         public void onEvent(String data) {
-            updateRegisterCountsOnUiThread();
+            updateRegisterCounts();
         }
     };
 
@@ -99,17 +102,17 @@ public class NativeHomeActivity extends SecuredActivity {
         updateRemainingFormsToSyncCount();
     }
 
-    private void updateRegisterCountsOnUiThread() {
-        runOnUiThread(new Runnable() {
+    private void updateRegisterCounts() {
+        NativeUpdateANMDetailsTask task = new NativeUpdateANMDetailsTask(Context.getInstance().anmController());
+        task.fetch(new NativeAfterANMDetailsFetchListener() {
             @Override
-            public void run() {
-                updateRegisterCounts();
+            public void afterFetch(HomeContext anmDetails) {
+                updateRegisterCounts(anmDetails);
             }
         });
     }
 
-    private void updateRegisterCounts() {
-        final HomeContext homeContext = anmController.getHomeContext();
+    private void updateRegisterCounts(HomeContext homeContext) {
         ecRegisterClientCountView.setText(valueOf(homeContext.eligibleCoupleCount()));
         ancRegisterClientCountView.setText(valueOf(homeContext.ancCount()));
         pncRegisterClientCountView.setText(valueOf(homeContext.pncCount()));
@@ -140,7 +143,8 @@ public class NativeHomeActivity extends SecuredActivity {
     }
 
     public void updateFromServer() {
-        UpdateActionsTask updateActionsTask = new UpdateActionsTask(this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator());
+        UpdateActionsTask updateActionsTask = new UpdateActionsTask(
+                this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator());
         updateActionsTask.updateFromServer(new SyncAfterFetchListener());
     }
 
