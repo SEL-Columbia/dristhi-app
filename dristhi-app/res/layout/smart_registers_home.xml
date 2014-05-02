@@ -187,7 +187,10 @@
     <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
         <org.ei.drishti.view.customControls.CustomFontTextView
@@ -195,10 +198,10 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:drawableLeft="@drawable/icon_tv"
+                android:drawableLeft="@drawable/ic_reporting"
                 android:drawablePadding="5dp"
-                android:paddingLeft="175dp"
-                android:paddingRight="175dp"
+                android:paddingLeft="185dp"
+                android:paddingRight="185dp"
                 android:text="@string/str_reporting"
                 style="@style/CustomFontTextViewStyle.Home.Buttons"/>
 
@@ -207,10 +210,10 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:drawableLeft="@drawable/icon_tv"
+                android:drawableLeft="@drawable/ic_tv"
                 android:drawablePadding="5dp"
-                android:paddingLeft="190dp"
-                android:paddingRight="190dp"
+                android:paddingLeft="200dp"
+                android:paddingRight="200dp"
                 android:text="@string/str_videos"
                 style="@style/CustomFontTextViewStyle.Home.Buttons"/>
 

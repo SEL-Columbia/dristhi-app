@@ -10,11 +10,12 @@ import org.ei.drishti.service.PendingFormSubmissionService;
 import org.ei.drishti.sync.SyncAfterFetchListener;
 import org.ei.drishti.sync.SyncProgressIndicator;
 import org.ei.drishti.sync.UpdateActionsTask;
+import org.ei.drishti.view.contract.HomeContext;
 
+import static java.lang.String.valueOf;
 import static org.ei.drishti.event.Event.*;
 
 public class NativeHomeActivity extends SecuredActivity {
-
     private MenuItem updateMenuItem;
     private MenuItem remainingFormsToSyncMenuItem;
     private PendingFormSubmissionService pendingFormSubmissionService;
@@ -42,14 +43,14 @@ public class NativeHomeActivity extends SecuredActivity {
     private Listener<String> onFormSubmittedListener = new Listener<String>() {
         @Override
         public void onEvent(String instanceId) {
-            updateRegisterCounts();
+            updateRegisterCountsOnUiThread();
         }
     };
 
     private Listener<String> updateANMDetailsListener = new Listener<String>() {
         @Override
         public void onEvent(String data) {
-            updateRegisterCounts();
+            updateRegisterCountsOnUiThread();
         }
     };
 
@@ -58,14 +59,6 @@ public class NativeHomeActivity extends SecuredActivity {
     private TextView pncRegisterClientCountView;
     private TextView fpRegisterClientCountView;
     private TextView childRegisterClientCountView;
-
-    private void initialize() {
-        pendingFormSubmissionService = context.pendingFormSubmissionService();
-        SYNC_STARTED.addListener(onSyncStartListener);
-        SYNC_COMPLETED.addListener(onSyncCompleteListener);
-        FORM_SUBMITTED.addListener(onFormSubmittedListener);
-        ACTION_HANDLED.addListener(updateANMDetailsListener);
-    }
 
     @Override
     protected void onCreation() {
@@ -91,6 +84,14 @@ public class NativeHomeActivity extends SecuredActivity {
         childRegisterClientCountView = (TextView) findViewById(R.id.txt_child_register_client_count);
     }
 
+    private void initialize() {
+        pendingFormSubmissionService = context.pendingFormSubmissionService();
+        SYNC_STARTED.addListener(onSyncStartListener);
+        SYNC_COMPLETED.addListener(onSyncCompleteListener);
+        FORM_SUBMITTED.addListener(onFormSubmittedListener);
+        ACTION_HANDLED.addListener(updateANMDetailsListener);
+    }
+
     @Override
     protected void onResumption() {
         updateRegisterCounts();
@@ -98,12 +99,22 @@ public class NativeHomeActivity extends SecuredActivity {
         updateRemainingFormsToSyncCount();
     }
 
+    private void updateRegisterCountsOnUiThread() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                updateRegisterCounts();
+            }
+        });
+    }
+
     private void updateRegisterCounts() {
-        ecRegisterClientCountView.setText(String.valueOf(anmController.getHomeContext().eligibleCoupleCount()));
-        ancRegisterClientCountView.setText(String.valueOf(anmController.getHomeContext().ancCount()));
-        pncRegisterClientCountView.setText(String.valueOf(anmController.getHomeContext().pncCount()));
-        fpRegisterClientCountView.setText(String.valueOf(anmController.getHomeContext().fpCount()));
-        childRegisterClientCountView.setText(String.valueOf(anmController.getHomeContext().childCount()));
+        final HomeContext homeContext = anmController.getHomeContext();
+        ecRegisterClientCountView.setText(valueOf(homeContext.eligibleCoupleCount()));
+        ancRegisterClientCountView.setText(valueOf(homeContext.ancCount()));
+        pncRegisterClientCountView.setText(valueOf(homeContext.pncCount()));
+        fpRegisterClientCountView.setText(valueOf(homeContext.fpCount()));
+        childRegisterClientCountView.setText(valueOf(homeContext.childCount()));
     }
 
     @Override
@@ -159,7 +170,7 @@ public class NativeHomeActivity extends SecuredActivity {
 
         long size = pendingFormSubmissionService.pendingFormSubmissionCount();
         if (size > 0) {
-            remainingFormsToSyncMenuItem.setTitle(String.valueOf(size) + " " + getString(R.string.unsynced_forms_count_message));
+            remainingFormsToSyncMenuItem.setTitle(valueOf(size) + " " + getString(R.string.unsynced_forms_count_message));
             remainingFormsToSyncMenuItem.setVisible(true);
         } else {
             remainingFormsToSyncMenuItem.setVisible(false);
