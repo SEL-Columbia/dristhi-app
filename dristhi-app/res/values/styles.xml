@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="CustomFontTextViewStyle" parent="@android:style/Widget.TextView">
         <item name="fontVariant">regular</item>
         <item name="android:textColor">@android:color/black</item>
@@ -8,18 +9,18 @@
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="CustomFontTextViewStyle.ListView.Normal" parent="CustomFontTextViewStyle" >
+    <style name="CustomFontTextViewStyle.ListView.Normal" parent="CustomFontTextViewStyle">
         <item name="fontVariant">medium</item>
         <item name="android:textSize">17sp</item>
     </style>
 
-    <style name="CustomFontTextViewStyle.ListView.Small" parent="CustomFontTextViewStyle" >
+    <style name="CustomFontTextViewStyle.ListView.Small" parent="CustomFontTextViewStyle">
         <item name="fontVariant">medium</item>
         <item name="android:textSize">15sp</item>
         <item name="android:height">18dp</item>
     </style>
 
-    <style name="CustomFontTextViewStyle.ListView.Normal.GPLSA" parent="CustomFontTextViewStyle.ListView.Normal" >
+    <style name="CustomFontTextViewStyle.ListView.Normal.GPLSA">
         <item name="fontVariant">medium</item>
         <item name="android:textSize">17sp</item>
         <item name="android:gravity">center</item>
@@ -28,24 +29,24 @@
         <item name="android:ellipsize">none</item>
     </style>
 
-    <style name="CustomFontTextViewStyle.ListView.Medium" parent="CustomFontTextViewStyle" >
+    <style name="CustomFontTextViewStyle.ListView.Medium" parent="CustomFontTextViewStyle">
         <item name="fontVariant">bold</item>
         <item name="android:textSize">17sp</item>
     </style>
 
-    <style name="CustomFontTextViewStyle.ListView.Medium.TwoLine" parent="CustomFontTextViewStyle.ListView.Medium" >
+    <style name="CustomFontTextViewStyle.ListView.Medium.TwoLine">
         <item name="android:maxLines">2</item>
         <item name="android:paddingLeft">5dp</item>
         <item name="android:paddingRight">5dp</item>
         <item name="android:ellipsize">none</item>
     </style>
 
-    <style name="CustomFontTextViewStyle.ListView.Bold" parent="CustomFontTextViewStyle" >
+    <style name="CustomFontTextViewStyle.ListView.Bold" parent="CustomFontTextViewStyle">
         <item name="fontVariant">bold</item>
         <item name="android:textSize">20sp</item>
     </style>
 
-    <style name="CustomFontTextViewStyle.NavBar" parent="CustomFontTextViewStyle" >
+    <style name="CustomFontTextViewStyle.NavBar">
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:gravity">left|center_vertical</item>
@@ -53,31 +54,31 @@
         <item name="android:shadowRadius">1</item>
     </style>
 
-    <style name="CustomFontTextViewStyle.NavBar.Bold" parent="CustomFontTextViewStyle.NavBar" >
+    <style name="CustomFontTextViewStyle.NavBar.Bold">
         <item name="fontVariant">bold</item>
         <item name="android:textSize">23sp</item>
     </style>
 
-    <style name="CustomFontTextViewStyle.NavBar.Black" parent="CustomFontTextViewStyle.NavBar" >
+    <style name="CustomFontTextViewStyle.NavBar.Black">
         <item name="fontVariant">black</item>
     </style>
 
-    <style name="CustomFontTextViewStyle.StatusBar" parent="CustomFontTextViewStyle" >
+    <style name="CustomFontTextViewStyle.StatusBar">
         <item name="android:textSize">17sp</item>
         <item name="android:textColor">@color/status_bar_text_almost_white</item>
         <item name="android:gravity">left|center_vertical</item>
     </style>
 
-    <style name="CustomFontTextViewStyle.StatusBar.Bold" parent="CustomFontTextViewStyle.StatusBar" >
+    <style name="CustomFontTextViewStyle.StatusBar.Bold">
         <item name="fontVariant">bold</item>
     </style>
 
-    <style name="CustomFontTextViewStyle.StatusBar.Black" parent="CustomFontTextViewStyle.StatusBar" >
+    <style name="CustomFontTextViewStyle.StatusBar.Black">
         <item name="fontVariant">black</item>
         <item name="android:textSize">19sp</item>
     </style>
 
-    <style name="CustomFontTextViewStyle.Header.Black" parent="CustomFontTextViewStyle" >
+    <style name="CustomFontTextViewStyle.Header.Black" parent="CustomFontTextViewStyle">
         <item name="fontVariant">black</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/client_list_header_text_color</item>
@@ -118,4 +119,18 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:clickable">true</item>
     </style>
+
+    <style name="CustomFontTextViewStyle.Badge">
+        <item name="fontVariant">bold</item>
+        <item name="android:layout_gravity">top|right</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginRight">28dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/badge</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>

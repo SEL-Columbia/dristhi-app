@@ -18,4 +18,24 @@ public class HomeContext {
         this.eligibleCoupleCount = anm.ecCount();
         this.fpCount = anm.fpCount();
     }
+
+    public long fpCount() {
+        return fpCount;
+    }
+
+    public long ancCount() {
+        return ancCount;
+    }
+
+    public long pncCount() {
+        return pncCount;
+    }
+
+    public long childCount() {
+        return childCount;
+    }
+
+    public long eligibleCoupleCount() {
+        return eligibleCoupleCount;
+    }
 }
