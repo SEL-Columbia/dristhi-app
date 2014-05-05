@@ -7,10 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import org.ei.drishti.R;
+import org.ei.drishti.view.contract.ChildSmartRegisterClient;
 import org.ei.drishti.view.contract.ECSmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
-import org.ei.drishti.view.controller.ECSmartRegisterController;
+import org.ei.drishti.view.controller.ChildSmartRegisterController;
 import org.ei.drishti.view.dialog.FilterOption;
 import org.ei.drishti.view.dialog.ServiceModeOption;
 import org.ei.drishti.view.dialog.SortOption;
@@ -32,13 +33,13 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
     private final int txtColorBlack;
     private final AbsListView.LayoutParams clientViewLayoutParams;
 
-    protected ECSmartRegisterController controller;
+    protected ChildSmartRegisterController controller;
 
     private Drawable iconPencilDrawable;
 
     public ChildSmartRegisterClientsProvider(Context context,
                                              View.OnClickListener onClickListener,
-                                             ECSmartRegisterController controller) {
+                                             ChildSmartRegisterController controller) {
         this.onClickListener = onClickListener;
         this.controller = controller;
         this.context = context;
@@ -68,43 +69,18 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
             viewHolder = (NativeECSmartRegisterViewHolder) itemView.getTag();
         }
 
-        ECSmartRegisterClient client = (ECSmartRegisterClient)smartRegisterClient;
+        ChildSmartRegisterClient client = (ChildSmartRegisterClient)smartRegisterClient;
         setupClientProfileView(client, viewHolder);
-        setupEcNumberView(client, viewHolder);
-        setupGPLSAView(client, viewHolder);
-        setupFPMethodView(client, viewHolder);
-        setupChildrenView(client, viewHolder);
-        setupStatusView(client, viewHolder);
-        setupEditView(client, viewHolder);
+//        setupEditView(client, viewHolder);
 
         itemView.setLayoutParams(clientViewLayoutParams);
         return itemView;
     }
 
-    private void setupClientProfileView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+    private void setupClientProfileView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
         viewHolder.profileInfoLayout().bindData(client, photoLoader, wifeAgeFormatString);
         viewHolder.profileInfoLayout().setOnClickListener(onClickListener);
         viewHolder.profileInfoLayout().setTag(client);
-    }
-
-    private void setupEcNumberView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
-        viewHolder.txtECNumberView().setText(String.valueOf(client.ecNumber()));
-    }
-
-    private void setupGPLSAView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
-        viewHolder.gplsaLayout().bindData(client);
-    }
-
-    private void setupFPMethodView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
-        viewHolder.fpMethodView().bindData(client, txtColorBlack);
-    }
-
-    private void setupChildrenView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
-        viewHolder.childrenView().bindData(client, maleChildAgeFormatString, femaleChildAgeFormatString);
-    }
-
-    private void setupStatusView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
-        viewHolder.statusView().bindData(client);
     }
 
     private void setupEditView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {

@@ -10,8 +10,6 @@ import org.ei.drishti.R;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.viewHolder.ProfilePhotoLoader;
 
-import static java.text.MessageFormat.format;
-
 public class ClientProfileView extends RelativeLayout {
     private ImageView imgProfileView;
     private TextView txtNameView;
@@ -54,7 +52,7 @@ public class ClientProfileView extends RelativeLayout {
         txtNameView.setText(client.name());
         txtHusbandNameView.setText(client.husbandName());
         txtVillageNameView.setText(client.village());
-        txtAgeView.setText(format(wifeAgeFormatString, client.age()));
+        txtAgeView.setText(client.ageInString());
         badgeHPView.setVisibility(client.isHighPriority() ? View.VISIBLE : View.GONE);
         badgeBPLView.setVisibility(client.isBPL() ? View.VISIBLE : View.GONE);
         badgeSCView.setVisibility(client.isSC() ? View.VISIBLE : View.GONE);

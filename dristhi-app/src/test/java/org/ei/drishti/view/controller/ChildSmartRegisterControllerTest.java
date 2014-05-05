@@ -2,6 +2,7 @@ package org.ei.drishti.view.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.ei.drishti.view.contract.SmartRegisterClients;
 import org.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.*;
 import org.ei.drishti.repository.AllBeneficiaries;
@@ -67,7 +68,7 @@ public class ChildSmartRegisterControllerTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new ChildSmartRegisterController(serviceProvidedService, alertService, allBeneficiaries, new Cache<String>());
+        controller = new ChildSmartRegisterController(serviceProvidedService, alertService, allBeneficiaries, new Cache<String>(), new Cache<SmartRegisterClients>());
     }
 
     @Test

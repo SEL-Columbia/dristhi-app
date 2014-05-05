@@ -6,9 +6,8 @@ import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.domain.form.FieldOverrides;
 import org.ei.drishti.provider.ChildSmartRegisterClientsProvider;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
-import org.ei.drishti.view.controller.ECSmartRegisterController;
+import org.ei.drishti.view.controller.ChildSmartRegisterController;
 import org.ei.drishti.view.controller.VillageController;
 import org.ei.drishti.view.dialog.*;
 
@@ -19,7 +18,7 @@ import static org.ei.drishti.AllConstants.FormNames.*;
 public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
     private SmartRegisterClientsProvider clientProvider = null;
-    private ECSmartRegisterController controller;
+    private ChildSmartRegisterController controller;
     private VillageController villageController;
     private DialogOptionMapper dialogOptionMapper;
 
@@ -171,11 +170,18 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
 
     @Override
     protected void onInitialization() {
-        controller = new ECSmartRegisterController(context.allEligibleCouples(),
-                context.allBeneficiaries(), context.listCache(),
-                context.ecClientsCache());
-        villageController = new VillageController(context.allEligibleCouples(),
-                context.listCache(), context.villagesCache());
+        controller = new ChildSmartRegisterController(
+                context.serviceProvidedService(),
+                context.alertService(),
+                context.allBeneficiaries(),
+                context.listCache(),
+                context.smartRegisterClientsCache());
+
+        villageController = new VillageController(
+                context.allEligibleCouples(),
+                context.listCache(),
+                context.villagesCache());
+
         dialogOptionMapper = new DialogOptionMapper();
     }
 
@@ -191,7 +197,7 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                    showProfileView((ECClient) view.getTag());
+                    showProfileView((SmartRegisterClient) view.getTag());
                     break;
                 case R.id.btn_edit:
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
@@ -199,8 +205,8 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
             }
         }
 
-        private void showProfileView(ECClient client) {
-            navigationController.startEC(client.entityId());
+        private void showProfileView(SmartRegisterClient client) {
+            navigationController.startChild(client.entityId());
         }
     }
 

@@ -80,4 +80,6 @@ public interface SmartRegisterClient {
     public boolean satisfiesFilter(String filterCriterion);
 
     String locationStatus();
+
+    public String ageInString();
 }

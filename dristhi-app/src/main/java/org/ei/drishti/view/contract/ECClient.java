@@ -78,6 +78,11 @@ public class ECClient implements ECSmartRegisterClient {
     }
 
     @Override
+    public String ageInString() {
+        return "(" + age() + ")";
+    }
+
+    @Override
     public int age() {
         return StringUtils.isBlank(dateOfBirth) ? 0 : Years.yearsBetween(LocalDate.parse(dateOfBirth), LocalDate.now()).getYears();
     }
