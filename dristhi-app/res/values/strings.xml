@@ -92,4 +92,22 @@
 
     <string name="str_reporting">Reporting</string>
     <string name="str_videos">Videos</string>
+
+    <string name="child_register_title_in_short">Child:</string>
+    <string name="child_service_mode_overview">Overview</string>
+    <string name="child_service_mode_immunization_0_to_9">Immunization 0-9</string>
+    <string name="child_service_mode_immunization_9_plus">Immunization 9+</string>
+    <string name="header_id_no">ID NO</string>
+    <string name="header_dob">DOB</string>
+    <string name="header_sick_status">SICK STATUS</string>
+    <string name="header_last_service">LAST SERVICE</string>
+    <string name="header_bcg">BCG</string>
+    <string name="header_hep_b_birth">HEP B BIRTH</string>
+    <string name="header_opv">OPV</string>
+    <string name="header_pentavalent">PENTAVALENT</string>
+    <string name="header_measles">MEASLES</string>
+    <string name="header_opv_booster">OPV BOOSTER</string>
+    <string name="header_dpt_booster">DPT BOOSTER</string>
+    <string name="header_vitamin_a">VITAMIN A</string>
+
 </resources>

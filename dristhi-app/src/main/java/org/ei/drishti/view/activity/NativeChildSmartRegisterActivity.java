@@ -4,7 +4,7 @@ import android.view.View;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.domain.form.FieldOverrides;
-import org.ei.drishti.provider.ECSmartRegisterClientsProvider;
+import org.ei.drishti.provider.ChildSmartRegisterClientsProvider;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
@@ -16,7 +16,7 @@ import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
 import static org.ei.drishti.AllConstants.FormNames.*;
 
-public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
+public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
     private SmartRegisterClientsProvider clientProvider = null;
     private ECSmartRegisterController controller;
@@ -24,43 +24,67 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     private DialogOptionMapper dialogOptionMapper;
 
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
+    private SmartRegisterPaginatedAdapter smartRegisterPaginatedAdapter;
 
-    @Override
-    protected SmartRegisterPaginatedAdapter adapter() {
-        return new SmartRegisterPaginatedAdapter(clientsProvider());
-    }
+    public ClientsHeaderProvider dummyHeaderProvider = new ClientsHeaderProvider() {
+        @Override
+        public int count() {
+            return 0;
+        }
+
+        @Override
+        public int weightSum() {
+            return 0;
+        }
+
+        @Override
+        public int[] weights() {
+            return new int[0];
+        }
+
+        @Override
+        public int[] headerTextResourceIds() {
+            return new int[0];
+        }
+
+        @Override
+        public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
+
+        }
+    };
+
+    private ClientsHeaderProvider clientsHeaderProvider = new ClientsHeaderProvider() {
+        ClientsHeaderProvider actualHeaderProvider = dummyHeaderProvider;
+
+        @Override
+        public int count() {
+            return actualHeaderProvider.count();
+        }
+
+        @Override
+        public int weightSum() {
+            return actualHeaderProvider.weightSum();
+        }
+
+        @Override
+        public int[] weights() {
+            return actualHeaderProvider.weights();
+        }
+
+        @Override
+        public int[] headerTextResourceIds() {
+            return actualHeaderProvider.headerTextResourceIds();
+        }
+
+        @Override
+        public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
+            actualHeaderProvider = serviceModeOption.getHeaderProvider();
+        }
+    };
 
     @Override
     protected ClientsHeaderProvider clientsHeaderProvider() {
-        return new ClientsHeaderProvider() {
-                @Override
-                public int count() {
-                    return 7;
-                }
-
-                @Override
-                public int weightSum() {
-                    return 1000;
-                }
-
-                @Override
-                public int[] weights() {
-                    return new int[]{239, 73, 103, 107, 158, 221, 87};
-                }
-
-                @Override
-                public int[] headerTextResourceIds() {
-                    return new int[]{
-                            R.string.header_name, R.string.header_ec_no, R.string.header_gplsa,
-                            R.string.header_fp, R.string.header_children, R.string.header_status,
-                            R.string.header_edit};
-                }
-
-                @Override
-                public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
-
-                }
-        };
+        return clientsHeaderProvider;
     }
 
     @Override
@@ -69,7 +93,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
             @Override
             public ServiceModeOption serviceMode() {
-                return new AllEligibleCoupleServiceMode();
+                return new ChildOverviewServiceMode(clientsProvider(), clientsHeaderProvider());
             }
 
             @Override
@@ -84,7 +108,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
             @Override
             public String nameInShortFormForTitle() {
-                return getResources().getString(R.string.ec_register_title_in_short);
+                return getResources().getString(R.string.child_register_title_in_short);
             }
         };
     }
@@ -102,7 +126,11 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
             @Override
             public DialogOption[] serviceModeOptions() {
-                return new DialogOption[]{};
+                return new DialogOption[]{
+                        new ChildOverviewServiceMode(clientsProvider(), clientsHeaderProvider()),
+                        new ChildImmunization0to9ServiceMode(clientsProvider(), clientsHeaderProvider()),
+                        new ChildImmunization9PlusServiceMode(clientsProvider(), clientsHeaderProvider())
+                };
             }
 
             @Override
@@ -115,9 +143,17 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
+    protected SmartRegisterPaginatedAdapter adapter() {
+        if (smartRegisterPaginatedAdapter == null) {
+            smartRegisterPaginatedAdapter = new SmartRegisterPaginatedAdapter(clientsProvider());
+        }
+        return smartRegisterPaginatedAdapter;
+    }
+
+    @Override
     protected SmartRegisterClientsProvider clientsProvider() {
         if (clientProvider == null) {
-            clientProvider = new ECSmartRegisterClientsProvider(
+            clientProvider = new ChildSmartRegisterClientsProvider(
                     this, clientActionHandler, controller);
         }
         return clientProvider;

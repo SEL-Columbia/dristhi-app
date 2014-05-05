@@ -2,16 +2,22 @@ package org.ei.drishti.view.dialog;
 
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
-import org.ei.drishti.view.contract.SmartRegisterClient;
 
-public class AllEligibleCoupleServiceMode implements ServiceModeOption {
+import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+
+public class AllEligibleCoupleServiceMode extends ServiceModeOption {
+
+    public AllEligibleCoupleServiceMode() {
+        super(null, null);
+    }
+
     @Override
     public String name() {
         return Context.getInstance().getStringResource(R.string.couple_selection);
     }
 
     @Override
-    public boolean filter(SmartRegisterClient client) {
-        return true;
+    public ClientsHeaderProvider getHeaderProvider() {
+        return null;
     }
 }

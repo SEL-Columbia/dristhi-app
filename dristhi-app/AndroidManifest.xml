@@ -140,8 +140,13 @@
         <activity
                 android:name=".view.activity.NativeECSmartRegisterActivity"
                 android:screenOrientation="landscape"
-                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
-        </activity>
+                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+
+        <activity
+                android:name=".view.activity.NativeChildSmartRegisterActivity"
+                android:screenOrientation="landscape"
+                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
+
 
         <activity android:name=".view.activity.NativeHomeActivity"
                 android:screenOrientation="landscape">

@@ -18,7 +18,7 @@ import org.ei.drishti.view.viewHolder.ProfilePhotoLoader;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
-public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvider {
+public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsProvider {
 
     private final LayoutInflater inflater;
     private final Context context;
@@ -35,9 +35,9 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
 
     private Drawable iconPencilDrawable;
 
-    public ECSmartRegisterClientsProvider(Context context,
-                                          View.OnClickListener onClickListener,
-                                          ECSmartRegisterController controller) {
+    public ChildSmartRegisterClientsProvider(Context context,
+                                             View.OnClickListener onClickListener,
+                                             ECSmartRegisterController controller) {
         this.onClickListener = onClickListener;
         this.controller = controller;
         this.context = context;

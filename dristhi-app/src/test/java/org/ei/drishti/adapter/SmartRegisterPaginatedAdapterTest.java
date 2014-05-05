@@ -179,5 +179,10 @@ public class SmartRegisterPaginatedAdapterTest {
                 FilterOption searchFilter, SortOption sortOption) {
             return getSmartRegisterClients(5);
         }
+
+        @Override
+        public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
+
+        }
     }
 }

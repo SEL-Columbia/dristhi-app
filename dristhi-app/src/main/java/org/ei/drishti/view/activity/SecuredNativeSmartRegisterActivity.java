@@ -66,6 +66,8 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         public abstract int[] weights();
 
         public abstract int[] headerTextResourceIds();
+
+        void onServiceModeSelected(ServiceModeOption serviceModeOption);
     }
 
     public interface DefaultOptionsProvider {
@@ -103,7 +105,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
         defaultOptionProvider = getDefaultOptionsProvider();
         navBarOptionsProvider = getNavBarOptionsProvider();
-        headerProvider = getClientsHeaderProvider();
+        headerProvider = clientsHeaderProvider();
 
         setupViews();
     }
@@ -267,7 +269,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     protected SmartRegisterPaginatedAdapter adapter() {
-        return new SmartRegisterPaginatedAdapter(getClientsProvider());
+        return new SmartRegisterPaginatedAdapter(clientsProvider());
     }
 
     protected void onServiceModeSelection(ServiceModeOption serviceModeOption) {
@@ -276,6 +278,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         clientsAdapter
                 .refreshList(currentVillageFilter, currentServiceModeOption,
                         currentSearchFilter, currentSortOption);
+        populateClientListHeaderView();
     }
 
     protected void onSortSelection(SortOption sortBy) {
@@ -323,13 +326,13 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                 .show(ft, DIALOG_TAG);
     }
 
-    protected abstract ClientsHeaderProvider getClientsHeaderProvider();
+    protected abstract ClientsHeaderProvider clientsHeaderProvider();
 
     protected abstract DefaultOptionsProvider getDefaultOptionsProvider();
 
     protected abstract NavBarOptionsProvider getNavBarOptionsProvider();
 
-    protected abstract SmartRegisterClientsProvider getClientsProvider();
+    protected abstract SmartRegisterClientsProvider clientsProvider();
 
     protected abstract void onInitialization();
 

@@ -16,11 +16,11 @@ public class NavigationController {
     }
 
     public void startReports() {
-        activity.startActivity(new Intent(activity, ReportsActivity.class));
+        activity.startActivity(new Intent(activity, NativeChildSmartRegisterActivity.class));
     }
 
     public void startVideos() {
-        activity.startActivity(new Intent(activity, VideosActivity.class));
+        activity.startActivity(new Intent(activity, ChildSmartRegisterActivity.class));
     }
 
     public void startECSmartRegistry() {
