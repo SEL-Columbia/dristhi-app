@@ -9,7 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.R;
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.drishti.view.contract.ECSmartRegisterClient;
 import org.ei.drishti.view.viewHolder.ViewStubInflater;
 
 import java.util.HashMap;
@@ -52,7 +52,7 @@ public class ClientStatusView extends FrameLayout {
                 .put(PNC_FP_STATUS, new ViewStubInflater((ViewStub) findViewById(R.id.pnc_and_fp_status_layout)));
     }
 
-    public void bindData(SmartRegisterClient client) {
+    public void bindData(ECSmartRegisterClient client) {
         hideAllLayout();
 
         if (client.status().containsKey(STATUS_TYPE_FIELD)) {

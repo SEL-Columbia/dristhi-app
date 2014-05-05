@@ -1,25 +1,12 @@
 package org.ei.drishti.view.contract;
 
-import org.ei.drishti.domain.FPMethod;
-
 import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
 
 public interface SmartRegisterClient {
-    //#TODO: Write unit test
     Comparator<SmartRegisterClient> NAME_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
             return client.wifeName().compareToIgnoreCase(anotherClient.wifeName());
-        }
-    };
-
-    //#TODO: Write unit test
-    Comparator<SmartRegisterClient> EC_NUMBER_COMPARATOR = new Comparator<SmartRegisterClient>() {
-        @Override
-        public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            return client.ecNumber().compareTo(anotherClient.ecNumber());
         }
     };
 
@@ -70,30 +57,6 @@ public interface SmartRegisterClient {
 
     public String village();
 
-    public String numberOfPregnancies();
-
-    public String parity();
-
-    public String numberOfLivingChildren();
-
-    public String numberOfStillbirths();
-
-    public String numberOfAbortions();
-
-    public String familyPlanningMethodChangeDate();
-
-    public String numberOfOCPDelivered();
-
-    public String numberOfCondomsSupplied();
-
-    public String numberOfCentchromanPillsDelivered();
-
-    public String iudPerson();
-
-    public String iudPlace();
-
-    public boolean satisfiesFilter(String filterCriterion);
-
     public String wifeName();
 
     public String name();
@@ -101,8 +64,6 @@ public interface SmartRegisterClient {
     public String husbandName();
 
     public int age();
-
-    public Integer ecNumber();
 
     public boolean isSC();
 
@@ -112,15 +73,11 @@ public interface SmartRegisterClient {
 
     public boolean isBPL();
 
-    public String locationStatus();
-
-    public FPMethod fpMethod();
-
-    public List<ECChildClient> children();
-
-    public Map<String, String> status();
-
     public String entityId();
 
     public String profilePhotoPath();
+
+    public boolean satisfiesFilter(String filterCriterion);
+
+    String locationStatus();
 }

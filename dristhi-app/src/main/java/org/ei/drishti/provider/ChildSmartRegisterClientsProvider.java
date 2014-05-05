@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import org.ei.drishti.R;
+import org.ei.drishti.view.contract.ECSmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
 import org.ei.drishti.view.controller.ECSmartRegisterController;
@@ -55,7 +56,7 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
     }
 
     @Override
-    public View getView(SmartRegisterClient client, View convertView, ViewGroup viewGroup) {
+    public View getView(SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
         ViewGroup itemView;
         NativeECSmartRegisterViewHolder viewHolder;
         if (convertView == null) {
@@ -67,6 +68,7 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
             viewHolder = (NativeECSmartRegisterViewHolder) itemView.getTag();
         }
 
+        ECSmartRegisterClient client = (ECSmartRegisterClient)smartRegisterClient;
         setupClientProfileView(client, viewHolder);
         setupEcNumberView(client, viewHolder);
         setupGPLSAView(client, viewHolder);
@@ -79,33 +81,33 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
         return itemView;
     }
 
-    private void setupClientProfileView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+    private void setupClientProfileView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
         viewHolder.profileInfoLayout().bindData(client, photoLoader, wifeAgeFormatString);
         viewHolder.profileInfoLayout().setOnClickListener(onClickListener);
         viewHolder.profileInfoLayout().setTag(client);
     }
 
-    private void setupEcNumberView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+    private void setupEcNumberView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
         viewHolder.txtECNumberView().setText(String.valueOf(client.ecNumber()));
     }
 
-    private void setupGPLSAView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+    private void setupGPLSAView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
         viewHolder.gplsaLayout().bindData(client);
     }
 
-    private void setupFPMethodView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+    private void setupFPMethodView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
         viewHolder.fpMethodView().bindData(client, txtColorBlack);
     }
 
-    private void setupChildrenView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+    private void setupChildrenView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
         viewHolder.childrenView().bindData(client, maleChildAgeFormatString, femaleChildAgeFormatString);
     }
 
-    private void setupStatusView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+    private void setupStatusView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
         viewHolder.statusView().bindData(client);
     }
 
-    private void setupEditView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+    private void setupEditView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
         if (iconPencilDrawable == null) {
             iconPencilDrawable = context.getResources().getDrawable(R.drawable.ic_pencil);
         }

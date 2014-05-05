@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import org.ei.drishti.R;
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.drishti.view.contract.ECSmartRegisterClient;
 
 public class ClientGplsaView extends RelativeLayout {
     private TextView txtGravida;
@@ -36,7 +36,7 @@ public class ClientGplsaView extends RelativeLayout {
         txtNumberOfAbortions = (TextView) findViewById(R.id.txt_number_of_abortions);
     }
 
-    public void bindData(SmartRegisterClient client) {
+    public void bindData(ECSmartRegisterClient client) {
         txtGravida.setText(client.numberOfPregnancies());
         txtParity.setText(client.parity());
         txtNumberOfLivingChildren.setText(client.numberOfLivingChildren());
