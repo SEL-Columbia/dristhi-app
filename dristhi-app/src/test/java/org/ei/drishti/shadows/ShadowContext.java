@@ -4,6 +4,7 @@ import org.ei.drishti.Context;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.repository.Repository;
+import org.ei.drishti.service.PendingFormSubmissionService;
 import org.ei.drishti.view.controller.ANMController;
 import org.ei.drishti.view.controller.ANMLocationController;
 import org.mockito.Mock;
@@ -26,6 +27,8 @@ public class ShadowContext {
     AllBeneficiaries allBeneficiaries;
     @Mock
     ANMLocationController anmLocationController;
+    @Mock
+    private PendingFormSubmissionService pendingFormSubmissionService;
 
     @Implementation
     public Boolean IsUserLoggedOut() {
@@ -52,5 +55,11 @@ public class ShadowContext {
         anmLocationController = Mockito.mock(ANMLocationController.class);
         when(anmLocationController.getLocationJSON()).thenReturn("");
         return anmLocationController;
+    }
+
+    public PendingFormSubmissionService pendingFormSubmissionService() {
+        pendingFormSubmissionService = Mockito.mock(PendingFormSubmissionService.class);
+        when(pendingFormSubmissionService.pendingFormSubmissionCount()).thenReturn(0l);
+        return pendingFormSubmissionService;
     }
 }
