@@ -25,74 +25,13 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
     private SmartRegisterPaginatedAdapter smartRegisterPaginatedAdapter;
 
-    public ClientsHeaderProvider dummyHeaderProvider = new ClientsHeaderProvider() {
-        @Override
-        public int count() {
-            return 0;
-        }
-
-        @Override
-        public int weightSum() {
-            return 0;
-        }
-
-        @Override
-        public int[] weights() {
-            return new int[0];
-        }
-
-        @Override
-        public int[] headerTextResourceIds() {
-            return new int[0];
-        }
-
-        @Override
-        public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
-
-        }
-    };
-
-    private ClientsHeaderProvider clientsHeaderProvider = new ClientsHeaderProvider() {
-        ClientsHeaderProvider actualHeaderProvider = dummyHeaderProvider;
-
-        @Override
-        public int count() {
-            return actualHeaderProvider.count();
-        }
-
-        @Override
-        public int weightSum() {
-            return actualHeaderProvider.weightSum();
-        }
-
-        @Override
-        public int[] weights() {
-            return actualHeaderProvider.weights();
-        }
-
-        @Override
-        public int[] headerTextResourceIds() {
-            return actualHeaderProvider.headerTextResourceIds();
-        }
-
-        @Override
-        public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
-            actualHeaderProvider = serviceModeOption.getHeaderProvider();
-        }
-    };
-
-    @Override
-    protected ClientsHeaderProvider clientsHeaderProvider() {
-        return clientsHeaderProvider;
-    }
-
     @Override
     protected DefaultOptionsProvider getDefaultOptionsProvider() {
         return new DefaultOptionsProvider() {
 
             @Override
             public ServiceModeOption serviceMode() {
-                return new ChildOverviewServiceMode(clientsProvider(), clientsHeaderProvider());
+                return new ChildOverviewServiceMode(clientsProvider());
             }
 
             @Override
@@ -126,9 +65,9 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
             @Override
             public DialogOption[] serviceModeOptions() {
                 return new DialogOption[]{
-                        new ChildOverviewServiceMode(clientsProvider(), clientsHeaderProvider()),
-                        new ChildImmunization0to9ServiceMode(clientsProvider(), clientsHeaderProvider()),
-                        new ChildImmunization9PlusServiceMode(clientsProvider(), clientsHeaderProvider())
+                        new ChildOverviewServiceMode(clientsProvider()),
+                        new ChildImmunization0to9ServiceMode(clientsProvider()),
+                        new ChildImmunization9PlusServiceMode(clientsProvider())
                 };
             }
 

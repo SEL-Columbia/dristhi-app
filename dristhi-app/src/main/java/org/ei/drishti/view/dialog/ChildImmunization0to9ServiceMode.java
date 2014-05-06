@@ -8,8 +8,8 @@ import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.Cl
 
 public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
 
-    public ChildImmunization0to9ServiceMode(SmartRegisterClientsProvider provider, ClientsHeaderProvider headerProvider) {
-        super(provider, headerProvider);
+    public ChildImmunization0to9ServiceMode(SmartRegisterClientsProvider provider) {
+        super(provider);
     }
 
     @Override
@@ -40,11 +40,6 @@ public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
                 return new int[]{
                         R.string.header_name, R.string.header_id_no, R.string.header_bcg,
                         R.string.header_hep_b_birth, R.string.header_opv, R.string.header_pentavalent};
-            }
-
-            @Override
-            public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
-
             }
         };
 

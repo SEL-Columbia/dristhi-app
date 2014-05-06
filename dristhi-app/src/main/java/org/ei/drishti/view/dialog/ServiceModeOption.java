@@ -7,15 +7,12 @@ import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.Cl
 public abstract class ServiceModeOption implements DialogOption {
 
     private SmartRegisterClientsProvider clientsProvider;
-    private ClientsHeaderProvider headerProvider;
 
-    public ServiceModeOption(SmartRegisterClientsProvider clientsProvider, ClientsHeaderProvider headerProvider) {
+    public ServiceModeOption(SmartRegisterClientsProvider clientsProvider) {
         this.clientsProvider = clientsProvider;
-        this.headerProvider = headerProvider;
     }
 
     public void apply() {
-        headerProvider.onServiceModeSelected(this);
         clientsProvider.onServiceModeSelected(this);
     }
 

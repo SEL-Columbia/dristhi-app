@@ -66,8 +66,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         public abstract int[] weights();
 
         public abstract int[] headerTextResourceIds();
-
-        void onServiceModeSelected(ServiceModeOption serviceModeOption);
     }
 
     public interface DefaultOptionsProvider {
@@ -91,7 +89,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         public abstract DialogOption[] sortingOptions();
     }
 
-    private ClientsHeaderProvider headerProvider;
     private DefaultOptionsProvider defaultOptionProvider;
     private NavBarOptionsProvider navBarOptionsProvider;
 
@@ -105,7 +102,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
         defaultOptionProvider = getDefaultOptionsProvider();
         navBarOptionsProvider = getNavBarOptionsProvider();
-        headerProvider = clientsHeaderProvider();
 
         setupViews();
     }
@@ -140,7 +136,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     private void setupViews() {
         setupNavBarViews();
-        populateClientListHeaderView();
+        populateClientListHeaderView(defaultOptionProvider.serviceMode().getHeaderProvider());
 
         clientsProgressView = (ProgressBar) findViewById(R.id.client_list_progress);
         clientsView = (ListView) findViewById(R.id.list);
@@ -229,7 +225,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         titleLabelView.setText(defaultOptionProvider.nameInShortFormForTitle());
     }
 
-    private void populateClientListHeaderView() {
+    private void populateClientListHeaderView(ClientsHeaderProvider headerProvider) {
         LinearLayout clientsHeaderLayout = (LinearLayout) findViewById(R.id.clients_header_layout);
         clientsHeaderLayout.removeAllViewsInLayout();
         int columnCount = headerProvider.count();
@@ -278,7 +274,8 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         clientsAdapter
                 .refreshList(currentVillageFilter, currentServiceModeOption,
                         currentSearchFilter, currentSortOption);
-        populateClientListHeaderView();
+
+        populateClientListHeaderView(serviceModeOption.getHeaderProvider());
     }
 
     protected void onSortSelection(SortOption sortBy) {
@@ -325,8 +322,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                 .newInstance(this, dialogOptionModel, tag)
                 .show(ft, DIALOG_TAG);
     }
-
-    protected abstract ClientsHeaderProvider clientsHeaderProvider();
 
     protected abstract DefaultOptionsProvider getDefaultOptionsProvider();
 

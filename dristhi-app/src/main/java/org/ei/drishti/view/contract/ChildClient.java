@@ -48,6 +48,123 @@ public class ChildClient implements ChildSmartRegisterClient {
         return motherName;
     }
 
+    @Override
+    public String village() {
+        return village;
+    }
+
+    @Override
+    public String wifeName() {
+        return name();
+    }
+
+    @Override
+    public String name() {
+        return StringUtils.isBlank(name) ? "B/o " + motherName() : name;
+    }
+
+    @Override
+    public String husbandName() {
+        return motherName() + ", " + fatherName();
+    }
+
+    private String fatherName() {
+        return fatherName;
+    }
+
+    @Override
+    public int age() {
+        return StringUtils.isBlank(dob) ? 0 : Years.yearsBetween(LocalDate.parse(dob), LocalDate.now()).getYears();
+    }
+
+    @Override
+    public String ageInString() {
+        return "(" + format(getAgeInDays()) + ", " + formatGender(gender() + ")");
+    }
+
+    private String formatGender(String gender) {
+        return AllConstants.FEMALE_GENDER.equalsIgnoreCase(gender) ? "F" : "M";
+    }
+
+    @Override
+    public String gender() {
+        return gender;
+    }
+
+    public Integer ecNumber() {
+        return Integer.parseInt(ecNumber);
+    }
+
+    public String locationStatus() {
+        return locationStatus;
+    }
+
+    @Override
+    public boolean isSC() {
+        return caste != null && caste.equalsIgnoreCase(SC_VALUE);
+    }
+
+    @Override
+    public boolean isST() {
+        return caste != null && caste.equalsIgnoreCase(ST_VALUE);
+    }
+
+    @Override
+    public boolean isHighPriority() {
+        return false;
+    }
+
+    @Override
+    public boolean isBPL() {
+        return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
+    }
+
+    @Override
+    public String entityId() {
+        return entityId;
+    }
+
+    @Override
+    public String profilePhotoPath() {
+        return photo_path;
+    }
+
+    @Override
+    public boolean satisfiesFilter(String filterCriterion) {
+        return (!StringUtils.isBlank(name) && name.toLowerCase().startsWith(filterCriterion.toLowerCase()))
+                || (StringUtils.isBlank(motherName) && motherName.toLowerCase().startsWith(filterCriterion.toLowerCase()));
+    }
+
+    public int getAgeInDays() {
+        return StringUtils.isBlank(dob) ? 0 : Days.daysBetween(LocalDate.parse(dob), DateUtil.today()).getDays();
+    }
+
+    public String format(int days_since) {
+        int DAYS_THRESHOLD = 28;
+        int WEEKS_THRESHOLD = 119;
+        int MONTHS_THRESHOLD = 720;
+        if (days_since < DAYS_THRESHOLD) {
+            return (int) Math.floor(days_since) + "d";
+        } else if (days_since < WEEKS_THRESHOLD) {
+            return (int) Math.floor(days_since / 7) + "w";
+        } else if (days_since < MONTHS_THRESHOLD) {
+            return (int) Math.floor(days_since / 30) + "m";
+        } else {
+            return (int) Math.floor(days_since / 365) + "y";
+        }
+    }
+
+    @Override
+    public String thayiCardNumber() {
+        return thayiCardNumber;
+    }
+
+    @Override
+    public String motherEcNumber() {
+        return ecNumber;
+    }
+
+
     public ChildClient withEntityIdToSavePhoto(String entityIdToSavePhoto) {
         this.entityIdToSavePhoto = entityIdToSavePhoto;
         return this;
@@ -138,110 +255,5 @@ public class ChildClient implements ChildSmartRegisterClient {
         return ToStringBuilder.reflectionToString(this);
     }
 
-    @Override
-    public String village() {
-        return village;
-    }
 
-    @Override
-    public String wifeName() {
-        return name();
-    }
-
-    @Override
-    public String name() {
-        return StringUtils.isBlank(name) ? "B/o " + motherName() : name;
-    }
-
-    @Override
-    public String husbandName() {
-        return motherName() + ", " + fatherName();
-    }
-
-    private String fatherName() {
-        return fatherName;
-    }
-
-    @Override
-    public int age() {
-        return StringUtils.isBlank(dob) ? 0 : Years.yearsBetween(LocalDate.parse(dob), LocalDate.now()).getYears();
-    }
-
-    @Override
-    public String ageInString() {
-        return "(" + format(getAgeInDays()) + ", " + formatGender(gender() + ")");
-    }
-
-    private String formatGender(String gender) {
-        return AllConstants.FEMALE_GENDER.equalsIgnoreCase(gender) ? "F" : "M";
-    }
-
-    @Override
-    public String gender() {
-        return gender;
-    }
-
-    public Integer ecNumber() {
-        return Integer.parseInt(ecNumber);
-    }
-
-    public String locationStatus() {
-        return locationStatus;
-    }
-
-    @Override
-    public boolean isSC() {
-        return caste != null && caste.equalsIgnoreCase(SC_VALUE);
-    }
-
-    @Override
-    public boolean isST() {
-        return caste != null && caste.equalsIgnoreCase(ST_VALUE);
-    }
-
-    @Override
-    public boolean isHighPriority() {
-        return false;
-    }
-
-    @Override
-    public boolean isBPL() {
-        return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
-    }
-
-
-    @Override
-    public String entityId() {
-        return entityId;
-    }
-
-    @Override
-    public String profilePhotoPath() {
-        return photo_path;
-    }
-
-    @Override
-    public boolean satisfiesFilter(String filterCriterion) {
-        return (!StringUtils.isBlank(name) && name.toLowerCase().startsWith(filterCriterion.toLowerCase()))
-                || (StringUtils.isBlank(motherName) && motherName.toLowerCase().startsWith(filterCriterion.toLowerCase()));
-    }
-
-    public int getAgeInDays() {
-        return StringUtils.isBlank(dob) ? 0 : Days.daysBetween(LocalDate.parse(dob), DateUtil.today()).getDays();
-    }
-
-    public String format(int days_since) {
-        int DAYS_THRESHOLD = 28;
-        int WEEKS_THRESHOLD = 119;
-        int MONTHS_THRESHOLD = 720;
-        if (days_since < DAYS_THRESHOLD) {
-            return (int) Math.floor(days_since) + "d";
-        } else if (days_since < WEEKS_THRESHOLD) {
-            return (int) Math.floor(days_since / 7) + "w";
-        } else if (days_since < MONTHS_THRESHOLD) {
-            return (int) Math.floor(days_since / 30) + "m";
-        } else {
-            return (int) Math.floor(days_since / 365) + "y";
-        }
-    }
 }

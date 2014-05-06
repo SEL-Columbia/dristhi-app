@@ -7,8 +7,8 @@ import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 
 public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
-    public ChildImmunization9PlusServiceMode(SmartRegisterClientsProvider provider, ClientsHeaderProvider headerProvider) {
-        super(provider, headerProvider);
+    public ChildImmunization9PlusServiceMode(SmartRegisterClientsProvider provider) {
+        super(provider);
     }
 
     @Override
@@ -39,11 +39,6 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
                 return new int[]{
                         R.string.header_name, R.string.header_id_no, R.string.header_measles,
                         R.string.header_opv_booster, R.string.header_dpt_booster, R.string.header_vitamin_a};
-            }
-
-            @Override
-            public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
-
             }
         };
 

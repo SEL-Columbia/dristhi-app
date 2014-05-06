@@ -14,6 +14,7 @@ import org.ei.drishti.view.controller.ECSmartRegisterController;
 import org.ei.drishti.view.dialog.FilterOption;
 import org.ei.drishti.view.dialog.ServiceModeOption;
 import org.ei.drishti.view.dialog.SortOption;
+import org.ei.drishti.view.viewHolder.ECProfilePhotoLoader;
 import org.ei.drishti.view.viewHolder.NativeECSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.ProfilePhotoLoader;
 
@@ -44,7 +45,7 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        photoLoader = new ProfilePhotoLoader(context.getResources(),
+        photoLoader = new ECProfilePhotoLoader(context.getResources(),
                 context.getResources().getDrawable(R.drawable.woman_placeholder));
 
         wifeAgeFormatString = context.getResources().getString(R.string.ec_register_wife_age);

@@ -4,7 +4,7 @@
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="@dimen/list_item_height"
-              android:weightSum="@integer/ec_list_item_weight_count">
+              android:weightSum="@integer/child_list_item_weight_count">
 
     <include layout="@layout/smart_register_client_profile"/>
 
@@ -13,41 +13,41 @@
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
 
+    <include layout="@layout/child_smart_register_id_details"/>
+
+    <ImageView
+            android:layout_width="@dimen/smart_register_client_divider_height"
+            android:layout_height="fill_parent"
+            android:src="@color/smart_register_client_divider_color"/>
+
     <org.ei.drishti.view.customControls.CustomFontTextView
-            android:id="@+id/txt_ec_number"
-            android:layout_width="@dimen/list_ec_no_view_width"
-            android:layout_height="fill_parent"
-            android:layout_weight="@integer/ec_list_ec_no_view_weight"
-            android:layout_marginTop="3dp"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+            android:id="@+id/child_register_dob"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="@integer/child_list_dob_view_weight"
+            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 
     <ImageView
             android:layout_width="@dimen/smart_register_client_divider_height"
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
 
-    <include layout="@layout/smart_register_client_gplsa_layout"/>
+    <include
+            layout="@layout/child_register_client_last_service"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="@integer/child_list_last_service_view_weight"/>
 
     <ImageView
             android:layout_width="@dimen/smart_register_client_divider_height"
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
 
-    <include layout="@layout/smart_register_client_fp_method_layout"/>
-
-    <ImageView
-            android:layout_width="@dimen/smart_register_client_divider_height"
-            android:layout_height="fill_parent"
-            android:src="@color/smart_register_client_divider_color"/>
-
-    <include layout="@layout/smart_register_client_children_layout"/>
-
-    <ImageView
-            android:layout_width="@dimen/smart_register_client_divider_height"
-            android:layout_height="fill_parent"
-            android:src="@color/smart_register_client_divider_color"/>
-
-    <include layout="@layout/smart_register_client_status_layout"/>
+    <include
+            layout="@layout/child_register_client_sick_status"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="@integer/child_list_sick_status_view_weight"/>
 
     <ImageView
             android:layout_width="@dimen/smart_register_client_divider_height"
@@ -58,7 +58,7 @@
             android:id="@+id/btn_edit"
             android:layout_width="@dimen/list_edit_icon_view_width"
             android:layout_height="fill_parent"
-            android:layout_weight="@integer/ec_list_edit_icon_view_weight"
+            android:layout_weight="@integer/child_list_edit_icon_view_weight"
             android:scaleType="center"
             android:gravity="center"
             android:layout_margin="5dp"
