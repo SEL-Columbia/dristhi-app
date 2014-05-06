@@ -110,6 +110,11 @@ public class ChildClient implements ChildSmartRegisterClient {
     }
 
     @Override
+    public boolean isHighRisk() {
+        return isHighRisk;
+    }
+
+    @Override
     public boolean isHighPriority() {
         return false;
     }

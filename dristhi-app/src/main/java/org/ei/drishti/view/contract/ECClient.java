@@ -106,6 +106,11 @@ public class ECClient implements ECSmartRegisterClient {
     }
 
     @Override
+    public boolean isHighRisk() {
+        return false;
+    }
+
+    @Override
     public boolean isHighPriority() {
         return isHighPriority;
     }

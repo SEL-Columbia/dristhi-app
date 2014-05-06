@@ -17,6 +17,7 @@ public class ClientProfileView extends RelativeLayout {
     private TextView txtVillageNameView;
     private TextView txtAgeView;
     private ImageView badgeHPView;
+    private ImageView badgeHRView;
     private ImageView badgeBPLView;
     private ImageView badgeSCView;
     private ImageView badgeSTView;
@@ -42,18 +43,21 @@ public class ClientProfileView extends RelativeLayout {
         txtVillageNameView = (TextView) findViewById(R.id.txt_village_name);
         txtAgeView = (TextView) findViewById(R.id.txt_age);
         badgeHPView = (ImageView) findViewById(R.id.img_hp_badge);
+        badgeHRView = (ImageView) findViewById(R.id.img_hr_badge);
         badgeBPLView = (ImageView) findViewById(R.id.img_bpl_badge);
         badgeSCView = (ImageView) findViewById(R.id.img_sc_badge);
         badgeSTView = (ImageView) findViewById(R.id.img_st_badge);
     }
 
-    public void bindData(SmartRegisterClient client, ProfilePhotoLoader photoLoader, String wifeAgeFormatString) {
+    // #TODO: make these names generic, so this layout can be reused in all the registers
+    public void bindData(SmartRegisterClient client, ProfilePhotoLoader photoLoader) {
         imgProfileView.setBackground(photoLoader.get(client));
         txtNameView.setText(client.name());
         txtHusbandNameView.setText(client.husbandName());
         txtVillageNameView.setText(client.village());
         txtAgeView.setText(client.ageInString());
         badgeHPView.setVisibility(client.isHighPriority() ? View.VISIBLE : View.GONE);
+        badgeHRView.setVisibility(client.isHighRisk() ? View.VISIBLE : View.GONE);
         badgeBPLView.setVisibility(client.isBPL() ? View.VISIBLE : View.GONE);
         badgeSCView.setVisibility(client.isSC() ? View.VISIBLE : View.GONE);
         badgeSTView.setVisibility(client.isST() ? View.VISIBLE : View.GONE);

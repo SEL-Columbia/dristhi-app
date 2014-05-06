@@ -69,6 +69,8 @@ public interface SmartRegisterClient {
 
     public boolean isST();
 
+    public boolean isHighRisk();
+
     public boolean isHighPriority();
 
     public boolean isBPL();

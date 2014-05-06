@@ -27,7 +27,6 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     private final View.OnClickListener onClickListener;
     private final ProfilePhotoLoader photoLoader;
 
-    private final String wifeAgeFormatString;
     private final String maleChildAgeFormatString;
     private final String femaleChildAgeFormatString;
     private final int txtColorBlack;
@@ -48,7 +47,6 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         photoLoader = new ECProfilePhotoLoader(context.getResources(),
                 context.getResources().getDrawable(R.drawable.woman_placeholder));
 
-        wifeAgeFormatString = context.getResources().getString(R.string.ec_register_wife_age);
         maleChildAgeFormatString = context.getResources().getString(R.string.ec_register_male_child);
         femaleChildAgeFormatString = context.getResources().getString(R.string.ec_register_female_child);
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
@@ -83,7 +81,7 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     }
 
     private void setupClientProfileView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
-        viewHolder.profileInfoLayout().bindData(client, photoLoader, wifeAgeFormatString);
+        viewHolder.profileInfoLayout().bindData(client, photoLoader);
         viewHolder.profileInfoLayout().setOnClickListener(onClickListener);
         viewHolder.profileInfoLayout().setTag(client);
     }

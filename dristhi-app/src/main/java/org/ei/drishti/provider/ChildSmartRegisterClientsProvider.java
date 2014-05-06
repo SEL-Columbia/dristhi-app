@@ -27,12 +27,10 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
     private final View.OnClickListener onClickListener;
     private final ProfilePhotoLoader photoLoader;
 
-    private final String wifeAgeFormatString;
     private final AbsListView.LayoutParams clientViewLayoutParams;
 
     protected ChildSmartRegisterController controller;
 
-    private Drawable iconPencilDrawable;
     private Drawable maleInfantDrawable;
     private Drawable femaleInfantDrawable;
     private ServiceModeOption currentServiceModeOption;
@@ -51,7 +49,6 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
 
         photoLoader = new ChildRegisterProfilePhotoLoader(maleInfantDrawable, femaleInfantDrawable);
 
-        wifeAgeFormatString = context.getResources().getString(R.string.ec_register_wife_age);
 
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
                 (int) context.getResources().getDimension(R.dimen.list_item_height));
@@ -82,7 +79,7 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
     }
 
     private void setupClientProfileView(SmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
-        viewHolder.profileInfoLayout().bindData(client, photoLoader, wifeAgeFormatString);
+        viewHolder.profileInfoLayout().bindData(client, photoLoader);
         viewHolder.profileInfoLayout().setOnClickListener(onClickListener);
         viewHolder.profileInfoLayout().setTag(client);
     }
