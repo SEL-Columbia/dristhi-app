@@ -122,8 +122,10 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
                 context.villagesCache());
 
         dialogOptionMapper = new DialogOptionMapper();
-    }
 
+        clientsProvider().onServiceModeSelected(new ChildOverviewServiceMode(clientsProvider()));
+
+    }
 
     @Override
     protected void startRegistration() {

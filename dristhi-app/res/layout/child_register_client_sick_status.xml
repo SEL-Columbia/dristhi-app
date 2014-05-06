@@ -4,4 +4,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+    <org.ei.drishti.view.customControls.CustomFontTextView
+            android:id="@+id/child_register_dob"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Sick Status"
+            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 </RelativeLayout>

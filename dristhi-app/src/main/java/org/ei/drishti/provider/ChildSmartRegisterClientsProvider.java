@@ -73,7 +73,9 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
         ChildSmartRegisterClient client = (ChildSmartRegisterClient)smartRegisterClient;
         setupClientProfileView(client, viewHolder);
         setupIdDetailsView(client, viewHolder);
-        setupEditView(client, viewHolder);
+
+        viewHolder.hideAllServiceModeOptions();
+        currentServiceModeOption.setupListView(viewHolder.serviceModeViewsHolder(), client, viewHolder);
 
         itemView.setLayoutParams(clientViewLayoutParams);
         return itemView;
@@ -87,16 +89,6 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
 
     private void setupIdDetailsView(ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
         viewHolder.idDetailsView().bindData(client);
-    }
-
-
-    private void setupEditView(ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
-        if (iconPencilDrawable == null) {
-            iconPencilDrawable = context.getResources().getDrawable(R.drawable.ic_pencil);
-        }
-        viewHolder.editButton().setImageDrawable(iconPencilDrawable);
-        viewHolder.editButton().setOnClickListener(onClickListener);
-        viewHolder.editButton().setTag(client);
     }
 
     @Override

@@ -79,7 +79,7 @@ public class ChildClient implements ChildSmartRegisterClient {
 
     @Override
     public String ageInString() {
-        return "(" + format(getAgeInDays()) + ", " + formatGender(gender() + ")");
+        return "(" + format(getAgeInDays()) + ", " + formatGender(gender()) + ")";
     }
 
     private String formatGender(String gender) {
@@ -164,6 +164,10 @@ public class ChildClient implements ChildSmartRegisterClient {
         return ecNumber;
     }
 
+    @Override
+    public String dateOfBirth() {
+        return StringUtils.isBlank(dob) ? "" : dob;
+    }
 
     public ChildClient withEntityIdToSavePhoto(String entityIdToSavePhoto) {
         this.entityIdToSavePhoto = entityIdToSavePhoto;

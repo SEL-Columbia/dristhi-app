@@ -1,7 +1,10 @@
 package org.ei.drishti.view.dialog;
 
+import android.view.ViewGroup;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
+import org.ei.drishti.view.contract.ChildSmartRegisterClient;
+import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
 
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 
@@ -42,5 +45,10 @@ public class AllEligibleCoupleServiceMode extends ServiceModeOption {
                         R.string.header_edit};
             }
         };
+    }
+
+    @Override
+    public void setupListView(ViewGroup serviceModeOptionsView, ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
+
     }
 }

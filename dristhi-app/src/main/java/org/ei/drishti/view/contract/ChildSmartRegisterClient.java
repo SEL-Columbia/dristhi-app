@@ -8,4 +8,6 @@ public interface ChildSmartRegisterClient extends SmartRegisterClient {
     public String thayiCardNumber();
 
     public String motherEcNumber();
+
+    public String dateOfBirth();
 }

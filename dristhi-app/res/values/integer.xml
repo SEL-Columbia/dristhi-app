@@ -12,6 +12,7 @@
     <integer name="child_list_item_weight_count">1000</integer>
     <integer name="child_list_profile_box_weight">300</integer>
     <integer name="child_list_id_no_view_weight">150</integer>
+    <integer name="child_list_service_mode_views_section_weight">550</integer>
     <integer name="child_list_dob_view_weight">150</integer>
     <integer name="child_list_last_service_view_weight">150</integer>
     <integer name="child_list_sick_status_view_weight">150</integer>

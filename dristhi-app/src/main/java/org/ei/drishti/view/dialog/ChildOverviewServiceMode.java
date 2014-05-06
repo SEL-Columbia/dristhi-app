@@ -1,8 +1,13 @@
 package org.ei.drishti.view.dialog;
 
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.ViewGroup;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
+import org.ei.drishti.view.contract.ChildSmartRegisterClient;
+import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
 
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 
@@ -32,7 +37,7 @@ public class ChildOverviewServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{25, 15, 15, 15, 15, 15};
+                return new int[]{30, 15, 15, 15, 15, 10};
             }
 
             @Override
@@ -42,5 +47,25 @@ public class ChildOverviewServiceMode extends ServiceModeOption {
                         R.string.header_last_service, R.string.header_sick_status, R.string.header_edit};
             }
         };
+    }
+
+    @Override
+    public void setupListView(ViewGroup serviceModeOptionsView, ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
+        serviceModeOptionsView.findViewById(R.id.overview_service_mode_views).setVisibility(View.VISIBLE);
+        serviceModeOptionsView.findViewById(R.id.immunization0to9_service_mode_views).setVisibility(View.GONE);
+        serviceModeOptionsView.findViewById(R.id.immunization9plus_service_mode_views).setVisibility(View.GONE);
+
+        setupDobView(client, viewHolder);
+        setupEditView(client, viewHolder);
+    }
+
+    private void setupDobView(ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
+        viewHolder.dobView().setText(client.dateOfBirth());
+    }
+
+    private void setupEditView(ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
+        Drawable iconPencilDrawable = Context.getInstance().applicationContext().getResources().getDrawable(R.drawable.ic_pencil);
+        viewHolder.editButton().setImageDrawable(iconPencilDrawable);
+        viewHolder.editButton().setTag(client);
     }
 }
