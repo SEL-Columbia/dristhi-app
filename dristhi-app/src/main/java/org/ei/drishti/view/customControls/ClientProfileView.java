@@ -52,7 +52,7 @@ public class ClientProfileView extends RelativeLayout {
     // #TODO: make these names generic, so this layout can be reused in all the registers
     public void bindData(SmartRegisterClient client, ProfilePhotoLoader photoLoader) {
         imgProfileView.setBackground(photoLoader.get(client));
-        txtNameView.setText(client.name());
+        txtNameView.setText(client.displayName());
         txtHusbandNameView.setText(client.husbandName());
         txtVillageNameView.setText(client.village());
         txtAgeView.setText(client.ageInString());

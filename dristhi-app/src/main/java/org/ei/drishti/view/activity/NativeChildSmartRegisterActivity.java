@@ -41,7 +41,7 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
 
             @Override
             public SortOption sortOption() {
-                return new NameSort();
+                return new ChildNameSort();
             }
 
             @Override
@@ -73,8 +73,8 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
 
             @Override
             public DialogOption[] sortingOptions() {
-                return new DialogOption[]{new NameSort(), new ECNumberSort(),
-                        new HighPrioritySort(), new BPLSort(),
+                return new DialogOption[]{new ChildNameSort(), new ChildAgeSort(),
+                        new ChildHighRiskSort(), new BPLSort(),
                         new SCSort(), new STSort()};
             }
         };

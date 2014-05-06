@@ -5,7 +5,9 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.FPMethod;
+import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.IntegerUtil;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
@@ -85,6 +87,16 @@ public class ECClient implements ECSmartRegisterClient {
     @Override
     public int age() {
         return StringUtils.isBlank(dateOfBirth) ? 0 : Years.yearsBetween(LocalDate.parse(dateOfBirth), LocalDate.now()).getYears();
+    }
+
+    @Override
+    public int ageInDays() {
+        return StringUtils.isBlank(dateOfBirth) ? 0 : Days.daysBetween(LocalDate.parse(dateOfBirth), DateUtil.today()).getDays();
+    }
+
+    @Override
+    public String displayName() {
+        return name();
     }
 
     public Integer ecNumber() {

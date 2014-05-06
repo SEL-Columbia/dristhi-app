@@ -44,6 +44,7 @@ public class ChildClient implements ChildSmartRegisterClient {
         this.thayiCardNumber = thayiCardNumber;
     }
 
+    @Override
     public String motherName() {
         return motherName;
     }
@@ -59,8 +60,13 @@ public class ChildClient implements ChildSmartRegisterClient {
     }
 
     @Override
-    public String name() {
+    public String displayName() {
         return StringUtils.isBlank(name) ? "B/o " + motherName() : name;
+    }
+
+    @Override
+    public String name() {
+        return name;
     }
 
     @Override
@@ -79,7 +85,7 @@ public class ChildClient implements ChildSmartRegisterClient {
 
     @Override
     public String ageInString() {
-        return "(" + format(getAgeInDays()) + ", " + formatGender(gender()) + ")";
+        return "(" + format(ageInDays()) + ", " + formatGender(gender()) + ")";
     }
 
     private String formatGender(String gender) {
@@ -140,7 +146,8 @@ public class ChildClient implements ChildSmartRegisterClient {
                 || (StringUtils.isBlank(motherName) && motherName.toLowerCase().startsWith(filterCriterion.toLowerCase()));
     }
 
-    public int getAgeInDays() {
+    @Override
+    public int ageInDays() {
         return StringUtils.isBlank(dob) ? 0 : Days.daysBetween(LocalDate.parse(dob), DateUtil.today()).getDays();
     }
 
@@ -157,6 +164,18 @@ public class ChildClient implements ChildSmartRegisterClient {
         } else {
             return (int) Math.floor(days_since / 365) + "y";
         }
+    }
+
+    public static int compareChildNames(SmartRegisterClient client, SmartRegisterClient anotherClient) {
+        ChildSmartRegisterClient childClient = (ChildSmartRegisterClient) client;
+        ChildSmartRegisterClient anotherChildClient = (ChildSmartRegisterClient) anotherClient;
+
+        if (StringUtils.isBlank(childClient.name()) && StringUtils.isBlank(anotherChildClient.name())) {
+            return childClient.motherName().compareTo(anotherChildClient.motherName());
+        } else if (!StringUtils.isBlank(childClient.name()) && !StringUtils.isBlank(anotherChildClient.name())){
+            return childClient.name().compareTo(anotherChildClient.name());
+        }
+        return StringUtils.isBlank(client.name()) ?  -1 : 1;
     }
 
     @Override

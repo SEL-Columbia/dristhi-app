@@ -111,5 +111,7 @@
     <string name="header_vitamin_a">VITAMIN A</string>
     <string name="thayi_label">Thayi:</string>
     <string name="mother_ec_label">Mother EC:</string>
+    <string name="sort_by_child_age">Age</string>
+    <string name="sort_by_child_hr">HR</string>
 
 </resources>

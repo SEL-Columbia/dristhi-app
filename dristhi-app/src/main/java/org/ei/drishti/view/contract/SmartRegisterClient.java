@@ -6,7 +6,7 @@ public interface SmartRegisterClient {
     Comparator<SmartRegisterClient> NAME_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            return client.wifeName().compareToIgnoreCase(anotherClient.wifeName());
+            return client.name().compareToIgnoreCase(anotherClient.name());
         }
     };
 
@@ -14,7 +14,7 @@ public interface SmartRegisterClient {
         @Override
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
             return client.isHighPriority() && anotherClient.isHighPriority()
-                    ? client.wifeName().compareToIgnoreCase(anotherClient.wifeName())
+                    ? client.name().compareToIgnoreCase(anotherClient.name())
                     : anotherClient.isHighPriority() ? 1 : -1;
         }
     };
@@ -24,7 +24,7 @@ public interface SmartRegisterClient {
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
             if ((client.isBPL() && anotherClient.isBPL())
                     || (!client.isBPL() && !anotherClient.isBPL())) {
-                return client.wifeName().compareToIgnoreCase(anotherClient.wifeName());
+                return client.name().compareToIgnoreCase(anotherClient.name());
             } else {
                 return anotherClient.isBPL() ? 1 : -1;
             }
@@ -36,7 +36,7 @@ public interface SmartRegisterClient {
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
             if ((client.isSC() && anotherClient.isSC())
                     || (!client.isSC() && !anotherClient.isSC())) {
-                return client.wifeName().compareToIgnoreCase(anotherClient.wifeName());
+                return client.name().compareToIgnoreCase(anotherClient.name());
             } else {
                 return anotherClient.isSC() ? 1 : -1;
             }
@@ -48,7 +48,7 @@ public interface SmartRegisterClient {
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
             if ((client.isST() && anotherClient.isST())
                     || (!client.isST() && !anotherClient.isST())) {
-                return client.wifeName().compareToIgnoreCase(anotherClient.wifeName());
+                return client.name().compareToIgnoreCase(anotherClient.name());
             } else {
                 return anotherClient.isST() ? 1 : -1;
             }
@@ -84,4 +84,8 @@ public interface SmartRegisterClient {
     String locationStatus();
 
     public String ageInString();
+
+    public int ageInDays();
+
+    public String displayName();
 }
