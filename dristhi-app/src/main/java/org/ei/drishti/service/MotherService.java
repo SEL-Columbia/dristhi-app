@@ -14,8 +14,8 @@ import static org.ei.drishti.AllConstants.ANCRegistrationFields.REGISTRATION_DAT
 import static org.ei.drishti.AllConstants.ANCVisitFields.*;
 import static org.ei.drishti.AllConstants.BOOLEAN_FALSE;
 import static org.ei.drishti.AllConstants.CommonFormFields.SUBMISSION_DATE;
-import static org.ei.drishti.AllConstants.DeliveryOutcomeFields.DID_MOTHER_SURVIVE;
-import static org.ei.drishti.AllConstants.DeliveryOutcomeFields.DID_WOMAN_SURVIVE;
+import static org.ei.drishti.AllConstants.PNCRegistrationFields.DID_MOTHER_SURVIVE;
+import static org.ei.drishti.AllConstants.PNCRegistrationFields.DID_WOMAN_SURVIVE;
 import static org.ei.drishti.AllConstants.DeliveryPlanFields.*;
 import static org.ei.drishti.AllConstants.HbTestFields.HB_LEVEL;
 import static org.ei.drishti.AllConstants.HbTestFields.HB_TEST_DATE;

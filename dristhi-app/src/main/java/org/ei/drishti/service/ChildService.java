@@ -19,6 +19,7 @@ import static org.ei.drishti.AllConstants.ChildRegistrationOAFields.THAYI_CARD_N
 import static org.ei.drishti.AllConstants.CommonFormFields.SUBMISSION_DATE;
 import static org.ei.drishti.AllConstants.ENTITY_ID_FIELD_NAME;
 import static org.ei.drishti.AllConstants.Immunizations.*;
+import static org.ei.drishti.AllConstants.PNCRegistrationFields.*;
 import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.domain.TimelineEvent.*;
 
@@ -41,10 +42,10 @@ public class ChildService {
     }
 
     public void register(FormSubmission submission) {
-        SubForm subForm = submission.getSubFormByName(AllConstants.DeliveryOutcomeFields.CHILD_REGISTRATION_SUB_FORM_NAME);
+        SubForm subForm = submission.getSubFormByName(CHILD_REGISTRATION_SUB_FORM_NAME);
         if (handleStillBirth(submission, subForm)) return;
-        String referenceDate = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.REFERENCE_DATE);
-        String deliveryPlace = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.DELIVERY_PLACE);
+        String referenceDate = submission.getFieldValue(REFERENCE_DATE);
+        String deliveryPlace = submission.getFieldValue(DELIVERY_PLACE);
         Mother mother = motherRepository.findById(submission.entityId());
         for (Map<String, String> childInstance : subForm.instances()) {
             Child child = childRepository.find(childInstance.get(ENTITY_ID_FIELD_NAME));
@@ -61,8 +62,8 @@ public class ChildService {
     }
 
     private boolean isDeliveryOutcomeStillBirth(FormSubmission submission) {
-        return AllConstants.DeliveryOutcomeFields.STILL_BIRTH_VALUE
-                .equalsIgnoreCase(submission.getFieldValue(AllConstants.DeliveryOutcomeFields.DELIVERY_OUTCOME));
+        return AllConstants.PNCRegistrationFields.STILL_BIRTH_VALUE
+                .equalsIgnoreCase(submission.getFieldValue(DELIVERY_OUTCOME));
     }
 
     public void registerForEC(FormSubmission submission) {
@@ -136,8 +137,8 @@ public class ChildService {
         SubForm subForm = submission.getSubFormByName(AllConstants.PNCRegistrationOAFields.CHILD_REGISTRATION_OA_SUB_FORM_NAME);
         if (handleStillBirth(submission, subForm)) return;
 
-        String referenceDate = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.REFERENCE_DATE);
-        String deliveryPlace = submission.getFieldValue(AllConstants.DeliveryOutcomeFields.DELIVERY_PLACE);
+        String referenceDate = submission.getFieldValue(REFERENCE_DATE);
+        String deliveryPlace = submission.getFieldValue(DELIVERY_PLACE);
         Mother mother = motherRepository.findAllCasesForEC(submission.entityId()).get(0);
 
         for (Map<String, String> childInstances : subForm.instances()) {

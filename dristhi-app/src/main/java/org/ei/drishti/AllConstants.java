@@ -66,7 +66,7 @@ public class AllConstants {
         public static final String TT_2 = "tt_2";
         public static final String IFA = "ifa";
         public static final String HB_TEST = "hb_test";
-        public static final String DELIVERY_OUTCOME = "delivery_outcome";
+        public static final String PNC_REGISTRATION = "pnc_registration";
         public static final String PNC_REGISTRATION_OA = "pnc_registration_oa";
         public static final String PNC_CLOSE = "pnc_close";
         public static final String PNC_VISIT = "pnc_visit";
@@ -163,7 +163,7 @@ public class AllConstants {
         public static final String CHILD_PNC_VISIT_SUB_FORM_NAME = "child_pnc_visit";
     }
 
-    public class DeliveryOutcomeFields {
+    public class PNCRegistrationFields {
         public static final String DID_WOMAN_SURVIVE = "didWomanSurvive";
         public static final String DID_MOTHER_SURVIVE = "didMotherSurvive";
         public static final String REFERENCE_DATE = "referenceDate";
