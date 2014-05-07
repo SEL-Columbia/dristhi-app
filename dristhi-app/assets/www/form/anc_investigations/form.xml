@@ -5,7 +5,9 @@
 
 
     <label class="question non-select ">
-        <span lang="" class="question-label active">Date of test result?</span>
+        <span lang="" class="question-label active">Date of test result? &#xCAA;&#xCB0;&#xCC0;&#xC95;&#xCCD;&#xCB7;&#xCC6;
+            &#xCAB;&#xCB2;&#xCBF;&#xCA4;&#xCBE;&#xC82;&#xCB6;&#xCA6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        </span>
         <input autocomplete="off" type="date" name="/ANC_Investigations_EngKan/test_date"
                data-constraint=".&lt;=  /ANC_Investigations_EngKan/today " data-type-xml="date"/>
     </label>
@@ -138,7 +140,9 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Rh incompatible couple?</span>
+                <span lang="" class="question-label active">Rh incompatible couple? &#xC86;&#xCB0;&#xCCD;.&#xCB9;&#xCC6;&#xC9A;&#xCCD;
+                    &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCA3;&#xCBF;&#xC95;&#xCC6;&#xCAF;&#xCBE;&#xC97;&#xCA6; &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC7;?
+                </span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
