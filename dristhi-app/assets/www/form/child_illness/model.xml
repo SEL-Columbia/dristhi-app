@@ -23,7 +23,6 @@
                 </diarrhea_group>
                 <fever_group>
                     <days_of_fever/>
-                    <malaria_area/>
                 </fever_group>
                 <drink_feed_nothing/>
                 <vomiting_everything/>

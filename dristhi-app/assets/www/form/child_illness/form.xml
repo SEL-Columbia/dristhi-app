@@ -203,31 +203,6 @@
                        name="/Child_Sick_Visit_EngKan/child_sickness_management_group/fever_group/days_of_fever"
                        data-type-xml="int"/>
             </label>
-            <fieldset class="question ">
-                <fieldset>
-                    <legend>
-                        <span lang="" class="question-label active">Is this a malaria endemic area? &#xC87;&#xCA6;&#xCC1;
-                            &#xCAE;&#xCB2;&#xCC7;&#xCB0;&#xCBF;&#xCAF;&#xCBE;&#xCAA;&#xCC0;&#xCA1;&#xCBF;&#xCA4; &#xCAA;&#xCCD;&#xCB0;&#xCA6;&#xCC7;&#xCB6;&#xCB5;&#xCC7;?
-                        </span>
-                    </legend>
-                    <div class="option-wrapper">
-                        <label class="">
-                            <input autocomplete="off" type="radio"
-                                   name="/Child_Sick_Visit_EngKan/child_sickness_management_group/fever_group/malaria_area"
-                                   data-name="/Child_Sick_Visit_EngKan/child_sickness_management_group/fever_group/malaria_area"
-                                   value="yes" data-type-xml="select1"/>
-                            <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-                        </label>
-                        <label class="">
-                            <input autocomplete="off" type="radio"
-                                   name="/Child_Sick_Visit_EngKan/child_sickness_management_group/fever_group/malaria_area"
-                                   data-name="/Child_Sick_Visit_EngKan/child_sickness_management_group/fever_group/malaria_area"
-                                   value="no" data-type-xml="select1"/>
-                            <span lang="" class="option-label active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-                        </label>
-                    </div>
-                </fieldset>
-            </fieldset>
         </section>
         <!--end of group -->
         <fieldset class="question or-branch pre-init ">
@@ -343,7 +318,7 @@
         </fieldset>
         <fieldset class="trigger or-branch pre-init"
                   name="/Child_Sick_Visit_EngKan/child_sickness_management_group/fever_message"
-                  data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever  = '' and  /Child_Sick_Visit_EngKan/child_sickness_management_group/fever_group/malaria_area  = 'yes' and selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'fever')">
+                  data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever  = '' and selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'fever')">
             <span lang="" class="question-label active">Refer the child for a malaria test. &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                 &#xCAE;&#xCB2;&#xCC7;&#xCB0;&#xCBF;&#xCAF;&#xCBE; &#xCAA;&#xCB0;&#xCC0;&#xC95;&#xCCD;&#xCB7;&#xCC6;&#xC97;&#xCC6;
                 &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCB2;&#xCCD; &#xCAE;&#xCBE;&#xCA1;&#xCBF;.
