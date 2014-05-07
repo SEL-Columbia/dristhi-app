@@ -6,50 +6,138 @@
               android:orientation="horizontal"
               android:visibility="gone">
 
-    <org.ei.drishti.view.customControls.CustomFontTextView
-            android:id="@+id/child_register_measles"
+    <LinearLayout
+            android:id="@+id/layout_measles"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="@integer/child_list_dob_view_weight"
-            android:text="Measles"
-            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
+            android:layout_weight="@integer/child_list_measles_view_weight"
+            android:weightSum="10"
+            android:orientation="vertical">
+
+        <org.ei.drishti.view.customControls.CustomFontTextView
+                android:id="@+id/btn_measles"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="7"
+                android:gravity="center"
+                android:text="@string/measles"
+                android:layout_margin="5dp"
+                android:background="@color/status_bar_text_almost_white"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+
+        <org.ei.drishti.view.customControls.CustomFontTextView
+                android:id="@+id/txt_measles_on"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:gravity="left"
+                android:layout_margin="5dp"
+                android:drawableLeft="@drawable/ic_yes"
+                style="@style/CustomFontTextViewStyle.ListView.Small"/>
+    </LinearLayout>
 
     <ImageView
             android:layout_width="@dimen/smart_register_client_divider_height"
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
 
-    <org.ei.drishti.view.customControls.CustomFontTextView
-            android:id="@+id/child_register_opv_booster"
+    <LinearLayout
+            android:id="@+id/layout_opv_booster"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="@integer/child_list_last_service_view_weight"
-            android:text="OPV Booster"
-            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
+            android:layout_weight="@integer/child_list_opv_booster_view_weight"
+            android:weightSum="10"
+            android:orientation="vertical">
+
+        <org.ei.drishti.view.customControls.CustomFontTextView
+                android:id="@+id/btn_opv_booster"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="7"
+                android:gravity="center"
+                android:text="@string/opv_booster"
+                android:layout_margin="5dp"
+                android:background="@color/status_bar_text_almost_white"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+
+        <org.ei.drishti.view.customControls.CustomFontTextView
+                android:id="@+id/txt_opv_booster_on"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:gravity="left"
+                android:layout_margin="5dp"
+                android:drawableLeft="@drawable/ic_yes"
+                style="@style/CustomFontTextViewStyle.ListView.Small"/>
+    </LinearLayout>
 
     <ImageView
             android:layout_width="@dimen/smart_register_client_divider_height"
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
 
-    <org.ei.drishti.view.customControls.CustomFontTextView
-            android:id="@+id/child_register_dpt_booster"
+    <LinearLayout
+            android:id="@+id/layout_dpt_booster"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="@integer/child_list_last_service_view_weight"
-            android:text="DPT Booster"
-            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
+            android:layout_weight="@integer/child_list_dpt_booster_view_weight"
+            android:weightSum="10"
+            android:orientation="vertical">
+
+        <org.ei.drishti.view.customControls.CustomFontTextView
+                android:id="@+id/btn_dpt_booster"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="7"
+                android:gravity="center"
+                android:text="@string/dpt_booster"
+                android:layout_margin="5dp"
+                android:background="@color/status_bar_text_almost_white"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+
+        <org.ei.drishti.view.customControls.CustomFontTextView
+                android:id="@+id/txt_dpt_booster_on"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:gravity="left"
+                android:layout_margin="5dp"
+                android:drawableLeft="@drawable/ic_yes"
+                style="@style/CustomFontTextViewStyle.ListView.Small"/>
+    </LinearLayout>
 
     <ImageView
             android:layout_width="@dimen/smart_register_client_divider_height"
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
 
-    <org.ei.drishti.view.customControls.CustomFontTextView
-            android:id="@+id/child_register_vitamin_a"
+    <LinearLayout
+            android:id="@+id/layout_vitamin_a"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="@integer/child_list_last_service_view_weight"
-            android:text="Vitamin A"
-            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
+            android:layout_weight="@integer/child_list_vitamin_a_view_weight"
+            android:weightSum="10"
+            android:orientation="vertical">
+
+        <org.ei.drishti.view.customControls.CustomFontTextView
+                android:id="@+id/btn_vitamin_a"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="7"
+                android:gravity="center"
+                android:text="@string/vitamin_a"
+                android:layout_margin="5dp"
+                android:background="@color/status_bar_text_almost_white"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+
+        <org.ei.drishti.view.customControls.CustomFontTextView
+                android:id="@+id/txt_vitamin_a_on"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:gravity="left"
+                android:layout_margin="5dp"
+                android:drawableLeft="@drawable/ic_yes"
+                style="@style/CustomFontTextViewStyle.ListView.Small"/>
+    </LinearLayout>
 </LinearLayout>

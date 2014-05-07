@@ -12,7 +12,6 @@ import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
-import static org.ei.drishti.view.contract.ChildSmartRegisterClient.SickStatus;
 
 public class ChildOverviewServiceMode extends ServiceModeOption {
 
@@ -40,7 +39,7 @@ public class ChildOverviewServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{30, 15, 15, 15, 15, 10};
+                return new int[]{26, 14, 12, 15, 23, 10};
             }
 
             @Override
@@ -77,8 +76,8 @@ public class ChildOverviewServiceMode extends ServiceModeOption {
     private void setupSickStatus(ChildSmartRegisterClient client,
                                  NativeChildSmartRegisterViewHolder viewHolder,
                                  View.OnClickListener onClickListener) {
-        final SickStatus sickStatus = client.sickStatus();
-        if (sickStatus == SickStatus.noDiseaseStatus) {
+        final ChildSmartRegisterClient.ChildSickStatus sickStatus = client.sickStatus();
+        if (sickStatus == ChildSmartRegisterClient.ChildSickStatus.noDiseaseStatus) {
             viewHolder.sickVisitView().setVisibility(VISIBLE);
             viewHolder.sickVisitView().setTag(client);
             viewHolder.sickVisitView().setOnClickListener(onClickListener);

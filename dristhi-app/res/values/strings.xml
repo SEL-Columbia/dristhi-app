@@ -139,5 +139,14 @@
     <string name="sick_visit">Sick Visit</string>
     <string name="illness_visit">Illness Visit:</string>
     <string name="illness_date">Date:</string>
+    <string name="str_bcg">BCG</string>
+    <string name="str_bcg_on">On</string>
+    <string name="hep_b_birth">Hep B</string>
+    <string name="opv">OPV</string>
+    <string name="pentavalent">Pentavalent</string>
+    <string name="measles">Measles</string>
+    <string name="opv_booster">OPV Booster</string>
+    <string name="dpt_booster">DPT Booster</string>
+    <string name="vitamin_a">Vitamin A</string>
 
 </resources>

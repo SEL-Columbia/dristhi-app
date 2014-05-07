@@ -26,6 +26,16 @@ public class NativeChildSmartRegisterViewHolder {
     private final TextView txtIllness;
     private final TextView txtIllnessDate;
     private final View sicknessDeailLayout;
+    private final TextView txtBcgPendingView;
+    private final View layoutBcgOn;
+    private final TextView txtBcgDoneOn;
+    private final TextView txtHepBDoneOn;
+    private final TextView txtPentavDoneOn;
+    private final TextView txtOpvDoneOn;
+    private final TextView txtMeaslesDoneOn;
+    private final TextView txtOpvBoosterDoneOn;
+    private final TextView txtDptBoosterDoneOn;
+    private final TextView txtVitaminADoneOn;
 
     public NativeChildSmartRegisterViewHolder(ViewGroup itemView) {
         profileInfoLayout = (ClientProfileView) itemView.findViewById(R.id.profile_info_layout);
@@ -49,6 +59,18 @@ public class NativeChildSmartRegisterViewHolder {
         lblIllnessDate = (TextView) sicknessDeailLayout.findViewById(R.id.lbl_illness_date);
         txtIllness = (TextView) sicknessDeailLayout.findViewById(R.id.txt_illness);
         txtIllnessDate = (TextView) sicknessDeailLayout.findViewById(R.id.txt_illness_date);
+
+        txtBcgPendingView = (TextView) serviceModeImmunization0to9View.findViewById(R.id.txt_bcg_pending);
+        layoutBcgOn = serviceModeImmunization0to9View.findViewById(R.id.layout_bcg_on);
+        txtBcgDoneOn = (TextView) layoutBcgOn.findViewById(R.id.txt_bcg_on);
+        txtOpvDoneOn = (TextView) serviceModeImmunization0to9View.findViewById(R.id.txt_opv_on);
+        txtHepBDoneOn = (TextView) serviceModeImmunization0to9View.findViewById(R.id.txt_hep_b_on);
+        txtPentavDoneOn = (TextView) serviceModeImmunization0to9View.findViewById(R.id.txt_pentav_on);
+
+        txtMeaslesDoneOn = (TextView) serviceModeImmunization9PlusView.findViewById(R.id.txt_measles_on);
+        txtOpvBoosterDoneOn = (TextView) serviceModeImmunization9PlusView.findViewById(R.id.txt_opv_booster_on);
+        txtDptBoosterDoneOn = (TextView) serviceModeImmunization9PlusView.findViewById(R.id.txt_dpt_booster_on);
+        txtVitaminADoneOn = (TextView) serviceModeImmunization9PlusView.findViewById(R.id.txt_vitamin_a_on);
     }
 
     public ClientProfileView profileInfoLayout() {
@@ -119,5 +141,45 @@ public class NativeChildSmartRegisterViewHolder {
 
     public View sicknessDetailLayout() {
         return sicknessDeailLayout;
+    }
+
+    public TextView bcgPendingView() {
+        return txtBcgPendingView;
+    }
+
+    public View bcgDoneLayout() {
+        return layoutBcgOn;
+    }
+
+    public TextView bcgDoneOnView() {
+        return txtBcgDoneOn;
+    }
+
+    public TextView hepBDoneOnView() {
+        return txtHepBDoneOn;
+    }
+
+    public TextView pentavDoneOnView() {
+        return txtPentavDoneOn;
+    }
+
+    public TextView vitaminADoneOnView() {
+        return txtVitaminADoneOn;
+    }
+
+    public TextView dptBoosterDoneOnView() {
+        return txtDptBoosterDoneOn;
+    }
+
+    public TextView opvBoosterDoneOnView() {
+        return txtOpvBoosterDoneOn;
+    }
+
+    public TextView measlesDoneOnView() {
+        return txtMeaslesDoneOn;
+    }
+
+    public TextView opvDoneOnView() {
+        return txtOpvDoneOn;
     }
 }

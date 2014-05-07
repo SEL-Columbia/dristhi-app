@@ -34,7 +34,7 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{30, 15, 15, 15, 15, 10};
+                return new int[]{26, 14, 15, 15, 15, 15};
             }
 
             @Override
@@ -52,5 +52,33 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
                               NativeChildSmartRegisterViewHolder viewHolder,
                               View.OnClickListener clientSectionClickListener) {
         viewHolder.serviceModeImmunization9PlusView().setVisibility(View.VISIBLE);
+
+        if (client.isMeaslesDone()) {
+            viewHolder.measlesDoneOnView().setVisibility(View.VISIBLE);
+            viewHolder.measlesDoneOnView().setText(client.measlesDoneDate());
+        } else {
+            viewHolder.measlesDoneOnView().setVisibility(View.INVISIBLE);
+        }
+
+        if (client.isOpvBoosterDone()) {
+            viewHolder.opvBoosterDoneOnView().setVisibility(View.VISIBLE);
+            viewHolder.opvBoosterDoneOnView().setText(client.opvBoosterDoneDate());
+        } else {
+            viewHolder.opvBoosterDoneOnView().setVisibility(View.INVISIBLE);
+        }
+
+        if (client.isDptBoosterDone()) {
+            viewHolder.dptBoosterDoneOnView().setVisibility(View.VISIBLE);
+            viewHolder.dptBoosterDoneOnView().setText(client.dptBoosterDoneDate());
+        } else {
+            viewHolder.dptBoosterDoneOnView().setVisibility(View.INVISIBLE);
+        }
+
+        if (client.isVitaminADone()) {
+            viewHolder.vitaminADoneOnView().setVisibility(View.VISIBLE);
+            viewHolder.vitaminADoneOnView().setText(client.vitaminADoneDate());
+        } else {
+            viewHolder.vitaminADoneOnView().setVisibility(View.INVISIBLE);
+        }
     }
 }

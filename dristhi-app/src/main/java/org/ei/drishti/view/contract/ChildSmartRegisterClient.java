@@ -8,14 +8,14 @@ import static org.ei.drishti.util.DateUtil.formatDate;
 
 public interface ChildSmartRegisterClient extends SmartRegisterClient {
 
-    public static class SickStatus {
-        public static SickStatus noDiseaseStatus = new SickStatus(null, null, null);
+    public static class ChildSickStatus {
+        public static ChildSickStatus noDiseaseStatus = new ChildSickStatus(null, null, null);
 
         private String diseases;
         private String otherDiseases;
         private String date;
 
-        public SickStatus(String diseases, String otherDiseases, String date) {
+        public ChildSickStatus(String diseases, String otherDiseases, String date) {
             this.diseases = diseases;
             this.otherDiseases = otherDiseases;
             this.date = date;
@@ -48,7 +48,39 @@ public interface ChildSmartRegisterClient extends SmartRegisterClient {
 
     public ServiceProvidedDTO lastServiceProvided();
 
-    public ServiceProvidedDTO illnessVisitService();
+    public ServiceProvidedDTO illnessVisitServiceProvided();
 
-    public SickStatus sickStatus();
+    public ChildSickStatus sickStatus();
+
+    public boolean isBcgDone();
+
+    public boolean isOpvDone();
+
+    public boolean isHepBDone();
+
+    public boolean isPentavDone();
+
+    public String bcgDoneDate();
+
+    public String opvDoneDate();
+
+    public String hepBDoneDate();
+
+    public String pentavDoneDate();
+
+    public boolean isMeaslesDone();
+
+    public boolean isOpvBoosterDone();
+
+    public boolean isDptBoosterDone();
+
+    public boolean isVitaminADone();
+
+    public String measlesDoneDate();
+
+    public String opvBoosterDoneDate();
+
+    public String dptBoosterDoneDate();
+
+    public String vitaminADoneDate();
 }

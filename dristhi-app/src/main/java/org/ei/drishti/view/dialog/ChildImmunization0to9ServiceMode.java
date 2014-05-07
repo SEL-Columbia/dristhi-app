@@ -35,7 +35,7 @@ public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{30, 15, 15, 15, 15, 10};
+                return new int[]{26, 14, 15, 15, 15, 15};
             }
 
             @Override
@@ -53,5 +53,35 @@ public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
                               NativeChildSmartRegisterViewHolder viewHolder,
                               View.OnClickListener clientSectionClickListener) {
         viewHolder.serviceModeImmunization0to9View().setVisibility(View.VISIBLE);
+
+        if (client.isBcgDone()) {
+            viewHolder.bcgDoneLayout().setVisibility(View.VISIBLE);
+            viewHolder.bcgDoneOnView().setText("On " + client.bcgDoneDate());
+            viewHolder.bcgPendingView().setVisibility(View.INVISIBLE);
+        } else {
+            viewHolder.bcgDoneLayout().setVisibility(View.INVISIBLE);
+            viewHolder.bcgPendingView().setVisibility(View.VISIBLE);
+        }
+
+        if (client.isOpvDone()) {
+            viewHolder.opvDoneOnView().setVisibility(View.VISIBLE);
+            viewHolder.opvDoneOnView().setText(client.opvDoneDate());
+        } else {
+            viewHolder.opvDoneOnView().setVisibility(View.INVISIBLE);
+        }
+
+        if (client.isHepBDone()) {
+            viewHolder.hepBDoneOnView().setVisibility(View.VISIBLE);
+            viewHolder.hepBDoneOnView().setText(client.hepBDoneDate());
+        } else {
+            viewHolder.hepBDoneOnView().setVisibility(View.INVISIBLE);
+        }
+
+        if (client.isPentavDone()) {
+            viewHolder.pentavDoneOnView().setVisibility(View.VISIBLE);
+            viewHolder.pentavDoneOnView().setText(client.pentavDoneDate());
+        } else {
+            viewHolder.pentavDoneOnView().setVisibility(View.INVISIBLE);
+        }
     }
 }
