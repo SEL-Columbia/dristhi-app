@@ -16,7 +16,9 @@ public abstract class ServiceModeOption implements DialogOption {
     }
 
     public void apply() {
-        clientsProvider.onServiceModeSelected(this);
+        if (clientsProvider != null) {
+            clientsProvider.onServiceModeSelected(this);
+        }
     }
 
     public abstract ClientsHeaderProvider getHeaderProvider();

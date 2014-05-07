@@ -74,7 +74,7 @@ public class ChildSmartRegisterController {
 
                     childrenClient.add(childClient);
                 }
-                //sortByName(childrenClient);
+                sortByMotherName(childrenClient);
                 return new Gson().toJson(childrenClient);
             }
         });
@@ -147,6 +147,15 @@ public class ChildSmartRegisterController {
             @Override
             public int compare(SmartRegisterClient oneChild, SmartRegisterClient anotherChild) {
                 return ((ChildClient)oneChild).motherName().compareToIgnoreCase(((ChildClient)anotherChild).motherName());
+            }
+        });
+    }
+
+    private void sortByMotherName(List<ChildClient> childrenClient) {
+        sort(childrenClient, new Comparator<ChildClient>() {
+            @Override
+            public int compare(ChildClient oneChild, ChildClient anotherChild) {
+                return oneChild.motherName().compareToIgnoreCase(anotherChild.motherName());
             }
         });
     }
