@@ -29,25 +29,23 @@
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Close_EngKan/close_reason"
-                           data-name="/ANC_Close_EngKan/close_reason" value="relocation_temporary" required="required"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Relocation (temporary) &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCBE;&#xC82;&#xCA4;&#xCB0;
-                        (&#xCA4;&#xCBE;&#xCA4;&#xCCD;&#xC95;&#xCB2;&#xCBF;&#xC95;)
-                    </span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/ANC_Close_EngKan/close_reason"
                            data-name="/ANC_Close_EngKan/close_reason" value="relocation_permanent" required="required"
                            data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Relocation (permanent) &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCBE;&#xC82;&#xCA4;&#xCB0;
-                        (&#xCB6;&#xCBE;&#xCB6;&#xCCD;&#xCB5;&#xCA4;)
-                    </span>
+                    <span lang="" class="option-label active">Relocation &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCBE;&#xC82;&#xCA4;&#xCB0;</span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Close_EngKan/close_reason"
                            data-name="/ANC_Close_EngKan/close_reason" value="death_of_woman" required="required"
                            data-type-xml="select1"/>
                     <span lang="" class="option-label active">Woman died &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6; &#xCAE;&#xCB0;&#xCA3;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/ANC_Close_EngKan/close_reason"
+                           data-name="/ANC_Close_EngKan/close_reason" value="wrong_entry" required="required"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Wrong entry &#xCA4;&#xCAA;&#xCCD;&#xCAA;&#xCBE;&#xC97;&#xCBF;
+                        &#xCA8;&#xCAE;&#xCC2;&#xCA6;&#xCBF;&#xCB8;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;.
+                    </span>
                 </label>
             </div>
         </fieldset>
@@ -398,7 +396,7 @@
         </label>
     </section>
     <!--end of group -->
-    <fieldset class="question or-branch pre-init ">
+    <fieldset class="question ">
         <fieldset>
             <legend>
                 <span lang="" class="question-label active">Confirm ANC close? ANC &#xCAE;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCB2;&#xCC1;
@@ -410,26 +408,6 @@
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Close_EngKan/confirm_anc_close"
                            data-name="/ANC_Close_EngKan/confirm_anc_close" value="yes" required="required"
-                           data-relevant=" /ANC_Close_EngKan/close_reason  != 'relocation_temporary'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-    <fieldset class="question or-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span lang="" class="question-label active">Confirm ANC relocated (temporary)? ANC &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCBE;&#xC82;&#xCA4;&#xCB0;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                    (&#xCA4;&#xCBE;&#xCA4;&#xCCD;&#xC95;&#xCB2;&#xCBF;&#xC95;) &#xC96;&#xC9A;&#xCBF;&#xCA4;&#xCAA;&#xCA1;&#xCBF;&#xCB8;&#xCBF;?
-                </span>
-                <span class="required">*</span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/ANC_Close_EngKan/confirm_anc_left"
-                           data-name="/ANC_Close_EngKan/confirm_anc_left" value="yes" required="required"
-                           data-relevant=" /ANC_Close_EngKan/close_reason  = 'relocation_temporary'"
                            data-type-xml="select1"/>
                     <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
                 </label>
@@ -490,7 +468,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Close_EngKan/formhub/uuid"
-                   data-calculate="'6ff7b8c453a448cd8a91b3545a56798b'" data-type-xml="string"/>
+                   data-calculate="'4e9e3fa336a64ae78f07d9782c54078d'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
