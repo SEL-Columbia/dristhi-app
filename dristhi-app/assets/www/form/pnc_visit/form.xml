@@ -498,7 +498,7 @@
         </fieldset>
     </section>
     <!--end of group -->
-    <section class="or-group or-branch pre-init " name="/PNC_Visit_EngKan/pnc_child_repeat"
+    <section class="or-group-data or-branch pre-init " name="/PNC_Visit_EngKan/pnc_child_repeat"
              data-relevant=" /PNC_Visit_EngKan/case_delivery_outcome  = 'live_birth'">
         <section class="or-repeat " name="/PNC_Visit_EngKan/pnc_child_repeat">
             <fieldset class="trigger " name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_group_message">
