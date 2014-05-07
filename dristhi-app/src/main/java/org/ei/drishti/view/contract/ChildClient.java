@@ -1,6 +1,5 @@
 package org.ei.drishti.view.contract;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -12,9 +11,9 @@ import org.joda.time.Years;
 
 import java.util.List;
 
-import static org.ei.drishti.AllConstants.ECRegistrationFields.BPL_VALUE;
-import static org.ei.drishti.AllConstants.ECRegistrationFields.SC_VALUE;
-import static org.ei.drishti.AllConstants.ECRegistrationFields.ST_VALUE;
+import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
+import static org.ei.drishti.util.StringUtil.humanize;
 
 public class ChildClient implements ChildSmartRegisterClient {
     private final String entityId;
@@ -46,12 +45,12 @@ public class ChildClient implements ChildSmartRegisterClient {
 
     @Override
     public String motherName() {
-        return motherName;
+        return humanize(motherName);
     }
 
     @Override
     public String village() {
-        return village;
+        return humanize(village);
     }
 
     @Override
@@ -61,12 +60,12 @@ public class ChildClient implements ChildSmartRegisterClient {
 
     @Override
     public String displayName() {
-        return StringUtils.isBlank(name) ? "B/o " + motherName() : name;
+        return isBlank(name) ? "B/o " + motherName() : humanize(name);
     }
 
     @Override
     public String name() {
-        return name;
+        return isBlank(name) ? "" : humanize(name);
     }
 
     @Override
@@ -74,13 +73,14 @@ public class ChildClient implements ChildSmartRegisterClient {
         return motherName() + ", " + fatherName();
     }
 
-    private String fatherName() {
-        return fatherName;
+    @Override
+    public String fatherName() {
+        return humanize(fatherName);
     }
 
     @Override
     public int age() {
-        return StringUtils.isBlank(dob) ? 0 : Years.yearsBetween(LocalDate.parse(dob), LocalDate.now()).getYears();
+        return isBlank(dob) ? 0 : Years.yearsBetween(LocalDate.parse(dob), LocalDate.now()).getYears();
     }
 
     @Override
@@ -97,10 +97,7 @@ public class ChildClient implements ChildSmartRegisterClient {
         return gender;
     }
 
-    public Integer ecNumber() {
-        return Integer.parseInt(ecNumber);
-    }
-
+    @Override
     public String locationStatus() {
         return locationStatus;
     }
@@ -142,24 +139,24 @@ public class ChildClient implements ChildSmartRegisterClient {
 
     @Override
     public boolean satisfiesFilter(String filterCriterion) {
-        return (!StringUtils.isBlank(name) && name.toLowerCase().startsWith(filterCriterion.toLowerCase()))
-                || (StringUtils.isBlank(motherName) && motherName.toLowerCase().startsWith(filterCriterion.toLowerCase()));
+        return (!isBlank(name) && name.toLowerCase().startsWith(filterCriterion.toLowerCase()))
+                || (isBlank(motherName) && motherName.toLowerCase().startsWith(filterCriterion.toLowerCase()));
     }
 
     @Override
     public int ageInDays() {
-        return StringUtils.isBlank(dob) ? 0 : Days.daysBetween(LocalDate.parse(dob), DateUtil.today()).getDays();
+        return isBlank(dob) ? 0 : Days.daysBetween(LocalDate.parse(dob), DateUtil.today()).getDays();
     }
 
     @Override
     public int compareName(SmartRegisterClient anotherClient) {
         ChildSmartRegisterClient anotherChildClient = (ChildSmartRegisterClient) anotherClient;
-        if (StringUtils.isBlank(this.name()) && StringUtils.isBlank(anotherChildClient.name())) {
+        if (isBlank(this.name()) && isBlank(anotherChildClient.name())) {
             return this.motherName().compareTo(anotherChildClient.motherName());
-        } else if (!StringUtils.isBlank(this.name()) && !StringUtils.isBlank(anotherChildClient.name())){
+        } else if (!isBlank(this.name()) && !isBlank(anotherChildClient.name())) {
             return this.name().compareTo(anotherChildClient.name());
         }
-        return StringUtils.isBlank(this.name()) ?  -1 : 1;
+        return isBlank(this.name()) ? -1 : 1;
     }
 
     public String format(int days_since) {
@@ -189,7 +186,7 @@ public class ChildClient implements ChildSmartRegisterClient {
 
     @Override
     public String dateOfBirth() {
-        return StringUtils.isBlank(dob) ? "" : dob;
+        return isBlank(dob) ? "" : dob;
     }
 
     public ChildClient withEntityIdToSavePhoto(String entityIdToSavePhoto) {

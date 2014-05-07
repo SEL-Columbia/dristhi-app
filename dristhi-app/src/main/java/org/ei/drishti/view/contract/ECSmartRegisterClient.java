@@ -12,38 +12,38 @@ public interface ECSmartRegisterClient extends SmartRegisterClient {
     Comparator<SmartRegisterClient> EC_NUMBER_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            return ((ECSmartRegisterClient)client).ecNumber()
+            return ((ECSmartRegisterClient) client).ecNumber()
                     .compareTo(((ECSmartRegisterClient) anotherClient).ecNumber());
         }
     };
 
-    String numberOfPregnancies();
+    public String numberOfPregnancies();
 
-    String parity();
+    public String parity();
 
-    String numberOfLivingChildren();
+    public String numberOfLivingChildren();
 
-    String numberOfStillbirths();
+    public String numberOfStillbirths();
 
-    String numberOfAbortions();
+    public String numberOfAbortions();
 
-    String familyPlanningMethodChangeDate();
+    public String familyPlanningMethodChangeDate();
 
-    String numberOfOCPDelivered();
+    public String numberOfOCPDelivered();
 
-    String numberOfCondomsSupplied();
+    public String numberOfCondomsSupplied();
 
-    String numberOfCentchromanPillsDelivered();
+    public String numberOfCentchromanPillsDelivered();
 
-    String iudPerson();
+    public String iudPerson();
 
-    String iudPlace();
+    public String iudPlace();
 
-    Integer ecNumber();
+    public Integer ecNumber();
 
-    FPMethod fpMethod();
+    public FPMethod fpMethod();
 
-    List<ECChildClient> children();
+    public List<ECChildClient> children();
 
-    Map<String, String> status();
+    public Map<String, String> status();
 }

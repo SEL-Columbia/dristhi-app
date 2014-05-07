@@ -1,8 +1,11 @@
 package org.ei.drishti.view.contract;
 
+import org.ei.drishti.util.IntegerUtil;
+
 import java.util.Comparator;
 
 public interface SmartRegisterClient {
+
     Comparator<SmartRegisterClient> NAME_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
@@ -55,15 +58,42 @@ public interface SmartRegisterClient {
         }
     };
 
+    Comparator<SmartRegisterClient> AGE_COMPARATOR = new Comparator<SmartRegisterClient>() {
+        @Override
+        public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
+            return IntegerUtil.compare(client.ageInDays(), anotherClient.ageInDays());
+        }
+    };
+
+    Comparator<SmartRegisterClient> HR_COMPARATOR = new Comparator<SmartRegisterClient>() {
+        @Override
+        public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
+            if ((client.isHighRisk() && anotherClient.isHighRisk())
+                    || (!client.isHighRisk() && !anotherClient.isHighRisk())) {
+                return client.compareName(anotherClient);
+            } else {
+                return anotherClient.isHighRisk() ? 1 : -1;
+            }
+        }
+    };
+
+    public String entityId();
+
+    public String name();
+
+    public String displayName();
+
     public String village();
 
     public String wifeName();
 
-    public String name();
-
     public String husbandName();
 
     public int age();
+
+    public int ageInDays();
+
+    public String ageInString();
 
     public boolean isSC();
 
@@ -75,19 +105,11 @@ public interface SmartRegisterClient {
 
     public boolean isBPL();
 
-    public String entityId();
-
     public String profilePhotoPath();
 
+    public String locationStatus();
+
     public boolean satisfiesFilter(String filterCriterion);
-
-    String locationStatus();
-
-    public String ageInString();
-
-    public int ageInDays();
-
-    public String displayName();
 
     public int compareName(SmartRegisterClient client);
 }

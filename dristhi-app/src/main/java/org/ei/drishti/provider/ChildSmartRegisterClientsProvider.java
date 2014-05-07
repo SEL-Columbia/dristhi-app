@@ -72,7 +72,7 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
         setupIdDetailsView(client, viewHolder);
 
         viewHolder.hideAllServiceModeOptions();
-        currentServiceModeOption.setupListView(viewHolder.serviceModeViewsHolder(), client, viewHolder);
+        currentServiceModeOption.setupListView(client, viewHolder, onClickListener);
 
         itemView.setLayoutParams(clientViewLayoutParams);
         return itemView;

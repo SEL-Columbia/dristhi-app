@@ -113,5 +113,8 @@
     <string name="mother_ec_label">Mother EC:</string>
     <string name="sort_by_child_age">Age</string>
     <string name="sort_by_child_hr">HR</string>
+    <string name="str_child_immunizations">Child Immunizations</string>
+    <string name="str_child_illness">Child Illness</string>
+    <string name="str_child_close">Child Close</string>
 
 </resources>

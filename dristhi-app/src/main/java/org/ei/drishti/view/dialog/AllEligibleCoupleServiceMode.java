@@ -1,6 +1,6 @@
 package org.ei.drishti.view.dialog;
 
-import android.view.ViewGroup;
+import android.view.View;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.view.contract.ChildSmartRegisterClient;
@@ -48,7 +48,9 @@ public class AllEligibleCoupleServiceMode extends ServiceModeOption {
     }
 
     @Override
-    public void setupListView(ViewGroup serviceModeOptionsView, ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
+    public void setupListView(ChildSmartRegisterClient client,
+                              NativeChildSmartRegisterViewHolder viewHolder,
+                              View.OnClickListener clientSectionClickListener) {
 
     }
 }

@@ -1,37 +1,7 @@
 package org.ei.drishti.view.contract;
 
 
-import org.ei.drishti.util.IntegerUtil;
-
-import java.util.Comparator;
-
 public interface ChildSmartRegisterClient extends SmartRegisterClient {
-
-    Comparator<SmartRegisterClient> CHILD_NAME_COMPARATOR = new Comparator<SmartRegisterClient>() {
-        @Override
-        public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            return client.compareName(anotherClient);
-        }
-    };
-
-    Comparator<SmartRegisterClient> AGE_COMPARATOR = new Comparator<SmartRegisterClient>() {
-        @Override
-        public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            return IntegerUtil.compare(client.ageInDays(), anotherClient.ageInDays());
-        }
-    };
-
-    Comparator<SmartRegisterClient> HR_COMPARATOR = new Comparator<SmartRegisterClient>() {
-        @Override
-        public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            if ((client.isHighRisk() && anotherClient.isHighRisk())
-                    || (!client.isHighRisk() && !anotherClient.isHighRisk())) {
-                return client.compareName(anotherClient);
-            } else {
-                return anotherClient.isHighRisk() ? 1 : -1;
-            }
-        }
-    };
 
     public String gender();
 
@@ -41,5 +11,9 @@ public interface ChildSmartRegisterClient extends SmartRegisterClient {
 
     public String dateOfBirth();
 
+    public String fatherName();
+
     public String motherName();
+
+    public String locationStatus();
 }

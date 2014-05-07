@@ -1,6 +1,6 @@
 package org.ei.drishti.view.dialog;
 
-import android.view.ViewGroup;
+import android.view.View;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.ChildSmartRegisterClient;
 import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
@@ -21,5 +21,7 @@ public abstract class ServiceModeOption implements DialogOption {
 
     public abstract ClientsHeaderProvider getHeaderProvider();
 
-    public abstract void setupListView(ViewGroup serviceModeOptionsView, ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder);
+    public abstract void setupListView(ChildSmartRegisterClient client,
+                                       NativeChildSmartRegisterViewHolder viewHolder,
+                                       View.OnClickListener clientSectionClickListener);
 }

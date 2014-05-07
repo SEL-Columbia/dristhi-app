@@ -2,7 +2,6 @@ package org.ei.drishti.view.dialog;
 
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewGroup;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
@@ -50,22 +49,25 @@ public class ChildOverviewServiceMode extends ServiceModeOption {
     }
 
     @Override
-    public void setupListView(ViewGroup serviceModeOptionsView, ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
-        serviceModeOptionsView.findViewById(R.id.overview_service_mode_views).setVisibility(View.VISIBLE);
-        serviceModeOptionsView.findViewById(R.id.immunization0to9_service_mode_views).setVisibility(View.GONE);
-        serviceModeOptionsView.findViewById(R.id.immunization9plus_service_mode_views).setVisibility(View.GONE);
+    public void setupListView(ChildSmartRegisterClient client,
+                              NativeChildSmartRegisterViewHolder viewHolder,
+                              View.OnClickListener clientSectionClickListener) {
+       viewHolder.serviceModeOverviewView().setVisibility(View.VISIBLE);
 
         setupDobView(client, viewHolder);
-        setupEditView(client, viewHolder);
+        setupEditView(client, viewHolder, clientSectionClickListener);
     }
 
     private void setupDobView(ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
         viewHolder.dobView().setText(client.dateOfBirth());
     }
 
-    private void setupEditView(ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
+    private void setupEditView(ChildSmartRegisterClient client,
+                               NativeChildSmartRegisterViewHolder viewHolder,
+                               View.OnClickListener onClickListener) {
         Drawable iconPencilDrawable = Context.getInstance().applicationContext().getResources().getDrawable(R.drawable.ic_pencil);
         viewHolder.editButton().setImageDrawable(iconPencilDrawable);
+        viewHolder.editButton().setOnClickListener(onClickListener);
         viewHolder.editButton().setTag(client);
     }
 }

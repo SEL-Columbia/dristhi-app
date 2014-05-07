@@ -1,6 +1,7 @@
 package org.ei.drishti.view.activity;
 
 import android.view.View;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.domain.form.FieldOverrides;
@@ -13,7 +14,6 @@ import org.ei.drishti.view.dialog.*;
 
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
-import static org.ei.drishti.AllConstants.FormNames.*;
 
 public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -24,6 +24,23 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
 
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
     private SmartRegisterPaginatedAdapter smartRegisterPaginatedAdapter;
+
+    @Override
+    protected SmartRegisterPaginatedAdapter adapter() {
+        if (smartRegisterPaginatedAdapter == null) {
+            smartRegisterPaginatedAdapter = new SmartRegisterPaginatedAdapter(clientsProvider());
+        }
+        return smartRegisterPaginatedAdapter;
+    }
+
+    @Override
+    protected SmartRegisterClientsProvider clientsProvider() {
+        if (clientProvider == null) {
+            clientProvider = new ChildSmartRegisterClientsProvider(
+                    this, clientActionHandler, controller);
+        }
+        return clientProvider;
+    }
 
     @Override
     protected DefaultOptionsProvider getDefaultOptionsProvider() {
@@ -41,7 +58,7 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
 
             @Override
             public SortOption sortOption() {
-                return new ChildNameSort();
+                return new NameSort();
             }
 
             @Override
@@ -73,37 +90,18 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
 
             @Override
             public DialogOption[] sortingOptions() {
-                return new DialogOption[]{new ChildNameSort(), new ChildAgeSort(),
+                return new DialogOption[]{new NameSort(), new ChildAgeSort(),
                         new ChildHighRiskSort(), new BPLSort(),
                         new SCSort(), new STSort()};
             }
         };
     }
 
-    @Override
-    protected SmartRegisterPaginatedAdapter adapter() {
-        if (smartRegisterPaginatedAdapter == null) {
-            smartRegisterPaginatedAdapter = new SmartRegisterPaginatedAdapter(clientsProvider());
-        }
-        return smartRegisterPaginatedAdapter;
-    }
-
-    @Override
-    protected SmartRegisterClientsProvider clientsProvider() {
-        if (clientProvider == null) {
-            clientProvider = new ChildSmartRegisterClientsProvider(
-                    this, clientActionHandler, controller);
-        }
-        return clientProvider;
-    }
-
     private DialogOption[] getEditOptions() {
         return new DialogOption[]{
-                new OpenFormOption(getString(R.string.str_register_anc_form), ANC_REGISTRATION, formController),
-                new OpenFormOption(getString(R.string.str_register_fp_form), FP_CHANGE, formController),
-                new OpenFormOption(getString(R.string.str_register_child_form), CHILD_REGISTRATION_EC, formController),
-                new OpenFormOption(getString(R.string.str_edit_ec_form), EC_EDIT, formController),
-                new OpenFormOption(getString(R.string.str_close_ec_form), EC_CLOSE, formController),
+                new OpenFormOption(getString(R.string.str_child_immunizations), AllConstants.FormNames.CHILD_IMMUNIZATIONS, formController),
+                new OpenFormOption(getString(R.string.str_child_illness), AllConstants.FormNames.CHILD_ILLNESS, formController),
+                new OpenFormOption(getString(R.string.str_child_close), AllConstants.FormNames.CHILD_CLOSE, formController),
         };
     }
 
@@ -124,13 +122,12 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
         dialogOptionMapper = new DialogOptionMapper();
 
         clientsProvider().onServiceModeSelected(new ChildOverviewServiceMode(clientsProvider()));
-
     }
 
     @Override
     protected void startRegistration() {
         FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
-        startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
+        startFormActivity(AllConstants.FormNames.CHILD_REGISTRATION_EC, null, fieldOverrides.getJSONString());
     }
 
     private class ClientActionHandler implements View.OnClickListener {

@@ -1,7 +1,6 @@
 package org.ei.drishti.view.dialog;
 
 import android.view.View;
-import android.view.ViewGroup;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
@@ -49,9 +48,9 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
     }
 
     @Override
-    public void setupListView(ViewGroup serviceModeOptionsView, ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
-        serviceModeOptionsView.findViewById(R.id.overview_service_mode_views).setVisibility(View.GONE);
-        serviceModeOptionsView.findViewById(R.id.immunization0to9_service_mode_views).setVisibility(View.GONE);
-        serviceModeOptionsView.findViewById(R.id.immunization9plus_service_mode_views).setVisibility(View.VISIBLE);
+    public void setupListView(ChildSmartRegisterClient client,
+                              NativeChildSmartRegisterViewHolder viewHolder,
+                              View.OnClickListener clientSectionClickListener) {
+        viewHolder.serviceModeImmunization9PlusView().setVisibility(View.VISIBLE);
     }
 }
