@@ -165,13 +165,6 @@
                 </div>
             </fieldset>
         </fieldset>
-        <label class="question or-branch pre-init non-select ">
-            <span lang="" class="question-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
-            <input autocomplete="off" type="text"
-                   name="/Family_Planning_Followup_EngKan/first_time_followup_group/other_sideeffect"
-                   data-relevant="selected( /Family_Planning_Followup_EngKan/first_time_followup_group/iud_sideeffect , 'others') or selected( /Family_Planning_Followup_EngKan/first_time_followup_group/sterilization_sideeffect , 'others')"
-                   data-type-xml="string"/>
-        </label>
     </section>
     <!--end of group -->
     <fieldset class="question or-branch pre-init ">
@@ -277,13 +270,6 @@
             </div>
         </fieldset>
     </fieldset>
-    <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
-        <input autocomplete="off" type="text"
-               name="/Family_Planning_Followup_EngKan/refer_couple_fp_method_complication_place_other"
-               data-relevant=" /Family_Planning_Followup_EngKan/refer_couple_fp_method_complication_place  = 'others'"
-               data-type-xml="string"/>
-    </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
@@ -340,13 +326,6 @@
             </div>
         </fieldset>
     </fieldset>
-    <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
-        <input autocomplete="off" type="text"
-               name="/Family_Planning_Followup_EngKan/fp_method_complication_treatment_plan_other"
-               data-relevant=" /Family_Planning_Followup_EngKan/fp_method_complication_treatment_plan  = 'others'"
-               data-type-xml="string"/>
-    </label>
     <fieldset class="trigger or-branch pre-init" name="/Family_Planning_Followup_EngKan/instructions"
               data-relevant=" /Family_Planning_Followup_EngKan/fp_method_complication_treatment_plan  = 'stop_fp_method' or  /Family_Planning_Followup_EngKan/fp_method_complication_treatment_plan  = 'change_fp_method'">
         <span lang="" class="question-label active">Please go to register and update FP method selection. &#xCA6;&#xCAF;&#xCB5;&#xCBF;&#xC9F;&#xCCD;&#xC9F;&#xCC1;
@@ -366,7 +345,7 @@
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Family_Planning_Followup_EngKan/first_time_followup_group/side_effects"
-                   data-calculate="concat(string( /Family_Planning_Followup_EngKan/first_time_followup_group/iud_sideeffect ), ' ', string( /Family_Planning_Followup_EngKan/first_time_followup_group/sterilization_sideeffect ), ' ',  /Family_Planning_Followup_EngKan/first_time_followup_group/other_sideeffect )"
+                   data-calculate="concat(string( /Family_Planning_Followup_EngKan/first_time_followup_group/iud_sideeffect ), ' ', string( /Family_Planning_Followup_EngKan/first_time_followup_group/sterilization_sideeffect ))"
                    data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">

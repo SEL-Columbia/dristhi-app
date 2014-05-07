@@ -13,16 +13,13 @@
                 <sterilization_failure/>
                 <iud_sideeffect/>
                 <sterilization_sideeffect/>
-                <other_sideeffect/>
                 <side_effects/>
             </first_time_followup_group>
             <fp_method_complication_resolved/>
             <refer_couple_fp_method_complication/>
             <refer_couple_fp_method_complication_place/>
-            <refer_couple_fp_method_complication_place_other/>
             <needs_referral_followup/>
             <fp_method_complication_treatment_plan/>
-            <fp_method_complication_treatment_plan_other/>
             <instructions/>
             <needs_followup/>
             <meta>
