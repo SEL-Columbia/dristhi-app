@@ -116,5 +116,28 @@
     <string name="str_child_immunizations">Child Immunizations</string>
     <string name="str_child_illness">Child Illness</string>
     <string name="str_child_close">Child Close</string>
+    <string name="service_type_pnc">PNC</string>
+    <string name="service_type_pentavalent_2">Pentavalent 2</string>
+    <string name="service_type_bcg">BCG</string>
+    <string name="service_type_pentavalent_3">Pentavalent 3</string>
+    <string name="service_type_pentavalent_1">Pentavalent 1</string>
+    <string name="service_type_opv_0">OPV 0</string>
+    <string name="service_type_opv_1">OPV 1</string>
+    <string name="service_type_opv_2">OPV 2</string>
+    <string name="service_type_opv_3">OPV 3</string>
+    <string name="service_type_dpt_booster_1">DPT Boost. 1</string>
+    <string name="service_type_dpt_booster_2">DPT Boost. 2</string>
+    <string name="service_type_opv_booster">OPV Boost</string>
+    <string name="service_type_measles">Measles</string>
+    <string name="service_type_measles_booster">Measles Booster</string>
+    <string name="service_type_hepb_0">Hep B</string>
+    <string name="service_type_je">JE</string>
+    <string name="service_type_mmr">MMR</string>
+    <string name="service_type_vitamin_a">Vitamin A</string>
+    <string name="service_type_illness_visit">Illness Visit</string>
+    <string name="service_type_empty"/>
+    <string name="sick_visit">Sick Visit</string>
+    <string name="illness_visit">Illness Visit:</string>
+    <string name="illness_date">Date:</string>
 
 </resources>

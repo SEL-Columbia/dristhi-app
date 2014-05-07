@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/lbl_thayi"
             android:layout_alignParentTop="true"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+            style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding"/>
 
     <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_mother_ec_no"
@@ -38,5 +38,5 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/lbl_mother_ec"
             android:layout_below="@id/txt_thayi_no"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+            style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding"/>
 </org.ei.drishti.view.customControls.ClientIdDetailsView>

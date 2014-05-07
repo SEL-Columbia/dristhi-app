@@ -4,16 +4,21 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.AllConstants;
+import org.ei.drishti.domain.ChildServiceType;
 import org.ei.drishti.util.DateUtil;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.drishti.AllConstants.ChildIllnessFields.*;
 import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
+import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.util.StringUtil.humanize;
+import static org.ei.drishti.view.contract.ServiceProvidedDTO.emptyService;
 
 public class ChildClient implements ChildSmartRegisterClient {
     private final String entityId;
@@ -35,6 +40,9 @@ public class ChildClient implements ChildSmartRegisterClient {
     private List<AlertDTO> alerts;
     private List<ServiceProvidedDTO> services_provided;
     private String entityIdToSavePhoto;
+
+    private ServiceProvidedDTO lastService;
+    private ServiceProvidedDTO illnessVisitServiceProvided;
 
     public ChildClient(String entityId, String gender, String weight, String thayiCardNumber) {
         this.entityId = entityId;
@@ -140,7 +148,7 @@ public class ChildClient implements ChildSmartRegisterClient {
     @Override
     public boolean satisfiesFilter(String filterCriterion) {
         return (!isBlank(name) && name.toLowerCase().startsWith(filterCriterion.toLowerCase()))
-                || (isBlank(motherName) && motherName.toLowerCase().startsWith(filterCriterion.toLowerCase()));
+                || (!isBlank(motherName) && motherName.toLowerCase().startsWith(filterCriterion.toLowerCase()));
     }
 
     @Override
@@ -186,7 +194,62 @@ public class ChildClient implements ChildSmartRegisterClient {
 
     @Override
     public String dateOfBirth() {
-        return isBlank(dob) ? "" : dob;
+        return isBlank(dob) ? "" : formatDate(dob);
+    }
+
+    @Override
+    public List<ServiceProvidedDTO> serviceProvided() {
+        return services_provided;
+    }
+
+    @Override
+    public ServiceProvidedDTO lastServiceProvided() {
+        if (lastService == null) {
+            lastService = serviceProvided().size() > 0
+                    ? serviceProvided().get(serviceProvided().size() - 1)
+                    : emptyService;
+        }
+        return lastService;
+    }
+
+    @Override
+    public ServiceProvidedDTO illnessVisitService() {
+        if (illnessVisitServiceProvided == null) {
+            illnessVisitServiceProvided = getIllnessVisitServiceProvided();
+        }
+        return illnessVisitServiceProvided;
+    }
+
+    private ServiceProvidedDTO getIllnessVisitServiceProvided() {
+        for (ServiceProvidedDTO service : services_provided) {
+            if (ChildServiceType.ILLNESS_VISIT.equals(service.type())) {
+                return service;
+            }
+        }
+        return emptyService;
+    }
+
+    @Override
+    public SickStatus sickStatus() {
+        ServiceProvidedDTO service = illnessVisitService();
+        if (service == emptyService) {
+            return SickStatus.noDiseaseStatus;
+        } else {
+            final Map<String, String> data = service.data();
+            String diseases;
+            String otherDiseases;
+            String date;
+            if (data.containsKey(REPORT_CHILD_DISEASE)) {
+                diseases = data.get(REPORT_CHILD_DISEASE);
+                otherDiseases = data.get(REPORT_CHILD_DISEASE_OTHER);
+                date = data.get(REPORT_CHILD_DISEASE_DATE);
+            } else {
+                diseases = data.get(AllConstants.ChildIllnessFields.CHILD_SIGNS);
+                otherDiseases = data.get(AllConstants.ChildIllnessFields.CHILD_SIGNS_OTHER);
+                date = data.get(AllConstants.ChildIllnessFields.SICK_VISIT_DATE);
+            }
+            return new SickStatus(diseases, otherDiseases, date);
+        }
     }
 
     public ChildClient withEntityIdToSavePhoto(String entityIdToSavePhoto) {
