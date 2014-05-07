@@ -40,32 +40,26 @@
             <edd/>
             <edd_formatted/>
             <edd_note/>
-            <first_pregnancy/>
-            <threeormore_births/>
-            <threeormore_abortions/>
+            <num_pregnancies1/>
+            <num_pregnancies/>
+            <num_abortions/>
+            <num_livebirths/>
+            <num_stillbirths/>
+            <parity/>
+            <num_livingchildren/>
             <youngestchild_under2/>
             <complication/>
             <other_complication/>
             <medical_histories/>
-            <other_medical_histories/>
             <w_blood_group/>
-            <w_rh_negative/>
-            <h_blood_group/>
-            <rh_incompatible_couple/>
-            <rh_incompatible_message/>
             <height/>
             <weight_startofpregnancy/>
-            <tobacco_use/>
-            <tobacco_user/>
-            <tobacco_message/>
             <parity_risk/>
             <age_risk/>
             <youngchild_risk/>
             <abortion_risk/>
             <weight_risk/>
             <height_risk/>
-            <tobacco_risk/>
-            <rh_incompatible/>
             <is_high_risk_till_delivery/>
             <is_high_risk_till_delivery_reason/>
             <is_high_risk_till_pnc_close/>
@@ -4159,6 +4153,50 @@
             <item>
                 <itextId>static_instance-sub_center-108</itextId>
                 <name>yerigeri</name>
+            </item>
+        </root>
+    </instance>
+    <instance id="numbers">
+        <root>
+            <item>
+                <itextId>static_instance-numbers-0</itextId>
+                <name>0</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-1</itextId>
+                <name>1</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-2</itextId>
+                <name>2</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-3</itextId>
+                <name>3</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-4</itextId>
+                <name>4</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-5</itextId>
+                <name>5</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-6</itextId>
+                <name>6</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-7</itextId>
+                <name>7</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-8</itextId>
+                <name>8</name>
+            </item>
+            <item>
+                <itextId>static_instance-numbers-9</itextId>
+                <name>999</name>
             </item>
         </root>
     </instance>
