@@ -29,6 +29,7 @@
             <child_name/>
             <thayi_card_number/>
             <child_blood_group/>
+            <birthweight/>
             <child_weight/>
             <child_height/>
             <child_immunization_history/>
@@ -63,8 +64,6 @@
                 <vita8_date/>
                 <vita9_date/>
             </child_vitamin_a_history_group>
-            <is_child_high_risk/>
-            <child_high_risk_reasons/>
             <meta>
                 <instanceID/>
             </meta>

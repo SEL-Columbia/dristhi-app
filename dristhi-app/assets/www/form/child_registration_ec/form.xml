@@ -81,15 +81,22 @@
         </span>
     </label>
     <label class="question non-select ">
-        <span lang="" class="question-label active">Weight (in kgs)? &#xCA4;&#xCC2;&#xC95; (&#xC95;&#xCC6;.&#xC9C;&#xCBF;.
-            &#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)?
+        <span lang="" class="question-label active">Child birthweight (in kgs)? &#xCB9;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xCA6;
+            &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCA4;&#xCC2;&#xC95; (&#xC95;&#xCC6;.&#xC9C;&#xCBF;. &#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)?
+        </span>
+        <input autocomplete="off" type="number" name="/Child_Registration_EC_EngKan/birthweight" data-type-xml="decimal"
+               step="any"/>
+    </label>
+    <label class="question non-select ">
+        <span lang="" class="question-label active">Current weight (in kgs)? &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCC1;&#xCA4;
+            &#xCA4;&#xCC2;&#xC95; (&#xC95;&#xCC6;.&#xC9C;&#xCBF;. &#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)?
         </span>
         <input autocomplete="off" type="number" name="/Child_Registration_EC_EngKan/child_weight"
                data-type-xml="decimal" step="any"/>
     </label>
     <label class="question non-select ">
-        <span lang="" class="question-label active">Height (in cms)? &#xC8E;&#xCA4;&#xCCD;&#xCA4;&#xCB0; (&#xCB8;&#xCC6;.&#xCAE;&#xCC0;.
-            &#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)?
+        <span lang="" class="question-label active">Current height (in cms)? &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCC1;&#xCA4;
+            &#xC8E;&#xCA4;&#xCCD;&#xCA4;&#xCB0; (&#xCB8;&#xCC6;.&#xCAE;&#xCC0;. &#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)?
         </span>
         <input autocomplete="off" type="number" name="/Child_Registration_EC_EngKan/child_height" data-type-xml="int"/>
     </label>
@@ -431,38 +438,6 @@
         </label>
     </section>
     <!--end of group -->
-    <fieldset class="question ">
-        <fieldset>
-            <legend>
-                <span lang="" class="question-label active">Do you want to mark child as HR (High Risk)? &#xCA8;&#xCC0;&#xCB5;&#xCC1;
-                    &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; HR (&#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
-                    &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;) &#xC8E;&#xC82;&#xCA6;&#xCC1; &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCC1;
-                    &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCBF;&#xCB0;&#xCBE;?
-                </span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/Child_Registration_EC_EngKan/is_child_high_risk"
-                           data-name="/Child_Registration_EC_EngKan/is_child_high_risk" value="yes"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/Child_Registration_EC_EngKan/is_child_high_risk"
-                           data-name="/Child_Registration_EC_EngKan/is_child_high_risk" value="no"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-    <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">High risk reasons, &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1;
-            &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF;&#xCAF; &#xC95;&#xCBE;&#xCB0;&#xCA3;&#xC97;&#xCB3;&#xCC1;:
-        </span>
-        <input autocomplete="off" type="text" name="/Child_Registration_EC_EngKan/child_high_risk_reasons"
-               data-relevant=" /Child_Registration_EC_EngKan/is_child_high_risk  = 'yes'" data-type-xml="string"/>
-    </label>
 
     <fieldset id="or-preload-items" style="display:none;">
         <label class="calculation non-select ">
