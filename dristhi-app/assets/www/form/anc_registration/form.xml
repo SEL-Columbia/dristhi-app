@@ -168,8 +168,8 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Had complications in previous pregnancy? &#xCB9;&#xCBF;&#xC82;&#xCA6;&#xCBF;&#xCA8;
-                    &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCB5;&#xCBE;&#xCB8;&#xCCD;&#xCA5;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
+                <span lang="" class="question-label active">Had complications in any previous pregnancy? &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1;
+                    &#xCB9;&#xCBF;&#xC82;&#xCA6;&#xCBF;&#xCA8; &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCB5;&#xCBE;&#xCB8;&#xCCD;&#xCA5;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
                     &#xCA4;&#xCCA;&#xCA1;&#xC95;&#xCC1;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCBE;?
                 </span>
             </legend>
@@ -259,14 +259,6 @@
             </div>
         </fieldset>
     </fieldset>
-    <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Other complications in previous pregnancy? &#xCB9;&#xCBF;&#xC82;&#xCA6;&#xCBF;&#xCA8;
-            &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCB5;&#xCBE;&#xCB8;&#xCCD;&#xCA5;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-            &#xC87;&#xCA4;&#xCB0; &#xCA4;&#xCCA;&#xCA1;&#xC95;&#xCC1;&#xC97;&#xCB3;&#xCC1;?
-        </span>
-        <input autocomplete="off" type="text" name="/ANC_Registration_EngKan/other_complication"
-               data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0" data-type-xml="string"/>
-    </label>
     <fieldset class="question ">
         <fieldset>
             <legend>
@@ -301,13 +293,6 @@
             </div>
         </fieldset>
     </fieldset>
-    <label class="question non-select ">
-        <span lang="" class="question-label active">Any other medical condition? &#xCAC;&#xCC7;&#xCB0;&#xCC6; &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1;
-            &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF;&#xCBE; &#xCAA;&#xCB0;&#xCBF;&#xCB8;&#xCCD;&#xCA5;&#xCBF;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1;?
-        </span>
-        <input autocomplete="off" type="text" name="/ANC_Registration_EngKan/other_medical_histories"
-               data-type-xml="string"/>
-    </label>
     <label class="question or-appearance-minimal ">
         <span lang="" class="question-label active">Woman's blood group? &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;
             &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6; &#xC97;&#xCC1;&#xC82;&#xCAA;&#xCC1;?
@@ -327,31 +312,6 @@
         <span class="or-option-translations" style="display:none;">
         </span>
     </label>
-    <label class="question or-appearance-minimal  or-branch pre-init ">
-        <span lang="" class="question-label active">Husband's blood group? &#xC97;&#xC82;&#xCA1;&#xCA8; &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;
-            &#xC97;&#xCC1;&#xC82;&#xCAA;&#xCC1;?
-        </span>
-        <select name="/ANC_Registration_EngKan/h_blood_group" data-name="/ANC_Registration_EngKan/h_blood_group"
-                data-relevant=" /ANC_Registration_EngKan/w_rh_negative  = 'yes'" data-type-xml="select1">
-            <option value="">...</option>
-            <option value="a_positive">A+</option>
-            <option value="a_negative">A-</option>
-            <option value="b_positive">B+</option>
-            <option value="b_negative">B-</option>
-            <option value="ab_positive">AB+</option>
-            <option value="ab_negative">AB-</option>
-            <option value="o_positive">O+</option>
-            <option value="o_negative">O-</option>
-        </select>
-        <span class="or-option-translations" style="display:none;">
-        </span>
-    </label>
-    <fieldset class="trigger or-branch pre-init" name="/ANC_Registration_EngKan/rh_incompatible_message"
-              data-relevant=" /ANC_Registration_EngKan/rh_incompatible_couple  != ''">
-        <span lang="" class="question-label active">Couple is Rh incompatible! &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
-            &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBE;&#xCA3;&#xCBF;&#xC95;&#xCC6;&#xCAF;&#xCBE;&#xC97;&#xCA6; Rh &#xC86;&#xC97;&#xCBF;&#xCA6;&#xCC6;!
-        </span>
-    </fieldset>
     <label class="question non-select ">
         <span lang="" class="question-label active">Height (in cms) &#xC8E;&#xCA4;&#xCCD;&#xCA4;&#xCB0; (&#xCB8;&#xCC7;.&#xCAE;&#xCC0;
             &#xCA8;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)
@@ -367,69 +327,6 @@
         <input autocomplete="off" type="number" name="/ANC_Registration_EngKan/weight_startofpregnancy"
                data-type-xml="decimal" step="any"/>
     </label>
-    <fieldset class="question ">
-        <fieldset>
-            <legend>
-                <span lang="" class="question-label active">Is tobacco used in the household? &#xCAE;&#xCA8;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-                    &#xCA4;&#xC82;&#xCAC;&#xCBE;&#xC95;&#xCC1; &#xCAC;&#xCB3;&#xCB8;&#xCB2;&#xCBE;&#xC97;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
-                </span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/tobacco_use"
-                           data-name="/ANC_Registration_EngKan/tobacco_use" value="yes" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/tobacco_use"
-                           data-name="/ANC_Registration_EngKan/tobacco_use" value="no" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-    <fieldset class="question or-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span lang="" class="question-label active">Who uses tobacco in household? &#xCAE;&#xCA8;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-                    &#xCAF;&#xCBE;&#xCB0;&#xCC1; &#xCA4;&#xC82;&#xCAC;&#xCBE;&#xC95;&#xCC1; &#xCAC;&#xCB3;&#xCB8;&#xCC1;&#xCA4;&#xCCD;&#xCA4;&#xCC0;&#xCA6;&#xCCD;&#xCA6;&#xCBE;&#xCB0;&#xCC6;?
-                </span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/tobacco_user"
-                           value="woman_uses_tobacco" data-relevant=" /ANC_Registration_EngKan/tobacco_use  = 'yes'"
-                           data-type-xml="select"/>
-                    <span lang="" class="option-label active">Pregnant woman &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBF;&#xCA3;&#xCBF;
-                        &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;</span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/tobacco_user"
-                           value="husband_uses_tobacco" data-relevant=" /ANC_Registration_EngKan/tobacco_use  = 'yes'"
-                           data-type-xml="select"/>
-                    <span lang="" class="option-label active">Husband &#xC97;&#xC82;&#xCA1;</span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/tobacco_user"
-                           value="others_use_tobacco" data-relevant=" /ANC_Registration_EngKan/tobacco_use  = 'yes'"
-                           data-type-xml="select"/>
-                    <span lang="" class="option-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-    <fieldset class="trigger or-branch pre-init" name="/ANC_Registration_EngKan/tobacco_message"
-              data-relevant=" /ANC_Registration_EngKan/tobacco_use  = 'yes'">
-        <span lang="" class="question-label active">Tell the woman about the dangers of tobacco use and second-hand
-            tobacco smoke during pregnancy. Tell her and others in the household to quit. &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCB5;&#xCB8;&#xCCD;&#xCA5;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-            &#xCA4;&#xC82;&#xCAC;&#xCBE;&#xC95;&#xCC1; &#xCAC;&#xCB3;&#xC95;&#xCC6; &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1;
-            &#xCAC;&#xCB3;&#xCB8;&#xCBF;&#xCA6; &#xCA4;&#xC82;&#xCAC;&#xCBE;&#xC95;&#xCC1; &#xCB9;&#xCCA;&#xC97;&#xCC6;
-            &#xCB8;&#xCC7;&#xCB5;&#xCA8;&#xCC6;&#xCAF; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC97;&#xCB3; &#xCAC;&#xC97;&#xCCD;&#xC97;&#xCC6;
-            &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xC97;&#xCC6; &#xCA4;&#xCBF;&#xCB3;&#xCBF;&#xCB8;&#xCBF;. &#xC85;&#xCB5;&#xCB3;&#xCBF;&#xC97;&#xCC6;
-            &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; &#xCAE;&#xCA8;&#xCC6;&#xCAF; &#xC87;&#xCA4;&#xCB0;&#xCB0;&#xCBF;&#xC97;&#xCC6;
-            &#xCAC;&#xCBF;&#xCA1;&#xCB2;&#xCC1; &#xCA4;&#xCBF;&#xCB3;&#xCBF;&#xCB8;&#xCBF;.
-        </span>
-    </fieldset>
     <fieldset class="trigger or-branch pre-init" name="/ANC_Registration_EngKan/high_risk_note"
               data-relevant=" /ANC_Registration_EngKan/is_high_risk1  = 'yes'">
         <span lang="" class="question-label active">
@@ -488,16 +385,6 @@
                    data-calculate="format-date( /ANC_Registration_EngKan/edd , '%Y-%n-%e')" data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/w_rh_negative"
-                   data-calculate="if( /ANC_Registration_EngKan/w_blood_group  = 'a_negative' or  /ANC_Registration_EngKan/w_blood_group  = 'b_negative' or  /ANC_Registration_EngKan/w_blood_group  = 'ab_negative' or  /ANC_Registration_EngKan/w_blood_group  = 'o_negative', 'yes', '')"
-                   data-type-xml="string"/>
-        </label>
-        <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/rh_incompatible_couple"
-                   data-calculate="if( /ANC_Registration_EngKan/h_blood_group  = 'a_positive' or  /ANC_Registration_EngKan/h_blood_group  = 'b_positive' or  /ANC_Registration_EngKan/h_blood_group  = 'ab_positive' or  /ANC_Registration_EngKan/h_blood_group  = 'o_positive', 'yes', '')"
-                   data-type-xml="string"/>
-        </label>
-        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/weight_risk"
                    data-calculate="if( /ANC_Registration_EngKan/weight_startofpregnancy  &lt; 45 or  /ANC_Registration_EngKan/weight_startofpregnancy  &gt;= 90, 'Weight', '')"
                    data-type-xml="string"/>
@@ -508,34 +395,23 @@
                    data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/tobacco_risk"
-                   data-calculate="if( /ANC_Registration_EngKan/tobacco_use  = 'yes', 'Tobacco_use', '')"
-                   data-type-xml="string"/>
-        </label>
-        <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/rh_incompatible"
-                   data-calculate="if( /ANC_Registration_EngKan/rh_incompatible_couple  != '', 'Rh_incompatible_couple', '')"
-                   data-type-xml="string"/>
-        </label>
-        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/is_high_risk_till_delivery"
-                   data-calculate="if( /ANC_Registration_EngKan/case_would_be_high_risk  = 'yes' or  /ANC_Registration_EngKan/weight_risk  != '' or  /ANC_Registration_EngKan/height_risk  != '' or  /ANC_Registration_EngKan/rh_incompatible  != '' or  /ANC_Registration_EngKan/complication  != '', 'yes', 'no')"
+                   data-calculate="if( /ANC_Registration_EngKan/case_would_be_high_risk  = 'yes' or  /ANC_Registration_EngKan/weight_risk  != '' or  /ANC_Registration_EngKan/height_risk  != '' or  /ANC_Registration_EngKan/complication  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/is_high_risk_till_delivery_reason"
-                   data-calculate="concat( /ANC_Registration_EngKan/case_would_be_high_risk_reason , ' ',  /ANC_Registration_EngKan/weight_risk , ' ',  /ANC_Registration_EngKan/height_risk , ' ',  /ANC_Registration_EngKan/rh_incompatible , ' ', string( /ANC_Registration_EngKan/complication ))"
+                   data-calculate="concat( /ANC_Registration_EngKan/case_would_be_high_risk_reason , ' ',  /ANC_Registration_EngKan/weight_risk , ' ',  /ANC_Registration_EngKan/height_risk , ' ', string( /ANC_Registration_EngKan/complication ))"
                    data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/is_high_risk_till_pnc_close"
-                   data-calculate="if( /ANC_Registration_EngKan/tobacco_risk  != '' or  /ANC_Registration_EngKan/medical_histories  != '', 'yes', 'no')"
+                   data-calculate="if( /ANC_Registration_EngKan/medical_histories  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/is_high_risk_till_pnc_close_reason"
-                   data-calculate="concat( /ANC_Registration_EngKan/tobacco_risk , ' ', string( /ANC_Registration_EngKan/medical_histories ))"
-                   data-type-xml="string"/>
+                   data-calculate="string( /ANC_Registration_EngKan/medical_histories )" data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/is_high_risk1"

@@ -23,25 +23,14 @@
             <linked_facility_delivery/>
             <name_facility/>
             <complication/>
-            <other_complication/>
             <medical_histories/>
-            <other_medical_histories/>
             <w_blood_group/>
-            <w_rh_negative/>
-            <h_blood_group/>
-            <rh_incompatible_couple/>
-            <rh_incompatible_message/>
             <height/>
             <weight_startofpregnancy/>
-            <tobacco_use/>
-            <tobacco_user/>
-            <tobacco_message/>
             <case_would_be_high_risk/>
             <case_would_be_high_risk_reason/>
             <weight_risk/>
             <height_risk/>
-            <tobacco_risk/>
-            <rh_incompatible/>
             <is_high_risk_till_delivery/>
             <is_high_risk_till_delivery_reason/>
             <is_high_risk_till_pnc_close/>
