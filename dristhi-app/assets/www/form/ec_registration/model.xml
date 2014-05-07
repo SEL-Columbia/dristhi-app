@@ -30,7 +30,6 @@
             <phone_no/>
             <phone_owner/>
             <phone_no2/>
-            <phone_owner2/>
             <economic_status/>
             <bpl_card_number/>
             <religion/>
@@ -52,10 +51,10 @@
             <num_livingchildren/>
             <num_livingchildren_male/>
             <num_livingchildren_female/>
-            <youngestchild_under2/>
             <youngestchild_date_of_birth/>
             <youngestchild_age/>
             <youngestchild_age_note/>
+            <youngestchild_under2/>
             <familyplanning_method_1/>
             <familyplanning_method_other/>
             <familyplanning_method/>
@@ -63,17 +62,9 @@
             <lmp_date/>
             <upt_result/>
             <iud_place/>
-            <iud_place_name/>
             <iud_person/>
-            <iud_person_name/>
-            <sterilization_doctor_name/>
             <male_sterilization_type/>
             <female_sterilization_type/>
-            <male_sterilizaton_group>
-                <threemonths_from_sterilization_date/>
-                <threemonths_from_sterilization_date_formatted/>
-                <male_sterilization_message/>
-            </male_sterilizaton_group>
             <injectable_date/>
             <num_condoms/>
             <num_ocp_strips/>
@@ -4263,10 +4254,6 @@
             </item>
             <item>
                 <itextId>static_instance-fp_method_other-2</itextId>
-                <name>lam</name>
-            </item>
-            <item>
-                <itextId>static_instance-fp_method_other-3</itextId>
                 <name>centchroman</name>
             </item>
         </root>

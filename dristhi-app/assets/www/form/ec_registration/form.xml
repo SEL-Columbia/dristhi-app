@@ -2186,47 +2186,6 @@
                data-constraint=".&gt; 999999999 and .&lt; 10000000000"
                data-relevant=" /EC_Registration_EngKan/phone_no  != ''" data-type-xml="int"/>
     </label>
-    <fieldset class="question or-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span lang="" class="question-label active">Who owns this phone? &#xC88; &#xCAB;&#xCCB;&#xCA8;&#xCCD;
-                    &#xCAF;&#xCBE;&#xCB0;&#xCA6;&#xCC1;?
-                </span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/phone_owner2"
-                           data-name="/EC_Registration_EngKan/phone_owner2" value="wife"
-                           data-relevant=" /EC_Registration_EngKan/phone_no2  != ''" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Wife &#xCB9;&#xCC6;&#xC82;&#xCA1;&#xCA4;&#xCBF;</span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/phone_owner2"
-                           data-name="/EC_Registration_EngKan/phone_owner2" value="husband"
-                           data-relevant=" /EC_Registration_EngKan/phone_no2  != ''" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Husband &#xC97;&#xC82;&#xCA1;</span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/phone_owner2"
-                           data-name="/EC_Registration_EngKan/phone_owner2" value="relative"
-                           data-relevant=" /EC_Registration_EngKan/phone_no2  != ''" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Relative &#xCA8;&#xCC6;&#xC82;&#xC9F;&#xCB0;&#xCC1;</span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/phone_owner2"
-                           data-name="/EC_Registration_EngKan/phone_owner2" value="neighbor"
-                           data-relevant=" /EC_Registration_EngKan/phone_no2  != ''" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Neighbor &#xCA8;&#xCC6;&#xCB0;&#xCC6;&#xCB9;&#xCCA;&#xCB0;&#xCC6;</span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/phone_owner2"
-                           data-name="/EC_Registration_EngKan/phone_owner2" value="others"
-                           data-relevant=" /EC_Registration_EngKan/phone_no2  != ''" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
     <fieldset class="question ">
         <fieldset>
             <legend>
@@ -2521,31 +2480,6 @@
         <span class="or-option-translations" style="display:none;">
         </span>
     </label>
-    <fieldset class="question or-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span lang="" class="question-label active">Is the youngest child less than 2 years old? &#xC95;&#xCBF;&#xCB0;&#xCBF;&#xCAF;
-                    &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1; 2 &#xCB5;&#xCB0;&#xCCD;&#xCB7;&#xC95;&#xCCD;&#xC95;&#xCBF;&#xC82;&#xCA4;
-                    &#xC95;&#xCC6;&#xCB3;&#xC97;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;?
-                </span>
-                <span class="required">*</span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/youngestchild_under2"
-                           data-name="/EC_Registration_EngKan/youngestchild_under2" value="yes" required="required"
-                           data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/youngestchild_under2"
-                           data-name="/EC_Registration_EngKan/youngestchild_under2" value="no" required="required"
-                           data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
     <label class="question or-branch pre-init non-select ">
         <span lang="" class="question-label active">Youngest child DOB, &#xC95;&#xCBF;&#xCB0;&#xCBF;&#xCAF; &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8;
             DOB:
@@ -2553,7 +2487,7 @@
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/EC_Registration_EngKan/youngestchild_date_of_birth"
                required="required"
-               data-constraint="if( /EC_Registration_EngKan/youngestchild_under2  = 'yes', .&gt; ( /EC_Registration_EngKan/today  - 730) and .&lt;= /EC_Registration_EngKan/today , .&gt; ( /EC_Registration_EngKan/today  - 6570) and .&lt; ( /EC_Registration_EngKan/today  - 730))"
+               data-constraint=".&lt;= /EC_Registration_EngKan/today  and .&gt;= ( /EC_Registration_EngKan/today  - 6570)"
                data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0" data-type-xml="date"/>
     </label>
     <fieldset class="trigger or-branch pre-init" name="/EC_Registration_EngKan/youngestchild_age_note"
@@ -2669,14 +2603,6 @@
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_other"
-                           data-name="/EC_Registration_EngKan/familyplanning_method_other" value="lam"
-                           required="required"
-                           data-relevant=" /EC_Registration_EngKan/familyplanning_method_1  = 'others'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">LAM</span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_other"
                            data-name="/EC_Registration_EngKan/familyplanning_method_other" value="centchroman"
                            required="required"
                            data-relevant=" /EC_Registration_EngKan/familyplanning_method_1  = 'others'"
@@ -2765,14 +2691,6 @@
             </div>
         </fieldset>
     </fieldset>
-    <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Name of facility where IUD was given? &#xC90;.&#xCAF;&#xCC1;.&#xCA1;&#xCBF;
-            &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCA6; &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xCAF;
-            &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?
-        </span>
-        <input autocomplete="off" type="text" name="/EC_Registration_EngKan/iud_place_name"
-               data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="string"/>
-    </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
@@ -2820,22 +2738,6 @@
             </div>
         </fieldset>
     </fieldset>
-    <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Name of IUD inserter, &#xC90;.&#xCAF;&#xCC1;.&#xCA1;&#xCBF; &#xCB9;&#xCBE;&#xC95;&#xCBF;&#xCA6;&#xCB5;&#xCB0;
-            &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;:
-        </span>
-        <input autocomplete="off" type="text" name="/EC_Registration_EngKan/iud_person_name"
-               data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'iud'" data-type-xml="string"/>
-    </label>
-    <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Name of doctor who did sterilization? &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCB9;&#xCB0;&#xCA3;
-            &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-            &#xCAE;&#xCBE;&#xCA1;&#xCBF;&#xCA6; &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xCB0; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?
-        </span>
-        <input autocomplete="off" type="text" name="/EC_Registration_EngKan/sterilization_doctor_name"
-               data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'male_sterilization' or  /EC_Registration_EngKan/familyplanning_method  = 'female_sterilization'"
-               data-type-xml="string"/>
-    </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
@@ -2889,29 +2791,6 @@
             </div>
         </fieldset>
     </fieldset>
-    <section class="or-group-data or-branch pre-init " name="/EC_Registration_EngKan/male_sterilizaton_group"
-             data-relevant=" /EC_Registration_EngKan/familyplanning_method  = 'male_sterilization'">
-        <fieldset class="trigger or-branch pre-init"
-                  name="/EC_Registration_EngKan/male_sterilizaton_group/male_sterilization_message"
-                  data-relevant=" /EC_Registration_EngKan/today  -  /EC_Registration_EngKan/date_familyplanningstart  &lt; 90">
-            <span lang="" class="question-label active">Pregnancy can still happen up to 3 months after male
-                sterilization. Tell the couple to use back-up FP method until 3 months from sterilization date, &#xCAA;&#xCC1;&#xCB0;&#xCC1;&#xCB7;
-                &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCBE;&#xCB9;&#xCB0;&#xCA3; &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0;
-                &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xCAF; &#xCA8;&#xC82;&#xCA4;&#xCB0; &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCB5;&#xCB8;&#xCCD;&#xCA5;&#xCC6;&#xCAF;&#xCC1;
-                &#xC87;&#xCA8;&#xCCD;&#xCA8;&#xCC2; 3 &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCB5;&#xCB0;&#xCC6;&#xC97;&#xCC6;
-                &#xCB8;&#xC82;&#xCAD;&#xCB5;&#xCBF;&#xCB8;&#xCAC;&#xCB9;&#xCC1;&#xCA6;&#xCC1;. &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCBE;&#xCB9;&#xCB0;&#xCA3;
-                &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xCAF;
-                &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;&#xCA6;&#xCBF;&#xC82;&#xCA6; 3 &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCB5;&#xCB0;&#xCC6;&#xC97;&#xCC6;
-                &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC6; &#xCAC;&#xCB3;&#xCB8;&#xCC1;&#xCB5;&#xC82;&#xCA4;&#xCC6; &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
-                &#xCB9;&#xCC7;&#xCB3;&#xCBF;:
-                <span class="or-output"
-                      data-value=" /EC_Registration_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted ">
-                </span>
-            </span>
-        </fieldset>
-    </section>
-    <!--end of group -->
     <label class="question or-branch pre-init non-select ">
         <span lang="" class="question-label active">Last DMPA injection date? &#xC95;&#xCCA;&#xCA8;&#xCC6;&#xCAF;
             &#xCA1;&#xCBF;&#xC82;&#xCAA;&#xCBE; &#xC9A;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1;&#xCAE;&#xCA6;&#xCCD;&#xCA6;&#xCBF;&#xCA8;
@@ -3081,20 +2960,13 @@
                    data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
+            <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/youngestchild_under2"
+                   data-calculate="if( /EC_Registration_EngKan/youngestchild_age  &gt;= 0 and  /EC_Registration_EngKan/youngestchild_age  &lt; 24, 'yes', '')"
+                   data-type-xml="string"/>
+        </label>
+        <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/EC_Registration_EngKan/familyplanning_method"
                    data-calculate="if( /EC_Registration_EngKan/familyplanning_method_1  = 'others',  /EC_Registration_EngKan/familyplanning_method_other ,  /EC_Registration_EngKan/familyplanning_method_1 )"
-                   data-type-xml="string"/>
-        </label>
-        <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden"
-                   name="/EC_Registration_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date"
-                   data-calculate="date( /EC_Registration_EngKan/date_familyplanningstart  + 90)"
-                   data-type-xml="string"/>
-        </label>
-        <label class="calculation non-select ">
-            <input autocomplete="off" type="hidden"
-                   name="/EC_Registration_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted"
-                   data-calculate="format-date( /EC_Registration_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date , '%Y-%n-%e')"
                    data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
