@@ -31,30 +31,18 @@
             <reviewed_hrp_status1/>
             <reviewed_hrp_status2/>
             <reviewed_hrp_status/>
-            <mo_visit/>
-            <mo_visit_message/>
-            <delivery_facility1/>
-            <home_reasons/>
-            <name_delivery_facility1/>
+            <delivery_facility/>
+            <name_delivery_facility/>
             <hrp_delivery_facility_message/>
             <severe_anaemia_delivery_facility_message/>
             <normal_delivery_facility_message/>
-            <change_delivery_facility/>
-            <delivery_facility2/>
-            <name_delivery_facility2/>
-            <delivery_facility/>
-            <name_delivery_facility/>
             <home_delivery_group>
                 <five_delivery_cleans/>
-                <nearest_24_7_facility/>
                 <nearest_24_7_facility_message/>
             </home_delivery_group>
             <transportation_plan1/>
-            <transportation_plan1_message/>
             <transportation_plan/>
-            <transportation_plan_other/>
             <money_for_transport/>
-            <money_for_transport_message/>
             <birth_companion/>
             <pp_fp_message/>
             <ready_to_select_pp_fp/>
