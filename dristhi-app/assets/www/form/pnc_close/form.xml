@@ -23,9 +23,7 @@
                     <input autocomplete="off" type="radio" name="/PNC_Close_EngKan/pnc_close_reason"
                            data-name="/PNC_Close_EngKan/pnc_close_reason" value="permanent_relocation"
                            required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Relocation (permanent) &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCBE;&#xC82;&#xCA4;&#xCB0;
-                        (&#xCB6;&#xCBE;&#xCB6;&#xCCD;&#xCB5;&#xCA4;)
-                    </span>
+                    <span lang="" class="option-label active">Relocation &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCBE;&#xC82;&#xCA4;&#xCB0;</span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/PNC_Close_EngKan/pnc_close_reason"
@@ -33,6 +31,14 @@
                            data-type-xml="select1"/>
                     <span lang="" class="option-label active">End of postpartum period &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5;&#xCBE;&#xCA8;&#xC82;&#xCA4;&#xCB0;&#xCA6;
                         &#xC85;&#xCB5;&#xCA7;&#xCBF;&#xCAF;&#xCC1; &#xC85;&#xC82;&#xCA4;&#xCCD;&#xCAF;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/PNC_Close_EngKan/pnc_close_reason"
+                           data-name="/PNC_Close_EngKan/pnc_close_reason" value="wrong_entry" required="required"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Wrong entry &#xCA4;&#xCAA;&#xCCD;&#xCAA;&#xCBE;&#xC97;&#xCBF;
+                        &#xCA8;&#xCAE;&#xCC2;&#xCA6;&#xCBF;&#xCB8;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;.
+                    </span>
                 </label>
             </div>
         </fieldset>
@@ -190,7 +196,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Close_EngKan/formhub/uuid"
-                   data-calculate="'30dd7102d0584928abf3ae70569b239d'" data-type-xml="string"/>
+                   data-calculate="'b61130c6b2a14960bdf3b7fb5b709d9b'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
