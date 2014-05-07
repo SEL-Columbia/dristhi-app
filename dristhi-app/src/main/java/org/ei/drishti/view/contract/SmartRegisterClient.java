@@ -6,7 +6,7 @@ public interface SmartRegisterClient {
     Comparator<SmartRegisterClient> NAME_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            return client.name().compareToIgnoreCase(anotherClient.name());
+            return client.compareName(anotherClient);
         }
     };
 
@@ -24,7 +24,7 @@ public interface SmartRegisterClient {
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
             if ((client.isBPL() && anotherClient.isBPL())
                     || (!client.isBPL() && !anotherClient.isBPL())) {
-                return client.name().compareToIgnoreCase(anotherClient.name());
+                return client.compareName(anotherClient);
             } else {
                 return anotherClient.isBPL() ? 1 : -1;
             }
@@ -36,7 +36,7 @@ public interface SmartRegisterClient {
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
             if ((client.isSC() && anotherClient.isSC())
                     || (!client.isSC() && !anotherClient.isSC())) {
-                return client.name().compareToIgnoreCase(anotherClient.name());
+                return client.compareName(anotherClient);
             } else {
                 return anotherClient.isSC() ? 1 : -1;
             }
@@ -48,7 +48,7 @@ public interface SmartRegisterClient {
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
             if ((client.isST() && anotherClient.isST())
                     || (!client.isST() && !anotherClient.isST())) {
-                return client.name().compareToIgnoreCase(anotherClient.name());
+                return client.compareName(anotherClient);
             } else {
                 return anotherClient.isST() ? 1 : -1;
             }
@@ -88,4 +88,6 @@ public interface SmartRegisterClient {
     public int ageInDays();
 
     public String displayName();
+
+    public int compareName(SmartRegisterClient client);
 }

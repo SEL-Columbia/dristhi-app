@@ -99,6 +99,11 @@ public class ECClient implements ECSmartRegisterClient {
         return name();
     }
 
+    @Override
+    public int compareName(SmartRegisterClient client) {
+        return this.name().compareToIgnoreCase(client.name());
+    }
+
     public Integer ecNumber() {
         return ecNumber;
     }

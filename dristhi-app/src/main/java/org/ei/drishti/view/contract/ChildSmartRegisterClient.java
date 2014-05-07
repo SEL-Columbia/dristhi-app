@@ -10,7 +10,7 @@ public interface ChildSmartRegisterClient extends SmartRegisterClient {
     Comparator<SmartRegisterClient> CHILD_NAME_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            return ChildClient.compareChildNames(client, anotherClient);
+            return client.compareName(anotherClient);
         }
     };
 
@@ -26,7 +26,7 @@ public interface ChildSmartRegisterClient extends SmartRegisterClient {
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
             if ((client.isHighRisk() && anotherClient.isHighRisk())
                     || (!client.isHighRisk() && !anotherClient.isHighRisk())) {
-                return ChildClient.compareChildNames(client, anotherClient);
+                return client.compareName(anotherClient);
             } else {
                 return anotherClient.isHighRisk() ? 1 : -1;
             }

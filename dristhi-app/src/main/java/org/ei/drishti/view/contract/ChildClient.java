@@ -151,6 +151,17 @@ public class ChildClient implements ChildSmartRegisterClient {
         return StringUtils.isBlank(dob) ? 0 : Days.daysBetween(LocalDate.parse(dob), DateUtil.today()).getDays();
     }
 
+    @Override
+    public int compareName(SmartRegisterClient anotherClient) {
+        ChildSmartRegisterClient anotherChildClient = (ChildSmartRegisterClient) anotherClient;
+        if (StringUtils.isBlank(this.name()) && StringUtils.isBlank(anotherChildClient.name())) {
+            return this.motherName().compareTo(anotherChildClient.motherName());
+        } else if (!StringUtils.isBlank(this.name()) && !StringUtils.isBlank(anotherChildClient.name())){
+            return this.name().compareTo(anotherChildClient.name());
+        }
+        return StringUtils.isBlank(this.name()) ?  -1 : 1;
+    }
+
     public String format(int days_since) {
         int DAYS_THRESHOLD = 28;
         int WEEKS_THRESHOLD = 119;
@@ -164,18 +175,6 @@ public class ChildClient implements ChildSmartRegisterClient {
         } else {
             return (int) Math.floor(days_since / 365) + "y";
         }
-    }
-
-    public static int compareChildNames(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-        ChildSmartRegisterClient childClient = (ChildSmartRegisterClient) client;
-        ChildSmartRegisterClient anotherChildClient = (ChildSmartRegisterClient) anotherClient;
-
-        if (StringUtils.isBlank(childClient.name()) && StringUtils.isBlank(anotherChildClient.name())) {
-            return childClient.motherName().compareTo(anotherChildClient.motherName());
-        } else if (!StringUtils.isBlank(childClient.name()) && !StringUtils.isBlank(anotherChildClient.name())){
-            return childClient.name().compareTo(anotherChildClient.name());
-        }
-        return StringUtils.isBlank(client.name()) ?  -1 : 1;
     }
 
     @Override
