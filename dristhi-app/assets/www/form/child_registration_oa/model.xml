@@ -65,9 +65,6 @@
                 <vita8_date/>
                 <vita9_date/>
             </child_vitamin_a_history_group>
-            <is_child_high_risk/>
-            <child_high_risk_reasons/>
-            <stay_in_area/>
             <meta>
                 <instanceID/>
             </meta>
@@ -3774,26 +3771,6 @@
             <item>
                 <itextId>static_instance-vitamin_a-8</itextId>
                 <name>9</name>
-            </item>
-        </root>
-    </instance>
-    <instance id="stay">
-        <root>
-            <item>
-                <itextId>static_instance-stay-0</itextId>
-                <name>less_6mos</name>
-            </item>
-            <item>
-                <itextId>static_instance-stay-1</itextId>
-                <name>less_1yr</name>
-            </item>
-            <item>
-                <itextId>static_instance-stay-2</itextId>
-                <name>more_1yr</name>
-            </item>
-            <item>
-                <itextId>static_instance-stay-3</itextId>
-                <name>dont_know</name>
             </item>
         </root>
     </instance>
