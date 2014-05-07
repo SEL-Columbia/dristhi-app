@@ -176,13 +176,6 @@
             </div>
         </fieldset>
     </fieldset>
-    <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
-        <input autocomplete="off" type="text"
-               name="/Family_Planning_Referral_Followup_EngKan/couple_didnt_go_referral_reason_other"
-               data-relevant="selected( /Family_Planning_Referral_Followup_EngKan/couple_didnt_go_referral_reason , 'others')"
-               data-type-xml="string"/>
-    </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
@@ -280,12 +273,6 @@
             </div>
         </fieldset>
     </fieldset>
-    <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
-        <input autocomplete="off" type="text" name="/Family_Planning_Referral_Followup_EngKan/referral_place_other"
-               data-relevant=" /Family_Planning_Referral_Followup_EngKan/referral_place  = 'others'"
-               data-type-xml="string"/>
-    </label>
     <fieldset class="trigger or-branch pre-init" name="/Family_Planning_Referral_Followup_EngKan/instructions"
               data-relevant=" /Family_Planning_Referral_Followup_EngKan/referral_result  = 'stopped_fp_method' or  /Family_Planning_Referral_Followup_EngKan/referral_result  = 'changed_fp_method' or  /Family_Planning_Referral_Followup_EngKan/new_treatment_plan  = 'stop_fp_method' or  /Family_Planning_Referral_Followup_EngKan/new_treatment_plan  = 'change_fp_method'">
         <span lang="" class="question-label active">Please go to register and update FP method selection. &#xCA6;&#xCAF;&#xCB5;&#xCBF;&#xC9F;&#xCCD;&#xC9F;&#xCC1;
@@ -319,7 +306,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Family_Planning_Referral_Followup_EngKan/formhub/uuid"
-                   data-calculate="'4f28291bfbba4a9fbbf393abb78e58d4'" data-type-xml="string"/>
+                   data-calculate="'b61b98fbfe2e435391e0ce763db9d71a'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>

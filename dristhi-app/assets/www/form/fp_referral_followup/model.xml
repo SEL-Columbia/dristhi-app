@@ -11,10 +11,8 @@
             <couple_went_for_referral/>
             <referral_result/>
             <couple_didnt_go_referral_reason/>
-            <couple_didnt_go_referral_reason_other/>
             <new_treatment_plan/>
             <referral_place/>
-            <referral_place_other/>
             <needs_referral_followup/>
             <needs_followup/>
             <instructions/>
