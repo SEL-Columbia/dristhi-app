@@ -14,4 +14,9 @@
     <color name="transparent_blue_for_edit_button">#bb389cc8</color>
     <color name="dialog_option_color">#1a1a1a</color>
     <color name="client_list_header_text_color">#494949</color>
+
+    <color name="alert_upcoming_light_blue">#ff80a2aa</color>
+    <color name="alert_urgent_red">#ffff0000</color>
+    <color name="alert_in_progress_blue">#ff389cc8</color>
+    <color name="alert_complete_green">#ff00ffbb</color>
 </resources>

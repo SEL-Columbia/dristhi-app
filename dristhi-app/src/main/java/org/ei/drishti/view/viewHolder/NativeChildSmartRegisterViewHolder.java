@@ -36,6 +36,18 @@ public class NativeChildSmartRegisterViewHolder {
     private final TextView txtOpvBoosterDoneOn;
     private final TextView txtDptBoosterDoneOn;
     private final TextView txtVitaminADoneOn;
+    private final TextView btnOpv;
+    private final View layoutOpvAlert;
+    private final TextView btnHepB;
+    private final View layoutHepBAlert;
+    private final TextView btnPentav;
+    private final View layoutPentavAlert;
+    private final TextView txtOpvAlertDueOn;
+    private final TextView txtHepBAlertDueOn;
+    private final TextView txtPentavAlertDueOn;
+    private final TextView txtOpvAlertDueType;
+    private final TextView txtHepBAlertDueType;
+    private final TextView txtPentavAlertDueType;
 
     public NativeChildSmartRegisterViewHolder(ViewGroup itemView) {
         profileInfoLayout = (ClientProfileView) itemView.findViewById(R.id.profile_info_layout);
@@ -63,9 +75,24 @@ public class NativeChildSmartRegisterViewHolder {
         txtBcgPendingView = (TextView) serviceModeImmunization0to9View.findViewById(R.id.txt_bcg_pending);
         layoutBcgOn = serviceModeImmunization0to9View.findViewById(R.id.layout_bcg_on);
         txtBcgDoneOn = (TextView) layoutBcgOn.findViewById(R.id.txt_bcg_on);
+
+        btnOpv = (TextView) serviceModeImmunization0to9View.findViewById(R.id.btn_opv);
+        layoutOpvAlert = serviceModeImmunization0to9View.findViewById(R.id.layout_opv_alert);
         txtOpvDoneOn = (TextView) serviceModeImmunization0to9View.findViewById(R.id.txt_opv_on);
+        txtOpvAlertDueType = (TextView) serviceModeImmunization0to9View.findViewById(R.id.txt_opv_due_type);
+        txtOpvAlertDueOn = (TextView) serviceModeImmunization0to9View.findViewById(R.id.txt_opv_due_on);
+
+        btnHepB = (TextView) serviceModeImmunization0to9View.findViewById(R.id.btn_hep_b_birth);
+        layoutHepBAlert = serviceModeImmunization0to9View.findViewById(R.id.layout_hep_b_birth_alert);
         txtHepBDoneOn = (TextView) serviceModeImmunization0to9View.findViewById(R.id.txt_hep_b_on);
+        txtHepBAlertDueType = (TextView) serviceModeImmunization0to9View.findViewById(R.id.txt_hep_b_birth_due_type);
+        txtHepBAlertDueOn = (TextView) serviceModeImmunization0to9View.findViewById(R.id.txt_hep_b_birth_due_on);
+
+        btnPentav = (TextView) serviceModeImmunization0to9View.findViewById(R.id.btn_pentav);
+        layoutPentavAlert = serviceModeImmunization0to9View.findViewById(R.id.layout_pentav_alert);
         txtPentavDoneOn = (TextView) serviceModeImmunization0to9View.findViewById(R.id.txt_pentav_on);
+        txtPentavAlertDueType = (TextView) serviceModeImmunization0to9View.findViewById(R.id.txt_pentav_due_type);
+        txtPentavAlertDueOn = (TextView) serviceModeImmunization0to9View.findViewById(R.id.txt_pentav_due_on);
 
         txtMeaslesDoneOn = (TextView) serviceModeImmunization9PlusView.findViewById(R.id.txt_measles_on);
         txtOpvBoosterDoneOn = (TextView) serviceModeImmunization9PlusView.findViewById(R.id.txt_opv_booster_on);
@@ -181,5 +208,53 @@ public class NativeChildSmartRegisterViewHolder {
 
     public TextView opvDoneOnView() {
         return txtOpvDoneOn;
+    }
+
+    public View layoutPentavAlertView() {
+        return layoutPentavAlert;
+    }
+
+    public TextView addPentavView() {
+        return btnPentav;
+    }
+
+    public View layoutHepBAlertView() {
+        return layoutHepBAlert;
+    }
+
+    public TextView addHepBView() {
+        return btnHepB;
+    }
+
+    public View layoutOpvAlertView() {
+        return layoutOpvAlert;
+    }
+
+    public TextView addOpvView() {
+        return btnOpv;
+    }
+
+    public TextView opvAlertDueOnView() {
+        return txtOpvAlertDueOn;
+    }
+
+    public TextView hepBAlertDueOnView() {
+        return txtHepBAlertDueOn;
+    }
+
+    public TextView pentavAlertDueOnView() {
+        return txtPentavAlertDueOn;
+    }
+
+    public TextView pentavAlertDueTypeView() {
+        return txtPentavAlertDueType;
+    }
+
+    public TextView hepBAlertDueTypeView() {
+        return txtHepBAlertDueType;
+    }
+
+    public TextView opvAlertDueTypeView() {
+        return txtOpvAlertDueType;
     }
 }

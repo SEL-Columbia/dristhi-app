@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import org.ei.drishti.R;
+import org.ei.drishti.view.contract.ChildClient;
 import org.ei.drishti.view.contract.ChildSmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
@@ -73,6 +74,9 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
 
         viewHolder.hideAllServiceModeOptions();
         currentServiceModeOption.setupListView(client, viewHolder, onClickListener);
+
+        ((ChildClient)client).PrintAlerts();
+
 
         itemView.setLayoutParams(clientViewLayoutParams);
         return itemView;

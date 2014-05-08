@@ -32,11 +32,21 @@ public enum ChildServiceType {
         public String displayName() {
             return Context.getInstance().applicationContext().getString(R.string.service_type_dpt_booster_1);
         }
+
+        @Override
+        public String shortName() {
+            return Context.getInstance().applicationContext().getString(R.string.service_type_dpt_booster_1_short);
+        }
     },
     DPTBOOSTER_2 {
         @Override
         public String displayName() {
             return Context.getInstance().applicationContext().getString(R.string.service_type_dpt_booster_2);
+        }
+
+        @Override
+        public String shortName() {
+            return Context.getInstance().applicationContext().getString(R.string.service_type_dpt_booster_2_short);
         }
     },
     OPV_0 {
@@ -69,17 +79,32 @@ public enum ChildServiceType {
         public String displayName() {
             return Context.getInstance().applicationContext().getString(R.string.service_type_pentavalent_1);
         }
+
+        @Override
+        public String shortName() {
+            return Context.getInstance().applicationContext().getString(R.string.service_type_pentavalent_1_short);
+        }
     },
     PENTAVALENT_2 {
         @Override
         public String displayName() {
             return Context.getInstance().applicationContext().getString(R.string.service_type_pentavalent_2);
         }
+
+        @Override
+        public String shortName() {
+            return Context.getInstance().applicationContext().getString(R.string.service_type_pentavalent_2_short);
+        }
     },
     PENTAVALENT_3 {
         @Override
         public String displayName() {
             return Context.getInstance().applicationContext().getString(R.string.service_type_pentavalent_3);
+        }
+
+        @Override
+        public String shortName() {
+            return Context.getInstance().applicationContext().getString(R.string.service_type_pentavalent_3_short);
         }
     },
     BCG {
@@ -132,6 +157,10 @@ public enum ChildServiceType {
     };
 
     public abstract String displayName();
+
+    public String shortName() {
+        return displayName();
+    }
 
     public static ChildServiceType tryParse(String type, ChildServiceType defaultType) {
         try {

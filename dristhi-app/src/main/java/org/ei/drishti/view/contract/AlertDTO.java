@@ -3,6 +3,9 @@ package org.ei.drishti.view.contract;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.domain.ChildServiceType;
+import org.ei.drishti.dto.AlertStatus;
+import org.ei.drishti.util.DateUtil;
 
 public class AlertDTO {
     private final String name;
@@ -13,6 +16,34 @@ public class AlertDTO {
         this.name = name;
         this.status = status;
         this.date = date;
+    }
+
+    public String name() {
+        return name;
+    }
+
+    public String status() {
+        return status;
+    }
+
+    public AlertStatus alertStatus() {
+        return AlertStatus.valueOf(status);
+    }
+
+    public ChildServiceType type() {
+        return ChildServiceType.tryParse(name, ChildServiceType.EMPTY);
+    }
+
+    public String date() {
+        return DateUtil.formatDate(date);
+    }
+
+    public String shortDate() {
+        return DateUtil.formatDate(date, "dd/MM");
+    }
+
+    public boolean isUrgent() {
+        return AlertStatus.valueOf(status).equals(AlertStatus.urgent);
     }
 
     @Override

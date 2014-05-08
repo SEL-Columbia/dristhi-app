@@ -31,6 +31,10 @@ public class ServiceProvidedDTO {
         return formatDate(date);
     }
 
+    public String shortDate() {
+        return formatDate(date, "dd/MM");
+    }
+
     public Map<String, String> data() {
         return data;
     }

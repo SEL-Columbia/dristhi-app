@@ -83,4 +83,6 @@ public interface ChildSmartRegisterClient extends SmartRegisterClient {
     public String dptBoosterDoneDate();
 
     public String vitaminADoneDate();
+
+    public List<AlertDTO> alerts();
 }

@@ -1,9 +1,11 @@
 package org.ei.drishti.view.contract;
 
+import android.util.Log;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.AllConstants;
+import org.ei.drishti.domain.ChildServiceType;
 import org.ei.drishti.util.DateUtil;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
@@ -302,7 +304,7 @@ public class ChildClient implements ChildSmartRegisterClient {
     public String bcgDoneDate() {
         for (ServiceProvidedDTO service : services_provided) {
             if (BCG.equals(service.type())) {
-                return service.date();
+                return service.shortDate();
             }
         }
         return "";
@@ -311,11 +313,14 @@ public class ChildClient implements ChildSmartRegisterClient {
     @Override
     public String opvDoneDate() {
         for (ServiceProvidedDTO service : services_provided) {
-            if (OPV_0.equals(service.type())
-                    || OPV_1.equals(service.type())
-                    || OPV_2.equals(service.type())
-                    || OPV_3.equals(service.type())) {
-                return service.date();
+            if (OPV_0.equals(service.type())) {
+                return OPV_0.displayName() + ": " + service.shortDate();
+            } else if (OPV_1.equals(service.type())) {
+                return OPV_1.displayName() + ": " + service.shortDate();
+            } else if (OPV_2.equals(service.type())) {
+                return OPV_2.displayName() + ": " + service.shortDate();
+            } else if (OPV_3.equals(service.type())) {
+                return OPV_3.displayName() + ": " + service.shortDate();
             }
         }
         return "";
@@ -325,7 +330,7 @@ public class ChildClient implements ChildSmartRegisterClient {
     public String hepBDoneDate() {
         for (ServiceProvidedDTO service : services_provided) {
             if (HEPB_0.equals(service.type())) {
-                return service.date();
+                return HEPB_0.displayName() + ": " + service.shortDate();
             }
         }
         return "";
@@ -335,11 +340,11 @@ public class ChildClient implements ChildSmartRegisterClient {
     public String pentavDoneDate() {
         for (ServiceProvidedDTO service : services_provided) {
             if (PENTAVALENT_1.equals(service.type())) {
-                return service.date();
+                return PENTAVALENT_1.shortName() + ": " + service.shortDate();
             } else if (PENTAVALENT_2.equals(service.type())) {
-                return service.date();
+                return PENTAVALENT_2.shortName() + ": " + service.shortDate();
             } else if (PENTAVALENT_3.equals(service.type())) {
-                return service.date();
+                return PENTAVALENT_3.shortName() + ": " + service.shortDate();
             }
         }
         return "";
@@ -389,7 +394,7 @@ public class ChildClient implements ChildSmartRegisterClient {
     public String measlesDoneDate() {
         for (ServiceProvidedDTO service : services_provided) {
             if (MEASLES.equals(service.type())) {
-                return service.date();
+                return MEASLES.displayName() + ": " + service.shortDate();
             }
         }
         return "";
@@ -399,7 +404,7 @@ public class ChildClient implements ChildSmartRegisterClient {
     public String opvBoosterDoneDate() {
         for (ServiceProvidedDTO service : services_provided) {
             if (OPV_BOOSTER.equals(service.type())) {
-                return service.date();
+                return OPV_BOOSTER.displayName() + ": " + service.shortDate();
             }
         }
         return "";
@@ -408,8 +413,10 @@ public class ChildClient implements ChildSmartRegisterClient {
     @Override
     public String dptBoosterDoneDate() {
         for (ServiceProvidedDTO service : services_provided) {
-            if (DPTBOOSTER_1.equals(service.type()) || DPTBOOSTER_2.equals(service.type())) {
-                return service.date();
+            if (DPTBOOSTER_1.equals(service.type())) {
+                return DPTBOOSTER_1.shortName() + ": " + service.shortDate();
+            } else if (DPTBOOSTER_2.equals(service.type())) {
+                return DPTBOOSTER_2.shortName() + ": " + service.shortDate();
             }
         }
         return "";
@@ -419,10 +426,67 @@ public class ChildClient implements ChildSmartRegisterClient {
     public String vitaminADoneDate() {
         for (ServiceProvidedDTO service : services_provided) {
             if (VITAMIN_A.equals(service.type())) {
-                return service.date();
+                return VITAMIN_A.shortName() + ": " + service.shortDate();
             }
         }
         return "";
+    }
+
+    @Override
+    public List<AlertDTO> alerts() {
+        return alerts;
+    }
+
+    public AlertDTO getOpvAlert() {
+        AlertDTO opvAlert = null;
+        for (AlertDTO alert : alerts) {
+            if (ChildServiceType.OPV_0.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))
+                    || ChildServiceType.OPV_1.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))
+                    || ChildServiceType.OPV_2.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))
+                    || ChildServiceType.OPV_3.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))) {
+                if (opvAlert == null) {
+                    opvAlert = alert;
+                } else if (alert.isUrgent()) {
+                    opvAlert = alert;
+                }
+            }
+        }
+        return opvAlert;
+    }
+
+    public AlertDTO getPentavAlert() {
+        AlertDTO pentavAlert = null;
+        for (AlertDTO alert : alerts) {
+            if (ChildServiceType.PENTAVALENT_1.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))
+                    || ChildServiceType.PENTAVALENT_2.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))
+                    || ChildServiceType.PENTAVALENT_3.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))) {
+                if (pentavAlert == null) {
+                    pentavAlert = alert;
+                } else if (alert.isUrgent()) {
+                    pentavAlert = alert;
+                }
+
+            }
+        }
+        return pentavAlert;
+    }
+
+    public AlertDTO getAlert(ChildServiceType type) {
+        AlertDTO requiredAlert = null;
+        for (AlertDTO alert : alerts) {
+            if (type.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))) {
+                requiredAlert = alert;
+                break;
+            }
+        }
+        return requiredAlert;
+    }
+
+    public void PrintAlerts() {
+        Log.d("GRTG", " client: " + displayName());
+        for (AlertDTO alert : alerts) {
+            Log.d("GRTG", "" + alert.name() + ", " + alert.status() + ", " + alert.date());
+        }
     }
 
     public ChildClient withEntityIdToSavePhoto(String entityIdToSavePhoto) {

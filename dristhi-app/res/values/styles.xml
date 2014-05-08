@@ -14,6 +14,10 @@
         <item name="android:textSize">17sp</item>
     </style>
 
+    <style name="CustomFontTextViewStyle.ListView.Normal.White">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
     <style name="CustomFontTextViewStyle.ListView.Normal.NoPadding">
         <item name="android:paddingLeft">0dp</item>
     </style>
@@ -22,6 +26,11 @@
         <item name="fontVariant">medium</item>
         <item name="android:textSize">15sp</item>
         <item name="android:height">18dp</item>
+    </style>
+
+    <style name="CustomFontTextViewStyle.ListView.VerySmall" parent="CustomFontTextViewStyle">
+        <item name="fontVariant">medium</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="CustomFontTextViewStyle.ListView.Normal.GPLSA">
@@ -44,6 +53,7 @@
         <item name="android:paddingRight">5dp</item>
         <item name="android:ellipsize">none</item>
     </style>
+
     <style name="CustomFontTextViewStyle.ListView.Medium.NoPadding">
         <item name="android:paddingLeft">0dp</item>
     </style>

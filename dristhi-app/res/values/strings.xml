@@ -148,5 +148,11 @@
     <string name="opv_booster">OPV Booster</string>
     <string name="dpt_booster">DPT Booster</string>
     <string name="vitamin_a">Vitamin A</string>
+    <string name="service_type_pentavalent_1_short">Pentav 1</string>
+    <string name="service_type_pentavalent_2_short">Pentav 2</string>
+    <string name="service_type_pentavalent_3_short">Pentav 3</string>
+    <string name="service_type_dpt_booster_1_short">DPT B1</string>
+    <string name="service_type_dpt_booster_2_short">DPT B2</string>
+    <string name="pentavalent_short">Pentav</string>
 
 </resources>
