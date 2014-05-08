@@ -9,7 +9,6 @@ import org.ei.drishti.domain.ChildServiceType;
 import org.ei.drishti.dto.AlertStatus;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.AlertDTO;
-import org.ei.drishti.view.contract.ChildClient;
 import org.ei.drishti.view.contract.ChildSmartRegisterClient;
 import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
 
@@ -91,7 +90,7 @@ public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
             viewHolder.opvDoneOnView().setVisibility(View.INVISIBLE);
         }
 
-        AlertDTO opvAlert = ((ChildClient) client).getOpvAlert();
+        AlertDTO opvAlert = client.getOpvAlert();
         if (opvAlert != null) {
             viewHolder.addOpvView().setVisibility(View.INVISIBLE);
             viewHolder.layoutOpvAlertView().setVisibility(View.VISIBLE);
@@ -116,7 +115,7 @@ public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
             viewHolder.hepBDoneOnView().setVisibility(View.INVISIBLE);
         }
 
-        AlertDTO hepBAlert = ((ChildClient) client).getAlert(ChildServiceType.HEPB_0);
+        AlertDTO hepBAlert = client.getAlert(ChildServiceType.HEPB_0);
         if (hepBAlert != null) {
             viewHolder.addHepBView().setVisibility(View.INVISIBLE);
             viewHolder.layoutHepBAlertView().setVisibility(View.VISIBLE);
@@ -141,7 +140,7 @@ public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
             viewHolder.pentavDoneOnView().setVisibility(View.INVISIBLE);
         }
 
-        AlertDTO pentavAlert = ((ChildClient) client).getPentavAlert();
+        AlertDTO pentavAlert = client.getPentavAlert();
         if (pentavAlert != null) {
             viewHolder.addPentavView().setVisibility(View.INVISIBLE);
             viewHolder.layoutPentavAlertView().setVisibility(View.VISIBLE);

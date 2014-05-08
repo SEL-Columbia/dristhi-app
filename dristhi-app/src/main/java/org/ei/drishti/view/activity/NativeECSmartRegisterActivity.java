@@ -110,6 +110,12 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         dialogOptionMapper = new DialogOptionMapper();
     }
 
+    @Override
+    public void setupViews() {
+        super.setupViews();
+
+        setServiceModeViewDrawableRight(null);
+    }
 
     @Override
     protected void startRegistration() {

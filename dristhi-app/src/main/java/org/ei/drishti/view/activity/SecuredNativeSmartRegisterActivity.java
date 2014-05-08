@@ -3,6 +3,7 @@ package org.ei.drishti.view.activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.database.DataSetObserver;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -134,7 +135,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }.executeOnExecutor(THREAD_POOL_EXECUTOR);
     }
 
-    private void setupViews() {
+    protected void setupViews() {
         setupNavBarViews();
         populateClientListHeaderView(defaultOptionProvider.serviceMode().getHeaderProvider());
 
@@ -169,6 +170,10 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         findViewById(R.id.register_client).setOnClickListener(navBarActionsHandler);
 
         setupSearchView();
+    }
+
+    protected void setServiceModeViewDrawableRight(Drawable drawable) {
+        serviceModeView.setCompoundDrawables(null ,null, drawable, null);
     }
 
     private void setupTitleView() {

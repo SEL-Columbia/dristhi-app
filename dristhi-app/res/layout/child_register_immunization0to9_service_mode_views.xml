@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:src="@drawable/ic_yes"
+                    android:src="@drawable/ic_yes_large"
                     android:background="@android:color/transparent"/>
 
             <org.ei.drishti.view.customControls.CustomFontTextView
@@ -127,6 +127,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
+                android:drawableLeft="@drawable/ic_yes_small"
                 style="@style/CustomFontTextViewStyle.ListView.VerySmall"/>
 
     </LinearLayout>
@@ -199,6 +200,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
+                android:drawableLeft="@drawable/ic_yes_small"
                 style="@style/CustomFontTextViewStyle.ListView.VerySmall"/>
 
     </LinearLayout>
@@ -261,7 +263,7 @@
                         android:layout_alignParentRight="true"
                         android:scaleType="centerInside"
                         android:layout_toRightOf="@id/txt_pentav_due_on"
-                        android:src="@drawable/ic_dropper"/>
+                        android:src="@drawable/ic_needle"/>
             </RelativeLayout>
 
         </FrameLayout>
@@ -271,6 +273,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
+                android:drawableLeft="@drawable/ic_yes_small"
                 style="@style/CustomFontTextViewStyle.ListView.VerySmall"/>
 
     </LinearLayout>

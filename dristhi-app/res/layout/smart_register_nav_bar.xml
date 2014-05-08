@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_toRightOf="@id/home_title_separator"
-            android:paddingLeft="11dp"
+            android:paddingLeft="5dp"
             android:paddingRight="13dp"
             android:orientation="horizontal"
             android:background="@drawable/transparent_gray_background">
@@ -40,8 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
-                style="@style/CustomFontTextViewStyle.NavBar.Black"
-                android:text="@string/ec_register_title_in_short"/>
+                style="@style/CustomFontTextViewStyle.NavBar.Black"/>
 
         <org.ei.drishti.view.customControls.CustomFontTextView
                 android:id="@+id/btn_report_month"
@@ -49,8 +48,7 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="7dp"
                 android:background="@android:color/transparent"
-                style="@style/CustomFontTextViewStyle.NavBar.Black"
-                android:text="@string/report_month_sample_text"/>
+                style="@style/CustomFontTextViewStyle.NavBar.Black"/>
     </LinearLayout>
 
     <LinearLayout
@@ -145,9 +143,10 @@
             android:layout_height="fill_parent"
             android:layout_toLeftOf="@id/sort_selection"
             android:paddingLeft="15dp"
-            android:paddingRight="15dp"
+            android:paddingRight="5dp"
+            android:drawablePadding="2dp"
             android:gravity="center"
-            android:text="@string/couple_selection"
+            android:drawableRight="@drawable/ic_down"
             android:background="@drawable/transparent_gray_background"
             style="@style/CustomFontTextViewStyle.NavBar.Bold"
             android:layout_alignParentTop="true"/>

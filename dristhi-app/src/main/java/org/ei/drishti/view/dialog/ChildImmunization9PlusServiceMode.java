@@ -9,7 +9,6 @@ import org.ei.drishti.domain.ChildServiceType;
 import org.ei.drishti.dto.AlertStatus;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.AlertDTO;
-import org.ei.drishti.view.contract.ChildClient;
 import org.ei.drishti.view.contract.ChildSmartRegisterClient;
 import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
 
@@ -78,7 +77,7 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
             viewHolder.measlesDoneOnView().setVisibility(INVISIBLE);
         }
 
-        AlertDTO measlesAlert = ((ChildClient) client).getAlert(ChildServiceType.MEASLES);
+        AlertDTO measlesAlert = client.getAlert(ChildServiceType.MEASLES);
         if (measlesAlert != null) {
             viewHolder.addMeaslesView().setVisibility(INVISIBLE);
             viewHolder.layoutMeaslesAlertView().setVisibility(VISIBLE);
@@ -103,7 +102,7 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
             viewHolder.opvBoosterDoneOnView().setVisibility(INVISIBLE);
         }
 
-        AlertDTO opvBoosterAlert = ((ChildClient) client).getAlert(ChildServiceType.OPV_BOOSTER);
+        AlertDTO opvBoosterAlert = client.getAlert(ChildServiceType.OPV_BOOSTER);
         if (opvBoosterAlert != null) {
             viewHolder.addOpvBoosterView().setVisibility(INVISIBLE);
             viewHolder.layoutOpvBoosterAlertView().setVisibility(VISIBLE);
@@ -128,7 +127,7 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
             viewHolder.dptBoosterDoneOnView().setVisibility(INVISIBLE);
         }
 
-        AlertDTO dptBoosterAlert = ((ChildClient) client).getDptBoosterAlert();
+        AlertDTO dptBoosterAlert = client.getDptBoosterAlert();
         if (dptBoosterAlert != null) {
             viewHolder.addDptBoosterView().setVisibility(INVISIBLE);
             viewHolder.layoutDptBoosterAlertView().setVisibility(VISIBLE);
@@ -153,7 +152,7 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
             viewHolder.vitaminADoneOnView().setVisibility(INVISIBLE);
         }
 
-        AlertDTO vitaminAAlert = ((ChildClient) client).getAlert(ChildServiceType.VITAMIN_A);
+        AlertDTO vitaminAAlert = client.getAlert(ChildServiceType.VITAMIN_A);
         if (vitaminAAlert != null) {
             viewHolder.addVitaminAView().setVisibility(INVISIBLE);
             viewHolder.layoutVitaminAAlertView().setVisibility(VISIBLE);

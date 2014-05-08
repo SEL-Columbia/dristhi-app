@@ -1,6 +1,5 @@
 package org.ei.drishti.view.contract;
 
-import android.util.Log;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -437,6 +436,7 @@ public class ChildClient implements ChildSmartRegisterClient {
         return alerts;
     }
 
+    @Override
     public AlertDTO getOpvAlert() {
         AlertDTO opvAlert = null;
         for (AlertDTO alert : alerts) {
@@ -454,6 +454,7 @@ public class ChildClient implements ChildSmartRegisterClient {
         return opvAlert;
     }
 
+    @Override
     public AlertDTO getPentavAlert() {
         AlertDTO pentavAlert = null;
         for (AlertDTO alert : alerts) {
@@ -471,6 +472,7 @@ public class ChildClient implements ChildSmartRegisterClient {
         return pentavAlert;
     }
 
+    @Override
     public AlertDTO getAlert(ChildServiceType type) {
         AlertDTO requiredAlert = null;
         for (AlertDTO alert : alerts) {
@@ -482,6 +484,7 @@ public class ChildClient implements ChildSmartRegisterClient {
         return requiredAlert;
     }
 
+    @Override
     public AlertDTO getDptBoosterAlert() {
         AlertDTO dptBoosterAlert = null;
         for (AlertDTO alert : alerts) {
@@ -496,13 +499,6 @@ public class ChildClient implements ChildSmartRegisterClient {
             }
         }
         return dptBoosterAlert;
-    }
-
-    public void PrintAlerts() {
-        Log.d("GRTG", " client: " + displayName());
-        for (AlertDTO alert : alerts) {
-            Log.d("GRTG", "" + alert.name() + ", " + alert.status() + ", " + alert.date());
-        }
     }
 
     public ChildClient withEntityIdToSavePhoto(String entityIdToSavePhoto) {

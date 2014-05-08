@@ -1,6 +1,8 @@
 package org.ei.drishti.view.contract;
 
 
+import org.ei.drishti.domain.ChildServiceType;
+
 import java.util.List;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
@@ -85,4 +87,12 @@ public interface ChildSmartRegisterClient extends SmartRegisterClient {
     public String vitaminADoneDate();
 
     public List<AlertDTO> alerts();
+
+    public AlertDTO getAlert(ChildServiceType measles);
+
+    public AlertDTO getDptBoosterAlert();
+
+    public AlertDTO getOpvAlert();
+
+    public AlertDTO getPentavAlert();
 }

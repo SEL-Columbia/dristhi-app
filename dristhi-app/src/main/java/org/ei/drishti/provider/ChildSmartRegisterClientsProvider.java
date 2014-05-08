@@ -1,7 +1,6 @@
 package org.ei.drishti.provider;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,8 +30,6 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
 
     protected ChildSmartRegisterController controller;
 
-    private Drawable maleInfantDrawable;
-    private Drawable femaleInfantDrawable;
     private ServiceModeOption currentServiceModeOption;
 
     public ChildSmartRegisterClientsProvider(Context context,
@@ -44,11 +41,9 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
-        maleInfantDrawable = context.getResources().getDrawable(R.drawable.child_boy_infant);
-        femaleInfantDrawable = context.getResources().getDrawable(R.drawable.child_girl_infant);
-
-        photoLoader = new ChildRegisterProfilePhotoLoader(maleInfantDrawable, femaleInfantDrawable);
-
+        photoLoader = new ChildRegisterProfilePhotoLoader(
+                context.getResources().getDrawable(R.drawable.child_boy_infant),
+                context.getResources().getDrawable(R.drawable.child_girl_infant));
 
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
                 (int) context.getResources().getDimension(R.dimen.list_item_height));

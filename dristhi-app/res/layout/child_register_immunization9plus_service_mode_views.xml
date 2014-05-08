@@ -58,7 +58,7 @@
                         android:layout_alignParentRight="true"
                         android:scaleType="centerInside"
                         android:layout_toRightOf="@id/txt_measles_due_on"
-                        android:src="@drawable/ic_dropper"/>
+                        android:src="@drawable/ic_needle"/>
             </RelativeLayout>
 
         </FrameLayout>
@@ -68,6 +68,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
+                android:drawableLeft="@drawable/ic_yes_small"
                 style="@style/CustomFontTextViewStyle.ListView.VerySmall"/>
 
     </LinearLayout>
@@ -130,7 +131,7 @@
                         android:layout_alignParentRight="true"
                         android:scaleType="centerInside"
                         android:layout_toRightOf="@id/txt_opv_booster_due_on"
-                        android:src="@drawable/ic_dropper"/>
+                        android:src="@drawable/ic_needle"/>
             </RelativeLayout>
 
         </FrameLayout>
@@ -140,6 +141,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
+                android:drawableLeft="@drawable/ic_yes_small"
                 style="@style/CustomFontTextViewStyle.ListView.VerySmall"/>
 
     </LinearLayout>
@@ -202,7 +204,7 @@
                         android:layout_alignParentRight="true"
                         android:scaleType="centerInside"
                         android:layout_toRightOf="@id/txt_dpt_booster_due_on"
-                        android:src="@drawable/ic_dropper"/>
+                        android:src="@drawable/ic_needle"/>
             </RelativeLayout>
 
         </FrameLayout>
@@ -212,6 +214,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
+                android:drawableLeft="@drawable/ic_yes_small"
                 style="@style/CustomFontTextViewStyle.ListView.VerySmall"/>
 
     </LinearLayout>
@@ -274,7 +277,7 @@
                         android:layout_alignParentRight="true"
                         android:scaleType="centerInside"
                         android:layout_toRightOf="@id/txt_vitamin_a_due_on"
-                        android:src="@drawable/ic_dropper"/>
+                        android:src="@drawable/ic_needle"/>
             </RelativeLayout>
 
         </FrameLayout>
@@ -284,6 +287,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
+                android:drawableLeft="@drawable/ic_yes_small"
                 style="@style/CustomFontTextViewStyle.ListView.VerySmall"/>
 
     </LinearLayout>
