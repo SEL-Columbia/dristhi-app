@@ -16,7 +16,7 @@ public class NavigationController {
     }
 
     public void startReports() {
-        activity.startActivity(new Intent(activity, NativeChildSmartRegisterActivity.class));
+        activity.startActivity(new Intent(activity, ReportsActivity.class));
     }
 
     public void startVideos() {
@@ -40,7 +40,7 @@ public class NavigationController {
     }
 
     public void startChildSmartRegistry() {
-        activity.startActivity(new Intent(activity, ChildSmartRegisterActivity.class));
+        activity.startActivity(new Intent(activity, NativeChildSmartRegisterActivity.class));
     }
 
     public String get() {
