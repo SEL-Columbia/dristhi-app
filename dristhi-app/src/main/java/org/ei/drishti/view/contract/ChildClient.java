@@ -482,6 +482,22 @@ public class ChildClient implements ChildSmartRegisterClient {
         return requiredAlert;
     }
 
+    public AlertDTO getDptBoosterAlert() {
+        AlertDTO dptBoosterAlert = null;
+        for (AlertDTO alert : alerts) {
+            if (ChildServiceType.DPTBOOSTER_1.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))
+                    || ChildServiceType.DPTBOOSTER_2.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))) {
+                if (dptBoosterAlert == null) {
+                    dptBoosterAlert = alert;
+                } else if (alert.isUrgent()) {
+                    dptBoosterAlert = alert;
+                }
+
+            }
+        }
+        return dptBoosterAlert;
+    }
+
     public void PrintAlerts() {
         Log.d("GRTG", " client: " + displayName());
         for (AlertDTO alert : alerts) {

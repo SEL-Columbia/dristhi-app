@@ -185,6 +185,4 @@ public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
             layout.setBackgroundResource(android.R.color.holo_purple);
         }
     }
-
-
 }
