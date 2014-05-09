@@ -5,80 +5,18 @@
                 <uuid/>
             </formhub>
             <today/>
-            <fp_post_delivery/>
-            <pp_fp_method1/>
-            <pp_fp_method1_start_date/>
-            <iud_place1/>
-            <iud_place1_name/>
-            <iud_person1/>
-            <iud_person1_other/>
-            <iud_person1_name/>
-            <iud_message1/>
-            <sterilization_doctor_name1/>
-            <female_sterilization_type1/>
-            <no_fp_after_delivery_group>
-                <entity_delivery_date/>
-                <exclusively_bf/>
-                <partially_bf/>
-                <any_bf/>
-                <monthly_bleeding/>
-                <num_days_pp/>
-                <less_than_6mos_pp/>
-                <less_than_6wks_pp/>
-                <less_than_21days_pp/>
-                <lam/>
-                <lam_message/>
-                <lam_continue/>
-                <pp_fp_method3/>
-                <pp_fp_method3_start_date/>
-                <no_lam_message/>
-                <fp_method_selection_group>
-                    <preference_future_children/>
-                    <female_sterilization_use/>
-                    <female_sterilization_dont_use/>
-                    <male_sterilization_use/>
-                    <male_sterilization_dont_use/>
-                    <ocp_dont_use/>
-                    <ocp_use/>
-                    <dmpa_not_recommended/>
-                    <dmpa_use/>
-                    <iud_dont_use/>
-                    <iud_use/>
-                    <use/>
-                    <not_recommended/>
-                    <dont_use/>
-                    <use_message/>
-                    <not_recommended_message/>
-                    <dont_use_message/>
-                    <pp_fp_method2/>
-                    <pp_fp_method2_start_date/>
-                    <iud_place2/>
-                    <iud_place2_name/>
-                    <iud_person2/>
-                    <iud_person2_other/>
-                    <iud_person2_name/>
-                    <iud_message2/>
-                    <sterilization_doctor_name2/>
-                    <female_sterilization_type2/>
-                    <male_sterilization_type/>
-                    <num_ocp_strips/>
-                    <num_condoms/>
-                    <num_centchroman_pills/>
-                </fp_method_selection_group>
-            </no_fp_after_delivery_group>
-            <entity_hepb/>
-            <hepb_message/>
-            <pp_fp_method4/>
             <pp_fp_method/>
-            <pp_fp_method4_start_date/>
             <pp_fp_method_start_date/>
             <iud_place/>
-            <iud_place_name/>
             <iud_person/>
-            <iud_person_other/>
-            <iud_person_name/>
-            <sterilization_doctor_name/>
             <female_sterilization_type/>
+            <male_sterilization_type/>
+            <num_ocp_strips/>
+            <num_condoms/>
+            <num_centchroman_pills/>
+            <exclusively_bf/>
+            <partially_bf/>
+            <monthly_bleeding/>
             <meta>
                 <instanceID/>
             </meta>
