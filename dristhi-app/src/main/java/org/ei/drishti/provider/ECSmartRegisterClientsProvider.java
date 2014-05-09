@@ -16,6 +16,7 @@ import org.ei.drishti.view.dialog.ServiceModeOption;
 import org.ei.drishti.view.dialog.SortOption;
 import org.ei.drishti.view.viewHolder.ECProfilePhotoLoader;
 import org.ei.drishti.view.viewHolder.NativeECSmartRegisterViewHolder;
+import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
 import org.ei.drishti.view.viewHolder.ProfilePhotoLoader;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -129,6 +130,11 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     @Override
     public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
         // do nothing.
+    }
+
+    @Override
+    public OnClickFormLauncher newFormLauncher(String formName, String entityId, String metaData) {
+        return null;
     }
 
     public LayoutInflater inflater() {

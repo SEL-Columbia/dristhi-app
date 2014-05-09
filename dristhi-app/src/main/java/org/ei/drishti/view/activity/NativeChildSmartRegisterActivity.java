@@ -140,11 +140,6 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
                 case R.id.btn_edit:
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;
-                case R.id.btn_sick_visit:
-                    startFormActivity(AllConstants.FormNames.CHILD_ILLNESS,
-                            ((SmartRegisterClient)view.getTag()).entityId(),
-                            null);
-                    break;
             }
         }
 

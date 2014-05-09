@@ -1,13 +1,16 @@
 package org.ei.drishti.view.contract;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.ChildServiceType;
-import org.ei.drishti.dto.AlertStatus;
+
 import org.ei.drishti.util.DateUtil;
 
 public class AlertDTO {
+    public static final AlertDTO emptyAlert = new AlertDTO("", "", "");
+
     private final String name;
     private final String status;
     private final String date;
@@ -26,8 +29,8 @@ public class AlertDTO {
         return status;
     }
 
-    public AlertStatus alertStatus() {
-        return AlertStatus.valueOf(status);
+    public ChildAlertStatus alertStatus() {
+        return StringUtils.isBlank(status) ? ChildAlertStatus.EMPTY : ChildAlertStatus.from(status);
     }
 
     public ChildServiceType type() {
@@ -43,7 +46,11 @@ public class AlertDTO {
     }
 
     public boolean isUrgent() {
-        return AlertStatus.valueOf(status).equals(AlertStatus.urgent);
+        return ChildAlertStatus.from(status).equals(ChildAlertStatus.URGENT);
+    }
+
+    public boolean isCompleted() {
+        return ChildAlertStatus.from(status).equals(ChildAlertStatus.COMPLETE);
     }
 
     @Override

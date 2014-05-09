@@ -1,5 +1,6 @@
 package org.ei.drishti.view.contract;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -10,8 +11,7 @@ import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.ChildIllnessFields.*;
@@ -19,9 +19,40 @@ import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
 import static org.ei.drishti.domain.ChildServiceType.*;
 import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.util.StringUtil.humanize;
+import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
 import static org.ei.drishti.view.contract.ServiceProvidedDTO.emptyService;
 
 public class ChildClient implements ChildSmartRegisterClient {
+    public static final String CATEGORY_BCG = "bcg";
+    public static final String CATEGORY_MEASLES = "measles";
+    public static final String CATEGORY_OPV = "opv";
+    public static final String CATEGORY_OPVBOOSTER = "opvbooster";
+    public static final String CATEGORY_DPT = "dpt";
+    public static final String CATEGORY_PENTAVALENT = "pentavalent";
+    public static final String CATEGORY_HEPB = "hepb";
+    public static final String CATEGORY_VITAMIN_A = "vitamin_a";
+    public static final String CATEGORY_CHILD_ILLNESS = "child_illness";
+
+    private static final String[] SERVICE_CATEGORIES = {CATEGORY_BCG, CATEGORY_MEASLES, CATEGORY_OPV,
+            CATEGORY_OPVBOOSTER, CATEGORY_DPT, CATEGORY_PENTAVALENT,
+            CATEGORY_HEPB, CATEGORY_VITAMIN_A, CATEGORY_CHILD_ILLNESS};
+
+    private static  Map<String, List<ChildServiceType>> categoriesToServiceTypeMap = new HashMap<String, List<ChildServiceType>>();
+
+    static {
+        categoriesToServiceTypeMap.put(CATEGORY_BCG, Arrays.asList(BCG));
+        categoriesToServiceTypeMap.put(CATEGORY_MEASLES, Arrays.asList(MEASLES, MEASLESBOOSTER));
+        categoriesToServiceTypeMap.put(CATEGORY_OPV, Arrays.asList(OPV_0, OPV_1, OPV_2, OPV_3));
+        categoriesToServiceTypeMap.put(CATEGORY_OPVBOOSTER, Arrays.asList(OPV_BOOSTER));
+        categoriesToServiceTypeMap.put(CATEGORY_DPT, Arrays.asList(DPTBOOSTER_1, DPTBOOSTER_2));
+        categoriesToServiceTypeMap.put(CATEGORY_PENTAVALENT, Arrays.asList(PENTAVALENT_1, PENTAVALENT_2, PENTAVALENT_3));
+        categoriesToServiceTypeMap.put(CATEGORY_HEPB, Arrays.asList(HEPB_0));
+        categoriesToServiceTypeMap.put(CATEGORY_VITAMIN_A, Arrays.asList(VITAMIN_A));
+        categoriesToServiceTypeMap.put(CATEGORY_CHILD_ILLNESS, Arrays.asList(ILLNESS_VISIT));
+    }
+
+    Map<String, Treatments> serviceToTreatmentMap = new HashMap<String, Treatments>();
+
     private final String entityId;
     private String gender;
     private String weight;
@@ -44,6 +75,11 @@ public class ChildClient implements ChildSmartRegisterClient {
 
     private ServiceProvidedDTO lastService;
     private ServiceProvidedDTO illnessVisitServiceProvided;
+
+    private class Treatments {
+        public ServiceProvidedDTO provided = emptyService;
+        public AlertDTO toProvide = emptyAlert;
+    }
 
     public ChildClient(String entityId, String gender, String weight, String thayiCardNumber) {
         this.entityId = entityId;
@@ -253,254 +289,6 @@ public class ChildClient implements ChildSmartRegisterClient {
         }
     }
 
-    @Override
-    public boolean isBcgDone() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (BCG.equals(service.type())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isOpvDone() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (OPV_0.equals(service.type())
-                    || OPV_1.equals(service.type())
-                    || OPV_2.equals(service.type())
-                    || OPV_3.equals(service.type())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isHepBDone() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (HEPB_0.equals(service.type())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isPentavDone() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (PENTAVALENT_1.equals(service.type())
-                    || PENTAVALENT_2.equals(service.type())
-                    || PENTAVALENT_3.equals(service.type())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    @Override
-    public String bcgDoneDate() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (BCG.equals(service.type())) {
-                return service.shortDate();
-            }
-        }
-        return "";
-    }
-
-    @Override
-    public String opvDoneDate() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (OPV_0.equals(service.type())) {
-                return OPV_0.displayName() + ": " + service.shortDate();
-            } else if (OPV_1.equals(service.type())) {
-                return OPV_1.displayName() + ": " + service.shortDate();
-            } else if (OPV_2.equals(service.type())) {
-                return OPV_2.displayName() + ": " + service.shortDate();
-            } else if (OPV_3.equals(service.type())) {
-                return OPV_3.displayName() + ": " + service.shortDate();
-            }
-        }
-        return "";
-    }
-
-    @Override
-    public String hepBDoneDate() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (HEPB_0.equals(service.type())) {
-                return HEPB_0.displayName() + ": " + service.shortDate();
-            }
-        }
-        return "";
-    }
-
-    @Override
-    public String pentavDoneDate() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (PENTAVALENT_1.equals(service.type())) {
-                return PENTAVALENT_1.shortName() + ": " + service.shortDate();
-            } else if (PENTAVALENT_2.equals(service.type())) {
-                return PENTAVALENT_2.shortName() + ": " + service.shortDate();
-            } else if (PENTAVALENT_3.equals(service.type())) {
-                return PENTAVALENT_3.shortName() + ": " + service.shortDate();
-            }
-        }
-        return "";
-    }
-
-    @Override
-    public boolean isMeaslesDone() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (MEASLES.equals(service.type())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isOpvBoosterDone() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (OPV_BOOSTER.equals(service.type())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isDptBoosterDone() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (DPTBOOSTER_1.equals(service.type()) || DPTBOOSTER_2.equals(service.type())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isVitaminADone() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (VITAMIN_A.equals(service.type())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public String measlesDoneDate() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (MEASLES.equals(service.type())) {
-                return MEASLES.displayName() + ": " + service.shortDate();
-            }
-        }
-        return "";
-    }
-
-    @Override
-    public String opvBoosterDoneDate() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (OPV_BOOSTER.equals(service.type())) {
-                return OPV_BOOSTER.displayName() + ": " + service.shortDate();
-            }
-        }
-        return "";
-    }
-
-    @Override
-    public String dptBoosterDoneDate() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (DPTBOOSTER_1.equals(service.type())) {
-                return DPTBOOSTER_1.shortName() + ": " + service.shortDate();
-            } else if (DPTBOOSTER_2.equals(service.type())) {
-                return DPTBOOSTER_2.shortName() + ": " + service.shortDate();
-            }
-        }
-        return "";
-    }
-
-    @Override
-    public String vitaminADoneDate() {
-        for (ServiceProvidedDTO service : services_provided) {
-            if (VITAMIN_A.equals(service.type())) {
-                return VITAMIN_A.shortName() + ": " + service.shortDate();
-            }
-        }
-        return "";
-    }
-
-    @Override
-    public List<AlertDTO> alerts() {
-        return alerts;
-    }
-
-    @Override
-    public AlertDTO getOpvAlert() {
-        AlertDTO opvAlert = null;
-        for (AlertDTO alert : alerts) {
-            if (ChildServiceType.OPV_0.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))
-                    || ChildServiceType.OPV_1.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))
-                    || ChildServiceType.OPV_2.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))
-                    || ChildServiceType.OPV_3.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))) {
-                if (opvAlert == null) {
-                    opvAlert = alert;
-                } else if (alert.isUrgent()) {
-                    opvAlert = alert;
-                }
-            }
-        }
-        return opvAlert;
-    }
-
-    @Override
-    public AlertDTO getPentavAlert() {
-        AlertDTO pentavAlert = null;
-        for (AlertDTO alert : alerts) {
-            if (ChildServiceType.PENTAVALENT_1.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))
-                    || ChildServiceType.PENTAVALENT_2.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))
-                    || ChildServiceType.PENTAVALENT_3.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))) {
-                if (pentavAlert == null) {
-                    pentavAlert = alert;
-                } else if (alert.isUrgent()) {
-                    pentavAlert = alert;
-                }
-
-            }
-        }
-        return pentavAlert;
-    }
-
-    @Override
-    public AlertDTO getAlert(ChildServiceType type) {
-        AlertDTO requiredAlert = null;
-        for (AlertDTO alert : alerts) {
-            if (type.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))) {
-                requiredAlert = alert;
-                break;
-            }
-        }
-        return requiredAlert;
-    }
-
-    @Override
-    public AlertDTO getDptBoosterAlert() {
-        AlertDTO dptBoosterAlert = null;
-        for (AlertDTO alert : alerts) {
-            if (ChildServiceType.DPTBOOSTER_1.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))
-                    || ChildServiceType.DPTBOOSTER_2.equals(ChildServiceType.tryParse(alert.name(), ChildServiceType.EMPTY))) {
-                if (dptBoosterAlert == null) {
-                    dptBoosterAlert = alert;
-                } else if (alert.isUrgent()) {
-                    dptBoosterAlert = alert;
-                }
-
-            }
-        }
-        return dptBoosterAlert;
-    }
-
     public ChildClient withEntityIdToSavePhoto(String entityIdToSavePhoto) {
         this.entityIdToSavePhoto = entityIdToSavePhoto;
         return this;
@@ -591,5 +379,153 @@ public class ChildClient implements ChildSmartRegisterClient {
         return ToStringBuilder.reflectionToString(this);
     }
 
+    public ChildClient withPreprocess() {
+        initialize(SERVICE_CATEGORIES, serviceToTreatmentMap);
+        initializeAllServiceToProvideAndProvided(categoriesToServiceTypeMap);
+        return this;
+    }
 
+    private void initializeAllServiceToProvideAndProvided(Map<String, List<ChildServiceType>> categoriesToServiceTypeMap) {
+        Set<String> keys = categoriesToServiceTypeMap.keySet();
+        for (String key : keys) {
+            initializeServiceToProvideAndProvided(categoriesToServiceTypeMap.get(key));
+        }
+    }
+
+    private void initializeServiceToProvideAndProvided(List<ChildServiceType> types) {
+        for (ChildServiceType type : types) {
+            initializeServiceToProvideAndProvided(type);
+        }
+    }
+
+    private void initializeServiceToProvideAndProvided(ChildServiceType type) {
+        for (AlertDTO alert : alerts) {
+            if (!alert.isCompleted() && type.equals(alert.type())) {
+                serviceToTreatmentMap.get(type.category()).toProvide = alert;
+            }
+        }
+
+        for (ServiceProvidedDTO service : services_provided) {
+            if (type.equals(service.type())) {
+                serviceToTreatmentMap.get(type.category()).provided = service;
+            }
+        }
+    }
+
+    private void initialize(String[] types, Map<String, Treatments> serviceToTreatmentMap) {
+        for (String type : types) {
+            serviceToTreatmentMap.put(type, new Treatments());
+        }
+    }
+
+    @Override
+    public boolean isBcgDone() {
+        return isServiceProvided(CATEGORY_BCG);
+    }
+
+    @Override
+    public boolean isOpvDone() {
+        return isServiceProvided(CATEGORY_OPV);
+    }
+
+    @Override
+    public boolean isHepBDone() {
+        return isServiceProvided(CATEGORY_HEPB);
+    }
+
+    @Override
+    public boolean isPentavDone() {
+        return isServiceProvided(CATEGORY_PENTAVALENT);
+    }
+
+    private boolean isServiceProvided(String category) {
+        if (StringUtils.isBlank(category)) {
+            return false;
+        }
+        return serviceToTreatmentMap.get(category).provided != emptyService;
+    }
+
+    private ServiceProvidedDTO serviceProvided(String category) {
+        if (StringUtils.isBlank(category)) {
+            return emptyService;
+        }
+        return serviceToTreatmentMap.get(category).provided;
+    }
+
+    private AlertDTO serviceToProvide(String category) {
+        if (StringUtils.isBlank(category)) {
+            return emptyAlert;
+        }
+        return serviceToTreatmentMap.get(category).toProvide;
+    }
+
+    @Override
+    public String bcgDoneDate() {
+        return serviceProvided(CATEGORY_BCG).shortDate();
+    }
+
+    @Override
+    public String opvDoneDate() {
+        return serviceProvided(CATEGORY_OPV).servicedOn();
+    }
+
+    @Override
+    public String hepBDoneDate() {
+        return serviceProvided(CATEGORY_HEPB).servicedOn();
+    }
+
+    @Override
+    public String pentavDoneDate() {
+        return serviceProvided(CATEGORY_PENTAVALENT).servicedOn();
+    }
+
+    @Override
+    public AlertDTO getAlert(ChildServiceType type) {
+        return serviceToProvide(type.category());
+    }
+
+    @Override
+    public boolean isMeaslesDone() {
+        return isServiceProvided(CATEGORY_MEASLES);
+    }
+
+    @Override
+    public boolean isOpvBoosterDone() {
+        return isServiceProvided(CATEGORY_OPVBOOSTER);
+    }
+
+    @Override
+    public boolean isDptBoosterDone() {
+        return isServiceProvided(CATEGORY_DPT);
+    }
+
+    @Override
+    public boolean isVitaminADone() {
+        return isServiceProvided(CATEGORY_VITAMIN_A);
+    }
+
+    @Override
+    public String measlesDoneDate() {
+        return serviceProvided(CATEGORY_MEASLES).servicedOn();
+    }
+
+    @Override
+    public String opvBoosterDoneDate() {
+        return serviceProvided(CATEGORY_OPVBOOSTER).servicedOn();
+    }
+
+    @Override
+    public String dptBoosterDoneDate() {
+        return serviceProvided(CATEGORY_DPT).servicedOn();
+    }
+
+    @Override
+    public String vitaminADoneDate() {
+        return serviceProvided(CATEGORY_VITAMIN_A).servicedOn();
+    }
+
+    @Override
+    public List<AlertDTO> alerts() {
+        return alerts;
+    }
 }

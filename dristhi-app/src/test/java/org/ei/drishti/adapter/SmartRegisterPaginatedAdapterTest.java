@@ -9,6 +9,7 @@ import org.ei.drishti.view.contract.SmartRegisterClients;
 import org.ei.drishti.view.dialog.FilterOption;
 import org.ei.drishti.view.dialog.ServiceModeOption;
 import org.ei.drishti.view.dialog.SortOption;
+import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -183,6 +184,11 @@ public class SmartRegisterPaginatedAdapterTest {
         @Override
         public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
 
+        }
+
+        @Override
+        public OnClickFormLauncher newFormLauncher(String formName, String entityId, String metaData) {
+            return null;
         }
     }
 }

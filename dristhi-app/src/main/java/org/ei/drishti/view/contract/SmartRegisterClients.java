@@ -23,4 +23,5 @@ public class SmartRegisterClients extends ArrayList<SmartRegisterClient> {
         serviceModeOption.apply();
         return sortOption.sort(results);
     }
+
 }

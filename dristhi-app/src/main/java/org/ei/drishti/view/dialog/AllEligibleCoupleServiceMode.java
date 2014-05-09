@@ -3,6 +3,7 @@ package org.ei.drishti.view.dialog;
 import android.view.View;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
+import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.ChildSmartRegisterClient;
 import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
 
@@ -10,8 +11,8 @@ import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.Cl
 
 public class AllEligibleCoupleServiceMode extends ServiceModeOption {
 
-    public AllEligibleCoupleServiceMode() {
-        super(null);
+    public AllEligibleCoupleServiceMode(SmartRegisterClientsProvider provider) {
+        super(provider);
     }
 
     @Override

@@ -36,7 +36,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
             @Override
             public ServiceModeOption serviceMode() {
-                return new AllEligibleCoupleServiceMode();
+                return new AllEligibleCoupleServiceMode(clientsProvider());
             }
 
             @Override

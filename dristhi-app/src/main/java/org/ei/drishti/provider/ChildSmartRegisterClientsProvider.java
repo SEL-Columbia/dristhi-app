@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import org.ei.drishti.R;
+import org.ei.drishti.view.activity.SecuredActivity;
 import org.ei.drishti.view.contract.ChildSmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
@@ -15,6 +16,7 @@ import org.ei.drishti.view.dialog.ServiceModeOption;
 import org.ei.drishti.view.dialog.SortOption;
 import org.ei.drishti.view.viewHolder.ChildRegisterProfilePhotoLoader;
 import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
 import org.ei.drishti.view.viewHolder.ProfilePhotoLoader;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -22,7 +24,7 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsProvider {
 
     private final LayoutInflater inflater;
-    private final Context context;
+    private final SecuredActivity activity;
     private final View.OnClickListener onClickListener;
     private final ProfilePhotoLoader photoLoader;
 
@@ -32,21 +34,21 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
 
     private ServiceModeOption currentServiceModeOption;
 
-    public ChildSmartRegisterClientsProvider(Context context,
+    public ChildSmartRegisterClientsProvider(SecuredActivity activity,
                                              View.OnClickListener onClickListener,
                                              ChildSmartRegisterController controller) {
         this.onClickListener = onClickListener;
         this.controller = controller;
-        this.context = context;
-        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.activity = activity;
+        this.inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
         photoLoader = new ChildRegisterProfilePhotoLoader(
-                context.getResources().getDrawable(R.drawable.child_boy_infant),
-                context.getResources().getDrawable(R.drawable.child_girl_infant));
+                activity.getResources().getDrawable(R.drawable.child_boy_infant),
+                activity.getResources().getDrawable(R.drawable.child_girl_infant));
 
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
-                (int) context.getResources().getDimension(R.dimen.list_item_height));
+                (int) activity.getResources().getDimension(R.dimen.list_item_height));
     }
 
     @Override
@@ -102,4 +104,10 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
     public LayoutInflater inflater() {
         return inflater;
     }
+
+    @Override
+    public OnClickFormLauncher newFormLauncher(String formName, String entityId, String metaData) {
+        return new OnClickFormLauncher(activity, formName, entityId, metaData);
+    }
+
 }

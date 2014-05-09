@@ -111,7 +111,9 @@ public class ChildSmartRegisterController {
                                     .withPhotoPath(photoPath)
                                     .withECNumber(child.ec().ecNumber())
                                     .withAlerts(alerts)
-                                    .withServicesProvided(servicesProvided);
+                                    .withServicesProvided(servicesProvided)
+                                    .withPreprocess();
+
 
                     childrenClient.add(childClient);
                 }
@@ -146,7 +148,7 @@ public class ChildSmartRegisterController {
         sort(childrenClient, new Comparator<SmartRegisterClient>() {
             @Override
             public int compare(SmartRegisterClient oneChild, SmartRegisterClient anotherChild) {
-                return ((ChildClient)oneChild).motherName().compareToIgnoreCase(((ChildClient)anotherChild).motherName());
+                return oneChild.compareName(anotherChild);
             }
         });
     }

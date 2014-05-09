@@ -1,23 +1,25 @@
 package org.ei.drishti.view.dialog;
 
-import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.ChildServiceType;
-import org.ei.drishti.dto.AlertStatus;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.AlertDTO;
+import org.ei.drishti.view.contract.ChildAlertStatus;
 import org.ei.drishti.view.contract.ChildSmartRegisterClient;
 import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
-import static org.ei.drishti.dto.AlertStatus.*;
+import static org.ei.drishti.AllConstants.FormNames.CHILD_IMMUNIZATIONS;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
 
 public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
+
     public ChildImmunization9PlusServiceMode(SmartRegisterClientsProvider provider) {
         super(provider);
     }
@@ -61,15 +63,14 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
                               View.OnClickListener clientSectionClickListener) {
         viewHolder.serviceModeImmunization9PlusView().setVisibility(VISIBLE);
 
-        setupMeaslesLayout(client, viewHolder, clientSectionClickListener);
-        setupOpvBoosterLayout(client, viewHolder, clientSectionClickListener);
-        setupDptBoosterLayout(client, viewHolder, clientSectionClickListener);
-        setupVitaminALayout(client, viewHolder, clientSectionClickListener);
+        setupMeaslesLayout(client, viewHolder);
+        setupOpvBoosterLayout(client, viewHolder);
+        setupDptBoosterLayout(client, viewHolder);
+        setupVitaminALayout(client, viewHolder);
     }
 
     public void setupMeaslesLayout(ChildSmartRegisterClient client,
-                                  NativeChildSmartRegisterViewHolder viewHolder,
-                                  View.OnClickListener clientSectionClickListener) {
+                                   NativeChildSmartRegisterViewHolder viewHolder) {
         if (client.isMeaslesDone()) {
             viewHolder.measlesDoneOnView().setVisibility(VISIBLE);
             viewHolder.measlesDoneOnView().setText(client.measlesDoneDate());
@@ -78,9 +79,10 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
         }
 
         AlertDTO measlesAlert = client.getAlert(ChildServiceType.MEASLES);
-        if (measlesAlert != null) {
+        if (measlesAlert != emptyAlert) {
             viewHolder.addMeaslesView().setVisibility(INVISIBLE);
             viewHolder.layoutMeaslesAlertView().setVisibility(VISIBLE);
+            viewHolder.layoutMeaslesAlertView().setOnClickListener(launchChildImmunizationForm(client));
             setAlertLayout(viewHolder.layoutMeaslesAlertView(),
                     viewHolder.measlesAlertDueTypeView(),
                     viewHolder.measlesAlertDueOnView(),
@@ -88,13 +90,12 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
         } else {
             viewHolder.layoutMeaslesAlertView().setVisibility(INVISIBLE);
             viewHolder.addMeaslesView().setVisibility(VISIBLE);
-            viewHolder.addMeaslesView().setOnClickListener(clientSectionClickListener);
+            viewHolder.addMeaslesView().setOnClickListener(launchChildImmunizationForm(client));
         }
     }
 
     public void setupOpvBoosterLayout(ChildSmartRegisterClient client,
-                                   NativeChildSmartRegisterViewHolder viewHolder,
-                                   View.OnClickListener clientSectionClickListener) {
+                                      NativeChildSmartRegisterViewHolder viewHolder) {
         if (client.isOpvBoosterDone()) {
             viewHolder.opvBoosterDoneOnView().setVisibility(VISIBLE);
             viewHolder.opvBoosterDoneOnView().setText(client.opvBoosterDoneDate());
@@ -103,9 +104,10 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
         }
 
         AlertDTO opvBoosterAlert = client.getAlert(ChildServiceType.OPV_BOOSTER);
-        if (opvBoosterAlert != null) {
+        if (opvBoosterAlert != emptyAlert) {
             viewHolder.addOpvBoosterView().setVisibility(INVISIBLE);
             viewHolder.layoutOpvBoosterAlertView().setVisibility(VISIBLE);
+            viewHolder.layoutOpvBoosterAlertView().setOnClickListener(launchChildImmunizationForm(client));
             setAlertLayout(viewHolder.layoutOpvBoosterAlertView(),
                     viewHolder.opvBoosterAlertDueTypeView(),
                     viewHolder.opvBoosterAlertDueOnView(),
@@ -113,13 +115,12 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
         } else {
             viewHolder.layoutOpvBoosterAlertView().setVisibility(INVISIBLE);
             viewHolder.addOpvBoosterView().setVisibility(VISIBLE);
-            viewHolder.addOpvBoosterView().setOnClickListener(clientSectionClickListener);
+            viewHolder.addOpvBoosterView().setOnClickListener(launchChildImmunizationForm(client));
         }
     }
 
     public void setupDptBoosterLayout(ChildSmartRegisterClient client,
-                                      NativeChildSmartRegisterViewHolder viewHolder,
-                                      View.OnClickListener clientSectionClickListener) {
+                                      NativeChildSmartRegisterViewHolder viewHolder) {
         if (client.isDptBoosterDone()) {
             viewHolder.dptBoosterDoneOnView().setVisibility(VISIBLE);
             viewHolder.dptBoosterDoneOnView().setText(client.dptBoosterDoneDate());
@@ -127,10 +128,11 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
             viewHolder.dptBoosterDoneOnView().setVisibility(INVISIBLE);
         }
 
-        AlertDTO dptBoosterAlert = client.getDptBoosterAlert();
-        if (dptBoosterAlert != null) {
+        AlertDTO dptBoosterAlert = client.getAlert(ChildServiceType.DPTBOOSTER_1);
+        if (dptBoosterAlert != emptyAlert) {
             viewHolder.addDptBoosterView().setVisibility(INVISIBLE);
             viewHolder.layoutDptBoosterAlertView().setVisibility(VISIBLE);
+            viewHolder.layoutDptBoosterAlertView().setOnClickListener(launchChildImmunizationForm(client));
             setAlertLayout(viewHolder.layoutDptBoosterAlertView(),
                     viewHolder.dptBoosterAlertDueTypeView(),
                     viewHolder.dptBoosterAlertDueOnView(),
@@ -138,13 +140,13 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
         } else {
             viewHolder.layoutDptBoosterAlertView().setVisibility(INVISIBLE);
             viewHolder.addDptBoosterView().setVisibility(VISIBLE);
-            viewHolder.addDptBoosterView().setOnClickListener(clientSectionClickListener);
+            viewHolder.addDptBoosterView().setOnClickListener(
+                    launchChildImmunizationForm(client));
         }
     }
 
     public void setupVitaminALayout(ChildSmartRegisterClient client,
-                                      NativeChildSmartRegisterViewHolder viewHolder,
-                                      View.OnClickListener clientSectionClickListener) {
+                                    NativeChildSmartRegisterViewHolder viewHolder) {
         if (client.isVitaminADone()) {
             viewHolder.vitaminADoneOnView().setVisibility(VISIBLE);
             viewHolder.vitaminADoneOnView().setText(client.vitaminADoneDate());
@@ -153,9 +155,10 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
         }
 
         AlertDTO vitaminAAlert = client.getAlert(ChildServiceType.VITAMIN_A);
-        if (vitaminAAlert != null) {
+        if (vitaminAAlert != emptyAlert) {
             viewHolder.addVitaminAView().setVisibility(INVISIBLE);
             viewHolder.layoutVitaminAAlertView().setVisibility(VISIBLE);
+            viewHolder.layoutVitaminAAlertView().setOnClickListener(launchChildImmunizationForm(client));
             setAlertLayout(viewHolder.layoutVitaminAAlertView(),
                     viewHolder.vitaminAAlertDueTypeView(),
                     viewHolder.vitaminAAlertDueOnView(),
@@ -163,37 +166,21 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
         } else {
             viewHolder.layoutVitaminAAlertView().setVisibility(INVISIBLE);
             viewHolder.addVitaminAView().setVisibility(VISIBLE);
-            viewHolder.addVitaminAView().setOnClickListener(clientSectionClickListener);
+            viewHolder.addVitaminAView().setOnClickListener(launchChildImmunizationForm(client));
         }
+    }
+
+    private OnClickFormLauncher launchChildImmunizationForm(ChildSmartRegisterClient client) {
+        return provider().newFormLauncher(CHILD_IMMUNIZATIONS, client.entityId(), null);
     }
 
     private void setAlertLayout(View layout, TextView typeView, TextView dateView, AlertDTO alert) {
         typeView.setText(alert.type().shortName());
         dateView.setText("due " + alert.shortDate());
 
-        final AlertStatus alertStatus = alert.alertStatus();
-        if (urgent.equals(alertStatus)) {
-            layout.setBackgroundResource(R.color.alert_urgent_red);
-            typeView.setTextColor(Color.WHITE);
-            dateView.setTextColor(Color.WHITE);
-        } else if (upcoming.equals(alertStatus)) {
-            layout.setBackgroundResource(R.color.alert_upcoming_light_blue);
-            typeView.setTextColor(Color.BLACK);
-            dateView.setTextColor(Color.BLACK);
-        } else if (inProcess.equals(alertStatus)) {
-            layout.setBackgroundResource(android.R.color.holo_orange_light);
-            typeView.setTextColor(Color.WHITE);
-            dateView.setTextColor(Color.WHITE);
-        } else if (complete.equals(alertStatus)) {
-            layout.setBackgroundResource(R.color.alert_complete_green);
-            typeView.setTextColor(Color.WHITE);
-            dateView.setTextColor(Color.WHITE);
-        } else if (AlertStatus.normal.equals(alertStatus)) {
-            layout.setBackgroundResource(R.color.alert_in_progress_blue);
-            typeView.setTextColor(Color.WHITE);
-            dateView.setTextColor(Color.WHITE);
-        } else {
-            layout.setBackgroundResource(android.R.color.holo_purple);
-        }
+        final ChildAlertStatus alertStatus = alert.alertStatus();
+        layout.setBackgroundResource(alertStatus.backgroundColorResourceId());
+        typeView.setTextColor(alertStatus.fontColor());
+        dateView.setTextColor(alertStatus.fontColor());
     }
 }

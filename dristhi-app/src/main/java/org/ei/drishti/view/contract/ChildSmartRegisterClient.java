@@ -90,9 +90,4 @@ public interface ChildSmartRegisterClient extends SmartRegisterClient {
 
     public AlertDTO getAlert(ChildServiceType measles);
 
-    public AlertDTO getDptBoosterAlert();
-
-    public AlertDTO getOpvAlert();
-
-    public AlertDTO getPentavAlert();
 }

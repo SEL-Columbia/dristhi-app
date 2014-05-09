@@ -11,6 +11,7 @@ import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static org.ei.drishti.AllConstants.FormNames.CHILD_ILLNESS;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 
 public class ChildOverviewServiceMode extends ServiceModeOption {
@@ -80,7 +81,8 @@ public class ChildOverviewServiceMode extends ServiceModeOption {
         if (sickStatus == ChildSmartRegisterClient.ChildSickStatus.noDiseaseStatus) {
             viewHolder.sickVisitView().setVisibility(VISIBLE);
             viewHolder.sickVisitView().setTag(client);
-            viewHolder.sickVisitView().setOnClickListener(onClickListener);
+            viewHolder.sickVisitView().setOnClickListener(
+                    provider().newFormLauncher(CHILD_ILLNESS, client.entityId(), null));
             viewHolder.sicknessDetailLayout().setVisibility(GONE);
         } else {
             viewHolder.sickVisitView().setVisibility(GONE);
