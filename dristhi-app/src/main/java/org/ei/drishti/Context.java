@@ -75,7 +75,7 @@ public class Context {
     private TTHandler ttHandler;
     private IFAHandler ifaHandler;
     private HBTestHandler hbTestHandler;
-    private PNCRegistrationHandler pncRegistrationHandler;
+    private DeliveryOutcomeHandler deliveryOutcomeHandler;
     private DeliveryPlanHandler deliveryPlanHandler;
     private PNCRegistrationOAHandler pncRegistrationOAHandler;
     private PNCCloseHandler pncCloseHandler;
@@ -152,7 +152,7 @@ public class Context {
             formSubmissionRouter = new FormSubmissionRouter(formDataRepository(), ecRegistrationHandler(),
                     fpComplicationsHandler(), fpChangeHandler(), renewFPProductHandler(), ecCloseHandler(),
                     ancRegistrationHandler(), ancRegistrationOAHandler(), ancVisitHandler(), ancCloseHandler(),
-                    ttHandler(), ifaHandler(), hbTestHandler(), pncRegistrationHandler(), pncRegistrationOAHandler(),
+                    ttHandler(), ifaHandler(), hbTestHandler(), deliveryOutcomeHandler(), pncRegistrationOAHandler(),
                     pncCloseHandler(), pncVisitHandler(), childImmunizationsHandler(), childRegistrationECHandler(),
                     childRegistrationOAHandler(), childCloseHandler(), childIllnessHandler(), vitaminAHandler(),
                     deliveryPlanHandler(), ecEditHandler(), ancInvestigationsHandler());
@@ -251,11 +251,11 @@ public class Context {
         return hbTestHandler;
     }
 
-    private PNCRegistrationHandler pncRegistrationHandler() {
-        if (pncRegistrationHandler == null) {
-            pncRegistrationHandler = new PNCRegistrationHandler(motherService(), childService());
+    private DeliveryOutcomeHandler deliveryOutcomeHandler() {
+        if (deliveryOutcomeHandler == null) {
+            deliveryOutcomeHandler = new DeliveryOutcomeHandler(motherService(), childService());
         }
-        return pncRegistrationHandler;
+        return deliveryOutcomeHandler;
     }
 
     private DeliveryPlanHandler deliveryPlanHandler() {

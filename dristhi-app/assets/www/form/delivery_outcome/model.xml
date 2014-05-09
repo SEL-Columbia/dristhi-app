@@ -1,6 +1,6 @@
 <model>
     <instance>
-        <PNC_Registration_EngKan id="PNC_Registration_EngKan">
+        <Delivery_Outcome_EngKan id="Delivery_Outcome_EngKan">
             <formhub>
                 <uuid/>
             </formhub>
@@ -27,6 +27,7 @@
             <num_stillbirths/>
             <still_birth_group>
                 <cause_of_still_birth/>
+                <other_cause_of_still_birth/>
                 <woman_survived/>
             </still_birth_group>
             <live_birth_group>
@@ -86,6 +87,6 @@
             <meta>
                 <instanceID/>
             </meta>
-        </PNC_Registration_EngKan>
+        </Delivery_Outcome_EngKan>
     </instance>
 </model>

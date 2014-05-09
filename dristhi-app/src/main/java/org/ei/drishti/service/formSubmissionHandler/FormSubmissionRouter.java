@@ -31,7 +31,7 @@ public class FormSubmissionRouter {
                                 TTHandler ttHandler,
                                 IFAHandler ifaHandler,
                                 HBTestHandler hbTestHandler,
-                                PNCRegistrationHandler pncRegistrationHandler,
+                                DeliveryOutcomeHandler deliveryOutcomeHandler,
                                 PNCRegistrationOAHandler pncRegistrationOAHandler,
                                 PNCCloseHandler pncCloseHandler,
                                 PNCVisitHandler pncVisitHandler,
@@ -58,7 +58,7 @@ public class FormSubmissionRouter {
         handlerMap.put(TT_2, ttHandler);
         handlerMap.put(IFA, ifaHandler);
         handlerMap.put(HB_TEST, hbTestHandler);
-        handlerMap.put(PNC_REGISTRATION, pncRegistrationHandler);
+        handlerMap.put(DELIVERY_OUTCOME, deliveryOutcomeHandler);
         handlerMap.put(PNC_REGISTRATION_OA, pncRegistrationOAHandler);
         handlerMap.put(PNC_CLOSE, pncCloseHandler);
         handlerMap.put(PNC_VISIT, pncVisitHandler);

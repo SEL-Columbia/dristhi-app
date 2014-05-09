@@ -4,11 +4,11 @@ import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.service.ChildService;
 import org.ei.drishti.service.MotherService;
 
-public class PNCRegistrationHandler implements FormSubmissionHandler {
+public class DeliveryOutcomeHandler implements FormSubmissionHandler {
     private final MotherService motherService;
     private ChildService childService;
 
-    public PNCRegistrationHandler(MotherService motherService, ChildService childService) {
+    public DeliveryOutcomeHandler(MotherService motherService, ChildService childService) {
         this.motherService = motherService;
         this.childService = childService;
     }
