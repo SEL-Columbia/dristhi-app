@@ -72,15 +72,15 @@ angular.module("smartRegistry.controllers")
                 category: FAMILY_PLANNING
             },
             {
-                id: "Tubal Ligation",
-                title: "Tubal Ligation",
+                id: "Female Sterilization",
+                title: "Female Sterilization",
                 time: "4.42",
                 previewImageUrl: "../../img/smart_registry/videos-icons/fp-Tubal-ligation.jpg",
                 category: FAMILY_PLANNING
             },
             {
-                id: "Vasectomy",
-                title: "Vasectomy",
+                id: "Male Sterilization",
+                title: "Male Sterilization",
                 time: "4.42",
                 previewImageUrl: "../../img/smart_registry/videos-icons/fp-Vasectomy.jpg",
                 category: FAMILY_PLANNING
