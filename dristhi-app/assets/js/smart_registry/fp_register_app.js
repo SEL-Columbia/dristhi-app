@@ -86,7 +86,7 @@ angular.module("smartRegistry.controllers")
                     sideEffect: "injectableSideEffect"
                 },
                 {
-                    label: "IUD",
+                    label: "IUCD",
                     id: "iud",
                     handler: "filterByFPMethod",
                     sideEffect: "iudSidEffect"

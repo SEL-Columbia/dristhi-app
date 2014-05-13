@@ -1,7 +1,7 @@
 var fpMethodMap = {
     condom: 'Condom',
     dmpa_injectable: 'DMPA/Injectable',
-    iud: 'IUD',
+    iud: 'IUCD',
     ocp: 'OCP',
     female_sterilization: 'Female Sterilization',
     male_sterilization: 'Male Sterilization',

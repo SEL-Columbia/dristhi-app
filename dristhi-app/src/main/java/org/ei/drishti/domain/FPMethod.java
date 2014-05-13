@@ -28,7 +28,7 @@ public enum FPMethod {
 
         @Override
         public String displayName() {
-            return "IUD";
+            return "IUCD";
         }
     },
     OCP {
