@@ -5,8 +5,8 @@
 
 
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">IUD removal date? &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF; &#xCA4;&#xCC6;&#xC97;&#xCC6;&#xCAF;&#xCC1;&#xCB5;
-            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        <span lang="" class="question-label active">IUCD removal date? &#xC90;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;.&#xCA1;&#xCBF;.
+            &#xCA4;&#xCC6;&#xC97;&#xCC6;&#xCAF;&#xCC1;&#xCB5; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
         </span>
         <input autocomplete="off" type="date" name="/Family_Planning_Change_Method_EngKan/iud_removal_date"
                data-constraint=".&lt;= /Family_Planning_Change_Method_EngKan/today "
@@ -16,7 +16,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Place of IUD removal? &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF;
+                <span lang="" class="question-label active">Place of IUCD removal? &#xC90;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;.&#xCA1;&#xCBF;.
                     &#xCA4;&#xCC6;&#xC97;&#xCC6;&#xCAF;&#xCC1;&#xCB5; &#xCB8;&#xCCD;&#xCA5;&#xCB3;?
                 </span>
             </legend>
@@ -86,7 +86,9 @@
                            name="/Family_Planning_Change_Method_EngKan/familyplanning_method"
                            data-name="/Family_Planning_Change_Method_EngKan/familyplanning_method" value="iud"
                            required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">IUD &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF;</span>
+                    <span lang="" class="option-label active">IUCD
+                        &#xC90;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;.&#xCA1;&#xCBF;.
+                    </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio"
@@ -194,7 +196,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Place where IUD was given? &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF;
+                <span lang="" class="question-label active">Place where IUCD was given? &#xC90;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;.&#xCA1;&#xCBF;.
                     &#xC8E;&#xCB2;&#xCCD;&#xCB2;&#xCBF; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
                 </span>
             </legend>
@@ -226,7 +228,7 @@
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Name of facility where IUD was given? &#xC90;.&#xCAF;&#xCC1;.&#xCA1;&#xCBF;
+        <span lang="" class="question-label active">Name of facility where IUCD was given? &#xC90;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;.&#xCA1;&#xCBF;.
             &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCA6; &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xCAF;
             &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?
         </span>
@@ -237,7 +239,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Who inserted IUD? &#xCAF;&#xCBE;&#xCB0;&#xCC1; &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF;
+                <span lang="" class="question-label active">Who inserted IUCD? &#xCAF;&#xCBE;&#xCB0;&#xCC1; &#xC90;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;.&#xCA1;&#xCBF;.
                     &#xC85;&#xCB3;&#xCB5;&#xCA1;&#xCBF;&#xCB8;&#xCBF;&#xCA6;&#xCB0;&#xCC1;?
                 </span>
             </legend>
@@ -282,8 +284,8 @@
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Name of IUD inserter, &#xC90;.&#xCAF;&#xCC1;.&#xCA1;&#xCBF; &#xCB9;&#xCBE;&#xC95;&#xCBF;&#xCA6;&#xCB5;&#xCB0;
-            &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;:
+        <span lang="" class="question-label active">Name of IUCD inserter, &#xC90;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;.&#xCA1;&#xCBF;.
+            &#xCB9;&#xCBE;&#xC95;&#xCBF;&#xCA6;&#xCB5;&#xCB0; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;:
         </span>
         <input autocomplete="off" type="text" name="/Family_Planning_Change_Method_EngKan/iud_person_name"
                data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'iud'"
@@ -445,7 +447,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Family_Planning_Change_Method_EngKan/formhub/uuid"
-                   data-calculate="'fb64bf30134446529edf5fca17432d14'" data-type-xml="string"/>
+                   data-calculate="'f98e83ed610b42a9921648948c3e68f4'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
