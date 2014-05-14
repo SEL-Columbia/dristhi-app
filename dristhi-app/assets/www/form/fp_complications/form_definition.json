@@ -14,11 +14,6 @@
                 "bind": "/model/instance/Family_Planning_Complications_EngKan/case_familyplanning_method"
             },
             {
-                "name": "currentMethodNote",
-                "shouldLoadValue": true,
-                "bind": "/model/instance/Family_Planning_Complications_EngKan/case_familyplanning_method_note"
-            },
-            {
                 "name": "complicationDate",
                 "bind": "/model/instance/Family_Planning_Complications_EngKan/complication_date"
             },

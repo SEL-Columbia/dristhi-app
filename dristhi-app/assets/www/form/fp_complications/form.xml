@@ -4,13 +4,6 @@
     <h3 id="form-title">Record FP Complication</h3>
 
 
-    <fieldset class="trigger " name="/Family_Planning_Complications_EngKan/case_familyplanning_method_note">
-        <span lang="" class="question-label active">Current FP method is, &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCC1;&#xCA4;
-            &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCBE; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;:
-            <span class="or-output" data-value=" /Family_Planning_Complications_EngKan/case_familyplanning_method ">
-            </span>
-        </span>
-    </fieldset>
     <label class="question non-select ">
         <span lang="" class="question-label active">Date of FP problem? &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
             &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;&#xCBF;&#xC82;&#xCA6;&#xCBE;&#xCA6; &#xCB8;&#xCAE;&#xCB8;&#xCCD;&#xCAF;&#xCC6;&#xCAF;
