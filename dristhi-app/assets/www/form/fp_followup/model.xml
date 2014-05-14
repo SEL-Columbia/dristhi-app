@@ -7,7 +7,6 @@
             <today/>
             <case_needs_followup/>
             <case_familyplanning_method/>
-            <case_familyplanning_method_note/>
             <fp_method_followup_date/>
             <first_time_followup_group>
                 <sterilization_failure/>

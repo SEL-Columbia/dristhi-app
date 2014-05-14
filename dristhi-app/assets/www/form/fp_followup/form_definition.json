@@ -19,11 +19,6 @@
                 "bind": "/model/instance/Family_Planning_Followup_EngKan/case_familyplanning_method"
             },
             {
-                "name": "currentMethodNote",
-                "shouldLoadValue": true,
-                "bind": "/model/instance/Family_Planning_Followup_EngKan/case_familyplanning_method_note"
-            },
-            {
                 "name": "fpFollowupDate",
                 "bind": "/model/instance/Family_Planning_Followup_EngKan/fp_method_followup_date"
             },
