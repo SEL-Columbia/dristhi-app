@@ -9,11 +9,6 @@
                 "shouldLoadValue": true
             },
             {
-                "name": "currentMethod",
-                "shouldLoadValue": true,
-                "bind": "/model/instance/Family_Planning_Referral_Followup_EngKan/case_familyplanning_method"
-            },
-            {
                 "name": "referralFollowupDate",
                 "bind": "/model/instance/Family_Planning_Referral_Followup_EngKan/referral_followup_date"
             },

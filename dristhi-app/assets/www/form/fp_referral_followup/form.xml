@@ -4,13 +4,6 @@
     <h3 id="form-title">FP Referral Follow-up</h3>
 
 
-    <fieldset class="trigger " name="/Family_Planning_Referral_Followup_EngKan/case_familyplanning_method_note">
-        <span lang="" class="question-label active">Current FP method is, &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCCD;&#xCA4;&#xCC1;&#xCA4;
-            &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCBE; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;:
-            <span class="or-output" data-value=" /Family_Planning_Referral_Followup_EngKan/case_familyplanning_method ">
-            </span>
-        </span>
-    </fieldset>
     <label class="question non-select ">
         <span lang="" class="question-label active">Date of referral follow-up? &#xCB0;&#xCC6;&#xCAB;&#xCCD;&#x200D;&#xCB0;&#xCB2;&#xCCD;
             &#xC85;&#xCA8;&#xCC1;&#xCB8;&#xCB0;&#xCA3;&#xCC6;&#xCAF; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
