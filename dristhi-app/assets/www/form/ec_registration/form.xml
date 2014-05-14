@@ -2525,7 +2525,9 @@
                     <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_1"
                            data-name="/EC_Registration_EngKan/familyplanning_method_1" value="iud" required="required"
                            data-type-xml="select1"/>
-                    <span lang="" class="option-label active">IUD &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF;</span>
+                    <span lang="" class="option-label active">IUCD
+                        &#xC90;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;.&#xCA1;&#xCBF;.
+                    </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/EC_Registration_EngKan/familyplanning_method_1"
@@ -2660,8 +2662,8 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Place where IUD was given? &#xCAF;&#xCBE;&#xCB5; &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-                    &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
+                <span lang="" class="question-label active">Place where IUCD was given? &#xCAF;&#xCBE;&#xCB5; &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
+                    &#xC90;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;.&#xCA1;&#xCBF;. &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -2694,7 +2696,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Who inserted IUD? &#xCAF;&#xCBE;&#xCB0;&#xCC1; &#xC90;&#xCAF;&#xCC1;&#xCA1;&#xCBF;
+                <span lang="" class="question-label active">Who inserted IUCD? &#xCAF;&#xCBE;&#xCB0;&#xCC1; &#xC90;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;.&#xCA1;&#xCBF;.
                     &#xC85;&#xCB3;&#xCB5;&#xCA1;&#xCBF;&#xCB8;&#xCBF;&#xCA6;&#xCB0;&#xCC1;?
                 </span>
             </legend>
