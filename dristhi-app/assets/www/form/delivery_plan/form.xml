@@ -578,9 +578,9 @@
         <span lang="" class="question-label active">Tell
             <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
             </span>
-            her options for family planning after delivery, including sterilization and IUD insertion. &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5;&#xCBE;
+            her options for family planning after delivery, including sterilization and IUCD insertion. &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5;&#xCBE;
             &#xCA8;&#xC82;&#xCA4;&#xCB0; &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCB9;&#xCB0;&#xCA3; &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0;
-            &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6; &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; &#xC90;.&#xCAF;&#xCC1;.&#xCA1;&#xCBF;
+            &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6; &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; &#xC90;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;.&#xCA1;&#xCBF;.
             &#xC85;&#xCB3;&#xCB5;&#xCA1;&#xCBF;&#xC95;&#xCC6; &#xCB8;&#xCC7;&#xCB0;&#xCBF;&#xCA6;&#xC82;&#xCA4;&#xCC6;
             &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;
             <span class="or-output" data-value=" /Delivery_Plan_EngKan/entity_woman_name ">
@@ -645,7 +645,9 @@
                            data-name="/Delivery_Plan_EngKan/pp_fp_method" value="iud"
                            data-relevant=" /Delivery_Plan_EngKan/ready_to_select_pp_fp  = 'yes'"
                            data-type-xml="select1"/>
-                    <span lang="" class="option-label active">IUD &#xCB5;&#xC82;&#xC95;&#xCBF;</span>
+                    <span lang="" class="option-label active">IUCD
+                        &#xC90;.&#xCAF;&#xCC1;.&#xCB8;&#xCBF;.&#xCA1;&#xCBF;.
+                    </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/Delivery_Plan_EngKan/pp_fp_method"
