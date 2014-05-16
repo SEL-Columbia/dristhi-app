@@ -40,6 +40,7 @@ public class NativeHomeActivity extends SecuredActivity {
             if (updateMenuItem != null) {
                 updateMenuItem.setActionView(null);
             }
+            updateRegisterCounts();
         }
     };
 
