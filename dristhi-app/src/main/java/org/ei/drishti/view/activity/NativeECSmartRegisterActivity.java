@@ -45,7 +45,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
             @Override
             public int[] weights() {
-                return new int[]{239, 73, 103, 107, 158, 221, 87};
+                return new int[]{239, 73, 125, 107, 158, 221, 64};
             }
 
             @Override

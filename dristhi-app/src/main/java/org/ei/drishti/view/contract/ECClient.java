@@ -135,27 +135,32 @@ public class ECClient implements SmartRegisterClient {
 
     @Override
     public String numberOfPregnancies() {
-        return IntegerUtil.tryParse(numPregnancies, "");
+        Integer value = IntegerUtil.tryParse(numPregnancies, 0);
+        return value > 8 ? "8+" : value.toString();
     }
 
     @Override
     public String parity() {
-        return IntegerUtil.tryParse(parity, "");
+        Integer value = IntegerUtil.tryParse(parity, 0);
+        return value > 8 ? "8+" : value.toString();
     }
 
     @Override
     public String numberOfLivingChildren() {
-        return IntegerUtil.tryParse(numLivingChildren, "");
+        Integer value = IntegerUtil.tryParse(numLivingChildren, 0);
+        return value > 8 ? "8+" : value.toString();
     }
 
     @Override
     public String numberOfStillbirths() {
-        return IntegerUtil.tryParse(numStillbirths, "");
+        Integer value = IntegerUtil.tryParse(numStillbirths, 0);
+        return value > 8 ? "8+" : value.toString();
     }
 
     @Override
     public String numberOfAbortions() {
-        return IntegerUtil.tryParse(numAbortions, "");
+        Integer value = IntegerUtil.tryParse(numAbortions, 0);
+        return value > 8 ? "8+" : value.toString();
     }
 
     @Override

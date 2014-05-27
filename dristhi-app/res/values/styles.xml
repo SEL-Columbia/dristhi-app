@@ -22,9 +22,9 @@
 
     <style name="CustomFontTextViewStyle.ListView.Normal.GPLSA">
         <item name="fontVariant">medium</item>
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:gravity">center</item>
-        <item name="android:paddingLeft">3dp</item>
+        <item name="android:paddingLeft">0dp</item>
         <item name="android:paddingRight">3dp</item>
         <item name="android:ellipsize">none</item>
     </style>
