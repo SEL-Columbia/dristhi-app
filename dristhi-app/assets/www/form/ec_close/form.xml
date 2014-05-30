@@ -25,7 +25,9 @@
                     <input autocomplete="off" type="radio" name="/EC_Close_EngKan/close_reason"
                            data-name="/EC_Close_EngKan/close_reason" value="permanent_relocation" required="required"
                            data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Relocation &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCBE;&#xC82;&#xCA4;&#xCB0;</span>
+                    <span lang="" class="option-label active">Relocation (permanent) &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCBE;&#xC82;&#xCA4;&#xCB0;
+                        (&#xCB6;&#xCBE;&#xCB6;&#xCCD;&#xCB5;&#xCA4;)
+                    </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/EC_Close_EngKan/close_reason"
@@ -46,14 +48,6 @@
                            data-name="/EC_Close_EngKan/close_reason" value="death_of_husband" required="required"
                            data-type-xml="select1"/>
                     <span lang="" class="option-label active">Death of husband &#xCAA;&#xCA4;&#xCBF;&#xCAF; &#xCAE;&#xCB0;&#xCA3;</span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/EC_Close_EngKan/close_reason"
-                           data-name="/EC_Close_EngKan/close_reason" value="wrong_entry" required="required"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Wrong entry &#xCA4;&#xCAA;&#xCCD;&#xCAA;&#xCBE;&#xC97;&#xCBF;
-                        &#xCA8;&#xCAE;&#xCC2;&#xCA6;&#xCBF;&#xCB8;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;.
-                    </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/EC_Close_EngKan/close_reason"
