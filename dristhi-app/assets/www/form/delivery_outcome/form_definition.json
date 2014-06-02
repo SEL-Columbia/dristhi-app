@@ -240,12 +240,12 @@
             },
             {
                 "name": "youngestChildDOB",
-                "bind": "/model/instance/Delivery_Outcome_EngKan/youngestchild_date_of_birth",
+                "bind": "/model/instance/PNC_Registration_EngKan/youngestchild_date_of_birth",
                 "source": "mother.eligible_couple.youngestChildDOB"
             },
             {
                 "name": "youngestChildAge",
-                "bind": "/model/instance/Delivery_Outcome_EngKan/youngestchild_age",
+                "bind": "/model/instance/PNC_Registration_EngKan/youngestchild_age",
                 "source": "mother.eligible_couple.youngestChildAge"
             }
         ],
