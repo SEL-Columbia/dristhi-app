@@ -528,3 +528,8 @@ li.video-item .video-thumbnail-image {
     width: 100%;
     display: inline-block;
 }
+
+.gplsa-info {
+    font-size: small !important;
+    margin-right: 2px;
+}

@@ -3,6 +3,7 @@ package org.ei.drishti.view.contract;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.util.IntegerUtil;
 
 import java.util.List;
 
@@ -68,27 +69,32 @@ public class FPClient {
     }
 
     public FPClient withNumberOfPregnancies(String num_pregnancies) {
-        this.num_pregnancies = num_pregnancies;
+        Integer value = IntegerUtil.tryParse(num_pregnancies, 0);
+        this.num_pregnancies = value > 8 ? "8+" : value.toString();
         return this;
     }
 
     public FPClient withParity(String parity) {
-        this.parity = parity;
+        Integer value = IntegerUtil.tryParse(parity, 0);
+        this.parity = value > 8 ? "8+" : value.toString();
         return this;
     }
 
     public FPClient withNumberOfLivingChildren(String num_living_children) {
-        this.num_living_children = num_living_children;
+        Integer value = IntegerUtil.tryParse(num_living_children, 0);
+        this.num_living_children = value > 8 ? "8+" : value.toString();
         return this;
     }
 
     public FPClient withNumberOfStillBirths(String num_stillbirths) {
-        this.num_stillbirths = num_stillbirths;
+        Integer value = IntegerUtil.tryParse(num_stillbirths, 0);
+        this.num_stillbirths = value > 8 ? "8+" : value.toString();
         return this;
     }
 
     public FPClient withNumberOfAbortions(String num_abortions) {
-        this.num_abortions = num_abortions;
+        Integer value = IntegerUtil.tryParse(num_abortions, 0);
+        this.num_abortions = value > 8 ? "8+" : value.toString();
         return this;
     }
 
@@ -201,6 +207,32 @@ public class FPClient {
         this.highPriorityReason = highPriorityReason;
         return this;
     }
+
+    public String numberOfPregnancies() {
+        Integer value = IntegerUtil.tryParse(num_pregnancies, 0);
+        return value > 8 ? "8+" : value.toString();
+    }
+
+    public String parity() {
+        Integer value = IntegerUtil.tryParse(parity, 0);
+        return value > 8 ? "8+" : value.toString();
+    }
+
+    public String numberOfLivingChildren() {
+        Integer value = IntegerUtil.tryParse(num_living_children, 0);
+        return value > 8 ? "8+" : value.toString();
+    }
+
+    public String numberOfStillbirths() {
+        Integer value = IntegerUtil.tryParse(num_stillbirths, 0);
+        return value > 8 ? "8+" : value.toString();
+    }
+
+    public String numberOfAbortions() {
+        Integer value = IntegerUtil.tryParse(num_abortions, 0);
+        return value > 8 ? "8+" : value.toString();
+    }
+
 
     @Override
     public boolean equals(Object o) {

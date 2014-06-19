@@ -67,9 +67,9 @@ public class FPSmartRegisterControllerTest {
         EligibleCouple ec3 = new EligibleCouple("EC Case 3", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", emptyDetails);
         EligibleCouple ec1 = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", null, emptyDetails);
         when(allEligibleCouples.all()).thenReturn(asList(ec2, ec3, ec1));
-        FPClient expectedClient1 = createFPClient("EC Case 1", "Woman A", "Husband A", "Bherya", "EC Number 1");
-        FPClient expectedClient2 = createFPClient("EC Case 2", "Woman B", "Husband B", "kavalu_hosur", "EC Number 2");
-        FPClient expectedClient3 = createFPClient("EC Case 3", "Woman C", "Husband C", "Bherya", "EC Number 3");
+        FPClient expectedClient1 = createFPClient("EC Case 1", "Woman A", "Husband A", "Bherya", "EC Number 1").withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");
+        FPClient expectedClient2 = createFPClient("EC Case 2", "Woman B", "Husband B", "kavalu_hosur", "EC Number 2").withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");
+        FPClient expectedClient3 = createFPClient("EC Case 3", "Woman C", "Husband C", "Bherya", "EC Number 3").withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");
 
         String clients = controller.get();
 
@@ -166,7 +166,7 @@ public class FPSmartRegisterControllerTest {
         }.getType());
         verify(alertService).findByEntityIdAndAlertNames("entity id 1", EC_ALERTS);
         AlertDTO expectedAlertDto = new AlertDTO("OCP Refill", "normal", "2013-01-01");
-        FPClient expectedEC = createFPClient("entity id 1", "Woman C", "Husband C", "Bherya", "EC Number 3").withAlerts(asList(expectedAlertDto));
+        FPClient expectedEC = createFPClient("entity id 1", "Woman C", "Husband C", "Bherya", "EC Number 3").withAlerts(asList(expectedAlertDto)).withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");
         assertEquals(asList(expectedEC), actualClients);
     }
 
@@ -184,7 +184,7 @@ public class FPSmartRegisterControllerTest {
         verify(allBeneficiaries).isPregnant("entity id 2");
         List<FPClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<FPClient>>() {
         }.getType());
-        FPClient expectedEC = createFPClient("entity id 1", "Woman C", "Husband C", "Bherya", "EC Number 3");
+        FPClient expectedEC = createFPClient("entity id 1", "Woman C", "Husband C", "Bherya", "EC Number 3").withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");;
         assertEquals(asList(expectedEC), actualClients);
     }
 }
