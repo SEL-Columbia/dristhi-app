@@ -145,7 +145,7 @@ public class AllConstants {
         public static final String DELIVERY_TYPE = "deliveryType";
         public static final String DELIVERY_COMPLICATIONS = "deliveryComplications";
         public static final String OTHER_DELIVERY_COMPLICATIONS = "otherDeliveryComplications";
-        public static final String PNC_COMPLICATIONS = "pncComplications";
+        public static final String IMMEDIATE_REFERRAL_REASON = "immediateReferralReason";
     }
 
     public class ANCVisitFields {
@@ -169,7 +169,6 @@ public class AllConstants {
         public static final String HB_LEVEL = "hbLevel";
         public static final String NUMBER_OF_IFA_TABLETS_GIVEN = "numberOfIFATabletsGiven";
         public static final String CHILD_PNC_VISIT_SUB_FORM_NAME = "child_pnc_visit";
-        public static final String IMMEDIATE_REFERRAL_REASON = "immediateReferralReason";
     }
 
     public class DeliveryOutcomeFields {

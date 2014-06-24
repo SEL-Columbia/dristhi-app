@@ -158,6 +158,10 @@ angular.module("smartRegistry.controllers")
             return Math.floor(SmartHelper.daysBetween(new Date(Date.parse(client.deliveryDate)), $scope.getToday()));
         };
 
+        $scope.pncComplications = function(pncComplications) {
+            return pncComplications ? pncComplications.replace('no_problems', '') : '';
+        };
+
         $scope.getToday = function () {
             return new Date();
         };

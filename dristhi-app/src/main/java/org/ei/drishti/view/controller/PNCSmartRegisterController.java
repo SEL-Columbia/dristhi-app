@@ -79,6 +79,7 @@ public class PNCSmartRegisterController {
                             .withDeliveryPlace(pnc.getDetail(DELIVERY_PLACE))
                             .withDeliveryType(pnc.getDetail(DELIVERY_TYPE))
                             .withDeliveryComplications(pnc.getDetail(DELIVERY_COMPLICATIONS))
+                            .withPNCComplications(pnc.getDetail(IMMEDIATE_REFERRAL_REASON))
                             .withOtherDeliveryComplications(pnc.getDetail(OTHER_DELIVERY_COMPLICATIONS))
                             .withEntityIdToSavePhoto(ec.caseId())
                             .withAlerts(alerts)

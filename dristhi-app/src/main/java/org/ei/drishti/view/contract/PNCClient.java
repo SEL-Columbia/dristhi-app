@@ -34,6 +34,7 @@ public class PNCClient {
     private String deliveryPlace;
     private String deliveryType;
     private String deliveryComplications;
+    private String pncComplications;
     private String otherDeliveryComplications;
     private List<AlertDTO> alerts;
     private List<ServiceProvidedDTO> services_provided;
@@ -149,6 +150,11 @@ public class PNCClient {
 
     public PNCClient withDeliveryComplications(String deliveryComplications) {
         this.deliveryComplications = deliveryComplications;
+        return this;
+    }
+
+    public PNCClient withPNCComplications(String pncComplications) {
+        this.pncComplications = pncComplications;
         return this;
     }
 

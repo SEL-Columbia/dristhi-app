@@ -40,6 +40,7 @@ function FakePNCSmartRegistryContext() {
                     deliveryDate: "2013-06-15T00:00:00.000",
                     deliveryPlace:"PRIVATE_FACILITY",
                     deliveryComplications: "hemorrhage placenta_previa prolonged_or_obstructed_labour hemorrhage placenta_previa prolonged_or_obstructed_labour",
+                    pncComplications: "abdominal_pain nipple_hardness difficulty_breathing",
                     deliveryType: "instrumental_forcep", //TODO: what are the options
                     otherDeliveryComplications: "",
                     alerts: [
@@ -104,6 +105,7 @@ function FakePNCSmartRegistryContext() {
                     deliveryPlace: "PNC",
                     deliveryType: "Normal", //TODO: what are the options
                     deliveryComplications: "",
+                    pncComplications: "",
                     otherDeliveryComplications: "",
                     alerts: [
                         {
@@ -163,6 +165,7 @@ function FakePNCSmartRegistryContext() {
                     deliveryPlace: "PNC",
                     deliveryType: "Normal", //TODO: what are the options
                     deliveryComplications: "hemorrhage placenta_previa prolonged_or_obstructed_labour",
+                    pncComplications: "",
                     otherDeliveryComplications: "",
                     alerts: [
                         {
@@ -220,6 +223,7 @@ function FakePNCSmartRegistryContext() {
                     deliveryPlace: "PNC",
                     deliveryType: "Normal", //TODO: what are the options
                     deliveryComplications: "hemorrhage placenta_previa prolonged_or_obstructed_labour",
+                    pncComplications: "difficulty_breathing",
                     otherDeliveryComplications: "",
                     alerts: [
                         {
@@ -271,6 +275,7 @@ function FakePNCSmartRegistryContext() {
                     deliveryPlace: "PNC",
                     deliveryType: "Normal", //TODO: what are the options
                     deliveryComplications: "hemorrhage placenta_previa prolonged_or_obstructed_labour",
+                    pncComplications: "abdominal_pain nipple_hardness",
                     otherDeliveryComplications: "",
                     alerts: [
                         {
@@ -328,6 +333,7 @@ function FakePNCSmartRegistryContext() {
                     deliveryDate: "2012-12-16T00:00:00.000",
                     deliveryPlace: "PNC",
                     deliveryType: "Normal", //TODO: what are the options
+                    pncComplications: "abdominal_pain",
                     deliveryComplications: "",
                     otherDeliveryComplications: "",
                     alerts: [
@@ -376,6 +382,7 @@ function FakePNCSmartRegistryContext() {
                     deliveryDate: "2013-06-22T00:00:00.000",
                     deliveryPlace:"PNC",
                     deliveryType: "Normal", //TODO: what are the options
+                    pncComplications: "nipple_hardness",
                     deliveryComplications: "",
                     otherDeliveryComplications: "",
                     alerts: [
