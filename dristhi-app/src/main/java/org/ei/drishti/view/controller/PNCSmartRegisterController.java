@@ -19,7 +19,9 @@ import java.util.List;
 import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.drishti.AllConstants.PNCRegistrationFields.*;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
+import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
 import static org.ei.drishti.domain.ServiceProvided.PNC_SERVICE_PROVIDED_NAME;
 
 public class PNCSmartRegisterController {
@@ -59,25 +61,25 @@ public class PNCSmartRegisterController {
                     pncClients.add(new PNCClient(pnc.caseId(), ec.village(), ec.wifeName(), pnc.thayiCardNumber(), pnc.referenceDate())
                             .withHusbandName(ec.husbandName())
                             .withAge(ec.age())
-                            .withWomanDOB(ec.getDetail("womanDOB"))
+                            .withWomanDOB(ec.getDetail(WOMAN_DOB))
                             .withECNumber(ec.ecNumber())
                             .withIsHighPriority(ec.isHighPriority())
                             .withIsHighRisk(pnc.isHighRisk())
-                            .withEconomicStatus(ec.getDetail("economicStatus"))
+                            .withEconomicStatus(ec.getDetail(ECONOMIC_STATUS))
                             .withIsOutOfArea(ec.isOutOfArea())
-                            .withCaste(ec.getDetail("caste"))
+                            .withCaste(ec.getDetail(CASTE))
                             .withPhotoPath(photoPath)
-                            .withFPMethod(ec.getDetail("currentMethod"))
-                            .withIUDPlace(ec.getDetail("iudPlace"))
-                            .withIUDPerson(ec.getDetail("iudPerson"))
-                            .withNumberOfCondomsSupplied(ec.getDetail("numberOfCondomsSupplied"))
-                            .withFamilyPlanningMethodChangeDate(ec.getDetail("familyPlanningMethodChangeDate"))
-                            .withNumberOfOCPDelivered(ec.getDetail("numberOfOCPDelivered"))
-                            .withNumberOfCentchromanPillsDelivered(ec.getDetail("numberOfCentchromanPillsDelivered"))
-                            .withDeliveryPlace(pnc.getDetail("deliveryPlace"))
-                            .withDeliveryType(pnc.getDetail("deliveryType"))
-                            .withDeliveryComplications(pnc.getDetail("deliveryComplications"))
-                            .withOtherDeliveryComplications(pnc.getDetail("otherDeliveryComplications"))
+                            .withFPMethod(ec.getDetail(CURRENT_FP_METHOD))
+                            .withIUDPlace(ec.getDetail(IUD_PLACE))
+                            .withIUDPerson(ec.getDetail(IUD_PERSON))
+                            .withNumberOfCondomsSupplied(ec.getDetail(NUMBER_OF_CONDOMS_SUPPLIED))
+                            .withFamilyPlanningMethodChangeDate(ec.getDetail(FAMILY_PLANNING_METHOD_CHANGE_DATE))
+                            .withNumberOfOCPDelivered(ec.getDetail(NUMBER_OF_OCP_DELIVERED))
+                            .withNumberOfCentchromanPillsDelivered(ec.getDetail(NUMBER_OF_CENTCHROMAN_PILLS_DELIVERED))
+                            .withDeliveryPlace(pnc.getDetail(DELIVERY_PLACE))
+                            .withDeliveryType(pnc.getDetail(DELIVERY_TYPE))
+                            .withDeliveryComplications(pnc.getDetail(DELIVERY_COMPLICATIONS))
+                            .withOtherDeliveryComplications(pnc.getDetail(OTHER_DELIVERY_COMPLICATIONS))
                             .withEntityIdToSavePhoto(ec.caseId())
                             .withAlerts(alerts)
                             .withServicesProvided(servicesProvided)
