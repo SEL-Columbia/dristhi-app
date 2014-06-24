@@ -54,8 +54,18 @@
                 "bind": "/model/instance/ANC_Visit_EngKan/vitals_taken"
             },
             {
+                "name": "previousBpSystolic",
+                "shouldLoadValue": true,
+                "source": "mother.bpSystolic"
+            },
+            {
                 "name": "bpSystolic",
                 "bind": "/model/instance/ANC_Visit_EngKan/bp_systolic"
+            },
+            {
+                "name": "previousBpDiastolic",
+                "shouldLoadValue": true,
+                "source": "mother.bpDiastolic"
             },
             {
                 "name": "bpDiastolic",
