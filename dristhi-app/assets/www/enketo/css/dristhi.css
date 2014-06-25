@@ -1,8 +1,6 @@
 @font-face { font-family: 'Kannada Sangam MN'; src: url("../font/Kannada Sangam MN.ttc"); }
-
 @font-face { font-family: 'enketo-icons'; src: url("../font/enketo-icons-v2.woff") format("woff"), url("../font/enketo-icons-v2.ttf") format("truetype"), url("../font/enketo-icons-v2.svg#enketo-icons") format("svg"); font-weight: normal; font-style: normal; }
-
-/* normalize.css v3.0.0 | MIT License | git.io/normalize */
+/*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 html { font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
 
 body { margin: 0; }
@@ -105,7 +103,7 @@ td, th { padding: 0; }
 
 *:before, *:after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
-html { font-size: 62.5%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+html { font-size: 62.5%; -webkit-tap-highlight-color: transparent; }
 
 body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 22px; line-height: 1; color: #333333; background-color: white; }
 
@@ -488,7 +486,6 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 .collapsing { position: relative; height: 0; overflow: hidden; -webkit-transition: height 0.35s ease; transition: height 0.35s ease; }
 
 @font-face { font-family: 'Glyphicons Halflings'; src: url("../font/glyphicons-halflings-regular.eot"); src: url("../font/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../font/glyphicons-halflings-regular.woff") format("woff"), url("../font/glyphicons-halflings-regular.ttf") format("truetype"), url("../font/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg"); }
-
 .glyphicon { position: relative; top: 1px; display: inline-block; font-family: 'Glyphicons Halflings'; font-style: normal; font-weight: normal; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 .glyphicon-asterisk:before { content: "\2a"; }
@@ -1003,8 +1000,8 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 .input-group-addon, .input-group-btn { width: 1%; white-space: nowrap; vertical-align: middle; }
 
 .input-group-addon { padding: 6px 12px; font-size: 22px; font-weight: normal; line-height: 1; color: #555555; text-align: center; background-color: #eeeeee; border: 1px solid #cccccc; border-radius: 4px; }
-.input-group-addon.input-sm, .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .input-group-addon.btn { padding: 5px 10px; font-size: 19px; border-radius: 3px; }
-.input-group-addon.input-lg, .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .input-group-addon.btn { padding: 10px 16px; font-size: 28px; border-radius: 6px; }
+.input-group-addon.input-sm, .input-group-sm > input.input-group-addon:not([type=radio]):not([type=checkbox]), .input-group-sm > .input-group-addon, .input-group-sm > .input-group-btn > .input-group-addon.btn { padding: 5px 10px; font-size: 19px; border-radius: 3px; }
+.input-group-addon.input-lg, .input-group-lg > input.input-group-addon:not([type=radio]):not([type=checkbox]), .input-group-lg > .input-group-addon, .input-group-lg > .input-group-btn > .input-group-addon.btn { padding: 10px 16px; font-size: 28px; border-radius: 6px; }
 .input-group-addon input[type="radio"], .input-group-addon input[type="checkbox"] { margin-top: 0; }
 
 .input-group .form-control:first-child, .input-group input:first-child:not([type=radio]):not([type=checkbox]), .input-group select:first-child, .input-group textarea:first-child, .input-group-addon:first-child, .input-group-btn:first-child > .btn, .input-group-btn:first-child > .btn-group > .btn, .input-group-btn:first-child > .dropdown-toggle, .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle), .input-group-btn:last-child > .btn-group:not(:last-child) > .btn { border-bottom-right-radius: 0; border-top-right-radius: 0; }
@@ -1353,7 +1350,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 .carousel-control .icon-next:before { content: '\203a'; }
 
 .carousel-indicators { position: absolute; bottom: 10px; left: 50%; z-index: 15; width: 60%; margin-left: -30%; padding-left: 0; list-style: none; text-align: center; }
-.carousel-indicators li { display: inline-block; width: 10px; height: 10px; margin: 1px; text-indent: -999px; border: 1px solid white; border-radius: 10px; cursor: pointer; background-color: #000 \9; background-color: rgba(0, 0, 0, 0); }
+.carousel-indicators li { display: inline-block; width: 10px; height: 10px; margin: 1px; text-indent: -999px; border: 1px solid white; border-radius: 10px; cursor: pointer; background-color: #000 \9; background-color: transparent; }
 .carousel-indicators .active { margin: 0; width: 12px; height: 12px; background-color: white; }
 
 .carousel-caption { position: absolute; left: 15%; right: 15%; bottom: 20px; z-index: 10; padding-top: 20px; padding-bottom: 20px; color: white; text-align: center; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); }
@@ -1384,7 +1381,6 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 .affix { position: fixed; }
 
 @-ms-viewport { width: device-width; }
-
 .visible-xs, .visible-sm, .visible-md, .visible-lg { display: none !important; }
 
 @media (max-width: 767px) { .visible-xs { display: block !important; }
@@ -1434,7 +1430,7 @@ body { /*IE10*/ display: -ms-flexbox; display: -webkit-flex; display: flex; -web
 
 #form-languages { display: inline; width: auto; height: 36px; background: none; min-width: 11em; border: 1px solid #ccc; margin: 0 0 0 16px; font-size: 0.9em; }
 
-.form-footer { width: calc(100% + ( 2 * 45px )); margin: 45px -45px -45px -45px; }
+.form-footer { width: calc(100% + ( 2 * 45px )); margin-top: 45px; margin-right: -45px; margin-bottom: -45px; margin-left: -45px; }
 
 /*#submit-form, #submit-form-single, #validate-form, #launch-form { position: relative; width: 150px; left: 50%; margin: 45px 10px 5px -75px; progress { width: 100%; margin: 1px auto 1px auto; }
 }*/
@@ -1477,7 +1473,9 @@ input, select, textarea { font-family: "Helvetica Neue", "Kannada Sangam MN", He
 .or-group .or-group h4 .active::before, .or-group .or-group .question.or-appearance-list-nolabel ~ .note .active::before, .or-group .or-group .question.or-appearance-label ~ .note .active::before { content: "\00BB  "; }
 .or-group .or-group .or-group h4 .active::before, .or-group .or-group .or-group .question.or-appearance-list-nolabel ~ .note .active::before, .or-group .or-group .or-group .question.or-appearance-label ~ .note .active::before { content: "\00BB  \00BB  "; }
 .or-group .or-group .or-group .or-group h4 .active::before, .or-group .or-group .or-group .or-group .question.or-appearance-list-nolabel ~ .note .active::before, .or-group .or-group .or-group .or-group .question.or-appearance-label ~ .note .active::before { content: "\00BB  \00BB  \00BB  "; }
-.or-group .or-group .or-group .or-group .or-group h4 .active::before, .or-group .or-group .or-group .or-group .or-group .question.or-appearance-list-nolabel ~ .note .active::before, .or-group .or-group .or-group .or-group .or-group .question.or-appearance-label ~ .note .active::before { content: "\00BB  \00BB  \00BB  "; }
+.or-group .or-group .or-group .or-group .or-group h4 .active::before, .or-group .or-group .or-group .or-group .or-group .question.or-appearance-list-nolabel ~ .note .active::before, .or-group .or-group .or-group .or-group .or-group .question.or-appearance-label ~ .note .active::before { content: "\00BB  \00BB  \00BB  \00BB"; }
+.or-group .or-group .or-group .or-group .or-group .or-group h4 .active::before, .or-group .or-group .or-group .or-group .or-group .or-group .question.or-appearance-list-nolabel ~ .note .active::before, .or-group .or-group .or-group .or-group .or-group .or-group .question.or-appearance-label ~ .note .active::before { content: "\00BB  \00BB  \00BB  \00BB  \00BB"; }
+.or-group .or-group .or-group .or-group .or-group .or-group .or-group h4 .active::before, .or-group .or-group .or-group .or-group .or-group .or-group .or-group .question.or-appearance-list-nolabel ~ .note .active::before, .or-group .or-group .or-group .or-group .or-group .or-group .or-group .question.or-appearance-label ~ .note .active::before { content: "\00BB  \00BB  \00BB  \00BB  \00BB  \00BB"; }
 
 #stats + .or-group, #or-preload-items + .or-group, #form-languages + .or-group { border-top: none; }
 
@@ -1490,14 +1488,15 @@ input, select, textarea { font-family: "Helvetica Neue", "Kannada Sangam MN", He
 .trigger, .note { font-family: "Helvetica Neue", "Kannada Sangam MN", Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; color: black; background: white; border: 1px solid #e1e1e1; border-radius: 0; display: block; padding: 7px 12px; margin: 15px 0; }
 .trigger input[readonly]:not([type=radio]):not([type=checkbox]), .note input[readonly]:not([type=radio]):not([type=checkbox]) { display: none; }
 .trigger input[readonly]:not([type=radio]):not([type=checkbox]).has-value, .note input[readonly]:not([type=radio]):not([type=checkbox]).has-value { display: block; }
+.trigger img, .trigger video, .trigger audio, .note img, .note video, .note audio { float: right; margin: 10px 0 10px 10px; }
 
 .note + .note { border-top: none; border-bottom: none; border-radius: 0; margin-top: -18px; margin-bottom: 0; }
 .note + .note + .note { margin-top: 0; }
-.note + .note.last-of-class { border-bottom: 1px solid #e1e1e1; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.note + .note.last-of-class { border-bottom: 1px solid #e1e1e1; border-bottom-left-radius: 0; border-bottom-right-radius: 0; margin-bottom: 18px; }
 
 label, legend, .trigger, .note { font-size: 22px; }
 
-.or img, .or audio, .or video { float: right; margin: 10px 0 10px 10px; max-height: 300px; max-width: 70%; }
+.or img, .or audio, .or video { display: block; max-height: 300px; max-width: 70%; }
 .or video { max-width: 100%; }
 
 legend { position: relative; line-height: 12px; border: none; }
@@ -1508,9 +1507,10 @@ legend > span { vertical-align: 12px; }
 .option-wrapper > label :not(img):not(video):not(audio).active { margin-left: 30px; display: block; }
 .option-wrapper > label:before, .option-wrapper > label:after { content: " "; display: table; }
 .option-wrapper > label:after { clear: both; }
+.option-wrapper > label img, .option-wrapper > label video, .option-wrapper > label audio { float: right; margin: 10px 0 10px 10px; }
 
-.or-appearance-horizontal .option-wrapper { /*IE10*/ display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; -moz-flex-wrap: wrap; flex-wrap: wrap; -webkit-flex-direction: row; -ms-flex-direction: row; -moz-flex-direction: row; flex-direction: row; }
-.or-appearance-horizontal label, .or-appearance-horizontal .filler { overflow: hidden; flex: 1; min-width: 30%; padding-right: 10px; float: left; }
+.or-appearance-horizontal .option-wrapper { /*IE10*/ display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; -moz-flex-wrap: wrap; flex-wrap: wrap; -webkit-flex-direction: row; -ms-flex-direction: row; -moz-flex-direction: row; flex-direction: row; display: inline-block; }
+.or-appearance-horizontal label, .or-appearance-horizontal .filler { overflow: hidden; -webkit-flex: 1; -ms-flex: 1; flex: 1; min-width: 30%; padding-right: 10px; float: left; }
 .or-appearance-horizontal .filler, .or-appearance-horizontal .filler:hover, .or-appearance-horizontal .filler:focus { border: none !important; background: transparent !important; }
 .or-appearance-horizontal [type="radio"], .or-appearance-horizontal [type="checkbox"] { width: auto; }
 
@@ -1521,7 +1521,7 @@ legend > span { vertical-align: 12px; }
 .touch .question:not(.or-appearance-compact):not(.or-appearance-quickcompact):not(.or-appearance-label):not(.or-appearance-list-nolabel):not(.or-appearance-likert) .option-wrapper > label .active { margin-right: 10px; }
 .touch .question:not(.or-appearance-compact):not(.or-appearance-quickcompact):not(.or-appearance-label):not(.or-appearance-list-nolabel):not(.or-appearance-likert) .option-wrapper > label input[type="radio"], .touch .question:not(.or-appearance-compact):not(.or-appearance-quickcompact):not(.or-appearance-label):not(.or-appearance-list-nolabel):not(.or-appearance-likert) .option-wrapper > label input[type="checkbox"] { margin-top: 4px; margin-left: 5px; }
 .touch .question:not(.or-appearance-compact):not(.or-appearance-quickcompact):not(.or-appearance-label):not(.or-appearance-list-nolabel):not(.or-appearance-likert) .option-wrapper > label:focus, .touch .question:not(.or-appearance-compact):not(.or-appearance-quickcompact):not(.or-appearance-label):not(.or-appearance-list-nolabel):not(.or-appearance-likert) .option-wrapper > label:hover, .touch .question:not(.or-appearance-compact):not(.or-appearance-quickcompact):not(.or-appearance-label):not(.or-appearance-list-nolabel):not(.or-appearance-likert) .option-wrapper > label:active, .touch .question:not(.or-appearance-compact):not(.or-appearance-quickcompact):not(.or-appearance-label):not(.or-appearance-list-nolabel):not(.or-appearance-likert) .option-wrapper > label[data-checked] { background-color: #e4f4ff; }
-.touch input:not([type="radio"]):not([type="checkbox"]), .touch textarea, .touch select { border-radius: 2px; margin: 10px 0 10px 0; color: #104b66; }
+.touch input:not([type="radio"]):not([type="checkbox"]), .touch textarea, .touch select { margin: 10px 0 10px 0; color: #104b66; }
 .touch input:not([type="radio"]):not([type="checkbox"]), .touch textarea { border: 1px solid #ddd8ce; }
 
 input:not([type="radio"]):not([type="checkbox"]), textarea, select, .widget { display: block; margin: 8px 0 0 0; }
@@ -1555,36 +1555,12 @@ input:not([type="radio"]):not([type="checkbox"]), textarea { height: 36px; }
 
 .or-branch.disabled, .or-branch.or-branch.pre-init { display: none; }
 
-.btn-reset { margin-left: 10px; background: none; border: none; box-shadow: none; opacity: 0.5; }
-.btn-reset:hover { opacity: 0.7; }
-.btn-reset[readonly] { background: none; }
-.btn-reset .glyphicon-trash { color: #000; vertical-align: middle; }
+.btn-reset, .btn-remove { margin-left: 10px; background: none; border: none; box-shadow: none; opacity: 0.5; }
+.btn-reset:hover, .btn-remove:hover { opacity: 0.7; }
+.btn-reset[readonly], .btn-remove[readonly] { background: none; }
+.btn-reset .glyphicon-trash, .btn-remove .glyphicon-trash { color: #000; vertical-align: middle; }
 
 .mobileselect { margin-left: 10px; }
-
-.geopoint { margin-top: 25px; }
-.geopoint .geo-inputs { min-width: 160px; width: 27%; margin: 0 4% 0 0; }
-@media screen and (max-width: 700px) { .geopoint .geo-inputs { width: 100%; } }
-.geopoint .map-canvas-wrapper, .geopoint .search-bar { width: 65%; float: right; padding-left: 4%; border-left: solid 1px #bbbbbb; }
-@media screen and (max-width: 700px) { .geopoint .map-canvas-wrapper, .geopoint .search-bar { width: 100%; float: none; padding-left: 0; border-left: none; } }
-.geopoint .map-canvas-wrapper img, .geopoint .search-bar img { width: 100%; height: 100%; }
-.geopoint .search-bar .form-control, .geopoint .search-bar input:not([type=radio]):not([type=checkbox]), .geopoint .search-bar select, .geopoint .search-bar textarea { margin-top: 0; }
-.geopoint button { height: 34px; padding-bottom: 4px; }
-.geopoint button[name="geodetect"] { display: inline-block; float: right; font-size: 16px; margin: 0 0 0 4%; width: 40px; }
-.geopoint .no-search-input.no-map { border-left: none; }
-.geopoint .no-search-input button[name="geodetect"] { float: none; display: block; margin: 15px auto 15px auto; width: 50%; }
-.geopoint label.geo { font-family: "Helvetica Neue", "Kannada Sangam MN", Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; display: block; border: none; padding: 0; margin: 15px 0 0 0; }
-.geopoint label.geo:nth-of-type(1) { padding-top: 5px; }
-.geopoint label.geo:nth-of-type(2) { margin-bottom: 20px; }
-.geopoint label.geo:nth-of-type(3) { border-top: solid 1px #bbbbbb; padding: 12px 0 0 0; margin: 0 0 0 0; }
-@media screen and (max-width: 700px) { .geopoint label.geo:nth-of-type(3) { border-top: none; } }
-.geopoint label.geo:nth-of-type(4) { padding: 0; margin: 5px 0 0 0; }
-.geopoint label.geo:nth-of-type(3), .geopoint label.geo:nth-of-type(4) { min-height: 70px; line-height: 50px; font-size: 16.5px; }
-.geopoint input[name="lat"], .geopoint input[name="long"] { float: none; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%; }
-.geopoint input[name="alt"], .geopoint input[name="acc"] { -moz-box-sizing: border-box; box-sizing: border-box; display: block; float: right; width: 40%; }
-@media screen and (max-width: 700px) { .geopoint input[name="alt"], .geopoint input[name="acc"] { width: 50%; } }
-.geopoint .map-canvas { width: 100%; border: 1px solid #ccc; border-radius: 3px; margin-top: 10px; height: 275px; }
-.geopoint .map-canvas img { max-width: none; }
 
 .question.or-appearance-list-nolabel, .question.or-appearance-label { margin: -0.9em 0 -0.7em 0; }
 .question.or-appearance-list-nolabel legend, .question.or-appearance-label legend { float: left; border: none; line-height: 17px; width: 40%; min-height: 1px; }
@@ -1595,14 +1571,14 @@ input:not([type="radio"]):not([type="checkbox"]), textarea { height: 36px; }
 .question.or-appearance-list-nolabel input[type=radio], .question.or-appearance-list-nolabel input[type=checkbox], .question.or-appearance-list-nolabel input[type=radio] ~ .option-label::before, .question.or-appearance-list-nolabel input[type=checkbox] ~ .option-label::before, .question.or-appearance-label input[type=radio], .question.or-appearance-label input[type=checkbox], .question.or-appearance-label input[type=radio] ~ .option-label::before, .question.or-appearance-label input[type=checkbox] ~ .option-label::before { position: relative; left: 50%; margin-left: -10px; visibility: visible; }
 .question.or-appearance-list-nolabel ~ .note, .question.or-appearance-label ~ .note { background-color: transparent; }
 
-.question.or-appearance-list-nolabel label .active { visibility: hidden; float: none; }
+.question.or-appearance-list-nolabel label .active { display: none; float: none; }
 
 .question.or-appearance-label legend ~ .option-wrapper > label { margin-bottom: 6px; }
 .question.or-appearance-label legend ~ .option-wrapper > label:hover { background-color: transparent; }
 .question.or-appearance-label input { float: none; display: none !important; }
 .question.or-appearance-label img { max-height: 30px; max-width: 30px; float: none; }
 
-/*
+/*!
  * Timepicker Component for Twitter Bootstrap
  *
  * Copyright 2013 Joris de Wit
@@ -1650,7 +1626,7 @@ input:not([type="radio"]):not([type="checkbox"]), textarea { height: 36px; }
 
 .bootstrap-timepicker-widget.dropdown-menu input { width: 50px; margin: 0 auto; }
 
-/*
+/*!
  * Datepicker for Bootstrap
  *
  * Copyright 2012 Stefan Petre
@@ -1797,11 +1773,12 @@ input:not([type="radio"]):not([type="checkbox"]), textarea { height: 36px; }
 .or-appearance-likert .option-wrapper > label { -webkit-flex: 1; -ms-flex: 1; flex: 1; /*IE10*/ display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-flex-wrap: nowrap; -ms-flex-wrap: nowrap; -moz-flex-wrap: nowrap; flex-wrap: nowrap; -webkit-flex-direction: column; -ms-flex-direction: column; -moz-flex-direction: column; flex-direction: column; margin: 0; float: none; padding-left: 0 !important; padding-right: 0; }
 .or-appearance-likert .option-wrapper > label input[type=radio], .or-appearance-likert .option-wrapper > label input[type=checkbox] { position: relative; left: 50%; padding: 0; margin-left: -10px; background-color: white; z-index: 10; }
 .or-appearance-likert .option-wrapper > label .active { margin: 0; }
-.or-appearance-likert .option-wrapper > label .option-label { position: relative; flex: 1; text-align: center; margin-top: -8.5px; padding-top: 15px; border-top: 3px solid #cccccc; font-size: 12px; font-family: "Helvetica Neue", "Kannada Sangam MN", Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; }
+.or-appearance-likert .option-wrapper > label .option-label { position: relative; text-align: center; margin-top: -8.5px; padding-top: 15px; border-top: 3px solid #cccccc; font-size: 12px; font-family: "Helvetica Neue", "Kannada Sangam MN", Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; }
 .or-appearance-likert .option-wrapper > label:first-of-type .option-label::after { content: ''; display: block; position: absolute; top: -3px; width: 50%; background-color: white; height: 10px; left: 0; }
 .or-appearance-likert .option-wrapper > label:last-of-type .option-label::after { content: ''; display: block; position: absolute; top: -3px; width: 50%; background-color: white; height: 10px; right: 0; }
 .or-appearance-likert .option-wrapper > label:hover { background-color: transparent; }
 .or-appearance-likert:hover .option-wrapper > label:first-of-type .option-label::after, .or-appearance-likert:hover .option-wrapper > label:last-of-type .option-label::after { background-color: white; }
+.or-appearance-likert.focus .option-wrapper > label:first-of-type .option-label::after, .or-appearance-likert.focus .option-wrapper > label:last-of-type .option-label::after { background-color: white; }
 
 .or-repeat .or-appearance-likert .option-wrapper > label:first-of-type .option-label::after, .or-repeat .or-appearance-likert .option-wrapper > label:last-of-type .option-label::after, .or-repeat .or-appearance-likert .option-wrapper > label input[type=radio], .or-repeat .or-appearance-likert .option-wrapper > label input[type=checkbox] { background-color: #fef5ef; }
 
@@ -1827,7 +1804,7 @@ input:not([type="radio"]):not([type="checkbox"]), textarea { height: 36px; }
 /* fancy radio buttons / checkboxes */
 .question:not(.or-appearance-label):not(.or-appearance-compact):not(.or-appearance-quickcompact) label { line-height: 20px; outline: 0; }
 .question:not(.or-appearance-label):not(.or-appearance-compact):not(.or-appearance-quickcompact) label :not(img):not(video):not(audio).active { margin-left: 0; }
-.question:not(.or-appearance-label):not(.or-appearance-compact):not(.or-appearance-quickcompact) label .option-label::before { font-family: 'enketo-icons'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; display: block; float: left; font-size: 20px; width: 20px; margin-right: 10px; }
+.question:not(.or-appearance-label):not(.or-appearance-compact):not(.or-appearance-quickcompact) label .option-label::before { font-family: 'enketo-icons'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; display: block; float: left; font-size: 20px; width: 20px; margin-right: 10px; border-radius: 10px; }
 .question:not(.or-appearance-label):not(.or-appearance-compact):not(.or-appearance-quickcompact) label input[type=radio] { display: none; }
 .question:not(.or-appearance-label):not(.or-appearance-compact):not(.or-appearance-quickcompact) label input[type=radio] ~ .option-label::before { font-family: 'enketo-icons'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: '\e60f' !important; color: #cccccc; }
 .question:not(.or-appearance-label):not(.or-appearance-compact):not(.or-appearance-quickcompact) label input[type=radio]:checked ~ .option-label::before { font-family: 'enketo-icons'; speak: none; font-style: normal; font-weight: normal; font-variant: normal; text-transform: none; line-height: 1; /* Better Font Rendering =========== */ -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: '\e603' !important; color: #0087e4; }
