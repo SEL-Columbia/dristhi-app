@@ -6,7 +6,6 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="@integer/ec_list_profile_box_weight"
                 android:background="@drawable/transparent_blue_background">
-~
     <FrameLayout
             android:id="@+id/img_profile_layout"
             android:layout_width="@dimen/client_profile_pic_width"
