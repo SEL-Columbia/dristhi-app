@@ -49,6 +49,8 @@ public class AllConstants {
     public static final String FEMALE_GENDER = "female";
     public static final String FORM_DATE_TIME_FORMAT = "EEE, dd MMM yyyy HH:mm:ss ZZZ";
     public static final String SHORT_DATE_FORMAT = "dd/MM";
+    public static final String FILE_PATH_STARTING_STRING = "file:///";
+    public static final String SLASH_STRING = "/";
 
     public class FormNames {
         public static final String EC_REGISTRATION = "ec_registration";

@@ -11,6 +11,8 @@ import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
+import static org.ei.drishti.AllConstants.FILE_PATH_STARTING_STRING;
+import static org.ei.drishti.AllConstants.SLASH_STRING;
 
 public class ProfilePhotoLoader {
     private final Resources resources;
@@ -40,7 +42,7 @@ public class ProfilePhotoLoader {
     }
 
     private boolean isFileExists(String path) {
-        return new File(path).exists();
+        return new File(path.replaceFirst(FILE_PATH_STARTING_STRING, SLASH_STRING)).exists();
     }
 
     private boolean isThisDefaultProfilePhoto(String photoPath) {
