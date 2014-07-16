@@ -16,6 +16,7 @@
             {
                 "name": "phoneNumber",
                 "shouldLoadValue": true,
+                "source":"mother.eligible_couple.phoneNumber",
                 "bind": "/model/instance/Delivery_Plan_EngKan/entity_phone_no"
             },
             {
