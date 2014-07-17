@@ -115,7 +115,7 @@
                         {{#ifequal details.currentMethod "none"}}
                         <i class="icon-remove"></i><span class="family-planning-label">Current</span><span class="family-planning-current">None</span><br/>
                         {{else}}
-                        <i class="icon-ok"></i><span class="family-planning-label">Current</span><span class="family-planning-current">{{formatText details.currentMethod}}</span><br/>
+                        <i class="icon-ok"></i><span class="family-planning-label">Current</span><span class="family-planning-current">{{friendlyFPName details.currentMethod}}</span><br/>
                         {{/ifequal}}
                     </div>
                 </div>

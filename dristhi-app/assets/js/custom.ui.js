@@ -66,6 +66,22 @@ Handlebars.registerHelper('formatText', function (unformattedText) {
     return capitalize(unformattedText.trim()).replace(/_/g, " ");
 });
 
+Handlebars.registerHelper('friendlyFPName', function (currentMethod) {
+    var map = {
+        ocp: 'OCP',
+        iud: 'IUCD',
+        condom: 'Condom',
+        female_sterilization: 'Female Sterilization',
+        male_sterilization: 'Male Sterilization',
+        none: 'None',
+        traditional_methods: 'Traditional Methods',
+        dmpa_injectable: 'DMPA Injectable',
+        lam: 'LAM'
+    };
+
+    return map[currentMethod] || formatText(currentMethod);
+});
+
 Handlebars.registerHelper('formatDate', function (unformattedDate) {
     if (typeof unformattedDate === "undefined") {
         return "";

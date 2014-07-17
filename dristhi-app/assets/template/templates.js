@@ -14,7 +14,7 @@ function program1(depth0,data) {
   if (stack2 = helpers.caseId) { stack2 = stack2.call(depth0, {hash:{},data:data}); }
   else { stack2 = depth0.caseId; stack2 = typeof stack2 === functionType ? stack2.apply(depth0) : stack2; }
   buffer += escapeExpression(stack2)
-    + "\">\n                    <div class=\"edd-modal-button-text\">Delivery Outcome Form</div>\n                </button>\n            </div>\n            <div class=\"edd-modal-button\">\n                <button id=\"goToProfileButton\" class=\"btn edd-modal-row\" type=\"button\">\n                    <div class=\"edd-modal-button-text\">Go To Profile</div>\n                </button>\n            </div>\n        </div>\n    </div>\n</div>\n";
+    + "\">\n                    <div class=\"edd-modal-button-text\">Delivery Outcome Form</div>\n                </button>\n            </div>\n            <div class=\"edd-modal-button\">\n                <button id=\"goToProfileButton\" class=\"btn edd-modal-row\" type=\"button\">1\n                    <div class=\"edd-modal-button-text\">Go To Profile</div>\n                </button>\n            </div>\n        </div>\n    </div>\n</div>\n";
   return buffer;
   }
 
@@ -576,7 +576,7 @@ function program17(depth0,data) {
   var buffer = "", stack1, options;
   buffer += "\n                        <i class=\"icon-ok\"></i><span class=\"family-planning-label\">Current</span><span class=\"family-planning-current\">";
   options = {hash:{},data:data};
-  buffer += escapeExpression(((stack1 = helpers.formatText || depth0.formatText),stack1 ? stack1.call(depth0, ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.currentMethod), options) : helperMissing.call(depth0, "formatText", ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.currentMethod), options)))
+  buffer += escapeExpression(((stack1 = helpers.friendlyFPName || depth0.friendlyFPName),stack1 ? stack1.call(depth0, ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.currentMethod), options) : helperMissing.call(depth0, "friendlyFPName", ((stack1 = depth0.details),stack1 == null || stack1 === false ? stack1 : stack1.currentMethod), options)))
     + "</span><br/>\n                        ";
   return buffer;
   }

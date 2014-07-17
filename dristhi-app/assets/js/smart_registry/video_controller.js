@@ -66,7 +66,7 @@ angular.module("smartRegistry.controllers")
             },
             {
                 id: "IUD",
-                title: "IUD",
+                title: "IUCD",
                 time: "4.42",
                 previewImageUrl: "../../img/smart_registry/videos-icons/fp-IUD.jpg",
                 category: FAMILY_PLANNING
