@@ -40,8 +40,8 @@ public class GZipEncodingHttpClient {
         return httpClient.getCredentialsProvider();
     }
 
-    public int postContent(HttpPost request) throws IOException {
+    public HttpResponse postContent(HttpPost request) throws IOException {
         HttpResponse response = httpClient.execute(request);
-        return response.getStatusLine().getStatusCode();
+        return response;
     }
 }
