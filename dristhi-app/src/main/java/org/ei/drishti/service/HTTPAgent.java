@@ -81,13 +81,15 @@ public class HTTPAgent {
         try {
             setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
             HttpPost httpPost = new HttpPost(postURLPath);
-            StringEntity entity = new StringEntity(jsonPayload);
-            entity.setContentEncoding("application/json");
+            StringEntity entity = new StringEntity(jsonPayload, HTTP.UTF_8);
+            entity.setContentType("application/json; charset=utf-8");
             httpPost.setEntity(entity);
-            httpPost.setHeader(HTTP.CONTENT_TYPE, "application/json");
 
-            int responseStatus = httpClient.postContent(httpPost);
-            return responseStatus == HttpStatus.SC_CREATED ? new Response<String>(ResponseStatus.success, null) : new Response<String>(ResponseStatus.failure, null);
+            HttpResponse response = httpClient.postContent(httpPost);
+
+            ResponseStatus responseStatus = response.getStatusLine().getStatusCode() == HttpStatus.SC_CREATED ? ResponseStatus.success : ResponseStatus.failure;
+            response.getEntity().consumeContent();
+            return new Response<String>(responseStatus, null);
         } catch (Exception e) {
             logWarn(e.toString());
             return new Response<String>(ResponseStatus.failure, null);
