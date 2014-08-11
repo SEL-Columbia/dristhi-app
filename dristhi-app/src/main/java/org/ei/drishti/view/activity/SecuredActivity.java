@@ -115,7 +115,7 @@ public abstract class SecuredActivity extends Activity {
     }
 
     private void addFieldOverridesIfExist(Intent intent) {
-        if (this.metaData == null) {
+        if (this.metaData == null || this.metaData.equals("undefined")) {
             return;
         }
         Map<String, String> metaDataMap = new Gson().fromJson(this.metaData, new TypeToken<Map<String, String>>() {
