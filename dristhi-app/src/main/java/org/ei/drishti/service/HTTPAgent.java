@@ -22,6 +22,7 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HTTP;
 import org.ei.drishti.DristhiConfiguration;
+import org.ei.drishti.R;
 import org.ei.drishti.client.GZipEncodingHttpClient;
 import org.ei.drishti.domain.LoginResponse;
 import org.ei.drishti.domain.Response;
@@ -124,7 +125,7 @@ public class HTTPAgent {
     private SocketFactory sslSocketFactoryWithDrishtiCertificate() {
         try {
             KeyStore trustedKeystore = KeyStore.getInstance("BKS");
-            InputStream inputStream = context.getResources().openRawResource(org.ei.drishti.R.raw.drishti_client);
+            InputStream inputStream = context.getResources().openRawResource(R.raw.dristhi_client);
             try {
                 trustedKeystore.load(inputStream, "phone red pen".toCharArray());
             } finally {
