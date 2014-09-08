@@ -16,7 +16,7 @@
         <span lang="" class="question-label active">Child birth date? &#xC9C;&#xCA8;&#xCA8; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?</span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Child_Registration_EC_EngKan/child_birth_date" required="required"
-               data-constraint=".&gt; ( /Child_Registration_EC_EngKan/today  - 1825) and .&lt;= /Child_Registration_EC_EngKan/today  and .&lt;= /Child_Registration_EC_EngKan/child_reg_date "
+               data-constraint=".&gt; ( /Child_Registration_EC_EngKan/today  - 2191.5) and .&lt;= /Child_Registration_EC_EngKan/today  and .&lt;= /Child_Registration_EC_EngKan/child_reg_date "
                data-type-xml="date"/>
     </label>
     <fieldset class="trigger " name="/Child_Registration_EC_EngKan/child_age_note">
@@ -431,7 +431,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Child_Registration_EC_EngKan/child_age"
-                   data-calculate="if( /Child_Registration_EC_EngKan/child_birth_date  = '', '', int(( /Child_Registration_EC_EngKan/today  -  /Child_Registration_EC_EngKan/child_birth_date ) div 30))"
+                   data-calculate="if( /Child_Registration_EC_EngKan/child_birth_date  = '', '', int(( /Child_Registration_EC_EngKan/today  -  /Child_Registration_EC_EngKan/child_birth_date ) div 30.42))"
                    data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
@@ -440,7 +440,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Child_Registration_EC_EngKan/formhub/uuid"
-                   data-calculate="'997e6d6effb2428199d26c2b152d7654'" data-type-xml="string"/>
+                   data-calculate="'7493a342fa644a4caa7fcd949f7a9e2e'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
