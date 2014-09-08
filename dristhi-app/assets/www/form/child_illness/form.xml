@@ -513,7 +513,7 @@
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden"
                    name="/Child_Sick_Visit_EngKan/child_sickness_management_group/child_age"
-                   data-calculate="int(( /Child_Sick_Visit_EngKan/child_sickness_management_group/sick_visit_date  -  /Child_Sick_Visit_EngKan/child_sickness_management_group/case_child_birth_date ) div 30)"
+                   data-calculate="int(( /Child_Sick_Visit_EngKan/child_sickness_management_group/sick_visit_date  -  /Child_Sick_Visit_EngKan/child_sickness_management_group/case_child_birth_date ) div 30.42)"
                    data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
@@ -600,7 +600,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Child_Sick_Visit_EngKan/formhub/uuid"
-                   data-calculate="'d0b0a9bb3bcf45119c18b76a9345c2de'" data-type-xml="string"/>
+                   data-calculate="'407004fdbaf34751b2983f0d63b2f2a6'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
