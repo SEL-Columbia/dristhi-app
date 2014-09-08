@@ -72,7 +72,7 @@
     <fieldset id="or-calculated-items" style="display:none;">
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Child_Vitamin_A_EngKan/eight_months"
-                   data-calculate=" /Child_Vitamin_A_EngKan/case_child_birth_date  + 240" data-type-xml="string"/>
+                   data-calculate=" /Child_Vitamin_A_EngKan/case_child_birth_date  + 243" data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Child_Vitamin_A_EngKan/meta/instanceID"
@@ -80,7 +80,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Child_Vitamin_A_EngKan/formhub/uuid"
-                   data-calculate="'87dbfe6ae04940b999edbbf69f1dbc69'" data-type-xml="string"/>
+                   data-calculate="'75e97af4cc4843dfae933a478ec901e6'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
