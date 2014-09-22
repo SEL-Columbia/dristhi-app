@@ -265,9 +265,7 @@
                 </div>
             </fieldset>
         </fieldset>
-        <fieldset class="trigger or-branch pre-init"
-                  name="/Child_Sick_Visit_EngKan/child_sickness_management_group/immediate_referral_message"
-                  data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/immediate_referral  != ''">
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">Child has following danger sign(s), &#xCAE;&#xC97;&#xCC1;
                 &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF; &#xC9A;&#xCBF;&#xCB9;&#xCCD;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;
                 &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCC6;:<span class="or-output"
@@ -276,37 +274,45 @@
                 &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;&#xC95;&#xCCD;&#xC95;&#xCC6;
                 &#xCA4;&#xC95;&#xCCD;&#xCB7;&#xCA3; &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCB2;&#xCCD; &#xCAE;&#xCBE;&#xCA1;&#xCBF;!
             </span>
-        </fieldset>
-        <fieldset class="trigger or-branch pre-init"
-                  name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea_message"
-                  data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea  != ''">
+            <input autocomplete="off" type="text"
+                   name="/Child_Sick_Visit_EngKan/child_sickness_management_group/immediate_referral_message"
+                   data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/immediate_referral  != ''"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">If child can drink fluids, start ORS right now! &#xCAE;&#xC97;&#xCC1;
                 &#xCA6;&#xCCD;&#xCB0;&#xCB5; &#xCAA;&#xCA6;&#xCBE;&#xCB0;&#xCCD;&#xCA5;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                 &#xC95;&#xCC1;&#xCA1;&#xCBF;&#xCAF;&#xCAC;&#xCB9;&#xCC1;&#xCA6;&#xCC1;. &#xC88;&#xC97; ORS &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF;!
             </span>
-        </fieldset>
-        <fieldset class="trigger or-branch pre-init"
-                  name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever_message"
-                  data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever  != ''">
+            <input autocomplete="off" type="text"
+                   name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea_message"
+                   data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea  != ''"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">Child needs antimalarial drugs right now! Consult with MO for
                 treatment. &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6; &#xC88;&#xC97; &#xCAE;&#xCB2;&#xCC7;&#xCB0;&#xCBF;&#xCAF;&#xCBE;
                 &#xCA8;&#xCBF;&#xCB0;&#xCCB;&#xCA7;&#xC95; &#xC94;&#xCB7;&#xCA6;&#xC97;&#xCB3;&#xCC1; &#xC85;&#xC97;&#xCA4;&#xCCD;&#xCAF;
                 &#xC87;&#xCA6;&#xCC6;! &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCA4;&#xCC6;&#xC97;&#xCBE;&#xC97;&#xCBF;
                 MO &#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCAD;&#xCC7;&#xC9F;&#xCBF; &#xCAE;&#xCBE;&#xCA1;&#xCBF;.
             </span>
-        </fieldset>
-        <fieldset class="trigger or-branch pre-init"
-                  name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing_message"
-                  data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing  != ''">
+            <input autocomplete="off" type="text"
+                   name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever_message"
+                   data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever  != ''"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">Child needs antibiotics right now! Consult with MO for
                 treatment. &#xC88;&#xC97; &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6; &#xCAA;&#xCCD;&#xCB0;&#xCA4;&#xCBF;&#xC9C;&#xCC0;&#xCB5;&#xC95;&#xC97;&#xCB3;
                 &#xC85;&#xC97;&#xCA4;&#xCCD;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;! &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCA4;&#xCC6;&#xC97;&#xCBE;&#xC97;&#xCBF;
                 MO &#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCAD;&#xCC7;&#xC9F;&#xCBF; &#xCAE;&#xCBE;&#xCA1;&#xCBF;.
             </span>
-        </fieldset>
-        <fieldset class="trigger or-branch pre-init"
-                  name="/Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_message"
-                  data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea  = '' and  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_blood_in_stool  = '' and selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'diarrhea')">
+            <input autocomplete="off" type="text"
+                   name="/Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing_message"
+                   data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing  != ''"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">Care for child at home. Make ORS solution for child. Give
                 caregiver 2 ORS packets and instruct on how to prepare. &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                 &#xCAE;&#xCA8;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF; &#xC86;&#xCB0;&#xCC8;&#xC95;&#xCC6; &#xCAE;&#xCBE;&#xCA1;&#xCBF;.&#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6;
@@ -315,27 +321,33 @@
                 &#xCB9;&#xCC7;&#xC97;&#xCC6; &#xCA4;&#xCAF;&#xCBE;&#xCB0;&#xCBF;&#xCB8;&#xCAC;&#xCC7;&#xC95;&#xCC6;&#xC82;&#xCAC;&#xCC1;&#xCA6;&#xCB0;
                 &#xCAC;&#xC97;&#xCCD;&#xC97;&#xCC6; &#xCA4;&#xCBF;&#xCB3;&#xCBF;&#xCB8;&#xCBF;.
             </span>
-        </fieldset>
-        <fieldset class="trigger or-branch pre-init"
-                  name="/Child_Sick_Visit_EngKan/child_sickness_management_group/fever_message"
-                  data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever  = '' and selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'fever')">
+            <input autocomplete="off" type="text"
+                   name="/Child_Sick_Visit_EngKan/child_sickness_management_group/diarrhea_message"
+                   data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_diarrhea  = '' and  /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_blood_in_stool  = '' and selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'diarrhea')"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">Refer the child for a malaria test. &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                 &#xCAE;&#xCB2;&#xCC7;&#xCB0;&#xCBF;&#xCAF;&#xCBE; &#xCAA;&#xCB0;&#xCC0;&#xC95;&#xCCD;&#xCB7;&#xCC6;&#xC97;&#xCC6;
                 &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCB2;&#xCCD; &#xCAE;&#xCBE;&#xCA1;&#xCBF;.
             </span>
-        </fieldset>
-        <fieldset class="trigger or-branch pre-init"
-                  name="/Child_Sick_Visit_EngKan/child_sickness_management_group/fast_breathing_message"
-                  data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing  = '' and  /Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/fast_breathing  != ''">
+            <input autocomplete="off" type="text"
+                   name="/Child_Sick_Visit_EngKan/child_sickness_management_group/fever_message"
+                   data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_fever  = '' and selected( /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs , 'fever')"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">Child needs antibiotics. Consult with MO for treatment. &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6;
                 &#xCAA;&#xCCD;&#xCB0;&#xCA4;&#xCBF;&#xC9C;&#xCC0;&#xCB5;&#xC95;&#xC97;&#xCB3; &#xC85;&#xC97;&#xCA4;&#xCCD;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6;.
                 &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xCC6;&#xC97;&#xCBE;&#xC97;&#xCBF; MO &#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                 &#xCAD;&#xCC7;&#xC9F;&#xCBF; &#xCAE;&#xCBE;&#xCA1;&#xCBF;.
             </span>
-        </fieldset>
-        <fieldset class="trigger or-branch pre-init"
-                  name="/Child_Sick_Visit_EngKan/child_sickness_management_group/home_care_message"
-                  data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/immediate_referral  = '' and  /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs  != ''">
+            <input autocomplete="off" type="text"
+                   name="/Child_Sick_Visit_EngKan/child_sickness_management_group/fast_breathing_message"
+                   data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/ds_chest_indrawing  = '' and  /Child_Sick_Visit_EngKan/child_sickness_management_group/cough_group/fast_breathing  != ''"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">Tell caregiver to give more fluids and continue feeding. Tell
                 caregiver danger signs to look for. Tell caregiver to go to facility immediately if child becomes
                 sicker. &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCC1; &#xCA6;&#xCCD;&#xCB0;&#xCB5; &#xCAA;&#xCA6;&#xCBE;&#xCB0;&#xCCD;&#xCA5;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
@@ -347,7 +359,11 @@
                 &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xC97;&#xCC6; &#xC95;&#xCB0;&#xCC6;&#xCA6;&#xCC1;&#xC95;&#xCCA;&#xC82;&#xCA1;&#xCC1;
                 &#xCB9;&#xCCB;&#xC97;&#xCBF;.
             </span>
-        </fieldset>
+            <input autocomplete="off" type="text"
+                   name="/Child_Sick_Visit_EngKan/child_sickness_management_group/home_care_message"
+                   data-relevant=" /Child_Sick_Visit_EngKan/child_sickness_management_group/immediate_referral  = '' and  /Child_Sick_Visit_EngKan/child_sickness_management_group/child_signs  != ''"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
     </section>
     <!--end of group -->
     <section class="or-group-data or-branch pre-init " name="/Child_Sick_Visit_EngKan/report_child_disease_group"
