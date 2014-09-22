@@ -1021,25 +1021,31 @@
             </div>
         </fieldset>
     </fieldset>
-    <fieldset class="trigger " name="/PNC_Child_Registration_EngKan/district_note">
+    <label class="note non-select ">
         <span lang="" class="question-label active">District, &#xC9C;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCC6;:
             <span class="or-output" data-value=" /PNC_Child_Registration_EngKan/district_value ">
             </span>
         </span>
-    </fieldset>
-    <fieldset class="trigger " name="/PNC_Child_Registration_EngKan/phc_note">
+        <input autocomplete="off" type="text" name="/PNC_Child_Registration_EngKan/district_note" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
+    <label class="note non-select ">
         <span lang="" class="question-label active">PHC, &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
             &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;:
             <span class="or-output" data-value=" /PNC_Child_Registration_EngKan/phc_value ">
             </span>
         </span>
-    </fieldset>
-    <fieldset class="trigger " name="/PNC_Child_Registration_EngKan/sub_center_note">
+        <input autocomplete="off" type="text" name="/PNC_Child_Registration_EngKan/phc_note" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
+    <label class="note non-select ">
         <span lang="" class="question-label active">Sub Center, &#xC89;&#xCAA; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;:
             <span class="or-output" data-value=" /PNC_Child_Registration_EngKan/sub_center_value ">
             </span>
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/PNC_Child_Registration_EngKan/sub_center_note"
+               data-type-xml="string" readonly="readonly"/>
+    </label>
     <fieldset class="question ">
         <fieldset>
             <legend>
@@ -1825,8 +1831,8 @@
                         Teggihal &#xCA4;&#xCC6;&#xC97;&#xCCD;&#xC97;&#xCBF;&#xCB9;&#xCBE;&#xCB3;</span>
                     <span lang="default" class="option-label active" data-itext-id="static_instance-villages-352">
                         Hiremyageri &#xCB9;&#xCC0;&#xCB0;&#xCC6; &#xCAE;&#xCCD;&#xCAF;&#xCBE;&#xC97;&#xCC7;&#xCB0;&#xCBF;</span>
-                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-353">S
-                        Hosure &#xC8E;&#xCB8;&#xCCD; &#xCB9;&#xCC6;&#xCC2;&#xCB8;&#xCC2;&#xCB0;&#xCC1;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-353">Hosure
+                        S &#xCB9;&#xCC6;&#xCC2;&#xCB8;&#xCC2;&#xCB0;&#xCC1; &#xC8E;&#xCB8;&#xCCD;</span>
                     <span lang="default" class="option-label active" data-itext-id="static_instance-villages-354">
                         Anganwadi 1 &#xC85;&#xC82;&#xC97;&#xCA8; &#xCB5;&#xCBE;&#xCA1;&#xCBF; 1
                     </span>
@@ -2586,15 +2592,16 @@
                     </div>
                 </fieldset>
             </fieldset>
-            <fieldset class="trigger or-branch pre-init"
-                      name="/PNC_Child_Registration_EngKan/child/high_risk_note_child"
-                      data-relevant=" /PNC_Child_Registration_EngKan/child/is_child_high_risk1  = 'yes'">
+            <label class="note or-branch pre-init non-select ">
                 <span lang="" class="question-label active">Child is at risk because of, &#xC88;&#xC97; &#xCAE;&#xC97;&#xCC1;
                     &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA6;&#xCC6; &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
                     <span class="or-output" data-value=" /PNC_Child_Registration_EngKan/child/child_high_risk_reasons ">
                     </span>
                 </span>
-            </fieldset>
+                <input autocomplete="off" type="text" name="/PNC_Child_Registration_EngKan/child/high_risk_note_child"
+                       data-relevant=" /PNC_Child_Registration_EngKan/child/is_child_high_risk1  = 'yes'"
+                       data-type-xml="string" readonly="readonly"/>
+            </label>
             <fieldset class="question ">
                 <fieldset>
                     <legend>
@@ -2622,9 +2629,7 @@
                     </div>
                 </fieldset>
             </fieldset>
-            <fieldset class="trigger or-branch pre-init"
-                      name="/PNC_Child_Registration_EngKan/child/addl_pnc_visit_message"
-                      data-relevant=" /PNC_Child_Registration_EngKan/child/is_child_high_risk1  = 'yes'">
+            <label class="note or-branch pre-init non-select ">
                 <span lang="" class="question-label active">Child needs 3 more PNC visits on days 14, 21, and 28 because
                     of, 14, 21 &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; 28 &#xCA8;&#xCC7; &#xCA6;&#xCBF;&#xCA8;&#xC97;&#xCB3;&#xCCA;&#xC82;&#xCA6;&#xCC1;
                     &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6; 3 &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBF;&#xCA8;
@@ -2633,7 +2638,10 @@
                     <span class="or-output" data-value=" /PNC_Child_Registration_EngKan/child/child_high_risk_reasons ">
                     </span>
                 </span>
-            </fieldset>
+                <input autocomplete="off" type="text" name="/PNC_Child_Registration_EngKan/child/addl_pnc_visit_message"
+                       data-relevant=" /PNC_Child_Registration_EngKan/child/is_child_high_risk1  = 'yes'"
+                       data-type-xml="string" readonly="readonly"/>
+            </label>
         </section>
         <!--end of repeat fieldset with name /PNC_Child_Registration_EngKan/child-->
     </section>
