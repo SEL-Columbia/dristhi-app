@@ -362,9 +362,7 @@
     <section class="or-group-data or-branch pre-init "
              name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group"
              data-relevant=" /Family_Planning_Change_Method_EngKan/familyplanning_method  = 'male_sterilization'">
-        <fieldset class="trigger or-branch pre-init"
-                  name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/male_sterilization_message"
-                  data-relevant=" /Family_Planning_Change_Method_EngKan/today  -  /Family_Planning_Change_Method_EngKan/date_familyplanningstart  &lt; 90">
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">Pregnancy can still happen up to 3 months after male
                 sterilization. Tell the couple to use back-up FP method until 3 months from sterilization date, &#xCAA;&#xCC1;&#xCB0;&#xCC1;&#xCB7;
                 &#xCB8;&#xC82;&#xCA4;&#xCBE;&#xCA8;&#xCBE;&#xCB9;&#xCB0;&#xCA3; &#xCB6;&#xCB8;&#xCCD;&#xCA4;&#xCCD;&#xCB0;
@@ -380,7 +378,11 @@
                       data-value=" /Family_Planning_Change_Method_EngKan/male_sterilizaton_group/threemonths_from_sterilization_date_formatted ">
                 </span>
             </span>
-        </fieldset>
+            <input autocomplete="off" type="text"
+                   name="/Family_Planning_Change_Method_EngKan/male_sterilizaton_group/male_sterilization_message"
+                   data-relevant=" /Family_Planning_Change_Method_EngKan/today  -  /Family_Planning_Change_Method_EngKan/date_familyplanningstart  &lt; 90"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
     </section>
     <!--end of group -->
     <label class="question or-branch pre-init non-select ">
@@ -447,7 +449,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Family_Planning_Change_Method_EngKan/formhub/uuid"
-                   data-calculate="'f98e83ed610b42a9921648948c3e68f4'" data-type-xml="string"/>
+                   data-calculate="'e73e02e0be8241c8bfe8a0ec702f2319'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
