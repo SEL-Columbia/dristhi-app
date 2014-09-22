@@ -101,9 +101,11 @@
     </fieldset>
     <section class="or-group-data or-branch pre-init " name="/PNC_Visit_EngKan/pnc_mother_group"
              data-relevant="( /PNC_Visit_EngKan/case_woman_survived  = 'yes' or  /PNC_Visit_EngKan/case_mother_survived  = 'yes')">
-        <fieldset class="trigger " name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_group_message">
+        <label class="note non-select ">
             <span lang="" class="question-label active">Mother check-up &#xCA4;&#xCBE;&#xCAF;&#xCBF;&#xCAF; &#xCA4;&#xCAA;&#xCBE;&#xCB8;&#xCA3;&#xCC6;:</span>
-        </fieldset>
+            <input autocomplete="off" type="text" name="/PNC_Visit_EngKan/pnc_mother_group/pnc_mother_group_message"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
         <fieldset class="question ">
             <fieldset>
                 <legend>
@@ -416,8 +418,7 @@
             <input autocomplete="off" type="number" name="/PNC_Visit_EngKan/pnc_mother_group/hb_level"
                    data-type-xml="decimal" step="any"/>
         </label>
-        <fieldset class="trigger or-branch pre-init" name="/PNC_Visit_EngKan/pnc_mother_group/anaemic_message"
-                  data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/hb_level  &gt;= 7 and  /PNC_Visit_EngKan/pnc_mother_group/hb_level  &lt; 11">
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">
                 <span class="or-output" data-value=" /PNC_Visit_EngKan/woman_name ">
                 </span>is anaemic!
@@ -425,9 +426,11 @@
                 </span>
                 &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCB9;&#xCC0;&#xCA8;&#xCA4;&#xCC6;&#xCAF;&#xCC7;!
             </span>
-        </fieldset>
-        <fieldset class="trigger or-branch pre-init" name="/PNC_Visit_EngKan/pnc_mother_group/severely_anaemic_message"
-                  data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/hb_level  &lt; 7">
+            <input autocomplete="off" type="text" name="/PNC_Visit_EngKan/pnc_mother_group/anaemic_message"
+                   data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/hb_level  &gt;= 7 and  /PNC_Visit_EngKan/pnc_mother_group/hb_level  &lt; 11"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">
                 <span class="or-output" data-value=" /PNC_Visit_EngKan/woman_name ">
                 </span>is severely anaemic!
@@ -435,7 +438,10 @@
                 </span>
                 &#xC87;&#xCA6;&#xCC1; &#xCA4;&#xCC0;&#xCB5;&#xCCD;&#xCB0; &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCB9;&#xCC0;&#xCA8;&#xCA4;&#xCC6;!
             </span>
-        </fieldset>
+            <input autocomplete="off" type="text" name="/PNC_Visit_EngKan/pnc_mother_group/severely_anaemic_message"
+                   data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/hb_level  &lt; 7" data-type-xml="string"
+                   readonly="readonly"/>
+        </label>
         <label class="question non-select ">
             <span lang="" class="question-label active">Number of IFA tablets given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1;
                 &#xC95;&#xCAC;&#xCCD;&#xCAC;&#xCBF;&#xCA3;&#xCBE;&#xC82;&#xCB6;&#xCA6; &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
@@ -447,8 +453,7 @@
             <input autocomplete="off" type="number" name="/PNC_Visit_EngKan/pnc_mother_group/ifa_tablets_given"
                    data-type-xml="int"/>
         </label>
-        <fieldset class="trigger or-branch pre-init" name="/PNC_Visit_EngKan/pnc_mother_group/immediate_referral_note"
-                  data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/immediate_referral  = 'yes'">
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">
                 <span class="or-output" data-value=" /PNC_Visit_EngKan/woman_name ">
                 </span>has following danger signs,
@@ -461,16 +466,21 @@
                 &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6; &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD;
                 &#xCAE;&#xCBE;&#xCA1;&#xCBF;!
             </span>
-        </fieldset>
-        <fieldset class="trigger or-branch pre-init" name="/PNC_Visit_EngKan/pnc_mother_group/high_risk_note_mother"
-                  data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/is_high_risk1  = 'yes'">
+            <input autocomplete="off" type="text" name="/PNC_Visit_EngKan/pnc_mother_group/immediate_referral_note"
+                   data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/immediate_referral  = 'yes'"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">Woman is still at risk because of, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1;
                 &#xC88;&#xC97;&#xCB2;&#xCC2; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCBE;&#xCB3;&#xCC6;
                 &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
                 <span class="or-output" data-value=" /PNC_Visit_EngKan/pnc_mother_group/high_risk_reason ">
                 </span>
             </span>
-        </fieldset>
+            <input autocomplete="off" type="text" name="/PNC_Visit_EngKan/pnc_mother_group/high_risk_note_mother"
+                   data-relevant=" /PNC_Visit_EngKan/pnc_mother_group/is_high_risk1  = 'yes'" data-type-xml="string"
+                   readonly="readonly"/>
+        </label>
         <fieldset class="question ">
             <fieldset>
                 <legend>
@@ -501,11 +511,13 @@
     <section class="or-group-data or-branch pre-init " name="/PNC_Visit_EngKan/pnc_child_repeat"
              data-relevant=" /PNC_Visit_EngKan/case_delivery_outcome  = 'live_birth'">
         <section class="or-repeat " name="/PNC_Visit_EngKan/pnc_child_repeat">
-            <fieldset class="trigger " name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_group_message">
+            <label class="note non-select ">
                 <span lang="" class="question-label active">Baby check-up &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8;
                     &#xCA4;&#xCAA;&#xCBE;&#xCB8;&#xCA3;&#xCC6;:
                 </span>
-            </fieldset>
+                <input autocomplete="off" type="text" name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_group_message"
+                       data-type-xml="string" readonly="readonly"/>
+            </label>
             <label class="note non-select ">
                 <span lang="" class="question-label active">Sex &#xCB2;&#xCBF;&#xC82;&#xC97;:
                     <span class="or-output" data-value=" /PNC_Visit_EngKan/pnc_child_repeat/case_sex_child ">
@@ -840,18 +852,18 @@
                     </div>
                 </fieldset>
             </fieldset>
-            <fieldset class="trigger or-branch pre-init"
-                      name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf_message"
-                      data-relevant=" /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf  = 'no'">
+            <label class="note or-branch pre-init non-select ">
                 <span lang="" class="question-label active">Counsel mother on importance of exclusively breastfeeding
                     baby for 6 months. &#xCA4;&#xCBE;&#xCAF;&#xCBF; 6 &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCB5;&#xCB0;&#xCC6;&#xC97;&#xCC6;
                     &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6; &#xC8F;&#xC95;&#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;
                     &#xCB9;&#xCBE;&#xCB2;&#xCC1;&#xCA3;&#xCBF;&#xCB8;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCAE;&#xCC1;&#xC96;&#xCB5;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;.
                 </span>
-            </fieldset>
-            <fieldset class="trigger or-branch pre-init"
-                      name="/PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_note_baby"
-                      data-relevant=" /PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_baby  = 'yes'">
+                <input autocomplete="off" type="text"
+                       name="/PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf_message"
+                       data-relevant=" /PNC_Visit_EngKan/pnc_child_repeat/pnc_child_exclusive_bf  = 'no'"
+                       data-type-xml="string" readonly="readonly"/>
+            </label>
+            <label class="note or-branch pre-init non-select ">
                 <span lang="" class="question-label active">Child has following danger signs, &#xCAE;&#xC97;&#xCC1;
                     &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xC95;&#xCBE;&#xCB0;&#xCBF; &#xC9A;&#xCBF;&#xCB9;&#xCCD;&#xCA8;&#xCC6;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                     &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;:<span class="or-output"
@@ -860,7 +872,11 @@
                     &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6; &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD;
                     &#xCAE;&#xCBE;&#xCA1;&#xCBF;!
                 </span>
-            </fieldset>
+                <input autocomplete="off" type="text"
+                       name="/PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_note_baby"
+                       data-relevant=" /PNC_Visit_EngKan/pnc_child_repeat/immediate_referral_baby  = 'yes'"
+                       data-type-xml="string" readonly="readonly"/>
+            </label>
             <fieldset class="question ">
                 <fieldset>
                     <legend>
@@ -983,7 +999,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Visit_EngKan/formhub/uuid"
-                   data-calculate="'f38f3fe5ad294f17824ee18a2b7483eb'" data-type-xml="string"/>
+                   data-calculate="'a97997c61c5d49ca89cf9a71aa38139b'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
