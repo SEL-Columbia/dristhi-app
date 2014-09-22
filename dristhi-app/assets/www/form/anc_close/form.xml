@@ -29,25 +29,23 @@
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Close_EngKan/close_reason"
-                           data-name="/ANC_Close_EngKan/close_reason" value="relocation_temporary" required="required"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Relocation (temporary) &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCBE;&#xC82;&#xCA4;&#xCB0;
-                        (&#xCA4;&#xCBE;&#xCA4;&#xCCD;&#xC95;&#xCB2;&#xCBF;&#xC95;)
-                    </span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/ANC_Close_EngKan/close_reason"
                            data-name="/ANC_Close_EngKan/close_reason" value="relocation_permanent" required="required"
                            data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Relocation (permanent) &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCBE;&#xC82;&#xCA4;&#xCB0;
-                        (&#xCB6;&#xCBE;&#xCB6;&#xCCD;&#xCB5;&#xCA4;)
-                    </span>
+                    <span lang="" class="option-label active">Relocation &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCBE;&#xC82;&#xCA4;&#xCB0;</span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Close_EngKan/close_reason"
                            data-name="/ANC_Close_EngKan/close_reason" value="death_of_woman" required="required"
                            data-type-xml="select1"/>
                     <span lang="" class="option-label active">Woman died &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6; &#xCAE;&#xCB0;&#xCA3;</span>
+                </label>
+                <label class="">
+                    <input autocomplete="off" type="radio" name="/ANC_Close_EngKan/close_reason"
+                           data-name="/ANC_Close_EngKan/close_reason" value="wrong_entry" required="required"
+                           data-type-xml="select1"/>
+                    <span lang="" class="option-label active">Wrong entry &#xCA4;&#xCAA;&#xCCD;&#xCAA;&#xCBE;&#xC97;&#xCBF;
+                        &#xCA8;&#xCAE;&#xCC2;&#xCA6;&#xCBF;&#xCB8;&#xCB2;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;.
+                    </span>
                 </label>
             </div>
         </fieldset>
@@ -222,7 +220,7 @@
                 </div>
             </fieldset>
         </fieldset>
-        <fieldset class="trigger " name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_message">
+        <label class="note non-select ">
             <span lang="" class="question-label active">A woman should wait 3 months after spontaneous abortion before
                 trying to become pregnant again. Counsel EC couple on using family planning method until 3 months from
                 spontaneous abortion date, &#xCA4;&#xCBE;&#xCAF;&#xCBF;&#xCAF;&#xCC1; &#xCB8;&#xCCD;&#xCB5;&#xCBE;&#xCAD;&#xCBE;&#xCB5;&#xCBF;&#xC95;
@@ -239,7 +237,10 @@
                       data-value=" /ANC_Close_EngKan/spontaneous_abortion_group/threemonths_from_spont_abortion_date_formatted ">
                 </span>
             </span>
-        </fieldset>
+            <input autocomplete="off" type="text"
+                   name="/ANC_Close_EngKan/spontaneous_abortion_group/spont_abortion_message" data-type-xml="string"
+                   readonly="readonly"/>
+        </label>
     </section>
     <!--end of group -->
     <section class="or-group-data or-branch pre-init " name="/ANC_Close_EngKan/induced_abortion_group"
@@ -313,13 +314,15 @@
                 </div>
             </fieldset>
         </fieldset>
-        <fieldset class="trigger " name="/ANC_Close_EngKan/induced_abortion_group/induced_fp_message">
+        <label class="note non-select ">
             <span lang="" class="question-label active">Provide counseling on family planning methods to the couple.
                 &#xC85;&#xCB0;&#xCCD;&#xCB9; &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xC97;&#xCC6; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
                 &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF; &#xCAC;&#xC97;&#xCCD;&#xC97;&#xCC6; &#xCB8;&#xCB2;&#xCB9;&#xCC6;
                 &#xCA8;&#xCC0;&#xCA1;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1;.
             </span>
-        </fieldset>
+            <input autocomplete="off" type="text" name="/ANC_Close_EngKan/induced_abortion_group/induced_fp_message"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
     </section>
     <!--end of group -->
     <section class="or-group-data or-branch pre-init " name="/ANC_Close_EngKan/maternal_death_group"
@@ -398,7 +401,7 @@
         </label>
     </section>
     <!--end of group -->
-    <fieldset class="question or-branch pre-init ">
+    <fieldset class="question ">
         <fieldset>
             <legend>
                 <span lang="" class="question-label active">Confirm ANC close? ANC &#xCAE;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCB2;&#xCC1;
@@ -410,26 +413,6 @@
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Close_EngKan/confirm_anc_close"
                            data-name="/ANC_Close_EngKan/confirm_anc_close" value="yes" required="required"
-                           data-relevant=" /ANC_Close_EngKan/close_reason  != 'relocation_temporary'"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
-    <fieldset class="question or-branch pre-init ">
-        <fieldset>
-            <legend>
-                <span lang="" class="question-label active">Confirm ANC relocated (temporary)? ANC &#xCB8;&#xCCD;&#xCA5;&#xCB3;&#xCBE;&#xC82;&#xCA4;&#xCB0;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                    (&#xCA4;&#xCBE;&#xCA4;&#xCCD;&#xC95;&#xCB2;&#xCBF;&#xC95;) &#xC96;&#xC9A;&#xCBF;&#xCA4;&#xCAA;&#xCA1;&#xCBF;&#xCB8;&#xCBF;?
-                </span>
-                <span class="required">*</span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/ANC_Close_EngKan/confirm_anc_left"
-                           data-name="/ANC_Close_EngKan/confirm_anc_left" value="yes" required="required"
-                           data-relevant=" /ANC_Close_EngKan/close_reason  = 'relocation_temporary'"
                            data-type-xml="select1"/>
                     <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
                 </label>
@@ -490,7 +473,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Close_EngKan/formhub/uuid"
-                   data-calculate="'6ff7b8c453a448cd8a91b3545a56798b'" data-type-xml="string"/>
+                   data-calculate="'45a56446fd9942c9af566586ac8211c9'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
