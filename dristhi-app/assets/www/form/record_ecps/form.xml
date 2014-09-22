@@ -18,7 +18,7 @@
         <input autocomplete="off" type="date" name="/Family_Planning_ECPs_EngKan/ecp_date" required="required"
                data-constraint=".&lt;= /Family_Planning_ECPs_EngKan/today " data-type-xml="date"/>
     </label>
-    <fieldset class="trigger " name="/Family_Planning_ECPs_EngKan/ecp_message">
+    <label class="note non-select ">
         <span lang="" class="question-label active">Encourage the couple to select a spacing or permanent FP method.
             When couple is ready, open the Change FP Method form. &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
             &#xCA8;&#xCBF;&#xCB0;&#xC82;&#xCA4;&#xCB0; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;
@@ -28,7 +28,9 @@
             &#xC86;&#xC97; &#xCAC;&#xCA6;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCB8;&#xCBF;&#xCA6; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
             &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF; &#xCAB;&#xCBE;&#xCB0;&#xCCD;&#xCAE;&#xCCD; &#xCA4;&#xCC6;&#xCB0;&#xCC6;&#xCAF;&#xCBF;&#xCB0;&#xCBF;.
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/Family_Planning_ECPs_EngKan/ecp_message" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
 
     <fieldset id="or-preload-items" style="display:none;">
         <label class="calculation non-select ">
@@ -43,7 +45,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Family_Planning_ECPs_EngKan/formhub/uuid"
-                   data-calculate="'78173cd9aab74f3fbf87fc62e40b3482'" data-type-xml="string"/>
+                   data-calculate="'565876ee41274a91902cf5a2aa59de01'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
