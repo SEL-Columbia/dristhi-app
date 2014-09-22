@@ -101,13 +101,15 @@
         <input autocomplete="off" type="date" name="/ANC_Registration_EngKan/lmp_date" required="required"
                data-constraint=".&lt;= /ANC_Registration_EngKan/today " data-type-xml="date"/>
     </label>
-    <fieldset class="trigger " name="/ANC_Registration_EngKan/edd_note">
+    <label class="note non-select ">
         <span lang="" class="question-label active">EDD, &#xCA8;&#xCBF;&#xCB0;&#xCC0;&#xC95;&#xCCD;&#xCB7;&#xCBF;&#xCA4;&#xCBE;
             &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;:
             <span class="or-output" data-value=" /ANC_Registration_EngKan/edd_formatted ">
             </span>
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/ANC_Registration_EngKan/edd_note" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
     <fieldset class="question ">
         <fieldset>
             <legend>
@@ -327,8 +329,7 @@
         <input autocomplete="off" type="number" name="/ANC_Registration_EngKan/weight_startofpregnancy"
                data-type-xml="decimal" step="any"/>
     </label>
-    <fieldset class="trigger or-branch pre-init" name="/ANC_Registration_EngKan/high_risk_note"
-              data-relevant=" /ANC_Registration_EngKan/is_high_risk1  = 'yes'">
+    <label class="note or-branch pre-init non-select ">
         <span lang="" class="question-label active">
             <span class="or-output" data-value=" /ANC_Registration_EngKan/woman_name ">
             </span>is at risk because of,
@@ -338,7 +339,10 @@
             <span class="or-output" data-value=" /ANC_Registration_EngKan/high_risk_reason ">
             </span>
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/ANC_Registration_EngKan/high_risk_note"
+               data-relevant=" /ANC_Registration_EngKan/is_high_risk1  = 'yes'" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
     <fieldset class="question ">
         <fieldset>
             <legend>
@@ -429,7 +433,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Registration_EngKan/formhub/uuid"
-                   data-calculate="'c8e2b1d37bf54df18af55d51f6be2bdd'" data-type-xml="string"/>
+                   data-calculate="'698bfaa8efe244e591896db01ff5693b'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
