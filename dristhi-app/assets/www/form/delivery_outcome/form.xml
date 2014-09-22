@@ -549,26 +549,30 @@
                         </div>
                     </fieldset>
                 </fieldset>
-                <fieldset class="trigger or-branch pre-init"
-                          name="/PNC_Registration_EngKan/live_birth_group/child/premature_message1"
-                          data-relevant=" /PNC_Registration_EngKan/live_birth_group/child/premature  != ''">
+                <label class="note or-branch pre-init non-select ">
                     <span lang="" class="question-label active">Baby is premature! Advise kangaroo care and rooming in.
                         &#xC85;&#xCB5;&#xCA7;&#xCBF;&#xC97;&#xCC6; &#xCAE;&#xCC1;&#xCA8;&#xCCD;&#xCA8; &#xC9C;&#xCA8;&#xCBF;&#xCB8;&#xCBF;&#xCA6;
                         &#xCAE;&#xC97;&#xCC1;! &#xC95;&#xCBE;&#xC82;&#xC97;&#xCB0;&#xCCB; &#xC86;&#xCB0;&#xCC8;&#xC95;&#xCC6;
                         &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; &#xC92;&#xC82;&#xCA6;&#xCC7; &#xCB0;&#xCC2;&#xCAE;&#xCBF;&#xCA8;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA1;&#xCC1;&#xCB5;&#xC82;&#xCA4;&#xCC6;
                         &#xCB8;&#xCB2;&#xCB9;&#xCC6; &#xCA8;&#xCC0;&#xCA1;&#xCBF;.
                     </span>
-                </fieldset>
-                <fieldset class="trigger or-branch pre-init"
-                          name="/PNC_Registration_EngKan/live_birth_group/child/high_risk_note_child"
-                          data-relevant=" /PNC_Registration_EngKan/live_birth_group/child/is_child_high_risk1  = 'yes'">
+                    <input autocomplete="off" type="text"
+                           name="/PNC_Registration_EngKan/live_birth_group/child/premature_message1"
+                           data-relevant=" /PNC_Registration_EngKan/live_birth_group/child/premature  != ''"
+                           data-type-xml="string" readonly="readonly"/>
+                </label>
+                <label class="note or-branch pre-init non-select ">
                     <span lang="" class="question-label active">Child is at risk because of, &#xC88;&#xC97; &#xCAE;&#xC97;&#xCC1;
                         &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA6;&#xCC6; &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
                         <span class="or-output"
                               data-value=" /PNC_Registration_EngKan/live_birth_group/child/child_high_risk_reasons ">
                         </span>
                     </span>
-                </fieldset>
+                    <input autocomplete="off" type="text"
+                           name="/PNC_Registration_EngKan/live_birth_group/child/high_risk_note_child"
+                           data-relevant=" /PNC_Registration_EngKan/live_birth_group/child/is_child_high_risk1  = 'yes'"
+                           data-type-xml="string" readonly="readonly"/>
+                </label>
                 <fieldset class="question ">
                     <fieldset>
                         <legend>
@@ -598,9 +602,7 @@
                         </div>
                     </fieldset>
                 </fieldset>
-                <fieldset class="trigger or-branch pre-init"
-                          name="/PNC_Registration_EngKan/live_birth_group/child/addl_pnc_visit_message"
-                          data-relevant=" /PNC_Registration_EngKan/live_birth_group/child/is_child_high_risk1  = 'yes'">
+                <label class="note or-branch pre-init non-select ">
                     <span lang="" class="question-label active">Child needs 3 more PNC visits on days 14, 21, and 28
                         because of, 14, 21 &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; 28 &#xCA8;&#xCC7; &#xCA6;&#xCBF;&#xCA8;&#xC97;&#xCB3;&#xCCA;&#xC82;&#xCA6;&#xCC1;
                         &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xC97;&#xCC6; 3 &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBF;&#xCA8;
@@ -610,7 +612,11 @@
                               data-value=" /PNC_Registration_EngKan/live_birth_group/child/child_high_risk_reasons ">
                         </span>
                     </span>
-                </fieldset>
+                    <input autocomplete="off" type="text"
+                           name="/PNC_Registration_EngKan/live_birth_group/child/addl_pnc_visit_message"
+                           data-relevant=" /PNC_Registration_EngKan/live_birth_group/child/is_child_high_risk1  = 'yes'"
+                           data-type-xml="string" readonly="readonly"/>
+                </label>
             </section>
             <!--end of repeat fieldset with name /PNC_Registration_EngKan/live_birth_group/child-->
         </section>
@@ -878,15 +884,17 @@
         </label>
     </section>
     <!--end of group -->
-    <fieldset class="trigger or-branch pre-init" name="/PNC_Registration_EngKan/high_risk_note_mother"
-              data-relevant=" /PNC_Registration_EngKan/is_high_risk1  = 'yes'">
+    <label class="note or-branch pre-init non-select ">
         <span lang="" class="question-label active">Woman is still at risk because of, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;&#xCC1;
             &#xC88;&#xC97;&#xCB2;&#xCC2; &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCBE;&#xCB3;&#xCC6;
             &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
             <span class="or-output" data-value=" /PNC_Registration_EngKan/high_risk_reason ">
             </span>
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/PNC_Registration_EngKan/high_risk_note_mother"
+               data-relevant=" /PNC_Registration_EngKan/is_high_risk1  = 'yes'" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
@@ -1037,7 +1045,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/PNC_Registration_EngKan/formhub/uuid"
-                   data-calculate="'27cdc5de3f8f4f07b564cc7216485cb9'" data-type-xml="string"/>
+                   data-calculate="'11a9d52e9a6548f3802326cc3585f4d0'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
