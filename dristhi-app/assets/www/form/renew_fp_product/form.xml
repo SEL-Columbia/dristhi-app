@@ -260,9 +260,7 @@
                    data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'others')"
                    data-type-xml="string"/>
         </label>
-        <fieldset class="trigger or-branch pre-init"
-                  name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/side_effects_message"
-                  data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'woman_husband_having_side_effects')">
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">Please report FP side-effects in Record FP Complication form.
                 &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF; &#xC85;&#xCA1;&#xCCD;&#xCA1;&#xCAA;&#xCB0;&#xCBF;&#xCA3;&#xCBE;&#xCAE;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                 &#xCA6;&#xCAF;&#xCB5;&#xCBF;&#xC9F;&#xCCD;&#xC9F;&#xCC1; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
@@ -270,10 +268,12 @@
                 &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCBF;&#xCB8;&#xCC1;&#xCB5; &#xCAB;&#xCBE;&#xCB0;&#xCCD;&#xCAE;&#xCCD;&#x200D;&#xCA8;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
                 &#xCB5;&#xCB0;&#xCA6;&#xCBF; &#xCAE;&#xCBE;&#xCA1;&#xCBF;.
             </span>
-        </fieldset>
-        <fieldset class="trigger or-branch pre-init"
-                  name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/fp_objection_message"
-                  data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'husband_objects_to_fp') or selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'family_members_object_to_fp')">
+            <input autocomplete="off" type="text"
+                   name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/side_effects_message"
+                   data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'woman_husband_having_side_effects')"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">If there are any misconceptions about family planning methods,
                 please talk to the couple about real and unreal side-effects. Use Dristhi's video library to counsel
                 them on appropriate FP methods. &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;
@@ -288,10 +288,12 @@
                 &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCA6; &#xCB8;&#xCB2;&#xCB9;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
                 &#xCA8;&#xCC0;&#xCA1;&#xCBF;.
             </span>
-        </fieldset>
-        <fieldset class="trigger or-branch pre-init"
-                  name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/couple_refused_message"
-                  data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'">
+            <input autocomplete="off" type="text"
+                   name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/fp_objection_message"
+                   data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'husband_objects_to_fp') or selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'family_members_object_to_fp')"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">If couple wants to stop or change methods, please go to Change
                 FP Method form. &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
                 &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
@@ -300,7 +302,11 @@
                 &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8; &#xCAC;&#xCA6;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCB8;&#xCC1;&#xCB5;
                 &#xCAB;&#xCBE;&#xCB0;&#xCCD;&#xCAE;&#xCCD;&#x200D;&#xC97;&#xCC6; &#xCB9;&#xCCB;&#xC97;&#xCBF;.
             </span>
-        </fieldset>
+            <input autocomplete="off" type="text"
+                   name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/couple_refused_message"
+                   data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
+                   data-type-xml="string" readonly="readonly"/>
+        </label>
     </section>
     <!--end of group -->
 
@@ -323,7 +329,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/Family_Planning_Refill_Method_EngKan/formhub/uuid"
-                   data-calculate="'8d454a25e30749cf8fca3b63f3b5cbac'" data-type-xml="string"/>
+                   data-calculate="'97b2873bacbe4bc3b97bde2a8f5ba1b0'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
