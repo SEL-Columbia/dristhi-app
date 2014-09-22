@@ -1013,25 +1013,31 @@
             </div>
         </fieldset>
     </fieldset>
-    <fieldset class="trigger " name="/EC_Registration_EngKan/district_note">
+    <label class="note non-select ">
         <span lang="" class="question-label active">District, &#xC9C;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCC6;:
             <span class="or-output" data-value=" /EC_Registration_EngKan/district_value ">
             </span>
         </span>
-    </fieldset>
-    <fieldset class="trigger " name="/EC_Registration_EngKan/phc_note">
+        <input autocomplete="off" type="text" name="/EC_Registration_EngKan/district_note" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
+    <label class="note non-select ">
         <span lang="" class="question-label active">PHC, &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
             &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;:
             <span class="or-output" data-value=" /EC_Registration_EngKan/phc_value ">
             </span>
         </span>
-    </fieldset>
-    <fieldset class="trigger " name="/EC_Registration_EngKan/sub_center_note">
+        <input autocomplete="off" type="text" name="/EC_Registration_EngKan/phc_note" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
+    <label class="note non-select ">
         <span lang="" class="question-label active">Sub Center, &#xC89;&#xCAA; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;:
             <span class="or-output" data-value=" /EC_Registration_EngKan/sub_center_value ">
             </span>
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/EC_Registration_EngKan/sub_center_note" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
     <fieldset class="question ">
         <fieldset>
             <legend>
@@ -1817,8 +1823,8 @@
                         Teggihal &#xCA4;&#xCC6;&#xC97;&#xCCD;&#xC97;&#xCBF;&#xCB9;&#xCBE;&#xCB3;</span>
                     <span lang="default" class="option-label active" data-itext-id="static_instance-villages-352">
                         Hiremyageri &#xCB9;&#xCC0;&#xCB0;&#xCC6; &#xCAE;&#xCCD;&#xCAF;&#xCBE;&#xC97;&#xCC7;&#xCB0;&#xCBF;</span>
-                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-353">S
-                        Hosure &#xC8E;&#xCB8;&#xCCD; &#xCB9;&#xCC6;&#xCC2;&#xCB8;&#xCC2;&#xCB0;&#xCC1;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-353">Hosure
+                        S &#xCB9;&#xCC6;&#xCC2;&#xCB8;&#xCC2;&#xCB0;&#xCC1; &#xC8E;&#xCB8;&#xCCD;</span>
                     <span lang="default" class="option-label active" data-itext-id="static_instance-villages-354">
                         Anganwadi 1 &#xC85;&#xC82;&#xC97;&#xCA8; &#xCB5;&#xCBE;&#xCA1;&#xCBF; 1
                     </span>
@@ -2525,15 +2531,17 @@
                data-constraint=".&lt;= /EC_Registration_EngKan/today  and .&gt;= ( /EC_Registration_EngKan/today  - 6570)"
                data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0" data-type-xml="date"/>
     </label>
-    <fieldset class="trigger or-branch pre-init" name="/EC_Registration_EngKan/youngestchild_age_note"
-              data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0">
+    <label class="note or-branch pre-init non-select ">
         <span lang="" class="question-label active">Age of the youngest child, &#xC95;&#xCBF;&#xCB0;&#xCBF;&#xCAF;
             &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1; &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1;:
             <span class="or-output" data-value=" /EC_Registration_EngKan/youngestchild_age ">
             </span>
             months &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCC1;
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/EC_Registration_EngKan/youngestchild_age_note"
+               data-relevant=" /EC_Registration_EngKan/num_livingchildren  &gt; 0" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
     <fieldset class="question ">
         <fieldset>
             <legend>
@@ -2875,8 +2883,7 @@
         <input autocomplete="off" type="date" name="/EC_Registration_EngKan/refill_date1" required="required"
                data-relevant=" /EC_Registration_EngKan/num_ocp_strips  &gt; 0" data-type-xml="date"/>
     </label>
-    <fieldset class="trigger or-branch pre-init" name="/EC_Registration_EngKan/high_priority_message"
-              data-relevant=" /EC_Registration_EngKan/is_high_priority1  = 'yes'">
+    <label class="note or-branch pre-init non-select ">
         <span lang="" class="question-label active">
             <span class="or-output" data-value=" /EC_Registration_EngKan/woman_name2 ">
             </span>should be prioritized for family planning because of,
@@ -2887,7 +2894,10 @@
             <span class="or-output" data-value=" /EC_Registration_EngKan/high_priority_reason ">
             </span>
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/EC_Registration_EngKan/high_priority_message"
+               data-relevant=" /EC_Registration_EngKan/is_high_priority1  = 'yes'" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
