@@ -19,13 +19,15 @@
                data-constraint=".&gt; ( /Child_Registration_EC_EngKan/today  - 2191.5) and .&lt;= /Child_Registration_EC_EngKan/today  and .&lt;= /Child_Registration_EC_EngKan/child_reg_date "
                data-type-xml="date"/>
     </label>
-    <fieldset class="trigger " name="/Child_Registration_EC_EngKan/child_age_note">
+    <label class="note non-select ">
         <span lang="" class="question-label active">Child age, &#xCAE;&#xC97;&#xCC1;&#xCB5;&#xCBF;&#xCA8; &#xCB5;&#xCAF;&#xCB8;&#xCCD;&#xCB8;&#xCC1;:
             <span class="or-output" data-value=" /Child_Registration_EC_EngKan/child_age ">
             </span>
             months &#xCA4;&#xCBF;&#xC82;&#xC97;&#xCB3;&#xCC1;
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/Child_Registration_EC_EngKan/child_age_note" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
     <fieldset class="question ">
         <fieldset>
             <legend>
