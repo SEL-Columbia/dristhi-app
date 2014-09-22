@@ -1028,25 +1028,31 @@
             </div>
         </fieldset>
     </fieldset>
-    <fieldset class="trigger " name="/ANC_Registration_OA_EngKan/district_note">
+    <label class="note non-select ">
         <span lang="" class="question-label active">District, &#xC9C;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCC6;:
             <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/district_value ">
             </span>
         </span>
-    </fieldset>
-    <fieldset class="trigger " name="/ANC_Registration_OA_EngKan/phc_note">
+        <input autocomplete="off" type="text" name="/ANC_Registration_OA_EngKan/district_note" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
+    <label class="note non-select ">
         <span lang="" class="question-label active">PHC, &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
             &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;:
             <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/phc_value ">
             </span>
         </span>
-    </fieldset>
-    <fieldset class="trigger " name="/ANC_Registration_OA_EngKan/sub_center_note">
+        <input autocomplete="off" type="text" name="/ANC_Registration_OA_EngKan/phc_note" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
+    <label class="note non-select ">
         <span lang="" class="question-label active">Sub Center, &#xC89;&#xCAA; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;:
             <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/sub_center_value ">
             </span>
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/ANC_Registration_OA_EngKan/sub_center_note" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
     <fieldset class="question ">
         <fieldset>
             <legend>
@@ -1832,8 +1838,8 @@
                         Teggihal &#xCA4;&#xCC6;&#xC97;&#xCCD;&#xC97;&#xCBF;&#xCB9;&#xCBE;&#xCB3;</span>
                     <span lang="default" class="option-label active" data-itext-id="static_instance-villages-352">
                         Hiremyageri &#xCB9;&#xCC0;&#xCB0;&#xCC6; &#xCAE;&#xCCD;&#xCAF;&#xCBE;&#xC97;&#xCC7;&#xCB0;&#xCBF;</span>
-                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-353">S
-                        Hosure &#xC8E;&#xCB8;&#xCCD; &#xCB9;&#xCC6;&#xCC2;&#xCB8;&#xCC2;&#xCB0;&#xCC1;</span>
+                    <span lang="default" class="option-label active" data-itext-id="static_instance-villages-353">Hosure
+                        S &#xCB9;&#xCC6;&#xCC2;&#xCB8;&#xCC2;&#xCB0;&#xCC1; &#xC8E;&#xCB8;&#xCCD;</span>
                     <span lang="default" class="option-label active" data-itext-id="static_instance-villages-354">
                         Anganwadi 1 &#xC85;&#xC82;&#xC97;&#xCA8; &#xCB5;&#xCBE;&#xCA1;&#xCBF; 1
                     </span>
@@ -2362,13 +2368,15 @@
         <input autocomplete="off" type="date" name="/ANC_Registration_OA_EngKan/lmp_date" required="required"
                data-constraint=".&lt;= /ANC_Registration_OA_EngKan/today " data-type-xml="date"/>
     </label>
-    <fieldset class="trigger " name="/ANC_Registration_OA_EngKan/edd_note">
+    <label class="note non-select ">
         <span lang="" class="question-label active">EDD, &#xCA8;&#xCBF;&#xCB0;&#xCC0;&#xC95;&#xCCD;&#xCB7;&#xCA4;
             &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;:
             <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/edd_formatted ">
             </span>
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/ANC_Registration_OA_EngKan/edd_note" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
     <label class="question or-appearance-minimal ">
         <span lang="" class="question-label active">Number of previous pregnancies? &#xCB9;&#xCBF;&#xC82;&#xCA6;&#xCBF;&#xCA8;
             &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCA7;&#xCBE;&#xCB0;&#xCA3;&#xCC6;&#xCAF; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;
@@ -2690,8 +2698,7 @@
         <input autocomplete="off" type="number" name="/ANC_Registration_OA_EngKan/weight_startofpregnancy"
                data-constraint=".&gt;=20 and .&lt;150" data-type-xml="decimal" step="any"/>
     </label>
-    <fieldset class="trigger or-branch pre-init" name="/ANC_Registration_OA_EngKan/high_risk_note"
-              data-relevant=" /ANC_Registration_OA_EngKan/is_high_risk1  = 'yes'">
+    <label class="note or-branch pre-init non-select ">
         <span lang="" class="question-label active">
             <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/woman_name ">
             </span>is at risk because of,
@@ -2701,7 +2708,10 @@
             <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/high_risk_reason ">
             </span>
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/ANC_Registration_OA_EngKan/high_risk_note"
+               data-relevant=" /ANC_Registration_OA_EngKan/is_high_risk1  = 'yes'" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
     <fieldset class="question ">
         <fieldset>
             <legend>
@@ -2723,8 +2733,7 @@
             </div>
         </fieldset>
     </fieldset>
-    <fieldset class="trigger or-branch pre-init" name="/ANC_Registration_OA_EngKan/birth_plan_message"
-              data-relevant=" /ANC_Registration_OA_EngKan/num_weeks  &gt;= 34">
+    <label class="note or-branch pre-init non-select ">
         <span lang="" class="question-label active">
             <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/woman_name ">
             </span>is
@@ -2739,7 +2748,10 @@
             &#xCB8;&#xC82;&#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCA3; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCAF;&#xCCA;&#xC9C;&#xCA8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
             &#xCB0;&#xCC2;&#xCAA;&#xCBF;&#xCB8;&#xCBF;.
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/ANC_Registration_OA_EngKan/birth_plan_message"
+               data-relevant=" /ANC_Registration_OA_EngKan/num_weeks  &gt;= 34" data-type-xml="string"
+               readonly="readonly"/>
+    </label>
 
     <fieldset id="or-preload-items" style="display:none;">
         <label class="calculation non-select ">
