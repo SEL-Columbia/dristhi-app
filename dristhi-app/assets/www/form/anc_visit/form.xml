@@ -262,8 +262,7 @@
             <input autocomplete="off" type="number" name="/ANC_Visit_EngKan/weight_group/weight"
                    data-constraint=".&gt;0" data-type-xml="decimal" step="any"/>
         </label>
-        <fieldset class="trigger or-branch pre-init" name="/ANC_Visit_EngKan/weight_group/weight_change_message"
-                  data-relevant=" /ANC_Visit_EngKan/weight_group/case_weight  != ''">
+        <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">Weight gain since last visit, &#xC95;&#xCCA;&#xCA8;&#xCC6;&#xCAF;
                 &#xCAD;&#xCC7;&#xC9F;&#xCBF;&#xCAF; &#xCA8;&#xC82;&#xCA4;&#xCB0;&#xCA6;&#xCBF;&#xC82;&#xCA6; &#xCA4;&#xCC2;&#xC95;
                 &#xCB9;&#xCC6;&#xC9A;&#xCCD;&#xC9A;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCC6;&#xCAF;&#xCC7;:
@@ -271,7 +270,10 @@
                 </span>
                 kgs &#xC95;&#xCC6;.&#xC9C;&#xCBF;
             </span>
-        </fieldset>
+            <input autocomplete="off" type="text" name="/ANC_Visit_EngKan/weight_group/weight_change_message"
+                   data-relevant=" /ANC_Visit_EngKan/weight_group/case_weight  != ''" data-type-xml="string"
+                   readonly="readonly"/>
+        </label>
     </section>
     <!--end of group -->
     <fieldset class="question or-branch pre-init ">
@@ -426,8 +428,7 @@
                data-constraint=".&lt;= /ANC_Visit_EngKan/today "
                data-relevant=" /ANC_Visit_EngKan/prasooti_payment1  = 'yes'" data-type-xml="date"/>
     </label>
-    <fieldset class="trigger or-branch pre-init" name="/ANC_Visit_EngKan/high_risk_note"
-              data-relevant=" /ANC_Visit_EngKan/is_high_risk1  = 'yes'">
+    <label class="note or-branch pre-init non-select ">
         <span lang="" class="question-label active">
             <span class="or-output" data-value=" /ANC_Visit_EngKan/woman_name ">
             </span>is at risk because of,
@@ -437,7 +438,9 @@
             <span class="or-output" data-value=" /ANC_Visit_EngKan/high_risk_reason ">
             </span>
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/ANC_Visit_EngKan/high_risk_note"
+               data-relevant=" /ANC_Visit_EngKan/is_high_risk1  = 'yes'" data-type-xml="string" readonly="readonly"/>
+    </label>
     <fieldset class="question ">
         <fieldset>
             <legend>
@@ -460,8 +463,7 @@
             </div>
         </fieldset>
     </fieldset>
-    <fieldset class="trigger or-branch pre-init" name="/ANC_Visit_EngKan/birth_plan_message"
-              data-relevant=" /ANC_Visit_EngKan/num_weeks  &gt;= 34 and  /ANC_Visit_EngKan/case_birth_planning  = ''">
+    <label class="note or-branch pre-init non-select ">
         <span lang="" class="question-label active">
             <span class="or-output" data-value=" /ANC_Visit_EngKan/woman_name ">
             </span>is
@@ -476,7 +478,10 @@
             &#xCB8;&#xC82;&#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCA3; &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCAF;&#xCCA;&#xC9C;&#xCA8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
             &#xCB0;&#xCC2;&#xCAA;&#xCBF;&#xCB8;&#xCBF;.
         </span>
-    </fieldset>
+        <input autocomplete="off" type="text" name="/ANC_Visit_EngKan/birth_plan_message"
+               data-relevant=" /ANC_Visit_EngKan/num_weeks  &gt;= 34 and  /ANC_Visit_EngKan/case_birth_planning  = ''"
+               data-type-xml="string" readonly="readonly"/>
+    </label>
 
     <fieldset id="or-preload-items" style="display:none;">
         <label class="calculation non-select ">
@@ -549,7 +554,7 @@
         </label>
         <label class="calculation non-select ">
             <input autocomplete="off" type="hidden" name="/ANC_Visit_EngKan/formhub/uuid"
-                   data-calculate="'84bad9fbe69b473792cb0b64c97347df'" data-type-xml="string"/>
+                   data-calculate="'564bb56d55e04b97b45573baeadd3096'" data-type-xml="string"/>
         </label>
     </fieldset>
 </form>
