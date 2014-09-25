@@ -44,7 +44,7 @@ function FakeChildSmartRegistryContext() {
                             "data": {
                                 "childSigns": "child signs",
                                 "childSignsOther": "child signs other",
-                                "sickVisitDate": "2012-01-01"
+                                "sickVisitDate": "2013-07-24"
                             }
                         },
                         {
@@ -53,7 +53,7 @@ function FakeChildSmartRegistryContext() {
                             "data": {
                                 "childSigns": "child signs",
                                 "childSignsOther": "child signs other",
-                                "sickVisitDate": "2012-01-01"
+                                "sickVisitDate": "2013-07-18"
                             }
                         },
                         {

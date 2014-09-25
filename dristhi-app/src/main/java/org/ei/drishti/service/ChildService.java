@@ -16,7 +16,6 @@ import static org.ei.drishti.AllConstants.ChildIllnessFields.*;
 import static org.ei.drishti.AllConstants.ChildRegistrationECFields.*;
 import static org.ei.drishti.AllConstants.ChildRegistrationOAFields.CHILD_ID;
 import static org.ei.drishti.AllConstants.ChildRegistrationOAFields.THAYI_CARD_NUMBER;
-import static org.ei.drishti.AllConstants.CommonFormFields.SUBMISSION_DATE;
 import static org.ei.drishti.AllConstants.ENTITY_ID_FIELD_NAME;
 import static org.ei.drishti.AllConstants.Immunizations.*;
 import static org.ei.drishti.AllConstants.SPACE;
@@ -206,9 +205,12 @@ public class ChildService {
     }
 
     public void updateIllnessStatus(FormSubmission submission) {
+        String sickVisitDate = submission.getFieldValue(SICK_VISIT_DATE);
+        String date = sickVisitDate != null ?
+                sickVisitDate : submission.getFieldValue(REPORT_CHILD_DISEASE_DATE);
         serviceProvidedService.add(
                 ServiceProvided.forChildIllnessVisit(submission.entityId(),
-                        submission.getFieldValue(SUBMISSION_DATE),
+                        date,
                         createChildIllnessMap(submission))
         );
     }

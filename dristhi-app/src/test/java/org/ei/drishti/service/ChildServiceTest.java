@@ -341,13 +341,13 @@ public class ChildServiceTest {
         FormSubmission submission = mock(FormSubmission.class);
 
         when(submission.entityId()).thenReturn("child id 1");
-        when(submission.getFieldValue("submissionDate")).thenReturn("2012-01-01");
+        when(submission.getFieldValue("submissionDate")).thenReturn("2012-01-02");
         when(submission.getFieldValue("sickVisitDate")).thenReturn("2012-01-01");
         when(submission.getFieldValue("childSigns")).thenReturn("child signs");
         when(submission.getFieldValue("childSignsOther")).thenReturn("child signs other");
         when(submission.getFieldValue("reportChildDisease")).thenReturn("report child disease");
         when(submission.getFieldValue("reportChildDiseaseOther")).thenReturn("report child disease other");
-        when(submission.getFieldValue("reportChildDiseaseDate")).thenReturn("report child disease date");
+        when(submission.getFieldValue("reportChildDiseaseDate")).thenReturn(null);
         when(submission.getFieldValue("reportChildDiseasePlace")).thenReturn("report child disease place");
         when(submission.getFieldValue("childReferral")).thenReturn("child referral");
 
@@ -358,7 +358,7 @@ public class ChildServiceTest {
                 .put("childSigns", "child signs")
                 .put("reportChildDisease", "report child disease")
                 .put("reportChildDiseaseOther", "report child disease other")
-                .put("reportChildDiseaseDate", "report child disease date")
+                .put("reportChildDiseaseDate", null)
                 .put("reportChildDiseasePlace", "report child disease place")
                 .put("childReferral", "child referral").map();
 
