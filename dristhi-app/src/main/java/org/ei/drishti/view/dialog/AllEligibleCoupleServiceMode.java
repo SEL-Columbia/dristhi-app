@@ -1,17 +1,57 @@
 package org.ei.drishti.view.dialog;
 
+import android.view.View;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.drishti.provider.SmartRegisterClientsProvider;
+import org.ei.drishti.view.contract.ChildSmartRegisterClient;
+import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
 
-public class AllEligibleCoupleServiceMode implements ServiceModeOption {
+import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+
+public class AllEligibleCoupleServiceMode extends ServiceModeOption {
+
+    public AllEligibleCoupleServiceMode(SmartRegisterClientsProvider provider) {
+        super(provider);
+    }
+
     @Override
     public String name() {
         return Context.getInstance().getStringResource(R.string.couple_selection);
     }
 
     @Override
-    public boolean filter(SmartRegisterClient client) {
-        return true;
+    public ClientsHeaderProvider getHeaderProvider() {
+        return new ClientsHeaderProvider() {
+            @Override
+            public int count() {
+                return 7;
+            }
+
+            @Override
+            public int weightSum() {
+                return 1000;
+            }
+
+            @Override
+            public int[] weights() {
+                return new int[]{239, 73, 103, 107, 158, 221, 87};
+            }
+
+            @Override
+            public int[] headerTextResourceIds() {
+                return new int[]{
+                        R.string.header_name, R.string.header_ec_no, R.string.header_gplsa,
+                        R.string.header_fp, R.string.header_children, R.string.header_status,
+                        R.string.header_edit};
+            }
+        };
+    }
+
+    @Override
+    public void setupListView(ChildSmartRegisterClient client,
+                              NativeChildSmartRegisterViewHolder viewHolder,
+                              View.OnClickListener clientSectionClickListener) {
+
     }
 }

@@ -7,13 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import org.ei.drishti.R;
+import org.ei.drishti.view.contract.ECSmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
 import org.ei.drishti.view.controller.ECSmartRegisterController;
 import org.ei.drishti.view.dialog.FilterOption;
 import org.ei.drishti.view.dialog.ServiceModeOption;
 import org.ei.drishti.view.dialog.SortOption;
+import org.ei.drishti.view.viewHolder.ECProfilePhotoLoader;
 import org.ei.drishti.view.viewHolder.NativeECSmartRegisterViewHolder;
+import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
 import org.ei.drishti.view.viewHolder.ProfilePhotoLoader;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -25,7 +28,6 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     private final View.OnClickListener onClickListener;
     private final ProfilePhotoLoader photoLoader;
 
-    private final String wifeAgeFormatString;
     private final String maleChildAgeFormatString;
     private final String femaleChildAgeFormatString;
     private final int txtColorBlack;
@@ -43,10 +45,9 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         this.context = context;
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        photoLoader = new ProfilePhotoLoader(context.getResources(),
+        photoLoader = new ECProfilePhotoLoader(context.getResources(),
                 context.getResources().getDrawable(R.drawable.woman_placeholder));
 
-        wifeAgeFormatString = context.getResources().getString(R.string.ec_register_wife_age);
         maleChildAgeFormatString = context.getResources().getString(R.string.ec_register_male_child);
         femaleChildAgeFormatString = context.getResources().getString(R.string.ec_register_female_child);
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
@@ -55,7 +56,7 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     }
 
     @Override
-    public View getView(SmartRegisterClient client, View convertView, ViewGroup viewGroup) {
+    public View getView(SmartRegisterClient smartRegisterClient, View convertView, ViewGroup viewGroup) {
         ViewGroup itemView;
         NativeECSmartRegisterViewHolder viewHolder;
         if (convertView == null) {
@@ -67,6 +68,7 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
             viewHolder = (NativeECSmartRegisterViewHolder) itemView.getTag();
         }
 
+        ECSmartRegisterClient client = (ECSmartRegisterClient) smartRegisterClient;
         setupClientProfileView(client, viewHolder);
         setupEcNumberView(client, viewHolder);
         setupGPLSAView(client, viewHolder);
@@ -79,33 +81,33 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         return itemView;
     }
 
-    private void setupClientProfileView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
-        viewHolder.profileInfoLayout().bindData(client, photoLoader, wifeAgeFormatString);
+    private void setupClientProfileView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+        viewHolder.profileInfoLayout().bindData(client, photoLoader);
         viewHolder.profileInfoLayout().setOnClickListener(onClickListener);
         viewHolder.profileInfoLayout().setTag(client);
     }
 
-    private void setupEcNumberView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+    private void setupEcNumberView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
         viewHolder.txtECNumberView().setText(String.valueOf(client.ecNumber()));
     }
 
-    private void setupGPLSAView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+    private void setupGPLSAView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
         viewHolder.gplsaLayout().bindData(client);
     }
 
-    private void setupFPMethodView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+    private void setupFPMethodView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
         viewHolder.fpMethodView().bindData(client, txtColorBlack);
     }
 
-    private void setupChildrenView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+    private void setupChildrenView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
         viewHolder.childrenView().bindData(client, maleChildAgeFormatString, femaleChildAgeFormatString);
     }
 
-    private void setupStatusView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+    private void setupStatusView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
         viewHolder.statusView().bindData(client);
     }
 
-    private void setupEditView(SmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
+    private void setupEditView(ECSmartRegisterClient client, NativeECSmartRegisterViewHolder viewHolder) {
         if (iconPencilDrawable == null) {
             iconPencilDrawable = context.getResources().getDrawable(R.drawable.ic_pencil);
         }
@@ -123,6 +125,16 @@ public class ECSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
                                               FilterOption searchFilter, SortOption sortOption) {
         return getClients().applyFilter(villageFilter, serviceModeOption, searchFilter, sortOption);
+    }
+
+    @Override
+    public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
+        // do nothing.
+    }
+
+    @Override
+    public OnClickFormLauncher newFormLauncher(String formName, String entityId, String metaData) {
+        return null;
     }
 
     public LayoutInflater inflater() {

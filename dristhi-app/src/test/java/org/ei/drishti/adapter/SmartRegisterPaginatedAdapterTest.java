@@ -9,6 +9,7 @@ import org.ei.drishti.view.contract.SmartRegisterClients;
 import org.ei.drishti.view.dialog.FilterOption;
 import org.ei.drishti.view.dialog.ServiceModeOption;
 import org.ei.drishti.view.dialog.SortOption;
+import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -178,6 +179,16 @@ public class SmartRegisterPaginatedAdapterTest {
                 FilterOption villageFilter, ServiceModeOption serviceModeOption,
                 FilterOption searchFilter, SortOption sortOption) {
             return getSmartRegisterClients(5);
+        }
+
+        @Override
+        public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
+
+        }
+
+        @Override
+        public OnClickFormLauncher newFormLauncher(String formName, String entityId, String metaData) {
+            return null;
         }
     }
 }

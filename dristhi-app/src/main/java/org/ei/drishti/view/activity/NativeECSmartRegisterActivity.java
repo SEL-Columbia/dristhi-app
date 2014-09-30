@@ -27,35 +27,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     protected SmartRegisterPaginatedAdapter adapter() {
-        return new SmartRegisterPaginatedAdapter(getClientsProvider());
-    }
-
-    @Override
-    protected ClientsHeaderProvider getClientsHeaderProvider() {
-        return new ClientsHeaderProvider() {
-            @Override
-            public int count() {
-                return 7;
-            }
-
-            @Override
-            public int weightSum() {
-                return 1000;
-            }
-
-            @Override
-            public int[] weights() {
-                return new int[]{239, 73, 125, 107, 158, 221, 64};
-            }
-
-            @Override
-            public int[] headerTextResourceIds() {
-                return new int[]{
-                        R.string.header_name, R.string.header_ec_no, R.string.header_gplsa,
-                        R.string.header_fp, R.string.header_children, R.string.header_status,
-                        R.string.header_edit};
-            }
-        };
+        return new SmartRegisterPaginatedAdapter(clientsProvider());
     }
 
     @Override
@@ -64,7 +36,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
             @Override
             public ServiceModeOption serviceMode() {
-                return new AllEligibleCoupleServiceMode();
+                return new AllEligibleCoupleServiceMode(clientsProvider());
             }
 
             @Override
@@ -110,7 +82,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    protected SmartRegisterClientsProvider getClientsProvider() {
+    protected SmartRegisterClientsProvider clientsProvider() {
         if (clientProvider == null) {
             clientProvider = new ECSmartRegisterClientsProvider(
                     this, clientActionHandler, controller);
@@ -138,6 +110,12 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         dialogOptionMapper = new DialogOptionMapper();
     }
 
+    @Override
+    public void setupViews() {
+        super.setupViews();
+
+        setServiceModeViewDrawableRight(null);
+    }
 
     @Override
     protected void startRegistration() {

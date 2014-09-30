@@ -9,6 +9,7 @@ import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
 import org.ei.drishti.view.contract.ECClients;
 import org.ei.drishti.view.contract.HomeContext;
+import org.ei.drishti.view.contract.SmartRegisterClients;
 import org.ei.drishti.view.contract.Villages;
 import org.ei.drishti.view.controller.ANMController;
 import org.ei.drishti.view.controller.ANMLocationController;
@@ -56,6 +57,7 @@ public class Context {
 
     private Session session;
     private Cache<String> listCache;
+    private Cache<SmartRegisterClients> smartRegisterClientsCache;
     private Cache<HomeContext> homeContextCache;
     private Cache<ECClients> ecClientsCache;
     private Cache<Villages> villagesCache;
@@ -570,6 +572,13 @@ public class Context {
             listCache = new Cache<String>();
         }
         return listCache;
+    }
+
+    public Cache<SmartRegisterClients> smartRegisterClientsCache() {
+        if (smartRegisterClientsCache == null) {
+            smartRegisterClientsCache = new Cache<SmartRegisterClients>();
+        }
+        return smartRegisterClientsCache;
     }
 
     public Cache<HomeContext> homeContextCache() {

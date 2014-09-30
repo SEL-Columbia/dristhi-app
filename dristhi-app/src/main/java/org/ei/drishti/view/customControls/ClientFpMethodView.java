@@ -9,7 +9,7 @@ import android.widget.TextView;
 import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.FPMethod;
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.drishti.view.contract.ECSmartRegisterClient;
 
 public class ClientFpMethodView extends LinearLayout {
     private TextView fpMethodView;
@@ -42,7 +42,7 @@ public class ClientFpMethodView extends LinearLayout {
         iudPersonView = (TextView) findViewById(R.id.txt_iud_person);
     }
 
-    public void bindData(SmartRegisterClient client, int txtColorBlack) {
+    public void bindData(ECSmartRegisterClient client, int txtColorBlack) {
         FPMethod fpMethod = client.fpMethod();
 
         refreshAllFPMethodDetailViews(txtColorBlack);

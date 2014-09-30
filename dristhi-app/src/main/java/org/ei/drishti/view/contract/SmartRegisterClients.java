@@ -16,12 +16,12 @@ public class SmartRegisterClients extends ArrayList<SmartRegisterClient> {
         Iterables.addAll(results, Iterables.filter(this, new Predicate<SmartRegisterClient>() {
             @Override
             public boolean apply(SmartRegisterClient client) {
-                return
-                        villageFilter.filter(client)
-                                && serviceModeOption.filter(client)
-                                && searchFilter.filter(client);
+                return villageFilter.filter(client) && searchFilter.filter(client);
             }
         }));
+
+        serviceModeOption.apply();
         return sortOption.sort(results);
     }
+
 }

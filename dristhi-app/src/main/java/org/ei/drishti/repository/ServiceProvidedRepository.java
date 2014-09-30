@@ -41,8 +41,9 @@ public class ServiceProvidedRepository extends DrishtiRepository {
     public List<ServiceProvided> findByEntityIdAndServiceNames(String entityId, String... names) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery(
-                format("SELECT * FROM %s WHERE %s = ? AND %s IN (%s)", SERVICE_PROVIDED_TABLE_NAME, ENTITY_ID_COLUMN, NAME_ID_COLUMN,
-                        insertPlaceholdersForInClause(names.length)),
+                format("SELECT * FROM %s WHERE %s = ? AND %s IN (%s) ORDER BY DATE(%s)",
+                        SERVICE_PROVIDED_TABLE_NAME, ENTITY_ID_COLUMN, NAME_ID_COLUMN,
+                        insertPlaceholdersForInClause(names.length), DATE_ID_COLUMN),
                 addAll(new String[]{entityId}, names));
         return readAllServicesProvided(cursor);
     }

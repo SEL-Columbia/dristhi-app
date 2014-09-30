@@ -6,7 +6,7 @@
               android:layout_height="@dimen/list_item_height"
               android:weightSum="@integer/ec_list_item_weight_count">
 
-    <include layout="@layout/smart_register_client_name"/>
+    <include layout="@layout/smart_register_client_profile"/>
 
     <ImageView
             android:layout_width="@dimen/smart_register_client_divider_height"
