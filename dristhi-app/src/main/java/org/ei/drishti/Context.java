@@ -7,10 +7,7 @@ import org.ei.drishti.service.formSubmissionHandler.*;
 import org.ei.drishti.sync.SaveANMLocationTask;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
-import org.ei.drishti.view.contract.ECClients;
-import org.ei.drishti.view.contract.HomeContext;
-import org.ei.drishti.view.contract.SmartRegisterClients;
-import org.ei.drishti.view.contract.Villages;
+import org.ei.drishti.view.contract.*;
 import org.ei.drishti.view.controller.ANMController;
 import org.ei.drishti.view.controller.ANMLocationController;
 
@@ -60,6 +57,7 @@ public class Context {
     private Cache<SmartRegisterClients> smartRegisterClientsCache;
     private Cache<HomeContext> homeContextCache;
     private Cache<ECClients> ecClientsCache;
+    private Cache<FPClients> fpClientsCache;
     private Cache<Villages> villagesCache;
     private Cache<Typeface> typefaceCache;
 
@@ -626,6 +624,15 @@ public class Context {
             ecClientsCache = new Cache<ECClients>();
         }
         return ecClientsCache;
+
+    }
+
+    //#TODO: Refactor to use one cache object
+    public Cache<FPClients> fpClientsCache() {
+        if (fpClientsCache == null) {
+            fpClientsCache = new Cache<FPClients>();
+        }
+        return fpClientsCache;
 
     }
 

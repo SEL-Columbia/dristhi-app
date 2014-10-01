@@ -2,6 +2,7 @@ package org.ei.drishti.view.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.ei.drishti.view.contract.FPClients;
 import org.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
@@ -58,7 +59,7 @@ public class FPSmartRegisterControllerTest {
     public void setUp() throws Exception {
         initMocks(this);
         emptyDetails = Collections.emptyMap();
-        controller = new FPSmartRegisterController(allEligibleCouples, allBeneficiaries, alertService, new Cache<String>());
+        controller = new FPSmartRegisterController(allEligibleCouples, allBeneficiaries, alertService, new Cache<String>(), new Cache<FPClients>());
     }
 
     @Test

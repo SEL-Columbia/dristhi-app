@@ -28,7 +28,7 @@ public class NavigationController {
     }
 
     public void startFPSmartRegistry() {
-        activity.startActivity(new Intent(activity, FPSmartRegisterActivity.class));
+        activity.startActivity(new Intent(activity, NativeFPSmartRegisterActivity.class));
     }
 
     public void startANCSmartRegistry() {

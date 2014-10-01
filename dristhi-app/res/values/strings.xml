@@ -85,6 +85,8 @@
     <string name="str_register_anc_form">Register ANC</string>
     <string name="str_register_fp_form">Register FP</string>
     <string name="str_register_child_form">Register Child</string>
+    <string name="str_fp_change_form">FP Change</string>
+    <string name="str_recort_ecp_form">Record ECP</string>
     <string name="str_edit_ec_form">Edit EC</string>
     <string name="str_close_ec_form">Close EC</string>
     <string name="report_month_sample_text">26/03 - 25/04</string>
@@ -154,5 +156,12 @@
     <string name="service_type_dpt_booster_1_short">DPT B1</string>
     <string name="service_type_dpt_booster_2_short">DPT B2</string>
     <string name="pentavalent_short">Pentav</string>
+
+    <string name="fp_register_title_in_short">FP: </string>
+    <string name="header_method">METHOD</string>
+    <string name="header_side_effects">SIDE EFFECTS</string>
+    <string name="header_followup_refill">FOLLOW UP/REFILL</string>
+    <string name="fp_register_service_mode_all_methods">All Methods</string>
+    <string name="fp_register_child_details">Child: </string>
 
 </resources>

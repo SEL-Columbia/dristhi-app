@@ -49,4 +49,5 @@
     <dimen name="list_view_margin_left_and_right">10dp</dimen>
     <dimen name="smart_register_nav_bar_separator">3dp</dimen>
     <dimen name="gplsa_item_width">22dp</dimen>
+    <dimen name="fp_register_gplsa_item_width">22dp</dimen>
 </resources>

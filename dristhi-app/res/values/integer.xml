@@ -27,4 +27,12 @@
     <integer name="child_list_opv_booster_view_weight">15</integer>
     <integer name="child_list_dpt_booster_view_weight">15</integer>
     <integer name="child_list_vitamin_a_view_weight">15</integer>
+
+    <integer name="fp_list_item_weight_count">100</integer>
+    <integer name="fp_list_profile_box_weight">24</integer>
+    <integer name="fp_list_ec_no_view_weight">7</integer>
+    <integer name="fp_list_gplsa_view_weight">10</integer>
+    <integer name="fp_list_method_view_weight">19</integer>
+    <integer name="fp_list_side_effects_view_weight">19</integer>
+    <integer name="fp_list_followup_view_weight">21</integer>
 </resources>

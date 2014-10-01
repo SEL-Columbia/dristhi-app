@@ -3,29 +3,34 @@ package org.ei.drishti.view.contract;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.util.IntegerUtil;
 
 import java.util.List;
+import java.util.Locale;
 
-public class FPClient {
+import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
+import static org.ei.drishti.util.StringUtil.humanize;
+
+public class FPClient implements FPSmartRegisterClient {
     private String entityId;
     private String entityIdToSavePhoto;
     private String name;
     private String husbandName;
     private String age;
-    private String ec_number;
+    private String ecNumber;
     private String village;
-    private String fp_method;
+    private String fpMethod;
     private String num_pregnancies;
     private String parity;
     private String num_living_children;
     private String num_stillbirths;
     private String num_abortions;
     private boolean isHighPriority;
-    private String family_planning_method_change_date;
+    private String familyPlanningMethodChangeDate;
     private String photo_path;
     private boolean is_youngest_child_under_two;
-    private String youngest_child_age;
+    private String youngestChildAge;
     private List<AlertDTO> alerts;
     private String complication_date;
     private String caste;
@@ -51,11 +56,98 @@ public class FPClient {
         this.name = name;
         this.husbandName = husbandName;
         this.village = village;
-        this.ec_number = ecNumber;
+        this.ecNumber = ecNumber;
+    }
+
+    @Override
+    public String entityId() {
+        return entityId;
+    }
+
+    @Override
+    public String name() {
+        return humanize(name);
+    }
+
+    @Override
+    public String displayName() {
+        return name();
+    }
+
+    @Override
+    public String village() {
+        return humanize(village);
     }
 
     public String wifeName() {
         return name;
+    }
+
+    @Override
+    public String husbandName() {
+        return humanize(husbandName);
+    }
+
+    @Override
+    public int age() {
+        return IntegerUtil.tryParse(age, 0);
+    }
+
+    @Override
+    public int ageInDays() {
+        return IntegerUtil.tryParse(age, 0) * 365;
+    }
+
+    @Override
+    public String ageInString() {
+        return "(" + age + ")";
+    }
+
+    @Override
+    public boolean isSC() {
+        return caste != null && caste.equalsIgnoreCase(SC_VALUE);
+    }
+
+    @Override
+    public boolean isST() {
+        return caste != null && caste.equalsIgnoreCase(ST_VALUE);
+    }
+
+    @Override
+    public boolean isHighRisk() {
+        return false;
+    }
+
+    @Override
+    public boolean isHighPriority() {
+        return isHighPriority;
+    }
+
+    @Override
+    public boolean isBPL() {
+        return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
+    }
+
+    @Override
+    public String profilePhotoPath() {
+        return photo_path;
+    }
+
+    @Override
+    public String locationStatus() {
+        return null;
+    }
+
+    @Override
+    public boolean satisfiesFilter(String filter) {
+        return name.toLowerCase(Locale.getDefault()).startsWith(filter.toLowerCase())
+                || String.valueOf(ecNumber).startsWith(filter);
+    }
+
+
+    @Override
+    public int compareName(SmartRegisterClient client) {
+        return this.name().compareToIgnoreCase(client.name());
     }
 
     public FPClient withAge(String age) {
@@ -64,7 +156,7 @@ public class FPClient {
     }
 
     public FPClient withFPMethod(String fp_method) {
-        this.fp_method = fp_method;
+        this.fpMethod = fp_method;
         return this;
     }
 
@@ -104,7 +196,7 @@ public class FPClient {
     }
 
     public FPClient withFamilyPlanningMethodChangeDate(String family_planning_method_change_date) {
-        this.family_planning_method_change_date = family_planning_method_change_date;
+        this.familyPlanningMethodChangeDate = family_planning_method_change_date;
         return this;
     }
 
@@ -119,7 +211,7 @@ public class FPClient {
     }
 
     public FPClient withYoungestChildAge(String youngest_child_age) {
-        this.youngest_child_age = youngest_child_age;
+        this.youngestChildAge = youngest_child_age;
         return this;
     }
 
@@ -233,6 +325,50 @@ public class FPClient {
         return value > 8 ? "8+" : value.toString();
     }
 
+    @Override
+    public String familyPlanningMethodChangeDate() {
+        return familyPlanningMethodChangeDate;
+    }
+
+    @Override
+    public String numberOfOCPDelivered() {
+        return numberOfOCPDelivered;
+    }
+
+    @Override
+    public String numberOfCondomsSupplied() {
+        return numberOfCondomsSupplied;
+    }
+
+    @Override
+    public String numberOfCentchromanPillsDelivered() {
+        return numberOfCentchromanPillsDelivered;
+    }
+
+    @Override
+    public String iudPerson() {
+        return iudPerson;
+    }
+
+    @Override
+    public String iudPlace() {
+        return iudPlace;
+    }
+
+    @Override
+    public Integer ecNumber() {
+        return IntegerUtil.tryParse(ecNumber, 0);
+    }
+
+    @Override
+    public FPMethod fpMethod() {
+        return FPMethod.tryParse(this.fpMethod, FPMethod.NONE);
+    }
+
+    @Override
+    public String youngestChildAge() {
+        return youngestChildAge + "m";
+    }
 
     @Override
     public boolean equals(Object o) {
