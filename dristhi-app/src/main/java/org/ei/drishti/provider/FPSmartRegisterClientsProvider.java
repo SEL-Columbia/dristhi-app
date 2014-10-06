@@ -1,7 +1,6 @@
 package org.ei.drishti.provider;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +31,6 @@ public class FPSmartRegisterClientsProvider implements SmartRegisterClientsProvi
     private final AbsListView.LayoutParams clientViewLayoutParams;
 
     protected FPSmartRegisterController controller;
-
-    private Drawable iconPencilDrawable;
 
     public FPSmartRegisterClientsProvider(Context context,
                                           View.OnClickListener onClickListener,
@@ -69,9 +66,15 @@ public class FPSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         setupEcNumberView(client, viewHolder);
         setupGPLSAView(client, viewHolder);
         setupFPMethodView(client, viewHolder);
+        setupUpdateButtonView(client, viewHolder);
 
         itemView.setLayoutParams(clientViewLayoutParams);
         return itemView;
+    }
+
+    private void setupUpdateButtonView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
+        viewHolder.btnUpdateView().setOnClickListener(onClickListener);
+        viewHolder.btnUpdateView().setTag(client);
     }
 
     private void setupClientProfileView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
@@ -90,6 +93,7 @@ public class FPSmartRegisterClientsProvider implements SmartRegisterClientsProvi
 
     private void setupFPMethodView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
         viewHolder.fpMethodView().bindData(client, txtColorBlack);
+        viewHolder.fpMethodView().setTag(client);
     }
 
     @Override

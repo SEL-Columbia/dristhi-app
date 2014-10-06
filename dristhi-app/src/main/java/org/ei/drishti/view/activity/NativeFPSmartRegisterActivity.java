@@ -93,7 +93,7 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     private DialogOption[] getUpdateOptions() {
         return new DialogOption[]{
                 new OpenFormOption(getString(R.string.str_fp_change_form), FP_CHANGE, formController),
-                new OpenFormOption(getString(R.string.str_close_ec_form), RECORD_ECPS, formController),
+                new OpenFormOption(getString(R.string.str_record_ecp_form), RECORD_ECPS, formController),
         };
     }
 
@@ -126,6 +126,9 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             switch (view.getId()) {
                 case R.id.profile_info_layout:
                     showProfileView((FPClient) view.getTag());
+                    break;
+                case R.id.btn_fp_method_update:
+                    showFragmentDialog(new UpdateDialogOptionModel(), view.getTag());
                     break;
             }
         }

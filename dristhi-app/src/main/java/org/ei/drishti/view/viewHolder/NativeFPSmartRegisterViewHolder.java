@@ -1,9 +1,10 @@
 package org.ei.drishti.view.viewHolder;
 
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import org.ei.drishti.R;
-import org.ei.drishti.view.customControls.ClientFpMethodAndUpdateView;
+import org.ei.drishti.view.customControls.ClientFpMethodView;
 import org.ei.drishti.view.customControls.ClientGplsaChildView;
 import org.ei.drishti.view.customControls.ClientProfileView;
 
@@ -11,7 +12,8 @@ public class NativeFPSmartRegisterViewHolder {
     private final ClientProfileView profileInfoLayout;
     private final TextView txtECNumberView;
     private final ClientGplsaChildView gplsaChildLayout;
-    private final ClientFpMethodAndUpdateView fpMethodview;
+    private final ClientFpMethodView fpMethodview;
+    private final Button btnUpdateView;
 
 
     public NativeFPSmartRegisterViewHolder(ViewGroup itemView) {
@@ -23,9 +25,10 @@ public class NativeFPSmartRegisterViewHolder {
         this.gplsaChildLayout = (ClientGplsaChildView) itemView.findViewById(R.id.gplsa_child_layout);
         this.gplsaChildLayout.initialize();
 
-        fpMethodview = (ClientFpMethodAndUpdateView) itemView.findViewById(R.id.fp_method_and_update_layout);
+        fpMethodview = (ClientFpMethodView) itemView.findViewById(R.id.fp_method_layout);
         fpMethodview.initialize();
 
+        btnUpdateView = (Button) itemView.findViewById(R.id.btn_fp_method_update);
     }
 
     public ClientProfileView profileInfoLayout() {
@@ -40,8 +43,12 @@ public class NativeFPSmartRegisterViewHolder {
         return gplsaChildLayout;
     }
 
-    public ClientFpMethodAndUpdateView fpMethodView() {
+    public ClientFpMethodView fpMethodView() {
         return fpMethodview;
+    }
+
+    public Button btnUpdateView() {
+        return btnUpdateView;
     }
 
 }

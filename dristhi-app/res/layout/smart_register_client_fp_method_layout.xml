@@ -6,7 +6,7 @@
         android:id="@+id/fp_method_layout"
         android:layout_width="@dimen/list_fp_view_width"
         android:layout_height="fill_parent"
-        android:layout_weight="@integer/ec_list_fp_view_weight"
+        android:layout_weight="@integer/fp_list_method_view_weight"
         android:layout_marginTop="3dp"
         android:orientation="vertical">
 

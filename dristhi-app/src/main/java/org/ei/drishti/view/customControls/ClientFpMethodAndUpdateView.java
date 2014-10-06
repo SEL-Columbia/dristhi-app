@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.apache.commons.lang3.StringUtils;
@@ -18,7 +19,7 @@ public class ClientFpMethodAndUpdateView extends LinearLayout {
     private TextView fpMethodQuantityView;
     private TextView iudPlaceView;
     private TextView iudPersonView;
-    private TextView fpMethodUpdateView;
+    private Button fpMethodUpdateView;
 
     @SuppressWarnings("UnusedDeclaration")
     public ClientFpMethodAndUpdateView(Context context) {
@@ -41,7 +42,7 @@ public class ClientFpMethodAndUpdateView extends LinearLayout {
         fpMethodQuantityView = (TextView) findViewById(R.id.txt_fp_method_quantity);
         iudPlaceView = (TextView) findViewById(R.id.txt_iud_place);
         iudPersonView = (TextView) findViewById(R.id.txt_iud_person);
-        fpMethodUpdateView = (TextView) findViewById(R.id.txt_fp_method_update);
+        fpMethodUpdateView = (Button) findViewById(R.id.btn_fp_method_update);
     }
 
     public void bindData(FPSmartRegisterClient client, int txtColorBlack) {
@@ -52,7 +53,6 @@ public class ClientFpMethodAndUpdateView extends LinearLayout {
         fpMethodView.setText(fpMethod.displayName());
         fpMethodDateView.setVisibility(View.VISIBLE);
         fpMethodDateView.setText(client.familyPlanningMethodChangeDate());
-        fpMethodUpdateView.setText("Update");
 
         if (fpMethod == FPMethod.NONE) {
             fpMethodView.setTextColor(Color.RED);

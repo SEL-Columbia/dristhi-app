@@ -38,7 +38,21 @@
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
 
-    <include layout="@layout/smart_register_fp_method_and_update_layout"/>
+    <include android:layout_weight="@integer/fp_list_method_view_weight"
+             android:id="@+id/fp_method_layout"
+            layout="@layout/smart_register_client_fp_method_layout"/>
+
+    <Button
+            android:id="@+id/btn_fp_method_update"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="@integer/fp_list_update_view_weight"
+            android:background="@color/status_bar_text_almost_white"
+            android:textColor="@color/light_blue"
+            android:text="Update"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+
 
     <ImageView
             android:layout_width="@dimen/smart_register_client_divider_height"

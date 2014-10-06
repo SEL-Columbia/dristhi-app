@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.view.contract.ECSmartRegisterClient;
+import org.ei.drishti.view.contract.FPSmartRegisterClient;
 
 public class ClientFpMethodView extends LinearLayout {
     private TextView fpMethodView;
@@ -43,6 +44,43 @@ public class ClientFpMethodView extends LinearLayout {
     }
 
     public void bindData(ECSmartRegisterClient client, int txtColorBlack) {
+        FPMethod fpMethod = client.fpMethod();
+
+        refreshAllFPMethodDetailViews(txtColorBlack);
+
+        fpMethodView.setText(fpMethod.displayName());
+        fpMethodDateView.setVisibility(View.VISIBLE);
+        fpMethodDateView.setText(client.familyPlanningMethodChangeDate());
+
+        if (fpMethod == FPMethod.NONE) {
+            fpMethodView.setTextColor(Color.RED);
+            fpMethodDateView.setVisibility(View.GONE);
+        } else if (fpMethod == FPMethod.OCP) {
+            fpMethodQuantityLabelView.setVisibility(View.VISIBLE);
+            fpMethodQuantityView.setVisibility(View.VISIBLE);
+            fpMethodQuantityView.setText(client.numberOfOCPDelivered());
+        } else if (fpMethod == FPMethod.CONDOM) {
+            fpMethodQuantityLabelView.setVisibility(View.VISIBLE);
+            fpMethodQuantityView.setVisibility(View.VISIBLE);
+            fpMethodQuantityView.setText(client.numberOfCondomsSupplied());
+        } else if (fpMethod == FPMethod.CENTCHROMAN) {
+            fpMethodQuantityLabelView.setVisibility(View.VISIBLE);
+            fpMethodQuantityView.setVisibility(View.VISIBLE);
+            fpMethodQuantityView.setText(client.numberOfCentchromanPillsDelivered());
+        } else if (fpMethod == FPMethod.IUD) {
+            if (StringUtils.isNotBlank(client.iudPerson())) {
+                iudPersonView.setVisibility(View.VISIBLE);
+                iudPersonView.setText(client.iudPerson());
+            }
+            if (StringUtils.isNotBlank(client.iudPlace())) {
+                iudPlaceView.setVisibility(View.VISIBLE);
+                iudPlaceView.setText(client.iudPlace());
+            }
+        }
+    }
+
+    //#TODO: REMOVE THIS DUPLICATE METHOD
+    public void bindData(FPSmartRegisterClient client, int txtColorBlack) {
         FPMethod fpMethod = client.fpMethod();
 
         refreshAllFPMethodDetailViews(txtColorBlack);

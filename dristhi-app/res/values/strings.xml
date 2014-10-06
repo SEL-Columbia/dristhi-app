@@ -86,7 +86,7 @@
     <string name="str_register_fp_form">Register FP</string>
     <string name="str_register_child_form">Register Child</string>
     <string name="str_fp_change_form">FP Change</string>
-    <string name="str_recort_ecp_form">Record ECP</string>
+    <string name="str_record_ecp_form">Record ECP</string>
     <string name="str_edit_ec_form">Edit EC</string>
     <string name="str_close_ec_form">Close EC</string>
     <string name="report_month_sample_text">26/03 - 25/04</string>
