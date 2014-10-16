@@ -42,9 +42,9 @@ public class FPClientTest {
     @Test
     public void shouldSetFPFollowupDataIfAFPFollowupExistsAndReferralAlertDoesNotExist() throws Exception {
         fpClient.withAlerts(Arrays.asList(new AlertDTO("OCP Refill", "urgent", "2013-02-02")
-                , new AlertDTO("Female sterilization Followup 1", "urgent", "2013-02-02")
                 , new AlertDTO("FP Followup", "normal", "2013-02-02")
-        )).withFPMethod("female_sterilization");
+                , new AlertDTO("Female sterilization Followup 1", "urgent", "2013-02-02")))
+                .withFPMethod("female_sterilization");
 
         fpClient.setRefillFollowUp();
 

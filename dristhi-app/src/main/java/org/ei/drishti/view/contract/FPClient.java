@@ -106,20 +106,46 @@ public class FPClient implements FPSmartRegisterClient {
 
     public FPClient setRefillFollowUp() {
         List<AlertDTO> alerts = alerts();
-        for (AlertDTO alert : alerts) {
-            if (isFPReferralFollowUpAlert(alert)) {
-                this.withRefillFollowUps(new RefillFollowUps(REFERRAL_FOLLOW_UP, alert, "referral"));
-            } else if (isFPFollowUpAlert(alert)) {
-                this.withRefillFollowUps(new RefillFollowUps(FP_FOLLOW_UP, alert, "follow-up"));
-            } else {
-                if (isOtherFPMethodAlert(alert) && isAlertBelongsTo(alert, followUpTypes)) {
-                    this.withRefillFollowUps(new RefillFollowUps(alert.name(), alert, "follow-up"));
-                } else if (isOtherFPMethodAlert(alert) && isAlertBelongsTo(alert, refillTypes)) {
-                    this.withRefillFollowUps(new RefillFollowUps(alert.name(), alert, "refill"));
-                }
-            }
+        AlertDTO fpReferralFollowUpAlert = getFPReferralFollowUpAlert(alerts);
+        AlertDTO fpFollowUpAlert = getFPFollowUpAlert(alerts);
+        if (fpReferralFollowUpAlert != null) {
+            this.withRefillFollowUps(new RefillFollowUps(REFERRAL_FOLLOW_UP, fpReferralFollowUpAlert, "referral"));
+        } else if (fpFollowUpAlert != null) {
+            this.withRefillFollowUps(new RefillFollowUps(FP_FOLLOW_UP, fpFollowUpAlert, "follow-up"));
+        } else {
+            this.withRefillFollowUps(getOtherFPMethod(alerts));
         }
         return this;
+    }
+
+    private RefillFollowUps getOtherFPMethod(List<AlertDTO> alerts) {
+        for (AlertDTO alert : alerts) {
+            if (isOtherFPMethodAlert(alert) && isAlertBelongsTo(alert, followUpTypes)) {
+                return new RefillFollowUps(alert.name(), alert, "follow-up");
+            } else if (isOtherFPMethodAlert(alert) && isAlertBelongsTo(alert, refillTypes)) {
+                return new RefillFollowUps(alert.name(), alert, "refill");
+            }
+        }
+        return null;
+    }
+
+
+    private AlertDTO getFPFollowUpAlert(List<AlertDTO> alerts) {
+        for (AlertDTO alert : alerts) {
+            if (isFPFollowUpAlert(alert)) {
+                return alert;
+            }
+        }
+        return null;
+    }
+
+    private AlertDTO getFPReferralFollowUpAlert(List<AlertDTO> alerts) {
+        for (AlertDTO alert : alerts) {
+            if (isFPReferralFollowUpAlert(alert)) {
+                return alert;
+            }
+        }
+        return null;
     }
 
     private boolean isAlertBelongsTo(AlertDTO alert, String[] types) {
