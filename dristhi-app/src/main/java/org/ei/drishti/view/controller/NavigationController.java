@@ -20,7 +20,7 @@ public class NavigationController {
     }
 
     public void startVideos() {
-        activity.startActivity(new Intent(activity, ChildSmartRegisterActivity.class));
+        activity.startActivity(new Intent(activity, VideosActivity.class));
     }
 
     public void startECSmartRegistry() {

@@ -1,23 +1,35 @@
 package org.ei.drishti.view.contract;
 
 import org.ei.drishti.view.dialog.*;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
 public class SmartRegisterClientsTest {
 
+    @Mock
+    AllEligibleCoupleServiceMode allEligibleCoupleServiceMode;
+
+    @Before
+    public void setUp() throws Exception {
+        initMocks(this);
+    }
+
     @Test
     public void emptyStringSearchShouldReturnAllTheResults() {
+
         SmartRegisterClients originalClients = getUniformSmartRegisterClients(10);
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(null),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new NameSort());
 
@@ -30,7 +42,7 @@ public class SmartRegisterClientsTest {
 
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(null),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption("a"),
                 new NameSort());
 
@@ -46,7 +58,7 @@ public class SmartRegisterClientsTest {
 
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(null),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new NameSort());
 
@@ -69,7 +81,7 @@ public class SmartRegisterClientsTest {
 
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(null),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new ECNumberSort());
 
@@ -87,7 +99,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(null),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new BPLSort());
         assertEquals(6, filteredClients.size());
@@ -104,7 +116,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(null),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new HighPrioritySort());
         assertEquals(6, filteredClients.size());
@@ -121,7 +133,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(null),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new SCSort());
         assertEquals(6, filteredClients.size());
@@ -138,7 +150,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(null),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new STSort());
         assertEquals(6, filteredClients.size());
@@ -155,7 +167,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new VillageFilter("Half bherya"),
-                new AllEligibleCoupleServiceMode(null),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new NameSort());
         assertEquals(2, filteredClients.size());
@@ -168,7 +180,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new VillageFilter("Hosa agrahara"),
-                new AllEligibleCoupleServiceMode(null),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new NameSort());
         assertEquals(1, filteredClients.size());
@@ -180,7 +192,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new VillageFilter("Battiganahalli"),
-                new AllEligibleCoupleServiceMode(null),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new NameSort());
         assertEquals(1, filteredClients.size());
@@ -192,7 +204,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new VillageFilter("Somanahalli colony"),
-                new AllEligibleCoupleServiceMode(null),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new NameSort());
         assertEquals(1, filteredClients.size());
@@ -204,7 +216,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new OutOfAreaFilter(),
-                new AllEligibleCoupleServiceMode(null),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new NameSort());
         assertEquals(2, filteredClients.size());
@@ -218,7 +230,7 @@ public class SmartRegisterClientsTest {
 
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new VillageFilter("Hosa agrahara"),
-                new AllEligibleCoupleServiceMode(null),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption("bh"),
                 new NameSort());
 
