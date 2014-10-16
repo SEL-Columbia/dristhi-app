@@ -2,20 +2,22 @@ package org.ei.drishti.view.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.ei.drishti.view.contract.FPClients;
-import org.robolectric.RobolectricTestRunner;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.service.AlertService;
 import org.ei.drishti.util.Cache;
+import org.ei.drishti.util.EasyMap;
 import org.ei.drishti.view.contract.AlertDTO;
 import org.ei.drishti.view.contract.FPClient;
+import org.ei.drishti.view.contract.FPClients;
+import org.ei.drishti.view.contract.RefillFollowUps;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.robolectric.RobolectricTestRunner;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +26,7 @@ import java.util.Map;
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
 import static org.ei.drishti.dto.AlertStatus.normal;
+import static org.ei.drishti.dto.AlertStatus.urgent;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -169,6 +172,30 @@ public class FPSmartRegisterControllerTest {
         AlertDTO expectedAlertDto = new AlertDTO("OCP Refill", "normal", "2013-01-01");
         FPClient expectedEC = createFPClient("entity id 1", "Woman C", "Husband C", "Bherya", "EC Number 3").withAlerts(asList(expectedAlertDto)).withNumberOfAbortions("0").withNumberOfPregnancies("0").withNumberOfStillBirths("0").withNumberOfLivingChildren("0").withParity("0");
         assertEquals(asList(expectedEC), actualClients);
+    }
+
+    @Test
+    public void shouldCreateFPClientsWithRefillFollowUps() throws Exception {
+        EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", EasyMap.create("currentMethod", "condom").map());
+        Alert condomRefillAlert = new Alert("entity id 1", "Condom Refill", "Condom Refill", urgent, "2013-01-01", "2013-02-01");
+        when(allEligibleCouples.all()).thenReturn(asList(ec));
+        when(alertService.findByEntityIdAndAlertNames("entity id 1", EC_ALERTS)).thenReturn(asList(condomRefillAlert));
+
+        FPClients clients = controller.getClients();
+
+        verify(alertService).findByEntityIdAndAlertNames("entity id 1", EC_ALERTS);
+
+        AlertDTO expectedAlertDto = new AlertDTO("Condom Refill", "urgent", "2013-01-01");
+        FPClient expectedEC = createFPClient("entity id 1", "Woman C", "Husband C", "Bherya", "EC Number 3")
+                .withAlerts(asList(expectedAlertDto))
+                .withNumberOfAbortions("0")
+                .withNumberOfPregnancies("0")
+                .withNumberOfStillBirths("0")
+                .withNumberOfLivingChildren("0")
+                .withParity("0")
+                .withFPMethod("condom")
+                .withRefillFollowUps(new RefillFollowUps("Condom Refill", expectedAlertDto, "refill"));
+        assertEquals(asList(expectedEC), clients);
     }
 
     @Test

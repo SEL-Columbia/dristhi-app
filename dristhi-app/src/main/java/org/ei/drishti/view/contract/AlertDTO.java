@@ -29,8 +29,8 @@ public class AlertDTO {
         return status;
     }
 
-    public ChildAlertStatus alertStatus() {
-        return StringUtils.isBlank(status) ? ChildAlertStatus.EMPTY : ChildAlertStatus.from(status);
+    public AlertStatus alertStatus() {
+        return StringUtils.isBlank(status) ? AlertStatus.EMPTY : AlertStatus.from(status);
     }
 
     public ChildServiceType type() {
@@ -46,11 +46,11 @@ public class AlertDTO {
     }
 
     public boolean isUrgent() {
-        return ChildAlertStatus.from(status).equals(ChildAlertStatus.URGENT);
+        return AlertStatus.from(status).equals(AlertStatus.URGENT);
     }
 
     public boolean isCompleted() {
-        return ChildAlertStatus.from(status).equals(ChildAlertStatus.COMPLETE);
+        return AlertStatus.from(status).equals(AlertStatus.COMPLETE);
     }
 
     @Override

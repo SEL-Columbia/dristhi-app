@@ -1,17 +1,16 @@
 package org.ei.drishti.view.dialog;
 
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.contract.ChildSmartRegisterClient;
-import org.ei.drishti.view.contract.ServiceProvidedDTO;
+import org.ei.drishti.view.contract.*;
 import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
+import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-import static org.ei.drishti.AllConstants.FormNames.CHILD_ILLNESS;
+import static org.ei.drishti.AllConstants.FormNames.FP_CHANGE;
+import static org.ei.drishti.AllConstants.FormNames.FP_COMPLICATIONS;
+import static org.ei.drishti.Context.getInstance;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 
 public class FPAllMethodsServiceMode extends ServiceModeOption {
@@ -22,7 +21,7 @@ public class FPAllMethodsServiceMode extends ServiceModeOption {
 
     @Override
     public String name() {
-        return Context.getInstance().getStringResource(R.string.fp_register_service_mode_all_methods);
+        return getInstance().getStringResource(R.string.fp_register_service_mode_all_methods);
     }
 
     @Override
@@ -53,51 +52,66 @@ public class FPAllMethodsServiceMode extends ServiceModeOption {
     }
 
     @Override
+    public void setupListView(FPSmartRegisterClient client,
+                              NativeFPSmartRegisterViewHolder viewHolder,
+                              View.OnClickListener clientSectionClickListener) {
+        setupSideEffectsView(client, viewHolder);
+        setupSideEffectsButtonView(client, viewHolder);
+        setupUpdateButtonView(client, viewHolder);
+        setupFPMethodView(client, viewHolder, getInstance().getColorResource(R.color.text_black));
+        setupAlertView(client, viewHolder);
+    }
+
+    private void setupSideEffectsButtonView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
+        viewHolder.btnSideEffectsView().setOnClickListener(launchForm(FP_COMPLICATIONS, client.entityId(), null));
+        viewHolder.btnSideEffectsView().setTag(client);
+    }
+
+    private void setupSideEffectsView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
+        viewHolder.clientSideEffectsView().bindData(client);
+    }
+
+    private void setupUpdateButtonView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
+        viewHolder.btnUpdateView().setOnClickListener(launchForm(FP_CHANGE, client.entityId(), null));
+        viewHolder.btnUpdateView().setTag(client);
+    }
+
+    private void setupFPMethodView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder, int txtColorBlack) {
+        viewHolder.fpMethodView().bindData(client, txtColorBlack);
+        viewHolder.fpMethodView().setTag(client);
+    }
+
+    private void setupAlertView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
+        viewHolder.txtAlertTypeView().setTag(client);
+        bindAlertData(client, viewHolder);
+    }
+
+    //#TODO: REMOVE THE HARDCODED METADATA
+    private void bindAlertData(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
+        RefillFollowUps refillFollowUps = client.refillFollowUps();
+        if (refillFollowUps == null) {
+            return;
+        }
+        AlertStatus alertStatus = refillFollowUps.alert().alertStatus();
+
+        viewHolder.txtAlertTypeView().setText(FPAlertType.from(refillFollowUps.type()).getAlertType());
+        viewHolder.txtAlertTypeView().setTextColor(alertStatus.fontColor());
+        viewHolder.fpAlertLayout().setBackgroundResource(alertStatus.backgroundColorResourceId());
+        viewHolder.txtAlertDateView().setTextColor(alertStatus.fontColor());
+        viewHolder.txtAlertDateView().setText(getInstance().getStringResource(R.string.str_due) + refillFollowUps.alert().shortDate());
+        viewHolder.txtAlertTypeView().setOnClickListener(launchForm(FPAlertType.from(refillFollowUps.type()).getFormName(),
+                client.entityId(), "{\"entityId\": \"" + client.entityId() + "\", \"alertName\":\"" + client.refillFollowUps().name() + "\"}"));
+    }
+
+    private OnClickFormLauncher launchForm(String formName, String entityId, String metaData) {
+        return provider().newFormLauncher(formName, entityId, metaData);
+    }
+
+    @Override
     public void setupListView(ChildSmartRegisterClient client,
                               NativeChildSmartRegisterViewHolder viewHolder,
                               View.OnClickListener clientSectionClickListener) {
-        viewHolder.serviceModeOverviewView().setVisibility(VISIBLE);
 
-        setupDobView(client, viewHolder);
-        setupLastServiceView(client, viewHolder);
-        setupSickStatus(client, viewHolder, clientSectionClickListener);
-        setupEditView(client, viewHolder, clientSectionClickListener);
     }
 
-    private void setupDobView(ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
-        viewHolder.dobView().setText(client.dateOfBirth());
-    }
-
-    private void setupLastServiceView(ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
-        ServiceProvidedDTO lastService = client.lastServiceProvided();
-        viewHolder.lastServiceDateView().setText(lastService.date());
-        viewHolder.lastServiceNameView().setText(lastService.type().displayName());
-    }
-
-    private void setupSickStatus(ChildSmartRegisterClient client,
-                                 NativeChildSmartRegisterViewHolder viewHolder,
-                                 View.OnClickListener onClickListener) {
-        final ChildSmartRegisterClient.ChildSickStatus sickStatus = client.sickStatus();
-        if (sickStatus == ChildSmartRegisterClient.ChildSickStatus.noDiseaseStatus) {
-            viewHolder.sickVisitView().setVisibility(VISIBLE);
-            viewHolder.sickVisitView().setTag(client);
-            viewHolder.sickVisitView().setOnClickListener(
-                    provider().newFormLauncher(CHILD_ILLNESS, client.entityId(), null));
-            viewHolder.sicknessDetailLayout().setVisibility(GONE);
-        } else {
-            viewHolder.sickVisitView().setVisibility(GONE);
-            viewHolder.sicknessDetailLayout().setVisibility(VISIBLE);
-            viewHolder.illnessView().setText(sickStatus.diseases());
-            viewHolder.illnessDateView().setText(sickStatus.date());
-        }
-    }
-
-    private void setupEditView(ChildSmartRegisterClient client,
-                               NativeChildSmartRegisterViewHolder viewHolder,
-                               View.OnClickListener onClickListener) {
-        Drawable iconPencilDrawable = Context.getInstance().applicationContext().getResources().getDrawable(R.drawable.ic_pencil);
-        viewHolder.editButton().setImageDrawable(iconPencilDrawable);
-        viewHolder.editButton().setOnClickListener(onClickListener);
-        viewHolder.editButton().setTag(client);
-    }
 }

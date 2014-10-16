@@ -6,8 +6,10 @@ import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.ChildSmartRegisterClient;
+import org.ei.drishti.view.contract.FPSmartRegisterClient;
 import org.ei.drishti.view.contract.ServiceProvidedDTO;
 import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
@@ -62,6 +64,11 @@ public class ChildOverviewServiceMode extends ServiceModeOption {
         setupLastServiceView(client, viewHolder);
         setupSickStatus(client, viewHolder, clientSectionClickListener);
         setupEditView(client, viewHolder, clientSectionClickListener);
+    }
+
+    @Override
+    public void setupListView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+
     }
 
     private void setupDobView(ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {

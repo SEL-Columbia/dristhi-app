@@ -7,9 +7,11 @@ import org.ei.drishti.R;
 import org.ei.drishti.domain.ChildServiceType;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.AlertDTO;
-import org.ei.drishti.view.contract.ChildAlertStatus;
+import org.ei.drishti.view.contract.AlertStatus;
 import org.ei.drishti.view.contract.ChildSmartRegisterClient;
+import org.ei.drishti.view.contract.FPSmartRegisterClient;
 import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
 
 import static org.ei.drishti.AllConstants.FormNames.CHILD_IMMUNIZATIONS;
@@ -65,6 +67,11 @@ public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
         setupHepBLayout(client, viewHolder);
         setupOpvLayout(client, viewHolder);
         setupPentavLayout(client, viewHolder);
+    }
+
+    @Override
+    public void setupListView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+
     }
 
     private void setupBcgLayout(ChildSmartRegisterClient client,
@@ -162,7 +169,7 @@ public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
         typeView.setText(alert.type().shortName());
         dateView.setText("due " + alert.shortDate());
 
-        final ChildAlertStatus alertStatus = alert.alertStatus();
+        final AlertStatus alertStatus = alert.alertStatus();
         layout.setBackgroundResource(alertStatus.backgroundColorResourceId());
         typeView.setTextColor(alertStatus.fontColor());
         dateView.setTextColor(alertStatus.fontColor());

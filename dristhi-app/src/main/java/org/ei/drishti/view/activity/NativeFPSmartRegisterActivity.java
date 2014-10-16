@@ -105,6 +105,7 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         villageController = new VillageController(context.allEligibleCouples(),
                 context.listCache(), context.villagesCache());
         dialogOptionMapper = new DialogOptionMapper();
+        clientsProvider().onServiceModeSelected(new FPAllMethodsServiceMode(clientsProvider()));
     }
 
     @Override
@@ -129,6 +130,10 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                     break;
                 case R.id.btn_fp_method_update:
                     showFragmentDialog(new UpdateDialogOptionModel(), view.getTag());
+                    break;
+                case R.id.btn_side_effects:
+                    SmartRegisterClient fpClient = (SmartRegisterClient) view.getTag();
+                    startFormActivity(FP_COMPLICATIONS, fpClient.entityId(), null);
                     break;
             }
         }

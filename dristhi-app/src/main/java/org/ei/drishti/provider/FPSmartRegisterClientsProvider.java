@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import org.ei.drishti.R;
+import org.ei.drishti.view.activity.SecuredActivity;
 import org.ei.drishti.view.contract.FPSmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
@@ -23,29 +24,28 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 public class FPSmartRegisterClientsProvider implements SmartRegisterClientsProvider {
 
     private final LayoutInflater inflater;
-    private final Context context;
+    private final SecuredActivity activity;
     private final View.OnClickListener onClickListener;
     private final ProfilePhotoLoader photoLoader;
 
-    private final int txtColorBlack;
+    private ServiceModeOption currentServiceModeOption;
     private final AbsListView.LayoutParams clientViewLayoutParams;
 
     protected FPSmartRegisterController controller;
 
-    public FPSmartRegisterClientsProvider(Context context,
+    public FPSmartRegisterClientsProvider(SecuredActivity activity,
                                           View.OnClickListener onClickListener,
                                           FPSmartRegisterController controller) {
         this.onClickListener = onClickListener;
         this.controller = controller;
-        this.context = context;
-        this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.activity = activity;
+        this.inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        photoLoader = new ECProfilePhotoLoader(context.getResources(),
-                context.getResources().getDrawable(R.drawable.woman_placeholder));
+        photoLoader = new ECProfilePhotoLoader(activity.getResources(),
+                activity.getResources().getDrawable(R.drawable.woman_placeholder));
 
         clientViewLayoutParams = new AbsListView.LayoutParams(MATCH_PARENT,
-                (int) context.getResources().getDimension(R.dimen.list_item_height));
-        txtColorBlack = context.getResources().getColor(R.color.text_black);
+                (int) activity.getResources().getDimension(R.dimen.list_item_height));
     }
 
     @Override
@@ -65,17 +65,13 @@ public class FPSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         setupClientProfileView(client, viewHolder);
         setupEcNumberView(client, viewHolder);
         setupGPLSAView(client, viewHolder);
-        setupFPMethodView(client, viewHolder);
-        setupUpdateButtonView(client, viewHolder);
+
+        currentServiceModeOption.setupListView(client, viewHolder, onClickListener);
 
         itemView.setLayoutParams(clientViewLayoutParams);
         return itemView;
     }
 
-    private void setupUpdateButtonView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
-        viewHolder.btnUpdateView().setOnClickListener(onClickListener);
-        viewHolder.btnUpdateView().setTag(client);
-    }
 
     private void setupClientProfileView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
         viewHolder.profileInfoLayout().bindData(client, photoLoader);
@@ -91,10 +87,6 @@ public class FPSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         viewHolder.gplsaAndChildLayout().bindData(client);
     }
 
-    private void setupFPMethodView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
-        viewHolder.fpMethodView().bindData(client, txtColorBlack);
-        viewHolder.fpMethodView().setTag(client);
-    }
 
     @Override
     public SmartRegisterClients getClients() {
@@ -109,12 +101,12 @@ public class FPSmartRegisterClientsProvider implements SmartRegisterClientsProvi
 
     @Override
     public void onServiceModeSelected(ServiceModeOption serviceModeOption) {
-        // do nothing.
+        currentServiceModeOption = serviceModeOption;
     }
 
     @Override
     public OnClickFormLauncher newFormLauncher(String formName, String entityId, String metaData) {
-        return null;
+        return new OnClickFormLauncher(activity, formName, entityId, metaData);
     }
 
     public LayoutInflater inflater() {

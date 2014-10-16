@@ -82,6 +82,8 @@ public class AllConstants {
         public static final String EC_EDIT = "ec_edit";
         public static final String ANC_INVESTIGATIONS = "anc_investigations";
         public static final String RECORD_ECPS = "record_ecps";
+        public static final String FP_REFERRAL_FOLLOWUP = "fp_referral_followup";
+        public static final String FP_FOLLOWUP = "fp_followup";
     }
 
     public class ECRegistrationFields {

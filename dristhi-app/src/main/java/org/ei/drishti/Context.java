@@ -653,4 +653,10 @@ public class Context {
     public String getStringResource(int id) {
         return applicationContext().getResources().getString(id);
     }
+
+    public int getColorResource(int id) {
+        return applicationContext().getResources().getColor(id);
+    }
+
+
 }

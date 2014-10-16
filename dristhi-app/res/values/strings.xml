@@ -163,5 +163,6 @@
     <string name="header_followup_refill">FOLLOW UP/REFILL</string>
     <string name="fp_register_service_mode_all_methods">All Methods</string>
     <string name="fp_register_child_details">Child: </string>
+    <string name="str_due">"due "</string>
 
 </resources>

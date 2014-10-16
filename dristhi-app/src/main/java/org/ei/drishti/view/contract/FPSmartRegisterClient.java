@@ -4,6 +4,7 @@ package org.ei.drishti.view.contract;
 import org.ei.drishti.domain.FPMethod;
 
 import java.util.Comparator;
+import java.util.List;
 
 public interface FPSmartRegisterClient extends SmartRegisterClient {
 
@@ -43,4 +44,22 @@ public interface FPSmartRegisterClient extends SmartRegisterClient {
 
     public String youngestChildAge();
 
+    public String complicationDate();
+
+    public String condomSideEffect();
+
+    public String iudSidEffect();
+
+    public String ocpSideEffect();
+
+    public String sterilizationSideEffect();
+
+    public String injectableSideEffect();
+
+    public String otherSideEffect();
+
+    public List<AlertDTO> alerts();
+
+    public RefillFollowUps refillFollowUps();
 }
+

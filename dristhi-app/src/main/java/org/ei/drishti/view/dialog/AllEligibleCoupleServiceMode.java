@@ -5,7 +5,9 @@ import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.ChildSmartRegisterClient;
+import org.ei.drishti.view.contract.FPSmartRegisterClient;
 import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
 
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 
@@ -52,6 +54,11 @@ public class AllEligibleCoupleServiceMode extends ServiceModeOption {
     public void setupListView(ChildSmartRegisterClient client,
                               NativeChildSmartRegisterViewHolder viewHolder,
                               View.OnClickListener clientSectionClickListener) {
+
+    }
+
+    @Override
+    public void setupListView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
 
     }
 }

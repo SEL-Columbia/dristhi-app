@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.apache.commons.lang3.StringUtils;
@@ -41,6 +42,15 @@ public class ClientFpMethodView extends LinearLayout {
         fpMethodQuantityView = (TextView) findViewById(R.id.txt_fp_method_quantity);
         iudPlaceView = (TextView) findViewById(R.id.txt_iud_place);
         iudPersonView = (TextView) findViewById(R.id.txt_iud_person);
+    }
+
+    public void setLayoutParams() {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                (int) getResources().getDimension(R.dimen.list_fp_view_width),
+                ViewGroup.LayoutParams.FILL_PARENT,
+                getResources().getInteger(R.integer.fp_list_method_view_weight));
+
+        this.setLayoutParams(params);
     }
 
     public void bindData(ECSmartRegisterClient client, int txtColorBlack) {
