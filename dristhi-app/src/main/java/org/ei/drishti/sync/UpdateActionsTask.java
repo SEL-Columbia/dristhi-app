@@ -9,6 +9,8 @@ import org.ei.drishti.view.BackgroundAction;
 import org.ei.drishti.view.LockingBackgroundTask;
 import org.ei.drishti.view.ProgressIndicator;
 
+import static org.ei.drishti.domain.FetchStatus.fetched;
+import static org.ei.drishti.domain.FetchStatus.fetchedFailed;
 import static org.ei.drishti.domain.FetchStatus.nothingFetched;
 import static org.ei.drishti.util.Log.logInfo;
 
@@ -33,9 +35,11 @@ public class UpdateActionsTask {
 
         task.doActionInBackground(new BackgroundAction<FetchStatus>() {
             public FetchStatus actionToDoInBackgroundThread() {
-                FetchStatus fetchStatus = formSubmissionSyncService.sync();
-                actionService.fetchNewActions();
-                return fetchStatus;
+                FetchStatus fetchStatusForForms = formSubmissionSyncService.sync();
+                FetchStatus fetchStatusForActions = actionService.fetchNewActions();
+                if(fetchStatusForActions == fetched || fetchStatusForForms == fetched)
+                    return fetched;
+                return fetchStatusForForms;
             }
 
             public void postExecuteInUIThread(FetchStatus result) {
