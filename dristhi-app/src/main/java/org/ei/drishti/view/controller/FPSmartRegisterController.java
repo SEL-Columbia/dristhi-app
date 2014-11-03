@@ -178,4 +178,60 @@ public class FPSmartRegisterController {
         });
     }
 
+    public FPClients getClients(final String fpMethodName) {
+        return fpClientsCache.get(FP_CLIENTS_LIST, new CacheableData<FPClients>() {
+            @Override
+            public FPClients fetch() {
+                List<EligibleCouple> ecs = allEligibleCouples.all();
+                FPClients fpClients = new FPClients();
+                for (EligibleCouple ec : ecs) {
+                    if (allBeneficiaries.isPregnant(ec.caseId())) {
+                        continue;
+                    }
+                    if (isCurrentMethodEqualsMethodNameOrAllMethods(ec, fpMethodName)) {
+                        String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
+                        List<AlertDTO> alerts = getFPAlertsForEC(ec.caseId());
+                        FPClient fpClient = new FPClient(ec.caseId(), ec.wifeName(), ec.husbandName(), ec.village(), ec.ecNumber())
+                                .withAge(ec.age())
+                                .withFPMethod(ec.getDetail("currentMethod"))
+                                .withFamilyPlanningMethodChangeDate(ec.getDetail("familyPlanningMethodChangeDate"))
+                                .withComplicationDate(ec.getDetail("complicationDate"))
+                                .withIUDPlace(ec.getDetail("iudPlace"))
+                                .withIUDPerson(ec.getDetail("iudPerson"))
+                                .withNumberOfCondomsSupplied(ec.getDetail("numberOfCondomsSupplied"))
+                                .withNumberOfCentchromanPillsDelivered(ec.getDetail("numberOfCentchromanPillsDelivered"))
+                                .withNumberOfOCPDelivered(ec.getDetail("numberOfOCPDelivered"))
+                                .withFPMethodFollowupDate(ec.getDetail("fpFollowupDate"))
+                                .withCaste(ec.getDetail("caste"))
+                                .withEconomicStatus(ec.getDetail("economicStatus"))
+                                .withNumberOfPregnancies(ec.getDetail("numberOfPregnancies"))
+                                .withParity(ec.getDetail("parity"))
+                                .withNumberOfLivingChildren(ec.getDetail("numberOfLivingChildren"))
+                                .withNumberOfStillBirths(ec.getDetail("numberOfStillBirths"))
+                                .withNumberOfAbortions(ec.getDetail("numberOfAbortions"))
+                                .withIsYoungestChildUnderTwo(ec.isYoungestChildUnderTwo())
+                                .withYoungestChildAge(ec.getDetail("youngestChildAge"))
+                                .withIsHighPriority(ec.isHighPriority())
+                                .withPhotoPath(photoPath)
+                                .withAlerts(alerts)
+                                .withCondomSideEffect(ec.getDetail("condomSideEffect"))
+                                .withIUDSidEffect(ec.getDetail("iudSidEffect"))
+                                .withOCPSideEffect(ec.getDetail("ocpSideEffect"))
+                                .withInjectableSideEffect(ec.getDetail("injectableSideEffect"))
+                                .withSterilizationSideEffect(ec.getDetail("sterilizationSideEffect"))
+                                .withOtherSideEffect(ec.getDetail("otherSideEffect"))
+                                .withHighPriorityReason(ec.getDetail("highPriorityReason"))
+                                .preprocess();
+                        fpClients.add(fpClient);
+                    }
+                }
+                sortByName(fpClients);
+                return fpClients;
+            }
+        });
+    }
+
+    private boolean isCurrentMethodEqualsMethodNameOrAllMethods(EligibleCouple ec, String fpMethodName) {
+        return fpMethodName.equalsIgnoreCase("All Methods") || fpMethodName.equalsIgnoreCase(ec.getDetail("currentMethod"));
+    }
 }

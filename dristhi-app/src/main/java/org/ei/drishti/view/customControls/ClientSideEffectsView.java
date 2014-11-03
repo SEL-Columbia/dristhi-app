@@ -1,16 +1,22 @@
 package org.ei.drishti.view.customControls;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import org.apache.commons.codec.binary.StringUtils;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.FPMethod;
+import org.ei.drishti.util.StringUtil;
 import org.ei.drishti.view.contract.AlertDTO;
 import org.ei.drishti.view.contract.FPSmartRegisterClient;
 
 import java.util.List;
+
+import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.ei.drishti.Context.getInstance;
 
 public class ClientSideEffectsView extends LinearLayout {
     private TextView complicationsDateView;
@@ -44,8 +50,14 @@ public class ClientSideEffectsView extends LinearLayout {
         }
 
         complicationsDateView.setText(client.complicationDate());
+        if (client.refillFollowUps() != null &&
+                getInstance().getStringResource(R.string.str_referral).equalsIgnoreCase(client.refillFollowUps().type())) {
+            sideEffectsView.setVisibility(View.VISIBLE);
+            sideEffectsView.setText(getInstance().getStringResource(R.string.str_referred));
+            sideEffectsView.setTextColor(getInstance().getColorResource(R.color.alert_urgent_red));
+            sideEffectsView.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.icon_referral_warning), null, null, null);
 
-        if (fpMethod == FPMethod.NONE) {
+        } else if (fpMethod == FPMethod.NONE) {
             sideEffectsView.setVisibility(View.GONE);
         } else if (fpMethod == FPMethod.OCP) {
             sideEffectsView.setVisibility(View.VISIBLE);
@@ -61,12 +73,6 @@ public class ClientSideEffectsView extends LinearLayout {
             sideEffectsView.setText(client.injectableSideEffect());
         } else {
             sideEffectsView.setText(client.otherSideEffect());
-        }
-
-        List<AlertDTO> alerts = client.alerts();
-        for (AlertDTO alert : alerts) {
-            if (alert.name().equals("FP Referral Followup"))
-                sideEffectsView.setText("Referred");
         }
 
 

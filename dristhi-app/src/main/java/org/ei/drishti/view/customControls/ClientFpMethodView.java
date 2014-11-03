@@ -13,6 +13,8 @@ import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.view.contract.ECSmartRegisterClient;
 import org.ei.drishti.view.contract.FPSmartRegisterClient;
 
+import java.text.DateFormat;
+
 public class ClientFpMethodView extends LinearLayout {
     private TextView fpMethodView;
     private TextView fpMethodDateView;

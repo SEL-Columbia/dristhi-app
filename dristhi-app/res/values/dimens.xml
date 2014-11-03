@@ -52,4 +52,5 @@
     <dimen name="smart_register_nav_bar_separator">3dp</dimen>
     <dimen name="gplsa_item_width">22dp</dimen>
     <dimen name="fp_register_gplsa_item_width">22dp</dimen>
+    <dimen name="fp_modal_header_text_height">45dp</dimen>
 </resources>

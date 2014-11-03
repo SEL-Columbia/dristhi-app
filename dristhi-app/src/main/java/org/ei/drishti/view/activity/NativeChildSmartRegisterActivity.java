@@ -94,6 +94,11 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
                         new ChildHighRiskSort(), new BPLSort(),
                         new SCSort(), new STSort()};
             }
+
+            @Override
+            public String searchHint() {
+                return getString(R.string.str_child_search_hint);
+            }
         };
     }
 

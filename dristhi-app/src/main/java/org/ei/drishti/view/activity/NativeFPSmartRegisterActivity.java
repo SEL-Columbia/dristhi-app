@@ -1,6 +1,11 @@
 package org.ei.drishti.view.activity;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.R;
 import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.domain.form.FieldOverrides;
@@ -8,8 +13,7 @@ import org.ei.drishti.provider.FPSmartRegisterClientsProvider;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.FPClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
-import org.ei.drishti.view.controller.FPSmartRegisterController;
-import org.ei.drishti.view.controller.VillageController;
+import org.ei.drishti.view.controller.*;
 import org.ei.drishti.view.dialog.*;
 
 import static com.google.common.collect.Iterables.concat;
@@ -17,6 +21,9 @@ import static com.google.common.collect.Iterables.toArray;
 import static org.ei.drishti.AllConstants.FormNames.*;
 
 public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
+
+    private static final String DIALOG_TAG = "dialog";
+    private static int CHECKED_TAB_ID = R.id.rb_fp_method;
 
     private SmartRegisterClientsProvider clientProvider = null;
     private FPSmartRegisterController controller;
@@ -69,7 +76,17 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
             @Override
             public DialogOption[] serviceModeOptions() {
-                return new DialogOption[]{};
+
+                return new DialogOption[]{
+                        new FPAllMethodsServiceMode(clientsProvider()),
+                        new FPCondomServiceMode(clientsProvider()),
+                        new FPDMPAServiceMode(clientsProvider()),
+                        new FPIUCDServiceMode(clientsProvider()),
+                        new FPOCPServiceMode(clientsProvider()),
+                        new FPFemaleSterilizationServiceMode(clientsProvider()),
+                        new FPMaleSterilizationServiceMode(clientsProvider()),
+                        new FPOthersServiceMode(clientsProvider())
+                };
             }
 
             @Override
@@ -77,6 +94,11 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                 return new DialogOption[]{new NameSort(), new ECNumberSort(),
                         new HighPrioritySort(), new BPLSort(),
                         new SCSort(), new STSort()};
+            }
+
+            @Override
+            public String searchHint() {
+                return getString(R.string.str_fp_search_hint);
             }
         };
     }
@@ -112,7 +134,6 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     public void setupViews() {
         super.setupViews();
 
-        setServiceModeViewDrawableRight(null);
     }
 
     @Override
@@ -129,11 +150,17 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                     showProfileView((FPClient) view.getTag());
                     break;
                 case R.id.btn_fp_method_update:
-                    showFragmentDialog(new UpdateDialogOptionModel(), view.getTag());
+                    NativeFPSmartRegisterActivity.super.showFragmentDialog(new UpdateDialogOptionModel(), view.getTag());
                     break;
                 case R.id.btn_side_effects:
                     SmartRegisterClient fpClient = (SmartRegisterClient) view.getTag();
                     startFormActivity(FP_COMPLICATIONS, fpClient.entityId(), null);
+                    break;
+                case R.id.lyt_fp_add:
+                    NativeFPSmartRegisterActivity.super.showFragmentDialog(new UpdateDialogOptionModel(), view.getTag());
+                    break;
+                case R.id.lyt_fp_videos:
+                    navigationController.startVideos();
                     break;
             }
         }
@@ -141,6 +168,33 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         private void showProfileView(FPClient client) {
             navigationController.startEC(client.entityId());
         }
+    }
+
+    @Override
+    void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+        if (dialogOptionModel.getDialogOptions().length <= 0) {
+            return;
+        }
+
+        if (!(dialogOptionModel instanceof  ServiceModeDialogOptionModel)) {
+            NativeFPSmartRegisterActivity.super.showFragmentDialog(dialogOptionModel, tag);
+            return;
+        }
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag(DIALOG_TAG);
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+
+        dialogOptionModel = new FPServiceModeDialogOptionModel().cloneDialogOptionsWith(dialogOptionModel);
+        FPSmartRegisterDialogFragment fpSmartRegisterDialogFragment = FPSmartRegisterDialogFragment
+                .newInstance(this, dialogOptionModel, tag);
+        fpSmartRegisterDialogFragment.setSelectedListener(listener);
+        fpSmartRegisterDialogFragment.setArguments(setAndReturnTabSelectionBundle());
+        fpSmartRegisterDialogFragment.show(ft, DIALOG_TAG);
+
     }
 
     private class UpdateDialogOptionModel implements DialogOptionModel {
@@ -154,4 +208,46 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             onEditSelection((EditOption) option, (SmartRegisterClient) tag);
         }
     }
+
+    private class FPServiceModeDialogOptionModel implements FPDialogOptionModel {
+        private DialogOption[] parentDialogOption;
+        @Override
+        public DialogOption[] getPrioritizationDialogOptions() {
+            return new DialogOption[]{
+                    new FPPrioritizationAllECServiceMode(clientsProvider()),
+                    new FPPrioritizationHighPriorityServiceMode(clientsProvider()),
+                    new FPPrioritizationTwoPlusChildrenServiceMode(clientsProvider()),
+                    new FPPrioritizationOneChildrenServiceMode(clientsProvider()),
+            };
+        }
+
+        @Override
+        public DialogOption[] getDialogOptions() {
+            return parentDialogOption;
+        }
+
+        @Override
+        public void onDialogOptionSelection(DialogOption option, Object tag) {
+            NativeFPSmartRegisterActivity.super.onServiceModeSelection((ServiceModeOption) option);
+        }
+
+        public FPDialogOptionModel cloneDialogOptionsWith(DialogOptionModel dialogOptionModel) {
+            this.parentDialogOption = dialogOptionModel.getDialogOptions();
+            return this;
+        }
+    }
+
+    private Bundle setAndReturnTabSelectionBundle() {
+        Bundle bundle = new Bundle();
+        bundle.putInt(AllConstants.FP_DIALOG_TAB_SELECTION, CHECKED_TAB_ID);
+        return bundle;
+    }
+
+    FPSmartRegisterDialogFragment.onSelectedListener listener = new FPSmartRegisterDialogFragment.onSelectedListener() {
+        @Override
+        public void onSelected(int id) {
+            CHECKED_TAB_ID = id;
+        }
+    };
+
 }

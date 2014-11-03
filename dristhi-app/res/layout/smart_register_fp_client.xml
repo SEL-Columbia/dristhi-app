@@ -4,8 +4,7 @@
               android:orientation="horizontal"
               android:layout_width="match_parent"
               android:layout_height="@dimen/list_item_height"
-              android:weightSum="@integer/fp_list_item_weight_count"
-        >
+              android:weightSum="@integer/fp_list_item_weight_count" >
 
     <include
             android:id="@+id/profile_info_layout"
@@ -39,72 +38,27 @@
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
 
-    <include android:id="@+id/fp_method_layout"
-             layout="@layout/smart_register_client_fp_method_layout"
-             android:layout_weight="@integer/fp_list_method_view_weight"/>
 
-    <Button
-            android:id="@+id/btn_fp_method_update"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_margin="5dp"
-            android:layout_weight="@integer/fp_list_update_view_weight"
-            android:background="@color/status_bar_text_almost_white"
-            android:textColor="@color/light_blue"
-            android:text="Update"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+    <LinearLayout
+            android:id="@+id/fp_register_service_mode_options_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="@integer/fp_list_service_mode_views_section_weight"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+        <!--android:layout_weight="@integer/fp_list_service_mode_views_section_weight"-->
 
-
-    <ImageView
-            android:layout_width="@dimen/smart_register_client_divider_height"
-            android:layout_height="fill_parent"
-            android:src="@color/smart_register_client_divider_color"/>
-
-    <include layout="@layout/smart_register_client_side_effects_layout"/>
-
-    <Button
-            android:id="@+id/btn_side_effects"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_margin="5dp"
-            android:layout_weight="@integer/fp_list_side_effects_button_view_weight"
-            android:background="@color/status_bar_text_almost_white"
-            android:textColor="@color/light_blue"
-            android:text="Side Effects"
-            style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"/>
-
-    <ImageView
-            android:layout_width="@dimen/smart_register_client_divider_height"
-            android:layout_height="fill_parent"
-            android:src="@color/smart_register_client_divider_color"/>
-
-
-    <ImageView
-            android:layout_width="@dimen/smart_register_client_divider_height"
-            android:layout_height="fill_parent"
-            android:src="@color/smart_register_client_divider_color"/>
-
-    <LinearLayout android:layout_width="@dimen/list_fp_alert_width"
-                  android:layout_height="fill_parent"
-                  android:layout_weight="@integer/fp_list_followup_view_weight"
-                  android:layout_margin="3dp"
-                  android:id="@+id/fp_alert_layout"
-                  android:gravity="left|center_vertical"
-                  android:orientation="vertical"
-            >
-        <org.ei.drishti.view.customControls.CustomFontTextView
-                android:id="@+id/txt_fp_alert_type"
+        <include
+                android:id="@+id/fp_method_service_mode_views"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
-                />
+                android:layout_height="fill_parent"
+                layout="@layout/fp_register_fp_method_service_mode_views"/>
 
-        <org.ei.drishti.view.customControls.CustomFontTextView
-                android:id="@+id/txt_fp_alert_date"
+        <include
+                android:id="@+id/fp_prioritization_service_mode_views"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                style="@style/CustomFontTextViewStyle.ListView.Medium"
-                />
+                android:layout_height="fill_parent"
+                layout="@layout/fp_register_fp_prioritization_service_mode_views"/>
 
     </LinearLayout>
 </LinearLayout>

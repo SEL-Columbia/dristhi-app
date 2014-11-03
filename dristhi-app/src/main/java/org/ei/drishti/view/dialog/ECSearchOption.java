@@ -14,7 +14,7 @@ public class ECSearchOption implements FilterOption {
 
     @Override
     public String name() {
-        return Context.getInstance().getStringResource(R.string.str_search_hint);
+        return Context.getInstance().getStringResource(R.string.str_ec_search_hint);
     }
 
     @Override

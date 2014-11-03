@@ -29,12 +29,16 @@
     <integer name="child_list_vitamin_a_view_weight">15</integer>
 
     <integer name="fp_list_item_weight_count">100</integer>
-    <integer name="fp_list_profile_box_weight">28</integer>
-    <integer name="fp_list_ec_no_view_weight">7</integer>
-    <integer name="fp_list_gplsa_view_weight">12</integer>
-    <integer name="fp_list_method_view_weight">18</integer>
-    <integer name="fp_list_update_view_weight">1</integer>
+    <integer name="fp_list_profile_box_weight">24</integer>
+    <integer name="fp_list_ec_no_view_weight">6</integer>
+    <integer name="fp_list_gplsa_view_weight">10</integer>
+    <integer name="fp_list_service_mode_views_section_weight">60</integer>
+    <integer name="fp_list_method_view_weight">13</integer>
+    <integer name="fp_list_update_view_weight">7</integer>
     <integer name="fp_list_side_effects_view_weight">13</integer>
-    <integer name="fp_list_side_effects_button_view_weight">0</integer>
-    <integer name="fp_list_followup_view_weight">21</integer>
+    <integer name="fp_list_side_effects_button_view_weight">7</integer>
+    <integer name="fp_list_followup_view_weight">20</integer>
+    <integer name="fp_list_prioritization_risks_view_weight">30</integer>
+    <integer name="fp_list_prioritization_button_weight">15</integer>
+
 </resources>

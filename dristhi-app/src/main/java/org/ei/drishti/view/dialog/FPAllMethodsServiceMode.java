@@ -8,6 +8,7 @@ import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
 
+import static android.view.View.VISIBLE;
 import static org.ei.drishti.AllConstants.FormNames.FP_CHANGE;
 import static org.ei.drishti.AllConstants.FormNames.FP_COMPLICATIONS;
 import static org.ei.drishti.Context.getInstance;
@@ -39,7 +40,7 @@ public class FPAllMethodsServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{24, 7, 10, 19, 19, 21};
+                return new int[]{24, 6, 11, 20, 20, 19};
             }
 
             @Override
@@ -55,6 +56,8 @@ public class FPAllMethodsServiceMode extends ServiceModeOption {
     public void setupListView(FPSmartRegisterClient client,
                               NativeFPSmartRegisterViewHolder viewHolder,
                               View.OnClickListener clientSectionClickListener) {
+        viewHolder.serviceModeFPMethod().setVisibility(VISIBLE);
+
         setupSideEffectsView(client, viewHolder);
         setupSideEffectsButtonView(client, viewHolder);
         setupUpdateButtonView(client, viewHolder);

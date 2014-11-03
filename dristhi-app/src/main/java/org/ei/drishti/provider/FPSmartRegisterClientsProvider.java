@@ -7,13 +7,12 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import org.ei.drishti.R;
 import org.ei.drishti.view.activity.SecuredActivity;
+import org.ei.drishti.view.contract.FPClients;
 import org.ei.drishti.view.contract.FPSmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
 import org.ei.drishti.view.controller.FPSmartRegisterController;
-import org.ei.drishti.view.dialog.FilterOption;
-import org.ei.drishti.view.dialog.ServiceModeOption;
-import org.ei.drishti.view.dialog.SortOption;
+import org.ei.drishti.view.dialog.*;
 import org.ei.drishti.view.viewHolder.ECProfilePhotoLoader;
 import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
@@ -62,10 +61,12 @@ public class FPSmartRegisterClientsProvider implements SmartRegisterClientsProvi
         }
 
         FPSmartRegisterClient client = (FPSmartRegisterClient) smartRegisterClient;
+
         setupClientProfileView(client, viewHolder);
         setupEcNumberView(client, viewHolder);
         setupGPLSAView(client, viewHolder);
 
+        viewHolder.hideAllServiceModeOptions();
         currentServiceModeOption.setupListView(client, viewHolder, onClickListener);
 
         itemView.setLayoutParams(clientViewLayoutParams);
@@ -90,13 +91,22 @@ public class FPSmartRegisterClientsProvider implements SmartRegisterClientsProvi
 
     @Override
     public SmartRegisterClients getClients() {
-        return controller.getClients();
+        FPClients clients = controller.getClients(currentServiceModeOption.name());
+
+        return clients;
     }
 
     @Override
     public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
                                               FilterOption searchFilter, SortOption sortOption) {
-        return getClients().applyFilter(villageFilter, serviceModeOption, searchFilter, sortOption);
+        return getClients().applyFilterWithFP(serviceModeOption, sortOption, villageFilter, searchFilter, getFPFilterOptionBasedOnDialogTab(serviceModeOption));
+    }
+
+    private FilterOption getFPFilterOptionBasedOnDialogTab(ServiceModeOption serviceModeOption) {
+        if (serviceModeOption instanceof FPAllMethodsServiceMode) {
+            return new FPMethodFilter(serviceModeOption.name());
+        }
+        return new FPPrioritizationMethodFilter(serviceModeOption.name());
     }
 
     @Override

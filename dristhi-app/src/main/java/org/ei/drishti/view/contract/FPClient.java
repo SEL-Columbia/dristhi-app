@@ -1,15 +1,26 @@
 package org.ei.drishti.view.contract;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.AllConstants;
+import org.ei.drishti.Context;
+import org.ei.drishti.R;
 import org.ei.drishti.domain.FPMethod;
+import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.IntegerUtil;
 
 import java.util.*;
 
+import static org.apache.commons.lang3.StringUtils.replace;
+import static org.ei.drishti.AllConstants.COMMA_WITH_SPACE;
 import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
+import static org.ei.drishti.AllConstants.SPACE;
+import static org.ei.drishti.Context.getInstance;
+import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.util.StringUtil.humanize;
+import static org.ei.drishti.util.StringUtil.replaceAndHumanize;
 
 public class FPClient implements FPSmartRegisterClient {
 
@@ -109,9 +120,9 @@ public class FPClient implements FPSmartRegisterClient {
         AlertDTO fpReferralFollowUpAlert = getFPReferralFollowUpAlert(alerts);
         AlertDTO fpFollowUpAlert = getFPFollowUpAlert(alerts);
         if (fpReferralFollowUpAlert != null) {
-            this.withRefillFollowUps(new RefillFollowUps(REFERRAL_FOLLOW_UP, fpReferralFollowUpAlert, "referral"));
+            this.withRefillFollowUps(new RefillFollowUps(REFERRAL_FOLLOW_UP, fpReferralFollowUpAlert, getInstance().getStringResource(R.string.str_referral)));
         } else if (fpFollowUpAlert != null) {
-            this.withRefillFollowUps(new RefillFollowUps(FP_FOLLOW_UP, fpFollowUpAlert, "follow-up"));
+            this.withRefillFollowUps(new RefillFollowUps(FP_FOLLOW_UP, fpFollowUpAlert, getInstance().getStringResource(R.string.str_follow_up)));
         } else {
             this.withRefillFollowUps(getOtherFPMethod(alerts));
         }
@@ -121,9 +132,9 @@ public class FPClient implements FPSmartRegisterClient {
     private RefillFollowUps getOtherFPMethod(List<AlertDTO> alerts) {
         for (AlertDTO alert : alerts) {
             if (isOtherFPMethodAlert(alert) && isAlertBelongsTo(alert, followUpTypes)) {
-                return new RefillFollowUps(alert.name(), alert, "follow-up");
+                return new RefillFollowUps(alert.name(), alert, getInstance().getStringResource(R.string.str_follow_up));
             } else if (isOtherFPMethodAlert(alert) && isAlertBelongsTo(alert, refillTypes)) {
-                return new RefillFollowUps(alert.name(), alert, "refill");
+                return new RefillFollowUps(alert.name(), alert, getInstance().getStringResource(R.string.str_refill));
             }
         }
         return null;
@@ -167,6 +178,11 @@ public class FPClient implements FPSmartRegisterClient {
     @Override
     public RefillFollowUps refillFollowUps() {
         return refillFollowUps;
+    }
+
+    @Override
+    public String highPriorityReason() {
+        return humanize(highPriorityReason);
     }
 
     public FPClient withRefillFollowUps(RefillFollowUps refillFollowUps) {
@@ -443,7 +459,7 @@ public class FPClient implements FPSmartRegisterClient {
 
     @Override
     public String familyPlanningMethodChangeDate() {
-        return family_planning_method_change_date;
+        return formatDate(family_planning_method_change_date, "dd/MM/YYYY");
     }
 
     @Override
@@ -483,42 +499,42 @@ public class FPClient implements FPSmartRegisterClient {
 
     @Override
     public String youngestChildAge() {
-        return youngest_child_age + "m";
+        return StringUtils.isBlank(youngest_child_age) ? null : (youngest_child_age + "m");
     }
 
     @Override
     public String complicationDate() {
-        return complication_date;
+        return formatDate(complication_date, "dd/MM/YYYY");
     }
 
     @Override
     public String condomSideEffect() {
-        return condomSideEffect;
+        return replaceAndHumanize(condomSideEffect, SPACE, COMMA_WITH_SPACE);
     }
 
     @Override
     public String iudSidEffect() {
-        return iudSidEffect;
+        return replaceAndHumanize(iudSidEffect, SPACE, COMMA_WITH_SPACE);
     }
 
     @Override
     public String ocpSideEffect() {
-        return ocpSideEffect;
+        return replaceAndHumanize(ocpSideEffect, SPACE, COMMA_WITH_SPACE);
     }
 
     @Override
     public String sterilizationSideEffect() {
-        return sterilizationSideEffect;
+        return replaceAndHumanize(sterilizationSideEffect, SPACE, COMMA_WITH_SPACE);
     }
 
     @Override
     public String injectableSideEffect() {
-        return injectableSideEffect;
+        return replaceAndHumanize(injectableSideEffect, SPACE, COMMA_WITH_SPACE);
     }
 
     @Override
     public String otherSideEffect() {
-        return otherSideEffect;
+        return replaceAndHumanize(otherSideEffect, SPACE, COMMA_WITH_SPACE);
     }
 
     @Override

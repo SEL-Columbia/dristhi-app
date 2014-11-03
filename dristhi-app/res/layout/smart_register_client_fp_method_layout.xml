@@ -22,18 +22,23 @@
             android:layout_height="wrap_content"
             style="@style/CustomFontTextViewStyle.ListView.Small"/>
 
-    <org.ei.drishti.view.customControls.CustomFontTextView
-            android:id="@+id/txt_fp_method_quantity_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/CustomFontTextViewStyle.ListView.Small"
-            android:text="@string/str_number_of_strips"/>
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
 
-    <org.ei.drishti.view.customControls.CustomFontTextView
-            android:id="@+id/txt_fp_method_quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/CustomFontTextViewStyle.ListView.Small"/>
+        <org.ei.drishti.view.customControls.CustomFontTextView
+                android:id="@+id/txt_fp_method_quantity_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/CustomFontTextViewStyle.ListView.Small"
+                android:text="@string/str_number_of_strips"/>
+
+        <org.ei.drishti.view.customControls.CustomFontTextView
+                android:id="@+id/txt_fp_method_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/CustomFontTextViewStyle.ListView.Small"/>
+    </LinearLayout>
 
     <org.ei.drishti.view.customControls.CustomFontTextView
             android:id="@+id/txt_iud_place"

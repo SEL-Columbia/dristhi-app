@@ -61,5 +61,7 @@ public interface FPSmartRegisterClient extends SmartRegisterClient {
     public List<AlertDTO> alerts();
 
     public RefillFollowUps refillFollowUps();
+
+    public String highPriorityReason();
 }
 

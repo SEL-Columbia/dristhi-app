@@ -88,6 +88,8 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         public abstract DialogOption[] serviceModeOptions();
 
         public abstract DialogOption[] sortingOptions();
+
+        public abstract String searchHint();
     }
 
     private DefaultOptionsProvider defaultOptionProvider;
@@ -188,6 +190,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     private void setupSearchView() {
         searchView = (EditText) findViewById(R.id.edt_search);
+        searchView.setHint(navBarOptionsProvider.searchHint());
         searchView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
@@ -362,7 +365,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }
     }
 
-    private class ServiceModeDialogOptionModel implements DialogOptionModel {
+    protected class ServiceModeDialogOptionModel implements DialogOptionModel {
         @Override
         public DialogOption[] getDialogOptions() {
             return navBarOptionsProvider.serviceModeOptions();

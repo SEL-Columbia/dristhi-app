@@ -68,7 +68,7 @@
                 android:id="@+id/edt_search"
                 android:layout_width="@dimen/ec_main_header_search_box_width"
                 android:layout_height="fill_parent"
-                android:hint="@string/str_search_hint"
+                android:hint="@string/str_ec_search_hint"
                 android:textSize="17sp"
                 android:background="@android:color/transparent"/>
 

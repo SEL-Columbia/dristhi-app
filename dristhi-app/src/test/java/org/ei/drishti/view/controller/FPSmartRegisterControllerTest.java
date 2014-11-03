@@ -158,6 +158,248 @@ public class FPSmartRegisterControllerTest {
     }
 
     @Test
+    public void shouldReturnOnlyClientsWhichMatchesTheFPMethodName() throws Exception {
+
+        Map<String, String> detailsWithFPMethodAsCondom = create("wifeAge", "22")
+                .put("currentMethod", "condom")
+                .put("familyPlanningMethodChangeDate", "2013-01-02")
+                .put("sideEffects", "sideEffects 1")
+                .put("numberOfPregnancies", "2")
+                .put("parity", "2")
+                .put("numberOfLivingChildren", "1")
+                .put("numberOfStillBirths", "1")
+                .put("numberOfAbortions", "0")
+                .put("isHighPriority", Boolean.toString(false))
+                .put("isYoungestChildUnderTwo", "yes")
+                .put("youngestChildAge", "3")
+                .put("complicationDate", "2011-05-05")
+                .put("caste", "sc")
+                .put("economicStatus", "bpl")
+                .put("fpFollowupDate", "2013-03-04")
+                .put("iudPlace", "iudPlace")
+                .put("iudPerson", "iudPerson")
+                .put("numberOfCondomsSupplied", "numberOfCondomsSupplied")
+                .put("numberOfCentchromanPillsDelivered", "numberOfCentchromanPillsDelivered")
+                .put("numberOfOCPDelivered", "numberOfOCPDelivered")
+                .put("condomSideEffect", "condom side effect")
+                .put("iudSidEffect", "iud side effect")
+                .put("ocpSideEffect", "ocp side effect")
+                .put("sterilizationSideEffect", "sterilization side effect")
+                .put("injectableSideEffect", "injectable side effect")
+                .put("otherSideEffect", "other side effect")
+                .put("highPriorityReason", "high priority reason")
+                .map();
+
+        Map<String, String> detailsWithFPMethodAsMaleSterilization = create("wifeAge", "22")
+                .put("currentMethod", "male_sterilization")
+                .put("familyPlanningMethodChangeDate", "2013-01-02")
+                .put("sideEffects", "sideEffects 1")
+                .put("numberOfPregnancies", "2")
+                .put("parity", "2")
+                .put("numberOfLivingChildren", "1")
+                .put("numberOfStillBirths", "1")
+                .put("numberOfAbortions", "0")
+                .put("isHighPriority", Boolean.toString(false))
+                .put("isYoungestChildUnderTwo", "yes")
+                .put("youngestChildAge", "3")
+                .put("complicationDate", "2011-05-05")
+                .put("caste", "sc")
+                .put("economicStatus", "bpl")
+                .put("fpFollowupDate", "2013-03-04")
+                .put("iudPlace", "iudPlace")
+                .put("iudPerson", "iudPerson")
+                .put("numberOfCondomsSupplied", "numberOfCondomsSupplied")
+                .put("numberOfCentchromanPillsDelivered", "numberOfCentchromanPillsDelivered")
+                .put("numberOfOCPDelivered", "numberOfOCPDelivered")
+                .put("condomSideEffect", "condom side effect")
+                .put("iudSidEffect", "iud side effect")
+                .put("ocpSideEffect", "ocp side effect")
+                .put("sterilizationSideEffect", "sterilization side effect")
+                .put("injectableSideEffect", "injectable side effect")
+                .put("otherSideEffect", "other side effect")
+                .put("highPriorityReason", "high priority reason")
+                .map();
+
+        EligibleCouple ecWithFPMethodAsCondom = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC", detailsWithFPMethodAsCondom)
+                .withPhotoPath("new photo path");
+
+        EligibleCouple ecWithFPMethodAsMaleSterilization = new EligibleCouple("EC Case 2", "Woman B", "Husband B", "EC Number 2", "Bherya", "Bherya SC", detailsWithFPMethodAsMaleSterilization)
+                .withPhotoPath("new photo path");
+
+        when(allEligibleCouples.all()).thenReturn(asList(ecWithFPMethodAsCondom, ecWithFPMethodAsMaleSterilization));
+
+        FPClient expectedFPClient = new FPClient("EC Case 1", "Woman A", "Husband A", "Bherya", "EC Number 1")
+                .withAge("22")
+                .withFPMethod("condom")
+                .withFamilyPlanningMethodChangeDate("2013-01-02")
+                .withComplicationDate("2011-05-05")
+                .withIUDPlace("iudPlace")
+                .withIUDPerson("iudPerson")
+                .withNumberOfCondomsSupplied("numberOfCondomsSupplied")
+                .withNumberOfCentchromanPillsDelivered("numberOfCentchromanPillsDelivered")
+                .withNumberOfOCPDelivered("numberOfOCPDelivered").withFPMethodFollowupDate("2013-03-04")
+                .withCaste("sc")
+                .withEconomicStatus("bpl")
+                .withNumberOfPregnancies("2")
+                .withParity("2")
+                .withNumberOfLivingChildren("1")
+                .withNumberOfStillBirths("1")
+                .withNumberOfAbortions("0")
+                .withIsYoungestChildUnderTwo(true)
+                .withYoungestChildAge("3")
+                .withIsHighPriority(false)
+                .withPhotoPath("new photo path")
+                .withCondomSideEffect("condom side effect")
+                .withIUDSidEffect("iud side effect")
+                .withOCPSideEffect("ocp side effect")
+                .withSterilizationSideEffect("sterilization side effect")
+                .withInjectableSideEffect("injectable side effect")
+                .withOtherSideEffect("other side effect")
+                .withHighPriorityReason("high priority reason")
+                .withAlerts(Collections.<AlertDTO>emptyList());
+
+        FPClients actualClients = controller.getClients("condom");
+
+        assertEquals(asList(expectedFPClient), actualClients);
+    }
+    @Test
+    public void shouldReturnAllClientsWhenFPMethodNameIsAllMethods() throws Exception {
+
+        Map<String, String> detailsWithFPMethodAsCondom = create("wifeAge", "22")
+                .put("currentMethod", "condom")
+                .put("familyPlanningMethodChangeDate", "2013-01-02")
+                .put("sideEffects", "sideEffects 1")
+                .put("numberOfPregnancies", "2")
+                .put("parity", "2")
+                .put("numberOfLivingChildren", "1")
+                .put("numberOfStillBirths", "1")
+                .put("numberOfAbortions", "0")
+                .put("isHighPriority", Boolean.toString(false))
+                .put("isYoungestChildUnderTwo", "yes")
+                .put("youngestChildAge", "3")
+                .put("complicationDate", "2011-05-05")
+                .put("caste", "sc")
+                .put("economicStatus", "bpl")
+                .put("fpFollowupDate", "2013-03-04")
+                .put("iudPlace", "iudPlace")
+                .put("iudPerson", "iudPerson")
+                .put("numberOfCondomsSupplied", "numberOfCondomsSupplied")
+                .put("numberOfCentchromanPillsDelivered", "numberOfCentchromanPillsDelivered")
+                .put("numberOfOCPDelivered", "numberOfOCPDelivered")
+                .put("condomSideEffect", "condom side effect")
+                .put("iudSidEffect", "iud side effect")
+                .put("ocpSideEffect", "ocp side effect")
+                .put("sterilizationSideEffect", "sterilization side effect")
+                .put("injectableSideEffect", "injectable side effect")
+                .put("otherSideEffect", "other side effect")
+                .put("highPriorityReason", "high priority reason")
+                .map();
+
+        Map<String, String> detailsWithFPMethodAsMaleSterilization = create("wifeAge", "22")
+                .put("currentMethod", "male_sterilization")
+                .put("familyPlanningMethodChangeDate", "2013-01-02")
+                .put("sideEffects", "sideEffects 1")
+                .put("numberOfPregnancies", "2")
+                .put("parity", "2")
+                .put("numberOfLivingChildren", "1")
+                .put("numberOfStillBirths", "1")
+                .put("numberOfAbortions", "0")
+                .put("isHighPriority", Boolean.toString(false))
+                .put("isYoungestChildUnderTwo", "yes")
+                .put("youngestChildAge", "3")
+                .put("complicationDate", "2011-05-05")
+                .put("caste", "sc")
+                .put("economicStatus", "bpl")
+                .put("fpFollowupDate", "2013-03-04")
+                .put("iudPlace", "iudPlace")
+                .put("iudPerson", "iudPerson")
+                .put("numberOfCondomsSupplied", "numberOfCondomsSupplied")
+                .put("numberOfCentchromanPillsDelivered", "numberOfCentchromanPillsDelivered")
+                .put("numberOfOCPDelivered", "numberOfOCPDelivered")
+                .put("condomSideEffect", "condom side effect")
+                .put("iudSidEffect", "iud side effect")
+                .put("ocpSideEffect", "ocp side effect")
+                .put("sterilizationSideEffect", "sterilization side effect")
+                .put("injectableSideEffect", "injectable side effect")
+                .put("otherSideEffect", "other side effect")
+                .put("highPriorityReason", "high priority reason")
+                .map();
+
+        EligibleCouple ecWithFPMethodAsCondom = new EligibleCouple("EC Case 1", "Woman A", "Husband A", "EC Number 1", "Bherya", "Bherya SC", detailsWithFPMethodAsCondom)
+                .withPhotoPath("new photo path");
+
+        EligibleCouple ecWithFPMethodAsMaleSterilization = new EligibleCouple("EC Case 2", "Woman B", "Husband B", "EC Number 2", "Bherya", "Bherya SC", detailsWithFPMethodAsMaleSterilization)
+                .withPhotoPath("new photo path");
+
+        when(allEligibleCouples.all()).thenReturn(asList(ecWithFPMethodAsCondom, ecWithFPMethodAsMaleSterilization));
+
+        FPClient expectedFPClient = new FPClient("EC Case 1", "Woman A", "Husband A", "Bherya", "EC Number 1")
+                .withAge("22")
+                .withFPMethod("condom")
+                .withFamilyPlanningMethodChangeDate("2013-01-02")
+                .withComplicationDate("2011-05-05")
+                .withIUDPlace("iudPlace")
+                .withIUDPerson("iudPerson")
+                .withNumberOfCondomsSupplied("numberOfCondomsSupplied")
+                .withNumberOfCentchromanPillsDelivered("numberOfCentchromanPillsDelivered")
+                .withNumberOfOCPDelivered("numberOfOCPDelivered").withFPMethodFollowupDate("2013-03-04")
+                .withCaste("sc")
+                .withEconomicStatus("bpl")
+                .withNumberOfPregnancies("2")
+                .withParity("2")
+                .withNumberOfLivingChildren("1")
+                .withNumberOfStillBirths("1")
+                .withNumberOfAbortions("0")
+                .withIsYoungestChildUnderTwo(true)
+                .withYoungestChildAge("3")
+                .withIsHighPriority(false)
+                .withPhotoPath("new photo path")
+                .withCondomSideEffect("condom side effect")
+                .withIUDSidEffect("iud side effect")
+                .withOCPSideEffect("ocp side effect")
+                .withSterilizationSideEffect("sterilization side effect")
+                .withInjectableSideEffect("injectable side effect")
+                .withOtherSideEffect("other side effect")
+                .withHighPriorityReason("high priority reason")
+                .withAlerts(Collections.<AlertDTO>emptyList());
+
+        FPClient anotherExpectedFPClient = new FPClient("EC Case 2", "Woman B", "Husband B", "Bherya", "EC Number 2")
+                .withAge("22")
+                .withFPMethod("male_sterilization")
+                .withFamilyPlanningMethodChangeDate("2013-01-02")
+                .withComplicationDate("2011-05-05")
+                .withIUDPlace("iudPlace")
+                .withIUDPerson("iudPerson")
+                .withNumberOfCondomsSupplied("numberOfCondomsSupplied")
+                .withNumberOfCentchromanPillsDelivered("numberOfCentchromanPillsDelivered")
+                .withNumberOfOCPDelivered("numberOfOCPDelivered").withFPMethodFollowupDate("2013-03-04")
+                .withCaste("sc")
+                .withEconomicStatus("bpl")
+                .withNumberOfPregnancies("2")
+                .withParity("2")
+                .withNumberOfLivingChildren("1")
+                .withNumberOfStillBirths("1")
+                .withNumberOfAbortions("0")
+                .withIsYoungestChildUnderTwo(true)
+                .withYoungestChildAge("3")
+                .withIsHighPriority(false)
+                .withPhotoPath("new photo path")
+                .withCondomSideEffect("condom side effect")
+                .withIUDSidEffect("iud side effect")
+                .withOCPSideEffect("ocp side effect")
+                .withSterilizationSideEffect("sterilization side effect")
+                .withInjectableSideEffect("injectable side effect")
+                .withOtherSideEffect("other side effect")
+                .withHighPriorityReason("high priority reason")
+                .withAlerts(Collections.<AlertDTO>emptyList());
+
+
+        FPClients actualClients = controller.getClients("All Methods");
+
+        assertEquals(asList(expectedFPClient, anotherExpectedFPClient), actualClients);
+    }
+
+    @Test
     public void shouldCreateFPClientsWithOCPRefillAlert() throws Exception {
         EligibleCouple ec = new EligibleCouple("entity id 1", "Woman C", "Husband C", "EC Number 3", "Bherya", "Bherya SC", emptyDetails);
         Alert ocpRefillAlert = new Alert("entity id 1", "OCP Refill", "OCP Refill", normal, "2013-01-01", "2013-02-01");

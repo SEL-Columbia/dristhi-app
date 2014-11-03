@@ -78,6 +78,11 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
                         new HighPrioritySort(), new BPLSort(),
                         new SCSort(), new STSort()};
             }
+
+            @Override
+            public String searchHint() {
+                return getString(R.string.str_ec_search_hint);
+            }
         };
     }
 

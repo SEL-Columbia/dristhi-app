@@ -2,10 +2,14 @@ package org.ei.drishti.view.customControls;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.R;
 import org.ei.drishti.view.contract.FPSmartRegisterClient;
+
+import static android.view.View.GONE;
 
 public class ClientGplsaChildView extends RelativeLayout {
     private TextView txtGravida;
@@ -14,6 +18,7 @@ public class ClientGplsaChildView extends RelativeLayout {
     private TextView txtNumberOfStillBirths;
     private TextView txtNumberOfAbortions;
     private TextView txtChildAge;
+    private TextView txtChild;
 
     @SuppressWarnings("UnusedDeclaration")
     public ClientGplsaChildView(Context context) {
@@ -36,6 +41,7 @@ public class ClientGplsaChildView extends RelativeLayout {
         txtNumberOfStillBirths = (TextView) findViewById(R.id.txt_number_of_still_births);
         txtNumberOfAbortions = (TextView) findViewById(R.id.txt_number_of_abortions);
         txtChildAge = (TextView) findViewById(R.id.txt_child_age);
+        txtChild = (TextView) findViewById(R.id.label_child);
     }
 
     public void bindData(FPSmartRegisterClient client) {
@@ -44,6 +50,11 @@ public class ClientGplsaChildView extends RelativeLayout {
         txtNumberOfLivingChildren.setText(client.numberOfLivingChildren());
         txtNumberOfStillBirths.setText(client.numberOfStillbirths());
         txtNumberOfAbortions.setText(client.numberOfAbortions());
-        txtChildAge.setText(client.youngestChildAge());
+        if (client.youngestChildAge() == null) {
+            txtChild.setVisibility(GONE);
+            txtChildAge.setVisibility(GONE);
+        } else {
+            txtChildAge.setText(client.youngestChildAge());
+        }
     }
 }
