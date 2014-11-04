@@ -58,6 +58,7 @@ public class Context {
     private Cache<HomeContext> homeContextCache;
     private Cache<ECClients> ecClientsCache;
     private Cache<FPClients> fpClientsCache;
+    private Cache<ANCClients> ancClientsCache;
     private Cache<Villages> villagesCache;
     private Cache<Typeface> typefaceCache;
 
@@ -633,6 +634,15 @@ public class Context {
             fpClientsCache = new Cache<FPClients>();
         }
         return fpClientsCache;
+
+    }
+
+    //#TODO: Refactor to use one cache object
+    public Cache<ANCClients> ancClientsCache() {
+        if (ancClientsCache == null) {
+            ancClientsCache = new Cache<ANCClients>();
+        }
+        return ancClientsCache;
 
     }
 

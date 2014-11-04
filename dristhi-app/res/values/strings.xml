@@ -199,4 +199,16 @@
     <string name="str_update">Update</string>
     <string name="str_side_effects">Side Effects</string>
 
+    <string name="anc_register_title_in_short">ANC:</string>
+    <string name="str_anc_search_hint">Search ANC Register</string>
+    <string name="anc_service_mode_overview">Overview</string>
+    <string name="header_id">ID</string>
+    <string name="header_anc_status">ANC STATUS</string>
+    <string name="header_risk_factors">RISK FACTORS</string>
+    <string name="header_visits">VISITS</string>
+    <string name="header_tt">TT</string>
+    <string name="header_ifa">IFA</string>
+    <string name="sort_by_edd_label">EDD</string>
+
+
 </resources>

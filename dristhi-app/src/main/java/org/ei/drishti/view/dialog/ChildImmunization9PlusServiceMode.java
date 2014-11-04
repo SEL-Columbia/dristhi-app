@@ -6,10 +6,8 @@ import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.ChildServiceType;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.contract.AlertDTO;
-import org.ei.drishti.view.contract.AlertStatus;
-import org.ei.drishti.view.contract.ChildSmartRegisterClient;
-import org.ei.drishti.view.contract.FPSmartRegisterClient;
+import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.viewHolder.NativeANCSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
@@ -69,6 +67,11 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
         setupOpvBoosterLayout(client, viewHolder);
         setupDptBoosterLayout(client, viewHolder);
         setupVitaminALayout(client, viewHolder);
+    }
+
+    @Override
+    public void setupListView(ANCSmartRegisterClient client, NativeANCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+
     }
 
     @Override

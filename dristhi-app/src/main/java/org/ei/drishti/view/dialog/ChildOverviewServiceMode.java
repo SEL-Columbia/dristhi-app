@@ -5,9 +5,11 @@ import android.view.View;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
+import org.ei.drishti.view.contract.ANCSmartRegisterClient;
 import org.ei.drishti.view.contract.ChildSmartRegisterClient;
 import org.ei.drishti.view.contract.FPSmartRegisterClient;
 import org.ei.drishti.view.contract.ServiceProvidedDTO;
+import org.ei.drishti.view.viewHolder.NativeANCSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
 
@@ -64,6 +66,11 @@ public class ChildOverviewServiceMode extends ServiceModeOption {
         setupLastServiceView(client, viewHolder);
         setupSickStatus(client, viewHolder, clientSectionClickListener);
         setupEditView(client, viewHolder, clientSectionClickListener);
+    }
+
+    @Override
+    public void setupListView(ANCSmartRegisterClient client, NativeANCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+
     }
 
     @Override

@@ -13,15 +13,15 @@ import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
 
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 
-public class AllEligibleCoupleServiceMode extends ServiceModeOption {
+public class ANCOverviewServiceMode extends ServiceModeOption {
 
-    public AllEligibleCoupleServiceMode(SmartRegisterClientsProvider provider) {
+    public ANCOverviewServiceMode(SmartRegisterClientsProvider provider) {
         super(provider);
     }
 
     @Override
     public String name() {
-        return Context.getInstance().getStringResource(R.string.couple_selection);
+        return Context.getInstance().getStringResource(R.string.anc_service_mode_overview);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class AllEligibleCoupleServiceMode extends ServiceModeOption {
         return new ClientsHeaderProvider() {
             @Override
             public int count() {
-                return 7;
+                return 6;
             }
 
             @Override
@@ -39,28 +39,28 @@ public class AllEligibleCoupleServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{239, 73, 103, 107, 158, 221, 87};
+                return new int[]{210, 84, 124, 126, 126, 210};
             }
 
             @Override
             public int[] headerTextResourceIds() {
                 return new int[]{
-                        R.string.header_name, R.string.header_ec_no, R.string.header_gplsa,
-                        R.string.header_fp, R.string.header_children, R.string.header_status,
-                        R.string.header_edit};
+                        R.string.header_name, R.string.header_id, R.string.header_anc_status,
+                        R.string.header_risk_factors, R.string.header_visits, R.string.header_tt, R.string.header_ifa};
             }
         };
     }
 
     @Override
-    public void setupListView(ChildSmartRegisterClient client,
-                              NativeChildSmartRegisterViewHolder viewHolder,
-                              View.OnClickListener clientSectionClickListener) {
+    public void setupListView(ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
 
     }
 
     @Override
-    public void setupListView(ANCSmartRegisterClient client, NativeANCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+    public void setupListView(ANCSmartRegisterClient client,
+                              NativeANCSmartRegisterViewHolder viewHolder,
+                              View.OnClickListener clientSectionClickListener) {
+
 
     }
 
@@ -68,4 +68,6 @@ public class AllEligibleCoupleServiceMode extends ServiceModeOption {
     public void setupListView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
 
     }
+
+
 }

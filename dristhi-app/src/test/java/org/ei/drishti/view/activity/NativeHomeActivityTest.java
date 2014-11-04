@@ -35,7 +35,7 @@ public class NativeHomeActivityTest {
 
     @Test
     public void shouldLaunchAncRegisterOnPressingAncRegisterButton() {
-        verifyLaunchOfActivityOnPressingButton(R.id.btn_anc_register, ANCSmartRegisterActivity.class);
+        verifyLaunchOfActivityOnPressingButton(R.id.btn_anc_register, NativeANCSmartRegisterActivity.class);
     }
 
     @Test

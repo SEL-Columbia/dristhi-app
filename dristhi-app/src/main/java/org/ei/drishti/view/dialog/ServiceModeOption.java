@@ -2,8 +2,10 @@ package org.ei.drishti.view.dialog;
 
 import android.view.View;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
+import org.ei.drishti.view.contract.ANCSmartRegisterClient;
 import org.ei.drishti.view.contract.ChildSmartRegisterClient;
 import org.ei.drishti.view.contract.FPSmartRegisterClient;
+import org.ei.drishti.view.viewHolder.NativeANCSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
 
@@ -29,6 +31,10 @@ public abstract class ServiceModeOption implements DialogOption {
 
     public abstract void setupListView(ChildSmartRegisterClient client,
                                        NativeChildSmartRegisterViewHolder viewHolder,
+                                       View.OnClickListener clientSectionClickListener);
+
+    public abstract void setupListView(ANCSmartRegisterClient client,
+                                       NativeANCSmartRegisterViewHolder viewHolder,
                                        View.OnClickListener clientSectionClickListener);
 
     public abstract void setupListView(FPSmartRegisterClient client,

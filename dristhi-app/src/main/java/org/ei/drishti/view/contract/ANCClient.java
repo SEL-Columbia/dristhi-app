@@ -4,13 +4,21 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.AllConstants;
-import org.joda.time.LocalDateTime;
+import org.ei.drishti.util.IntegerUtil;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.ISODateTimeFormat;
 
 import java.util.List;
+import java.util.Locale;
 
-public class ANCClient {
+import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
+import static org.ei.drishti.util.DateUtil.today;
+import static org.ei.drishti.util.StringUtil.humanize;
+import static org.joda.time.Days.daysBetween;
+import static org.joda.time.LocalDateTime.parse;
+
+public class ANCClient implements ANCSmartRegisterClient {
     private String entityId;
     private String ec_number;
     private String village;
@@ -38,13 +46,111 @@ public class ANCClient {
         this.village = village;
         this.name = name;
         this.thayi = thayi;
-        this.edd = LocalDateTime.parse(edd, DateTimeFormat.forPattern(AllConstants.FORM_DATE_TIME_FORMAT)).toString(ISODateTimeFormat.dateTime());
+        this.edd = parse(edd, DateTimeFormat.forPattern(AllConstants.FORM_DATE_TIME_FORMAT)).toString(ISODateTimeFormat.dateTime());
         this.lmp = lmp;
+    }
+
+    @Override
+    public String entityId() {
+        return entityId;
+    }
+
+    @Override
+    public String name() {
+        return name;
+    }
+
+    @Override
+    public String displayName() {
+        return humanize(name);
+    }
+
+    @Override
+    public String village() {
+        return humanize(village);
     }
 
     public String wifeName() {
         return name;
     }
+
+    @Override
+    public String husbandName() {
+        return humanize(husbandName);
+    }
+
+    @Override
+    public int age() {
+        return IntegerUtil.tryParse(age, 0);
+    }
+
+    @Override
+    public int ageInDays() {
+        return IntegerUtil.tryParse(age, 0) * 365;
+    }
+
+    @Override
+    public String ageInString() {
+        return age;
+    }
+
+    @Override
+    public boolean isSC() {
+        return caste != null && caste.equalsIgnoreCase(SC_VALUE);
+    }
+
+    @Override
+    public boolean isST() {
+        return caste != null && caste.equalsIgnoreCase(ST_VALUE);
+    }
+
+    @Override
+    public boolean isHighRisk() {
+        return isHighRisk;
+    }
+
+    @Override
+    public boolean isHighPriority() {
+        return isHighPriority;
+    }
+
+    @Override
+    public boolean isBPL() {
+        return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
+    }
+
+    @Override
+    public String profilePhotoPath() {
+        return photo_path;
+    }
+
+    @Override
+    public String locationStatus() {
+        return locationStatus;
+    }
+
+    @Override
+    public boolean satisfiesFilter(String filterCriterion) {
+        return name.toLowerCase(Locale.getDefault()).startsWith(filterCriterion.toLowerCase())
+                || String.valueOf(thayi).startsWith(filterCriterion);
+    }
+
+    @Override
+    public int compareName(SmartRegisterClient client) {
+        return this.name().compareToIgnoreCase(client.name());
+    }
+
+    @Override
+    public String edd() {
+        return edd;
+    }
+
+    @Override
+    public String eddInDays() {
+        return isBlank(edd) ? "0"
+                : Integer.toString(daysBetween(parse(edd).toLocalDate(), today()).getDays());
+    }
+
 
     public ANCClient withHusbandName(String husbandName) {
         this.husbandName = husbandName;

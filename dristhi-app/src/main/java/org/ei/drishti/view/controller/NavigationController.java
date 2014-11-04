@@ -32,7 +32,7 @@ public class NavigationController {
     }
 
     public void startANCSmartRegistry() {
-        activity.startActivity(new Intent(activity, ANCSmartRegisterActivity.class));
+        activity.startActivity(new Intent(activity, NativeANCSmartRegisterActivity.class));
     }
 
     public void startPNCSmartRegistry() {

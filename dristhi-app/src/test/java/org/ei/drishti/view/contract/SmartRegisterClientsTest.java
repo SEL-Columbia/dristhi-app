@@ -75,11 +75,11 @@ public class SmartRegisterClientsTest {
         expectedClients.addAll(
                 asList(
                         new ECClient("abcd1", "Adhiti", "Rama", "Battiganahalli", 69).withIsHighPriority(true).withIsOutOfArea(true),
-                        new ECClient("abcd2", "Akshara", "Rajesh", "Half bherya", 500).withCaste("SC").withEconomicStatus("BPL").withIsHighPriority(true),
-                        new ECClient("abcd3", "Anitha", "Chandan", "Half bherya", 87).withCaste("SC").withIsOutOfArea(true),
-                        new ECClient("abcd6", "Bhagya", "Ramesh", "Hosa agrahara", 93).withIsHighPriority(true).withCaste("ST"),
-                        new ECClient("abcd4", "Bhavani", "Ravi", "Gowrikoppalu", 140).withEconomicStatus("BPL"),
-                        new ECClient("abcd5", "Chaitra", "Rams", "Somanahalli colony", 36).withCaste("ST")
+                        new ECClient("abcd2", "Akshara", "Rajesh", "Half bherya", 500).withCaste("SC").withEconomicStatus("BPL").withIsHighPriority(true).withFPMethod("condom"),
+                        new ECClient("abcd3", "Anitha", "Chandan", "Half bherya", 87).withCaste("SC").withIsOutOfArea(true).withFPMethod("ocp").withFPMethod("ocp"),
+                        new ECClient("abcd6", "Bhagya", "Ramesh", "Hosa agrahara", 93).withIsHighPriority(true).withCaste("ST").withFPMethod("condom"),
+                        new ECClient("abcd4", "Bhavani", "Ravi", "Gowrikoppalu", 140).withEconomicStatus("BPL").withFPMethod("female_sterilization"),
+                        new ECClient("abcd5", "Chaitra", "Rams", "Somanahalli colony", 36).withCaste("ST").withFPMethod("ocp")
                 ));
         assertEquals(expectedClients, filteredClients);
     }
@@ -132,9 +132,9 @@ public class SmartRegisterClientsTest {
         assertEquals("Adhiti", filteredClients.get(0).name());
         assertEquals("Akshara", filteredClients.get(1).name());
         assertEquals("Bhagya", filteredClients.get(2).name());
-        assertEquals("Chaitra", filteredClients.get(3).name());
+        assertEquals("Chaitra", filteredClients.get(5).name());
         assertEquals("Bhavani", filteredClients.get(4).name());
-        assertEquals("Anitha", filteredClients.get(5).name());
+        assertEquals("Anitha", filteredClients.get(3).name());
     }
 
     @Test

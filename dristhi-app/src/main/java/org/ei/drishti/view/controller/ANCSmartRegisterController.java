@@ -12,9 +12,7 @@ import org.ei.drishti.service.AlertService;
 import org.ei.drishti.service.ServiceProvidedService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.contract.ANCClient;
-import org.ei.drishti.view.contract.AlertDTO;
-import org.ei.drishti.view.contract.ServiceProvidedDTO;
+import org.ei.drishti.view.contract.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -46,15 +44,17 @@ public class ANCSmartRegisterController {
     private AllBeneficiaries allBeneficiaries;
     private AlertService alertService;
     private Cache<String> cache;
+    private Cache<ANCClients> ancClientsCache;
     private final ServiceProvidedService serviceProvidedService;
 
     public ANCSmartRegisterController(ServiceProvidedService serviceProvidedService, AlertService alertService,
                                       AllBeneficiaries allBeneficiaries,
-                                      Cache<String> cache) {
+                                      Cache<String> cache, Cache<ANCClients> ancClientsCache) {
         this.allBeneficiaries = allBeneficiaries;
         this.alertService = alertService;
         this.serviceProvidedService = serviceProvidedService;
         this.cache = cache;
+        this.ancClientsCache = ancClientsCache;
     }
 
     public String get() {
@@ -72,21 +72,21 @@ public class ANCSmartRegisterController {
                     List<ServiceProvidedDTO> servicesProvided = getServicesProvided(anc.caseId());
                     List<AlertDTO> alerts = getAlerts(anc.caseId());
                     ancClients.add(new ANCClient(anc.caseId(), ec.village(), ec.wifeName(), anc.thayiCardNumber(), anc.getDetail(AllConstants.ANCRegistrationFields.EDD), anc.referenceDate())
-                            .withHusbandName(ec.husbandName())
-                            .withAge(ec.age())
-                            .withECNumber(ec.ecNumber())
-                            .withANCNumber(anc.getDetail(AllConstants.ANCRegistrationFields.ANC_NUMBER))
-                            .withIsHighPriority(ec.isHighPriority())
-                            .withIsHighRisk(anc.isHighRisk())
-                            .withIsOutOfArea(ec.isOutOfArea())
-                            .withHighRiskReason(anc.highRiskReason())
-                            .withCaste(ec.getDetail(AllConstants.ECRegistrationFields.CASTE))
-                            .withEconomicStatus(ec.getDetail(AllConstants.ECRegistrationFields.ECONOMIC_STATUS))
-                            .withPhotoPath(photoPath)
-                            .withEntityIdToSavePhoto(ec.caseId())
-                            .withAlerts(alerts)
-                            .withAshaPhoneNumber(anc.getDetail(AllConstants.ANCRegistrationFields.ASHA_PHONE_NUMBER))
-                            .withServicesProvided(servicesProvided)
+                                    .withHusbandName(ec.husbandName())
+                                    .withAge(ec.age())
+                                    .withECNumber(ec.ecNumber())
+                                    .withANCNumber(anc.getDetail(AllConstants.ANCRegistrationFields.ANC_NUMBER))
+                                    .withIsHighPriority(ec.isHighPriority())
+                                    .withIsHighRisk(anc.isHighRisk())
+                                    .withIsOutOfArea(ec.isOutOfArea())
+                                    .withHighRiskReason(anc.highRiskReason())
+                                    .withCaste(ec.getDetail(AllConstants.ECRegistrationFields.CASTE))
+                                    .withEconomicStatus(ec.getDetail(AllConstants.ECRegistrationFields.ECONOMIC_STATUS))
+                                    .withPhotoPath(photoPath)
+                                    .withEntityIdToSavePhoto(ec.caseId())
+                                    .withAlerts(alerts)
+                                    .withAshaPhoneNumber(anc.getDetail(AllConstants.ANCRegistrationFields.ASHA_PHONE_NUMBER))
+                                    .withServicesProvided(servicesProvided)
                     );
                 }
                 sortByName(ancClients);
@@ -94,6 +94,7 @@ public class ANCSmartRegisterController {
             }
         });
     }
+
 
     private List<ServiceProvidedDTO> getServicesProvided(String entityId) {
         List<ServiceProvided> servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId,
@@ -145,5 +146,53 @@ public class ANCSmartRegisterController {
                 return oneANCClient.wifeName().compareToIgnoreCase(anotherANCClient.wifeName());
             }
         });
+    }
+
+    private void sortByName(ANCClients ancClients) {
+        sort(ancClients, new Comparator<SmartRegisterClient>() {
+            @Override
+            public int compare(SmartRegisterClient oneANCClient, SmartRegisterClient anotherANCClient) {
+                return oneANCClient.wifeName().compareToIgnoreCase(anotherANCClient.wifeName());
+            }
+        });
+    }
+
+    public ANCClients getClients() {
+        return ancClientsCache.get(ANC_CLIENTS_LIST, new CacheableData<ANCClients>() {
+            @Override
+            public ANCClients fetch() {
+                ANCClients ancClients = new ANCClients();
+                List<Pair<Mother, EligibleCouple>> ancsWithEcs = allBeneficiaries.allANCsWithEC();
+
+                for (Pair<Mother, EligibleCouple> ancWithEc : ancsWithEcs) {
+                    Mother anc = ancWithEc.getLeft();
+                    EligibleCouple ec = ancWithEc.getRight();
+                    String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
+
+                    List<ServiceProvidedDTO> servicesProvided = getServicesProvided(anc.caseId());
+                    List<AlertDTO> alerts = getAlerts(anc.caseId());
+                    ANCClient ancClient = new ANCClient(anc.caseId(), ec.village(), ec.wifeName(), anc.thayiCardNumber(), anc.getDetail(AllConstants.ANCRegistrationFields.EDD), anc.referenceDate())
+                            .withHusbandName(ec.husbandName())
+                            .withAge(ec.age())
+                            .withECNumber(ec.ecNumber())
+                            .withANCNumber(anc.getDetail(AllConstants.ANCRegistrationFields.ANC_NUMBER))
+                            .withIsHighPriority(ec.isHighPriority())
+                            .withIsHighRisk(anc.isHighRisk())
+                            .withIsOutOfArea(ec.isOutOfArea())
+                            .withHighRiskReason(anc.highRiskReason())
+                            .withCaste(ec.getDetail(AllConstants.ECRegistrationFields.CASTE))
+                            .withEconomicStatus(ec.getDetail(AllConstants.ECRegistrationFields.ECONOMIC_STATUS))
+                            .withPhotoPath(photoPath)
+                            .withEntityIdToSavePhoto(ec.caseId())
+                            .withAlerts(alerts)
+                            .withAshaPhoneNumber(anc.getDetail(AllConstants.ANCRegistrationFields.ASHA_PHONE_NUMBER))
+                            .withServicesProvided(servicesProvided);
+                    ancClients.add(ancClient);
+                }
+                sortByName(ancClients);
+                return ancClients;
+            }
+        });
+
     }
 }
