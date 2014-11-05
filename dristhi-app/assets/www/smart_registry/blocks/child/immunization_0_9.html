@@ -40,7 +40,7 @@
     <span ng-if="client.visits.opv.previous" class="previous-alert">
         <i class="icon-ok green"></i>
         <span class="">{{client.visits.opv.previous.name | friendlyAbbrev}}: </span>
-        <span>{{client.visits.opv.previous.visit_date}}</span>
+         <span>{{client.visits.opv.[client.visits.opv.previous.name].visit_date}}</span>
     </span>
     </div>
 </div>
