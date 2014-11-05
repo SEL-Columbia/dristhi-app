@@ -11,9 +11,7 @@ import org.ei.drishti.service.AlertService;
 import org.ei.drishti.service.ServiceProvidedService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.contract.AlertDTO;
-import org.ei.drishti.view.contract.ChildClient;
-import org.ei.drishti.view.contract.ServiceProvidedDTO;
+import org.ei.drishti.view.contract.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -30,13 +28,15 @@ public class ChildSmartRegisterController {
     private final AlertService alertService;
     private final AllBeneficiaries allBeneficiaries;
     private final Cache<String> cache;
+    private final Cache<SmartRegisterClients> smartRegisterCache;
 
     public ChildSmartRegisterController(ServiceProvidedService serviceProvidedService, AlertService alertService,
-                                        AllBeneficiaries allBeneficiaries, Cache<String> cache) {
+                                        AllBeneficiaries allBeneficiaries, Cache<String> cache, Cache<SmartRegisterClients> smartRegisterCache) {
         this.serviceProvidedService = serviceProvidedService;
         this.alertService = alertService;
         this.allBeneficiaries = allBeneficiaries;
         this.cache = cache;
+        this.smartRegisterCache = smartRegisterCache;
     }
 
     public String get() {
@@ -74,8 +74,52 @@ public class ChildSmartRegisterController {
 
                     childrenClient.add(childClient);
                 }
-                sortByName(childrenClient);
+                sortByMotherName(childrenClient);
                 return new Gson().toJson(childrenClient);
+            }
+        });
+    }
+
+    public SmartRegisterClients getClients() {
+        return smartRegisterCache.get(CHILD_CLIENTS_LIST_CACHE_ENTRY_NAME, new CacheableData<SmartRegisterClients>() {
+            @Override
+            public SmartRegisterClients fetch() {
+                List<Child> children = allBeneficiaries.allChildrenWithMotherAndEC();
+                SmartRegisterClients childrenClient = new SmartRegisterClients();
+
+                for (Child child : children) {
+                    String photoPath = isBlank(child.photoPath()) ? (AllConstants.FEMALE_GENDER.equalsIgnoreCase(child.gender()) ? AllConstants.DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH : AllConstants.DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH) : child.photoPath();
+                    List<AlertDTO> alerts = getAlerts(child.caseId());
+                    List<ServiceProvidedDTO> servicesProvided = getServicesProvided(child.caseId());
+                    ChildClient childClient =
+                            new ChildClient(
+                                    child.caseId(),
+                                    child.gender(),
+                                    child.getDetail(AllConstants.ChildRegistrationFields.WEIGHT),
+                                    child.mother().thayiCardNumber())
+                                    .withName(child.getDetail(AllConstants.ChildRegistrationFields.NAME))
+                                    .withEntityIdToSavePhoto(child.caseId())
+                                    .withMotherName(child.ec().wifeName())
+                                    .withDOB(child.dateOfBirth())
+                                    .withMotherAge(child.ec().age())
+                                    .withFatherName(child.ec().husbandName())
+                                    .withVillage(child.ec().village())
+                                    .withOutOfArea(child.ec().isOutOfArea())
+                                    .withEconomicStatus(child.ec().getDetail(AllConstants.ECRegistrationFields.ECONOMIC_STATUS))
+                                    .withCaste(child.ec().getDetail(AllConstants.ECRegistrationFields.CASTE))
+                                    .withIsHighRisk(child.isHighRisk())
+                                    .withPhotoPath(photoPath)
+                                    .withECNumber(child.ec().ecNumber())
+                                    .withAlerts(alerts)
+                                    .withServicesProvided(servicesProvided)
+                                    .withPreprocess();
+
+
+                    childrenClient.add(childClient);
+                }
+
+                sortByName(childrenClient);
+                return childrenClient;
             }
         });
     }
@@ -100,7 +144,16 @@ public class ChildSmartRegisterController {
         return alertDTOs;
     }
 
-    private void sortByName(List<ChildClient> childrenClient) {
+    private void sortByName(List<SmartRegisterClient> childrenClient) {
+        sort(childrenClient, new Comparator<SmartRegisterClient>() {
+            @Override
+            public int compare(SmartRegisterClient oneChild, SmartRegisterClient anotherChild) {
+                return oneChild.compareName(anotherChild);
+            }
+        });
+    }
+
+    private void sortByMotherName(List<ChildClient> childrenClient) {
         sort(childrenClient, new Comparator<ChildClient>() {
             @Override
             public int compare(ChildClient oneChild, ChildClient anotherChild) {

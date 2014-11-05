@@ -7,9 +7,7 @@ import org.ei.drishti.service.formSubmissionHandler.*;
 import org.ei.drishti.sync.SaveANMLocationTask;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
-import org.ei.drishti.view.contract.ECClients;
-import org.ei.drishti.view.contract.HomeContext;
-import org.ei.drishti.view.contract.Villages;
+import org.ei.drishti.view.contract.*;
 import org.ei.drishti.view.controller.ANMController;
 import org.ei.drishti.view.controller.ANMLocationController;
 
@@ -56,8 +54,11 @@ public class Context {
 
     private Session session;
     private Cache<String> listCache;
+    private Cache<SmartRegisterClients> smartRegisterClientsCache;
     private Cache<HomeContext> homeContextCache;
     private Cache<ECClients> ecClientsCache;
+    private Cache<FPClients> fpClientsCache;
+    private Cache<ANCClients> ancClientsCache;
     private Cache<Villages> villagesCache;
     private Cache<Typeface> typefaceCache;
 
@@ -572,6 +573,13 @@ public class Context {
         return listCache;
     }
 
+    public Cache<SmartRegisterClients> smartRegisterClientsCache() {
+        if (smartRegisterClientsCache == null) {
+            smartRegisterClientsCache = new Cache<SmartRegisterClients>();
+        }
+        return smartRegisterClientsCache;
+    }
+
     public Cache<HomeContext> homeContextCache() {
         if (homeContextCache == null) {
             homeContextCache = new Cache<HomeContext>();
@@ -620,6 +628,24 @@ public class Context {
 
     }
 
+    //#TODO: Refactor to use one cache object
+    public Cache<FPClients> fpClientsCache() {
+        if (fpClientsCache == null) {
+            fpClientsCache = new Cache<FPClients>();
+        }
+        return fpClientsCache;
+
+    }
+
+    //#TODO: Refactor to use one cache object
+    public Cache<ANCClients> ancClientsCache() {
+        if (ancClientsCache == null) {
+            ancClientsCache = new Cache<ANCClients>();
+        }
+        return ancClientsCache;
+
+    }
+
     public Cache<Villages> villagesCache() {
         if (villagesCache == null) {
             villagesCache = new Cache<Villages>();
@@ -637,4 +663,10 @@ public class Context {
     public String getStringResource(int id) {
         return applicationContext().getResources().getString(id);
     }
+
+    public int getColorResource(int id) {
+        return applicationContext().getResources().getColor(id);
+    }
+
+
 }

@@ -7,4 +7,8 @@ public class StringUtil {
     public static String humanize(String value) {
         return capitalize(replace(value, "_", " "));
     }
+    public static String replaceAndHumanize(String value, String oldCharacter, String newCharacter) {
+        return humanize(replace(value, oldCharacter, newCharacter));
+    }
+
 }

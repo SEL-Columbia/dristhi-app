@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <org.ei.drishti.view.customControls.ClientProfileView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/profile_info_layout"
-                android:layout_width="@dimen/list_profile_box_width"
-                android:layout_height="fill_parent"
-                android:layout_weight="@integer/ec_list_profile_box_weight"
-                android:background="@drawable/transparent_blue_background">
+                                                      android:id="@+id/profile_info_layout"
+                                                      android:layout_width="@dimen/list_profile_box_width"
+                                                      android:layout_height="fill_parent"
+                                                      android:layout_weight="@integer/ec_list_profile_box_weight"
+                                                      android:background="@drawable/transparent_blue_background">
     <FrameLayout
             android:id="@+id/img_profile_layout"
             android:layout_width="@dimen/client_profile_pic_width"
@@ -33,6 +33,14 @@
                     android:layout_marginBottom="-5dp"
                     android:scaleType="fitStart"
                     android:src="@drawable/flag_hp"/>
+
+            <ImageView
+                    android:id="@+id/img_hr_badge"
+                    android:layout_width="@dimen/client_profile_badge_width"
+                    android:layout_height="@dimen/client_profile_badge_height"
+                    android:layout_marginBottom="-5dp"
+                    android:scaleType="fitStart"
+                    android:src="@drawable/flag_hr"/>
 
             <ImageView
                     android:id="@+id/img_bpl_badge"
@@ -92,5 +100,6 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:paddingTop="@dimen/client_age_padding"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+            android:paddingRight="5dp"
+            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 </org.ei.drishti.view.customControls.ClientProfileView>

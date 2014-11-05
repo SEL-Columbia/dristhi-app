@@ -1,23 +1,44 @@
 package org.ei.drishti.view.contract;
 
+import org.ei.drishti.Context;
+import org.ei.drishti.R;
 import org.ei.drishti.view.dialog.*;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
 public class SmartRegisterClientsTest {
 
+    @Mock
+    AllEligibleCoupleServiceMode allEligibleCoupleServiceMode;
+
+    @Mock
+    FPAllMethodsServiceMode fpAllMethodsServiceMode;
+
+    @Mock
+    Context context;
+
+    @Before
+    public void setUp() throws Exception {
+        initMocks(this);
+    }
+
     @Test
     public void emptyStringSearchShouldReturnAllTheResults() {
+
         SmartRegisterClients originalClients = getUniformSmartRegisterClients(10);
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new NameSort());
 
@@ -30,7 +51,7 @@ public class SmartRegisterClientsTest {
 
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption("a"),
                 new NameSort());
 
@@ -46,7 +67,7 @@ public class SmartRegisterClientsTest {
 
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new NameSort());
 
@@ -54,11 +75,11 @@ public class SmartRegisterClientsTest {
         expectedClients.addAll(
                 asList(
                         new ECClient("abcd1", "Adhiti", "Rama", "Battiganahalli", 69).withIsHighPriority(true).withIsOutOfArea(true),
-                        new ECClient("abcd2", "Akshara", "Rajesh", "Half bherya", 500).withCaste("SC").withEconomicStatus("BPL").withIsHighPriority(true),
-                        new ECClient("abcd3", "Anitha", "Chandan", "Half bherya", 87).withCaste("SC").withIsOutOfArea(true),
-                        new ECClient("abcd6", "Bhagya", "Ramesh", "Hosa agrahara", 93).withIsHighPriority(true).withCaste("ST"),
-                        new ECClient("abcd4", "Bhavani", "Ravi", "Gowrikoppalu", 140).withEconomicStatus("BPL"),
-                        new ECClient("abcd5", "Chaitra", "Rams", "Somanahalli colony", 36).withCaste("ST")
+                        new ECClient("abcd2", "Akshara", "Rajesh", "Half bherya", 500).withCaste("SC").withEconomicStatus("BPL").withIsHighPriority(true).withFPMethod("condom"),
+                        new ECClient("abcd3", "Anitha", "Chandan", "Half bherya", 87).withCaste("SC").withIsOutOfArea(true).withFPMethod("ocp").withFPMethod("ocp"),
+                        new ECClient("abcd6", "Bhagya", "Ramesh", "Hosa agrahara", 93).withIsHighPriority(true).withCaste("ST").withFPMethod("condom"),
+                        new ECClient("abcd4", "Bhavani", "Ravi", "Gowrikoppalu", 140).withEconomicStatus("BPL").withFPMethod("female_sterilization"),
+                        new ECClient("abcd5", "Chaitra", "Rams", "Somanahalli colony", 36).withCaste("ST").withFPMethod("ocp")
                 ));
         assertEquals(expectedClients, filteredClients);
     }
@@ -69,7 +90,7 @@ public class SmartRegisterClientsTest {
 
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new ECNumberSort());
 
@@ -87,7 +108,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new BPLSort());
         assertEquals(6, filteredClients.size());
@@ -104,16 +125,16 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new HighPrioritySort());
         assertEquals(6, filteredClients.size());
         assertEquals("Adhiti", filteredClients.get(0).name());
         assertEquals("Akshara", filteredClients.get(1).name());
-        assertEquals("Anitha", filteredClients.get(3).name());
         assertEquals("Bhagya", filteredClients.get(2).name());
-        assertEquals("Bhavani", filteredClients.get(4).name());
         assertEquals("Chaitra", filteredClients.get(5).name());
+        assertEquals("Bhavani", filteredClients.get(4).name());
+        assertEquals("Anitha", filteredClients.get(3).name());
     }
 
     @Test
@@ -121,7 +142,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new SCSort());
         assertEquals(6, filteredClients.size());
@@ -138,7 +159,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new AllClientsFilter(),
-                new AllEligibleCoupleServiceMode(),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new STSort());
         assertEquals(6, filteredClients.size());
@@ -155,7 +176,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new VillageFilter("Half bherya"),
-                new AllEligibleCoupleServiceMode(),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new NameSort());
         assertEquals(2, filteredClients.size());
@@ -168,7 +189,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new VillageFilter("Hosa agrahara"),
-                new AllEligibleCoupleServiceMode(),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new NameSort());
         assertEquals(1, filteredClients.size());
@@ -180,7 +201,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new VillageFilter("Battiganahalli"),
-                new AllEligibleCoupleServiceMode(),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new NameSort());
         assertEquals(1, filteredClients.size());
@@ -192,7 +213,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new VillageFilter("Somanahalli colony"),
-                new AllEligibleCoupleServiceMode(),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new NameSort());
         assertEquals(1, filteredClients.size());
@@ -204,7 +225,7 @@ public class SmartRegisterClientsTest {
         SmartRegisterClients originalClients = getSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new OutOfAreaFilter(),
-                new AllEligibleCoupleServiceMode(),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption(""),
                 new NameSort());
         assertEquals(2, filteredClients.size());
@@ -218,13 +239,26 @@ public class SmartRegisterClientsTest {
 
         SmartRegisterClients filteredClients = originalClients.applyFilter(
                 new VillageFilter("Hosa agrahara"),
-                new AllEligibleCoupleServiceMode(),
+                allEligibleCoupleServiceMode,
                 new ECSearchOption("bh"),
                 new NameSort());
 
         assertEquals(1, filteredClients.size());
         assertEquals("Bhagya", filteredClients.get(0).name());
     }
+
+    @Test
+    public void ShouldReturnFilteredListForFP() {
+        when(context.getStringResource(R.string.fp_register_service_mode_all_methods)).thenReturn("All Methods");
+
+        SmartRegisterClients originalClients = getFPSmartRegisterClientsWithProperDetails();
+        SmartRegisterClients filteredClients = originalClients.applyFilterWithFP(fpAllMethodsServiceMode, new NameSort(), new FPMethodFilter("condom"));
+
+        assertEquals(2, filteredClients.size());
+        assertEquals("Akshara", filteredClients.get(0).name());
+        assertEquals("Bhagya", filteredClients.get(1).name());
+    }
+
 
     public SmartRegisterClients getUniformSmartRegisterClients(int clientCount) {
         SmartRegisterClients clients = new SmartRegisterClients();
@@ -236,12 +270,23 @@ public class SmartRegisterClientsTest {
 
     public ECClients getSmartRegisterClientsWithProperDetails() {
         ECClients clients = new ECClients();
-        clients.add(new ECClient("abcd2", "Akshara", "Rajesh", "Half bherya", 500).withCaste("SC").withEconomicStatus("BPL").withIsHighPriority(true));
+        clients.add(new ECClient("abcd2", "Akshara", "Rajesh", "Half bherya", 500).withCaste("SC").withEconomicStatus("BPL").withIsHighPriority(true).withFPMethod("condom"));
         clients.add(new ECClient("abcd1", "Adhiti", "Rama", "Battiganahalli", 69).withIsHighPriority(true).withIsOutOfArea(true));
-        clients.add(new ECClient("abcd5", "Chaitra", "Rams", "Somanahalli colony", 36).withCaste("ST"));
-        clients.add(new ECClient("abcd4", "Bhavani", "Ravi", "Gowrikoppalu", 140).withEconomicStatus("BPL"));
-        clients.add(new ECClient("abcd6", "Bhagya", "Ramesh", "Hosa agrahara", 93).withIsHighPriority(true).withCaste("ST"));
-        clients.add(new ECClient("abcd3", "Anitha", "Chandan", "Half bherya", 87).withCaste("SC").withIsOutOfArea(true));
+        clients.add(new ECClient("abcd5", "Chaitra", "Rams", "Somanahalli colony", 36).withCaste("ST").withFPMethod("ocp"));
+        clients.add(new ECClient("abcd4", "Bhavani", "Ravi", "Gowrikoppalu", 140).withEconomicStatus("BPL").withFPMethod("female_sterilization"));
+        clients.add(new ECClient("abcd6", "Bhagya", "Ramesh", "Hosa agrahara", 93).withIsHighPriority(true).withCaste("ST").withFPMethod("condom"));
+        clients.add(new ECClient("abcd3", "Anitha", "Chandan", "Half bherya", 87).withCaste("SC").withIsOutOfArea(true).withFPMethod("ocp"));
+        return clients;
+    }
+
+    public FPClients getFPSmartRegisterClientsWithProperDetails() {
+        FPClients clients = new FPClients();
+        clients.add(new FPClient("abcd2", "Akshara", "Rajesh", "Half bherya", "500").withCaste("SC").withEconomicStatus("BPL").withIsHighPriority(true).withFPMethod("condom"));
+        clients.add(new FPClient("abcd1", "Adhiti", "Rama", "Battiganahalli", "69").withIsHighPriority(true));
+        clients.add(new FPClient("abcd5", "Chaitra", "Rams", "Somanahalli colony", "36").withCaste("ST").withFPMethod("ocp"));
+        clients.add(new FPClient("abcd4", "Bhavani", "Ravi", "Gowrikoppalu", "140").withEconomicStatus("BPL").withFPMethod("female_sterilization"));
+        clients.add(new FPClient("abcd6", "Bhagya", "Ramesh", "Hosa agrahara", "93").withIsHighPriority(true).withCaste("ST").withFPMethod("condom"));
+        clients.add(new FPClient("abcd3", "Anitha", "Chandan", "Half bherya", "87").withCaste("SC").withFPMethod("ocp"));
         return clients;
     }
 }

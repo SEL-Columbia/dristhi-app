@@ -49,7 +49,9 @@
     <string name="header_edit"></string>
 
     <string name="couple_selection">All Eligible Couples</string>
-    <string name="str_search_hint">Search EC Register</string>
+    <string name="str_ec_search_hint">Search EC Register</string>
+    <string name="str_fp_search_hint">Search FP Register</string>
+    <string name="str_child_search_hint">Search Child Register</string>
     <string name="label_sorted_by">Sorted By: </string>
     <string name="label_village">, Village: </string>
     <string name="ec_register_wife_age">({0})</string>
@@ -65,6 +67,7 @@
     <string name="str_pnc">PNC</string>
     <string name="str_fp">FP</string>
     <string name="str_number_of_strips">No. strips:</string>
+    <string name="str_number_given">No. Given:</string>
     <string name="str_gravida">G</string>
     <string name="str_parity">P</string>
     <string name="str_number_of_living_children">L</string>
@@ -85,6 +88,9 @@
     <string name="str_register_anc_form">Register ANC</string>
     <string name="str_register_fp_form">Register FP</string>
     <string name="str_register_child_form">Register Child</string>
+    <string name="str_fp_change_form">FP Change</string>
+    <string name="str_fp_change_fp_form">Change FP</string>
+    <string name="str_record_ecp_form">Record ECP</string>
     <string name="str_edit_ec_form">Edit EC</string>
     <string name="str_close_ec_form">Close EC</string>
     <string name="report_month_sample_text">26/03 - 25/04</string>
@@ -92,4 +98,117 @@
 
     <string name="str_reporting">Reporting</string>
     <string name="str_videos">Videos</string>
+
+    <string name="child_register_title_in_short">Child:</string>
+    <string name="child_service_mode_overview">Overview</string>
+    <string name="child_service_mode_immunization_0_to_9">Immunization 0-9</string>
+    <string name="child_service_mode_immunization_9_plus">Immunization 9+</string>
+    <string name="header_id_no">ID NO</string>
+    <string name="header_dob">DOB</string>
+    <string name="header_sick_status">SICK STATUS</string>
+    <string name="header_last_service">LAST SERVICE</string>
+    <string name="header_bcg">BCG</string>
+    <string name="header_hep_b_birth">HEP B BIRTH</string>
+    <string name="header_opv">OPV</string>
+    <string name="header_pentavalent">PENTAVALENT</string>
+    <string name="header_measles">MEASLES</string>
+    <string name="header_opv_booster">OPV BOOSTER</string>
+    <string name="header_dpt_booster">DPT BOOSTER</string>
+    <string name="header_vitamin_a">VITAMIN A</string>
+    <string name="thayi_label">Thayi:</string>
+    <string name="mother_ec_label">Mother EC:</string>
+    <string name="sort_by_child_age">Age</string>
+    <string name="sort_by_child_hr">HR</string>
+    <string name="str_child_immunizations">Child Immunizations</string>
+    <string name="str_child_illness">Child Illness</string>
+    <string name="str_child_close">Child Close</string>
+    <string name="service_type_pnc">PNC</string>
+    <string name="service_type_pentavalent_2">Pentavalent 2</string>
+    <string name="service_type_bcg">BCG</string>
+    <string name="service_type_pentavalent_3">Pentavalent 3</string>
+    <string name="service_type_pentavalent_1">Pentavalent 1</string>
+    <string name="service_type_opv_0">OPV 0</string>
+    <string name="service_type_opv_1">OPV 1</string>
+    <string name="service_type_opv_2">OPV 2</string>
+    <string name="service_type_opv_3">OPV 3</string>
+    <string name="service_type_dpt_booster_1">DPT Boost. 1</string>
+    <string name="service_type_dpt_booster_2">DPT Boost. 2</string>
+    <string name="service_type_opv_booster">OPV Boost</string>
+    <string name="service_type_measles">Measles</string>
+    <string name="service_type_measles_booster">Measles Booster</string>
+    <string name="service_type_hepb_0">Hep B</string>
+    <string name="service_type_je">JE</string>
+    <string name="service_type_mmr">MMR</string>
+    <string name="service_type_vitamin_a">Vitamin A</string>
+    <string name="service_type_illness_visit">Illness Visit</string>
+    <string name="service_type_empty"/>
+    <string name="sick_visit">Sick Visit</string>
+    <string name="illness_visit">Illness Visit:</string>
+    <string name="illness_date">Date:</string>
+    <string name="str_bcg">BCG</string>
+    <string name="str_bcg_on">On</string>
+    <string name="hep_b_birth">Hep B</string>
+    <string name="opv">OPV</string>
+    <string name="pentavalent">Pentavalent</string>
+    <string name="measles">Measles</string>
+    <string name="opv_booster">OPV Booster</string>
+    <string name="dpt_booster">DPT Booster</string>
+    <string name="vitamin_a">Vitamin A</string>
+    <string name="service_type_pentavalent_1_short">Pentav 1</string>
+    <string name="service_type_pentavalent_2_short">Pentav 2</string>
+    <string name="service_type_pentavalent_3_short">Pentav 3</string>
+    <string name="service_type_dpt_booster_1_short">DPT B1</string>
+    <string name="service_type_dpt_booster_2_short">DPT B2</string>
+    <string name="pentavalent_short">Pentav</string>
+
+    <string name="fp_register_title_in_short">FP: </string>
+    <string name="header_method">METHOD</string>
+    <string name="header_side_effects">SIDE EFFECTS</string>
+    <string name="header_followup_refill">FOLLOW UP/REFILL</string>
+    <string name="header_fp_prioritization_risks">RISKS</string>
+    <string name="fp_register_service_mode_all_methods">All Methods</string>
+    <string name="fp_register_service_mode_condom">Condom</string>
+    <string name="fp_register_service_mode_dmpa">DMPA/Injectable</string>
+    <string name="fp_register_service_mode_iucd">IUCD</string>
+    <string name="fp_register_service_mode_ocp">OCP</string>
+    <string name="fp_register_service_mode_female_sterilization">Female Sterilization</string>
+    <string name="fp_register_service_mode_male_sterilization">Male Sterilization</string>
+    <string name="fp_register_service_mode_others">Others</string>
+
+    <string name="fp_register_service_mode_ecp">ECP</string>
+    <string name="fp_register_service_mode_traditional">Traditional Methods</string>
+    <string name="fp_register_service_mode_lam">LAM</string>
+    <string name="fp_register_service_mode_centchroman">Centchroman</string>
+    <string name="fp_register_service_mode_none_ps">None - PS</string>
+    <string name="fp_register_service_mode_none_ss">None - SS</string>
+
+    <string name="fp_prioritization_all_ec_service_mode">All EC</string>
+    <string name="fp_prioritization_high_priority_service_mode">High Priority (HP)</string>
+    <string name="fp_prioritization_two_plus_children_service_mode">2+ Children</string>
+    <string name="fp_prioritization_one_child_service_mode">1 Child</string>
+    <string name="fp_register_child_details">Child: </string>
+    <string name="str_due">"due "</string>
+    <string name="fp_methods">FP Methods</string>
+    <string name="fp_prioritization">FP Prioritization</string>
+    <string name="fp_prioritization_add_fp">Add FP</string>
+    <string name="fp_prioritization_fp_videos">FP Videos</string>
+    <string name="str_referred">Referred</string>
+    <string name="str_referral">referral</string>
+    <string name="str_follow_up">follow-up</string>
+    <string name="str_refill">refill</string>
+    <string name="str_update">Update</string>
+    <string name="str_side_effects">Side Effects</string>
+
+    <string name="anc_register_title_in_short">ANC:</string>
+    <string name="str_anc_search_hint">Search ANC Register</string>
+    <string name="anc_service_mode_overview">Overview</string>
+    <string name="header_id">ID</string>
+    <string name="header_anc_status">ANC STATUS</string>
+    <string name="header_risk_factors">RISK FACTORS</string>
+    <string name="header_visits">VISITS</string>
+    <string name="header_tt">TT</string>
+    <string name="header_ifa">IFA</string>
+    <string name="sort_by_edd_label">EDD</string>
+
+
 </resources>

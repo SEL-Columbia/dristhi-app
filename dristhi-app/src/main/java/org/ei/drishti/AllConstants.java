@@ -43,6 +43,7 @@ public class AllConstants {
     public static final String BOOLEAN_TRUE = "yes";
     public static final String BOOLEAN_FALSE = "no";
     public static final String SPACE = " ";
+    public static final String COMMA_WITH_SPACE = ", ";
     public static final String DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH = "../../img/woman-placeholder.png";
     public static final String DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH = "../../img/icons/child-girlinfant@3x.png";
     public static final String DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH = "../../img/icons/child-infant@3x.png";
@@ -51,6 +52,7 @@ public class AllConstants {
     public static final String SHORT_DATE_FORMAT = "dd/MM";
     public static final String FILE_PATH_STARTING_STRING = "file:///";
     public static final String SLASH_STRING = "/";
+    public static final String FP_DIALOG_TAB_SELECTION = "FP_DIALOG_TAB_SELECTION";
 
     public class FormNames {
         public static final String EC_REGISTRATION = "ec_registration";
@@ -81,6 +83,9 @@ public class AllConstants {
         public static final String DELIVERY_PLAN = "delivery_plan";
         public static final String EC_EDIT = "ec_edit";
         public static final String ANC_INVESTIGATIONS = "anc_investigations";
+        public static final String RECORD_ECPS = "record_ecps";
+        public static final String FP_REFERRAL_FOLLOWUP = "fp_referral_followup";
+        public static final String FP_FOLLOWUP = "fp_followup";
     }
 
     public class ECRegistrationFields {

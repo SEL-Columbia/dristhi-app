@@ -1,13 +1,68 @@
 package org.ei.drishti.view.contract;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.AllConstants;
+import org.ei.drishti.Context;
+import org.ei.drishti.R;
+import org.ei.drishti.domain.FPMethod;
+import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.IntegerUtil;
 
-import java.util.List;
+import java.util.*;
 
-public class FPClient {
+import static org.apache.commons.lang3.StringUtils.replace;
+import static org.ei.drishti.AllConstants.COMMA_WITH_SPACE;
+import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
+import static org.ei.drishti.AllConstants.SPACE;
+import static org.ei.drishti.Context.getInstance;
+import static org.ei.drishti.util.DateUtil.formatDate;
+import static org.ei.drishti.util.StringUtil.humanize;
+import static org.ei.drishti.util.StringUtil.replaceAndHumanize;
+
+public class FPClient implements FPSmartRegisterClient {
+
+    public static final String CONDOM_REFILL = "Condom Refill";
+    public static final String DPMA_INJECTABLE_REFILL = "DMPA Injectable Refill";
+    public static final String OCP_REFILL = "OCP Refill";
+    public static final String MALE_STERILIZATION_FOLLOW_UP_1 = "Male sterilization Followup 1";
+    public static final String MALE_STERILIZATION_FOLLOW_UP_2 = "Male sterilization Followup 2";
+    public static final String FEMALE_STERILIZATION_FOLLOW_UP_1 = "Female sterilization Followup 1";
+    public static final String FEMALE_STERILIZATION_FOLLOW_UP_2 = "Female sterilization Followup 2";
+    public static final String FEMALE_STERILIZATION_FOLLOW_UP_3 = "Female sterilization Followup 3";
+    public static final String IUD_FOLLOW_UP_1 = "IUD Followup 1";
+    public static final String IUD_FOLLOW_UP_2 = "IUD Followup 2";
+    public static final String FP_FOLLOW_UP = "FP Followup";
+    public static final String REFERRAL_FOLLOW_UP = "FP Referral Followup";
+
+    private static final String[] refillTypes = {CONDOM_REFILL, DPMA_INJECTABLE_REFILL, OCP_REFILL};
+
+    private static final String[] followUpTypes = {MALE_STERILIZATION_FOLLOW_UP_1,
+            MALE_STERILIZATION_FOLLOW_UP_2,
+            FEMALE_STERILIZATION_FOLLOW_UP_1,
+            FEMALE_STERILIZATION_FOLLOW_UP_2,
+            FEMALE_STERILIZATION_FOLLOW_UP_3,
+            IUD_FOLLOW_UP_1,
+            IUD_FOLLOW_UP_2};
+
+    private static Map<String, String> alertNameToFPMethodMap = new HashMap<String, String>();
+
+    static {
+        alertNameToFPMethodMap.put(CONDOM_REFILL, "condom");
+        alertNameToFPMethodMap.put(DPMA_INJECTABLE_REFILL, "dmpa_injectable");
+        alertNameToFPMethodMap.put(OCP_REFILL, "ocp");
+        alertNameToFPMethodMap.put(MALE_STERILIZATION_FOLLOW_UP_1, "male_sterilization");
+        alertNameToFPMethodMap.put(MALE_STERILIZATION_FOLLOW_UP_2, "male_sterilization");
+        alertNameToFPMethodMap.put(FEMALE_STERILIZATION_FOLLOW_UP_1, "female_sterilization");
+        alertNameToFPMethodMap.put(FEMALE_STERILIZATION_FOLLOW_UP_2, "female_sterilization");
+        alertNameToFPMethodMap.put(FEMALE_STERILIZATION_FOLLOW_UP_3, "female_sterilization");
+        alertNameToFPMethodMap.put(IUD_FOLLOW_UP_1, "iud");
+        alertNameToFPMethodMap.put(IUD_FOLLOW_UP_2, "iud");
+
+    }
+
     private String entityId;
     private String entityIdToSavePhoto;
     private String name;
@@ -43,6 +98,7 @@ public class FPClient {
     private String injectableSideEffect;
     private String otherSideEffect;
     private String highPriorityReason;
+    private RefillFollowUps refillFollowUps;
 
 
     public FPClient(String entityId, String name, String husbandName, String village, String ecNumber) {
@@ -54,8 +110,176 @@ public class FPClient {
         this.ec_number = ecNumber;
     }
 
+
+    public FPClient preprocess() {
+        return setRefillFollowUp();
+    }
+
+    public FPClient setRefillFollowUp() {
+        List<AlertDTO> alerts = alerts();
+        AlertDTO fpReferralFollowUpAlert = getFPReferralFollowUpAlert(alerts);
+        AlertDTO fpFollowUpAlert = getFPFollowUpAlert(alerts);
+        if (fpReferralFollowUpAlert != null) {
+            this.withRefillFollowUps(new RefillFollowUps(REFERRAL_FOLLOW_UP, fpReferralFollowUpAlert, getInstance().getStringResource(R.string.str_referral)));
+        } else if (fpFollowUpAlert != null) {
+            this.withRefillFollowUps(new RefillFollowUps(FP_FOLLOW_UP, fpFollowUpAlert, getInstance().getStringResource(R.string.str_follow_up)));
+        } else {
+            this.withRefillFollowUps(getOtherFPMethod(alerts));
+        }
+        return this;
+    }
+
+    private RefillFollowUps getOtherFPMethod(List<AlertDTO> alerts) {
+        for (AlertDTO alert : alerts) {
+            if (isOtherFPMethodAlert(alert) && isAlertBelongsTo(alert, followUpTypes)) {
+                return new RefillFollowUps(alert.name(), alert, getInstance().getStringResource(R.string.str_follow_up));
+            } else if (isOtherFPMethodAlert(alert) && isAlertBelongsTo(alert, refillTypes)) {
+                return new RefillFollowUps(alert.name(), alert, getInstance().getStringResource(R.string.str_refill));
+            }
+        }
+        return null;
+    }
+
+
+    private AlertDTO getFPFollowUpAlert(List<AlertDTO> alerts) {
+        for (AlertDTO alert : alerts) {
+            if (isFPFollowUpAlert(alert)) {
+                return alert;
+            }
+        }
+        return null;
+    }
+
+    private AlertDTO getFPReferralFollowUpAlert(List<AlertDTO> alerts) {
+        for (AlertDTO alert : alerts) {
+            if (isFPReferralFollowUpAlert(alert)) {
+                return alert;
+            }
+        }
+        return null;
+    }
+
+    private boolean isAlertBelongsTo(AlertDTO alert, String[] types) {
+        return Arrays.asList(types).contains(alert.name());
+    }
+
+    private boolean isOtherFPMethodAlert(AlertDTO alert) {
+        return this.fpMethod().name().equalsIgnoreCase(alertNameToFPMethodMap.get(alert.name()));
+    }
+
+    private boolean isFPFollowUpAlert(AlertDTO alert) {
+        return alert.name().equalsIgnoreCase(FP_FOLLOW_UP);
+    }
+
+    private boolean isFPReferralFollowUpAlert(AlertDTO alert) {
+        return alert.name().equalsIgnoreCase(REFERRAL_FOLLOW_UP);
+    }
+
+    @Override
+    public RefillFollowUps refillFollowUps() {
+        return refillFollowUps;
+    }
+
+    @Override
+    public String highPriorityReason() {
+        return humanize(highPriorityReason);
+    }
+
+    public FPClient withRefillFollowUps(RefillFollowUps refillFollowUps) {
+        this.refillFollowUps = refillFollowUps;
+        return this;
+    }
+
+
+    @Override
+    public String entityId() {
+        return entityId;
+    }
+
+    @Override
+    public String name() {
+        return humanize(name);
+    }
+
+    @Override
+    public String displayName() {
+        return name();
+    }
+
+    @Override
+    public String village() {
+        return humanize(village);
+    }
+
     public String wifeName() {
         return name;
+    }
+
+    @Override
+    public String husbandName() {
+        return humanize(husbandName);
+    }
+
+    @Override
+    public int age() {
+        return IntegerUtil.tryParse(age, 0);
+    }
+
+    @Override
+    public int ageInDays() {
+        return IntegerUtil.tryParse(age, 0) * 365;
+    }
+
+    @Override
+    public String ageInString() {
+        return "(" + age + ")";
+    }
+
+    @Override
+    public boolean isSC() {
+        return caste != null && caste.equalsIgnoreCase(SC_VALUE);
+    }
+
+    @Override
+    public boolean isST() {
+        return caste != null && caste.equalsIgnoreCase(ST_VALUE);
+    }
+
+    @Override
+    public boolean isHighRisk() {
+        return false;
+    }
+
+    @Override
+    public boolean isHighPriority() {
+        return isHighPriority;
+    }
+
+    @Override
+    public boolean isBPL() {
+        return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
+    }
+
+    @Override
+    public String profilePhotoPath() {
+        return photo_path;
+    }
+
+    @Override
+    public String locationStatus() {
+        return null;
+    }
+
+    @Override
+    public boolean satisfiesFilter(String filter) {
+        return name.toLowerCase(Locale.getDefault()).startsWith(filter.toLowerCase())
+                || String.valueOf(ec_number).startsWith(filter);
+    }
+
+
+    @Override
+    public int compareName(SmartRegisterClient client) {
+        return this.name().compareToIgnoreCase(client.name());
     }
 
     public FPClient withAge(String age) {
@@ -233,6 +457,85 @@ public class FPClient {
         return value > 8 ? "8+" : value.toString();
     }
 
+    @Override
+    public String familyPlanningMethodChangeDate() {
+        return formatDate(family_planning_method_change_date, "dd/MM/YYYY");
+    }
+
+    @Override
+    public String numberOfOCPDelivered() {
+        return numberOfOCPDelivered;
+    }
+
+    @Override
+    public String numberOfCondomsSupplied() {
+        return numberOfCondomsSupplied;
+    }
+
+    @Override
+    public String numberOfCentchromanPillsDelivered() {
+        return numberOfCentchromanPillsDelivered;
+    }
+
+    @Override
+    public String iudPerson() {
+        return iudPerson;
+    }
+
+    @Override
+    public String iudPlace() {
+        return iudPlace;
+    }
+
+    @Override
+    public Integer ecNumber() {
+        return IntegerUtil.tryParse(ec_number, 0);
+    }
+
+    @Override
+    public FPMethod fpMethod() {
+        return FPMethod.tryParse(this.fp_method, FPMethod.NONE);
+    }
+
+    @Override
+    public String youngestChildAge() {
+        return StringUtils.isBlank(youngest_child_age) ? null : (youngest_child_age + "m");
+    }
+
+    @Override
+    public String complicationDate() {
+        return formatDate(complication_date, "dd/MM/YYYY");
+    }
+
+    @Override
+    public String condomSideEffect() {
+        return replaceAndHumanize(condomSideEffect, SPACE, COMMA_WITH_SPACE);
+    }
+
+    @Override
+    public String iudSidEffect() {
+        return replaceAndHumanize(iudSidEffect, SPACE, COMMA_WITH_SPACE);
+    }
+
+    @Override
+    public String ocpSideEffect() {
+        return replaceAndHumanize(ocpSideEffect, SPACE, COMMA_WITH_SPACE);
+    }
+
+    @Override
+    public String sterilizationSideEffect() {
+        return replaceAndHumanize(sterilizationSideEffect, SPACE, COMMA_WITH_SPACE);
+    }
+
+    @Override
+    public String injectableSideEffect() {
+        return replaceAndHumanize(injectableSideEffect, SPACE, COMMA_WITH_SPACE);
+    }
+
+    @Override
+    public String otherSideEffect() {
+        return replaceAndHumanize(otherSideEffect, SPACE, COMMA_WITH_SPACE);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -248,4 +551,11 @@ public class FPClient {
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
+
+    @Override
+    public List<AlertDTO> alerts() {
+        return alerts;
+    }
+
+
 }

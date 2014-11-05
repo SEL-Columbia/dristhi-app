@@ -118,8 +118,8 @@ public abstract class SecuredActivity extends Activity {
         if (this.metaData == null || this.metaData.equals("undefined")) {
             return;
         }
-        Map<String, String> metaDataMap = new Gson().fromJson(this.metaData, new TypeToken<Map<String, String>>() {
-        }.getType());
+        Map<String, String> metaDataMap = new Gson().fromJson(
+                this.metaData, new TypeToken<Map<String, String>>() {}.getType());
         if (metaDataMap.containsKey(FIELD_OVERRIDES_PARAM)) {
             intent.putExtra(FIELD_OVERRIDES_PARAM, metaDataMap.get(FIELD_OVERRIDES_PARAM));
         }

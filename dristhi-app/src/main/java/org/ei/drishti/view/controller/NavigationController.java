@@ -28,11 +28,11 @@ public class NavigationController {
     }
 
     public void startFPSmartRegistry() {
-        activity.startActivity(new Intent(activity, FPSmartRegisterActivity.class));
+        activity.startActivity(new Intent(activity, NativeFPSmartRegisterActivity.class));
     }
 
     public void startANCSmartRegistry() {
-        activity.startActivity(new Intent(activity, ANCSmartRegisterActivity.class));
+        activity.startActivity(new Intent(activity, NativeANCSmartRegisterActivity.class));
     }
 
     public void startPNCSmartRegistry() {
@@ -40,7 +40,7 @@ public class NavigationController {
     }
 
     public void startChildSmartRegistry() {
-        activity.startActivity(new Intent(activity, ChildSmartRegisterActivity.class));
+        activity.startActivity(new Intent(activity, NativeChildSmartRegisterActivity.class));
     }
 
     public String get() {

@@ -35,7 +35,7 @@ public class NativeHomeActivityTest {
 
     @Test
     public void shouldLaunchAncRegisterOnPressingAncRegisterButton() {
-        verifyLaunchOfActivityOnPressingButton(R.id.btn_anc_register, ANCSmartRegisterActivity.class);
+        verifyLaunchOfActivityOnPressingButton(R.id.btn_anc_register, NativeANCSmartRegisterActivity.class);
     }
 
     @Test
@@ -45,12 +45,12 @@ public class NativeHomeActivityTest {
 
     @Test
     public void shouldLaunchFpRegisterOnPressingFpRegisterButton() {
-        verifyLaunchOfActivityOnPressingButton(R.id.btn_fp_register, FPSmartRegisterActivity.class);
+        verifyLaunchOfActivityOnPressingButton(R.id.btn_fp_register, NativeFPSmartRegisterActivity.class);
     }
 
     @Test
     public void shouldLaunchChildRegisterOnPressingChildRegisterButton() {
-        verifyLaunchOfActivityOnPressingButton(R.id.btn_child_register, ChildSmartRegisterActivity.class);
+        verifyLaunchOfActivityOnPressingButton(R.id.btn_child_register, NativeChildSmartRegisterActivity.class);
     }
 
     @Test

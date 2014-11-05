@@ -5,7 +5,9 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.FPMethod;
+import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.IntegerUtil;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
@@ -16,9 +18,10 @@ import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
 import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.util.StringUtil.humanize;
 
-public class ECClient implements SmartRegisterClient {
+public class ECClient implements ECSmartRegisterClient {
     public static final String OUT_OF_AREA = "out_of_area";
     public static final String IN_AREA = "in_area";
+
     private String entityId;
     private String entityIdToSavePhoto;
     private String name;
@@ -77,8 +80,28 @@ public class ECClient implements SmartRegisterClient {
     }
 
     @Override
+    public String ageInString() {
+        return "(" + age() + ")";
+    }
+
+    @Override
     public int age() {
         return StringUtils.isBlank(dateOfBirth) ? 0 : Years.yearsBetween(LocalDate.parse(dateOfBirth), LocalDate.now()).getYears();
+    }
+
+    @Override
+    public int ageInDays() {
+        return StringUtils.isBlank(dateOfBirth) ? 0 : Days.daysBetween(LocalDate.parse(dateOfBirth), DateUtil.today()).getDays();
+    }
+
+    @Override
+    public String displayName() {
+        return name();
+    }
+
+    @Override
+    public int compareName(SmartRegisterClient client) {
+        return this.name().compareToIgnoreCase(client.name());
     }
 
     public Integer ecNumber() {
@@ -100,6 +123,11 @@ public class ECClient implements SmartRegisterClient {
     }
 
     @Override
+    public boolean isHighRisk() {
+        return false;
+    }
+
+    @Override
     public boolean isHighPriority() {
         return isHighPriority;
     }
@@ -114,17 +142,14 @@ public class ECClient implements SmartRegisterClient {
         return photo_path;
     }
 
-    @Override
     public FPMethod fpMethod() {
         return FPMethod.tryParse(this.fpMethod, FPMethod.NONE);
     }
 
-    @Override
     public List<ECChildClient> children() {
         return children;
     }
 
-    @Override
     public Map<String, String> status() {
         return status;
     }
@@ -133,62 +158,51 @@ public class ECClient implements SmartRegisterClient {
         return entityId;
     }
 
-    @Override
     public String numberOfPregnancies() {
         Integer value = IntegerUtil.tryParse(numPregnancies, 0);
         return value > 8 ? "8+" : value.toString();
     }
 
-    @Override
     public String parity() {
         Integer value = IntegerUtil.tryParse(parity, 0);
         return value > 8 ? "8+" : value.toString();
     }
 
-    @Override
     public String numberOfLivingChildren() {
         Integer value = IntegerUtil.tryParse(numLivingChildren, 0);
         return value > 8 ? "8+" : value.toString();
     }
 
-    @Override
     public String numberOfStillbirths() {
         Integer value = IntegerUtil.tryParse(numStillbirths, 0);
         return value > 8 ? "8+" : value.toString();
     }
 
-    @Override
     public String numberOfAbortions() {
         Integer value = IntegerUtil.tryParse(numAbortions, 0);
         return value > 8 ? "8+" : value.toString();
     }
 
-    @Override
     public String familyPlanningMethodChangeDate() {
         return formatDate(familyPlanningMethodChangeDate);
     }
 
-    @Override
     public String numberOfOCPDelivered() {
         return numberOfOCPDelivered;
     }
 
-    @Override
     public String numberOfCondomsSupplied() {
         return numberOfCondomsSupplied;
     }
 
-    @Override
     public String numberOfCentchromanPillsDelivered() {
         return numberOfCentchromanPillsDelivered;
     }
 
-    @Override
     public String iudPerson() {
         return upperCase(iudPerson);
     }
 
-    @Override
     public String iudPlace() {
         return upperCase(iudPlace);
     }

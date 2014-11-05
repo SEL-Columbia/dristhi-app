@@ -4,12 +4,16 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.FPMethod;
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.drishti.view.contract.ECSmartRegisterClient;
+import org.ei.drishti.view.contract.FPSmartRegisterClient;
+
+import java.text.DateFormat;
 
 public class ClientFpMethodView extends LinearLayout {
     private TextView fpMethodView;
@@ -42,7 +46,53 @@ public class ClientFpMethodView extends LinearLayout {
         iudPersonView = (TextView) findViewById(R.id.txt_iud_person);
     }
 
-    public void bindData(SmartRegisterClient client, int txtColorBlack) {
+    public void setLayoutParams() {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                (int) getResources().getDimension(R.dimen.list_fp_view_width),
+                ViewGroup.LayoutParams.FILL_PARENT,
+                getResources().getInteger(R.integer.fp_list_method_view_weight));
+
+        this.setLayoutParams(params);
+    }
+
+    public void bindData(ECSmartRegisterClient client, int txtColorBlack) {
+        FPMethod fpMethod = client.fpMethod();
+
+        refreshAllFPMethodDetailViews(txtColorBlack);
+
+        fpMethodView.setText(fpMethod.displayName());
+        fpMethodDateView.setVisibility(View.VISIBLE);
+        fpMethodDateView.setText(client.familyPlanningMethodChangeDate());
+
+        if (fpMethod == FPMethod.NONE) {
+            fpMethodView.setTextColor(Color.RED);
+            fpMethodDateView.setVisibility(View.GONE);
+        } else if (fpMethod == FPMethod.OCP) {
+            fpMethodQuantityLabelView.setVisibility(View.VISIBLE);
+            fpMethodQuantityView.setVisibility(View.VISIBLE);
+            fpMethodQuantityView.setText(client.numberOfOCPDelivered());
+        } else if (fpMethod == FPMethod.CONDOM) {
+            fpMethodQuantityLabelView.setVisibility(View.VISIBLE);
+            fpMethodQuantityView.setVisibility(View.VISIBLE);
+            fpMethodQuantityView.setText(client.numberOfCondomsSupplied());
+        } else if (fpMethod == FPMethod.CENTCHROMAN) {
+            fpMethodQuantityLabelView.setVisibility(View.VISIBLE);
+            fpMethodQuantityView.setVisibility(View.VISIBLE);
+            fpMethodQuantityView.setText(client.numberOfCentchromanPillsDelivered());
+        } else if (fpMethod == FPMethod.IUD) {
+            if (StringUtils.isNotBlank(client.iudPerson())) {
+                iudPersonView.setVisibility(View.VISIBLE);
+                iudPersonView.setText(client.iudPerson());
+            }
+            if (StringUtils.isNotBlank(client.iudPlace())) {
+                iudPlaceView.setVisibility(View.VISIBLE);
+                iudPlaceView.setText(client.iudPlace());
+            }
+        }
+    }
+
+    //#TODO: REMOVE THIS DUPLICATE METHOD
+    public void bindData(FPSmartRegisterClient client, int txtColorBlack) {
         FPMethod fpMethod = client.fpMethod();
 
         refreshAllFPMethodDetailViews(txtColorBlack);

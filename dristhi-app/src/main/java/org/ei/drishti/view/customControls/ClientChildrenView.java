@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.ei.drishti.R;
 import org.ei.drishti.view.contract.ECChildClient;
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.drishti.view.contract.ECSmartRegisterClient;
 
 import java.util.List;
 
@@ -36,7 +36,7 @@ public class ClientChildrenView extends LinearLayout {
         ageView2 = (TextView) findViewById(R.id.txt_children_age_right);
     }
 
-    public void bindData(SmartRegisterClient client, String maleChildAgeFormatString, String femaleChildAgeFormatString) {
+    public void bindData(ECSmartRegisterClient client, String maleChildAgeFormatString, String femaleChildAgeFormatString) {
         List<ECChildClient> children = client.children();
         if (children.size() == 0) {
             ageView1.setVisibility(GONE);

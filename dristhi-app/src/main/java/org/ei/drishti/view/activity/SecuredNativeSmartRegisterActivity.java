@@ -3,6 +3,7 @@ package org.ei.drishti.view.activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.database.DataSetObserver;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -87,9 +88,10 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         public abstract DialogOption[] serviceModeOptions();
 
         public abstract DialogOption[] sortingOptions();
+
+        public abstract String searchHint();
     }
 
-    private ClientsHeaderProvider headerProvider;
     private DefaultOptionsProvider defaultOptionProvider;
     private NavBarOptionsProvider navBarOptionsProvider;
 
@@ -103,7 +105,6 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
         defaultOptionProvider = getDefaultOptionsProvider();
         navBarOptionsProvider = getNavBarOptionsProvider();
-        headerProvider = getClientsHeaderProvider();
 
         setupViews();
     }
@@ -136,9 +137,9 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }.executeOnExecutor(THREAD_POOL_EXECUTOR);
     }
 
-    private void setupViews() {
+    protected void setupViews() {
         setupNavBarViews();
-        populateClientListHeaderView();
+        populateClientListHeaderView(defaultOptionProvider.serviceMode().getHeaderProvider());
 
         clientsProgressView = (ProgressBar) findViewById(R.id.client_list_progress);
         clientsView = (ListView) findViewById(R.id.list);
@@ -173,6 +174,10 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         setupSearchView();
     }
 
+    protected void setServiceModeViewDrawableRight(Drawable drawable) {
+        serviceModeView.setCompoundDrawables(null ,null, drawable, null);
+    }
+
     private void setupTitleView() {
         ViewGroup titleLayout = (ViewGroup) findViewById(R.id.title_layout);
         titleLayout.setOnClickListener(navBarActionsHandler);
@@ -185,6 +190,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     private void setupSearchView() {
         searchView = (EditText) findViewById(R.id.edt_search);
+        searchView.setHint(navBarOptionsProvider.searchHint());
         searchView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
@@ -227,7 +233,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         titleLabelView.setText(defaultOptionProvider.nameInShortFormForTitle());
     }
 
-    private void populateClientListHeaderView() {
+    private void populateClientListHeaderView(ClientsHeaderProvider headerProvider) {
         LinearLayout clientsHeaderLayout = (LinearLayout) findViewById(R.id.clients_header_layout);
         clientsHeaderLayout.removeAllViewsInLayout();
         int columnCount = headerProvider.count();
@@ -267,7 +273,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     protected SmartRegisterPaginatedAdapter adapter() {
-        return new SmartRegisterPaginatedAdapter(getClientsProvider());
+        return new SmartRegisterPaginatedAdapter(clientsProvider());
     }
 
     protected void onServiceModeSelection(ServiceModeOption serviceModeOption) {
@@ -276,6 +282,8 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         clientsAdapter
                 .refreshList(currentVillageFilter, currentServiceModeOption,
                         currentSearchFilter, currentSortOption);
+
+        populateClientListHeaderView(serviceModeOption.getHeaderProvider());
     }
 
     protected void onSortSelection(SortOption sortBy) {
@@ -323,13 +331,11 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                 .show(ft, DIALOG_TAG);
     }
 
-    protected abstract ClientsHeaderProvider getClientsHeaderProvider();
-
     protected abstract DefaultOptionsProvider getDefaultOptionsProvider();
 
     protected abstract NavBarOptionsProvider getNavBarOptionsProvider();
 
-    protected abstract SmartRegisterClientsProvider getClientsProvider();
+    protected abstract SmartRegisterClientsProvider clientsProvider();
 
     protected abstract void onInitialization();
 
@@ -359,7 +365,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }
     }
 
-    private class ServiceModeDialogOptionModel implements DialogOptionModel {
+    protected class ServiceModeDialogOptionModel implements DialogOptionModel {
         @Override
         public DialogOption[] getDialogOptions() {
             return navBarOptionsProvider.serviceModeOptions();
