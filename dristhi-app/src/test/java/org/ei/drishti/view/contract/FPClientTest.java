@@ -1,31 +1,49 @@
 package org.ei.drishti.view.contract;
 
+import org.ei.drishti.Context;
+import org.ei.drishti.R;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 
 import java.util.Arrays;
 
 import static junit.framework.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(RobolectricTestRunner.class)
 public class FPClientTest {
 
-    FPClient fpClient;
+    @Mock
+    private Context context;
+
+    private FPClient fpClient;
+    private Context currentContext;
 
     @Before
     public void setUp() throws Exception {
+        initMocks(this);
+        currentContext = Context.getInstance();
+        Context.setInstance(context);
         fpClient = new FPClient("entity id 1", "woman name", "husband name", "village name", "ec no 1");
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        Context.setInstance(currentContext);
     }
 
     @Test
     public void shouldReturnTheReferralFollowUpAlert() throws Exception {
-
         fpClient.withAlerts(Arrays.asList(new AlertDTO("FP Referral Followup", "normal", "2013-02-02")
                 , new AlertDTO("OCP Refill", "urgent", "2013-02-02")
                 , new AlertDTO("Female sterilization Followup 1", "urgent", "2013-02-02")
         )).withFPMethod("female_sterilization");
+        when(context.getStringResource(R.string.str_referral)).thenReturn("referral");
 
         fpClient.setRefillFollowUp();
 

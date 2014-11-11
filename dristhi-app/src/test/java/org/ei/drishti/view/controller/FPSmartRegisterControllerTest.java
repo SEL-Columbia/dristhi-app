@@ -2,6 +2,8 @@ package org.ei.drishti.view.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.ei.drishti.Context;
+import org.ei.drishti.R;
 import org.ei.drishti.domain.Alert;
 import org.ei.drishti.domain.EligibleCouple;
 import org.ei.drishti.repository.AllBeneficiaries;
@@ -13,6 +15,7 @@ import org.ei.drishti.view.contract.AlertDTO;
 import org.ei.drishti.view.contract.FPClient;
 import org.ei.drishti.view.contract.FPClients;
 import org.ei.drishti.view.contract.RefillFollowUps;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,15 +57,25 @@ public class FPSmartRegisterControllerTest {
     private AllBeneficiaries allBeneficiaries;
     @Mock
     private AlertService alertService;
+    @Mock
+    private Context context;
 
     private FPSmartRegisterController controller;
     private Map<String, String> emptyDetails;
+    private Context currentContext;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
+        currentContext = Context.getInstance();
+        Context.setInstance(context);
         emptyDetails = Collections.emptyMap();
         controller = new FPSmartRegisterController(allEligibleCouples, allBeneficiaries, alertService, new Cache<String>(), new Cache<FPClients>());
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        Context.setInstance(currentContext);
     }
 
     @Test
@@ -422,6 +435,7 @@ public class FPSmartRegisterControllerTest {
         Alert condomRefillAlert = new Alert("entity id 1", "Condom Refill", "Condom Refill", urgent, "2013-01-01", "2013-02-01");
         when(allEligibleCouples.all()).thenReturn(asList(ec));
         when(alertService.findByEntityIdAndAlertNames("entity id 1", EC_ALERTS)).thenReturn(asList(condomRefillAlert));
+        when(context.getStringResource(R.string.str_refill)).thenReturn("refill");
 
         FPClients clients = controller.getClients();
 
