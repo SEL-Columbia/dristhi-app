@@ -161,8 +161,9 @@ angular.module("smartRegistry.controllers")
             return numTablets;
         };
 
-        $scope.openANCFormModal = function (clientEntityId) {
-            $scope.currentClientEntityId = clientEntityId;
+        $scope.openANCFormModal = function (client) {
+            $scope.currentClientEntityId = client.entityId;
+            $scope.currentClient = client;
             $scope.isANCFormModalOpen = true;
         };
 

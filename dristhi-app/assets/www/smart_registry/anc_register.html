@@ -30,12 +30,13 @@
         <div class="modal-body modal-row">
             <div class="modal-body modal-row">
                 <ul class="nav nav-tabs nav-stacked">
-                    <li><a ng-click="openForm('anc_visit', currentClientEntityId);closeANCFormModal();">ANC Visit</a>
+                    <li>
+                        <a ng-click="openForm('anc_visit', currentClientEntityId, {'entityId': currentClientEntityId, 'alertName': currentClient.visits['anc'].next.name});closeANCFormModal();">ANC Visit</a>
                     </li>
                     <li><a ng-click="openForm('hb_test', currentClientEntityId);closeANCFormModal();">Hb Test</a>
                     </li>
-                    <li><a ng-click="openForm('ifa', currentClientEntityId);closeANCFormModal();">IFA</a></li>
-                    <li><a ng-click="openForm('tt', currentClientEntityId);closeANCFormModal();">TT</a></li>
+                    <li><a ng-click="openForm('ifa', currentClientEntityId, {'entityId': currentClientEntityId, 'alertName': currentClient.visits['ifa'].next.name});closeANCFormModal();">IFA</a></li>
+                    <li><a ng-click="openForm('tt', currentClientEntityId, {'entityId': currentClientEntityId, 'alertName': currentClient.visits['tt'].next.name});closeANCFormModal();">TT</a></li>
                     <li><a ng-click="openForm('delivery_plan', currentClientEntityId);closeANCFormModal();">Delivery
                         Plan</a></li>
                     <li><a ng-click="openForm('delivery_outcome', currentClientEntityId);closeANCFormModal();">PNC
