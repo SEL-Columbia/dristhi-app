@@ -3,6 +3,7 @@ package org.ei.drishti.view.contract;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.view.dialog.*;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,9 +28,22 @@ public class SmartRegisterClientsTest {
     @Mock
     Context context;
 
+    @Mock
+    private android.content.Context applicationContext;
+
+    private Context currentContext;
+
     @Before
     public void setUp() throws Exception {
         initMocks(this);
+        when(context.applicationContext()).thenReturn(applicationContext);
+        currentContext = Context.getInstance();
+        Context.setInstance(context);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        Context.setInstance(currentContext);
     }
 
     @Test
@@ -249,7 +263,7 @@ public class SmartRegisterClientsTest {
 
     @Test
     public void ShouldReturnFilteredListForFP() {
-        when(context.getStringResource(R.string.fp_register_service_mode_all_methods)).thenReturn("All Methods");
+        when(applicationContext.getString(R.string.fp_register_service_mode_condom)).thenReturn("Condom");
 
         SmartRegisterClients originalClients = getFPSmartRegisterClientsWithProperDetails();
         SmartRegisterClients filteredClients = originalClients.applyFilterWithFP(fpAllMethodsServiceMode, new NameSort(), new FPMethodFilter("condom"));
