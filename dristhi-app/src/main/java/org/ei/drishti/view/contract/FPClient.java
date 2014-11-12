@@ -433,28 +433,23 @@ public class FPClient implements FPSmartRegisterClient {
     }
 
     public String numberOfPregnancies() {
-        Integer value = IntegerUtil.tryParse(num_pregnancies, 0);
-        return value > 8 ? "8+" : value.toString();
+        return  num_pregnancies;
     }
 
     public String parity() {
-        Integer value = IntegerUtil.tryParse(parity, 0);
-        return value > 8 ? "8+" : value.toString();
+        return parity;
     }
 
     public String numberOfLivingChildren() {
-        Integer value = IntegerUtil.tryParse(num_living_children, 0);
-        return value > 8 ? "8+" : value.toString();
+        return num_living_children;
     }
 
     public String numberOfStillbirths() {
-        Integer value = IntegerUtil.tryParse(num_stillbirths, 0);
-        return value > 8 ? "8+" : value.toString();
+        return num_stillbirths;
     }
 
     public String numberOfAbortions() {
-        Integer value = IntegerUtil.tryParse(num_abortions, 0);
-        return value > 8 ? "8+" : value.toString();
+        return num_abortions;
     }
 
     @Override

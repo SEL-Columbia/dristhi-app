@@ -159,28 +159,23 @@ public class ECClient implements ECSmartRegisterClient {
     }
 
     public String numberOfPregnancies() {
-        Integer value = IntegerUtil.tryParse(numPregnancies, 0);
-        return value > 8 ? "8+" : value.toString();
+        return numPregnancies;
     }
 
     public String parity() {
-        Integer value = IntegerUtil.tryParse(parity, 0);
-        return value > 8 ? "8+" : value.toString();
+        return parity;
     }
 
     public String numberOfLivingChildren() {
-        Integer value = IntegerUtil.tryParse(numLivingChildren, 0);
-        return value > 8 ? "8+" : value.toString();
+        return numLivingChildren;
     }
 
     public String numberOfStillbirths() {
-        Integer value = IntegerUtil.tryParse(numStillbirths, 0);
-        return value > 8 ? "8+" : value.toString();
+        return numStillbirths;
     }
 
     public String numberOfAbortions() {
-        Integer value = IntegerUtil.tryParse(numAbortions, 0);
-        return value > 8 ? "8+" : value.toString();
+        return numAbortions;
     }
 
     public String familyPlanningMethodChangeDate() {
