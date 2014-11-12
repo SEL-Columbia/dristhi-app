@@ -15,6 +15,8 @@ import org.ei.drishti.view.contract.FPSmartRegisterClient;
 
 import java.text.DateFormat;
 
+import static org.ei.drishti.Context.getInstance;
+
 public class ClientFpMethodView extends LinearLayout {
     private TextView fpMethodView;
     private TextView fpMethodDateView;
@@ -72,6 +74,7 @@ public class ClientFpMethodView extends LinearLayout {
             fpMethodQuantityView.setVisibility(View.VISIBLE);
             fpMethodQuantityView.setText(client.numberOfOCPDelivered());
         } else if (fpMethod == FPMethod.CONDOM) {
+            fpMethodQuantityLabelView.setText(getInstance().getStringResource(R.string.str_number_given));
             fpMethodQuantityLabelView.setVisibility(View.VISIBLE);
             fpMethodQuantityView.setVisibility(View.VISIBLE);
             fpMethodQuantityView.setText(client.numberOfCondomsSupplied());
@@ -110,6 +113,7 @@ public class ClientFpMethodView extends LinearLayout {
             fpMethodQuantityView.setText(client.numberOfOCPDelivered());
         } else if (fpMethod == FPMethod.CONDOM) {
             fpMethodQuantityLabelView.setVisibility(View.VISIBLE);
+            fpMethodQuantityLabelView.setText(getInstance().getStringResource(R.string.str_number_given));
             fpMethodQuantityView.setVisibility(View.VISIBLE);
             fpMethodQuantityView.setText(client.numberOfCondomsSupplied());
         } else if (fpMethod == FPMethod.CENTCHROMAN) {

@@ -479,7 +479,7 @@ public class FPClient implements FPSmartRegisterClient {
 
     @Override
     public String iudPlace() {
-        return iudPlace;
+        return humanize(iudPlace);
     }
 
     @Override
