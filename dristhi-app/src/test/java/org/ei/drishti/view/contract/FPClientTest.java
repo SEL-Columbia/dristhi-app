@@ -12,6 +12,7 @@ import org.robolectric.RobolectricTestRunner;
 import java.util.Arrays;
 
 import static junit.framework.Assert.assertEquals;
+import static org.ei.drishti.Context.getInstance;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -63,6 +64,7 @@ public class FPClientTest {
                 , new AlertDTO("FP Followup", "normal", "2013-02-02")
                 , new AlertDTO("Female sterilization Followup 1", "urgent", "2013-02-02")))
                 .withFPMethod("female_sterilization");
+        when(getInstance().getStringResource(R.string.str_follow_up)).thenReturn("follow-up");
 
         fpClient.setRefillFollowUp();
 
@@ -82,6 +84,8 @@ public class FPClientTest {
                 , new AlertDTO("Female sterilization Followup 1", "urgent", "2013-02-02")))
                 .withFPMethod("female_sterilization");
 
+        when(getInstance().getStringResource(R.string.str_follow_up)).thenReturn("follow-up");
+
         fpClient.setRefillFollowUp();
 
         FPClient expectedFPClient = new FPClient("entity id 1", "woman name", "husband name", "village name", "ec no 1");
@@ -98,6 +102,7 @@ public class FPClientTest {
         fpClient.withAlerts(Arrays.asList(new AlertDTO("Male Sterilization Followup", "urgent", "2013-02-02")
                 , new AlertDTO("Female sterilization Followup 1", "urgent", "2013-02-02")))
                 .withFPMethod("female_sterilization");
+        when(getInstance().getStringResource(R.string.str_follow_up)).thenReturn("follow-up");
 
         fpClient.setRefillFollowUp();
 
@@ -116,6 +121,8 @@ public class FPClientTest {
                 , new AlertDTO("Condom Refill", "urgent", "2013-02-02")))
                 .withFPMethod("condom");
 
+        when(getInstance().getStringResource(R.string.str_refill)).thenReturn("refill");
+
         fpClient.setRefillFollowUp();
 
         FPClient expectedFPClient = new FPClient("entity id 1", "woman name", "husband name", "village name", "ec no 1");
@@ -132,6 +139,8 @@ public class FPClientTest {
         fpClient.withAlerts(Arrays.asList(new AlertDTO("Female sterilization Followup 1", "urgent", "2013-02-02")
                 , new AlertDTO("Condom Refill", "urgent", "2013-02-02")))
                 .withFPMethod("condom");
+
+        when(getInstance().getStringResource(R.string.str_refill)).thenReturn("refill");
 
         fpClient.setRefillFollowUp();
 
