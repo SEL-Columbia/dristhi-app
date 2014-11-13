@@ -91,15 +91,15 @@ public class FPSmartRegisterClientsProvider implements SmartRegisterClientsProvi
 
     @Override
     public SmartRegisterClients getClients() {
-        FPClients clients = controller.getClients(currentServiceModeOption.name());
-
-        return clients;
+        NameSort nameSortOption = new NameSort();
+        FilterOption filterOption = getFPFilterOptionBasedOnDialogTab(currentServiceModeOption);
+        return controller.getClients().applyFilterWithFP(currentServiceModeOption, nameSortOption,filterOption);
     }
 
     @Override
     public SmartRegisterClients updateClients(FilterOption villageFilter, ServiceModeOption serviceModeOption,
                                               FilterOption searchFilter, SortOption sortOption) {
-        return getClients().applyFilterWithFP(serviceModeOption, sortOption, villageFilter, searchFilter, getFPFilterOptionBasedOnDialogTab(serviceModeOption));
+        return controller.getClients().applyFilterWithFP(serviceModeOption, sortOption, villageFilter, searchFilter, getFPFilterOptionBasedOnDialogTab(serviceModeOption));
     }
 
     private FilterOption getFPFilterOptionBasedOnDialogTab(ServiceModeOption serviceModeOption) {
