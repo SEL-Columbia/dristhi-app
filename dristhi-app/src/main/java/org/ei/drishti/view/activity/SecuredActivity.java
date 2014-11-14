@@ -115,27 +115,36 @@ public abstract class SecuredActivity extends Activity {
     }
 
     private void addFieldOverridesIfExist(Intent intent) {
-        if (this.metaData == null || this.metaData.equals("undefined")) {
-            return;
-        }
-        Map<String, String> metaDataMap = new Gson().fromJson(
-                this.metaData, new TypeToken<Map<String, String>>() {}.getType());
-        if (metaDataMap.containsKey(FIELD_OVERRIDES_PARAM)) {
-            intent.putExtra(FIELD_OVERRIDES_PARAM, metaDataMap.get(FIELD_OVERRIDES_PARAM));
+        if (hasMetadata()) {
+            Map<String, String> metaDataMap = new Gson().fromJson(
+                    this.metaData, new TypeToken<Map<String, String>>() {
+                    }.getType());
+            if (metaDataMap.containsKey(FIELD_OVERRIDES_PARAM)) {
+                intent.putExtra(FIELD_OVERRIDES_PARAM, metaDataMap.get(FIELD_OVERRIDES_PARAM));
+            }
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE || this.metaData == null) {
-            return;
+        if (isSuccessfulFormSubmission(resultCode)) {
+            logInfo("Form successfully saved. MetaData: " + metaData);
+            if (hasMetadata()) {
+                Map<String, String> metaDataMap = new Gson().fromJson(metaData, new TypeToken<Map<String, String>>() {
+                }.getType());
+                if (metaDataMap.containsKey(ENTITY_ID) && metaDataMap.containsKey(ALERT_NAME_PARAM)) {
+                    Context.getInstance().alertService().changeAlertStatusToInProcess(metaDataMap.get(ENTITY_ID), metaDataMap.get(ALERT_NAME_PARAM));
+                }
+            }
         }
-        logInfo("Form successfully saved. MetaData: " + metaData);
-        Map<String, String> metaDataMap = new Gson().fromJson(metaData, new TypeToken<Map<String, String>>() {
-        }.getType());
-        if (metaDataMap.containsKey(ENTITY_ID) && metaDataMap.containsKey(ALERT_NAME_PARAM)) {
-            Context.getInstance().alertService().changeAlertStatusToInProcess(metaDataMap.get(ENTITY_ID), metaDataMap.get(ALERT_NAME_PARAM));
-        }
+    }
+
+    private boolean isSuccessfulFormSubmission(int resultCode) {
+        return resultCode == AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE;
+    }
+
+    private boolean hasMetadata() {
+        return this.metaData != null && !this.metaData.equalsIgnoreCase("undefined");
     }
 }
