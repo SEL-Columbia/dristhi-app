@@ -56,12 +56,12 @@ public class FPAllMethodsServiceMode extends ServiceModeOption {
     @Override
     public void setupListView(FPSmartRegisterClient client,
                               NativeFPSmartRegisterViewHolder viewHolder,
-                              View.OnClickListener clientSectionClickListener) {
+                              View.OnClickListener onClickListener) {
         viewHolder.serviceModeFPMethod().setVisibility(VISIBLE);
 
         setupSideEffectsView(client, viewHolder);
         setupSideEffectsButtonView(client, viewHolder);
-        setupUpdateButtonView(client, viewHolder);
+        setupUpdateButtonView(client, viewHolder, onClickListener);
         setupFPMethodView(client, viewHolder, getInstance().getColorResource(R.color.text_black));
         setupAlertView(client, viewHolder);
     }
@@ -75,8 +75,9 @@ public class FPAllMethodsServiceMode extends ServiceModeOption {
         viewHolder.clientSideEffectsView().bindData(client);
     }
 
-    private void setupUpdateButtonView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
-        viewHolder.btnUpdateView().setOnClickListener(launchForm(FP_CHANGE, client.entityId(), null));
+    private void setupUpdateButtonView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder,
+                                       View.OnClickListener onClickListener) {
+        viewHolder.btnUpdateView().setOnClickListener(onClickListener);
         viewHolder.btnUpdateView().setTag(client);
     }
 
