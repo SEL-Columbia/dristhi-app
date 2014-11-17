@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
+import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.view.contract.FPPrioritizationServiceModes;
 import org.ei.drishti.view.contract.FPSmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
@@ -27,18 +28,22 @@ public class FPPrioritizationMethodFilter implements FilterOption {
     @Override
     public boolean filter(SmartRegisterClient client) {
         FPSmartRegisterClient fpSmartRegisterClient = (FPSmartRegisterClient) client;
-        return name().equalsIgnoreCase(allECIdentifier) || applyStringLiteralFiler(fpSmartRegisterClient);
+        return applyStringLiteralFiler(fpSmartRegisterClient);
     }
 
     private boolean applyStringLiteralFiler(FPSmartRegisterClient fpSmartRegisterClient) {
         FPPrioritizationServiceModes serviceMode = FPPrioritizationServiceModes.valueOfIdentifier(filter);
         switch (serviceMode) {
-            case ALL_EC: return true;
+            case ALL_EC: return hasNoFPMethod(fpSmartRegisterClient);
             case HIGH_PRIORITY: return fpSmartRegisterClient.isHighPriority();
             case TWO_CHILDREN: return getIntFromString(fpSmartRegisterClient.numberOfLivingChildren()) == 2;
             case ONE_CHILDREN: return getIntFromString(fpSmartRegisterClient.numberOfLivingChildren()) == 1;
             default: return false;
         }
+    }
+
+    private boolean hasNoFPMethod(FPSmartRegisterClient fpSmartRegisterClient) {
+        return fpSmartRegisterClient.fpMethod().displayName().equalsIgnoreCase(FPMethod.NONE.displayName());
     }
 
     private int getIntFromString (String value) {
