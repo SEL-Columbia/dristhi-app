@@ -18,7 +18,7 @@
                                 || client.visits[schedule].next.status == 'upcoming'">
                             Due
                         </span>
-                    <span> {{client.visits[schedule].next.visit_date}}</span>
+                    <span>{{client.visits[schedule][client.visits[schedule].next.name].visit_date}}</span>
                 </button>
                 <button class="btn btn-primary btn-sr"
                         ng-if="schedule === 'tt' && client.visits[schedule].next && (client.visits[schedule].next.name !== 'TT 1' && client.visits[schedule].next.name !== 'TT Booster')"
@@ -34,7 +34,7 @@
                                 || client.visits[schedule].next.status == 'upcoming'">
                             Due
                         </span>
-                    <span> {{client.visits[schedule].next.visit_date}}</span>
+                    <span>{{client.visits[schedule][client.visits[schedule].next.name].visit_date}}</span>
                 </button>
                 <button class="btn btn-primary btn-sr"
                         ng-if="schedule !== 'tt' && client.visits[schedule].next && useMicroForm(schedule)"
@@ -48,7 +48,7 @@
                                 || client.visits[schedule].next.status == 'upcoming'">
                             Due
                         </span>
-                    <span> {{client.visits[schedule].next.visit_date}}</span>
+                    <span>{{client.visits[schedule][client.visits[schedule].next.name].visit_date}}</span>
                 </button>
                 <button class="btn btn-primary btn-sr"
                         ng-if="schedule !== 'tt' && client.visits[schedule].next && !useMicroForm(schedule)"
@@ -62,7 +62,7 @@
                                 || client.visits[schedule].next.status == 'upcoming'">
                             Due
                         </span>
-                    <span> {{client.visits[schedule].next.visit_date}}</span>
+                    <span>{{client.visits[schedule][client.visits[schedule].next.name].visit_date}}</span>
                 </button>
                 <span ng-if="client.visits[schedule].previous" class="previous-alert">
                     <i class="icon-ok green"></i>
