@@ -53,9 +53,25 @@ public class ANCClientTest {
     public void shouldReturnTheDaysBetweenEDDAndToday() throws Exception {
         DateUtil.fakeIt(new LocalDate("2014-02-28"));
 
-        String daysBetween = getClient().eddInDays();
+        String daysBetween = getClient().pastDueInDays();
 
         assertEquals("3", daysBetween);
+    }
+
+    @Test
+    public void shouldReturnTheWeeksBetweenLMPAndToday() throws Exception {
+        DateUtil.fakeIt(new LocalDate("2013-06-05"));
+
+        String weeksBetween = getClient().weeksAfterLMP();
+
+        assertEquals("1", weeksBetween);
+
+        DateUtil.fakeIt(new LocalDate("2013-06-15"));
+
+        weeksBetween = getClient().weeksAfterLMP();
+
+        assertEquals("3", weeksBetween);
+
     }
 
     @Test

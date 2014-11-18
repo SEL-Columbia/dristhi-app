@@ -15,6 +15,7 @@ import java.util.*;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
 import static org.ei.drishti.domain.ANCServiceType.*;
+import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.util.DateUtil.today;
 import static org.ei.drishti.util.StringUtil.humanize;
 import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
@@ -171,13 +172,19 @@ public class ANCClient implements ANCSmartRegisterClient {
 
     @Override
     public String edd() {
-        return edd;
+        return formatDate(parse(edd).toLocalDate().toString(), "dd/MM/yy");
     }
 
     @Override
-    public String eddInDays() {
+    public String pastDueInDays() {
         return isBlank(edd) ? "0"
                 : Integer.toString(daysBetween(parse(edd).toLocalDate(), today()).getDays());
+    }
+
+    @Override
+    public String weeksAfterLMP() {
+        return isBlank(lmp) ? "0"
+                : Integer.toString(daysBetween(parse(lmp).toLocalDate(), today()).getDays() / 7);
     }
 
     @Override
@@ -186,9 +193,30 @@ public class ANCClient implements ANCSmartRegisterClient {
     }
 
     @Override
-    public String ancVisitDoneDate() {
+    public boolean isVisitsDone() {
+        return isServiceProvided(CATEGORY_ANC);
+    }
+
+    @Override
+    public String visitDoneDate() {
         return serviceProvided(CATEGORY_ANC).ancServicedOn();
     }
+
+    @Override
+    public String thayiCardNumber() {
+        return thayi;
+    }
+
+    @Override
+    public String ancNumber() {
+        return ancNumber;
+    }
+
+    @Override
+    public String lmp() {
+        return formatDate(lmp, "dd/MM/yy");
+    }
+
 
     public Map<String, Visits> serviceToVisitsMap() {
         return serviceToVisitsMap;
@@ -332,16 +360,6 @@ public class ANCClient implements ANCSmartRegisterClient {
             return emptyAlert;
         }
         return serviceToVisitsMap.get(category).toProvide;
-    }
-
-    @Override
-    public boolean isVisitsDone() {
-        return isServiceProvided(CATEGORY_ANC);
-    }
-
-    @Override
-    public String visitDoneDate() {
-        return serviceProvided(CATEGORY_ANC).ancServicedOn();
     }
 
 

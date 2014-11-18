@@ -19,13 +19,19 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
 
     public String edd();
 
-    public String eddInDays();
+    public String pastDueInDays();
 
-    AlertDTO getAlert(ANCServiceType type);
+    public String weeksAfterLMP();
 
-    String ancVisitDoneDate();
+    public AlertDTO getAlert(ANCServiceType type);
 
-    boolean isVisitsDone();
+    public boolean isVisitsDone();
 
-    String visitDoneDate();
+    public String visitDoneDate();
+
+    public String thayiCardNumber();
+
+    public String ancNumber();
+
+    public String lmp();
 }

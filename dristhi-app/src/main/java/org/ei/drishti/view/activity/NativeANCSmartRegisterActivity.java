@@ -59,7 +59,7 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
 
             @Override
             public String nameInShortFormForTitle() {
-                return getResources().getString(R.string.anc_register_title_in_short);
+                return getResources().getString(R.string.anc_label);
             }
         };
     }

@@ -65,11 +65,21 @@ public class ANCSmartRegisterClientsProvider implements SmartRegisterClientsProv
 
         ANCSmartRegisterClient client = (ANCSmartRegisterClient) smartRegisterClient;
         setupClientProfileView(client, viewHolder);
+        setupClientIdDetailsView(viewHolder, client);
+        setupANCStatusView(viewHolder, client);
 
         currentServiceModeOption.setupListView(client, viewHolder, onClickListener);
 
         itemView.setLayoutParams(clientViewLayoutParams);
         return itemView;
+    }
+
+    private void setupANCStatusView(NativeANCSmartRegisterViewHolder viewHolder, ANCSmartRegisterClient client) {
+        viewHolder.ancStatusView().bindData(client);
+    }
+
+    private void setupClientIdDetailsView(NativeANCSmartRegisterViewHolder viewHolder, ANCSmartRegisterClient client) {
+        viewHolder.ancClientIdDetailsView().bindData(client);
     }
 
     private void setupClientProfileView(SmartRegisterClient client, NativeANCSmartRegisterViewHolder viewHolder) {

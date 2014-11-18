@@ -199,7 +199,11 @@
     <string name="str_update">Update</string>
     <string name="str_side_effects">Side Effects</string>
 
-    <string name="anc_register_title_in_short">ANC:</string>
+    <string name="anc_label">ANC:</string>
+    <string name="edd_label">"EDD: "</string>
+    <string name="str_days_past_due">day (s) past due</string>
+    <string name="lmp_label">LMP:</string>
+    <string name="str_weeks">weeks</string>
     <string name="str_anc_search_hint">Search ANC Register</string>
     <string name="anc_service_mode_overview">Overview</string>
     <string name="header_id">ID</string>

@@ -41,7 +41,10 @@
     <integer name="fp_list_prioritization_risks_view_weight">30</integer>
     <integer name="fp_list_prioritization_button_weight">15</integer>
 
-    <integer name="anc_list_service_mode_views_section_weight">60</integer>
-
+    <integer name="anc_list_item_weight_count">100</integer>
+    <integer name="anc_list_profile_box_weight">20</integer>
+    <integer name="anc_list_id_no_view_weight">10</integer>
+    <integer name="anc_list_status_view_weight">15</integer>
+    <integer name="anc_list_service_mode_views_section_weight">55</integer>
 
 </resources>
