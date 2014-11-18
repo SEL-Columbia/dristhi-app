@@ -13,11 +13,14 @@ import org.joda.time.format.ISODateTimeFormat;
 import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.drishti.AllConstants.COMMA_WITH_SPACE;
 import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
+import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.domain.ANCServiceType.*;
 import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.util.DateUtil.today;
 import static org.ei.drishti.util.StringUtil.humanize;
+import static org.ei.drishti.util.StringUtil.replaceAndHumanize;
 import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
 import static org.ei.drishti.view.contract.ServiceProvidedDTO.emptyService;
 import static org.joda.time.Days.daysBetween;
@@ -217,6 +220,11 @@ public class ANCClient implements ANCSmartRegisterClient {
         return formatDate(lmp, "dd/MM/yy");
     }
 
+    @Override
+    public String riskFactors() {
+        return replaceAndHumanize(riskFactors, SPACE, COMMA_WITH_SPACE);
+    }
+
 
     public Map<String, Visits> serviceToVisitsMap() {
         return serviceToVisitsMap;
@@ -303,7 +311,7 @@ public class ANCClient implements ANCSmartRegisterClient {
         return this;
     }
 
-    public ANCClient withServiceToVisitMap(Map<String, Visits> serviceToVisitMap ){
+    public ANCClient withServiceToVisitMap(Map<String, Visits> serviceToVisitMap) {
         this.serviceToVisitsMap = serviceToVisitMap;
         return this;
     }

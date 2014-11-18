@@ -20,6 +20,7 @@ public class NativeANCSmartRegisterViewHolder {
     private final TextView txtANCVisitAlertDueOn;
     private final ViewGroup serviceModeViewsHolder;
     private final ViewGroup serviceModeOverviewView;
+    private final TextView txtRiskFactors;
 
     public NativeANCSmartRegisterViewHolder(ViewGroup itemView) {
         profileInfoLayout = (ClientProfileView) itemView.findViewById(R.id.profile_info_layout);
@@ -39,6 +40,7 @@ public class NativeANCSmartRegisterViewHolder {
         txtANCVisitDoneOn = (TextView) serviceModeOverviewView.findViewById(R.id.txt_anc_visit_on);
         txtANCVisitDueType = (TextView) serviceModeOverviewView.findViewById(R.id.txt_anc_visit_due_type);
         txtANCVisitAlertDueOn = (TextView) serviceModeOverviewView.findViewById(R.id.txt_anc_visit_due_on);
+        txtRiskFactors = (TextView) serviceModeOverviewView.findViewById(R.id.txt_risk_factors);
     }
 
     public ClientProfileView profileInfoLayout() {
@@ -71,5 +73,13 @@ public class NativeANCSmartRegisterViewHolder {
 
     public TextView txtANCVisitAlertDueOn() {
         return txtANCVisitAlertDueOn;
+    }
+
+    public TextView txtRiskFactors() {
+        return txtRiskFactors;
+    }
+
+    public ViewGroup serviceModeOverviewView() {
+        return serviceModeOverviewView;
     }
 }

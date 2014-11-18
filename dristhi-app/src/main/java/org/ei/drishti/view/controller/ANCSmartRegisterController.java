@@ -20,6 +20,7 @@ import java.util.List;
 import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.drishti.AllConstants.ANCRegistrationFields.RISK_OBSERVED_DURING_ANC;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
 import static org.ei.drishti.domain.ServiceProvided.*;
 
@@ -122,7 +123,7 @@ public class ANCSmartRegisterController {
                             .withIsHighPriority(ec.isHighPriority())
                             .withIsHighRisk(anc.isHighRisk())
                             .withIsOutOfArea(ec.isOutOfArea())
-                            .withHighRiskReason(anc.highRiskReason())
+                            .withHighRiskReason(anc.getDetail(RISK_OBSERVED_DURING_ANC))
                             .withCaste(ec.getDetail(AllConstants.ECRegistrationFields.CASTE))
                             .withEconomicStatus(ec.getDetail(AllConstants.ECRegistrationFields.ECONOMIC_STATUS))
                             .withPhotoPath(photoPath)

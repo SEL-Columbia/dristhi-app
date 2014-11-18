@@ -12,6 +12,7 @@ import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
 
+import static android.view.View.VISIBLE;
 import static org.ei.drishti.AllConstants.FormNames.ANC_VISIT;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
@@ -63,6 +64,9 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
     public void setupListView(ANCSmartRegisterClient client,
                               NativeANCSmartRegisterViewHolder viewHolder,
                               View.OnClickListener clientSectionClickListener) {
+        viewHolder.serviceModeOverviewView().setVisibility(VISIBLE);
+
+        viewHolder.txtRiskFactors().setText(client.riskFactors());
         setupANCVisitLayout(client, viewHolder);
 
     }
@@ -75,7 +79,7 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
     public void setupANCVisitLayout(ANCSmartRegisterClient client,
                                     NativeANCSmartRegisterViewHolder viewHolder) {
         if (client.isVisitsDone()) {
-            viewHolder.txtANCVisitDoneOn().setVisibility(View.VISIBLE);
+            viewHolder.txtANCVisitDoneOn().setVisibility(VISIBLE);
             viewHolder.txtANCVisitDoneOn().setText(client.visitDoneDate());
         } else {
             viewHolder.txtANCVisitDoneOn().setVisibility(View.INVISIBLE);
@@ -84,7 +88,7 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
         AlertDTO ancVisitAlert = client.getAlert(ANCServiceType.ANC_1);
         if (ancVisitAlert != emptyAlert) {
             viewHolder.btnAncVisitView().setVisibility(View.INVISIBLE);
-            viewHolder.layoutANCVisitAlert().setVisibility(View.VISIBLE);
+            viewHolder.layoutANCVisitAlert().setVisibility(VISIBLE);
             viewHolder.layoutANCVisitAlert().setOnClickListener(launchANCVisitForm(client, ancVisitAlert));
             setAlertLayout(viewHolder.layoutANCVisitAlert(),
                     viewHolder.txtANCVisitDueType(),

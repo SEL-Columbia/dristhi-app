@@ -145,6 +145,7 @@ public class AllConstants {
         public static final String ASHA_PHONE_NUMBER = "ashaPhoneNumber";
         public static final String ANC_NUMBER = "ancNumber";
         public static final String REGISTRATION_DATE = "registrationDate";
+        public static final String RISK_OBSERVED_DURING_ANC = "riskObservedDuringANC";
     }
 
     public class PNCRegistrationFields {

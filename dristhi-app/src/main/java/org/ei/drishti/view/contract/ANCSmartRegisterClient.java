@@ -34,4 +34,6 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
     public String ancNumber();
 
     public String lmp();
+
+    public String riskFactors();
 }
