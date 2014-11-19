@@ -15,6 +15,7 @@ import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static org.ei.drishti.AllConstants.FormNames.CHILD_IMMUNIZATIONS;
+import static org.ei.drishti.AllConstants.FormNames.VITAMIN_A;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
 
@@ -176,8 +177,12 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
         } else {
             viewHolder.layoutVitaminAAlertView().setVisibility(INVISIBLE);
             viewHolder.addVitaminAView().setVisibility(VISIBLE);
-            viewHolder.addVitaminAView().setOnClickListener(launchChildImmunizationForm(client));
+            viewHolder.addVitaminAView().setOnClickListener(launchVitaminAForm(client));
         }
+    }
+
+    private View.OnClickListener launchVitaminAForm(ChildSmartRegisterClient client) {
+        return provider().newFormLauncher(VITAMIN_A, client.entityId(), null);
     }
 
     private OnClickFormLauncher launchChildImmunizationForm(ChildSmartRegisterClient client) {
