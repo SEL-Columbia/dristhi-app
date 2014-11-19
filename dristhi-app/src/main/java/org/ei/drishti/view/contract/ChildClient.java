@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.time.DateUtils;
 import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.ChildServiceType;
 import org.ei.drishti.util.DateUtil;
@@ -11,6 +12,8 @@ import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
@@ -258,6 +261,8 @@ public class ChildClient implements ChildSmartRegisterClient {
     }
 
     private ServiceProvidedDTO getIllnessVisitServiceProvided() {
+        Collections.sort(services_provided, new DateComparator());
+        Collections.reverse(services_provided);
         for (ServiceProvidedDTO service : services_provided) {
             if (ILLNESS_VISIT.equals(service.type())) {
                 return service;
@@ -527,5 +532,24 @@ public class ChildClient implements ChildSmartRegisterClient {
     @Override
     public List<AlertDTO> alerts() {
         return alerts;
+    }
+
+
+    class DateComparator implements Comparator<ServiceProvidedDTO>{
+
+        @Override
+        public int compare(ServiceProvidedDTO serviceProvidedDTO1, ServiceProvidedDTO serviceProvidedDTO2) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date date1;
+            Date date2;
+            try {
+                date1 = simpleDateFormat.parse(serviceProvidedDTO1.date());
+                date2 = simpleDateFormat.parse(serviceProvidedDTO2.date());
+                return date1.compareTo(date2);
+            } catch (ParseException e) {
+                //TODO
+            }
+            return -1;
+        }
     }
 }
