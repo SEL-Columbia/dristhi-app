@@ -23,14 +23,10 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
     private DialogOptionMapper dialogOptionMapper;
 
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
-    private SmartRegisterPaginatedAdapter smartRegisterPaginatedAdapter;
 
     @Override
     protected SmartRegisterPaginatedAdapter adapter() {
-        if (smartRegisterPaginatedAdapter == null) {
-            smartRegisterPaginatedAdapter = new SmartRegisterPaginatedAdapter(clientsProvider());
-        }
-        return smartRegisterPaginatedAdapter;
+        return new SmartRegisterPaginatedAdapter(clientsProvider());
     }
 
     @Override
@@ -132,7 +128,7 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
     @Override
     protected void startRegistration() {
         FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
-        startFormActivity(AllConstants.FormNames.CHILD_REGISTRATION_EC, null, fieldOverrides.getJSONString());
+        startFormActivity(AllConstants.FormNames.CHILD_REGISTRATION_OA, null, fieldOverrides.getJSONString());
     }
 
     private class ClientActionHandler implements View.OnClickListener {
