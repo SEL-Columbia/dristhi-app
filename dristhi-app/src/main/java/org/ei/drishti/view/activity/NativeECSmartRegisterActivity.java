@@ -12,8 +12,11 @@ import org.ei.drishti.view.controller.ECSmartRegisterController;
 import org.ei.drishti.view.controller.VillageController;
 import org.ei.drishti.view.dialog.*;
 
+import java.util.List;
+
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
+import static java.util.Arrays.asList;
 import static org.ei.drishti.AllConstants.FormNames.*;
 
 public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {

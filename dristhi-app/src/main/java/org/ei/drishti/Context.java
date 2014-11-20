@@ -1,6 +1,7 @@
 package org.ei.drishti;
 
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
 import org.ei.drishti.service.formSubmissionHandler.*;
@@ -59,6 +60,7 @@ public class Context {
     private Cache<ECClients> ecClientsCache;
     private Cache<FPClients> fpClientsCache;
     private Cache<ANCClients> ancClientsCache;
+    private Cache<PNCClients> pncClientsCache;
     private Cache<Villages> villagesCache;
     private Cache<Typeface> typefaceCache;
 
@@ -638,12 +640,19 @@ public class Context {
     }
 
     //#TODO: Refactor to use one cache object
+
     public Cache<ANCClients> ancClientsCache() {
         if (ancClientsCache == null) {
             ancClientsCache = new Cache<ANCClients>();
         }
         return ancClientsCache;
+    }
 
+    public Cache<PNCClients> pncClientsCache() {
+        if (pncClientsCache == null) {
+            pncClientsCache = new Cache<PNCClients>();
+        }
+        return pncClientsCache;
     }
 
     public Cache<Villages> villagesCache() {
@@ -667,6 +676,7 @@ public class Context {
     public int getColorResource(int id) {
         return applicationContext().getResources().getColor(id);
     }
-
-
+    public Drawable getDrawable(int id) {
+        return applicationContext().getResources().getDrawable(id);
+    }
 }

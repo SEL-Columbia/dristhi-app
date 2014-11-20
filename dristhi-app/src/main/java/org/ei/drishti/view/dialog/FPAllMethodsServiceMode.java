@@ -4,10 +4,7 @@ import android.view.View;
 import org.ei.drishti.R;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.*;
-import org.ei.drishti.view.viewHolder.NativeANCSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
+import org.ei.drishti.view.viewHolder.*;
 
 import static android.view.View.VISIBLE;
 import static org.ei.drishti.AllConstants.FormNames.FP_CHANGE;
@@ -124,4 +121,8 @@ public class FPAllMethodsServiceMode extends ServiceModeOption {
 
     }
 
+    @Override
+    public void setupListView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+
+    }
 }

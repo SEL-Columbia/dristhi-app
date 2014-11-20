@@ -50,5 +50,16 @@
     <integer name="anc_list_overview_service_mode_tt_view_weight">15</integer>
     <integer name="anc_list_overview_service_mode_anc_visit_view_weight">15</integer>
 
+    <integer name="pnc_list_item_weight_count">100</integer>
+    <integer name="pnc_list_profile_box_weight">24</integer>
+    <integer name="pnc_list_thayi_number_view_weight">10</integer>
+    <integer name="pnc_list_delivery_info_view_weight">15</integer>
+    <integer name="pnc_list_complication_view_weight">15</integer>
+    <integer name="pnc_list_pp_fp_view_weight">10</integer>
+    <integer name="pnc_list_child_view_weight">16</integer>
+
+    <integer name="pnc_list_edit_icon_view_weight">7</integer>
+    <integer name="pnc_list_service_mode_views_section_weight">66</integer>
+    <integer name="pnc_list_days_pp_view_weight">7</integer>
 
 </resources>

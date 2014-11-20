@@ -7,10 +7,7 @@ import org.ei.drishti.R;
 import org.ei.drishti.domain.ChildServiceType;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.*;
-import org.ei.drishti.view.viewHolder.NativeANCSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
+import org.ei.drishti.view.viewHolder.*;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
@@ -77,6 +74,11 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
 
     @Override
     public void setupListView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+
+    }
+
+    @Override
+    public void setupListView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
 
     }
 

@@ -1,8 +1,16 @@
 package org.ei.drishti.util;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 
 public class DateUtil {
+    private static String DEFAULT_FORMAT_DDMMYYYY = "dd/MM/yyyy";
+
     private static DateUtility dateUtility = new RealDate();
 
     public static void fakeIt(LocalDate fakeDayAsToday) {
@@ -14,11 +22,11 @@ public class DateUtil {
     }
 
     public static String formatDateForTimelineEvent(String unformattedDate) {
-        return formatDate(unformattedDate, "dd-MM-yyyy");
+        return formatDate(unformattedDate, DEFAULT_FORMAT_DDMMYYYY);
     }
 
     public static String formatDate(String unformattedDate) {
-        return formatDate(unformattedDate, "dd/MM/yyyy");
+        return formatDate(unformattedDate, DEFAULT_FORMAT_DDMMYYYY);
     }
 
     public static String formatDate(String date, String pattern) {
@@ -28,6 +36,39 @@ public class DateUtil {
             return "";
         }
     }
+
+    public static String formatDate(LocalDate date, String pattern) {
+        try {
+            return date.toString(pattern);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    public static String formatISO8601Date(String date, String pattern) {
+        try {
+            return getDateFromISO8601DateString(date).toString(pattern);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
+    public static LocalDate getDateFromISO8601DateString(String date) {
+        try {
+            return LocalDateTime.parse(date).toLocalDate();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static int dayDifference(LocalDate startDate, LocalDate endDate) {
+        try {
+            return Days.daysBetween(startDate, endDate).getDays();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
 }
 
 interface DateUtility {

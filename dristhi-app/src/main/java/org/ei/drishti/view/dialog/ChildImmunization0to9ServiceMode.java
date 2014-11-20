@@ -7,10 +7,7 @@ import org.ei.drishti.R;
 import org.ei.drishti.domain.ChildServiceType;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.*;
-import org.ei.drishti.view.viewHolder.NativeANCSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
+import org.ei.drishti.view.viewHolder.*;
 
 import static org.ei.drishti.AllConstants.FormNames.CHILD_IMMUNIZATIONS;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
@@ -74,6 +71,11 @@ public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
 
     @Override
     public void setupListView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+
+    }
+
+    @Override
+    public void setupListView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
 
     }
 

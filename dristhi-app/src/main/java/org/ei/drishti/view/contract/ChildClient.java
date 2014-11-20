@@ -142,7 +142,12 @@ public class ChildClient implements ChildSmartRegisterClient {
 
     @Override
     public String gender() {
-        return gender;
+        return humanize(gender);
+    }
+
+    @Override
+    public String weight() {
+        return weight;
     }
 
     @Override

@@ -34,6 +34,8 @@ public interface ChildSmartRegisterClient extends SmartRegisterClient {
 
     public String gender();
 
+    public String weight();
+
     public String thayiCardNumber();
 
     public String motherEcNumber();

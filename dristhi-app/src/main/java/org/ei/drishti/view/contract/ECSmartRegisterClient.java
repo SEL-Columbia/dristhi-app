@@ -7,7 +7,15 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public interface ECSmartRegisterClient extends SmartRegisterClient, ECSmartRegisterBaseClient {
+public interface ECSmartRegisterClient extends BaseFPSmartRegisterClient {
+
+    Comparator<SmartRegisterClient> EC_NUMBER_COMPARATOR = new Comparator<SmartRegisterClient>() {
+        @Override
+        public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
+            return ((ECSmartRegisterClient) client).ecNumber()
+                    .compareTo(((ECSmartRegisterClient) anotherClient).ecNumber());
+        }
+    };
 
     public String numberOfPregnancies();
 
@@ -32,6 +40,8 @@ public interface ECSmartRegisterClient extends SmartRegisterClient, ECSmartRegis
     public String iudPlace();
 
     public FPMethod fpMethod();
+
+    public Integer ecNumber();
 
     public List<ECChildClient> children();
 

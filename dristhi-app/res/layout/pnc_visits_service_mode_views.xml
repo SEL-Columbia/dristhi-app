@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:weightSum="@integer/pnc_list_service_mode_views_section_weight">
+
+    <LinearLayout
+            android:id="@+id/lyt_days_pp"
+            android:layout_width="@dimen/list_ec_no_view_width"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_weight="@integer/pnc_list_days_pp_view_weight">
+
+        <org.ei.drishti.view.customControls.CustomFontTextView
+                android:id="@+id/txt_no_of_visits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_black"
+                style="@style/CustomFontTextViewStyle.ListView.Bold"/>
+
+        <org.ei.drishti.view.customControls.CustomFontTextView
+                android:id="@+id/txt_label_dob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_black"
+                android:text="@string/str_pnc_dob_label"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+
+        <org.ei.drishti.view.customControls.CustomFontTextView
+                android:id="@+id/txt_dob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_black"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+    </LinearLayout>
+
+    <ImageView
+            android:layout_width="@dimen/smart_register_client_divider_height"
+            android:layout_height="fill_parent"
+            android:src="@color/smart_register_client_divider_color"/>
+
+
+    <org.ei.drishti.view.customControls.CustomFontTextView
+            android:id="@+id/txt_pnc_visits_complications"
+            android:layout_width="@dimen/list_ec_no_view_width"
+            android:layout_height="fill_parent"
+            android:layout_weight="@integer/pnc_list_complication_view_weight"
+            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+
+    <ImageView
+            android:layout_width="@dimen/smart_register_client_divider_height"
+            android:layout_height="fill_parent"
+            android:src="@color/smart_register_client_divider_color"/>
+
+</LinearLayout>

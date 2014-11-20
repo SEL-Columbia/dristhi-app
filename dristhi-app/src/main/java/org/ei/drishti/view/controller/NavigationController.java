@@ -36,7 +36,7 @@ public class NavigationController {
     }
 
     public void startPNCSmartRegistry() {
-        activity.startActivity(new Intent(activity, PNCSmartRegisterActivity.class));
+        activity.startActivity(new Intent(activity, NativePNCSmartRegisterActivity.class));
     }
 
     public void startChildSmartRegistry() {

@@ -140,7 +140,7 @@
         <activity
                 android:name=".view.activity.NativeECSmartRegisterActivity"
                 android:screenOrientation="landscape"
-                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
 
         <activity
                 android:name=".view.activity.NativeChildSmartRegisterActivity"
@@ -150,16 +150,22 @@
         <activity
                 android:name=".view.activity.NativeFPSmartRegisterActivity"
                 android:screenOrientation="landscape"
-                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
 
         <activity
                 android:name=".view.activity.NativeANCSmartRegisterActivity"
                 android:screenOrientation="landscape"
-                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
+
+
+        <activity
+                android:name=".view.activity.NativePNCSmartRegisterActivity"
+                android:screenOrientation="landscape"
+                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
 
 
         <activity android:name=".view.activity.NativeHomeActivity"
-                android:screenOrientation="landscape">
+                  android:screenOrientation="landscape">
         </activity>
 
         <receiver android:name=".view.receiver.SyncBroadcastReceiver"/>

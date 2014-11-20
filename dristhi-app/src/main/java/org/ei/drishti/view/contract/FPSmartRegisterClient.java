@@ -1,12 +1,10 @@
 package org.ei.drishti.view.contract;
 
-
 import org.ei.drishti.domain.FPMethod;
 
-import java.util.Comparator;
 import java.util.List;
 
-public interface FPSmartRegisterClient extends SmartRegisterClient, ECSmartRegisterBaseClient{
+public interface FPSmartRegisterClient extends BaseFPSmartRegisterClient {
 
     public String numberOfPregnancies();
 
@@ -31,6 +29,8 @@ public interface FPSmartRegisterClient extends SmartRegisterClient, ECSmartRegis
     public String iudPlace();
 
     public FPMethod fpMethod();
+
+    public Integer ecNumber();
 
     public String youngestChildAge();
 

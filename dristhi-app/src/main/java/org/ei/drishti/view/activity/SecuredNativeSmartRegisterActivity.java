@@ -34,9 +34,7 @@ import static org.ei.drishti.AllConstants.SHORT_DATE_FORMAT;
 public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity {
 
     private static final String DIALOG_TAG = "dialog";
-
-    public static final List<? extends DialogOption> DEFAULT_FILTER_OPTIONS =
-            asList(new AllClientsFilter(), new OutOfAreaFilter());
+    public static final List<? extends DialogOption> DEFAULT_FILTER_OPTIONS = asList(new AllClientsFilter());
 
     private ListView clientsView;
     private ProgressBar clientsProgressView;
@@ -175,7 +173,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     }
 
     protected void setServiceModeViewDrawableRight(Drawable drawable) {
-        serviceModeView.setCompoundDrawables(null ,null, drawable, null);
+        serviceModeView.setCompoundDrawables(null, null, drawable, null);
     }
 
     private void setupTitleView() {
@@ -223,7 +221,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     private void updateDefaultOptions() {
         currentSearchFilter = new ECSearchOption(null);
-        currentVillageFilter =  defaultOptionProvider.villageFilter();
+        currentVillageFilter = defaultOptionProvider.villageFilter();
         currentServiceModeOption = defaultOptionProvider.serviceMode();
         currentSortOption = defaultOptionProvider.sortOption();
 

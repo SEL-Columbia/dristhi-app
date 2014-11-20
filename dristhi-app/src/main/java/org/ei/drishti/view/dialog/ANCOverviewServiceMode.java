@@ -7,10 +7,7 @@ import org.ei.drishti.R;
 import org.ei.drishti.domain.ANCServiceType;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.*;
-import org.ei.drishti.view.viewHolder.NativeANCSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
+import org.ei.drishti.view.viewHolder.*;
 
 import static android.view.View.VISIBLE;
 import static org.ei.drishti.AllConstants.FormNames.ANC_VISIT;
@@ -77,6 +74,11 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
 
     }
 
+    @Override
+    public void setupListView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
+
+    }
+
     public void setupANCVisitLayout(ANCSmartRegisterClient client,
                                     NativeANCSmartRegisterViewHolder viewHolder) {
         if (client.isVisitsDone()) {
@@ -135,7 +137,6 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
                                 TextView dateView, AlertDTO alert) {
         typeView.setText(alert.ancServiceType().shortName());
         dateView.setText("due " + alert.shortDate());
-
         final AlertStatus alertStatus = alert.alertStatus();
         layout.setBackgroundResource(alertStatus.backgroundColorResourceId());
         typeView.setTextColor(alertStatus.fontColor());

@@ -9,6 +9,7 @@
     <dimen name="list_children_view_width">0dp</dimen>
     <dimen name="list_status_view_width">0dp</dimen>
     <dimen name="list_edit_icon_view_width">0dp</dimen>
+    <dimen name="list_delivery_info_view_width">0dp</dimen>
 
     <dimen name="list_item_height">82dp</dimen>
 

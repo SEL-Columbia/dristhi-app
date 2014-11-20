@@ -55,7 +55,7 @@ public class PNCSmartRegisterControllerTest {
     public void setUp() throws Exception {
         initMocks(this);
         emptyMap = Collections.emptyMap();
-        controller = new PNCSmartRegisterController(serviceProvidedService, alertService, allEligibleCouples, allBeneficiaries, new Cache<String>());
+        controller = new PNCSmartRegisterController(serviceProvidedService, alertService, allEligibleCouples, allBeneficiaries, new Cache<String>(), new Cache<PNCClients>());
     }
 
     @Test

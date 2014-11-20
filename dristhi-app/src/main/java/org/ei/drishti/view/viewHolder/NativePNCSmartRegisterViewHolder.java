@@ -1,0 +1,110 @@
+package org.ei.drishti.view.viewHolder;
+
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.ei.drishti.R;
+import org.ei.drishti.view.customControls.*;
+
+public class NativePNCSmartRegisterViewHolder {
+    private final ClientProfileView profileInfoLayout;
+    private final TextView txtThayiNumberView;
+    private final DeliveryInfoView deliveryInfoView;
+    private final TextView txtComplicationsView;
+    private final ClientPNCPpFpMethodView pncPpFpMethodView;
+    private final TextView txtPpFpView;
+    private final LinearLayout childHolderLayout;
+    private final ImageButton editButton;
+    private final ViewGroup pncOverviewServiceModeView;
+    private final ViewGroup pncVisitsServiceModeView;
+    private final TextView txtNumberOfVisits;
+    private final TextView txtDOB;
+    private final TextView txtVisitComplicationsView;
+
+    public NativePNCSmartRegisterViewHolder(ViewGroup itemView) {
+        this.profileInfoLayout = (ClientProfileView) itemView.findViewById(R.id.profile_info_layout);
+        this.profileInfoLayout.initialize();
+
+        this.txtThayiNumberView = (TextView) itemView.findViewById(R.id.txt_thayi_number);
+
+        this.pncOverviewServiceModeView = (ViewGroup) itemView.findViewById(R.id.pnc_overview_service_mode_views);
+
+        this.deliveryInfoView = (DeliveryInfoView) pncOverviewServiceModeView.findViewById(R.id.delivery_info_layout);
+        this.deliveryInfoView.initialize();
+
+        txtComplicationsView = (TextView) pncOverviewServiceModeView.findViewById(R.id.txt_complications);
+
+        pncPpFpMethodView = (ClientPNCPpFpMethodView) pncOverviewServiceModeView.findViewById(R.id.pp_fp_method_layout);
+        pncPpFpMethodView.initialize();
+        pncPpFpMethodView.setLayoutParams();
+
+        txtPpFpView = (TextView) pncPpFpMethodView.findViewById(R.id.txt_pp_fp_method_view);
+
+        childHolderLayout = (LinearLayout) pncOverviewServiceModeView.findViewById(R.id.lyt_pnc_child_holder);
+
+        editButton = (ImageButton) pncOverviewServiceModeView.findViewById(R.id.btn_edit);
+
+        this.pncVisitsServiceModeView = (ViewGroup) itemView.findViewById(R.id.pnc_visits_service_mode_views);
+
+        txtNumberOfVisits = (TextView) pncVisitsServiceModeView.findViewById(R.id.txt_no_of_visits);
+
+        txtDOB = (TextView) pncVisitsServiceModeView.findViewById(R.id.txt_dob);
+
+        txtVisitComplicationsView = (TextView) pncVisitsServiceModeView.findViewById(R.id.txt_pnc_visits_complications);
+
+    }
+
+    public void hideAllServiceModeOptions() {
+        pncOverviewServiceModeView().setVisibility(View.GONE);
+        pncVisitsServiceModeView().setVisibility(View.GONE);
+    }
+
+    public ClientProfileView profileInfoLayout() {
+        return profileInfoLayout;
+    }
+
+    public TextView txtThayiNumberView() {
+        return txtThayiNumberView;
+    }
+
+    public ViewGroup pncOverviewServiceModeView() {
+        return pncOverviewServiceModeView;
+    }
+
+    public ViewGroup pncVisitsServiceModeView() {
+        return pncVisitsServiceModeView;
+    }
+
+    public DeliveryInfoView deliveryInfoView() {
+        return deliveryInfoView;
+    }
+
+    public TextView txtComplicationsView() {
+        return txtComplicationsView;
+    }
+
+    public ClientPNCPpFpMethodView pncPpFpMethodView() {
+        return pncPpFpMethodView;
+    }
+
+    public TextView txtPpFpView() {
+        return txtPpFpView;
+    }
+
+    public LinearLayout childHolderLayout() {
+        return childHolderLayout;
+    }
+
+    public ImageButton editButton() {
+        return editButton;
+    }
+
+    public TextView txtNumberOfVisits() { return txtNumberOfVisits; }
+
+    public TextView txtDOB() { return txtDOB; }
+
+    public TextView txtVisitComplicationsView() { return txtVisitComplicationsView; }
+}

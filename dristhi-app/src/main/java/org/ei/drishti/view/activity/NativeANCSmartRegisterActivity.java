@@ -12,8 +12,11 @@ import org.ei.drishti.view.controller.ANCSmartRegisterController;
 import org.ei.drishti.view.controller.VillageController;
 import org.ei.drishti.view.dialog.*;
 
+import java.util.List;
+
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
+import static java.util.Arrays.asList;
 
 public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -21,6 +24,8 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     private ANCSmartRegisterController controller;
     private VillageController villageController;
     private DialogOptionMapper dialogOptionMapper;
+    public static final List<? extends DialogOption> DEFAULT_ANC_FILTER_OPTIONS =
+            asList(new OutOfAreaFilter());
 
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
 
@@ -72,7 +77,7 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
             public DialogOption[] filterOptions() {
                 Iterable<? extends DialogOption> villageFilterOptions =
                         dialogOptionMapper.mapToVillageFilterOptions(villageController.getVillages());
-                return toArray(concat(DEFAULT_FILTER_OPTIONS, villageFilterOptions), DialogOption.class);
+                return toArray(concat(DEFAULT_FILTER_OPTIONS, DEFAULT_ANC_FILTER_OPTIONS, villageFilterOptions), DialogOption.class);
             }
 
             @Override

@@ -51,9 +51,10 @@
     <string name="couple_selection">All Eligible Couples</string>
     <string name="str_ec_search_hint">Search EC Register</string>
     <string name="str_fp_search_hint">Search FP Register</string>
+    <string name="str_pnc_search_hint">Search PNC Register</string>
     <string name="str_child_search_hint">Search Child Register</string>
-    <string name="label_sorted_by">Sorted By: </string>
-    <string name="label_village">, Village: </string>
+    <string name="label_sorted_by">Sorted By:</string>
+    <string name="label_village">, Village:</string>
     <string name="ec_register_wife_age">({0})</string>
 
     <string name="ec_register_male_child">Male\n{0}</string>
@@ -76,14 +77,17 @@
 
     <string name="sort_by_name_label">Name (A to Z)</string>
     <string name="sort_by_ec_number_label">EC Number</string>
+    <string name="sort_by_date_of_delivery_label">Date of Delivery</string>
     <string name="sort_by_sc_label">SC</string>
     <string name="sort_by_st_label">ST</string>
     <string name="sort_by_high_priority_label">High Priority (HP)</string>
+    <string name="sort_by_high_risk_label">High Risk (HR)</string>
     <string name="sort_by_bpl_label">BPL</string>
 
     <string name="filter_by_all_label">All</string>
     <string name="filter_by_out_of_area_label">O/A</string>
-    <string name="ec_register_title_in_short">EC: </string>
+    <string name="filter_by_leave_the_place_label">L/P</string>
+    <string name="ec_register_title_in_short">EC:</string>
 
     <string name="str_register_anc_form">Register ANC</string>
     <string name="str_register_fp_form">Register FP</string>
@@ -162,7 +166,8 @@
     <string name="service_type_dpt_booster_2_short">DPT B2</string>
     <string name="pentavalent_short">Pentav</string>
 
-    <string name="fp_register_title_in_short">FP: </string>
+    <string name="fp_register_title_in_short">FP:</string>
+    <string name="pnc_register_title_in_short">PNC:</string>
     <string name="header_method">METHOD</string>
     <string name="header_side_effects">SIDE EFFECTS</string>
     <string name="header_followup_refill">FOLLOW UP/REFILL</string>
@@ -187,12 +192,29 @@
     <string name="fp_prioritization_high_priority_service_mode">High Priority (HP)</string>
     <string name="fp_prioritization_two_plus_children_service_mode">2+ Children</string>
     <string name="fp_prioritization_one_child_service_mode">1 Child</string>
-    <string name="fp_register_child_details">Child: </string>
+    <string name="fp_register_child_details">Child:</string>
     <string name="str_due">"due "</string>
     <string name="fp_methods">FP Methods</string>
     <string name="fp_prioritization">FP Prioritization</string>
     <string name="fp_prioritization_add_fp">Add FP</string>
     <string name="fp_prioritization_fp_videos">FP Videos</string>
+
+    <string name="header_thayi_number">THAYI NO.</string>
+    <string name="header_delivery_info">DELIVERY INFO</string>
+    <string name="header_delivery_complications">COMPLICATIONS</string>
+    <string name="header_pp_fp">PP FP</string>
+    <string name="header_child">CHILD</string>
+    <string name="header_days_pp">DAYS PP</string>
+    <string name="header_first_seven_days">FIRST 7 DAYS</string>
+    <string name="header_pnc_visits">PNC VISITS</string>
+
+    <string name="pnc_register_service_mode_overview">Overview</string>
+    <string name="pnc_register_service_mode_pnc_visits">PNC Visits</string>
+
+    <string name="str_pnc_visit_form">PNC Visit</string>
+    <string name="str_pnc_postpartum_family_planning_form">Postpartum family planning</string>
+    <string name="str_pnc_close_form">PNC Close</string>
+
     <string name="str_referred">Referred</string>
     <string name="str_referral">referral</string>
     <string name="str_follow_up">follow-up</string>
@@ -205,6 +227,7 @@
     <string name="str_days_past_due">day (s) past due</string>
     <string name="lmp_label">LMP:</string>
     <string name="str_weeks">weeks</string>
+    <string name="anc_register_title_in_short">ANC:</string>
     <string name="str_anc_search_hint">Search ANC Register</string>
     <string name="anc_service_mode_overview">Overview</string>
     <string name="header_id">ID</string>
@@ -214,6 +237,22 @@
     <string name="header_tt">TT</string>
     <string name="header_ifa">IFA</string>
     <string name="sort_by_edd_label">EDD</string>
+
+    <string name="str_pnc_delivery_date">Date:</string>
+    <string name="str_pnc_delivery_place">Place:</string>
+    <string name="str_pnc_delivery_type">Type:</string>
+    <string name="str_pp_fp">PP FP</string>
+    <string name="str_pnc_child_weight">Birth Wt: %1$s kg</string>
+    <string name="str_pnc_dob_label">DOB:</string>
+
+    <string name="str_pnc_clause">PNC</string>
+    <string name="str_pnc_circle_type_expected">expected</string>
+    <string name="str_pnc_circle_type_actual">actual</string>
+    <string name="str_pnc_circle_status_done">done</string>
+    <string name="str_pnc_circle_status_missed">missed</string>
+    <string name="str_pnc_circle_color_yellow">yellow</string>
+    <string name="str_pnc_circle_color_green">green</string>
+    <string name="str_pnc_circle_color_red">red</string>
 
 
 </resources>

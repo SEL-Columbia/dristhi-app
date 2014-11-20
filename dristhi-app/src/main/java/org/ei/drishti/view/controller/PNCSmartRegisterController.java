@@ -32,16 +32,18 @@ public class PNCSmartRegisterController {
     private AllBeneficiaries allBeneficiaries;
     private AlertService alertService;
     private Cache<String> cache;
+    private Cache<PNCClients> pncClientsCache;
     private final ServiceProvidedService serviceProvidedService;
 
     public PNCSmartRegisterController(ServiceProvidedService serviceProvidedService, AlertService alertService,
                                       AllEligibleCouples allEligibleCouples, AllBeneficiaries allBeneficiaries,
-                                      Cache<String> cache) {
+                                      Cache<String> cache, Cache<PNCClients> pncClientsCache) {
         this.allEligibleCouples = allEligibleCouples;
         this.allBeneficiaries = allBeneficiaries;
         this.alertService = alertService;
         this.serviceProvidedService = serviceProvidedService;
         this.cache = cache;
+        this.pncClientsCache = pncClientsCache;
     }
 
     public String get() {
@@ -93,6 +95,55 @@ public class PNCSmartRegisterController {
         });
     }
 
+    public PNCClients getClients() {
+        return pncClientsCache.get(PNC_CLIENTS_LIST, new CacheableData<PNCClients>() {
+            @Override
+            public PNCClients fetch() {
+                PNCClients pncClients = new PNCClients();
+                List<Pair<Mother, EligibleCouple>> pncsWithEcs = allBeneficiaries.allPNCsWithEC();
+
+                for (Pair<Mother, EligibleCouple> pncWithEc : pncsWithEcs) {
+                    Mother pnc = pncWithEc.getLeft();
+                    EligibleCouple ec = pncWithEc.getRight();
+                    String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
+
+                    List<ServiceProvidedDTO> servicesProvided = getServicesProvided(pnc.caseId());
+                    List<AlertDTO> alerts = getAlerts(pnc.caseId());
+                    pncClients.add(new PNCClient(pnc.caseId(), ec.village(), ec.wifeName(), pnc.thayiCardNumber(), pnc.referenceDate())
+                            .withHusbandName(ec.husbandName())
+                            .withAge(ec.age())
+                            .withWomanDOB(ec.getDetail(WOMAN_DOB))
+                            .withECNumber(ec.ecNumber())
+                            .withIsHighPriority(ec.isHighPriority())
+                            .withIsHighRisk(pnc.isHighRisk())
+                            .withEconomicStatus(ec.getDetail(ECONOMIC_STATUS))
+                            .withIsOutOfArea(ec.isOutOfArea())
+                            .withCaste(ec.getDetail(CASTE))
+                            .withPhotoPath(photoPath)
+                            .withFPMethod(ec.getDetail(CURRENT_FP_METHOD))
+                            .withIUDPlace(ec.getDetail(IUD_PLACE))
+                            .withIUDPerson(ec.getDetail(IUD_PERSON))
+                            .withNumberOfCondomsSupplied(ec.getDetail(NUMBER_OF_CONDOMS_SUPPLIED))
+                            .withFamilyPlanningMethodChangeDate(ec.getDetail(FAMILY_PLANNING_METHOD_CHANGE_DATE))
+                            .withNumberOfOCPDelivered(ec.getDetail(NUMBER_OF_OCP_DELIVERED))
+                            .withNumberOfCentchromanPillsDelivered(ec.getDetail(NUMBER_OF_CENTCHROMAN_PILLS_DELIVERED))
+                            .withDeliveryPlace(pnc.getDetail(DELIVERY_PLACE))
+                            .withDeliveryType(pnc.getDetail(DELIVERY_TYPE))
+                            .withDeliveryComplications(pnc.getDetail(DELIVERY_COMPLICATIONS))
+                            .withPNCComplications(pnc.getDetail(IMMEDIATE_REFERRAL_REASON))
+                            .withOtherDeliveryComplications(pnc.getDetail(OTHER_DELIVERY_COMPLICATIONS))
+                            .withEntityIdToSavePhoto(ec.caseId())
+                            .withAlerts(alerts)
+                            .withServicesProvided(servicesProvided)
+                            .withChildren(findChildren(pnc))
+                    );
+                }
+                sortByName(pncClients);
+                return pncClients;
+            }
+        });
+    }
+
     public String villages() {
         List<Village> villagesList = new ArrayList<Village>();
         List<String> villages = allEligibleCouples.villages();
@@ -123,10 +174,19 @@ public class PNCSmartRegisterController {
         return alertDTOs;
     }
 
-    private void sortByName(List<PNCClient> pncClients) {
-        sort(pncClients, new Comparator<PNCClient>() {
+//    private void sortByName(List<PNCClient> pncClients) {
+//        sort(pncClients, new Comparator<PNCClient>() {
+//            @Override
+//            public int compare(PNCClient onePNCClient, PNCClient anotherPNCClient) {
+//                return onePNCClient.wifeName().compareToIgnoreCase(anotherPNCClient.wifeName());
+//            }
+//        });
+//    }
+
+    private void sortByName(List<? extends SmartRegisterClient> pncClients) {
+        sort(pncClients, new Comparator<SmartRegisterClient>() {
             @Override
-            public int compare(PNCClient onePNCClient, PNCClient anotherPNCClient) {
+            public int compare(SmartRegisterClient onePNCClient, SmartRegisterClient anotherPNCClient) {
                 return onePNCClient.wifeName().compareToIgnoreCase(anotherPNCClient.wifeName());
             }
         });

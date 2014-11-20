@@ -74,6 +74,7 @@ public class AllConstants {
         public static final String PNC_REGISTRATION_OA = "pnc_registration_oa";
         public static final String PNC_CLOSE = "pnc_close";
         public static final String PNC_VISIT = "pnc_visit";
+        public static final String PNC_POSTPARTUM_FAMILY_PLANNING = "postpartum_family_planning";
         public static final String CHILD_IMMUNIZATIONS = "child_immunizations";
         public static final String CHILD_REGISTRATION_EC = "child_registration_ec";
         public static final String CHILD_REGISTRATION_OA = "child_registration_oa";
