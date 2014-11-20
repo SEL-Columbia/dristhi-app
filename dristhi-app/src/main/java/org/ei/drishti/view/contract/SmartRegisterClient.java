@@ -16,7 +16,7 @@ public interface SmartRegisterClient {
     Comparator<SmartRegisterClient> HIGH_PRIORITY_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            return client.isHighPriority() && anotherClient.isHighPriority()
+            return client.isHighPriority() == anotherClient.isHighPriority()
                     ? client.name().compareToIgnoreCase(anotherClient.name())
                     : anotherClient.isHighPriority() ? 1 : -1;
         }

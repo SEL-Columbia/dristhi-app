@@ -6,7 +6,6 @@ import org.ei.drishti.view.contract.SmartRegisterClients;
 
 import java.util.Collections;
 
-import static org.ei.drishti.view.contract.SmartRegisterClient.HIGH_PRIORITY_COMPARATOR;
 import static org.ei.drishti.view.contract.SmartRegisterClient.HIGH_RISK_COMPARATOR;
 
 public class HighRiskSort implements SortOption {

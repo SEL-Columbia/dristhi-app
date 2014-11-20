@@ -4,7 +4,7 @@ import org.ei.drishti.domain.FPMethod;
 
 import java.util.List;
 
-public interface FPSmartRegisterClient extends BaseFPSmartRegisterClient {
+public interface FPSmartRegisterClient extends BaseFPSmartRegisterClient, ECSmartRegisterBaseClient {
 
     public String numberOfPregnancies();
 
@@ -29,8 +29,6 @@ public interface FPSmartRegisterClient extends BaseFPSmartRegisterClient {
     public String iudPlace();
 
     public FPMethod fpMethod();
-
-    public Integer ecNumber();
 
     public String youngestChildAge();
 

@@ -7,7 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public interface ECSmartRegisterClient extends BaseFPSmartRegisterClient {
+public interface ECSmartRegisterClient extends BaseFPSmartRegisterClient, ECSmartRegisterBaseClient {
 
     Comparator<SmartRegisterClient> EC_NUMBER_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
@@ -40,8 +40,6 @@ public interface ECSmartRegisterClient extends BaseFPSmartRegisterClient {
     public String iudPlace();
 
     public FPMethod fpMethod();
-
-    public Integer ecNumber();
 
     public List<ECChildClient> children();
 

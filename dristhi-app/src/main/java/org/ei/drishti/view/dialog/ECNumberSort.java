@@ -2,6 +2,7 @@ package org.ei.drishti.view.dialog;
 
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
+import org.ei.drishti.view.contract.ECClient;
 import org.ei.drishti.view.contract.ECSmartRegisterBaseClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
 

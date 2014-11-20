@@ -232,16 +232,16 @@ public class NativeECSmartRegisterActivityTest {
         Fragment fragment = ecActivity.getFragmentManager().findFragmentByTag("dialog");
         TextView villageInStatusBar = (TextView) ecActivity.findViewById(R.id.village);
         ListView list = (ListView) fragment.getView().findViewById(R.id.dialog_list);
-        int defaultFilterOptions = 2;
+        int defaultFilterOptions = 1;
 
         assertTrue(fragment.isVisible());
         assertEquals(4 + defaultFilterOptions, tryGetAdapter(list).getCount());
         assertEquals("All", villageInStatusBar.getText());
 
-        ViewGroup item1View = (ViewGroup) tryGetAdapter(list).getView(3, null, null);
+        ViewGroup item1View = (ViewGroup) tryGetAdapter(list).getView(2, null, null);
         assertEquals("Mysore", ((TextView) item1View.findViewById(R.id.dialog_list_option)).getText().toString());
 
-        list.performItemClick(item1View, 3, 3);
+        list.performItemClick(item1View, 2, 2);
         assertFalse(fragment.isVisible());
         assertEquals("Mysore", villageInStatusBar.getText());
     }

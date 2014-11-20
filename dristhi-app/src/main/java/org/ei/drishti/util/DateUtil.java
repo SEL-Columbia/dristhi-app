@@ -10,6 +10,7 @@ import org.joda.time.format.ISODateTimeFormat;
 
 public class DateUtil {
     private static String DEFAULT_FORMAT_DDMMYYYY = "dd/MM/yyyy";
+    private static String DATE_FORMAT_FOR_TIMELINE_EVENT = "dd-MM-yyyy";
 
     private static DateUtility dateUtility = new RealDate();
 
@@ -22,7 +23,7 @@ public class DateUtil {
     }
 
     public static String formatDateForTimelineEvent(String unformattedDate) {
-        return formatDate(unformattedDate, DEFAULT_FORMAT_DDMMYYYY);
+        return formatDate(unformattedDate, DATE_FORMAT_FOR_TIMELINE_EVENT);
     }
 
     public static String formatDate(String unformattedDate) {

@@ -40,7 +40,7 @@ public class NativeHomeActivityTest {
 
     @Test
     public void shouldLaunchPncRegisterOnPressingPncRegisterButton() {
-        verifyLaunchOfActivityOnPressingButton(R.id.btn_pnc_register, PNCSmartRegisterActivity.class);
+        verifyLaunchOfActivityOnPressingButton(R.id.btn_pnc_register, NativePNCSmartRegisterActivity.class);
     }
 
     @Test
