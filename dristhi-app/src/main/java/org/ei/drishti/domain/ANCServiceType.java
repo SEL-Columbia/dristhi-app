@@ -17,6 +17,11 @@ public enum ANCServiceType {
         }
 
         @Override
+        public String onServiceCompleteDisplayName() {
+            return "ANC 1";
+        }
+
+        @Override
         public String category() {
             return ANCClient.CATEGORY_ANC;
         }
@@ -24,6 +29,11 @@ public enum ANCServiceType {
     ANC_2 {
         @Override
         public String displayName() {
+            return "ANC 2";
+        }
+
+        @Override
+        public String onServiceCompleteDisplayName() {
             return "ANC 2";
         }
 
@@ -39,6 +49,11 @@ public enum ANCServiceType {
         }
 
         @Override
+        public String onServiceCompleteDisplayName() {
+            return "ANC 3";
+        }
+
+        @Override
         public String category() {
             return ANCClient.CATEGORY_ANC;
         }
@@ -46,6 +61,11 @@ public enum ANCServiceType {
     ANC_4 {
         @Override
         public String displayName() {
+            return "ANC 4";
+        }
+
+        @Override
+        public String onServiceCompleteDisplayName() {
             return "ANC 4";
         }
 
@@ -61,6 +81,11 @@ public enum ANCServiceType {
         }
 
         @Override
+        public String onServiceCompleteDisplayName() {
+            return "TT 1";
+        }
+
+        @Override
         public String category() {
             return ANCClient.CATEGORY_TT;
         }
@@ -68,6 +93,11 @@ public enum ANCServiceType {
     TT_2 {
         @Override
         public String displayName() {
+            return "TT";
+        }
+
+        @Override
+        public String onServiceCompleteDisplayName() {
             return "TT 2";
         }
 
@@ -83,6 +113,11 @@ public enum ANCServiceType {
         }
 
         @Override
+        public String onServiceCompleteDisplayName() {
+            return "TT Booster";
+        }
+
+        @Override
         public String category() {
             return ANCClient.CATEGORY_TT;
         }
@@ -90,6 +125,11 @@ public enum ANCServiceType {
     IFA {
         @Override
         public String displayName() {
+            return "IFA";
+        }
+
+        @Override
+        public String onServiceCompleteDisplayName() {
             return "IFA";
         }
 
@@ -106,6 +146,11 @@ public enum ANCServiceType {
         }
 
         @Override
+        public String onServiceCompleteDisplayName() {
+            return "HB";
+        }
+
+        @Override
         public String category() {
             return ANCClient.CATEGORY_HB;
         }
@@ -113,6 +158,11 @@ public enum ANCServiceType {
     DELIVERY_PLAN {
         @Override
         public String displayName() {
+            return "Delivery Plan";
+        }
+
+        @Override
+        public String onServiceCompleteDisplayName() {
             return "Delivery Plan";
         }
 
@@ -128,6 +178,11 @@ public enum ANCServiceType {
         }
 
         @Override
+        public String onServiceCompleteDisplayName() {
+            return "PNC";
+        }
+
+        @Override
         public String category() {
             return ANCClient.CATEGORY_PNC;
         }
@@ -139,12 +194,19 @@ public enum ANCServiceType {
         }
 
         @Override
+        public String onServiceCompleteDisplayName() {
+            return "";
+        }
+
+        @Override
         public String category() {
             return "";
         }
     };
 
     public abstract String displayName();
+
+    public abstract String onServiceCompleteDisplayName();
 
     public String shortName() {
         return displayName();

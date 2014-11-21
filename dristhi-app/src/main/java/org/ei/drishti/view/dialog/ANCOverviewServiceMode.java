@@ -14,6 +14,7 @@ import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
 
 import static android.view.View.VISIBLE;
 import static org.ei.drishti.AllConstants.FormNames.ANC_VISIT;
+import static org.ei.drishti.AllConstants.FormNames.TT;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
 
@@ -68,7 +69,7 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
 
         viewHolder.txtRiskFactors().setText(client.riskFactors());
         setupANCVisitLayout(client, viewHolder);
-
+        setupTTLayout(client, viewHolder);
     }
 
     @Override
@@ -89,7 +90,7 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
         if (ancVisitAlert != emptyAlert) {
             viewHolder.btnAncVisitView().setVisibility(View.INVISIBLE);
             viewHolder.layoutANCVisitAlert().setVisibility(VISIBLE);
-            viewHolder.layoutANCVisitAlert().setOnClickListener(launchANCVisitForm(client, ancVisitAlert));
+            viewHolder.layoutANCVisitAlert().setOnClickListener(launchForm(client, ancVisitAlert, ANC_VISIT));
             setAlertLayout(viewHolder.layoutANCVisitAlert(),
                     viewHolder.txtANCVisitDueType(),
                     viewHolder.txtANCVisitAlertDueOn(),
@@ -97,12 +98,37 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
         } else {
             viewHolder.layoutANCVisitAlert().setVisibility(View.INVISIBLE);
             viewHolder.btnAncVisitView().setVisibility(View.INVISIBLE);
-            viewHolder.btnAncVisitView().setOnClickListener(launchANCVisitForm(client, ancVisitAlert));
+            viewHolder.btnAncVisitView().setOnClickListener(launchForm(client, ancVisitAlert, ANC_VISIT));
         }
     }
 
-    private OnClickFormLauncher launchANCVisitForm(ANCSmartRegisterClient client, AlertDTO alert) {
-        return provider().newFormLauncher(ANC_VISIT, client.entityId(), "{\"entityId\":\"" + client.entityId() + "\",\"alertName\":\"" + alert.name() + "\"}");
+    public void setupTTLayout(ANCSmartRegisterClient client,
+                                    NativeANCSmartRegisterViewHolder viewHolder) {
+        if (client.isTTDone()) {
+            viewHolder.txtTTDoneOn().setVisibility(VISIBLE);
+            viewHolder.txtTTDoneOn().setText(client.ttDoneDate());
+        } else {
+            viewHolder.txtTTDoneOn().setVisibility(View.INVISIBLE);
+        }
+
+        AlertDTO ttAlert = client.getAlert(ANCServiceType.TT_1);
+        if (ttAlert != emptyAlert) {
+            viewHolder.btnTTView().setVisibility(View.INVISIBLE);
+            viewHolder.layoutTTAlert().setVisibility(VISIBLE);
+            viewHolder.layoutTTAlert().setOnClickListener(launchForm(client, ttAlert, TT));
+            setAlertLayout(viewHolder.layoutTTAlert(),
+                    viewHolder.txtTTDueType(),
+                    viewHolder.txtTTDueOn(),
+                    ttAlert);
+        } else {
+            viewHolder.layoutTTAlert().setVisibility(View.INVISIBLE);
+            viewHolder.btnTTView().setVisibility(View.INVISIBLE);
+            viewHolder.btnTTView().setOnClickListener(launchForm(client, ttAlert, TT));
+        }
+    }
+
+    private OnClickFormLauncher launchForm(ANCSmartRegisterClient client, AlertDTO alert, String formName) {
+        return provider().newFormLauncher(formName, client.entityId(), "{\"entityId\":\"" + client.entityId() + "\",\"alertName\":\"" + alert.name() + "\"}");
     }
 
     private void setAlertLayout(View layout, TextView typeView,

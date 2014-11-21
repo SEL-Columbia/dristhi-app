@@ -46,7 +46,7 @@ public class ServiceProvidedDTO {
     }
 
     public String ancServicedOn() {
-        return ancServiceType().shortName() + ": " + shortDate();
+        return ancServiceType().onServiceCompleteDisplayName() + ": " + shortDate();
     }
 
     public Map<String, String> data() {

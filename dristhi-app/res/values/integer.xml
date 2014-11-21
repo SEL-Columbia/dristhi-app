@@ -47,5 +47,8 @@
     <integer name="anc_list_status_view_weight">15</integer>
     <integer name="anc_list_service_mode_views_section_weight">55</integer>
     <integer name="anc_list_overview_service_mode_risk_factors_weight">10</integer>
+    <integer name="anc_list_overview_service_mode_tt_view_weight">15</integer>
+    <integer name="anc_list_overview_service_mode_anc_visit_view_weight">15</integer>
+
 
 </resources>

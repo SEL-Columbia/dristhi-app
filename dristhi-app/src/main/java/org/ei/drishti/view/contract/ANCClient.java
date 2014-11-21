@@ -201,6 +201,16 @@ public class ANCClient implements ANCSmartRegisterClient {
     }
 
     @Override
+    public boolean isTTDone() {
+        return isServiceProvided(CATEGORY_TT);
+    }
+
+    @Override
+    public String ttDoneDate() {
+        return serviceProvided(CATEGORY_TT).ancServicedOn();
+    }
+
+    @Override
     public String visitDoneDate() {
         return serviceProvided(CATEGORY_ANC).ancServicedOn();
     }
