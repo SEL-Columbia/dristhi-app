@@ -11,6 +11,7 @@ import org.ei.drishti.service.ServiceProvidedService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
 import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.preProcessor.PNCClientPreProcessor;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -109,7 +110,7 @@ public class PNCSmartRegisterController {
 
                     List<ServiceProvidedDTO> servicesProvided = getServicesProvided(pnc.caseId());
                     List<AlertDTO> alerts = getAlerts(pnc.caseId());
-                    pncClients.add(new PNCClient(pnc.caseId(), ec.village(), ec.wifeName(), pnc.thayiCardNumber(), pnc.referenceDate())
+                    PNCClient client = new PNCClient(pnc.caseId(), ec.village(), ec.wifeName(), pnc.thayiCardNumber(), pnc.referenceDate())
                             .withHusbandName(ec.husbandName())
                             .withAge(ec.age())
                             .withWomanDOB(ec.getDetail(WOMAN_DOB))
@@ -135,8 +136,9 @@ public class PNCSmartRegisterController {
                             .withEntityIdToSavePhoto(ec.caseId())
                             .withAlerts(alerts)
                             .withServicesProvided(servicesProvided)
-                            .withChildren(findChildren(pnc))
-                    );
+                            .withChildren(findChildren(pnc));
+                    PNCClient processedClient = new PNCClientPreProcessor().preProcess(client);
+                    pncClients.add(processedClient);
                 }
                 sortByName(pncClients);
                 return pncClients;

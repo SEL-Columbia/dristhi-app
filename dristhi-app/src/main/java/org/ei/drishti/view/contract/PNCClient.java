@@ -1,30 +1,23 @@
 package org.ei.drishti.view.contract;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.FPMethod;
-import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.IntegerUtil;
-import org.ei.drishti.view.dialog.PNCVisitClause;
-import org.ei.drishti.view.dialog.PNCVisitDayClause;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.ISODateTimeFormat;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import static org.ei.drishti.AllConstants.COMMA_WITH_SPACE;
-import static org.ei.drishti.AllConstants.ECRegistrationFields.BPL_VALUE;
-import static org.ei.drishti.AllConstants.ECRegistrationFields.SC_VALUE;
-import static org.ei.drishti.AllConstants.ECRegistrationFields.ST_VALUE;
+import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
 import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.util.DateUtil.*;
-import static org.ei.drishti.util.StringUtil.humanize;
-import static org.ei.drishti.util.StringUtil.humanizeAndDoUPPERCASE;
-import static org.ei.drishti.util.StringUtil.replaceAndHumanize;
+import static org.ei.drishti.util.StringUtil.*;
 
 public class PNCClient implements PNCSmartRegisterClient {
     private String entityId;
@@ -58,9 +51,10 @@ public class PNCClient implements PNCSmartRegisterClient {
     private List<ServiceProvidedDTO> services_provided;
     private List<ChildClient> children;
     private String entityIdToSavePhoto;
-    private List<Integer> defaultVisits = new ArrayList<Integer>(Arrays.asList(1, 3, 7));
     private List<ExpectedVisit> expectedVisits;
-    private int VISIT_END_OFFSET_DAY_COUNT = 7;
+    private ArrayList<PNCCircleDatum> pncCircleData;
+    private ArrayList<PNCStatusDatum> pncStatusData;
+    private int pncVisitStatusColor;
 
     public PNCClient(String entityId, String village, String name, String thayi, String deliveryDate) {
         this.entityId = entityId;
@@ -166,18 +160,18 @@ public class PNCClient implements PNCSmartRegisterClient {
     }
 
     @Override
-    public String deliveryDate() {
-        return formatISO8601Date(deliveryDate, "dd/MM/YYYY");
+    public String deliveryDateForDisplay() {
+        return formatFromISOString(deliveryDate, "dd/MM/YYYY");
     }
 
     @Override
     public String deliveryShortDate() {
-        return formatISO8601Date(deliveryDate, "dd/MM");
+        return formatFromISOString(deliveryDate, "dd/MM");
     }
 
     @Override
-    public LocalDate deliveryDateISO8601() {
-        return getDateFromISO8601DateString(deliveryDate);
+    public LocalDate deliveryDate() {
+        return getLocalDate(deliveryDate);
     }
 
     @Override
@@ -385,59 +379,33 @@ public class PNCClient implements PNCSmartRegisterClient {
         return ToStringBuilder.reflectionToString(this);
     }
 
-    public List<ExpectedVisit> calculateExpectedVisitDates() {
-        expectedVisits = new ArrayList<ExpectedVisit>();
-        for (Integer offset : defaultVisits) {
-            LocalDate expectedVisitDate = deliveryDateISO8601().plusDays(offset);
-            // Check if the copy of the date object is returned by the plus days function. If else this code will modify the current delivery date
-            ExpectedVisit expectedVisit = new ExpectedVisit(offset, formatDate(expectedVisitDate, "dd/MM/YYYY"));
-            expectedVisits.add(expectedVisit);
-        }
+
+
+    public PNCClient withExpectedVisits(List<ExpectedVisit> visits) {
+        this.expectedVisits = visits;
+        return this;
+    }
+
+    public List<ExpectedVisit> getExpectedVisits() {
         return expectedVisits;
     }
 
-    public void preProcess() {
-        List<ServiceProvidedDTO> firstSevenDaysServices = getFirstSevenDaysVisit();
-        int currentDay = DateUtil.dayDifference(DateUtil.today(), deliveryDateISO8601());
-        List<PNCCircleDatum> circleData = new ArrayList<PNCCircleDatum>();
-        List<PNCStatusDatum> statusData = new ArrayList<PNCStatusDatum>();
-        List<ExpectedVisit> expectedVisits = calculateExpectedVisitDates();
-        for (ExpectedVisit expectedVisit : expectedVisits) {
-            LocalDate expectedVisitDate = getDateFromISO8601DateString(expectedVisit.date());
-            int expectedVisitDay = dayDifference(expectedVisitDate, deliveryDateISO8601());
-            int numberOfVisits = new Filter<ServiceProvidedDTO>().applyFilterWithClause(firstSevenDaysServices, new PNCVisitDayClause(expectedVisitDay)).size();
-
-        }
+    public PNCClient withPNCVisitCircles(ArrayList<PNCCircleDatum> circleData) {
+        this.pncCircleData = circleData;
+        return this;
     }
 
-    private List<ServiceProvidedDTO> getFirstSevenDaysVisit() {
-        LocalDate endDate = deliveryDateISO8601().plusDays(VISIT_END_OFFSET_DAY_COUNT);
-
-        List<ServiceProvidedDTO> validServices = new Filter<ServiceProvidedDTO>().applyFilterWithClause(services_provided, new PNCVisitClause(endDate));
-//        List<ServiceProvidedDTO> validServices = filterValidServicesWithInSevenDays(services_provided, endDate);
-        validServices = removeDuplicateServicesAndReturnList(validServices);
-        Collections.sort(validServices);//Ascending sort based on the date
-        validServices = findAndSetTheVisitDayOfTheServicesWithRespectToDeliveryDate(validServices);//Find the day offset from the delivery date for the visits
-        return validServices;
+    public PNCClient withPNCStatusData(ArrayList<PNCStatusDatum> statusData) {
+        this.pncStatusData = statusData;
+        return this;
     }
 
-    private List<ServiceProvidedDTO> removeDuplicateServicesAndReturnList(List<ServiceProvidedDTO> serviceList) {
-        if (serviceList != null) {
-            Set<ServiceProvidedDTO> serviceSet = new HashSet<ServiceProvidedDTO>(serviceList);
-            //To function this correctly the hash code of the object and equals method should override and should return the proper values
-            serviceList.clear();
-            serviceList.addAll(serviceSet);
-        }
-        return serviceList;
+    public PNCClient withPNCVisitStatusColor(int pncVisitStatusColor) {
+        this.pncVisitStatusColor = pncVisitStatusColor;
+        return this;
     }
 
-    private List<ServiceProvidedDTO> findAndSetTheVisitDayOfTheServicesWithRespectToDeliveryDate(List<ServiceProvidedDTO> services) {
-
-        if (services != null) {
-            for (ServiceProvidedDTO service : services) {
-                service.withDay(dayDifference(service.localDate(), deliveryDateISO8601()));
-            }
-        }
-        return services;
+    public Iterable<ServiceProvidedDTO> getServicesProvided() {
+        return services_provided;
     }
 }

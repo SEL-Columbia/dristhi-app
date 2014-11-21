@@ -1,11 +1,9 @@
 package org.ei.drishti.view.contract;
 
 
-import org.ei.drishti.domain.FPMethod;
 import org.joda.time.LocalDate;
 
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 public interface PNCSmartRegisterClient extends BaseFPSmartRegisterClient {
@@ -13,13 +11,13 @@ public interface PNCSmartRegisterClient extends BaseFPSmartRegisterClient {
     Comparator<SmartRegisterClient> DATE_OF_DELIVERY_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient lhs, SmartRegisterClient rhs) {
-            return ((PNCSmartRegisterClient) lhs).deliveryDateISO8601().compareTo(((PNCSmartRegisterClient) rhs).deliveryDateISO8601());
+            return ((PNCSmartRegisterClient) lhs).deliveryDate().compareTo(((PNCSmartRegisterClient) rhs).deliveryDate());
         }
     };
     public String thayiNumber();
-    public String deliveryDate();
+    public String deliveryDateForDisplay();
     public String deliveryShortDate();
-    public LocalDate deliveryDateISO8601();
+    public LocalDate deliveryDate();
     public String deliveryPlace();
     public String deliveryType();
     public String deliveryComplications();

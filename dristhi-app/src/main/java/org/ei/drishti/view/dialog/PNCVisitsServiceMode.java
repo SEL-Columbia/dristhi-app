@@ -8,8 +8,6 @@ import org.ei.drishti.view.contract.*;
 import org.ei.drishti.view.viewHolder.*;
 
 import static android.view.View.VISIBLE;
-import static org.ei.drishti.AllConstants.FormNames.FP_CHANGE;
-import static org.ei.drishti.AllConstants.FormNames.FP_COMPLICATIONS;
 import static org.ei.drishti.Context.getInstance;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 
@@ -62,7 +60,7 @@ public class PNCVisitsServiceMode extends ServiceModeOption {
     }
 
     private void setupDaysPPView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
-        viewHolder.txtNumberOfVisits().setText(String.valueOf(DateUtil.dayDifference(client.deliveryDateISO8601(), DateUtil.today())));
+        viewHolder.txtNumberOfVisits().setText(String.valueOf(DateUtil.dayDifference(client.deliveryDate(), DateUtil.today())));
         viewHolder.txtDOB().setText(client.deliveryShortDate());
     }
 

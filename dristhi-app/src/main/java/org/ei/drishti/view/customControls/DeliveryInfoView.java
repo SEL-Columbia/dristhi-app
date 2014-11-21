@@ -34,7 +34,7 @@ public class DeliveryInfoView extends LinearLayout {
 
     // #TODO: make these names generic, so this layout can be reused in all the registers
     public void bindData(PNCSmartRegisterClient client) {
-        txtDeliveryDateView.setText(client.deliveryDate());
+        txtDeliveryDateView.setText(client.deliveryDateForDisplay());
         txtDeliveryPlaceView.setText(client.deliveryPlace());
         txtDeliveryTypeView.setText(client.deliveryType());
     }

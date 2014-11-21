@@ -1,12 +1,8 @@
 package org.ei.drishti.util;
 
-import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.ISODateTimeFormat;
 
 public class DateUtil {
     private static String DEFAULT_FORMAT_DDMMYYYY = "dd/MM/yyyy";
@@ -46,15 +42,15 @@ public class DateUtil {
         }
     }
 
-    public static String formatISO8601Date(String date, String pattern) {
+    public static String formatFromISOString(String date, String pattern) {
         try {
-            return getDateFromISO8601DateString(date).toString(pattern);
+            return getLocalDate(date).toString(pattern);
         } catch (Exception e) {
             return "";
         }
     }
 
-    public static LocalDate getDateFromISO8601DateString(String date) {
+    public static LocalDate getLocalDate(String date) {
         try {
             return LocalDateTime.parse(date).toLocalDate();
         } catch (Exception e) {
@@ -64,7 +60,7 @@ public class DateUtil {
 
     public static int dayDifference(LocalDate startDate, LocalDate endDate) {
         try {
-            return Days.daysBetween(startDate, endDate).getDays();
+            return Math.abs(Days.daysBetween(startDate, endDate).getDays());
         } catch (Exception e) {
             return 0;
         }

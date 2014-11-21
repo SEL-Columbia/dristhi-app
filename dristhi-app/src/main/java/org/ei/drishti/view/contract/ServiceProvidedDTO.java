@@ -1,24 +1,17 @@
 package org.ei.drishti.view.contract;
 
-import com.google.common.base.Predicate;
-import com.google.common.collect.Iterables;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.ANCServiceType;
 import org.ei.drishti.domain.ChildServiceType;
-import org.ei.drishti.view.dialog.FilterOption;
-import org.ei.drishti.view.dialog.ServiceModeOption;
-import org.ei.drishti.view.dialog.SortOption;
 import org.joda.time.LocalDate;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static org.ei.drishti.util.DateUtil.formatDate;
-import static org.ei.drishti.util.DateUtil.getDateFromISO8601DateString;
+import static org.ei.drishti.util.DateUtil.getLocalDate;
 
 public class ServiceProvidedDTO implements Comparable<ServiceProvidedDTO> {
 
@@ -56,7 +49,7 @@ public class ServiceProvidedDTO implements Comparable<ServiceProvidedDTO> {
     }
 
     public LocalDate localDate() {
-        return getDateFromISO8601DateString(date);
+        return getLocalDate(date);
     }
 
     public String shortDate() {

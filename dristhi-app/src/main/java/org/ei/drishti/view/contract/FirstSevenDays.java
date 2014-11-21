@@ -3,15 +3,10 @@ package org.ei.drishti.view.contract;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.domain.ChildServiceType;
-import org.joda.time.LocalDate;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.ei.drishti.util.DateUtil.formatDate;
-import static org.ei.drishti.util.DateUtil.getDateFromISO8601DateString;
 
 public class FirstSevenDays {
 

@@ -3,24 +3,20 @@ package org.ei.drishti.view.contract;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.domain.ChildServiceType;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.ei.drishti.util.DateUtil.formatDate;
 
 public class ExpectedVisit {
-    private int offset;
+    private int day;
     private String date;
 
-    public ExpectedVisit(int offset, String date) {
-        this.offset = offset;
+    public ExpectedVisit(int day, String date) {
+        this.day = day;
         this.date = date;
     }
 
-    public int offset() {
-        return offset;
+    public int day() {
+        return day;
     }
 
     public String date() {
