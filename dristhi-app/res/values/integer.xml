@@ -41,4 +41,7 @@
     <integer name="fp_list_prioritization_risks_view_weight">30</integer>
     <integer name="fp_list_prioritization_button_weight">15</integer>
 
+    <integer name="anc_list_service_mode_views_section_weight">60</integer>
+
+
 </resources>

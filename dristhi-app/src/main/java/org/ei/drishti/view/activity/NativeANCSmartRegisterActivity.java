@@ -23,14 +23,10 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     private DialogOptionMapper dialogOptionMapper;
 
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
-    private SmartRegisterPaginatedAdapter smartRegisterPaginatedAdapter;
 
     @Override
     protected SmartRegisterPaginatedAdapter adapter() {
-        if (smartRegisterPaginatedAdapter == null) {
-            smartRegisterPaginatedAdapter = new SmartRegisterPaginatedAdapter(clientsProvider());
-        }
-        return smartRegisterPaginatedAdapter;
+        return new SmartRegisterPaginatedAdapter(clientsProvider());
     }
 
     @Override

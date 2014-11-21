@@ -1,11 +1,17 @@
 package org.ei.drishti.view.contract;
 
 import org.ei.drishti.util.DateUtil;
+import org.ei.drishti.util.EasyMap;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static java.util.Arrays.asList;
 import static junit.framework.Assert.*;
 
 @RunWith(RobolectricTestRunner.class)
@@ -50,5 +56,38 @@ public class ANCClientTest {
         String daysBetween = getClient().eddInDays();
 
         assertEquals("3", daysBetween);
+    }
+
+    @Test
+    public void shouldAddANCAlertToServiceToVisitMap() throws Exception {
+        AlertDTO ancAlert = new AlertDTO("ANC 1", "urgent", "2013-02-01");
+        ANCClient ancClient = getClient().withAlerts(asList(ancAlert))
+                .withServicesProvided(new ArrayList<ServiceProvidedDTO>());
+
+        ANCClient preprocessedClients = ancClient.withPreProcess();
+
+        Visits emptyVisit = new Visits();
+        Visits visits = new Visits();
+        visits.toProvide = ancAlert;
+        Map<String, Visits> serviceToVisitsMap = EasyMap.create("tt", emptyVisit).put("pnc", emptyVisit).put("ifa", emptyVisit).put("delivery_plan", emptyVisit).put("anc", visits).put("hb", emptyVisit).map();
+
+        assertEquals(preprocessedClients.serviceToVisitsMap(), serviceToVisitsMap);
+
+    }
+
+    @Test
+    public void shouldAddANCServiceProvidedToServiceToVisitMap() throws Exception {
+        ServiceProvidedDTO servicesProvided = new ServiceProvidedDTO("ANC 1", "2013-02-01", new HashMap<String, String>());
+        ANCClient ancClient = getClient().withAlerts(new ArrayList<AlertDTO>())
+                .withServicesProvided(asList(servicesProvided));
+
+        ANCClient preprocessedClients = ancClient.withPreProcess();
+
+        Visits emptyVisit = new Visits();
+        Visits visits = new Visits();
+        visits.provided = servicesProvided;
+        Map<String, Visits> serviceToVisitsMap = EasyMap.create("tt", emptyVisit).put("pnc", emptyVisit).put("ifa", emptyVisit).put("delivery_plan", emptyVisit).put("anc", visits).put("hb", emptyVisit).map();
+
+        assertEquals(preprocessedClients.serviceToVisitsMap(), serviceToVisitsMap);
     }
 }

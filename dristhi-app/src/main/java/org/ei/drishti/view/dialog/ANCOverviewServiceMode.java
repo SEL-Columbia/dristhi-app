@@ -1,17 +1,20 @@
 package org.ei.drishti.view.dialog;
 
 import android.view.View;
+import android.widget.TextView;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
+import org.ei.drishti.domain.ANCServiceType;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.contract.ANCSmartRegisterClient;
-import org.ei.drishti.view.contract.ChildSmartRegisterClient;
-import org.ei.drishti.view.contract.FPSmartRegisterClient;
+import org.ei.drishti.view.contract.*;
 import org.ei.drishti.view.viewHolder.NativeANCSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
+import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
 
+import static org.ei.drishti.AllConstants.FormNames.ANC_VISIT;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
 
 public class ANCOverviewServiceMode extends ServiceModeOption {
 
@@ -60,7 +63,7 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
     public void setupListView(ANCSmartRegisterClient client,
                               NativeANCSmartRegisterViewHolder viewHolder,
                               View.OnClickListener clientSectionClickListener) {
-
+        setupANCVisitLayout(client, viewHolder);
 
     }
 
@@ -69,5 +72,43 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
 
     }
 
+    public void setupANCVisitLayout(ANCSmartRegisterClient client,
+                                    NativeANCSmartRegisterViewHolder viewHolder) {
+        if (client.isVisitsDone()) {
+            viewHolder.txtANCVisitDoneOn().setVisibility(View.VISIBLE);
+            viewHolder.txtANCVisitDoneOn().setText(client.visitDoneDate());
+        } else {
+            viewHolder.txtANCVisitDoneOn().setVisibility(View.INVISIBLE);
+        }
 
+        AlertDTO ancVisitAlert = client.getAlert(ANCServiceType.ANC_1);
+        if (ancVisitAlert != emptyAlert) {
+            viewHolder.btnAncVisitView().setVisibility(View.INVISIBLE);
+            viewHolder.layoutANCVisitAlert().setVisibility(View.VISIBLE);
+            viewHolder.layoutANCVisitAlert().setOnClickListener(launchANCVisitForm(client, ancVisitAlert));
+            setAlertLayout(viewHolder.layoutANCVisitAlert(),
+                    viewHolder.txtANCVisitDueType(),
+                    viewHolder.txtANCVisitAlertDueOn(),
+                    ancVisitAlert);
+        } else {
+            viewHolder.layoutANCVisitAlert().setVisibility(View.INVISIBLE);
+            viewHolder.btnAncVisitView().setVisibility(View.INVISIBLE);
+            viewHolder.btnAncVisitView().setOnClickListener(launchANCVisitForm(client, ancVisitAlert));
+        }
+    }
+
+    private OnClickFormLauncher launchANCVisitForm(ANCSmartRegisterClient client, AlertDTO alert) {
+        return provider().newFormLauncher(ANC_VISIT, client.entityId(), "{\"entityId\":\"" + client.entityId() + "\",\"alertName\":\"" + alert.name() + "\"}");
+    }
+
+    private void setAlertLayout(View layout, TextView typeView,
+                                TextView dateView, AlertDTO alert) {
+        typeView.setText(alert.ancServiceType().shortName());
+        dateView.setText("due " + alert.shortDate());
+
+        final AlertStatus alertStatus = alert.alertStatus();
+        layout.setBackgroundResource(alertStatus.backgroundColorResourceId());
+        typeView.setTextColor(alertStatus.fontColor());
+        dateView.setTextColor(alertStatus.fontColor());
+    }
 }

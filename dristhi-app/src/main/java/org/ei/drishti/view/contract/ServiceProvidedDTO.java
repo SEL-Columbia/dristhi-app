@@ -3,6 +3,7 @@ package org.ei.drishti.view.contract;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.domain.ANCServiceType;
 import org.ei.drishti.domain.ChildServiceType;
 
 import java.util.HashMap;
@@ -28,6 +29,10 @@ public class ServiceProvidedDTO {
         return ChildServiceType.tryParse(name, ChildServiceType.EMPTY);
     }
 
+    public ANCServiceType ancServiceType() {
+        return ANCServiceType.tryParse(name, ANCServiceType.EMPTY);
+    }
+
     public String date() {
         return formatDate(date);
     }
@@ -38,6 +43,10 @@ public class ServiceProvidedDTO {
 
     public String servicedOn() {
         return type().shortName() + ": " + shortDate();
+    }
+
+    public String ancServicedOn() {
+        return ancServiceType().shortName() + ": " + shortDate();
     }
 
     public Map<String, String> data() {

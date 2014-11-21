@@ -42,7 +42,7 @@ public enum AlertStatus {
     },
     INPROCESS {
         public int backgroundColorResourceId() {
-            return android.R.color.holo_orange_light;
+            return R.color.alert_complete_green;
         }
 
         public int fontColor() {
@@ -51,7 +51,7 @@ public enum AlertStatus {
     },
     COMPLETE {
         public int backgroundColorResourceId() {
-            return R.color.alert_complete_green;
+            return R.color.status_bar_text_almost_white;
         }
 
         public int fontColor() {

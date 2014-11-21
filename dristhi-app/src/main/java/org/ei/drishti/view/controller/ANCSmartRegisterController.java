@@ -1,6 +1,5 @@
 package org.ei.drishti.view.controller;
 
-import com.google.gson.Gson;
 import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.Alert;
@@ -57,44 +56,6 @@ public class ANCSmartRegisterController {
         this.ancClientsCache = ancClientsCache;
     }
 
-    public String get() {
-        return cache.get(ANC_CLIENTS_LIST, new CacheableData<String>() {
-            @Override
-            public String fetch() {
-                List<ANCClient> ancClients = new ArrayList<ANCClient>();
-                List<Pair<Mother, EligibleCouple>> ancsWithEcs = allBeneficiaries.allANCsWithEC();
-
-                for (Pair<Mother, EligibleCouple> ancWithEc : ancsWithEcs) {
-                    Mother anc = ancWithEc.getLeft();
-                    EligibleCouple ec = ancWithEc.getRight();
-                    String photoPath = isBlank(ec.photoPath()) ? DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH : ec.photoPath();
-
-                    List<ServiceProvidedDTO> servicesProvided = getServicesProvided(anc.caseId());
-                    List<AlertDTO> alerts = getAlerts(anc.caseId());
-                    ancClients.add(new ANCClient(anc.caseId(), ec.village(), ec.wifeName(), anc.thayiCardNumber(), anc.getDetail(AllConstants.ANCRegistrationFields.EDD), anc.referenceDate())
-                                    .withHusbandName(ec.husbandName())
-                                    .withAge(ec.age())
-                                    .withECNumber(ec.ecNumber())
-                                    .withANCNumber(anc.getDetail(AllConstants.ANCRegistrationFields.ANC_NUMBER))
-                                    .withIsHighPriority(ec.isHighPriority())
-                                    .withIsHighRisk(anc.isHighRisk())
-                                    .withIsOutOfArea(ec.isOutOfArea())
-                                    .withHighRiskReason(anc.highRiskReason())
-                                    .withCaste(ec.getDetail(AllConstants.ECRegistrationFields.CASTE))
-                                    .withEconomicStatus(ec.getDetail(AllConstants.ECRegistrationFields.ECONOMIC_STATUS))
-                                    .withPhotoPath(photoPath)
-                                    .withEntityIdToSavePhoto(ec.caseId())
-                                    .withAlerts(alerts)
-                                    .withAshaPhoneNumber(anc.getDetail(AllConstants.ANCRegistrationFields.ASHA_PHONE_NUMBER))
-                                    .withServicesProvided(servicesProvided)
-                    );
-                }
-                sortByName(ancClients);
-                return new Gson().toJson(ancClients);
-            }
-        });
-    }
-
 
     private List<ServiceProvidedDTO> getServicesProvided(String entityId) {
         List<ServiceProvided> servicesProvided = serviceProvidedService.findByEntityIdAndServiceNames(entityId,
@@ -139,24 +100,6 @@ public class ANCSmartRegisterController {
         return alertDTOs;
     }
 
-    private void sortByName(List<ANCClient> ancClients) {
-        sort(ancClients, new Comparator<ANCClient>() {
-            @Override
-            public int compare(ANCClient oneANCClient, ANCClient anotherANCClient) {
-                return oneANCClient.wifeName().compareToIgnoreCase(anotherANCClient.wifeName());
-            }
-        });
-    }
-
-    private void sortByName(ANCClients ancClients) {
-        sort(ancClients, new Comparator<SmartRegisterClient>() {
-            @Override
-            public int compare(SmartRegisterClient oneANCClient, SmartRegisterClient anotherANCClient) {
-                return oneANCClient.wifeName().compareToIgnoreCase(anotherANCClient.wifeName());
-            }
-        });
-    }
-
     public ANCClients getClients() {
         return ancClientsCache.get(ANC_CLIENTS_LIST, new CacheableData<ANCClients>() {
             @Override
@@ -186,13 +129,22 @@ public class ANCSmartRegisterController {
                             .withEntityIdToSavePhoto(ec.caseId())
                             .withAlerts(alerts)
                             .withAshaPhoneNumber(anc.getDetail(AllConstants.ANCRegistrationFields.ASHA_PHONE_NUMBER))
-                            .withServicesProvided(servicesProvided);
+                            .withServicesProvided(servicesProvided)
+                            .withPreProcess();
                     ancClients.add(ancClient);
                 }
                 sortByName(ancClients);
                 return ancClients;
             }
         });
+    }
 
+    private void sortByName(ANCClients ancClients) {
+        sort(ancClients, new Comparator<SmartRegisterClient>() {
+            @Override
+            public int compare(SmartRegisterClient oneANCClient, SmartRegisterClient anotherANCClient) {
+                return oneANCClient.wifeName().compareToIgnoreCase(anotherANCClient.wifeName());
+            }
+        });
     }
 }

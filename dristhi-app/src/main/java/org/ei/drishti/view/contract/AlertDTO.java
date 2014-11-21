@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.domain.ANCServiceType;
 import org.ei.drishti.domain.ChildServiceType;
 
 import org.ei.drishti.util.DateUtil;
@@ -35,6 +36,10 @@ public class AlertDTO {
 
     public ChildServiceType type() {
         return ChildServiceType.tryParse(name, ChildServiceType.EMPTY);
+    }
+
+    public ANCServiceType ancServiceType() {
+        return ANCServiceType.tryParse(name, ANCServiceType.EMPTY);
     }
 
     public String date() {

@@ -1,24 +1,50 @@
 package org.ei.drishti.view.contract;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.AllConstants;
+import org.ei.drishti.domain.ANCServiceType;
 import org.ei.drishti.util.IntegerUtil;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.ISODateTimeFormat;
 
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
+import static org.ei.drishti.domain.ANCServiceType.*;
 import static org.ei.drishti.util.DateUtil.today;
 import static org.ei.drishti.util.StringUtil.humanize;
+import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
+import static org.ei.drishti.view.contract.ServiceProvidedDTO.emptyService;
 import static org.joda.time.Days.daysBetween;
 import static org.joda.time.LocalDateTime.parse;
 
 public class ANCClient implements ANCSmartRegisterClient {
+
+    public static final String CATEGORY_ANC = "anc";
+    public static final String CATEGORY_TT = "tt";
+    public static final String CATEGORY_IFA = "ifa";
+    public static final String CATEGORY_HB = "hb";
+    public static final String CATEGORY_DELIVERY_PLAN = "delivery_plan";
+    public static final String CATEGORY_PNC = "pnc";
+
+    private static final String[] SERVICE_CATEGORIES = {CATEGORY_ANC, CATEGORY_TT, CATEGORY_IFA,
+            CATEGORY_HB, CATEGORY_DELIVERY_PLAN, CATEGORY_PNC};
+
+    private static Map<String, List<ANCServiceType>> categoriesToServiceTypeMap = new HashMap<String, List<ANCServiceType>>();
+
+    static {
+        categoriesToServiceTypeMap.put(CATEGORY_ANC, Arrays.asList(ANC_1, ANC_2, ANC_3, ANC_4));
+        categoriesToServiceTypeMap.put(CATEGORY_TT, Arrays.asList(TT_1, TT_2, TT_BOOSTER));
+        categoriesToServiceTypeMap.put(CATEGORY_IFA, Arrays.asList(IFA));
+        categoriesToServiceTypeMap.put(CATEGORY_HB, Arrays.asList(HB));
+        categoriesToServiceTypeMap.put(CATEGORY_DELIVERY_PLAN, Arrays.asList(DELIVERY_PLAN));
+        categoriesToServiceTypeMap.put(CATEGORY_PNC, Arrays.asList(PNC));
+    }
+
     private String entityId;
     private String ec_number;
     private String village;
@@ -40,6 +66,8 @@ public class ANCClient implements ANCSmartRegisterClient {
     private List<ServiceProvidedDTO> services_provided;
     private String entityIdToSavePhoto;
     private String ashaPhoneNumber;
+    private Map<String, Visits> serviceToVisitsMap;
+
 
     public ANCClient(String entityId, String village, String name, String thayi, String edd, String lmp) {
         this.entityId = entityId;
@@ -48,6 +76,7 @@ public class ANCClient implements ANCSmartRegisterClient {
         this.thayi = thayi;
         this.edd = parse(edd, DateTimeFormat.forPattern(AllConstants.FORM_DATE_TIME_FORMAT)).toString(ISODateTimeFormat.dateTime());
         this.lmp = lmp;
+        this.serviceToVisitsMap = new HashMap<String, Visits>();
     }
 
     @Override
@@ -151,6 +180,19 @@ public class ANCClient implements ANCSmartRegisterClient {
                 : Integer.toString(daysBetween(parse(edd).toLocalDate(), today()).getDays());
     }
 
+    @Override
+    public AlertDTO getAlert(ANCServiceType type) {
+        return serviceToProvide(type.category());
+    }
+
+    @Override
+    public String ancVisitDoneDate() {
+        return serviceProvided(CATEGORY_ANC).ancServicedOn();
+    }
+
+    public Map<String, Visits> serviceToVisitsMap() {
+        return serviceToVisitsMap;
+    }
 
     public ANCClient withHusbandName(String husbandName) {
         this.husbandName = husbandName;
@@ -226,6 +268,82 @@ public class ANCClient implements ANCSmartRegisterClient {
         this.ashaPhoneNumber = ashaPhoneNumber;
         return this;
     }
+
+    public ANCClient withPreProcess() {
+        initialize(SERVICE_CATEGORIES, serviceToVisitsMap);
+        initializeAllServiceToProvideAndProvided(categoriesToServiceTypeMap);
+        return this;
+    }
+
+    public ANCClient withServiceToVisitMap(Map<String, Visits> serviceToVisitMap ){
+        this.serviceToVisitsMap = serviceToVisitMap;
+        return this;
+    }
+
+    private void initialize(String[] types, Map<String, Visits> serviceToVisitsMap) {
+        for (String type : types) {
+            serviceToVisitsMap.put(type, new Visits());
+        }
+    }
+
+    private void initializeAllServiceToProvideAndProvided(Map<String, List<ANCServiceType>> categoriesToServiceTypeMap) {
+        Set<String> keys = categoriesToServiceTypeMap.keySet();
+        for (String key : keys) {
+            initializeServiceToProvideAndProvided(categoriesToServiceTypeMap.get(key));
+        }
+    }
+
+    private void initializeServiceToProvideAndProvided(List<ANCServiceType> types) {
+        for (ANCServiceType type : types) {
+            initializeServiceToProvideAndProvided(type);
+        }
+    }
+
+    private void initializeServiceToProvideAndProvided(ANCServiceType type) {
+        for (AlertDTO alert : alerts) {
+            if (type.equals(alert.ancServiceType())) {
+                serviceToVisitsMap.get(type.category()).toProvide = alert;
+            }
+        }
+
+        for (ServiceProvidedDTO service : services_provided) {
+            if (type.equals(service.ancServiceType())) {
+                serviceToVisitsMap.get(type.category()).provided = service;
+            }
+        }
+    }
+
+    private boolean isServiceProvided(String category) {
+        if (StringUtils.isBlank(category)) {
+            return false;
+        }
+        return serviceToVisitsMap.get(category).provided != emptyService;
+    }
+
+    private ServiceProvidedDTO serviceProvided(String category) {
+        if (StringUtils.isBlank(category)) {
+            return emptyService;
+        }
+        return serviceToVisitsMap.get(category).provided;
+    }
+
+    private AlertDTO serviceToProvide(String category) {
+        if (StringUtils.isBlank(category)) {
+            return emptyAlert;
+        }
+        return serviceToVisitsMap.get(category).toProvide;
+    }
+
+    @Override
+    public boolean isVisitsDone() {
+        return isServiceProvided(CATEGORY_ANC);
+    }
+
+    @Override
+    public String visitDoneDate() {
+        return serviceProvided(CATEGORY_ANC).ancServicedOn();
+    }
+
 
     @Override
     public boolean equals(Object o) {
