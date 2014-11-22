@@ -676,7 +676,12 @@ public class Context {
     public int getColorResource(int id) {
         return applicationContext().getResources().getColor(id);
     }
+
     public Drawable getDrawable(int id) {
+        return applicationContext().getResources().getDrawable(id);
+    }
+
+    public Drawable getDrawableResource(int id) {
         return applicationContext().getResources().getDrawable(id);
     }
 }

@@ -70,6 +70,8 @@
                 android:layout_height="fill_parent"
                 android:hint="@string/str_ec_search_hint"
                 android:textSize="17sp"
+                android:singleLine="true"
+                android:ellipsize="end"
                 android:background="@android:color/transparent"/>
 
         <ImageButton

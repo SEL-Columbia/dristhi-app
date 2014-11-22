@@ -17,6 +17,7 @@ import java.util.List;
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
 import static java.util.Arrays.asList;
+import static org.ei.drishti.AllConstants.FormNames.*;
 
 public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -103,6 +104,14 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
 
     private DialogOption[] getEditOptions() {
         return new DialogOption[]{
+                new OpenFormOption(getString(R.string.str_register_anc_visit_form), ANC_VISIT, formController),
+                new OpenFormOption(getString(R.string.str_register_hb_test_form), HB_TEST, formController),
+                new OpenFormOption(getString(R.string.str_register_ifa_form), IFA, formController),
+                new OpenFormOption(getString(R.string.str_register_tt_form), TT, formController),
+                new OpenFormOption(getString(R.string.str_register_delivery_plan_form), DELIVERY_PLAN, formController),
+                new OpenFormOption(getString(R.string.str_register_pnc_registration_form), DELIVERY_OUTCOME, formController),
+                new OpenFormOption(getString(R.string.str_register_anc_investigations_form), ANC_INVESTIGATIONS, formController),
+                new OpenFormOption(getString(R.string.str_register_anc_close_form), ANC_CLOSE, formController)
         };
     }
 

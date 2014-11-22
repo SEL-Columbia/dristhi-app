@@ -206,6 +206,16 @@ public class ANCClient implements ANCSmartRegisterClient {
     }
 
     @Override
+    public boolean isIFADone() {
+        return isServiceProvided(CATEGORY_IFA);
+    }
+
+    @Override
+    public String ifaDoneDate() {
+        return serviceProvided(CATEGORY_IFA).ancServicedOn();
+    }
+
+    @Override
     public String ttDoneDate() {
         return serviceProvided(CATEGORY_TT).ancServicedOn();
     }

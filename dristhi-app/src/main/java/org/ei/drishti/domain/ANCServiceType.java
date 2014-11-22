@@ -138,7 +138,6 @@ public enum ANCServiceType {
             return ANCClient.CATEGORY_IFA;
         }
     },
-
     HB {
         @Override
         public String displayName() {
@@ -230,7 +229,11 @@ public enum ANCServiceType {
                 return ANCServiceType.valueOf("TT_2");
             } else if (type.equalsIgnoreCase("TT Booster")) {
                 return ANCServiceType.valueOf("TT_BOOSTER");
-            } else if (type.equalsIgnoreCase("IFA")) {
+            } else if (type.equalsIgnoreCase("IFA 1")) {
+                return ANCServiceType.valueOf("IFA");
+            } else if (type.equalsIgnoreCase("IFA 2")) {
+                return ANCServiceType.valueOf("IFA");
+            } else if (type.equalsIgnoreCase("IFA 3")) {
                 return ANCServiceType.valueOf("IFA");
             } else if (type.equalsIgnoreCase("HB")) {
                 return ANCServiceType.valueOf("HB");

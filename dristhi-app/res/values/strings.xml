@@ -100,6 +100,15 @@
     <string name="report_month_sample_text">26/03 - 25/04</string>
     <string name="str_switch_language">Switch Language</string>
 
+    <string name="str_register_anc_visit_form">ANC Visit</string>
+    <string name="str_register_hb_test_form">Hb Test</string>
+    <string name="str_register_ifa_form">IFA</string>
+    <string name="str_register_tt_form">TT</string>
+    <string name="str_register_delivery_plan_form">Delivery Plan</string>
+    <string name="str_register_pnc_registration_form">PNC Registration</string>
+    <string name="str_register_anc_investigations_form">ANC Investigations</string>
+    <string name="str_register_anc_close_form">ANC Close</string>
+
     <string name="str_reporting">Reporting</string>
     <string name="str_videos">Videos</string>
 
@@ -154,6 +163,7 @@
     <string name="hep_b_birth">Hep B</string>
     <string name="opv">OPV</string>
     <string name="tt">TT</string>
+    <string name="ifa">IFA</string>
     <string name="pentavalent">Pentavalent</string>
     <string name="measles">Measles</string>
     <string name="opv_booster">OPV Booster</string>

@@ -29,9 +29,13 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
 
     public boolean isTTDone();
 
+    public boolean isIFADone();
+
     public String visitDoneDate();
 
     public String ttDoneDate();
+
+    public String ifaDoneDate();
 
     public String thayiCardNumber();
 

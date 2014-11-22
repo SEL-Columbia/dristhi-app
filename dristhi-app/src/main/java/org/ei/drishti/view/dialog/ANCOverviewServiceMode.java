@@ -1,5 +1,6 @@
 package org.ei.drishti.view.dialog;
 
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.TextView;
 import org.ei.drishti.Context;
@@ -11,11 +12,15 @@ import org.ei.drishti.view.viewHolder.*;
 
 import static android.view.View.VISIBLE;
 import static org.ei.drishti.AllConstants.FormNames.ANC_VISIT;
+import static org.ei.drishti.AllConstants.FormNames.IFA;
 import static org.ei.drishti.AllConstants.FormNames.TT;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
 
 public class ANCOverviewServiceMode extends ServiceModeOption {
+
+    private Drawable iconPencilDrawable;
+
 
     public ANCOverviewServiceMode(SmartRegisterClientsProvider provider) {
         super(provider);
@@ -31,17 +36,17 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
         return new ClientsHeaderProvider() {
             @Override
             public int count() {
-                return 6;
+                return 7;
             }
 
             @Override
             public int weightSum() {
-                return 1000;
+                return 100;
             }
 
             @Override
             public int[] weights() {
-                return new int[]{210, 84, 124, 126, 126, 210};
+                return new int[]{21, 9, 12, 12, 12, 12, 22};
             }
 
             @Override
@@ -64,9 +69,15 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
                               View.OnClickListener clientSectionClickListener) {
         viewHolder.serviceModeOverviewView().setVisibility(VISIBLE);
 
-        viewHolder.txtRiskFactors().setText(client.riskFactors());
+        setupRiskFactorsView(client, viewHolder);
         setupANCVisitLayout(client, viewHolder);
         setupTTLayout(client, viewHolder);
+        setupIFALayout(client, viewHolder);
+        setupEditView(client, viewHolder, clientSectionClickListener);
+    }
+
+    private void setupRiskFactorsView(ANCSmartRegisterClient client, NativeANCSmartRegisterViewHolder viewHolder) {
+        viewHolder.txtRiskFactors().setText(client.riskFactors());
     }
 
     @Override
@@ -127,6 +138,41 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
             viewHolder.btnTTView().setVisibility(View.INVISIBLE);
             viewHolder.btnTTView().setOnClickListener(launchForm(client, ttAlert, TT));
         }
+    }
+
+    public void setupIFALayout(ANCSmartRegisterClient client,
+                                    NativeANCSmartRegisterViewHolder viewHolder) {
+        if (client.isIFADone()) {
+            viewHolder.txtIFADoneOn().setVisibility(VISIBLE);
+            viewHolder.txtIFADoneOn().setText(client.ifaDoneDate());
+        } else {
+            viewHolder.txtIFADoneOn().setVisibility(View.INVISIBLE);
+        }
+
+        AlertDTO ifaAlert = client.getAlert(ANCServiceType.IFA);
+        if (ifaAlert != emptyAlert) {
+            viewHolder.btnIFAView().setVisibility(View.INVISIBLE);
+            viewHolder.layoutIFAAlert().setVisibility(VISIBLE);
+            viewHolder.layoutIFAAlert().setOnClickListener(launchForm(client, ifaAlert, IFA));
+            setAlertLayout(viewHolder.layoutIFAAlert(),
+                    viewHolder.txtIFADueType(),
+                    viewHolder.txtIFADueOn(),
+                    ifaAlert);
+            viewHolder.txtIFADueType().setText(ifaAlert.name());
+        } else {
+            viewHolder.layoutIFAAlert().setVisibility(View.INVISIBLE);
+            viewHolder.btnIFAView().setVisibility(View.INVISIBLE);
+            viewHolder.btnIFAView().setOnClickListener(launchForm(client, ifaAlert, IFA));
+        }
+    }
+
+    private void setupEditView(ANCSmartRegisterClient client, NativeANCSmartRegisterViewHolder viewHolder, View.OnClickListener onClickListener) {
+        if (iconPencilDrawable == null) {
+            iconPencilDrawable = Context.getInstance().getDrawableResource(R.drawable.ic_pencil);
+        }
+        viewHolder.btnEditView().setImageDrawable(iconPencilDrawable);
+        viewHolder.btnEditView().setOnClickListener(onClickListener);
+        viewHolder.btnEditView().setTag(client);
     }
 
     private OnClickFormLauncher launchForm(ANCSmartRegisterClient client, AlertDTO alert, String formName) {

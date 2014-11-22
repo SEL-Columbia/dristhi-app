@@ -2,6 +2,7 @@ package org.ei.drishti.view.viewHolder;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import org.ei.drishti.R;
 import org.ei.drishti.view.customControls.ANCClientIdDetailsView;
@@ -26,6 +27,12 @@ public class NativeANCSmartRegisterViewHolder {
     private final TextView txtTTDoneOn;
     private final TextView txtTTDueType;
     private final TextView txtTTDueOn;
+    private final TextView btnIFAView;
+    private final View layoutIFAAlert;
+    private final TextView txtIFADoneOn;
+    private final TextView txtIFADueType;
+    private final TextView txtIFADueOn;
+    private final ImageButton btnEditView;
 
     public NativeANCSmartRegisterViewHolder(ViewGroup itemView) {
         profileInfoLayout = (ClientProfileView) itemView.findViewById(R.id.profile_info_layout);
@@ -40,19 +47,27 @@ public class NativeANCSmartRegisterViewHolder {
         serviceModeViewsHolder = (ViewGroup) itemView.findViewById(R.id.anc_register_service_mode_options_view);
         serviceModeOverviewView = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.overview_service_mode_views);
 
+        txtRiskFactors = (TextView) serviceModeOverviewView.findViewById(R.id.txt_risk_factors);
+
         btnAncVisitView = (TextView) serviceModeOverviewView.findViewById(R.id.btn_anc_visit);
         layoutANCVisitAlert = serviceModeOverviewView.findViewById(R.id.layout_anc_visit_alert);
         txtANCVisitDoneOn = (TextView) serviceModeOverviewView.findViewById(R.id.txt_anc_visit_on);
         txtANCVisitDueType = (TextView) serviceModeOverviewView.findViewById(R.id.txt_anc_visit_due_type);
         txtANCVisitAlertDueOn = (TextView) serviceModeOverviewView.findViewById(R.id.txt_anc_visit_due_on);
 
-        txtRiskFactors = (TextView) serviceModeOverviewView.findViewById(R.id.txt_risk_factors);
-
         btnTTView = (TextView) serviceModeOverviewView.findViewById(R.id.btn_tt);
         layoutTTAlert = serviceModeOverviewView.findViewById(R.id.layout_tt_alert);
         txtTTDoneOn = (TextView) serviceModeOverviewView.findViewById(R.id.txt_tt_on);
         txtTTDueType = (TextView) serviceModeOverviewView.findViewById(R.id.txt_tt_due_type);
         txtTTDueOn = (TextView) serviceModeOverviewView.findViewById(R.id.txt_tt_due_on);
+
+        btnIFAView = (TextView) serviceModeOverviewView.findViewById(R.id.btn_ifa);
+        layoutIFAAlert = serviceModeOverviewView.findViewById(R.id.layout_ifa_alert);
+        txtIFADoneOn = (TextView) serviceModeOverviewView.findViewById(R.id.txt_ifa_on);
+        txtIFADueType = (TextView) serviceModeOverviewView.findViewById(R.id.txt_ifa_due_type);
+        txtIFADueOn = (TextView) serviceModeOverviewView.findViewById(R.id.txt_ifa_due_on);
+
+        btnEditView = (ImageButton) serviceModeOverviewView.findViewById(R.id.btn_edit);
     }
 
     public ClientProfileView profileInfoLayout() {
@@ -113,5 +128,29 @@ public class NativeANCSmartRegisterViewHolder {
 
     public TextView txtTTDueOn() {
         return txtTTDueOn;
+    }
+
+    public TextView btnIFAView() {
+        return btnIFAView;
+    }
+
+    public View layoutIFAAlert() {
+        return layoutIFAAlert;
+    }
+
+    public TextView txtIFADoneOn() {
+        return txtIFADoneOn;
+    }
+
+    public TextView txtIFADueType() {
+        return txtIFADueType;
+    }
+
+    public TextView txtIFADueOn() {
+        return txtIFADueOn;
+    }
+
+    public ImageButton btnEditView() {
+        return btnEditView;
     }
 }
