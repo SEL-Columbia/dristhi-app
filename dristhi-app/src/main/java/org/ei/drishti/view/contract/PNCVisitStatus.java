@@ -8,15 +8,15 @@ public enum PNCVisitStatus {
     DONE(Context.getInstance().getStringResource(R.string.str_pnc_circle_status_done)),
     MISSED(Context.getInstance().getStringResource(R.string.str_pnc_circle_status_missed));
 
-    private String circleType;
+    private String statusType;
 
-    PNCVisitStatus(String circleType) {
-        this.circleType = circleType;
+    PNCVisitStatus(String statusType) {
+        this.statusType = statusType;
     }
 
     @Override
     public String toString() {
-        return this.circleType;
+        return this.statusType;
     }
 
     public static PNCVisitStatus from(String value) {
