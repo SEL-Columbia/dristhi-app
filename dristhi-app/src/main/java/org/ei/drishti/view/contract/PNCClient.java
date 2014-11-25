@@ -55,6 +55,8 @@ public class PNCClient implements PNCSmartRegisterClient {
     private ArrayList<PNCCircleDatum> pncCircleData;
     private ArrayList<PNCStatusDatum> pncStatusData;
     private int pncVisitStatusColor;
+    private ArrayList<PNCTickDatum> pncTickData;
+    private ArrayList<PNCLineDatum> pncLineData;
 
     public PNCClient(String entityId, String village, String name, String thayi, String deliveryDate) {
         this.entityId = entityId;
@@ -405,7 +407,17 @@ public class PNCClient implements PNCSmartRegisterClient {
         return this;
     }
 
-    public Iterable<ServiceProvidedDTO> getServicesProvided() {
+    public List<ServiceProvidedDTO> getServicesProvided() {
         return services_provided;
+    }
+
+    public PNCClient withPNCTickData(ArrayList<PNCTickDatum> tickData) {
+        this.pncTickData = tickData;
+        return this;
+    }
+
+    public PNCClient withPNCLineData(ArrayList<PNCLineDatum> lineData) {
+        pncLineData = lineData;
+        return null;
     }
 }

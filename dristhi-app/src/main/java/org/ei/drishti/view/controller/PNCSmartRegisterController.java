@@ -137,8 +137,7 @@ public class PNCSmartRegisterController {
                             .withAlerts(alerts)
                             .withServicesProvided(servicesProvided)
                             .withChildren(findChildren(pnc));
-                    PNCClient processedClient = new PNCClientPreProcessor().preProcess(client);
-                    pncClients.add(processedClient);
+                    pncClients.add(new PNCClientPreProcessor(client).preProcess());
                 }
                 sortByName(pncClients);
                 return pncClients;

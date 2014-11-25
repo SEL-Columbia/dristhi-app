@@ -4,27 +4,16 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class PNCCircleDatum {
-    private int day;
+public class PNCLineDatum {
+
+    private int startdDay;
+    private int endDay;
     private PNCVisitType type;
-    private boolean coloured;
 
-    public PNCCircleDatum(int day, PNCVisitType type, boolean coloured) {
-        this.day = day;
+    public PNCLineDatum(int startdDay, int endDay, PNCVisitType type) {
+        this.startdDay = startdDay;
+        this.endDay = endDay;
         this.type = type;
-        this.coloured = coloured;
-    }
-
-    public int day() {
-        return day;
-    }
-
-    public PNCVisitType type() {
-        return type;
-    }
-
-    public boolean coloured() {
-        return coloured;
     }
 
     @Override
