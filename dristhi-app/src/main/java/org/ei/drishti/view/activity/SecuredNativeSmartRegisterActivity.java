@@ -400,10 +400,14 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
             return (ViewGroup) getLayoutInflater().inflate(R.layout.smart_register_pagination, null);
         }
 
+        private int getCurrentPageCount() {
+            return clientsAdapter.currentPage() + 1 > clientsAdapter.pageCount() ? clientsAdapter.pageCount() : clientsAdapter.currentPage() + 1;
+        }
+
         public void refresh() {
             pageInfoView.setText(
                     format(getResources().getString(R.string.str_page_info),
-                            (clientsAdapter.currentPage() + 1),
+                            (getCurrentPageCount()),
                             (clientsAdapter.pageCount())));
             nextPageView.setVisibility(clientsAdapter.hasNextPage() ? VISIBLE : INVISIBLE);
             previousPageView.setVisibility(clientsAdapter.hasPreviousPage() ? VISIBLE : INVISIBLE);
