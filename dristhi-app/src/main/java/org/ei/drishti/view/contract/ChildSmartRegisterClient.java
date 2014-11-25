@@ -1,14 +1,20 @@
 package org.ei.drishti.view.contract;
 
 
+import org.ei.drishti.Context;
+import org.ei.drishti.R;
 import org.ei.drishti.domain.ChildServiceType;
+import static org.ei.drishti.util.StringUtil.humanize;
 
-import java.util.List;
+import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.util.DateUtil.formatDate;
 
 public interface ChildSmartRegisterClient extends SmartRegisterClient {
+List<String> illnessAcronyms = new ArrayList<String>(
+        Arrays.asList(Context.getInstance().getStringResource(R.string.str_child_illness_ari),
+                Context.getInstance().getStringResource(R.string.str_child_illness_sam)));
 
     public static class ChildSickStatus {
         public static ChildSickStatus noDiseaseStatus = new ChildSickStatus(null, null, null);
@@ -24,8 +30,13 @@ public interface ChildSmartRegisterClient extends SmartRegisterClient {
         }
 
         public String diseases() {
-            return diseases + (isBlank(otherDiseases) ? "" : (", " + otherDiseases));
+            return getDiseasesCapitalizeIfAcronymsOrHumanize() + (isBlank(otherDiseases) ? "" : (", " + humanize(otherDiseases)));
         }
+
+        private String getDiseasesCapitalizeIfAcronymsOrHumanize() {
+            return illnessAcronyms.contains(diseases) ? diseases.toUpperCase() : humanize(diseases);
+        }
+
 
         public String date() {
             return formatDate(date);
