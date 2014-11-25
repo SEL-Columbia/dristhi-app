@@ -51,12 +51,13 @@ public class PNCClient implements PNCSmartRegisterClient {
     private List<ServiceProvidedDTO> services_provided;
     private List<ChildClient> children;
     private String entityIdToSavePhoto;
-    private List<ExpectedVisit> expectedVisits;
+    private List<ServiceProvidedDTO> expectedVisits;
     private ArrayList<PNCCircleDatum> pncCircleData;
     private ArrayList<PNCStatusDatum> pncStatusData;
     private int pncVisitStatusColor;
     private ArrayList<PNCTickDatum> pncTickData;
-    private ArrayList<PNCLineDatum> pncLineData;
+    private PNCLineDatum pncLineData;
+    private List<PNCVisitDaysDatum> visitDaysData;
 
     public PNCClient(String entityId, String village, String name, String thayi, String deliveryDate) {
         this.entityId = entityId;
@@ -173,7 +174,7 @@ public class PNCClient implements PNCSmartRegisterClient {
 
     @Override
     public LocalDate deliveryDate() {
-        return getLocalDate(deliveryDate);
+        return getLocalDateFromISOString(deliveryDate);
     }
 
     @Override
@@ -383,12 +384,12 @@ public class PNCClient implements PNCSmartRegisterClient {
 
 
 
-    public PNCClient withExpectedVisits(List<ExpectedVisit> visits) {
+    public PNCClient withExpectedVisits(List<ServiceProvidedDTO> visits) {
         this.expectedVisits = visits;
         return this;
     }
 
-    public List<ExpectedVisit> getExpectedVisits() {
+    public List<ServiceProvidedDTO> getExpectedVisits() {
         return expectedVisits;
     }
 
@@ -416,8 +417,37 @@ public class PNCClient implements PNCSmartRegisterClient {
         return this;
     }
 
-    public PNCClient withPNCLineData(ArrayList<PNCLineDatum> lineData) {
+    public PNCClient withPNCLineData(PNCLineDatum lineData) {
         pncLineData = lineData;
-        return null;
+        return this;
+    }
+
+    public List<PNCCircleDatum> pncCircleData() {
+        return pncCircleData;
+    }
+
+    public List<PNCStatusDatum> pncStatusData() {
+        return pncStatusData;
+    }
+
+    public int pncVisitStatusColor() {
+        return pncVisitStatusColor;
+    }
+
+    public List<PNCTickDatum> pncTickData() {
+        return pncTickData;
+    }
+
+    public PNCLineDatum pncLineData() {
+        return pncLineData;
+    }
+
+    public List<PNCVisitDaysDatum> visitDaysData() {
+        return visitDaysData;
+    }
+
+    public PNCClient withPNCVisitDaysData(List<PNCVisitDaysDatum> visitDaysData) {
+        this.visitDaysData = visitDaysData;
+        return this;
     }
 }

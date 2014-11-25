@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.ei.drishti.util.DateUtil.formatDate;
-import static org.ei.drishti.util.DateUtil.getLocalDate;
+import static org.ei.drishti.util.DateUtil.getLocalDateFromISOString;
 
 public class ServiceProvidedDTO implements Comparable<ServiceProvidedDTO> {
 
@@ -26,6 +26,12 @@ public class ServiceProvidedDTO implements Comparable<ServiceProvidedDTO> {
         this.name = name;
         this.date = date;
         this.data = data;
+    }
+
+    public ServiceProvidedDTO(String name, Integer visitDay, String date) {
+        this.name = name;
+        day = visitDay;
+        this.date = date;
     }
 
     public ChildServiceType type() {
@@ -49,7 +55,7 @@ public class ServiceProvidedDTO implements Comparable<ServiceProvidedDTO> {
     }
 
     public LocalDate localDate() {
-        return getLocalDate(date);
+        return getLocalDateFromISOString(date);
     }
 
     public String shortDate() {

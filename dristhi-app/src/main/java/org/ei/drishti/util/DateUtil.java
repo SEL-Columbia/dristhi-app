@@ -4,8 +4,11 @@ import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class DateUtil {
-    private static String DEFAULT_FORMAT_DDMMYYYY = "dd/MM/yyyy";
+    private static String DEFAULT_DATE_FORMAT = "dd/MM/yyyy";
     private static String DATE_FORMAT_FOR_TIMELINE_EVENT = "dd-MM-yyyy";
 
     private static DateUtility dateUtility = new RealDate();
@@ -23,7 +26,7 @@ public class DateUtil {
     }
 
     public static String formatDate(String unformattedDate) {
-        return formatDate(unformattedDate, DEFAULT_FORMAT_DDMMYYYY);
+        return formatDate(unformattedDate, DEFAULT_DATE_FORMAT);
     }
 
     public static String formatDate(String date, String pattern) {
@@ -51,6 +54,16 @@ public class DateUtil {
     }
 
     public static LocalDate getLocalDate(String date) {
+        try {
+            SimpleDateFormat format = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
+            Date formattedDate = format.parse(date);
+            return new LocalDate(formattedDate);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static LocalDate getLocalDateFromISOString(String date) {
         try {
             return LocalDateTime.parse(date).toLocalDate();
         } catch (Exception e) {

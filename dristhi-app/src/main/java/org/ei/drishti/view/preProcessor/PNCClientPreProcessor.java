@@ -14,12 +14,11 @@ import static org.ei.drishti.util.DateUtil.formatDate;
 
 public class PNCClientPreProcessor {
     private static final String PNC_IDENTIFIER = "PNC";
-    private static int VISIT_END_OFFSET_DAY_COUNT = 7;
 
     private List<Integer> defaultVisitDays = new ArrayList<Integer>(Arrays.asList(1, 3, 7));
     private ArrayList<PNCCircleDatum> circleData;
     private ArrayList<PNCStatusDatum> statusData;
-    private ArrayList<PNCLineDatum> lineData;
+    private PNCLineDatum lineData;
     private ArrayList<PNCTickDatum> tickData;
     private int currentDay;
     private PNCClient client;
@@ -29,68 +28,69 @@ public class PNCClientPreProcessor {
         circleData = new ArrayList<PNCCircleDatum>();
         statusData = new ArrayList<PNCStatusDatum>();
         tickData = new ArrayList<PNCTickDatum>();
-        lineData = new ArrayList<PNCLineDatum>();
         currentDay = DateUtil.dayDifference(client.deliveryDate(), DateUtil.today());
     }
 
     public PNCClient preProcess() {
         populateExpectedVisitDates();
-        processFirstSevenDaysVisit();
+        List<ServiceProvidedDTO> first7DaysVisits = getFirst7DaysVisits(client);
+        createViewElements(currentDay, first7DaysVisits);
         return client;
     }
 
     private void populateExpectedVisitDates() {
-        List<ExpectedVisit> expectedVisits = new ArrayList<ExpectedVisit>();
+        List<ServiceProvidedDTO> expectedVisits = new ArrayList<ServiceProvidedDTO>();
         for (Integer visitDay : defaultVisitDays) {
             LocalDate expectedVisitDate = client.deliveryDate().plusDays(visitDay);
-            ExpectedVisit expectedVisit = new ExpectedVisit(visitDay, formatDate(expectedVisitDate, "YYYY-MM-dd"));
+            ServiceProvidedDTO expectedVisit = new ServiceProvidedDTO("PNC", visitDay, formatDate(expectedVisitDate, "YYYY-MM-dd"));
             expectedVisits.add(expectedVisit);
         }
         client.withExpectedVisits(expectedVisits);
     }
 
-    private void processFirstSevenDaysVisit() {
-        LocalDate deliveryDate = client.deliveryDate();
-        int numberOfDaysFromDeliveryDate = getNumberOfDaysFromDeliveryDate(deliveryDate);
-        List<ServiceProvidedDTO> first7DaysVisits = getFirst7DaysVisits(client);
+    private void createViewElements(int numberOfDaysFromDeliveryDate, List<ServiceProvidedDTO> first7DaysVisits) {
         createViewElementsBasedOnExpectedVisits(client, first7DaysVisits);
         createViewDataBasedOnServicesProvided(first7DaysVisits);
         setPNCVisitStatusColor(client, first7DaysVisits, numberOfDaysFromDeliveryDate);
         createTickData();
         createLineData();
-        generateDayNumbers();
+        client.withPNCVisitDaysData(generateDayNumbers());
         client.withPNCVisitCircles(circleData);
         client.withPNCStatusData(statusData);
         client.withPNCTickData(tickData);
         client.withPNCLineData(lineData);
     }
 
-    private void generateDayNumbers() {
+    private ArrayList<PNCVisitDaysDatum> generateDayNumbers() {
         ArrayList<PNCVisitDaysDatum> visitDaysData = new ArrayList<PNCVisitDaysDatum>();
         for (PNCCircleDatum pncCircleDatum : circleData) {
             if (pncCircleDatum.day() > currentDay || pncCircleDatum.type().equals(PNCVisitType.ACTUAL)) {
                 visitDaysData.add(new PNCVisitDaysDatum(pncCircleDatum.day(), pncCircleDatum.type()));
             }
         }
+        return visitDaysData;
     }
 
     private void createLineData() {
         if (currentDay > 1) {
-            lineData.add(new PNCLineDatum(1, Math.min(7, currentDay), PNCVisitType.ACTUAL));
+            lineData = new PNCLineDatum(1, Math.min(7, currentDay), PNCVisitType.ACTUAL);
         } else if (currentDay < 7) {
-            lineData.add(new PNCLineDatum(Math.max(1, currentDay), 7, PNCVisitType.EXPECTED));
+            lineData = new PNCLineDatum(Math.max(1, currentDay), 7, PNCVisitType.EXPECTED);
         }
     }
 
     private void createTickData() {
         List<Integer> possibleTickDays = Arrays.asList(2, 4, 5, 6);
+        List<Integer> circleDays = new ArrayList<Integer>();
         for (PNCCircleDatum pncCircleDatum : circleData) {
-            int pncVisitDay = pncCircleDatum.day();
-            if (possibleTickDays.contains(pncVisitDay)) {
-                if (pncVisitDay > currentDay) {
-                    tickData.add(new PNCTickDatum(pncVisitDay, PNCVisitType.EXPECTED));
+            circleDays.add(pncCircleDatum.day());
+        }
+        for (Integer tickDay : possibleTickDays) {
+            if (!circleDays.contains(tickDay)) {
+                if (tickDay > currentDay) {
+                    tickData.add(new PNCTickDatum(tickDay, PNCVisitType.EXPECTED));
                 } else {
-                    tickData.add(new PNCTickDatum(pncVisitDay, PNCVisitType.ACTUAL));
+                    tickData.add(new PNCTickDatum(tickDay, PNCVisitType.ACTUAL));
                 }
             }
         }
@@ -128,9 +128,9 @@ public class PNCClientPreProcessor {
         return actualVisitDays;
     }
 
-    private ArrayList<Integer> getExpectedVisitDaysTillToday(List<ExpectedVisit> expectedVisits, int numberOfDaysFromDeliveryDate) {
+    private ArrayList<Integer> getExpectedVisitDaysTillToday(List<ServiceProvidedDTO> expectedVisits, int numberOfDaysFromDeliveryDate) {
         ArrayList<Integer> expectedVisitDaysTillToday = new ArrayList<Integer>();
-        for (ExpectedVisit expectedVisit : expectedVisits) {
+        for (ServiceProvidedDTO expectedVisit : expectedVisits) {
             if (expectedVisit.day() < numberOfDaysFromDeliveryDate) {
                 expectedVisitDaysTillToday.add(expectedVisit.day());
             }
@@ -145,7 +145,7 @@ public class PNCClientPreProcessor {
     }
 
     private void createViewElementsBasedOnExpectedVisits(PNCClient client, List<ServiceProvidedDTO> first7DaysVisits) {
-        for (ExpectedVisit expectedVisit : client.getExpectedVisits()) {
+        for (ServiceProvidedDTO expectedVisit : client.getExpectedVisits()) {
             LocalDate expectedVisitDate = DateUtil.getLocalDate(expectedVisit.date());
             int expectedVisitDay = DateUtil.dayDifference(client.deliveryDate(), expectedVisitDate);
 
@@ -172,11 +172,8 @@ public class PNCClientPreProcessor {
         return false;
     }
 
-    private int getNumberOfDaysFromDeliveryDate(LocalDate deliveryDate) {
-        return DateUtil.dayDifference(deliveryDate, new LocalDate());
-    }
-
     private List<ServiceProvidedDTO> getFirst7DaysVisits(PNCClient client) {
+        int VISIT_END_OFFSET_DAY_COUNT = 7;
         LocalDate endDate = client.deliveryDate().plusDays(VISIT_END_OFFSET_DAY_COUNT);
         List<ServiceProvidedDTO> validServices = getValidServicesProvided(client, endDate);
         validServices = removeDuplicateServicesAndReturnList(validServices);
