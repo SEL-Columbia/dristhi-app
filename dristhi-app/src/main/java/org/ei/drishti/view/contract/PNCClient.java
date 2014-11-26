@@ -9,7 +9,6 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.ISODateTimeFormat;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -52,12 +51,12 @@ public class PNCClient implements PNCSmartRegisterClient {
     private List<ChildClient> children;
     private String entityIdToSavePhoto;
     private List<ServiceProvidedDTO> expectedVisits;
-    private ArrayList<PNCCircleDatum> pncCircleData;
-    private ArrayList<PNCStatusDatum> pncStatusData;
-    private int pncVisitStatusColor;
-    private ArrayList<PNCTickDatum> pncTickData;
-    private PNCLineDatum pncLineData;
+    private List<PNCCircleDatum> pncCircleData;
+    private List<PNCStatusDatum> pncStatusData;
+    private List<PNCTickDatum> pncTickData;
     private List<PNCVisitDaysDatum> visitDaysData;
+    private List<PNCLineDatum> pncLineData;
+    private int pncVisitStatusColor;
 
     public PNCClient(String entityId, String village, String name, String thayi, String deliveryDate) {
         this.entityId = entityId;
@@ -393,12 +392,12 @@ public class PNCClient implements PNCSmartRegisterClient {
         return expectedVisits;
     }
 
-    public PNCClient withPNCVisitCircles(ArrayList<PNCCircleDatum> circleData) {
+    public PNCClient withPNCVisitCircles(List<PNCCircleDatum> circleData) {
         this.pncCircleData = circleData;
         return this;
     }
 
-    public PNCClient withPNCStatusData(ArrayList<PNCStatusDatum> statusData) {
+    public PNCClient withPNCStatusData(List<PNCStatusDatum> statusData) {
         this.pncStatusData = statusData;
         return this;
     }
@@ -412,12 +411,12 @@ public class PNCClient implements PNCSmartRegisterClient {
         return services_provided;
     }
 
-    public PNCClient withPNCTickData(ArrayList<PNCTickDatum> tickData) {
+    public PNCClient withPNCTickData(List<PNCTickDatum> tickData) {
         this.pncTickData = tickData;
         return this;
     }
 
-    public PNCClient withPNCLineData(PNCLineDatum lineData) {
+    public PNCClient withPNCLineData(List<PNCLineDatum> lineData) {
         pncLineData = lineData;
         return this;
     }
@@ -438,7 +437,7 @@ public class PNCClient implements PNCSmartRegisterClient {
         return pncTickData;
     }
 
-    public PNCLineDatum pncLineData() {
+    public List<PNCLineDatum> pncLineData() {
         return pncLineData;
     }
 

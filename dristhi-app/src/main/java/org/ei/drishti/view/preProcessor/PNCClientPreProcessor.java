@@ -16,10 +16,10 @@ public class PNCClientPreProcessor {
     private static final String PNC_IDENTIFIER = "PNC";
 
     private List<Integer> defaultVisitDays = new ArrayList<Integer>(Arrays.asList(1, 3, 7));
-    private ArrayList<PNCCircleDatum> circleData;
-    private ArrayList<PNCStatusDatum> statusData;
-    private PNCLineDatum lineData;
-    private ArrayList<PNCTickDatum> tickData;
+    private List<PNCCircleDatum> circleData;
+    private List<PNCStatusDatum> statusData;
+    private List<PNCLineDatum> lineData;
+    private List<PNCTickDatum> tickData;
     private int currentDay;
     private PNCClient client;
 
@@ -28,6 +28,7 @@ public class PNCClientPreProcessor {
         circleData = new ArrayList<PNCCircleDatum>();
         statusData = new ArrayList<PNCStatusDatum>();
         tickData = new ArrayList<PNCTickDatum>();
+        lineData = new ArrayList<PNCLineDatum>();
         currentDay = DateUtil.dayDifference(client.deliveryDate(), DateUtil.today());
     }
 
@@ -73,9 +74,10 @@ public class PNCClientPreProcessor {
 
     private void createLineData() {
         if (currentDay > 1) {
-            lineData = new PNCLineDatum(1, Math.min(7, currentDay), PNCVisitType.ACTUAL);
-        } else if (currentDay < 7) {
-            lineData = new PNCLineDatum(Math.max(1, currentDay), 7, PNCVisitType.EXPECTED);
+            lineData.add(new PNCLineDatum(1, Math.min(7, currentDay), PNCVisitType.ACTUAL));
+        }
+        if (currentDay < 7) {
+            lineData.add(new PNCLineDatum(Math.max(1, currentDay), 7, PNCVisitType.EXPECTED));
         }
     }
 

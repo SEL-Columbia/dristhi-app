@@ -4,9 +4,9 @@ import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.view.contract.*;
+import org.joda.time.LocalDate;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mock;
 
@@ -50,30 +50,6 @@ public class PNCClientPreProcessorTest {
     }
 
     @Test
-    @Ignore
-    public void should_generate_a_list_of_visits_within_the_first_7_days_sorted_by_visit_date() throws Exception {
-        ServiceProvidedDTO serviceProvidedDTO1 = new ServiceProvidedDTO("PNC", "2013-05-26", null);
-        ServiceProvidedDTO serviceProvidedDTO2 = new ServiceProvidedDTO("PNC", "2013-05-15", null);
-        ServiceProvidedDTO serviceProvidedDTO3 = new ServiceProvidedDTO("PNC", "2013-05-14", null);
-        ServiceProvidedDTO serviceProvidedDTO4 = new ServiceProvidedDTO("PNC", "2013-05-17", null);
-        ServiceProvidedDTO serviceProvidedDTO5 = new ServiceProvidedDTO("PNC", "2013-05-20", null);
-        PNCClient pncClient = new PNCClient("entityId", "village", "name", "1122334", "2013-05-13")
-                .withServicesProvided(Arrays.asList(serviceProvidedDTO1, serviceProvidedDTO2, serviceProvidedDTO3,
-                        serviceProvidedDTO4, serviceProvidedDTO5));
-        ServiceProvidedDTO expectedServiceProvidedDTO1 = new ServiceProvidedDTO("PNC", 1, "2013-05-14");
-        ServiceProvidedDTO expectedServiceProvidedDTO2 = new ServiceProvidedDTO("PNC", 2, "2013-05-15");
-        ServiceProvidedDTO expectedServiceProvidedDTO3 = new ServiceProvidedDTO("PNC", 4, "2013-05-17");
-        ServiceProvidedDTO expectedServiceProvidedDTO4 = new ServiceProvidedDTO("PNC", 7, "2013-05-20");
-        List<ServiceProvidedDTO> expectedVisits = Arrays.asList(
-                expectedServiceProvidedDTO1, expectedServiceProvidedDTO2, expectedServiceProvidedDTO3, expectedServiceProvidedDTO4);
-
-        PNCClient processedPNCClient = new PNCClientPreProcessor(pncClient).preProcess();
-
-        assertEquals(expectedVisits.size(), processedPNCClient.getExpectedVisits().size());
-        assertEquals(expectedVisits, processedPNCClient.getExpectedVisits());
-    }
-
-    @Test
     public void shouldGenerateViewElementsWhenTodayIsTheDeliveryDate() throws Exception {
         PNCClient pncClient = new PNCClient("entityId", "village", "name", "theyiNo", DateUtil.today().toString());
         PNCClient processedClient = new PNCClientPreProcessor(pncClient).preProcess();
@@ -99,7 +75,83 @@ public class PNCClientPreProcessorTest {
         assertEquals(0, pncClient.pncStatusData().size());
         assertEquals(R.color.pnc_circle_green, pncClient.pncVisitStatusColor());
         assertEquals(expectedTickData, pncClient.pncTickData());
-        assertEquals(new PNCLineDatum(1, 7, PNCVisitType.EXPECTED), pncClient.pncLineData());
+        assertEquals(Arrays.asList(new PNCLineDatum(1, 7, PNCVisitType.EXPECTED)), pncClient.pncLineData());
         assertEquals(expectedVisitDaysData, pncClient.visitDaysData());
+    }
+
+    @Test
+    public void shouldGenerateViewElements_whenTodayIs2DaysFromDeliveryDate() throws Exception {
+        DateUtil.fakeIt(new LocalDate("2013-05-15"));
+        PNCClient pncClient = new PNCClient("entityId", "village", "name", "thayiNo", "2013-05-13");
+
+        PNCClient processedClient = new PNCClientPreProcessor(pncClient).preProcess();
+
+        List<PNCCircleDatum> expectedCircleData = Arrays.asList(
+                new PNCCircleDatum(1, PNCVisitType.EXPECTED, true),
+                new PNCCircleDatum(3, PNCVisitType.EXPECTED, false),
+                new PNCCircleDatum(7, PNCVisitType.EXPECTED, false)
+        );
+        List<PNCTickDatum> expectedTickData = Arrays.asList(
+                new PNCTickDatum(2, PNCVisitType.ACTUAL),
+                new PNCTickDatum(4, PNCVisitType.EXPECTED),
+                new PNCTickDatum(5, PNCVisitType.EXPECTED),
+                new PNCTickDatum(6, PNCVisitType.EXPECTED)
+        );
+        List<PNCLineDatum> expectedLineData = Arrays.asList(
+                new PNCLineDatum(1, 2, PNCVisitType.ACTUAL),
+                new PNCLineDatum(2, 7, PNCVisitType.EXPECTED)
+        );
+        List<PNCVisitDaysDatum> expectedVisitDays = Arrays.asList(
+                new PNCVisitDaysDatum(3, PNCVisitType.EXPECTED),
+                new PNCVisitDaysDatum(7, PNCVisitType.EXPECTED)
+        );
+        assertEquals(expectedCircleData, processedClient.pncCircleData());
+        assertEquals(Arrays.asList(new PNCStatusDatum(1, PNCVisitStatus.MISSED)), processedClient.pncStatusData());
+        assertEquals(R.color.pnc_circle_red, processedClient.pncVisitStatusColor());
+        assertEquals(expectedTickData, processedClient.pncTickData());
+        assertEquals(expectedLineData, processedClient.pncLineData());
+        assertEquals(expectedVisitDays, processedClient.visitDaysData());
+    }
+
+    @Test
+    public void shouldGenerateViewElements_whenTodayIs3DaysFromDeliveryDate_AndServiceIsProvidedOnDay2() throws Exception {
+        DateUtil.fakeIt(new LocalDate("2013-05-16"));
+        PNCClient pncClient = new PNCClient("entityId", "village", "name", "thayiNo", "2013-05-13")
+                .withServicesProvided(Arrays.asList(new ServiceProvidedDTO("PNC", "2013-05-15", null)));
+
+        PNCClient processedClient = new PNCClientPreProcessor(pncClient).preProcess();
+
+        List<PNCCircleDatum> expectedCircleData = Arrays.asList(
+                new PNCCircleDatum(1, PNCVisitType.EXPECTED, true),
+                new PNCCircleDatum(3, PNCVisitType.EXPECTED, false),
+                new PNCCircleDatum(7, PNCVisitType.EXPECTED, false),
+                new PNCCircleDatum(2, PNCVisitType.ACTUAL, true)
+        );
+        List<PNCTickDatum> expectedPNCTickData = Arrays.asList(
+                new PNCTickDatum(4, PNCVisitType.EXPECTED),
+                new PNCTickDatum(5, PNCVisitType.EXPECTED),
+                new PNCTickDatum(6, PNCVisitType.EXPECTED)
+        );
+        List<PNCLineDatum> expectedLineData = Arrays.asList(
+                new PNCLineDatum(1, 3, PNCVisitType.ACTUAL),
+                new PNCLineDatum(3, 7, PNCVisitType.EXPECTED)
+        );
+        List<PNCVisitDaysDatum> expectedvisitDaysData = Arrays.asList(
+                new PNCVisitDaysDatum(7, PNCVisitType.EXPECTED),
+                new PNCVisitDaysDatum(2, PNCVisitType.ACTUAL)
+        );
+        List<PNCStatusDatum> expectedStatusData = Arrays.asList(new PNCStatusDatum(1, PNCVisitStatus.MISSED));
+        assertEquals("create a circle of type actual on day 2",
+                expectedCircleData, processedClient.pncCircleData());
+        assertEquals("create a missed status on day 1",
+                expectedStatusData, processedClient.pncStatusData());
+        assertEquals("set active color to yellow",
+                R.color.pnc_circle_yellow, processedClient.pncVisitStatusColor());
+        assertEquals("should not create a tick on day 2 with grey ticks on the remainder",
+                expectedPNCTickData, processedClient.pncTickData());
+        assertEquals("create an actual line from 1 to 3 and an expected line from 3 to 7",
+                expectedLineData, processedClient.pncLineData());
+        assertEquals("show day nos on days 2 and 7",
+                expectedvisitDaysData, processedClient.visitDaysData());
     }
 }
