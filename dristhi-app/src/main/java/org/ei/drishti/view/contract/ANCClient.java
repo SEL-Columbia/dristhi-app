@@ -12,10 +12,12 @@ import org.joda.time.format.ISODateTimeFormat;
 
 import java.util.*;
 
+import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.drishti.AllConstants.COMMA_WITH_SPACE;
+import static org.ei.drishti.AllConstants.ANCVisitFields.BP_DIASTOLIC;
+import static org.ei.drishti.AllConstants.ANCVisitFields.BP_SYSTOLIC;
+import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
-import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.domain.ANCServiceType.*;
 import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.util.DateUtil.today;
@@ -212,12 +214,17 @@ public class ANCClient implements ANCSmartRegisterClient {
 
     @Override
     public String ifaDoneDate() {
-        return serviceProvided(CATEGORY_IFA).ancServicedOn();
+        return serviceProvided(CATEGORY_IFA).ancServicedOnWithServiceName();
     }
 
     @Override
     public String ttDoneDate() {
-        return serviceProvided(CATEGORY_TT).ancServicedOn();
+        return serviceProvided(CATEGORY_TT).ancServicedOnWithServiceName();
+    }
+
+    @Override
+    public String visitDoneDateWithVisitName() {
+        return serviceProvided(CATEGORY_ANC).ancServicedOnWithServiceName();
     }
 
     @Override
@@ -376,7 +383,7 @@ public class ANCClient implements ANCSmartRegisterClient {
         return serviceToVisitsMap.get(category).provided != emptyService;
     }
 
-    private ServiceProvidedDTO serviceProvided(String category) {
+    public ServiceProvidedDTO serviceProvided(String category) {
         if (StringUtils.isBlank(category)) {
             return emptyService;
         }
@@ -388,6 +395,21 @@ public class ANCClient implements ANCSmartRegisterClient {
             return emptyAlert;
         }
         return serviceToVisitsMap.get(category).toProvide;
+    }
+
+    @Override
+    public boolean isMilestoneServiceProvided(ServiceProvidedDTO ancServiceProvided, String milestoneServiceName) {
+        return ancServiceProvided.ancServiceType().name().equalsIgnoreCase(milestoneServiceName);
+    }
+
+    @Override
+    public String getHyperTension(ServiceProvidedDTO ancServiceProvided) {
+        String systolic = ancServiceProvided.data().get(BP_SYSTOLIC);
+        String diastolic = ancServiceProvided.data().get(BP_DIASTOLIC);
+        if (StringUtils.isEmpty(systolic) && StringUtils.isEmpty(diastolic)) {
+            return EMPTY;
+        }
+        return systolic + SLASH_STRING + diastolic;
     }
 
 

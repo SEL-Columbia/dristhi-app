@@ -17,6 +17,8 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
         }
     };
 
+    boolean isMilestoneServiceProvided(ServiceProvidedDTO ancServiceProvided, String milestoneServiceName);
+
     public String edd();
 
     public String pastDueInDays();
@@ -31,11 +33,13 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
 
     public boolean isIFADone();
 
-    public String visitDoneDate();
+    public String visitDoneDateWithVisitName();
 
     public String ttDoneDate();
 
     public String ifaDoneDate();
+
+    String visitDoneDate();
 
     public String thayiCardNumber();
 
@@ -44,4 +48,8 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
     public String lmp();
 
     public String riskFactors();
+
+    public ServiceProvidedDTO serviceProvided(String category);
+
+    public String getHyperTension(ServiceProvidedDTO ancServiceProvided);
 }

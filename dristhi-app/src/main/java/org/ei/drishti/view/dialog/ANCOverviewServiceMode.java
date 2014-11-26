@@ -94,7 +94,7 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
                                     NativeANCSmartRegisterViewHolder viewHolder) {
         if (client.isVisitsDone()) {
             viewHolder.txtANCVisitDoneOn().setVisibility(VISIBLE);
-            viewHolder.txtANCVisitDoneOn().setText(client.visitDoneDate());
+            viewHolder.txtANCVisitDoneOn().setText(client.visitDoneDateWithVisitName());
         } else {
             viewHolder.txtANCVisitDoneOn().setVisibility(View.INVISIBLE);
         }

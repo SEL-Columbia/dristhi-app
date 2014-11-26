@@ -51,6 +51,11 @@
     <integer name="anc_list_overview_service_mode_ifa_view_weight">12</integer>
     <integer name="anc_list_overview_service_mode_anc_visit_view_weight">12</integer>
     <integer name="anc_list_overview_service_mode_edit_button_view_weight">10</integer>
+    <integer name="anc_list_anc_visit_service_mode_anc_visit_1_view_weight">14</integer>
+    <integer name="anc_list_anc_visit_service_mode_anc_visit_2_view_weight">14</integer>
+    <integer name="anc_list_anc_visit_service_mode_anc_visit_3_view_weight">14</integer>
+    <integer name="anc_list_anc_visit_service_mode_anc_visit_4_view_weight">14</integer>
+    <integer name="anc_list_anc_visit_service_mode_anc_visit_button_view_weight">2</integer>
 
     <integer name="pnc_list_item_weight_count">100</integer>
     <integer name="pnc_list_profile_box_weight">24</integer>

@@ -66,8 +66,12 @@ public class ServiceProvidedDTO implements Comparable<ServiceProvidedDTO> {
         return type().shortName() + ": " + shortDate();
     }
 
-    public String ancServicedOn() {
+    public String ancServicedOnWithServiceName() {
         return ancServiceType().onServiceCompleteDisplayName() + ": " + shortDate();
+    }
+
+    public String ancServicedOn() {
+        return shortDate();
     }
 
     public Map<String, String> data() {

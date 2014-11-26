@@ -68,6 +68,7 @@ public class ANCSmartRegisterClientsProvider implements SmartRegisterClientsProv
         setupClientIdDetailsView(viewHolder, client);
         setupANCStatusView(viewHolder, client);
 
+        viewHolder.hideAllServiceModeOptions();
         currentServiceModeOption.setupListView(client, viewHolder, onClickListener);
 
         itemView.setLayoutParams(clientViewLayoutParams);

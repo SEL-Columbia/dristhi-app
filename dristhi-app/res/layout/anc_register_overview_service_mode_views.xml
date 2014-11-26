@@ -76,6 +76,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="3"
                 android:drawableLeft="@drawable/ic_yes_small"
+                android:paddingLeft="0dp"
                 style="@style/CustomFontTextViewStyle.ListView.VerySmall"/>
 
     </LinearLayout>
@@ -141,6 +142,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="3"
                 android:drawableLeft="@drawable/ic_yes_small"
+                android:paddingLeft="0dp"
                 style="@style/CustomFontTextViewStyle.ListView.VerySmall"/>
 
     </LinearLayout>
@@ -206,6 +208,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="3"
                 android:drawableLeft="@drawable/ic_yes_small"
+                android:paddingLeft="0dp"
                 style="@style/CustomFontTextViewStyle.ListView.VerySmall"/>
 
     </LinearLayout>

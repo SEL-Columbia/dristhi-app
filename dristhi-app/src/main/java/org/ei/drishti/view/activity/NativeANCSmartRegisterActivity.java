@@ -84,7 +84,8 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
             @Override
             public DialogOption[] serviceModeOptions() {
                 return new DialogOption[]{
-                        new ANCOverviewServiceMode(clientsProvider())
+                        new ANCOverviewServiceMode(clientsProvider()),
+                        new ANCVisitsServiceMode(clientsProvider())
                 };
             }
 
