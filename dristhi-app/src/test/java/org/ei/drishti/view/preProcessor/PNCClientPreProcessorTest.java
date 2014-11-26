@@ -154,4 +154,88 @@ public class PNCClientPreProcessorTest {
         assertEquals("show day nos on days 2 and 7",
                 expectedvisitDaysData, processedClient.visitDaysData());
     }
+
+    @Test
+    public void test_8th_day_with_all_services_provided_on_time() throws Exception {
+        DateUtil.fakeIt(new LocalDate("2013-05-21"));
+        PNCClient client = new PNCClient("entityId", "village", "name", "thayiNo", "2013-05-13")
+                .withServicesProvided(Arrays.asList(
+                        new ServiceProvidedDTO("PNC", "2013-05-26", null),
+                        new ServiceProvidedDTO("PNC", "2013-05-20", null),
+                        new ServiceProvidedDTO("PNC", "2013-05-16", null),
+                        new ServiceProvidedDTO("PNC", "2013-05-16", null),
+                        new ServiceProvidedDTO("PNC", "2013-05-15", null),
+                        new ServiceProvidedDTO("PNC", "2013-05-14", null)
+                ));
+
+        PNCClient processedClient = new PNCClientPreProcessor(client).preProcess();
+
+        List<PNCCircleDatum> expectedCircleData = Arrays.asList(
+                new PNCCircleDatum(1, PNCVisitType.ACTUAL, true),
+                new PNCCircleDatum(2, PNCVisitType.ACTUAL, true),
+                new PNCCircleDatum(3, PNCVisitType.ACTUAL, true),
+                new PNCCircleDatum(7, PNCVisitType.ACTUAL, true)
+                );
+        List<PNCStatusDatum> expectedStatusData= Arrays.asList(
+                new PNCStatusDatum(1, PNCVisitStatus.DONE),
+                new PNCStatusDatum(3, PNCVisitStatus.DONE),
+                new PNCStatusDatum(7, PNCVisitStatus.DONE)
+        );
+        List<PNCTickDatum> expectedTickData = Arrays.asList(
+                new PNCTickDatum(4, PNCVisitType.ACTUAL),
+                new PNCTickDatum(5, PNCVisitType.ACTUAL),
+                new PNCTickDatum(6, PNCVisitType.ACTUAL)
+        );
+        List<PNCVisitDaysDatum> expectedVisitDaysData = Arrays.asList(
+                new PNCVisitDaysDatum(1, PNCVisitType.ACTUAL),
+                new PNCVisitDaysDatum(2, PNCVisitType.ACTUAL),
+                new PNCVisitDaysDatum(3, PNCVisitType.ACTUAL),
+                new PNCVisitDaysDatum(7, PNCVisitType.ACTUAL)
+        );
+        assertEquals("create circles of type actual on each expected day",
+                expectedCircleData, processedClient.pncCircleData());
+        assertEquals("should create done statuses for each expected day",
+                expectedStatusData, processedClient.pncStatusData());
+        assertEquals("should set active color to green",
+                R.color.pnc_circle_green, processedClient.pncVisitStatusColor());
+        assertEquals("should create ticks on days 4, 5 and 6",
+                expectedTickData, processedClient.pncTickData());
+        assertEquals("should create an actual line from 1 to 7",
+                Arrays.asList(new PNCLineDatum(1,7,PNCVisitType.ACTUAL)), processedClient.pncLineData());
+        assertEquals("should show day nos 1, 2, 3 and 7 as actual",
+                expectedVisitDaysData, processedClient.visitDaysData());
+    }
+
+    @Test
+    public void test_8th_day_with_no_services_provided() throws Exception {
+        DateUtil.fakeIt(new LocalDate("2013-05-21"));
+        PNCClient client = new PNCClient("entityId", "village", "name", "thayino", "2013-05-13");
+
+        PNCClient processedClient = new PNCClientPreProcessor(client).preProcess();
+
+        List<PNCCircleDatum> expectedCircleData = Arrays.asList(
+                new PNCCircleDatum(1, PNCVisitType.EXPECTED, true),
+                new PNCCircleDatum(3, PNCVisitType.EXPECTED, true),
+                new PNCCircleDatum(7, PNCVisitType.EXPECTED, true)
+        );
+        List<PNCStatusDatum> expectedStatusData = Arrays.asList(
+                new PNCStatusDatum(1, PNCVisitStatus.MISSED),
+                new PNCStatusDatum(3, PNCVisitStatus.MISSED),
+                new PNCStatusDatum(7, PNCVisitStatus.MISSED)
+        );
+        List<PNCTickDatum> expectedTickData = Arrays.asList(
+                new PNCTickDatum(2,PNCVisitType.ACTUAL),
+                new PNCTickDatum(4,PNCVisitType.ACTUAL),
+                new PNCTickDatum(5,PNCVisitType.ACTUAL),
+                new PNCTickDatum(6,PNCVisitType.ACTUAL)
+        );
+        assertEquals("should create circles of type expected on each expected day",
+                expectedCircleData, processedClient.pncCircleData());
+        assertEquals("should create missed statuses for each expected day",
+                expectedStatusData, processedClient.pncStatusData());
+        assertEquals("should set active color to red",
+                R.color.pnc_circle_red, processedClient.pncVisitStatusColor());
+        assertEquals("should create ticks on days 2,4,5,6",
+                expectedTickData, processedClient.pncTickData());
+    }
 }

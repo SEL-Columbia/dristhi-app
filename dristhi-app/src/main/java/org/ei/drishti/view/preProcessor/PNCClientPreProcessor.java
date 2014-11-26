@@ -7,6 +7,8 @@ import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.view.contract.*;
 import org.joda.time.LocalDate;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.ei.drishti.util.DateUtil.dayDifference;
@@ -34,7 +36,7 @@ public class PNCClientPreProcessor {
 
     public PNCClient preProcess() {
         populateExpectedVisitDates();
-        List<ServiceProvidedDTO> first7DaysVisits = getFirst7DaysVisits(client);
+        List<ServiceProvidedDTO> first7DaysVisits = getFirst7DaysVisits();
         createViewElements(currentDay, first7DaysVisits);
         return client;
     }
@@ -174,12 +176,12 @@ public class PNCClientPreProcessor {
         return false;
     }
 
-    private List<ServiceProvidedDTO> getFirst7DaysVisits(PNCClient client) {
+    private List<ServiceProvidedDTO> getFirst7DaysVisits() {
         int VISIT_END_OFFSET_DAY_COUNT = 7;
         LocalDate endDate = client.deliveryDate().plusDays(VISIT_END_OFFSET_DAY_COUNT);
         List<ServiceProvidedDTO> validServices = getValidServicesProvided(client, endDate);
         validServices = removeDuplicateServicesAndReturnList(validServices);
-        Collections.sort(validServices);//Ascending sort based on the date
+        Collections.sort(validServices, new DateComparator());//Ascending sort based on the date
         findAndSetTheVisitDayOfTheServicesWithRespectToDeliveryDate(validServices, client.deliveryDate());//Find the day offset from the delivery date for the visits
         return validServices;
     }
@@ -191,7 +193,9 @@ public class PNCClientPreProcessor {
             Iterables.addAll(validServicesProvided, Iterables.filter(servicesProvided, new Predicate<ServiceProvidedDTO>() {
                 @Override
                 public boolean apply(ServiceProvidedDTO serviceProvided) {
-                    return PNC_IDENTIFIER.equalsIgnoreCase(serviceProvided.name()) && serviceProvided.localDate().isBefore(visitEndDate);
+                    LocalDate serviceProvidedDate = serviceProvided.localDate();
+                    return PNC_IDENTIFIER.equalsIgnoreCase(serviceProvided.name())
+                            && (serviceProvidedDate.isBefore(visitEndDate) || serviceProvidedDate.equals(visitEndDate));
                 }
             }));
         }
@@ -216,5 +220,23 @@ public class PNCClientPreProcessor {
             }
         }
         return services;
+    }
+
+    class DateComparator implements Comparator<ServiceProvidedDTO>{
+
+        @Override
+        public int compare(ServiceProvidedDTO serviceProvidedDTO1, ServiceProvidedDTO serviceProvidedDTO2) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date date1;
+            Date date2;
+            try {
+                date1 = simpleDateFormat.parse(serviceProvidedDTO1.date());
+                date2 = simpleDateFormat.parse(serviceProvidedDTO2.date());
+                return date1.compareTo(date2);
+            } catch (ParseException e) {
+                //TODO
+            }
+            return -1;
+        }
     }
 }
