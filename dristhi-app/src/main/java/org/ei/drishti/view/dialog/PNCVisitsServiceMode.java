@@ -1,6 +1,8 @@
 package org.ei.drishti.view.dialog;
 
 import android.view.View;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import org.ei.drishti.R;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.util.DateUtil;
@@ -57,6 +59,7 @@ public class PNCVisitsServiceMode extends ServiceModeOption {
 
         setupDaysPPView(client, viewHolder);
         setupComplicationsView(client, viewHolder);
+        setUpPNCVisitsGraph(client, viewHolder);
     }
 
     private void setupDaysPPView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
@@ -66,6 +69,11 @@ public class PNCVisitsServiceMode extends ServiceModeOption {
 
     private void setupComplicationsView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
         viewHolder.txtVisitComplicationsView().setText(client.deliveryComplications());
+    }
+
+    private void setUpPNCVisitsGraph(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
+        String jsonString = new Gson().toJson(client, PNCClient.class);
+        viewHolder.wbvPncVisitsGraph().loadUrl("javascript:setJSONToPNCPageFromAndroid('" + jsonString + "')");
     }
 
     @Override

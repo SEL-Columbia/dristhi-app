@@ -1,5 +1,6 @@
 package org.ei.drishti.view.contract;
 
+import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -51,12 +52,18 @@ public class PNCClient implements PNCSmartRegisterClient {
     private List<ChildClient> children;
     private String entityIdToSavePhoto;
     private List<ServiceProvidedDTO> expectedVisits;
+    @SerializedName("circles")
     private List<PNCCircleDatum> pncCircleData;
+    @SerializedName("statuses")
     private List<PNCStatusDatum> pncStatusData;
-    private List<PNCTickDatum> pncTickData;
-    private List<PNCVisitDaysDatum> visitDaysData;
-    private List<PNCLineDatum> pncLineData;
+    @SerializedName("active_color")
     private int pncVisitStatusColor;
+    @SerializedName("ticks")
+    private List<PNCTickDatum> pncTickData;
+    @SerializedName("lines")
+    private List<PNCLineDatum> pncLineData;
+    @SerializedName("day_nos")
+    private List<PNCVisitDaysDatum> visitDaysData;
 
     public PNCClient(String entityId, String village, String name, String thayi, String deliveryDate) {
         this.entityId = entityId;
@@ -421,26 +428,32 @@ public class PNCClient implements PNCSmartRegisterClient {
         return this;
     }
 
+    @Override
     public List<PNCCircleDatum> pncCircleData() {
         return pncCircleData;
     }
 
+    @Override
     public List<PNCStatusDatum> pncStatusData() {
         return pncStatusData;
     }
 
+    @Override
     public int pncVisitStatusColor() {
         return pncVisitStatusColor;
     }
 
+    @Override
     public List<PNCTickDatum> pncTickData() {
         return pncTickData;
     }
 
+    @Override
     public List<PNCLineDatum> pncLineData() {
         return pncLineData;
     }
 
+    @Override
     public List<PNCVisitDaysDatum> visitDaysData() {
         return visitDaysData;
     }

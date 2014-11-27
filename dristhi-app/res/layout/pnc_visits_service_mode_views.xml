@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="horizontal"
               android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
+              android:layout_height="match_parent"
               android:weightSum="@integer/pnc_list_service_mode_views_section_weight">
 
     <LinearLayout
@@ -53,4 +53,21 @@
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
 
+    <WebView
+            android:id="@+id/wbv_pnc_visit_graph"
+            android:layout_width="@dimen/list_ec_no_view_width"
+            android:layout_height="fill_parent"
+            android:background="@color/alert_complete_green"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            android:layout_weight="@integer/pnc_list_graph_view_weight" >
+    </WebView>
+
+    <ImageView
+            android:layout_width="@dimen/smart_register_client_divider_height"
+            android:layout_height="fill_parent"
+            android:src="@color/smart_register_client_divider_color"/>
 </LinearLayout>

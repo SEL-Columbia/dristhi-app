@@ -2,7 +2,7 @@ package org.ei.drishti.view.viewHolder;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +23,7 @@ public class NativePNCSmartRegisterViewHolder {
     private final TextView txtNumberOfVisits;
     private final TextView txtDOB;
     private final TextView txtVisitComplicationsView;
+    private final WebView wbvPncVisitsGraph;
 
     public NativePNCSmartRegisterViewHolder(ViewGroup itemView) {
         this.profileInfoLayout = (ClientProfileView) itemView.findViewById(R.id.profile_info_layout);
@@ -54,6 +55,11 @@ public class NativePNCSmartRegisterViewHolder {
         txtDOB = (TextView) pncVisitsServiceModeView.findViewById(R.id.txt_dob);
 
         txtVisitComplicationsView = (TextView) pncVisitsServiceModeView.findViewById(R.id.txt_pnc_visits_complications);
+
+        wbvPncVisitsGraph = (WebView) pncVisitsServiceModeView.findViewById(R.id.wbv_pnc_visit_graph);
+        wbvPncVisitsGraph.getSettings().setJavaScriptEnabled(true);
+        wbvPncVisitsGraph.setWebViewClient(new PNCWebViewClient());
+        wbvPncVisitsGraph.loadUrl("file:///android_asset/www/pnc_graph/pnc_visit_graph.html");
 
     }
 
@@ -107,4 +113,6 @@ public class NativePNCSmartRegisterViewHolder {
     public TextView txtDOB() { return txtDOB; }
 
     public TextView txtVisitComplicationsView() { return txtVisitComplicationsView; }
+
+    public WebView wbvPncVisitsGraph() { return wbvPncVisitsGraph; }
 }
