@@ -52,4 +52,6 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
     public ServiceProvidedDTO serviceProvided(String category);
 
     public String getHyperTension(ServiceProvidedDTO ancServiceProvided);
+
+    public ServiceProvidedDTO getServiceProvidedDTO(String serviceName);
 }

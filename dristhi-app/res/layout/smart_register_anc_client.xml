@@ -62,6 +62,12 @@
                 android:layout_height="fill_parent"
                 layout="@layout/anc_register_anc_visits_service_mode_views"/>
 
+        <include
+                android:id="@+id/tt_service_mode_views"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                layout="@layout/anc_register_tt_service_mode_views"/>
+
     </LinearLayout>
 
 </LinearLayout>

@@ -1,6 +1,5 @@
 package org.ei.drishti.view.dialog;
 
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.TextView;
 import org.apache.commons.lang3.StringUtils;
@@ -20,16 +19,13 @@ import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
 
 public class ANCVisitsServiceMode extends ServiceModeOption {
 
-    private Drawable iconPencilDrawable;
-
-
     public ANCVisitsServiceMode(SmartRegisterClientsProvider provider) {
         super(provider);
     }
 
     @Override
     public String name() {
-        return getInstance().getStringResource(R.string.anc_visits_service_mode_overview);
+        return getInstance().getStringResource(R.string.anc_service_mode_anc_visits);
     }
 
     @Override

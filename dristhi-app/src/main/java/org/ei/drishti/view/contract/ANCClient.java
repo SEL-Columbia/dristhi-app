@@ -412,6 +412,16 @@ public class ANCClient implements ANCSmartRegisterClient {
         return systolic + SLASH_STRING + diastolic;
     }
 
+    @Override
+    public ServiceProvidedDTO getServiceProvidedDTO(String serviceName) {
+        for (ServiceProvidedDTO serviceProvidedDTO : services_provided) {
+            if (serviceProvidedDTO.name().equalsIgnoreCase(serviceName)) {
+                return serviceProvidedDTO;
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public boolean equals(Object o) {

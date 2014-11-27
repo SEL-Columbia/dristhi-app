@@ -71,6 +71,19 @@ public class NativeANCSmartRegisterViewHolder {
     private final TextView lblANCVisit4Weight;
     private final TextView txtANCVisit4BpValue;
     private final TextView txtANCVisit4WeightValue;
+    private final ViewGroup serviceModeTTView;
+    private final View layoutTT1Alert;
+    private final TextView txtTT1DoneTick;
+    private final TextView txtTT1Type;
+    private final TextView txtTT1Date;
+    private final View layoutTT2Alert;
+    private final TextView txtTT2DoneTick;
+    private final TextView txtTT2Type;
+    private final TextView txtTT2Date;
+    private final View layoutTTBoosterAlert;
+    private final TextView txtTTBoosterDoneTick;
+    private final TextView txtTTBoosterType;
+    private final TextView txtTTBoosterDate;
 
     public NativeANCSmartRegisterViewHolder(ViewGroup itemView) {
         profileInfoLayout = (ClientProfileView) itemView.findViewById(R.id.profile_info_layout);
@@ -85,6 +98,7 @@ public class NativeANCSmartRegisterViewHolder {
         serviceModeViewsHolder = (ViewGroup) itemView.findViewById(R.id.anc_register_service_mode_options_view);
         serviceModeOverviewView = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.overview_service_mode_views);
         serviceModeANCVisitsView = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.anc_visit_service_mode_views);
+        serviceModeTTView = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.tt_service_mode_views);
 
         txtRiskFactors = (TextView) serviceModeOverviewView.findViewById(R.id.txt_risk_factors);
 
@@ -149,6 +163,21 @@ public class NativeANCSmartRegisterViewHolder {
         txtANCVisit4WeightValue = (TextView) serviceModeANCVisitsView.findViewById(R.id.txt_anc_visit_4_weight_value);
 
         btnOtherANCVisit = (TextView) serviceModeANCVisitsView.findViewById(R.id.btn_other_anc_visit);
+
+        layoutTT1Alert = serviceModeTTView.findViewById(R.id.layout_tt_1);
+        txtTT1DoneTick = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_1_done);
+        txtTT1Type = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_1_type);
+        txtTT1Date = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_1_date);
+
+        layoutTT2Alert = serviceModeTTView.findViewById(R.id.layout_tt_2);
+        txtTT2DoneTick = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_2_done);
+        txtTT2Type = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_2_type);
+        txtTT2Date = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_2_date);
+
+        layoutTTBoosterAlert = serviceModeTTView.findViewById(R.id.layout_tt_booster);
+        txtTTBoosterDoneTick = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_booster_done);
+        txtTTBoosterType = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_booster_type);
+        txtTTBoosterDate = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_booster_date);
     }
 
     public ClientProfileView profileInfoLayout() {
@@ -439,5 +468,78 @@ public class NativeANCSmartRegisterViewHolder {
 
     public View layoutANCVisit4ServiceProvided() {
         return layoutANCVisit4ServiceProvided;
+    }
+
+    public ViewGroup serviceModeTTView() {
+        return serviceModeTTView;
+    }
+
+    public View layoutTT1Alert() {
+        return layoutTT1Alert;
+    }
+
+    public TextView txtTT1DoneTick() {
+        return txtTT1DoneTick;
+    }
+
+    public TextView txtTT1Type() {
+        return txtTT1Type;
+    }
+
+    public TextView txtTT1Date() {
+        return txtTT1Date;
+    }
+
+    public void hideViewsInTT1Layout() {
+        layoutTT1Alert().setVisibility(View.GONE);
+        txtTT1DoneTick().setVisibility(View.GONE);
+        txtTT1Type().setVisibility(View.GONE);
+        txtTT1Date().setVisibility(View.GONE);
+    }
+
+    public View layoutTT2Alert() {
+        return layoutTT2Alert;
+    }
+
+    public TextView txtTT2DoneTick() {
+        return txtTT2DoneTick;
+    }
+
+    public TextView txtTT2Type() {
+        return txtTT2Type;
+    }
+
+    public TextView txtTT2Date() {
+        return txtTT2Date;
+    }
+
+    public void hideViewsInTT2Layout() {
+        layoutTT2Alert().setVisibility(View.GONE);
+        txtTT2DoneTick().setVisibility(View.GONE);
+        txtTT2Type().setVisibility(View.GONE);
+        txtTT2Date().setVisibility(View.GONE);
+    }
+
+    public View layoutTTBoosterAlert() {
+        return layoutTTBoosterAlert;
+    }
+
+    public TextView txtTTBoosterDoneTick() {
+        return txtTTBoosterDoneTick;
+    }
+
+    public TextView txtTTBoosterType() {
+        return txtTTBoosterType;
+    }
+
+    public TextView txtTTBoosterDate() {
+        return txtTTBoosterDate;
+    }
+
+    public void hideViewsInTTBoosterLayout() {
+        layoutTTBoosterAlert().setVisibility(View.GONE);
+        txtTTBoosterDoneTick().setVisibility(View.GONE);
+        txtTTBoosterType().setVisibility(View.GONE);
+        txtTTBoosterDate().setVisibility(View.GONE);
     }
 }
