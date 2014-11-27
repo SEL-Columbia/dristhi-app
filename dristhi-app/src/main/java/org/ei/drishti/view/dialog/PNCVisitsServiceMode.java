@@ -75,7 +75,7 @@ public class PNCVisitsServiceMode extends ServiceModeOption {
 
     private void setUpPNCVisitsGraph(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
         String jsonString = new Gson().toJson(client.firstSevenDaysVisits(), PNCFirstSevenDaysVisits.class);
-        viewHolder.wbvPncVisitsGraph().loadUrl("javascript:drawSevenDayGraphic('" + jsonString + "', '.seven-day-graphic svg')");
+        viewHolder.wbvPncVisitsGraph().loadUrl("javascript:drawSevenDayGraphic('" + jsonString + "')");
     }
 
     @Override
