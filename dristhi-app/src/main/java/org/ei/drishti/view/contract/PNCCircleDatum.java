@@ -7,12 +7,12 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class PNCCircleDatum {
     private int day;
     private PNCVisitType type;
-    private boolean coloured;
+    private boolean colored;
 
-    public PNCCircleDatum(int day, PNCVisitType type, boolean coloured) {
+    public PNCCircleDatum(int day, PNCVisitType type, boolean colored) {
         this.day = day;
         this.type = type;
-        this.coloured = coloured;
+        this.colored = colored;
     }
 
     public int day() {
@@ -24,7 +24,7 @@ public class PNCCircleDatum {
     }
 
     public boolean coloured() {
-        return coloured;
+        return colored;
     }
 
     @Override

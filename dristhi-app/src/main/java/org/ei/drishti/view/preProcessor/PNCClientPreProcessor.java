@@ -54,14 +54,13 @@ public class PNCClientPreProcessor {
     private void createViewElements(int numberOfDaysFromDeliveryDate, List<ServiceProvidedDTO> first7DaysVisits) {
         createViewElementsBasedOnExpectedVisits(client, first7DaysVisits);
         createViewDataBasedOnServicesProvided(first7DaysVisits);
-        setPNCVisitStatusColor(client, first7DaysVisits, numberOfDaysFromDeliveryDate);
+        int pncVisitStatusColor = getPNCVisitStatusColor(client, first7DaysVisits, numberOfDaysFromDeliveryDate);
         createTickData();
         createLineData();
-        client.withPNCVisitDaysData(generateDayNumbers());
-        client.withPNCVisitCircles(circleData);
-        client.withPNCStatusData(statusData);
-        client.withPNCTickData(tickData);
-        client.withPNCLineData(lineData);
+        ArrayList<PNCVisitDaysDatum> pncVisitDaysData = generateDayNumbers();
+        PNCFirstSevenDaysVisits pncFirstSevenDaysVisits = new PNCFirstSevenDaysVisits(circleData, statusData,
+                pncVisitStatusColor, tickData, lineData, pncVisitDaysData);
+        client.withFirstSevenDaysVisit(pncFirstSevenDaysVisits);
     }
 
     private ArrayList<PNCVisitDaysDatum> generateDayNumbers() {
@@ -100,19 +99,19 @@ public class PNCClientPreProcessor {
         }
     }
 
-    private void setPNCVisitStatusColor(PNCClient client, List<ServiceProvidedDTO> first7DaysVisits, int numberOfDaysFromDeliveryDate) {
-        client.withPNCVisitStatusColor(R.color.pnc_circle_yellow);
+    private int getPNCVisitStatusColor(PNCClient client, List<ServiceProvidedDTO> first7DaysVisits, int numberOfDaysFromDeliveryDate) {
+        int statusColor = R.color.pnc_circle_yellow;
         if (first7DaysVisits.isEmpty() && numberOfDaysFromDeliveryDate > 1) {
-            client.withPNCVisitStatusColor(R.color.pnc_circle_red);
+            statusColor = R.color.pnc_circle_red;
         } else if (actualVisitsHaveBeenDoneOnExpectedDays(client, first7DaysVisits, numberOfDaysFromDeliveryDate)) {
-            client.withPNCVisitStatusColor(R.color.pnc_circle_green);
+            statusColor = R.color.pnc_circle_green;
         }
+        return statusColor;
     }
-
 
     private boolean actualVisitsHaveBeenDoneOnExpectedDays(PNCClient client, List<ServiceProvidedDTO> first7DaysVisits, int numberOfDaysFromDeliveryDate) {
         List<Integer> expectedVisitDaysTillToday =
-                getExpectedVisitDaysTillToday(client.getExpectedVisits(), numberOfDaysFromDeliveryDate); //valid_expected_visit_days
+                getExpectedVisitDaysTillToday(client.expectedVisits(), numberOfDaysFromDeliveryDate); //valid_expected_visit_days
 
         ArrayList<Integer> actualVisitDays = getActualVisitDays(first7DaysVisits); //valid_actual_visit_days
         for (Integer expectedVisitDay : expectedVisitDaysTillToday) {
@@ -149,7 +148,7 @@ public class PNCClientPreProcessor {
     }
 
     private void createViewElementsBasedOnExpectedVisits(PNCClient client, List<ServiceProvidedDTO> first7DaysVisits) {
-        for (ServiceProvidedDTO expectedVisit : client.getExpectedVisits()) {
+        for (ServiceProvidedDTO expectedVisit : client.expectedVisits()) {
             LocalDate expectedVisitDate = DateUtil.getLocalDate(expectedVisit.date());
             int expectedVisitDay = DateUtil.dayDifference(client.deliveryDate(), expectedVisitDate);
 
@@ -188,7 +187,7 @@ public class PNCClientPreProcessor {
 
     private List<ServiceProvidedDTO> getValidServicesProvided(PNCClient client, final LocalDate visitEndDate) {
         List<ServiceProvidedDTO> validServicesProvided = new ArrayList<ServiceProvidedDTO>();
-        List<ServiceProvidedDTO> servicesProvided = client.getServicesProvided();
+        List<ServiceProvidedDTO> servicesProvided = client.servicesProvided();
         if (servicesProvided != null && servicesProvided.size() > 0) {
             Iterables.addAll(validServicesProvided, Iterables.filter(servicesProvided, new Predicate<ServiceProvidedDTO>() {
                 @Override
@@ -222,7 +221,7 @@ public class PNCClientPreProcessor {
         return services;
     }
 
-    class DateComparator implements Comparator<ServiceProvidedDTO>{
+    class DateComparator implements Comparator<ServiceProvidedDTO> {
 
         @Override
         public int compare(ServiceProvidedDTO serviceProvidedDTO1, ServiceProvidedDTO serviceProvidedDTO2) {

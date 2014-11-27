@@ -29,5 +29,6 @@ public interface PNCSmartRegisterClient extends BaseFPSmartRegisterClient {
     public List<PNCTickDatum> pncTickData();
     public List<PNCLineDatum> pncLineData();
     public List<PNCVisitDaysDatum> visitDaysData();
+    public PNCFirstSevenDaysVisits firstSevenDaysVisits();
 }
 

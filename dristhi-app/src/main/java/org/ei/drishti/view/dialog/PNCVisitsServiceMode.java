@@ -2,12 +2,14 @@ package org.ei.drishti.view.dialog;
 
 import android.view.View;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import org.ei.drishti.R;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.view.contract.*;
-import org.ei.drishti.view.viewHolder.*;
+import org.ei.drishti.view.viewHolder.NativeANCSmartRegisterViewHolder;
+import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
+import org.ei.drishti.view.viewHolder.NativePNCSmartRegisterViewHolder;
 
 import static android.view.View.VISIBLE;
 import static org.ei.drishti.Context.getInstance;
@@ -72,8 +74,8 @@ public class PNCVisitsServiceMode extends ServiceModeOption {
     }
 
     private void setUpPNCVisitsGraph(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
-        String jsonString = new Gson().toJson(client, PNCClient.class);
-        viewHolder.wbvPncVisitsGraph().loadUrl("javascript:setJSONToPNCPageFromAndroid('" + jsonString + "')");
+        String jsonString = new Gson().toJson(client.firstSevenDaysVisits(), PNCFirstSevenDaysVisits.class);
+        viewHolder.wbvPncVisitsGraph().loadUrl("javascript:drawSevenDayGraphic('" + jsonString + "', '.seven-day-graphic svg')");
     }
 
     @Override

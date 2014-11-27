@@ -46,7 +46,7 @@ public class PNCClientPreProcessorTest {
 
         PNCClient processedPNCClient = new PNCClientPreProcessor(pncClient).preProcess();
 
-        assertEquals(expectedVisits, processedPNCClient.getExpectedVisits());
+        assertEquals(expectedVisits, processedPNCClient.expectedVisits());
     }
 
     @Test

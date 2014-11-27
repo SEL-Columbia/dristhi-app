@@ -60,7 +60,6 @@ public class NativePNCSmartRegisterViewHolder {
         wbvPncVisitsGraph.getSettings().setJavaScriptEnabled(true);
         wbvPncVisitsGraph.setWebViewClient(new PNCWebViewClient());
         wbvPncVisitsGraph.loadUrl("file:///android_asset/www/pnc_graph/pnc_visit_graph.html");
-
     }
 
     public void hideAllServiceModeOptions() {

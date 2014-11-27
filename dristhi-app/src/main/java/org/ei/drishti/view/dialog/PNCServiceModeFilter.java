@@ -3,8 +3,6 @@ package org.ei.drishti.view.dialog;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.view.contract.FPSmartRegisterClient;
-import org.ei.drishti.view.contract.PNCSmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 
 public class PNCServiceModeFilter implements FilterOption {
@@ -24,9 +22,7 @@ public class PNCServiceModeFilter implements FilterOption {
 
     @Override
     public boolean filter(SmartRegisterClient client) {
-        PNCSmartRegisterClient pncSmartRegisterClient = (PNCSmartRegisterClient) client;
         return name().equalsIgnoreCase(allMethodsIdentifier);
-//        return name().equalsIgnoreCase(allMethodsIdentifier) || name().equalsIgnoreCase(fpSmartRegisterClient.fpMethod().displayName());
     }
 
     @Override

@@ -52,18 +52,9 @@ public class PNCClient implements PNCSmartRegisterClient {
     private List<ChildClient> children;
     private String entityIdToSavePhoto;
     private List<ServiceProvidedDTO> expectedVisits;
-    @SerializedName("circles")
-    private List<PNCCircleDatum> pncCircleData;
-    @SerializedName("statuses")
-    private List<PNCStatusDatum> pncStatusData;
-    @SerializedName("active_color")
-    private int pncVisitStatusColor;
-    @SerializedName("ticks")
-    private List<PNCTickDatum> pncTickData;
-    @SerializedName("lines")
-    private List<PNCLineDatum> pncLineData;
-    @SerializedName("day_nos")
-    private List<PNCVisitDaysDatum> visitDaysData;
+
+    @SerializedName("first_7_days")
+    private PNCFirstSevenDaysVisits pncFirstSevenDaysVisits;
 
     public PNCClient(String entityId, String village, String name, String thayi, String deliveryDate) {
         this.entityId = entityId;
@@ -373,6 +364,15 @@ public class PNCClient implements PNCSmartRegisterClient {
         return this;
     }
 
+    public PNCClient withExpectedVisits(List<ServiceProvidedDTO> visits) {
+        this.expectedVisits = visits;
+        return this;
+    }
+
+    public void withFirstSevenDaysVisit(PNCFirstSevenDaysVisits pncFirstSevenDaysVisits) {
+        this.pncFirstSevenDaysVisits = pncFirstSevenDaysVisits;
+    }
+
     @Override
     public boolean equals(Object o) {
         return EqualsBuilder.reflectionEquals(this, o);
@@ -388,78 +388,46 @@ public class PNCClient implements PNCSmartRegisterClient {
         return ToStringBuilder.reflectionToString(this);
     }
 
-
-
-    public PNCClient withExpectedVisits(List<ServiceProvidedDTO> visits) {
-        this.expectedVisits = visits;
-        return this;
-    }
-
-    public List<ServiceProvidedDTO> getExpectedVisits() {
+    public List<ServiceProvidedDTO> expectedVisits() {
         return expectedVisits;
     }
 
-    public PNCClient withPNCVisitCircles(List<PNCCircleDatum> circleData) {
-        this.pncCircleData = circleData;
-        return this;
-    }
-
-    public PNCClient withPNCStatusData(List<PNCStatusDatum> statusData) {
-        this.pncStatusData = statusData;
-        return this;
-    }
-
-    public PNCClient withPNCVisitStatusColor(int pncVisitStatusColor) {
-        this.pncVisitStatusColor = pncVisitStatusColor;
-        return this;
-    }
-
-    public List<ServiceProvidedDTO> getServicesProvided() {
+    public List<ServiceProvidedDTO> servicesProvided() {
         return services_provided;
-    }
-
-    public PNCClient withPNCTickData(List<PNCTickDatum> tickData) {
-        this.pncTickData = tickData;
-        return this;
-    }
-
-    public PNCClient withPNCLineData(List<PNCLineDatum> lineData) {
-        pncLineData = lineData;
-        return this;
     }
 
     @Override
     public List<PNCCircleDatum> pncCircleData() {
-        return pncCircleData;
+        return pncFirstSevenDaysVisits.pncCircleData();
     }
 
     @Override
     public List<PNCStatusDatum> pncStatusData() {
-        return pncStatusData;
+        return pncFirstSevenDaysVisits.pncStatusData();
     }
 
     @Override
     public int pncVisitStatusColor() {
-        return pncVisitStatusColor;
+        return pncFirstSevenDaysVisits.pncVisitStatusColor();
     }
 
     @Override
     public List<PNCTickDatum> pncTickData() {
-        return pncTickData;
+        return pncFirstSevenDaysVisits.pncTickData();
     }
 
     @Override
     public List<PNCLineDatum> pncLineData() {
-        return pncLineData;
+        return pncFirstSevenDaysVisits.pncLineData();
     }
 
     @Override
     public List<PNCVisitDaysDatum> visitDaysData() {
-        return visitDaysData;
+        return pncFirstSevenDaysVisits.visitDaysData();
     }
 
-    public PNCClient withPNCVisitDaysData(List<PNCVisitDaysDatum> visitDaysData) {
-        this.visitDaysData = visitDaysData;
-        return this;
+    @Override
+    public PNCFirstSevenDaysVisits firstSevenDaysVisits() {
+        return pncFirstSevenDaysVisits;
     }
 }
