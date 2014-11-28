@@ -407,7 +407,7 @@ public class PNCClient implements PNCSmartRegisterClient {
     }
 
     @Override
-    public int pncVisitStatusColor() {
+    public String pncVisitStatusColor() {
         return pncFirstSevenDaysVisits.pncVisitStatusColor();
     }
 

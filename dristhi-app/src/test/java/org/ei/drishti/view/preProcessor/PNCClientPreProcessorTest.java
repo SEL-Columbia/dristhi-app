@@ -73,7 +73,7 @@ public class PNCClientPreProcessorTest {
 
         assertEquals(expectedCircleData, processedClient.pncCircleData());
         assertEquals(0, pncClient.pncStatusData().size());
-        assertEquals(R.color.pnc_circle_green, pncClient.pncVisitStatusColor());
+        assertEquals("green", pncClient.pncVisitStatusColor());
         assertEquals(expectedTickData, pncClient.pncTickData());
         assertEquals(Arrays.asList(new PNCLineDatum(1, 7, PNCVisitType.EXPECTED)), pncClient.pncLineData());
         assertEquals(expectedVisitDaysData, pncClient.visitDaysData());
@@ -107,7 +107,7 @@ public class PNCClientPreProcessorTest {
         );
         assertEquals(expectedCircleData, processedClient.pncCircleData());
         assertEquals(Arrays.asList(new PNCStatusDatum(1, PNCVisitStatus.MISSED)), processedClient.pncStatusData());
-        assertEquals(R.color.pnc_circle_red, processedClient.pncVisitStatusColor());
+        assertEquals("red", processedClient.pncVisitStatusColor());
         assertEquals(expectedTickData, processedClient.pncTickData());
         assertEquals(expectedLineData, processedClient.pncLineData());
         assertEquals(expectedVisitDays, processedClient.visitDaysData());
@@ -146,7 +146,7 @@ public class PNCClientPreProcessorTest {
         assertEquals("create a missed status on day 1",
                 expectedStatusData, processedClient.pncStatusData());
         assertEquals("set active color to yellow",
-                R.color.pnc_circle_yellow, processedClient.pncVisitStatusColor());
+                "yellow", processedClient.pncVisitStatusColor());
         assertEquals("should not create a tick on day 2 with grey ticks on the remainder",
                 expectedPNCTickData, processedClient.pncTickData());
         assertEquals("create an actual line from 1 to 3 and an expected line from 3 to 7",
@@ -197,7 +197,7 @@ public class PNCClientPreProcessorTest {
         assertEquals("should create done statuses for each expected day",
                 expectedStatusData, processedClient.pncStatusData());
         assertEquals("should set active color to green",
-                R.color.pnc_circle_green, processedClient.pncVisitStatusColor());
+                "green", processedClient.pncVisitStatusColor());
         assertEquals("should create ticks on days 4, 5 and 6",
                 expectedTickData, processedClient.pncTickData());
         assertEquals("should create an actual line from 1 to 7",
@@ -234,7 +234,7 @@ public class PNCClientPreProcessorTest {
         assertEquals("should create missed statuses for each expected day",
                 expectedStatusData, processedClient.pncStatusData());
         assertEquals("should set active color to red",
-                R.color.pnc_circle_red, processedClient.pncVisitStatusColor());
+                "red", processedClient.pncVisitStatusColor());
         assertEquals("should create ticks on days 2,4,5,6",
                 expectedTickData, processedClient.pncTickData());
     }

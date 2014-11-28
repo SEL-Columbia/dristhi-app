@@ -1,11 +1,13 @@
 package org.ei.drishti.view.contract;
 
+import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class PNCVisitDaysDatum {
     Integer day;
+    @SerializedName("type")
     PNCVisitType visitType;
 
     public PNCVisitDaysDatum(Integer day, PNCVisitType visitType) {

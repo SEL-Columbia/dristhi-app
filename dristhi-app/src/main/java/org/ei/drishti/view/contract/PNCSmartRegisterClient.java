@@ -25,7 +25,7 @@ public interface PNCSmartRegisterClient extends BaseFPSmartRegisterClient {
     public List<ChildClient> children();
     public List<PNCCircleDatum> pncCircleData();
     public List<PNCStatusDatum> pncStatusData();
-    public int pncVisitStatusColor();
+    public String pncVisitStatusColor();
     public List<PNCTickDatum> pncTickData();
     public List<PNCLineDatum> pncLineData();
     public List<PNCVisitDaysDatum> visitDaysData();

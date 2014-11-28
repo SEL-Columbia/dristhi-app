@@ -2,7 +2,6 @@ package org.ei.drishti.view.preProcessor;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
-import org.ei.drishti.R;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.view.contract.*;
 import org.joda.time.LocalDate;
@@ -54,7 +53,7 @@ public class PNCClientPreProcessor {
     private void createViewElements(int numberOfDaysFromDeliveryDate, List<ServiceProvidedDTO> first7DaysVisits) {
         createViewElementsBasedOnExpectedVisits(client, first7DaysVisits);
         createViewDataBasedOnServicesProvided(first7DaysVisits);
-        int pncVisitStatusColor = getPNCVisitStatusColor(client, first7DaysVisits, numberOfDaysFromDeliveryDate);
+        String pncVisitStatusColor = getPNCVisitStatusColor(client, first7DaysVisits, numberOfDaysFromDeliveryDate);
         createTickData();
         createLineData();
         ArrayList<PNCVisitDaysDatum> pncVisitDaysData = generateDayNumbers();
@@ -99,12 +98,12 @@ public class PNCClientPreProcessor {
         }
     }
 
-    private int getPNCVisitStatusColor(PNCClient client, List<ServiceProvidedDTO> first7DaysVisits, int numberOfDaysFromDeliveryDate) {
-        int statusColor = R.color.pnc_circle_yellow;
+    private String getPNCVisitStatusColor(PNCClient client, List<ServiceProvidedDTO> first7DaysVisits, int numberOfDaysFromDeliveryDate) {
+        String statusColor = "yellow";
         if (first7DaysVisits.isEmpty() && numberOfDaysFromDeliveryDate > 1) {
-            statusColor = R.color.pnc_circle_red;
+            statusColor = "red";
         } else if (actualVisitsHaveBeenDoneOnExpectedDays(client, first7DaysVisits, numberOfDaysFromDeliveryDate)) {
-            statusColor = R.color.pnc_circle_green;
+            statusColor = "green";
         }
         return statusColor;
     }
