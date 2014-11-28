@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.R;
+import org.ei.drishti.domain.ANCServiceType;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.*;
 import org.ei.drishti.view.viewHolder.*;
@@ -14,7 +15,6 @@ import static org.ei.drishti.AllConstants.FormNames.ANC_VISIT;
 import static org.ei.drishti.Context.getInstance;
 import static org.ei.drishti.domain.ANCServiceType.*;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
-import static org.ei.drishti.view.contract.ANCClient.CATEGORY_ANC;
 import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
 
 public class ANCVisitsServiceMode extends ServiceModeOption {
@@ -85,9 +85,9 @@ public class ANCVisitsServiceMode extends ServiceModeOption {
     public void setupANCVisit1Layout(ANCSmartRegisterClient client,
                                      NativeANCSmartRegisterViewHolder viewHolder) {
         AlertDTO ancVisitAlert = client.getAlert(ANC_1);
-        ServiceProvidedDTO ancServiceProvided = client.serviceProvided(CATEGORY_ANC);
+        ServiceProvidedDTO ancServiceProvided = client.getServiceProvidedDTO(ANCServiceType.ANC_1.displayName());
         viewHolder.hideViewsInANCVisit1Layout();
-        if (client.isMilestoneServiceProvided(ancServiceProvided, ANC_1.name())) {
+        if (ancServiceProvided != null) {
             setServiceProvidedLayout(client, ancServiceProvided, viewHolder.layoutANCVisit1ServiceProvided(),
                     viewHolder.txtANCVisit1DoneDate(), viewHolder.lblANCVisit1Bp(), viewHolder.txtANCVisit1BpValue(),
                     viewHolder.lblANCVisit1Weight(), viewHolder.txtANCVisit1WeightValue());
@@ -102,9 +102,9 @@ public class ANCVisitsServiceMode extends ServiceModeOption {
     public void setupANCVisit2Layout(ANCSmartRegisterClient client,
                                      NativeANCSmartRegisterViewHolder viewHolder) {
         AlertDTO ancVisitAlert = client.getAlert(ANC_2);
-        ServiceProvidedDTO ancServiceProvided = client.serviceProvided(CATEGORY_ANC);
+        ServiceProvidedDTO ancServiceProvided = client.getServiceProvidedDTO(ANCServiceType.ANC_2.displayName());
         viewHolder.hideViewsInANCVisit2Layout();
-        if (client.isMilestoneServiceProvided(ancServiceProvided, ANC_2.name())) {
+        if (ancServiceProvided != null) {
             setServiceProvidedLayout(client, ancServiceProvided, viewHolder.layoutANCVisit2ServiceProvided(),
                     viewHolder.txtANCVisit2DoneDate(), viewHolder.lblANCVisit2Bp(), viewHolder.txtANCVisit2BpValue(),
                     viewHolder.lblANCVisit2Weight(), viewHolder.txtANCVisit2WeightValue());
@@ -119,9 +119,9 @@ public class ANCVisitsServiceMode extends ServiceModeOption {
     public void setupANCVisit3Layout(ANCSmartRegisterClient client,
                                      NativeANCSmartRegisterViewHolder viewHolder) {
         AlertDTO ancVisitAlert = client.getAlert(ANC_3);
-        ServiceProvidedDTO ancServiceProvided = client.serviceProvided(CATEGORY_ANC);
+        ServiceProvidedDTO ancServiceProvided = client.getServiceProvidedDTO(ANCServiceType.ANC_3.displayName());
         viewHolder.hideViewsInANCVisit3Layout();
-        if (client.isMilestoneServiceProvided(ancServiceProvided, ANC_3.name())) {
+        if (ancServiceProvided != null) {
             setServiceProvidedLayout(client, ancServiceProvided, viewHolder.layoutANCVisit3ServiceProvided(),
                     viewHolder.txtANCVisit3DoneDate(), viewHolder.lblANCVisit3Bp(), viewHolder.txtANCVisit3BpValue(),
                     viewHolder.lblANCVisit3Weight(), viewHolder.txtANCVisit3WeightValue());
@@ -136,9 +136,9 @@ public class ANCVisitsServiceMode extends ServiceModeOption {
     public void setupANCVisit4Layout(ANCSmartRegisterClient client,
                                      NativeANCSmartRegisterViewHolder viewHolder) {
         AlertDTO ancVisitAlert = client.getAlert(ANC_4);
-        ServiceProvidedDTO ancServiceProvided = client.serviceProvided(CATEGORY_ANC);
+        ServiceProvidedDTO ancServiceProvided = client.getServiceProvidedDTO(ANCServiceType.ANC_4.displayName());
         viewHolder.hideViewsInANCVisit4Layout();
-        if (client.isMilestoneServiceProvided(ancServiceProvided, ANC_4.name())) {
+        if (ancServiceProvided != null) {
             setServiceProvidedLayout(client, ancServiceProvided, viewHolder.layoutANCVisit4ServiceProvided(),
                     viewHolder.txtANCVisit4DoneDate(), viewHolder.lblANCVisit4Bp(), viewHolder.txtANCVisit4BpValue(),
                     viewHolder.lblANCVisit4Weight(), viewHolder.txtANCVisit4WeightValue());
@@ -179,7 +179,7 @@ public class ANCVisitsServiceMode extends ServiceModeOption {
                                           TextView lblWeight, TextView txtWeight) {
         serviceProvidedLayout.setVisibility(View.VISIBLE);
         txtVisitDoneDate.setVisibility(View.VISIBLE);
-        txtVisitDoneDate.setText(client.visitDoneDate());
+        txtVisitDoneDate.setText(ancServiceProvided.shortDate());
         if (StringUtils.isNotEmpty(client.getHyperTension(ancServiceProvided))) {
             setHyperTensionValues(client, ancServiceProvided, lblBp, txtBp);
         }

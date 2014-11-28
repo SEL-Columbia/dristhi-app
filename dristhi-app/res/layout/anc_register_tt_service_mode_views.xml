@@ -11,7 +11,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_margin="5dp"
-            android:layout_weight="20">
+            android:layout_weight="@integer/anc_list_tt_service_mode_tt_1_view_weight">
 
         <RelativeLayout
                 android:id="@+id/layout_tt_1"
@@ -58,7 +58,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_margin="5dp"
-            android:layout_weight="20">
+            android:layout_weight="@integer/anc_list_tt_service_mode_tt_2_view_weight">
 
         <RelativeLayout
                 android:id="@+id/layout_tt_2"
@@ -96,7 +96,7 @@
         </RelativeLayout>
     </FrameLayout>
 
-   <ImageView
+    <ImageView
             android:layout_width="@dimen/smart_register_client_divider_height"
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
@@ -105,7 +105,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_margin="5dp"
-            android:layout_weight="18">
+            android:layout_weight="@integer/anc_list_tt_service_mode_tt_booster_view_weight">
 
         <RelativeLayout
                 android:id="@+id/layout_tt_booster"
