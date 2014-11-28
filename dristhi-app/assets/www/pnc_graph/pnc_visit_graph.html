@@ -7,6 +7,9 @@
     <script language="javascript">
         function drawSevenDayGraphic(first_7_days) {
             var svg = d3.select('svg');
+            var g = svg.select('g');
+            g.remove();
+            g = svg.append('g');
             var x_offset = 18;
             var x_scale = 28;
             var y_offset = 30;
@@ -24,7 +27,7 @@
             };
             var first7DaysJson = JSON.parse(first_7_days);
             var color = colors[first7DaysJson.active_color] || colors.yellow;
-            svg.selectAll('.lines')
+            g.selectAll('.lines')
                     .data(first7DaysJson.lines)
                     .enter()
                     .append('rect')
@@ -40,7 +43,7 @@
                         return d.type === 'EXPECTED' ? colors.GREY : color;
                     });
 
-            svg.selectAll('.ticks')
+            g.selectAll('.ticks')
                     .data(first7DaysJson.ticks)
                     .enter()
                     .append('rect')
@@ -54,7 +57,7 @@
                         return d.type === 'expected' ? colors.GREY : color;
                     });
 
-            svg.selectAll('.circles')
+            g.selectAll('.circles')
                     .data(first7DaysJson.circles)
                     .enter()
                     .append('circle')
@@ -69,13 +72,10 @@
                         return d.type === 'EXPECTED' ? radius : radius_scaled;
                     });
 
-            svg.selectAll('.statuses')
+            g.selectAll('.statuses')
                     .data(first7DaysJson.statuses)
                     .enter()
                     .append('text')
-                    .text(function (d) {
-                        return d.status === 'MISSED' ? 'X' : 'V';
-                    })
                     .text(function (d) {
                         return d.status === 'MISSED' ? '\uf00d' : '\uf00c';
                     })
@@ -90,7 +90,7 @@
                         return d.status === 'DONE' ? colors.GREEN : colors.RED;
                     });
 
-            svg.selectAll('.day_nos')
+            g.selectAll('.day_nos')
                     .data(first7DaysJson.day_nos)
                     .enter()
                     .append('text')
