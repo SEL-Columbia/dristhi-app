@@ -16,11 +16,11 @@
             var tick_height = 12;
 
             var colors = {
-                red: '#d13f3f',
-                yellow: '#EDCA00',
-                green: '#25aa4a',
-                grey: '#B6B6B6',
-                black: '#000000'
+                RED: '#d13f3f',
+                YELLOW: '#EDCA00',
+                GREEN: '#25aa4a',
+                GREY: '#B6B6B6',
+                BLACK: '#000000'
             };
             var first7DaysJson = JSON.parse(first_7_days);
             var color = colors[first7DaysJson.active_color] || colors.yellow;
@@ -37,7 +37,7 @@
                     })
                     .attr('height', thickness)
                     .attr('fill', function (d) {
-                        return d.type === 'EXPECTED' ? colors.grey : color;
+                        return d.type === 'EXPECTED' ? colors.GREY : color;
                     });
 
             svg.selectAll('.ticks')
@@ -51,7 +51,7 @@
                     .attr('width', thickness_scaled)
                     .attr('height', tick_height)
                     .attr('fill', function (d) {
-                        return d.type === 'expected' ? colors.grey : color;
+                        return d.type === 'expected' ? colors.GREY : color;
                     });
 
             svg.selectAll('.circles')
@@ -63,7 +63,7 @@
                     })
                     .attr('cy', y_offset)
                     .attr('fill', function (d) {
-                        return d.type === 'ACTUAL' ? 'black' : (d.colored ? color : colors.grey);
+                        return d.type === 'ACTUAL' ? colors.BLACK : (d.colored ? color : colors.GREY);
                     })
                     .attr('r', function (d) {
                         return d.type === 'EXPECTED' ? radius : radius_scaled;
@@ -87,7 +87,7 @@
                         return y_offset - radius * 1.5;
                     })
                     .attr('fill', function (d) {
-                        return d.status === 'DONE' ? colors.green : colors.red;
+                        return d.status === 'DONE' ? colors.GREEN : colors.RED;
                     });
 
             svg.selectAll('.day_nos')
@@ -102,7 +102,7 @@
                     })
                     .attr('y', (y_offset + radius) * 1.4)
                     .attr('fill', function (d) {
-                        return d.type === 'ACTUAL' ? colors.black : colors.grey;
+                        return d.type === 'ACTUAL' ? colors.BLACK : colors.GREY;
                     });
         }
 

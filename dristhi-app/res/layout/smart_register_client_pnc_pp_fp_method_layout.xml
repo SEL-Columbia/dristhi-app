@@ -15,7 +15,7 @@
             android:visibility="gone"
             android:gravity="center"
             android:layout_margin="5dip"
-            android:background="@color/pnc_pp_fp_greay"
+            android:background="@color/pnc_pp_fp_grey"
             android:textColor="@color/light_blue"
             android:text="@string/str_pp_fp"
             style="@style/CustomFontTextViewStyle.ListView.Bold"/>
