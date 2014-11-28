@@ -1,4 +1,4 @@
-package org.ei.drishti.view.contract;
+package org.ei.drishti.view.contract.pnc;
 
 import org.ei.drishti.Context;
 import org.ei.drishti.R;

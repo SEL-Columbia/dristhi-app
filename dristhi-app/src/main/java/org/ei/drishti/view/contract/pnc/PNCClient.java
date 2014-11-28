@@ -1,4 +1,4 @@
-package org.ei.drishti.view.contract;
+package org.ei.drishti.view.contract.pnc;
 
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -6,6 +6,10 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.util.IntegerUtil;
+import org.ei.drishti.view.contract.AlertDTO;
+import org.ei.drishti.view.contract.ChildClient;
+import org.ei.drishti.view.contract.ServiceProvidedDTO;
+import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.ISODateTimeFormat;
@@ -407,7 +411,7 @@ public class PNCClient implements PNCSmartRegisterClient {
     }
 
     @Override
-    public String pncVisitStatusColor() {
+    public PNCStatusColor pncVisitStatusColor() {
         return pncFirstSevenDaysVisits.pncVisitStatusColor();
     }
 

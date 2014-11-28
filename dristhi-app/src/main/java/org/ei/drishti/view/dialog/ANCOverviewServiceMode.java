@@ -8,6 +8,7 @@ import org.ei.drishti.R;
 import org.ei.drishti.domain.ANCServiceType;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
 import org.ei.drishti.view.viewHolder.*;
 
 import static android.view.View.VISIBLE;

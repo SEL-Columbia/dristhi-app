@@ -1,18 +1,18 @@
-package org.ei.drishti.view.contract;
+package org.ei.drishti.view.contract.pnc;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class PNCCircleDatum {
+public class PNCTickDatum {
+
     private int day;
     private PNCVisitType type;
-    private boolean colored;
 
-    public PNCCircleDatum(int day, PNCVisitType type, boolean colored) {
+
+    public PNCTickDatum(int day, PNCVisitType type) {
         this.day = day;
         this.type = type;
-        this.colored = colored;
     }
 
     public int day() {
@@ -21,10 +21,6 @@ public class PNCCircleDatum {
 
     public PNCVisitType type() {
         return type;
-    }
-
-    public boolean coloured() {
-        return colored;
     }
 
     @Override

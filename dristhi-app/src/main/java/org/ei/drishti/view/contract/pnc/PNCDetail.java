@@ -1,8 +1,12 @@
-package org.ei.drishti.view.contract;
+package org.ei.drishti.view.contract.pnc;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.view.contract.CoupleDetails;
+import org.ei.drishti.view.contract.LocationDetails;
+import org.ei.drishti.view.contract.PregnancyOutcomeDetails;
+import org.ei.drishti.view.contract.TimelineEvent;
 
 import java.util.*;
 

@@ -1,26 +1,26 @@
-package org.ei.drishti.view.contract;
+package org.ei.drishti.view.contract.pnc;
 
+import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class PNCStatusDatum {
+public class PNCVisitDaysDatum {
+    Integer day;
+    @SerializedName("type")
+    PNCVisitType visitType;
 
-    private int day;
-    private PNCVisitStatus status;
-
-
-    public PNCStatusDatum(int day, PNCVisitStatus status) {
+    public PNCVisitDaysDatum(Integer day, PNCVisitType visitType) {
         this.day = day;
-        this.status = status;
+        this.visitType = visitType;
     }
 
-    public int day() {
+    public Integer getDay() {
         return day;
     }
 
-    public PNCVisitStatus status() {
-        return status;
+    public PNCVisitType getVisitType() {
+        return visitType;
     }
 
     @Override

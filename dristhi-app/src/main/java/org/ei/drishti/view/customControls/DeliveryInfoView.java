@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.ei.drishti.R;
-import org.ei.drishti.view.contract.PNCSmartRegisterClient;
+import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
 
 public class DeliveryInfoView extends LinearLayout {
     private TextView txtDeliveryDateView;

@@ -4,10 +4,10 @@ import android.view.View;
 import org.ei.drishti.R;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
 import org.ei.drishti.view.viewHolder.*;
 
 import static android.view.View.VISIBLE;
-import static org.ei.drishti.AllConstants.FormNames.FP_CHANGE;
 import static org.ei.drishti.AllConstants.FormNames.FP_COMPLICATIONS;
 import static org.ei.drishti.Context.getInstance;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;

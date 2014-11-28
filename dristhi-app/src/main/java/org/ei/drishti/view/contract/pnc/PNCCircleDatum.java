@@ -1,22 +1,30 @@
-package org.ei.drishti.view.contract;
+package org.ei.drishti.view.contract.pnc;
 
-import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class PNCLineDatum {
-
-    @SerializedName("start")
-    private int startDay;
-    @SerializedName("end")
-    private int endDay;
+public class PNCCircleDatum {
+    private int day;
     private PNCVisitType type;
+    private boolean colored;
 
-    public PNCLineDatum(int startDay, int endDay, PNCVisitType type) {
-        this.startDay = startDay;
-        this.endDay = endDay;
+    public PNCCircleDatum(int day, PNCVisitType type, boolean colored) {
+        this.day = day;
         this.type = type;
+        this.colored = colored;
+    }
+
+    public int day() {
+        return day;
+    }
+
+    public PNCVisitType type() {
+        return type;
+    }
+
+    public boolean coloured() {
+        return colored;
     }
 
     @Override
@@ -32,17 +40,5 @@ public class PNCLineDatum {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-    }
-
-    public int getStartDay() {
-        return startDay;
-    }
-
-    public int getEndDay() {
-        return endDay;
-    }
-
-    public String getType() {
-        return type.toString();
     }
 }

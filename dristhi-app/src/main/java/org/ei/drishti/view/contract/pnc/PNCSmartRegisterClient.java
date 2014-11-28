@@ -1,6 +1,9 @@
-package org.ei.drishti.view.contract;
+package org.ei.drishti.view.contract.pnc;
 
 
+import org.ei.drishti.view.contract.BaseFPSmartRegisterClient;
+import org.ei.drishti.view.contract.ChildClient;
+import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.joda.time.LocalDate;
 
 import java.util.Comparator;
@@ -25,7 +28,7 @@ public interface PNCSmartRegisterClient extends BaseFPSmartRegisterClient {
     public List<ChildClient> children();
     public List<PNCCircleDatum> pncCircleData();
     public List<PNCStatusDatum> pncStatusData();
-    public String pncVisitStatusColor();
+    public PNCStatusColor pncVisitStatusColor();
     public List<PNCTickDatum> pncTickData();
     public List<PNCLineDatum> pncLineData();
     public List<PNCVisitDaysDatum> visitDaysData();

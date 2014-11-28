@@ -2,8 +2,7 @@ package org.ei.drishti.view.dialog;
 
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
-import org.ei.drishti.view.contract.ECSmartRegisterClient;
-import org.ei.drishti.view.contract.PNCSmartRegisterClient;
+import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClients;
 
 import java.util.Collections;

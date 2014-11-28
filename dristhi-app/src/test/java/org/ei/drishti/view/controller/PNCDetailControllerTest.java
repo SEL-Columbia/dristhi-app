@@ -12,7 +12,7 @@ import org.ei.drishti.repository.AllTimelineEvents;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.view.contract.CoupleDetails;
 import org.ei.drishti.view.contract.LocationDetails;
-import org.ei.drishti.view.contract.PNCDetail;
+import org.ei.drishti.view.contract.pnc.PNCDetail;
 import org.ei.drishti.view.contract.PregnancyOutcomeDetails;
 import org.joda.time.LocalDate;
 import org.junit.Before;

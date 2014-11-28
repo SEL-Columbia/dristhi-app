@@ -1,4 +1,4 @@
-package org.ei.drishti.view.contract;
+package org.ei.drishti.view.contract.pnc;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -10,7 +10,7 @@ public class PNCFirstSevenDaysVisits {
     @SerializedName("statuses")
     private List<PNCStatusDatum> pncStatusData;
     @SerializedName("active_color")
-    private String pncVisitStatusColor;
+    private PNCStatusColor pncVisitStatusColor;
     @SerializedName("ticks")
     private List<PNCTickDatum> pncTickData;
     @SerializedName("lines")
@@ -19,7 +19,7 @@ public class PNCFirstSevenDaysVisits {
     private List<PNCVisitDaysDatum> visitDaysData;
 
     public PNCFirstSevenDaysVisits(List<PNCCircleDatum> pncCircleData, List<PNCStatusDatum> pncStatusData,
-                                   String pncVisitStatusColor, List<PNCTickDatum> pncTickData,
+                                   PNCStatusColor pncVisitStatusColor, List<PNCTickDatum> pncTickData,
                                    List<PNCLineDatum> pncLineData, List<PNCVisitDaysDatum> visitDaysData) {
         this.pncCircleData = pncCircleData;
         this.pncStatusData = pncStatusData;
@@ -37,7 +37,7 @@ public class PNCFirstSevenDaysVisits {
         return pncStatusData;
     }
 
-    public String pncVisitStatusColor() {
+    public PNCStatusColor pncVisitStatusColor() {
         return pncVisitStatusColor;
     }
 

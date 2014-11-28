@@ -1,21 +1,20 @@
 package org.ei.drishti.provider;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.TextView;
 import org.ei.drishti.R;
 import org.ei.drishti.view.activity.SecuredActivity;
 import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.contract.pnc.PNCClients;
+import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
 import org.ei.drishti.view.controller.PNCSmartRegisterController;
 import org.ei.drishti.view.dialog.*;
 import org.ei.drishti.view.viewHolder.*;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-import static org.ei.drishti.Context.getInstance;
 
 public class PNCSmartRegisterClientsProvider implements SmartRegisterClientsProvider {
 
