@@ -59,7 +59,8 @@
     <integer name="anc_list_tt_service_mode_tt_1_view_weight">20</integer>
     <integer name="anc_list_tt_service_mode_tt_2_view_weight">20</integer>
     <integer name="anc_list_tt_service_mode_tt_booster_view_weight">18</integer>
-    <integer name="anc_list_hb_ifa_service_mode_hb_details_view_weight">2</integer>
+    <integer name="anc_list_hb_ifa_service_mode_hb_details_view_weight">14</integer>
+    <integer name="anc_list_hb_ifa_service_mode_hb_alert_view_weight">14</integer>
 
     <integer name="pnc_list_item_weight_count">100</integer>
     <integer name="pnc_list_profile_box_weight">24</integer>

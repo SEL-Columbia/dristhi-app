@@ -4,6 +4,7 @@ package org.ei.drishti.view.contract;
 import org.ei.drishti.domain.ANCServiceType;
 
 import java.util.Comparator;
+import java.util.List;
 
 import static org.joda.time.LocalDateTime.parse;
 
@@ -39,7 +40,7 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
 
     public String ifaDoneDate();
 
-    String visitDoneDate();
+    public String visitDoneDate();
 
     public String thayiCardNumber();
 
@@ -49,9 +50,11 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
 
     public String riskFactors();
 
-    public ServiceProvidedDTO serviceProvided(String category);
+    public ServiceProvidedDTO serviceProvidedToACategory(String category);
 
     public String getHyperTension(ServiceProvidedDTO ancServiceProvided);
 
     public ServiceProvidedDTO getServiceProvidedDTO(String serviceName);
+
+    public List<ServiceProvidedDTO> servicesProvided();
 }

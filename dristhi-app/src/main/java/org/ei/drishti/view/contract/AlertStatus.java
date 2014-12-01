@@ -55,7 +55,7 @@ public enum AlertStatus {
         }
 
         public int fontColor() {
-            return Color.WHITE;
+            return Color.BLACK;
         }
     };
 

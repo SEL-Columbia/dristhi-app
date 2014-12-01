@@ -6,6 +6,7 @@
     <dimen name="list_fp_alert_width">0dp</dimen>
     <dimen name="list_gplsa_view_width">0dp</dimen>
     <dimen name="list_fp_view_width">0dp</dimen>
+    <dimen name="list_hb_details_view_width">0dp</dimen>
     <dimen name="list_children_view_width">0dp</dimen>
     <dimen name="list_status_view_width">0dp</dimen>
     <dimen name="list_edit_icon_view_width">0dp</dimen>
@@ -55,4 +56,8 @@
     <dimen name="gplsa_item_width">22dp</dimen>
     <dimen name="fp_register_gplsa_item_width">22dp</dimen>
     <dimen name="fp_modal_header_text_height">45dp</dimen>
+
+    <dimen name="anc_list_hb_ifa_service_mode_hb_details_indicator_view_width">15dp</dimen>
+    <dimen name="anc_list_hb_ifa_service_mode_hb_details_indicator_view_height">10dp</dimen>
+    <dimen name="anc_list_hb_ifa_service_mode_hb_details_indicator_view_margin">5dp</dimen>
 </resources>

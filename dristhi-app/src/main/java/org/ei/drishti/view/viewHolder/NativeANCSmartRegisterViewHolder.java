@@ -3,6 +3,7 @@ package org.ei.drishti.view.viewHolder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.ei.drishti.R;
 import org.ei.drishti.view.customControls.ANCClientIdDetailsView;
@@ -84,6 +85,12 @@ public class NativeANCSmartRegisterViewHolder {
     private final TextView txtTTBoosterDoneTick;
     private final TextView txtTTBoosterType;
     private final TextView txtTTBoosterDate;
+    private final ViewGroup serviceModeHbIFAViewsHolder;
+    private final LinearLayout layoutHbDetailsViewHolder;
+    private final View layoutHbAlert;
+    private final TextView txtHbDueType;
+    private final TextView txtHbDueOn;
+    private final TextView btnHbView;
 
     public NativeANCSmartRegisterViewHolder(ViewGroup itemView) {
         profileInfoLayout = (ClientProfileView) itemView.findViewById(R.id.profile_info_layout);
@@ -99,6 +106,7 @@ public class NativeANCSmartRegisterViewHolder {
         serviceModeOverviewView = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.overview_service_mode_views);
         serviceModeANCVisitsView = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.anc_visit_service_mode_views);
         serviceModeTTView = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.tt_service_mode_views);
+        serviceModeHbIFAViewsHolder = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.hb_ifa_service_mode_views);
 
         txtRiskFactors = (TextView) serviceModeOverviewView.findViewById(R.id.txt_risk_factors);
 
@@ -178,6 +186,13 @@ public class NativeANCSmartRegisterViewHolder {
         txtTTBoosterDoneTick = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_booster_done);
         txtTTBoosterType = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_booster_type);
         txtTTBoosterDate = (TextView) serviceModeTTView.findViewById(R.id.txt_tt_booster_date);
+
+        layoutHbDetailsViewHolder = (LinearLayout) serviceModeHbIFAViewsHolder.findViewById(R.id.layout_hb_details_holder);
+
+        layoutHbAlert = serviceModeHbIFAViewsHolder.findViewById(R.id.layout_hb_alert);
+        btnHbView = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.btn_hb);
+        txtHbDueType = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_hb_due_type);
+        txtHbDueOn = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_hb_due_on);
     }
 
     public ClientProfileView profileInfoLayout() {
@@ -303,6 +318,8 @@ public class NativeANCSmartRegisterViewHolder {
     public void hideAllServiceModeOptions() {
         serviceModeOverviewView().setVisibility(View.GONE);
         serviceModeANCVisitsView().setVisibility(View.GONE);
+        serviceModeTTView().setVisibility(View.GONE);
+        serviceModeHbIFAViewsHolder().setVisibility(View.GONE);
     }
 
     public View layoutANCVisit2Alert() {
@@ -541,5 +558,29 @@ public class NativeANCSmartRegisterViewHolder {
         txtTTBoosterDoneTick().setVisibility(View.GONE);
         txtTTBoosterType().setVisibility(View.GONE);
         txtTTBoosterDate().setVisibility(View.GONE);
+    }
+
+    public LinearLayout layoutHbDetailsViewHolder() {
+        return layoutHbDetailsViewHolder;
+    }
+
+    public ViewGroup serviceModeHbIFAViewsHolder() {
+        return serviceModeHbIFAViewsHolder;
+    }
+
+    public View layoutHbAlert() {
+        return layoutHbAlert;
+    }
+
+    public TextView txtHbDueType() {
+        return txtHbDueType;
+    }
+
+    public TextView txtHbDueOn() {
+        return txtHbDueOn;
+    }
+
+    public TextView btnHbView() {
+        return btnHbView;
     }
 }

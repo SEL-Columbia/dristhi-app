@@ -86,6 +86,7 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
                 return new DialogOption[]{
                         new ANCOverviewServiceMode(clientsProvider()),
                         new ANCVisitsServiceMode(clientsProvider()),
+                        new HbIFAServiceMode(clientsProvider()),
                         new TTServiceMode(clientsProvider())
                 };
             }

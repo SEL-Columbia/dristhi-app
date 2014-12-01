@@ -233,6 +233,7 @@
     <string name="str_side_effects">Side Effects</string>
 
     <string name="anc_label">ANC:</string>
+    <string name="hb_test_label">Hb Test</string>
     <string name="edd_label">"EDD: "</string>
     <string name="str_days_past_due">day (s) past due</string>
     <string name="lmp_label">LMP:</string>
@@ -244,6 +245,8 @@
     <string name="anc_service_mode_overview">Overview</string>
     <string name="anc_service_mode_anc_visits">ANC Visits</string>
     <string name="anc_service_mode_tt">TT</string>
+    <string name="anc_service_mode_hb_ifa">Hb/IFA</string>
+    <string name="anc_service_mode_hb_unit">" g/dl</string>
     <string name="header_id">ID</string>
     <string name="header_anc_status">ANC STATUS</string>
     <string name="header_risk_factors">RISK FACTORS</string>
@@ -258,6 +261,7 @@
     <string name="header_tt_2">TT 2</string>
     <string name="header_tt_booster">TT Booster</string>
     <string name="header_ifa">IFA</string>
+    <string name="header_hb">HB</string>
     <string name="sort_by_edd_label">EDD</string>
 
     <string name="str_pnc_delivery_date">Date:</string>

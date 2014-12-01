@@ -46,7 +46,7 @@ public class ANCClient implements ANCSmartRegisterClient {
         categoriesToServiceTypeMap.put(CATEGORY_ANC, Arrays.asList(ANC_1, ANC_2, ANC_3, ANC_4));
         categoriesToServiceTypeMap.put(CATEGORY_TT, Arrays.asList(TT_1, TT_2, TT_BOOSTER));
         categoriesToServiceTypeMap.put(CATEGORY_IFA, Arrays.asList(IFA));
-        categoriesToServiceTypeMap.put(CATEGORY_HB, Arrays.asList(HB));
+        categoriesToServiceTypeMap.put(CATEGORY_HB, Arrays.asList(HB_TEST));
         categoriesToServiceTypeMap.put(CATEGORY_DELIVERY_PLAN, Arrays.asList(DELIVERY_PLAN));
         categoriesToServiceTypeMap.put(CATEGORY_PNC, Arrays.asList(PNC));
     }
@@ -214,22 +214,22 @@ public class ANCClient implements ANCSmartRegisterClient {
 
     @Override
     public String ifaDoneDate() {
-        return serviceProvided(CATEGORY_IFA).ancServicedOnWithServiceName();
+        return serviceProvidedToACategory(CATEGORY_IFA).ancServicedOnWithServiceName();
     }
 
     @Override
     public String ttDoneDate() {
-        return serviceProvided(CATEGORY_TT).ancServicedOnWithServiceName();
+        return serviceProvidedToACategory(CATEGORY_TT).ancServicedOnWithServiceName();
     }
 
     @Override
     public String visitDoneDateWithVisitName() {
-        return serviceProvided(CATEGORY_ANC).ancServicedOnWithServiceName();
+        return serviceProvidedToACategory(CATEGORY_ANC).ancServicedOnWithServiceName();
     }
 
     @Override
     public String visitDoneDate() {
-        return serviceProvided(CATEGORY_ANC).ancServicedOn();
+        return serviceProvidedToACategory(CATEGORY_ANC).ancServicedOn();
     }
 
     @Override
@@ -251,6 +251,12 @@ public class ANCClient implements ANCSmartRegisterClient {
     public String riskFactors() {
         return replaceAndHumanize(riskFactors, SPACE, COMMA_WITH_SPACE);
     }
+
+    @Override
+    public List<ServiceProvidedDTO> servicesProvided() {
+        return services_provided;
+    }
+
 
 
     public Map<String, Visits> serviceToVisitsMap() {
@@ -383,7 +389,7 @@ public class ANCClient implements ANCSmartRegisterClient {
         return serviceToVisitsMap.get(category).provided != emptyService;
     }
 
-    public ServiceProvidedDTO serviceProvided(String category) {
+    public ServiceProvidedDTO serviceProvidedToACategory(String category) {
         if (StringUtils.isBlank(category)) {
             return emptyService;
         }

@@ -138,15 +138,15 @@ public enum ANCServiceType {
             return ANCClient.CATEGORY_IFA;
         }
     },
-    HB {
+    HB_TEST {
         @Override
         public String displayName() {
-            return "HB";
+            return "Hb Test";
         }
 
         @Override
         public String onServiceCompleteDisplayName() {
-            return "HB";
+            return "Hb";
         }
 
         @Override
@@ -235,8 +235,10 @@ public enum ANCServiceType {
                 return ANCServiceType.valueOf("IFA");
             } else if (type.equalsIgnoreCase("IFA 3")) {
                 return ANCServiceType.valueOf("IFA");
-            } else if (type.equalsIgnoreCase("HB")) {
-                return ANCServiceType.valueOf("HB");
+            } else if (type.equalsIgnoreCase("HB Test 1")) {
+                return ANCServiceType.valueOf("HB_TEST");
+            } else if (type.equalsIgnoreCase("HB Test 2")) {
+                return ANCServiceType.valueOf("HB_TEST");
             } else if (type.equalsIgnoreCase("Delivery Plan")) {
                 return ANCServiceType.valueOf("DELIVERY_PLAN");
             } else if (type.equalsIgnoreCase("PNC")) {
