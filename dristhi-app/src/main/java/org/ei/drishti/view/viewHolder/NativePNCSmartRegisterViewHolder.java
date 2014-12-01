@@ -24,6 +24,7 @@ public class NativePNCSmartRegisterViewHolder {
     private final TextView txtDOB;
     private final TextView txtVisitComplicationsView;
     private final WebView wbvPncVisitsGraph;
+    private final LinearLayout recentPNCVisitsLayout;
 
     public NativePNCSmartRegisterViewHolder(ViewGroup itemView) {
         this.profileInfoLayout = (ClientProfileView) itemView.findViewById(R.id.profile_info_layout);
@@ -62,6 +63,8 @@ public class NativePNCSmartRegisterViewHolder {
         wbvPncVisitsGraph.setHorizontalScrollbarOverlay(false);
         wbvPncVisitsGraph.setWebViewClient(new PNCWebViewClient());
         wbvPncVisitsGraph.loadUrl("file:///android_asset/www/pnc_graph/pnc_visit_graph.html");
+
+        recentPNCVisitsLayout = (LinearLayout) pncVisitsServiceModeView.findViewById(R.id.lyt_pnc_recent_visits_holder);
     }
 
     public void hideAllServiceModeOptions() {
@@ -109,14 +112,23 @@ public class NativePNCSmartRegisterViewHolder {
         return editButton;
     }
 
-    public TextView txtNumberOfVisits() { return txtNumberOfVisits; }
+    public TextView txtNumberOfVisits() {
+        return txtNumberOfVisits;
+    }
 
-    public TextView txtDOB() { return txtDOB; }
+    public TextView txtDOB() {
+        return txtDOB;
+    }
 
-    public TextView txtVisitComplicationsView() { return txtVisitComplicationsView; }
+    public TextView txtVisitComplicationsView() {
+        return txtVisitComplicationsView;
+    }
 
-    public WebView wbvPncVisitsGraph() { return wbvPncVisitsGraph; }
+    public WebView wbvPncVisitsGraph() {
+        return wbvPncVisitsGraph;
+    }
 
-    public void recentPNCVisits() {
+    public LinearLayout recentPNCVisits() {
+        return recentPNCVisitsLayout;
     }
 }

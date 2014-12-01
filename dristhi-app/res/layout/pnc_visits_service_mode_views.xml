@@ -70,4 +70,17 @@
             android:layout_width="@dimen/smart_register_client_divider_height"
             android:layout_height="fill_parent"
             android:src="@color/smart_register_client_divider_color"/>
+
+    <LinearLayout
+            android:id="@+id/lyt_pnc_recent_visits_holder"
+            android:layout_width="@dimen/list_fp_view_width"
+            android:layout_height="fill_parent"
+            android:layout_weight="@integer/pnc_list_recent_visits_weight"
+            android:orientation="vertical">
+    </LinearLayout>
+
+    <ImageView
+            android:layout_width="@dimen/smart_register_client_divider_height"
+            android:layout_height="fill_parent"
+            android:src="@color/smart_register_client_divider_color"/>
 </LinearLayout>

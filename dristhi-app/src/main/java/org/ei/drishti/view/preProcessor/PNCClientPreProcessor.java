@@ -60,17 +60,19 @@ public class PNCClientPreProcessor {
     }
 
     private List<ServiceProvidedDTO> getServicesProvidedAfterFirstSevenDays() {
+        ArrayList<ServiceProvidedDTO> servicesProvidedAfterFirstSevenDays = new ArrayList<ServiceProvidedDTO>();
         int VISIT_END_OFFSET_DAY_COUNT = 7;
         LocalDate endDate = client.deliveryDate().plusDays(VISIT_END_OFFSET_DAY_COUNT);
-        ArrayList<ServiceProvidedDTO> servicesProvidedAfterFirstSevenDays = new ArrayList<ServiceProvidedDTO>();
-        for (ServiceProvidedDTO serviceProvided : client.servicesProvided()) {
-            LocalDate serviceProvidedDate = serviceProvided.localDate();
-            if (serviceProvidedDate.isAfter(endDate)) {
-                servicesProvidedAfterFirstSevenDays.add(serviceProvided);
+        if (client.servicesProvided() != null && !client.servicesProvided().isEmpty()) {
+            for (ServiceProvidedDTO serviceProvided : client.servicesProvided()) {
+                LocalDate serviceProvidedDate = serviceProvided.localDate();
+                if (serviceProvidedDate.isAfter(endDate)) {
+                    servicesProvidedAfterFirstSevenDays.add(serviceProvided);
+                }
             }
+            Collections.sort(servicesProvidedAfterFirstSevenDays, new DateComparator());
+            Collections.reverse(servicesProvidedAfterFirstSevenDays);
         }
-        Collections.sort(servicesProvidedAfterFirstSevenDays, new DateComparator());
-        Collections.reverse(servicesProvidedAfterFirstSevenDays);
         return servicesProvidedAfterFirstSevenDays;
     }
 

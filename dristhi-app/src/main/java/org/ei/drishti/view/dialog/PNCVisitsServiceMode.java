@@ -1,11 +1,18 @@
 package org.ei.drishti.view.dialog;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import com.google.gson.Gson;
+import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.contract.ANCSmartRegisterClient;
+import org.ei.drishti.view.contract.ChildSmartRegisterClient;
+import org.ei.drishti.view.contract.FPSmartRegisterClient;
+import org.ei.drishti.view.contract.ServiceProvidedDTO;
 import org.ei.drishti.view.contract.pnc.PNCFirstSevenDaysVisits;
 import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
 import org.ei.drishti.view.viewHolder.NativeANCSmartRegisterViewHolder;
@@ -19,8 +26,11 @@ import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.Cl
 
 public class PNCVisitsServiceMode extends ServiceModeOption {
 
+    private final LayoutInflater inflater;
+
     public PNCVisitsServiceMode(SmartRegisterClientsProvider provider) {
         super(provider);
+        this.inflater = LayoutInflater.from(Context.getInstance().applicationContext());
     }
 
     @Override
@@ -68,7 +78,13 @@ public class PNCVisitsServiceMode extends ServiceModeOption {
     }
 
     private void setUpPNCVisits(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
-
+        viewHolder.recentPNCVisits().removeAllViews();
+        for (ServiceProvidedDTO serviceProvided : client.recentlyProvidedServices()) {
+            ViewGroup recentVisitsGroup = (ViewGroup) inflater.inflate(R.layout.smart_register_pnc_recent_visits_layout, null);
+            ((TextView) recentVisitsGroup.findViewById(R.id.txt_recent_visit_day)).setText(String.valueOf(serviceProvided.day()));
+            ((TextView) recentVisitsGroup.findViewById(R.id.txt_recent_visit_date)).setText(serviceProvided.dateForDisplay());
+            viewHolder.recentPNCVisits().addView(recentVisitsGroup);
+        }
     }
 
     private void setupDaysPPView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {

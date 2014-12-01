@@ -70,6 +70,7 @@
     <integer name="pnc_list_pp_fp_view_weight">10</integer>
     <integer name="pnc_list_child_view_weight">16</integer>
     <integer name="pnc_list_graph_view_weight">22</integer>
+    <integer name="pnc_list_recent_visits_weight">11</integer>
 
     <integer name="pnc_list_edit_icon_view_weight">7</integer>
     <integer name="pnc_list_service_mode_views_section_weight">66</integer>

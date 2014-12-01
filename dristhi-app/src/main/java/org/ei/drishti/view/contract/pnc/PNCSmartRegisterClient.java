@@ -3,6 +3,7 @@ package org.ei.drishti.view.contract.pnc;
 
 import org.ei.drishti.view.contract.BaseFPSmartRegisterClient;
 import org.ei.drishti.view.contract.ChildClient;
+import org.ei.drishti.view.contract.ServiceProvidedDTO;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.joda.time.LocalDate;
 
@@ -33,5 +34,6 @@ public interface PNCSmartRegisterClient extends BaseFPSmartRegisterClient {
     public List<PNCLineDatum> pncLineData();
     public List<PNCVisitDaysDatum> visitDaysData();
     public PNCFirstSevenDaysVisits firstSevenDaysVisits();
+    public List<ServiceProvidedDTO> recentlyProvidedServices();
 }
 

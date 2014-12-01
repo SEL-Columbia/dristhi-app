@@ -50,6 +50,10 @@ public class ServiceProvidedDTO implements Comparable<ServiceProvidedDTO> {
         return formatDate(date);
     }
 
+    public String dateForDisplay() {
+        return formatDate(date, "dd/MM");
+    }
+
     public int day() {
         return day;
     }

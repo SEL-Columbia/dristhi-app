@@ -436,11 +436,12 @@ public class PNCClient implements PNCSmartRegisterClient {
         return pncFirstSevenDaysVisits;
     }
 
-    public void withRecentlyProvidedServices(List<ServiceProvidedDTO> recentlyProvidedServices) {
-        this.recentlyProvidedServices = recentlyProvidedServices;
-    }
-
+    @Override
     public List<ServiceProvidedDTO> recentlyProvidedServices(){
         return recentlyProvidedServices;
+    }
+
+    public void withRecentlyProvidedServices(List<ServiceProvidedDTO> recentlyProvidedServices) {
+        this.recentlyProvidedServices = recentlyProvidedServices;
     }
 }

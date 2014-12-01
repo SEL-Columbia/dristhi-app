@@ -6,7 +6,6 @@ import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.domain.form.FieldOverrides;
 import org.ei.drishti.provider.PNCSmartRegisterClientsProvider;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.contract.FPClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.controller.PNCSmartRegisterController;
 import org.ei.drishti.view.controller.VillageController;
@@ -139,26 +138,16 @@ public class NativePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.profile_info_layout:
-                    showProfileView((FPClient) view.getTag());
+                    showProfileView((SmartRegisterClient) view.getTag());
                     break;
                 case R.id.btn_edit:
                     showFragmentDialog(new UpdateDialogOptionModel(), view.getTag());
                     break;
-//                case R.id.txt_pp_fp_method_view:
-//                    SmartRegisterClient pncClient = (SmartRegisterClient) view.getTag();
-//                    startFormActivity(PNC_POSTPARTUM_FAMILY_PLANNING, pncClient.entityId(), null);
-//                    break;
-//                case R.id.lyt_fp_add:
-//                    NativePNCSmartRegisterActivity.super.showFragmentDialog(new UpdateDialogOptionModel(), view.getTag());
-//                    break;
-//                case R.id.lyt_fp_videos:
-//                    navigationController.startVideos();
-//                    break;
             }
         }
 
-        private void showProfileView(FPClient client) {
-            navigationController.startEC(client.entityId());
+        private void showProfileView(SmartRegisterClient client) {
+            navigationController.startPNC(client.entityId());
         }
     }
 
