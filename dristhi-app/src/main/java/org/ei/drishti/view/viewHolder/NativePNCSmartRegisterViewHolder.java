@@ -116,4 +116,7 @@ public class NativePNCSmartRegisterViewHolder {
     public TextView txtVisitComplicationsView() { return txtVisitComplicationsView; }
 
     public WebView wbvPncVisitsGraph() { return wbvPncVisitsGraph; }
+
+    public void recentPNCVisits() {
+    }
 }

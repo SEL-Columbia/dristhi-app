@@ -3,7 +3,7 @@ package org.ei.drishti.view.preProcessor;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.contract.ServiceProvidedDTO;
 import org.ei.drishti.view.contract.pnc.*;
 import org.joda.time.LocalDate;
 
@@ -38,7 +38,40 @@ public class PNCClientPreProcessor {
         populateExpectedVisitDates();
         List<ServiceProvidedDTO> first7DaysVisits = getFirst7DaysVisits();
         createViewElements(currentDay, first7DaysVisits);
+        populateRecent3Visits();
         return client;
+    }
+
+    private void populateRecent3Visits() {
+        List<ServiceProvidedDTO> servicesProvided = getServicesProvidedAfterFirstSevenDays();
+        Collections.sort(servicesProvided, new DateComparator());
+        ArrayList<ServiceProvidedDTO> recentServicesProvided = new ArrayList<ServiceProvidedDTO>();
+        int iter;
+        for (iter = 0; iter < 3; iter++) {
+            int index = servicesProvided.size() - iter - 1;
+            if (index >= 0) {
+                recentServicesProvided.add(servicesProvided.get(index));
+            }
+
+        }
+        List<ServiceProvidedDTO> recentServicesWithDays
+                = findAndSetTheVisitDayOfTheServicesWithRespectToDeliveryDate(recentServicesProvided);
+        client.withRecentlyProvidedServices(recentServicesWithDays);
+    }
+
+    private List<ServiceProvidedDTO> getServicesProvidedAfterFirstSevenDays() {
+        int VISIT_END_OFFSET_DAY_COUNT = 7;
+        LocalDate endDate = client.deliveryDate().plusDays(VISIT_END_OFFSET_DAY_COUNT);
+        ArrayList<ServiceProvidedDTO> servicesProvidedAfterFirstSevenDays = new ArrayList<ServiceProvidedDTO>();
+        for (ServiceProvidedDTO serviceProvided : client.servicesProvided()) {
+            LocalDate serviceProvidedDate = serviceProvided.localDate();
+            if (serviceProvidedDate.isAfter(endDate)) {
+                servicesProvidedAfterFirstSevenDays.add(serviceProvided);
+            }
+        }
+        Collections.sort(servicesProvidedAfterFirstSevenDays, new DateComparator());
+        Collections.reverse(servicesProvidedAfterFirstSevenDays);
+        return servicesProvidedAfterFirstSevenDays;
     }
 
     private void populateExpectedVisitDates() {
@@ -181,7 +214,7 @@ public class PNCClientPreProcessor {
         List<ServiceProvidedDTO> validServices = getValidServicesProvided(client, endDate);
         validServices = removeDuplicateServicesAndReturnList(validServices);
         Collections.sort(validServices, new DateComparator());//Ascending sort based on the date
-        findAndSetTheVisitDayOfTheServicesWithRespectToDeliveryDate(validServices, client.deliveryDate());//Find the day offset from the delivery date for the visits
+        findAndSetTheVisitDayOfTheServicesWithRespectToDeliveryDate(validServices);//Find the day offset from the delivery date for the visits
         return validServices;
     }
 
@@ -211,8 +244,8 @@ public class PNCClientPreProcessor {
         return serviceList;
     }
 
-    private List<ServiceProvidedDTO> findAndSetTheVisitDayOfTheServicesWithRespectToDeliveryDate(
-            List<ServiceProvidedDTO> services, LocalDate deliveryDate) {
+    private List<ServiceProvidedDTO> findAndSetTheVisitDayOfTheServicesWithRespectToDeliveryDate(List<ServiceProvidedDTO> services) {
+        LocalDate deliveryDate = client.deliveryDate();
         if (services != null) {
             for (ServiceProvidedDTO service : services) {
                 service.withDay(dayDifference(service.localDate(), deliveryDate));

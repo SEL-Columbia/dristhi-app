@@ -64,6 +64,11 @@ public class PNCVisitsServiceMode extends ServiceModeOption {
         setupDaysPPView(client, viewHolder);
         setupComplicationsView(client, viewHolder);
         setUpPNCVisitsGraph(client, viewHolder);
+        setUpPNCVisits(client, viewHolder);
+    }
+
+    private void setUpPNCVisits(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
+
     }
 
     private void setupDaysPPView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {

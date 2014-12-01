@@ -239,4 +239,62 @@ public class PNCClientPreProcessorTest {
         assertEquals("should create ticks on days 2,4,5,6",
                 expectedTickData, processedClient.pncTickData());
     }
+
+    @Test
+    public void shouldPopulateRecentlyProvidedServices() throws Exception {
+        DateUtil.fakeIt(new LocalDate("2014-07-13"));
+        PNCClient pncClient = new PNCClient("entityId", "village", "name", "thayino", "2014-07-01");
+        ServiceProvidedDTO recentService1 = new ServiceProvidedDTO("PNC", "2014-07-11", null);
+        ServiceProvidedDTO recentService2 = new ServiceProvidedDTO("PNC", "2014-07-10", null);
+        ServiceProvidedDTO recentService3 = new ServiceProvidedDTO("PNC", "2014-07-09", null);
+        pncClient.withServicesProvided(Arrays.asList(
+                new ServiceProvidedDTO("PNC", "2014-07-02", null),
+                recentService3,
+                recentService2,
+                recentService1
+        ));
+
+        PNCClient processedClient = new PNCClientPreProcessor(pncClient).preProcess();
+
+        assertEquals(3, processedClient.recentlyProvidedServices().size());
+        assertEquals(Arrays.asList(recentService1, recentService2, recentService3), processedClient.recentlyProvidedServices());
+
+        pncClient = new PNCClient("entityId", "village", "name", "thayino", "2014-07-01");
+        pncClient.withServicesProvided(Arrays.asList(
+                new ServiceProvidedDTO("PNC", "2014-07-02", null),
+                recentService3,
+                recentService1
+        ));
+
+        processedClient = new PNCClientPreProcessor(pncClient).preProcess();
+
+        assertEquals(2, processedClient.recentlyProvidedServices().size());
+        assertEquals(Arrays.asList(recentService1, recentService3), processedClient.recentlyProvidedServices());
+
+        pncClient = new PNCClient("entityId", "village", "name", "thayino", "2014-07-01");
+        pncClient.withServicesProvided(Arrays.asList(
+                new ServiceProvidedDTO("PNC", "2014-07-02", null),
+                new ServiceProvidedDTO("PNC", "2014-07-01", null),
+                new ServiceProvidedDTO("PNC", "2014-07-03", null),
+                new ServiceProvidedDTO("PNC", "2014-07-04", null)
+        ));
+
+        processedClient = new PNCClientPreProcessor(pncClient).preProcess();
+
+        assertEquals(0, processedClient.recentlyProvidedServices().size());
+
+        pncClient = new PNCClient("entityId", "village", "name", "thayino", "2014-07-01");
+        pncClient.withServicesProvided(Arrays.asList(
+                new ServiceProvidedDTO("PNC", "2014-07-02", null),
+                new ServiceProvidedDTO("PNC", "2014-07-01", null),
+                new ServiceProvidedDTO("PNC", "2014-07-03", null),
+                new ServiceProvidedDTO("PNC", "2014-07-04", null),
+                recentService1
+        ));
+
+        processedClient = new PNCClientPreProcessor(pncClient).preProcess();
+
+        assertEquals(1, processedClient.recentlyProvidedServices().size());
+
+    }
 }

@@ -59,6 +59,7 @@ public class PNCClient implements PNCSmartRegisterClient {
 
     @SerializedName("first_7_days")
     private PNCFirstSevenDaysVisits pncFirstSevenDaysVisits;
+    private List<ServiceProvidedDTO> recentlyProvidedServices;
 
     public PNCClient(String entityId, String village, String name, String thayi, String deliveryDate) {
         this.entityId = entityId;
@@ -433,5 +434,13 @@ public class PNCClient implements PNCSmartRegisterClient {
     @Override
     public PNCFirstSevenDaysVisits firstSevenDaysVisits() {
         return pncFirstSevenDaysVisits;
+    }
+
+    public void withRecentlyProvidedServices(List<ServiceProvidedDTO> recentlyProvidedServices) {
+        this.recentlyProvidedServices = recentlyProvidedServices;
+    }
+
+    public List<ServiceProvidedDTO> recentlyProvidedServices(){
+        return recentlyProvidedServices;
     }
 }
