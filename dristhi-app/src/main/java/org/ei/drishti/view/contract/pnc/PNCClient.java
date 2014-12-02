@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.util.IntegerUtil;
 import org.ei.drishti.view.contract.AlertDTO;
@@ -17,6 +18,7 @@ import org.joda.time.format.ISODateTimeFormat;
 import java.util.List;
 import java.util.Locale;
 
+import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.AllConstants.COMMA_WITH_SPACE;
 import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
 import static org.ei.drishti.AllConstants.SPACE;
@@ -145,7 +147,7 @@ public class PNCClient implements PNCSmartRegisterClient {
 
     @Override
     public String locationStatus() {
-        return null;
+        return locationStatus;
     }
 
     @Override
@@ -280,7 +282,7 @@ public class PNCClient implements PNCSmartRegisterClient {
     }
 
     public PNCClient withIsOutOfArea(boolean outOfArea) {
-        this.locationStatus = outOfArea ? "out_of_area" : "in_area";
+        this.locationStatus = outOfArea ? OUT_OF_AREA : IN_AREA;
         return this;
     }
 

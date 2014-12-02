@@ -1,6 +1,10 @@
 package org.ei.drishti.view.dialog;
 
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.StyleSpan;
 import android.view.View;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
@@ -18,6 +22,7 @@ import static org.ei.drishti.AllConstants.FormNames.CHILD_ILLNESS;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 
 public class ChildOverviewServiceMode extends ServiceModeOption {
+    private String illnessReport = Context.getInstance().getStringResource(R.string.illness_report);
 
     public ChildOverviewServiceMode(SmartRegisterClientsProvider provider) {
         super(provider);
@@ -105,7 +110,8 @@ public class ChildOverviewServiceMode extends ServiceModeOption {
         } else {
             viewHolder.sickVisitView().setVisibility(GONE);
             viewHolder.sicknessDetailLayout().setVisibility(VISIBLE);
-            viewHolder.illnessView().setText(sickStatus.diseases());
+
+            viewHolder.illnessView().setText(String.format(illnessReport, sickStatus.diseases()));
             viewHolder.illnessDateView().setText(sickStatus.date());
         }
     }

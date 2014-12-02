@@ -44,7 +44,7 @@ public class SmartRegisterPaginatedAdapter extends BaseAdapter {
         if (clientCount <= clientsPerPage) {
             return clientCount;
         } else if (currentPage == pageCount() - 1) {
-            return clientCount % clientsPerPage;
+            return clientCount - currentPage * clientsPerPage;
         }
         return clientsPerPage;
     }

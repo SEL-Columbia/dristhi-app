@@ -75,6 +75,8 @@
     <string name="str_number_of_still_births">S</string>
     <string name="str_number_of_abortions">A</string>
 
+    <string name="str_out_of_area">O/A</string>
+
     <string name="sort_by_name_label">Name (A to Z)</string>
     <string name="sort_by_ec_number_label">EC Number</string>
     <string name="sort_by_date_of_delivery_label">Date of Delivery</string>
@@ -135,6 +137,7 @@
     <string name="str_child_immunizations">Child Immunizations</string>
     <string name="str_child_illness">Child Illness</string>
     <string name="str_child_close">Child Close</string>
+    <string name="str_vitamin_a">Vitamin A</string>
     <string name="service_type_pnc">PNC</string>
     <string name="service_type_pentavalent_2">Pentavalent 2</string>
     <string name="service_type_bcg">BCG</string>
@@ -149,6 +152,7 @@
     <string name="service_type_opv_booster">OPV Boost</string>
     <string name="service_type_measles">Measles</string>
     <string name="service_type_measles_booster">Measles Booster</string>
+    <string name="service_type_measles_booster_short">Measles B</string>
     <string name="service_type_hepb_0">Hep B</string>
     <string name="service_type_je">JE</string>
     <string name="service_type_mmr">MMR</string>
@@ -156,7 +160,7 @@
     <string name="service_type_illness_visit">Illness Visit</string>
     <string name="service_type_empty"/>
     <string name="sick_visit">Sick Visit</string>
-    <string name="illness_visit">Illness Visit:</string>
+    <string name="illness_report"><b>Illness Report:</b> %s</string>
     <string name="illness_date">Date:</string>
     <string name="str_bcg">BCG</string>
     <string name="str_bcg_on">On</string>

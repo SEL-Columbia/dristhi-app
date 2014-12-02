@@ -20,30 +20,21 @@
             android:layout_height="match_parent">
 
         <org.ei.drishti.view.customControls.CustomFontTextView
-                android:id="@+id/lbl_illness"
+                android:id="@+id/txt_illness"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:text="@string/illness_visit"
-                style="@style/CustomFontTextViewStyle.ListView.Normal"/>
-
-        <org.ei.drishti.view.customControls.CustomFontTextView
-                android:id="@+id/txt_illness"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@id/lbl_illness"
-                style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"/>
+                style="@style/CustomFontTextViewStyle.ListView.Normal.TwoLine"/>
 
         <org.ei.drishti.view.customControls.CustomFontTextView
                 android:id="@+id/lbl_illness_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_below="@id/lbl_illness"
+                android:layout_below="@id/txt_illness"
                 android:text="@string/illness_date"
-                style="@style/CustomFontTextViewStyle.ListView.Normal"/>
+                style="@style/CustomFontTextViewStyle.ListView.Medium"/>
 
         <org.ei.drishti.view.customControls.CustomFontTextView
                 android:id="@+id/txt_illness_date"
@@ -51,6 +42,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txt_illness"
                 android:layout_toRightOf="@id/lbl_illness_date"
-                style="@style/CustomFontTextViewStyle.ListView.Medium.TwoLine"/>
+                style="@style/CustomFontTextViewStyle.ListView.Normal.TwoLine"/>
     </RelativeLayout>
 </FrameLayout>

@@ -4,7 +4,8 @@ import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 
-import static org.ei.drishti.view.contract.ECClient.OUT_OF_AREA;
+import static org.ei.drishti.AllConstants.OUT_OF_AREA;
+
 
 public class OutOfAreaFilter implements FilterOption {
     @Override

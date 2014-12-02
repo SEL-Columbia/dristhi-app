@@ -54,6 +54,9 @@ public class AllConstants {
     public static final String SLASH_STRING = "/";
     public static final String FP_DIALOG_TAB_SELECTION = "FP_DIALOG_TAB_SELECTION";
 
+    public static final String OUT_OF_AREA = "out_of_area";
+    public static final String IN_AREA = "in_area";
+
     public class FormNames {
         public static final String EC_REGISTRATION = "ec_registration";
         public static final String FP_COMPLICATIONS = "fp_complications";

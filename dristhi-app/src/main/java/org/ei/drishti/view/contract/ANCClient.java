@@ -4,7 +4,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.ANCServiceType;
 import org.ei.drishti.util.IntegerUtil;
 import org.joda.time.format.DateTimeFormat;
@@ -80,7 +79,7 @@ public class ANCClient implements ANCSmartRegisterClient {
         this.village = village;
         this.name = name;
         this.thayi = thayi;
-        this.edd = parse(edd, DateTimeFormat.forPattern(AllConstants.FORM_DATE_TIME_FORMAT)).toString(ISODateTimeFormat.dateTime());
+        this.edd = parse(edd, DateTimeFormat.forPattern(FORM_DATE_TIME_FORMAT)).toString(ISODateTimeFormat.dateTime());
         this.lmp = lmp;
         this.serviceToVisitsMap = new HashMap<String, Visits>();
     }
@@ -294,7 +293,7 @@ public class ANCClient implements ANCSmartRegisterClient {
     }
 
     public ANCClient withIsOutOfArea(boolean outOfArea) {
-        this.locationStatus = outOfArea ? "out_of_area" : "in_area";
+        this.locationStatus = outOfArea ? OUT_OF_AREA : IN_AREA;
         return this;
     }
 

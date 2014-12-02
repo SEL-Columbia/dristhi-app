@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.util.DateUtil;
 import org.ei.drishti.util.IntegerUtil;
@@ -14,13 +15,12 @@ import org.joda.time.Years;
 import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.upperCase;
+import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
 import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.util.StringUtil.humanize;
 
 public class ECClient implements ECSmartRegisterClient {
-    public static final String OUT_OF_AREA = "out_of_area";
-    public static final String IN_AREA = "in_area";
 
     private String entityId;
     private String entityIdToSavePhoto;

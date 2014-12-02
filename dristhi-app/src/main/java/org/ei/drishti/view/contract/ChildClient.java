@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.AllConstants.ChildIllnessFields.*;
 import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
 import static org.ei.drishti.domain.ChildServiceType.*;
@@ -136,7 +137,7 @@ public class ChildClient implements ChildSmartRegisterClient {
     }
 
     private String formatGender(String gender) {
-        return AllConstants.FEMALE_GENDER.equalsIgnoreCase(gender) ? "F" : "M";
+        return FEMALE_GENDER.equalsIgnoreCase(gender) ? "F" : "M";
     }
 
     @Override
@@ -203,12 +204,7 @@ public class ChildClient implements ChildSmartRegisterClient {
     @Override
     public int compareName(SmartRegisterClient anotherClient) {
         ChildSmartRegisterClient anotherChildClient = (ChildSmartRegisterClient) anotherClient;
-        if (isBlank(this.name()) && isBlank(anotherChildClient.name())) {
-            return this.motherName().compareTo(anotherChildClient.motherName());
-        } else if (!isBlank(this.name()) && !isBlank(anotherChildClient.name())) {
-            return this.name().compareTo(anotherChildClient.name());
-        }
-        return isBlank(this.name()) ? -1 : 1;
+        return this.motherName().compareTo(anotherChildClient.motherName());
     }
 
     public String format(int days_since) {
@@ -265,7 +261,6 @@ public class ChildClient implements ChildSmartRegisterClient {
     }
 
     private ServiceProvidedDTO getIllnessVisitServiceProvided() {
-        Collections.sort(services_provided, new DateComparator());
         Collections.reverse(services_provided);
         for (ServiceProvidedDTO service : services_provided) {
             if (ILLNESS_VISIT.equals(service.type())) {
@@ -334,7 +329,7 @@ public class ChildClient implements ChildSmartRegisterClient {
     }
 
     public ChildClient withOutOfArea(boolean outOfArea) {
-        this.locationStatus = outOfArea ? "out_of_area" : "in_area";
+        this.locationStatus = outOfArea ? OUT_OF_AREA : IN_AREA;
         return this;
     }
 
@@ -369,6 +364,7 @@ public class ChildClient implements ChildSmartRegisterClient {
     }
 
     public ChildClient withServicesProvided(List<ServiceProvidedDTO> servicesProvided) {
+        Collections.sort(servicesProvided, new DateComparator());
         this.services_provided = servicesProvided;
         return this;
     }
@@ -549,6 +545,9 @@ public class ChildClient implements ChildSmartRegisterClient {
             try {
                 date1 = simpleDateFormat.parse(serviceProvidedDTO1.date());
                 date2 = simpleDateFormat.parse(serviceProvidedDTO2.date());
+                if (date1.equals(date2)) {
+                    return -1;
+                }
                 return date1.compareTo(date2);
             } catch (ParseException e) {
                 //TODO

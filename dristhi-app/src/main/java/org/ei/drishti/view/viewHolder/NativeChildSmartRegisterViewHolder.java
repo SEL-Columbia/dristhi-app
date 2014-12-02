@@ -21,7 +21,6 @@ public class NativeChildSmartRegisterViewHolder {
     private final TextView txtLastServiceDate;
     private final TextView txtLastServiceName;
     private final TextView txtSickVisit;
-    private final TextView lblIllness;
     private final TextView lblIllnessDate;
     private final TextView txtIllness;
     private final TextView txtIllnessDate;
@@ -83,7 +82,6 @@ public class NativeChildSmartRegisterViewHolder {
         txtLastServiceName = (TextView) serviceModeOverviewView.findViewById(R.id.last_service_name);
         txtSickVisit = (TextView) serviceModeOverviewView.findViewById(R.id.btn_sick_visit);
         sicknessDeailLayout = serviceModeOverviewView.findViewById(R.id.sick_details_layout);
-        lblIllness = (TextView) sicknessDeailLayout.findViewById(R.id.lbl_illness);
         lblIllnessDate = (TextView) sicknessDeailLayout.findViewById(R.id.lbl_illness_date);
         txtIllness = (TextView) sicknessDeailLayout.findViewById(R.id.txt_illness);
         txtIllnessDate = (TextView) sicknessDeailLayout.findViewById(R.id.txt_illness_date);
@@ -183,10 +181,6 @@ public class NativeChildSmartRegisterViewHolder {
 
     public TextView sickVisitView() {
         return txtSickVisit;
-    }
-
-    public TextView illnessLableView() {
-        return lblIllness;
     }
 
     public TextView illnessDateLabelView() {

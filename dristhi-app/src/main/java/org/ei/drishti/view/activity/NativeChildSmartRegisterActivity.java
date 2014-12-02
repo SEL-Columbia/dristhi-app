@@ -108,6 +108,7 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
                 new OpenFormOption(getString(R.string.str_child_immunizations), AllConstants.FormNames.CHILD_IMMUNIZATIONS, formController),
                 new OpenFormOption(getString(R.string.str_child_illness), AllConstants.FormNames.CHILD_ILLNESS, formController),
                 new OpenFormOption(getString(R.string.str_child_close), AllConstants.FormNames.CHILD_CLOSE, formController),
+                new OpenFormOption(getString(R.string.str_vitamin_a), AllConstants.FormNames.VITAMIN_A, formController)
         };
     }
 

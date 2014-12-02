@@ -28,6 +28,11 @@ public enum ChildServiceType {
         }
 
         @Override
+        public String shortName() {
+            return Context.getInstance().applicationContext().getString(R.string.service_type_measles_booster_short);
+        }
+
+        @Override
         public String category() {
             return ChildClient.CATEGORY_MEASLES;
         }

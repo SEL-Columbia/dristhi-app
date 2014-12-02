@@ -75,6 +75,7 @@
             android:layout_alignParentTop="true"
             android:paddingRight="@dimen/wife_name_padding_right_due_to_age_display"
             android:layout_toRightOf="@id/img_profile_layout"
+            android:layout_toLeftOf="@+id/txt_age"
             style="@style/CustomFontTextViewStyle.ListView.Bold"/>
 
     <org.ei.drishti.view.customControls.CustomFontTextView
@@ -91,6 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_husband_name"
             android:layout_toRightOf="@id/img_profile_layout"
+            android:layout_toLeftOf="@+id/txt_out_of_area"
             style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 
     <org.ei.drishti.view.customControls.CustomFontTextView
@@ -102,4 +104,15 @@
             android:paddingTop="@dimen/client_age_padding"
             android:paddingRight="5dp"
             style="@style/CustomFontTextViewStyle.ListView.Normal"/>
+
+    <org.ei.drishti.view.customControls.CustomFontTextView
+            android:id="@+id/txt_out_of_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:padding="5dp"
+            style="@style/CustomFontTextViewStyle.ListView.Normal"/>
+
 </org.ei.drishti.view.customControls.ClientProfileView>
+

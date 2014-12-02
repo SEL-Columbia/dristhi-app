@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import org.ei.drishti.AllConstants;
 import org.ei.drishti.R;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.viewHolder.ProfilePhotoLoader;
@@ -16,6 +17,7 @@ public class ClientProfileView extends RelativeLayout {
     private TextView txtHusbandNameView;
     private TextView txtVillageNameView;
     private TextView txtAgeView;
+    private TextView txtOutOfArea;
     private ImageView badgeHPView;
     private ImageView badgeHRView;
     private ImageView badgeBPLView;
@@ -42,6 +44,7 @@ public class ClientProfileView extends RelativeLayout {
         txtHusbandNameView = (TextView) findViewById(R.id.txt_husband_name);
         txtVillageNameView = (TextView) findViewById(R.id.txt_village_name);
         txtAgeView = (TextView) findViewById(R.id.txt_age);
+        txtOutOfArea = (TextView) findViewById(R.id.txt_out_of_area);
         badgeHPView = (ImageView) findViewById(R.id.img_hp_badge);
         badgeHRView = (ImageView) findViewById(R.id.img_hr_badge);
         badgeBPLView = (ImageView) findViewById(R.id.img_bpl_badge);
@@ -56,10 +59,19 @@ public class ClientProfileView extends RelativeLayout {
         txtHusbandNameView.setText(client.husbandName());
         txtVillageNameView.setText(client.village());
         txtAgeView.setText(client.ageInString());
+        txtOutOfArea.setText(getOutOfAreaText(client.locationStatus()));
         badgeHPView.setVisibility(client.isHighPriority() ? View.VISIBLE : View.GONE);
         badgeHRView.setVisibility(client.isHighRisk() ? View.VISIBLE : View.GONE);
         badgeBPLView.setVisibility(client.isBPL() ? View.VISIBLE : View.GONE);
         badgeSCView.setVisibility(client.isSC() ? View.VISIBLE : View.GONE);
         badgeSTView.setVisibility(client.isST() ? View.VISIBLE : View.GONE);
+    }
+
+    private String getOutOfAreaText(String locationStatus) {
+        return isOutOfArea(locationStatus) ? org.ei.drishti.Context.getInstance().getStringResource(R.string.str_out_of_area) : "";
+    }
+
+    private boolean isOutOfArea(String locationStatus) {
+        return AllConstants.OUT_OF_AREA.equalsIgnoreCase(locationStatus);
     }
 }
