@@ -91,6 +91,11 @@ public class NativeANCSmartRegisterViewHolder {
     private final TextView txtHbDueType;
     private final TextView txtHbDueOn;
     private final TextView btnHbView;
+    private final LinearLayout layoutIFADetailsViewHolder;
+    private final View layoutIFAAlertInHbIFAServiceMode;
+    private final TextView txtIFADoneTick;
+    private final TextView txtIFAType;
+    private final TextView txtIFADate;
 
     public NativeANCSmartRegisterViewHolder(ViewGroup itemView) {
         profileInfoLayout = (ClientProfileView) itemView.findViewById(R.id.profile_info_layout);
@@ -193,6 +198,13 @@ public class NativeANCSmartRegisterViewHolder {
         btnHbView = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.btn_hb);
         txtHbDueType = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_hb_due_type);
         txtHbDueOn = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_hb_due_on);
+
+        layoutIFADetailsViewHolder = (LinearLayout) serviceModeHbIFAViewsHolder.findViewById(R.id.layout_ifa_details_holder);
+
+        layoutIFAAlertInHbIFAServiceMode = serviceModeHbIFAViewsHolder.findViewById(R.id.layout_ifa);
+        txtIFADoneTick = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_ifa_done);
+        txtIFAType = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_ifa_type);
+        txtIFADate = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_ifa_date);
     }
 
     public ClientProfileView profileInfoLayout() {
@@ -583,4 +595,32 @@ public class NativeANCSmartRegisterViewHolder {
     public TextView btnHbView() {
         return btnHbView;
     }
+
+    public LinearLayout layoutIFADetailsViewHolder() {
+        return layoutIFADetailsViewHolder;
+    }
+
+    public View layoutIFAAlertInHbIFAServiceMode() {
+        return layoutIFAAlertInHbIFAServiceMode;
+    }
+
+    public TextView txtIFADoneTick() {
+        return txtIFADoneTick;
+    }
+
+    public TextView txtIFAType() {
+        return txtIFAType;
+    }
+
+    public TextView txtIFADate() {
+        return txtIFADate;
+    }
+
+    public void hideViewsInIFAAlertLayout() {
+        layoutIFAAlertInHbIFAServiceMode().setVisibility(View.GONE);
+        txtIFADoneTick().setVisibility(View.GONE);
+        txtIFAType().setVisibility(View.GONE);
+        txtIFADate().setVisibility(View.GONE);
+    }
+
 }

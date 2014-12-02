@@ -12,11 +12,11 @@ import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
 import org.ei.drishti.view.viewHolder.*;
 
 import static android.view.View.VISIBLE;
-import static org.ei.drishti.AllConstants.FormNames.ANC_VISIT;
-import static org.ei.drishti.AllConstants.FormNames.IFA;
-import static org.ei.drishti.AllConstants.FormNames.TT;
+import static org.ei.drishti.AllConstants.FormNames.*;
+import static org.ei.drishti.Context.getInstance;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
+import static org.ei.drishti.view.contract.AlertStatus.COMPLETE;
 
 public class ANCOverviewServiceMode extends ServiceModeOption {
 
@@ -117,7 +117,7 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
     }
 
     public void setupTTLayout(ANCSmartRegisterClient client,
-                                    NativeANCSmartRegisterViewHolder viewHolder) {
+                              NativeANCSmartRegisterViewHolder viewHolder) {
         if (client.isTTDone()) {
             viewHolder.txtTTDoneOn().setVisibility(VISIBLE);
             viewHolder.txtTTDoneOn().setText(client.ttDoneDate());
@@ -142,7 +142,7 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
     }
 
     public void setupIFALayout(ANCSmartRegisterClient client,
-                                    NativeANCSmartRegisterViewHolder viewHolder) {
+                               NativeANCSmartRegisterViewHolder viewHolder) {
         if (client.isIFADone()) {
             viewHolder.txtIFADoneOn().setVisibility(VISIBLE);
             viewHolder.txtIFADoneOn().setText(client.ifaDoneDate());
@@ -182,11 +182,21 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
 
     private void setAlertLayout(View layout, TextView typeView,
                                 TextView dateView, AlertDTO alert) {
+        setAlertDate(dateView, alert);
+
         typeView.setText(alert.ancServiceType().shortName());
-        dateView.setText("due " + alert.shortDate());
+
         final AlertStatus alertStatus = alert.alertStatus();
         layout.setBackgroundResource(alertStatus.backgroundColorResourceId());
         typeView.setTextColor(alertStatus.fontColor());
         dateView.setTextColor(alertStatus.fontColor());
     }
+
+    private void setAlertDate(TextView dateView, AlertDTO alert) {
+        if (alert.status().equalsIgnoreCase(COMPLETE.name()))
+            dateView.setText(alert.shortDate());
+        else
+            dateView.setText(getInstance().getStringResource(R.string.str_due) + alert.shortDate());
+    }
+
 }

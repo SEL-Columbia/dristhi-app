@@ -207,7 +207,7 @@
     <string name="fp_prioritization_two_plus_children_service_mode">2+ Children</string>
     <string name="fp_prioritization_one_child_service_mode">1 Child</string>
     <string name="fp_register_child_details">Child:</string>
-    <string name="str_due">"due "</string>
+    <string name="str_due">"Due "</string>
     <string name="fp_methods">FP Methods</string>
     <string name="fp_prioritization">FP Prioritization</string>
     <string name="fp_prioritization_add_fp">Add FP</string>
@@ -251,6 +251,7 @@
     <string name="anc_service_mode_tt">TT</string>
     <string name="anc_service_mode_hb_ifa">Hb/IFA</string>
     <string name="anc_service_mode_hb_unit">" g/dl</string>
+    <string name="anc_service_mode_ifa_tablets">" Tablets</string>
     <string name="header_id">ID</string>
     <string name="header_anc_status">ANC STATUS</string>
     <string name="header_risk_factors">RISK FACTORS</string>

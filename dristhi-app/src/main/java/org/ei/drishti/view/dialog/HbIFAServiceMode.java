@@ -8,15 +8,18 @@ import org.ei.drishti.AllConstants;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
+import org.ei.drishti.util.IntegerUtil;
 import org.ei.drishti.view.contract.*;
 import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
 import org.ei.drishti.view.viewHolder.*;
 
 import static android.view.View.VISIBLE;
 import static org.ei.drishti.AllConstants.HbTestFields.HB_LEVEL;
+import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.Context.getInstance;
 import static org.ei.drishti.R.string.*;
 import static org.ei.drishti.domain.ANCServiceType.HB_TEST;
+import static org.ei.drishti.domain.ANCServiceType.IFA;
 import static org.ei.drishti.util.IntegerUtil.tryParse;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
@@ -76,6 +79,8 @@ public class HbIFAServiceMode extends ServiceModeOption {
 
         setupHbDetailsLayout(client, viewHolder);
         setupHbAlertLayout(client, viewHolder);
+        setupIFADetailsLayout(client, viewHolder);
+        setupIFAAlertLayout(client, viewHolder);
     }
 
     @Override
@@ -91,18 +96,51 @@ public class HbIFAServiceMode extends ServiceModeOption {
     public void setupHbDetailsLayout(ANCSmartRegisterClient client,
                                      NativeANCSmartRegisterViewHolder viewHolder) {
         viewHolder.layoutHbDetailsViewHolder().removeAllViews();
-        for (ServiceProvidedDTO serviceProvided : client.servicesProvided()) {
-            if (serviceProvided.name().equalsIgnoreCase(HB_TEST.displayName())) {
-                String hbLevel = serviceProvided.data().get(HB_LEVEL);
-                ViewGroup hbDetailsViewGroup = (ViewGroup) inflater.inflate(R.layout.smart_register_anc_hb_details_layout, null);
-                ((TextView) hbDetailsViewGroup.findViewById(R.id.txt_hb_date)).setText(serviceProvided.shortDate());
-                ((TextView) hbDetailsViewGroup.findViewById(R.id.txt_hb_level)).setText(hbLevel + getInstance().getStringResource(anc_service_mode_hb_unit));
-                hbDetailsViewGroup.findViewById(R.id.hb_level_indicator)
-                        .setBackgroundColor(getHbColor(tryParse(hbLevel, 0)));
-                viewHolder.layoutHbDetailsViewHolder().addView(hbDetailsViewGroup);
-            }
+        for (ServiceProvidedDTO serviceProvided : client.allServicesProvidedForAServiceType(HB_TEST.displayName())) {
+            String hbLevel = serviceProvided.data().get(HB_LEVEL);
+            ViewGroup hbDetailsViewGroup = (ViewGroup) inflater.inflate(R.layout.smart_register_anc_hb_details_layout, null);
+            ((TextView) hbDetailsViewGroup.findViewById(R.id.txt_hb_date)).setText(serviceProvided.shortDate());
+            ((TextView) hbDetailsViewGroup.findViewById(R.id.txt_hb_level)).setText(hbLevel + getInstance().getStringResource(anc_service_mode_hb_unit));
+            hbDetailsViewGroup.findViewById(R.id.hb_level_indicator)
+                    .setBackgroundColor(getHbColor(tryParse(hbLevel, 0)));
+            viewHolder.layoutHbDetailsViewHolder().addView(hbDetailsViewGroup);
         }
     }
+
+    public void setupIFADetailsLayout(ANCSmartRegisterClient client,
+                                      NativeANCSmartRegisterViewHolder viewHolder) {
+        viewHolder.layoutIFADetailsViewHolder().removeAllViews();
+        for (ServiceProvidedDTO serviceProvided : client.allServicesProvidedForAServiceType(IFA.serviceName())) {
+            String numberOfIFATablets = serviceProvided.data().get("dose");
+            ViewGroup ifaDetailsViewGroup = (ViewGroup) inflater.inflate(R.layout.smart_register_anc_ifa_details_layout, null);
+            ((TextView) ifaDetailsViewGroup.findViewById(R.id.txt_ifa_date)).setText(serviceProvided.shortDate());
+            ((TextView) ifaDetailsViewGroup.findViewById(R.id.txt_number_of_ifa_tablets))
+                    .setText(numberOfIFATablets + getInstance().getStringResource(anc_service_mode_ifa_tablets));
+            viewHolder.layoutIFADetailsViewHolder().addView(ifaDetailsViewGroup);
+        }
+    }
+
+    public void setupIFAAlertLayout(ANCSmartRegisterClient client,
+                                    NativeANCSmartRegisterViewHolder viewHolder) {
+        AlertDTO ifaAlert = client.getAlert(IFA);
+        ServiceProvidedDTO ifaServiceProvided = client.getServiceProvidedDTO(IFA.serviceName());
+        viewHolder.hideViewsInIFAAlertLayout();
+        if (ifaAlert != emptyAlert
+                && ifaAlert.ancServiceType().name().equalsIgnoreCase(IFA.serviceName())
+                && !ifaAlert.status().equalsIgnoreCase("complete")) {
+            viewHolder.layoutIFAAlertInHbIFAServiceMode().setVisibility(VISIBLE);
+            viewHolder.txtIFAType().setVisibility(VISIBLE);
+            viewHolder.txtIFADate().setVisibility(VISIBLE);
+            setAlertLayout(viewHolder.layoutIFAAlertInHbIFAServiceMode(),
+                    viewHolder.txtIFAType(),
+                    viewHolder.txtIFADate(), ifaAlert);
+        } else if (ifaServiceProvided != null) {
+            setServiceProvidedLayout(client,
+                    ifaServiceProvided, viewHolder.layoutIFAAlertInHbIFAServiceMode(),
+                    viewHolder.txtIFADoneTick(), viewHolder.txtIFAType(), viewHolder.txtIFADate());
+        }
+    }
+
 
     private int getHbColor(int hbLevel) {
         if (hbLevel < 7)
@@ -120,7 +158,7 @@ public class HbIFAServiceMode extends ServiceModeOption {
         if (hbAlert != emptyAlert) {
             viewHolder.btnHbView().setVisibility(View.INVISIBLE);
             viewHolder.layoutHbAlert().setVisibility(VISIBLE);
-            viewHolder.layoutHbAlert().setOnClickListener(launchForm(AllConstants.FormNames.HB_TEST,client, hbAlert));
+            viewHolder.layoutHbAlert().setOnClickListener(launchForm(AllConstants.FormNames.HB_TEST, client, hbAlert));
             setAlertLayout(viewHolder.layoutHbAlert(),
                     viewHolder.txtHbDueType(),
                     viewHolder.txtHbDueOn(),
@@ -153,5 +191,30 @@ public class HbIFAServiceMode extends ServiceModeOption {
         else
             dateView.setText(getInstance().getStringResource(R.string.str_due) + alert.shortDate());
     }
+
+    private void setServiceProvidedLayout(ANCSmartRegisterClient client, ServiceProvidedDTO serviceProvided, View serviceProvidedLayout,
+                                          TextView txtDoneTick, TextView txtServiceType, TextView txtServiceDate) {
+        serviceProvidedLayout.setVisibility(View.VISIBLE);
+        serviceProvidedLayout.setBackgroundResource(R.color.status_bar_text_almost_white);
+
+        txtDoneTick.setVisibility(View.VISIBLE);
+
+        txtServiceType.setVisibility(VISIBLE);
+        txtServiceType.setText(serviceProvided.name() + SPACE + getTotalNumberOfIFATablets(client));
+        txtServiceType.setTextColor(getInstance().getColorResource(R.color.text_black));
+
+        txtServiceDate.setVisibility(VISIBLE);
+        txtServiceDate.setText("On " + serviceProvided.shortDate());
+        txtServiceDate.setTextColor(getInstance().getColorResource(R.color.text_black));
+    }
+
+    private String getTotalNumberOfIFATablets(ANCSmartRegisterClient client) {
+        int totalNumberOfIFATablets = 0;
+        for (ServiceProvidedDTO serviceProvided : client.allServicesProvidedForAServiceType(IFA.serviceName())) {
+            totalNumberOfIFATablets += IntegerUtil.tryParse(serviceProvided.data().get("dose"), 0);
+        }
+        return Integer.toString(totalNumberOfIFATablets);
+    }
+
 
 }

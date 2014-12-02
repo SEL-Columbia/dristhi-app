@@ -40,10 +40,8 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
 
     public String ifaDoneDate();
 
-    public String visitDoneDate();
-
     public String thayiCardNumber();
-
+    
     public String ancNumber();
 
     public String lmp();
@@ -56,5 +54,6 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
 
     public ServiceProvidedDTO getServiceProvidedDTO(String serviceName);
 
-    public List<ServiceProvidedDTO> servicesProvided();
+    public List<ServiceProvidedDTO> allServicesProvidedForAServiceType(String serviceType);
+
 }

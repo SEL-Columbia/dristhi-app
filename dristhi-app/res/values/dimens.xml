@@ -7,6 +7,8 @@
     <dimen name="list_gplsa_view_width">0dp</dimen>
     <dimen name="list_fp_view_width">0dp</dimen>
     <dimen name="list_hb_details_view_width">0dp</dimen>
+    <dimen name="list_ifa_details_view_width">0dp</dimen>
+    <dimen name="list_ifa_alert_view_width">0dp</dimen>
     <dimen name="list_children_view_width">0dp</dimen>
     <dimen name="list_status_view_width">0dp</dimen>
     <dimen name="list_edit_icon_view_width">0dp</dimen>

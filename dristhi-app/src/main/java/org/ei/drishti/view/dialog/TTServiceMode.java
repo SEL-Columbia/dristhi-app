@@ -83,13 +83,13 @@ public class TTServiceMode extends ServiceModeOption {
     public void setupTT1Layout(ANCSmartRegisterClient client,
                                NativeANCSmartRegisterViewHolder viewHolder) {
         AlertDTO ttAlert = client.getAlert(ANCServiceType.TT_1);
-        ServiceProvidedDTO ttServiceProvided = client.getServiceProvidedDTO(ANCServiceType.TT_1.onServiceCompleteDisplayName());
+        ServiceProvidedDTO ttServiceProvided = client.getServiceProvidedDTO(ANCServiceType.TT_1.serviceName());
         viewHolder.hideViewsInTT1Layout();
         if (ttServiceProvided != null) {
             setServiceProvidedLayout(ttServiceProvided,
                     viewHolder.layoutTT1Alert(), viewHolder.txtTT1DoneTick(),
                     viewHolder.txtTT1Type(), viewHolder.txtTT1Date());
-        } else if (ttAlert != emptyAlert && ttAlert.name().equalsIgnoreCase(TT_1.onServiceCompleteDisplayName())) {
+        } else if (ttAlert != emptyAlert && ttAlert.name().equalsIgnoreCase(TT_1.serviceName())) {
             setAlertLayout(viewHolder.layoutTT1Alert(),
                     viewHolder.txtTT1Type(),
                     viewHolder.txtTT1Date(), client
@@ -100,13 +100,13 @@ public class TTServiceMode extends ServiceModeOption {
     public void setupTT2Layout(ANCSmartRegisterClient client,
                                NativeANCSmartRegisterViewHolder viewHolder) {
         AlertDTO ttAlert = client.getAlert(ANCServiceType.TT_2);
-        ServiceProvidedDTO ttServiceProvided = client.getServiceProvidedDTO(ANCServiceType.TT_2.onServiceCompleteDisplayName());
+        ServiceProvidedDTO ttServiceProvided = client.getServiceProvidedDTO(ANCServiceType.TT_2.serviceName());
         viewHolder.hideViewsInTT2Layout();
         if (ttServiceProvided != null) {
             setServiceProvidedLayout(ttServiceProvided,
                     viewHolder.layoutTT2Alert(), viewHolder.txtTT2DoneTick(),
                     viewHolder.txtTT2Type(), viewHolder.txtTT2Date());
-        } else if (ttAlert != emptyAlert && ttAlert.name().equalsIgnoreCase(TT_2.onServiceCompleteDisplayName())) {
+        } else if (ttAlert != emptyAlert && ttAlert.name().equalsIgnoreCase(TT_2.serviceName())) {
             setAlertLayout(viewHolder.layoutTT2Alert(),
                     viewHolder.txtTT2Type(),
                     viewHolder.txtTT2Date(), client
@@ -117,13 +117,13 @@ public class TTServiceMode extends ServiceModeOption {
     public void setupTTBoosterLayout(ANCSmartRegisterClient client,
                                      NativeANCSmartRegisterViewHolder viewHolder) {
         AlertDTO ttAlert = client.getAlert(ANCServiceType.TT_BOOSTER);
-        ServiceProvidedDTO ttServiceProvided = client.getServiceProvidedDTO(ANCServiceType.TT_BOOSTER.onServiceCompleteDisplayName());
+        ServiceProvidedDTO ttServiceProvided = client.getServiceProvidedDTO(ANCServiceType.TT_BOOSTER.serviceName());
         viewHolder.hideViewsInTTBoosterLayout();
         if (ttServiceProvided != null) {
             setServiceProvidedLayout(ttServiceProvided,
                     viewHolder.layoutTTBoosterAlert(), viewHolder.txtTTBoosterDoneTick(),
                     viewHolder.txtTTBoosterType(), viewHolder.txtTTBoosterDate());
-        } else if (ttAlert != emptyAlert && ttAlert.name().equalsIgnoreCase(TT_BOOSTER.onServiceCompleteDisplayName())) {
+        } else if (ttAlert != emptyAlert && ttAlert.name().equalsIgnoreCase(TT_BOOSTER.serviceName())) {
             setAlertLayout(viewHolder.layoutTTBoosterAlert(),
                     viewHolder.txtTTBoosterType(),
                     viewHolder.txtTTBoosterDate(), client

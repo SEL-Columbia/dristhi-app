@@ -227,11 +227,6 @@ public class ANCClient implements ANCSmartRegisterClient {
     }
 
     @Override
-    public String visitDoneDate() {
-        return serviceProvidedToACategory(CATEGORY_ANC).ancServicedOn();
-    }
-
-    @Override
     public String thayiCardNumber() {
         return thayi;
     }
@@ -252,10 +247,14 @@ public class ANCClient implements ANCSmartRegisterClient {
     }
 
     @Override
-    public List<ServiceProvidedDTO> servicesProvided() {
-        return services_provided;
+    public List<ServiceProvidedDTO> allServicesProvidedForAServiceType(String serviceType) {
+        List<ServiceProvidedDTO> servicesProvided = new ArrayList<ServiceProvidedDTO>();
+        for (ServiceProvidedDTO serviceProvided : services_provided) {
+            if (serviceProvided.name().equalsIgnoreCase(serviceType))
+                servicesProvided.add(serviceProvided);
+        }
+        return servicesProvided;
     }
-
 
 
     public Map<String, Visits> serviceToVisitsMap() {
