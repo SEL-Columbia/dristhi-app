@@ -138,7 +138,9 @@ public class PNCSmartRegisterController {
                             .withEntityIdToSavePhoto(ec.caseId())
                             .withAlerts(alerts)
                             .withServicesProvided(servicesProvided)
-                            .withChildren(findChildren(pnc));
+                            .withChildren(findChildren(pnc))
+                            .withPreProcess();
+
                     pncClients.add(new PNCClientPreProcessor(client).preProcess());
                 }
                 sortByName(pncClients);

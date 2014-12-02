@@ -4,28 +4,31 @@ import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.AllConstants;
+import org.ei.drishti.domain.ANCServiceType;
 import org.ei.drishti.domain.FPMethod;
 import org.ei.drishti.util.IntegerUtil;
-import org.ei.drishti.view.contract.AlertDTO;
-import org.ei.drishti.view.contract.ChildClient;
-import org.ei.drishti.view.contract.ServiceProvidedDTO;
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.drishti.view.contract.*;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.ISODateTimeFormat;
 
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 import static org.ei.drishti.AllConstants.*;
-import static org.ei.drishti.AllConstants.COMMA_WITH_SPACE;
 import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
-import static org.ei.drishti.AllConstants.SPACE;
+import static org.ei.drishti.domain.ANCServiceType.PNC;
 import static org.ei.drishti.util.DateUtil.*;
 import static org.ei.drishti.util.StringUtil.*;
 
 public class PNCClient implements PNCSmartRegisterClient {
+    private static final String CATEGORY_PNC = "pnc";
+    private static final String[] SERVICE_CATEGORIES = {CATEGORY_PNC};
+    private static Map<String, List<ANCServiceType>> categoriesToServiceTypeMap = new HashMap<String, List<ANCServiceType>>();
+
+    static {
+        categoriesToServiceTypeMap.put(CATEGORY_PNC, Arrays.asList(PNC));
+    }
+
     private String entityId;
     private String ec_number;
     private String village;
@@ -35,8 +38,8 @@ public class PNCClient implements PNCSmartRegisterClient {
     private String womanDOB;
     private String husbandName;
     private String photo_path;
-    private boolean isHighPriority;
-    private boolean isHighRisk;
+    private Boolean isHighPriority;
+    private Boolean isHighRisk;
     private String locationStatus;
     private String economicStatus;
     private String caste;
@@ -58,10 +61,10 @@ public class PNCClient implements PNCSmartRegisterClient {
     private List<ChildClient> children;
     private String entityIdToSavePhoto;
     private List<ServiceProvidedDTO> expectedVisits;
-
     @SerializedName("first_7_days")
     private PNCFirstSevenDaysVisits pncFirstSevenDaysVisits;
     private List<ServiceProvidedDTO> recentlyProvidedServices;
+    private Map<String, Visits> serviceToVisitsMap;
 
     public PNCClient(String entityId, String village, String name, String thayi, String deliveryDate) {
         this.entityId = entityId;
@@ -69,6 +72,7 @@ public class PNCClient implements PNCSmartRegisterClient {
         this.name = name;
         this.thayi = thayi;
         this.deliveryDate = LocalDateTime.parse(deliveryDate).toString(ISODateTimeFormat.dateTime());
+        this.serviceToVisitsMap = new HashMap<String, Visits>();
     }
 
     @Override
@@ -376,8 +380,25 @@ public class PNCClient implements PNCSmartRegisterClient {
         return this;
     }
 
-    public void withFirstSevenDaysVisit(PNCFirstSevenDaysVisits pncFirstSevenDaysVisits) {
+    public PNCClient withFirstSevenDaysVisit(PNCFirstSevenDaysVisits pncFirstSevenDaysVisits) {
         this.pncFirstSevenDaysVisits = pncFirstSevenDaysVisits;
+        return this;
+    }
+
+    public PNCClient withRecentlyProvidedServices(List<ServiceProvidedDTO> recentlyProvidedServices) {
+        this.recentlyProvidedServices = recentlyProvidedServices;
+        return this;
+    }
+
+    public PNCClient withServiceToVisitMap(Map<String, Visits> serviceToVisitsMap) {
+        this.serviceToVisitsMap = serviceToVisitsMap;
+        return this;
+    }
+
+    public PNCClient withPreProcess() {
+        initialize(SERVICE_CATEGORIES, serviceToVisitsMap);
+        initializeAllServiceToProvideAndProvided(categoriesToServiceTypeMap);
+        return this;
     }
 
     @Override
@@ -393,14 +414,6 @@ public class PNCClient implements PNCSmartRegisterClient {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
-    }
-
-    public List<ServiceProvidedDTO> expectedVisits() {
-        return expectedVisits;
-    }
-
-    public List<ServiceProvidedDTO> servicesProvided() {
-        return services_provided;
     }
 
     @Override
@@ -439,11 +452,54 @@ public class PNCClient implements PNCSmartRegisterClient {
     }
 
     @Override
-    public List<ServiceProvidedDTO> recentlyProvidedServices(){
+    public List<ServiceProvidedDTO> recentlyProvidedServices() {
         return recentlyProvidedServices;
     }
 
-    public void withRecentlyProvidedServices(List<ServiceProvidedDTO> recentlyProvidedServices) {
-        this.recentlyProvidedServices = recentlyProvidedServices;
+    public Map<String, Visits> serviceToVisitsMap() {
+        return serviceToVisitsMap;
+    }
+
+    public List<ServiceProvidedDTO> expectedVisits() {
+        return expectedVisits;
+    }
+
+    public List<ServiceProvidedDTO> servicesProvided() {
+        return services_provided;
+    }
+
+    private void initialize(String[] serviceCategories, Map<String, Visits> serviceToVisitsMap) {
+        if(alerts.isEmpty() && !services_provided.isEmpty())
+            return;
+        for (String type : serviceCategories) {
+            serviceToVisitsMap.put(type, new Visits());
+        }
+    }
+
+    private void initializeAllServiceToProvideAndProvided(Map<String, List<ANCServiceType>> categoriesToServiceTypeMap) {
+        Set<String> keys = categoriesToServiceTypeMap.keySet();
+        for (String key : keys) {
+            initializeServiceToProvideAndProvided(categoriesToServiceTypeMap.get(key));
+        }
+    }
+
+    private void initializeServiceToProvideAndProvided(List<ANCServiceType> types) {
+        for (ANCServiceType type : types) {
+            initializeServiceToProvideAndProvided(type);
+        }
+    }
+
+    private void initializeServiceToProvideAndProvided(ANCServiceType type) {
+        for (AlertDTO alert : alerts) {
+            if (type.equals(alert.ancServiceType())) {
+                serviceToVisitsMap.get(type.category()).toProvide = alert;
+            }
+        }
+
+        for (ServiceProvidedDTO service : services_provided) {
+            if (type.equals(service.ancServiceType())) {
+                serviceToVisitsMap.get(type.category()).provided = service;
+            }
+        }
     }
 }
