@@ -1,25 +1,28 @@
 package org.ei.drishti.view.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import org.ei.drishti.view.contract.pnc.PNCClient;
-import org.ei.drishti.view.contract.pnc.PNCClients;
-import org.robolectric.RobolectricTestRunner;
 import org.apache.commons.lang3.tuple.Pair;
 import org.ei.drishti.domain.*;
-import org.ei.drishti.domain.Child;
 import org.ei.drishti.repository.AllBeneficiaries;
 import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.service.AlertService;
 import org.ei.drishti.service.ServiceProvidedService;
 import org.ei.drishti.util.Cache;
-import org.ei.drishti.view.contract.*;
+import org.ei.drishti.util.EasyMap;
+import org.ei.drishti.view.contract.AlertDTO;
+import org.ei.drishti.view.contract.ChildClient;
+import org.ei.drishti.view.contract.ServiceProvidedDTO;
+import org.ei.drishti.view.contract.Visits;
+import org.ei.drishti.view.contract.pnc.PNCClient;
+import org.ei.drishti.view.contract.pnc.PNCClients;
+import org.ei.drishti.view.preProcessor.PNCClientPreProcessor;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.robolectric.RobolectricTestRunner;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +32,7 @@ import static junit.framework.Assert.assertEquals;
 import static org.ei.drishti.dto.AlertStatus.normal;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.ei.drishti.util.EasyMap.mapOf;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -49,6 +53,8 @@ public class PNCSmartRegisterControllerTest {
     private AlertService alertService;
     @Mock
     private ServiceProvidedService serviceProvidedService;
+    @Mock
+    private PNCClientPreProcessor preProcessor;
 
     private PNCSmartRegisterController controller;
     private Map<String, String> emptyMap;
@@ -57,7 +63,7 @@ public class PNCSmartRegisterControllerTest {
     public void setUp() throws Exception {
         initMocks(this);
         emptyMap = Collections.emptyMap();
-        controller = new PNCSmartRegisterController(serviceProvidedService, alertService, allEligibleCouples, allBeneficiaries, new Cache<String>(), new Cache<PNCClients>());
+        controller = new PNCSmartRegisterController(serviceProvidedService, alertService, allEligibleCouples, allBeneficiaries, new Cache<String>(), new Cache<PNCClients>(), preProcessor);
     }
 
     @Test
@@ -73,12 +79,13 @@ public class PNCSmartRegisterControllerTest {
         PNCClient expectedClient2 = createPNCClient("Entity X", "Woman B", "kavalu_hosur", "thayi 1", "2013-05-25").withECNumber("EC Number 2").withHusbandName("Husband B").withChildren(EMPTY_LIST).withEntityIdToSavePhoto("EC Case 2");
         PNCClient expectedClient3 = createPNCClient("Entity Y", "Woman C", "Bherya", "thayi 2", "2013-05-25").withECNumber("EC Number 3").withHusbandName("Husband C").withChildren(EMPTY_LIST).withEntityIdToSavePhoto("EC Case 3");
         when(allBeneficiaries.allPNCsWithEC()).thenReturn(asList(Pair.of(m1, ec2), Pair.of(m2, ec3), Pair.of(m3, ec1)));
+        when(preProcessor.preProcess(any(PNCClient.class))).thenReturn(expectedClient1, expectedClient2, expectedClient3);
 
-        String clients = controller.get();
+        PNCClients clients = controller.getClients();
 
-        List<PNCClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<PNCClient>>() {
-        }.getType());
-        assertEquals(asList(expectedClient1, expectedClient2, expectedClient3), actualClients);
+        assertEquals(expectedClient1.wifeName(), clients.get(0).wifeName());
+        assertEquals(expectedClient2.wifeName(), clients.get(1).wifeName());
+        assertEquals(expectedClient3.wifeName(), clients.get(2).wifeName());
     }
 
     @Test
@@ -133,12 +140,11 @@ public class PNCSmartRegisterControllerTest {
                 .withAlerts(Collections.<AlertDTO>emptyList())
                 .withChildren(asList(new ChildClient("child id 1", "male", "2.4", "thayi 1"), new ChildClient("child id 2", "female", "2.5", "thayi 1")))
                 .withServicesProvided(Collections.<ServiceProvidedDTO>emptyList());
+        when(preProcessor.preProcess(expectedPNCClient)).thenReturn(expectedPNCClient);
 
-        String clients = controller.get();
+        PNCClients clients = controller.getClients();
 
-        List<PNCClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<PNCClient>>() {
-        }.getType());
-        assertEquals(asList(expectedPNCClient), actualClients);
+        assertEquals(expectedPNCClient, clients.get(0));
     }
 
     @Test
@@ -148,20 +154,21 @@ public class PNCSmartRegisterControllerTest {
         Alert pnc1Alert = new Alert("entity id 1", "PNC", "PNC 1", normal, "2013-01-01", "2013-02-01");
         when(allBeneficiaries.allPNCsWithEC()).thenReturn(asList(Pair.of(mother, ec)));
         when(alertService.findByEntityIdAndAlertNames("Entity X", PNC_ALERTS)).thenReturn(asList(pnc1Alert));
-
-        String clients = controller.get();
-
-        List<PNCClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<PNCClient>>() {
-        }.getType());
-        verify(alertService).findByEntityIdAndAlertNames("Entity X", PNC_ALERTS);
         AlertDTO expectedAlertDto = new AlertDTO("PNC 1", "normal", "2013-01-01");
         PNCClient expectedEC = createPNCClient("Entity X", "Woman C", "Bherya", "thayi 1", "2013-05-25")
                 .withECNumber("EC Number 1")
                 .withHusbandName("Husband C")
                 .withEntityIdToSavePhoto("entity id 1")
                 .withAlerts(asList(expectedAlertDto))
-                .withChildren(EMPTY_LIST);
-        assertEquals(asList(expectedEC), actualClients);
+                .withChildren(EMPTY_LIST)
+                .withServiceToVisitMap(new HashMap<String, Visits>());
+        when(preProcessor.preProcess(any(PNCClient.class))).thenReturn(expectedEC);
+        PNCClients clients = controller.getClients();
+
+        verify(alertService).findByEntityIdAndAlertNames("Entity X", PNC_ALERTS);
+
+
+        assertEquals(asList(expectedEC), clients);
     }
 
     @Test
@@ -172,13 +179,6 @@ public class PNCSmartRegisterControllerTest {
         when(alertService.findByEntityIdAndAlertNames("Entity X", PNC_ALERTS)).thenReturn(Collections.<Alert>emptyList());
         when(serviceProvidedService.findByEntityIdAndServiceNames("Entity X", PNC_SERVICES))
                 .thenReturn(asList(new ServiceProvided("entity id 1", "PNC 1", "2013-01-01", mapOf("dose", "100")), new ServiceProvided("entity id 1", "PNC 1", "2013-02-01", emptyMap)));
-
-        String clients = controller.get();
-
-        List<PNCClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<PNCClient>>() {
-        }.getType());
-        verify(alertService).findByEntityIdAndAlertNames("Entity X", PNC_ALERTS);
-        verify(serviceProvidedService).findByEntityIdAndServiceNames("Entity X", PNC_SERVICES);
         List<ServiceProvidedDTO> expectedServicesProvided = asList(new ServiceProvidedDTO("PNC 1", "2013-01-01", mapOf("dose", "100")),
                 new ServiceProvidedDTO("PNC 1", "2013-02-01", emptyMap));
         PNCClient expectedEC = createPNCClient("Entity X", "Woman C", "Bherya", "thayi 1", "2013-05-25")
@@ -187,14 +187,25 @@ public class PNCSmartRegisterControllerTest {
                 .withEntityIdToSavePhoto("entity id 1")
                 .withServicesProvided(expectedServicesProvided)
                 .withChildren(EMPTY_LIST);
-        assertEquals(asList(expectedEC), actualClients);
+        when(preProcessor.preProcess(any(PNCClient.class))).thenReturn(expectedEC);
+
+        PNCClients clients = controller.getClients();
+
+        verify(alertService).findByEntityIdAndAlertNames("Entity X", PNC_ALERTS);
+        verify(serviceProvidedService).findByEntityIdAndServiceNames("Entity X", PNC_SERVICES);
+        assertEquals(asList(expectedEC), clients);
     }
 
     private PNCClient createPNCClient(String entityId, String name, String village, String thayi, String deliveryDate) {
+        Visits visits = new Visits();
+        Map<String, Visits> serviceToVisitsMap = EasyMap.create("pnc", visits).map();
+
         return new PNCClient(entityId, village, name, thayi, deliveryDate)
                 .withPhotoPath("../../img/woman-placeholder.png")
                 .withIsOutOfArea(false)
                 .withAlerts(Collections.<AlertDTO>emptyList())
                 .withServicesProvided(Collections.<ServiceProvidedDTO>emptyList());
+
     }
+
 }

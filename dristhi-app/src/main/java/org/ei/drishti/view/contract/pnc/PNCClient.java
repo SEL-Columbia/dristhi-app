@@ -396,8 +396,10 @@ public class PNCClient implements PNCSmartRegisterClient {
     }
 
     public PNCClient withPreProcess() {
-        initialize(SERVICE_CATEGORIES, serviceToVisitsMap);
-        initializeAllServiceToProvideAndProvided(categoriesToServiceTypeMap);
+        if(!alerts.isEmpty() || !services_provided.isEmpty()){
+            initialize(SERVICE_CATEGORIES, serviceToVisitsMap);
+            initializeAllServiceToProvideAndProvided(categoriesToServiceTypeMap);
+        }
         return this;
     }
 
@@ -469,8 +471,6 @@ public class PNCClient implements PNCSmartRegisterClient {
     }
 
     private void initialize(String[] serviceCategories, Map<String, Visits> serviceToVisitsMap) {
-        if(alerts.isEmpty() && !services_provided.isEmpty())
-            return;
         for (String type : serviceCategories) {
             serviceToVisitsMap.put(type, new Visits());
         }

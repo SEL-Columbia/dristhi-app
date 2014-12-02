@@ -45,7 +45,7 @@ public class PNCClientPreProcessorTest {
         ServiceProvidedDTO expectedVisit3 = new ServiceProvidedDTO("PNC", 7, "2013-05-20");
         List<ServiceProvidedDTO> expectedVisits = Arrays.asList(expectedVisit1, expectedVisit2, expectedVisit3);
 
-        PNCClient processedPNCClient = new PNCClientPreProcessor(pncClient).preProcess();
+        PNCClient processedPNCClient = new PNCClientPreProcessor().preProcess(pncClient);
 
         assertEquals(expectedVisits, processedPNCClient.expectedVisits());
     }
@@ -53,7 +53,7 @@ public class PNCClientPreProcessorTest {
     @Test
     public void shouldGenerateViewElementsWhenTodayIsTheDeliveryDate() throws Exception {
         PNCClient pncClient = new PNCClient("entityId", "village", "name", "theyiNo", DateUtil.today().toString());
-        PNCClient processedClient = new PNCClientPreProcessor(pncClient).preProcess();
+        PNCClient processedClient = new PNCClientPreProcessor().preProcess(pncClient);
 
         List<PNCCircleDatum> expectedCircleData = Arrays.asList(
                 new PNCCircleDatum(1, PNCVisitType.EXPECTED, false),
@@ -85,7 +85,7 @@ public class PNCClientPreProcessorTest {
         DateUtil.fakeIt(new LocalDate("2013-05-15"));
         PNCClient pncClient = new PNCClient("entityId", "village", "name", "thayiNo", "2013-05-13");
 
-        PNCClient processedClient = new PNCClientPreProcessor(pncClient).preProcess();
+        PNCClient processedClient = new PNCClientPreProcessor().preProcess(pncClient);
 
         List<PNCCircleDatum> expectedCircleData = Arrays.asList(
                 new PNCCircleDatum(1, PNCVisitType.EXPECTED, true),
@@ -120,7 +120,7 @@ public class PNCClientPreProcessorTest {
         PNCClient pncClient = new PNCClient("entityId", "village", "name", "thayiNo", "2013-05-13")
                 .withServicesProvided(Arrays.asList(new ServiceProvidedDTO("PNC", "2013-05-15", null)));
 
-        PNCClient processedClient = new PNCClientPreProcessor(pncClient).preProcess();
+        PNCClient processedClient = new PNCClientPreProcessor().preProcess(pncClient);
 
         List<PNCCircleDatum> expectedCircleData = Arrays.asList(
                 new PNCCircleDatum(1, PNCVisitType.EXPECTED, true),
@@ -169,7 +169,7 @@ public class PNCClientPreProcessorTest {
                         new ServiceProvidedDTO("PNC", "2013-05-14", null)
                 ));
 
-        PNCClient processedClient = new PNCClientPreProcessor(client).preProcess();
+        PNCClient processedClient = new PNCClientPreProcessor().preProcess(client);
 
         List<PNCCircleDatum> expectedCircleData = Arrays.asList(
                 new PNCCircleDatum(1, PNCVisitType.ACTUAL, true),
@@ -212,7 +212,7 @@ public class PNCClientPreProcessorTest {
         DateUtil.fakeIt(new LocalDate("2013-05-21"));
         PNCClient client = new PNCClient("entityId", "village", "name", "thayino", "2013-05-13");
 
-        PNCClient processedClient = new PNCClientPreProcessor(client).preProcess();
+        PNCClient processedClient = new PNCClientPreProcessor().preProcess(client);
 
         List<PNCCircleDatum> expectedCircleData = Arrays.asList(
                 new PNCCircleDatum(1, PNCVisitType.EXPECTED, true),
@@ -254,7 +254,7 @@ public class PNCClientPreProcessorTest {
                 recentService1
         ));
 
-        PNCClient processedClient = new PNCClientPreProcessor(pncClient).preProcess();
+        PNCClient processedClient = new PNCClientPreProcessor().preProcess(pncClient);
 
         assertEquals(3, processedClient.recentlyProvidedServices().size());
         assertEquals(Arrays.asList(recentService1, recentService2, recentService3), processedClient.recentlyProvidedServices());
@@ -266,7 +266,7 @@ public class PNCClientPreProcessorTest {
                 recentService1
         ));
 
-        processedClient = new PNCClientPreProcessor(pncClient).preProcess();
+        processedClient = new PNCClientPreProcessor().preProcess(pncClient);
 
         assertEquals(2, processedClient.recentlyProvidedServices().size());
         assertEquals(Arrays.asList(recentService1, recentService3), processedClient.recentlyProvidedServices());
@@ -279,7 +279,7 @@ public class PNCClientPreProcessorTest {
                 new ServiceProvidedDTO("PNC", "2014-07-04", null)
         ));
 
-        processedClient = new PNCClientPreProcessor(pncClient).preProcess();
+        processedClient = new PNCClientPreProcessor().preProcess(pncClient);
 
         assertEquals(0, processedClient.recentlyProvidedServices().size());
 
@@ -292,9 +292,8 @@ public class PNCClientPreProcessorTest {
                 recentService1
         ));
 
-        processedClient = new PNCClientPreProcessor(pncClient).preProcess();
+        processedClient = new PNCClientPreProcessor().preProcess(pncClient);
 
         assertEquals(1, processedClient.recentlyProvidedServices().size());
-
     }
 }
