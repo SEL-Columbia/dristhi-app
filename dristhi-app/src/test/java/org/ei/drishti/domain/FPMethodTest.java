@@ -12,7 +12,7 @@ public class FPMethodTest {
     @Test
     public void shouldParseStringToFPMethod() throws Exception {
         assertEquals(FPMethod.CONDOM, FPMethod.tryParse("condom", FPMethod.NONE));
-        assertEquals(FPMethod.DMPA, FPMethod.tryParse("dmpa", FPMethod.NONE));
+        assertEquals(FPMethod.DMPA_INJECTABLE, FPMethod.tryParse("dmpa_injectable", FPMethod.NONE));
         assertEquals(FPMethod.ECP, FPMethod.tryParse("ecp", FPMethod.NONE));
         assertEquals(FPMethod.FEMALE_STERILIZATION, FPMethod.tryParse("female_sterilization", FPMethod.NONE));
         assertEquals(FPMethod.IUD, FPMethod.tryParse("iud", FPMethod.NONE));

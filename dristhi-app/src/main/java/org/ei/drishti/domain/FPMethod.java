@@ -41,7 +41,7 @@ public enum FPMethod {
             return Context.getInstance().applicationContext().getString(R.string.fp_register_service_mode_ocp);
         }
     },
-    DMPA {
+    DMPA_INJECTABLE {
         public TimelineEvent getTimelineEventForRenew(String caseId, Map<String, String> details) {
             return forFPDMPARenew(caseId, details);
         }

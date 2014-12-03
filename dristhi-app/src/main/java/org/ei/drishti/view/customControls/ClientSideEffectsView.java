@@ -71,7 +71,7 @@ public class ClientSideEffectsView extends LinearLayout {
             sideEffectsView.setText(client.iudSidEffect());
         } else if (fpMethod == FPMethod.FEMALE_STERILIZATION || fpMethod == FPMethod.MALE_STERILIZATION) {
             sideEffectsView.setText(client.sterilizationSideEffect());
-        } else if (fpMethod == FPMethod.DMPA) {
+        } else if (fpMethod == FPMethod.DMPA_INJECTABLE) {
             sideEffectsView.setText(client.injectableSideEffect());
         } else {
             sideEffectsView.setText(client.otherSideEffect());
