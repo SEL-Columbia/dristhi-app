@@ -49,6 +49,8 @@ public class ClientSideEffectsView extends LinearLayout {
             complicationsDateView.setVisibility(View.GONE);
         }
 
+        sideEffectsView.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+
         complicationsDateView.setText(client.complicationDate());
         if (client.refillFollowUps() != null &&
                 getInstance().getStringResource(R.string.str_referral).equalsIgnoreCase(client.refillFollowUps().type())) {

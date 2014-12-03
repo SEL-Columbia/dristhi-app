@@ -7,13 +7,13 @@ import org.ei.drishti.repository.AllEligibleCouples;
 import org.ei.drishti.service.AlertService;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.contract.AlertDTO;
+import org.ei.drishti.view.contract.FPClient;
+import org.ei.drishti.view.contract.FPClients;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
 

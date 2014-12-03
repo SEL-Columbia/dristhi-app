@@ -55,6 +55,8 @@ public class ClientGplsaChildView extends RelativeLayout {
             txtChildAge.setVisibility(GONE);
         } else {
             txtChildAge.setText(client.youngestChildAge());
+            txtChild.setVisibility(VISIBLE);
+            txtChildAge.setVisibility(VISIBLE);
         }
     }
 }

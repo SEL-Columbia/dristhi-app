@@ -33,8 +33,11 @@ public class FPPrioritizationMethodFilter implements FilterOption {
 
     private boolean applyStringLiteralFiler(FPSmartRegisterClient fpSmartRegisterClient) {
         FPPrioritizationServiceModes serviceMode = FPPrioritizationServiceModes.valueOfIdentifier(filter);
+        if (hasAnFPMethod(fpSmartRegisterClient)) {
+            return false;
+        }
         switch (serviceMode) {
-            case ALL_EC: return hasNoFPMethod(fpSmartRegisterClient);
+            case ALL_EC: return true;
             case HIGH_PRIORITY: return fpSmartRegisterClient.isHighPriority();
             case TWO_CHILDREN: return getIntFromString(fpSmartRegisterClient.numberOfLivingChildren()) == 2;
             case ONE_CHILDREN: return getIntFromString(fpSmartRegisterClient.numberOfLivingChildren()) == 1;
@@ -42,8 +45,10 @@ public class FPPrioritizationMethodFilter implements FilterOption {
         }
     }
 
-    private boolean hasNoFPMethod(FPSmartRegisterClient fpSmartRegisterClient) {
-        return fpSmartRegisterClient.fpMethod().displayName().equalsIgnoreCase(FPMethod.NONE.displayName());
+    private boolean hasAnFPMethod(FPSmartRegisterClient fpSmartRegisterClient) {
+        return !(FPMethod.NONE.displayName().equalsIgnoreCase(fpSmartRegisterClient.fpMethod().displayName())
+                || FPMethod.NONE_SS.displayName().equalsIgnoreCase(fpSmartRegisterClient.fpMethod().displayName())
+                || FPMethod.NONE_PS.displayName().equalsIgnoreCase(fpSmartRegisterClient.fpMethod().displayName()));
     }
 
     private int getIntFromString (String value) {

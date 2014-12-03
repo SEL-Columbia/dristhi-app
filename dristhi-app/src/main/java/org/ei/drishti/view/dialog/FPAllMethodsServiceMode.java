@@ -85,7 +85,17 @@ public class FPAllMethodsServiceMode extends ServiceModeOption {
 
     private void setupAlertView(FPSmartRegisterClient client, NativeFPSmartRegisterViewHolder viewHolder) {
         viewHolder.txtAlertTypeView().setTag(client);
+        refreshAlertView(viewHolder);
         bindAlertData(client, viewHolder);
+    }
+
+    private void refreshAlertView(NativeFPSmartRegisterViewHolder viewHolder) {
+        viewHolder.txtAlertTypeView().setText("");
+        viewHolder.txtAlertTypeView().setTextColor(0);
+        viewHolder.fpAlertLayout().setBackgroundResource(0);
+        viewHolder.txtAlertDateView().setTextColor(0);
+        viewHolder.txtAlertDateView().setText("");
+        viewHolder.fpAlertLayout().setOnClickListener(null);
     }
 
     //#TODO: REMOVE THE HARDCODED METADATA
@@ -101,7 +111,7 @@ public class FPAllMethodsServiceMode extends ServiceModeOption {
         viewHolder.fpAlertLayout().setBackgroundResource(alertStatus.backgroundColorResourceId());
         viewHolder.txtAlertDateView().setTextColor(alertStatus.fontColor());
         viewHolder.txtAlertDateView().setText(getInstance().getStringResource(R.string.str_due) + refillFollowUps.alert().shortDate());
-        viewHolder.txtAlertTypeView().setOnClickListener(launchForm(FPAlertType.from(refillFollowUps.type()).getFormName(),
+        viewHolder.fpAlertLayout().setOnClickListener(launchForm(FPAlertType.from(refillFollowUps.type()).getFormName(),
                 client.entityId(), "{\"entityId\": \"" + client.entityId() + "\", \"alertName\":\"" + client.refillFollowUps().name() + "\"}"));
     }
 

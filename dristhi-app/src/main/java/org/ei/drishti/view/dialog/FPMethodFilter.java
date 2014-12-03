@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.FPMethod;
+import org.ei.drishti.view.contract.BaseFPSmartRegisterClient;
 import org.ei.drishti.view.contract.FPSmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 
@@ -23,8 +24,11 @@ public class FPMethodFilter implements FilterOption {
 
     @Override
     public boolean filter(SmartRegisterClient client) {
-        boolean shouldFilter;
         FPSmartRegisterClient fpSmartRegisterClient = (FPSmartRegisterClient) client;
+        if (isWithFPMethodAsNone(fpSmartRegisterClient.fpMethod())) {
+            return false;
+        }
+        boolean shouldFilter;
         if (name().equalsIgnoreCase(ALL_METHODS_SERVICE_OPTION)) {
             shouldFilter = doesClientUseFpMethod(fpSmartRegisterClient);
         }
@@ -35,6 +39,10 @@ public class FPMethodFilter implements FilterOption {
             shouldFilter = name().equalsIgnoreCase(fpSmartRegisterClient.fpMethod().displayName());
         }
         return shouldFilter;
+    }
+
+    private boolean isWithFPMethodAsNone(FPMethod fpMethod) {
+        return fpMethod == FPMethod.NONE_PS || fpMethod == FPMethod.NONE_SS || fpMethod == FPMethod.NONE;
     }
 
     private boolean doesClientUseOtherFpMethod(FPSmartRegisterClient fpClient) {
