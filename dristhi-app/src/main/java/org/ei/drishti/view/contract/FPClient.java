@@ -17,6 +17,7 @@ import static org.ei.drishti.AllConstants.SPACE;
 import static org.ei.drishti.Context.getInstance;
 import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.util.StringUtil.humanize;
+import static org.ei.drishti.util.StringUtil.humanizeAndDoUPPERCASE;
 import static org.ei.drishti.util.StringUtil.replaceAndHumanize;
 
 public class FPClient implements FPSmartRegisterClient {
@@ -471,12 +472,12 @@ public class FPClient implements FPSmartRegisterClient {
 
     @Override
     public String iudPerson() {
-        return iudPerson;
+        return humanizeAndDoUPPERCASE(iudPerson);
     }
 
     @Override
     public String iudPlace() {
-        return humanize(iudPlace);
+        return humanizeAndDoUPPERCASE(iudPlace);
     }
 
     @Override
