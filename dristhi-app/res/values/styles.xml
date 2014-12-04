@@ -14,6 +14,10 @@
         <item name="android:textSize">17sp</item>
     </style>
 
+    <style name="CustomFontTextViewStyle.ListView.Normal.Bold" >
+        <item name="fontVariant">bold</item>
+    </style>
+
     <style name="CustomFontTextViewStyle.ListView.Normal.White">
         <item name="android:textColor">@android:color/white</item>
     </style>
