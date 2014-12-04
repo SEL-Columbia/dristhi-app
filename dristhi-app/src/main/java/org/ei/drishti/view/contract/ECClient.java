@@ -19,6 +19,7 @@ import static org.ei.drishti.AllConstants.*;
 import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
 import static org.ei.drishti.util.DateUtil.formatDate;
 import static org.ei.drishti.util.StringUtil.humanize;
+import static org.ei.drishti.util.StringUtil.humanizeAndDoUPPERCASE;
 
 public class ECClient implements ECSmartRegisterClient {
 
@@ -195,11 +196,11 @@ public class ECClient implements ECSmartRegisterClient {
     }
 
     public String iudPerson() {
-        return upperCase(iudPerson);
+        return humanizeAndDoUPPERCASE(iudPerson);
     }
 
     public String iudPlace() {
-        return upperCase(iudPlace);
+        return humanizeAndDoUPPERCASE(iudPlace);
     }
 
     public ECClient withDateOfBirth(String dateOfBirth) {
