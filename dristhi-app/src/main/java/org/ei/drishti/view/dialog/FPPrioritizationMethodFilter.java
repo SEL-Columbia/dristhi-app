@@ -39,7 +39,7 @@ public class FPPrioritizationMethodFilter implements FilterOption {
         switch (serviceMode) {
             case ALL_EC: return true;
             case HIGH_PRIORITY: return fpSmartRegisterClient.isHighPriority();
-            case TWO_CHILDREN: return getIntFromString(fpSmartRegisterClient.numberOfLivingChildren()) == 2;
+            case TWO_PLUS_CHILDREN: return getIntFromString(fpSmartRegisterClient.numberOfLivingChildren()) > 2;
             case ONE_CHILDREN: return getIntFromString(fpSmartRegisterClient.numberOfLivingChildren()) == 1;
             default: return false;
         }

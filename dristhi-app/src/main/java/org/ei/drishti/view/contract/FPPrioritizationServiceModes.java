@@ -10,7 +10,7 @@ import java.util.Map;
 public enum FPPrioritizationServiceModes {
     ALL_EC(Context.getInstance().getStringResource(R.string.fp_prioritization_all_ec_service_mode)),
     HIGH_PRIORITY(Context.getInstance().getStringResource(R.string.fp_prioritization_high_priority_service_mode)),
-    TWO_CHILDREN(Context.getInstance().getStringResource(R.string.fp_prioritization_two_plus_children_service_mode)),
+    TWO_PLUS_CHILDREN(Context.getInstance().getStringResource(R.string.fp_prioritization_two_plus_children_service_mode)),
     ONE_CHILDREN(Context.getInstance().getStringResource(R.string.fp_prioritization_one_child_service_mode));
 
 
