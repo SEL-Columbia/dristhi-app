@@ -213,17 +213,17 @@ public class ANCClient implements ANCSmartRegisterClient {
 
     @Override
     public String ifaDoneDate() {
-        return serviceProvidedToACategory(CATEGORY_IFA).ancServicedOnWithServiceName();
+        return serviceProvidedToACategory(CATEGORY_IFA).servicedOnWithServiceName();
     }
 
     @Override
     public String ttDoneDate() {
-        return serviceProvidedToACategory(CATEGORY_TT).ancServicedOnWithServiceName();
+        return serviceProvidedToACategory(CATEGORY_TT).servicedOnWithServiceName();
     }
 
     @Override
     public String visitDoneDateWithVisitName() {
-        return serviceProvidedToACategory(CATEGORY_ANC).ancServicedOnWithServiceName();
+        return serviceProvidedToACategory(CATEGORY_ANC).servicedOnWithServiceName();
     }
 
     @Override

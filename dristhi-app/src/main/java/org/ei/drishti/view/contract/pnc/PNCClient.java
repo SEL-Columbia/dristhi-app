@@ -1,6 +1,7 @@
 package org.ei.drishti.view.contract.pnc;
 
 import com.google.gson.annotations.SerializedName;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -19,6 +20,8 @@ import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
 import static org.ei.drishti.domain.ANCServiceType.PNC;
 import static org.ei.drishti.util.DateUtil.*;
 import static org.ei.drishti.util.StringUtil.*;
+import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
+import static org.ei.drishti.view.contract.ServiceProvidedDTO.emptyService;
 
 public class PNCClient implements PNCSmartRegisterClient {
     private static final String CATEGORY_PNC = "pnc";
@@ -396,10 +399,8 @@ public class PNCClient implements PNCSmartRegisterClient {
     }
 
     public PNCClient withPreProcess() {
-        if(!alerts.isEmpty() || !services_provided.isEmpty()){
-            initialize(SERVICE_CATEGORIES, serviceToVisitsMap);
-            initializeAllServiceToProvideAndProvided(categoriesToServiceTypeMap);
-        }
+        initialize(SERVICE_CATEGORIES, serviceToVisitsMap);
+        initializeAllServiceToProvideAndProvided(categoriesToServiceTypeMap);
         return this;
     }
 
@@ -458,6 +459,35 @@ public class PNCClient implements PNCSmartRegisterClient {
         return recentlyProvidedServices;
     }
 
+    @Override
+    public boolean isVisitsDone() {
+        return isServiceProvided(CATEGORY_PNC);
+    }
+
+    @Override
+    public String visitDoneDateWithVisitName() {
+        return serviceProvidedToACategory(CATEGORY_PNC).servicedOnWithServiceName();
+    }
+
+    @Override
+    public AlertDTO getAlert(ANCServiceType type) {
+        return serviceToProvide(type.category());
+    }
+
+    private AlertDTO serviceToProvide(String category) {
+        if (StringUtils.isBlank(category)) {
+            return emptyAlert;
+        }
+        return serviceToVisitsMap.get(category).toProvide;
+    }
+
+    public ServiceProvidedDTO serviceProvidedToACategory(String category) {
+        if (StringUtils.isBlank(category)) {
+            return emptyService;
+        }
+        return serviceToVisitsMap.get(category).provided;
+    }
+
     public Map<String, Visits> serviceToVisitsMap() {
         return serviceToVisitsMap;
     }
@@ -501,5 +531,13 @@ public class PNCClient implements PNCSmartRegisterClient {
                 serviceToVisitsMap.get(type.category()).provided = service;
             }
         }
+    }
+
+    private boolean isServiceProvided(String category) {
+        if (StringUtils.isBlank(category)) {
+            return false;
+        }
+        ServiceProvidedDTO serviceProvided = serviceToVisitsMap.get(category).provided;
+        return serviceProvided != null && !serviceProvided.equals(emptyService);
     }
 }

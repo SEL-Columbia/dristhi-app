@@ -286,6 +286,6 @@
     <string name="str_pnc_circle_color_red">red</string>
     <string name="str_child_illness_ari">ari</string>
     <string name="str_child_illness_sam">sam</string>
-
+    <string name="str_pnc_visit_button_label">PNC Visit</string>
 
 </resources>

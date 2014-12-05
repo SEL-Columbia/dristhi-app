@@ -1,10 +1,8 @@
 package org.ei.drishti.view.contract.pnc;
 
 
-import org.ei.drishti.view.contract.BaseFPSmartRegisterClient;
-import org.ei.drishti.view.contract.ChildClient;
-import org.ei.drishti.view.contract.ServiceProvidedDTO;
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.drishti.domain.ANCServiceType;
+import org.ei.drishti.view.contract.*;
 import org.joda.time.LocalDate;
 
 import java.util.Comparator;
@@ -35,5 +33,8 @@ public interface PNCSmartRegisterClient extends BaseFPSmartRegisterClient {
     public List<PNCVisitDaysDatum> visitDaysData();
     public PNCFirstSevenDaysVisits firstSevenDaysVisits();
     public List<ServiceProvidedDTO> recentlyProvidedServices();
+    boolean isVisitsDone();
+    String visitDoneDateWithVisitName();
+    AlertDTO getAlert(ANCServiceType serviceType);
 }
 

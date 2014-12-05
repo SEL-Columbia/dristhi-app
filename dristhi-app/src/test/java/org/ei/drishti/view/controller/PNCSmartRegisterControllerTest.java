@@ -140,7 +140,7 @@ public class PNCSmartRegisterControllerTest {
                 .withAlerts(Collections.<AlertDTO>emptyList())
                 .withChildren(asList(new ChildClient("child id 1", "male", "2.4", "thayi 1"), new ChildClient("child id 2", "female", "2.5", "thayi 1")))
                 .withServicesProvided(Collections.<ServiceProvidedDTO>emptyList());
-        when(preProcessor.preProcess(expectedPNCClient)).thenReturn(expectedPNCClient);
+        when(preProcessor.preProcess(any(PNCClient.class))).thenReturn(expectedPNCClient);
 
         PNCClients clients = controller.getClients();
 

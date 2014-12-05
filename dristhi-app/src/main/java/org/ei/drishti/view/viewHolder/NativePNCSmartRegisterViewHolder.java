@@ -25,6 +25,11 @@ public class NativePNCSmartRegisterViewHolder {
     private final TextView txtVisitComplicationsView;
     private final WebView wbvPncVisitsGraph;
     private final LinearLayout recentPNCVisitsLayout;
+    private final TextView btnPncVisitView;
+    private final View layoutPNCVisitAlert;
+    private final TextView txtPNCVisitDoneOn;
+    private final TextView txtPNCVisitDueType;
+    private final TextView txtPNCVisitAlertDueOn;
 
     public NativePNCSmartRegisterViewHolder(ViewGroup itemView) {
         this.profileInfoLayout = (ClientProfileView) itemView.findViewById(R.id.profile_info_layout);
@@ -65,6 +70,13 @@ public class NativePNCSmartRegisterViewHolder {
         wbvPncVisitsGraph.loadUrl("file:///android_asset/www/pnc_graph/pnc_visit_graph.html");
 
         recentPNCVisitsLayout = (LinearLayout) pncVisitsServiceModeView.findViewById(R.id.lyt_pnc_recent_visits_holder);
+
+        btnPncVisitView = (TextView) pncVisitsServiceModeView.findViewById(R.id.btn_pnc_visit);
+        layoutPNCVisitAlert = pncVisitsServiceModeView.findViewById(R.id.layout_pnc_visit_alert);
+        txtPNCVisitDoneOn = (TextView) pncVisitsServiceModeView.findViewById(R.id.txt_pnc_visit_on);
+        txtPNCVisitDueType = (TextView) pncVisitsServiceModeView.findViewById(R.id.txt_pnc_visit_due_type);
+        txtPNCVisitAlertDueOn = (TextView) pncVisitsServiceModeView.findViewById(R.id.txt_anc_visit_due_on);
+
     }
 
     public void hideAllServiceModeOptions() {
@@ -130,5 +142,25 @@ public class NativePNCSmartRegisterViewHolder {
 
     public LinearLayout recentPNCVisits() {
         return recentPNCVisitsLayout;
+    }
+
+    public TextView btnPncVisitView() {
+        return btnPncVisitView;
+    }
+
+    public View layoutPNCVisitAlert() {
+        return layoutPNCVisitAlert;
+    }
+
+    public TextView txtPNCVisitDoneOn() {
+        return txtPNCVisitDoneOn;
+    }
+
+    public TextView txtPNCVisitDueType() {
+        return txtPNCVisitDueType;
+    }
+
+    public TextView txtPNCVisitAlertDueOn() {
+        return txtPNCVisitAlertDueOn;
     }
 }

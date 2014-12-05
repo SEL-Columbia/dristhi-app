@@ -7,12 +7,10 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
+import org.ei.drishti.domain.ANCServiceType;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.view.contract.ANCSmartRegisterClient;
-import org.ei.drishti.view.contract.ChildSmartRegisterClient;
-import org.ei.drishti.view.contract.FPSmartRegisterClient;
-import org.ei.drishti.view.contract.ServiceProvidedDTO;
+import org.ei.drishti.view.contract.*;
 import org.ei.drishti.view.contract.pnc.PNCFirstSevenDaysVisits;
 import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
 import org.ei.drishti.view.viewHolder.NativeANCSmartRegisterViewHolder;
@@ -21,11 +19,12 @@ import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.drishti.view.viewHolder.NativePNCSmartRegisterViewHolder;
 
 import static android.view.View.VISIBLE;
+import static org.ei.drishti.AllConstants.FormNames.PNC_VISIT;
 import static org.ei.drishti.Context.getInstance;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 
 public class PNCVisitsServiceMode extends ServiceModeOption {
-
+    public static final AlertDTO emptyAlert = new AlertDTO("", "", "");
     private final LayoutInflater inflater;
 
     public PNCVisitsServiceMode(SmartRegisterClientsProvider provider) {
@@ -70,14 +69,52 @@ public class PNCVisitsServiceMode extends ServiceModeOption {
                               NativePNCSmartRegisterViewHolder viewHolder,
                               View.OnClickListener clientSectionClickListener) {
         viewHolder.pncVisitsServiceModeView().setVisibility(VISIBLE);
-
         setupDaysPPView(client, viewHolder);
         setupComplicationsView(client, viewHolder);
         setUpPNCVisitsGraph(client, viewHolder);
-        setUpPNCVisits(client, viewHolder);
+        setUpPNCRecentVisits(client, viewHolder);
+        setUpPNCVisitLayout(client, viewHolder);
     }
 
-    private void setUpPNCVisits(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
+    private void setUpPNCVisitLayout(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
+        if (client.isVisitsDone()) {
+            viewHolder.txtPNCVisitDoneOn().setVisibility(VISIBLE);
+            viewHolder.txtPNCVisitDoneOn().setText(client.visitDoneDateWithVisitName());
+        } else {
+            viewHolder.txtPNCVisitDoneOn().setVisibility(View.INVISIBLE);
+        }
+
+        AlertDTO pncVisitAlert = client.getAlert(ANCServiceType.PNC);
+        if (!pncVisitAlert.equals(emptyAlert)) {
+            viewHolder.btnPncVisitView().setVisibility(View.VISIBLE);
+            viewHolder.layoutPNCVisitAlert().setVisibility(VISIBLE);
+            viewHolder.layoutPNCVisitAlert().setOnClickListener(launchForm(client, pncVisitAlert, PNC_VISIT));
+            setAlertLayout(viewHolder.layoutPNCVisitAlert(),
+                    viewHolder.txtPNCVisitDueType(),
+                    viewHolder.txtPNCVisitAlertDueOn(),
+                    pncVisitAlert);
+        } else {
+            viewHolder.btnPncVisitView().setVisibility(View.VISIBLE);
+            viewHolder.layoutPNCVisitAlert().setVisibility(VISIBLE);
+            viewHolder.layoutPNCVisitAlert().setOnClickListener(launchForm(client, pncVisitAlert, PNC_VISIT));
+        }
+    }
+
+    private void setAlertLayout(View layout, TextView typeView,
+                                TextView dateView, AlertDTO alert) {
+        typeView.setText(alert.ancServiceType().shortName());
+        dateView.setText("due " + alert.shortDate());
+        final AlertStatus alertStatus = alert.alertStatus();
+        layout.setBackgroundResource(alertStatus.backgroundColorResourceId());
+        typeView.setTextColor(alertStatus.fontColor());
+        dateView.setTextColor(alertStatus.fontColor());
+    }
+
+    private View.OnClickListener launchForm(PNCSmartRegisterClient client, AlertDTO alert, String formName) {
+        return provider().newFormLauncher(formName, client.entityId(), "{\"entityId\":\"" + client.entityId() + "\"}");
+    }
+
+    private void setUpPNCRecentVisits(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
         viewHolder.recentPNCVisits().removeAllViews();
         for (ServiceProvidedDTO serviceProvided : client.recentlyProvidedServices()) {
             ViewGroup recentVisitsGroup = (ViewGroup) inflater.inflate(R.layout.smart_register_pnc_recent_visits_layout, null);
