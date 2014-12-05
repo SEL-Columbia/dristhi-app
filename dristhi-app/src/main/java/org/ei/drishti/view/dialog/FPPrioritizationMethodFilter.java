@@ -46,9 +46,7 @@ public class FPPrioritizationMethodFilter implements FilterOption {
     }
 
     private boolean hasAnFPMethod(FPSmartRegisterClient fpSmartRegisterClient) {
-        return !(FPMethod.NONE.displayName().equalsIgnoreCase(fpSmartRegisterClient.fpMethod().displayName())
-                || FPMethod.NONE_SS.displayName().equalsIgnoreCase(fpSmartRegisterClient.fpMethod().displayName())
-                || FPMethod.NONE_PS.displayName().equalsIgnoreCase(fpSmartRegisterClient.fpMethod().displayName()));
+        return !(FPMethod.NONE.displayName().equalsIgnoreCase(fpSmartRegisterClient.fpMethod().displayName()));
     }
 
     private int getIntFromString (String value) {
