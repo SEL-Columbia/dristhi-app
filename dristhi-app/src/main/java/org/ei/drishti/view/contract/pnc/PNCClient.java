@@ -200,7 +200,7 @@ public class PNCClient implements PNCSmartRegisterClient {
 
     @Override
     public String deliveryComplications() {
-        return replaceAndHumanize(deliveryComplications, SPACE, COMMA_WITH_SPACE);
+        return replaceAndHumanizeWithInitCapText(deliveryComplications, SPACE, COMMA_WITH_SPACE);
     }
 
     @Override
