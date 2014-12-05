@@ -250,6 +250,7 @@
     <string name="anc_service_mode_anc_visits">ANC Visits</string>
     <string name="anc_service_mode_tt">TT</string>
     <string name="anc_service_mode_hb_ifa">Hb/IFA</string>
+    <string name="anc_service_mode_delivery_plan">Delivery Plan</string>
     <string name="anc_service_mode_hb_unit">" g/dl</string>
     <string name="anc_service_mode_ifa_tablets">" Tablets</string>
     <string name="header_id">ID</string>
@@ -267,6 +268,13 @@
     <string name="header_tt_booster">TT Booster</string>
     <string name="header_ifa">IFA</string>
     <string name="header_hb">HB</string>
+    <string name="header_delivery_plan">DELIVERY PLAN</string>
+    <string name="str_delivery_at">Delivery At</string>
+    <string name="str_transport">Transport:</string>
+    <string name="str_has_companion">Has companion:</string>
+    <string name="str_asha">Asha:</string>
+    <string name="str_contact">Contact:</string>
+    <string name="str_risks_reviewed">Risks reviewed:</string>
     <string name="sort_by_edd_label">EDD</string>
 
     <string name="str_pnc_delivery_date">Date:</string>

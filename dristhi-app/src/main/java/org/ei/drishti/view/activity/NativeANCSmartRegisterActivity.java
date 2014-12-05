@@ -87,7 +87,8 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
                         new ANCOverviewServiceMode(clientsProvider()),
                         new ANCVisitsServiceMode(clientsProvider()),
                         new HbIFAServiceMode(clientsProvider()),
-                        new TTServiceMode(clientsProvider())
+                        new TTServiceMode(clientsProvider()),
+                        new DeliveryPlanServiceMode(clientsProvider())
                 };
             }
 

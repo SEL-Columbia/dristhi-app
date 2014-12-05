@@ -48,6 +48,7 @@
 
     <style name="CustomFontTextViewStyle.ListView.VerySmall" parent="CustomFontTextViewStyle">
         <item name="fontVariant">medium</item>
+        <item name="android:singleLine">true</item>
         <item name="android:textSize">14sp</item>
     </style>
 

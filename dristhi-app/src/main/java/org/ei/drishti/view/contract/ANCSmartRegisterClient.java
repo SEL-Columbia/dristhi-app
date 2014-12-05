@@ -18,8 +18,6 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
         }
     };
 
-    boolean isMilestoneServiceProvided(ServiceProvidedDTO ancServiceProvided, String milestoneServiceName);
-
     public String edd();
 
     public String pastDueInDays();
@@ -56,4 +54,5 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
 
     public List<ServiceProvidedDTO> allServicesProvidedForAServiceType(String serviceType);
 
+    public String ashaPhoneNumber();
 }

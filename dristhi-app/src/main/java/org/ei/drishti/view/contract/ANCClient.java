@@ -256,6 +256,11 @@ public class ANCClient implements ANCSmartRegisterClient {
         return servicesProvided;
     }
 
+    @Override
+    public String ashaPhoneNumber() {
+        return ashaPhoneNumber;
+    }
+
 
     public Map<String, Visits> serviceToVisitsMap() {
         return serviceToVisitsMap;
@@ -399,11 +404,6 @@ public class ANCClient implements ANCSmartRegisterClient {
             return emptyAlert;
         }
         return serviceToVisitsMap.get(category).toProvide;
-    }
-
-    @Override
-    public boolean isMilestoneServiceProvided(ServiceProvidedDTO ancServiceProvided, String milestoneServiceName) {
-        return ancServiceProvided.ancServiceType().name().equalsIgnoreCase(milestoneServiceName);
     }
 
     @Override

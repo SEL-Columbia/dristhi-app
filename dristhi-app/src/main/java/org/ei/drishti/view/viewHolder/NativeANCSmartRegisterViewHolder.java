@@ -3,6 +3,7 @@ package org.ei.drishti.view.viewHolder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.ei.drishti.R;
@@ -96,6 +97,29 @@ public class NativeANCSmartRegisterViewHolder {
     private final TextView txtIFADoneTick;
     private final TextView txtIFAType;
     private final TextView txtIFADate;
+    private final ViewGroup serviceModeDeliveryPlanViewsHolder;
+    private final View layoutDeliveryPlanAlert;
+    private final TextView txtDeliveryPlanDueType;
+    private final TextView txtDeliveryPlanDueOn;
+    private final View layoutDeliveryPlanServiceProvided;
+    private final TextView lblDeliveryPlace;
+    private final TextView txtDeliveryPlace;
+    private final TextView txtTransport;
+    private final TextView lblTransport;
+    private final TextView lblHasCompanion;
+    private final TextView txtHasCompanion;
+    private final TextView lblAshaPhoneNumber;
+    private final TextView txtAshaPhoneNumber;
+    private final TextView lblContactPhoneNumber;
+    private final TextView txtContactPhoneNumber;
+    private final TextView txtRisksReviewed;
+    private final TextView lblRisksReviewed;
+    private final ImageView imgDeliveryPlaceStatus;
+    private final ImageView imgTransportStatus;
+    private final ImageView imgHasCompanionStatus;
+    private final ImageView imgAshaPhoneNumberStatus;
+    private final ImageView imgContactPhoneNumberStatus;
+    private final ImageView imgRisksReviewedStatus;
 
     public NativeANCSmartRegisterViewHolder(ViewGroup itemView) {
         profileInfoLayout = (ClientProfileView) itemView.findViewById(R.id.profile_info_layout);
@@ -112,6 +136,7 @@ public class NativeANCSmartRegisterViewHolder {
         serviceModeANCVisitsView = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.anc_visit_service_mode_views);
         serviceModeTTView = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.tt_service_mode_views);
         serviceModeHbIFAViewsHolder = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.hb_ifa_service_mode_views);
+        serviceModeDeliveryPlanViewsHolder = (ViewGroup) serviceModeViewsHolder.findViewById(R.id.delivery_plan_service_mode_views);
 
         txtRiskFactors = (TextView) serviceModeOverviewView.findViewById(R.id.txt_risk_factors);
 
@@ -205,6 +230,29 @@ public class NativeANCSmartRegisterViewHolder {
         txtIFADoneTick = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_ifa_done);
         txtIFAType = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_ifa_type);
         txtIFADate = (TextView) serviceModeHbIFAViewsHolder.findViewById(R.id.txt_ifa_date);
+
+        layoutDeliveryPlanAlert = serviceModeDeliveryPlanViewsHolder.findViewById(R.id.layout_delivery_plan_alert);
+        layoutDeliveryPlanServiceProvided = serviceModeDeliveryPlanViewsHolder.findViewById(R.id.layout_delivery_plan_service_provided);
+        txtDeliveryPlanDueType = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_delivery_plan_due_type);
+        txtDeliveryPlanDueOn = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_delivery_plan_due_on);
+        imgDeliveryPlaceStatus = (ImageView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.img_delivery_place_status);
+        lblDeliveryPlace = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.lbl_delivery_place);
+        txtDeliveryPlace = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_delivery_place);
+        imgTransportStatus = (ImageView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.img_transport_status);
+        lblTransport = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.lbl_transport);
+        txtTransport = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_transport);
+        imgHasCompanionStatus = (ImageView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.img_has_companion_status);
+        lblHasCompanion = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.lbl_has_companion);
+        txtHasCompanion = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_has_companion);
+        imgAshaPhoneNumberStatus = (ImageView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.img_asha_phone_number_status);
+        lblAshaPhoneNumber = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.lbl_asha_phone_number);
+        txtAshaPhoneNumber = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_asha_phone_number);
+        imgContactPhoneNumberStatus = (ImageView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.img_contact_phone_number_status);
+        lblContactPhoneNumber = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.lbl_contact_phone_number);
+        txtContactPhoneNumber = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_contact_phone_number);
+        imgRisksReviewedStatus = (ImageView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.img_risk_reviewed_status);
+        lblRisksReviewed = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.lbl_risks_reviewed);
+        txtRisksReviewed = (TextView) serviceModeDeliveryPlanViewsHolder.findViewById(R.id.txt_risks_reviewed);
     }
 
     public ClientProfileView profileInfoLayout() {
@@ -332,6 +380,7 @@ public class NativeANCSmartRegisterViewHolder {
         serviceModeANCVisitsView().setVisibility(View.GONE);
         serviceModeTTView().setVisibility(View.GONE);
         serviceModeHbIFAViewsHolder().setVisibility(View.GONE);
+        serviceModeDeliveryPlanViewsHolder().setVisibility(View.GONE);
     }
 
     public View layoutANCVisit2Alert() {
@@ -450,7 +499,7 @@ public class NativeANCSmartRegisterViewHolder {
         layoutANCVisit2Alert().setVisibility(View.GONE);
         layoutANCVisit2ServiceProvided().setVisibility(View.GONE);
         txtANCVisit2DueType().setVisibility(View.GONE);
-        txtANCVisit2DueOn().setVisibility(View.GONE );
+        txtANCVisit2DueOn().setVisibility(View.GONE);
         txtANCVisit2DoneDate().setVisibility(View.GONE);
         lblANCVisit2Bp().setVisibility(View.GONE);
         lblANCVisit2Weight().setVisibility(View.GONE);
@@ -623,4 +672,120 @@ public class NativeANCSmartRegisterViewHolder {
         txtIFADate().setVisibility(View.GONE);
     }
 
+    public ViewGroup serviceModeDeliveryPlanViewsHolder() {
+        return serviceModeDeliveryPlanViewsHolder;
+    }
+
+    public View layoutDeliveryPlanAlert() {
+        return layoutDeliveryPlanAlert;
+    }
+
+    public TextView txtDeliveryPlanDueType() {
+        return txtDeliveryPlanDueType;
+    }
+
+    public TextView txtDeliveryPlanDueOn() {
+        return txtDeliveryPlanDueOn;
+    }
+
+    public View layoutDeliveryPlanServiceProvided() {
+        return layoutDeliveryPlanServiceProvided;
+    }
+
+    public TextView lblDeliveryPlace() {
+        return lblDeliveryPlace;
+    }
+
+    public TextView txtDeliveryPlace() {
+        return txtDeliveryPlace;
+    }
+
+    public void hideViewsInDeliveryPlanViews() {
+        layoutDeliveryPlanAlert().setVisibility(View.GONE);
+        txtDeliveryPlanDueType().setVisibility(View.GONE);
+        txtDeliveryPlanDueOn().setVisibility(View.GONE);
+        layoutDeliveryPlanServiceProvided().setVisibility(View.GONE);
+        lblDeliveryPlace().setVisibility(View.GONE);
+        txtDeliveryPlace().setVisibility(View.GONE);
+        txtTransport().setVisibility(View.GONE);
+        lblTransport().setVisibility(View.GONE);
+        lblHasCompanion().setVisibility(View.GONE);
+        txtHasCompanion().setVisibility(View.GONE);
+        lblAshaPhoneNumber().setVisibility(View.GONE);
+        txtAshaPhoneNumber().setVisibility(View.GONE);
+        lblContactPhoneNumber().setVisibility(View.GONE);
+        txtContactPhoneNumber().setVisibility(View.GONE);
+        txtRisksReviewed().setVisibility(View.GONE);
+        lblRisksReviewed().setVisibility(View.GONE);
+        imgDeliveryPlaceStatus().setVisibility(View.GONE);
+        imgAshaPhoneNumberStatus().setVisibility(View.GONE);
+        imgContactPhoneNumberStatus().setVisibility(View.GONE);
+        imgHasCompanionStatus().setVisibility(View.GONE);
+        imgRisksReviewedStatus().setVisibility(View.GONE);
+        imgTransportStatus().setVisibility(View.GONE);
+    }
+
+    public TextView txtTransport() {
+        return txtTransport;
+    }
+
+    public TextView lblTransport() {
+        return lblTransport;
+    }
+
+    public TextView lblHasCompanion() {
+        return lblHasCompanion;
+    }
+
+    public TextView txtHasCompanion() {
+        return txtHasCompanion;
+    }
+
+    public TextView lblAshaPhoneNumber() {
+        return lblAshaPhoneNumber;
+    }
+
+    public TextView txtAshaPhoneNumber() {
+        return txtAshaPhoneNumber;
+    }
+
+    public TextView lblContactPhoneNumber() {
+        return lblContactPhoneNumber;
+    }
+
+    public TextView txtContactPhoneNumber() {
+        return txtContactPhoneNumber;
+    }
+
+    public TextView txtRisksReviewed() {
+        return txtRisksReviewed;
+    }
+
+    public TextView lblRisksReviewed() {
+        return lblRisksReviewed;
+    }
+
+    public ImageView imgDeliveryPlaceStatus() {
+        return imgDeliveryPlaceStatus;
+    }
+
+    public ImageView imgTransportStatus() {
+        return imgTransportStatus;
+    }
+
+    public ImageView imgHasCompanionStatus() {
+        return imgHasCompanionStatus;
+    }
+
+    public ImageView imgAshaPhoneNumberStatus() {
+        return imgAshaPhoneNumberStatus;
+    }
+
+    public ImageView imgContactPhoneNumberStatus() {
+        return imgContactPhoneNumberStatus;
+    }
+
+    public ImageView imgRisksReviewedStatus() {
+        return imgRisksReviewedStatus;
+    }
 }

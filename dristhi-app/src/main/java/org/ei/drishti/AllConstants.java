@@ -308,5 +308,8 @@ public class AllConstants {
         public static final String ASHA_PHONE_NUMBER = "ashaPhoneNumber";
         public static final String PHONE_NUMBER = "phoneNumber";
         public static final String REVIEWED_HRP_STATUS = "reviewedHRPStatus";
+        public static final String DELIVERY_FACILITY_HOME_VALUE = "home";
+        public static final String DELIVERY_FACILITY_SDH_VALUE = "sdh";
+        public static final String DELIVERY_FACILITY_DH_VALUE = "dh";
     }
 }
