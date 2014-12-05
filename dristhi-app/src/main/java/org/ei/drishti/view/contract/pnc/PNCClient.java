@@ -231,12 +231,12 @@ public class PNCClient implements PNCSmartRegisterClient {
 
     @Override
     public String iudPerson() {
-        return iudPerson;
+        return humanizeAndDoUPPERCASE(iudPerson);
     }
 
     @Override
     public String iudPlace() {
-        return iudPlace;
+        return humanizeAndDoUPPERCASE(iudPlace);
     }
 
     @Override
