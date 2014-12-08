@@ -44,7 +44,7 @@
             <num_pregnancies/>
             <num_abortions/>
             <num_livebirths/>
-            <num_stillbirths/>
+            <num_stillbirths>0</num_stillbirths>
             <parity/>
             <num_livingchildren/>
             <youngestchild_under2/>
