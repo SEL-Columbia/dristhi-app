@@ -129,6 +129,7 @@ public class HbIFAServiceMode extends ServiceModeOption {
                 && ifaAlert.ancServiceType().name().equalsIgnoreCase(IFA.serviceName())
                 && !ifaAlert.status().equalsIgnoreCase("complete")) {
             viewHolder.layoutIFAAlertInHbIFAServiceMode().setVisibility(VISIBLE);
+            viewHolder.layoutIFAAlertInHbIFAServiceMode().setOnClickListener(launchForm(AllConstants.FormNames.IFA, client, ifaAlert));
             viewHolder.txtIFAType().setVisibility(VISIBLE);
             viewHolder.txtIFADate().setVisibility(VISIBLE);
             setAlertLayout(viewHolder.layoutIFAAlertInHbIFAServiceMode(),
@@ -166,7 +167,7 @@ public class HbIFAServiceMode extends ServiceModeOption {
         } else {
             viewHolder.layoutHbAlert().setVisibility(View.INVISIBLE);
             viewHolder.btnHbView().setVisibility(View.VISIBLE);
-            viewHolder.btnAncVisitView().setOnClickListener(provider().newFormLauncher(AllConstants.FormNames.HB_TEST, client.entityId(), null));
+            viewHolder.btnHbView().setOnClickListener(provider().newFormLauncher(AllConstants.FormNames.HB_TEST, client.entityId(), null));
         }
     }
 
