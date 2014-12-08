@@ -14,6 +14,10 @@
             <case_is_high_risk_till_delivery_reason/>
             <case_is_high_risk_till_pnc_close/>
             <case_is_high_risk_till_pnc_close_reason/>
+            <case_pih/>
+            <case_jaundice/>
+            <case_multiple_preg/>
+            <case_malpresentation/>
             <anaemic_status/>
             <is_high_risk1/>
             <high_risk_reason/>
