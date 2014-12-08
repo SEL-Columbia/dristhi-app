@@ -38,6 +38,7 @@
             <pih/>
             <multiple_preg/>
             <malpresentation/>
+            <case_anaemic_status/>
             <case_is_high_risk_till_delivery/>
             <case_is_high_risk_till_delivery_reason/>
             <case_is_high_risk_till_pnc_close/>
