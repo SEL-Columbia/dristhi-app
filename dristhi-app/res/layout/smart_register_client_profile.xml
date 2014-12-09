@@ -73,9 +73,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:paddingRight="@dimen/wife_name_padding_right_due_to_age_display"
             android:layout_toRightOf="@id/img_profile_layout"
             android:layout_toLeftOf="@+id/txt_age"
+            android:singleLine="true"
             style="@style/CustomFontTextViewStyle.ListView.Bold"/>
 
     <org.ei.drishti.view.customControls.CustomFontTextView
@@ -103,6 +103,7 @@
             android:layout_alignParentTop="true"
             android:paddingTop="@dimen/client_age_padding"
             android:paddingRight="5dp"
+            android:paddingLeft="5dp"
             style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 
     <org.ei.drishti.view.customControls.CustomFontTextView
@@ -115,4 +116,3 @@
             style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 
 </org.ei.drishti.view.customControls.ClientProfileView>
-
