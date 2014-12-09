@@ -35,7 +35,7 @@
         child.populateInto("#mainpanel");
         child.bindEveryItemToForm(".modal-row");
         child.bindToCamera("#childPhoto");
-        child.bindToDefaultPhoto("#childPhoto", "../img/icons/child-girlinfant@3x.png");
+        child.bindPhoto("#childPhoto");
 
         pageView.onReloadPhoto(function (caseId, photoPath) {
             child.reloadPhoto("#childPhoto", caseId, photoPath);

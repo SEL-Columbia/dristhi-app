@@ -24,6 +24,18 @@ function Child(childBridge, formBridge) {
             });
         },
 
+        bindPhoto: function (cssIdentifierOfElement) {
+            var photo_path;
+            var gender = childBridge.getCurrentChild().childDetails.gender;
+            if (gender === "male") {
+                photo_path = "../img/icons/child-infant@3x.png";
+            }
+            else {
+                photo_path = "../img/icons/child-girlinfant@3x.png";
+            }
+            $(cssIdentifierOfElement).attr('src', photo_path);
+        },
+
         reloadPhoto: function (cssIdentifierOfElement, caseId, photoPath) {
             $(cssIdentifierOfElement).attr('src', photoPath);
         }
