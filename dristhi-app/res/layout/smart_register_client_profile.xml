@@ -93,6 +93,8 @@
             android:layout_below="@id/txt_husband_name"
             android:layout_toRightOf="@id/img_profile_layout"
             android:layout_toLeftOf="@+id/txt_out_of_area"
+            android:layout_marginTop="@dimen/client_profile_village_margin"
+            android:layout_marginBottom="@dimen/client_profile_village_margin"
             style="@style/CustomFontTextViewStyle.ListView.Normal"/>
 
     <org.ei.drishti.view.customControls.CustomFontTextView
