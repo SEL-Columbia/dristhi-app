@@ -276,6 +276,8 @@ public enum ChildServiceType {
                 return ChildServiceType.valueOf("ILLNESS_VISIT");
             } else if (type.equalsIgnoreCase("Vitamin A")) {
                 return ChildServiceType.valueOf("VITAMIN_A");
+            }  else if (type.equalsIgnoreCase("opvbooster")) {
+                return ChildServiceType.valueOf("OPV_BOOSTER");
             } else {
                 return StringUtils.isBlank(type) ? defaultType : ChildServiceType.valueOf(type.toUpperCase(Locale.getDefault()));
             }
