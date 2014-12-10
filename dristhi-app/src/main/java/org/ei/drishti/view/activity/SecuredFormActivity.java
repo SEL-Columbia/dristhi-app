@@ -25,6 +25,11 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
     private String entityId;
     private String fieldOverrides;
 
+    public SecuredFormActivity() {
+        super();
+        shouldDismissProgressBarOnProgressComplete = false;
+    }
+
     @Override
     protected void onInitialization() {
         try {

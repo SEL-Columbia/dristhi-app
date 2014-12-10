@@ -1,5 +1,6 @@
 package org.ei.drishti.view.activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,7 @@ import static org.ei.drishti.util.Log.logError;
 public abstract class SecuredWebActivity extends SecuredActivity {
     protected WebView webView;
     protected UpdateController updateController;
+    protected boolean shouldDismissProgressBarOnProgressComplete = true;
     private ProgressDialog progressDialog;
 
     @Override
@@ -30,7 +32,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         setActivityLayout();
 
         progressDialogInitialization();
-        webViewInitialization();
+        webViewInitialization(this);
 
         updateController = new UpdateController(webView);
 
@@ -91,10 +93,13 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         progressDialog.show();
     }
 
-    private void webViewInitialization() {
+    private void webViewInitialization(final Activity activity) {
         webView = (WebView) findViewById(R.id.webview);
 
         webView.setWebChromeClient(new WebChromeClient() {
+            public void onProgressChanged(WebView view, int progress) {
+                dismissProgressBarOnProgressComplete(progress, activity);
+            }
             @Override
             public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
                 String message = format("Javascript Log. Message: {0}, lineNumber: {1}, sourceId, {2}", consoleMessage.message(),
@@ -118,6 +123,15 @@ public abstract class SecuredWebActivity extends SecuredActivity {
         webView.addJavascriptInterface(formController, "formContext");
         webView.addJavascriptInterface(navigationController, "navigationContext");
         webView.addJavascriptInterface(new InternationalizationContext(getResources()), "internationalizationContext");
+    }
+
+    private void dismissProgressBarOnProgressComplete(int progress, Activity activity) {
+        if(shouldDismissProgressBarOnProgressComplete){
+            activity.setProgress(progress * 1000);
+
+            if (progress == 100 && progressDialog.isShowing())
+                progressDialog.dismiss();
+        }
     }
 
     protected void reportException(String message) {
