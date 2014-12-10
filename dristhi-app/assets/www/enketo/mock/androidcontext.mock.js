@@ -22,6 +22,12 @@ define( [ 'mockForms' ], function( mockForms ) {
             if(window.androidContext){
                 window.androidContext.goBack();
             }
+        },
+
+        onLoadFinished: function() {
+            if(window.androidContext){
+                window.androidContext.onLoadFinished();
+            }
         }
     };
 } );
