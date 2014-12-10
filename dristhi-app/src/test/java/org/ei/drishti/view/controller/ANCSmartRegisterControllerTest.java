@@ -90,9 +90,9 @@ public class ANCSmartRegisterControllerTest {
         Mother m2 = new Mother("Entity Y", "EC Case 3", "thayi 2", "2013-05-25").withDetails(details);
         Mother m3 = new Mother("Entity Z", "EC Case 1", "thayi 3", "2013-05-25").withDetails(details);
         Map<String, Visits> serviceToVisitsMap = EasyMap.create("tt", new Visits()).put("pnc", new Visits()).put("ifa", new Visits()).put("delivery_plan", new Visits()).put("anc", new Visits()).put("hb", new Visits()).map();
-        ANCClient expectedClient1 = createANCClient("Entity Z", "Woman A", "Bherya", "thayi 3", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 1").withHusbandName("Husband A").withEntityIdToSavePhoto("EC Case 1").withServiceToVisitMap(serviceToVisitsMap);
-        ANCClient expectedClient2 = createANCClient("Entity X", "Woman B", "kavalu_hosur", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 2").withHusbandName("Husband B").withEntityIdToSavePhoto("EC Case 2").withServiceToVisitMap(serviceToVisitsMap);
-        ANCClient expectedClient3 = createANCClient("Entity Y", "Woman C", "Bherya", "thayi 2", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 3").withHusbandName("Husband C").withEntityIdToSavePhoto("EC Case 3").withServiceToVisitMap(serviceToVisitsMap);
+        ANCClient expectedClient1 = createANCClient("Entity Z", "Woman A", "Bherya", "thayi 3", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 1").withHusbandName("Husband A").withEntityIdToSavePhoto("EC Case 1").withServiceToVisitMap(serviceToVisitsMap).withHighRiskReason("");
+        ANCClient expectedClient2 = createANCClient("Entity X", "Woman B", "kavalu_hosur", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 2").withHusbandName("Husband B").withEntityIdToSavePhoto("EC Case 2").withServiceToVisitMap(serviceToVisitsMap).withHighRiskReason("");
+        ANCClient expectedClient3 = createANCClient("Entity Y", "Woman C", "Bherya", "thayi 2", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 3").withHusbandName("Husband C").withEntityIdToSavePhoto("EC Case 3").withServiceToVisitMap(serviceToVisitsMap).withHighRiskReason("");
         when(allBeneficiaries.allANCsWithEC()).thenReturn(asList(Pair.of(m1, ec2), Pair.of(m2, ec3), Pair.of(m3, ec1)));
 
         ANCClients actualClients = controller.getClients();
@@ -111,9 +111,9 @@ public class ANCSmartRegisterControllerTest {
         Mother m3 = new Mother("Entity Z", "EC Case 1", "thayi 3", "2013-05-25").withDetails(details);
 
         Map<String, Visits> serviceToVisitsMap = EasyMap.create("tt", new Visits()).put("pnc", new Visits()).put("ifa", new Visits()).put("delivery_plan", new Visits()).put("anc", new Visits()).put("hb", new Visits()).map();
-        ANCClient expectedClient1 = createANCClient("Entity Z", "Woman A", "Bherya", "thayi 3", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 1").withHusbandName("Husband A").withEntityIdToSavePhoto("EC Case 1").withServiceToVisitMap(serviceToVisitsMap);
-        ANCClient expectedClient2 = createANCClient("Entity X", "Woman B", "kavalu_hosur", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 2").withHusbandName("Husband B").withEntityIdToSavePhoto("EC Case 2").withServiceToVisitMap(serviceToVisitsMap);
-        ANCClient expectedClient3 = createANCClient("Entity Y", "Woman C", "Bherya", "thayi 2", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 3").withHusbandName("Husband C").withEntityIdToSavePhoto("EC Case 3").withServiceToVisitMap(serviceToVisitsMap);
+        ANCClient expectedClient1 = createANCClient("Entity Z", "Woman A", "Bherya", "thayi 3", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 1").withHusbandName("Husband A").withEntityIdToSavePhoto("EC Case 1").withServiceToVisitMap(serviceToVisitsMap).withHighRiskReason("");
+        ANCClient expectedClient2 = createANCClient("Entity X", "Woman B", "kavalu_hosur", "thayi 1", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 2").withHusbandName("Husband B").withEntityIdToSavePhoto("EC Case 2").withServiceToVisitMap(serviceToVisitsMap).withHighRiskReason("");
+        ANCClient expectedClient3 = createANCClient("Entity Y", "Woman C", "Bherya", "thayi 2", "Tue, 25 Feb 2014 00:00:00 GMT", "2013-05-25").withECNumber("EC Number 3").withHusbandName("Husband C").withEntityIdToSavePhoto("EC Case 3").withServiceToVisitMap(serviceToVisitsMap).withHighRiskReason("");
 
         when(allBeneficiaries.allANCsWithEC()).thenReturn(asList(Pair.of(m1, ec2), Pair.of(m2, ec3), Pair.of(m3, ec1)));
 
@@ -193,7 +193,8 @@ public class ANCSmartRegisterControllerTest {
                 .withHusbandName("Husband C")
                 .withEntityIdToSavePhoto("entity id 1")
                 .withAlerts(asList(expectedANC1AlertDto, expectedDeliveryPlanAlertDto))
-                .withServiceToVisitMap(serviceToVisitsMap);
+                .withServiceToVisitMap(serviceToVisitsMap)
+                .withHighRiskReason("");
 
         assertEquals(asList(expectedEC), actualClients);
     }
@@ -236,7 +237,8 @@ public class ANCSmartRegisterControllerTest {
                 .withHusbandName("Husband C")
                 .withEntityIdToSavePhoto("entity id 1")
                 .withServicesProvided(expectedServicesProvided)
-                .withServiceToVisitMap(serviceToVisitsMap);
+                .withServiceToVisitMap(serviceToVisitsMap)
+                .withHighRiskReason("");
 
         assertEquals(asList(expectedEC), actualClients);
     }
