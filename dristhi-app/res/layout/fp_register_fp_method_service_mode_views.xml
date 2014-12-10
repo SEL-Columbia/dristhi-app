@@ -23,7 +23,7 @@
             android:textColor="@color/light_blue"
             android:gravity="center|center_horizontal"
             android:text="@string/str_update"
-            style="@style/CustomFontTextViewStyle.ListView.Medium"/>
+            style="@style/CustomFontTextViewStyle.ListView.Medium.NoPadding"/>
 
 
     <ImageView
