@@ -53,7 +53,7 @@ public class ANCStatusView extends RelativeLayout {
             txtLmp.setVisibility(View.GONE);
             lblANCStatus.setVisibility(View.GONE);
             txtANCStatus.setVisibility(View.GONE);
-            txtEdd.setText(client.edd());
+            txtEdd.setText(client.eddForDisplay());
             txtDaysPastDue.setText(client.pastDueInDays());
             lblEdd.setTextColor(getInstance().getColorResource(alert_urgent_red));
             txtEdd.setTextColor(getInstance().getColorResource(alert_urgent_red));
@@ -61,7 +61,7 @@ public class ANCStatusView extends RelativeLayout {
             txtDaysPastDue.setTextColor(getInstance().getColorResource(alert_urgent_red));
         } else {
             txtLmp.setText(client.lmp());
-            txtEdd.setText(client.edd());
+            txtEdd.setText(client.eddForDisplay());
             txtANCStatus.setText(client.weeksAfterLMP());
             txtDaysPastDue.setVisibility(View.INVISIBLE);
             lblDaysPastDue.setVisibility(View.INVISIBLE);

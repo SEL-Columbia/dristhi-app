@@ -2,23 +2,24 @@ package org.ei.drishti.view.contract;
 
 
 import org.ei.drishti.domain.ANCServiceType;
+import org.joda.time.LocalDateTime;
 
 import java.util.Comparator;
 import java.util.List;
-
-import static org.joda.time.LocalDateTime.parse;
 
 public interface ANCSmartRegisterClient extends SmartRegisterClient {
 
     Comparator<SmartRegisterClient> EDD_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            return parse(((ANCSmartRegisterClient) client).edd())
-                    .compareTo(parse(((ANCSmartRegisterClient) anotherClient).edd()));
+            return ((ANCSmartRegisterClient) client).edd()
+                    .compareTo(((ANCSmartRegisterClient) anotherClient).edd());
         }
     };
 
-    public String edd();
+    public String eddForDisplay();
+
+    LocalDateTime edd();
 
     public String pastDueInDays();
 
@@ -39,7 +40,7 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
     public String ifaDoneDate();
 
     public String thayiCardNumber();
-    
+
     public String ancNumber();
 
     public String lmp();

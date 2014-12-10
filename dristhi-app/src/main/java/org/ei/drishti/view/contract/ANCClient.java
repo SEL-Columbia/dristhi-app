@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.drishti.domain.ANCServiceType;
 import org.ei.drishti.util.IntegerUtil;
+import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.ISODateTimeFormat;
 
@@ -175,8 +176,13 @@ public class ANCClient implements ANCSmartRegisterClient {
     }
 
     @Override
-    public String edd() {
+    public String eddForDisplay() {
         return formatDate(parse(edd).toLocalDate().toString(), "dd/MM/yy");
+    }
+
+    @Override
+    public LocalDateTime edd() {
+        return parse(edd);
     }
 
     @Override
