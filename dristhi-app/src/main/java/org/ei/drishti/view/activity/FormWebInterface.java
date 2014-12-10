@@ -32,4 +32,8 @@ public class FormWebInterface {
     public void log(String message) {
         Log.logInfo(message);
     }
+
+    public void onLoadFinished(){
+        ((SecuredWebActivity)activity).closeDialog();
+    }
 }
