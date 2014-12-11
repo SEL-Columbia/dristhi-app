@@ -160,7 +160,8 @@ public class PNCClient implements PNCSmartRegisterClient {
     @Override
     public boolean satisfiesFilter(String filter) {
         return name.toLowerCase(Locale.getDefault()).startsWith(filter.toLowerCase())
-                || String.valueOf(ec_number).startsWith(filter);
+                || String.valueOf(ec_number).startsWith(filter)
+                || String.valueOf(thayi).startsWith(filter);
     }
 
     @Override
