@@ -1,6 +1,7 @@
 package org.ei.drishti.view.activity;
 
 import android.test.ActivityInstrumentationTestCase2;
+import android.test.suitebuilder.annotation.Suppress;
 import org.ei.drishti.Context;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.AllSharedPreferences;
@@ -31,6 +32,7 @@ public class SettingsActivityTest extends ActivityInstrumentationTestCase2<HomeA
         solo = new DrishtiSolo(getInstrumentation(), getActivity());
     }
 
+    @Suppress
     public void testShouldRegisterANM() throws Exception {
         AllSharedPreferences preferences = Context.getInstance().allSharedPreferences();
         AllSettings settings = Context.getInstance().allSettings();
