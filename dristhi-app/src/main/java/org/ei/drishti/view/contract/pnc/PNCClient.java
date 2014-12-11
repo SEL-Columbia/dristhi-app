@@ -134,7 +134,7 @@ public class PNCClient implements PNCSmartRegisterClient {
 
     @Override
     public boolean isHighRisk() {
-        return false;
+        return isHighRisk;
     }
 
     @Override
