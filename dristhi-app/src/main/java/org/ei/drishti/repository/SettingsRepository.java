@@ -56,6 +56,7 @@ public class SettingsRepository extends DrishtiRepository {
     private void replace(ContentValues values) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.replace(SETTINGS_TABLE_NAME, null, values);
+        database.close();
     }
 
     private Cursor getCursor(String key) {
