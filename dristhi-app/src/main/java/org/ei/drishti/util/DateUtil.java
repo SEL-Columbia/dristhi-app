@@ -47,7 +47,7 @@ public class DateUtil {
 
     public static String formatFromISOString(String date, String pattern) {
         try {
-            return getLocalDate(date).toString(pattern);
+            return getLocalDateFromISOString(date).toString(pattern);
         } catch (Exception e) {
             return "";
         }

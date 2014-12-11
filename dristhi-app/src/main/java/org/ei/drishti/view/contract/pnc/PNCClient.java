@@ -176,7 +176,7 @@ public class PNCClient implements PNCSmartRegisterClient {
 
     @Override
     public String deliveryDateForDisplay() {
-        return formatFromISOString(deliveryDate, "dd/MM/YYYY");
+        return formatFromISOString(deliveryDate, "dd/MM/YY");
     }
 
     @Override
