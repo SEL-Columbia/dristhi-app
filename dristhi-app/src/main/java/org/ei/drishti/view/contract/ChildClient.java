@@ -193,7 +193,9 @@ public class ChildClient implements ChildSmartRegisterClient {
     @Override
     public boolean satisfiesFilter(String filterCriterion) {
         return (!isBlank(name) && name.toLowerCase().startsWith(filterCriterion.toLowerCase()))
-                || (!isBlank(motherName) && motherName.toLowerCase().startsWith(filterCriterion.toLowerCase()));
+                || (!isBlank(motherName) && motherName.toLowerCase().startsWith(filterCriterion.toLowerCase()))
+                || String.valueOf(ecNumber).startsWith(filterCriterion)
+                || String.valueOf(thayiCardNumber).startsWith(filterCriterion);
     }
 
     @Override
