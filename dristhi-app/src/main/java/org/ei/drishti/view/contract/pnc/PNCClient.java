@@ -541,4 +541,11 @@ public class PNCClient implements PNCSmartRegisterClient {
         ServiceProvidedDTO serviceProvided = serviceToVisitsMap.get(category).provided;
         return serviceProvided != null && !serviceProvided.equals(emptyService);
     }
+
+    @Override
+    public String pncComplications() {
+        if (StringUtils.isNotEmpty(pncComplications))
+            return replaceAndHumanizeWithInitCapText(pncComplications.trim(), SPACE, COMMA_WITH_SPACE);
+        return null;
+    }
 }

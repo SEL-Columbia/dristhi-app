@@ -130,7 +130,7 @@ public class PNCVisitsServiceMode extends ServiceModeOption {
     }
 
     private void setupComplicationsView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
-        viewHolder.txtVisitComplicationsView().setText(client.deliveryComplications());
+        viewHolder.txtVisitComplicationsView().setText(client.pncComplications());
     }
 
     private void setUpPNCVisitsGraph(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {

@@ -16,25 +16,47 @@ public interface PNCSmartRegisterClient extends BaseFPSmartRegisterClient {
             return ((PNCSmartRegisterClient) lhs).deliveryDate().compareTo(((PNCSmartRegisterClient) rhs).deliveryDate());
         }
     };
+
     public String thayiNumber();
+
     public String deliveryDateForDisplay();
+
     public String deliveryShortDate();
+
     public LocalDate deliveryDate();
+
     public String deliveryPlace();
+
     public String deliveryType();
+
     public String deliveryComplications();
+
     public String womanDOB();
+
     public List<ChildClient> children();
+
     public List<PNCCircleDatum> pncCircleData();
+
     public List<PNCStatusDatum> pncStatusData();
+
     public PNCStatusColor pncVisitStatusColor();
+
     public List<PNCTickDatum> pncTickData();
+
     public List<PNCLineDatum> pncLineData();
+
     public List<PNCVisitDaysDatum> visitDaysData();
+
     public PNCFirstSevenDaysVisits firstSevenDaysVisits();
+
     public List<ServiceProvidedDTO> recentlyProvidedServices();
+
     boolean isVisitsDone();
-    String visitDoneDateWithVisitName();
-    AlertDTO getAlert(ANCServiceType serviceType);
+
+    public String visitDoneDateWithVisitName();
+
+    public AlertDTO getAlert(ANCServiceType serviceType);
+
+    public String pncComplications();
 }
 
