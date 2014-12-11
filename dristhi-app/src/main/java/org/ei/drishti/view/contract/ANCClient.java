@@ -167,6 +167,7 @@ public class ANCClient implements ANCSmartRegisterClient {
     @Override
     public boolean satisfiesFilter(String filterCriterion) {
         return name.toLowerCase(Locale.getDefault()).startsWith(filterCriterion.toLowerCase())
+                || String.valueOf(ec_number).startsWith(filterCriterion)
                 || String.valueOf(thayi).startsWith(filterCriterion);
     }
 
