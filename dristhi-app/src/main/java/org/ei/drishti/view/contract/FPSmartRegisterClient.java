@@ -6,15 +6,7 @@ import org.ei.drishti.domain.FPMethod;
 import java.util.Comparator;
 import java.util.List;
 
-public interface FPSmartRegisterClient extends SmartRegisterClient {
-
-    Comparator<SmartRegisterClient> EC_NUMBER_COMPARATOR = new Comparator<SmartRegisterClient>() {
-        @Override
-        public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            return ((FPSmartRegisterClient) client).ecNumber()
-                    .compareTo(((FPSmartRegisterClient) anotherClient).ecNumber());
-        }
-    };
+public interface FPSmartRegisterClient extends SmartRegisterClient, ECSmartRegisterBaseClient{
 
     public String numberOfPregnancies();
 
@@ -37,8 +29,6 @@ public interface FPSmartRegisterClient extends SmartRegisterClient {
     public String iudPerson();
 
     public String iudPlace();
-
-    public Integer ecNumber();
 
     public FPMethod fpMethod();
 
