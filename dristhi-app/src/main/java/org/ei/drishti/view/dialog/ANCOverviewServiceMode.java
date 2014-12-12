@@ -189,7 +189,6 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
         final AlertStatus alertStatus = alert.alertStatus();
         layout.setBackgroundResource(alertStatus.backgroundColorResourceId());
         typeView.setTextColor(alertStatus.fontColor());
-        dateView.setTextColor(alertStatus.fontColor());
     }
 
     private void setAlertDate(TextView dateView, AlertDTO alert) {
@@ -197,6 +196,7 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
             dateView.setText(alert.shortDate());
         else
             dateView.setText(getInstance().getStringResource(R.string.str_due) + alert.shortDate());
+        dateView.setTextColor(alert.alertStatus().fontColor());
     }
 
 }

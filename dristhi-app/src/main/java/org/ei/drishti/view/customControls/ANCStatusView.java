@@ -48,30 +48,70 @@ public class ANCStatusView extends RelativeLayout {
     }
 
     public void bindData(ANCSmartRegisterClient client) {
+        hideAllViews();
         if (IntegerUtil.tryParse(client.pastDueInDays(), 0) > 0) {
-            lblLmp.setVisibility(View.GONE);
-            txtLmp.setVisibility(View.GONE);
-            lblANCStatus.setVisibility(View.GONE);
-            txtANCStatus.setVisibility(View.GONE);
-            txtEdd.setText(client.eddForDisplay());
-            txtDaysPastDue.setText(client.pastDueInDays());
-            lblEdd.setTextColor(getInstance().getColorResource(alert_urgent_red));
-            txtEdd.setTextColor(getInstance().getColorResource(alert_urgent_red));
-            lblDaysPastDue.setTextColor(getInstance().getColorResource(alert_urgent_red));
-            txtDaysPastDue.setTextColor(getInstance().getColorResource(alert_urgent_red));
+            setVisibilityForPastDue();
+            setTextForPastDue(client);
+            setTextColorForPastDue();
         } else {
-            txtLmp.setText(client.lmp());
-            txtEdd.setText(client.eddForDisplay());
-            txtANCStatus.setText(client.weeksAfterLMP());
-            txtDaysPastDue.setVisibility(View.INVISIBLE);
-            lblDaysPastDue.setVisibility(View.INVISIBLE);
-            txtLmp.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
-            txtEdd.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
-            txtANCStatus.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
-            lblLmp.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
-            lblEdd.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
-            lblANCStatus.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
+            setVisibilityForLMP();
+            setTextForLMP(client);
+            setTextColorForLMP();
         }
+    }
+
+    private void setTextForPastDue(ANCSmartRegisterClient client) {
+        txtEdd.setText(client.eddForDisplay());
+        txtDaysPastDue.setText(client.pastDueInDays());
+    }
+
+    private void setVisibilityForPastDue() {
+        txtEdd.setVisibility(VISIBLE);
+        txtDaysPastDue.setVisibility(VISIBLE);
+        lblEdd.setVisibility(VISIBLE);
+        lblDaysPastDue.setVisibility(VISIBLE);
+    }
+
+    private void setVisibilityForLMP() {
+        txtLmp.setVisibility(VISIBLE);
+        txtEdd.setVisibility(VISIBLE);
+        txtANCStatus.setVisibility(VISIBLE);
+        lblLmp.setVisibility(VISIBLE);
+        lblEdd.setVisibility(VISIBLE);
+        lblANCStatus.setVisibility(VISIBLE);
+    }
+
+    private void setTextForLMP(ANCSmartRegisterClient client) {
+        txtLmp.setText(client.lmp());
+        txtEdd.setText(client.eddForDisplay());
+        txtANCStatus.setText(client.weeksAfterLMP());
+    }
+
+    private void setTextColorForLMP() {
+        txtLmp.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
+        txtEdd.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
+        txtANCStatus.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
+        lblLmp.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
+        lblEdd.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
+        lblANCStatus.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
+    }
+
+    private void setTextColorForPastDue() {
+        lblEdd.setTextColor(getInstance().getColorResource(alert_urgent_red));
+        txtEdd.setTextColor(getInstance().getColorResource(alert_urgent_red));
+        lblDaysPastDue.setTextColor(getInstance().getColorResource(alert_urgent_red));
+        txtDaysPastDue.setTextColor(getInstance().getColorResource(alert_urgent_red));
+    }
+
+    private void hideAllViews() {
+        lblLmp.setVisibility(View.GONE);
+        txtLmp.setVisibility(View.GONE);
+        lblANCStatus.setVisibility(View.GONE);
+        txtANCStatus.setVisibility(View.GONE);
+        txtDaysPastDue.setVisibility(View.GONE);
+        lblDaysPastDue.setVisibility(View.GONE);
+        txtEdd.setVisibility(View.GONE);
+        lblEdd.setVisibility(View.GONE);
     }
 
 }
