@@ -18,7 +18,7 @@
             android:background="@color/pnc_pp_fp_grey"
             android:textColor="@color/light_blue"
             android:text="@string/str_pp_fp"
-            style="@style/CustomFontTextViewStyle.ListView.Bold"/>
+            style="@style/CustomFontTextViewStyle.ListView.Bold.NoPadding"/>
 
     <include
             android:id="@+id/fp_method_layout"

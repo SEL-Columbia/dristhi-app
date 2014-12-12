@@ -52,7 +52,7 @@ public class PNCVisitsServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{24, 10, 7, 15, 22, 22};
+                return new int[]{24, 8, 7, 15, 22, 24};
             }
 
             @Override
