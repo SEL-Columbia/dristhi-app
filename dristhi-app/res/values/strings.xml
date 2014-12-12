@@ -281,7 +281,7 @@
     <string name="str_pnc_delivery_place">Place:</string>
     <string name="str_pnc_delivery_type">Type:</string>
     <string name="str_pp_fp">PP FP</string>
-    <string name="str_pnc_child_weight">Birth Wt: %1$s kg</string>
+    <string name="str_pnc_child_weight">Wt: %1$s kg</string>
     <string name="str_pnc_dob_label">DOB:</string>
 
     <string name="str_pnc_clause">PNC</string>
