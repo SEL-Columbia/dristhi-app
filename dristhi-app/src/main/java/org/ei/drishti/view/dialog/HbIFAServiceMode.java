@@ -8,6 +8,7 @@ import org.ei.drishti.AllConstants;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
+import org.ei.drishti.util.FloatUtil;
 import org.ei.drishti.util.IntegerUtil;
 import org.ei.drishti.view.contract.*;
 import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
@@ -20,7 +21,6 @@ import static org.ei.drishti.Context.getInstance;
 import static org.ei.drishti.R.string.*;
 import static org.ei.drishti.domain.ANCServiceType.HB_TEST;
 import static org.ei.drishti.domain.ANCServiceType.IFA;
-import static org.ei.drishti.util.IntegerUtil.tryParse;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
 import static org.ei.drishti.view.contract.AlertStatus.COMPLETE;
@@ -102,7 +102,8 @@ public class HbIFAServiceMode extends ServiceModeOption {
             ((TextView) hbDetailsViewGroup.findViewById(R.id.txt_hb_date)).setText(serviceProvided.shortDate());
             ((TextView) hbDetailsViewGroup.findViewById(R.id.txt_hb_level)).setText(hbLevel + getInstance().getStringResource(anc_service_mode_hb_unit));
             hbDetailsViewGroup.findViewById(R.id.hb_level_indicator)
-                    .setBackgroundColor(getHbColor(tryParse(hbLevel, 0)));
+                    .setBackgroundColor(getHbColor(hbLevel));
+
             viewHolder.layoutHbDetailsViewHolder().addView(hbDetailsViewGroup);
         }
     }
@@ -143,10 +144,11 @@ public class HbIFAServiceMode extends ServiceModeOption {
     }
 
 
-    private int getHbColor(int hbLevel) {
-        if (hbLevel < 7)
+    private int getHbColor(String hbLevel) {
+        float hbValue = FloatUtil.tryParse(hbLevel, 0F);
+        if (hbValue < 7)
             return getInstance().getColorResource(R.color.hb_level_dangerous);
-        else if (hbLevel >= 7 && hbLevel < 11) {
+        else if (hbValue >= 7 && hbValue < 11) {
             return getInstance().getColorResource(R.color.hb_level_high);
         } else {
             return getInstance().getColorResource(R.color.hb_level_normal);
