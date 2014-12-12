@@ -250,7 +250,10 @@ public class ANCClient implements ANCSmartRegisterClient {
 
     @Override
     public String riskFactors() {
-        return replaceAndHumanize(riskFactors, SPACE, COMMA_WITH_SPACE);
+        if (StringUtils.isNotEmpty(riskFactors)) {
+            return replaceAndHumanize(riskFactors.trim(), SPACE, COMMA_WITH_SPACE);
+        }
+        return null;
     }
 
     @Override
