@@ -2420,8 +2420,8 @@
             &#xC9C;&#xCA8;&#xCA8;&#xCA6; &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;?
         </span>
         <span class="required">*</span>
-        <select name="/ANC_Registration_OA_EngKan/num_stillbirths"
-                data-name="/ANC_Registration_OA_EngKan/num_stillbirths" required="required"
+        <select name="/ANC_Registration_OA_EngKan/num_stillbirths1"
+                data-name="/ANC_Registration_OA_EngKan/num_stillbirths1" required="required"
                 data-constraint=".&lt;=( /ANC_Registration_OA_EngKan/num_pregnancies1  -  /ANC_Registration_OA_EngKan/num_livebirths  -  /ANC_Registration_OA_EngKan/num_abortions )"
                 data-relevant="( /ANC_Registration_OA_EngKan/num_pregnancies1  -  /ANC_Registration_OA_EngKan/num_livebirths  -  /ANC_Registration_OA_EngKan/num_abortions ) &gt; 0"
                 data-type-xml="select1">
@@ -2758,6 +2758,11 @@
         <label class="calculation non-select ">
             <input type="hidden" name="/ANC_Registration_OA_EngKan/num_pregnancies"
                    data-calculate=" /ANC_Registration_OA_EngKan/num_pregnancies1  + 1" data-type-xml="string"/>
+        </label>
+        <label class="calculation non-select ">
+            <input type="hidden" name="/ANC_Registration_OA_EngKan/num_stillbirths"
+                   data-calculate="if( /ANC_Registration_OA_EngKan/num_stillbirths1  = '', 0,  /ANC_Registration_OA_EngKan/num_stillbirths1 )"
+                   data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
             <input type="hidden" name="/ANC_Registration_OA_EngKan/parity"
