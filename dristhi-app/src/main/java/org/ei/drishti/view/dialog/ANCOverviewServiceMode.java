@@ -3,6 +3,7 @@ package org.ei.drishti.view.dialog;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.TextView;
+import org.apache.commons.lang3.StringUtils;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.ANCServiceType;
@@ -17,6 +18,7 @@ import static org.ei.drishti.Context.getInstance;
 import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
 import static org.ei.drishti.view.contract.AlertStatus.COMPLETE;
+import static org.ei.drishti.view.contract.AlertStatus.INPROCESS;
 
 public class ANCOverviewServiceMode extends ServiceModeOption {
 
@@ -107,13 +109,26 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
             viewHolder.layoutANCVisitAlert().setOnClickListener(launchForm(client, ancVisitAlert, ANC_VISIT));
             setAlertLayout(viewHolder.layoutANCVisitAlert(),
                     viewHolder.txtANCVisitDueType(),
-                    viewHolder.txtANCVisitAlertDueOn(),
                     ancVisitAlert);
+            setAlertDateDetails(client, ancVisitAlert, viewHolder.txtANCVisitAlertDueOn());
         } else {
             viewHolder.layoutANCVisitAlert().setVisibility(View.INVISIBLE);
             viewHolder.btnAncVisitView().setVisibility(View.INVISIBLE);
             viewHolder.btnAncVisitView().setOnClickListener(launchForm(client, ancVisitAlert, ANC_VISIT));
         }
+    }
+
+    private void setAlertDateDetails(ANCSmartRegisterClient client, AlertDTO alert, TextView dateView) {
+        if (isAlertStatusCompleteOrInProcess(alert)) {
+            setAlertDate(dateView, alert,
+                    client.getServiceProvidedDTO(alert.name()).ancServicedOn());
+        } else
+            setAlertDate(dateView, alert, null);
+    }
+
+    private boolean isAlertStatusCompleteOrInProcess(AlertDTO ancVisitAlert) {
+        return ancVisitAlert.status().equalsIgnoreCase(INPROCESS.name())
+                || ancVisitAlert.status().equalsIgnoreCase(COMPLETE.name());
     }
 
     public void setupTTLayout(ANCSmartRegisterClient client,
@@ -132,8 +147,8 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
             viewHolder.layoutTTAlert().setOnClickListener(launchForm(client, ttAlert, TT));
             setAlertLayout(viewHolder.layoutTTAlert(),
                     viewHolder.txtTTDueType(),
-                    viewHolder.txtTTDueOn(),
                     ttAlert);
+            setAlertDateDetails(client, ttAlert, viewHolder.txtTTDueOn());
         } else {
             viewHolder.layoutTTAlert().setVisibility(View.INVISIBLE);
             viewHolder.btnTTView().setVisibility(View.INVISIBLE);
@@ -157,9 +172,9 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
             viewHolder.layoutIFAAlert().setOnClickListener(launchForm(client, ifaAlert, IFA));
             setAlertLayout(viewHolder.layoutIFAAlert(),
                     viewHolder.txtIFADueType(),
-                    viewHolder.txtIFADueOn(),
                     ifaAlert);
             viewHolder.txtIFADueType().setText(ifaAlert.name());
+            setAlertDateDetails(client, ifaAlert, viewHolder.txtIFADueOn());
         } else {
             viewHolder.layoutIFAAlert().setVisibility(View.INVISIBLE);
             viewHolder.btnIFAView().setVisibility(View.INVISIBLE);
@@ -181,8 +196,7 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
     }
 
     private void setAlertLayout(View layout, TextView typeView,
-                                TextView dateView, AlertDTO alert) {
-        setAlertDate(dateView, alert);
+                                AlertDTO alert) {
 
         typeView.setText(alert.ancServiceType().shortName());
 
@@ -191,9 +205,9 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
         typeView.setTextColor(alertStatus.fontColor());
     }
 
-    private void setAlertDate(TextView dateView, AlertDTO alert) {
-        if (alert.status().equalsIgnoreCase(COMPLETE.name()))
-            dateView.setText(alert.shortDate());
+    private void setAlertDate(TextView dateView, AlertDTO alert, String serviceDate) {
+        if (StringUtils.isNotEmpty(serviceDate))
+            dateView.setText(serviceDate);
         else
             dateView.setText(getInstance().getStringResource(R.string.str_due) + alert.shortDate());
         dateView.setTextColor(alert.alertStatus().fontColor());
