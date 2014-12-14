@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import org.ei.drishti.AllConstants;
 import org.ei.drishti.R;
+import org.ei.drishti.view.contract.ANCSmartRegisterClient;
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.viewHolder.ProfilePhotoLoader;
 
@@ -61,10 +62,15 @@ public class ClientProfileView extends RelativeLayout {
         txtAgeView.setText(client.ageInString());
         txtOutOfArea.setText(getOutOfAreaText(client.locationStatus()));
         badgeHPView.setVisibility(client.isHighPriority() ? View.VISIBLE : View.GONE);
+        setHROrHRPBadge(client);
         badgeHRView.setVisibility(client.isHighRisk() ? View.VISIBLE : View.GONE);
         badgeBPLView.setVisibility(client.isBPL() ? View.VISIBLE : View.GONE);
         badgeSCView.setVisibility(client.isSC() ? View.VISIBLE : View.GONE);
         badgeSTView.setVisibility(client.isST() ? View.VISIBLE : View.GONE);
+    }
+
+    private void setHROrHRPBadge(SmartRegisterClient client) {
+        badgeHRView.setImageResource(client instanceof ANCSmartRegisterClient ? R.drawable.flag_hrp : R.drawable.flag_hr);
     }
 
     private String getOutOfAreaText(String locationStatus) {
