@@ -25,7 +25,7 @@ public interface SmartRegisterClient {
     Comparator<SmartRegisterClient> HIGH_RISK_COMPARATOR = new Comparator<SmartRegisterClient>() {
         @Override
         public int compare(SmartRegisterClient client, SmartRegisterClient anotherClient) {
-            return client.isHighRisk() && anotherClient.isHighRisk()
+            return client.isHighRisk() == anotherClient.isHighRisk()
                     ? client.name().compareToIgnoreCase(anotherClient.name())
                     : anotherClient.isHighRisk() ? 1 : -1;
         }

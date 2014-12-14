@@ -95,7 +95,7 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
             @Override
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{new NameSort(), new EstimatedDateOfDeliverySort(),
-                        new HighPrioritySort(), new BPLSort(),
+                        new HRPSort(), new BPLSort(),
                         new SCSort(), new STSort()};
             }
 

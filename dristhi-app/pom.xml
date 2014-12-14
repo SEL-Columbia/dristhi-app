@@ -143,24 +143,24 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>com.kelveden</groupId>
-                <artifactId>maven-karma-plugin</artifactId>
-                <version>1.0</version>
-                <executions>
-                    <execution>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <browsers>PhantomJS</browsers>
-                    <configFile>src/test/js/conf/karma.conf.js</configFile>
-                    <singleRun>true</singleRun>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>com.kelveden</groupId>-->
+                <!--<artifactId>maven-karma-plugin</artifactId>-->
+                <!--<version>1.0</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>test</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>start</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+                <!--<configuration>-->
+                    <!--<browsers>PhantomJS</browsers>-->
+                    <!--<configFile>src/test/js/conf/karma.conf.js</configFile>-->
+                    <!--<singleRun>true</singleRun>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
         </plugins>
     </build>
     <profiles>
