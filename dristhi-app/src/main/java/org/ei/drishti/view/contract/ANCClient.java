@@ -126,7 +126,7 @@ public class ANCClient implements ANCSmartRegisterClient {
 
     @Override
     public String ageInString() {
-        return age;
+        return "(" + age + ")";
     }
 
     @Override

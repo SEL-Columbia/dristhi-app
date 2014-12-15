@@ -75,7 +75,7 @@
     <string name="str_number_of_still_births">S</string>
     <string name="str_number_of_abortions">A</string>
 
-    <string name="str_out_of_area">O/A</string>
+    <string name="str_out_of_area">(O/A)</string>
 
     <string name="sort_by_name_label">Name (A to Z)</string>
     <string name="sort_by_ec_number_label">EC Number</string>
