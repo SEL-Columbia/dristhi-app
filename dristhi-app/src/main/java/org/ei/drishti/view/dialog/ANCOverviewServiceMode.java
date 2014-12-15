@@ -120,8 +120,10 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
 
     private void setAlertDateDetails(ANCSmartRegisterClient client, AlertDTO alert, TextView dateView) {
         if (isAlertStatusCompleteOrInProcess(alert)) {
-            setAlertDate(dateView, alert,
-                    client.getServiceProvidedDTO(alert.name()).ancServicedOn());
+            ServiceProvidedDTO servicesProvided = client.getServiceProvidedDTO(alert.name());
+            if (servicesProvided != null) {
+                setAlertDate(dateView, alert, servicesProvided.ancServicedOn());
+            }
         } else
             setAlertDate(dateView, alert, null);
     }
