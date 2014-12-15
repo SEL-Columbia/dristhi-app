@@ -8,15 +8,10 @@ import java.util.Collections;
 
 import static org.ei.drishti.view.contract.SmartRegisterClient.HIGH_RISK_COMPARATOR;
 
-public class HRPSort extends HighPrioritySort {
+public class HRPSort extends HighRiskSort {
     @Override
     public String name() {
         return Context.getInstance().getStringResource(R.string.sort_by_high_risk_pregnancy_label);
     }
 
-    @Override
-    public SmartRegisterClients sort(SmartRegisterClients allClients) {
-        Collections.sort(allClients, HIGH_RISK_COMPARATOR);
-        return allClients;
-    }
 }
