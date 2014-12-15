@@ -72,7 +72,7 @@ public class ServiceProvidedDTO implements Comparable<ServiceProvidedDTO> {
 
 
     public String servicedOnWithServiceName() {
-        return ancServiceType().serviceName() + ": " + shortDate();
+        return ancServiceType().serviceDisplayName() + ": " + shortDate();
     }
 
     public String ancServicedOn() {

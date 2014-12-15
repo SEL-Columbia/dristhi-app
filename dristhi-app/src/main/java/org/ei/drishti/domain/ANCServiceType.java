@@ -86,11 +86,21 @@ public enum ANCServiceType {
         }
 
         @Override
+        public String serviceDisplayName() {
+            return "TT 1";
+        }
+
+        @Override
         public String category() {
             return ANCClient.CATEGORY_TT;
         }
     },
     TT_2 {
+        @Override
+        public String serviceDisplayName() {
+            return "TT 2";
+        }
+
         @Override
         public String displayName() {
             return "TT 2";
@@ -108,8 +118,13 @@ public enum ANCServiceType {
     },
     TT_BOOSTER {
         @Override
+        public String serviceDisplayName() {
+            return "TT B";
+        }
+
+        @Override
         public String displayName() {
-            return "TT";
+            return "TT B";
         }
 
         @Override
@@ -206,6 +221,10 @@ public enum ANCServiceType {
     public abstract String displayName();
 
     public abstract String serviceName();
+
+    public String serviceDisplayName() {
+        return serviceName();
+    }
 
     public String shortName() {
         return displayName();
