@@ -56,7 +56,7 @@ public class ANCStatusView extends RelativeLayout {
         } else {
             setVisibilityForLMP();
             setTextForLMP(client);
-            setTextColorForLMP();
+            setTextColorForLMP(client);
         }
     }
 
@@ -87,13 +87,22 @@ public class ANCStatusView extends RelativeLayout {
         txtANCStatus.setText(client.weeksAfterLMP());
     }
 
-    private void setTextColorForLMP() {
-        txtLmp.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
-        txtEdd.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
-        txtANCStatus.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
-        lblLmp.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
-        lblEdd.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
-        lblANCStatus.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
+    private void setTextColorForLMP(ANCSmartRegisterClient client) {
+        if (IntegerUtil.tryParse(client.pastDueInDays(), 0) > -30 && IntegerUtil.tryParse(client.pastDueInDays(), 0) < 0) {
+            txtLmp.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
+            txtEdd.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
+            txtANCStatus.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
+            lblLmp.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
+            lblEdd.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
+            lblANCStatus.setTextColor(getInstance().getColorResource(R.color.alert_in_progress_blue));
+        } else {
+            txtLmp.setTextColor(getInstance().getColorResource(R.color.text_black));
+            txtEdd.setTextColor(getInstance().getColorResource(R.color.text_black));
+            txtANCStatus.setTextColor(getInstance().getColorResource(R.color.text_black));
+            lblLmp.setTextColor(getInstance().getColorResource(R.color.text_black));
+            lblEdd.setTextColor(getInstance().getColorResource(R.color.text_black));
+            lblANCStatus.setTextColor(getInstance().getColorResource(R.color.text_black));
+        }
     }
 
     private void setTextColorForPastDue() {
