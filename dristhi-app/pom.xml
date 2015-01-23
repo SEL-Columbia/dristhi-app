@@ -146,7 +146,7 @@
             <plugin>
                 <groupId>com.kelveden</groupId>
                 <artifactId>maven-karma-plugin</artifactId>
-                <version>1.0</version>
+                <version>1.6</version>
                 <executions>
                     <execution>
                         <phase>test</phase>
@@ -159,6 +159,9 @@
                     <browsers>PhantomJS</browsers>
                     <configFile>src/test/js/conf/karma.conf.js</configFile>
                     <singleRun>true</singleRun>
+                    <skipKarma>false</skipKarma>
+                    <skipTests>false</skipTests>
+                    <karmaFailureIgnore>false</karmaFailureIgnore>
                 </configuration>
             </plugin>
         </plugins>
