@@ -54,7 +54,8 @@
             android:icon="@drawable/ic_dristhi_logo"
             android:clearTaskOnLaunch="true"
             android:name=".view.activity.DrishtiApplication"
-            android:largeHeap="true">
+            android:largeHeap="true"
+            android:debuggable="true" >
         <activity
                 android:name=".view.activity.LoginActivity"
                 android:theme="@android:style/Theme.Holo.NoActionBar"
