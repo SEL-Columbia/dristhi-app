@@ -146,7 +146,7 @@ public class NativePersonSmartRegisterActivity extends SecuredNativeSmartRegiste
     @Override
     protected void startRegistration() {
 //        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
-        startFormActivity("tb_registration", null, null);
+        startFormActivity("tb_registration", null,null);
     }
 
     private class ClientActionHandler implements View.OnClickListener {

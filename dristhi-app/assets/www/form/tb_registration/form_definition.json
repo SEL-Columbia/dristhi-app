@@ -5,6 +5,10 @@
     "bind_type": "person",
     "fields": [
       {
+                    "name": "id",
+                    "shouldLoadValue": true
+      },
+      {
         "name": "today",
         "bind": "/model/instance/tb_registration/today"
       },

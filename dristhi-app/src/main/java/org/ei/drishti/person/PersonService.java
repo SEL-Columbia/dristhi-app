@@ -4,7 +4,9 @@ import org.ei.drishti.AllConstants;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.util.EasyMap;
 
+import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 
@@ -23,11 +25,11 @@ public class PersonService {
             // TODO : add to timeline event repo
         }
     }
-//    public void followUpChange(FormSubmission submission) {
-//    allPersons.mergeDetails(submission.entityId(),mapofsubmissions(submission));
-//    }
+
 //
 //    private Map<String, String> mapofsubmissions(FormSubmission submission) {
+//        EasyMap<String,String> mapssub = new EasyMap<String, String>();
+//
 //        EasyMap.mapof(submission.getFieldValue(""));
 //        return null;
 //    }
