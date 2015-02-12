@@ -24,7 +24,7 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.repeat;
 
 public class PersonRepository extends DrishtiRepository {
-    private static final String person_SQL = "CREATE TABLE eligible_couple(id VARCHAR PRIMARY KEY,details VARCHAR)";
+    private static final String person_SQL = "CREATE TABLE person(id VARCHAR PRIMARY KEY,details VARCHAR)";
     public static final String ID_COLUMN = "id";
     public static final String DETAILS_COLUMN = "details";
     public static final String person_TABLE_NAME = "person";
