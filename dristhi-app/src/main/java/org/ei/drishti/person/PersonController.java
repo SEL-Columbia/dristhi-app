@@ -72,7 +72,7 @@ public class PersonController {
                 List<PersonClient> pClients = new ArrayList<PersonClient>();
 
                 for (Person personinlist : p) {
-                      PersonClient pClient = new PersonClient(personinlist.getDetails().get("case_id"),personinlist.getDetails().get("name")
+                      PersonClient pClient = new PersonClient(personinlist.getCaseId(),personinlist.getDetails().get("case_id"),personinlist.getDetails().get("name")
                               , personinlist.getDetails().get("age"), personinlist.getDetails().get("sex"),
                               personinlist.getDetails().get("address"), personinlist.getDetails().get("resistance_type"),
                               personinlist.getDetails().get("patient_type"), personinlist.getDetails().get("risk_factors"),
@@ -80,7 +80,7 @@ public class PersonController {
                               personinlist.getDetails().get("drug_regimen"), personinlist.getDetails().get("current_drug_regimen_start"),
                               personinlist.getDetails().get("bmi"), personinlist.getDetails().get("current_bmi"),
                               personinlist.getDetails().get("resistance_drugs"), personinlist.getDetails().get("current_resistance_drugs"), personinlist.getDetails().get("smear"), personinlist.getDetails().get("current_smear"));
-
+//                    pClient.entityID = personinlist.getCaseId();
                     pClients.add(pClient);
                 }
 //                sortByName(pClients);
@@ -100,7 +100,7 @@ public class PersonController {
                         PersonClients pClients = new PersonClients();
 
                         for (Person personinlist : p) {
-                            PersonClient pClient = new PersonClient(personinlist.getDetails().get("case_id"), personinlist.getDetails().get("name")
+                            PersonClient pClient = new PersonClient(personinlist.getCaseId(),personinlist.getDetails().get("case_id"), personinlist.getDetails().get("name")
                                     , personinlist.getDetails().get("age"), personinlist.getDetails().get("sex"),
                                     personinlist.getDetails().get("address"), personinlist.getDetails().get("resistance_type"),
                                     personinlist.getDetails().get("patient_type"), personinlist.getDetails().get("risk_factors"),

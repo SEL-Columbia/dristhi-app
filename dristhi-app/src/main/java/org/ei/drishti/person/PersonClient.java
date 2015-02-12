@@ -6,7 +6,7 @@ import org.ei.drishti.view.contract.SmartRegisterClient;
  * Created by user on 2/12/15.
  */
 public class PersonClient implements SmartRegisterClient{
-
+    private String entityId;
     private String caseId;
     private String name;
     private String age;
@@ -32,7 +32,8 @@ public class PersonClient implements SmartRegisterClient{
     private String currentSmear;
 
 
-    public PersonClient(String caseId, String name, String age, String sex, String address, String resistanceType, String patientType, String riskFactors, String riskFactorsOther, String drugRegimenStart, String drugRegimen, String currentDrugRegimenStart, String bmi, String currentBmi, String resistanceDrugs, String currentResistanceDrugs, String smear, String currentSmear) {
+    public PersonClient(String entityId,String caseId, String name, String age, String sex, String address, String resistanceType, String patientType, String riskFactors, String riskFactorsOther, String drugRegimenStart, String drugRegimen, String currentDrugRegimenStart, String bmi, String currentBmi, String resistanceDrugs, String currentResistanceDrugs, String smear, String currentSmear) {
+        this.entityId = entityId;
         this.caseId = caseId;
         this.name = name;
         this.age = age;
@@ -203,7 +204,7 @@ public class PersonClient implements SmartRegisterClient{
 
     @Override
     public String entityId() {
-        return null;
+        return entityId;
     }
 
     @Override

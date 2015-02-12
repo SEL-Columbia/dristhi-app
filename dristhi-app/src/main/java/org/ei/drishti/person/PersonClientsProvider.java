@@ -74,6 +74,8 @@ public class PersonClientsProvider implements SmartRegisterClientsProvider {
         TextView latest_smear = (TextView)itemView.findViewById(R.id.latest_smear);
         TextView latest_drt = (TextView)itemView.findViewById(R.id.latest_drt);
         Button follow_up = (Button)itemView.findViewById(R.id.follow_up);
+        follow_up.setOnClickListener(onClickListener);
+        follow_up.setTag(smartRegisterClient);
 
         PersonClient pc = (PersonClient) smartRegisterClient;
 

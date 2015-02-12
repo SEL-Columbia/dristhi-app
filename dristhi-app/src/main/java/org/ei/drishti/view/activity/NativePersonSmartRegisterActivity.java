@@ -1,5 +1,6 @@
 package org.ei.drishti.view.activity;
 
+import android.util.Log;
 import android.view.View;
 
 import org.ei.drishti.R;
@@ -144,8 +145,8 @@ public class NativePersonSmartRegisterActivity extends SecuredNativeSmartRegiste
 
     @Override
     protected void startRegistration() {
-        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
-        startFormActivity("tb_registration", null, fieldOverrides.getJSONString());
+//        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
+        startFormActivity("tb_registration", null, null);
     }
 
     private class ClientActionHandler implements View.OnClickListener {
@@ -156,6 +157,7 @@ public class NativePersonSmartRegisterActivity extends SecuredNativeSmartRegiste
                     showProfileView((ECClient) view.getTag());
                     break;
                 case R.id.follow_up:
+                    Log.v("follow up check","a lot is done");
                     showFragmentDialog(new EditDialogOptionModel(), view.getTag());
                     break;
             }

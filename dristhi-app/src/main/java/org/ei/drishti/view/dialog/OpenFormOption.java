@@ -1,5 +1,7 @@
 package org.ei.drishti.view.dialog;
 
+import android.util.Log;
+
 import org.ei.drishti.view.contract.SmartRegisterClient;
 import org.ei.drishti.view.controller.FormController;
 
@@ -21,6 +23,7 @@ public class OpenFormOption implements EditOption {
 
     @Override
     public void doEdit(SmartRegisterClient client) {
+        Log.v("doedit",""+client.entityId());
         formController.startFormActivity(formName, client.entityId(), null);
     }
 }
