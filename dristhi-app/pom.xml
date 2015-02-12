@@ -156,24 +156,26 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.internetitem</groupId>
-                <artifactId>write-properties-file-maven-plugin</artifactId>
-                <version>1.0.1</version>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>1.5.3</version>
                 <executions>
                     <execution>
-                        <id>write-available-registers-to-properties-file</id>
                         <phase>validate</phase>
-                        <configuration>
-                            <filename>${basedir}/target/assets/available-registers.properties</filename>
-                            <properties>
-                                <property>
-                                    <name>availableRegisters</name>
-                                    <value>${availableRegisters}</value>
-                                </property>
-                            </properties>
-                        </configuration>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <file>${basedir}/target/assets/app-extra.properties</file>
+                    <replacements>
+                        <replacement>
+                            <token>WAIT_FOR_VALUE</token>
+                            <value>${availableRegisters}</value>
+                        </replacement>
+                    </replacements>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
