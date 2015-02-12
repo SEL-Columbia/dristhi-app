@@ -8,6 +8,7 @@ import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.drishti.domain.form.FieldOverrides;
 import org.ei.drishti.person.PersonClientsProvider;
 import org.ei.drishti.person.PersonController;
+import org.ei.drishti.person.PersonServiceModeOption;
 import org.ei.drishti.provider.ECSmartRegisterClientsProvider;
 import org.ei.drishti.provider.SmartRegisterClientsProvider;
 import org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity;
@@ -60,7 +61,7 @@ public class NativePersonSmartRegisterActivity extends SecuredNativeSmartRegiste
 
             @Override
             public ServiceModeOption serviceMode() {
-                return new AllEligibleCoupleServiceMode(clientsProvider());
+                return new PersonServiceModeOption(clientsProvider());
             }
 
             @Override

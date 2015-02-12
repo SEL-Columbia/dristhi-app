@@ -69,7 +69,11 @@ public class PersonClient implements SmartRegisterClient{
     }
 
     public String getName() {
-        return name;
+        if(name != null) {
+            return name;
+        }else{
+            return "";
+        }
     }
 
     public String getAge() {

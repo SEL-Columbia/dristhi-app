@@ -69,7 +69,7 @@ public class PersonController {
             @Override
             public String fetch() {
                 List<Person> p = allpersons.all();
-                List<PersonClient> pClients = new ArrayList<PersonClient>();
+                PersonClients pClients = new PersonClients();
 
                 for (Person personinlist : p) {
                       PersonClient pClient = new PersonClient(personinlist.getCaseId(),personinlist.getDetails().get("case_id"),personinlist.getDetails().get("name")
@@ -83,7 +83,7 @@ public class PersonController {
 //                    pClient.entityID = personinlist.getCaseId();
                     pClients.add(pClient);
                 }
-//                sortByName(pClients);
+                sortByName(pClients);
                 return new Gson().toJson(pClients);
             }
         });
@@ -112,23 +112,23 @@ public class PersonController {
 
                             pClients.add(pClient);
                         }
-//                        sortByName(pClients);
+                        sortByName(pClients);
                         return pClients;
                     }
                 });
             }
 
 
-//            private void sortByName(PersonClients personClients) {
-//                sort(personClients, new Comparator<PersonClient>() {
-//
-//
-//                    @Override
-//                    public int compare(PersonClient personClient, PersonClient personClient2) {
-//                        return personClient.getName().compareToIgnoreCase(personClient2.getName());
-//                    }
-//                });
-//            }
+            private void sortByName(List<? extends SmartRegisterClient> personClients) {
+                sort(personClients, new Comparator<SmartRegisterClient>() {
+
+
+                    @Override
+                    public int compare(SmartRegisterClient personClient, SmartRegisterClient personClient2) {
+                        return ((PersonClient)personClient).getName().compareToIgnoreCase(((PersonClient)personClient2).getName());
+                    }
+                });
+            }
 
             //#TODO: Needs refactoring
 
