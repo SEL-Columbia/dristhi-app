@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -18,7 +19,7 @@ import org.ei.drishti.view.dialog.ServiceModeOption;
 import org.ei.drishti.view.dialog.SortOption;
 import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
 
-import java.awt.Button;
+
 import java.awt.Image;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -72,26 +73,26 @@ public class PersonClientsProvider implements SmartRegisterClientsProvider {
         TextView baseline_drt = (TextView)itemView.findViewById(R.id.baseline_drt);
         TextView latest_smear = (TextView)itemView.findViewById(R.id.latest_smear);
         TextView latest_drt = (TextView)itemView.findViewById(R.id.latest_drt);
-        ImageButton follow_up = (ImageButton)itemView.findViewById(R.id.follow_up);
+        Button follow_up = (Button)itemView.findViewById(R.id.follow_up);
 
         PersonClient pc = (PersonClient) smartRegisterClient;
 
-        id.setText(pc.getCaseId());
-        name.setText(pc.getName());
-        age.setText(pc.getAge());
-        sex.setText(pc.getSex());
-        resistance_type.setText(pc.getResistanceType());
-        patient_type.setText(pc.getPatientType());
-        risk_factors.setText(pc.getRiskFactors());
-        baseline_bmi.setText(pc.getBmi());
-        current_bmi.setText(pc.getCurrentBmi());
-        baseline_smear.setText(pc.getSmear());
-        baseline_drt.setText(pc.getResistanceDrugs());
-        latest_smear.setText(pc.getCurrentSmear());
-        latest_drt.setText(pc.getCurrentResistanceDrugs());
-        current_drug.setText(pc.getCurrentResistanceDrugs());
-        treatment_start_date.setText(pc.getDrugRegimenStart());
-        start_date.setText(pc.getCurrentDrugRegimenStart());
+        id.setText(pc.getCaseId()!=null?pc.getCaseId():"");
+        name.setText(pc.getName()!=null?pc.getName():"");
+        age.setText(pc.getAge()!=null?pc.getAge():"");
+        sex.setText(pc.getSex()!=null?pc.getSex():"");
+        resistance_type.setText(pc.getResistanceType()!=null?pc.getResistanceType():"");
+        patient_type.setText(pc.getPatientType()!=null?pc.getPatientType():"");
+        risk_factors.setText(pc.getRiskFactors()!=null?pc.getRiskFactors():"");
+        baseline_bmi.setText(pc.getBmi()!=null?pc.getBmi():"");
+        current_bmi.setText(pc.getCurrentBmi()!=null?pc.getCurrentBmi():"");
+        baseline_smear.setText(pc.getSmear()!=null?pc.getSmear():"");
+        baseline_drt.setText(pc.getResistanceDrugs()!=null?pc.getResistanceDrugs():"");
+        latest_smear.setText(pc.getCurrentSmear()!=null?pc.getCurrentSmear():"");
+        latest_drt.setText(pc.getCurrentResistanceDrugs()!=null?pc.getCurrentResistanceDrugs():"");
+        current_drug.setText(pc.getCurrentResistanceDrugs()!=null?pc.getCurrentResistanceDrugs():"");
+        treatment_start_date.setText(pc.getDrugRegimenStart()!=null?pc.getDrugRegimenStart():"");
+        start_date.setText(pc.getCurrentDrugRegimenStart()!=null?pc.getCurrentDrugRegimenStart():"");
         current.setText("(10 mo)");
 
         itemView.setLayoutParams(clientViewLayoutParams);

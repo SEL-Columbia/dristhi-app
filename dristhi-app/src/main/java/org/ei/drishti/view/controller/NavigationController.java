@@ -24,7 +24,8 @@ public class NavigationController {
     }
 
     public void startECSmartRegistry() {
-        activity.startActivity(new Intent(activity, NativeECSmartRegisterActivity.class));
+//        activity.startActivity(new Intent(activity, NativeECSmartRegisterActivity.class));
+        activity.startActivity(new Intent(activity, NativePersonSmartRegisterActivity.class));
     }
 
     public void startFPSmartRegistry() {

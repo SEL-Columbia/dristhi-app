@@ -116,7 +116,7 @@ public class PersonRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<Person> persons = new ArrayList<Person>();
         while (!cursor.isAfterLast()) {
-            Person person = new Person(cursor.getString(0),new Gson().<Map<String, String>>fromJson(cursor.getString(7), new TypeToken<Map<String, String>>() {
+            Person person = new Person(cursor.getString(0),new Gson().<Map<String, String>>fromJson(cursor.getString(1), new TypeToken<Map<String, String>>() {
                     }.getType()));
 
             persons.add(person);
