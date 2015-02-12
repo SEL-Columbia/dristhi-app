@@ -156,6 +156,26 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>com.internetitem</groupId>
+                <artifactId>write-properties-file-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <executions>
+                    <execution>
+                        <id>write-available-registers-to-properties-file</id>
+                        <phase>validate</phase>
+                        <configuration>
+                            <filename>${basedir}/target/assets/available-registers.properties</filename>
+                            <properties>
+                                <property>
+                                    <name>availableRegisters</name>
+                                    <value>${availableRegisters}</value>
+                                </property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                 <artifactId>android-maven-plugin</artifactId>
                 <version>3.6.0</version>
@@ -202,6 +222,9 @@
     <profiles>
         <profile>
             <id>bangladesh</id>
+            <properties>
+                <availableRegisters>EC:FP:ANC:PNC:CHILD</availableRegisters>
+            </properties>
             <build>
                 <plugins>
                     <plugin>
