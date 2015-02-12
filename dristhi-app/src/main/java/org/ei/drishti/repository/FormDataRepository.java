@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import net.sqlcipher.database.SQLiteDatabase;
 import org.ei.drishti.domain.SyncStatus;
 import org.ei.drishti.domain.form.FormSubmission;
+import org.ei.drishti.person.PersonRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,6 +46,7 @@ public class FormDataRepository extends DrishtiRepository {
         TABLE_COLUMN_MAP.put(EligibleCoupleRepository.EC_TABLE_NAME, EligibleCoupleRepository.EC_TABLE_COLUMNS);
         TABLE_COLUMN_MAP.put(MotherRepository.MOTHER_TABLE_NAME, MotherRepository.MOTHER_TABLE_COLUMNS);
         TABLE_COLUMN_MAP.put(ChildRepository.CHILD_TABLE_NAME, ChildRepository.CHILD_TABLE_COLUMNS);
+        TABLE_COLUMN_MAP.put(PersonRepository.person_TABLE_NAME, PersonRepository.person_TABLE_COLUMNS);
     }
 
     @Override
