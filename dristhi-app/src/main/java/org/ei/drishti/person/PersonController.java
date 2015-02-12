@@ -79,8 +79,7 @@ public class PersonController {
                               personinlist.getDetails().get("risk_factors_other"), personinlist.getDetails().get("drug_regimen_start"),
                               personinlist.getDetails().get("drug_regimen"), personinlist.getDetails().get("current_drug_regimen_start"),
                               personinlist.getDetails().get("bmi"), personinlist.getDetails().get("current_bmi"),
-                              personinlist.getDetails().get("resistance_drugs"), personinlist.getDetails().get("current_resistance_drugs"));
-
+                              personinlist.getDetails().get("resistance_drugs"), personinlist.getDetails().get("current_resistance_drugs"), personinlist.getDetails().get("smear"), personinlist.getDetails().get("current_smear"));
 
                     pClients.add(pClient);
                 }
@@ -108,7 +107,7 @@ public class PersonController {
                                     personinlist.getDetails().get("risk_factors_other"), personinlist.getDetails().get("drug_regimen_start"),
                                     personinlist.getDetails().get("drug_regimen"), personinlist.getDetails().get("current_drug_regimen_start"),
                                     personinlist.getDetails().get("bmi"), personinlist.getDetails().get("current_bmi"),
-                                    personinlist.getDetails().get("resistance_drugs"), personinlist.getDetails().get("current_resistance_drugs"));
+                                    personinlist.getDetails().get("resistance_drugs"), personinlist.getDetails().get("current_resistance_drugs"), personinlist.getDetails().get("smear"), personinlist.getDetails().get("current_smear"));
 
 
                             pClients.add(pClient);

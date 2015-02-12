@@ -16,15 +16,23 @@ public class PersonClient implements SmartRegisterClient{
     private String patientType;
     private String riskFactors;
     private String riskFactorsOther;
+
+    // treatment start date
     private String drugRegimenStart;
     private String drugRegimen;
+
+    // treatment current start date
     private String currentDrugRegimenStart;
+
     private String bmi;
     private String currentBmi;
     private String resistanceDrugs;
     private String currentResistanceDrugs;
+    private String smear;
+    private String currentSmear;
 
-    public PersonClient(String caseId, String name, String age, String sex, String address, String resistanceType, String patientType, String riskFactors, String riskFactorsOther, String drugRegimenStart, String drugRegimen, String currentDrugRegimenStart, String bmi, String currentBmi, String resistanceDrugs, String currentResistanceDrugs) {
+
+    public PersonClient(String caseId, String name, String age, String sex, String address, String resistanceType, String patientType, String riskFactors, String riskFactorsOther, String drugRegimenStart, String drugRegimen, String currentDrugRegimenStart, String bmi, String currentBmi, String resistanceDrugs, String currentResistanceDrugs, String smear, String currentSmear) {
         this.caseId = caseId;
         this.name = name;
         this.age = age;
@@ -41,9 +49,20 @@ public class PersonClient implements SmartRegisterClient{
         this.currentBmi = currentBmi;
         this.resistanceDrugs = resistanceDrugs;
         this.currentResistanceDrugs = currentResistanceDrugs;
+        this.smear = smear;
+        this.currentSmear = currentSmear;
     }
 
     // Getter
+
+    public String getSmear() {
+        return smear;
+    }
+
+    public String getCurrentSmear() {
+        return currentSmear;
+    }
+
     public String getCaseId() {
         return caseId;
     }
@@ -109,6 +128,15 @@ public class PersonClient implements SmartRegisterClient{
     }
 
     // Setter
+
+    public void setSmear(String smear) {
+        this.smear = smear;
+    }
+
+    public void setCurrentSmear(String currentSmear) {
+        this.currentSmear = currentSmear;
+    }
+
     public void setCaseId(String caseId) {
         this.caseId = caseId;
     }
