@@ -2,6 +2,12 @@ package org.ei.drishti;
 
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+
+import org.ei.drishti.person.AllPersons;
+import org.ei.drishti.person.PersonClients;
+import org.ei.drishti.person.PersonRegistrationHandler;
+import org.ei.drishti.person.PersonRepository;
+import org.ei.drishti.person.PersonService;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
 import org.ei.drishti.service.formSubmissionHandler.*;
@@ -29,6 +35,7 @@ public class Context {
     private ReportRepository reportRepository;
     private FormDataRepository formDataRepository;
     private ServiceProvidedRepository serviceProvidedRepository;
+    private PersonRepository personRepository;
 
     private AllSettings allSettings;
     private AllSharedPreferences allSharedPreferences;
@@ -38,6 +45,7 @@ public class Context {
     private AllTimelineEvents allTimelineEvents;
     private AllReports allReports;
     private AllServicesProvided allServicesProvided;
+    private AllPersons allPersons;
 
     private DrishtiService drishtiService;
     private ActionService actionService;
@@ -53,6 +61,7 @@ public class Context {
     private BeneficiaryService beneficiaryService;
     private ServiceProvidedService serviceProvidedService;
     private PendingFormSubmissionService pendingFormSubmissionService;
+    private PersonService personService;
 
     private Session session;
     private Cache<String> listCache;
@@ -64,6 +73,7 @@ public class Context {
     private Cache<PNCClients> pncClientsCache;
     private Cache<Villages> villagesCache;
     private Cache<Typeface> typefaceCache;
+    private Cache<PersonClients> personClientsCache;
 
     private HTTPAgent httpAgent;
     private ZiggyFileLoader ziggyFileLoader;
@@ -95,6 +105,7 @@ public class Context {
     private ECEditHandler ecEditHandler;
     private ANCInvestigationsHandler ancInvestigationsHandler;
     private SaveANMLocationTask saveANMLocationTask;
+    private PersonRegistrationHandler personRegistrationHandler;
 
     private ANMController anmController;
     private ANMLocationController anmLocationController;
@@ -161,7 +172,7 @@ public class Context {
                     ttHandler(), ifaHandler(), hbTestHandler(), deliveryOutcomeHandler(), pncRegistrationOAHandler(),
                     pncCloseHandler(), pncVisitHandler(), childImmunizationsHandler(), childRegistrationECHandler(),
                     childRegistrationOAHandler(), childCloseHandler(), childIllnessHandler(), vitaminAHandler(),
-                    deliveryPlanHandler(), ecEditHandler(), ancInvestigationsHandler());
+                    deliveryPlanHandler(), ecEditHandler(), ancInvestigationsHandler(), personRegistrationHandler());
         }
         return formSubmissionRouter;
     }
@@ -684,5 +695,42 @@ public class Context {
 
     public Drawable getDrawableResource(int id) {
         return applicationContext().getResources().getDrawable(id);
+    }
+
+    // Person
+    private PersonRegistrationHandler personRegistrationHandler() {
+        if(personRegistrationHandler == null) {
+            personRegistrationHandler = new PersonRegistrationHandler(personService());
+        }
+        return personRegistrationHandler;
+    }
+
+    public PersonService personService() {
+        if(personService == null) {
+            personService = new PersonService(allPersons());
+        }
+        return personService;
+    }
+
+    public AllPersons allPersons() {
+        initRepository();
+        if(allPersons == null) {
+            allPersons = new AllPersons(personRepository(), alertRepository(), timelineEventRepository());
+        }
+        return allPersons;
+    }
+
+    private PersonRepository personRepository() {
+        if(personRepository == null) {
+            personRepository = new PersonRepository();
+        }
+        return personRepository;
+    }
+
+    public Cache<PersonClients> personClientsCache() {
+        if(personClientsCache == null) {
+            personClientsCache = new Cache<PersonClients>();
+        }
+        return personClientsCache;
     }
 }
