@@ -385,7 +385,7 @@ public class Context {
         if (repository == null) {
             repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(),
                     eligibleCoupleRepository(), childRepository(), timelineEventRepository(), motherRepository(), reportRepository(),
-                    formDataRepository(), serviceProvidedRepository());
+                    formDataRepository(), serviceProvidedRepository(),personRepository());
         }
         return repository;
     }
