@@ -32,7 +32,7 @@ public class AllPersons {
     }
 
 
- 
+
 
     public List<Person> findByCaseIDs(List<String> caseIds) {
         return personRepository.findByCaseIDs(caseIds.toArray(new String[caseIds.size()]));

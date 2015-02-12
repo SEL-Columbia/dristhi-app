@@ -57,7 +57,7 @@
         "bind": "/model/instance/tb_followup/smear"
       },
       {
-        "name": "current_rsmearesistance_drugs",
+        "name": "current_resistance_drugs",
         "bind": "/model/instance/tb_followup/resistance_drugs"
       },
       {
