@@ -9,7 +9,7 @@ public class Person {
     private String caseId;
     private Map<String, String> details;
 
-    public Person(Map<String, String> details, String caseId) {
+    public Person( String caseId,Map<String, String> details) {
         this.details = details;
         this.caseId = caseId;
     }
