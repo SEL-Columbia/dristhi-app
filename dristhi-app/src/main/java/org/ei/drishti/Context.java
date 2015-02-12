@@ -8,6 +8,7 @@ import org.ei.drishti.person.PersonClients;
 import org.ei.drishti.person.PersonRegistrationHandler;
 import org.ei.drishti.person.PersonRepository;
 import org.ei.drishti.person.PersonService;
+import org.ei.drishti.person.followupHandler;
 import org.ei.drishti.repository.*;
 import org.ei.drishti.service.*;
 import org.ei.drishti.service.formSubmissionHandler.*;
@@ -106,6 +107,7 @@ public class Context {
     private ANCInvestigationsHandler ancInvestigationsHandler;
     private SaveANMLocationTask saveANMLocationTask;
     private PersonRegistrationHandler personRegistrationHandler;
+    private followupHandler personfollowuphandler;
 
     private ANMController anmController;
     private ANMLocationController anmLocationController;
@@ -172,9 +174,16 @@ public class Context {
                     ttHandler(), ifaHandler(), hbTestHandler(), deliveryOutcomeHandler(), pncRegistrationOAHandler(),
                     pncCloseHandler(), pncVisitHandler(), childImmunizationsHandler(), childRegistrationECHandler(),
                     childRegistrationOAHandler(), childCloseHandler(), childIllnessHandler(), vitaminAHandler(),
-                    deliveryPlanHandler(), ecEditHandler(), ancInvestigationsHandler(), personRegistrationHandler());
+                    deliveryPlanHandler(), ecEditHandler(), ancInvestigationsHandler(), personRegistrationHandler(),personfollowuphandler());
         }
         return formSubmissionRouter;
+    }
+
+    private followupHandler personfollowuphandler() {
+        if (personfollowuphandler == null) {
+            personfollowuphandler = new followupHandler(personService());
+        }
+        return personfollowuphandler;
     }
 
     private ChildCloseHandler childCloseHandler() {

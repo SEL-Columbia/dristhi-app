@@ -3,6 +3,7 @@ package org.ei.drishti.service.formSubmissionHandler;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.ei.drishti.domain.form.FormSubmission;
 import org.ei.drishti.person.PersonRegistrationHandler;
+import org.ei.drishti.person.followupHandler;
 import org.ei.drishti.repository.FormDataRepository;
 import org.ei.drishti.util.Log;
 
@@ -42,7 +43,7 @@ public class FormSubmissionRouter {
                                 ChildCloseHandler childCloseHandler, ChildIllnessHandler childIllnessHandler,
                                 VitaminAHandler vitaminAHandler, DeliveryPlanHandler deliveryPlanHandler,
                                 ECEditHandler ecEditHandler, ANCInvestigationsHandler ancInvestigationsHandler,
-                                PersonRegistrationHandler personRegistrationHandler) {
+                                PersonRegistrationHandler personRegistrationHandler,followupHandler tbfohandler) {
         this.formDataRepository = formDataRepository;
         handlerMap = new HashMap<String, FormSubmissionHandler>();
         handlerMap.put(EC_REGISTRATION, ecRegistrationHandler);
@@ -74,6 +75,7 @@ public class FormSubmissionRouter {
         handlerMap.put(EC_EDIT, ecEditHandler);
         handlerMap.put(ANC_INVESTIGATIONS, ancInvestigationsHandler);
         handlerMap.put(TB_Registration, personRegistrationHandler);
+        handlerMap.put("tb_followup", tbfohandler);
     }
 
     public void route(String instanceId) throws Exception {
