@@ -10,7 +10,8 @@
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_margin="5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -59,7 +60,8 @@
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:layout_margin="5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -87,7 +89,8 @@
         android:orientation="horizontal"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:layout_margin="5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -105,7 +108,8 @@
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:layout_margin="5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -145,7 +149,8 @@
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:layout_margin="5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -171,7 +176,8 @@
         android:orientation="vertical"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:layout_margin="5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -212,25 +218,17 @@
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:background="@color/light_blue">
+        android:background="@color/light_blue"
+        >
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:text="follow up"
+            android:textColor="@color/client_list_header_dark_grey"
             android:id="@+id/follow_up"
-            android:background="@drawable/transparent_blue_background" />
+            android:background="@drawable/transparent_blue_background"
+             />
     </LinearLayout>
 
-    <ImageButton
-            android:id="@+id/btn_edit"
-            android:layout_width="@dimen/list_edit_icon_view_width"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:scaleType="center"
-            android:gravity="center"
-            android:layout_margin="5dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="@drawable/edit_button_background"/>
 </LinearLayout>
