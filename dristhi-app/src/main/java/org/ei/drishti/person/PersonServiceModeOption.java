@@ -48,8 +48,8 @@ public class PersonServiceModeOption extends ServiceModeOption {
             @Override
             public int[] headerTextResourceIds() {
                 return new int[]{
-                        R.string.header_name, R.string.header_ec_no, R.string.header_gplsa,
-                        R.string.header_fp, R.string.header_children, R.string.header_status,
+                        R.string.tb_header_name, R.string.tb_header_status, R.string.tb_header_risk_factors,
+                        R.string.tb_header_treatment, R.string.tb_header_labresults, R.string.header_edit,
                         R.string.header_edit};
             }
         };

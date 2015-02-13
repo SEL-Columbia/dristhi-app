@@ -48,6 +48,13 @@
     <string name="header_status">STATUS</string>
     <string name="header_edit"></string>
 
+    <string name="tb_header_name">NAME</string>
+    <string name="tb_header_status">STATUS</string>
+    <string name="tb_header_risk_factors">RISK FACTORS</string>
+    <string name="tb_header_treatment">TREATMENT</string>
+    <string name="tb_header_labresults">LAB RESULTS</string>
+
+
     <string name="couple_selection">All Eligible Couples</string>
     <string name="str_ec_search_hint">Search EC Register</string>
     <string name="str_fp_search_hint">Search FP Register</string>
