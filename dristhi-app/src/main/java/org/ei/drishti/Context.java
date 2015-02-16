@@ -716,7 +716,7 @@ public class Context {
 
     public PersonService personService() {
         if(personService == null) {
-            personService = new PersonService(allPersons());
+            personService = new PersonService(allPersons(),allTimelineEvents());
         }
         return personService;
     }
