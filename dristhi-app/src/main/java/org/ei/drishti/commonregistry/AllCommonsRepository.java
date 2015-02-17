@@ -9,21 +9,21 @@ import java.util.List;
 import java.util.Map;
 
 public class AllCommonsRepository {
-    private PersonRepository personRepository;
+    private commonRepository personRepository;
     private final TimelineEventRepository timelineEventRepository;
     private final AlertRepository alertRepository;
 
-    public AllCommonsRepository(PersonRepository personRepository, AlertRepository alertRepository, TimelineEventRepository timelineEventRepository) {
+    public AllCommonsRepository(commonRepository personRepository, AlertRepository alertRepository, TimelineEventRepository timelineEventRepository) {
         this.personRepository = personRepository;
         this.timelineEventRepository = timelineEventRepository;
         this.alertRepository = alertRepository;
     }
 
-    public List<Person> all() {
-        return personRepository.allPerson();
+    public List<PersonObject> all() {
+        return personRepository.allcommon();
     }
 
-    public Person findByCaseID(String caseId) {
+    public PersonObject findByCaseID(String caseId) {
         return personRepository.findByCaseID(caseId);
     }
 
@@ -34,7 +34,7 @@ public class AllCommonsRepository {
 
 
 
-    public List<Person> findByCaseIDs(List<String> caseIds) {
+    public List<PersonObject> findByCaseIDs(List<String> caseIds) {
         return personRepository.findByCaseIDs(caseIds.toArray(new String[caseIds.size()]));
     }
 

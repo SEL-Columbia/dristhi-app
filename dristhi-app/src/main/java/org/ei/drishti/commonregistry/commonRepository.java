@@ -9,7 +9,7 @@ import com.google.gson.reflect.TypeToken;
 import net.sqlcipher.database.SQLiteDatabase;
 
 
-import org.ei.drishti.person.Person;
+
 import org.ei.drishti.repository.DrishtiRepository;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class commonRepository extends DrishtiRepository {
         database.execSQL(common_SQL);
     }
 
-    public void add(Person common) {
+    public void add(PersonObject common) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(TABLE_NAME, null, createValuesFor(common));
     }
@@ -46,7 +46,7 @@ public class commonRepository extends DrishtiRepository {
     public void updateDetails(String caseId, Map<String, String> details) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
 
-        Person common = findByCaseID(caseId);
+        PersonObject common = findByCaseID(caseId);
         if (common == null) {
             return;
         }
@@ -59,7 +59,7 @@ public class commonRepository extends DrishtiRepository {
     public void mergeDetails(String caseId, Map<String, String> details) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
 
-        Person common = findByCaseID(caseId);
+        PersonObject common = findByCaseID(caseId);
         if (common == null) {
             return;
         }
@@ -71,24 +71,24 @@ public class commonRepository extends DrishtiRepository {
         database.update(TABLE_NAME, valuesToUpdate, ID_COLUMN + " = ?", new String[]{caseId});
     }
 
-    public List<Person> allcommon() {
+    public List<PersonObject> allcommon() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(TABLE_NAME, common_TABLE_COLUMNS, null, null, null, null, null, null);
         return readAllcommon(cursor);
     }
 
-    public List<Person> findByCaseIDs(String... caseIds) {
+    public List<PersonObject> findByCaseIDs(String... caseIds) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery(String.format("SELECT * FROM %s WHERE %s IN (%s)", TABLE_NAME, ID_COLUMN,
                 insertPlaceholdersForInClause(caseIds.length)), caseIds);
         return readAllcommon(cursor);
     }
 
-    public Person findByCaseID(String caseId) {
+    public PersonObject findByCaseID(String caseId) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(TABLE_NAME, common_TABLE_COLUMNS, ID_COLUMN + " = ?", new String[]{caseId},
                 null, null, null, null);
-        List<Person> commons = readAllcommon(cursor);
+        List<PersonObject> commons = readAllcommon(cursor);
         if (commons.isEmpty()) {
             return null;
         }
@@ -107,19 +107,19 @@ public class commonRepository extends DrishtiRepository {
 //        masterRepository.getWritableDatabase().update(EC_TABLE_NAME, values, ID_COLUMN + " = ?", new String[]{caseId});
     }
 
-    private ContentValues createValuesFor(Person common) {
+    private ContentValues createValuesFor(PersonObject common) {
         ContentValues values = new ContentValues();
         values.put(ID_COLUMN, common.getCaseId());
         values.put(DETAILS_COLUMN, new Gson().toJson(common.getDetails()));
         return values;
     }
 
-    private List<Person> readAllcommon(Cursor cursor) {
+    private List<PersonObject> readAllcommon(Cursor cursor) {
         cursor.moveToFirst();
-        List<Person> commons = new ArrayList<Person>();
+        List<PersonObject> commons = new ArrayList<PersonObject>();
         while (!cursor.isAfterLast()) {
-            Person common = new Person(cursor.getString(0),new Gson().<Map<String, String>>fromJson(cursor.getString(1), new TypeToken<Map<String, String>>() {
-                    }.getType()));
+            PersonObject common = new PersonObject(cursor.getString(0),new Gson().<Map<String, String>>fromJson(cursor.getString(1), new TypeToken<Map<String, String>>() {
+                    }.getType()),TABLE_NAME);
 
             commons.add(common);
             cursor.moveToNext();
