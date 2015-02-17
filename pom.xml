@@ -43,7 +43,7 @@
         <repository>
             <id>motech.drishti</id>
             <name>Motech Snapshots Repository</name>
-            <url>http://nexus.motechproject.org/content/repositories/drishti</url>
+            <url>http://ci.smartregistries.org:8081/nexus/content/repositories/dristhi</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
