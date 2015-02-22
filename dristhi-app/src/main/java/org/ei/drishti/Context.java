@@ -9,6 +9,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import org.ei.drishti.commonregistry.AllCommonsRepository;
+import org.ei.drishti.commonregistry.PersonObject;
+import org.ei.drishti.commonregistry.PersonObjectClients;
 import org.ei.drishti.commonregistry.commonRepository;
 import org.ei.drishti.person.AllPersons;
 import org.ei.drishti.person.PersonClients;
@@ -34,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
@@ -63,6 +66,8 @@ public class Context {
     private AllReports allReports;
     private AllServicesProvided allServicesProvided;
     private AllPersons allPersons;
+    private AllCommonsRepository allCommonPersonObjectsRepository;
+
 
     private DrishtiService drishtiService;
     private ActionService actionService;
@@ -91,6 +96,7 @@ public class Context {
     private Cache<Villages> villagesCache;
     private Cache<Typeface> typefaceCache;
     private Cache<PersonClients> personClientsCache;
+    private Cache<PersonObjectClients> personObjectClientsCache;
 
     private HTTPAgent httpAgent;
     private ZiggyFileLoader ziggyFileLoader;
@@ -422,7 +428,7 @@ public class Context {
             drishtireposotorylist.add(reportRepository());
             drishtireposotorylist.add(formDataRepository());
             drishtireposotorylist.add(serviceProvidedRepository());
-            drishtireposotorylist.add(personRepository());
+//            drishtireposotorylist.add(personRepository());
             for(int i = 0;i < bindtypes.size();i++){
                 drishtireposotorylist.add(commonrepository(bindtypes.get(i)));
             }
@@ -779,12 +785,30 @@ public class Context {
         return personClientsCache;
     }
     ///////////////////////////////// common methods ///////////////////////////////
+    public  Cache <PersonObjectClients> personObjectClientsCache(){
+        this.personObjectClientsCache = null;
+        personObjectClientsCache = new Cache<PersonObjectClients>();
+        return personObjectClientsCache;
+    }
     public AllCommonsRepository allCommonsRepositoryobjects(String tablename){
         initRepository();
-        return new AllCommonsRepository(commonrepository(tablename),alertRepository(),timelineEventRepository());
+        allCommonPersonObjectsRepository = new AllCommonsRepository(commonrepository(tablename),alertRepository(),timelineEventRepository());
+        return allCommonPersonObjectsRepository;
     }
+
+    private HashMap <String ,commonRepository > MapOfCommonRepository;
+
+
     public commonRepository commonrepository(String tablename){
-        return new commonRepository(tablename);
+        if(MapOfCommonRepository == null){
+            MapOfCommonRepository = new HashMap<String, commonRepository>();
+        }
+        if(MapOfCommonRepository.get(tablename) == null){
+
+            MapOfCommonRepository.put(tablename,new commonRepository(tablename));
+        }
+
+        return  MapOfCommonRepository.get(tablename);
     }
     public void assignbindtypes(){
         bindtypes = new ArrayList<String>();

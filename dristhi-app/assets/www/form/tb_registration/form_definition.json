@@ -2,7 +2,7 @@
   "form_data_definition_version": "1",
   "form": {
     "default_bind_path": "/model/instance/tb_registration",
-    "bind_type": "user",
+    "bind_type": "person",
     "fields": [
       {
                     "name": "id",

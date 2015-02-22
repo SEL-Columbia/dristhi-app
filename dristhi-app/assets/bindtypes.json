@@ -2,7 +2,7 @@
     "bindobjects":
  [
     {
-      "name": "user"
+      "name": "person"
     }
  ]
 }

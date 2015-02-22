@@ -142,7 +142,7 @@
                 android:screenOrientation="landscape"
                 android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
         <activity
-            android:name=".view.activity.NativePersonSmartRegisterActivity"
+            android:name=".commonregistryexample.NativePersonSmartRegisterActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
 

@@ -85,7 +85,8 @@ public class PersonObjectController {
 
                     @Override
                     public int compare(SmartRegisterClient personClient, SmartRegisterClient personClient2) {
-                        return ((PersonClient)personClient).getName().compareToIgnoreCase(((PersonClient)personClient2).getName());
+
+                        return ((PersonObjectClient)personClient).getName().compareToIgnoreCase(((PersonObjectClient)personClient2).getName());
                     }
                 });
             }

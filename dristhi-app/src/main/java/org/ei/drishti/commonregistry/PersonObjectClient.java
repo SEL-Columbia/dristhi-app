@@ -15,13 +15,35 @@ public class PersonObjectClient implements SmartRegisterClient{
     public PersonObjectClient(String caseId, Map<String, String> details,String name) {
         this.caseId = caseId;
         this.details = details;
-        this.name = name;
+        if(name != null) {
+            this.name = name;
+        }
+//        this.name =  details.get(name)!=null?details.get(name):"";
     }
 
+    public String getCaseId() {
+        return caseId;
+    }
 
+    public void setCaseId(String caseId) {
+        this.caseId = caseId;
+    }
 
+    public Map<String, String> getDetails() {
+        return details;
+    }
 
+    public void setDetails(Map<String, String> details) {
+        this.details = details;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @Override
     public String entityId() {

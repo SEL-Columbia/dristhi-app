@@ -3,6 +3,7 @@ package org.ei.drishti.view.controller;
 import android.app.Activity;
 import android.content.Intent;
 import org.ei.drishti.view.activity.*;
+import org.ei.drishti.commonregistryexample.NativePersonSmartRegisterActivity;
 
 import static org.ei.drishti.view.controller.ProfileNavigationController.*;
 
