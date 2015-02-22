@@ -1,0 +1,8 @@
+{
+    "bindobjects":
+ [
+    {
+      "name": "user"
+    }
+ ]
+}

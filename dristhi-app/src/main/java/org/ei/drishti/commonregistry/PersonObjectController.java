@@ -18,7 +18,7 @@ import static java.util.Collections.sort;
 
 public class PersonObjectController {
 
-    private static final String person_CLIENTS_LIST = "personClientsList";
+    private  final String person_CLIENTS_LIST;
 
     private final AllCommonsRepository allpersonobjects;
     private final AllBeneficiaries allBeneficiaries;
@@ -26,14 +26,15 @@ public class PersonObjectController {
     private final Cache<PersonObjectClients> personObjectClientsCache;
     public final String nameString;
 
+
     public PersonObjectController(AllCommonsRepository allpersons,
                                   AllBeneficiaries allBeneficiaries, Cache<String> cache,
-                                  Cache<PersonObjectClients> personClientsCache,String nameString) {
+                                  Cache<PersonObjectClients> personClientsCache,String nameString,String bindtype) {
         this.allpersonobjects = allpersons;
         this.allBeneficiaries = allBeneficiaries;
         this.cache = cache;
         this.personObjectClientsCache = personClientsCache;
-
+        this.person_CLIENTS_LIST = bindtype+"ClientsList";
         this.nameString = nameString;
     }
 

@@ -1,7 +1,12 @@
 package org.ei.drishti;
 
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import org.ei.drishti.commonregistry.AllCommonsRepository;
 import org.ei.drishti.commonregistry.commonRepository;
@@ -21,7 +26,13 @@ import org.ei.drishti.view.contract.*;
 import org.ei.drishti.view.contract.pnc.PNCClients;
 import org.ei.drishti.view.controller.ANMController;
 import org.ei.drishti.view.controller.ANMLocationController;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,6 +130,9 @@ public class Context {
 
     private DristhiConfiguration configuration;
 
+    ///////////////////common bindtypes///////////////
+    public static ArrayList<String> bindtypes;
+    /////////////////////////////////////////////////
     protected Context() {
     }
 
@@ -397,6 +411,7 @@ public class Context {
 
     private Repository initRepository() {
         if (repository == null) {
+            assignbindtypes();
             ArrayList<DrishtiRepository> drishtireposotorylist = new ArrayList<DrishtiRepository>();
             drishtireposotorylist.add(settingsRepository());
             drishtireposotorylist.add(alertRepository());
@@ -408,7 +423,9 @@ public class Context {
             drishtireposotorylist.add(formDataRepository());
             drishtireposotorylist.add(serviceProvidedRepository());
             drishtireposotorylist.add(personRepository());
-            drishtireposotorylist.add(commonrepository("user"));
+            for(int i = 0;i < bindtypes.size();i++){
+                drishtireposotorylist.add(commonrepository(bindtypes.get(i)));
+            }
             DrishtiRepository [] drishtireposotoryarray =  drishtireposotorylist.toArray(new DrishtiRepository[drishtireposotorylist.size()]);
             repository = new Repository(this.applicationContext, session(),drishtireposotoryarray );
 //            repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(),
@@ -769,8 +786,54 @@ public class Context {
     public commonRepository commonrepository(String tablename){
         return new commonRepository(tablename);
     }
+    public void assignbindtypes(){
+        bindtypes = new ArrayList<String>();
+        AssetManager assetManager = getInstance().applicationContext().getAssets();
+
+        try {
+            String str = ReadFromfile("bindtypes.json",getInstance().applicationContext);
+            JSONObject jsonObject = new JSONObject(str);
+            JSONArray bindtypeObjects = jsonObject.getJSONArray("bindobjects");
+            for(int i = 0 ;i<bindtypeObjects.length();i++){
+                bindtypes.add(bindtypeObjects.getJSONObject(i).getString("name"));
+                Log.v("bind type logs",bindtypeObjects.getJSONObject(i).getString("name"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
+    }
+    public String ReadFromfile(String fileName, android.content.Context context) {
+        StringBuilder returnString = new StringBuilder();
+        InputStream fIn = null;
+        InputStreamReader isr = null;
+        BufferedReader input = null;
+        try {
+            fIn = context.getResources().getAssets()
+                    .open(fileName, android.content.Context.MODE_WORLD_READABLE);
+            isr = new InputStreamReader(fIn);
+            input = new BufferedReader(isr);
+            String line = "";
+            while ((line = input.readLine()) != null) {
+                returnString.append(line);
+            }
+        } catch (Exception e) {
+            e.getMessage();
+        } finally {
+            try {
+                if (isr != null)
+                    isr.close();
+                if (fIn != null)
+                    fIn.close();
+                if (input != null)
+                    input.close();
+            } catch (Exception e2) {
+                e2.getMessage();
+            }
+        }
+        return returnString.toString();
+    }
 
 
     ///////////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,6 @@
 [
     {
-      "parent": "person",
+      "parent": "user",
       "child": "mother",
       "field": "wife",
       "kind": "one_to_one",
