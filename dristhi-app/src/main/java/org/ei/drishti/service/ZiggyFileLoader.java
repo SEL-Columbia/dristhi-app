@@ -3,6 +3,8 @@ package org.ei.drishti.service;
 import android.content.res.AssetManager;
 import org.apache.commons.io.IOUtils;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -33,7 +35,8 @@ public class ZiggyFileLoader {
 
     public String loadAppData(String fileName) {
         try {
-            return IOUtils.toString(assetManager.open(formDirectoryPath + "/" + fileName), "UTF-8");
+            FormPathService fps = new FormPathService(assetManager);
+            return fps.getForms(fileName, "UTF-8");
         } catch (IOException e) {
             logError(format("Error while loading app data file: {0}, with exception: {1}", fileName, e));
         }
