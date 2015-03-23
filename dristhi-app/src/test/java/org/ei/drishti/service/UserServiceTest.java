@@ -52,7 +52,7 @@ public class UserServiceTest {
 
         userService.isValidRemoteLogin("userX", "password Y");
 
-        verify(httpAgent).urlCanBeAccessWithGivenCredentials("http://dristhi_base_url/anm-villages?anm-id=userX", "userX", "password Y");
+        verify(httpAgent).urlCanBeAccessWithGivenCredentials("http://dristhi_base_url/location/location-tree", "userX", "password Y");
     }
 
     @Test
