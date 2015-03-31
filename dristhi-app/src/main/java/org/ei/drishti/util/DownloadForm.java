@@ -1,8 +1,9 @@
-package org.ei.drishti.service;
+package org.ei.drishti.util;
 
 import android.util.Log;
 
 import org.apache.http.util.ByteArrayBuffer;
+import org.ei.drishti.service.FormPathService;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -16,7 +17,7 @@ import java.net.URLConnection;
 /**
  * Created by Dimas Ciputra on 3/21/15.
  */
-public class DownloadFormService {
+public class DownloadForm {
 
     public static String DownloadFromURL(String downloadURL, String fileName) {
 
@@ -24,7 +25,7 @@ public class DownloadFormService {
 
         try {
 
-            File dir = new File(FormPathService.sdcardPath);
+            File dir = new File(FormPathService.sdcardPathDownload);
 
             if(!dir.exists()) {
                 dir.mkdirs();

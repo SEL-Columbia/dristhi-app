@@ -118,4 +118,18 @@ public class FormsVersionRepositoryTest extends AndroidTestCase {
         assertEquals(asList(firstForm, secondForm), allPendingForms);
         assertEquals(asList(thirdForm), allSyncedForms);
     }
+
+    public void testShouldGetVersionByFormName() throws Exception {
+
+        Map<String, String> firstForm = create("id", "1")
+                .put("formName", "ec")
+                .put("version", "1")
+                .put("syncStatus", PENDING.value()).map();
+
+        repository.addFormVersion(firstForm);
+
+        String version = repository.getVersion("ec");
+
+        assertEquals("1", version);
+    }
 }

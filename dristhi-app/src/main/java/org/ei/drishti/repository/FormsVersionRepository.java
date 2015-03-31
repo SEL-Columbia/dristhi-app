@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
+import org.ei.drishti.domain.FormDefinitionVersion;
 import org.ei.drishti.domain.SyncStatus;
 
 import java.util.ArrayList;
@@ -38,14 +39,21 @@ public class FormsVersionRepository extends DrishtiRepository {
         database.execSQL(FORM_VERSION_SQL);
     }
 
-    public Map<String, String> fetchVersionByFormName(String formName) {
+    public FormDefinitionVersion fetchVersionByFormName(String formName) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(FORM_VERSION_TABLE_NAME, FORM_VERSION_TABLE_COLUMNS, FORM_NAME_COLUMN + " = ?",
                 new String[]{formName}, null, null, null);
         return readFormVersion(cursor).get(0);
     }
 
-    public List<Map<String, String>> getAllFormWithSyncStatus(SyncStatus status) {
+    public String getVersion(String formName) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(FORM_VERSION_TABLE_NAME, FORM_VERSION_TABLE_COLUMNS, FORM_NAME_COLUMN + " = ?",
+                new String[]{formName}, null, null, null);
+        return (readFormVersion(cursor).get(0)).getVersion();
+    }
+
+    public List<FormDefinitionVersion> getAllFormWithSyncStatus(SyncStatus status) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(FORM_VERSION_TABLE_NAME, FORM_VERSION_TABLE_COLUMNS, SYNC_STATUS_COLUMN + " = ?",
                 new String[]{status.value()}, null, null, null);
@@ -62,6 +70,7 @@ public class FormsVersionRepository extends DrishtiRepository {
         ContentValues values = new ContentValues();
         values.put(VERSION_COLUMN, serverVersion);
         database.update(FORM_VERSION_TABLE_NAME, values, FORM_NAME_COLUMN + " = ?", new String[]{formName});
+        updateSyncStatus(formName, SyncStatus.PENDING);
     }
 
     public void updateSyncStatus(String formName, SyncStatus status){
@@ -88,16 +97,17 @@ public class FormsVersionRepository extends DrishtiRepository {
         return values;
     }
 
-    private List<Map<String, String>> readFormVersion(Cursor cursor) {
+    private List<FormDefinitionVersion> readFormVersion(Cursor cursor) {
         cursor.moveToFirst();
-        List<Map<String, String>> submissions = new ArrayList<Map<String, String>>();
+        List<FormDefinitionVersion> submissions = new ArrayList<FormDefinitionVersion>();
         while (!cursor.isAfterLast()) {
-            submissions.add(
-                    create(ID_COLUMN, cursor.getString(cursor.getColumnIndex(ID_COLUMN)))
-                            .put(FORM_NAME_COLUMN, cursor.getString(cursor.getColumnIndex(FORM_NAME_COLUMN)))
-                            .put(VERSION_COLUMN, cursor.getString(cursor.getColumnIndex(VERSION_COLUMN)))
-                            .put(SYNC_STATUS_COLUMN, cursor.getString(cursor.getColumnIndex(SYNC_STATUS_COLUMN)))
-                            .map());
+            FormDefinitionVersion _formDefinitionVersion = new FormDefinitionVersion(cursor.getString(cursor.getColumnIndex(FORM_NAME_COLUMN)),
+                    cursor.getString(cursor.getColumnIndex(VERSION_COLUMN)));
+            String _syncStatus = cursor.getString(cursor.getColumnIndex(SYNC_STATUS_COLUMN));
+            if(!_syncStatus.isEmpty()) {
+                _formDefinitionVersion.withSyncStatus(SyncStatus.valueOf(_syncStatus));
+            }
+            submissions.add(_formDefinitionVersion);
             cursor.moveToNext();
         }
         cursor.close();
