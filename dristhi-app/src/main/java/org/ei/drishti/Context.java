@@ -29,6 +29,7 @@ public class Context {
     private ReportRepository reportRepository;
     private FormDataRepository formDataRepository;
     private ServiceProvidedRepository serviceProvidedRepository;
+    private FormsVersionRepository formsVersionRepository;
 
     private AllSettings allSettings;
     private AllSharedPreferences allSharedPreferences;
@@ -53,6 +54,8 @@ public class Context {
     private BeneficiaryService beneficiaryService;
     private ServiceProvidedService serviceProvidedService;
     private PendingFormSubmissionService pendingFormSubmissionService;
+    private AllFormVersionService allFormVersionService;
+    private AllFormVersionSyncService allFormVersionSyncService;
 
     private Session session;
     private Cache<String> listCache;
@@ -150,6 +153,21 @@ public class Context {
             formSubmissionService = new FormSubmissionService(ziggyService(), formDataRepository(), allSettings());
         }
         return formSubmissionService;
+    }
+
+    public AllFormVersionService allFormVersionService() {
+        if(allFormVersionService == null) {
+            allFormVersionService = new AllFormVersionService(formsVersionRepository(), httpAgent());
+        }
+        return allFormVersionService;
+    }
+
+    public AllFormVersionSyncService allFormVersionSyncService() {
+        if(allFormVersionSyncService == null) {
+            allFormVersionSyncService = new AllFormVersionSyncService(allFormVersionService(), httpAgent(),
+                    this, formsVersionRepository());
+        }
+        return allFormVersionSyncService;
     }
 
     public FormSubmissionRouter formSubmissionRouter() {
@@ -374,7 +392,7 @@ public class Context {
         if (repository == null) {
             repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(),
                     eligibleCoupleRepository(), childRepository(), timelineEventRepository(), motherRepository(), reportRepository(),
-                    formDataRepository(), serviceProvidedRepository());
+                    formDataRepository(), serviceProvidedRepository(), formsVersionRepository());
         }
         return repository;
     }
@@ -503,6 +521,13 @@ public class Context {
             serviceProvidedRepository = new ServiceProvidedRepository();
         }
         return serviceProvidedRepository;
+    }
+
+    private FormsVersionRepository formsVersionRepository() {
+        if (formsVersionRepository == null) {
+            formsVersionRepository = new FormsVersionRepository();
+        }
+        return formsVersionRepository;
     }
 
     public UserService userService() {
@@ -685,4 +710,9 @@ public class Context {
     public Drawable getDrawableResource(int id) {
         return applicationContext().getResources().getDrawable(id);
     }
+
+    public String baseURLTest() {
+        return AllConstants.BASE_URL_TEST;
+    }
+
 }

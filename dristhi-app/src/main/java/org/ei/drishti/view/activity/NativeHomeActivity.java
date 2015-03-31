@@ -145,7 +145,8 @@ public class NativeHomeActivity extends SecuredActivity {
 
     public void updateFromServer() {
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
-                this, context.actionService(), context.formSubmissionSyncService(), new SyncProgressIndicator());
+                this, context.actionService(), context.formSubmissionSyncService(),
+                new SyncProgressIndicator(), context.allFormVersionSyncService());
         updateActionsTask.updateFromServer(new SyncAfterFetchListener());
     }
 
