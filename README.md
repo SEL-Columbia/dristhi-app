@@ -1,4 +1,4 @@
-![Dristhi](dristhi-app/res/drawable-mddpi/login_logo.png)
+![Dristhi](dristhi-app/res/drawable-mdpi/login_logo.png)
 
 To run this project, you need to do this:
 ========================================
