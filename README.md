@@ -18,7 +18,7 @@ Tips and tricks (to be completed):
 
 Login (for demo server):
 =================================
-login-username - admin,
-login-password - 5rpAdmin
+login-username - demotest,
+login-password - Demot123
 
 Check app.properties file in "drishti-app/asset/" folder to change the demo server url to your own instance of opensrp server. 
