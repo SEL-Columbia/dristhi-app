@@ -1,4 +1,4 @@
-![Dristhi](dristhi-app/res/drawable-xhdpi/icon.png)
+![Dristhi](dristhi-app/res/drawable-mdpi/login_logo.png)
 
 To run this project, you need to do this:
 ========================================
@@ -18,7 +18,7 @@ Tips and tricks (to be completed):
 
 Login (for demo server):
 =================================
-login username - admin
-login password - 5rpAdmin
+login-username - demotest,
+login-password - Demot123
 
 Check app.properties file in "drishti-app/asset/" folder to change the demo server url to your own instance of opensrp server. 
