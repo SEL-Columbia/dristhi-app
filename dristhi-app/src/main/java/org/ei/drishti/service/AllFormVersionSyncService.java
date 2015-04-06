@@ -1,9 +1,9 @@
 package org.ei.drishti.service;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.ei.drishti.Context;
+import org.ei.drishti.AllConstants;
+import org.ei.drishti.DristhiConfiguration;
 import org.ei.drishti.domain.DownloadStatus;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.domain.FormDefinitionVersion;
@@ -11,13 +11,25 @@ import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.SyncStatus;
 import org.ei.drishti.repository.FormsVersionRepository;
 import org.ei.drishti.util.ZipUtil;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static org.ei.drishti.domain.DownloadStatus.*;
 
+import static org.ei.drishti.domain.SyncStatus.PENDING;
+import static org.ei.drishti.domain.SyncStatus.SYNCED;
 import static org.ei.drishti.util.Log.logError;
 
 /**
@@ -25,23 +37,23 @@ import static org.ei.drishti.util.Log.logError;
  */
 public class AllFormVersionSyncService {
 
-    private AllFormVersionService allFormVersionService;
     private final HTTPAgent httpAgent;
-    private final Context context;
+    private final DristhiConfiguration configuration;
     private final FormsVersionRepository formsVersionRepository;
+    private static final String FORM_DEF_VERSION_FIELD = "form_data_definition_version";
+    private static final String FORM_DEF_JSON_FILENAME = "form_definition.json";
 
-    public AllFormVersionSyncService(AllFormVersionService allFormVersionService, HTTPAgent httpAgent,
-                                     Context context, FormsVersionRepository formsVersionRepository) {
-        this.allFormVersionService = allFormVersionService;
+    public AllFormVersionSyncService(HTTPAgent httpAgent,
+                                     DristhiConfiguration configuration, FormsVersionRepository formsVersionRepository) {
         this.formsVersionRepository = formsVersionRepository;
         this.httpAgent = httpAgent;
-        this.context = context;
+        this.configuration = configuration;
     }
 
     public FetchStatus pullFormDefinitionFromServer() {
         FetchStatus status = FetchStatus.nothingFetched;
-        String baseUrl = context.baseURLTest();
-        String uri = baseUrl + "/forms";
+        String baseUrl = configuration.dristhiBaseURL();
+        String uri = baseUrl + AllConstants.ALL_FORM_VERSION_URL;
 
         Response<String> response = httpAgent.fetch(uri);
         if(response.isFailure()) {
@@ -50,30 +62,70 @@ public class AllFormVersionSyncService {
             return status;
         }
 
-        List<FormDefinitionVersion> formDefinition = new Gson().fromJson(response.payload(),
-                new TypeToken<List<FormDefinitionVersion>>(){}.getType());
+        String formVersions = null;
 
-        if(formDefinition.size() > 0) {
-            allFormVersionService.processForms(formDefinition);
-            status = FetchStatus.fetched;
-        } else {
+        try {
+            JSONObject jsonObject = new JSONObject(response.payload());
+            formVersions = jsonObject.get("formVersions").toString();
+        } catch (JSONException e) {
             return status;
         }
+
+        List<FormDefinitionVersion> forms = new Gson().fromJson(formVersions,
+                new TypeToken<List<FormDefinitionVersion>>(){}.getType());
+
+        if(forms.size() > 0) {
+            for (FormDefinitionVersion form : forms) {
+                if (!formsVersionRepository.formExists(form.getFormDirName())) {
+                /* Form not exist yet, add it to repository */
+                    form.setSyncStatus(PENDING);
+                    formsVersionRepository.addFormVersionFromObject(form);
+                } else {
+                    /* Form is exist, update it */
+                    FormDefinitionVersion formDefinitionVersion =
+                            formsVersionRepository.getFormByFormDirName(form.getFormDirName());
+
+                    /* If form name is not equal, then update it */
+                    if (!formDefinitionVersion.getFormName().equals(form.getFormName())) {
+                        formsVersionRepository.updateFormName(form.getFormDirName(), form.getFormName());
+                    }
+
+                    int repoVersion = Integer.parseInt(formDefinitionVersion.getVersion());
+                    int pulledVersion = Integer.parseInt(form.getVersion());
+
+                    if (pulledVersion != repoVersion) {
+                        formsVersionRepository.updateServerVersion(form.getFormDirName(), form.getVersion());
+                        formsVersionRepository.updateSyncStatus(form.getFormDirName(), SyncStatus.PENDING);
+                        status = FetchStatus.fetched;
+                    }
+                }
+            }
+        }
+
         return status;
     }
 
     public DownloadStatus downloadAllPendingFormFromServer() {
         DownloadStatus status = nothingDownloaded;
-        List<FormDefinitionVersion> list =  formsVersionRepository.getAllFormWithSyncStatus(SyncStatus.PENDING);
+        List<FormDefinitionVersion> pendingFormList = formsVersionRepository.getAllFormWithSyncStatus(SyncStatus.PENDING);
 
-        if(list.isEmpty()) {
+        if(pendingFormList.isEmpty()) {
             return status;
         } else {
-            status = allFormVersionService.processDownloadPendingForms(list);
+            for(FormDefinitionVersion l : pendingFormList) {
+                String downloadLink = configuration.dristhiBaseURL()
+                        + AllConstants.FORM_DOWNLOAD_URL
+                        + l.getFormDirName();
+
+                status = httpAgent.downloadFromUrl(downloadLink, l.getFormDirName()+".zip");
+                if(status == DownloadStatus.downloaded)
+                    formsVersionRepository.updateSyncStatus(l.getFormDirName(), SyncStatus.SYNCED);
+            }
         }
         return status;
     }
 
+    /* Unzip all downloaded form files */
     public void unzipAllDownloadedFormFile() {
         File dir = new File(FormPathService.sdcardPathDownload);
         FileFilter filter = new FileFilter() {
@@ -84,9 +136,81 @@ public class AllFormVersionSyncService {
         };
         File[] zipFiles = dir.listFiles(filter);
         for(File f : zipFiles) {
-            ZipUtil zipUtil = new ZipUtil(f.getAbsolutePath(), FormPathService.sdcardPath);
+            ZipUtil zipUtil = new ZipUtil(f.getAbsolutePath(), FormPathService.sdcardPath + f.getName().replaceAll(".zip", "") + "/");
             zipUtil.unzip();
         }
+    }
+
+    /* Verify all forms file in sdcard */
+    public void verifyFormsInFolder() {
+
+        File[] formFiles = listFormFiles();
+
+        if(formFiles == null) {
+            formsVersionRepository.deleteAll();
+            return;
+        }
+
+        List<File> formStoragelist = new LinkedList<File>(Arrays.asList(formFiles));
+        List<Map<String,String>> formRepoList =
+                formsVersionRepository.getAllFormWithSyncStatusAsMap(SyncStatus.SYNCED);
+
+        /* verify file in repo */
+        if(!formRepoList.isEmpty()) {
+            for(Map<String,String> form : formRepoList) {
+                boolean formFound = false;
+                for(File f:formStoragelist) {
+                    if(form.containsValue(f.getName())) {
+                        formFound = true;
+                        formStoragelist.remove(f);
+                        break;
+                    }
+                }
+                if(!formFound) {
+                    formsVersionRepository.updateSyncStatus(form.get(formsVersionRepository.FORM_DIR_NAME_COLUMN), PENDING);
+                }
+            }
+        }
+        /* verify file in storage */
+        for(File f:formStoragelist) {
+            if(!formsVersionRepository.formExists(f.getName())) {
+                /* Add to Repository */
+                try {
+                    FormDefinitionVersion form = getFormDefinitionFromFile(f);
+                    formsVersionRepository.addFormVersionFromObject(form);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+
+    protected FormDefinitionVersion getFormDefinitionFromFile(File f) {
+        String version = null;
+
+        try {
+            FileInputStream fln = new FileInputStream(new File(f.getAbsolutePath()+ "/" + FORM_DEF_JSON_FILENAME));
+            String jsonString = null;
+            try {
+                FileChannel fc = fln.getChannel();
+                MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
+                jsonString = Charset.defaultCharset().decode(bb).toString();
+            } finally {
+                fln.close();
+            }
+            JSONObject jsonObject = new JSONObject(jsonString);
+            version = (String) jsonObject.get(FORM_DEF_VERSION_FIELD);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new FormDefinitionVersion(f.getName(),
+                f.getName(), version).withSyncStatus(SYNCED);
+    }
+
+    protected File[] listFormFiles() {
+        File dir = new File(FormPathService.sdcardPath);
+        return dir.listFiles();
     }
 
 }

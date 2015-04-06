@@ -6,7 +6,6 @@ import org.ei.drishti.domain.DownloadStatus;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.repository.AllSharedPreferences;
 import org.ei.drishti.service.ActionService;
-import org.ei.drishti.service.AllFormVersionService;
 import org.ei.drishti.service.AllFormVersionSyncService;
 import org.ei.drishti.service.FormSubmissionSyncService;
 import org.ei.drishti.sync.AfterFetchListener;

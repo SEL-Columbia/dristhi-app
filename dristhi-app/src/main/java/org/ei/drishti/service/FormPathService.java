@@ -16,8 +16,9 @@ import java.io.InputStream;
  */
 public class FormPathService {
 
-    private String sdcardPath = Environment.getExternalStorageDirectory().getPath() +"/Download/OpenSRP/form/";
-    private String appPath = "www/form/";
+    public static String sdcardPath = Environment.getExternalStorageDirectory().getPath() +"/Download/OpenSRP/form/";
+    public static String sdcardPathDownload = Environment.getExternalStorageDirectory().getPath() + "/Download/OpenSRP/zip/";
+    public static String appPath = "www/form/";
     private AssetManager assetManager;
 
     public FormPathService(Context context) {
@@ -35,7 +36,7 @@ public class FormPathService {
             return IOUtils.toString(new FileInputStream(formFile), encoding);
         }
 
-        /* TODO : set forms version repository to pending */
         return IOUtils.toString(this.assetManager.open(appPath + file), encoding);
     }
+
 }

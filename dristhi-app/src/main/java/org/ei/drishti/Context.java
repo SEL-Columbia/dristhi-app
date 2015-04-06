@@ -54,7 +54,6 @@ public class Context {
     private BeneficiaryService beneficiaryService;
     private ServiceProvidedService serviceProvidedService;
     private PendingFormSubmissionService pendingFormSubmissionService;
-    private AllFormVersionService allFormVersionService;
     private AllFormVersionSyncService allFormVersionSyncService;
 
     private Session session;
@@ -155,17 +154,10 @@ public class Context {
         return formSubmissionService;
     }
 
-    public AllFormVersionService allFormVersionService() {
-        if(allFormVersionService == null) {
-            allFormVersionService = new AllFormVersionService(formsVersionRepository(), httpAgent());
-        }
-        return allFormVersionService;
-    }
-
     public AllFormVersionSyncService allFormVersionSyncService() {
         if(allFormVersionSyncService == null) {
-            allFormVersionSyncService = new AllFormVersionSyncService(allFormVersionService(), httpAgent(),
-                    this, formsVersionRepository());
+            allFormVersionSyncService = new AllFormVersionSyncService(httpAgent(),
+                    configuration(), formsVersionRepository());
         }
         return allFormVersionSyncService;
     }
@@ -710,9 +702,4 @@ public class Context {
     public Drawable getDrawableResource(int id) {
         return applicationContext().getResources().getDrawable(id);
     }
-
-    public String baseURLTest() {
-        return AllConstants.BASE_URL_TEST;
-    }
-
 }

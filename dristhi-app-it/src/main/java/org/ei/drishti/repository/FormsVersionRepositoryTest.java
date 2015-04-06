@@ -2,6 +2,10 @@ package org.ei.drishti.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
+
+import com.google.gson.Gson;
+
+import org.ei.drishti.domain.FormDefinitionVersion;
 import org.ei.drishti.util.Session;
 
 import java.util.Date;
@@ -29,106 +33,119 @@ public class FormsVersionRepositoryTest extends AndroidTestCase {
 
     public void testShouldCheckFormExistence() throws Exception {
         Map<String, String> jsonData = create("id", "1")
+                .put("formDirName", "ec_dir_name")
                 .put("formName", "ec")
                 .put("version", "1")
                 .put("syncStatus", "SYNCED").map();
 
         repository.addFormVersion(jsonData);
 
-        assertTrue(repository.formExists("ec"));
-        assertFalse(repository.formExists("anc"));
+        assertTrue(repository.formExists("ec_dir_name"));
+        assertFalse(repository.formExists("ec"));
     }
 
     public void testShouldSaveFormVersion() throws Exception {
-        Map<String, String> params = create("formName", "ec").put("syncStatus", SYNCED.value()).put("version", "1").map();
+        Map<String, String> params = create("formName", "ec")
+                .put("formDirName", "ec_dir_name")
+                .put("syncStatus", SYNCED.value())
+                .put("formDataDefinitionVersion", "1").map();
         repository.addFormVersion(params);
 
-        Map<String, String> actualFormsVersion = repository.fetchVersionByFormName("ec");
+        FormDefinitionVersion actualFormsVersion = repository.fetchVersionByFormDirName("ec_dir_name");
         assertNotNull(actualFormsVersion);
-        assertEquals(actualFormsVersion.get("version"), params.get("version"));
+        assertEquals(actualFormsVersion.getVersion(), params.get("formDataDefinitionVersion"));
     }
 
     public void testShouldAutoGenerateIdKeyWhenAddNewForm() throws Exception {
-        Map<String, String> params = create("formName", "ec").put("syncStatus", SYNCED.value()).put("version", "1").map();
+        Map<String, String> params = create("formName", "ec")
+                .put("formDirName", "ec_dir_name")
+                .put("syncStatus", SYNCED.value())
+                .put("formDataDefinitionVersion", "1").map();
+
         repository.addFormVersion(params);
 
-        Map<String, String> actualFormsVersion = repository.fetchVersionByFormName("ec");
+        FormDefinitionVersion actualFormsVersion = repository.fetchVersionByFormDirName("ec_dir_name");
         assertNotNull(actualFormsVersion);
-        assertEquals(actualFormsVersion.get("version"), params.get("version"));
-        assertNotNull(actualFormsVersion.get("id"));
+        assertEquals(actualFormsVersion.getVersion(), params.get("formDataDefinitionVersion"));
+        assertNotNull(actualFormsVersion.getEntityId());
     }
 
     public void testShouldUpdateVersionFormIfFormExist() throws Exception {
         Map<String, String> data1 = create("formName", "ec")
-                .put("version", "1")
+                .put("formDirName", "ec_dir_name")
+                .put("formDataDefinitionVersion", "1")
                 .put("syncStatus", SYNCED.value()).map();
 
         repository.addFormVersion(data1);
 
-        Map<String, String> actualData1 = repository.fetchVersionByFormName("ec");
-        assertEquals("1", actualData1.get("version"));
+        FormDefinitionVersion actualData1 = repository.fetchVersionByFormDirName("ec_dir_name");
+        assertEquals("1", actualData1.getVersion());
 
-        if(repository.formExists("ec")) {
-            repository.updateServerVersion("ec", "2");
+        if(repository.formExists("ec_dir_name")) {
+            repository.updateServerVersion("ec_dir_name", "2");
         }
 
-        Map<String, String> actualData2 = repository.fetchVersionByFormName("ec");
-        assertEquals("2", actualData2.get("version"));
+        FormDefinitionVersion actualData2 = repository.fetchVersionByFormDirName("ec_dir_name");
+        assertEquals("2", actualData2.getVersion());
     }
 
     public void testShouldUpdateSyncStatus() throws Exception {
         Map<String, String> firstForm = create("id", "1")
                 .put("formName", "ec")
-                .put("version", "1")
+                .put("formDirName", "ec_dir_name")
+                .put("formDataDefinitionVersion", "1")
                 .put("syncStatus", PENDING.value()).map();
 
         repository.addFormVersion(firstForm);
-        Map<String, String> actualData = repository.fetchVersionByFormName("ec");
+        FormDefinitionVersion actualData = repository.fetchVersionByFormDirName("ec_dir_name");
 
-        assertEquals(PENDING.value(), actualData.get("syncStatus"));
+        assertEquals(PENDING.value(), actualData.getSyncStatus().toString());
 
-        repository.updateSyncStatus("ec", SYNCED);
-        actualData = repository.fetchVersionByFormName("ec");
+        repository.updateSyncStatus("ec_dir_name", SYNCED);
+        actualData = repository.fetchVersionByFormDirName("ec_dir_name");
 
-        assertEquals(SYNCED.value(), actualData.get("syncStatus"));
+        assertEquals(SYNCED.value(), actualData.getSyncStatus().toString());
     }
 
     public void testShouldGetAllPendingForms() throws Exception {
 
-        Map<String, String> firstForm = create("id", "1")
+        Map<String, String> firstForm = create("entityId", "1")
                 .put("formName", "ec")
-                .put("version", "1")
+                .put("formDirName", "ec_dir_name")
+                .put("formDataDefinitionVersion", "1")
                 .put("syncStatus", PENDING.value()).map();
-        Map<String, String> secondForm = create("id", "2")
+        Map<String, String> secondForm = create("entityId", "2")
                 .put("formName", "anc")
-                .put("version", "1")
+                .put("formDirName", "anc_dir_name")
+                .put("formDataDefinitionVersion", "1")
                 .put("syncStatus", PENDING.value()).map();
-        Map<String, String> thirdForm = create("id", "3")
+        Map<String, String> thirdForm = create("entityId", "3")
                 .put("formName", "pnc")
-                .put("version", "1")
+                .put("formDirName", "pnc_dir_name")
+                .put("formDataDefinitionVersion", "1")
                 .put("syncStatus", SYNCED.value()).map();
 
         repository.addFormVersion(firstForm);
         repository.addFormVersion(secondForm);
         repository.addFormVersion(thirdForm);
 
-        List<Map<String, String>> allPendingForms = repository.getAllFormWithSyncStatus(PENDING);
-        List<Map<String, String>> allSyncedForms = repository.getAllFormWithSyncStatus(SYNCED);
+        List<FormDefinitionVersion> allPendingForms = repository.getAllFormWithSyncStatus(PENDING);
+        List<FormDefinitionVersion> allSyncedForms = repository.getAllFormWithSyncStatus(SYNCED);
 
-        assertEquals(asList(firstForm, secondForm), allPendingForms);
-        assertEquals(asList(thirdForm), allSyncedForms);
+        assertEquals(2, allPendingForms.size());
+        assertEquals(1, allSyncedForms.size());
     }
 
     public void testShouldGetVersionByFormName() throws Exception {
-
         Map<String, String> firstForm = create("id", "1")
                 .put("formName", "ec")
-                .put("version", "1")
+                .put("formDirName", "ec_dir_name")
+                .put("formDataDefinitionVersion", "1")
                 .put("syncStatus", PENDING.value()).map();
 
         repository.addFormVersion(firstForm);
 
-        String version = repository.getVersion("ec");
+        String version = repository.getVersion("ec_dir_name");
 
         assertEquals("1", version);
     }

@@ -2,7 +2,15 @@ package org.ei.drishti.util;
 
 import android.util.Log;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.ByteArrayBuffer;
+import org.ei.drishti.client.GZipEncodingHttpClient;
+import org.ei.drishti.domain.DownloadStatus;
+import org.ei.drishti.domain.Response;
+import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.service.FormPathService;
 
 import java.io.BufferedInputStream;
@@ -10,18 +18,16 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 
 /**
  * Created by Dimas Ciputra on 3/21/15.
  */
 public class DownloadForm {
 
-    public static String DownloadFromURL(String downloadURL, String fileName) {
-
-        HttpURLConnection connection = null;
+    public static Response<DownloadStatus> DownloadFromURL(String downloadURL,
+                                                           String fileName,
+                                                           final GZipEncodingHttpClient httpClient)
+    {
 
         try {
 
@@ -31,29 +37,35 @@ public class DownloadForm {
                 dir.mkdirs();
             }
 
-            URL url = new URL(downloadURL);
             File file = new File(dir, fileName);
 
             long startTime = System.currentTimeMillis();
             Log.d("DownloadFormService", "download begin");
-            Log.d("DownloadFormService", "download url: " + url);
+            Log.d("DownloadFormService", "download url: " + downloadURL.toString());
             Log.d("DownloadFormService", "download file name: " + fileName);
 
             /* Open connection to URL */
-            URLConnection uc = url.openConnection();
+            HttpResponse response = httpClient.execute(new HttpGet(downloadURL));
 
             /* expect HTTP 200 OK */
-            if (((HttpURLConnection)uc).getResponseCode() != HttpURLConnection.HTTP_OK) {
-                return "Server returned HTTP " + ((HttpURLConnection)uc).getResponseCode()
-                        + " " + ((HttpURLConnection)uc).getResponseMessage();
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode != HttpStatus.SC_OK) {
+                Log.d("DownloadFormService", "Server returned HTTP " + statusCode);
+                return new Response<DownloadStatus>(ResponseStatus.failure, DownloadStatus.failedDownloaded);
             }
 
+            HttpEntity entity = response.getEntity();
+
             /* Define InputStreams to read from the URLConnections */
-            InputStream is = uc.getInputStream();
+            InputStream is = entity.getContent();
             BufferedInputStream bis = new BufferedInputStream(is);
 
             /* This will be for count download percentage */
-            int fileLength = uc.getContentLength();
+            long fileLength = entity.getContentLength();
+
+            if(fileLength == 0) {
+                return new Response<DownloadStatus>(ResponseStatus.success, DownloadStatus.nothingDownloaded);
+            }
 
             Log.d("DownloadFormService", "file length : " + fileLength);
 
@@ -74,10 +86,10 @@ public class DownloadForm {
 
         } catch (IOException e) {
             Log.d("DownloadFormService", "download error : " + e);
-            return e.toString();
+            return new Response<DownloadStatus>(ResponseStatus.success, DownloadStatus.failedDownloaded);
         }
 
-        return null;
+        return new Response<DownloadStatus>(ResponseStatus.success, DownloadStatus.downloaded);
     }
 
 }

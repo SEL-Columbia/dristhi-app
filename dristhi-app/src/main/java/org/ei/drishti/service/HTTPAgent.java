@@ -24,15 +24,18 @@ import org.apache.http.protocol.HTTP;
 import org.ei.drishti.DristhiConfiguration;
 import org.ei.drishti.R;
 import org.ei.drishti.client.GZipEncodingHttpClient;
+import org.ei.drishti.domain.DownloadStatus;
 import org.ei.drishti.domain.LoginResponse;
 import org.ei.drishti.domain.Response;
 import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.repository.AllSettings;
 import org.ei.drishti.repository.AllSharedPreferences;
+import org.ei.drishti.util.DownloadForm;
 
 import javax.net.ssl.SSLException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.security.KeyStore;
 
 import static org.ei.drishti.AllConstants.REALM;
@@ -115,6 +118,12 @@ public class HTTPAgent {
             logError("Failed to check credentials of: " + userName + " using " + requestURL + ". Error: " + e.toString());
             return NO_INTERNET_CONNECTIVITY;
         }
+    }
+
+    public DownloadStatus downloadFromUrl(String url, String filename) {
+        setCredentials(allSharedPreferences.fetchRegisteredANM(), settings.fetchANMPassword());
+        Response<DownloadStatus> status = DownloadForm.DownloadFromURL(url, filename, httpClient);
+        return status.payload();
     }
 
     private void setCredentials(String userName, String password) {

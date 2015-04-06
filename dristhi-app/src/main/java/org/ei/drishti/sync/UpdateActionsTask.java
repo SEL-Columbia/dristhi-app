@@ -40,13 +40,14 @@ public class UpdateActionsTask {
 
         task.doActionInBackground(new BackgroundAction<FetchStatus>() {
             public FetchStatus actionToDoInBackgroundThread() {
+                allFormVersionSyncService.verifyFormsInFolder();
+
                 FetchStatus fetchStatusForForms = formSubmissionSyncService.sync();
                 FetchStatus fetchStatusForActions = actionService.fetchNewActions();
                 FetchStatus fetchVersionStatus = allFormVersionSyncService.pullFormDefinitionFromServer();
                 DownloadStatus downloadStatus = allFormVersionSyncService.downloadAllPendingFormFromServer();
 
                 if(downloadStatus == DownloadStatus.downloaded) {
-                    // Unzip the downloaded form and delete zip
                     allFormVersionSyncService.unzipAllDownloadedFormFile();
                 }
 
