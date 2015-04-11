@@ -9,13 +9,76 @@ import org.ei.drishti.commonregistry.AllCommonsRepository;
 import org.ei.drishti.commonregistry.CommonPersonObjectClients;
 import org.ei.drishti.commonregistry.CommonRepository;
 import org.ei.drishti.commonregistry.CommonRepositoryInformationHolder;
-import org.ei.drishti.repository.*;
-import org.ei.drishti.service.*;
-import org.ei.drishti.service.formSubmissionHandler.*;
+import org.ei.drishti.repository.AlertRepository;
+import org.ei.drishti.repository.AllAlerts;
+import org.ei.drishti.repository.AllBeneficiaries;
+import org.ei.drishti.repository.AllEligibleCouples;
+import org.ei.drishti.repository.AllReports;
+import org.ei.drishti.repository.AllServicesProvided;
+import org.ei.drishti.repository.AllSettings;
+import org.ei.drishti.repository.AllSharedPreferences;
+import org.ei.drishti.repository.AllTimelineEvents;
+import org.ei.drishti.repository.ChildRepository;
+import org.ei.drishti.repository.DrishtiRepository;
+import org.ei.drishti.repository.EligibleCoupleRepository;
+import org.ei.drishti.repository.FormDataRepository;
+import org.ei.drishti.repository.MotherRepository;
+import org.ei.drishti.repository.ReportRepository;
+import org.ei.drishti.repository.Repository;
+import org.ei.drishti.repository.ServiceProvidedRepository;
+import org.ei.drishti.repository.SettingsRepository;
+import org.ei.drishti.repository.TimelineEventRepository;
+import org.ei.drishti.service.ANMService;
+import org.ei.drishti.service.ActionService;
+import org.ei.drishti.service.AlertService;
+import org.ei.drishti.service.BeneficiaryService;
+import org.ei.drishti.service.ChildService;
+import org.ei.drishti.service.DrishtiService;
+import org.ei.drishti.service.EligibleCoupleService;
+import org.ei.drishti.service.FormSubmissionService;
+import org.ei.drishti.service.FormSubmissionSyncService;
+import org.ei.drishti.service.HTTPAgent;
+import org.ei.drishti.service.MotherService;
+import org.ei.drishti.service.PendingFormSubmissionService;
+import org.ei.drishti.service.ServiceProvidedService;
+import org.ei.drishti.service.UserService;
+import org.ei.drishti.service.ZiggyFileLoader;
+import org.ei.drishti.service.ZiggyService;
+import org.ei.drishti.service.formSubmissionHandler.ANCCloseHandler;
+import org.ei.drishti.service.formSubmissionHandler.ANCInvestigationsHandler;
+import org.ei.drishti.service.formSubmissionHandler.ANCRegistrationHandler;
+import org.ei.drishti.service.formSubmissionHandler.ANCRegistrationOAHandler;
+import org.ei.drishti.service.formSubmissionHandler.ANCVisitHandler;
+import org.ei.drishti.service.formSubmissionHandler.ChildCloseHandler;
+import org.ei.drishti.service.formSubmissionHandler.ChildIllnessHandler;
+import org.ei.drishti.service.formSubmissionHandler.ChildImmunizationsHandler;
+import org.ei.drishti.service.formSubmissionHandler.ChildRegistrationECHandler;
+import org.ei.drishti.service.formSubmissionHandler.ChildRegistrationOAHandler;
+import org.ei.drishti.service.formSubmissionHandler.DeliveryOutcomeHandler;
+import org.ei.drishti.service.formSubmissionHandler.DeliveryPlanHandler;
+import org.ei.drishti.service.formSubmissionHandler.ECCloseHandler;
+import org.ei.drishti.service.formSubmissionHandler.ECEditHandler;
+import org.ei.drishti.service.formSubmissionHandler.ECRegistrationHandler;
+import org.ei.drishti.service.formSubmissionHandler.FPChangeHandler;
+import org.ei.drishti.service.formSubmissionHandler.FPComplicationsHandler;
+import org.ei.drishti.service.formSubmissionHandler.FormSubmissionRouter;
+import org.ei.drishti.service.formSubmissionHandler.HBTestHandler;
+import org.ei.drishti.service.formSubmissionHandler.IFAHandler;
+import org.ei.drishti.service.formSubmissionHandler.PNCCloseHandler;
+import org.ei.drishti.service.formSubmissionHandler.PNCRegistrationOAHandler;
+import org.ei.drishti.service.formSubmissionHandler.PNCVisitHandler;
+import org.ei.drishti.service.formSubmissionHandler.RenewFPProductHandler;
+import org.ei.drishti.service.formSubmissionHandler.TTHandler;
+import org.ei.drishti.service.formSubmissionHandler.VitaminAHandler;
 import org.ei.drishti.sync.SaveANMLocationTask;
 import org.ei.drishti.util.Cache;
 import org.ei.drishti.util.Session;
-import org.ei.drishti.view.contract.*;
+import org.ei.drishti.view.contract.ANCClients;
+import org.ei.drishti.view.contract.ECClients;
+import org.ei.drishti.view.contract.FPClients;
+import org.ei.drishti.view.contract.HomeContext;
+import org.ei.drishti.view.contract.SmartRegisterClients;
+import org.ei.drishti.view.contract.Villages;
 import org.ei.drishti.view.contract.pnc.PNCClients;
 import org.ei.drishti.view.controller.ANMController;
 import org.ei.drishti.view.controller.ANMLocationController;
@@ -407,7 +470,7 @@ public class Context {
             for(int i = 0;i < bindtypes.size();i++){
                 drishtireposotorylist.add(commonrepository(bindtypes.get(i).getBindtypename()));
             }
-            DrishtiRepository [] drishtireposotoryarray =  drishtireposotorylist.toArray(new DrishtiRepository[drishtireposotorylist.size()]);
+            DrishtiRepository[] drishtireposotoryarray =  drishtireposotorylist.toArray(new DrishtiRepository[drishtireposotorylist.size()]);
             repository = new Repository(this.applicationContext, session(),drishtireposotoryarray );
 //            repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(),
 //                    eligibleCoupleRepository(), childRepository(), timelineEventRepository(), motherRepository(), reportRepository(),
@@ -725,7 +788,7 @@ public class Context {
 
 
     ///////////////////////////////// common methods ///////////////////////////////
-    public  Cache <CommonPersonObjectClients> personObjectClientsCache(){
+    public Cache<CommonPersonObjectClients> personObjectClientsCache(){
         this.personObjectClientsCache = null;
         personObjectClientsCache = new Cache<CommonPersonObjectClients>();
         return personObjectClientsCache;
