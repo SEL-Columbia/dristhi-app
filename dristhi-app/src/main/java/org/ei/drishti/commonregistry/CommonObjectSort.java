@@ -6,17 +6,22 @@ import org.ei.drishti.view.dialog.SortOption;
 
 import java.util.Collections;
 import java.util.Comparator;
-
+/**
+ * Created by Raihan Ahmed on 3/22/15.
+ */
 public class CommonObjectSort implements SortOption {
-    boolean byColumn;
-    boolean byDetails;
-    boolean isInteger;
-    String field;
 
-    public CommonObjectSort(boolean byColumn, boolean byDetails, boolean isInteger, String field) {
-        this.byColumn = byColumn;
-        this.byDetails = byDetails;
-        this.isInteger = isInteger;
+
+    String field;
+    ByColumnAndByDetails byColumnAndByDetails;
+    boolean isInteger;
+    public enum ByColumnAndByDetails{
+        byColumn,byDetails;
+    }
+
+    public CommonObjectSort(ByColumnAndByDetails byColumnAndByDetails, boolean isinteger, String field) {
+        this.byColumnAndByDetails = byColumnAndByDetails;
+        this.isInteger = isinteger;
         this.field = field;
     }
 
@@ -36,17 +41,23 @@ public class CommonObjectSort implements SortOption {
         public int compare(SmartRegisterClient oneClient, SmartRegisterClient anotherClient2) {
             CommonPersonObjectClient commonPersonObjectClient = (CommonPersonObjectClient)oneClient;
             CommonPersonObjectClient commonPersonObjectClient2 = (CommonPersonObjectClient)anotherClient2;
-            if(!isInteger && !byColumn && byDetails) {
-                return commonPersonObjectClient.getDetails().get(field).compareTo(commonPersonObjectClient2.getDetails().get(field));
-            }else if(isInteger && !byColumn && byDetails){
-                return (new Integer(commonPersonObjectClient.getDetails().get(field))).compareTo(new Integer(commonPersonObjectClient2.getDetails().get(field)));
-            }else if(!isInteger && byColumn && !byDetails){
-                return commonPersonObjectClient.getColumnmaps().get(field).compareTo(commonPersonObjectClient2.getColumnmaps().get(field));
+            switch (byColumnAndByDetails){
+                case byColumn:
+                    if(!isInteger){
+                        return commonPersonObjectClient.getColumnmaps().get(field).compareTo(commonPersonObjectClient2.getColumnmaps().get(field));
 
-            }else{
+                    }else{
+                        return (new Integer(commonPersonObjectClient.getColumnmaps().get(field))).compareTo(new Integer(commonPersonObjectClient2.getColumnmaps().get(field)));
 
-            }   return (new Integer(commonPersonObjectClient.getColumnmaps().get(field))).compareTo(new Integer(commonPersonObjectClient2.getColumnmaps().get(field)));
-
+                    }
+                case byDetails:
+                    if(!isInteger){
+                        return commonPersonObjectClient.getDetails().get(field).compareTo(commonPersonObjectClient2.getDetails().get(field));
+                    }else{
+                        return (new Integer(commonPersonObjectClient.getDetails().get(field))).compareTo(new Integer(commonPersonObjectClient2.getDetails().get(field)));
+                    }
+            }
+            return 0;
         }
     };
 }
