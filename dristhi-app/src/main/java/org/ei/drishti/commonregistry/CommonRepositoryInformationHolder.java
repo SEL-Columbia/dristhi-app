@@ -1,7 +1,7 @@
 package org.ei.drishti.commonregistry;
 
 /**
- * Created by raihan on 3/16/15.
+ * Created by Raihan Ahmed on 3/16/15.
  */
 public class CommonRepositoryInformationHolder {
     String bindtypename;
