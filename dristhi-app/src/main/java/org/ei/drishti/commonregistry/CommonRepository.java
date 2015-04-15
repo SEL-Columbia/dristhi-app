@@ -18,7 +18,9 @@ import java.util.Map;
 
 import static net.sqlcipher.DatabaseUtils.longForQuery;
 import static org.apache.commons.lang3.StringUtils.repeat;
-
+/**
+ * Created by Raihan Ahmed on 4/15/15.
+ */
 public class CommonRepository extends DrishtiRepository {
     private String common_SQL = "CREATE TABLE common(id VARCHAR PRIMARY KEY,details VARCHAR)";
     public static final String ID_COLUMN = "id";
