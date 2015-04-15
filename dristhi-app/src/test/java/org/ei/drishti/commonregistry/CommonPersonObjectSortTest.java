@@ -17,6 +17,9 @@ import static junit.framework.Assert.assertEquals;
 import static org.ei.drishti.util.EasyMap.create;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+/*
+ by Raihan Ahmed
+ */
 @RunWith(RobolectricTestRunner.class)
 public class CommonPersonObjectSortTest {
     @Mock
@@ -38,7 +41,7 @@ public class CommonPersonObjectSortTest {
     @Test
     public void shouldSortCommonObjectsByColumnName() throws Exception {
 
-        commonObjectSort = new CommonObjectSort(true,false,false,"name");
+        commonObjectSort = new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byColumn,false,"name");
 
          Map<String, String> column1 = create("name", "Woman A").map();
         Map<String, String> column2 = create("name","Woman B").map();
@@ -72,7 +75,7 @@ public class CommonPersonObjectSortTest {
     @Test
     public void shouldSortCommonObjectsByDetailName() throws Exception {
 
-        commonObjectSort = new CommonObjectSort(false,true,false,"name");
+        commonObjectSort = new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,false,"name");
 
         Map<String, String> detail1 = create("name", "Woman A").map();
         Map<String, String> detail2 = create("name","Woman B").map();
@@ -99,7 +102,7 @@ public class CommonPersonObjectSortTest {
     @Test
     public void shouldSortCommonObjectsByInteger() throws Exception {
 
-        commonObjectSort = new CommonObjectSort(false,true,true,"HID");
+        commonObjectSort = new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"HID");
 
         Map<String, String> detail1 = create("HID", "1").map();
         Map<String, String> detail2 = create("HID","2").map();
