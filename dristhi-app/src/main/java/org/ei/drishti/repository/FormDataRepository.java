@@ -2,9 +2,13 @@ package org.ei.drishti.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import net.sqlcipher.database.SQLiteDatabase;
+
+import org.ei.drishti.Context;
 import org.ei.drishti.domain.SyncStatus;
 import org.ei.drishti.domain.form.FormSubmission;
 
@@ -17,7 +21,10 @@ import static java.lang.System.currentTimeMillis;
 import static java.util.Arrays.asList;
 import static java.util.UUID.randomUUID;
 import static net.sqlcipher.DatabaseUtils.longForQuery;
-import static org.ei.drishti.AllConstants.*;
+import static org.ei.drishti.AllConstants.ENTITY_ID_FIELD_NAME;
+import static org.ei.drishti.AllConstants.ENTITY_ID_PARAM;
+import static org.ei.drishti.AllConstants.INSTANCE_ID_PARAM;
+import static org.ei.drishti.AllConstants.SYNC_STATUS;
 import static org.ei.drishti.domain.SyncStatus.PENDING;
 import static org.ei.drishti.domain.SyncStatus.SYNCED;
 
@@ -45,6 +52,12 @@ public class FormDataRepository extends DrishtiRepository {
         TABLE_COLUMN_MAP.put(EligibleCoupleRepository.EC_TABLE_NAME, EligibleCoupleRepository.EC_TABLE_COLUMNS);
         TABLE_COLUMN_MAP.put(MotherRepository.MOTHER_TABLE_NAME, MotherRepository.MOTHER_TABLE_COLUMNS);
         TABLE_COLUMN_MAP.put(ChildRepository.CHILD_TABLE_NAME, ChildRepository.CHILD_TABLE_COLUMNS);
+
+//        TABLE_COLUMN_MAP.put(PersonRepository.person_TABLE_NAME, PersonRepository.person_TABLE_COLUMNS);
+        for(int i = 0;i< Context.bindtypes.size();i++){
+            TABLE_COLUMN_MAP.put(Context.bindtypes.get(i).getBindtypename(), Context.getInstance().commonrepository(Context.bindtypes.get(i).getBindtypename()).common_TABLE_COLUMNS);
+        }
+//        TABLE_COLUMN_MAP.put("user",PersonRepository.person_TABLE_COLUMNS);
     }
 
     @Override
