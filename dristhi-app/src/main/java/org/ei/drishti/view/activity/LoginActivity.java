@@ -18,8 +18,11 @@ import android.widget.TextView;
 import org.ei.drishti.Context;
 import org.ei.drishti.R;
 import org.ei.drishti.domain.LoginResponse;
+import org.ei.drishti.domain.Response;
+import org.ei.drishti.domain.ResponseStatus;
 import org.ei.drishti.event.Listener;
 import org.ei.drishti.sync.DrishtiSyncScheduler;
+import org.ei.drishti.util.Log;
 import org.ei.drishti.view.BackgroundAction;
 import org.ei.drishti.view.LockingBackgroundTask;
 import org.ei.drishti.view.ProgressIndicator;
@@ -151,6 +154,39 @@ public class LoginActivity extends Activity {
         dialog.show();
     }
 
+    private void getLocation() {
+        tryGetLocation(new Listener<Response<String>>() {
+            @Override
+            public void onEvent(Response<String> data) {
+                if(data.status() == ResponseStatus.success) {
+                    context.userService().saveAnmLocation(data.payload());
+                }
+            }
+        });
+    }
+
+    private void tryGetLocation(final Listener<Response<String>> afterGet) {
+        LockingBackgroundTask task = new LockingBackgroundTask(new ProgressIndicator() {
+            @Override
+            public void setVisible() { }
+
+            @Override
+            public void setInvisible() { Log.logInfo("Successfully get location"); }
+        });
+
+        task.doActionInBackground(new BackgroundAction<Response<String>>() {
+            @Override
+            public Response<String> actionToDoInBackgroundThread() {
+                return context.userService().getLocationInformation();
+            }
+
+            @Override
+            public void postExecuteInUIThread(Response<String> result) {
+                afterGet.onEvent(result);
+            }
+        });
+    }
+
     private void tryRemoteLogin(final String userName, final String password, final Listener<LoginResponse> afterLoginCheck) {
         LockingBackgroundTask task = new LockingBackgroundTask(new ProgressIndicator() {
             @Override
@@ -193,8 +229,9 @@ public class LoginActivity extends Activity {
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
-    private void remoteLoginWith(String userName, String password, String anmLocation) {
-        context.userService().remoteLogin(userName, password, anmLocation);
+    private void remoteLoginWith(String userName, String password, String userInfo) {
+        context.userService().remoteLogin(userName, password, userInfo);
+        getLocation();
         goToHome();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }

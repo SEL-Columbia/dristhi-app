@@ -1,4 +1,4 @@
-![Dristhi](dristhi-app/res/drawable-xhdpi/icon.png)
+[![Dristhi](dristhi-app/res/drawable-mdpi/login_logo.png)] (https://smartregister.atlassian.net/wiki/dashboard.action)
 
 To run this project, you need to do this:
 ========================================
@@ -15,3 +15,10 @@ Tips and tricks (to be completed):
 * How to setup your Android SDK so that Maven finds it: http://pivotal.github.com/robolectric/maven-quick-start.html
 
 * Adding an external Android library (apklib) as a submodule, and making it work with both Maven and IntelliJ. Write about "mvn clean" trick.
+
+Login (for demo server):
+=================================
+login-username - demotest,
+login-password - Demot123
+
+Check app.properties file in "drishti-app/asset/" folder to change the demo server url to your own instance of opensrp server. 
