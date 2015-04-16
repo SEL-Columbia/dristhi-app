@@ -3,10 +3,14 @@ package org.ei.drishti.view.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Environment;
 import android.webkit.WebSettings;
 import org.apache.commons.io.IOUtils;
 import org.ei.drishti.Context;
+import org.ei.drishti.service.FormPathService;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
@@ -46,8 +50,11 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
         formName = intent.getStringExtra(FORM_NAME_PARAM);
         entityId = intent.getStringExtra(ENTITY_ID_PARAM);
         fieldOverrides = intent.getStringExtra(FIELD_OVERRIDES_PARAM);
-        model = IOUtils.toString(getAssets().open("www/form/" + formName + "/model.xml"));
-        form = IOUtils.toString(getAssets().open("www/form/" + formName + "/form.xml"));
+
+        FormPathService fps = new FormPathService(this.context);
+
+        model = fps.getForms(formName + "/model.xml", null);
+        form = fps.getForms(formName + "/form.xml", null);
     }
 
     private void webViewInitialization() {

@@ -22,6 +22,7 @@ import org.ei.drishti.repository.ChildRepository;
 import org.ei.drishti.repository.DrishtiRepository;
 import org.ei.drishti.repository.EligibleCoupleRepository;
 import org.ei.drishti.repository.FormDataRepository;
+import org.ei.drishti.repository.FormsVersionRepository;
 import org.ei.drishti.repository.MotherRepository;
 import org.ei.drishti.repository.ReportRepository;
 import org.ei.drishti.repository.Repository;
@@ -31,6 +32,7 @@ import org.ei.drishti.repository.TimelineEventRepository;
 import org.ei.drishti.service.ANMService;
 import org.ei.drishti.service.ActionService;
 import org.ei.drishti.service.AlertService;
+import org.ei.drishti.service.AllFormVersionSyncService;
 import org.ei.drishti.service.BeneficiaryService;
 import org.ei.drishti.service.ChildService;
 import org.ei.drishti.service.DrishtiService;
@@ -108,6 +110,7 @@ public class Context {
     private ReportRepository reportRepository;
     private FormDataRepository formDataRepository;
     private ServiceProvidedRepository serviceProvidedRepository;
+    private FormsVersionRepository formsVersionRepository;
 
     private AllSettings allSettings;
     private AllSharedPreferences allSharedPreferences;
@@ -133,6 +136,7 @@ public class Context {
     private BeneficiaryService beneficiaryService;
     private ServiceProvidedService serviceProvidedService;
     private PendingFormSubmissionService pendingFormSubmissionService;
+    private AllFormVersionSyncService allFormVersionSyncService;
 
     private Session session;
     private Cache<String> listCache;
@@ -235,6 +239,14 @@ public class Context {
             formSubmissionService = new FormSubmissionService(ziggyService(), formDataRepository(), allSettings());
         }
         return formSubmissionService;
+    }
+
+    public AllFormVersionSyncService allFormVersionSyncService() {
+        if(allFormVersionSyncService == null) {
+            allFormVersionSyncService = new AllFormVersionSyncService(httpAgent(),
+                    configuration(), formsVersionRepository());
+        }
+        return allFormVersionSyncService;
     }
 
     public FormSubmissionRouter formSubmissionRouter() {
@@ -468,15 +480,12 @@ public class Context {
             drishtireposotorylist.add(reportRepository());
             drishtireposotorylist.add(formDataRepository());
             drishtireposotorylist.add(serviceProvidedRepository());
-//            drishtireposotorylist.add(personRepository());
+            drishtireposotorylist.add(formsVersionRepository());
             for(int i = 0;i < bindtypes.size();i++){
                 drishtireposotorylist.add(commonrepository(bindtypes.get(i).getBindtypename()));
             }
-            DrishtiRepository[] drishtireposotoryarray =  drishtireposotorylist.toArray(new DrishtiRepository[drishtireposotorylist.size()]);
-            repository = new Repository(this.applicationContext, session(),drishtireposotoryarray );
-//            repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(),
-//                    eligibleCoupleRepository(), childRepository(), timelineEventRepository(), motherRepository(), reportRepository(),
-//                    formDataRepository(), serviceProvidedRepository(),personRepository(),commonrepository("user"));
+            DrishtiRepository[] drishtireposotoryarray = drishtireposotorylist.toArray(new DrishtiRepository[drishtireposotorylist.size()]);
+            repository = new Repository(this.applicationContext, session(), drishtireposotoryarray);
         }
         return repository;
     }
@@ -605,6 +614,13 @@ public class Context {
             serviceProvidedRepository = new ServiceProvidedRepository();
         }
         return serviceProvidedRepository;
+    }
+
+    private FormsVersionRepository formsVersionRepository() {
+        if (formsVersionRepository == null) {
+            formsVersionRepository = new FormsVersionRepository();
+        }
+        return formsVersionRepository;
     }
 
     public UserService userService() {

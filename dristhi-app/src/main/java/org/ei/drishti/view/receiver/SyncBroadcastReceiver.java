@@ -17,7 +17,9 @@ public class SyncBroadcastReceiver extends BroadcastReceiver {
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
                 context,
                 org.ei.drishti.Context.getInstance().actionService(),
-                org.ei.drishti.Context.getInstance().formSubmissionSyncService(), new SyncProgressIndicator());
+                org.ei.drishti.Context.getInstance().formSubmissionSyncService(),
+                new SyncProgressIndicator(),
+                org.ei.drishti.Context.getInstance().allFormVersionSyncService());
 
         updateActionsTask.updateFromServer(new SyncAfterFetchListener());
     }

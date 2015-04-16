@@ -1,9 +1,12 @@
 package org.ei.drishti.view;
 
 import android.content.Context;
+
+import org.ei.drishti.domain.DownloadStatus;
 import org.ei.drishti.domain.FetchStatus;
 import org.ei.drishti.repository.AllSharedPreferences;
 import org.ei.drishti.service.ActionService;
+import org.ei.drishti.service.AllFormVersionSyncService;
 import org.ei.drishti.service.FormSubmissionSyncService;
 import org.ei.drishti.sync.AfterFetchListener;
 import org.ei.drishti.sync.UpdateActionsTask;
@@ -35,6 +38,8 @@ public class UpdateActionsTaskTest {
     private FormSubmissionSyncService formSubmissionSyncService;
     @Mock
     private AllSharedPreferences allSharedPreferences;
+    @Mock
+    private AllFormVersionSyncService allFormVersionSyncService;
 
     @Before
     public void setUp() throws Exception {
@@ -51,7 +56,7 @@ public class UpdateActionsTaskTest {
         when(actionService.fetchNewActions()).thenReturn(fetched);
         when(formSubmissionSyncService.sync()).thenReturn(fetched);
 
-        UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, actionService, formSubmissionSyncService, progressIndicator);
+        UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, actionService, formSubmissionSyncService, progressIndicator, allFormVersionSyncService);
         updateActionsTask.updateFromServer(new AfterFetchListener() {
             public void afterFetch(FetchStatus status) {
                 assertEquals(fetched, status);
@@ -72,8 +77,10 @@ public class UpdateActionsTaskTest {
         when(allSharedPreferences.fetchLanguagePreference()).thenReturn("en");
         when(actionService.fetchNewActions()).thenReturn(nothingFetched);
         when(formSubmissionSyncService.sync()).thenReturn(nothingFetched);
+        when(allFormVersionSyncService.pullFormDefinitionFromServer()).thenReturn(nothingFetched);
+        when(allFormVersionSyncService.downloadAllPendingFormFromServer()).thenReturn(DownloadStatus.nothingDownloaded);
 
-        UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, actionService, formSubmissionSyncService, progressIndicator);
+        UpdateActionsTask updateActionsTask = new UpdateActionsTask(null, actionService, formSubmissionSyncService, progressIndicator,allFormVersionSyncService);
         updateActionsTask.updateFromServer(new AfterFetchListener() {
             public void afterFetch(FetchStatus status) {
                 assertEquals(nothingFetched, status);
@@ -88,7 +95,7 @@ public class UpdateActionsTaskTest {
         when(context.allSharedPreferences()).thenReturn(allSharedPreferences);
         when(allSharedPreferences.fetchLanguagePreference()).thenReturn("en");
 
-        UpdateActionsTask updateActionsTask = new UpdateActionsTask(androidContext, actionService, formSubmissionSyncService, progressIndicator);
+        UpdateActionsTask updateActionsTask = new UpdateActionsTask(androidContext, actionService, formSubmissionSyncService, progressIndicator,allFormVersionSyncService);
         updateActionsTask.updateFromServer(new AfterFetchListener() {
             public void afterFetch(FetchStatus status) {
                 fail("Should not have updated from server as the user is not logged in.");
@@ -105,7 +112,7 @@ public class UpdateActionsTaskTest {
         when(context.allSharedPreferences()).thenReturn(allSharedPreferences);
         when(allSharedPreferences.fetchLanguagePreference()).thenReturn("en");
 
-        UpdateActionsTask updateActionsTask = new UpdateActionsTask(androidContext, actionService, formSubmissionSyncService, progressIndicator);
+        UpdateActionsTask updateActionsTask = new UpdateActionsTask(androidContext, actionService, formSubmissionSyncService, progressIndicator,allFormVersionSyncService);
         updateActionsTask.updateFromServer(new AfterFetchListener() {
             public void afterFetch(FetchStatus status) {
             }

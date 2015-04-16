@@ -20,6 +20,8 @@ public class AllConstants {
     public static final String WOMAN_TYPE = "woman";
     public static final String CHILD_TYPE = "child";
     public static final String REALM = "OpenSRP";
+    public static final String FORM_DOWNLOAD_URL = "/form/form-files?formDirName=";
+    public static final String ALL_FORM_VERSION_URL = "/form/latest-form-versions";
     public static final String AUTHENTICATE_USER_URL_PATH = "/anm-villages?anm-id=";
     public static final String OPENSRP_AUTH_USER_URL_PATH = "/security/authenticate";
     public static final String OPENSRP_LOCATION_URL_PATH = "/location/location-tree";
