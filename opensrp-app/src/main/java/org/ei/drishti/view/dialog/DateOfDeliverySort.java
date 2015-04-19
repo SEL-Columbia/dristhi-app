@@ -1,9 +1,9 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
-import org.ei.drishti.Context;
-import org.ei.drishti.R;
-import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
-import org.ei.drishti.view.contract.SmartRegisterClients;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.contract.pnc.PNCSmartRegisterClient;
+import org.ei.opensrp.view.contract.SmartRegisterClients;
 
 import java.util.Collections;
 

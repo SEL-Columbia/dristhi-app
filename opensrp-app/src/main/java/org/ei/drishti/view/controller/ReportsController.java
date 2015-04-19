@@ -1,9 +1,9 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import android.content.Context;
 import android.content.Intent;
-import org.ei.drishti.AllConstants;
-import org.ei.drishti.view.activity.ReportIndicatorListViewActivity;
+import org.ei.opensrp.AllConstants;
+import org.ei.opensrp.view.activity.ReportIndicatorListViewActivity;
 
 public class ReportsController {
     private Context context;

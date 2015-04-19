@@ -1,12 +1,12 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import android.content.Intent;
-import org.ei.drishti.view.activity.ANCDetailActivity;
-import org.ei.drishti.view.activity.ChildDetailActivity;
-import org.ei.drishti.view.activity.EligibleCoupleDetailActivity;
-import org.ei.drishti.view.activity.PNCDetailActivity;
+import org.ei.opensrp.view.activity.ANCDetailActivity;
+import org.ei.opensrp.view.activity.ChildDetailActivity;
+import org.ei.opensrp.view.activity.EligibleCoupleDetailActivity;
+import org.ei.opensrp.view.activity.PNCDetailActivity;
 
-import static org.ei.drishti.AllConstants.CASE_ID;
+import static org.ei.opensrp.AllConstants.CASE_ID;
 
 public class ProfileNavigationController {
 

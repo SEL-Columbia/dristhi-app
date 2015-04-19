@@ -1,22 +1,22 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.view.View;
-import org.ei.drishti.R;
-import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
-import org.ei.drishti.domain.form.FieldOverrides;
-import org.ei.drishti.provider.PNCSmartRegisterClientsProvider;
-import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.contract.SmartRegisterClient;
-import org.ei.drishti.view.controller.PNCSmartRegisterController;
-import org.ei.drishti.view.controller.VillageController;
-import org.ei.drishti.view.dialog.*;
+import org.ei.opensrp.R;
+import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.opensrp.domain.form.FieldOverrides;
+import org.ei.opensrp.provider.PNCSmartRegisterClientsProvider;
+import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.controller.PNCSmartRegisterController;
+import org.ei.opensrp.view.controller.VillageController;
+import org.ei.opensrp.view.dialog.*;
 
 import java.util.List;
 
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
 import static java.util.Arrays.asList;
-import static org.ei.drishti.AllConstants.FormNames.*;
+import static org.ei.opensrp.AllConstants.FormNames.*;
 
 public class NativePNCSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 

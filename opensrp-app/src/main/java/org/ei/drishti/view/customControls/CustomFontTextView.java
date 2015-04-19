@@ -1,13 +1,13 @@
-package org.ei.drishti.view.customControls;
+package org.ei.opensrp.view.customControls;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
-import org.ei.drishti.R;
-import org.ei.drishti.util.Cache;
-import org.ei.drishti.util.CacheableData;
+import org.ei.opensrp.R;
+import org.ei.opensrp.util.Cache;
+import org.ei.opensrp.util.CacheableData;
 
 public class CustomFontTextView extends TextView {
 
@@ -25,11 +25,11 @@ public class CustomFontTextView extends TextView {
 
     public CustomFontTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, 0);
-        cache = org.ei.drishti.Context.getInstance().typefaceCache();
+        cache = org.ei.opensrp.Context.getInstance().typefaceCache();
         TypedArray attributes = context.obtainStyledAttributes(
-                attrs, R.styleable.org_ei_drishti_view_customControls_CustomFontTextView, 0, defStyle);
+                attrs, R.styleable.org_ei_opensrp_view_customControls_CustomFontTextView, 0, defStyle);
         int variant = attributes.getInt(
-                R.styleable.org_ei_drishti_view_customControls_CustomFontTextView_fontVariant, 0);
+                R.styleable.org_ei_opensrp_view_customControls_CustomFontTextView_fontVariant, 0);
         attributes.recycle();
 
         setFontVariant(variant);
@@ -44,7 +44,7 @@ public class CustomFontTextView extends TextView {
             @Override
             public Typeface fetch() {
                 return Typeface.createFromAsset(
-                        org.ei.drishti.Context.getInstance().applicationContext().getAssets(),
+                        org.ei.opensrp.Context.getInstance().applicationContext().getAssets(),
                         variant.fontFile());
 
             }

@@ -1,7 +1,7 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
-import org.ei.drishti.view.contract.SmartRegisterClient;
-import org.ei.drishti.view.controller.FormController;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.controller.FormController;
 
 public class OpenFormOption implements EditOption {
     private final String name;

@@ -1,4 +1,4 @@
-package org.ei.drishti.view.customControls;
+package org.ei.opensrp.view.customControls;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,15 +8,15 @@ import android.view.ViewStub;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.apache.commons.lang3.StringUtils;
-import org.ei.drishti.R;
-import org.ei.drishti.view.contract.ECSmartRegisterClient;
-import org.ei.drishti.view.viewHolder.ViewStubInflater;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.contract.ECSmartRegisterClient;
+import org.ei.opensrp.view.viewHolder.ViewStubInflater;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.ei.drishti.util.DateUtil.formatDate;
-import static org.ei.drishti.view.controller.ECSmartRegisterController.*;
+import static org.ei.opensrp.util.DateUtil.formatDate;
+import static org.ei.opensrp.view.controller.ECSmartRegisterController.*;
 
 public class ClientStatusView extends FrameLayout {
 

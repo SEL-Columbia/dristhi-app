@@ -1,9 +1,9 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
-import org.ei.drishti.event.CapturedPhotoInformation;
-import org.ei.drishti.event.Event;
-import org.ei.drishti.event.Listener;
-import org.ei.drishti.view.controller.ANCDetailController;
+import org.ei.opensrp.event.CapturedPhotoInformation;
+import org.ei.opensrp.event.Event;
+import org.ei.opensrp.event.Listener;
+import org.ei.opensrp.view.controller.ANCDetailController;
 
 public class ANCDetailActivity extends SecuredWebActivity {
     private Listener<CapturedPhotoInformation> photoCaptureListener;

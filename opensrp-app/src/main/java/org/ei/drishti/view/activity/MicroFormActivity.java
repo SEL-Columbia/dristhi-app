@@ -1,6 +1,6 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
-import org.ei.drishti.R;
+import org.ei.opensrp.R;
 
 public class MicroFormActivity extends SecuredFormActivity {
     @Override

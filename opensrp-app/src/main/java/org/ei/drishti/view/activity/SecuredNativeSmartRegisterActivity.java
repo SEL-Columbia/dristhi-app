@@ -1,4 +1,4 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -11,14 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.*;
-import org.ei.drishti.R;
-import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
-import org.ei.drishti.domain.ReportMonth;
-import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.contract.SmartRegisterClient;
-import org.ei.drishti.view.customControls.CustomFontTextView;
-import org.ei.drishti.view.customControls.FontVariant;
-import org.ei.drishti.view.dialog.*;
+import org.ei.opensrp.R;
+import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.opensrp.domain.ReportMonth;
+import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.customControls.CustomFontTextView;
+import org.ei.opensrp.view.customControls.FontVariant;
+import org.ei.opensrp.view.dialog.*;
 import org.joda.time.LocalDate;
 
 import java.util.List;
@@ -29,7 +29,7 @@ import static android.view.View.VISIBLE;
 import static java.text.MessageFormat.format;
 import static java.util.Arrays.asList;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
-import static org.ei.drishti.AllConstants.SHORT_DATE_FORMAT;
+import static org.ei.opensrp.AllConstants.SHORT_DATE_FORMAT;
 
 public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity {
 

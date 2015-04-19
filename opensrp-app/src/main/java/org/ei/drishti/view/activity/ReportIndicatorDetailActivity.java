@@ -1,10 +1,10 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.os.Bundle;
-import org.ei.drishti.domain.Report;
-import org.ei.drishti.view.controller.ReportIndicatorDetailViewController;
+import org.ei.opensrp.domain.Report;
+import org.ei.opensrp.view.controller.ReportIndicatorDetailViewController;
 
-import static org.ei.drishti.AllConstants.*;
+import static org.ei.opensrp.AllConstants.*;
 
 public class ReportIndicatorDetailActivity extends SecuredWebActivity {
 

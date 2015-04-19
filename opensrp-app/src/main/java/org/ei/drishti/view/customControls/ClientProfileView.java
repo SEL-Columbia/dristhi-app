@@ -1,4 +1,4 @@
-package org.ei.drishti.view.customControls;
+package org.ei.opensrp.view.customControls;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -6,11 +6,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import org.ei.drishti.AllConstants;
-import org.ei.drishti.R;
-import org.ei.drishti.view.contract.ANCSmartRegisterClient;
-import org.ei.drishti.view.contract.SmartRegisterClient;
-import org.ei.drishti.view.viewHolder.ProfilePhotoLoader;
+import org.ei.opensrp.AllConstants;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.contract.ANCSmartRegisterClient;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.viewHolder.ProfilePhotoLoader;
 
 public class ClientProfileView extends RelativeLayout {
     private ImageView imgProfileView;
@@ -78,7 +78,7 @@ public class ClientProfileView extends RelativeLayout {
     }
 
     private String getOutOfAreaText(String locationStatus) {
-        return isOutOfArea(locationStatus) ? org.ei.drishti.Context.getInstance().getStringResource(R.string.str_out_of_area) : "";
+        return isOutOfArea(locationStatus) ? org.ei.opensrp.Context.getInstance().getStringResource(R.string.str_out_of_area) : "";
     }
 
     private boolean isOutOfArea(String locationStatus) {

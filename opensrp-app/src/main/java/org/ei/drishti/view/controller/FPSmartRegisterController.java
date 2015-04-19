@@ -1,21 +1,21 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
-import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.service.AlertService;
-import org.ei.drishti.util.Cache;
-import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.contract.AlertDTO;
-import org.ei.drishti.view.contract.FPClient;
-import org.ei.drishti.view.contract.FPClients;
+import org.ei.opensrp.domain.Alert;
+import org.ei.opensrp.domain.EligibleCouple;
+import org.ei.opensrp.repository.AllBeneficiaries;
+import org.ei.opensrp.repository.AllEligibleCouples;
+import org.ei.opensrp.service.AlertService;
+import org.ei.opensrp.util.Cache;
+import org.ei.opensrp.util.CacheableData;
+import org.ei.opensrp.view.contract.AlertDTO;
+import org.ei.opensrp.view.contract.FPClient;
+import org.ei.opensrp.view.contract.FPClients;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
+import static org.ei.opensrp.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
 
 public class FPSmartRegisterController {
     public static final String OCP_REFILL_ALERT_NAME = "OCP Refill";

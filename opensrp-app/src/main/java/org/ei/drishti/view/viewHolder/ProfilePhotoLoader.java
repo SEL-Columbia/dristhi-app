@@ -1,7 +1,7 @@
-package org.ei.drishti.view.viewHolder;
+package org.ei.opensrp.view.viewHolder;
 
 import android.graphics.drawable.Drawable;
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
 
 public interface ProfilePhotoLoader {
     public Drawable get(SmartRegisterClient client);

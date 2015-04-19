@@ -1,24 +1,24 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-import org.ei.drishti.AllConstants;
-import org.ei.drishti.R;
-import org.ei.drishti.adapter.SmartRegisterPaginatedAdapter;
-import org.ei.drishti.domain.form.FieldOverrides;
-import org.ei.drishti.provider.FPSmartRegisterClientsProvider;
-import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.contract.FPClient;
-import org.ei.drishti.view.contract.SmartRegisterClient;
-import org.ei.drishti.view.controller.*;
-import org.ei.drishti.view.dialog.*;
+import org.ei.opensrp.AllConstants;
+import org.ei.opensrp.R;
+import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.opensrp.domain.form.FieldOverrides;
+import org.ei.opensrp.provider.FPSmartRegisterClientsProvider;
+import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.view.contract.FPClient;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.controller.*;
+import org.ei.opensrp.view.dialog.*;
 
 import static com.google.common.collect.Iterables.concat;
 import static com.google.common.collect.Iterables.toArray;
-import static org.ei.drishti.AllConstants.FormNames.*;
+import static org.ei.opensrp.AllConstants.FormNames.*;
 
 public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 

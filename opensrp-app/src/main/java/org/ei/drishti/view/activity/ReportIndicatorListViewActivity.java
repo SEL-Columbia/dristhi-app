@@ -1,8 +1,8 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
-import org.ei.drishti.view.controller.ReportIndicatorListViewController;
+import org.ei.opensrp.view.controller.ReportIndicatorListViewController;
 
-import static org.ei.drishti.AllConstants.REPORT_CATEGORY;
+import static org.ei.opensrp.AllConstants.REPORT_CATEGORY;
 
 public class ReportIndicatorListViewActivity extends SecuredWebActivity {
     @Override

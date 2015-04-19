@@ -1,19 +1,19 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import com.google.gson.Gson;
 import org.apache.commons.lang3.tuple.Pair;
-import org.ei.drishti.domain.*;
-import org.ei.drishti.domain.Child;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.service.AlertService;
-import org.ei.drishti.service.ServiceProvidedService;
-import org.ei.drishti.util.Cache;
-import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.contract.*;
-import org.ei.drishti.view.contract.pnc.PNCClient;
-import org.ei.drishti.view.contract.pnc.PNCClients;
-import org.ei.drishti.view.preProcessor.PNCClientPreProcessor;
+import org.ei.opensrp.domain.*;
+import org.ei.opensrp.domain.Child;
+import org.ei.opensrp.repository.AllBeneficiaries;
+import org.ei.opensrp.repository.AllEligibleCouples;
+import org.ei.opensrp.service.AlertService;
+import org.ei.opensrp.service.ServiceProvidedService;
+import org.ei.opensrp.util.Cache;
+import org.ei.opensrp.util.CacheableData;
+import org.ei.opensrp.view.contract.*;
+import org.ei.opensrp.view.contract.pnc.PNCClient;
+import org.ei.opensrp.view.contract.pnc.PNCClients;
+import org.ei.opensrp.view.preProcessor.PNCClientPreProcessor;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -22,10 +22,10 @@ import java.util.List;
 import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.drishti.AllConstants.PNCRegistrationFields.*;
-import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
-import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
-import static org.ei.drishti.domain.ServiceProvided.PNC_SERVICE_PROVIDED_NAME;
+import static org.ei.opensrp.AllConstants.PNCRegistrationFields.*;
+import static org.ei.opensrp.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
+import static org.ei.opensrp.AllConstants.ECRegistrationFields.*;
+import static org.ei.opensrp.domain.ServiceProvided.PNC_SERVICE_PROVIDED_NAME;
 
 public class PNCSmartRegisterController {
     private static final String PNC_1_ALERT_NAME = "PNC 1";

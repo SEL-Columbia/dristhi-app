@@ -1,6 +1,6 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
-import org.ei.drishti.view.contract.ServiceProvidedDTO;
+import org.ei.opensrp.view.contract.ServiceProvidedDTO;
 
 public class PNCVisitDayClause implements FilterClause<ServiceProvidedDTO> {
     private int visitDay;

@@ -1,13 +1,13 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.os.Bundle;
-import org.ei.drishti.view.controller.ReportIndicatorCaseListViewController;
+import org.ei.opensrp.view.controller.ReportIndicatorCaseListViewController;
 
 import java.util.List;
 
-import static org.ei.drishti.AllConstants.CASE_IDS;
-import static org.ei.drishti.AllConstants.INDICATOR;
-import static org.ei.drishti.AllConstants.MONTH;
+import static org.ei.opensrp.AllConstants.CASE_IDS;
+import static org.ei.opensrp.AllConstants.INDICATOR;
+import static org.ei.opensrp.AllConstants.MONTH;
 
 public class ReportIndicatorCaseListActivity extends SecuredWebActivity {
     @Override

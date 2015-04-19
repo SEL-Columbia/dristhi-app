@@ -1,4 +1,4 @@
-package org.ei.drishti.view.customControls;
+package org.ei.opensrp.view.customControls;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,15 +8,15 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.apache.commons.lang3.StringUtils;
-import org.ei.drishti.R;
-import org.ei.drishti.domain.FPMethod;
-import org.ei.drishti.view.contract.BaseFPSmartRegisterClient;
-import org.ei.drishti.view.contract.ECSmartRegisterClient;
-import org.ei.drishti.view.contract.FPSmartRegisterClient;
+import org.ei.opensrp.R;
+import org.ei.opensrp.domain.FPMethod;
+import org.ei.opensrp.view.contract.BaseFPSmartRegisterClient;
+import org.ei.opensrp.view.contract.ECSmartRegisterClient;
+import org.ei.opensrp.view.contract.FPSmartRegisterClient;
 
 import java.text.DateFormat;
 
-import static org.ei.drishti.Context.getInstance;
+import static org.ei.opensrp.Context.getInstance;
 
 public class ClientFpMethodView extends LinearLayout {
     private TextView fpMethodView;

@@ -1,4 +1,4 @@
-package org.ei.drishti.view.viewHolder;
+package org.ei.opensrp.view.viewHolder;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -6,8 +6,8 @@ import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.ei.drishti.R;
-import org.ei.drishti.view.customControls.*;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.customControls.*;
 
 public class NativePNCSmartRegisterViewHolder {
     private final ClientProfileView profileInfoLayout;

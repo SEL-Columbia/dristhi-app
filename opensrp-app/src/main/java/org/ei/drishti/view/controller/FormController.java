@@ -1,6 +1,6 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
-import org.ei.drishti.view.activity.SecuredActivity;
+import org.ei.opensrp.view.activity.SecuredActivity;
 
 public class FormController {
     private SecuredActivity activity;

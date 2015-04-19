@@ -1,4 +1,4 @@
-package org.ei.drishti.view.customControls;
+package org.ei.opensrp.view.customControls;
 
 public enum FontVariant {
     THIN(0, "roboto_v1.2/Roboto-Thin.ttf"),

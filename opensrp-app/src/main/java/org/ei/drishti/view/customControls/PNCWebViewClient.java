@@ -1,4 +1,4 @@
-package org.ei.drishti.view.customControls;
+package org.ei.opensrp.view.customControls;
 
 
 import android.net.http.SslError;

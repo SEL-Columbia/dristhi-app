@@ -1,11 +1,11 @@
-package org.ei.drishti.view.customControls;
+package org.ei.opensrp.view.customControls;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.ei.drishti.R;
-import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.contract.pnc.PNCSmartRegisterClient;
 
 public class DeliveryInfoView extends LinearLayout {
     private TextView txtDeliveryDateView;

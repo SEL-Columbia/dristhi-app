@@ -1,4 +1,4 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.os.Environment;
 import android.webkit.WebSettings;
 import org.apache.commons.io.IOUtils;
-import org.ei.drishti.Context;
-import org.ei.drishti.service.FormPathService;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.service.FormPathService;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,9 +17,9 @@ import java.text.MessageFormat;
 
 import static java.util.UUID.randomUUID;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
-import static org.ei.drishti.AllConstants.*;
-import static org.ei.drishti.R.string.*;
-import static org.ei.drishti.util.Log.logError;
+import static org.ei.opensrp.AllConstants.*;
+import static org.ei.opensrp.R.string.*;
+import static org.ei.opensrp.util.Log.logError;
 
 public abstract class SecuredFormActivity extends SecuredWebActivity {
     public static final String ANDROID_CONTEXT_FIELD = "androidContext";

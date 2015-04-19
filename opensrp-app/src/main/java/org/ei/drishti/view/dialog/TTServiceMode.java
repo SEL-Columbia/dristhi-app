@@ -1,20 +1,20 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
 import android.view.View;
 import android.widget.TextView;
-import org.ei.drishti.R;
-import org.ei.drishti.domain.ANCServiceType;
-import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.contract.*;
-import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
-import org.ei.drishti.view.viewHolder.*;
+import org.ei.opensrp.R;
+import org.ei.opensrp.domain.ANCServiceType;
+import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.view.contract.*;
+import org.ei.opensrp.view.contract.pnc.PNCSmartRegisterClient;
+import org.ei.opensrp.view.viewHolder.*;
 
 import static android.view.View.VISIBLE;
-import static org.ei.drishti.AllConstants.FormNames.TT;
-import static org.ei.drishti.Context.getInstance;
-import static org.ei.drishti.domain.ANCServiceType.*;
-import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
-import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
+import static org.ei.opensrp.AllConstants.FormNames.TT;
+import static org.ei.opensrp.Context.getInstance;
+import static org.ei.opensrp.domain.ANCServiceType.*;
+import static org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import static org.ei.opensrp.view.contract.AlertDTO.emptyAlert;
 
 public class TTServiceMode extends ServiceModeOption {
 

@@ -1,17 +1,17 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
 import android.view.View;
-import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.contract.ANCSmartRegisterClient;
-import org.ei.drishti.view.contract.ChildSmartRegisterClient;
-import org.ei.drishti.view.contract.FPSmartRegisterClient;
-import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
-import org.ei.drishti.view.viewHolder.NativeANCSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.NativePNCSmartRegisterViewHolder;
+import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.view.contract.ANCSmartRegisterClient;
+import org.ei.opensrp.view.contract.ChildSmartRegisterClient;
+import org.ei.opensrp.view.contract.FPSmartRegisterClient;
+import org.ei.opensrp.view.contract.pnc.PNCSmartRegisterClient;
+import org.ei.opensrp.view.viewHolder.NativeANCSmartRegisterViewHolder;
+import org.ei.opensrp.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.opensrp.view.viewHolder.NativeFPSmartRegisterViewHolder;
+import org.ei.opensrp.view.viewHolder.NativePNCSmartRegisterViewHolder;
 
-import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import static org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 
 public abstract class ServiceModeOption implements DialogOption {
 

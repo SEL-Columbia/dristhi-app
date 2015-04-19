@@ -1,9 +1,9 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.app.Activity;
-import org.ei.drishti.util.Log;
+import org.ei.opensrp.util.Log;
 
-import static org.ei.drishti.AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE;
+import static org.ei.opensrp.AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE;
 
 public class FormWebInterface {
     private final String model;

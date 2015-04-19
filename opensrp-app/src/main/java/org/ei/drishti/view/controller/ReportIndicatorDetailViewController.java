@@ -1,17 +1,17 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import android.content.Context;
 import android.content.Intent;
 import com.google.gson.Gson;
-import org.ei.drishti.domain.Report;
-import org.ei.drishti.dto.MonthSummaryDatum;
-import org.ei.drishti.view.activity.ReportIndicatorCaseListActivity;
-import org.ei.drishti.view.contract.IndicatorReportDetail;
+import org.ei.opensrp.domain.Report;
+import org.ei.opensrp.dto.MonthSummaryDatum;
+import org.ei.opensrp.view.activity.ReportIndicatorCaseListActivity;
+import org.ei.opensrp.view.contract.IndicatorReportDetail;
 
 import java.util.ArrayList;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.drishti.AllConstants.*;
+import static org.ei.opensrp.AllConstants.*;
 
 public class ReportIndicatorDetailViewController {
     private final Context context;

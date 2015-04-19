@@ -1,4 +1,4 @@
-package org.ei.drishti.view.viewHolder;
+package org.ei.opensrp.view.viewHolder;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -6,10 +6,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.ei.drishti.R;
-import org.ei.drishti.view.customControls.ANCClientIdDetailsView;
-import org.ei.drishti.view.customControls.ANCStatusView;
-import org.ei.drishti.view.customControls.ClientProfileView;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.customControls.ANCClientIdDetailsView;
+import org.ei.opensrp.view.customControls.ANCStatusView;
+import org.ei.opensrp.view.customControls.ClientProfileView;
 
 public class NativeANCSmartRegisterViewHolder {
     private final ClientProfileView profileInfoLayout;

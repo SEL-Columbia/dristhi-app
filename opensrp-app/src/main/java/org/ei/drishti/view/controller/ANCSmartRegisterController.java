@@ -1,17 +1,17 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.ei.drishti.AllConstants;
-import org.ei.drishti.domain.Alert;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
-import org.ei.drishti.domain.ServiceProvided;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.service.AlertService;
-import org.ei.drishti.service.ServiceProvidedService;
-import org.ei.drishti.util.Cache;
-import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.contract.*;
+import org.ei.opensrp.AllConstants;
+import org.ei.opensrp.domain.Alert;
+import org.ei.opensrp.domain.EligibleCouple;
+import org.ei.opensrp.domain.Mother;
+import org.ei.opensrp.domain.ServiceProvided;
+import org.ei.opensrp.repository.AllBeneficiaries;
+import org.ei.opensrp.service.AlertService;
+import org.ei.opensrp.service.ServiceProvidedService;
+import org.ei.opensrp.util.Cache;
+import org.ei.opensrp.util.CacheableData;
+import org.ei.opensrp.view.contract.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -20,8 +20,8 @@ import java.util.List;
 import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
-import static org.ei.drishti.domain.ServiceProvided.*;
+import static org.ei.opensrp.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
+import static org.ei.opensrp.domain.ServiceProvided.*;
 
 public class ANCSmartRegisterController {
     private static final String ANC_1_ALERT_NAME = "ANC 1";

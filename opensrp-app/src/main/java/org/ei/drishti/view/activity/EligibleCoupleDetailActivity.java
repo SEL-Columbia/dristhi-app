@@ -1,10 +1,10 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
-import org.ei.drishti.event.CapturedPhotoInformation;
-import org.ei.drishti.event.Listener;
-import org.ei.drishti.view.controller.EligibleCoupleDetailController;
+import org.ei.opensrp.event.CapturedPhotoInformation;
+import org.ei.opensrp.event.Listener;
+import org.ei.opensrp.view.controller.EligibleCoupleDetailController;
 
-import static org.ei.drishti.event.Event.ON_PHOTO_CAPTURED;
+import static org.ei.opensrp.event.Event.ON_PHOTO_CAPTURED;
 
 public class EligibleCoupleDetailActivity extends SecuredWebActivity {
     private Listener<CapturedPhotoInformation> photoCaptureListener;

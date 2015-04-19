@@ -1,10 +1,10 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import com.google.gson.Gson;
-import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.util.Cache;
-import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.contract.ANMLocation;
+import org.ei.opensrp.repository.AllSettings;
+import org.ei.opensrp.util.Cache;
+import org.ei.opensrp.util.CacheableData;
+import org.ei.opensrp.view.contract.ANMLocation;
 
 public class ANMLocationController {
     private static final String ANM_LOCATION = "anmLocation";

@@ -1,4 +1,4 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,20 +9,20 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.ei.drishti.AllConstants;
-import org.ei.drishti.Context;
-import org.ei.drishti.R;
-import org.ei.drishti.event.Listener;
-import org.ei.drishti.view.controller.ANMController;
-import org.ei.drishti.view.controller.FormController;
-import org.ei.drishti.view.controller.NavigationController;
+import org.ei.opensrp.AllConstants;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.R;
+import org.ei.opensrp.event.Listener;
+import org.ei.opensrp.view.controller.ANMController;
+import org.ei.opensrp.view.controller.FormController;
+import org.ei.opensrp.view.controller.NavigationController;
 
 import java.util.Map;
 
 import static android.widget.Toast.LENGTH_SHORT;
-import static org.ei.drishti.AllConstants.*;
-import static org.ei.drishti.event.Event.ON_LOGOUT;
-import static org.ei.drishti.util.Log.logInfo;
+import static org.ei.opensrp.AllConstants.*;
+import static org.ei.opensrp.event.Event.ON_LOGOUT;
+import static org.ei.opensrp.util.Log.logInfo;
 
 public abstract class SecuredActivity extends Activity {
     protected Context context;

@@ -1,27 +1,27 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.google.gson.Gson;
-import org.ei.drishti.Context;
-import org.ei.drishti.R;
-import org.ei.drishti.domain.ANCServiceType;
-import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.view.contract.*;
-import org.ei.drishti.view.contract.pnc.PNCFirstSevenDaysVisits;
-import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
-import org.ei.drishti.view.viewHolder.NativeANCSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.NativeFPSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.NativePNCSmartRegisterViewHolder;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.R;
+import org.ei.opensrp.domain.ANCServiceType;
+import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.util.DateUtil;
+import org.ei.opensrp.view.contract.*;
+import org.ei.opensrp.view.contract.pnc.PNCFirstSevenDaysVisits;
+import org.ei.opensrp.view.contract.pnc.PNCSmartRegisterClient;
+import org.ei.opensrp.view.viewHolder.NativeANCSmartRegisterViewHolder;
+import org.ei.opensrp.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.opensrp.view.viewHolder.NativeFPSmartRegisterViewHolder;
+import org.ei.opensrp.view.viewHolder.NativePNCSmartRegisterViewHolder;
 
 import static android.view.View.VISIBLE;
-import static org.ei.drishti.AllConstants.FormNames.PNC_VISIT;
-import static org.ei.drishti.Context.getInstance;
-import static org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import static org.ei.opensrp.AllConstants.FormNames.PNC_VISIT;
+import static org.ei.opensrp.Context.getInstance;
+import static org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 
 public class PNCVisitsServiceMode extends ServiceModeOption {
     public static final AlertDTO emptyAlert = new AlertDTO("", "", "");

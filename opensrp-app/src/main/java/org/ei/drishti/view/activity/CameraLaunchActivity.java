@@ -1,4 +1,4 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -6,9 +6,9 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.widget.Toast;
-import org.ei.drishti.AllConstants;
-import org.ei.drishti.event.CapturedPhotoInformation;
-import org.ei.drishti.util.Log;
+import org.ei.opensrp.AllConstants;
+import org.ei.opensrp.event.CapturedPhotoInformation;
+import org.ei.opensrp.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,10 +17,10 @@ import java.util.UUID;
 
 import static android.os.Environment.DIRECTORY_PICTURES;
 import static android.os.Environment.getExternalStoragePublicDirectory;
-import static org.ei.drishti.AllConstants.ENTITY_ID;
-import static org.ei.drishti.AllConstants.WOMAN_TYPE;
-import static org.ei.drishti.AllConstants.CHILD_TYPE;
-import static org.ei.drishti.event.Event.ON_PHOTO_CAPTURED;
+import static org.ei.opensrp.AllConstants.ENTITY_ID;
+import static org.ei.opensrp.AllConstants.WOMAN_TYPE;
+import static org.ei.opensrp.AllConstants.CHILD_TYPE;
+import static org.ei.opensrp.event.Event.ON_PHOTO_CAPTURED;
 
 public class CameraLaunchActivity extends SecuredActivity {
     private static final int TAKE_PHOTO_REQUEST_CODE = 111;

@@ -1,6 +1,6 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
 
 public interface EditOption extends DialogOption {
     public void doEdit(SmartRegisterClient client);

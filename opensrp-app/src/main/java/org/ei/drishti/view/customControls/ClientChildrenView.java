@@ -1,12 +1,12 @@
-package org.ei.drishti.view.customControls;
+package org.ei.opensrp.view.customControls;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.ei.drishti.R;
-import org.ei.drishti.view.contract.ECChildClient;
-import org.ei.drishti.view.contract.ECSmartRegisterClient;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.contract.ECChildClient;
+import org.ei.opensrp.view.contract.ECSmartRegisterClient;
 
 import java.util.List;
 

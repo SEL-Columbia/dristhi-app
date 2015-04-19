@@ -1,12 +1,12 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
-import org.ei.drishti.Context;
-import org.ei.drishti.R;
-import org.ei.drishti.view.contract.SmartRegisterClients;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.contract.SmartRegisterClients;
 
 import java.util.Collections;
 
-import static org.ei.drishti.view.contract.ANCSmartRegisterClient.EDD_COMPARATOR;
+import static org.ei.opensrp.view.contract.ANCSmartRegisterClient.EDD_COMPARATOR;
 
 public class EstimatedDateOfDeliverySort implements SortOption {
     @Override

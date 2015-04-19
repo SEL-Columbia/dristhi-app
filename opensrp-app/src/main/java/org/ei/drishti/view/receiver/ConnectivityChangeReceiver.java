@@ -1,13 +1,13 @@
-package org.ei.drishti.view.receiver;
+package org.ei.opensrp.view.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import org.ei.drishti.sync.DrishtiSyncScheduler;
+import org.ei.opensrp.sync.DrishtiSyncScheduler;
 
-import static org.ei.drishti.util.Log.logInfo;
+import static org.ei.opensrp.util.Log.logInfo;
 
 public class ConnectivityChangeReceiver extends BroadcastReceiver {
     @Override

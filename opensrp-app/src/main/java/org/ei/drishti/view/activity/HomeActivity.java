@@ -1,13 +1,13 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import org.ei.drishti.R;
-import org.ei.drishti.event.Listener;
-import org.ei.drishti.service.PendingFormSubmissionService;
-import org.ei.drishti.view.controller.HomeController;
+import org.ei.opensrp.R;
+import org.ei.opensrp.event.Listener;
+import org.ei.opensrp.service.PendingFormSubmissionService;
+import org.ei.opensrp.view.controller.HomeController;
 
-import static org.ei.drishti.event.Event.*;
+import static org.ei.opensrp.event.Event.*;
 
 public class HomeActivity extends SecuredWebActivity {
     private MenuItem updateMenuItem;

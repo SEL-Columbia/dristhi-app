@@ -1,12 +1,12 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
-import org.ei.drishti.Context;
-import org.ei.drishti.R;
-import org.ei.drishti.view.contract.SmartRegisterClients;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.contract.SmartRegisterClients;
 
 import java.util.Collections;
 
-import static org.ei.drishti.view.contract.ChildSmartRegisterClient.HR_COMPARATOR;
+import static org.ei.opensrp.view.contract.ChildSmartRegisterClient.HR_COMPARATOR;
 
 public class ChildHighRiskSort implements SortOption {
     @Override

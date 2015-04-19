@@ -1,12 +1,12 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import android.os.AsyncTask;
-import org.ei.drishti.view.contract.HomeContext;
+import org.ei.opensrp.view.contract.HomeContext;
 
 import java.util.concurrent.locks.ReentrantLock;
 
 import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
-import static org.ei.drishti.util.Log.logWarn;
+import static org.ei.opensrp.util.Log.logWarn;
 
 public class NativeUpdateANMDetailsTask {
     private final ANMController anmController;

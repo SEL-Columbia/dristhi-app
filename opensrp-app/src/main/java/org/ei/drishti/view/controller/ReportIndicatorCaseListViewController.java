@@ -1,14 +1,14 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import android.content.Context;
 import com.google.gson.Gson;
-import org.ei.drishti.domain.ReportIndicator;
-import org.ei.drishti.view.contract.Beneficiary;
-import org.ei.drishti.view.contract.IndicatorReportCases;
+import org.ei.opensrp.domain.ReportIndicator;
+import org.ei.opensrp.view.contract.Beneficiary;
+import org.ei.opensrp.view.contract.IndicatorReportCases;
 
 import java.util.List;
 
-import static org.ei.drishti.domain.ReportIndicator.valueOf;
+import static org.ei.opensrp.domain.ReportIndicator.valueOf;
 
 public class ReportIndicatorCaseListViewController {
     private final Context context;

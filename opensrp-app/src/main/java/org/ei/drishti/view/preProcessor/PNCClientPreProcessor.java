@@ -1,18 +1,18 @@
-package org.ei.drishti.view.preProcessor;
+package org.ei.opensrp.view.preProcessor;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
-import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.view.contract.ServiceProvidedDTO;
-import org.ei.drishti.view.contract.pnc.*;
+import org.ei.opensrp.util.DateUtil;
+import org.ei.opensrp.view.contract.ServiceProvidedDTO;
+import org.ei.opensrp.view.contract.pnc.*;
 import org.joda.time.LocalDate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static org.ei.drishti.util.DateUtil.dayDifference;
-import static org.ei.drishti.util.DateUtil.formatDate;
+import static org.ei.opensrp.util.DateUtil.dayDifference;
+import static org.ei.opensrp.util.DateUtil.formatDate;
 
 public class PNCClientPreProcessor {
     private static final String PNC_IDENTIFIER = "PNC";

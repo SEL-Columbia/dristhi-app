@@ -1,6 +1,6 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
-import org.ei.drishti.view.controller.ANCSmartRegisterController;
+import org.ei.opensrp.view.controller.ANCSmartRegisterController;
 
 public class ANCSmartRegisterActivity extends SmartRegisterActivity {
     @Override

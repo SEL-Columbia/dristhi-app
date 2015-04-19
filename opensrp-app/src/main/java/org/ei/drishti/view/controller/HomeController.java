@@ -1,6 +1,6 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
-import org.ei.drishti.util.Log;
+import org.ei.opensrp.util.Log;
 
 public class HomeController {
     private UpdateController updateController;

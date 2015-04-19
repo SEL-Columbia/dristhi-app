@@ -1,6 +1,6 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
-import org.ei.drishti.view.controller.ChildSmartRegisterController;
+import org.ei.opensrp.view.controller.ChildSmartRegisterController;
 
 public class ChildSmartRegisterActivity extends SmartRegisterActivity {
     @Override

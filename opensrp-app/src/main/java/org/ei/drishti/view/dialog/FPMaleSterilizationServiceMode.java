@@ -1,9 +1,9 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
-import org.ei.drishti.R;
-import org.ei.drishti.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.R;
+import org.ei.opensrp.provider.SmartRegisterClientsProvider;
 
-import static org.ei.drishti.Context.getInstance;
+import static org.ei.opensrp.Context.getInstance;
 
 public class FPMaleSterilizationServiceMode extends FPAllMethodsServiceMode {
 

@@ -1,22 +1,22 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import org.ei.drishti.Context;
-import org.ei.drishti.R;
-import org.ei.drishti.event.Listener;
-import org.ei.drishti.service.PendingFormSubmissionService;
-import org.ei.drishti.sync.SyncAfterFetchListener;
-import org.ei.drishti.sync.SyncProgressIndicator;
-import org.ei.drishti.sync.UpdateActionsTask;
-import org.ei.drishti.view.contract.HomeContext;
-import org.ei.drishti.view.controller.NativeAfterANMDetailsFetchListener;
-import org.ei.drishti.view.controller.NativeUpdateANMDetailsTask;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.R;
+import org.ei.opensrp.event.Listener;
+import org.ei.opensrp.service.PendingFormSubmissionService;
+import org.ei.opensrp.sync.SyncAfterFetchListener;
+import org.ei.opensrp.sync.SyncProgressIndicator;
+import org.ei.opensrp.sync.UpdateActionsTask;
+import org.ei.opensrp.view.contract.HomeContext;
+import org.ei.opensrp.view.controller.NativeAfterANMDetailsFetchListener;
+import org.ei.opensrp.view.controller.NativeUpdateANMDetailsTask;
 
 import static java.lang.String.valueOf;
-import static org.ei.drishti.event.Event.*;
+import static org.ei.opensrp.event.Event.*;
 
 public class NativeHomeActivity extends SecuredActivity {
     private MenuItem updateMenuItem;

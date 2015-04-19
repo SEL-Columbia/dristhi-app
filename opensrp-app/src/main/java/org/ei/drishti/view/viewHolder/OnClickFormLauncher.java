@@ -1,7 +1,7 @@
-package org.ei.drishti.view.viewHolder;
+package org.ei.opensrp.view.viewHolder;
 
 import android.view.View;
-import org.ei.drishti.view.activity.SecuredActivity;
+import org.ei.opensrp.view.activity.SecuredActivity;
 
 public class OnClickFormLauncher implements View.OnClickListener {
     private SecuredActivity activity;

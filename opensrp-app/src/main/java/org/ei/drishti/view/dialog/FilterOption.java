@@ -1,6 +1,6 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
 
 public interface FilterOption extends DialogOption {
     public boolean filter(SmartRegisterClient client);

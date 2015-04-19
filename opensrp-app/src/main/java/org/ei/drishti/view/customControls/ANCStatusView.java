@@ -1,16 +1,16 @@
-package org.ei.drishti.view.customControls;
+package org.ei.opensrp.view.customControls;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import org.ei.drishti.R;
-import org.ei.drishti.util.IntegerUtil;
-import org.ei.drishti.view.contract.ANCSmartRegisterClient;
+import org.ei.opensrp.R;
+import org.ei.opensrp.util.IntegerUtil;
+import org.ei.opensrp.view.contract.ANCSmartRegisterClient;
 
-import static org.ei.drishti.Context.getInstance;
-import static org.ei.drishti.R.color.alert_urgent_red;
+import static org.ei.opensrp.Context.getInstance;
+import static org.ei.opensrp.R.color.alert_urgent_red;
 
 public class ANCStatusView extends RelativeLayout {
     private TextView txtEdd;

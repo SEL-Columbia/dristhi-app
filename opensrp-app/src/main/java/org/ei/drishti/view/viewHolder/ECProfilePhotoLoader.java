@@ -1,16 +1,16 @@
-package org.ei.drishti.view.viewHolder;
+package org.ei.opensrp.view.viewHolder;
 
 import android.content.res.Resources;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.drishti.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
+import static org.ei.opensrp.AllConstants.DEFAULT_WOMAN_IMAGE_PLACEHOLDER_PATH;
 
 public class ECProfilePhotoLoader implements ProfilePhotoLoader {
     private final Resources resources;

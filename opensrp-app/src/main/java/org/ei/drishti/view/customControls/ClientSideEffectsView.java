@@ -1,4 +1,4 @@
-package org.ei.drishti.view.customControls;
+package org.ei.opensrp.view.customControls;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -7,16 +7,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.apache.commons.codec.binary.StringUtils;
-import org.ei.drishti.R;
-import org.ei.drishti.domain.FPMethod;
-import org.ei.drishti.util.StringUtil;
-import org.ei.drishti.view.contract.AlertDTO;
-import org.ei.drishti.view.contract.FPSmartRegisterClient;
+import org.ei.opensrp.R;
+import org.ei.opensrp.domain.FPMethod;
+import org.ei.opensrp.util.StringUtil;
+import org.ei.opensrp.view.contract.AlertDTO;
+import org.ei.opensrp.view.contract.FPSmartRegisterClient;
 
 import java.util.List;
 
 import static org.apache.commons.lang3.StringUtils.isEmpty;
-import static org.ei.drishti.Context.getInstance;
+import static org.ei.opensrp.Context.getInstance;
 
 public class ClientSideEffectsView extends LinearLayout {
     private TextView complicationsDateView;

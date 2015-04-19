@@ -1,6 +1,6 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
-import org.ei.drishti.view.controller.ReportsController;
+import org.ei.opensrp.view.controller.ReportsController;
 
 public class ReportsActivity extends SecuredWebActivity {
     @Override

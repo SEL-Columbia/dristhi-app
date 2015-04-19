@@ -1,13 +1,13 @@
-package org.ei.drishti.view.receiver;
+package org.ei.opensrp.view.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import org.ei.drishti.sync.SyncAfterFetchListener;
-import org.ei.drishti.sync.SyncProgressIndicator;
-import org.ei.drishti.sync.UpdateActionsTask;
+import org.ei.opensrp.sync.SyncAfterFetchListener;
+import org.ei.opensrp.sync.SyncProgressIndicator;
+import org.ei.opensrp.sync.UpdateActionsTask;
 
-import static org.ei.drishti.util.Log.logInfo;
+import static org.ei.opensrp.util.Log.logInfo;
 
 public class SyncBroadcastReceiver extends BroadcastReceiver {
     @Override
@@ -16,10 +16,10 @@ public class SyncBroadcastReceiver extends BroadcastReceiver {
 
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(
                 context,
-                org.ei.drishti.Context.getInstance().actionService(),
-                org.ei.drishti.Context.getInstance().formSubmissionSyncService(),
+                org.ei.opensrp.Context.getInstance().actionService(),
+                org.ei.opensrp.Context.getInstance().formSubmissionSyncService(),
                 new SyncProgressIndicator(),
-                org.ei.drishti.Context.getInstance().allFormVersionSyncService());
+                org.ei.opensrp.Context.getInstance().allFormVersionSyncService());
 
         updateActionsTask.updateFromServer(new SyncAfterFetchListener());
     }

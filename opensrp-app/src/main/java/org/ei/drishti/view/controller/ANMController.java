@@ -1,10 +1,10 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import com.google.gson.Gson;
-import org.ei.drishti.service.ANMService;
-import org.ei.drishti.util.Cache;
-import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.contract.HomeContext;
+import org.ei.opensrp.service.ANMService;
+import org.ei.opensrp.util.Cache;
+import org.ei.opensrp.util.CacheableData;
+import org.ei.opensrp.view.contract.HomeContext;
 
 public class ANMController {
     private final ANMService anmService;

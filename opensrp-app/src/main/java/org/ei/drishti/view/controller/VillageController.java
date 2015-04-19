@@ -1,11 +1,11 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import com.google.gson.Gson;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.util.Cache;
-import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.contract.Village;
-import org.ei.drishti.view.contract.Villages;
+import org.ei.opensrp.repository.AllEligibleCouples;
+import org.ei.opensrp.util.Cache;
+import org.ei.opensrp.util.CacheableData;
+import org.ei.opensrp.view.contract.Village;
+import org.ei.opensrp.view.contract.Villages;
 
 import java.util.ArrayList;
 import java.util.List;

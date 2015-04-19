@@ -1,6 +1,6 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
-import org.ei.drishti.view.controller.VideosController;
+import org.ei.opensrp.view.controller.VideosController;
 
 public class VideosActivity extends SecuredWebActivity {
     @Override

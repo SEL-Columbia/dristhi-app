@@ -1,10 +1,10 @@
-package org.ei.drishti.view.viewHolder;
+package org.ei.opensrp.view.viewHolder;
 
 import android.graphics.drawable.Drawable;
-import org.ei.drishti.view.contract.ChildSmartRegisterClient;
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.contract.ChildSmartRegisterClient;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
 
-import static org.ei.drishti.AllConstants.FEMALE_GENDER;
+import static org.ei.opensrp.AllConstants.FEMALE_GENDER;
 
 public class ChildRegisterProfilePhotoLoader implements ProfilePhotoLoader {
     private final Drawable maleInfantDrawable;

@@ -1,10 +1,10 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import android.app.Activity;
 import android.content.Intent;
-import org.ei.drishti.view.activity.*;
+import org.ei.opensrp.view.activity.*;
 
-import static org.ei.drishti.view.controller.ProfileNavigationController.*;
+import static org.ei.opensrp.view.controller.ProfileNavigationController.*;
 
 public class NavigationController {
     private Activity activity;

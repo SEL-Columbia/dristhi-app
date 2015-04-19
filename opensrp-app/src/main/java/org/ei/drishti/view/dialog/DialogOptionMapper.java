@@ -1,9 +1,9 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
-import org.ei.drishti.util.StringUtil;
-import org.ei.drishti.view.contract.Village;
+import org.ei.opensrp.util.StringUtil;
+import org.ei.opensrp.view.contract.Village;
 
 public class DialogOptionMapper {
     public Iterable<? extends DialogOption> mapToVillageFilterOptions(Iterable<Village> villages) {

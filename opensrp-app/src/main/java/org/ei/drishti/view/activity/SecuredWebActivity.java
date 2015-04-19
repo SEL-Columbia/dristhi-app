@@ -1,4 +1,4 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -9,17 +9,17 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import org.acra.ACRA;
-import org.ei.drishti.R;
-import org.ei.drishti.sync.SyncAfterFetchListener;
-import org.ei.drishti.sync.SyncProgressIndicator;
-import org.ei.drishti.sync.UpdateActionsTask;
-import org.ei.drishti.view.InternationalizationContext;
-import org.ei.drishti.view.controller.UpdateController;
+import org.ei.opensrp.R;
+import org.ei.opensrp.sync.SyncAfterFetchListener;
+import org.ei.opensrp.sync.SyncProgressIndicator;
+import org.ei.opensrp.sync.UpdateActionsTask;
+import org.ei.opensrp.view.InternationalizationContext;
+import org.ei.opensrp.view.controller.UpdateController;
 
 import static android.webkit.ConsoleMessage.MessageLevel.ERROR;
 import static java.text.MessageFormat.format;
-import static org.ei.drishti.util.Log.logDebug;
-import static org.ei.drishti.util.Log.logError;
+import static org.ei.opensrp.util.Log.logDebug;
+import static org.ei.opensrp.util.Log.logError;
 
 public abstract class SecuredWebActivity extends SecuredActivity {
     protected WebView webView;

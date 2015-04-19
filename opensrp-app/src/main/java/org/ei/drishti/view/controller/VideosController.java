@@ -1,12 +1,12 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import org.ei.drishti.R;
-import org.ei.drishti.util.Log;
+import org.ei.opensrp.R;
+import org.ei.opensrp.util.Log;
 
 import java.text.MessageFormat;
 

@@ -1,19 +1,19 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import android.content.Context;
 import android.content.Intent;
 import com.google.gson.Gson;
-import org.ei.drishti.AllConstants;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.repository.AllTimelineEvents;
-import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.util.TimelineEventComparator;
-import org.ei.drishti.view.activity.CameraLaunchActivity;
-import org.ei.drishti.view.contract.*;
-import org.ei.drishti.view.contract.pnc.PNCDetail;
+import org.ei.opensrp.AllConstants;
+import org.ei.opensrp.domain.EligibleCouple;
+import org.ei.opensrp.domain.Mother;
+import org.ei.opensrp.repository.AllBeneficiaries;
+import org.ei.opensrp.repository.AllEligibleCouples;
+import org.ei.opensrp.repository.AllTimelineEvents;
+import org.ei.opensrp.util.DateUtil;
+import org.ei.opensrp.util.TimelineEventComparator;
+import org.ei.opensrp.view.activity.CameraLaunchActivity;
+import org.ei.opensrp.view.contract.*;
+import org.ei.opensrp.view.contract.pnc.PNCDetail;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
@@ -23,8 +23,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.ei.drishti.AllConstants.ENTITY_ID;
-import static org.ei.drishti.AllConstants.WOMAN_TYPE;
+import static org.ei.opensrp.AllConstants.ENTITY_ID;
+import static org.ei.opensrp.AllConstants.WOMAN_TYPE;
 
 public class PNCDetailController {
     private final Context context;
@@ -70,12 +70,12 @@ public class PNCDetailController {
     }
 
     private List<TimelineEvent> getEvents() {
-        List<org.ei.drishti.domain.TimelineEvent> events = allTimelineEvents.forCase(caseId);
+        List<org.ei.opensrp.domain.TimelineEvent> events = allTimelineEvents.forCase(caseId);
         List<TimelineEvent> timelineEvents = new ArrayList<TimelineEvent>();
 
         Collections.sort(events, new TimelineEventComparator());
 
-        for (org.ei.drishti.domain.TimelineEvent event : events) {
+        for (org.ei.opensrp.domain.TimelineEvent event : events) {
             DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("dd-MM-YYYY");
             timelineEvents.add(new TimelineEvent(event.type(), event.title(), new String[]{event.detail1(), event.detail2()}, event.referenceDate().toString(dateTimeFormatter)));
         }

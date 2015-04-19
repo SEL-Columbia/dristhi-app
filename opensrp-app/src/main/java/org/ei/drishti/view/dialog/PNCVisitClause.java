@@ -1,8 +1,8 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
-import org.ei.drishti.Context;
-import org.ei.drishti.R;
-import org.ei.drishti.view.contract.ServiceProvidedDTO;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.contract.ServiceProvidedDTO;
 import org.joda.time.LocalDate;
 
 public class PNCVisitClause implements FilterClause<ServiceProvidedDTO> {

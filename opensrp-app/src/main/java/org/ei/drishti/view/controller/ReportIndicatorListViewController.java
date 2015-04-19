@@ -1,16 +1,16 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import android.content.Context;
 import android.content.Intent;
 import com.google.gson.Gson;
-import org.ei.drishti.domain.Report;
-import org.ei.drishti.domain.ReportIndicator;
-import org.ei.drishti.domain.ReportsCategory;
-import org.ei.drishti.dto.MonthSummaryDatum;
-import org.ei.drishti.repository.AllReports;
-import org.ei.drishti.view.activity.ReportIndicatorDetailActivity;
-import org.ei.drishti.view.contract.CategoryReports;
-import org.ei.drishti.view.contract.IndicatorReport;
+import org.ei.opensrp.domain.Report;
+import org.ei.opensrp.domain.ReportIndicator;
+import org.ei.opensrp.domain.ReportsCategory;
+import org.ei.opensrp.dto.MonthSummaryDatum;
+import org.ei.opensrp.repository.AllReports;
+import org.ei.opensrp.view.activity.ReportIndicatorDetailActivity;
+import org.ei.opensrp.view.contract.CategoryReports;
+import org.ei.opensrp.view.contract.IndicatorReport;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;
@@ -20,9 +20,9 @@ import java.util.List;
 
 import static java.lang.Integer.parseInt;
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.drishti.AllConstants.CATEGORY_DESCRIPTION;
-import static org.ei.drishti.AllConstants.INDICATOR_DETAIL;
-import static org.ei.drishti.util.DateUtil.today;
+import static org.ei.opensrp.AllConstants.CATEGORY_DESCRIPTION;
+import static org.ei.opensrp.AllConstants.INDICATOR_DETAIL;
+import static org.ei.opensrp.util.DateUtil.today;
 
 public class ReportIndicatorListViewController {
     private final Context context;

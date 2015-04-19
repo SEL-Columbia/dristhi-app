@@ -1,4 +1,4 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
 import android.app.DialogFragment;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.ei.drishti.R;
-import org.ei.drishti.view.activity.SecuredNativeSmartRegisterActivity;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 
 public class SmartRegisterDialogFragment extends DialogFragment {
     private final SecuredNativeSmartRegisterActivity parentActivity;

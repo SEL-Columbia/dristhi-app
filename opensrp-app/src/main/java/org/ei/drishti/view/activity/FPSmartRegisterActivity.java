@@ -1,6 +1,6 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
-import org.ei.drishti.view.controller.FPSmartRegisterController;
+import org.ei.opensrp.view.controller.FPSmartRegisterController;
 
 public class FPSmartRegisterActivity extends SmartRegisterActivity {
 

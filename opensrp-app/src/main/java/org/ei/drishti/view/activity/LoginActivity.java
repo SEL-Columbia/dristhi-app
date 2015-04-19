@@ -1,4 +1,4 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,17 +15,17 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import org.ei.drishti.Context;
-import org.ei.drishti.R;
-import org.ei.drishti.domain.LoginResponse;
-import org.ei.drishti.domain.Response;
-import org.ei.drishti.domain.ResponseStatus;
-import org.ei.drishti.event.Listener;
-import org.ei.drishti.sync.DrishtiSyncScheduler;
-import org.ei.drishti.util.Log;
-import org.ei.drishti.view.BackgroundAction;
-import org.ei.drishti.view.LockingBackgroundTask;
-import org.ei.drishti.view.ProgressIndicator;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.R;
+import org.ei.opensrp.domain.LoginResponse;
+import org.ei.opensrp.domain.Response;
+import org.ei.opensrp.domain.ResponseStatus;
+import org.ei.opensrp.event.Listener;
+import org.ei.opensrp.sync.opensrpSyncScheduler;
+import org.ei.opensrp.util.Log;
+import org.ei.opensrp.view.BackgroundAction;
+import org.ei.opensrp.view.LockingBackgroundTask;
+import org.ei.opensrp.view.ProgressIndicator;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -34,9 +34,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
-import static org.ei.drishti.domain.LoginResponse.SUCCESS;
-import static org.ei.drishti.util.Log.logError;
-import static org.ei.drishti.util.Log.logVerbose;
+import static org.ei.opensrp.domain.LoginResponse.SUCCESS;
+import static org.ei.opensrp.util.Log.logError;
+import static org.ei.opensrp.util.Log.logVerbose;
 
 public class LoginActivity extends Activity {
     private Context context;
@@ -226,14 +226,14 @@ public class LoginActivity extends Activity {
     private void localLoginWith(String userName, String password) {
         context.userService().localLogin(userName, password);
         goToHome();
-        DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
+        opensrpSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
     private void remoteLoginWith(String userName, String password, String userInfo) {
         context.userService().remoteLogin(userName, password, userInfo);
         getLocation();
         goToHome();
-        DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
+        opensrpSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
     private void goToHome() {

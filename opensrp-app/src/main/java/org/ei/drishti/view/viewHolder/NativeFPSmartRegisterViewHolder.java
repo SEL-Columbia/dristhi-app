@@ -1,15 +1,15 @@
-package org.ei.drishti.view.viewHolder;
+package org.ei.opensrp.view.viewHolder;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.ei.drishti.R;
-import org.ei.drishti.view.customControls.ClientFpMethodView;
-import org.ei.drishti.view.customControls.ClientGplsaChildView;
-import org.ei.drishti.view.customControls.ClientProfileView;
-import org.ei.drishti.view.customControls.ClientSideEffectsView;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.customControls.ClientFpMethodView;
+import org.ei.opensrp.view.customControls.ClientGplsaChildView;
+import org.ei.opensrp.view.customControls.ClientProfileView;
+import org.ei.opensrp.view.customControls.ClientSideEffectsView;
 
 public class NativeFPSmartRegisterViewHolder {
     private final ClientProfileView profileInfoLayout;

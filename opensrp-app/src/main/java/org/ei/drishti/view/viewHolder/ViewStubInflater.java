@@ -1,4 +1,4 @@
-package org.ei.drishti.view.viewHolder;
+package org.ei.opensrp.view.viewHolder;
 
 import android.view.ViewGroup;
 import android.view.ViewStub;
