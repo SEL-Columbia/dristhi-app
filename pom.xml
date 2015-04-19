@@ -9,8 +9,8 @@
     <name>dristhi-app - Parent</name>
 
     <modules>
-        <module>dristhi-app</module>
-        <module>dristhi-app-it</module>
+        <module>opensrp-app</module>
+        <module>opensrp-app</module>
     </modules>
 
     <properties>
