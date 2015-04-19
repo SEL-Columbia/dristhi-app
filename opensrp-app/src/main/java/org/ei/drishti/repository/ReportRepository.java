@@ -1,16 +1,16 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import net.sqlcipher.database.SQLiteDatabase;
-import org.ei.drishti.domain.Report;
+import org.ei.opensrp.domain.Report;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.apache.commons.lang3.StringUtils.repeat;
 
-public class ReportRepository extends DrishtiRepository {
+public class ReportRepository extends opensrpRepository {
     private static final String REPORT_SQL = "CREATE TABLE report(indicator VARCHAR PRIMARY KEY, annualTarget VARCHAR, monthlySummaries VARCHAR)";
     private static final String REPORT_INDICATOR_INDEX_SQL = "CREATE INDEX report_indicator_index ON report(indicator);";
     private static final String REPORT_TABLE_NAME = "report";

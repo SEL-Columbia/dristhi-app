@@ -1,14 +1,14 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
 import org.apache.commons.lang3.StringUtils;
-import org.ei.drishti.Context;
-import org.ei.drishti.R;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.R;
 
 import java.util.Locale;
 import java.util.Map;
 
-import static org.ei.drishti.domain.TimelineEvent.*;
-import static org.ei.drishti.util.Log.logWarn;
+import static org.ei.opensrp.domain.TimelineEvent.*;
+import static org.ei.opensrp.util.Log.logWarn;
 
 public enum FPMethod {
     CONDOM {

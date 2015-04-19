@@ -1,4 +1,4 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
 import android.content.res.AssetManager;
 import org.apache.commons.io.IOUtils;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import static java.text.MessageFormat.format;
-import static org.ei.drishti.util.Log.logError;
+import static org.ei.opensrp.util.Log.logError;
 
 public class ZiggyFileLoader {
     private String ziggyDirectoryPath;

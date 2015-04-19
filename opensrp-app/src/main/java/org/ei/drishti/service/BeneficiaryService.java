@@ -1,11 +1,11 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
-import org.ei.drishti.domain.Child;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.view.contract.Beneficiary;
+import org.ei.opensrp.domain.Child;
+import org.ei.opensrp.domain.EligibleCouple;
+import org.ei.opensrp.domain.Mother;
+import org.ei.opensrp.repository.AllBeneficiaries;
+import org.ei.opensrp.repository.AllEligibleCouples;
+import org.ei.opensrp.view.contract.Beneficiary;
 
 import java.util.ArrayList;
 import java.util.List;

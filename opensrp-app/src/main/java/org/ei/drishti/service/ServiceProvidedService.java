@@ -1,7 +1,7 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
-import org.ei.drishti.domain.ServiceProvided;
-import org.ei.drishti.repository.AllServicesProvided;
+import org.ei.opensrp.domain.ServiceProvided;
+import org.ei.opensrp.repository.AllServicesProvided;
 
 import java.util.List;
 

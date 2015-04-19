@@ -1,16 +1,16 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
-import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.event.CapturedPhotoInformation;
-import org.ei.drishti.event.Listener;
+import org.ei.opensrp.domain.FetchStatus;
+import org.ei.opensrp.event.CapturedPhotoInformation;
+import org.ei.opensrp.event.Listener;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static java.text.MessageFormat.format;
-import static org.ei.drishti.domain.FetchStatus.fetched;
-import static org.ei.drishti.event.Event.*;
-import static org.ei.drishti.util.Log.logWarn;
+import static org.ei.opensrp.domain.FetchStatus.fetched;
+import static org.ei.opensrp.event.Event.*;
+import static org.ei.opensrp.util.Log.logWarn;
 
 public class Cache<T> {
     private Map<String, T> value = new HashMap<String, T>();

@@ -1,4 +1,4 @@
-package org.ei.drishti.sync;
+package org.ei.opensrp.sync;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -6,22 +6,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import org.ei.drishti.event.Listener;
-import org.ei.drishti.view.receiver.SyncBroadcastReceiver;
+import org.ei.opensrp.event.Listener;
+import org.ei.opensrp.view.receiver.SyncBroadcastReceiver;
 
 import static java.text.MessageFormat.format;
-import static org.ei.drishti.event.Event.ON_LOGOUT;
-import static org.ei.drishti.util.Log.logInfo;
+import static org.ei.opensrp.event.Event.ON_LOGOUT;
+import static org.ei.opensrp.util.Log.logInfo;
 import static org.joda.time.DateTimeConstants.MILLIS_PER_MINUTE;
 import static org.joda.time.DateTimeConstants.MILLIS_PER_SECOND;
 
-public class DrishtiSyncScheduler {
+public class opensrpSyncScheduler {
     public static final int SYNC_INTERVAL = 2 * MILLIS_PER_MINUTE;
     public static final int SYNC_START_DELAY = 5 * MILLIS_PER_SECOND;
     private static Listener<Boolean> logoutListener;
 
     public static void start(final Context context) {
-        if (org.ei.drishti.Context.getInstance().IsUserLoggedOut()) {
+        if (org.ei.opensrp.Context.getInstance().IsUserLoggedOut()) {
             return;
         }
 

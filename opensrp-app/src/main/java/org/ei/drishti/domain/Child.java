@@ -1,4 +1,4 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -9,10 +9,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
 
-import static org.ei.drishti.AllConstants.BOOLEAN_TRUE;
-import static org.ei.drishti.AllConstants.ChildRegistrationFields.HIGH_RISK_REASON;
-import static org.ei.drishti.AllConstants.ChildRegistrationFields.IS_CHILD_HIGH_RISK;
-import static org.ei.drishti.AllConstants.SPACE;
+import static org.ei.opensrp.AllConstants.BOOLEAN_TRUE;
+import static org.ei.opensrp.AllConstants.ChildRegistrationFields.HIGH_RISK_REASON;
+import static org.ei.opensrp.AllConstants.ChildRegistrationFields.IS_CHILD_HIGH_RISK;
+import static org.ei.opensrp.AllConstants.SPACE;
 
 public class Child {
     private final String caseId;

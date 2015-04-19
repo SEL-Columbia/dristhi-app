@@ -1,24 +1,24 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.ei.drishti.DristhiConfiguration;
-import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.domain.Response;
-import org.ei.drishti.domain.form.FormSubmission;
+import org.ei.opensrp.DristhiConfiguration;
+import org.ei.opensrp.domain.FetchStatus;
+import org.ei.opensrp.domain.Response;
+import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.drishti.dto.form.FormSubmissionDTO;
-import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.repository.AllSharedPreferences;
-import org.ei.drishti.repository.FormDataRepository;
+import org.ei.opensrp.repository.AllSettings;
+import org.ei.opensrp.repository.AllSharedPreferences;
+import org.ei.opensrp.repository.FormDataRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.text.MessageFormat.format;
-import static org.ei.drishti.convertor.FormSubmissionConvertor.toDomain;
-import static org.ei.drishti.domain.FetchStatus.*;
-import static org.ei.drishti.util.Log.logError;
-import static org.ei.drishti.util.Log.logInfo;
+import static org.ei.opensrp.convertor.FormSubmissionConvertor.toDomain;
+import static org.ei.opensrp.domain.FetchStatus.*;
+import static org.ei.opensrp.util.Log.logError;
+import static org.ei.opensrp.util.Log.logInfo;
 
 public class FormSubmissionSyncService {
     public static final String FORM_SUBMISSIONS_PATH = "form-submissions";

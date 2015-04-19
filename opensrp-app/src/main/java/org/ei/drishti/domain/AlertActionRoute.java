@@ -1,6 +1,6 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
-import org.ei.drishti.Context;
+import org.ei.opensrp.Context;
 import org.ei.drishti.dto.Action;
 
 public enum AlertActionRoute {

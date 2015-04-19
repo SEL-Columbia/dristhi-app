@@ -1,6 +1,6 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
-import org.ei.drishti.util.DateUtil;
+import org.ei.opensrp.util.DateUtil;
 import org.joda.time.LocalDate;
 
 import java.util.Date;

@@ -1,8 +1,8 @@
-package org.ei.drishti.view;
+package org.ei.opensrp.view;
 
 import android.content.res.Resources;
 import com.google.gson.Gson;
-import org.ei.drishti.R;
+import org.ei.opensrp.R;
 
 import java.util.HashMap;
 import java.util.Map;

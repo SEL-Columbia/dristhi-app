@@ -1,4 +1,4 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
 /**
  * Created by Dimas Ciputra on 3/23/15.

@@ -1,9 +1,9 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
-import org.ei.drishti.domain.Alert;
+import org.ei.opensrp.domain.Alert;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.dto.AlertStatus;
-import org.ei.drishti.repository.AlertRepository;
+import org.ei.opensrp.repository.AlertRepository;
 
 import java.util.List;
 

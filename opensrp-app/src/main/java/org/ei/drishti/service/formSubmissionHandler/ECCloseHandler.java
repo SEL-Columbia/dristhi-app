@@ -1,7 +1,7 @@
-package org.ei.drishti.service.formSubmissionHandler;
+package org.ei.opensrp.service.formSubmissionHandler;
 
-import org.ei.drishti.domain.form.FormSubmission;
-import org.ei.drishti.service.EligibleCoupleService;
+import org.ei.opensrp.domain.form.FormSubmission;
+import org.ei.opensrp.service.EligibleCoupleService;
 
 public class ECCloseHandler implements FormSubmissionHandler {
     private EligibleCoupleService ecService;

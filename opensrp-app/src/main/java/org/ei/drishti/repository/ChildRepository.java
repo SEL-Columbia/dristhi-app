@@ -1,4 +1,4 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -6,9 +6,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import net.sqlcipher.database.SQLiteDatabase;
 import org.apache.commons.lang3.StringUtils;
-import org.ei.drishti.domain.Child;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
+import org.ei.opensrp.domain.Child;
+import org.ei.opensrp.domain.EligibleCouple;
+import org.ei.opensrp.domain.Mother;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +17,10 @@ import java.util.Map;
 import static java.lang.Boolean.TRUE;
 import static net.sqlcipher.DatabaseUtils.longForQuery;
 import static org.apache.commons.lang3.StringUtils.repeat;
-import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_COLUMNS;
-import static org.ei.drishti.repository.EligibleCoupleRepository.EC_TABLE_NAME;
-import static org.ei.drishti.repository.MotherRepository.MOTHER_TABLE_COLUMNS;
-import static org.ei.drishti.repository.MotherRepository.MOTHER_TABLE_NAME;
+import static org.ei.opensrp.repository.EligibleCoupleRepository.EC_TABLE_COLUMNS;
+import static org.ei.opensrp.repository.EligibleCoupleRepository.EC_TABLE_NAME;
+import static org.ei.opensrp.repository.MotherRepository.MOTHER_TABLE_COLUMNS;
+import static org.ei.opensrp.repository.MotherRepository.MOTHER_TABLE_NAME;
 
 public class ChildRepository extends DrishtiRepository {
     private static final String CHILD_SQL = "CREATE TABLE child(id VARCHAR PRIMARY KEY, motherCaseId VARCHAR, thayiCardNumber VARCHAR, dateOfBirth VARCHAR, gender VARCHAR, details VARCHAR, isClosed VARCHAR, photoPath VARCHAR)";

@@ -1,6 +1,6 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
-import org.ei.drishti.domain.TimelineEvent;
+import org.ei.opensrp.domain.TimelineEvent;
 
 import java.util.List;
 

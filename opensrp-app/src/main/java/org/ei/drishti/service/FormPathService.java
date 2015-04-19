@@ -1,10 +1,10 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
 import android.content.res.AssetManager;
 import android.os.Environment;
 
 import org.apache.commons.io.IOUtils;
-import org.ei.drishti.Context;
+import org.ei.opensrp.Context;
 
 import java.io.File;
 import java.io.FileInputStream;

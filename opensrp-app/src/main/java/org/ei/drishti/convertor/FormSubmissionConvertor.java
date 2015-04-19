@@ -1,17 +1,17 @@
-package org.ei.drishti.convertor;
+package org.ei.opensrp.convertor;
 
 import org.ei.drishti.dto.form.FormSubmissionDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.ei.drishti.domain.SyncStatus.SYNCED;
+import static org.ei.opensrp.domain.SyncStatus.SYNCED;
 
 public class FormSubmissionConvertor {
-    public static List<org.ei.drishti.domain.form.FormSubmission> toDomain(List<FormSubmissionDTO> formSubmissionsDto) {
+    public static List<org.ei.opensrp.domain.form.FormSubmission> toDomain(List<FormSubmissionDTO> formSubmissionsDto) {
         List<org.ei.drishti.domain.form.FormSubmission> submissions = new ArrayList<org.ei.drishti.domain.form.FormSubmission>();
         for (FormSubmissionDTO formSubmission : formSubmissionsDto) {
-            submissions.add(new org.ei.drishti.domain.form.FormSubmission(
+            submissions.add(new org.ei.opensrp.domain.form.FormSubmission(
                     formSubmission.instanceId(),
                     formSubmission.entityId(),
                     formSubmission.formName(),

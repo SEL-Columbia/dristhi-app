@@ -1,6 +1,6 @@
-package org.ei.drishti.sync;
+package org.ei.opensrp.sync;
 
-import org.ei.drishti.domain.FetchStatus;
+import org.ei.opensrp.domain.FetchStatus;
 
 public interface AfterFetchListener {
     void afterFetch(FetchStatus fetchStatus);

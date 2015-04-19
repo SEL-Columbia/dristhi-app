@@ -1,4 +1,4 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
 import org.apache.commons.lang3.text.WordUtils;
 

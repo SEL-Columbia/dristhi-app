@@ -1,9 +1,9 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
-import org.ei.drishti.domain.SyncStatus;
-import org.ei.drishti.domain.form.FormSubmission;
+import org.ei.opensrp.domain.SyncStatus;
+import org.ei.opensrp.domain.form.FormSubmission;
 
-import static org.ei.drishti.domain.SyncStatus.SYNCED;
+import static org.ei.opensrp.domain.SyncStatus.SYNCED;
 
 public class FormSubmissionBuilder {
     private String instanceId = "instance id 1";

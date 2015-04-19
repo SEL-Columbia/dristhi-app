@@ -1,9 +1,9 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import org.ei.drishti.domain.Response;
+import org.ei.opensrp.domain.Response;
 import org.ei.drishti.dto.Action;
 
 import java.lang.reflect.Type;
@@ -11,7 +11,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.ei.drishti.domain.ResponseStatus.failure;
+import static org.ei.opensrp.domain.ResponseStatus.failure;
 
 public class DrishtiService {
     private HTTPAgent agent = null;

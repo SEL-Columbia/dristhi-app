@@ -1,13 +1,13 @@
-package org.ei.drishti.provider;
+package org.ei.opensrp.provider;
 
 import android.view.View;
 import android.view.ViewGroup;
-import org.ei.drishti.view.contract.SmartRegisterClient;
-import org.ei.drishti.view.contract.SmartRegisterClients;
-import org.ei.drishti.view.dialog.FilterOption;
-import org.ei.drishti.view.dialog.ServiceModeOption;
-import org.ei.drishti.view.dialog.SortOption;
-import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.contract.SmartRegisterClients;
+import org.ei.opensrp.view.dialog.FilterOption;
+import org.ei.opensrp.view.dialog.ServiceModeOption;
+import org.ei.opensrp.view.dialog.SortOption;
+import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
 
 public interface SmartRegisterClientsProvider {
 

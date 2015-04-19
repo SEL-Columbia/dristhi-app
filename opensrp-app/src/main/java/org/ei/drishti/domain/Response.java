@@ -1,6 +1,6 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
-import static org.ei.drishti.domain.ResponseStatus.failure;
+import static org.ei.opensrp.domain.ResponseStatus.failure;
 
 public class Response<T> {
     private ResponseStatus status;

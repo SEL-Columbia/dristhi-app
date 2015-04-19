@@ -1,8 +1,8 @@
-package org.ei.drishti.service.formSubmissionHandler;
+package org.ei.opensrp.service.formSubmissionHandler;
 
-import org.ei.drishti.domain.form.FormSubmission;
-import org.ei.drishti.service.ChildService;
-import org.ei.drishti.service.MotherService;
+import org.ei.opensrp.domain.form.FormSubmission;
+import org.ei.opensrp.service.ChildService;
+import org.ei.opensrp.service.MotherService;
 
 public class DeliveryOutcomeHandler implements FormSubmissionHandler {
     private final MotherService motherService;

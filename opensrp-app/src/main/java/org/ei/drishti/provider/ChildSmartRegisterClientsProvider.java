@@ -1,23 +1,23 @@
-package org.ei.drishti.provider;
+package org.ei.opensrp.provider;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import org.ei.drishti.R;
-import org.ei.drishti.view.activity.SecuredActivity;
-import org.ei.drishti.view.contract.ChildSmartRegisterClient;
-import org.ei.drishti.view.contract.SmartRegisterClient;
-import org.ei.drishti.view.contract.SmartRegisterClients;
-import org.ei.drishti.view.controller.ChildSmartRegisterController;
-import org.ei.drishti.view.dialog.FilterOption;
-import org.ei.drishti.view.dialog.ServiceModeOption;
-import org.ei.drishti.view.dialog.SortOption;
-import org.ei.drishti.view.viewHolder.ChildRegisterProfilePhotoLoader;
-import org.ei.drishti.view.viewHolder.NativeChildSmartRegisterViewHolder;
-import org.ei.drishti.view.viewHolder.OnClickFormLauncher;
-import org.ei.drishti.view.viewHolder.ProfilePhotoLoader;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.activity.SecuredActivity;
+import org.ei.opensrp.view.contract.ChildSmartRegisterClient;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.contract.SmartRegisterClients;
+import org.ei.opensrp.view.controller.ChildSmartRegisterController;
+import org.ei.opensrp.view.dialog.FilterOption;
+import org.ei.opensrp.view.dialog.ServiceModeOption;
+import org.ei.opensrp.view.dialog.SortOption;
+import org.ei.opensrp.view.viewHolder.ChildRegisterProfilePhotoLoader;
+import org.ei.opensrp.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.opensrp.view.viewHolder.OnClickFormLauncher;
+import org.ei.opensrp.view.viewHolder.ProfilePhotoLoader;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 

@@ -1,7 +1,7 @@
-package org.ei.drishti;
+package org.ei.opensrp;
 
 import android.content.res.AssetManager;
-import org.ei.drishti.util.IntegerUtil;
+import org.ei.opensrp.util.IntegerUtil;
 
 import java.io.IOException;
 import java.util.Properties;

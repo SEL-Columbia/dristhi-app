@@ -1,8 +1,8 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.content.SharedPreferences;
 
-import static org.ei.drishti.AllConstants.*;
+import static org.ei.opensrp.AllConstants.*;
 
 public class AllSharedPreferences {
     public static final String ANM_IDENTIFIER_PREFERENCE_KEY = "anmIdentifier";

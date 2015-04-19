@@ -1,9 +1,9 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import net.sqlcipher.database.SQLiteDatabase;
-import org.ei.drishti.domain.Alert;
+import org.ei.opensrp.domain.Alert;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;

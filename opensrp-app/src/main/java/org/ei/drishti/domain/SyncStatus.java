@@ -1,4 +1,4 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
 public enum SyncStatus {
     SYNCED("SYNCED"), PENDING("PENDING");

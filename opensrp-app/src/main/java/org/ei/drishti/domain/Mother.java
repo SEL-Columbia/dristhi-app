@@ -1,4 +1,4 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -10,10 +10,10 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import static org.ei.drishti.AllConstants.ANCRegistrationFields.HIGH_RISK_REASON;
-import static org.ei.drishti.AllConstants.ANCRegistrationFields.IS_HIGH_RISK;
-import static org.ei.drishti.AllConstants.BOOLEAN_TRUE;
-import static org.ei.drishti.AllConstants.SPACE;
+import static org.ei.opensrp.AllConstants.ANCRegistrationFields.HIGH_RISK_REASON;
+import static org.ei.opensrp.AllConstants.ANCRegistrationFields.IS_HIGH_RISK;
+import static org.ei.opensrp.AllConstants.BOOLEAN_TRUE;
+import static org.ei.opensrp.AllConstants.SPACE;
 
 public class Mother {
     private final String caseId;

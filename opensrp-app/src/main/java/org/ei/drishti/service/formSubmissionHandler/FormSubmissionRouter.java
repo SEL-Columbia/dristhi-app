@@ -1,17 +1,17 @@
-package org.ei.drishti.service.formSubmissionHandler;
+package org.ei.opensrp.service.formSubmissionHandler;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.ei.drishti.domain.form.FormSubmission;
-import org.ei.drishti.repository.FormDataRepository;
-import org.ei.drishti.util.Log;
+import org.ei.opensrp.domain.form.FormSubmission;
+import org.ei.opensrp.repository.FormDataRepository;
+import org.ei.opensrp.util.Log;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static java.text.MessageFormat.format;
-import static org.ei.drishti.AllConstants.FormNames.*;
-import static org.ei.drishti.event.Event.FORM_SUBMITTED;
-import static org.ei.drishti.util.Log.logWarn;
+import static org.ei.opensrp.AllConstants.FormNames.*;
+import static org.ei.opensrp.event.Event.FORM_SUBMITTED;
+import static org.ei.opensrp.util.Log.logWarn;
 
 
 public class FormSubmissionRouter {

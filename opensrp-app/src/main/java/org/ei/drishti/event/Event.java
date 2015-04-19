@@ -1,7 +1,7 @@
-package org.ei.drishti.event;
+package org.ei.opensrp.event;
 
 import org.apache.commons.lang3.ObjectUtils;
-import org.ei.drishti.domain.FetchStatus;
+import org.ei.opensrp.domain.FetchStatus;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

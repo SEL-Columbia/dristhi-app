@@ -1,16 +1,16 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.ei.drishti.AllConstants;
-import org.ei.drishti.DristhiConfiguration;
-import org.ei.drishti.domain.DownloadStatus;
-import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.domain.FormDefinitionVersion;
-import org.ei.drishti.domain.Response;
-import org.ei.drishti.domain.SyncStatus;
-import org.ei.drishti.repository.FormsVersionRepository;
-import org.ei.drishti.util.ZipUtil;
+import org.ei.opensrp.AllConstants;
+import org.ei.opensrp.DristhiConfiguration;
+import org.ei.opensrp.domain.DownloadStatus;
+import org.ei.opensrp.domain.FetchStatus;
+import org.ei.opensrp.domain.FormDefinitionVersion;
+import org.ei.opensrp.domain.Response;
+import org.ei.opensrp.domain.SyncStatus;
+import org.ei.opensrp.repository.FormsVersionRepository;
+import org.ei.opensrp.util.ZipUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,11 +26,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import static org.ei.drishti.domain.DownloadStatus.*;
+import static org.ei.opensrp.domain.DownloadStatus.*;
 
-import static org.ei.drishti.domain.SyncStatus.PENDING;
-import static org.ei.drishti.domain.SyncStatus.SYNCED;
-import static org.ei.drishti.util.Log.logError;
+import static org.ei.opensrp.domain.SyncStatus.PENDING;
+import static org.ei.opensrp.domain.SyncStatus.SYNCED;
+import static org.ei.opensrp.util.Log.logError;
 
 /**
  * Created by Dimas Ciputra on 3/23/15.

@@ -1,4 +1,4 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 public class AllAlerts {
     private AlertRepository repository;

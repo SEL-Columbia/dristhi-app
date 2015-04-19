@@ -1,4 +1,4 @@
-package org.ei.drishti.view;
+package org.ei.opensrp.view;
 
 public interface BackgroundAction<T> {
     T actionToDoInBackgroundThread();

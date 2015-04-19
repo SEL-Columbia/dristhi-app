@@ -1,4 +1,4 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
 public class IntegerUtil {
     public static Integer tryParse(String value, int defaultValue) {

@@ -1,4 +1,4 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -8,9 +8,9 @@ import com.google.gson.reflect.TypeToken;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.ei.drishti.Context;
-import org.ei.drishti.domain.SyncStatus;
-import org.ei.drishti.domain.form.FormSubmission;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.domain.SyncStatus;
+import org.ei.opensrp.domain.form.FormSubmission;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,14 +21,14 @@ import static java.lang.System.currentTimeMillis;
 import static java.util.Arrays.asList;
 import static java.util.UUID.randomUUID;
 import static net.sqlcipher.DatabaseUtils.longForQuery;
-import static org.ei.drishti.AllConstants.ENTITY_ID_FIELD_NAME;
-import static org.ei.drishti.AllConstants.ENTITY_ID_PARAM;
-import static org.ei.drishti.AllConstants.INSTANCE_ID_PARAM;
-import static org.ei.drishti.AllConstants.SYNC_STATUS;
-import static org.ei.drishti.domain.SyncStatus.PENDING;
-import static org.ei.drishti.domain.SyncStatus.SYNCED;
+import static org.ei.opensrp.AllConstants.ENTITY_ID_FIELD_NAME;
+import static org.ei.opensrp.AllConstants.ENTITY_ID_PARAM;
+import static org.ei.opensrp.AllConstants.INSTANCE_ID_PARAM;
+import static org.ei.opensrp.AllConstants.SYNC_STATUS;
+import static org.ei.opensrp.domain.SyncStatus.PENDING;
+import static org.ei.opensrp.domain.SyncStatus.SYNCED;
 
-public class FormDataRepository extends DrishtiRepository {
+public class FormDataRepository extends opensrpRepository {
     private static final String FORM_SUBMISSION_SQL = "CREATE TABLE form_submission(instanceId VARCHAR PRIMARY KEY, entityId VARCHAR, " +
             "formName VARCHAR, instance VARCHAR, version VARCHAR, serverVersion VARCHAR, formDataDefinitionVersion VARCHAR, syncStatus VARCHAR)";
     public static final String INSTANCE_ID_COLUMN = "instanceId";

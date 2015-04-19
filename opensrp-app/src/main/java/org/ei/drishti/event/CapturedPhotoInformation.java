@@ -1,4 +1,4 @@
-package org.ei.drishti.event;
+package org.ei.opensrp.event;
 
 public class CapturedPhotoInformation {
     private final String entityId;

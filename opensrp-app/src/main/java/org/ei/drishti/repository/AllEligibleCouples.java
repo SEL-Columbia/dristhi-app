@@ -1,6 +1,6 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
-import org.ei.drishti.domain.EligibleCouple;
+import org.ei.opensrp.domain.EligibleCouple;
 
 import java.util.List;
 import java.util.Map;

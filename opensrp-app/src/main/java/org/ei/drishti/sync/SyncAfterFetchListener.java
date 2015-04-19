@@ -1,8 +1,8 @@
-package org.ei.drishti.sync;
+package org.ei.opensrp.sync;
 
-import org.ei.drishti.domain.FetchStatus;
+import org.ei.opensrp.domain.FetchStatus;
 
-import static org.ei.drishti.event.Event.ON_DATA_FETCHED;
+import static org.ei.opensrp.event.Event.ON_DATA_FETCHED;
 
 public class SyncAfterFetchListener implements AfterFetchListener {
     public void afterFetch(FetchStatus status) {

@@ -1,4 +1,4 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
 public enum FetchStatus implements Displayable {
     fetched("Update successful."), nothingFetched("Already up to date."), fetchedFailed("Update failed. Please try again.");

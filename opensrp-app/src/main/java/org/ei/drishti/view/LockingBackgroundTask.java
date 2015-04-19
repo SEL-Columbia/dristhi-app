@@ -1,10 +1,10 @@
-package org.ei.drishti.view;
+package org.ei.opensrp.view;
 
 import android.os.AsyncTask;
 
 import java.util.concurrent.locks.ReentrantLock;
 
-import static org.ei.drishti.util.Log.logVerbose;
+import static org.ei.opensrp.util.Log.logVerbose;
 
 public class LockingBackgroundTask {
     private ProgressIndicator indicator;

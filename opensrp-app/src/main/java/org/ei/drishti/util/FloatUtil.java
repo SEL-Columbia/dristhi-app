@@ -1,4 +1,4 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
 public class FloatUtil {
     public static Float tryParse(String value, Float defaultValue) {

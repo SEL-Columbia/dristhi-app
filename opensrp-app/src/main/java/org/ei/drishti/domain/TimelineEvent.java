@@ -1,18 +1,18 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.util.DateUtil;
+import org.ei.opensrp.util.DateUtil;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.drishti.AllConstants.PNCVisitFields.*;
-import static org.ei.drishti.util.EasyMap.create;
-import static org.ei.drishti.util.EasyMap.mapOf;
+import static org.ei.opensrp.AllConstants.PNCVisitFields.*;
+import static org.ei.opensrp.util.EasyMap.create;
+import static org.ei.opensrp.util.EasyMap.mapOf;
 
 public class TimelineEvent {
     private String caseId;

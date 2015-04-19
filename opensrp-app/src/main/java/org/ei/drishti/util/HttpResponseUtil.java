@@ -1,4 +1,4 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.util.zip.GZIPInputStream;
 
 import static java.text.MessageFormat.format;
-import static org.ei.drishti.util.Log.logError;
+import static org.ei.opensrp.util.Log.logError;
 
 public class HttpResponseUtil {
     public static InputStream getResponseStream(HttpResponse response) throws IOException {

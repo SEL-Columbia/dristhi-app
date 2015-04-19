@@ -1,11 +1,11 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
-import org.ei.drishti.Context;
-import org.ei.drishti.view.contract.Beneficiary;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.view.contract.Beneficiary;
 
 import java.util.List;
 
-import static org.ei.drishti.view.controller.ProfileNavigationController.*;
+import static org.ei.opensrp.view.controller.ProfileNavigationController.*;
 
 public enum ReportIndicator {
     IUD("IUD", "IUD Adoption") {

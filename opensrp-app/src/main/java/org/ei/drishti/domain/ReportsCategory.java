@@ -1,9 +1,9 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.domain.ReportIndicator.*;
+import static org.ei.opensrp.domain.ReportIndicator.*;
 
 public enum ReportsCategory {
     FPS("Family Planning Services", asList(IUD, CONDOM, CONDOM_QTY, OCP, OCP_SC, OCP_ST, OCP_C_OTHERS,

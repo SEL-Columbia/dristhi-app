@@ -1,4 +1,4 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;

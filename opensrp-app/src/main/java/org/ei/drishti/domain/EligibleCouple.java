@@ -1,4 +1,4 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -10,9 +10,9 @@ import java.util.HashSet;
 import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
-import static org.ei.drishti.AllConstants.BOOLEAN_TRUE;
-import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
-import static org.ei.drishti.AllConstants.SPACE;
+import static org.ei.opensrp.AllConstants.BOOLEAN_TRUE;
+import static org.ei.opensrp.AllConstants.ECRegistrationFields.*;
+import static org.ei.opensrp.AllConstants.SPACE;
 
 public class EligibleCouple {
     private String caseId;

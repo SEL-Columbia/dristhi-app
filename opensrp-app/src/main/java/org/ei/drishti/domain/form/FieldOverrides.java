@@ -1,4 +1,4 @@
-package org.ei.drishti.domain.form;
+package org.ei.opensrp.domain.form;
 
 import com.google.gson.Gson;
 

@@ -1,14 +1,14 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.ei.drishti.domain.Child;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
+import org.ei.opensrp.domain.Child;
+import org.ei.opensrp.domain.EligibleCouple;
+import org.ei.opensrp.domain.Mother;
 
 import java.util.List;
 
-import static org.ei.drishti.repository.MotherRepository.TYPE_ANC;
-import static org.ei.drishti.repository.MotherRepository.TYPE_PNC;
+import static org.ei.opensrp.repository.MotherRepository.TYPE_ANC;
+import static org.ei.opensrp.repository.MotherRepository.TYPE_PNC;
 
 public class AllBeneficiaries {
     private ChildRepository childRepository;

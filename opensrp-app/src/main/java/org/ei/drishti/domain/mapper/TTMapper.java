@@ -1,6 +1,6 @@
-package org.ei.drishti.domain.mapper;
+package org.ei.opensrp.domain.mapper;
 
-import static org.ei.drishti.domain.ServiceProvided.*;
+import static org.ei.opensrp.domain.ServiceProvided.*;
 
 public enum TTMapper {
     ttbooster(TT_BOOSTER_SERVICE_PROVIDED_NAME), tt1(TT_1_SERVICE_PROVIDED_NAME), tt2(TT_2_SERVICE_PROVIDED_NAME);

@@ -1,4 +1,4 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -8,21 +8,21 @@ import com.google.gson.reflect.TypeToken;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.ei.drishti.domain.FormDefinitionVersion;
-import org.ei.drishti.domain.SyncStatus;
-import org.ei.drishti.util.EasyMap;
+import org.ei.opensrp.domain.FormDefinitionVersion;
+import org.ei.opensrp.domain.SyncStatus;
+import org.ei.opensrp.util.EasyMap;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import static net.sqlcipher.DatabaseUtils.longForQuery;
-import static org.ei.drishti.util.EasyMap.create;
+import static org.ei.opensrp.util.EasyMap.create;
 
 /**
  * Created by Dimas Ciputra on 3/21/15.
  */
-public class FormsVersionRepository extends DrishtiRepository {
+public class FormsVersionRepository extends opensrpRepository {
 
     private static final String FORM_VERSION_SQL = "CREATE TABLE all_forms_version(id INTEGER PRIMARY KEY," +
             "formName VARCHAR, formDirName VARCHAR, formDataDefinitionVersion VARCHAR, syncStatus VARCHAR)";

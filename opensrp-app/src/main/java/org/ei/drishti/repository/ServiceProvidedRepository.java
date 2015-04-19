@@ -1,11 +1,11 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import net.sqlcipher.database.SQLiteDatabase;
-import org.ei.drishti.domain.ServiceProvided;
+import org.ei.opensrp.domain.ServiceProvided;
 
 import java.util.ArrayList;
 import java.util.List;

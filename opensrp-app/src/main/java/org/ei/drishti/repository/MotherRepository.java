@@ -1,4 +1,4 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -6,8 +6,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import net.sqlcipher.database.SQLiteDatabase;
 import org.apache.commons.lang3.tuple.Pair;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
+import org.ei.opensrp.domain.EligibleCouple;
+import org.ei.opensrp.domain.Mother;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +17,9 @@ import static java.lang.Boolean.TRUE;
 import static net.sqlcipher.DatabaseUtils.longForQuery;
 import static org.apache.commons.lang3.StringUtils.join;
 import static org.apache.commons.lang3.StringUtils.repeat;
-import static org.ei.drishti.repository.EligibleCoupleRepository.*;
+import static org.ei.opensrp.repository.EligibleCoupleRepository.*;
 
-public class MotherRepository extends DrishtiRepository {
+public class MotherRepository extends opensrpRepository {
     private static final String MOTHER_SQL = "CREATE TABLE mother(id VARCHAR PRIMARY KEY, ecCaseId VARCHAR, thayiCardNumber VARCHAR, type VARCHAR, referenceDate VARCHAR, details VARCHAR, isClosed VARCHAR)";
     private static final String MOTHER_TYPE_INDEX_SQL = "CREATE INDEX mother_type_index ON mother(type);";
     private static final String MOTHER_REFERENCE_DATE_INDEX_SQL = "CREATE INDEX mother_referenceDate_index ON mother(referenceDate);";

@@ -1,7 +1,7 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
-import org.ei.drishti.repository.FormDataRepository;
-import org.ei.drishti.service.formSubmissionHandler.FormSubmissionRouter;
+import org.ei.opensrp.repository.FormDataRepository;
+import org.ei.opensrp.service.formSubmissionHandler.FormSubmissionRouter;
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
@@ -9,9 +9,9 @@ import org.mozilla.javascript.ScriptableObject;
 import java.util.Map;
 
 import static java.text.MessageFormat.format;
-import static org.ei.drishti.AllConstants.*;
-import static org.ei.drishti.util.Log.logError;
-import static org.ei.drishti.util.Log.logInfo;
+import static org.ei.opensrp.AllConstants.*;
+import static org.ei.opensrp.util.Log.logError;
+import static org.ei.opensrp.util.Log.logInfo;
 import static org.mozilla.javascript.Context.*;
 
 public class ZiggyService {

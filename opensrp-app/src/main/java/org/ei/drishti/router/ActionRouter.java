@@ -1,7 +1,7 @@
-package org.ei.drishti.router;
+package org.ei.opensrp.router;
 
-import org.ei.drishti.domain.AlertActionRoute;
-import org.ei.drishti.domain.MotherActionRoute;
+import org.ei.opensrp.domain.AlertActionRoute;
+import org.ei.opensrp.domain.MotherActionRoute;
 import org.ei.drishti.dto.Action;
 
 import static org.ei.drishti.util.Log.logWarn;

@@ -1,14 +1,14 @@
-package org.ei.drishti.adapter;
+package org.ei.opensrp.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import org.ei.drishti.provider.SmartRegisterClientsProvider;
-import org.ei.drishti.view.contract.SmartRegisterClient;
-import org.ei.drishti.view.contract.SmartRegisterClients;
-import org.ei.drishti.view.dialog.FilterOption;
-import org.ei.drishti.view.dialog.ServiceModeOption;
-import org.ei.drishti.view.dialog.SortOption;
+import org.ei.opensrp.provider.SmartRegisterClientsProvider;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.contract.SmartRegisterClients;
+import org.ei.opensrp.view.dialog.FilterOption;
+import org.ei.opensrp.view.dialog.ServiceModeOption;
+import org.ei.opensrp.view.dialog.SortOption;
 
 public class SmartRegisterPaginatedAdapter extends BaseAdapter {
     private static final int CLIENTS_PER_PAGE = 20;

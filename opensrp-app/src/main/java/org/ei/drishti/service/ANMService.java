@@ -1,9 +1,9 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
-import org.ei.drishti.domain.ANM;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.repository.AllSharedPreferences;
+import org.ei.opensrp.domain.ANM;
+import org.ei.opensrp.repository.AllBeneficiaries;
+import org.ei.opensrp.repository.AllEligibleCouples;
+import org.ei.opensrp.repository.AllSharedPreferences;
 
 public class ANMService {
     private AllSharedPreferences allSharedPreferences;

@@ -1,4 +1,4 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -10,7 +10,7 @@ import org.ei.drishti.dto.MonthSummaryDatum;
 import java.io.Serializable;
 import java.util.List;
 
-import static org.ei.drishti.domain.ReportIndicator.parseToReportIndicator;
+import static org.ei.opensrp.domain.ReportIndicator.parseToReportIndicator;
 
 public class Report implements Serializable {
     private final String indicator;

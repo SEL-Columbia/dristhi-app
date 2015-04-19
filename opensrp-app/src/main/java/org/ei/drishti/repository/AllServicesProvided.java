@@ -1,6 +1,6 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
-import org.ei.drishti.domain.ServiceProvided;
+import org.ei.opensrp.domain.ServiceProvided;
 
 import java.util.List;
 

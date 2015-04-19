@@ -1,4 +1,4 @@
-package org.ei.drishti;
+package org.ei.opensrp;
 
 public class AllConstants {
     public static final String REPORT_CATEGORY = "reportCategory";

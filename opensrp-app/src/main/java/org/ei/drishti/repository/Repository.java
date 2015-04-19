@@ -1,11 +1,11 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.content.Context;
 
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
-import org.ei.drishti.util.Session;
+import org.ei.opensrp.util.Session;
 
 import java.io.File;
 

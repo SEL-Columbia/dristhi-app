@@ -1,10 +1,10 @@
-package org.ei.drishti.sync;
+package org.ei.opensrp.sync;
 
-import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.util.Log;
-import org.ei.drishti.view.BackgroundAction;
-import org.ei.drishti.view.LockingBackgroundTask;
-import org.ei.drishti.view.ProgressIndicator;
+import org.ei.opensrp.repository.AllSettings;
+import org.ei.opensrp.util.Log;
+import org.ei.opensrp.view.BackgroundAction;
+import org.ei.opensrp.view.LockingBackgroundTask;
+import org.ei.opensrp.view.ProgressIndicator;
 
 /**
  * Created by Dimas Ciputra on 3/24/15.

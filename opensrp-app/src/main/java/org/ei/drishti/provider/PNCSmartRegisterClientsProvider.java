@@ -1,18 +1,18 @@
-package org.ei.drishti.provider;
+package org.ei.opensrp.provider;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import org.ei.drishti.R;
-import org.ei.drishti.view.activity.SecuredActivity;
-import org.ei.drishti.view.contract.*;
-import org.ei.drishti.view.contract.pnc.PNCClients;
-import org.ei.drishti.view.contract.pnc.PNCSmartRegisterClient;
-import org.ei.drishti.view.controller.PNCSmartRegisterController;
-import org.ei.drishti.view.dialog.*;
-import org.ei.drishti.view.viewHolder.*;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.activity.SecuredActivity;
+import org.ei.opensrp.view.contract.*;
+import org.ei.opensrp.view.contract.pnc.PNCClients;
+import org.ei.opensrp.view.contract.pnc.PNCSmartRegisterClient;
+import org.ei.opensrp.view.controller.PNCSmartRegisterController;
+import org.ei.opensrp.view.dialog.*;
+import org.ei.opensrp.view.viewHolder.*;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 

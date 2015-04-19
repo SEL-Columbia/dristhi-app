@@ -1,4 +1,4 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
 import android.content.Context;
 import org.apache.commons.io.IOUtils;
@@ -21,16 +21,16 @@ import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HTTP;
-import org.ei.drishti.DristhiConfiguration;
-import org.ei.drishti.R;
-import org.ei.drishti.client.GZipEncodingHttpClient;
-import org.ei.drishti.domain.DownloadStatus;
-import org.ei.drishti.domain.LoginResponse;
-import org.ei.drishti.domain.Response;
-import org.ei.drishti.domain.ResponseStatus;
-import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.repository.AllSharedPreferences;
-import org.ei.drishti.util.DownloadForm;
+import org.ei.opensrp.DristhiConfiguration;
+import org.ei.opensrp.R;
+import org.ei.opensrp.client.GZipEncodingHttpClient;
+import org.ei.opensrp.domain.DownloadStatus;
+import org.ei.opensrp.domain.LoginResponse;
+import org.ei.opensrp.domain.Response;
+import org.ei.opensrp.domain.ResponseStatus;
+import org.ei.opensrp.repository.AllSettings;
+import org.ei.opensrp.repository.AllSharedPreferences;
+import org.ei.opensrp.util.DownloadForm;
 
 import javax.net.ssl.SSLException;
 import java.io.IOException;
@@ -38,11 +38,11 @@ import java.io.InputStream;
 import java.net.URL;
 import java.security.KeyStore;
 
-import static org.ei.drishti.AllConstants.REALM;
-import static org.ei.drishti.domain.LoginResponse.*;
-import static org.ei.drishti.util.HttpResponseUtil.getResponseBody;
-import static org.ei.drishti.util.Log.logError;
-import static org.ei.drishti.util.Log.logWarn;
+import static org.ei.opensrp.AllConstants.REALM;
+import static org.ei.opensrp.domain.LoginResponse.*;
+import static org.ei.opensrp.util.HttpResponseUtil.getResponseBody;
+import static org.ei.opensrp.util.Log.logError;
+import static org.ei.opensrp.util.Log.logWarn;
 
 public class HTTPAgent {
     private final GZipEncodingHttpClient httpClient;
@@ -64,7 +64,7 @@ public class HTTPAgent {
 
         SchemeRegistry registry = new SchemeRegistry();
         registry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-        registry.register(new Scheme("https", sslSocketFactoryWithDrishtiCertificate(), 443));
+        registry.register(new Scheme("https", sslSocketFactoryWithopensrpCertificate(), 443));
 
         SingleClientConnManager connectionManager = new SingleClientConnManager(basicHttpParams, registry);
         httpClient = new GZipEncodingHttpClient(new DefaultHttpClient(connectionManager, basicHttpParams));
@@ -131,7 +131,7 @@ public class HTTPAgent {
                 new UsernamePasswordCredentials(userName, password));
     }
 
-    private SocketFactory sslSocketFactoryWithDrishtiCertificate() {
+    private SocketFactory sslSocketFactoryWithopensrpCertificate() {
         try {
             KeyStore trustedKeystore = KeyStore.getInstance("BKS");
             InputStream inputStream = context.getResources().openRawResource(R.raw.dristhi_client);

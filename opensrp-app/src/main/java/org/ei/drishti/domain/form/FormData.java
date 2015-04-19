@@ -1,4 +1,4 @@
-package org.ei.drishti.domain.form;
+package org.ei.opensrp.domain.form;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;

@@ -1,12 +1,12 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import net.sqlcipher.database.SQLiteDatabase;
-import org.ei.drishti.AllConstants;
-import org.ei.drishti.domain.EligibleCouple;
+import org.ei.opensrp.AllConstants;
+import org.ei.opensrp.domain.EligibleCouple;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ import static net.sqlcipher.DatabaseUtils.longForQuery;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.repeat;
 
-public class EligibleCoupleRepository extends DrishtiRepository {
+public class EligibleCoupleRepository extends opensrpRepository {
     private static final String EC_SQL = "CREATE TABLE eligible_couple(id VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, " +
             "ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR, isClosed VARCHAR, photoPath VARCHAR)";
     public static final String ID_COLUMN = "id";

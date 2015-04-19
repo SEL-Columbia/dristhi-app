@@ -1,4 +1,4 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
 import android.util.Log;
 
@@ -7,11 +7,11 @@ import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.ByteArrayBuffer;
-import org.ei.drishti.client.GZipEncodingHttpClient;
-import org.ei.drishti.domain.DownloadStatus;
-import org.ei.drishti.domain.Response;
-import org.ei.drishti.domain.ResponseStatus;
-import org.ei.drishti.service.FormPathService;
+import org.ei.opensrp.client.GZipEncodingHttpClient;
+import org.ei.opensrp.domain.DownloadStatus;
+import org.ei.opensrp.domain.Response;
+import org.ei.opensrp.domain.ResponseStatus;
+import org.ei.opensrp.service.FormPathService;
 
 import java.io.BufferedInputStream;
 import java.io.File;

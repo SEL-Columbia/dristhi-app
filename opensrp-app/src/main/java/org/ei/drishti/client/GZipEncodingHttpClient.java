@@ -1,11 +1,11 @@
-package org.ei.drishti.client;
+package org.ei.opensrp.client;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.ei.drishti.util.HttpResponseUtil;
+import org.ei.opensrp.util.HttpResponseUtil;
 
 import java.io.IOException;
 import java.io.InputStream;

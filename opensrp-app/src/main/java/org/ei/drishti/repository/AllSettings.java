@@ -1,4 +1,4 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 public class AllSettings {
     public static final String APPLIED_VILLAGE_FILTER_SETTING_KEY = "appliedVillageFilter";
