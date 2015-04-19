@@ -3,14 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.ei.drishti</groupId>
-    <artifactId>dristhi-app-parent</artifactId>
+    <artifactId>opensrp-app-parent</artifactId>
     <version>3.0.1</version>
     <packaging>pom</packaging>
-    <name>dristhi-app - Parent</name>
+    <name>opensrp-app - Parent</name>
 
     <modules>
         <module>opensrp-app</module>
-        <module>opensrp-app</module>
+        <module>opensrp-app-it</module>
     </modules>
 
     <properties>

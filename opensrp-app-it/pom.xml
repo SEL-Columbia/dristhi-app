@@ -5,14 +5,14 @@
 
     <parent>
         <groupId>org.ei.drishti</groupId>
-        <artifactId>dristhi-app-parent</artifactId>
+        <artifactId>opensrp-app-parent</artifactId>
         <version>3.0.1</version>
     </parent>
 
-    <artifactId>dristhi-app-it</artifactId>
+    <artifactId>opensrp-app-it</artifactId>
     <version>3.0.1</version>
     <packaging>apk</packaging>
-    <name>dristhi-app-it - Integration tests</name>
+    <name>opensrp-app-it - Integration tests</name>
 
     <properties>
         <main.basedir>${project.basedir}/..</main.basedir>
@@ -29,14 +29,14 @@
         </dependency>
         <dependency>
             <groupId>org.ei.drishti</groupId>
-            <artifactId>dristhi-app</artifactId>
+            <artifactId>opensrp-app</artifactId>
             <type>apk</type>
             <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.ei.drishti</groupId>
-            <artifactId>dristhi-app</artifactId>
+            <artifactId>opensrp-app</artifactId>
             <type>jar</type>
             <version>3.0.1</version>
             <scope>provided</scope>

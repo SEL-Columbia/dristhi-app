@@ -5,11 +5,11 @@
 
     <parent>
         <groupId>org.ei.drishti</groupId>
-        <artifactId>dristhi-app-parent</artifactId>
+        <artifactId>opensrp-app-parent</artifactId>
         <version>3.0.1</version>
     </parent>
 
-    <artifactId>dristhi-app</artifactId>
+    <artifactId>opensrp-app</artifactId>
     <version>3.0.1</version>
     <packaging>apk</packaging>
     <name>dristhi-app - Application</name>
