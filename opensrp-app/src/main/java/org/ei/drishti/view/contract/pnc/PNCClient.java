@@ -1,27 +1,27 @@
-package org.ei.drishti.view.contract.pnc;
+package org.ei.opensrp.view.contract.pnc;
 
 import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.domain.ANCServiceType;
-import org.ei.drishti.domain.FPMethod;
-import org.ei.drishti.util.IntegerUtil;
-import org.ei.drishti.view.contract.*;
+import org.ei.opensrp.domain.ANCServiceType;
+import org.ei.opensrp.domain.FPMethod;
+import org.ei.opensrp.util.IntegerUtil;
+import org.ei.opensrp.view.contract.*;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.ISODateTimeFormat;
 
 import java.util.*;
 
-import static org.ei.drishti.AllConstants.*;
-import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
-import static org.ei.drishti.domain.ANCServiceType.PNC;
-import static org.ei.drishti.util.DateUtil.*;
-import static org.ei.drishti.util.StringUtil.*;
-import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
-import static org.ei.drishti.view.contract.ServiceProvidedDTO.emptyService;
+import static org.ei.opensrp.AllConstants.*;
+import static org.ei.opensrp.AllConstants.ECRegistrationFields.*;
+import static org.ei.opensrp.domain.ANCServiceType.PNC;
+import static org.ei.opensrp.util.DateUtil.*;
+import static org.ei.opensrp.util.StringUtil.*;
+import static org.ei.opensrp.view.contract.AlertDTO.emptyAlert;
+import static org.ei.opensrp.view.contract.ServiceProvidedDTO.emptyService;
 
 public class PNCClient implements PNCSmartRegisterClient {
     private static final String CATEGORY_PNC = "pnc";

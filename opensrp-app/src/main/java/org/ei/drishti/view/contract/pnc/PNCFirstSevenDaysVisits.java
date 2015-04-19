@@ -1,4 +1,4 @@
-package org.ei.drishti.view.contract.pnc;
+package org.ei.opensrp.view.contract.pnc;
 
 import com.google.gson.annotations.SerializedName;
 

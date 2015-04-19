@@ -1,8 +1,8 @@
-package org.ei.drishti.view.contract.pnc;
+package org.ei.opensrp.view.contract.pnc;
 
 
-import org.ei.drishti.domain.ANCServiceType;
-import org.ei.drishti.view.contract.*;
+import org.ei.opensrp.domain.ANCServiceType;
+import org.ei.opensrp.view.contract.*;
 import org.joda.time.LocalDate;
 
 import java.util.Comparator;

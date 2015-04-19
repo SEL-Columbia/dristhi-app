@@ -1,4 +1,4 @@
-package org.ei.drishti.view.contract.pnc;
+package org.ei.opensrp.view.contract.pnc;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
