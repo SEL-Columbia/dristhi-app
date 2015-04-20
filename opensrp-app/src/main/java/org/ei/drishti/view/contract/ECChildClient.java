@@ -1,10 +1,10 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.util.DateUtil;
+import org.ei.opensrp.util.DateUtil;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 

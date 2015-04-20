@@ -1,10 +1,10 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
-import static org.ei.drishti.view.contract.ServiceProvidedDTO.emptyService;
+import static org.ei.opensrp.view.contract.AlertDTO.emptyAlert;
+import static org.ei.opensrp.view.contract.ServiceProvidedDTO.emptyService;
 
 public class Visits {
     public ServiceProvidedDTO provided = emptyService;

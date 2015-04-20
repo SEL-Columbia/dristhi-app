@@ -1,7 +1,7 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
 import android.graphics.Color;
-import org.ei.drishti.R;
+import org.ei.opensrp.R;
 
 public enum FPAlertStatus {
     EMPTY {

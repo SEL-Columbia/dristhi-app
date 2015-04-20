@@ -1,8 +1,8 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
-import static org.ei.drishti.AllConstants.FormNames.FP_FOLLOWUP;
-import static org.ei.drishti.AllConstants.FormNames.FP_REFERRAL_FOLLOWUP;
-import static org.ei.drishti.AllConstants.FormNames.RENEW_FP_PRODUCT;
+import static org.ei.opensrp.AllConstants.FormNames.FP_FOLLOWUP;
+import static org.ei.opensrp.AllConstants.FormNames.FP_REFERRAL_FOLLOWUP;
+import static org.ei.opensrp.AllConstants.FormNames.RENEW_FP_PRODUCT;
 
 public enum FPAlertType {
 

@@ -1,12 +1,12 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.AllConstants;
-import org.ei.drishti.domain.ChildServiceType;
-import org.ei.drishti.util.DateUtil;
+import org.ei.opensrp.AllConstants;
+import org.ei.opensrp.domain.ChildServiceType;
+import org.ei.opensrp.util.DateUtil;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
@@ -16,14 +16,14 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.drishti.AllConstants.*;
-import static org.ei.drishti.AllConstants.ChildIllnessFields.*;
-import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
-import static org.ei.drishti.domain.ChildServiceType.*;
-import static org.ei.drishti.util.DateUtil.formatDate;
-import static org.ei.drishti.util.StringUtil.humanize;
-import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
-import static org.ei.drishti.view.contract.ServiceProvidedDTO.emptyService;
+import static org.ei.opensrp.AllConstants.*;
+import static org.ei.opensrp.AllConstants.ChildIllnessFields.*;
+import static org.ei.opensrp.AllConstants.ECRegistrationFields.*;
+import static org.ei.opensrp.domain.ChildServiceType.*;
+import static org.ei.opensrp.util.DateUtil.formatDate;
+import static org.ei.opensrp.util.StringUtil.humanize;
+import static org.ei.opensrp.view.contract.AlertDTO.emptyAlert;
+import static org.ei.opensrp.view.contract.ServiceProvidedDTO.emptyService;
 
 public class ChildClient implements ChildSmartRegisterClient {
     public static final String CATEGORY_BCG = "bcg";

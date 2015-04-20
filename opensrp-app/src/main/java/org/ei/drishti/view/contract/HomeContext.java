@@ -1,6 +1,6 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
-import org.ei.drishti.domain.ANM;
+import org.ei.opensrp.domain.ANM;
 
 public class HomeContext {
     private final long fpCount;

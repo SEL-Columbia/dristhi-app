@@ -1,7 +1,7 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
-import org.ei.drishti.Context;
-import org.ei.drishti.R;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.R;
 
 import java.util.EnumSet;
 import java.util.HashMap;

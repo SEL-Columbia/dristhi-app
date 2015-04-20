@@ -1,7 +1,7 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
-import org.ei.drishti.domain.FPMethod;
-import org.ei.drishti.util.IntegerUtil;
+import org.ei.opensrp.domain.FPMethod;
+import org.ei.opensrp.util.IntegerUtil;
 
 import java.util.Comparator;
 

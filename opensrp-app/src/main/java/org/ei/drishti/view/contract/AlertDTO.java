@@ -1,13 +1,13 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.domain.ANCServiceType;
-import org.ei.drishti.domain.ChildServiceType;
+import org.ei.opensrp.domain.ANCServiceType;
+import org.ei.opensrp.domain.ChildServiceType;
 
-import org.ei.drishti.util.DateUtil;
+import org.ei.opensrp.util.DateUtil;
 
 public class AlertDTO {
     public static final AlertDTO emptyAlert = new AlertDTO("", "", "");

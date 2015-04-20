@@ -1,17 +1,17 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.domain.ANCServiceType;
-import org.ei.drishti.domain.ChildServiceType;
+import org.ei.opensrp.domain.ANCServiceType;
+import org.ei.opensrp.domain.ChildServiceType;
 import org.joda.time.LocalDate;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.ei.drishti.util.DateUtil.formatDate;
-import static org.ei.drishti.util.DateUtil.getLocalDateFromISOString;
+import static org.ei.opensrp.util.DateUtil.formatDate;
+import static org.ei.opensrp.util.DateUtil.getLocalDateFromISOString;
 
 public class ServiceProvidedDTO implements Comparable<ServiceProvidedDTO> {
 

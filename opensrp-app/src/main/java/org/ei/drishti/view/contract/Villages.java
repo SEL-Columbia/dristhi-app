@@ -1,8 +1,8 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
-import org.ei.drishti.util.StringUtil;
+import org.ei.opensrp.util.StringUtil;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,7 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
 
-import org.ei.drishti.domain.ANCServiceType;
+import org.ei.opensrp.domain.ANCServiceType;
 import org.joda.time.LocalDateTime;
 
 import java.util.Comparator;

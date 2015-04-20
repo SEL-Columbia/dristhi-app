@@ -1,4 +1,4 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
 import java.util.List;
 

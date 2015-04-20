@@ -1,6 +1,6 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
-import org.ei.drishti.util.IntegerUtil;
+import org.ei.opensrp.util.IntegerUtil;
 
 import java.util.Comparator;
 

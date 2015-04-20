@@ -1,11 +1,11 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.domain.ANCServiceType;
-import org.ei.drishti.util.IntegerUtil;
+import org.ei.opensrp.domain.ANCServiceType;
+import org.ei.opensrp.util.IntegerUtil;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.ISODateTimeFormat;
@@ -14,17 +14,17 @@ import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.drishti.AllConstants.ANCVisitFields.BP_DIASTOLIC;
-import static org.ei.drishti.AllConstants.ANCVisitFields.BP_SYSTOLIC;
-import static org.ei.drishti.AllConstants.*;
-import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
-import static org.ei.drishti.domain.ANCServiceType.*;
-import static org.ei.drishti.util.DateUtil.formatDate;
-import static org.ei.drishti.util.DateUtil.today;
-import static org.ei.drishti.util.StringUtil.humanize;
-import static org.ei.drishti.util.StringUtil.replaceAndHumanize;
-import static org.ei.drishti.view.contract.AlertDTO.emptyAlert;
-import static org.ei.drishti.view.contract.ServiceProvidedDTO.emptyService;
+import static org.ei.opensrp.AllConstants.ANCVisitFields.BP_DIASTOLIC;
+import static org.ei.opensrp.AllConstants.ANCVisitFields.BP_SYSTOLIC;
+import static org.ei.opensrp.AllConstants.*;
+import static org.ei.opensrp.AllConstants.ECRegistrationFields.*;
+import static org.ei.opensrp.domain.ANCServiceType.*;
+import static org.ei.opensrp.util.DateUtil.formatDate;
+import static org.ei.opensrp.util.DateUtil.today;
+import static org.ei.opensrp.util.StringUtil.humanize;
+import static org.ei.opensrp.util.StringUtil.replaceAndHumanize;
+import static org.ei.opensrp.view.contract.AlertDTO.emptyAlert;
+import static org.ei.opensrp.view.contract.ServiceProvidedDTO.emptyService;
 import static org.joda.time.Days.daysBetween;
 import static org.joda.time.LocalDateTime.parse;
 

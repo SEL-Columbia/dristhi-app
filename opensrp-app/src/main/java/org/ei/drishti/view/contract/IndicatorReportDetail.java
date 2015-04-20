@@ -1,4 +1,4 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
 import org.ei.drishti.dto.MonthSummaryDatum;
 

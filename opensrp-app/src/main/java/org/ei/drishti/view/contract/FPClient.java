@@ -1,24 +1,24 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.R;
-import org.ei.drishti.domain.FPMethod;
-import org.ei.drishti.util.IntegerUtil;
+import org.ei.opensrp.R;
+import org.ei.opensrp.domain.FPMethod;
+import org.ei.opensrp.util.IntegerUtil;
 
 import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.replace;
-import static org.ei.drishti.AllConstants.COMMA_WITH_SPACE;
-import static org.ei.drishti.AllConstants.ECRegistrationFields.*;
-import static org.ei.drishti.AllConstants.SPACE;
-import static org.ei.drishti.Context.getInstance;
-import static org.ei.drishti.util.DateUtil.formatDate;
-import static org.ei.drishti.util.StringUtil.humanize;
-import static org.ei.drishti.util.StringUtil.humanizeAndDoUPPERCASE;
-import static org.ei.drishti.util.StringUtil.replaceAndHumanize;
+import static org.ei.opensrp.AllConstants.COMMA_WITH_SPACE;
+import static org.ei.opensrp.AllConstants.ECRegistrationFields.*;
+import static org.ei.opensrp.AllConstants.SPACE;
+import static org.ei.opensrp.Context.getInstance;
+import static org.ei.opensrp.util.DateUtil.formatDate;
+import static org.ei.opensrp.util.StringUtil.humanize;
+import static org.ei.opensrp.util.StringUtil.humanizeAndDoUPPERCASE;
+import static org.ei.opensrp.util.StringUtil.replaceAndHumanize;
 
 public class FPClient implements FPSmartRegisterClient {
 
