@@ -1,6 +1,6 @@
-package org.ei.drishti.commonregistry;
+package org.ei.opensrp.commonregistry;
 
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
 
 import java.util.Map;
 

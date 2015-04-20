@@ -1,7 +1,7 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import org.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.EligibleCouple;
+import org.ei.opensrp.domain.EligibleCouple;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

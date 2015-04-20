@@ -1,11 +1,11 @@
-package org.ei.drishti.commonregistry;
+package org.ei.opensrp.commonregistry;
 
 import com.google.gson.Gson;
 
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.util.Cache;
-import org.ei.drishti.util.CacheableData;
-import org.ei.drishti.view.contract.SmartRegisterClient;
+import org.ei.opensrp.repository.AllBeneficiaries;
+import org.ei.opensrp.util.Cache;
+import org.ei.opensrp.util.CacheableData;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
 
 import java.util.Comparator;
 import java.util.List;

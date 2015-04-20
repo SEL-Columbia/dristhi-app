@@ -1,4 +1,4 @@
-package org.ei.drishti.commonregistry;
+package org.ei.opensrp.commonregistry;
 
 import java.util.Map;
 

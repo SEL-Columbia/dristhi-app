@@ -1,9 +1,9 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
 import com.google.gson.Gson;
-import org.ei.drishti.domain.form.FormSubmission;
-import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.repository.FormDataRepository;
+import org.ei.opensrp.domain.form.FormSubmission;
+import org.ei.opensrp.repository.AllSettings;
+import org.ei.opensrp.repository.FormDataRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
@@ -12,9 +12,9 @@ import org.mockito.Mock;
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.domain.SyncStatus.SYNCED;
-import static org.ei.drishti.util.EasyMap.create;
-import static org.ei.drishti.util.FormSubmissionBuilder.create;
+import static org.ei.opensrp.domain.SyncStatus.SYNCED;
+import static org.ei.opensrp.util.EasyMap.create;
+import static org.ei.opensrp.util.FormSubmissionBuilder.create;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 

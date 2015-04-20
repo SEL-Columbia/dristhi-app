@@ -1,4 +1,4 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

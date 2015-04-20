@@ -1,9 +1,9 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import org.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.Report;
+import org.ei.opensrp.domain.Report;
 import org.ei.drishti.dto.Action;
-import org.ei.drishti.util.ActionBuilder;
+import org.ei.opensrp.util.ActionBuilder;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +13,7 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
-import static org.ei.drishti.domain.ReportIndicator.*;
+import static org.ei.opensrp.domain.ReportIndicator.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;

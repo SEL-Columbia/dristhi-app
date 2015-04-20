@@ -1,13 +1,13 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import android.content.Context;
 import com.google.gson.Gson;
-import org.ei.drishti.domain.Report;
+import org.ei.opensrp.domain.Report;
 import org.ei.drishti.dto.MonthSummaryDatum;
-import org.ei.drishti.repository.AllReports;
-import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.view.contract.CategoryReports;
-import org.ei.drishti.view.contract.IndicatorReport;
+import org.ei.opensrp.repository.AllReports;
+import org.ei.opensrp.util.DateUtil;
+import org.ei.opensrp.view.contract.CategoryReports;
+import org.ei.opensrp.view.contract.IndicatorReport;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +17,8 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
-import static org.ei.drishti.domain.ReportsCategory.ANC_SERVICES;
-import static org.ei.drishti.domain.ReportsCategory.FPS;
+import static org.ei.opensrp.domain.ReportsCategory.ANC_SERVICES;
+import static org.ei.opensrp.domain.ReportsCategory.FPS;
 import static org.mockito.Matchers.anyList;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;

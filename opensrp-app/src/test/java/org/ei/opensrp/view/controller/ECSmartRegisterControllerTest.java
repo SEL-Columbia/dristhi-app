@@ -1,17 +1,17 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.Child;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.util.Cache;
-import org.ei.drishti.view.contract.ECChildClient;
-import org.ei.drishti.view.contract.ECClient;
-import org.ei.drishti.view.contract.ECClients;
+import org.ei.opensrp.domain.Child;
+import org.ei.opensrp.domain.EligibleCouple;
+import org.ei.opensrp.domain.Mother;
+import org.ei.opensrp.repository.AllBeneficiaries;
+import org.ei.opensrp.repository.AllEligibleCouples;
+import org.ei.opensrp.util.Cache;
+import org.ei.opensrp.view.contract.ECChildClient;
+import org.ei.opensrp.view.contract.ECClient;
+import org.ei.opensrp.view.contract.ECClients;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,8 +23,8 @@ import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
-import static org.ei.drishti.util.EasyMap.create;
-import static org.ei.drishti.util.EasyMap.mapOf;
+import static org.ei.opensrp.util.EasyMap.create;
+import static org.ei.opensrp.util.EasyMap.mapOf;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 

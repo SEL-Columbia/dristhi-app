@@ -1,4 +1,4 @@
-package org.ei.drishti.commonregistry;
+package org.ei.opensrp.commonregistry;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -9,7 +9,7 @@ import com.google.gson.reflect.TypeToken;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.ei.drishti.repository.DrishtiRepository;
+import org.ei.opensrp.repository.DrishtiRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,15 +1,15 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
-import org.ei.drishti.repository.AllSharedPreferences;
+import org.ei.opensrp.repository.AllSharedPreferences;
 import org.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.Response;
-import org.ei.drishti.domain.ResponseStatus;
+import org.ei.opensrp.domain.Response;
+import org.ei.opensrp.domain.ResponseStatus;
 import org.ei.drishti.dto.Action;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.repository.AllReports;
-import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.router.ActionRouter;
-import org.ei.drishti.util.ActionBuilder;
+import org.ei.opensrp.repository.AllEligibleCouples;
+import org.ei.opensrp.repository.AllReports;
+import org.ei.opensrp.repository.AllSettings;
+import org.ei.opensrp.router.ActionRouter;
+import org.ei.opensrp.util.ActionBuilder;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,10 +21,10 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
-import static org.ei.drishti.domain.FetchStatus.*;
-import static org.ei.drishti.domain.ResponseStatus.failure;
-import static org.ei.drishti.domain.ResponseStatus.success;
-import static org.ei.drishti.util.ActionBuilder.*;
+import static org.ei.opensrp.domain.FetchStatus.*;
+import static org.ei.opensrp.domain.ResponseStatus.failure;
+import static org.ei.opensrp.domain.ResponseStatus.success;
+import static org.ei.opensrp.util.ActionBuilder.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 

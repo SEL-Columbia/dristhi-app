@@ -1,4 +1,4 @@
-package org.ei.drishti.commonregistry;
+package org.ei.opensrp.commonregistry;
 
 /**
  * Created by Raihan Ahmed on 3/16/15.

@@ -1,13 +1,13 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
 import com.google.gson.Gson;
 import org.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.form.*;
+import org.ei.opensrp.domain.form.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.util.FormSubmissionBuilder.create;
+import static org.ei.opensrp.util.FormSubmissionBuilder.create;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 

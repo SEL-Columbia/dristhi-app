@@ -1,4 +1,4 @@
-package org.ei.drishti.setup;
+package org.ei.opensrp.setup;
 
 import org.robolectric.bytecode.ClassInfo;
 import org.robolectric.bytecode.Setup;

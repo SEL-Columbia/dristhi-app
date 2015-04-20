@@ -1,8 +1,8 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
-import org.ei.drishti.R;
-import org.ei.drishti.setup.DrishtiTestRunner;
-import org.ei.drishti.shadows.ShadowContext;
+import org.ei.opensrp.R;
+import org.ei.opensrp.setup.opensrpTestRunner;
+import org.ei.opensrp.shadows.ShadowContext;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +12,7 @@ import org.robolectric.shadows.ShadowActivity;
 
 import static org.junit.Assert.assertEquals;
 
-@RunWith(DrishtiTestRunner.class)
+@RunWith(opensrpTestRunner.class)
 @Config(shadows = {ShadowContext.class})
 public class NativeHomeActivityTest {
 

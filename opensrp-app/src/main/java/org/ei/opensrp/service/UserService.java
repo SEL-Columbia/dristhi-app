@@ -1,17 +1,17 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
-import org.ei.drishti.DristhiConfiguration;
-import org.ei.drishti.domain.LoginResponse;
-import org.ei.drishti.domain.Response;
-import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.repository.AllSharedPreferences;
-import org.ei.drishti.repository.Repository;
-import org.ei.drishti.sync.SaveANMLocationTask;
-import org.ei.drishti.sync.SaveUserInfoTask;
-import org.ei.drishti.util.Session;
+import org.ei.opensrp.DristhiConfiguration;
+import org.ei.opensrp.domain.LoginResponse;
+import org.ei.opensrp.domain.Response;
+import org.ei.opensrp.repository.AllSettings;
+import org.ei.opensrp.repository.AllSharedPreferences;
+import org.ei.opensrp.repository.Repository;
+import org.ei.opensrp.sync.SaveANMLocationTask;
+import org.ei.opensrp.sync.SaveUserInfoTask;
+import org.ei.opensrp.util.Session;
 
-import static org.ei.drishti.AllConstants.*;
-import static org.ei.drishti.event.Event.ON_LOGOUT;
+import static org.ei.opensrp.AllConstants.*;
+import static org.ei.opensrp.event.Event.ON_LOGOUT;
 
 public class UserService {
     private final Repository repository;

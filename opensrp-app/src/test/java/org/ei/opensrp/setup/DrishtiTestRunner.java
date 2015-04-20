@@ -1,4 +1,4 @@
-package org.ei.drishti.setup;
+package org.ei.opensrp.setup;
 
 import org.junit.runners.model.InitializationError;
 import org.robolectric.RobolectricTestRunner;

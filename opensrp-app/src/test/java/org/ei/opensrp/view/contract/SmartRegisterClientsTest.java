@@ -1,8 +1,8 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
-import org.ei.drishti.Context;
-import org.ei.drishti.R;
-import org.ei.drishti.view.dialog.*;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.R;
+import org.ei.opensrp.view.dialog.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

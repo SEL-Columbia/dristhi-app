@@ -1,4 +1,4 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 
 import android.app.Activity;
@@ -6,17 +6,17 @@ import android.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
-import org.ei.drishti.AllConstants;
-import org.ei.drishti.R;
-import org.ei.drishti.setup.DrishtiTestRunner;
-import org.ei.drishti.shadows.ShadowContext;
-import org.ei.drishti.view.contract.ECClient;
-import org.ei.drishti.view.contract.ECClients;
-import org.ei.drishti.view.contract.Village;
-import org.ei.drishti.view.contract.Villages;
-import org.ei.drishti.view.controller.ECSmartRegisterController;
-import org.ei.drishti.view.controller.VillageController;
-import org.ei.drishti.view.viewHolder.NativeECSmartRegisterViewHolder;
+import org.ei.opensrp.AllConstants;
+import org.ei.opensrp.R;
+import org.ei.opensrp.setup.opensrpTestRunner;
+import org.ei.opensrp.shadows.ShadowContext;
+import org.ei.opensrp.view.contract.ECClient;
+import org.ei.opensrp.view.contract.ECClients;
+import org.ei.opensrp.view.contract.Village;
+import org.ei.opensrp.view.contract.Villages;
+import org.ei.opensrp.view.controller.ECSmartRegisterController;
+import org.ei.opensrp.view.controller.VillageController;
+import org.ei.opensrp.view.viewHolder.NativeECSmartRegisterViewHolder;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,12 +27,12 @@ import org.robolectric.annotation.Implements;
 import org.robolectric.shadows.ShadowActivity;
 import org.robolectric.shadows.ShadowIntent;
 
-import static org.ei.drishti.AllConstants.ENTITY_ID_PARAM;
-import static org.ei.drishti.AllConstants.FORM_NAME_PARAM;
-import static org.ei.drishti.AllConstants.FormNames.EC_REGISTRATION;
+import static org.ei.opensrp.AllConstants.ENTITY_ID_PARAM;
+import static org.ei.opensrp.AllConstants.FORM_NAME_PARAM;
+import static org.ei.opensrp.AllConstants.FormNames.EC_REGISTRATION;
 import static org.junit.Assert.*;
 
-@RunWith(DrishtiTestRunner.class)
+@RunWith(opensrpTestRunner.class)
 @Config(shadows = {ShadowContext.class})
 public class NativeECSmartRegisterActivityTest {
 

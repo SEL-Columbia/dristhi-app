@@ -1,4 +1,4 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
 import org.robolectric.RobolectricTestRunner;
 import org.junit.Test;

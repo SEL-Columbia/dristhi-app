@@ -1,8 +1,8 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
 import org.junit.Test;
 
-import static org.ei.drishti.util.StringUtil.humanize;
+import static org.ei.opensrp.util.StringUtil.humanize;
 import static org.junit.Assert.assertEquals;
 
 public class StringUtilTest {

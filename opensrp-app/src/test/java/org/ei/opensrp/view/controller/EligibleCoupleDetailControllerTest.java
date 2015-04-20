@@ -1,16 +1,16 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import android.content.Context;
 import com.google.gson.Gson;
 import org.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.TimelineEvent;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.repository.AllTimelineEvents;
-import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.view.contract.Child;
-import org.ei.drishti.view.contract.CoupleDetails;
-import org.ei.drishti.view.contract.ECDetail;
+import org.ei.opensrp.domain.EligibleCouple;
+import org.ei.opensrp.domain.TimelineEvent;
+import org.ei.opensrp.repository.AllEligibleCouples;
+import org.ei.opensrp.repository.AllTimelineEvents;
+import org.ei.opensrp.util.DateUtil;
+import org.ei.opensrp.view.contract.Child;
+import org.ei.opensrp.view.contract.CoupleDetails;
+import org.ei.opensrp.view.contract.ECDetail;
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
@@ -66,7 +66,7 @@ public class EligibleCoupleDetailControllerTest {
         assertEquals(expectedDetail, actualDetail);
     }
 
-    private org.ei.drishti.view.contract.TimelineEvent eventFor(TimelineEvent pregnancyEvent, String expectedRelativeTime) {
-        return new org.ei.drishti.view.contract.TimelineEvent(pregnancyEvent.type(), pregnancyEvent.title(), new String[]{pregnancyEvent.detail1(), pregnancyEvent.detail2()}, expectedRelativeTime);
+    private org.ei.opensrp.view.contract.TimelineEvent eventFor(TimelineEvent pregnancyEvent, String expectedRelativeTime) {
+        return new org.ei.opensrp.view.contract.TimelineEvent(pregnancyEvent.type(), pregnancyEvent.title(), new String[]{pregnancyEvent.detail1(), pregnancyEvent.detail2()}, expectedRelativeTime);
     }
 }

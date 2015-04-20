@@ -1,7 +1,7 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
-import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.util.EasyMap;
+import org.ei.opensrp.util.DateUtil;
+import org.ei.opensrp.util.EasyMap;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,7 +1,7 @@
-package org.ei.drishti.view.dialog;
+package org.ei.opensrp.view.dialog;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.ei.drishti.view.contract.Village;
+import org.ei.opensrp.view.contract.Village;
 import org.junit.Before;
 import org.junit.Test;
 

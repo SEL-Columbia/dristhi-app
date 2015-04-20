@@ -1,6 +1,6 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
-import org.ei.drishti.domain.TimelineEvent;
+import org.ei.opensrp.domain.TimelineEvent;
 import org.joda.time.LocalDate;
 import org.junit.Test;
 

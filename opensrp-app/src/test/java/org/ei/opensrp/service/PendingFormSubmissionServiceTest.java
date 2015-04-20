@@ -1,6 +1,6 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
-import org.ei.drishti.repository.FormDataRepository;
+import org.ei.opensrp.repository.FormDataRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

@@ -1,4 +1,4 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
 import org.joda.time.LocalDate;
 import org.junit.Before;
@@ -10,8 +10,8 @@ import java.util.Map;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
-import static org.ei.drishti.domain.TimelineEvent.*;
-import static org.ei.drishti.util.EasyMap.create;
+import static org.ei.opensrp.domain.TimelineEvent.*;
+import static org.ei.opensrp.util.EasyMap.create;
 
 public class TimelineEventTest {
 

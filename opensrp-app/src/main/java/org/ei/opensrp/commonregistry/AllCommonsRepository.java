@@ -1,8 +1,8 @@
-package org.ei.drishti.commonregistry;
+package org.ei.opensrp.commonregistry;
 
 
-import org.ei.drishti.repository.AlertRepository;
-import org.ei.drishti.repository.TimelineEventRepository;
+import org.ei.opensrp.repository.AlertRepository;
+import org.ei.opensrp.repository.TimelineEventRepository;
 
 import java.util.List;
 import java.util.Map;

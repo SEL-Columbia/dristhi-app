@@ -1,4 +1,4 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.dto.ActionData;

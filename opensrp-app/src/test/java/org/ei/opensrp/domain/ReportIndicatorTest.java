@@ -1,10 +1,10 @@
-package org.ei.drishti.domain;
+package org.ei.opensrp.domain;
 
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
-import static org.ei.drishti.domain.ReportIndicator.CONDOM;
-import static org.ei.drishti.domain.ReportIndicator.parseToReportIndicator;
+import static org.ei.opensrp.domain.ReportIndicator.CONDOM;
+import static org.ei.opensrp.domain.ReportIndicator.parseToReportIndicator;
 
 public class ReportIndicatorTest {
 

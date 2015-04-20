@@ -1,10 +1,10 @@
-package org.ei.drishti.view.controller;
+package org.ei.opensrp.view.controller;
 
 import android.content.Context;
 import com.google.gson.Gson;
-import org.ei.drishti.domain.Report;
+import org.ei.opensrp.domain.Report;
 import org.ei.drishti.dto.MonthSummaryDatum;
-import org.ei.drishti.view.contract.IndicatorReportDetail;
+import org.ei.opensrp.view.contract.IndicatorReportDetail;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

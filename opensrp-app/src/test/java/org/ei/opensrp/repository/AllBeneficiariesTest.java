@@ -1,8 +1,8 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import org.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.Child;
-import org.ei.drishti.domain.Mother;
+import org.ei.opensrp.domain.Child;
+import org.ei.opensrp.domain.Mother;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

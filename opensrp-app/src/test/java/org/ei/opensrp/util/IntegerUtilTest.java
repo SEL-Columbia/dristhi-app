@@ -1,4 +1,4 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
 import org.robolectric.RobolectricTestRunner;
 import junit.framework.TestCase;

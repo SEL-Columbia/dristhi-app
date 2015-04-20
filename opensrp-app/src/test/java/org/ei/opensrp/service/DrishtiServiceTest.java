@@ -1,9 +1,9 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
 import org.robolectric.RobolectricTestRunner;
 import org.apache.commons.io.IOUtils;
-import org.ei.drishti.domain.Response;
-import org.ei.drishti.domain.ResponseStatus;
+import org.ei.opensrp.domain.Response;
+import org.ei.opensrp.domain.ResponseStatus;
 import org.ei.drishti.dto.Action;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +17,8 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 import static org.ei.drishti.dto.AlertStatus.normal;
 import static org.ei.drishti.dto.BeneficiaryType.mother;
-import static org.ei.drishti.util.ActionBuilder.actionForCloseAlert;
-import static org.ei.drishti.util.ActionBuilder.actionForCreateAlert;
+import static org.ei.opensrp.util.ActionBuilder.actionForCloseAlert;
+import static org.ei.opensrp.util.ActionBuilder.actionForCreateAlert;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;

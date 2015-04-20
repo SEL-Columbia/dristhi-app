@@ -1,12 +1,12 @@
-package org.ei.drishti.shadows;
+package org.ei.opensrp.shadows;
 
-import org.ei.drishti.Context;
-import org.ei.drishti.repository.AllBeneficiaries;
-import org.ei.drishti.repository.AllEligibleCouples;
-import org.ei.drishti.repository.Repository;
-import org.ei.drishti.service.PendingFormSubmissionService;
-import org.ei.drishti.view.controller.ANMController;
-import org.ei.drishti.view.controller.ANMLocationController;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.repository.AllBeneficiaries;
+import org.ei.opensrp.repository.AllEligibleCouples;
+import org.ei.opensrp.repository.Repository;
+import org.ei.opensrp.service.PendingFormSubmissionService;
+import org.ei.opensrp.view.controller.ANMController;
+import org.ei.opensrp.view.controller.ANMLocationController;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.robolectric.annotation.Implementation;

@@ -1,14 +1,14 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
 import org.robolectric.RobolectricTestRunner;
-import org.ei.drishti.event.Event;
+import org.ei.opensrp.event.Event;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import static org.ei.drishti.domain.FetchStatus.fetched;
-import static org.ei.drishti.domain.FetchStatus.fetchedFailed;
+import static org.ei.opensrp.domain.FetchStatus.fetched;
+import static org.ei.opensrp.domain.FetchStatus.fetchedFailed;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;

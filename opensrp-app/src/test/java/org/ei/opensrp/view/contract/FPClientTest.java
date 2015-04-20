@@ -1,7 +1,7 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
-import org.ei.drishti.Context;
-import org.ei.drishti.R;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.R;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import org.robolectric.RobolectricTestRunner;
 import java.util.Arrays;
 
 import static junit.framework.Assert.assertEquals;
-import static org.ei.drishti.Context.getInstance;
+import static org.ei.opensrp.Context.getInstance;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 

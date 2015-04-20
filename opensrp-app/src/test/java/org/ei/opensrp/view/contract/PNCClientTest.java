@@ -1,8 +1,8 @@
-package org.ei.drishti.view.contract;
+package org.ei.opensrp.view.contract;
 
 import junit.framework.Assert;
-import org.ei.drishti.util.EasyMap;
-import org.ei.drishti.view.contract.pnc.PNCClient;
+import org.ei.opensrp.util.EasyMap;
+import org.ei.opensrp.view.contract.pnc.PNCClient;
 import org.junit.Test;
 
 import java.util.ArrayList;

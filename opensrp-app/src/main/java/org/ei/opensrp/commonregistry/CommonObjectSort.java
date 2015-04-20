@@ -1,8 +1,8 @@
-package org.ei.drishti.commonregistry;
+package org.ei.opensrp.commonregistry;
 
-import org.ei.drishti.view.contract.SmartRegisterClient;
-import org.ei.drishti.view.contract.SmartRegisterClients;
-import org.ei.drishti.view.dialog.SortOption;
+import org.ei.opensrp.view.contract.SmartRegisterClient;
+import org.ei.opensrp.view.contract.SmartRegisterClients;
+import org.ei.opensrp.view.dialog.SortOption;
 
 import java.util.Collections;
 import java.util.Comparator;

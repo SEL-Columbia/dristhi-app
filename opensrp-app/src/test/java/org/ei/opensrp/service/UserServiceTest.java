@@ -1,18 +1,18 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
-import org.ei.drishti.repository.*;
-import org.ei.drishti.sync.SaveUserInfoTask;
+import org.ei.opensrp.repository.*;
+import org.ei.opensrp.sync.SaveUserInfoTask;
 import org.robolectric.RobolectricTestRunner;
-import org.ei.drishti.DristhiConfiguration;
-import org.ei.drishti.sync.SaveANMLocationTask;
-import org.ei.drishti.util.Session;
+import org.ei.opensrp.DristhiConfiguration;
+import org.ei.opensrp.sync.SaveANMLocationTask;
+import org.ei.opensrp.util.Session;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import static org.ei.drishti.AllConstants.ENGLISH_LOCALE;
-import static org.ei.drishti.AllConstants.KANNADA_LOCALE;
+import static org.ei.opensrp.AllConstants.ENGLISH_LOCALE;
+import static org.ei.opensrp.AllConstants.KANNADA_LOCALE;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;

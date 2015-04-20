@@ -1,13 +1,13 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
-import org.ei.drishti.DristhiConfiguration;
-import org.ei.drishti.domain.DownloadStatus;
-import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.domain.FormDefinitionVersion;
-import org.ei.drishti.domain.Response;
-import org.ei.drishti.domain.SyncStatus;
-import org.ei.drishti.repository.FormsVersionRepository;
-import org.ei.drishti.util.EasyMap;
+import org.ei.opensrp.DristhiConfiguration;
+import org.ei.opensrp.domain.DownloadStatus;
+import org.ei.opensrp.domain.FetchStatus;
+import org.ei.opensrp.domain.FormDefinitionVersion;
+import org.ei.opensrp.domain.Response;
+import org.ei.opensrp.domain.SyncStatus;
+import org.ei.opensrp.repository.FormsVersionRepository;
+import org.ei.opensrp.util.EasyMap;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -25,8 +25,8 @@ import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static junit.framework.Assert.assertEquals;
-import static org.ei.drishti.domain.FetchStatus.fetched;
-import static org.ei.drishti.domain.ResponseStatus.success;
+import static org.ei.opensrp.domain.FetchStatus.fetched;
+import static org.ei.opensrp.domain.ResponseStatus.success;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;

@@ -1,15 +1,15 @@
-package org.ei.drishti.service;
+package org.ei.opensrp.service;
 
 import org.robolectric.RobolectricTestRunner;
-import org.ei.drishti.domain.TimelineEvent;
-import org.ei.drishti.domain.form.FormSubmission;
-import org.ei.drishti.repository.*;
+import org.ei.opensrp.domain.TimelineEvent;
+import org.ei.opensrp.domain.form.FormSubmission;
+import org.ei.opensrp.repository.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 
-import static org.ei.drishti.util.EasyMap.mapOf;
+import static org.ei.opensrp.util.EasyMap.mapOf;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
