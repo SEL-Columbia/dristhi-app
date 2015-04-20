@@ -1,21 +1,21 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 
 import com.google.gson.Gson;
 
-import org.ei.drishti.domain.FormDefinitionVersion;
-import org.ei.drishti.util.Session;
+import org.ei.opensrp.domain.FormDefinitionVersion;
+import org.ei.opensrp.util.Session;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.util.EasyMap.create;
-import static org.ei.drishti.domain.SyncStatus.PENDING;
-import static org.ei.drishti.domain.SyncStatus.SYNCED;
+import static org.ei.opensrp.util.EasyMap.create;
+import static org.ei.opensrp.domain.SyncStatus.PENDING;
+import static org.ei.opensrp.domain.SyncStatus.SYNCED;
 
 /**
  * Created by Dimas Ciputra on 3/22/15.

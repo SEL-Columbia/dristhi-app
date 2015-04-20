@@ -28,7 +28,7 @@
             <artifactId>android-test</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.ei.drishti</groupId>
+            <groupId>org.ei.opensrp</groupId>
             <artifactId>opensrp-app</artifactId>
             <type>apk</type>
             <version>3.0.1</version>

@@ -1,11 +1,11 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
-import org.ei.drishti.domain.Response;
-import org.ei.drishti.domain.ResponseStatus;
+import org.ei.opensrp.domain.Response;
+import org.ei.opensrp.domain.ResponseStatus;
 import org.ei.drishti.dto.Action;
 import org.ei.drishti.dto.AlertStatus;
 import org.ei.drishti.dto.BeneficiaryType;
-import org.ei.drishti.service.DrishtiService;
+import org.ei.opensrp.service.DrishtiService;
 import org.joda.time.DateTime;
 
 import java.util.*;
