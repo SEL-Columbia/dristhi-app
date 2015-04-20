@@ -1,7 +1,7 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
-import org.ei.drishti.domain.LoginResponse;
-import org.ei.drishti.service.UserService;
+import org.ei.opensrp.domain.LoginResponse;
+import org.ei.opensrp.service.UserService;
 
 import java.util.ArrayList;
 import java.util.List;

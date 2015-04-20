@@ -1,16 +1,16 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-import org.ei.drishti.domain.*;
+import org.ei.opensrp.domain.*;
 import org.ei.drishti.dto.AlertStatus;
-import org.ei.drishti.util.Session;
+import org.ei.opensrp.util.Session;
 
 import java.util.*;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.util.EasyMap.create;
-import static org.ei.drishti.util.EasyMap.mapOf;
+import static org.ei.opensrp.util.EasyMap.create;
+import static org.ei.opensrp.util.EasyMap.mapOf;
 
 public class ChildRepositoryTest extends AndroidTestCase {
     private ChildRepository repository;

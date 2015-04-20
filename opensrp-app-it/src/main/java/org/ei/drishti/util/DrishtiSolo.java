@@ -1,12 +1,12 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
 import android.app.Activity;
 import android.app.Instrumentation;
 import com.jayway.android.robotium.solo.Solo;
-import org.ei.drishti.view.activity.HomeActivity;
-import org.ei.drishti.view.activity.LoginActivity;
+import org.ei.opensrp.view.activity.HomeActivity;
+import org.ei.opensrp.view.activity.LoginActivity;
 
-import static org.ei.drishti.util.Wait.*;
+import static org.ei.opensrp.util.Wait.*;
 
 public class DrishtiSolo extends Solo {
     public DrishtiSolo(Instrumentation instrumentation, Activity activity) {

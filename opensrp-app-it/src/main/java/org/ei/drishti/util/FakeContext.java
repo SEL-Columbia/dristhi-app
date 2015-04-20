@@ -1,8 +1,8 @@
-package org.ei.drishti.util;
+package org.ei.opensrp.util;
 
-import org.ei.drishti.Context;
-import org.ei.drishti.service.DrishtiService;
-import org.ei.drishti.service.UserService;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.service.DrishtiService;
+import org.ei.opensrp.service.UserService;
 
 import java.util.Date;
 

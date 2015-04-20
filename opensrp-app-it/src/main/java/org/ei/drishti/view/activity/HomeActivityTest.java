@@ -1,15 +1,15 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.test.ActivityInstrumentationTestCase2;
-import org.ei.drishti.Context;
-import org.ei.drishti.util.*;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.util.*;
 
 import java.util.Date;
 
-import static org.ei.drishti.domain.LoginResponse.SUCCESS;
-import static org.ei.drishti.util.FakeContext.setupService;
-import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
-import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
+import static org.ei.opensrp.domain.LoginResponse.SUCCESS;
+import static org.ei.opensrp.util.FakeContext.setupService;
+import static org.ei.opensrp.util.Wait.waitForFilteringToFinish;
+import static org.ei.opensrp.util.Wait.waitForProgressBarToGoAway;
 
 public class HomeActivityTest extends ActivityInstrumentationTestCase2<HomeActivity> {
     private DrishtiSolo solo;

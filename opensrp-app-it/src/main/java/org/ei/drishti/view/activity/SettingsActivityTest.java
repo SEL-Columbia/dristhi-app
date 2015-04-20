@@ -1,17 +1,17 @@
-package org.ei.drishti.view.activity;
+package org.ei.opensrp.view.activity;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.test.suitebuilder.annotation.Suppress;
-import org.ei.drishti.Context;
-import org.ei.drishti.repository.AllSettings;
-import org.ei.drishti.repository.AllSharedPreferences;
-import org.ei.drishti.util.DrishtiSolo;
-import org.ei.drishti.util.FakeDrishtiService;
-import org.ei.drishti.util.FakeUserService;
+import org.ei.opensrp.Context;
+import org.ei.opensrp.repository.AllSettings;
+import org.ei.opensrp.repository.AllSharedPreferences;
+import org.ei.opensrp.util.DrishtiSolo;
+import org.ei.opensrp.util.FakeDrishtiService;
+import org.ei.opensrp.util.FakeUserService;
 
-import static org.ei.drishti.util.FakeContext.setupService;
-import static org.ei.drishti.util.Wait.waitForFilteringToFinish;
-import static org.ei.drishti.util.Wait.waitForProgressBarToGoAway;
+import static org.ei.opensrp.util.FakeContext.setupService;
+import static org.ei.opensrp.util.Wait.waitForFilteringToFinish;
+import static org.ei.opensrp.util.Wait.waitForProgressBarToGoAway;
 
 public class SettingsActivityTest extends ActivityInstrumentationTestCase2<HomeActivity> {
     private DrishtiSolo solo;

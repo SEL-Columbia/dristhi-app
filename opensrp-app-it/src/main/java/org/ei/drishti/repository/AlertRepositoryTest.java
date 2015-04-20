@@ -1,9 +1,9 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-import org.ei.drishti.domain.Alert;
-import org.ei.drishti.util.Session;
+import org.ei.opensrp.domain.Alert;
+import org.ei.opensrp.util.Session;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;

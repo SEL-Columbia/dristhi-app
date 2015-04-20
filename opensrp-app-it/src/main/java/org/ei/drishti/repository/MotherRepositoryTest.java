@@ -1,13 +1,13 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
 import org.apache.commons.lang3.tuple.Pair;
-import org.ei.drishti.domain.EligibleCouple;
-import org.ei.drishti.domain.Mother;
-import org.ei.drishti.util.DateUtil;
-import org.ei.drishti.util.EasyMap;
-import org.ei.drishti.util.Session;
+import org.ei.opensrp.domain.EligibleCouple;
+import org.ei.opensrp.domain.Mother;
+import org.ei.opensrp.util.DateUtil;
+import org.ei.opensrp.util.EasyMap;
+import org.ei.opensrp.util.Session;
 import org.joda.time.LocalDate;
 
 import java.util.Collections;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.util.EasyMap.mapOf;
+import static org.ei.opensrp.util.EasyMap.mapOf;
 
 public class MotherRepositoryTest extends AndroidTestCase {
     private MotherRepository repository;
@@ -33,7 +33,7 @@ public class MotherRepositoryTest extends AndroidTestCase {
 
         eligibleCoupleRepository = new EligibleCoupleRepository();
 
-        Session session = new Session().setPassword("password").setRepositoryName("drishti.db" + new Date().getTime());
+        Session session = new Session().setPassword("password").setRepositoryName("opensrp.db" + new Date().getTime());
         new Repository(new RenamingDelegatingContext(getContext(), "test_"), session, repository, alertRepository, eligibleCoupleRepository);
     }
 

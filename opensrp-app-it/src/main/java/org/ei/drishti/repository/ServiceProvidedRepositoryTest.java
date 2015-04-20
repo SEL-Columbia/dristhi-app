@@ -1,16 +1,16 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-import org.ei.drishti.domain.ServiceProvided;
-import org.ei.drishti.util.Session;
+import org.ei.opensrp.domain.ServiceProvided;
+import org.ei.opensrp.util.Session;
 
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.util.EasyMap.mapOf;
+import static org.ei.opensrp.util.EasyMap.mapOf;
 
 public class ServiceProvidedRepositoryTest extends AndroidTestCase {
     private ServiceProvidedRepository repository;

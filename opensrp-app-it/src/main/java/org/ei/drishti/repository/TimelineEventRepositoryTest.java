@@ -1,15 +1,15 @@
-package org.ei.drishti.repository;
+package org.ei.opensrp.repository;
 
 import android.test.AndroidTestCase;
 import android.test.RenamingDelegatingContext;
-import org.ei.drishti.domain.TimelineEvent;
-import org.ei.drishti.util.Session;
+import org.ei.opensrp.domain.TimelineEvent;
+import org.ei.opensrp.util.Session;
 
 import java.util.Collections;
 import java.util.Date;
 
 import static java.util.Arrays.asList;
-import static org.ei.drishti.domain.TimelineEvent.forChildBirthInChildProfile;
+import static org.ei.opensrp.domain.TimelineEvent.forChildBirthInChildProfile;
 
 public class TimelineEventRepositoryTest extends AndroidTestCase {
     private TimelineEventRepository repository;
