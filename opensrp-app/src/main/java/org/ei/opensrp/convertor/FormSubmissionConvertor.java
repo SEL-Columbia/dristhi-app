@@ -9,7 +9,7 @@ import static org.ei.opensrp.domain.SyncStatus.SYNCED;
 
 public class FormSubmissionConvertor {
     public static List<org.ei.opensrp.domain.form.FormSubmission> toDomain(List<FormSubmissionDTO> formSubmissionsDto) {
-        List<org.ei.drishti.domain.form.FormSubmission> submissions = new ArrayList<org.ei.drishti.domain.form.FormSubmission>();
+        List<org.ei.opensrp.domain.form.FormSubmission> submissions = new ArrayList<org.ei.opensrp.domain.form.FormSubmission>();
         for (FormSubmissionDTO formSubmission : formSubmissionsDto) {
             submissions.add(new org.ei.opensrp.domain.form.FormSubmission(
                     formSubmission.instanceId(),

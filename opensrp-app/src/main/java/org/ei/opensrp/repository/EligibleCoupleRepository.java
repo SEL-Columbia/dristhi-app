@@ -19,7 +19,7 @@ import static net.sqlcipher.DatabaseUtils.longForQuery;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.repeat;
 
-public class EligibleCoupleRepository extends opensrpRepository {
+public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String EC_SQL = "CREATE TABLE eligible_couple(id VARCHAR PRIMARY KEY, wifeName VARCHAR, husbandName VARCHAR, " +
             "ecNumber VARCHAR, village VARCHAR, subCenter VARCHAR, isOutOfArea VARCHAR, details VARCHAR, isClosed VARCHAR, photoPath VARCHAR)";
     public static final String ID_COLUMN = "id";

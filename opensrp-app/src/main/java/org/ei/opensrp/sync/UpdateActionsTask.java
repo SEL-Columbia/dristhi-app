@@ -1,20 +1,20 @@
-package org.ei.drishti.sync;
+package org.ei.opensrp.sync;
 
 import android.content.Context;
 import android.widget.Toast;
 
-import org.ei.drishti.domain.DownloadStatus;
-import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.service.ActionService;
-import org.ei.drishti.service.AllFormVersionSyncService;
-import org.ei.drishti.service.FormSubmissionSyncService;
-import org.ei.drishti.view.BackgroundAction;
-import org.ei.drishti.view.LockingBackgroundTask;
-import org.ei.drishti.view.ProgressIndicator;
+import org.ei.opensrp.domain.DownloadStatus;
+import org.ei.opensrp.domain.FetchStatus;
+import org.ei.opensrp.service.ActionService;
+import org.ei.opensrp.service.AllFormVersionSyncService;
+import org.ei.opensrp.service.FormSubmissionSyncService;
+import org.ei.opensrp.view.BackgroundAction;
+import org.ei.opensrp.view.LockingBackgroundTask;
+import org.ei.opensrp.view.ProgressIndicator;
 
-import static org.ei.drishti.domain.FetchStatus.fetched;
-import static org.ei.drishti.domain.FetchStatus.nothingFetched;
-import static org.ei.drishti.util.Log.logInfo;
+import static org.ei.opensrp.domain.FetchStatus.fetched;
+import static org.ei.opensrp.domain.FetchStatus.nothingFetched;
+import static org.ei.opensrp.util.Log.logInfo;
 
 public class UpdateActionsTask {
     private final LockingBackgroundTask task;
@@ -33,7 +33,7 @@ public class UpdateActionsTask {
     }
 
     public void updateFromServer(final AfterFetchListener afterFetchListener) {
-        if (org.ei.drishti.Context.getInstance().IsUserLoggedOut()) {
+        if (org.ei.opensrp.Context.getInstance().IsUserLoggedOut()) {
             logInfo("Not updating from server as user is not logged in.");
             return;
         }

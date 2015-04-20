@@ -21,7 +21,7 @@ import org.ei.opensrp.domain.LoginResponse;
 import org.ei.opensrp.domain.Response;
 import org.ei.opensrp.domain.ResponseStatus;
 import org.ei.opensrp.event.Listener;
-import org.ei.opensrp.sync.opensrpSyncScheduler;
+import org.ei.opensrp.sync.DrishtiSyncScheduler;
 import org.ei.opensrp.util.Log;
 import org.ei.opensrp.view.BackgroundAction;
 import org.ei.opensrp.view.LockingBackgroundTask;
@@ -226,14 +226,14 @@ public class LoginActivity extends Activity {
     private void localLoginWith(String userName, String password) {
         context.userService().localLogin(userName, password);
         goToHome();
-        opensrpSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
+        DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
     private void remoteLoginWith(String userName, String password, String userInfo) {
         context.userService().remoteLogin(userName, password, userInfo);
         getLocation();
         goToHome();
-        opensrpSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
+        DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext());
     }
 
     private void goToHome() {

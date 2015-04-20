@@ -8,7 +8,7 @@ import java.io.FileOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static org.ei.drishti.util.Log.logError;
+import static org.ei.opensrp.util.Log.logError;
 
 /**
  * Created by Dimas Ciputra on 3/21/15.

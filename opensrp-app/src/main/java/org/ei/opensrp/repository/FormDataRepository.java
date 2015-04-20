@@ -28,7 +28,7 @@ import static org.ei.opensrp.AllConstants.SYNC_STATUS;
 import static org.ei.opensrp.domain.SyncStatus.PENDING;
 import static org.ei.opensrp.domain.SyncStatus.SYNCED;
 
-public class FormDataRepository extends opensrpRepository {
+public class FormDataRepository extends DrishtiRepository {
     private static final String FORM_SUBMISSION_SQL = "CREATE TABLE form_submission(instanceId VARCHAR PRIMARY KEY, entityId VARCHAR, " +
             "formName VARCHAR, instance VARCHAR, version VARCHAR, serverVersion VARCHAR, formDataDefinitionVersion VARCHAR, syncStatus VARCHAR)";
     public static final String INSTANCE_ID_COLUMN = "instanceId";

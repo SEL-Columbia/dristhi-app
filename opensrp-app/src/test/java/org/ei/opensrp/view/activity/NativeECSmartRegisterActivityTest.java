@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import org.ei.opensrp.AllConstants;
 import org.ei.opensrp.R;
-import org.ei.opensrp.setup.opensrpTestRunner;
+import org.ei.opensrp.setup.DrishtiTestRunner;
 import org.ei.opensrp.shadows.ShadowContext;
 import org.ei.opensrp.view.contract.ECClient;
 import org.ei.opensrp.view.contract.ECClients;
@@ -32,7 +32,7 @@ import static org.ei.opensrp.AllConstants.FORM_NAME_PARAM;
 import static org.ei.opensrp.AllConstants.FormNames.EC_REGISTRATION;
 import static org.junit.Assert.*;
 
-@RunWith(opensrpTestRunner.class)
+@RunWith(DrishtiTestRunner.class)
 @Config(shadows = {ShadowContext.class})
 public class NativeECSmartRegisterActivityTest {
 

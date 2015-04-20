@@ -22,7 +22,7 @@ import static org.ei.opensrp.util.EasyMap.create;
 /**
  * Created by Dimas Ciputra on 3/21/15.
  */
-public class FormsVersionRepository extends opensrpRepository {
+public class FormsVersionRepository extends DrishtiRepository {
 
     private static final String FORM_VERSION_SQL = "CREATE TABLE all_forms_version(id INTEGER PRIMARY KEY," +
             "formName VARCHAR, formDirName VARCHAR, formDataDefinitionVersion VARCHAR, syncStatus VARCHAR)";

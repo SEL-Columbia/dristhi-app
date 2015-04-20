@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.apache.commons.lang3.StringUtils.repeat;
 
-public class ReportRepository extends opensrpRepository {
+public class ReportRepository extends DrishtiRepository {
     private static final String REPORT_SQL = "CREATE TABLE report(indicator VARCHAR PRIMARY KEY, annualTarget VARCHAR, monthlySummaries VARCHAR)";
     private static final String REPORT_INDICATOR_INDEX_SQL = "CREATE INDEX report_indicator_index ON report(indicator);";
     private static final String REPORT_TABLE_NAME = "report";

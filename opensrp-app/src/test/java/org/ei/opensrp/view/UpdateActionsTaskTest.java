@@ -1,15 +1,15 @@
-package org.ei.drishti.view;
+package org.ei.opensrp.view;
 
 import android.content.Context;
 
-import org.ei.drishti.domain.DownloadStatus;
-import org.ei.drishti.domain.FetchStatus;
-import org.ei.drishti.repository.AllSharedPreferences;
-import org.ei.drishti.service.ActionService;
-import org.ei.drishti.service.AllFormVersionSyncService;
-import org.ei.drishti.service.FormSubmissionSyncService;
-import org.ei.drishti.sync.AfterFetchListener;
-import org.ei.drishti.sync.UpdateActionsTask;
+import org.ei.opensrp.domain.DownloadStatus;
+import org.ei.opensrp.domain.FetchStatus;
+import org.ei.opensrp.repository.AllSharedPreferences;
+import org.ei.opensrp.service.ActionService;
+import org.ei.opensrp.service.AllFormVersionSyncService;
+import org.ei.opensrp.service.FormSubmissionSyncService;
+import org.ei.opensrp.sync.AfterFetchListener;
+import org.ei.opensrp.sync.UpdateActionsTask;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,8 +17,8 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.robolectric.RobolectricTestRunner;
 
-import static org.ei.drishti.domain.FetchStatus.fetched;
-import static org.ei.drishti.domain.FetchStatus.nothingFetched;
+import static org.ei.opensrp.domain.FetchStatus.fetched;
+import static org.ei.opensrp.domain.FetchStatus.nothingFetched;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
@@ -33,7 +33,7 @@ public class UpdateActionsTaskTest {
     @Mock
     private Context androidContext;
     @Mock
-    private org.ei.drishti.Context context;
+    private org.ei.opensrp.Context context;
     @Mock
     private FormSubmissionSyncService formSubmissionSyncService;
     @Mock
@@ -49,7 +49,7 @@ public class UpdateActionsTaskTest {
     @Test
     public void shouldShowProgressBarsWhileFetchingAlerts() throws Exception {
         progressIndicator = mock(ProgressIndicator.class);
-        org.ei.drishti.Context.setInstance(context);
+        org.ei.opensrp.Context.setInstance(context);
         when(context.IsUserLoggedOut()).thenReturn(false);
         when(context.allSharedPreferences()).thenReturn(allSharedPreferences);
         when(allSharedPreferences.fetchLanguagePreference()).thenReturn("en");
@@ -71,7 +71,7 @@ public class UpdateActionsTaskTest {
 
     @Test
     public void shouldNotUpdateDisplayIfNothingWasFetched() throws Exception {
-        org.ei.drishti.Context.setInstance(context);
+        org.ei.opensrp.Context.setInstance(context);
         when(context.IsUserLoggedOut()).thenReturn(false);
         when(context.allSharedPreferences()).thenReturn(allSharedPreferences);
         when(allSharedPreferences.fetchLanguagePreference()).thenReturn("en");
@@ -90,7 +90,7 @@ public class UpdateActionsTaskTest {
 
     @Test
     public void shouldNotUpdateWhenUserIsNotLoggedIn() throws Exception {
-        org.ei.drishti.Context.setInstance(context);
+        org.ei.opensrp.Context.setInstance(context);
         when(context.IsUserLoggedOut()).thenReturn(true);
         when(context.allSharedPreferences()).thenReturn(allSharedPreferences);
         when(allSharedPreferences.fetchLanguagePreference()).thenReturn("en");
@@ -107,7 +107,7 @@ public class UpdateActionsTaskTest {
 
     @Test
     public void shouldSyncFormSubmissionsWithServer() throws Exception {
-        org.ei.drishti.Context.setInstance(context);
+        org.ei.opensrp.Context.setInstance(context);
         when(context.IsUserLoggedOut()).thenReturn(false);
         when(context.allSharedPreferences()).thenReturn(allSharedPreferences);
         when(allSharedPreferences.fetchLanguagePreference()).thenReturn("en");
