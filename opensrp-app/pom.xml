@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.ei.drishti</groupId>
+        <groupId>org.ei.opensrp</groupId>
         <artifactId>opensrp-app-parent</artifactId>
         <version>3.0.1</version>
     </parent>
@@ -12,7 +12,7 @@
     <artifactId>opensrp-app</artifactId>
     <version>3.0.1</version>
     <packaging>apk</packaging>
-    <name>dristhi-app - Application</name>
+    <name>opensrp-app - Application</name>
 
     <properties>
         <main.basedir>${project.basedir}/..</main.basedir>
