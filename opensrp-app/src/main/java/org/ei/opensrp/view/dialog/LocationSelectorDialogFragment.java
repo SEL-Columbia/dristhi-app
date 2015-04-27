@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -43,8 +44,8 @@ public class LocationSelectorDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        ViewGroup dialogView = (ViewGroup) inflater.inflate(R.layout.smart_register_dialog_view, container, false);
-        ListView listView = (ListView) dialogView.findViewById(R.id.dialog_list);
+        ViewGroup dialogView = (ViewGroup) inflater.inflate(R.layout.smart_register_location_select_dialog_view, container, false);
+        ExpandableListView listView = (ExpandableListView) dialogView.findViewById(R.id.expandablelocationlist);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
         final ArrayAdapter<DialogOption> adapter = new ArrayAdapter<DialogOption>(
