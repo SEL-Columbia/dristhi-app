@@ -15,6 +15,7 @@ import android.widget.TextView;
 import org.ei.opensrp.R;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 
+import atv.holder.SelectableItemHolder;
 import atv.model.TreeNode;
 import atv.view.AndroidTreeView;
 
@@ -51,12 +52,19 @@ public class LocationSelectorDialogFragment extends DialogFragment {
         ViewGroup dialogView = new LinearLayout(getActivity());
         TreeNode root = TreeNode.root();
         TreeNode parent = new TreeNode("MyParentNode");
+        parent.setSelectable(true);
         parent.setSelected(true);
-        TreeNode child0 = new TreeNode("ChildNode0");
-        TreeNode child1 = new TreeNode("ChildNode1");
+        TreeNode child0 = new TreeNode("File1").setViewHolder(new SelectableItemHolder(getActivity()));
+        child0.setSelectable(true);
+        TreeNode child1 = new TreeNode("File2").setViewHolder(new SelectableItemHolder(getActivity()));
+        child1.setSelectable(true);
+
         parent.addChildren(child0, child1);
         root.addChild(parent);
         AndroidTreeView tView = new AndroidTreeView(getActivity(), root);
+
+        tView.setSelectionModeEnabled(true);
+//        tView.getSelected().get(1).
         dialogView.addView(tView.getView());
         return dialogView;
     }

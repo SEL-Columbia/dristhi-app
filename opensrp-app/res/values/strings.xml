@@ -296,5 +296,6 @@
     <string name="str_child_illness_ari">ari</string>
     <string name="str_child_illness_sam">sam</string>
     <string name="str_pnc_visit_button_label">PNC Visit</string>
+    <string name="ic_check_circle_blank">&#xe03e;</string>
 
 </resources>

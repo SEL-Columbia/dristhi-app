@@ -121,6 +121,11 @@
             <artifactId>opensrp-api</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.johnkil.print</groupId>
+            <artifactId>print</artifactId>
+            <version>1.2.2</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
