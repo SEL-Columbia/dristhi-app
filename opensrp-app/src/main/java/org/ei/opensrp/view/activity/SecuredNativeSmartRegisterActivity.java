@@ -324,7 +324,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         }
         ft.addToBackStack(null);
 
-        SmartRegisterDialogFragment
+        LocationSelectorDialogFragment
                 .newInstance(this, dialogOptionModel, tag)
                 .show(ft, DIALOG_TAG);
     }

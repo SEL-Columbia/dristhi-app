@@ -8,11 +8,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import org.ei.opensrp.R;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
+
+import atv.model.TreeNode;
+import atv.view.AndroidTreeView;
 
 public class LocationSelectorDialogFragment extends DialogFragment {
     private final SecuredNativeSmartRegisterActivity parentActivity;
@@ -44,36 +48,16 @@ public class LocationSelectorDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        ViewGroup dialogView = (ViewGroup) inflater.inflate(R.layout.smart_register_location_select_dialog_view, container, false);
-        ExpandableListView listView = (ExpandableListView) dialogView.findViewById(R.id.expandablelocationlist);
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
-        final ArrayAdapter<DialogOption> adapter = new ArrayAdapter<DialogOption>(
-                parentActivity, R.layout.smart_register_dialog_list_item, options) {
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                ViewGroup itemView;
-                if (convertView == null) {
-                    itemView = (ViewGroup) inflater.inflate(R.layout.smart_register_dialog_list_item, parent, false);
-                } else {
-                    itemView = (ViewGroup) convertView;
-                }
-
-                ((TextView) itemView.findViewById(R.id.dialog_list_option))
-                        .setText(getItem(position).name());
-                return itemView;
-            }
-        };
-
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                dismiss();
-                dialogOptionModel.onDialogOptionSelection(options[i], tag);
-            }
-        });
-
+        ViewGroup dialogView = new LinearLayout(getActivity());
+        TreeNode root = TreeNode.root();
+        TreeNode parent = new TreeNode("MyParentNode");
+        parent.setSelected(true);
+        TreeNode child0 = new TreeNode("ChildNode0");
+        TreeNode child1 = new TreeNode("ChildNode1");
+        parent.addChildren(child0, child1);
+        root.addChild(parent);
+        AndroidTreeView tView = new AndroidTreeView(getActivity(), root);
+        dialogView.addView(tView.getView());
         return dialogView;
     }
 }
