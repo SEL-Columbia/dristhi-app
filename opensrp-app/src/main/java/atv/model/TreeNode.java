@@ -29,16 +29,36 @@ public class TreeNode {
     private TreeNodeClickListener mListener;
     private Object mValue;
     private boolean mExpanded;
+    private String locationlevel;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getlocationlevel() {
+        return locationlevel;
+    }
+
+    public void setlocationlevel(String level) {
+        this.locationlevel = level;
+    }
 
     public static atv.model.TreeNode root() {
-        TreeNode root = new TreeNode(null);
+        TreeNode root = new TreeNode(null,null);
         root.setSelectable(false);
         return root;
     }
 
-    public TreeNode(Object value) {
+    public TreeNode(Object value,String level) {
         children = new ArrayList<>();
         mValue = value;
+        name = (String)value;
+        locationlevel = level;
     }
 
     public TreeNode addChild(TreeNode childNode) {

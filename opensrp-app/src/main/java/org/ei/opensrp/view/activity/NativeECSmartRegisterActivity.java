@@ -1,5 +1,7 @@
 package org.ei.opensrp.view.activity;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.view.View;
 import org.ei.opensrp.R;
 import org.ei.opensrp.adapter.SmartRegisterPaginatedAdapter;
@@ -25,7 +27,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     private ECSmartRegisterController controller;
     private VillageController villageController;
     private DialogOptionMapper dialogOptionMapper;
-
+    public static final String locationDialogTAG = "locationDialogTAG";
     private final ClientActionHandler clientActionHandler = new ClientActionHandler();
 
     @Override
@@ -127,8 +129,19 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     protected void startRegistration() {
-        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
-        startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        Fragment prev = getFragmentManager().findFragmentByTag(locationDialogTAG);
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+            LocationSelectorDialogFragment
+                .newInstance(this, new EditDialogOptionModel())
+                .show(ft, locationDialogTAG);
+
+//        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
+//        startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
     }
 
     private class ClientActionHandler implements View.OnClickListener {

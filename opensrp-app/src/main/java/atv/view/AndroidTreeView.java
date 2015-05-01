@@ -35,6 +35,7 @@ public class AndroidTreeView {
     private boolean mSelectionModeEnabled;
     private boolean mUseDefaultAnimation = false;
 
+
     public AndroidTreeView(Context context, TreeNode root) {
         mRoot = root;
         mContext = context;
