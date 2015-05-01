@@ -8,6 +8,8 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.johnkil.print.PrintView;
+
 import org.ei.opensrp.R;
 
 import atv.model.TreeNode;
@@ -50,9 +52,10 @@ public class SelectableItemHolder extends TreeNode.BaseNodeViewHolder<String> {
             }
         });
         nodeSelector.setChecked(node.isSelected());
-
-        if (node.isLastChild()) {
-            view.findViewById(R.id.bot_line).setVisibility(View.INVISIBLE);
+        view.findViewById(R.id.top_line).setVisibility(View.INVISIBLE);
+        view.findViewById(R.id.bot_line).setVisibility(View.INVISIBLE);
+        if (node.isLeaf()) {
+            ((PrintView) view.findViewById(R.id.arrowview)).setIconText(R.string.ic_check_circle_blank);
         }
 //        if(node.isFirstChild()){
 //            view.findViewById(R.id.top_line).setVisibility(View.INVISIBLE);
@@ -76,6 +79,8 @@ public class SelectableItemHolder extends TreeNode.BaseNodeViewHolder<String> {
     }
     @Override
     public void toggle(boolean active) {
-        arrowView.setIconText(context.getResources().getString(active ? R.string.ic_keyboard_arrow_down : R.string.ic_keyboard_arrow_right));
+        if(!mNode.isLeaf()) {
+            arrowView.setIconText(context.getResources().getString(active ? R.string.ic_keyboard_arrow_down : R.string.ic_keyboard_arrow_right));
+        }
     }
 }
