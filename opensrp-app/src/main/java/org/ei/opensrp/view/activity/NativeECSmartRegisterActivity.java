@@ -13,6 +13,8 @@ import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.controller.ECSmartRegisterController;
 import org.ei.opensrp.view.controller.VillageController;
 import org.ei.opensrp.view.dialog.*;
+import org.opensrp.api.util.EntityUtils;
+import org.opensrp.api.util.LocationTree;
 
 import java.util.List;
 
@@ -137,7 +139,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         }
         ft.addToBackStack(null);
             LocationSelectorDialogFragment
-                .newInstance(this, new EditDialogOptionModel())
+                .newInstance(this, new EditDialogOptionModel(), context.anmLocationController().get())
                 .show(ft, locationDialogTAG);
 
 //        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
