@@ -87,7 +87,7 @@ public class ECClient implements ECSmartRegisterClient {
 
     @Override
     public int age() {
-        return StringUtils.isBlank(dateOfBirth) ? 0 : Years.yearsBetween(LocalDate.parse(dateOfBirth), LocalDate.now()).getYears();
+        return StringUtils.isBlank(dateOfBirth) ? 0 : Years.yearsBetween(LocalDate.parse(dateOfBirth), DateUtil.today()).getYears();
     }
 
     @Override
