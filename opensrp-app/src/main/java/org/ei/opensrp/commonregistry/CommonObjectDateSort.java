@@ -62,7 +62,7 @@ public class CommonObjectDateSort implements SortOption {
                     try {
                         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                         Date date1 = dateFormat.parse(commonPersonObjectClient.getDetails().get(field));
-                        Date date2 = dateFormat.parse(commonPersonObjectClient.getDetails().get(field));
+                        Date date2 = dateFormat.parse(commonPersonObjectClient2.getDetails().get(field));
                         return date1.compareTo(date2);
                     }catch (Exception e){
                         break;
