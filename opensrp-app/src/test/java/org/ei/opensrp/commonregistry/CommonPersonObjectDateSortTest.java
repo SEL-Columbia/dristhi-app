@@ -30,7 +30,7 @@ public class CommonPersonObjectDateSortTest {
     private CommonPersonObjectController controller;
     private Map<String, String> emptyDetails;
 
-    private CommonObjectSort commonObjectSort;
+    private CommonObjectDateSort commonObjectdateSort;
     @Before
     public void setUp() throws Exception {
         initMocks(this);
@@ -41,11 +41,11 @@ public class CommonPersonObjectDateSortTest {
     @Test
     public void shouldSortCommonObjectsByColumnName() throws Exception {
 
-        commonObjectSort = new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byColumn,false,"name");
+        commonObjectdateSort = new CommonObjectDateSort(CommonObjectDateSort.ByColumnAndByDetails.byColumn,"date");
 
-         Map<String, String> column1 = create("name", "Woman A").map();
-        Map<String, String> column2 = create("name","Woman B").map();
-        Map<String, String> column3= create("name","Woman C").map();
+         Map<String, String> column1 = create("date", "2015-06-06").map();
+        Map<String, String> column2 = create("date","2015-07-07").map();
+        Map<String, String> column3= create("date","2015-01-01").map();
 
 
 
@@ -58,9 +58,9 @@ public class CommonPersonObjectDateSortTest {
         expectedClient3.setColumnmaps(column3);
 
         SmartRegisterClients clients = new SmartRegisterClients();
+        clients.add(expectedClient1);
         clients.add(expectedClient2);
         clients.add(expectedClient3);
-        clients.add(expectedClient1);
 
 
 //        Gson gson = new Gson();
@@ -68,45 +68,18 @@ public class CommonPersonObjectDateSortTest {
 
 //        List<CommonPersonObjectClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<CommonPersonObjectClient>>() {
 //        }.getType());
-        assertEquals(asList(expectedClient1, expectedClient2, expectedClient3), commonObjectSort.sort(clients));
+        assertEquals(asList(expectedClient3,expectedClient1, expectedClient2), commonObjectdateSort.sort(clients));
 //        assertEquals(objectlist,clients);
     }
 
     @Test
     public void shouldSortCommonObjectsByDetailName() throws Exception {
 
-        commonObjectSort = new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,false,"name");
+        commonObjectdateSort = new CommonObjectDateSort(CommonObjectDateSort.ByColumnAndByDetails.byDetails,"date");
 
-        Map<String, String> detail1 = create("name", "Woman A").map();
-        Map<String, String> detail2 = create("name","Woman B").map();
-        Map<String, String> detail3= create("name","Woman C").map();
-
-
-
-
-        CommonPersonObjectClient expectedClient1 = new CommonPersonObjectClient("entity id 1",detail1,"Woman A");
-        expectedClient1.setColumnmaps(emptyDetails);
-        CommonPersonObjectClient expectedClient2 = new CommonPersonObjectClient("entity id 2",detail2,"Woman B");
-        expectedClient2.setColumnmaps(emptyDetails);
-        CommonPersonObjectClient expectedClient3 = new CommonPersonObjectClient("entity id 3",detail3,"Woman C");
-        expectedClient3.setColumnmaps(emptyDetails);
-
-        SmartRegisterClients clients = new SmartRegisterClients();
-        clients.add(expectedClient2);
-        clients.add(expectedClient3);
-        clients.add(expectedClient1);
-
-        assertEquals(asList(expectedClient1, expectedClient2, expectedClient3), commonObjectSort.sort(clients));
-
-    }
-    @Test
-    public void shouldSortCommonObjectsByInteger() throws Exception {
-
-        commonObjectSort = new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"HID");
-
-        Map<String, String> detail1 = create("HID", "1").map();
-        Map<String, String> detail2 = create("HID","2").map();
-        Map<String, String> detail3= create("HID","3").map();
+        Map<String, String> detail1 = create("date", "2015-06-06").map();
+        Map<String, String> detail2 = create("date","2015-07-07").map();
+        Map<String, String> detail3= create("date","2015-01-01").map();
 
 
 
@@ -123,8 +96,7 @@ public class CommonPersonObjectDateSortTest {
         clients.add(expectedClient3);
         clients.add(expectedClient1);
 
-
-        assertEquals(asList(expectedClient1, expectedClient2, expectedClient3), commonObjectSort.sort(clients));
+        assertEquals(asList(expectedClient3,expectedClient1, expectedClient2), commonObjectdateSort.sort(clients));
 
     }
 
