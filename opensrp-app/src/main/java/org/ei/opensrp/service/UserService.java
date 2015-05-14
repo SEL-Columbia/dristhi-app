@@ -1,5 +1,7 @@
 package org.ei.opensrp.service;
 
+import android.util.Log;
+
 import org.ei.opensrp.DristhiConfiguration;
 import org.ei.opensrp.domain.LoginResponse;
 import org.ei.opensrp.domain.Response;
@@ -9,6 +11,8 @@ import org.ei.opensrp.repository.Repository;
 import org.ei.opensrp.sync.SaveANMLocationTask;
 import org.ei.opensrp.sync.SaveUserInfoTask;
 import org.ei.opensrp.util.Session;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import static org.ei.opensrp.AllConstants.*;
 import static org.ei.opensrp.event.Event.ON_LOGOUT;
@@ -61,12 +65,35 @@ public class UserService {
 
     public void remoteLogin(String userName, String password, String userInfo) {
         loginWith(userName, password);
-        saveUserInfoTask.save(userInfo);
+        saveAnmLocation(getUserLocation(userInfo));
+        saveUserInfo(getUserData(userInfo));
+    }
+
+    public String getUserData(String userInfo) {
+        try {
+            JSONObject userInfoJson = new JSONObject(userInfo);
+            return userInfoJson.getString("user");
+        } catch (JSONException e) {
+            Log.v("Error : ", e.getMessage());
+            return null;
+        }
+    }
+
+    public String getUserLocation(String userInfo) {
+        try {
+            JSONObject userLocationJSON = new JSONObject(userInfo);
+            return userLocationJSON.getString("locations");
+        } catch (JSONException e) {
+            Log.v("Error : ", e.getMessage());
+            return null;
+        }
     }
 
     public void saveAnmLocation(String anmLocation) {
         saveANMLocationTask.save(anmLocation);
     }
+
+    public void saveUserInfo(String userInfo) { saveUserInfoTask.save(userInfo); }
 
     public boolean hasARegisteredUser() {
         return !allSharedPreferences.fetchRegisteredANM().equals("");
