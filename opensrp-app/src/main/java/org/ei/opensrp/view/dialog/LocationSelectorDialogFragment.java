@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+
+import com.google.common.base.Strings;
+
 import org.ei.opensrp.R;
 import org.ei.opensrp.domain.form.FieldOverrides;
-import org.ei.opensrp.util.StringUtil;
 import org.ei.opensrp.view.activity.SecuredNativeSmartRegisterActivity;
 import org.json.JSONObject;
 import org.opensrp.api.domain.Location;
@@ -22,6 +24,7 @@ import atv.model.TreeNode;
 import atv.view.AndroidTreeView;
 
 import static org.ei.opensrp.AllConstants.FormNames.EC_REGISTRATION;
+import static org.ei.opensrp.util.StringUtil.*;
 
 public class LocationSelectorDialogFragment extends DialogFragment {
 
@@ -125,7 +128,10 @@ public class LocationSelectorDialogFragment extends DialogFragment {
     public void locationTreeToTreNode(TreeNode node, Map<String,org.opensrp.api.util.TreeNode<String, Location>> location) {
 
         for(Map.Entry<String, org.opensrp.api.util.TreeNode<String, Location>> entry : location.entrySet()) {
-            TreeNode tree = createNode("", StringUtil.humanize(entry.getValue().getLabel()));
+            String locationTag = entry.getValue().getNode().getTags().iterator().next();
+            TreeNode tree = createNode(
+                    Strings.isNullOrEmpty(locationTag)?"-":humanize(locationTag),
+                    humanize(entry.getValue().getLabel()));
             node.addChild(tree);
             if(entry.getValue().getChildren() != null) {
                 locationTreeToTreNode(tree, entry.getValue().getChildren());
