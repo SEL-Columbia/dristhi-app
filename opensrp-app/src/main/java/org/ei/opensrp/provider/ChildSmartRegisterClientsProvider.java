@@ -1,6 +1,7 @@
 package org.ei.opensrp.provider;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,11 @@ public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsPr
         }
 
         ChildSmartRegisterClient client = (ChildSmartRegisterClient)smartRegisterClient;
+
+        if(client.isDataError()) {
+            itemView.setBackgroundColor(Color.parseColor("#FDC3C3"));
+        }
+
         setupClientProfileView(client, viewHolder);
         setupIdDetailsView(client, viewHolder);
 
