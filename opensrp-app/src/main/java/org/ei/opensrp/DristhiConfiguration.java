@@ -35,15 +35,15 @@ public class DristhiConfiguration {
     public String host() {
 
 
-        return preferences.fetchBaseURL();
-        //return preferences.fetchHost();
-                //this.get(HOST);
+
+        return preferences.fetchHost();
+
     }
 
     public int port() {
 
 
-        return preferences.fetchPort();//Integer.parseInt(this.get(PORT));
+        return preferences.fetchPort();
     }
 
     public boolean shouldVerifyCertificate() {
@@ -52,7 +52,7 @@ public class DristhiConfiguration {
 
     public String dristhiBaseURL() {
 
-        return preferences.fetchBaseURL();//this.get(DRISHTI_BASE_URL);
+        return preferences.fetchBaseURL();
     }
 
     public int syncDownloadBatchSize() {
