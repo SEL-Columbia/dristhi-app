@@ -139,11 +139,8 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
         }
         ft.addToBackStack(null);
             LocationSelectorDialogFragment
-                .newInstance(this, new EditDialogOptionModel(), context.anmLocationController().get())
+                .newInstance(this, new EditDialogOptionModel(), context.anmLocationController().get(),EC_REGISTRATION)
                 .show(ft, locationDialogTAG);
-
-//        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
-//        startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
     }
 
     private class ClientActionHandler implements View.OnClickListener {

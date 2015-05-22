@@ -32,26 +32,28 @@ public class LocationSelectorDialogFragment extends DialogFragment {
     private final DialogOption[] options;
     private final DialogOptionModel dialogOptionModel;
     private final String locationJSONString;
+    private final String formname;
+
     public static String savestate ;
     AndroidTreeView tView;
     // private final Object tag;
 
     private LocationSelectorDialogFragment(SecuredNativeSmartRegisterActivity activity,
                                            DialogOptionModel dialogOptionModel,
-                                           String locationJSONString
+                                           String locationJSONString,String formname
                                            ) {
         this.parentActivity = activity;
         this.options = dialogOptionModel.getDialogOptions();
         this.dialogOptionModel = dialogOptionModel;
         this.locationJSONString = locationJSONString;
-        // this.tag = tag;
+        this.formname = formname;
     }
 
     public static LocationSelectorDialogFragment newInstance(
             SecuredNativeSmartRegisterActivity activity,
             DialogOptionModel dialogOptionModel,
-            String locationJSONString) {
-        return new LocationSelectorDialogFragment(activity, dialogOptionModel, locationJSONString);
+            String locationJSONString,String formname) {
+        return new LocationSelectorDialogFragment(activity, dialogOptionModel, locationJSONString,formname);
     }
 
     @Override
@@ -116,8 +118,7 @@ public class LocationSelectorDialogFragment extends DialogFragment {
                         traversingnode = traversingnode.getParent();
                     }
                     FieldOverrides fieldOverrides = new FieldOverrides(locationjson.toString());
-                    //  Toast.makeText(getActivity(),fieldOverrides.getJSONString(),Toast.LENGTH_LONG).show();
-                    parentActivity.startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
+                    parentActivity.startFormActivity(formname, null, fieldOverrides.getJSONString());
                     savestate = tView.getSaveState();
                     dismiss();
                 }
