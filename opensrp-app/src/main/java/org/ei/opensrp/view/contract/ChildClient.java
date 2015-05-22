@@ -1,5 +1,7 @@
 package org.ei.opensrp.view.contract;
 
+import com.google.common.base.Strings;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -556,5 +558,11 @@ public class ChildClient implements ChildSmartRegisterClient {
             }
             return -1;
         }
+    }
+
+    @Override
+    public boolean isDataError() {
+        // only important data
+        return (Strings.isNullOrEmpty(motherName) || Strings.isNullOrEmpty(fatherName));
     }
 }

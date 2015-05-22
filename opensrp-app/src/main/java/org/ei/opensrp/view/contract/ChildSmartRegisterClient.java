@@ -107,4 +107,5 @@ List<String> illnessAcronyms = new ArrayList<String>(
 
     public AlertDTO getAlert(ChildServiceType measles);
 
+    public boolean isDataError();
 }
