@@ -47,9 +47,6 @@ public class CommonPersonObjectDateSortTest {
         Map<String, String> column2 = create("date","2015-07-07").map();
         Map<String, String> column3= create("date","2015-01-01").map();
 
-
-
-
         CommonPersonObjectClient expectedClient1 = new CommonPersonObjectClient("entity id 1",emptyDetails,"Woman A");
         expectedClient1.setColumnmaps(column1);
         CommonPersonObjectClient expectedClient2 = new CommonPersonObjectClient("entity id 2",emptyDetails,"Woman B");
@@ -61,15 +58,8 @@ public class CommonPersonObjectDateSortTest {
         clients.add(expectedClient1);
         clients.add(expectedClient2);
         clients.add(expectedClient3);
-
-
-//        Gson gson = new Gson();
-//        String objectlist = gson.toJson(asList(expectedClient1, expectedClient2, expectedClient3));
-
-//        List<CommonPersonObjectClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<CommonPersonObjectClient>>() {
-//        }.getType());
         assertEquals(asList(expectedClient3,expectedClient1, expectedClient2), commonObjectdateSort.sort(clients));
-//        assertEquals(objectlist,clients);
+
     }
 
     @Test
@@ -80,9 +70,6 @@ public class CommonPersonObjectDateSortTest {
         Map<String, String> detail1 = create("date", "2015-06-06").map();
         Map<String, String> detail2 = create("date","2015-07-07").map();
         Map<String, String> detail3= create("date","2015-01-01").map();
-
-
-
 
         CommonPersonObjectClient expectedClient1 = new CommonPersonObjectClient("entity id 1",detail1,"Woman A");
         expectedClient1.setColumnmaps(emptyDetails);
@@ -95,17 +82,7 @@ public class CommonPersonObjectDateSortTest {
         clients.add(expectedClient2);
         clients.add(expectedClient3);
         clients.add(expectedClient1);
-
         assertEquals(asList(expectedClient3,expectedClient1, expectedClient2), commonObjectdateSort.sort(clients));
 
     }
-
-
-
-
-
-
-
-
-
 }
