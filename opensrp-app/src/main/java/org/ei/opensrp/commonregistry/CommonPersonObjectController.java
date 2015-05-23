@@ -75,7 +75,7 @@ public class CommonPersonObjectController {
                     switch (byColumnAndByDetails){
                         case byColumn:
                             for (CommonPersonObject personinlist : p) {
-                                if(personinlist.getDetails().get(filterkey)!= null) {
+                                if(personinlist.getColumnmaps().get(filterkey)!= null) {
                                     if(personinlist.getColumnmaps().get(filterkey).equalsIgnoreCase(filtervalue)) {
                                         CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get(nameString));
                                         pClient.setColumnmaps(personinlist.getColumnmaps());
@@ -136,7 +136,7 @@ public class CommonPersonObjectController {
                     switch (byColumnAndByDetails){
                         case byColumn:
                             for (CommonPersonObject personinlist : p) {
-                                if(personinlist.getDetails().get(filterkey)!= null) {
+                                if(personinlist.getColumnmaps().get(filterkey)!= null) {
                                     if(personinlist.getColumnmaps().get(filterkey).equalsIgnoreCase(filtervalue)) {
                                         CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get(nameString));
                                         pClient.setColumnmaps(personinlist.getColumnmaps());
