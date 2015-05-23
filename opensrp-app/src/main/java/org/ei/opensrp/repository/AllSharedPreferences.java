@@ -39,18 +39,18 @@ public class AllSharedPreferences {
         preferences.edit().putBoolean(IS_SYNC_IN_PROGRESS_PREFERENCE_KEY, isSyncInProgress).commit();
     }
 
-    public String fetchBaseURL(){
+    public String fetchBaseURL(String baseurl){
 
-      return   preferences.getString(DRISHTI_BASE_URL,"localhost");
+      return   preferences.getString(DRISHTI_BASE_URL,baseurl);
     }
 
-    public String fetchHost(){
+    public String fetchHost(String host){
 
-        return   preferences.getString(HOST,"localhost");
+        return   preferences.getString(HOST,host);
     }
 
-    public Integer fetchPort(){
+    public Integer fetchPort(Integer port){
 
-        return  Integer.parseInt( preferences.getString(PORT,"8080"));
+        return  Integer.parseInt( preferences.getString(PORT,""+port));
     }
 }

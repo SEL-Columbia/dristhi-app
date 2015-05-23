@@ -4,6 +4,7 @@ import org.ei.opensrp.R;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 
@@ -14,13 +15,18 @@ public class SettingsActivity extends PreferenceActivity{
 	{
 		 super.onCreate(savedInstanceState);
 
-		 addPreferencesFromResource(R.xml.preferences); 
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
 	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		menu.add(Menu.NONE, 0, 0, "Show current settings");
-		return super.onCreateOptionsMenu(menu);
-	}
+
+
+    public static class MyPreferenceFragment extends PreferenceFragment
+    {
+        @Override
+        public void onCreate(final Bundle savedInstanceState)
+        {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.preferences);
+        }
+    }
+
 }
