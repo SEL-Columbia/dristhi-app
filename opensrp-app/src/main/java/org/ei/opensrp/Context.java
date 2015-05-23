@@ -96,6 +96,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+import static android.preference.PreferenceManager.setDefaultValues;
 
 public class Context {
     private android.content.Context applicationContext;
@@ -517,9 +518,8 @@ public class Context {
 
     public AllSharedPreferences allSharedPreferences() {
         if (allSharedPreferences == null) {
-         //   allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(this.applicationContext));
-            PreferenceManager.setDefaultValues(this.applicationContext, R.xml.preferences, false);
-            allSharedPreferences = new AllSharedPreferences(PreferenceManager.getDefaultSharedPreferences(this.applicationContext));
+            setDefaultValues(this.applicationContext, R.xml.preferences, false);
+            allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(this.applicationContext));
         }
         return allSharedPreferences;
     }
