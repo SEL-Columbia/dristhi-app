@@ -3,6 +3,7 @@ package org.ei.opensrp;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.ei.opensrp.commonregistry.AllCommonsRepository;
@@ -95,6 +96,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import static android.preference.PreferenceManager.getDefaultSharedPreferences;
+import static android.preference.PreferenceManager.setDefaultValues;
 
 public class Context {
     private android.content.Context applicationContext;
@@ -516,6 +518,7 @@ public class Context {
 
     public AllSharedPreferences allSharedPreferences() {
         if (allSharedPreferences == null) {
+            setDefaultValues(this.applicationContext, R.xml.preferences, false);
             allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(this.applicationContext));
         }
         return allSharedPreferences;
