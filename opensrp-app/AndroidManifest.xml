@@ -58,7 +58,6 @@
             android:largeHeap="true">
         <activity
                 android:name=".view.activity.LoginActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar"
                 android:clearTaskOnLaunch="true"
                 android:windowSoftInputMode="adjustResize|stateHidden"
                 android:screenOrientation="landscape">
