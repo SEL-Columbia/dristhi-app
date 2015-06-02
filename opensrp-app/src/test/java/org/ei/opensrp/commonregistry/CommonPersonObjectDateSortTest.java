@@ -35,11 +35,11 @@ public class CommonPersonObjectDateSortTest {
     public void setUp() throws Exception {
         initMocks(this);
         emptyDetails = Collections.emptyMap();
-        controller = new CommonPersonObjectController(allCommonsRepository, allBeneficiaries, new Cache<String>(), new Cache<CommonPersonObjectClients>(),"name","bindtype");
-    }
+  }
 
     @Test
     public void shouldSortCommonObjectsByColumnName() throws Exception {
+        controller = new CommonPersonObjectController(allCommonsRepository, allBeneficiaries, new Cache<String>(), new Cache<CommonPersonObjectClients>(),"name","bindtype","nullkey", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
 
         commonObjectdateSort = new CommonObjectDateSort(CommonObjectDateSort.ByColumnAndByDetails.byColumn,"date");
 
@@ -64,6 +64,7 @@ public class CommonPersonObjectDateSortTest {
 
     @Test
     public void shouldSortCommonObjectsByDetailName() throws Exception {
+        controller = new CommonPersonObjectController(allCommonsRepository, allBeneficiaries, new Cache<String>(), new Cache<CommonPersonObjectClients>(),"name","bindtype","nullkey", CommonPersonObjectController.ByColumnAndByDetails.byColumn);
 
         commonObjectdateSort = new CommonObjectDateSort(CommonObjectDateSort.ByColumnAndByDetails.byDetails,"date");
 
