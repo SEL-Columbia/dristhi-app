@@ -93,6 +93,41 @@ public class CommonPersonObjectControllerTest {
         assertEquals(objectlist, clients);
     }
 
+    @Test
+    public void shouldfilterNullsAccordingToFilterKey() throws Exception {
+        Map<String, String> personDetails1 = create("name", "Woman A").map();
+        Map<String, String> personDetails2 = create("name","Woman B").map();
+        Map<String, String> personDetails3 = emptyDetails;
+
+
+
+
+        CommonPersonObject cpo2 = new CommonPersonObject("entity id 2","relational id 2",personDetails2,"bindtype");
+        cpo2.setColumnmaps(emptyDetails);
+        CommonPersonObject cpo3 = new CommonPersonObject("entity id 3","relational id 3",personDetails3,"bindtype");
+        cpo3.setColumnmaps(emptyDetails);
+        CommonPersonObject cpo1 = new CommonPersonObject("entity id 1","relational id 1",personDetails1,"bindtype");
+        cpo1.setColumnmaps(emptyDetails);
+
+        when(allCommonsRepository.all()).thenReturn(asList(cpo2, cpo3, cpo1));
+        CommonPersonObjectClient expectedClient1 = new CommonPersonObjectClient("entity id 1",personDetails1,"Woman A");
+        expectedClient1.setColumnmaps(emptyDetails);
+        CommonPersonObjectClient expectedClient2 = new CommonPersonObjectClient("entity id 2",personDetails2,"Woman B");
+        expectedClient2.setColumnmaps(emptyDetails);
+        CommonPersonObjectClient expectedClient3 = new CommonPersonObjectClient("entity id 3",personDetails3,"Woman C");
+        expectedClient3.setColumnmaps(emptyDetails);
+
+        String clients = controller.get();
+
+        Gson gson = new Gson();
+        String objectlist = gson.toJson(asList(expectedClient1, expectedClient2));
+
+//        List<CommonPersonObjectClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<CommonPersonObjectClient>>() {
+//        }.getType());
+//        assertEquals(asList(expectedClient1, expectedClient2, expectedClient3), actualClients);
+        assertEquals(objectlist,clients);
+    }
+
 
 
 
