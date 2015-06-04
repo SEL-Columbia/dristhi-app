@@ -45,9 +45,6 @@ public class CommonPersonObjectControllerTest {
         Map<String, String> personDetails2 = create("name","Woman B").map();
         Map<String, String> personDetails3 = create("name","Woman C").map();
 
-
-
-
         CommonPersonObject cpo2 = new CommonPersonObject("entity id 2","relational id 2",personDetails2,"bindtype");
         cpo2.setColumnmaps(emptyDetails);
         CommonPersonObject cpo3 = new CommonPersonObject("entity id 3","relational id 3",personDetails3,"bindtype");
@@ -67,10 +64,6 @@ public class CommonPersonObjectControllerTest {
 
         Gson gson = new Gson();
         String objectlist = gson.toJson(asList(expectedClient1, expectedClient2, expectedClient3));
-
-//        List<CommonPersonObjectClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<CommonPersonObjectClient>>() {
-//        }.getType());
-//        assertEquals(asList(expectedClient1, expectedClient2, expectedClient3), actualClients);
         assertEquals(objectlist,clients);
     }
 
@@ -87,9 +80,6 @@ public class CommonPersonObjectControllerTest {
         String clients = controller.get();
         Gson gson = new Gson();
         String objectlist = gson.toJson(asList(expectedCommonObjectClient));
-
-//        List<CommonPersonObjectClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<CommonPersonObjectClient>>() {
-//        }.getType());
         assertEquals(objectlist, clients);
     }
 
@@ -121,10 +111,6 @@ public class CommonPersonObjectControllerTest {
 
         Gson gson = new Gson();
         String objectlist = gson.toJson(asList(expectedClient1, expectedClient2));
-
-//        List<CommonPersonObjectClient> actualClients = new Gson().fromJson(clients, new TypeToken<List<CommonPersonObjectClient>>() {
-//        }.getType());
-//        assertEquals(asList(expectedClient1, expectedClient2, expectedClient3), actualClients);
         assertEquals(objectlist,clients);
     }
 
