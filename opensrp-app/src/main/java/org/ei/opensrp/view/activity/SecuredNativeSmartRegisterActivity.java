@@ -33,7 +33,7 @@ import static org.ei.opensrp.AllConstants.SHORT_DATE_FORMAT;
 
 public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity {
 
-    private static final String DIALOG_TAG = "dialog";
+    public static final String DIALOG_TAG = "dialog";
     public static final List<? extends DialogOption> DEFAULT_FILTER_OPTIONS = asList(new AllClientsFilter());
 
     private ListView clientsView;

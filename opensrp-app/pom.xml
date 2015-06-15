@@ -121,6 +121,12 @@
             <artifactId>opensrp-api</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.johnkil.print</groupId>
+            <artifactId>print</artifactId>
+            <version>1.2.3</version>
+            <type>aar</type>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -143,8 +149,8 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>

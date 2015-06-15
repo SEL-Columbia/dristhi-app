@@ -297,4 +297,11 @@
     <string name="str_child_illness_sam">sam</string>
     <string name="str_pnc_visit_button_label">PNC Visit</string>
 
+
+    <string name="ic_check_circle_blank">&#xe03e;</string>
+    <string name="ic_keyboard_arrow_down">&#xe0c5;</string>
+    <string name="ic_keyboard_arrow_left">&#xe0c6;</string>
+    <string name="ic_keyboard_arrow_right">&#xe0c7;</string>
+    <string name="ic_keyboard_arrow_up">&#xe0c8;</string>
+
 </resources>

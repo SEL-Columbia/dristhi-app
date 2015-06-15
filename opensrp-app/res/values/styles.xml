@@ -205,4 +205,15 @@
         <item name="android:button">@null</item>
         <item name="android:clickable">true</item>
     </style>
+
+
+        <style name="TreeNodeStyle">
+            <item name="android:paddingLeft">20dp</item>
+        </style>
+
+    <style name="TreeNodeStyleDivided">
+        <item name="android:showDividers">middle</item>
+        <item name="android:divider">@android:drawable/divider_horizontal_bright</item>
+    </style>
+
 </resources>
