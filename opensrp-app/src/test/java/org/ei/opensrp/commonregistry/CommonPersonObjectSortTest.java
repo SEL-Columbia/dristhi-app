@@ -35,7 +35,7 @@ public class CommonPersonObjectSortTest {
     public void setUp() throws Exception {
         initMocks(this);
         emptyDetails = Collections.emptyMap();
-        controller = new CommonPersonObjectController(allCommonsRepository, allBeneficiaries, new Cache<String>(), new Cache<CommonPersonObjectClients>(),"name","bindtype");
+        controller = new CommonPersonObjectController(allCommonsRepository, allBeneficiaries, new Cache<String>(), new Cache<CommonPersonObjectClients>(),"name","bindtype","name", CommonPersonObjectController.ByColumnAndByDetails.byDetails);
     }
 
     @Test
