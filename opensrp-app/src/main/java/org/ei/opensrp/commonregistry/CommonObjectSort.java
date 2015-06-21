@@ -15,19 +15,21 @@ public class CommonObjectSort implements SortOption {
     String field;
     ByColumnAndByDetails byColumnAndByDetails;
     boolean isInteger;
+    String sortOptionName;
     public enum ByColumnAndByDetails{
         byColumn,byDetails;
     }
 
-    public CommonObjectSort(ByColumnAndByDetails byColumnAndByDetails, boolean isinteger, String field) {
+    public CommonObjectSort(ByColumnAndByDetails byColumnAndByDetails, boolean isinteger, String field,String sortOptionName) {
         this.byColumnAndByDetails = byColumnAndByDetails;
         this.isInteger = isinteger;
         this.field = field;
+        this.sortOptionName = sortOptionName;
     }
 
     @Override
     public String name() {
-        return field;
+        return sortOptionName;
     }
 
     @Override
@@ -44,17 +46,17 @@ public class CommonObjectSort implements SortOption {
             switch (byColumnAndByDetails){
                 case byColumn:
                     if(!isInteger){
-                        return commonPersonObjectClient.getColumnmaps().get(field).compareTo(commonPersonObjectClient2.getColumnmaps().get(field));
+                        return ((commonPersonObjectClient.getColumnmaps().get(field)!=null?commonPersonObjectClient.getColumnmaps().get(field):"")).trim().toLowerCase().compareTo((commonPersonObjectClient2.getColumnmaps().get(field)!=null?commonPersonObjectClient2.getColumnmaps().get(field):"").trim().toLowerCase());
 
                     }else{
-                        return (new Integer(commonPersonObjectClient.getColumnmaps().get(field))).compareTo(new Integer(commonPersonObjectClient2.getColumnmaps().get(field)));
+                        return (new Integer(commonPersonObjectClient.getColumnmaps().get(field)!=null?commonPersonObjectClient.getColumnmaps().get(field):"0")).compareTo(new Integer(commonPersonObjectClient2.getColumnmaps().get(field)!=null?commonPersonObjectClient2.getColumnmaps().get(field):"0"));
 
                     }
                 case byDetails:
                     if(!isInteger){
-                        return commonPersonObjectClient.getDetails().get(field).compareTo(commonPersonObjectClient2.getDetails().get(field));
+                        return ((commonPersonObjectClient.getDetails().get(field)!=null?commonPersonObjectClient.getDetails().get(field):"")).trim().toLowerCase().compareTo((commonPersonObjectClient2.getDetails().get(field)!=null?commonPersonObjectClient2.getDetails().get(field):"").trim().toLowerCase());
                     }else{
-                        return (new Integer(commonPersonObjectClient.getDetails().get(field))).compareTo(new Integer(commonPersonObjectClient2.getDetails().get(field)));
+                        return (new Integer(commonPersonObjectClient.getDetails().get(field)!=null?commonPersonObjectClient.getDetails().get(field):"0").compareTo(new Integer(commonPersonObjectClient2.getDetails().get(field)!=null?commonPersonObjectClient2.getDetails().get(field):"0")));
                     }
             }
             return 0;

@@ -41,9 +41,9 @@ public class CommonPersonObjectSortTest {
     @Test
     public void shouldSortCommonObjectsByColumnName() throws Exception {
 
-        commonObjectSort = new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byColumn,false,"name");
+        commonObjectSort = new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byColumn,false,"name","name");
 
-         Map<String, String> column1 = create("name", "Woman A").map();
+        Map<String, String> column1 = create("name", "Woman A").map();
         Map<String, String> column2 = create("name","Woman B").map();
         Map<String, String> column3= create("name","Woman C").map();
 
@@ -75,7 +75,7 @@ public class CommonPersonObjectSortTest {
     @Test
     public void shouldSortCommonObjectsByDetailName() throws Exception {
 
-        commonObjectSort = new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,false,"name");
+        commonObjectSort = new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,false,"name","name");
 
         Map<String, String> detail1 = create("name", "Woman A").map();
         Map<String, String> detail2 = create("name","Woman B").map();
@@ -102,7 +102,7 @@ public class CommonPersonObjectSortTest {
     @Test
     public void shouldSortCommonObjectsByInteger() throws Exception {
 
-        commonObjectSort = new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"HID");
+        commonObjectSort = new CommonObjectSort(CommonObjectSort.ByColumnAndByDetails.byDetails,true,"HID","HID");
 
         Map<String, String> detail1 = create("HID", "1").map();
         Map<String, String> detail2 = create("HID","2").map();
