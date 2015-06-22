@@ -28,9 +28,9 @@ public class CommonObjectFilterOption implements FilterOption {
     public boolean filter(SmartRegisterClient client) {
         switch (byColumnAndByDetails){
             case byColumn:
-                return ((CommonPersonObjectClient)client).getColumnmaps().get(fieldname).contains(criteria);
+                return ((CommonPersonObjectClient)client).getColumnmaps().get(fieldname).trim().toLowerCase().contains(criteria.trim().toLowerCase());
             case byDetails:
-                return (((CommonPersonObjectClient)client).getDetails().get(fieldname)!=null?((CommonPersonObjectClient)client).getDetails().get(fieldname):"").contains(criteria);
+                return (((CommonPersonObjectClient)client).getDetails().get(fieldname)!=null?((CommonPersonObjectClient)client).getDetails().get(fieldname):"").trim().toLowerCase().contains(criteria.toLowerCase());
         }
         return false;
     }
