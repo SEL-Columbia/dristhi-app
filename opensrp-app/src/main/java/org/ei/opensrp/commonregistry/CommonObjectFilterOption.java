@@ -2,7 +2,9 @@ package org.ei.opensrp.commonregistry;
 
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.dialog.FilterOption;
-
+/*
+ by Raihan Ahmed
+ */
 public class CommonObjectFilterOption implements FilterOption {
     private final String criteria;
     public final String fieldname,sortOptionName;
