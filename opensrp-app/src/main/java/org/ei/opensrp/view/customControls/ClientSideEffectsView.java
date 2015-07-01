@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import org.apache.commons.codec.binary.StringUtils;
 import org.ei.opensrp.R;
 import org.ei.opensrp.domain.FPMethod;
 import org.ei.opensrp.util.StringUtil;
