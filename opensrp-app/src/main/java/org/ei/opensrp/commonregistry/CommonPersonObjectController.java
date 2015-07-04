@@ -109,7 +109,6 @@ public class CommonPersonObjectController {
 
                         if(!isnull(personinlist)) {
                             CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get(nameString));
-//                    pClient.entityID = personinlist.getCaseId();
                             pClient.setColumnmaps(personinlist.getColumnmaps());
                             pClients.add(pClient);
                         }
@@ -184,7 +183,6 @@ public class CommonPersonObjectController {
                     for (CommonPersonObject personinlist : p) {
                         if (!isnull(personinlist)) {
                             CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get(nameString));
-//                    pClient.entityID = personinlist.getCaseId();
                             pClient.setColumnmaps(personinlist.getColumnmaps());
                             pClients.add(pClient);
                         }
@@ -198,7 +196,6 @@ public class CommonPersonObjectController {
                                         if (personinlist.getColumnmaps().get(filterkey).equalsIgnoreCase(filtervalue)) {
                                             CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get(nameString));
                                             pClient.setColumnmaps(personinlist.getColumnmaps());
-
                                             pClients.add(pClient);
                                         }
                                     }
@@ -225,7 +222,6 @@ public class CommonPersonObjectController {
                                     if (personinlist.getRelationalId().equalsIgnoreCase(filtervalue)) {
                                         CommonPersonObjectClient pClient = new CommonPersonObjectClient(personinlist.getCaseId(), personinlist.getDetails(), personinlist.getDetails().get(nameString));
                                         pClient.setColumnmaps(personinlist.getColumnmaps());
-                                        Log.v("wtf is in here ", filterkey + " and the relational id is:" + personinlist.getRelationalId());
                                         pClients.add(pClient);
 
                                     }
