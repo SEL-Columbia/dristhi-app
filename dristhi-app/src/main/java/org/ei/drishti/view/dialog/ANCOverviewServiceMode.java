@@ -49,7 +49,7 @@ public class ANCOverviewServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{21, 9, 12, 12, 12, 12, 22};
+                return new int[]{21, 14, 12, 12, 12, 12, 22};
             }
 
             @Override

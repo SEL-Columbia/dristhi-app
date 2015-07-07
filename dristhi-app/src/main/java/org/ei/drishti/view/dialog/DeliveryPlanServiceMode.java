@@ -47,7 +47,7 @@ public class DeliveryPlanServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{21, 9, 12, 58};
+                return new int[]{21, 14, 12, 58};
             }
 
             @Override

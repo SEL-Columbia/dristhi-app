@@ -40,7 +40,7 @@ public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{26, 14, 15, 15, 15, 15};
+                return new int[]{26, 19, 15, 15, 14, 15};
             }
 
             @Override

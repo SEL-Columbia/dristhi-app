@@ -2152,7 +2152,7 @@
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/Child_Registration_EngKan/thayi_card_number" required="required"
-               data-constraint=".&gt; 999999 and .&lt; 10000000" data-type-xml="int"/>
+               data-constraint=".&gt; 999999 and .&lt; 100000000000" data-type-xml="int"/>
     </label>
     <fieldset class="question ">
         <fieldset>

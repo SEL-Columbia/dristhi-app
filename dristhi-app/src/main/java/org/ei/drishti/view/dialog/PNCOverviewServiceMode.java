@@ -48,7 +48,7 @@ public class PNCOverviewServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{24, 8, 17, 15, 12, 24};
+                return new int[]{24, 13, 17, 15, 12, 24};
             }
 
             @Override

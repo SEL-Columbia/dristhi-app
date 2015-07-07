@@ -54,7 +54,7 @@ public class HbIFAServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{21, 9, 12, 26, 26};
+                return new int[]{21, 14, 12, 27, 26};
             }
 
             @Override

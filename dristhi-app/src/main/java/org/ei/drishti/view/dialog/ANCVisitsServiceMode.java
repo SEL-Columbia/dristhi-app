@@ -44,7 +44,7 @@ public class ANCVisitsServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{21, 9, 12, 12, 12, 12, 12, 10};
+                return new int[]{21, 14, 12, 12, 12, 12, 11, 10};
             }
 
             @Override

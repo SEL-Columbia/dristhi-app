@@ -48,7 +48,7 @@ public class ChildOverviewServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{26, 14, 12, 15, 23, 10};
+                return new int[]{26, 19, 12, 15, 23, 10};
             }
 
             @Override
