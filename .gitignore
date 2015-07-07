@@ -15,3 +15,5 @@ tmp/
 project.properties
 .DS_Store
 .settings
+build/
+.gradle

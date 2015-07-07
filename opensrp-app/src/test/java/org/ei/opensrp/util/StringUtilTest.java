@@ -22,6 +22,5 @@ public class StringUtilTest {
     @Test
     public void shouldHandleEmptyAndNull() throws Exception {
         assertEquals("", humanize(""));
-        assertEquals(null, humanize(null));
     }
 }

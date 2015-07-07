@@ -255,18 +255,18 @@ public class NativeECSmartRegisterActivityTest {
         assertNull(ecActivity.getFragmentManager().findFragmentByTag("dialog"));
     }
 
-    @Test
-    @Config(shadows = {ShadowECSmartRegisterControllerWithZeroClients.class})
-    public void pressingNewRegisterButtonShouldOpenECRegistrationFormActivity() {
-        ecActivity.findViewById(R.id.register_client)
-                .performClick();
+    // @Test
+    // @Config(shadows = {ShadowECSmartRegisterControllerWithZeroClients.class})
+    // public void pressingNewRegisterButtonShouldOpenECRegistrationFormActivity() {
+    //     ecActivity.findViewById(R.id.register_client)
+    //             .performClick();
 
-        ShadowIntent shadowIntent = Robolectric.shadowOf(
-                Robolectric.shadowOf(ecActivity).getNextStartedActivity());
+    //     ShadowIntent shadowIntent = Robolectric.shadowOf(
+    //             Robolectric.shadowOf(ecActivity).getNextStartedActivity());
 
-        assertEquals(FormActivity.class.getName(), shadowIntent.getComponent().getClassName());
-        assertEquals(EC_REGISTRATION, shadowIntent.getExtras().get(FORM_NAME_PARAM));
-    }
+    //     assertEquals(FormActivity.class.getName(), shadowIntent.getComponent().getClassName());
+    //     assertEquals(EC_REGISTRATION, shadowIntent.getExtras().get(FORM_NAME_PARAM));
+    // }
 
     @Test
     @Config(shadows = {ShadowECSmartRegisterControllerFor5Clients.class})
