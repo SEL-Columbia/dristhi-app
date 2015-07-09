@@ -501,6 +501,11 @@
                    data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
+            <input type="hidden" name="/ANC_Visit_EngKan/convulsions"
+                data-calculate="if(selected( /ANC_Visit_EngKan/risk_observed , 'convulsions'), 'Fits', '')"
+                data-type-xml="string"/>
+        </label>
+        <label class="calculation non-select ">
             <input type="hidden" name="/ANC_Visit_EngKan/pih"
                    data-calculate="if( /ANC_Visit_EngKan/case_pih  = '', if( /ANC_Visit_EngKan/bp_systolic  &gt;= 140 or  /ANC_Visit_EngKan/bp_diastolic  &gt;= 90, 'PIH', ''), if( /ANC_Visit_EngKan/bp_systolic  &lt; 140 and  /ANC_Visit_EngKan/bp_diastolic  &lt; 90, '', 'PIH'))"
                    data-type-xml="string"/>
@@ -526,12 +531,12 @@
         </label>
         <label class="calculation non-select ">
             <input type="hidden" name="/ANC_Visit_EngKan/is_high_risk1"
-                   data-calculate="if( /ANC_Visit_EngKan/pih  != '' or  /ANC_Visit_EngKan/jaundice  != '' or  /ANC_Visit_EngKan/is_high_risk_till_delivery  = 'yes' or  /ANC_Visit_EngKan/case_is_high_risk_till_pnc_close  = 'yes' or  /ANC_Visit_EngKan/multiple_preg  != '' or  /ANC_Visit_EngKan/malpresentation  != '' or  /ANC_Visit_EngKan/case_anaemic_status  != '', 'yes', 'no')"
+                   data-calculate="if( /ANC_Visit_EngKan/pih  != '' or  /ANC_Visit_EngKan/jaundice  != '' or /ANC_Visit_EngKan/convulsions  != '' or  /ANC_Visit_EngKan/is_high_risk_till_delivery  = 'yes' or  /ANC_Visit_EngKan/case_is_high_risk_till_pnc_close  = 'yes' or  /ANC_Visit_EngKan/multiple_preg  != '' or  /ANC_Visit_EngKan/malpresentation  != '' or  /ANC_Visit_EngKan/case_anaemic_status  != '', 'yes', 'no')"
                    data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
             <input type="hidden" name="/ANC_Visit_EngKan/high_risk_reason"
-                   data-calculate="concat( /ANC_Visit_EngKan/case_anaemic_status , ' ',  /ANC_Visit_EngKan/is_high_risk_till_delivery_reason , ' ',  /ANC_Visit_EngKan/case_is_high_risk_till_pnc_close_reason , ' ',  /ANC_Visit_EngKan/pih , ' ',  /ANC_Visit_EngKan/jaundice , ' ',  /ANC_Visit_EngKan/multiple_preg , ' ',  /ANC_Visit_EngKan/malpresentation )"
+                   data-calculate="concat( /ANC_Visit_EngKan/case_anaemic_status , ' ',  /ANC_Visit_EngKan/is_high_risk_till_delivery_reason , ' ',  /ANC_Visit_EngKan/case_is_high_risk_till_pnc_close_reason , ' ',  /ANC_Visit_EngKan/pih , ' ',  /ANC_Visit_EngKan/jaundice , ' ', /ANC_Visit_EngKan/convulsions , ' ',  /ANC_Visit_EngKan/multiple_preg , ' ',  /ANC_Visit_EngKan/malpresentation )"
                    data-type-xml="string"/>
         </label>
         <label class="calculation non-select ">
