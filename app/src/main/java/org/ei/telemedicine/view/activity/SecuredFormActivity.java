@@ -14,7 +14,7 @@ import java.text.MessageFormat;
 
 import static java.util.UUID.randomUUID;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
-import static org.ei.drishti.R.string.*;
+import static org.ei.telemedicine.R.string.*;
 import static org.ei.telemedicine.AllConstants.*;
 import static org.ei.telemedicine.util.Log.logError;
 

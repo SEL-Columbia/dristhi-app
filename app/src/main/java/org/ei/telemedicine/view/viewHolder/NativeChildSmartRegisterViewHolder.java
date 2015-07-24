@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.customControls.ClientIdDetailsView;
 import org.ei.telemedicine.view.customControls.ClientProfileView;
 

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-            android:id="@+id/remainingFormsToSyncMenuItem"
-            android:showAsAction="ifRoom"
-            android:orderInCategory="100"
-            android:visible="false"/>
+        android:id="@+id/remainingFormsToSyncMenuItem"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:visible="false" />
     <item
-            android:id="@+id/updateMenuItem"
-            android:icon="@drawable/refresh"
-            android:showAsAction="always"
-            android:orderInCategory="100"/>
+        android:id="@+id/updateMenuItem"
+        android:icon="@drawable/refresh"
+        android:orderInCategory="100"
+        android:showAsAction="always" />
     <item
-            android:id="@+id/switchLanguageMenuItem"
-            android:title="@string/str_switch_language"
-            android:icon="@drawable/ic_menu_edit"/>
+        android:id="@+id/switchLanguageMenuItem"
+        android:icon="@drawable/ic_menu_edit"
+        android:title="@string/str_switch_language" />
 </menu>

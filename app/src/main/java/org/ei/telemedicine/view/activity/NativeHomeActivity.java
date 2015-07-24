@@ -5,7 +5,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.service.PendingFormSubmissionService;

@@ -3,7 +3,7 @@ package org.ei.telemedicine.view.dialog;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.domain.FPMethod;
 import org.ei.telemedicine.view.contract.FPPrioritizationServiceModes;

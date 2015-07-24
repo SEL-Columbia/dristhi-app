@@ -22,7 +22,7 @@ import org.apache.http.impl.conn.SingleClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HTTP;
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.DristhiConfiguration;
 import org.ei.telemedicine.client.GZipEncodingHttpClient;
 import org.ei.telemedicine.domain.LoginResponse;

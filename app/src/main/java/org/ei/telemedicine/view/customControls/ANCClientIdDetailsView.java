@@ -6,7 +6,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.apache.commons.lang3.StringUtils;
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
 
 public class ANCClientIdDetailsView extends RelativeLayout {

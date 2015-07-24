@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.activity.SecuredActivity;
 import org.ei.telemedicine.view.contract.FPClients;
 import org.ei.telemedicine.view.contract.FPSmartRegisterClient;

@@ -10,7 +10,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 import org.acra.ACRA;
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.sync.SyncAfterFetchListener;
 import org.ei.telemedicine.sync.SyncProgressIndicator;
 import org.ei.telemedicine.sync.UpdateActionsTask;

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.telemedicine.domain.form.FieldOverrides;

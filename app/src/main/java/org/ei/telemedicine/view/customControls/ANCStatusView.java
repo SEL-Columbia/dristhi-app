@@ -6,11 +6,11 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.util.IntegerUtil;
 import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
 
-import static org.ei.drishti.R.color.alert_urgent_red;
+import static org.ei.telemedicine.R.color.alert_urgent_red;
 import static org.ei.telemedicine.Context.getInstance;
 
 public class ANCStatusView extends RelativeLayout {

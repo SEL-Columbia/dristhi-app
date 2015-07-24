@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
 
 public class DeliveryInfoView extends LinearLayout {

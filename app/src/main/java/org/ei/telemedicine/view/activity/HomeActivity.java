@@ -3,7 +3,7 @@ package org.ei.telemedicine.view.activity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.service.PendingFormSubmissionService;
 import org.ei.telemedicine.view.controller.HomeController;

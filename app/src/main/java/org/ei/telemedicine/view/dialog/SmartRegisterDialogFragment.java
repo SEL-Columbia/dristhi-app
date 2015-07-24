@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity;
 
 public class SmartRegisterDialogFragment extends DialogFragment {

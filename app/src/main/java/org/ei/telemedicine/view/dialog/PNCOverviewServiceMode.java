@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
 import org.ei.telemedicine.view.contract.*;

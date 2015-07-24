@@ -12,7 +12,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.*;
 
-import org.ei.drishti.R;
+
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.telemedicine.domain.ReportMonth;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;

@@ -915,7 +915,7 @@ function program2(depth0,data) {
   }
 
 function program4(depth0,data) {
-  
+
   var buffer = "", stack1;
   buffer += "Thayi No: ";
   if (stack1 = helpers.thayiCardNumber) { stack1 = stack1.call(depth0, {hash:{},data:data}); }

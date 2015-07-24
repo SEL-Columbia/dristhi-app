@@ -7,7 +7,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.customControls.*;
 
 public class NativePNCSmartRegisterViewHolder {

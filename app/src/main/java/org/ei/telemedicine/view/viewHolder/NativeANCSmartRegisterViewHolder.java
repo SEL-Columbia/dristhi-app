@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.customControls.ANCClientIdDetailsView;
 import org.ei.telemedicine.view.customControls.ANCStatusView;
 import org.ei.telemedicine.view.customControls.ClientProfileView;

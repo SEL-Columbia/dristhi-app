@@ -2,7 +2,8 @@ package org.ei.telemedicine.view.activity;
 
 import android.view.View;
 
-import org.ei.drishti.R;
+
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.telemedicine.domain.form.FieldOverrides;
 import org.ei.telemedicine.provider.PNCSmartRegisterClientsProvider;

@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.event.Listener;

@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.customControls.ClientFpMethodView;
 import org.ei.telemedicine.view.customControls.ClientGplsaChildView;
 import org.ei.telemedicine.view.customControls.ClientProfileView;

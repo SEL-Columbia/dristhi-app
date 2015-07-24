@@ -16,7 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.domain.LoginResponse;
 import org.ei.telemedicine.event.Listener;

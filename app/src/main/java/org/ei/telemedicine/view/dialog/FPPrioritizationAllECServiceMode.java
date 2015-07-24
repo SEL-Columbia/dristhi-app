@@ -2,7 +2,7 @@ package org.ei.telemedicine.view.dialog;
 
 import android.view.View;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
 import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
 import org.ei.telemedicine.view.contract.ChildSmartRegisterClient;

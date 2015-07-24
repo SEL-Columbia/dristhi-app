@@ -1,179 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="org.ei.drishti"
-          android:versionCode="33"
-          android:versionName="3.0.2"
-          android:installLocation="auto">
+    package="org.ei.telemedicine"
+    android:installLocation="auto"
+    android:versionCode="33"
+    android:versionName="3.0.2">
 
     <compatible-screens>
         <screen
-                android:screenSize="large"
-                android:screenDensity="ldpi"/>
+            android:screenDensity="ldpi"
+            android:screenSize="large" />
         <screen
-                android:screenSize="large"
-                android:screenDensity="mdpi"/>
+            android:screenDensity="mdpi"
+            android:screenSize="large" />
         <screen
-                android:screenSize="large"
-                android:screenDensity="hdpi"/>
+            android:screenDensity="hdpi"
+            android:screenSize="large" />
         <screen
-                android:screenSize="large"
-                android:screenDensity="xhdpi"/>
+            android:screenDensity="xhdpi"
+            android:screenSize="large" />
 
         <screen
-                android:screenSize="xlarge"
-                android:screenDensity="ldpi"/>
+            android:screenDensity="ldpi"
+            android:screenSize="xlarge" />
         <screen
-                android:screenSize="xlarge"
-                android:screenDensity="mdpi"/>
+            android:screenDensity="mdpi"
+            android:screenSize="xlarge" />
         <screen
-                android:screenSize="xlarge"
-                android:screenDensity="hdpi"/>
+            android:screenDensity="hdpi"
+            android:screenSize="xlarge" />
         <screen
-                android:screenSize="xlarge"
-                android:screenDensity="xhdpi"/>
+            android:screenDensity="xhdpi"
+            android:screenSize="xlarge" />
 
         <!-- Special case for Nexus 7 -->
         <screen
-                android:screenSize="large"
-                android:screenDensity="213"/>
+            android:screenDensity="213"
+            android:screenSize="large" />
     </compatible-screens>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature
-            android:name="android.hardware.camera"
-            android:required="false"/>
+        android:name="android.hardware.camera"
+        android:required="false" />
     <uses-sdk
-            android:minSdkVersion="16"
-            android:targetSdkVersion="16"/>
+        android:minSdkVersion="16"
+        android:targetSdkVersion="16" />
 
     <application
-            android:label="@string/app_name"
-            android:icon="@drawable/ic_dristhi_logo"
-            android:clearTaskOnLaunch="true"
-            android:name="org.ei.telemedicine.view.activity.DrishtiApplication"
-            android:largeHeap="true"
-            android:debuggable="true" >
+        android:name="org.ei.telemedicine.view.activity.DrishtiApplication"
+        android:clearTaskOnLaunch="true"
+        android:icon="@drawable/opensrp_logo"
+        android:label="@string/app_name"
+        android:largeHeap="true">
         <activity
-                android:name="org.ei.telemedicine.view.activity.LoginActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar"
-                android:clearTaskOnLaunch="true"
-                android:windowSoftInputMode="adjustResize|stateHidden"
-                android:screenOrientation="landscape">
+            android:name=".view.activity.LoginActivity"
+            android:clearTaskOnLaunch="true"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-                android:name="org.ei.telemedicine.view.activity.HomeActivity"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.HomeActivity"
+            android:screenOrientation="landscape" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.ReportsActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.ReportsActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.VideosActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.VideosActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.ReportIndicatorListViewActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.ReportIndicatorListViewActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.ReportIndicatorDetailActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.ReportIndicatorDetailActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.ReportIndicatorCaseListActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.ReportIndicatorCaseListActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.EligibleCoupleDetailActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.EligibleCoupleDetailActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.ANCDetailActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.ANCDetailActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.PNCDetailActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.PNCDetailActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.ChildDetailActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.ChildDetailActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.CameraLaunchActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.CameraLaunchActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.ECSmartRegisterActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.ECSmartRegisterActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.FPSmartRegisterActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.FPSmartRegisterActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.ANCSmartRegisterActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.ANCSmartRegisterActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.PNCSmartRegisterActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.PNCSmartRegisterActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.ChildSmartRegisterActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.ChildSmartRegisterActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.FormActivity"
-                android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
-                android:screenOrientation="portrait"/>
+            android:name=".view.activity.FormActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.MicroFormActivity"
-                android:theme="@android:style/Theme.Holo.Dialog.NoActionBar"
-                android:screenOrientation="landscape"/>
+            android:name=".view.activity.MicroFormActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" />
         <activity
-                android:name="org.ei.telemedicine.view.activity.NativeECSmartRegisterActivity"
-                android:screenOrientation="landscape"
-                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
+            android:name=".view.activity.NativeECSmartRegisterActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
 
         <activity
-                android:name="org.ei.telemedicine.view.activity.NativeChildSmartRegisterActivity"
-                android:screenOrientation="landscape"
-                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
+            android:name=".view.activity.NativeChildSmartRegisterActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
 
         <activity
-                android:name="org.ei.telemedicine.view.activity.NativeFPSmartRegisterActivity"
-                android:screenOrientation="landscape"
-                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
+            android:name=".view.activity.NativeFPSmartRegisterActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
 
         <activity
-                android:name="org.ei.telemedicine.view.activity.NativeANCSmartRegisterActivity"
-                android:screenOrientation="landscape"
-                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
+            android:name=".view.activity.NativeANCSmartRegisterActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
 
 
         <activity
-                android:name="org.ei.telemedicine.view.activity.NativePNCSmartRegisterActivity"
-                android:screenOrientation="landscape"
-                android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
+            android:name=".view.activity.NativePNCSmartRegisterActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".view.activity.NativeHomeActivity"
+            android:screenOrientation="landscape"></activity>
 
 
-        <activity android:name="org.ei.telemedicine.view.activity.NativeHomeActivity"
-                  android:screenOrientation="landscape">
-        </activity>
-
-        <receiver android:name="org.ei.telemedicine.view.receiver.SyncBroadcastReceiver"/>
+        <receiver android:name="org.ei.telemedicine.view.receiver.SyncBroadcastReceiver" />
         <receiver android:name="org.ei.telemedicine.view.receiver.ConnectivityChangeReceiver">
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
     </application>
+
 </manifest>

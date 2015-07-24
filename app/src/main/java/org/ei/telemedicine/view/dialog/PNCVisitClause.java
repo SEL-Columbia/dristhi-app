@@ -1,6 +1,6 @@
 package org.ei.telemedicine.view.dialog;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.view.contract.ServiceProvidedDTO;
 import org.joda.time.LocalDate;

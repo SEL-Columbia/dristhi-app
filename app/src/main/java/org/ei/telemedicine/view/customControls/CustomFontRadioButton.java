@@ -6,7 +6,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.RadioButton;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.util.Cache;
 import org.ei.telemedicine.util.CacheableData;
 

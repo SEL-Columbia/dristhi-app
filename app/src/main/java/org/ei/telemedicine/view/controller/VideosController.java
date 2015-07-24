@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.util.Log;
 
 import java.text.MessageFormat;

@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.domain.ANCServiceType;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;

@@ -2,7 +2,7 @@ package org.ei.telemedicine.view;
 
 import android.content.res.Resources;
 import com.google.gson.Gson;
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 
 import java.util.HashMap;
 import java.util.Map;

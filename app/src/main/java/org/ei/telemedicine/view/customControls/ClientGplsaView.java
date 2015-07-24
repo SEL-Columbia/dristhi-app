@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.ei.drishti.R;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.contract.ECSmartRegisterClient;
 
 public class ClientGplsaView extends RelativeLayout {

@@ -3,7 +3,7 @@ package org.ei.telemedicine.domain;
 public enum LoginResponse {
     SUCCESS("Login successful."),
     NO_INTERNET_CONNECTIVITY("No internet connection. Please ensure data connectivity"),
-    UNKNOWN_RESPONSE("Dristhi login failed. Try later"),
+    UNKNOWN_RESPONSE("OpenSRP login failed. Try later"),
     UNAUTHORIZED("Please check the credentials");
 
     private String payload;
