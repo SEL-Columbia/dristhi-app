@@ -3,7 +3,6 @@ package org.ei.telemedicine.doctor;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -18,8 +17,6 @@ import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -28,10 +25,7 @@ import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HTTP;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
@@ -41,8 +35,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -694,7 +686,7 @@ public class DoctorPlanofCareActivity extends Activity {
                     }
 
                     String encodedParams = URLEncodedUtils.format(_params, "utf-8");
-                    String url = AllConstants.POC_DATA_SAVE_URL_PATH + encodedParams;
+                    String url = context.configuration().dristhiDoctorBaseURL() + AllConstants.POC_DATA_SAVE_URL_PATH + encodedParams;
                     Log.e("Url", url);
                     result = context.userService().gettingFromRemoteURL(url);
                     Log.e(TAG, "Save POC Info " + result);

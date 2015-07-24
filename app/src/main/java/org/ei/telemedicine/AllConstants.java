@@ -1,8 +1,6 @@
 package org.ei.telemedicine;
 
 public class AllConstants {
-    public static final String DOC_BASE_URL = "http://202.153.34.169:8001/";
-    //    public static final String DOC_BASE_URL = "http://192.168.90.160:8000/";
     public static final String VIEW_PLAN_OF_CARE = "viewPlanOfCare";
     public static final String VIEW_PNC_PLAN_OF_CARE = "viewPNCPlanOfCare";
     public static final String VIEW_CHILD_PLAN_OF_CARE = "viewCHILDPlanOfCare";
@@ -35,10 +33,10 @@ public class AllConstants {
     public static final String CHILD_TYPE = "child";
     public static final String REALM = "Dristhi";
     public static final String VILLAGES_USER_URL_PATH = "/anm-villages?anm-id=";
-    //    public static final String DRUG_INFO_URL_PATH = "http://192.168.90.160:8000/druginfo/";
-    public static final String DRUG_INFO_URL_PATH = DOC_BASE_URL + "druginfo/";
 
-    public static final String POC_DATA_SAVE_URL_PATH = DOC_BASE_URL + "pocupdate/?";
+    public static final String DRUG_INFO_URL_PATH = "/druginfo/";
+
+    public static final String POC_DATA_SAVE_URL_PATH = "/pocupdate/?";
 
 
     public static final String DRUG_INFO_RESULT = "drugsResultData";

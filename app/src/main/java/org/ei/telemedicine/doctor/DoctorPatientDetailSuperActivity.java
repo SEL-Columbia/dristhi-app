@@ -113,7 +113,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity {
             @Override
             protected String doInBackground(Void... params) {
                 Context context = Context.getInstance();
-                String result = context.userService().gettingFromRemoteURL(AllConstants.DRUG_INFO_URL_PATH);
+                String result = context.userService().gettingFromRemoteURL(context.configuration().dristhiDoctorBaseURL() + AllConstants.DRUG_INFO_URL_PATH);
                 return result;
             }
 
