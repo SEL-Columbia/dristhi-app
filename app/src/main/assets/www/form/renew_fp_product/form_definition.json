@@ -9,6 +9,16 @@
                 "shouldLoadValue": true
             },
             {
+                "shouldLoadValue": true,
+                "bind": "/model/instance/Family_Planning_Refill_Method_EngKan/ec_num",
+                "source": "eligible_couple.ecNumber"
+            },
+            {
+                "shouldLoadValue": true,
+                "bind": "/model/instance/Family_Planning_Refill_Method_EngKan/woman_name",
+                "source": "eligible_couple.wifeName"
+            },
+            {
                 "name": "currentMethod",
                 "shouldLoadValue": true,
                 "bind": "/model/instance/Family_Planning_Refill_Method_EngKan/case_familyplanning_method"

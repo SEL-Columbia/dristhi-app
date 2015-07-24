@@ -4,6 +4,8 @@
             <formhub>
                 <uuid/>
             </formhub>
+            <woman_name/>
+            <ec_num/>
             <today/>
             <case_familyplanning_method/>
             <complication_date/>

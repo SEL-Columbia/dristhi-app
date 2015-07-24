@@ -6,6 +6,7 @@
             </formhub>
             <today/>
             <tt_dose/>
+            <anc_reg_num/>
             <ttbooster_injection_place/>
             <ttbooster_date/>
             <meta>

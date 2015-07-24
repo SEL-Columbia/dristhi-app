@@ -4,6 +4,7 @@
             <formhub>
                 <uuid/>
             </formhub>
+            <anc_reg_num/>
             <today/>
             <tt_dose/>
             <tt1_injection_place/>

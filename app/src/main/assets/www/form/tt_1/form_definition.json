@@ -9,6 +9,12 @@
                 "shouldLoadValue": true
             },
             {
+                "name": "ancNumber",
+                "shouldLoadValue": true,
+                "bind": "/model/instance/TT1_EngKan/anc_reg_num",
+                "source": "mother.ancNumber"
+            },
+            {
                 "name": "ttDose",
                 "bind": "/model/instance/TT1_EngKan/tt_dose"
             },

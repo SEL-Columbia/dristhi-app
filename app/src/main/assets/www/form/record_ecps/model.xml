@@ -5,6 +5,8 @@
                 <uuid/>
             </formhub>
             <today/>
+            <ec_num/>
+            <woman_name/>
             <ecp_given/>
             <ecp_date/>
             <ecp_message/>

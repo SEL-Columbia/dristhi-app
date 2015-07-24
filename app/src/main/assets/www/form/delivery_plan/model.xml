@@ -5,6 +5,7 @@
                 <uuid/>
             </formhub>
             <today/>
+            <anc_reg_num/>
             <entity_phone_no/>
             <entity_is_high_risk/>
             <entity_high_risk_reason/>

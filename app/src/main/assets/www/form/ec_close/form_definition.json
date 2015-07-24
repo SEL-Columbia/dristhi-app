@@ -9,6 +9,16 @@
                 "shouldLoadValue": true
             },
             {
+                "shouldLoadValue": true,
+                "bind": "/model/instance/EC_Close_EngKan/case_ec_number",
+                "source": "eligible_couple.ecNumber"
+            },
+            {
+                "shouldLoadValue": true,
+                "bind": "/model/instance/EC_Close_EngKan/case_woman_name",
+                "source": "eligible_couple.wifeName"
+            },
+            {
                 "name": "closeReason",
                 "bind": "/model/instance/EC_Close_EngKan/close_reason"
             },

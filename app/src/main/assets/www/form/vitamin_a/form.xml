@@ -5,8 +5,7 @@
 
 
     <label class="question or-appearance-minimal ">
-        <span lang="" class="question-label active">Which dose of Vitamin A was given? &#xCAF;&#xCBE;&#xCB5; &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD;
-            '&#xC8E;' &#xCA1;&#xCCB;&#xCB8; &#xC85;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
+        <span lang="" class="question-label active">Which dose of Vitamin A was given? 
         </span>
         <span class="required">*</span>
         <select name="/Child_Vitamin_A_EngKan/vit_a_dose" data-name="/Child_Vitamin_A_EngKan/vit_a_dose"
@@ -28,34 +27,30 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Where was Vitamin A given? &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD;
-                    '&#xC8E;' &#xC8E;&#xCB2;&#xCCD;&#xCB2;&#xCBF; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
-                </span>
+                <span lang="" class="question-label active">Where was Vitamin A given? </span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
                     <input autocomplete="off" type="radio" name="/Child_Vitamin_A_EngKan/vit_a_place"
                            data-name="/Child_Vitamin_A_EngKan/vit_a_place" value="sub_center" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">My Sub Center &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xC89;&#xCAA;&#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                    <span lang="" class="option-label active">My Sub Center </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/Child_Vitamin_A_EngKan/vit_a_place"
                            data-name="/Child_Vitamin_A_EngKan/vit_a_place" value="phc" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">My PHC &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
-                        &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                    <span lang="" class="option-label active">My PHC </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/Child_Vitamin_A_EngKan/vit_a_place"
                            data-name="/Child_Vitamin_A_EngKan/vit_a_place" value="elsewhere" data-type-xml="select1"/>
                     <span lang="" class="option-label active">Elsewhere
-                        &#xCAC;&#xCC7;&#xCB0;&#xCC6;&#xCA1;&#xCC6;</span>
+                        </span>
                 </label>
             </div>
         </fieldset>
     </fieldset>
     <label class="question non-select ">
-        <span lang="" class="question-label active">Vitamin A date? &#xCB5;&#xCBF;&#xC9F;&#xCAE;&#xCBF;&#xCA8;&#xCCD; '&#xC8E;'
-            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        <span lang="" class="question-label active">Vitamin A date? 
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Child_Vitamin_A_EngKan/vit_a_date" required="required"

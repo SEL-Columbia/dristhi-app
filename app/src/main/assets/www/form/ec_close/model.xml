@@ -5,6 +5,10 @@
                 <uuid/>
             </formhub>
             <today/>
+
+            <case_ec_number/>
+            <case_woman_name/>
+
             <close_reason/>
             <close_reason_other/>
             <sterilization_death/>

@@ -3,10 +3,13 @@
     <section class="form-logo"></section>
     <h3 id="form-title">Hb Test</h3>
 
+    <label class="question non-select ">
+        <span lang="" class="question-label active">ANC Number: </span>
+        <input autocomplete="off" type="text" name="/Hb_Test_EngKan/anc_number" data-type-xml="text" disabled="disabled"/>
+    </label>
 
     <label class="question non-select ">
-        <span lang="" class="question-label active">Hb test date? &#xCB9;&#xCC6;&#xC9A;&#xCCD;.&#xCAC;&#xCBF; &#xCAA;&#xCB0;&#xCBF;&#xCD5;&#xC95;&#xCCD;&#xCB7;&#xCBE;
-            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
+        <span lang="" class="question-label active">Hb test date? 
         </span>
         <span class="required">*</span>
         <input type="date" name="/Hb_Test_EngKan/hb_test_date" required="required"
@@ -15,8 +18,7 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Hb test place? &#xCB9;&#xCC6;&#xC9A;&#xCCD;.&#xCAC;&#xCBF;
-                    &#xCAA;&#xCB0;&#xCC0;&#xC95;&#xCCD;&#xCB7;&#xCC6;&#xCAF; &#xCB8;&#xCCD;&#xCA5;&#xCB3;?
+                <span lang="" class="question-label active">Hb test place? 
                 </span>
                 <span class="required">*</span>
             </legend>
@@ -24,26 +26,24 @@
                 <label class="">
                     <input type="radio" name="/Hb_Test_EngKan/hb_test_place" data-name="/Hb_Test_EngKan/hb_test_place"
                            value="sub_center" required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">My Sub Center &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xC89;&#xCAA;&#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                    <span lang="" class="option-label active">My Sub Center </span>
                 </label>
                 <label class="">
                     <input type="radio" name="/Hb_Test_EngKan/hb_test_place" data-name="/Hb_Test_EngKan/hb_test_place"
                            value="phc" required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">My PHC &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
-                        &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                    <span lang="" class="option-label active">My PHC </span>
                 </label>
                 <label class="">
                     <input type="radio" name="/Hb_Test_EngKan/hb_test_place" data-name="/Hb_Test_EngKan/hb_test_place"
                            value="elsewhere" required="required" data-type-xml="select1"/>
                     <span lang="" class="option-label active">Elsewhere
-                        &#xCAC;&#xCC7;&#xCB0;&#xCC6;&#xCA1;&#xCC6;</span>
+                        </span>
                 </label>
             </div>
         </fieldset>
     </fieldset>
     <label class="question non-select ">
-        <span lang="" class="question-label active">Hb level (g/dl) &#xCB9;&#xCC6;&#xC9A;&#xCCD;.&#xCAC;&#xCBF; &#xCAE;&#xC9F;&#xCCD;&#xC9F;
-            (&#xC9C;&#xCBF;/&#xCA1;&#xCBF;&#xC8E;&#xCB2;&#xCCD;)
+        <span lang="" class="question-label active">Hb level (g/dl) 
         </span>
         <span class="required">*</span>
         <input type="number" name="/Hb_Test_EngKan/hb_level" required="required" data-constraint=".&gt;0"
@@ -51,11 +51,7 @@
     </label>
     <label class="note or-branch pre-init non-select ">
         <span lang="" class="question-label active">Woman is anaemic! Start her on therapeutic dose of IFA (2 tablets
-            per day). &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCB0;&#xC95;&#xCCD;&#xCA4; &#xCB9;&#xCC0;&#xCA8;&#xCA4;&#xCC6;!
-            &#xC86;&#xC95;&#xCC6;&#xC97;&#xCC6; &#xC95;&#xCAC;&#xCCD;&#xCAC;&#xCBF;&#xCA3;&#xCBE;&#xC82;&#xCB6;&#xCA6;
-            &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xCAF;&#xCBE; &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xC95;&#xCBE;&#xCB0;&#xC95;
-            &#xCA1;&#xCCB;&#xCB8;&#xCCD; &#xC85;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF;
-            (&#xCA6;&#xCBF;&#xCA8;&#xC95;&#xCCD;&#xC95;&#xCC6; 2 &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xC97;&#xCB3;&#xC82;&#xCA4;&#xCC6;).
+            per day). 
         </span>
         <input type="text" name="/Hb_Test_EngKan/anaemic_message"
                data-relevant=" /Hb_Test_EngKan/hb_level  &gt;= 7 and  /Hb_Test_EngKan/hb_level  &lt; 11"
@@ -63,21 +59,13 @@
     </label>
     <label class="note or-branch pre-init non-select ">
         <span lang="" class="question-label active">Woman is severely anaemic! Start her on therapeutic dose of IFA (2
-            tablets per day) and refer immediately to the MO! &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF; &#xCA4;&#xCC0;&#xCB5;&#xCCD;&#xCB0;
-            &#xCB0;&#xC95;&#xCCD;&#xCA4; &#xCB9;&#xCC0;&#xCA8;&#xCA4;&#xCC6;! &#xC86;&#xC95;&#xCC6;&#xC97;&#xCC6;
-            &#xC95;&#xCAC;&#xCCD;&#xCAC;&#xCBF;&#xCA3;&#xCBE;&#xC82;&#xCB6;&#xCA6; &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xCAF;&#xCBE;
-            &#xC9A;&#xCBF;&#xC95;&#xCBF;&#xCA4;&#xCCD;&#xCB8;&#xC95;&#xCBE;&#xCB0;&#xC95; &#xCA1;&#xCCB;&#xCB8;&#xCCD;
-            &#xC85;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF; (&#xCA6;&#xCBF;&#xCA8;&#xC95;&#xCCD;&#xC95;&#xCC6;
-            2 &#xCAE;&#xCBE;&#xCA4;&#xCCD;&#xCB0;&#xCC6;&#xC97;&#xCB3;&#xC82;&#xCA4;&#xCC6;) &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1;
-            &#xCA4;&#xC95;&#xCCD;&#xCB7;&#xCA3; &#xCB5;&#xCC8;&#xCA7;&#xCCD;&#xCAF;&#xCBE;&#xCA7;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCBF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
-            &#xCB0;&#xCC6;&#xCAB;&#xCB0;&#xCCD; &#xCAE;&#xCBE;&#xCA1;&#xCBF;!
+            tablets per day) and refer immediately to the MO! 
         </span>
         <input type="text" name="/Hb_Test_EngKan/severely_anaemic_message"
                data-relevant=" /Hb_Test_EngKan/hb_level  &lt; 7" data-type-xml="string" readonly="readonly"/>
     </label>
     <label class="note or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Woman is at risk because of, &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xC97;&#xCC6;
-            &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6; &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
+        <span lang="" class="question-label active">Woman is at risk because of, 
             <span class="or-output" data-value=" /Hb_Test_EngKan/high_risk_reason ">
             </span>
         </span>
@@ -88,8 +76,7 @@
         <fieldset>
             <legend>
                 <span lang="" class="question-label active">Do you want to mark as HRP?
-                    &#xCA8;&#xCC0;&#xCB5;&#xCC1; HRP &#xC8E;&#xC82;&#xCA6;&#xCC1; &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCC1;
-                    &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCBF;&#xCB0;&#xCBE;?
+                    
                 </span>
                 <span class="required">*</span>
             </legend>
@@ -97,12 +84,12 @@
                 <label class="">
                     <input type="radio" name="/Hb_Test_EngKan/is_high_risk" data-name="/Hb_Test_EngKan/is_high_risk"
                            value="yes" required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
+                    <span lang="" class="option-label active">Yes </span>
                 </label>
                 <label class="">
                     <input type="radio" name="/Hb_Test_EngKan/is_high_risk" data-name="/Hb_Test_EngKan/is_high_risk"
                            value="no" required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+                    <span lang="" class="option-label active">No </span>
                 </label>
             </div>
         </fieldset>

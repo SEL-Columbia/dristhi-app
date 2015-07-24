@@ -5,6 +5,7 @@
                 <uuid/>
             </formhub>
             <today/>
+            <anc_reg_num/>
             <close_reason/>
             <case_num_abortions/>
             <num_abortions/>

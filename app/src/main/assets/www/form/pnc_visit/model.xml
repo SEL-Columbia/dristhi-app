@@ -5,6 +5,7 @@
                 <uuid/>
             </formhub>
             <today/>
+            <pnc_num/>
             <case_woman_name/>
             <woman_name/>
             <case_delivery_outcome/>
@@ -15,6 +16,7 @@
             <case_type_delivery/>
             <case_delivery_date/>
             <discharge_date/>
+
             <pnc_visit_date/>
             <pnc_visit_day/>
             <pnc_visit_place/>
@@ -32,8 +34,13 @@
                 <pnc_mother_has_fever/>
                 <pulse_rate/>
                 <pnc_mother_rapid_pulse_rate/>
-                <bp_systolic/>
-                <bp_diastolic/>
+                <bp_systolic />
+                <bp_diastolic />
+                <temperature />
+                <is_consult_doctor />
+                <poc_info/>
+                <fetal_data/>
+                <blood_glucose_data/>
                 <pnc_mother_low_blood_pressure/>
                 <hb_level/>
                 <anaemic_message/>
@@ -54,6 +61,8 @@
                 <high_risk_reason/>
                 <high_risk_note_mother/>
                 <is_high_risk/>
+                <is_consult_doctor_no_reason />
+                <reason_for_no />
             </pnc_mother_group>
             <pnc_child_repeat template="">
                 <pnc_child_group_message/>

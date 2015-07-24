@@ -7,6 +7,11 @@
             {
                 "name": "id",
                 "shouldLoadValue": true
+            },{
+                "name": "ancNumber",
+                "shouldLoadValue": true,
+                "bind": "/model/instance/TTBooster_EngKan/anc_reg_num",
+                "source": "mother.ancNumber"
             },
             {
                 "name": "ttDose",

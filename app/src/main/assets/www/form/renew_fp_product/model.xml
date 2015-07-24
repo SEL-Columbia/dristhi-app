@@ -5,6 +5,8 @@
                 <uuid/>
             </formhub>
             <today/>
+            <ec_num/>
+            <woman_name/>
             <case_familyplanning_method/>
             <fp_renew_method_visit_date/>
             <able_to_renew_method/>

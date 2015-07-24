@@ -5,6 +5,7 @@
                 <uuid/>
             </formhub>
             <today/>
+            <pnc_num/>
             <pnc_close_reason/>
             <death_mother_group>
                 <woman_survived/>

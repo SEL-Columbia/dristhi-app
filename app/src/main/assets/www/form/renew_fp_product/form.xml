@@ -3,12 +3,19 @@
     <section class="form-logo"></section>
     <h3 id="form-title">Refill FP Product</h3>
 
+    <label class="question non-select ">
+        <span lang="" class="question-label active">EC Number: </span>
+        <input autocomplete="off" type="text" name="/Family_Planning_Refill_Method_EngKan/ec_num" data-type-xml="int" disabled="disabled"/>
+    </label>
+
 
     <label class="question non-select ">
-        <span lang="" class="question-label active">Refill FP method visit date? &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
-            &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF; &#xCAE;&#xCB0;&#xCC1; &#xCAA;&#xCC2;&#xCB0;&#xCC8;&#xC95;&#xCC6;
-            &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCA6; &#xCAD;&#xCC7;&#xC9F;&#xCBF;&#xCAF; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
-        </span>
+        <span lang="" class="question-label active">Women Name: </span>
+        <input autocomplete="off" type="text" name="/Family_Planning_Refill_Method_EngKan/woman_name" data-type-xml="string" disabled="disabled"/>
+    </label>
+
+    <label class="question non-select ">
+        <span lang="" class="question-label active">Refill FP method visit date? </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/Family_Planning_Refill_Method_EngKan/fp_renew_method_visit_date"
                required="required" data-constraint=".&lt;= /Family_Planning_Refill_Method_EngKan/today "
@@ -17,9 +24,7 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Did you renew method? &#xCA8;&#xCC0;&#xCB5;&#xCC1; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                    &#xCA8;&#xCB5;&#xCC0;&#xC95;&#xCB0;&#xCBF;&#xCB8;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCC0;&#xCB0;&#xCBE;?
-                </span>
+                <span lang="" class="question-label active">Did you renew method? </span>
                 <span class="required">*</span>
             </legend>
             <div class="option-wrapper">
@@ -28,14 +33,14 @@
                            name="/Family_Planning_Refill_Method_EngKan/able_to_renew_method"
                            data-name="/Family_Planning_Refill_Method_EngKan/able_to_renew_method" value="yes"
                            required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
+                    <span lang="" class="option-label active">Yes </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio"
                            name="/Family_Planning_Refill_Method_EngKan/able_to_renew_method"
                            data-name="/Family_Planning_Refill_Method_EngKan/able_to_renew_method" value="no"
                            required="required" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+                    <span lang="" class="option-label active">No </span>
                 </label>
             </div>
         </fieldset>
@@ -43,9 +48,7 @@
     <section class="or-group-data or-branch pre-init " name="/Family_Planning_Refill_Method_EngKan/renewed_method_group"
              data-relevant=" /Family_Planning_Refill_Method_EngKan/able_to_renew_method  = 'yes'">
         <label class="question or-branch pre-init non-select ">
-            <span lang="" class="question-label active">DMPA / Injectable date? &#xCA1;&#xCBF;&#xC82;&#xCAA;&#xCBE; /
-                &#xC9A;&#xCC1;&#xC9A;&#xCCD;&#xC9A;&#xCC1; &#xCAE;&#xCA6;&#xCCD;&#xCA6;&#xCC1; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
-            </span>
+            <span lang="" class="question-label active">DMPA / Injectable date? </span>
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/injectable_date" required="required"
@@ -54,9 +57,7 @@
                    data-type-xml="date"/>
         </label>
         <label class="question or-branch pre-init non-select ">
-            <span lang="" class="question-label active">Number of condoms given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1;
-                &#xCA8;&#xCBF;&#xCB0;&#xCCB;&#xCA6;&#xCCD; &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
-            </span>
+            <span lang="" class="question-label active">Number of condoms given? </span>
             <span class="required">*</span>
             <input autocomplete="off" type="number"
                    name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/num_condoms" required="required"
@@ -65,10 +66,7 @@
                    data-type-xml="int"/>
         </label>
         <label class="question or-branch pre-init non-select ">
-            <span lang="" class="question-label active">Number of OCP strips given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1;
-                &#xC92;&#xCB8;&#xCBF;&#xCAA;&#xCBF; &#xCB8;&#xCCD;&#xC9F;&#xCCD;&#xCB0;&#xCBF;&#xCAA;&#xCCD;&#xCB8;&#xCCD;
-                &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
-            </span>
+            <span lang="" class="question-label active">Number of OCP strips given? </span>
             <span class="required">*</span>
             <input autocomplete="off" type="number"
                    name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/num_ocp_strips" required="required"
@@ -77,10 +75,7 @@
                    data-type-xml="int"/>
         </label>
         <label class="question or-branch pre-init non-select ">
-            <span lang="" class="question-label active">Number of Centchroman strips given? &#xC8E;&#xCB7;&#xCCD;&#xC9F;&#xCC1;
-                &#xCB8;&#xCC6;&#xC82;&#xC9F;&#xCCB;&#xC95;&#xCCD;&#xCB0;&#xCCB;&#xCAE;&#xCCD; &#xCB8;&#xCCD;&#xC9F;&#xCCD;&#xCB0;&#xCBF;&#xCAA;&#xCCD;&#xCB8;&#xCCD;
-                &#xCA8;&#xCC0;&#xCA1;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCA4;&#xCC1;?
-            </span>
+            <span lang="" class="question-label active">Number of Centchroman strips given? </span>
             <span class="required">*</span>
             <input autocomplete="off" type="number"
                    name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/num_centchroman_pills"
@@ -89,10 +84,7 @@
                    data-type-xml="int"/>
         </label>
         <label class="question or-branch pre-init non-select ">
-            <span lang="" class="question-label active">Date the couple will start new supply? &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1;
-                &#xCB9;&#xCCA;&#xCB8; &#xCB8;&#xCB0;&#xCAC;&#xCB0;&#xCBE;&#xC9C;&#xCC1; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCB0;&#xC82;&#xCAD;&#xCBF;&#xCB8;&#xCBF;&#xCA6;
-                &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;?
-            </span>
+            <span lang="" class="question-label active">Date the couple will start new supply? </span>
             <span class="required">*</span>
             <input autocomplete="off" type="date"
                    name="/Family_Planning_Refill_Method_EngKan/renewed_method_group/refill_date1" required="required"
@@ -108,10 +100,7 @@
         <fieldset class="question ">
             <fieldset>
                 <legend>
-                    <span lang="" class="question-label active">Why could you not renew method? &#xCA8;&#xCBF;&#xCAE;&#xC97;&#xCC6;
-                        &#xC8F;&#xC95;&#xCC6; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                        &#xCA8;&#xCB5;&#xCC0;&#xC95;&#xCB0;&#xCBF;&#xCB8;&#xCBF;&#xCB2;&#xCC1; &#xCB8;&#xCBE;&#xCA7;&#xCCD;&#xCAF;&#xCB5;&#xCBE;&#xC97;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCB2;&#xCCD;&#xCB2;?
-                    </span>
+                    <span lang="" class="question-label active">Why could you not renew method? </span>
                 </legend>
                 <div class="option-wrapper">
                     <label class="">
@@ -119,38 +108,34 @@
                                name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
                                data-name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
                                value="stock_out" data-type-xml="select1"/>
-                        <span lang="" class="option-label active">Stock out &#xCB8;&#xCCD;&#xC9F;&#xCBE;&#xC95;&#xCCD;
-                            &#xC94;&#xC9F;&#xCCD;</span>
+                        <span lang="" class="option-label active">Stock out </span>
                     </label>
                     <label class="">
                         <input autocomplete="off" type="radio"
                                name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
                                data-name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
                                value="could_not_locate_couple" data-type-xml="select1"/>
-                        <span lang="" class="option-label active">Could not locate couple &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                            &#xCAA;&#xCA4;&#xCCD;&#xCA4;&#xCC6;&#xCAE;&#xCBE;&#xCA1;&#xCB2;&#xCBE;&#xC97;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCB2;&#xCCD;&#xCB2;</span>
+                        <span lang="" class="option-label active">Could not locate couple </span>
                     </label>
                     <label class="">
                         <input autocomplete="off" type="radio"
                                name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
                                data-name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
                                value="couple_refused_method" data-type-xml="select1"/>
-                        <span lang="" class="option-label active">Couple didn't want method renewal &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCBF;&#xC97;&#xCC6;
-                            &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCA6; &#xCA8;&#xCB5;&#xCC0;&#xC95;&#xCB0;&#xCA3;
-                            &#xCAC;&#xCC7;&#xC95;&#xCBE;&#xC97;&#xCBF;&#xCB2;&#xCCD;&#xCB2;</span>
+                        <span lang="" class="option-label active">Couple didn't want method renewal </span>
                     </label>
                     <label class="">
                         <input autocomplete="off" type="radio"
                                name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
                                data-name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason"
                                value="others" data-type-xml="select1"/>
-                        <span lang="" class="option-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
+                        <span lang="" class="option-label active">Others </span>
                     </label>
                 </div>
             </fieldset>
         </fieldset>
         <label class="question or-branch pre-init non-select ">
-            <span lang="" class="question-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
+            <span lang="" class="question-label active">Others :</span>
             <input autocomplete="off" type="text"
                    name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason_other"
                    data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'others'"
@@ -159,9 +144,7 @@
         <fieldset class="question or-branch pre-init ">
             <fieldset>
                 <legend>
-                    <span lang="" class="question-label active">Why did couple not want renewal? &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1;
-                        &#xC8F;&#xC95;&#xCC6; &#xCA8;&#xCB5;&#xCC0;&#xC95;&#xCB0;&#xCBF;&#xCB8;&#xCB2;&#xCC1; &#xCAC;&#xCAF;&#xCB8;&#xCB2;&#xCBF;&#xCB2;&#xCCD;&#xCB2;?
-                    </span>
+                    <span lang="" class="question-label active">Why did couple not want renewal? </span>
                 </legend>
                 <div class="option-wrapper">
                     <label class="">
@@ -170,8 +153,7 @@
                                value="couple_wants_pregnancy"
                                data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                                data-type-xml="select"/>
-                        <span lang="" class="option-label active">Couple wants to become pregnant &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1;
-                            &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBF;&#xCA3;&#xCBF;&#xCAF;&#xCBE;&#xC97;&#xCB2;&#xCC1; &#xCAC;&#xCAF;&#xCB8;&#xCBF;&#xCA6;&#xCB0;&#xCC1;</span>
+                        <span lang="" class="option-label active">Couple wants to become pregnant </span>
                     </label>
                     <label class="">
                         <input autocomplete="off" type="checkbox"
@@ -180,9 +162,7 @@
                                data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                                data-type-xml="select"/>
                         <span lang="" class="option-label active">Woman / husband was having side-effects from the
-                            method &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6; / &#xCAA;&#xCA4;&#xCBF;&#xCAF;&#xCC1; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCA6;&#xCBF;&#xC82;&#xCA6;
-                            &#xC85;&#xCA1;&#xCCD;&#xCA1;&#xCAA;&#xCB0;&#xCBF;&#xCA3;&#xCBE;&#xCAE;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                            &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCB0;&#xCC1;&#xCB5;&#xCB0;&#xCC1;</span>
+                            method </span>
                     </label>
                     <label class="">
                         <input autocomplete="off" type="checkbox"
@@ -190,10 +170,7 @@
                                value="husband_objects_to_fp"
                                data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                                data-type-xml="select"/>
-                        <span lang="" class="option-label active">Husband does not want wife to use family planning
-                            &#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCC6; &#xCAA;&#xCA4;&#xCCD;&#xCA8;&#xCBF;&#xCAF;&#xCC1;
-                            &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                            &#xCAC;&#xCB3;&#xCB8;&#xCB2;&#xCC1; &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCBF;&#xCB2;&#xCCD;&#xCB2;</span>
+                        <span lang="" class="option-label active">Husband does not want wife to use family planning </span>
                     </label>
                     <label class="">
                         <input autocomplete="off" type="checkbox"
@@ -201,11 +178,8 @@
                                value="family_members_object_to_fp"
                                data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                                data-type-xml="select"/>
-                        <span lang="" class="option-label active">Family members do not want couple to use family
-                            planning &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCB8;&#xCA6;&#xCB8;&#xCCD;&#xCAF;&#xCB0;&#xCBF;&#xC97;&#xCC6;
-                            &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
-                            &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCAC;&#xCB3;&#xCB8;&#xCB2;&#xCC1;
-                            &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCBF;&#xCB2;&#xCCD;&#xCB2;</span>
+                        <span lang="" class="option-label active">Family members do not want couple to use family 
+                            planning </span>
                     </label>
                     <label class="">
                         <input autocomplete="off" type="checkbox"
@@ -213,7 +187,7 @@
                                value="husband_away"
                                data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                                data-type-xml="select"/>
-                        <span lang="" class="option-label active">Husband is away &#xC97;&#xC82;&#xCA1; &#xC9C;&#xCCA;&#xCA4;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCB2;&#xCCD;&#xCB2;</span>
+                        <span lang="" class="option-label active">Husband is away </span>
                     </label>
                     <label class="">
                         <input autocomplete="off" type="checkbox"
@@ -221,8 +195,7 @@
                                value="infrequent_sex"
                                data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                                data-type-xml="select"/>
-                        <span lang="" class="option-label active">Having infrequent or no sex &#xC87;&#xCB2;&#xCCD;&#xCB2;&#xCA6;
-                            &#xC85;&#xCA5;&#xCB5;&#xCBE; &#xCB5;&#xCBF;&#xCB0;&#xCB3; &#xCB2;&#xCC8;&#xC82;&#xC97;&#xCBF;&#xC95;&#xCA4;&#xCC6;</span>
+                        <span lang="" class="option-label active">Having infrequent or no sex </span>
                     </label>
                     <label class="">
                         <input autocomplete="off" type="checkbox"
@@ -230,8 +203,7 @@
                                value="postpartum_amenorrhea"
                                data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                                data-type-xml="select"/>
-                        <span lang="" class="option-label active">Postpartum amenorrhea &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;
-                            &#xCA8;&#xC82;&#xCA4;&#xCB0; &#xC8B;&#xCA4;&#xCC1;&#xCB8;&#xCCD;&#xCB0;&#xCBE;&#xCB5;&#xCB5;&#xCBE;&#xC97;&#xCA6;&#xCBF;&#xCB0;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1;</span>
+                        <span lang="" class="option-label active">Postpartum amenorrhea </span>
                     </label>
                     <label class="">
                         <input autocomplete="off" type="checkbox"
@@ -239,8 +211,7 @@
                                value="currently_breastfeeding"
                                data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                                data-type-xml="select"/>
-                        <span lang="" class="option-label active">Currently breastfeeding &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xC95;&#xCCD;&#xCA4;
-                            &#xC8E;&#xCA6;&#xCC6;&#xCB9;&#xCBE;&#xCB2;&#xCC1;&#xCA3;&#xCBF;&#xCB8;&#xCC1;&#xCB5;&#xCC1;&#xCA6;&#xCC1;</span>
+                        <span lang="" class="option-label active">Currently breastfeeding </span>
                     </label>
                     <label class="">
                         <input autocomplete="off" type="checkbox"
@@ -248,26 +219,20 @@
                                value="others"
                                data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"
                                data-type-xml="select"/>
-                        <span lang="" class="option-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;</span>
+                        <span lang="" class="option-label active">Others </span>
                     </label>
                 </div>
             </fieldset>
         </fieldset>
         <label class="question or-branch pre-init non-select ">
-            <span lang="" class="question-label active">Others &#xC87;&#xCA4;&#xCB0;&#xCC6;:</span>
+            <span lang="" class="question-label active">Others :</span>
             <input autocomplete="off" type="text"
                    name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason_other"
                    data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'others')"
                    data-type-xml="string"/>
         </label>
         <label class="note or-branch pre-init non-select ">
-            <span lang="" class="question-label active">Please report FP side-effects in Record FP Complication form.
-                &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF; &#xC85;&#xCA1;&#xCCD;&#xCA1;&#xCAA;&#xCB0;&#xCBF;&#xCA3;&#xCBE;&#xCAE;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                &#xCA6;&#xCAF;&#xCB5;&#xCBF;&#xC9F;&#xCCD;&#xC9F;&#xCC1; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
-                &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF; &#xCA4;&#xCCA;&#xCA1;&#xC95;&#xCC1;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCBF;&#xCB8;&#xCC1;&#xCB5; &#xCAB;&#xCBE;&#xCB0;&#xCCD;&#xCAE;&#xCCD;&#x200D;&#xCA8;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-                &#xCB5;&#xCB0;&#xCA6;&#xCBF; &#xCAE;&#xCBE;&#xCA1;&#xCBF;.
-            </span>
+            <span lang="" class="question-label active">Please report FP side-effects in Record FP Complication form. </span>
             <input autocomplete="off" type="text"
                    name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/side_effects_message"
                    data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'woman_husband_having_side_effects')"
@@ -276,18 +241,7 @@
         <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">If there are any misconceptions about family planning methods,
                 please talk to the couple about real and unreal side-effects. Use Dristhi's video library to counsel
-                them on appropriate FP methods. &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;
-                &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xC97;&#xCB3; &#xCAC;&#xC97;&#xCCD;&#xC97;&#xCC6; &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCC7;
-                &#xCA4;&#xCAA;&#xCCD;&#xCAA;&#xCC1;&#xC97;&#xCCD;&#xCB0;&#xCB9;&#xCBF;&#xC95;&#xCC6;&#xC97;&#xCB3;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCC6;,
-                &#xCA8;&#xCC8;&#xC9C; &#xCAE;&#xCA4;&#xCCD;&#xCA4;&#xCC1; &#xC85;&#xCB8;&#xCA4;&#xCCD;&#xCAF;&#xCB5;&#xCBE;&#xCA6;
-                &#xC85;&#xCA1;&#xCCD;&#xCA1;&#xCAA;&#xCB0;&#xCBF;&#xCA3;&#xCBE;&#xCAE;&#xC97;&#xCB3; &#xCAC;&#xC97;&#xCCD;&#xC97;&#xCC6;
-                &#xCA6;&#xCAF;&#xCB5;&#xCBF;&#xC9F;&#xCCD;&#xC9F;&#xCC1; &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xC97;&#xCC6;
-                &#xCAE;&#xCBE;&#xCA4;&#xCA8;&#xCBE;&#xCA1;&#xCBF;. &#xCA6;&#xCC3;&#xCB7;&#xCCD;&#xC9F;&#xCBF; &#xCB5;&#xCC0;&#xCA1;&#xCBF;&#xCAF;&#xCCB;
-                &#xC97;&#xCCD;&#xCB0;&#xC82;&#xCA5;&#xCBE;&#xCB2;&#xCAF;&#xCA6; &#xCAE;&#xCC7;&#xCB2;&#xCC6; &#xC85;&#xCB5;&#xCB0;&#xCBF;&#xC97;&#xCC6;
-                &#xCB8;&#xCC2;&#xC95;&#xCCD;&#xCA4; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;&#xCAF;
-                &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCA6; &#xCB8;&#xCB2;&#xCB9;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                &#xCA8;&#xCC0;&#xCA1;&#xCBF;.
-            </span>
+                them on appropriate FP methods. </span>
             <input autocomplete="off" type="text"
                    name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/fp_objection_message"
                    data-relevant="selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'husband_objects_to_fp') or selected( /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_couple_refused_reason , 'family_members_object_to_fp')"
@@ -295,13 +249,7 @@
         </label>
         <label class="note or-branch pre-init non-select ">
             <span lang="" class="question-label active">If couple wants to stop or change methods, please go to Change
-                FP Method form. &#xCA6;&#xC82;&#xCAA;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1; &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC;
-                &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6; &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8;&#xCB5;&#xCA8;&#xCCD;&#xCA8;&#xCC1;
-                &#xCA8;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCB8;&#xCB2;&#xCC1; &#xC85;&#xCA5;&#xCB5;&#xCBE; &#xCAC;&#xCA6;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCB8;&#xCB2;&#xCC1;
-                &#xCAC;&#xCAF;&#xCB8;&#xCBF;&#xCA6;&#xCB0;&#xCC6;, &#xC95;&#xCC1;&#xC9F;&#xCC1;&#xC82;&#xCAC; &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6;
-                &#xCB5;&#xCBF;&#xCA7;&#xCBE;&#xCA8; &#xCAC;&#xCA6;&#xCB2;&#xCBE;&#xCAF;&#xCBF;&#xCB8;&#xCC1;&#xCB5;
-                &#xCAB;&#xCBE;&#xCB0;&#xCCD;&#xCAE;&#xCCD;&#x200D;&#xC97;&#xCC6; &#xCB9;&#xCCB;&#xC97;&#xCBF;.
-            </span>
+                FP Method form. </span>
             <input autocomplete="off" type="text"
                    name="/Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/couple_refused_message"
                    data-relevant=" /Family_Planning_Refill_Method_EngKan/didnt_renew_method_group/didnt_renew_method_reason  = 'couple_refused_method'"

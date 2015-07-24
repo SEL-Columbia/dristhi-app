@@ -5,6 +5,10 @@
                 <uuid/>
             </formhub>
             <today/>
+
+            <ec_num/>
+            <woman_name/>
+
             <case_needs_followup/>
             <case_familyplanning_method/>
             <fp_method_followup_date/>

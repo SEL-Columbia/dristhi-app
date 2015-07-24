@@ -3,10 +3,19 @@
     <section class="form-logo"></section>
     <h3 id="form-title">ANC Registration</h3>
 
+    <label class="question non-select ">
+        <span lang="" class="question-label active">EC Number: </span>
+        <input autocomplete="off" type="text" name="/ANC_Registration_EngKan/ec_num" data-type-xml="int" disabled="disabled"/>
+    </label>
+
 
     <label class="question non-select ">
-        <span lang="" class="question-label active">Registration date, &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCBE;&#xCA4;&#xCBF;
-            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;:
+        <span lang="" class="question-label active">Women Name: </span>
+        <input autocomplete="off" type="text" name="/ANC_Registration_EngKan/woman_name" data-type-xml="string" disabled="disabled"/>
+    </label>
+
+    <label class="question non-select ">
+        <span lang="" class="question-label active">Registration date:
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/ANC_Registration_EngKan/reg_date" required="required"
@@ -15,9 +24,7 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Registration place, &#xCA6;&#xCBE;&#xC96;&#xCB2;&#xCBE;&#xCA4;&#xCBF;
-                    &#xCB8;&#xCCD;&#xCA5;&#xCB3;:
-                </span>
+                <span lang="" class="question-label active">Registration place: </span>
                 <span class="required">*</span>
             </legend>
             <div class="option-wrapper">
@@ -25,85 +32,81 @@
                     <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/reg_place"
                            data-name="/ANC_Registration_EngKan/reg_place" value="sub_center" required="required"
                            data-type-xml="select1"/>
-                    <span lang="" class="option-label active">My Sub Center &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xC89;&#xCAA;&#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                    <span lang="" class="option-label active">My Sub Center </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/reg_place"
                            data-name="/ANC_Registration_EngKan/reg_place" value="phc" required="required"
                            data-type-xml="select1"/>
-                    <span lang="" class="option-label active">My PHC &#xCA8;&#xCA8;&#xCCD;&#xCA8; &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
-                        &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                    <span lang="" class="option-label active">My PHC </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/reg_place"
                            data-name="/ANC_Registration_EngKan/reg_place" value="elsewhere" required="required"
                            data-type-xml="select1"/>
                     <span lang="" class="option-label active">Elsewhere
-                        &#xCAC;&#xCC7;&#xCB0;&#xCC6;&#xCA1;&#xCC6;</span>
+                        </span>
                 </label>
             </div>
         </fieldset>
     </fieldset>
+
+    <!--<label class="question non-select ">-->
+        <!--<span lang="" class="question-label active">Thayi card number, -->
+        <!--</span>-->
+        <!--<span class="required">*</span>-->
+        <!--<input autocomplete="off" type="number" name="/ANC_Registration_EngKan/thayi_no" required="required"-->
+               <!--data-constraint=".&gt; 999999 and .&lt; 10000000" data-type-xml="int"/>-->
+    <!--</label>-->
+
     <label class="question non-select ">
-        <span lang="" class="question-label active">Thayi card number, &#xCA4;&#xCBE;&#xCAF;&#xCBF;&#xC95;&#xCBE;&#xCB0;&#xCCD;&#xCA1;&#xCCD;
-            &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;:
-        </span>
-        <span class="required">*</span>
-        <input autocomplete="off" type="number" name="/ANC_Registration_EngKan/thayi_no" required="required"
-               data-constraint=".&gt; 999999 and .&lt; 100000000000" data-type-xml="int"/>
-    </label>
-    <label class="question non-select ">
-        <span lang="" class="question-label active">ANC number, ANC &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;:</span>
+        <span lang="" class="question-label active">ANC number </span>
         <span class="required">*</span>
         <input autocomplete="off" type="number" name="/ANC_Registration_EngKan/anc_number" required="required"
                data-constraint=".&gt; 0" data-type-xml="int"/>
     </label>
-    <fieldset class="question ">
-        <fieldset>
-            <legend>
-                <span lang="" class="question-label active">JSY beneficiary? &#xC9C;&#xCA8;&#xCA8;&#xCBF; &#xCB8;&#xCC1;&#xCB0;&#xC95;&#xCCD;&#xCB7;&#xCBE;
-                    &#xCAF;&#xCCB;&#xC9C;&#xCA8;&#xCC6; &#xCAB;&#xCB2;&#xCBE;&#xCA8;&#xCC1;&#xCAD;&#xCB5;&#xCBF;&#xCAF;&#xCC7;?
-                </span>
-                <span class="required">*</span>
-            </legend>
-            <div class="option-wrapper">
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/jsy_beneficiary"
-                           data-name="/ANC_Registration_EngKan/jsy_beneficiary" value="yes" required="required"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
-                </label>
-                <label class="">
-                    <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/jsy_beneficiary"
-                           data-name="/ANC_Registration_EngKan/jsy_beneficiary" value="no" required="required"
-                           data-type-xml="select1"/>
-                    <span lang="" class="option-label active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
-                </label>
-            </div>
-        </fieldset>
-    </fieldset>
+    <!--<fieldset class="question ">-->
+        <!--<fieldset>-->
+            <!--<legend>-->
+                <!--<span lang="" class="question-label active">JSY beneficiary? -->
+                <!--</span>-->
+                <!--<span class="required">*</span>-->
+            <!--</legend>-->
+            <!--<div class="option-wrapper">-->
+                <!--<label class="">-->
+                    <!--<input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/jsy_beneficiary"-->
+                           <!--data-name="/ANC_Registration_EngKan/jsy_beneficiary" value="yes" required="required"-->
+                           <!--data-type-xml="select1"/>-->
+                    <!--<span lang="" class="option-label active">Yes </span>-->
+                <!--</label>-->
+                <!--<label class="">-->
+                    <!--<input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/jsy_beneficiary"-->
+                           <!--data-name="/ANC_Registration_EngKan/jsy_beneficiary" value="no" required="required"-->
+                           <!--data-type-xml="select1"/>-->
+                    <!--<span lang="" class="option-label active">No </span>-->
+                <!--</label>-->
+            <!--</div>-->
+        <!--</fieldset>-->
+    <!--</fieldset>-->
+    <!--<label class="question non-select ">-->
+        <!--<span lang="" class="question-label active">Asha name, </span>-->
+        <!--<input autocomplete="off" type="text" name="/ANC_Registration_EngKan/asha_name" data-type-xml="string"/>-->
+    <!--</label>-->
+    <!--<label class="question non-select ">-->
+        <!--<span lang="" class="question-label active">Asha phone number, -->
+        <!--</span>-->
+        <!--<input autocomplete="off" type="number" name="/ANC_Registration_EngKan/asha_phone_number"-->
+               <!--data-constraint=".&gt; 999999999 and .&lt; 10000000000" data-type-xml="int"/>-->
+    <!--</label>-->
     <label class="question non-select ">
-        <span lang="" class="question-label active">Asha name, &#xC86;&#xCB6;&#xCBE; &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;:</span>
-        <input autocomplete="off" type="text" name="/ANC_Registration_EngKan/asha_name" data-type-xml="string"/>
-    </label>
-    <label class="question non-select ">
-        <span lang="" class="question-label active">Asha phone number, &#xC86;&#xCB6;&#xCBE; &#xCAB;&#xCCB;&#xCA8;&#xCCD;
-            &#xCB8;&#xC82;&#xC96;&#xCCD;&#xCAF;&#xCC6;:
-        </span>
-        <input autocomplete="off" type="number" name="/ANC_Registration_EngKan/asha_phone_number"
-               data-constraint=".&gt; 999999999 and .&lt; 10000000000" data-type-xml="int"/>
-    </label>
-    <label class="question non-select ">
-        <span lang="" class="question-label active">LMP, &#xC95;&#xCCA;&#xCA8;&#xCC6;&#xCAF; &#xCAE;&#xCC1;&#xC9F;&#xCCD;&#xC9F;&#xCBF;&#xCA8;
-            &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;:
+        <span lang="" class="question-label active">LMP
         </span>
         <span class="required">*</span>
         <input autocomplete="off" type="date" name="/ANC_Registration_EngKan/lmp_date" required="required"
                data-constraint=".&lt;= /ANC_Registration_EngKan/today " data-type-xml="date"/>
     </label>
     <label class="note non-select ">
-        <span lang="" class="question-label active">EDD, &#xCA8;&#xCBF;&#xCB0;&#xCC0;&#xC95;&#xCCD;&#xCB7;&#xCBF;&#xCA4;&#xCBE;
-            &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA6;&#xCBF;&#xCA8;&#xCBE;&#xC82;&#xC95;:
+        <span lang="" class="question-label active">EDD
             <span class="or-output" data-value=" /ANC_Registration_EngKan/edd_formatted ">
             </span>
         </span>
@@ -113,8 +116,7 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Linked facility for delivery? &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6;&#xC97;&#xCBE;&#xC97;&#xCBF;
-                    &#xCB8;&#xC82;&#xCAA;&#xCB0;&#xCCD;&#xC95;&#xCBF;&#xCB8;&#xCBF;&#xCA6; &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;?
+                <span lang="" class="question-label active">Linked facility for delivery? 
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -122,47 +124,43 @@
                     <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/linked_facility_delivery"
                            data-name="/ANC_Registration_EngKan/linked_facility_delivery" value="sub_center"
                            data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Sub Center &#xC89;&#xCAA; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                    <span lang="" class="option-label active">Sub Center </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/linked_facility_delivery"
                            data-name="/ANC_Registration_EngKan/linked_facility_delivery" value="phc"
                            data-type-xml="select1"/>
-                    <span lang="" class="option-label active">PHC &#xCAA;&#xCCD;&#xCB0;&#xCBE;&#xCA5;&#xCAE;&#xCBF;&#xC95;
-                        &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF; &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                    <span lang="" class="option-label active">PHC </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/linked_facility_delivery"
                            data-name="/ANC_Registration_EngKan/linked_facility_delivery" value="chc"
                            data-type-xml="select1"/>
-                    <span lang="" class="option-label active">CHC &#xCB8;&#xCAE;&#xCC1;&#xCA6;&#xCBE;&#xCAF; &#xC86;&#xCB0;&#xCCB;&#xC97;&#xCCD;&#xCAF;
-                        &#xC95;&#xCC7;&#xC82;&#xCA6;&#xCCD;&#xCB0;</span>
+                    <span lang="" class="option-label active">CHC </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/linked_facility_delivery"
                            data-name="/ANC_Registration_EngKan/linked_facility_delivery" value="sdh"
                            data-type-xml="select1"/>
-                    <span lang="" class="option-label active">SDH &#xC89;&#xCAA; &#xC9C;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCBE;
-                        &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;</span>
+                    <span lang="" class="option-label active">SDH </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/linked_facility_delivery"
                            data-name="/ANC_Registration_EngKan/linked_facility_delivery" value="dh"
                            data-type-xml="select1"/>
-                    <span lang="" class="option-label active">DH &#xC9C;&#xCBF;&#xCB2;&#xCCD;&#xCB2;&#xCBE; &#xC86;&#xCB8;&#xCCD;&#xCAA;&#xCA4;&#xCCD;&#xCB0;&#xCC6;</span>
+                    <span lang="" class="option-label active">DH </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/linked_facility_delivery"
                            data-name="/ANC_Registration_EngKan/linked_facility_delivery" value="private"
                            data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Private &#xC96;&#xCBE;&#xCB8;&#xC97;&#xCBF;</span>
+                    <span lang="" class="option-label active">Private </span>
                 </label>
             </div>
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Name of facility? &#xCB8;&#xCCC;&#xCB2;&#xCAD;&#xCCD;&#xCAF;&#xCA6;
-            &#xCB9;&#xCC6;&#xCB8;&#xCB0;&#xCC1;?
+        <span lang="" class="question-label active">Name of facility? 
         </span>
         <input autocomplete="off" type="text" name="/ANC_Registration_EngKan/name_facility"
                data-relevant=" /ANC_Registration_EngKan/linked_facility_delivery  != ''" data-type-xml="string"/>
@@ -170,9 +168,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Had complications in any previous pregnancy? &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1;
-                    &#xCB9;&#xCBF;&#xC82;&#xCA6;&#xCBF;&#xCA8; &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCB5;&#xCBE;&#xCB8;&#xCCD;&#xCA5;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-                    &#xCA4;&#xCCA;&#xCA1;&#xC95;&#xCC1;&#xC97;&#xCB3;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCB9;&#xCCA;&#xC82;&#xCA6;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB0;&#xCBE;?
+                <span lang="" class="question-label active">Had complications in any previous pregnancy? 
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -181,82 +177,70 @@
                            value="Prev_Preg_Complication:_APH"
                            data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0"
                            data-type-xml="select"/>
-                    <span lang="" class="option-label active">APH &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5; &#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCB5;
-                        &#xCB0;&#xC95;&#xCCD;&#xCA4; &#xCB8;&#xCCD;&#xCB0;&#xCBE;&#xCB5;</span>
+                    <span lang="" class="option-label active">APH </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
                            value="Prev_Preg_Complication:_PIH"
                            data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0"
                            data-type-xml="select"/>
-                    <span lang="" class="option-label active">PIH &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCBE;&#xCB5;&#xCB8;&#xCCD;&#xCA5;&#xCC6;&#xCAF;
-                        &#xCAA;&#xCCD;&#xCB0;&#xCC6;&#xCD5;&#xCB0;&#xCBF;&#xCA4; &#xC85;&#xCA4;&#xCBF; &#xC92;&#xCA4;&#xCCD;&#xCA4;&#xCA1;</span>
+                    <span lang="" class="option-label active">PIH </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
                            value="Prev_Preg_Complication:_Preeclampsia_Eclampsia"
                            data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0"
                            data-type-xml="select"/>
-                    <span lang="" class="option-label active">Pre-eclampsia / Eclampsia &#xCAA;&#xCC2;&#xCB0;&#xCCD;&#xCB5;
-                        &#xCAC;&#xCB8;&#xCBF;&#xCB0;&#xCC1; &#xCA8;&#xC82;&#xC9C;&#xCC1; / &#xCAC;&#xCB8;&#xCBF;&#xCB0;&#xCC1;
-                        &#xCA8;&#xC82;&#xC9C;&#xCC1;</span>
+                    <span lang="" class="option-label active">Pre-eclampsia / Eclampsia </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
                            value="Prev_Preg_Complication:_Pregnancy_with_Tumors"
                            data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0"
                            data-type-xml="select"/>
-                    <span lang="" class="option-label active">Pregnancy with Tumors &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCA7;&#xCBE;&#xCB0;&#xCA3;&#xCC6;&#xCAF;
-                        &#xC9C;&#xCCA;&#xCA4;&#xCC6;
-                        &#xC97;&#xCC6;&#xCA1;&#xCCD;&#xCA1;&#xCC6;&#xC97;&#xCB3;&#xCC1;</span>
+                    <span lang="" class="option-label active">Pregnancy with Tumors </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
                            value="Prev_Preg_Complication:_Prolonged_Obstructed_Labor"
                            data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0"
                            data-type-xml="select"/>
-                    <span lang="" class="option-label active">Prolonged / Obstructed Labor &#xCA6;&#xCBF;&#xCD5;&#xCB0;&#xCCD;&#xC98;&#xC95;&#xCBE;&#xCB2;&#xCBF;&#xCD5;&#xCA8;
-                        / &#xC85;&#xCA1;&#xC9A;&#xCA3;&#xCC6;&#xCAF;&#xCA8;&#xCCD;&#xCA8;&#xCC1; &#xCA4;&#xC82;&#xCA6;&#xCC6;&#xCC2;&#xCA1;&#xCCD;&#xCA1;&#xCC1;&#xCB5;
-                        &#xCB9;&#xCC6;&#xCB0;&#xCBF;&#xC97;&#xCC6; &#xCA8;&#xCCB;&#xCB5;&#xCC1;</span>
+                    <span lang="" class="option-label active">Prolonged / Obstructed Labor </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
                            value="Prev_Preg_Complication:_Intrauterine_Growth_Retardation"
                            data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0"
                            data-type-xml="select"/>
-                    <span lang="" class="option-label active">Intrauterine Growth Retardation &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCB6;&#xCBE;&#xCAF;&#xCA6;
-                        &#xC92;&#xCB3;&#xC97;&#xCBF;&#xCA8; &#xCAC;&#xCC6;&#xCB3;&#xCB5;&#xCA3;&#xCBF;&#xC97;&#xCC6;&#xCAF;&#xCB2;&#xCCD;&#xCB2;&#xCBF;
-                        &#xC95;&#xCC1;&#xC82;&#xCA0;&#xCBF;&#xCA4;</span>
+                    <span lang="" class="option-label active">Intrauterine Growth Retardation </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
                            value="Prev_Preg_Complication:_PPH"
                            data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0"
                            data-type-xml="select"/>
-                    <span lang="" class="option-label active">PPH &#xCAA;&#xCCD;&#xCB0;&#xCB8;&#xCB5; &#xCA8;&#xC82;&#xCA4;&#xCB0;
-                        &#xCB0;&#xC95;&#xCCD;&#xCA4; &#xCB8;&#xCCD;&#xCB0;&#xCBE;&#xCB5;</span>
+                    <span lang="" class="option-label active">PPH </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
                            value="Prev_Preg_Complication:_Cesarean"
                            data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0"
                            data-type-xml="select"/>
-                    <span lang="" class="option-label active">Cesarean &#xCB8;&#xCBF;&#xCB8;&#xCC7;&#xCB0;&#xCBF;&#xCAF;&#xCA8;&#xCCD;</span>
+                    <span lang="" class="option-label active">Cesarean </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
                            value="Prev_Preg_Complication:_Still_Birth"
                            data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0"
                            data-type-xml="select"/>
-                    <span lang="" class="option-label active">Still Birth &#xCA8;&#xCBF;&#xCB0;&#xCCD;&#xC9C;&#xCC0;&#xCB5;</span>
+                    <span lang="" class="option-label active">Still Birth </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/complication"
                            value="Prev_Preg_Complication:_Spontaneous_Abortion"
                            data-relevant=" /ANC_Registration_EngKan/case_num_pregnancies  &gt; 0"
                            data-type-xml="select"/>
-                    <span lang="" class="option-label active">Spontaneous Abortion &#xCB8;&#xCCD;&#xCB5;&#xCBE;&#xCAD;&#xCBE;&#xCB5;&#xCBF;&#xC95;
-                        &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCAA;&#xCBE;&#xCA4;</span>
+                    <span lang="" class="option-label active">Spontaneous Abortion </span>
                 </label>
             </div>
         </fieldset>
@@ -265,39 +249,35 @@
         <fieldset>
             <legend>
                 <span lang="" class="question-label active">Does woman have any of the following medical conditions?
-                    &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xC97;&#xCC6; &#xC88; &#xC95;&#xCC6;&#xCB3;&#xC97;&#xCBF;&#xCA8;
-                    &#xCAF;&#xCBE;&#xCB5;&#xCC1;&#xCA6;&#xCBE;&#xCA6;&#xCB0;&#xCC1; &#xCB5;&#xCC8;&#xCA6;&#xCCD;&#xCAF;&#xC95;&#xCC0;&#xCAF;
-                    &#xCB8;&#xCCD;&#xCA5;&#xCBF;&#xCA4;&#xCBF;&#xC97;&#xCB3;&#xCC1; &#xC89;&#xC82;&#xC9F;&#xCBE;&#xC97;&#xCBF;&#xCA6;&#xCCD;&#xCA6;&#xCB5;&#xCC7;?
+                    
                 </span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/medical_histories"
                            value="Medical_History:_TB" data-type-xml="select"/>
-                    <span lang="" class="option-label active">TB &#xC9F;&#xCBF;.&#xCAC;&#xCBF;</span>
+                    <span lang="" class="option-label active">TB </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/medical_histories"
                            value="Medical_History:_Hypertension" data-type-xml="select"/>
-                    <span lang="" class="option-label active">Hypertension &#xC85;&#xCA7;&#xCBF;&#xC95; &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6;&#xCCA;&#xCA4;&#xCCD;&#xCA4;&#xCA1;</span>
+                    <span lang="" class="option-label active">Hypertension </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/medical_histories"
                            value="Medical_History:_Heart_Related_Diseases" data-type-xml="select"/>
-                    <span lang="" class="option-label active">Heart-related diseases &#xCB9;&#xCC3;&#xCA6;&#xCAF;
-                        &#xCB8;&#xC82;&#xCAC;&#xC82;&#xCA7;&#xCBF; &#xC95;&#xCBE;&#xCAF;&#xCBF;&#xCB2;&#xCC6;&#xC97;&#xCB3;&#xCC1;</span>
+                    <span lang="" class="option-label active">Heart-related diseases </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/medical_histories"
                            value="Medical_History:_Diabetes" data-type-xml="select"/>
-                    <span lang="" class="option-label active">Diabetes &#xCAE;&#xCA7;&#xCC1;&#xCAE;&#xCC7;&#xCB9;</span>
+                    <span lang="" class="option-label active">Diabetes </span>
                 </label>
             </div>
         </fieldset>
     </fieldset>
     <label class="question or-appearance-minimal ">
-        <span lang="" class="question-label active">Woman's blood group? &#xCAE;&#xCB9;&#xCBF;&#xCB3;&#xCC6;&#xCAF;
-            &#xCB0;&#xC95;&#xCCD;&#xCA4;&#xCA6; &#xC97;&#xCC1;&#xC82;&#xCAA;&#xCC1;?
+        <span lang="" class="question-label active">Woman's blood group? 
         </span>
         <select name="/ANC_Registration_EngKan/w_blood_group" data-name="/ANC_Registration_EngKan/w_blood_group"
                 data-type-xml="select1">
@@ -315,16 +295,13 @@
         </span>
     </label>
     <label class="question non-select ">
-        <span lang="" class="question-label active">Height (in cms) &#xC8E;&#xCA4;&#xCCD;&#xCA4;&#xCB0; (&#xCB8;&#xCC7;.&#xCAE;&#xCC0;
-            &#xCA8;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)
+        <span lang="" class="question-label active">Height (in cms) 
         </span>
         <input autocomplete="off" type="number" name="/ANC_Registration_EngKan/height" data-type-xml="decimal"
                step="any"/>
     </label>
     <label class="question non-select ">
-        <span lang="" class="question-label active">Weight at start of pregnancy (in kgs) &#xC97;&#xCB0;&#xCCD;&#xCAD;&#xCA7;&#xCBE;&#xCB0;&#xCA3;&#xCC6;&#xCAF;
-            &#xC86;&#xCB0;&#xC82;&#xCAD;&#xCA6;&#xCB2;&#xCCD;&#xCB2;&#xCBF;&#xCA8; &#xCA4;&#xCC2;&#xC95; (&#xC95;&#xCC6;.&#xC9C;&#xCBF;
-            &#xC97;&#xCB3;&#xCB2;&#xCCD;&#xCB2;&#xCBF;)
+        <span lang="" class="question-label active">Weight at start of pregnancy (in kgs) 
         </span>
         <input autocomplete="off" type="number" name="/ANC_Registration_EngKan/weight_startofpregnancy"
                data-type-xml="decimal" step="any"/>
@@ -335,7 +312,7 @@
             </span>is at risk because of,
             <span class="or-output" data-value=" /ANC_Registration_EngKan/woman_name ">
             </span>
-            &#xC85;&#xCAA;&#xCBE;&#xCAF;&#xCB5;&#xCBF;&#xCA6;&#xCC6; &#xC8F;&#xC95;&#xCC6;&#xC82;&#xCA6;&#xCB0;&#xCC6;:
+            
             <span class="or-output" data-value=" /ANC_Registration_EngKan/high_risk_reason ">
             </span>
         </span>
@@ -346,20 +323,19 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Do you want to mark as HRP? &#xCA8;&#xCC0;&#xCB5;&#xCC1; HRP
-                    &#xC8E;&#xC82;&#xCA6;&#xCC1; &#xC97;&#xCC1;&#xCB0;&#xCC1;&#xCA4;&#xCBF;&#xCB8;&#xCB2;&#xCC1; &#xCAC;&#xCAF;&#xCB8;&#xCC1;&#xCB5;&#xCBF;&#xCB0;&#xCBE;?
+                <span lang="" class="question-label active">Do you want to mark as HRP? 
                 </span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/is_high_risk"
                            data-name="/ANC_Registration_EngKan/is_high_risk" value="yes" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">Yes &#xCB9;&#xCCC;&#xCA6;&#xCC1;</span>
+                    <span lang="" class="option-label active">Yes </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="radio" name="/ANC_Registration_EngKan/is_high_risk"
                            data-name="/ANC_Registration_EngKan/is_high_risk" value="no" data-type-xml="select1"/>
-                    <span lang="" class="option-label active">No &#xC87;&#xCB2;&#xCCD;&#xCB2;</span>
+                    <span lang="" class="option-label active">No </span>
                 </label>
             </div>
         </fieldset>

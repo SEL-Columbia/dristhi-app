@@ -4,6 +4,8 @@
             <formhub>
                 <uuid/>
             </formhub>
+            <ec_num/>
+            <woman_name/>
             <today/>
             <referral_followup_date/>
             <couple_went_for_referral/>

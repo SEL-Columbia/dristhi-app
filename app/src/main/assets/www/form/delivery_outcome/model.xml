@@ -7,6 +7,8 @@
             <today/>
             <case_lmp/>
             <delivery_date/>
+            <anc_reg_num/>
+            <pnc_number/>
             <delivery_reg_date/>
             <place_delivery/>
             <name_delivery_facility/>
