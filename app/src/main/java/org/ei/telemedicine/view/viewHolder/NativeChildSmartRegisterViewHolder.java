@@ -1,13 +1,13 @@
 package org.ei.telemedicine.view.viewHolder;
 
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.view.customControls.ClientIdDetailsView;
+import org.ei.telemedicine.view.customControls.ClientProfileView;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.view.customControls.ClientIdDetailsView;
-import org.ei.telemedicine.view.customControls.ClientProfileView;
 
 public class NativeChildSmartRegisterViewHolder {
     private final ClientProfileView profileInfoLayout;

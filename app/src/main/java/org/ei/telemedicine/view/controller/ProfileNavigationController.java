@@ -5,6 +5,7 @@ import android.content.Intent;
 import org.ei.telemedicine.view.activity.ANCDetailActivity;
 import org.ei.telemedicine.view.activity.ChildDetailActivity;
 import org.ei.telemedicine.view.activity.EligibleCoupleDetailActivity;
+
 import org.ei.telemedicine.view.activity.PNCDetailActivity;
 
 import static org.ei.telemedicine.AllConstants.CASE_ID;
@@ -12,7 +13,7 @@ import static org.ei.telemedicine.AllConstants.CASE_ID;
 public class ProfileNavigationController {
 
     public static void navigateToECProfile(android.content.Context context, String caseId) {
-        Intent intent = new Intent(context.getApplicationContext(), EligibleCoupleDetailActivity.class);
+   Intent intent = new Intent(context.getApplicationContext(), EligibleCoupleDetailActivity.class);
         intent.putExtra(CASE_ID, caseId);
         context.startActivity(intent);
     }

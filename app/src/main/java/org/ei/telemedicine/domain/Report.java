@@ -1,17 +1,17 @@
 package org.ei.telemedicine.domain;
 
-import static org.ei.telemedicine.domain.ReportIndicator.parseToReportIndicator;
-
-import java.io.Serializable;
-import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.telemedicine.dto.MonthSummaryDatum;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import java.io.Serializable;
+import java.util.List;
+
+import static org.ei.telemedicine.domain.ReportIndicator.parseToReportIndicator;
 
 public class Report implements Serializable {
     private final String indicator;

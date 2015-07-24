@@ -1,13 +1,9 @@
 package org.ei.telemedicine.view.activity;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.view.MenuItem;
-import android.view.View;
-import android.webkit.ConsoleMessage;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
+import static android.webkit.ConsoleMessage.MessageLevel.ERROR;
+import static java.text.MessageFormat.format;
+import static org.ei.telemedicine.util.Log.logDebug;
+import static org.ei.telemedicine.util.Log.logError;
 
 import org.acra.ACRA;
 import org.ei.telemedicine.R;
@@ -17,10 +13,14 @@ import org.ei.telemedicine.sync.UpdateActionsTask;
 import org.ei.telemedicine.view.InternationalizationContext;
 import org.ei.telemedicine.view.controller.UpdateController;
 
-import static android.webkit.ConsoleMessage.MessageLevel.ERROR;
-import static java.text.MessageFormat.format;
-import static org.ei.telemedicine.util.Log.logDebug;
-import static org.ei.telemedicine.util.Log.logError;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.view.MenuItem;
+import android.view.View;
+import android.webkit.ConsoleMessage;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 public abstract class SecuredWebActivity extends SecuredActivity {
     protected WebView webView;
@@ -52,6 +52,7 @@ public abstract class SecuredWebActivity extends SecuredActivity {
             case R.id.updateMenuItem:
                 updateFromServer();
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -43,7 +43,7 @@ public class TTServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{21, 14, 12, 19, 19, 20, 20};
+                return new int[]{21, 9, 12, 19, 19, 20, 20};
             }
 
             @Override

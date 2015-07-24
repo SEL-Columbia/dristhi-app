@@ -15,13 +15,16 @@ public class AllBeneficiaries {
     private MotherRepository motherRepository;
     private final AlertRepository alertRepository;
     private final TimelineEventRepository timelineEventRepository;
+    private DoctorRepository doctorRepository;
+
 
     public AllBeneficiaries(MotherRepository motherRepository, ChildRepository childRepository,
-                            AlertRepository alertRepository, TimelineEventRepository timelineEventRepository) {
+                            AlertRepository alertRepository, TimelineEventRepository timelineEventRepository, DoctorRepository doctorRepository) {
         this.childRepository = childRepository;
         this.motherRepository = motherRepository;
         this.alertRepository = alertRepository;
         this.timelineEventRepository = timelineEventRepository;
+        this.doctorRepository = doctorRepository;
     }
 
     //#TODO
@@ -127,4 +130,6 @@ public class AllBeneficiaries {
     public void updateMother(Mother mother) {
         motherRepository.update(mother);
     }
+
+
 }

@@ -73,10 +73,10 @@ public abstract class SecuredActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.switchLanguageMenuItem: {
-                String newLanguagePreference = context.userService().switchLanguagePreference();
-                Toast.makeText(this, "Language preference set to " + newLanguagePreference + ". Please restart the application.", LENGTH_SHORT).show();
-            }
+//            case R.id.switchLanguageMenuItem: {
+//                String newLanguagePreference = context.userService().switchLanguagePreference();
+//                Toast.makeText(this, "Language preference set to " + newLanguagePreference + ". Please restart the application.", LENGTH_SHORT).show();
+//            }
             default:
                 return super.onOptionsItemSelected(item);
         }

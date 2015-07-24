@@ -2,6 +2,7 @@ package org.ei.telemedicine.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -42,12 +43,14 @@ public class FormDataRepository extends DrishtiRepository {
     private static final String DETAILS_COLUMN_NAME = "details";
     private static final String FORM_NAME_PARAM = "formName";
     private Map<String, String[]> TABLE_COLUMN_MAP;
+    private String TAG = "FormDataRepository";
 
     public FormDataRepository() {
         TABLE_COLUMN_MAP = new HashMap<String, String[]>();
         TABLE_COLUMN_MAP.put(EligibleCoupleRepository.EC_TABLE_NAME, EligibleCoupleRepository.EC_TABLE_COLUMNS);
         TABLE_COLUMN_MAP.put(MotherRepository.MOTHER_TABLE_NAME, MotherRepository.MOTHER_TABLE_COLUMNS);
         TABLE_COLUMN_MAP.put(ChildRepository.CHILD_TABLE_NAME, ChildRepository.CHILD_TABLE_COLUMNS);
+
     }
 
     @Override
@@ -98,6 +101,12 @@ public class FormDataRepository extends DrishtiRepository {
         return readFormSubmission(cursor).get(0);
     }
 
+    public FormSubmission fetchFromSubmissionUseEntity(String entityId) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        Cursor cursor = database.query(FORM_SUBMISSION_TABLE_NAME, FORM_SUBMISSION_TABLE_COLUMNS, ENTITY_ID_COLUMN + " = ?", new String[]{entityId}, null, null, null);
+        return readFormSubmission(cursor).get(cursor.getCount() - 1);
+    }
+
     public List<FormSubmission> getPendingFormSubmissions() {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.query(FORM_SUBMISSION_TABLE_NAME, FORM_SUBMISSION_TABLE_COLUMNS, SYNC_STATUS_COLUMN + " = ?", new String[]{PENDING.value()}, null, null, null);
@@ -106,7 +115,7 @@ public class FormDataRepository extends DrishtiRepository {
 
     public long getPendingFormSubmissionsCount() {
         return longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + FORM_SUBMISSION_TABLE_NAME
-                + " WHERE " + SYNC_STATUS_COLUMN + " = ? ",
+                        + " WHERE " + SYNC_STATUS_COLUMN + " = ? ",
                 new String[]{PENDING.value()});
     }
 
@@ -131,6 +140,11 @@ public class FormDataRepository extends DrishtiRepository {
         boolean isThere = cursor.moveToFirst();
         cursor.close();
         return isThere;
+    }
+
+    public void removeForm(String instanceId) {
+        SQLiteDatabase database = masterRepository.getReadableDatabase();
+        database.delete(FORM_SUBMISSION_TABLE_NAME, INSTANCE_ID_COLUMN + " = ?", new String[]{instanceId});
     }
 
     public String saveEntity(String entityType, String fields) {
@@ -266,5 +280,22 @@ public class FormDataRepository extends DrishtiRepository {
 
     public String generateIdFor(String entityType) {
         return randomUUID().toString();
+    }
+
+
+    public void updateInstance(String instanceId, String instanceData) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(INSTANCE_COLUMN, instanceData);
+        values.put(SYNC_STATUS_COLUMN, PENDING.value());
+        database.update(FORM_SUBMISSION_TABLE_NAME, values, INSTANCE_ID_COLUMN + " = ?", new String[]{instanceId});
+
+        Cursor cursor = database.rawQuery("select * from form_submission where instanceId= ?", new String[]{instanceId});
+        while (cursor.moveToNext()) {
+            String instancestat = cursor.getString(cursor.getColumnIndex("syncStatus"));
+            Log.e(TAG, instancestat + "-------------" + cursor.getString(cursor.getColumnIndex("instanceId")));
+
+        }
+        cursor.close();
     }
 }

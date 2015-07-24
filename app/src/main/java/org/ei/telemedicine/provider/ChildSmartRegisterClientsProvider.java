@@ -1,10 +1,6 @@
 package org.ei.telemedicine.provider;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.activity.SecuredActivity;
@@ -20,7 +16,11 @@ import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
 import org.ei.telemedicine.view.viewHolder.ProfilePhotoLoader;
 
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
 
 public class ChildSmartRegisterClientsProvider implements SmartRegisterClientsProvider {
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">OpenSRP</string>
     <string name="userNameEditText">Enter user name</string>
     <string name="passwordEditText">Enter password</string>
@@ -11,12 +12,14 @@
     <string name="login_failed_dialog_title">Log in failed</string>
     <string name="login_failed_dialog_message">Please check the credentials</string>
     <string name="form_back_confirm_dialog_message">Are you sure you want to go back? All the data you have entered in
-        this form will be cleared.
-    </string>
+        this form will be cleared.</string>
+
+    <string name="bluetooth_info">Do you want to capture device readings?</string>
+    <string name="bluetooth_info_title"> Read Devices Information</string>
+
     <string name="form_back_confirm_dialog_title">Confirm form close</string>
     <string name="yes_button_label">Yes</string>
     <string name="no_button_label">No</string>
-
     <string name="home_ec_label">Eligible Couple</string>
     <string name="home_fp_label">FP</string>
     <string name="home_anc_label">ANC</string>
@@ -25,21 +28,16 @@
     <string name="home_report_label">Reporting</string>
     <string name="register_label">Register</string>
     <string name="home_videos_label">Videos</string>
-
     <string name="videos_cannot_play_video_dialog_title">Cannot play video.</string>
-    <string name="videos_IEC_not_installed_dialog_message">Please install IEC application to play the videos.
-    </string>
+    <string name="videos_IEC_not_installed_dialog_message">Please install IEC application to play the videos.</string>
     <string name="videos_unknown_error_dialog_message">Unable to play video due to technical error.</string>
     <string name="settings_logout_confirm_title">Confirm Log out</string>
     <string name="settings_logout_confirm_dialog_message">Are you sure you want to log out? All the data will be
-        cleared.
-    </string>
+        cleared.</string>
     <string name="unsynced_forms_count_message">forms unsynced</string>
-
     <string name="str_next">"Next &gt;&gt;"</string>
     <string name="str_previous">"&lt;&lt; Previous"</string>
     <string name="str_page_info">Page {0} of {1}</string>
-
     <string name="header_name">NAME</string>
     <string name="header_ec_no">EC NO.</string>
     <string name="header_gplsa">GPLSA</string>
@@ -47,20 +45,21 @@
     <string name="header_children">CHILDREN</string>
     <string name="header_status">STATUS</string>
     <string name="header_edit"></string>
-
     <string name="couple_selection">All Eligible Couples</string>
+
+    <string name="str_doc_search_hint">Search Pending Consultations</string>
+
     <string name="str_ec_search_hint">Search EC Register</string>
     <string name="str_fp_search_hint">Search FP Register</string>
     <string name="str_pnc_search_hint">Search PNC Register</string>
     <string name="str_child_search_hint">Search Child Register</string>
+    <string name="str_doctor_search_hint">Search Doctor Register</string>
     <string name="label_sorted_by">Sorted By:</string>
     <string name="label_village">, Village:</string>
     <string name="ec_register_wife_age">({0})</string>
-
     <string name="ec_register_male_child">Male\n{0}</string>
     <string name="ec_register_female_child">Female\n{0}</string>
     <string name="ec_register_no_fp">No FP</string>
-
     <string name="status_delivery">Delivery:</string>
     <string name="str_lmp">LMP:</string>
     <string name="str_edd">EDD:</string>
@@ -74,9 +73,7 @@
     <string name="str_number_of_living_children">L</string>
     <string name="str_number_of_still_births">S</string>
     <string name="str_number_of_abortions">A</string>
-
     <string name="str_out_of_area">(O/A)</string>
-
     <string name="sort_by_name_label">Name (A to Z)</string>
     <string name="sort_by_ec_number_label">EC Number</string>
     <string name="sort_by_date_of_delivery_label">Date of Delivery</string>
@@ -86,12 +83,10 @@
     <string name="sort_by_high_risk_pregnancy_label">HRP</string>
     <string name="sort_by_high_risk_label">High Risk (HR)</string>
     <string name="sort_by_bpl_label">BPL</string>
-
     <string name="filter_by_all_label">All</string>
     <string name="filter_by_out_of_area_label">O/A</string>
     <string name="filter_by_leave_the_place_label">L/P</string>
     <string name="ec_register_title_in_short">EC:</string>
-
     <string name="str_register_anc_form">Register ANC</string>
     <string name="str_register_fp_form">Register FP</string>
     <string name="str_register_child_form">Register Child</string>
@@ -102,20 +97,20 @@
     <string name="str_close_ec_form">Close EC</string>
     <string name="report_month_sample_text">26/03 - 25/04</string>
     <string name="str_switch_language">Switch Language</string>
-
     <string name="str_register_anc_visit_form">ANC Visit</string>
     <string name="str_register_hb_test_form">Hb Test</string>
     <string name="str_register_ifa_form">IFA</string>
     <string name="str_register_tt_form">TT</string>
     <string name="str_register_delivery_plan_form">Delivery Plan</string>
+    <string name="str_anc_plan_of_care">View Plan Of Care</string>
     <string name="str_register_pnc_registration_form">PNC Registration</string>
     <string name="str_register_anc_investigations_form">ANC Investigations</string>
     <string name="str_register_anc_close_form">ANC Close</string>
-
     <string name="str_reporting">Reporting</string>
     <string name="str_videos">Videos</string>
-
     <string name="child_register_title_in_short">Child:</string>
+    <string name="doctor_register_title_in_short">Doctor:</string>
+
     <string name="child_service_mode_overview">Overview</string>
     <string name="child_service_mode_immunization_0_to_9">Immunization 0-9</string>
     <string name="child_service_mode_immunization_9_plus">Immunization 9+</string>
@@ -159,7 +154,7 @@
     <string name="service_type_mmr">MMR</string>
     <string name="service_type_vitamin_a">Vitamin A</string>
     <string name="service_type_illness_visit">Illness Visit</string>
-    <string name="service_type_empty"/>
+    <string name="service_type_empty" />
     <string name="sick_visit">Sick Visit</string>
     <string name="illness_report"><b>Illness Report:</b> %s</string>
     <string name="illness_date">Date:</string>
@@ -180,7 +175,6 @@
     <string name="service_type_dpt_booster_1_short">DPT B1</string>
     <string name="service_type_dpt_booster_2_short">DPT B2</string>
     <string name="pentavalent_short">Pentav</string>
-
     <string name="fp_register_title_in_short">FP:</string>
     <string name="pnc_register_title_in_short">PNC:</string>
     <string name="header_method">METHOD</string>
@@ -195,14 +189,12 @@
     <string name="fp_register_service_mode_female_sterilization">Female Sterilization</string>
     <string name="fp_register_service_mode_male_sterilization">Male Sterilization</string>
     <string name="fp_register_service_mode_others">Others</string>
-
     <string name="fp_register_service_mode_ecp">ECP</string>
     <string name="fp_register_service_mode_traditional">Traditional Methods</string>
     <string name="fp_register_service_mode_lam">LAM</string>
     <string name="fp_register_service_mode_centchroman">Centchroman</string>
     <string name="fp_register_service_mode_none_ps">None - PS</string>
     <string name="fp_register_service_mode_none_ss">None - SS</string>
-
     <string name="fp_prioritization_all_ec_service_mode">All EC</string>
     <string name="fp_prioritization_high_priority_service_mode">High Priority (HP)</string>
     <string name="fp_prioritization_two_plus_children_service_mode">2+ Children</string>
@@ -213,7 +205,6 @@
     <string name="fp_prioritization">FP Prioritization</string>
     <string name="fp_prioritization_add_fp">Add FP</string>
     <string name="fp_prioritization_fp_videos">FP Videos</string>
-
     <string name="header_thayi_number">THAYI NO.</string>
     <string name="header_delivery_info">DELIVERY INFO</string>
     <string name="header_delivery_complications">COMPLICATIONS</string>
@@ -222,21 +213,17 @@
     <string name="header_days_pp">DAYS PP</string>
     <string name="header_first_seven_days">FIRST 7 DAYS</string>
     <string name="header_pnc_visits">PNC VISITS</string>
-
     <string name="pnc_register_service_mode_overview">Overview</string>
     <string name="pnc_register_service_mode_pnc_visits">PNC Visits</string>
-
     <string name="str_pnc_visit_form">PNC Visit</string>
     <string name="str_pnc_postpartum_family_planning_form">Postpartum family planning</string>
     <string name="str_pnc_close_form">PNC Close</string>
-
     <string name="str_referred">Referred</string>
     <string name="str_referral">referral</string>
     <string name="str_follow_up">follow-up</string>
     <string name="str_refill">refill</string>
     <string name="str_update">Update</string>
     <string name="str_side_effects">Side Effects</string>
-
     <string name="anc_label">ANC:</string>
     <string name="hb_test_label">Hb Test</string>
     <string name="edd_label">"EDD: "</string>
@@ -277,14 +264,12 @@
     <string name="str_contact">Contact:</string>
     <string name="str_risks_reviewed">Risks reviewed:</string>
     <string name="sort_by_edd_label">EDD</string>
-
     <string name="str_pnc_delivery_date">Date:</string>
     <string name="str_pnc_delivery_place">Place:</string>
     <string name="str_pnc_delivery_type">Type:</string>
     <string name="str_pp_fp">PP FP</string>
     <string name="str_pnc_child_weight">Wt: %1$s kg</string>
     <string name="str_pnc_dob_label">DOB:</string>
-
     <string name="str_pnc_clause">PNC</string>
     <string name="str_pnc_circle_type_expected">expected</string>
     <string name="str_pnc_circle_type_actual">actual</string>
@@ -296,5 +281,21 @@
     <string name="str_child_illness_ari">ari</string>
     <string name="str_child_illness_sam">sam</string>
     <string name="str_pnc_visit_button_label">PNC Visit</string>
+
+
+    <string name="doc_list_name_header">Name</string>
+    <string name="doc_list_id_no_header">ID No</string>
+    <string name="doc_list_visit_header">Visit Type</string>
+    <string name="doc_list_poc_header">POC Pending</string>
+    <string name="doc_list_status_header">Status</string>
+    <string name="pending_consultations">Pending Consultations</string>
+    <string name="save_devices_info">Save Data</string>
+    <string name="plan_of_care">Plan of Care</string>
+    <string name="pnc_no">PNC NO.</string>
+    <string name="please_select_drug">Please Select Drug</string>
+    <string name="please_select_frequency">Please Select Frequency</string>
+    <string name="please_select_direction">Please Select Direction</string>
+    <string name="please_select_dosage">Please Select Dosage</string>
+
 
 </resources>

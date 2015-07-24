@@ -20,6 +20,13 @@ public class AllSettings {
         settingsRepository.updateSetting(ANM_PASSWORD_PREFERENCE_KEY, password);
     }
 
+    public void registerANMWithUserRole(String userName, String password, String userRole) {
+        preferences.updateANMUserName(userName);
+        preferences.updateUserRole(userRole);
+        settingsRepository.updateSetting(ANM_PASSWORD_PREFERENCE_KEY, password);
+    }
+
+
     public void savePreviousFetchIndex(String value) {
         settingsRepository.updateSetting(PREVIOUS_FETCH_INDEX_SETTING_KEY, value);
     }
@@ -53,6 +60,7 @@ public class AllSettings {
     }
 
     public String fetchANMLocation() {
-        return settingsRepository.querySetting(ANM_LOCATION, "");
+        String setting = settingsRepository.querySetting(ANM_LOCATION, "");
+        return setting;
     }
 }

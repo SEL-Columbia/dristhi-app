@@ -1,5 +1,12 @@
 package org.ei.telemedicine.view.customControls;
 
+import static org.ei.telemedicine.Context.getInstance;
+
+import org.apache.commons.lang3.StringUtils;
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.domain.FPMethod;
+import org.ei.telemedicine.view.contract.BaseFPSmartRegisterClient;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
@@ -7,17 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.apache.commons.lang3.StringUtils;
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.domain.FPMethod;
-import org.ei.telemedicine.view.contract.BaseFPSmartRegisterClient;
-import org.ei.telemedicine.view.contract.ECSmartRegisterClient;
-import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
-
-import java.text.DateFormat;
-
-import static org.ei.telemedicine.Context.getInstance;
 
 public class ClientFpMethodView extends LinearLayout {
     private TextView fpMethodView;

@@ -2,6 +2,7 @@ package org.ei.telemedicine.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -36,6 +37,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
     private static final String IS_CLOSED_COLUMN = "isClosed";
     public static final String PHOTO_PATH_COLUMN = "photoPath";
     public static final String EC_TABLE_NAME = "eligible_couple";
+
     public static final String[] EC_TABLE_COLUMNS = new String[]{ID_COLUMN, WIFE_NAME_COLUMN, HUSBAND_NAME_COLUMN,
             EC_NUMBER_COLUMN, VILLAGE_NAME_COLUMN, SUBCENTER_NAME_COLUMN, IS_OUT_OF_AREA_COLUMN, DETAILS_COLUMN,
             IS_CLOSED_COLUMN, PHOTO_PATH_COLUMN};
@@ -122,6 +124,7 @@ public class EligibleCoupleRepository extends DrishtiRepository {
             villages.add(cursor.getString(0));
             cursor.moveToNext();
         }
+
         cursor.close();
         return villages;
     }

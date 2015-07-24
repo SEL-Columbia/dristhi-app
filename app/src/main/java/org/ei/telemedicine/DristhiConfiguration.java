@@ -1,5 +1,6 @@
 package org.ei.telemedicine;
 
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 
 import org.ei.telemedicine.util.IntegerUtil;
@@ -10,6 +11,7 @@ import java.util.Properties;
 public class DristhiConfiguration {
 
     private static final String DRISHTI_BASE_URL = "DRISHTI_BASE_URL";
+    private static final String DRISHTI_DOC_BASE_URL = "DRISHTI_DOC_BASE_URL";
     private static final String HOST = "HOST";
     private static final String PORT = "PORT";
     private static final String SHOULD_VERIFY_CERTIFICATE = "SHOULD_VERIFY_CERTIFICATE";
@@ -45,7 +47,12 @@ public class DristhiConfiguration {
         return this.get(DRISHTI_BASE_URL);
     }
 
+    public String dristhiDoctorBaseURL() {
+        return this.get(DRISHTI_DOC_BASE_URL);
+    }
+
     public int syncDownloadBatchSize() {
         return IntegerUtil.tryParse(this.get(SYNC_DOWNLOAD_BATCH_SIZE), 100);
     }
+
 }

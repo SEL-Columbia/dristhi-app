@@ -1,11 +1,11 @@
 package org.ei.telemedicine.view.contract;
 
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.Context;
-
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.ei.telemedicine.Context;
+import org.ei.telemedicine.R;
 
 public enum FPPrioritizationServiceModes {
     ALL_EC(Context.getInstance().getStringResource(R.string.fp_prioritization_all_ec_service_mode)),

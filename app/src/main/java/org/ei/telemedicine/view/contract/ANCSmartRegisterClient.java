@@ -29,6 +29,8 @@ public interface ANCSmartRegisterClient extends SmartRegisterClient {
 
     public boolean isVisitsDone();
 
+    public boolean isPocGiven();
+
     public boolean isTTDone();
 
     public boolean isIFADone();

@@ -1,8 +1,16 @@
 package org.ei.telemedicine.view.activity;
 
-import android.view.View;
+import static com.google.common.collect.Iterables.concat;
+import static com.google.common.collect.Iterables.toArray;
+import static java.util.Arrays.asList;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_CLOSE;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_POSTPARTUM_FAMILY_PLANNING;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_REGISTRATION_OA;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT;
 
+import java.util.List;
 
+import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.telemedicine.domain.form.FieldOverrides;
@@ -11,14 +19,26 @@ import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
 import org.ei.telemedicine.view.controller.PNCSmartRegisterController;
 import org.ei.telemedicine.view.controller.VillageController;
-import org.ei.telemedicine.view.dialog.*;
+import org.ei.telemedicine.view.dialog.AllClientsFilter;
+import org.ei.telemedicine.view.dialog.BPLSort;
+import org.ei.telemedicine.view.dialog.DateOfDeliverySort;
+import org.ei.telemedicine.view.dialog.DialogOption;
+import org.ei.telemedicine.view.dialog.DialogOptionMapper;
+import org.ei.telemedicine.view.dialog.DialogOptionModel;
+import org.ei.telemedicine.view.dialog.EditOption;
+import org.ei.telemedicine.view.dialog.FilterOption;
+import org.ei.telemedicine.view.dialog.HighRiskSort;
+import org.ei.telemedicine.view.dialog.NameSort;
+import org.ei.telemedicine.view.dialog.OpenFormOption;
+import org.ei.telemedicine.view.dialog.OutOfAreaFilter;
+import org.ei.telemedicine.view.dialog.PNCOverviewServiceMode;
+import org.ei.telemedicine.view.dialog.PNCVisitsServiceMode;
+import org.ei.telemedicine.view.dialog.SCSort;
+import org.ei.telemedicine.view.dialog.STSort;
+import org.ei.telemedicine.view.dialog.ServiceModeOption;
+import org.ei.telemedicine.view.dialog.SortOption;
 
-import java.util.List;
-
-import static com.google.common.collect.Iterables.concat;
-import static com.google.common.collect.Iterables.toArray;
-import static java.util.Arrays.asList;
-import static org.ei.telemedicine.AllConstants.FormNames.*;
+import android.view.View;
 
 public class NativePNCSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -85,8 +105,7 @@ public class NativePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
             @Override
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{new NameSort(), new DateOfDeliverySort(),
-                        new HighRiskSort(), new BPLSort(),
-                        new SCSort(), new STSort()};
+                        new HighRiskSort()};
             }
 
             @Override
@@ -108,6 +127,7 @@ public class NativePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     private DialogOption[] getUpdateOptions() {
         return new DialogOption[]{
                 new OpenFormOption(getString(R.string.str_pnc_visit_form), PNC_VISIT, formController),
+                new OpenFormOption(getString(R.string.str_anc_plan_of_care), AllConstants.VIEW_PNC_PLAN_OF_CARE, formController, NativePNCSmartRegisterActivity.this),
                 new OpenFormOption(getString(R.string.str_pnc_postpartum_family_planning_form), PNC_POSTPARTUM_FAMILY_PLANNING, formController),
                 new OpenFormOption(getString(R.string.str_pnc_close_form), PNC_CLOSE, formController),
         };
@@ -152,7 +172,6 @@ public class NativePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
             navigationController.startPNC(client.entityId());
         }
     }
-
 
 
     private class UpdateDialogOptionModel implements DialogOptionModel {

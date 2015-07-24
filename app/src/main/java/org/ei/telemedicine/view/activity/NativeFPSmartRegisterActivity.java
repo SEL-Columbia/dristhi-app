@@ -1,25 +1,56 @@
 package org.ei.telemedicine.view.activity;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
+import static com.google.common.collect.Iterables.concat;
+import static com.google.common.collect.Iterables.toArray;
+import static org.ei.telemedicine.AllConstants.FormNames.EC_REGISTRATION;
+import static org.ei.telemedicine.AllConstants.FormNames.FP_CHANGE;
+import static org.ei.telemedicine.AllConstants.FormNames.FP_COMPLICATIONS;
+import static org.ei.telemedicine.AllConstants.FormNames.RECORD_ECPS;
 
-import org.ei.telemedicine.R;
 import org.ei.telemedicine.AllConstants;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.telemedicine.domain.form.FieldOverrides;
 import org.ei.telemedicine.provider.FPSmartRegisterClientsProvider;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
 import org.ei.telemedicine.view.contract.FPClient;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
-import org.ei.telemedicine.view.controller.*;
-import org.ei.telemedicine.view.dialog.*;
+import org.ei.telemedicine.view.controller.FPSmartRegisterController;
+import org.ei.telemedicine.view.controller.VillageController;
+import org.ei.telemedicine.view.dialog.AllClientsFilter;
+import org.ei.telemedicine.view.dialog.BPLSort;
+import org.ei.telemedicine.view.dialog.DialogOption;
+import org.ei.telemedicine.view.dialog.DialogOptionMapper;
+import org.ei.telemedicine.view.dialog.DialogOptionModel;
+import org.ei.telemedicine.view.dialog.ECNumberSort;
+import org.ei.telemedicine.view.dialog.EditOption;
+import org.ei.telemedicine.view.dialog.FPAllMethodsServiceMode;
+import org.ei.telemedicine.view.dialog.FPCondomServiceMode;
+import org.ei.telemedicine.view.dialog.FPDMPAServiceMode;
+import org.ei.telemedicine.view.dialog.FPDialogOptionModel;
+import org.ei.telemedicine.view.dialog.FPFemaleSterilizationServiceMode;
+import org.ei.telemedicine.view.dialog.FPIUCDServiceMode;
+import org.ei.telemedicine.view.dialog.FPMaleSterilizationServiceMode;
+import org.ei.telemedicine.view.dialog.FPOCPServiceMode;
+import org.ei.telemedicine.view.dialog.FPOthersServiceMode;
+import org.ei.telemedicine.view.dialog.FPPrioritizationAllECServiceMode;
+import org.ei.telemedicine.view.dialog.FPPrioritizationHighPriorityServiceMode;
+import org.ei.telemedicine.view.dialog.FPPrioritizationOneChildrenServiceMode;
+import org.ei.telemedicine.view.dialog.FPPrioritizationTwoPlusChildrenServiceMode;
+import org.ei.telemedicine.view.dialog.FPSmartRegisterDialogFragment;
+import org.ei.telemedicine.view.dialog.FilterOption;
+import org.ei.telemedicine.view.dialog.HighPrioritySort;
+import org.ei.telemedicine.view.dialog.NameSort;
+import org.ei.telemedicine.view.dialog.OpenFormOption;
+import org.ei.telemedicine.view.dialog.SCSort;
+import org.ei.telemedicine.view.dialog.STSort;
+import org.ei.telemedicine.view.dialog.ServiceModeOption;
+import org.ei.telemedicine.view.dialog.SortOption;
 
-import static com.google.common.collect.Iterables.concat;
-import static com.google.common.collect.Iterables.toArray;
-import static org.ei.telemedicine.AllConstants.FormNames.*;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.os.Bundle;
+import android.view.View;
 
 public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -93,8 +124,7 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             @Override
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{new NameSort(), new ECNumberSort(),
-                        new HighPrioritySort(), new BPLSort(),
-                        new SCSort(), new STSort()};
+                        new HighPrioritySort()};
             }
 
             @Override
@@ -172,7 +202,7 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+    public void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
         if (dialogOptionModel.getDialogOptions().length <= 0) {
             return;
         }

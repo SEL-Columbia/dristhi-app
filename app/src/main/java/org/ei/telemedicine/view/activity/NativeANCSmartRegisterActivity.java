@@ -1,7 +1,18 @@
 package org.ei.telemedicine.view.activity;
 
-import android.view.View;
+import static com.google.common.collect.Iterables.concat;
+import static com.google.common.collect.Iterables.toArray;
+import static java.util.Arrays.asList;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_CLOSE;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_INVESTIGATIONS;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
+import static org.ei.telemedicine.AllConstants.FormNames.DELIVERY_OUTCOME;
+import static org.ei.telemedicine.AllConstants.FormNames.DELIVERY_PLAN;
+import static org.ei.telemedicine.AllConstants.FormNames.HB_TEST;
+import static org.ei.telemedicine.AllConstants.FormNames.IFA;
+import static org.ei.telemedicine.AllConstants.FormNames.TT;
 
+import java.util.List;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
@@ -12,14 +23,30 @@ import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
 import org.ei.telemedicine.view.controller.ANCSmartRegisterController;
 import org.ei.telemedicine.view.controller.VillageController;
-import org.ei.telemedicine.view.dialog.*;
+import org.ei.telemedicine.view.dialog.ANCOverviewServiceMode;
+import org.ei.telemedicine.view.dialog.ANCVisitsServiceMode;
+import org.ei.telemedicine.view.dialog.AllClientsFilter;
+import org.ei.telemedicine.view.dialog.BPLSort;
+import org.ei.telemedicine.view.dialog.DeliveryPlanServiceMode;
+import org.ei.telemedicine.view.dialog.DialogOption;
+import org.ei.telemedicine.view.dialog.DialogOptionMapper;
+import org.ei.telemedicine.view.dialog.DialogOptionModel;
+import org.ei.telemedicine.view.dialog.EditOption;
+import org.ei.telemedicine.view.dialog.EstimatedDateOfDeliverySort;
+import org.ei.telemedicine.view.dialog.FilterOption;
+import org.ei.telemedicine.view.dialog.HRPSort;
+import org.ei.telemedicine.view.dialog.HbIFAServiceMode;
+import org.ei.telemedicine.view.dialog.NameSort;
+import org.ei.telemedicine.view.dialog.OpenFormOption;
+import org.ei.telemedicine.view.dialog.OutOfAreaFilter;
+import org.ei.telemedicine.view.dialog.SCSort;
+import org.ei.telemedicine.view.dialog.STSort;
+import org.ei.telemedicine.view.dialog.ServiceModeOption;
+import org.ei.telemedicine.view.dialog.SortOption;
+import org.ei.telemedicine.view.dialog.TTServiceMode;
 
-import java.util.List;
-
-import static com.google.common.collect.Iterables.concat;
-import static com.google.common.collect.Iterables.toArray;
-import static java.util.Arrays.asList;
-import static org.ei.telemedicine.AllConstants.FormNames.*;
+import android.content.Intent;
+import android.view.View;
 
 public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -97,8 +124,7 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
             @Override
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{new NameSort(), new EstimatedDateOfDeliverySort(),
-                        new HRPSort(), new BPLSort(),
-                        new SCSort(), new STSort()};
+                        new HRPSort()};
             }
 
             @Override
@@ -115,6 +141,7 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
                 new OpenFormOption(getString(R.string.str_register_ifa_form), IFA, formController),
                 new OpenFormOption(getString(R.string.str_register_tt_form), TT, formController),
                 new OpenFormOption(getString(R.string.str_register_delivery_plan_form), DELIVERY_PLAN, formController),
+                new OpenFormOption(getString(R.string.str_anc_plan_of_care), AllConstants.VIEW_PLAN_OF_CARE, formController, NativeANCSmartRegisterActivity.this),
                 new OpenFormOption(getString(R.string.str_register_pnc_registration_form), DELIVERY_OUTCOME, formController),
                 new OpenFormOption(getString(R.string.str_register_anc_investigations_form), ANC_INVESTIGATIONS, formController),
                 new OpenFormOption(getString(R.string.str_register_anc_close_form), ANC_CLOSE, formController)

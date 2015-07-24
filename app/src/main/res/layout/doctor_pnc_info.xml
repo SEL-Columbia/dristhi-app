@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="2dp"
+    android:background="#e5e5e5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_pnc"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <org.ei.telemedicine.view.customControls.CustomFontTextView
+                style="@style/CustomFontTextViewStyle.ListView.Bold"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:text="PNC Visit"
+                android:textSize="25sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="PNC Number :"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_pnc_num"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Woman&apos;s Name :"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_woman_name"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="PNC Visit Date :"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_pnc_visit_date"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Difficulties :"
+                    android:textSize="20sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_difficulties"
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:inputType="textMultiLine"
+                    android:maxLines="10"
+                    android:textSize="20sp" />
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_difficulty_breating"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Difficulty Breathing"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_bad_headache"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Bad Headache"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_blurred_vision"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Blurred Vision"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_no_problems"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="No Problems"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--</LinearLayout>-->
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Abdominal Problems :"
+                    android:textSize="20sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_addominal_problems"
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:inputType="textMultiLine"
+                    android:maxLines="10"
+                    android:textSize="20sp" />
+                <!--<LinearLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_uterus_soft_or_tender"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Uterus is soft or tender"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_abdominal_pain"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Abdominal Pain"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_no_abdominal_problems"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="No Problems"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--</LinearLayout>-->
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Vaginal Problems :"
+                    android:textSize="20sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_vaginal_problems"
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+
+                    android:layout_weight="1"
+
+                    android:gravity="center"
+                    android:inputType="textMultiLine"
+                    android:maxLines="10"
+                    android:textSize="20sp" />
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_heavy_bleeding_under_vaginum"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Heavy Bleeding Under Vaginum"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_bad_smelling_lochia"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Bad-smelling Lochia"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_infected_perineum_suture"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Infected Perineum suture"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_vaginal_no_problems"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="No Problems"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--</LinearLayout>-->
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Urinating Difficulties :"
+                    android:textSize="20sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_urinating_difficulties"
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+
+                    android:layout_marginTop="10dp"
+
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:inputType="textMultiLine"
+                    android:maxLines="10"
+                    android:textSize="20sp" />
+                <!--<LinearLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_difficulty_passing_urine"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Difficulty passing urine"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_burning_urinating"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Burning sensation when urinating"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_urinate_no_problems"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="No Problems"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--</LinearLayout>-->
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Breast Problems :"
+                    android:textSize="20sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_breast_problems"
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="top"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:inputType="textMultiLine"
+                    android:maxLines="10"
+                    android:textSize="20sp" />
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_breast_hardness"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Breast Hardness"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_nipple_hardness"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Nipple Hardness"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_breast_no_problems"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="No Problems"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--</LinearLayout>-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Does mother feel hot or have the chills"
+                    android:textSize="20sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_kop_feel_hot"
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="20sp" />
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_yes_kop_heat_chills"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Yes"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_no_kop_heat_chills"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="No"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--</LinearLayout>-->
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:gravity="left"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Vital Measurements :"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="4">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="BP Systolic :"
+                    android:textSize="20sp" />
+
+
+                <EditText
+                    android:id="@+id/et_pnc_sysstolic"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Normal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.5"
+                    android:gravity="left"
+                    android:text="mmHg"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="4">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="BP Diastolic :"
+                    android:textSize="20sp" />
+
+
+                <EditText
+                    android:id="@+id/et_pnc_diastolic"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Normal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.5"
+                    android:gravity="left"
+                    android:text="mmHg"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="4">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Auscultation :"
+                    android:textSize="20sp"
+                    android:visibility="gone" />
+
+
+                <EditText
+                    android:id="@+id/et_pnc_ausculation"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans"
+                    android:visibility="gone" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="4">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Temperature :"
+                    android:textSize="20sp" />
+
+
+                <EditText
+                    android:id="@+id/et_pnc_temperature"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Normal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.5"
+                    android:gravity="left"
+                    android:text="F"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="4">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Blood Glucose :"
+                    android:textSize="20sp" />
+
+
+                <EditText
+                    android:id="@+id/et_pnc_blood_glucose"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Normal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.5"
+                    android:gravity="left"
+                    android:text="mmOI/L"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="4">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="HB Level "
+                    android:textSize="20sp" />
+
+
+                <EditText
+                    android:id="@+id/et_pnc_hb_level"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Normal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="0.5"
+                    android:gravity="left"
+                    android:text="g/dl"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="4">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Stethoscope :"
+                    android:textSize="20sp" />
+
+
+                <ImageButton
+                    android:id="@+id/ib_play_stehoscope"
+                    android:layout_width="20dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.5"
+                    android:src="@android:drawable/ic_media_play" />
+
+            </LinearLayout>
+            <!--<LinearLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:gravity="center"-->
+            <!--android:weightSum="4">-->
+
+            <!--<org.ei.telemedicine.view.customControls.CustomFontTextView-->
+            <!--style="@style/CustomFontTextViewStyle.ListView.Bold"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="top"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center"-->
+            <!--android:text="Fetal movement :"-->
+            <!--android:textSize="20sp" />-->
+
+
+            <!--<EditText-->
+            <!--android:id="@+id/et_fetal_movement"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="45dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/rounded_corner_edittext"-->
+            <!--android:editable="false"-->
+            <!--android:ems="10"-->
+            <!--android:paddingLeft="8dp"-->
+            <!--android:singleLine="false"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textSize="20sp"-->
+            <!--android:typeface="sans" />-->
+
+            <!--</LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="7dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <Button
+
+                    android:id="@+id/bt_plan_of_care"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:background="#669900"
+                    android:ems="10"
+                    android:text="@string/plan_of_care"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

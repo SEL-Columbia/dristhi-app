@@ -1,12 +1,12 @@
 package org.ei.telemedicine.view.customControls;
 
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
 
 public class DeliveryInfoView extends LinearLayout {
     private TextView txtDeliveryDateView;

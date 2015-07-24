@@ -67,4 +67,5 @@ public class NavigationController {
     public void startChild(String entityId) {
         navigateToChildProfile(activity, entityId);
     }
+
 }

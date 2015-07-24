@@ -1,13 +1,21 @@
 package org.ei.telemedicine.view.activity;
 
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
+import static java.lang.String.valueOf;
+import static org.ei.telemedicine.event.Event.ACTION_HANDLED;
+import static org.ei.telemedicine.event.Event.FORM_SUBMITTED;
+import static org.ei.telemedicine.event.Event.SYNC_COMPLETED;
+import static org.ei.telemedicine.event.Event.SYNC_STARTED;
 
-import org.ei.telemedicine.R;
+import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.doctor.DoctorANCScreenActivity;
+import org.ei.telemedicine.doctor.NativeDoctorActivity;
+//import org.ei.telemedicine.doctor.NativeDoctorSmartRegisterActivity;
+//import org.ei.telemedicine.doctor.NativeDoctorFragmentActivity;
+import org.ei.telemedicine.domain.form.FieldOverrides;
 import org.ei.telemedicine.event.Listener;
+import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.ei.telemedicine.service.PendingFormSubmissionService;
 import org.ei.telemedicine.sync.SyncAfterFetchListener;
 import org.ei.telemedicine.sync.SyncProgressIndicator;
@@ -16,13 +24,37 @@ import org.ei.telemedicine.view.contract.HomeContext;
 import org.ei.telemedicine.view.controller.NativeAfterANMDetailsFetchListener;
 import org.ei.telemedicine.view.controller.NativeUpdateANMDetailsTask;
 
-import static java.lang.String.valueOf;
-import static org.ei.telemedicine.event.Event.*;
+import android.app.Dialog;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.os.Environment;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Map;
 
 public class NativeHomeActivity extends SecuredActivity {
     private MenuItem updateMenuItem;
     private MenuItem remainingFormsToSyncMenuItem;
     private PendingFormSubmissionService pendingFormSubmissionService;
+    Dialog popup_dialog;
+    Object obj;
 
     private Listener<Boolean> onSyncStartListener = new Listener<Boolean>() {
         @Override
@@ -32,6 +64,11 @@ public class NativeHomeActivity extends SecuredActivity {
             }
         }
     };
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
 
     private Listener<Boolean> onSyncCompleteListener = new Listener<Boolean>() {
         @Override
@@ -65,11 +102,24 @@ public class NativeHomeActivity extends SecuredActivity {
     private TextView fpRegisterClientCountView;
     private TextView childRegisterClientCountView;
 
+    private FrameLayout ec_register, fp_register, anc_register, pnc_register, child_register;
+    private String TAG = "NativeHomeActivity";
+
     @Override
     protected void onCreation() {
         setContentView(R.layout.smart_registers_home);
         setupViews();
+
         initialize();
+    }
+
+    private void visibleRegisters() {
+        AllSharedPreferences allSharedPreferences = Context.getInstance().allSharedPreferences();
+        ec_register.setVisibility(allSharedPreferences.registerState(AllConstants.EC_REGISTERS_KEY) ? View.VISIBLE : View.GONE);
+        fp_register.setVisibility(allSharedPreferences.registerState(AllConstants.FP_REGISTERS_KEY) ? View.VISIBLE : View.GONE);
+        anc_register.setVisibility(allSharedPreferences.registerState(AllConstants.ANC_REGISTERS_KEY) ? View.VISIBLE : View.GONE);
+        pnc_register.setVisibility(allSharedPreferences.registerState(AllConstants.PNC_REGISTERS_KEY) ? View.VISIBLE : View.GONE);
+        child_register.setVisibility(allSharedPreferences.registerState(AllConstants.CHILD_REGISTERS_KEY) ? View.VISIBLE : View.GONE);
     }
 
     private void setupViews() {
@@ -80,13 +130,19 @@ public class NativeHomeActivity extends SecuredActivity {
         findViewById(R.id.btn_child_register).setOnClickListener(onRegisterStartListener);
 
         findViewById(R.id.btn_reporting).setOnClickListener(onButtonsClickListener);
-        findViewById(R.id.btn_videos).setOnClickListener(onButtonsClickListener);
+//        findViewById(R.id.btn_videos).setOnClickListener(onButtonsClickListener);
 
         ecRegisterClientCountView = (TextView) findViewById(R.id.txt_ec_register_client_count);
         pncRegisterClientCountView = (TextView) findViewById(R.id.txt_pnc_register_client_count);
         ancRegisterClientCountView = (TextView) findViewById(R.id.txt_anc_register_client_count);
         fpRegisterClientCountView = (TextView) findViewById(R.id.txt_fp_register_client_count);
         childRegisterClientCountView = (TextView) findViewById(R.id.txt_child_register_client_count);
+
+        ec_register = (FrameLayout) findViewById(R.id.frame_ec_reg);
+        fp_register = (FrameLayout) findViewById(R.id.frame_fp_reg);
+        anc_register = (FrameLayout) findViewById(R.id.frame_anc_reg);
+        pnc_register = (FrameLayout) findViewById(R.id.frame_pnc_reg);
+        child_register = (FrameLayout) findViewById(R.id.frame_child_reg);
     }
 
     private void initialize() {
@@ -99,6 +155,7 @@ public class NativeHomeActivity extends SecuredActivity {
 
     @Override
     protected void onResumption() {
+        visibleRegisters();
         updateRegisterCounts();
         updateSyncIndicator();
         updateRemainingFormsToSyncCount();
@@ -139,6 +196,10 @@ public class NativeHomeActivity extends SecuredActivity {
             case R.id.updateMenuItem:
                 updateFromServer();
                 return true;
+            case R.id.settings:
+                startActivity(new Intent(this, NativeSettingsActivity.class));
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -219,10 +280,10 @@ public class NativeHomeActivity extends SecuredActivity {
                 case R.id.btn_reporting:
                     navigationController.startReports();
                     break;
-
-                case R.id.btn_videos:
-                    navigationController.startVideos();
-                    break;
+//
+//                case R.id.btn_videos:
+//                    navigationController.startVideos();
+//                    break;
             }
         }
     };

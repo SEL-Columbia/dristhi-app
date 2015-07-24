@@ -1,5 +1,7 @@
 package org.ei.telemedicine.service;
 
+import android.util.Log;
+
 import org.ei.telemedicine.repository.FormDataRepository;
 import org.ei.telemedicine.service.formSubmissionHandler.FormSubmissionRouter;
 import org.mozilla.javascript.Context;

@@ -37,6 +37,7 @@ public class PNCClient implements PNCSmartRegisterClient {
     private String ec_number;
     private String village;
     private String name;
+    private String pncNumber;
     private String thayi;
     private String age;
     private String womanDOB;
@@ -46,6 +47,7 @@ public class PNCClient implements PNCSmartRegisterClient {
     private Boolean isHighRisk;
     private String locationStatus;
     private String economicStatus;
+    private String pocInfo;
     private String caste;
     private String fp_method;
     private String iudPlace;
@@ -149,6 +151,11 @@ public class PNCClient implements PNCSmartRegisterClient {
     }
 
     @Override
+    public boolean isPOC() {
+        return pocInfo != null && !pocInfo.equals("");
+    }
+
+    @Override
     public String profilePhotoPath() {
         return photo_path;
     }
@@ -173,6 +180,11 @@ public class PNCClient implements PNCSmartRegisterClient {
     @Override
     public String thayiNumber() {
         return thayi;
+    }
+
+    @Override
+    public String pncNumber() {
+        return pncNumber;
     }
 
     @Override
@@ -279,6 +291,12 @@ public class PNCClient implements PNCSmartRegisterClient {
         this.ec_number = ecNumber;
         return this;
     }
+
+    public PNCClient withPNCNumber(String pncNumber) {
+        this.pncNumber = pncNumber;
+        return this;
+    }
+
 
     public PNCClient withIsHighPriority(boolean highPriority) {
         this.isHighPriority = highPriority;
@@ -397,6 +415,11 @@ public class PNCClient implements PNCSmartRegisterClient {
 
     public PNCClient withServiceToVisitMap(Map<String, Visits> serviceToVisitsMap) {
         this.serviceToVisitsMap = serviceToVisitsMap;
+        return this;
+    }
+
+    public PNCClient withPoc(String pocInfo) {
+        this.pocInfo = pocInfo;
         return this;
     }
 

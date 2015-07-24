@@ -8,9 +8,5 @@
     <string name="loggin_in_dialog_message">Please wait</string>
     <string name="login_failed_dialog_title">Log in failed</string>
     <string name="login_failed_dialog_message">Please check the credentials</string>
-    <string name="home_ec_label">ಅರ್ಹ ದಂಪತಿಗಳು</string>
-    <string name="home_anc_label">ಎಎನ್ ಸಿ</string>
-    <string name="home_pnc_label">ಪಿಎನ್ ಸಿ</string>
-    <string name="home_child_label">ಮಗು</string>
-    <string name="home_report_label">ವರದಿ</string>
+    <string name="opv_booster"></string>
 </resources>

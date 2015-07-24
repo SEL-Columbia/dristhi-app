@@ -1,14 +1,14 @@
 package org.ei.telemedicine.view.customControls;
 
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.util.Cache;
+import org.ei.telemedicine.util.CacheableData;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.util.Cache;
-import org.ei.telemedicine.util.CacheableData;
 
 public class CustomFontTextView extends TextView {
 

@@ -1,14 +1,17 @@
 package org.ei.telemedicine.view.viewHolder;
 
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.view.customControls.ClientPNCPpFpMethodView;
+import org.ei.telemedicine.view.customControls.ClientProfileView;
+import org.ei.telemedicine.view.customControls.DeliveryInfoView;
+import org.ei.telemedicine.view.customControls.PNCWebViewClient;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.view.customControls.*;
 
 public class NativePNCSmartRegisterViewHolder {
     private final ClientProfileView profileInfoLayout;

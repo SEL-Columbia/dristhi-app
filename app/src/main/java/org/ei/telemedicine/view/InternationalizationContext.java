@@ -1,11 +1,14 @@
 package org.ei.telemedicine.view;
 
-import android.content.res.Resources;
-import com.google.gson.Gson;
-import org.ei.telemedicine.R;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.ei.telemedicine.R;
+
+import android.content.res.Resources;
+
+import com.google.gson.Gson;
 
 public class InternationalizationContext {
 

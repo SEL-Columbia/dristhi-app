@@ -8,17 +8,30 @@ import org.ei.telemedicine.R;
 import org.ei.telemedicine.domain.FPMethod;
 import org.ei.telemedicine.util.IntegerUtil;
 
-import java.util.*;
-
-import static org.apache.commons.lang3.StringUtils.replace;
-import static org.ei.telemedicine.AllConstants.ECRegistrationFields.*;
 import static org.ei.telemedicine.AllConstants.COMMA_WITH_SPACE;
 import static org.ei.telemedicine.AllConstants.SPACE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.BPL_VALUE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.SC_VALUE;
+import static org.ei.telemedicine.AllConstants.ECRegistrationFields.ST_VALUE;
 import static org.ei.telemedicine.Context.getInstance;
 import static org.ei.telemedicine.util.DateUtil.formatDate;
 import static org.ei.telemedicine.util.StringUtil.humanize;
 import static org.ei.telemedicine.util.StringUtil.humanizeAndDoUPPERCASE;
 import static org.ei.telemedicine.util.StringUtil.replaceAndHumanize;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.domain.FPMethod;
+import org.ei.telemedicine.util.IntegerUtil;
 
 public class FPClient implements FPSmartRegisterClient {
 
@@ -256,6 +269,11 @@ public class FPClient implements FPSmartRegisterClient {
     @Override
     public boolean isBPL() {
         return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
+    }
+
+    @Override
+    public boolean isPOC() {
+        return false;
     }
 
     @Override

@@ -1,22 +1,30 @@
 package org.ei.telemedicine.view.dialog;
 
-import android.view.View;
-import android.widget.TextView;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.Context;
-import org.ei.telemedicine.domain.ChildServiceType;
-import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
-import org.ei.telemedicine.view.contract.*;
-import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
-import org.ei.telemedicine.view.viewHolder.*;
-
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 import static org.ei.telemedicine.AllConstants.FormNames.CHILD_IMMUNIZATIONS;
 import static org.ei.telemedicine.AllConstants.FormNames.VITAMIN_A;
-import static org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
+
+import org.ei.telemedicine.Context;
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.domain.ChildServiceType;
+import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
+import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
+import org.ei.telemedicine.view.contract.AlertDTO;
+import org.ei.telemedicine.view.contract.AlertStatus;
+import org.ei.telemedicine.view.contract.ChildSmartRegisterClient;
+import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
+import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
+import org.ei.telemedicine.view.viewHolder.NativeANCSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
+
+import android.view.View;
+import android.widget.TextView;
 
 public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
 
@@ -44,7 +52,7 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{26, 19, 15, 15, 15, 15};
+                return new int[]{26, 14, 15, 15, 15, 15};
             }
 
             @Override

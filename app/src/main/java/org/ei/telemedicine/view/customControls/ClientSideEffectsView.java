@@ -1,23 +1,16 @@
 package org.ei.telemedicine.view.customControls;
 
+import static org.ei.telemedicine.Context.getInstance;
+
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.domain.FPMethod;
+import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
+
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.apache.commons.codec.binary.StringUtils;
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.domain.FPMethod;
-import org.ei.telemedicine.util.StringUtil;
-import org.ei.telemedicine.view.contract.AlertDTO;
-import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
-
-import java.util.List;
-
-import static org.apache.commons.lang3.StringUtils.isEmpty;
-import static org.ei.telemedicine.Context.getInstance;
 
 public class ClientSideEffectsView extends LinearLayout {
     private TextView complicationsDateView;

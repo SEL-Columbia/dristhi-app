@@ -1,22 +1,29 @@
 package org.ei.telemedicine.view.dialog;
 
+import static android.view.View.VISIBLE;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_POSTPARTUM_FAMILY_PLANNING;
+import static org.ei.telemedicine.Context.getInstance;
+
+import org.ei.telemedicine.Context;
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
+import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
+import org.ei.telemedicine.view.contract.ChildClient;
+import org.ei.telemedicine.view.contract.ChildSmartRegisterClient;
+import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
+import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
+import org.ei.telemedicine.view.viewHolder.NativeANCSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
+
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.Context;
-import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
-import org.ei.telemedicine.view.contract.*;
-import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
-import org.ei.telemedicine.view.viewHolder.*;
-
-import static android.view.View.VISIBLE;
-import static org.ei.telemedicine.AllConstants.FormNames.PNC_POSTPARTUM_FAMILY_PLANNING;
-import static org.ei.telemedicine.Context.getInstance;
-import static org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 
 public class PNCOverviewServiceMode extends ServiceModeOption {
 
@@ -49,13 +56,13 @@ public class PNCOverviewServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{24, 13, 17, 15, 12, 24};
+                return new int[]{24, 8, 17, 15, 12, 24};
             }
 
             @Override
             public int[] headerTextResourceIds() {
                 return new int[]{
-                        R.string.header_name, R.string.header_thayi_number, R.string.header_delivery_info,
+                        R.string.header_name, R.string.pnc_no, R.string.header_delivery_info,
                         R.string.header_delivery_complications, R.string.header_pp_fp, R.string.header_child};
             }
         };

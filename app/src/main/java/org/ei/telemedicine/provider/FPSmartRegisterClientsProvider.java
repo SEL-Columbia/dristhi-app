@@ -1,10 +1,6 @@
 package org.ei.telemedicine.provider;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.activity.SecuredActivity;
@@ -13,13 +9,23 @@ import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
 import org.ei.telemedicine.view.contract.SmartRegisterClients;
 import org.ei.telemedicine.view.controller.FPSmartRegisterController;
-import org.ei.telemedicine.view.dialog.*;
+import org.ei.telemedicine.view.dialog.FPAllMethodsServiceMode;
+import org.ei.telemedicine.view.dialog.FPMethodFilter;
+import org.ei.telemedicine.view.dialog.FPPrioritizationMethodFilter;
+import org.ei.telemedicine.view.dialog.FilterOption;
+import org.ei.telemedicine.view.dialog.NameSort;
+import org.ei.telemedicine.view.dialog.ServiceModeOption;
+import org.ei.telemedicine.view.dialog.SortOption;
 import org.ei.telemedicine.view.viewHolder.ECProfilePhotoLoader;
 import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
 import org.ei.telemedicine.view.viewHolder.ProfilePhotoLoader;
 
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
 
 public class FPSmartRegisterClientsProvider implements SmartRegisterClientsProvider {
 

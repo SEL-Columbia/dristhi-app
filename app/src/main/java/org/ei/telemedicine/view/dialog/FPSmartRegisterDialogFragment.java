@@ -1,15 +1,18 @@
 package org.ei.telemedicine.view.dialog;
 
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity;
+
 import android.app.DialogFragment;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 public class FPSmartRegisterDialogFragment extends DialogFragment {
     private final SecuredNativeSmartRegisterActivity parentActivity;

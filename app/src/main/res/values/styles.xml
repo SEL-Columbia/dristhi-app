@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="CustomFontTextViewStyle" parent="@android:style/Widget.TextView">
         <item name="fontVariant">regular</item>
@@ -14,7 +14,7 @@
         <item name="android:textSize">17sp</item>
     </style>
 
-    <style name="CustomFontTextViewStyle.ListView.Normal.Bold" >
+    <style name="CustomFontTextViewStyle.ListView.Normal.Bold">
         <item name="fontVariant">bold</item>
     </style>
 
@@ -205,4 +205,5 @@
         <item name="android:button">@null</item>
         <item name="android:clickable">true</item>
     </style>
+
 </resources>

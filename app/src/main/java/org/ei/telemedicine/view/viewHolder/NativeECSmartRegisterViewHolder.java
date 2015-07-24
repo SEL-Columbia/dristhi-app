@@ -1,11 +1,15 @@
 package org.ei.telemedicine.view.viewHolder;
 
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.view.customControls.ClientChildrenView;
+import org.ei.telemedicine.view.customControls.ClientFpMethodView;
+import org.ei.telemedicine.view.customControls.ClientGplsaView;
+import org.ei.telemedicine.view.customControls.ClientProfileView;
+import org.ei.telemedicine.view.customControls.ClientStatusView;
+
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.view.customControls.*;
 
 public class NativeECSmartRegisterViewHolder {
     private final ClientProfileView profileInfoLayout;

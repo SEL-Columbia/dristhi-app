@@ -1,19 +1,19 @@
 package org.ei.telemedicine.view.contract;
 
 
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.Context;
-import org.ei.telemedicine.domain.ChildServiceType;
-
-import java.util.*;
-
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.ei.telemedicine.AllConstants.COMMA_WITH_SPACE;
 import static org.ei.telemedicine.AllConstants.SPACE;
 import static org.ei.telemedicine.util.DateUtil.formatDate;
-import static org.ei.telemedicine.util.StringUtil.humanize;
-import static org.ei.telemedicine.util.StringUtil.replaceAndHumanize;
 import static org.ei.telemedicine.util.StringUtil.replaceAndHumanizeWithInitCapText;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.ei.telemedicine.Context;
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.domain.ChildServiceType;
 
 public interface ChildSmartRegisterClient extends SmartRegisterClient {
 List<String> illnessAcronyms = new ArrayList<String>(

@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="2dp"
+    android:background="#e5e5e5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_anc"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <org.ei.telemedicine.view.customControls.CustomFontTextView
+                style="@style/CustomFontTextViewStyle.ListView.Bold"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_marginBottom="2dp"
+                android:gravity="center"
+                android:text="Child Illness"
+                android:textSize="25sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Mother&apos;s Name :"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_mother_name"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Child Name :"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_child_name"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="true"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Date Of Birth :"
+                    android:textSize="20sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_child_dob"
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="20sp" />
+                <!--<LinearLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_report_child_disease"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Report Child Disease"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_child_sickenss"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Child Sickness management"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+
+                <!--</LinearLayout>-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Child Disease Report :"
+                    android:textSize="20sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_child_disease_report"
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:inputType="textMultiLine"
+                    android:maxLines="10"
+                    android:textSize="20sp" />
+                <!--<LinearLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_measles"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Measles"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_diarrhea_dehydration"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Diarrhea and Dehydration"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_malaria"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Malaria"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_acute_respirtory_infection"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Acute Respiratory Infection"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_severe_acute_malnutrition"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Severe Acute Malnutrition"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_others"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Others"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--</LinearLayout>-->
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Reporting Date :"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/et_reporting_date"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner_edittext"
+                    android:editable="false"
+                    android:ems="10"
+                    android:paddingLeft="8dp"
+                    android:singleLine="false"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:typeface="sans" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:gravity="left"
+                android:weightSum="2">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Immediate Referral :"
+                    android:textSize="20sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_referral"
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:inputType="textMultiLine"
+                    android:maxLines="10"
+                    android:textSize="20sp" />
+
+                <!--<LinearLayout-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical">-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_cough"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Cough"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_diarrhea"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Diarrhea"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_fever"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Fever"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_convulsions"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Convulsions"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_difficulty_drinking"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Difficulty in drinking"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_vomiting"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Vomiting"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_chest_indrawing"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Chest indrwaing"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_unusally_sleepy"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Unusually sleepy or unconscious"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_swelling_of_both_feet"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Swelling of both feet"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--<CheckBox-->
+                <!--android:id="@+id/cb_breating_others"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:checked="false"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Other"-->
+                <!--android:textColor="@android:color/black"-->
+                <!--android:textSize="20sp" />-->
+
+                <!--</LinearLayout>-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Immediate Referral Reason:"
+                    android:textSize="20sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_referral_reason"
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <Button
+
+                    android:id="@+id/bt_plan_of_care"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="#669900"
+                    android:ems="10"
+                    android:text="@string/plan_of_care"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

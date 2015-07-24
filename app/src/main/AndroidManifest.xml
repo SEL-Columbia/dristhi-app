@@ -50,7 +50,7 @@
         android:targetSdkVersion="16" />
 
     <application
-        android:name="org.ei.telemedicine.view.activity.DrishtiApplication"
+        android:name=".view.activity.DrishtiApplication"
         android:clearTaskOnLaunch="true"
         android:icon="@drawable/opensrp_logo"
         android:label="@string/app_name"
@@ -157,8 +157,7 @@
             android:name=".view.activity.NativeANCSmartRegisterActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
-
-
+       
         <activity
             android:name=".view.activity.NativePNCSmartRegisterActivity"
             android:screenOrientation="landscape"
@@ -168,8 +167,34 @@
             android:screenOrientation="landscape"></activity>
 
 
-        <receiver android:name="org.ei.telemedicine.view.receiver.SyncBroadcastReceiver" />
-        <receiver android:name="org.ei.telemedicine.view.receiver.ConnectivityChangeReceiver">
+        <activity
+            android:name=".view.activity.NativeSettingsActivity"
+            android:screenOrientation="landscape"></activity>
+
+        <activity
+            android:name=".doctor.DoctorANCScreenActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".doctor.DoctorPNCScreenActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".doctor.DoctorChildScreenActivity"
+            android:screenOrientation="landscape" />
+        <!--<activity android:name=".view.activity.NativeVideoActivity" />-->
+        <activity
+            android:name=".doctor.DoctorPlanofCareActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".view.activity.ViewPlanOfCareActivity"
+            android:screenOrientation="landscape" />
+
+        <activity
+            android:name=".doctor.NativeDoctorActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+
+        <receiver android:name=".view.receiver.SyncBroadcastReceiver" />
+        <receiver android:name=".view.receiver.ConnectivityChangeReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>

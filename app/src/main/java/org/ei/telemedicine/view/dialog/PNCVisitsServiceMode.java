@@ -54,13 +54,13 @@ public class PNCVisitsServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{24, 13, 7, 15, 22, 24};
+                return new int[]{24, 8, 7, 15, 22, 24};
             }
 
             @Override
             public int[] headerTextResourceIds() {
                 return new int[]{
-                        R.string.header_name, R.string.header_thayi_number, R.string.header_days_pp,
+                        R.string.header_name, R.string.pnc_no, R.string.header_days_pp,
                         R.string.header_delivery_complications, R.string.header_first_seven_days, R.string.header_pnc_visits};
             }
         };

@@ -87,7 +87,7 @@ public class ECClient implements ECSmartRegisterClient {
 
     @Override
     public int age() {
-        return StringUtils.isBlank(dateOfBirth) ? 0 : Years.yearsBetween(LocalDate.parse(dateOfBirth), DateUtil.today()).getYears();
+        return StringUtils.isBlank(dateOfBirth) ? 0 : Years.yearsBetween(LocalDate.parse(dateOfBirth), LocalDate.now()).getYears();
     }
 
     @Override
@@ -136,6 +136,11 @@ public class ECClient implements ECSmartRegisterClient {
     @Override
     public boolean isBPL() {
         return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
+    }
+
+    @Override
+    public boolean isPOC() {
+        return false;
     }
 
     @Override

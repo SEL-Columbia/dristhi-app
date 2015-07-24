@@ -1,17 +1,18 @@
 package org.ei.telemedicine.view.customControls;
 
+import org.ei.telemedicine.AllConstants;
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.util.Log;
+import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
+import org.ei.telemedicine.view.contract.SmartRegisterClient;
+import org.ei.telemedicine.view.viewHolder.ProfilePhotoLoader;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.AllConstants;
-import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
-import org.ei.telemedicine.view.contract.SmartRegisterClient;
-import org.ei.telemedicine.view.viewHolder.ProfilePhotoLoader;
 
 public class ClientProfileView extends RelativeLayout {
     private ImageView imgProfileView;
@@ -23,8 +24,8 @@ public class ClientProfileView extends RelativeLayout {
     private ImageView badgeHPView;
     private ImageView badgeHRView;
     private ImageView badgeBPLView;
-    private ImageView badgeSCView;
-    private ImageView badgeSTView;
+    private ImageView badgePOCPendingView;
+    private ImageView badgePocCompleteView;
 
     @SuppressWarnings("UnusedDeclaration")
     public ClientProfileView(Context context) {
@@ -50,8 +51,8 @@ public class ClientProfileView extends RelativeLayout {
         badgeHPView = (ImageView) findViewById(R.id.img_hp_badge);
         badgeHRView = (ImageView) findViewById(R.id.img_hr_badge);
         badgeBPLView = (ImageView) findViewById(R.id.img_bpl_badge);
-        badgeSCView = (ImageView) findViewById(R.id.img_sc_badge);
-        badgeSTView = (ImageView) findViewById(R.id.img_st_badge);
+        badgePOCPendingView = (ImageView) findViewById(R.id.img_poc_pending_badge);
+        badgePocCompleteView = (ImageView) findViewById(R.id.img_poc_badge);
     }
 
     // #TODO: make these names generic, so this layout can be reused in all the registers
@@ -66,8 +67,8 @@ public class ClientProfileView extends RelativeLayout {
         setHROrHRPBadge(client);
         badgeHRView.setVisibility(client.isHighRisk() ? View.VISIBLE : View.GONE);
         badgeBPLView.setVisibility(client.isBPL() ? View.VISIBLE : View.GONE);
-        badgeSCView.setVisibility(client.isSC() ? View.VISIBLE : View.GONE);
-        badgeSTView.setVisibility(client.isST() ? View.VISIBLE : View.GONE);
+        badgePOCPendingView.setVisibility(client.isBPL() ? View.VISIBLE : View.GONE);
+        badgePocCompleteView.setVisibility(client.isPOC() ? View.VISIBLE : View.GONE);
     }
 
     private void setHROrHRPBadge(SmartRegisterClient client) {

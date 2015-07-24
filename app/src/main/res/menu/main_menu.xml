@@ -9,9 +9,54 @@
         android:id="@+id/updateMenuItem"
         android:icon="@drawable/refresh"
         android:orderInCategory="100"
-        android:showAsAction="always" />
+        android:showAsAction="always"
+        android:title="Refresh" />
     <item
-        android:id="@+id/switchLanguageMenuItem"
-        android:icon="@drawable/ic_menu_edit"
-        android:title="@string/str_switch_language" />
+        android:id="@+id/settings"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="Settings" />
+
+    <item
+        android:id="@+id/video"
+        android:icon="@android:drawable/ic_media_play"
+        android:orderInCategory="100"
+        android:title="Video Calling" />
+    <item
+        android:id="@+id/video1"
+        android:icon="@android:drawable/ic_media_play"
+        android:orderInCategory="100"
+        android:title="AppRTC Video Calling" />
+
+    <!--<item-->
+    <!--android:id="@+id/switchLanguageMenuItem"-->
+    <!--android:icon="@drawable/ic_menu_edit"-->
+    <!--android:title="@string/str_switch_language" />-->
+    <!--&lt;!&ndash;<item&ndash;&gt;-->
+    <!--&lt;!&ndash;android:id="@+id/sampleForm"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:title="Sample Form" />&ndash;&gt;-->
+
+    <!--<item-->
+    <!--android:id="@+id/bt_info"-->
+    <!--android:icon="@android:drawable/stat_sys_data_bluetooth"-->
+    <!--android:orderInCategory="100"-->
+    <!--android:showAsAction="always"-->
+    <!--android:title="Bluetooth" />-->
+
+    <!--<item-->
+    <!--android:id="@+id/doc_view"-->
+    <!--android:icon="@android:drawable/ic_menu_edit"-->
+    <!--android:orderInCategory="100"-->
+    <!--android:showAsAction="always"-->
+    <!--android:title="Doctor" />-->
+
+    <!--<item-->
+    <!--android:id="@+id/doc_view2"-->
+    <!--android:icon="@android:drawable/ic_menu_add"-->
+    <!--android:orderInCategory="100"-->
+    <!--android:showAsAction="always"-->
+    <!--android:title="Doctor" />-->
+
+
 </menu>

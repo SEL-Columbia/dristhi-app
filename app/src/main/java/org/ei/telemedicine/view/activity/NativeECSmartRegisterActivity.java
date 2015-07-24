@@ -1,6 +1,13 @@
 package org.ei.telemedicine.view.activity;
 
-import android.view.View;
+import static com.google.common.collect.Iterables.concat;
+import static com.google.common.collect.Iterables.toArray;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_REGISTRATION;
+import static org.ei.telemedicine.AllConstants.FormNames.CHILD_REGISTRATION_EC;
+import static org.ei.telemedicine.AllConstants.FormNames.EC_CLOSE;
+import static org.ei.telemedicine.AllConstants.FormNames.EC_EDIT;
+import static org.ei.telemedicine.AllConstants.FormNames.EC_REGISTRATION;
+import static org.ei.telemedicine.AllConstants.FormNames.FP_CHANGE;
 
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
@@ -11,14 +18,24 @@ import org.ei.telemedicine.view.contract.ECClient;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
 import org.ei.telemedicine.view.controller.ECSmartRegisterController;
 import org.ei.telemedicine.view.controller.VillageController;
-import org.ei.telemedicine.view.dialog.*;
+import org.ei.telemedicine.view.dialog.AllClientsFilter;
+import org.ei.telemedicine.view.dialog.AllEligibleCoupleServiceMode;
+import org.ei.telemedicine.view.dialog.BPLSort;
+import org.ei.telemedicine.view.dialog.DialogOption;
+import org.ei.telemedicine.view.dialog.DialogOptionMapper;
+import org.ei.telemedicine.view.dialog.DialogOptionModel;
+import org.ei.telemedicine.view.dialog.ECNumberSort;
+import org.ei.telemedicine.view.dialog.EditOption;
+import org.ei.telemedicine.view.dialog.FilterOption;
+import org.ei.telemedicine.view.dialog.HighPrioritySort;
+import org.ei.telemedicine.view.dialog.NameSort;
+import org.ei.telemedicine.view.dialog.OpenFormOption;
+import org.ei.telemedicine.view.dialog.SCSort;
+import org.ei.telemedicine.view.dialog.STSort;
+import org.ei.telemedicine.view.dialog.ServiceModeOption;
+import org.ei.telemedicine.view.dialog.SortOption;
 
-import java.util.List;
-
-import static com.google.common.collect.Iterables.concat;
-import static com.google.common.collect.Iterables.toArray;
-import static java.util.Arrays.asList;
-import static org.ei.telemedicine.AllConstants.FormNames.*;
+import android.view.View;
 
 public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -79,8 +96,7 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             @Override
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{new NameSort(), new ECNumberSort(),
-                        new HighPrioritySort(), new BPLSort(),
-                        new SCSort(), new STSort()};
+                        new HighPrioritySort()};
             }
 
             @Override
@@ -128,7 +144,8 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     protected void startRegistration() {
-        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
+        String locationJSON = context.anmLocationController().getLocationJSON();
+        FieldOverrides fieldOverrides = new FieldOverrides(locationJSON);
         startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
     }
 

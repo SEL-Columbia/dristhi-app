@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
+import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.view.receiver.SyncBroadcastReceiver;
 
@@ -20,6 +22,7 @@ public class DrishtiSyncScheduler {
     public static final int SYNC_INTERVAL = 2 * MILLIS_PER_MINUTE;
     public static final int SYNC_START_DELAY = 5 * MILLIS_PER_SECOND;
     private static Listener<Boolean> logoutListener;
+    private static String TAG = "DrishtiSyncScheduler";
 
     public static void start(final Context context) {
         if (org.ei.telemedicine.Context.getInstance().IsUserLoggedOut()) {
@@ -38,6 +41,7 @@ public class DrishtiSyncScheduler {
         logInfo(format("Scheduled to sync from server every {0} seconds.", SYNC_INTERVAL / 1000));
 
         attachListenerToStopSyncOnLogout(context);
+
     }
 
     private static void attachListenerToStopSyncOnLogout(final Context context) {
@@ -51,7 +55,7 @@ public class DrishtiSyncScheduler {
         ON_LOGOUT.addListener(logoutListener);
     }
 
-    public static void startOnlyIfConnectedToNetwork(Context context) {
+    public static void startOnlyIfConnectedToNetwork(Context context, String userRole) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {

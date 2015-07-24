@@ -1,7 +1,7 @@
 package org.ei.telemedicine.view.dialog;
 
-import org.ei.telemedicine.R;
 import org.ei.telemedicine.Context;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
 
 public class AllClientsFilter implements FilterOption {

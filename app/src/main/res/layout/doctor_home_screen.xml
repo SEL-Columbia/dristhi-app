@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/client_list_header_dark_grey"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/doc_main_header_height"
+        android:background="@color/light_blue"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/transparent_gray_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:scaleType="center"
+            android:src="@drawable/opensrp_logo" />
+
+        <ImageView
+            android:id="@+id/home_title_separator"
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/separator" />
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/btn_report_month"
+            style="@style/CustomFontTextViewStyle.NavBar.Black"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/imageView"
+            android:background="@android:color/transparent"
+            android:paddingLeft="7dp"
+            android:text="@string/pending_consultations" />
+
+        <ImageView
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="19dp"
+            android:layout_toRightOf="@+id/btn_report_month"
+            android:padding="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/separator" />
+
+        <LinearLayout
+            android:id="@+id/anc_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@+id/anc_sep"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ANC"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/anc_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="2dp"
+                android:text="0"
+                android:textColor="@color/light_blue"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/anc_sep"
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@+id/pnc_layout"
+            android:scaleType="fitXY"
+            android:src="@drawable/separator" />
+
+        <LinearLayout
+            android:id="@+id/pnc_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@+id/pnc_sep"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PNC"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/pnc_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0"
+                android:textColor="@color/light_blue"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/pnc_sep"
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@+id/child_layout"
+            android:scaleType="fitXY"
+            android:src="@drawable/separator" />
+
+        <LinearLayout
+            android:id="@+id/child_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@android:color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/ib_sort_selection">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Child"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/child_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="0"
+                android:textColor="@color/light_blue"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/ib_sort_selection"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/transparent_gray_background"
+            android:gravity="center"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:src="@drawable/ic_sort"
+            android:layout_alignTop="@+id/search_layout"
+            android:layout_toLeftOf="@+id/ib_filter_selection" />
+
+        <ImageView
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/separator" />
+
+        <ImageButton
+            android:id="@+id/ib_filter_selection"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@+id/sync_layout"
+            android:background="@drawable/transparent_gray_background"
+            android:gravity="center"
+            android:paddingLeft="22dp"
+            android:paddingRight="22dp"
+            android:src="@drawable/ic_village_filter" />
+
+        <ImageView
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/separator" />
+
+        <FrameLayout
+            android:id="@+id/sync_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@+id/search_layout">
+
+            <ImageButton
+                android:id="@+id/start_sync_doc_data"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@drawable/transparent_gray_background"
+                android:gravity="center"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
+                android:src="@drawable/refresh"
+                android:visibility="visible" />
+
+            <ProgressBar
+                android:id="@+id/doc_client_list_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="invisible" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/search_layout"
+            android:layout_width="@dimen/ec_main_header_search_layout_width"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_edit_text_normal"
+            android:orientation="horizontal"
+            android:paddingLeft="15dp">
+
+            <EditText
+                android:id="@+id/edt_doc_search"
+                android:layout_width="@dimen/ec_main_header_search_box_width"
+                android:layout_height="fill_parent"
+                android:background="@android:color/transparent"
+                android:ellipsize="end"
+                android:hint="@string/str_doc_search_hint"
+                android:singleLine="true"
+                android:textSize="17sp" />
+
+            <ImageButton
+                android:id="@+id/ib_doc_search_cancel"
+                android:layout_width="@dimen/ec_main_header_search_cancel_button_width"
+                android:layout_height="fill_parent"
+                android:background="@android:color/transparent"
+                android:paddingLeft="15dp"
+                android:paddingRight="40dp"
+                android:src="@drawable/ic_cross"
+                android:visibility="invisible" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black">
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/label_sorted_by"
+            style="@style/CustomFontTextViewStyle.StatusBar.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/label_sorted_by" />
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/sorted_by"
+            style="@style/CustomFontTextViewStyle.StatusBar.Black"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp" />
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            style="@style/CustomFontTextViewStyle.StatusBar.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/label_village" />
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/village"
+            style="@style/CustomFontTextViewStyle.StatusBar.Black"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="5dp" />
+    </LinearLayout>
+
+    <!--<ImageView-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="@dimen/smart_register_client_divider_height"-->
+    <!--android:src="@color/smart_register_client_divider_color" />-->
+
+    <LinearLayout
+        android:id="@+id/clients_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_header_height"
+        android:layout_gravity="center"
+        android:background="@android:color/darker_gray"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="@dimen/list_view_margin_left_and_right"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="NAME"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:text="ID NO."
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:text="VISIT TYPE"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.75"
+            android:gravity="center"
+            android:text="POC PENDING"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="STATUS"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/list_view_margin_left_and_right"
+        android:layout_marginRight="@dimen/list_view_margin_left_and_right"
+        android:layout_weight="1"
+        android:background="@drawable/listview_background_rounded">
+
+        <ListView
+            android:id="@+id/consultants_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:divider="@color/smart_register_client_divider_color"
+            android:dividerHeight="@dimen/smart_register_client_divider_height"
+            android:visibility="visible" />
+
+        <!--<ProgressBar-->
+        <!--android:id="@+id/consultant_list_progress"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:visibility="visible" />-->
+
+    </FrameLayout>
+</LinearLayout>

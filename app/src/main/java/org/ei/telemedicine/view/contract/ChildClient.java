@@ -40,7 +40,7 @@ public class ChildClient implements ChildSmartRegisterClient {
             CATEGORY_OPVBOOSTER, CATEGORY_DPT, CATEGORY_PENTAVALENT,
             CATEGORY_HEPB, CATEGORY_VITAMIN_A, CATEGORY_CHILD_ILLNESS};
 
-    private static  Map<String, List<ChildServiceType>> categoriesToServiceTypeMap = new HashMap<String, List<ChildServiceType>>();
+    private static Map<String, List<ChildServiceType>> categoriesToServiceTypeMap = new HashMap<String, List<ChildServiceType>>();
 
     static {
         categoriesToServiceTypeMap.put(CATEGORY_BCG, Arrays.asList(BCG));
@@ -68,6 +68,7 @@ public class ChildClient implements ChildSmartRegisterClient {
     private String village;
     private String locationStatus;
     private String economicStatus;
+    private String pocInfo;
     private String caste;
     private boolean isHighRisk;
     private String photo_path;
@@ -178,6 +179,11 @@ public class ChildClient implements ChildSmartRegisterClient {
     @Override
     public boolean isBPL() {
         return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
+    }
+
+    @Override
+    public boolean isPOC() {
+        return false;
     }
 
     @Override
@@ -312,6 +318,11 @@ public class ChildClient implements ChildSmartRegisterClient {
 
     public ChildClient withDOB(String dob) {
         this.dob = dob;
+        return this;
+    }
+
+    public ChildClient withPoc(String pocInfo) {
+        this.pocInfo = pocInfo;
         return this;
     }
 
@@ -537,7 +548,7 @@ public class ChildClient implements ChildSmartRegisterClient {
     }
 
 
-    class DateComparator implements Comparator<ServiceProvidedDTO>{
+    class DateComparator implements Comparator<ServiceProvidedDTO> {
 
         @Override
         public int compare(ServiceProvidedDTO serviceProvidedDTO1, ServiceProvidedDTO serviceProvidedDTO2) {

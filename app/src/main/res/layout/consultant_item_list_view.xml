@@ -1,0 +1,181 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/clients_header_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="82dp"
+    android:layout_marginRight="@dimen/list_view_margin_left_and_right"
+    android:orientation="horizontal"
+    android:weightSum="10">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="10dp"
+        android:layout_weight="2">
+
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:padding="3dp"
+            android:src="@drawable/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/item_wife_name"
+                    style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:text="NAME"
+                    android:textColor="@android:color/black"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/item_wife_age"
+                    style="@style/CustomFontTextViewStyle.ListView.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Age"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <org.ei.telemedicine.view.customControls.CustomFontTextView
+                android:id="@+id/item_husband_name"
+                style="@style/CustomFontTextViewStyle.ListView.Normal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="NAME"
+                android:textColor="@android:color/black"
+                android:textSize="17sp" />
+
+
+            <org.ei.telemedicine.view.customControls.CustomFontTextView
+                android:id="@+id/item_village_name"
+                style="@style/CustomFontTextViewStyle.ListView.Normal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="NAME"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="fill_parent"
+        android:background="@android:color/darker_gray" />
+
+    <org.ei.telemedicine.view.customControls.CustomFontTextView
+        android:id="@+id/item_id_no"
+        style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1.5"
+        android:gravity="center"
+        android:text="ID NO."
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="fill_parent"
+        android:background="@android:color/darker_gray" />
+
+    <org.ei.telemedicine.view.customControls.CustomFontTextView
+        android:id="@+id/item_visit_type"
+        style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1.5"
+        android:gravity="center"
+        android:text="VISIT TYPE"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="fill_parent"
+        android:background="@android:color/darker_gray" />
+
+    <org.ei.telemedicine.view.customControls.CustomFontTextView
+        android:id="@+id/item_poc_pending"
+        style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:text="POC PENDING"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="fill_parent"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:layout_weight="2.25"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/item_status1"
+            style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="STATUS"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/item_status2"
+            style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:text="STATUS"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="@dimen/smart_register_client_divider_height"
+        android:layout_height="fill_parent"
+        android:src="@color/smart_register_client_divider_color" />
+
+    <ImageButton
+        android:id="@+id/btn_edit"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_gravity="right"
+        android:layout_weight="0.75"
+        android:background="@drawable/edit_button_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:src="@android:drawable/ic_menu_edit" />
+
+</LinearLayout>

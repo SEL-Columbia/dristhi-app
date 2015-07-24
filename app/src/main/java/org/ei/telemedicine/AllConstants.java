@@ -1,6 +1,13 @@
 package org.ei.telemedicine;
 
 public class AllConstants {
+    public static final String DOC_BASE_URL = "http://202.153.34.169:8000/";
+    //    public static final String DOC_BASE_URL = "http://192.168.90.160:8000/";
+    public static final String VIEW_PLAN_OF_CARE = "viewPlanOfCare";
+    public static final String VIEW_PNC_PLAN_OF_CARE = "viewPNCPlanOfCare";
+    public static final String VIEW_CHILD_PLAN_OF_CARE = "viewCHILDPlanOfCare";
+    public static final String VISIT_TYPE = "visitType";
+
     public static final String REPORT_CATEGORY = "reportCategory";
     public static final String INDICATOR_DETAIL = "indicatorDetail";
     public static final String CATEGORY_DESCRIPTION = "categoryDescription";
@@ -8,6 +15,13 @@ public class AllConstants {
     public static final String CASE_IDS = "caseIds";
     public static final String INDICATOR = "indicator";
     public static final String CASE_ID = "caseId";
+
+    public static final String EC_REGISTERS_KEY = "ec_reg_state";
+    public static final String FP_REGISTERS_KEY = "fp_reg_state";
+    public static final String ANC_REGISTERS_KEY = "anc_reg_state";
+    public static final String PNC_REGISTERS_KEY = "pnc_reg_state";
+    public static final String CHILD_REGISTERS_KEY = "child_reg_state";
+
 
     public static final String LANGUAGE_PREFERENCE_KEY = "locale";
     public static final String ENGLISH_LOCALE = "en";
@@ -20,7 +34,24 @@ public class AllConstants {
     public static final String WOMAN_TYPE = "woman";
     public static final String CHILD_TYPE = "child";
     public static final String REALM = "Dristhi";
-    public static final String AUTHENTICATE_USER_URL_PATH = "/anm-villages?anm-id=";
+    public static final String VILLAGES_USER_URL_PATH = "/anm-villages?anm-id=";
+    //    public static final String DRUG_INFO_URL_PATH = "http://192.168.90.160:8000/druginfo/";
+    public static final String DRUG_INFO_URL_PATH = DOC_BASE_URL + "druginfo/";
+
+    public static final String POC_DATA_SAVE_URL_PATH = DOC_BASE_URL + "pocupdate/?";
+
+
+    public static final String DRUG_INFO_RESULT = "drugsResultData";
+    public static final String POC_DRUGS = "drug_data";
+    public static final String POC_INVESTIGATIONS = "investigation_data";
+    public static final String POC_DIAGNOSIS = "diagnosis_data";
+    public static final String STETHOSCOPE_DATA = "stethoscope_data";
+
+    //    public static final String USER_DETAILS_URL_PATH = "/user-details/anm?anm-id=";
+    public static final String USER_DETAILS_URL_PATH = "/user-details?anm-id=";
+    //    public static final String USER_DETAILS_URL_PATH = "/user-role?anm-id=";
+    public static final String ANM_ROLE = "ROLE_USER";
+    public static final String DOCTOR_ROLE = "ROLE_DOC_USER";
 
     public static final String FORM_NAME_PARAM = "formName";
     public static final String INSTANCE_ID_PARAM = "instanceId";
@@ -94,6 +125,7 @@ public class AllConstants {
 
     public class ECRegistrationFields {
         public static final String CURRENT_FP_METHOD = "currentMethod";
+        public static final String WIFE_DOB = "wifeDOB";
         public static final String WOMAN_DOB = "womanDOB";
         public static final String FAMILY_PLANNING_METHOD_CHANGE_DATE = "familyPlanningMethodChangeDate";
         public static final String IUD_PLACE = "iudPlace";
@@ -142,17 +174,26 @@ public class AllConstants {
         public static final String TT_DATE = "ttDate";
     }
 
+    public class VisitTypes {
+        public static final String ANC_VISIT = "ANC";
+        public static final String PNC_VISIT = "PNC";
+        public static final String CHILD_VISIT = "CHILD";
+    }
+
     public class ANCRegistrationFields {
         public static final String EDD = "edd";
         public static final String HIGH_RISK_REASON = "highRiskReason";
         public static final String IS_HIGH_RISK = "isHighRisk";
         public static final String ASHA_PHONE_NUMBER = "ashaPhoneNumber";
         public static final String ANC_NUMBER = "ancNumber";
+        public static final String ANC_POC_INFO = "docPocInfo";
         public static final String REGISTRATION_DATE = "registrationDate";
         public static final String RISK_OBSERVED_DURING_ANC = "riskObservedDuringANC";
     }
 
     public class PNCRegistrationFields {
+        public static final String PNC_POC_INFO = "docPocInfo";
+        public static final String PNC_NUMBER = "pncNumber";
         public static final String DELIVERY_PLACE = "deliveryPlace";
         public static final String DELIVERY_TYPE = "deliveryType";
         public static final String DELIVERY_COMPLICATIONS = "deliveryComplications";
@@ -214,6 +255,7 @@ public class AllConstants {
     }
 
     public class ChildRegistrationFields {
+        public static final String CHILD_POC_INFO = "docPocInfo";
         public static final String MOTHER_ID = "motherId";
         public static final String CHILD_ID = "childId";
         public static final String DATE_OF_BIRTH = "dateOfBirth";

@@ -1,7 +1,8 @@
 package org.ei.telemedicine.view.contract;
 
-import android.graphics.Color;
 import org.ei.telemedicine.R;
+
+import android.graphics.Color;
 
 public enum AlertStatus {
     EMPTY {

@@ -59,6 +59,10 @@ public class ChildService {
         }
     }
 
+    public Mother getMotherUseEntityId(String entityId) {
+        return motherRepository.findById(entityId);
+    }
+
     private boolean isDeliveryOutcomeStillBirth(FormSubmission submission) {
         return AllConstants.DeliveryOutcomeFields.STILL_BIRTH_VALUE
                 .equalsIgnoreCase(submission.getFieldValue(AllConstants.DeliveryOutcomeFields.DELIVERY_OUTCOME));

@@ -1,21 +1,27 @@
 package org.ei.telemedicine.provider;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.view.activity.SecuredActivity;
+import org.ei.telemedicine.view.contract.SmartRegisterClient;
+import org.ei.telemedicine.view.contract.SmartRegisterClients;
+import org.ei.telemedicine.view.contract.pnc.PNCClients;
+import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
+import org.ei.telemedicine.view.controller.PNCSmartRegisterController;
+import org.ei.telemedicine.view.dialog.FilterOption;
+import org.ei.telemedicine.view.dialog.ServiceModeOption;
+import org.ei.telemedicine.view.dialog.SortOption;
+import org.ei.telemedicine.view.viewHolder.ECProfilePhotoLoader;
+import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
+import org.ei.telemedicine.view.viewHolder.ProfilePhotoLoader;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.view.activity.SecuredActivity;
-import org.ei.telemedicine.view.contract.*;
-import org.ei.telemedicine.view.contract.pnc.PNCClients;
-import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
-import org.ei.telemedicine.view.controller.PNCSmartRegisterController;
-import org.ei.telemedicine.view.dialog.*;
-import org.ei.telemedicine.view.viewHolder.*;
-
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 public class PNCSmartRegisterClientsProvider implements SmartRegisterClientsProvider {
 
@@ -76,7 +82,7 @@ public class PNCSmartRegisterClientsProvider implements SmartRegisterClientsProv
     }
 
     private void setupThayiNumberView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder) {
-        viewHolder.txtThayiNumberView().setText(client.thayiNumber());
+        viewHolder.txtThayiNumberView().setText(client.pncNumber());
     }
 
     @Override

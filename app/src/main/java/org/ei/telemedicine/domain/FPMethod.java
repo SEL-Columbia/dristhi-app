@@ -1,14 +1,17 @@
 package org.ei.telemedicine.domain;
 
-import org.apache.commons.lang3.StringUtils;
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.Context;
+import static org.ei.telemedicine.domain.TimelineEvent.forFPCondomRenew;
+import static org.ei.telemedicine.domain.TimelineEvent.forFPDMPARenew;
+import static org.ei.telemedicine.domain.TimelineEvent.forFPIUDRenew;
+import static org.ei.telemedicine.domain.TimelineEvent.forFPOCPRenew;
+import static org.ei.telemedicine.util.Log.logWarn;
 
 import java.util.Locale;
 import java.util.Map;
 
-import static org.ei.telemedicine.domain.TimelineEvent.*;
-import static org.ei.telemedicine.util.Log.logWarn;
+import org.apache.commons.lang3.StringUtils;
+import org.ei.telemedicine.Context;
+import org.ei.telemedicine.R;
 
 public enum FPMethod {
     CONDOM {

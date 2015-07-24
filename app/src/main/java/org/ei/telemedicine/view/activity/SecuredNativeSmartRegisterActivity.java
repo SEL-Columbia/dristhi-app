@@ -1,17 +1,14 @@
 package org.ei.telemedicine.view.activity;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.database.DataSetObserver;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.*;
+import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+import static java.text.MessageFormat.format;
+import static java.util.Arrays.asList;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.ei.telemedicine.AllConstants.SHORT_DATE_FORMAT;
 
+import java.util.List;
 
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
@@ -20,18 +17,35 @@ import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
 import org.ei.telemedicine.view.customControls.CustomFontTextView;
 import org.ei.telemedicine.view.customControls.FontVariant;
-import org.ei.telemedicine.view.dialog.*;
+import org.ei.telemedicine.view.dialog.AllClientsFilter;
+import org.ei.telemedicine.view.dialog.DialogOption;
+import org.ei.telemedicine.view.dialog.DialogOptionModel;
+import org.ei.telemedicine.view.dialog.ECSearchOption;
+import org.ei.telemedicine.view.dialog.EditOption;
+import org.ei.telemedicine.view.dialog.FilterOption;
+import org.ei.telemedicine.view.dialog.ServiceModeOption;
+import org.ei.telemedicine.view.dialog.SmartRegisterDialogFragment;
+import org.ei.telemedicine.view.dialog.SortOption;
 import org.joda.time.LocalDate;
 
-import java.util.List;
-
-import static android.os.AsyncTask.THREAD_POOL_EXECUTOR;
-import static android.view.View.INVISIBLE;
-import static android.view.View.VISIBLE;
-import static java.text.MessageFormat.format;
-import static java.util.Arrays.asList;
-import static org.apache.commons.lang3.StringUtils.isEmpty;
-import static org.ei.telemedicine.AllConstants.SHORT_DATE_FORMAT;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.database.DataSetObserver;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.AbsListView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity {
 
@@ -57,6 +71,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private final PaginationViewHandler paginationViewHandler = new PaginationViewHandler();
     private final NavBarActionsHandler navBarActionsHandler = new NavBarActionsHandler();
     private final SearchCancelHandler searchCancelHandler = new SearchCancelHandler();
+    private String TAG = "SecuredNativeSmartRegisterActivity";
 
     public interface ClientsHeaderProvider {
 
@@ -198,12 +213,14 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
             @Override
             public void onTextChanged(CharSequence cs, int start, int before, int count) {
-                currentSearchFilter = new ECSearchOption(cs.toString());
-                clientsAdapter
-                        .refreshList(currentVillageFilter, currentServiceModeOption,
-                                currentSearchFilter, currentSortOption);
-
-                searchCancelView.setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
+                if (clientsAdapter != null) {
+                    currentSearchFilter = new ECSearchOption(cs.toString());
+                    clientsAdapter
+                            .refreshList(currentVillageFilter, currentServiceModeOption,
+                                    currentSearchFilter, currentSortOption);
+                    searchCancelView.setVisibility(isEmpty(cs) ? INVISIBLE : VISIBLE);
+                } else
+                    Log.e(TAG, "No Data in Clients Adapter");
             }
 
             @Override
@@ -314,7 +331,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         showFragmentDialog(dialogOptionModel, null);
     }
 
-    void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+    public void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
         if (dialogOptionModel.getDialogOptions().length <= 0) {
             return;
         }

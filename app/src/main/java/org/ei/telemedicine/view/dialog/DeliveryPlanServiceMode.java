@@ -9,18 +9,41 @@ import org.ei.telemedicine.R;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.domain.ANCServiceType;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
-import org.ei.telemedicine.view.contract.*;
 import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
-import org.ei.telemedicine.view.viewHolder.*;
 
 import static android.view.View.VISIBLE;
-import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.*;
 import static org.ei.telemedicine.AllConstants.BOOLEAN_TRUE;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.BIRTH_COMPANION;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.DELIVERY_FACILITY_DH_VALUE;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.DELIVERY_FACILITY_HOME_VALUE;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.DELIVERY_FACILITY_NAME;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.DELIVERY_FACILITY_SDH_VALUE;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.PHONE_NUMBER;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.REVIEWED_HRP_STATUS;
+import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.TRANSPORTATION_PLAN;
 import static org.ei.telemedicine.Context.getInstance;
 import static org.ei.telemedicine.domain.ANCServiceType.DELIVERY_PLAN;
 import static org.ei.telemedicine.util.StringUtil.humanize;
-import static org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
+
+import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
+import org.ei.telemedicine.view.contract.AlertDTO;
+import org.ei.telemedicine.view.contract.AlertStatus;
+import org.ei.telemedicine.view.contract.ChildSmartRegisterClient;
+import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
+import org.ei.telemedicine.view.contract.ServiceProvidedDTO;
+import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
+import org.ei.telemedicine.view.viewHolder.NativeANCSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
+
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class DeliveryPlanServiceMode extends ServiceModeOption {
 
@@ -48,7 +71,7 @@ public class DeliveryPlanServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{21, 14, 12, 58};
+                return new int[]{21, 9, 12, 58};
             }
 
             @Override

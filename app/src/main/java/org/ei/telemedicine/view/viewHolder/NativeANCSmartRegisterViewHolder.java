@@ -1,16 +1,16 @@
 package org.ei.telemedicine.view.viewHolder;
 
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.view.customControls.ANCClientIdDetailsView;
+import org.ei.telemedicine.view.customControls.ANCStatusView;
+import org.ei.telemedicine.view.customControls.ClientProfileView;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.view.customControls.ANCClientIdDetailsView;
-import org.ei.telemedicine.view.customControls.ANCStatusView;
-import org.ei.telemedicine.view.customControls.ClientProfileView;
 
 public class NativeANCSmartRegisterViewHolder {
     private final ClientProfileView profileInfoLayout;

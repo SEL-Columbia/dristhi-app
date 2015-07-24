@@ -114,6 +114,8 @@ public interface SmartRegisterClient {
 
     public boolean isBPL();
 
+    public boolean isPOC();
+
     public String profilePhotoPath();
 
     public String locationStatus();

@@ -1,16 +1,16 @@
 package org.ei.telemedicine.view.viewHolder;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.customControls.ClientFpMethodView;
 import org.ei.telemedicine.view.customControls.ClientGplsaChildView;
 import org.ei.telemedicine.view.customControls.ClientProfileView;
 import org.ei.telemedicine.view.customControls.ClientSideEffectsView;
+
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class NativeFPSmartRegisterViewHolder {
     private final ClientProfileView profileInfoLayout;

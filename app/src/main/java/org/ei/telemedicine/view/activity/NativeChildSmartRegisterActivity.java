@@ -1,9 +1,13 @@
 package org.ei.telemedicine.view.activity;
 
-import android.view.View;
+import static com.google.common.collect.Iterables.concat;
+import static com.google.common.collect.Iterables.toArray;
+import static java.util.Arrays.asList;
 
-import org.ei.telemedicine.R;
+import java.util.List;
+
 import org.ei.telemedicine.AllConstants;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.telemedicine.domain.form.FieldOverrides;
 import org.ei.telemedicine.provider.ChildSmartRegisterClientsProvider;
@@ -11,13 +15,27 @@ import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
 import org.ei.telemedicine.view.controller.ChildSmartRegisterController;
 import org.ei.telemedicine.view.controller.VillageController;
-import org.ei.telemedicine.view.dialog.*;
+import org.ei.telemedicine.view.dialog.AllClientsFilter;
+import org.ei.telemedicine.view.dialog.BPLSort;
+import org.ei.telemedicine.view.dialog.ChildAgeSort;
+import org.ei.telemedicine.view.dialog.ChildHighRiskSort;
+import org.ei.telemedicine.view.dialog.ChildImmunization0to9ServiceMode;
+import org.ei.telemedicine.view.dialog.ChildImmunization9PlusServiceMode;
+import org.ei.telemedicine.view.dialog.ChildOverviewServiceMode;
+import org.ei.telemedicine.view.dialog.DialogOption;
+import org.ei.telemedicine.view.dialog.DialogOptionMapper;
+import org.ei.telemedicine.view.dialog.DialogOptionModel;
+import org.ei.telemedicine.view.dialog.EditOption;
+import org.ei.telemedicine.view.dialog.FilterOption;
+import org.ei.telemedicine.view.dialog.NameSort;
+import org.ei.telemedicine.view.dialog.OpenFormOption;
+import org.ei.telemedicine.view.dialog.OutOfAreaFilter;
+import org.ei.telemedicine.view.dialog.SCSort;
+import org.ei.telemedicine.view.dialog.STSort;
+import org.ei.telemedicine.view.dialog.ServiceModeOption;
+import org.ei.telemedicine.view.dialog.SortOption;
 
-import java.util.List;
-
-import static com.google.common.collect.Iterables.concat;
-import static com.google.common.collect.Iterables.toArray;
-import static java.util.Arrays.asList;
+import android.view.View;
 
 public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -93,8 +111,7 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
             @Override
             public DialogOption[] sortingOptions() {
                 return new DialogOption[]{new NameSort(), new ChildAgeSort(),
-                        new ChildHighRiskSort(), new BPLSort(),
-                        new SCSort(), new STSort()};
+                        new ChildHighRiskSort()};
             }
 
             @Override
@@ -108,6 +125,7 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
         return new DialogOption[]{
                 new OpenFormOption(getString(R.string.str_child_immunizations), AllConstants.FormNames.CHILD_IMMUNIZATIONS, formController),
                 new OpenFormOption(getString(R.string.str_child_illness), AllConstants.FormNames.CHILD_ILLNESS, formController),
+                new OpenFormOption(getString(R.string.str_anc_plan_of_care), AllConstants.VIEW_CHILD_PLAN_OF_CARE, formController, NativeChildSmartRegisterActivity.this),
                 new OpenFormOption(getString(R.string.str_child_close), AllConstants.FormNames.CHILD_CLOSE, formController),
                 new OpenFormOption(getString(R.string.str_vitamin_a), AllConstants.FormNames.VITAMIN_A, formController)
         };

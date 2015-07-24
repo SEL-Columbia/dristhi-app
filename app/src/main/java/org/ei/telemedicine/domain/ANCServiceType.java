@@ -1,8 +1,8 @@
 package org.ei.telemedicine.domain;
 
 import org.apache.commons.lang3.StringUtils;
-import org.ei.telemedicine.R;
 import org.ei.telemedicine.Context;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.contract.ANCClient;
 
 import java.util.Locale;

@@ -19,6 +19,8 @@ public interface PNCSmartRegisterClient extends BaseFPSmartRegisterClient {
 
     public String thayiNumber();
 
+    public String pncNumber();
+
     public String deliveryDateForDisplay();
 
     public String deliveryShortDate();

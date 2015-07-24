@@ -1,5 +1,6 @@
 package org.ei.telemedicine;
 
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 
@@ -101,6 +102,14 @@ public class Context {
     private ANMLocationController anmLocationController;
 
     private DristhiConfiguration configuration;
+
+    // New Content
+    private DoctorRepository doctorRepository;
+    private AllDoctorRepository allDoctorRepository;
+
+
+    // New Content
+
 
     protected Context() {
     }
@@ -374,8 +383,9 @@ public class Context {
     private Repository initRepository() {
         if (repository == null) {
             repository = new Repository(this.applicationContext, session(), settingsRepository(), alertRepository(),
-                    eligibleCoupleRepository(), childRepository(), timelineEventRepository(), motherRepository(), reportRepository(),
-                    formDataRepository(), serviceProvidedRepository());
+                    eligibleCoupleRepository(), childRepository(), timelineEventRepository(), motherRepository(),
+                    reportRepository(), formDataRepository(),
+                    serviceProvidedRepository(), doctorRepository());
         }
         return repository;
     }
@@ -414,7 +424,7 @@ public class Context {
     public AllBeneficiaries allBeneficiaries() {
         initRepository();
         if (allBeneficiaries == null) {
-            allBeneficiaries = new AllBeneficiaries(motherRepository(), childRepository(), alertRepository(), timelineEventRepository());
+            allBeneficiaries = new AllBeneficiaries(motherRepository(), childRepository(), alertRepository(), timelineEventRepository(),  doctorRepository());
         }
         return allBeneficiaries;
     }
@@ -484,6 +494,16 @@ public class Context {
         }
         return timelineEventRepository;
     }
+
+
+    private DoctorRepository doctorRepository() {
+        if (doctorRepository == null) {
+            doctorRepository = new DoctorRepository();
+        }
+        return doctorRepository;
+    }
+
+
 
     private ReportRepository reportRepository() {
         if (reportRepository == null) {
@@ -686,4 +706,21 @@ public class Context {
     public Drawable getDrawableResource(int id) {
         return applicationContext().getResources().getDrawable(id);
     }
+
+    // New For testing
+    public AllDoctorRepository allDoctorRepository() {
+        initRepository();
+        if (allDoctorRepository == null) {
+            allDoctorRepository = new AllDoctorRepository(doctorRepository());
+        }
+        return allDoctorRepository;
+    }
+
+
+    public SharedPreferences getShared() {
+        return applicationContext().getSharedPreferences("Server", android.content.Context.MODE_PRIVATE);
+    }
+    // End testing
+
+
 }

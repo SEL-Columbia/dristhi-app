@@ -1,6 +1,25 @@
 package org.ei.telemedicine.service;
 
-import android.content.Context;
+import static org.ei.telemedicine.AllConstants.REALM;
+import static org.ei.telemedicine.domain.LoginResponse.NO_INTERNET_CONNECTIVITY;
+import static org.ei.telemedicine.domain.LoginResponse.SUCCESS;
+import static org.ei.telemedicine.domain.LoginResponse.UNAUTHORIZED;
+import static org.ei.telemedicine.domain.LoginResponse.UNKNOWN_RESPONSE;
+import static org.ei.telemedicine.util.HttpResponseUtil.getResponseBody;
+import static org.ei.telemedicine.util.Log.logError;
+import static org.ei.telemedicine.util.Log.logWarn;
+
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.security.KeyStore;
+
+import javax.net.ssl.SSLException;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpResponse;
@@ -24,6 +43,7 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.HTTP;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.DristhiConfiguration;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.client.GZipEncodingHttpClient;
 import org.ei.telemedicine.domain.LoginResponse;
 import org.ei.telemedicine.domain.Response;
@@ -31,17 +51,8 @@ import org.ei.telemedicine.domain.ResponseStatus;
 import org.ei.telemedicine.repository.AllSettings;
 import org.ei.telemedicine.repository.AllSharedPreferences;
 
-import javax.net.ssl.SSLException;
+import android.content.Context;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.KeyStore;
-
-import static org.ei.telemedicine.AllConstants.REALM;
-import static org.ei.telemedicine.domain.LoginResponse.*;
-import static org.ei.telemedicine.util.HttpResponseUtil.getResponseBody;
-import static org.ei.telemedicine.util.Log.logError;
-import static org.ei.telemedicine.util.Log.logWarn;
 
 public class HTTPAgent {
     private final GZipEncodingHttpClient httpClient;
@@ -105,7 +116,9 @@ public class HTTPAgent {
             HttpResponse response = httpClient.execute(new HttpGet(requestURL));
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode == HttpStatus.SC_OK) {
-                return SUCCESS.withPayload(getResponseBody(response));
+                String responseBody = getResponseBody(response);
+                logError("Success " + requestURL + "\n result" + responseBody);
+                return SUCCESS.withPayload(responseBody);
             } else if (statusCode == HttpStatus.SC_UNAUTHORIZED) {
                 logError("Invalid credentials for: " + userName + " using " + requestURL);
                 return UNAUTHORIZED;
@@ -149,6 +162,25 @@ public class HTTPAgent {
             return socketFactory;
         } catch (Exception e) {
             throw new AssertionError(e);
+        }
+    }
+
+    public String callingURL(String requestURL) {
+        try {
+
+            HttpResponse response = httpClient.execute(new HttpGet(requestURL));
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode == HttpStatus.SC_OK) {
+                String responseBody = getResponseBody(response);
+                logError("Success " + requestURL + "\n result" + responseBody);
+                return responseBody;
+            } else {
+                logError("Bad response. Status code:  " + statusCode + " using " + requestURL);
+                return null;
+            }
+        } catch (IOException e) {
+            logError("Failed to get Information");
+            return null;
         }
     }
 }

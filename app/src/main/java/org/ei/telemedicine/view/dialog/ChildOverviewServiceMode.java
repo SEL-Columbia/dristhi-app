@@ -1,26 +1,26 @@
 package org.ei.telemedicine.view.dialog;
 
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.StyleSpan;
-import android.view.View;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+import static org.ei.telemedicine.AllConstants.FormNames.CHILD_ILLNESS;
 
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.Context;
+
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
-import org.ei.telemedicine.view.contract.*;
+import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
+import org.ei.telemedicine.view.contract.ChildSmartRegisterClient;
+import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
+import org.ei.telemedicine.view.contract.ServiceProvidedDTO;
 import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
 import org.ei.telemedicine.view.viewHolder.NativeANCSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
-import static org.ei.telemedicine.AllConstants.FormNames.CHILD_ILLNESS;
-import static org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 
 public class ChildOverviewServiceMode extends ServiceModeOption {
     private String illnessReport = Context.getInstance().getStringResource(R.string.illness_report);
@@ -49,7 +49,7 @@ public class ChildOverviewServiceMode extends ServiceModeOption {
 
             @Override
             public int[] weights() {
-                return new int[]{26, 19, 12, 15, 23, 10};
+                return new int[]{26, 14, 12, 15, 23, 10};
             }
 
             @Override

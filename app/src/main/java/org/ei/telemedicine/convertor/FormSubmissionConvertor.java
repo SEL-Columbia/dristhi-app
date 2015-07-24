@@ -1,11 +1,11 @@
 package org.ei.telemedicine.convertor;
 
-import static org.ei.telemedicine.domain.SyncStatus.SYNCED;
+import org.ei.telemedicine.dto.form.FormSubmissionDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.ei.telemedicine.dto.form.FormSubmissionDTO;
+import static org.ei.telemedicine.domain.SyncStatus.SYNCED;
 
 public class FormSubmissionConvertor {
     public static List<org.ei.telemedicine.domain.form.FormSubmission> toDomain(List<FormSubmissionDTO> formSubmissionsDto) {

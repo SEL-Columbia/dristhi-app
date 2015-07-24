@@ -1,12 +1,12 @@
 package org.ei.telemedicine.view.customControls;
 
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.view.contract.ECSmartRegisterClient;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.view.contract.ECSmartRegisterClient;
 
 public class ClientGplsaView extends RelativeLayout {
     private TextView txtGravida;

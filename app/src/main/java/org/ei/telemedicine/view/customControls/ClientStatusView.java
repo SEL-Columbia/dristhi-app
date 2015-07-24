@@ -1,5 +1,24 @@
 package org.ei.telemedicine.view.customControls;
 
+import static org.ei.telemedicine.util.DateUtil.formatDate;
+import static org.ei.telemedicine.view.controller.ECSmartRegisterController.ANC_STATUS;
+import static org.ei.telemedicine.view.controller.ECSmartRegisterController.EC_STATUS;
+import static org.ei.telemedicine.view.controller.ECSmartRegisterController.FP_METHOD_DATE_FIELD;
+import static org.ei.telemedicine.view.controller.ECSmartRegisterController.FP_STATUS;
+import static org.ei.telemedicine.view.controller.ECSmartRegisterController.PNC_FP_STATUS;
+import static org.ei.telemedicine.view.controller.ECSmartRegisterController.PNC_STATUS;
+import static org.ei.telemedicine.view.controller.ECSmartRegisterController.STATUS_DATE_FIELD;
+import static org.ei.telemedicine.view.controller.ECSmartRegisterController.STATUS_EDD_FIELD;
+import static org.ei.telemedicine.view.controller.ECSmartRegisterController.STATUS_TYPE_FIELD;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.view.contract.ECSmartRegisterClient;
+import org.ei.telemedicine.view.viewHolder.ViewStubInflater;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -7,17 +26,6 @@ import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-
-import org.apache.commons.lang3.StringUtils;
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.view.contract.ECSmartRegisterClient;
-import org.ei.telemedicine.view.viewHolder.ViewStubInflater;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.ei.telemedicine.util.DateUtil.formatDate;
-import static org.ei.telemedicine.view.controller.ECSmartRegisterController.*;
 
 public class ClientStatusView extends FrameLayout {
 

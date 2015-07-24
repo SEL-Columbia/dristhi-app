@@ -3,6 +3,7 @@ package org.ei.telemedicine.sync;
 import android.content.Context;
 import android.widget.Toast;
 
+import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.domain.FetchStatus;
 import org.ei.telemedicine.service.ActionService;
 import org.ei.telemedicine.service.FormSubmissionSyncService;
@@ -36,9 +37,11 @@ public class UpdateActionsTask {
 
         task.doActionInBackground(new BackgroundAction<FetchStatus>() {
             public FetchStatus actionToDoInBackgroundThread() {
+                FetchStatus fetchStatusForActions = null;
                 FetchStatus fetchStatusForForms = formSubmissionSyncService.sync();
-                FetchStatus fetchStatusForActions = actionService.fetchNewActions();
-                if(fetchStatusForActions == fetched || fetchStatusForForms == fetched)
+                if (org.ei.telemedicine.Context.getInstance().allSharedPreferences().getUserRole().equals(AllConstants.ANM_ROLE))
+                    fetchStatusForActions = actionService.fetchNewActions();
+                if (fetchStatusForActions == fetched || fetchStatusForForms == fetched)
                     return fetched;
                 return fetchStatusForForms;
             }

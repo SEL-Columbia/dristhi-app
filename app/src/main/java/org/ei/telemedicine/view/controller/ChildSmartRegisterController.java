@@ -1,5 +1,7 @@
 package org.ei.telemedicine.view.controller;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -51,6 +53,7 @@ public class ChildSmartRegisterController {
                     String photoPath = isBlank(child.photoPath()) ? (AllConstants.FEMALE_GENDER.equalsIgnoreCase(child.gender()) ? AllConstants.DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH : AllConstants.DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH) : child.photoPath();
                     List<AlertDTO> alerts = getAlerts(child.caseId());
                     List<ServiceProvidedDTO> servicesProvided = getServicesProvided(child.caseId());
+                    Log.e("CHild POC", child.getDetail(AllConstants.ChildRegistrationFields.CHILD_POC_INFO) + "");
                     ChildClient childClient =
                             new ChildClient(
                                     child.caseId(),
@@ -61,6 +64,7 @@ public class ChildSmartRegisterController {
                                     .withEntityIdToSavePhoto(child.caseId())
                                     .withMotherName(child.ec().wifeName())
                                     .withDOB(child.dateOfBirth())
+                                    .withPoc(child.getDetail(AllConstants.ChildRegistrationFields.CHILD_POC_INFO))
                                     .withMotherAge(child.ec().age())
                                     .withFatherName(child.ec().husbandName())
                                     .withVillage(child.ec().village())

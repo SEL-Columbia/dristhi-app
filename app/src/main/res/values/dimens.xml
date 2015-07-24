@@ -39,6 +39,8 @@
     <dimen name="ec_main_header_height">49dp</dimen>
     <dimen name="smart_register_status_bar_height">30dp</dimen>
 
+    <dimen name="doc_main_header_height">55dp</dimen>
+
     <dimen name="list_header_height">25dp</dimen>
 
     <dimen name="pagination_bar_height">50dp</dimen>

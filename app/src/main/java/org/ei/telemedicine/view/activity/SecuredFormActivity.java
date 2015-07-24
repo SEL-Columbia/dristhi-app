@@ -3,6 +3,7 @@ package org.ei.telemedicine.view.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.webkit.WebSettings;
 
 import org.apache.commons.io.IOUtils;
@@ -14,8 +15,8 @@ import java.text.MessageFormat;
 
 import static java.util.UUID.randomUUID;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
-import static org.ei.telemedicine.R.string.*;
 import static org.ei.telemedicine.AllConstants.*;
+import static org.ei.telemedicine.R.string.*;
 import static org.ei.telemedicine.util.Log.logError;
 
 public abstract class SecuredFormActivity extends SecuredWebActivity {
@@ -25,6 +26,7 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
     private String formName;
     private String entityId;
     private String fieldOverrides;
+    private String TAG = "SecuredFormActivity";
 
     public SecuredFormActivity() {
         super();
@@ -47,8 +49,11 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
         formName = intent.getStringExtra(FORM_NAME_PARAM);
         entityId = intent.getStringExtra(ENTITY_ID_PARAM);
         fieldOverrides = intent.getStringExtra(FIELD_OVERRIDES_PARAM);
-        model = IOUtils.toString(getAssets().open("www/form/" + formName + "/model.xml"));
-        form = IOUtils.toString(getAssets().open("www/form/" + formName + "/form.xml"));
+        model = IOUtils.toString(getAssets().open(
+                "www/form/" + formName + "/model.xml"));
+        form = IOUtils.toString(getAssets().open(
+                "www/form/" + formName + "/form.xml"));
+        context.userService().setFormDetails(formName, entityId);
     }
 
     private void webViewInitialization() {
@@ -56,23 +61,33 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
         webViewSettings.setJavaScriptEnabled(true);
         webViewSettings.setDatabaseEnabled(true);
         webViewSettings.setDomStorageEnabled(true);
-        webView.addJavascriptInterface(new FormWebInterface(model, form, this), ANDROID_CONTEXT_FIELD);
-        webView.addJavascriptInterface(Context.getInstance().formDataRepository(), REPOSITORY);
-        webView.addJavascriptInterface(Context.getInstance().ziggyFileLoader(), ZIGGY_FILE_LOADER);
-        webView.addJavascriptInterface(Context.getInstance().formSubmissionRouter(), FORM_SUBMISSION_ROUTER);
+        webView.addJavascriptInterface(new FormWebInterface(model, form, this),
+                ANDROID_CONTEXT_FIELD);
+        webView.addJavascriptInterface(Context.getInstance()
+                .formDataRepository(), REPOSITORY);
+        webView.addJavascriptInterface(Context.getInstance().ziggyFileLoader(),
+                ZIGGY_FILE_LOADER);
+        webView.addJavascriptInterface(Context.getInstance()
+                .formSubmissionRouter(), FORM_SUBMISSION_ROUTER);
         String encodedFieldOverrides = null;
         try {
             if (isNotBlank(this.fieldOverrides)) {
-                encodedFieldOverrides = URLEncoder.encode(this.fieldOverrides, "utf-8");
+                encodedFieldOverrides = URLEncoder.encode(this.fieldOverrides,
+                        "utf-8");
+                Log.e(TAG, "Encoded Field Overriedes" + encodedFieldOverrides);
             }
         } catch (Exception e) {
-            logError(MessageFormat.format("Cannot encode field overrides: {0} due to : {1}", fieldOverrides, e));
+            logError(MessageFormat.format(
+                    "Cannot encode field overrides: {0} due to : {1}",
+                    fieldOverrides, e));
         }
-        webView.loadUrl(MessageFormat.format("file:///android_asset/www/enketo/template.html?{0}={1}&{2}={3}&{4}={5}&{6}={7}&touch=true",
-                FORM_NAME_PARAM, formName,
-                ENTITY_ID_PARAM, entityId,
-                INSTANCE_ID_PARAM, randomUUID(),
-                FIELD_OVERRIDES_PARAM, encodedFieldOverrides));
+        String loadingURL = MessageFormat
+                .format("file:///android_asset/www/enketo/template.html?{0}={1}&{2}={3}&{4}={5}&{6}={7}&touch=true",
+                        FORM_NAME_PARAM, formName, ENTITY_ID_PARAM, entityId,
+                        INSTANCE_ID_PARAM, randomUUID(), FIELD_OVERRIDES_PARAM,
+                        encodedFieldOverrides);
+        Log.e(TAG, "Loading URl " + loadingURL);
+        webView.loadUrl(loadingURL);
     }
 
     @Override
@@ -98,8 +113,7 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
                             public void onClick(DialogInterface dialog,
                                                 int whichButton) {
                             }
-                        })
-                .show();
+                        }).show();
     }
 
     private void goBack() {

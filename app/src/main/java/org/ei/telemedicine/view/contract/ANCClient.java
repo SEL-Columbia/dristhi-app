@@ -68,6 +68,7 @@ public class ANCClient implements ANCSmartRegisterClient {
     private String locationStatus;
     private String caste;
     private String economicStatus;
+    private String pocInfo;
     private List<AlertDTO> alerts;
     private List<ServiceProvidedDTO> services_provided;
     private String entityIdToSavePhoto;
@@ -150,8 +151,19 @@ public class ANCClient implements ANCSmartRegisterClient {
     }
 
     @Override
+    public boolean isPocGiven() {
+        return pocInfo != null;
+    }
+
+    @Override
     public boolean isBPL() {
+//        return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
         return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
+    }
+
+    @Override
+    public boolean isPOC() {
+        return pocInfo != null && !pocInfo.equals("");
     }
 
     @Override
@@ -207,6 +219,7 @@ public class ANCClient implements ANCSmartRegisterClient {
     public boolean isVisitsDone() {
         return isServiceProvided(CATEGORY_ANC);
     }
+
 
     @Override
     public boolean isTTDone() {
@@ -323,6 +336,11 @@ public class ANCClient implements ANCSmartRegisterClient {
 
     public ANCClient withEconomicStatus(String economicStatus) {
         this.economicStatus = economicStatus;
+        return this;
+    }
+
+    public ANCClient withPoc(String pocInfo) {
+        this.pocInfo = pocInfo;
         return this;
     }
 
