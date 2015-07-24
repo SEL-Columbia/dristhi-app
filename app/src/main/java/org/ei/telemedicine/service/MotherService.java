@@ -66,6 +66,7 @@ public class MotherService {
                                 .put(BP_DIASTOLIC, submission.getFieldValue(BP_DIASTOLIC))
                                 .put(TEMPERATURE, submission.getFieldValue(TEMPERATURE))
                                 .put(WEIGHT, submission.getFieldValue(WEIGHT))
+                                .put("riskObservedDuringANC", submission.getFieldValue("riskObservedDuringANC"))
                                 .map()));
         serviceProvidedService.add(
                 ServiceProvided.forANCCareProvided(
@@ -80,6 +81,7 @@ public class MotherService {
     public void close(FormSubmission submission) {
         close(submission.entityId(), submission.getFieldValue(CLOSE_REASON_FIELD_NAME));
     }
+
 
     public void close(String entityId, String reason) {
         Mother mother = allBeneficiaries.findMotherWithOpenStatus(entityId);

@@ -1,14 +1,17 @@
 package org.ei.telemedicine.view.activity;
 
-import android.view.Menu;
-import android.view.MenuItem;
+import static org.ei.telemedicine.event.Event.ACTION_HANDLED;
+import static org.ei.telemedicine.event.Event.FORM_SUBMITTED;
+import static org.ei.telemedicine.event.Event.SYNC_COMPLETED;
+import static org.ei.telemedicine.event.Event.SYNC_STARTED;
 
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.service.PendingFormSubmissionService;
 import org.ei.telemedicine.view.controller.HomeController;
 
-import static org.ei.telemedicine.event.Event.*;
+import android.view.Menu;
+import android.view.MenuItem;
 
 public class HomeActivity extends SecuredWebActivity {
     private MenuItem updateMenuItem;

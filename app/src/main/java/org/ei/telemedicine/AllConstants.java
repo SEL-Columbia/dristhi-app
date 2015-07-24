@@ -1,7 +1,7 @@
 package org.ei.telemedicine;
 
 public class AllConstants {
-    public static final String DOC_BASE_URL = "http://202.153.34.169:8000/";
+    public static final String DOC_BASE_URL = "http://202.153.34.169:8001/";
     //    public static final String DOC_BASE_URL = "http://192.168.90.160:8000/";
     public static final String VIEW_PLAN_OF_CARE = "viewPlanOfCare";
     public static final String VIEW_PNC_PLAN_OF_CARE = "viewPNCPlanOfCare";
@@ -121,6 +121,9 @@ public class AllConstants {
         public static final String RECORD_ECPS = "record_ecps";
         public static final String FP_REFERRAL_FOLLOWUP = "fp_referral_followup";
         public static final String FP_FOLLOWUP = "fp_followup";
+        //New Content
+        public static final String CUS_REG_FORMs = "cus_reg_form";
+
     }
 
     public class ECRegistrationFields {

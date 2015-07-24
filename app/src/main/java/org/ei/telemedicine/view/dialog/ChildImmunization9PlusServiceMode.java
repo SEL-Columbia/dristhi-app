@@ -92,6 +92,7 @@ public class ChildImmunization9PlusServiceMode extends ServiceModeOption {
 
     }
 
+
     public void setupMeaslesLayout(ChildSmartRegisterClient client,
                                    NativeChildSmartRegisterViewHolder viewHolder) {
         if (client.isMeaslesDone()) {

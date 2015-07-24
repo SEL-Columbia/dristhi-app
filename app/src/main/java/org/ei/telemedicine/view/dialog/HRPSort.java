@@ -1,12 +1,7 @@
 package org.ei.telemedicine.view.dialog;
 
-import org.ei.telemedicine.R;
 import org.ei.telemedicine.Context;
-import org.ei.telemedicine.view.contract.SmartRegisterClients;
-
-import java.util.Collections;
-
-import static org.ei.telemedicine.view.contract.SmartRegisterClient.HIGH_RISK_COMPARATOR;
+import org.ei.telemedicine.R;
 
 public class HRPSort extends HighRiskSort {
     @Override

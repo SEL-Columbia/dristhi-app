@@ -1,6 +1,5 @@
 package org.ei.telemedicine.view;
 
-
 import java.util.HashMap;
 import java.util.Map;
 

@@ -89,6 +89,7 @@ public class ChildImmunization0to9ServiceMode extends ServiceModeOption {
 
     }
 
+
     private void setupBcgLayout(ChildSmartRegisterClient client,
                                 NativeChildSmartRegisterViewHolder viewHolder) {
         if (client.isBcgDone()) {

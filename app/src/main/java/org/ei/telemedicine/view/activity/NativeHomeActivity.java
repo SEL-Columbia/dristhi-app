@@ -9,6 +9,7 @@ import static org.ei.telemedicine.event.Event.SYNC_STARTED;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
+import org.ei.telemedicine.bluetooth.BlueToothInfoActivity;
 import org.ei.telemedicine.doctor.DoctorANCScreenActivity;
 import org.ei.telemedicine.doctor.NativeDoctorActivity;
 //import org.ei.telemedicine.doctor.NativeDoctorSmartRegisterActivity;
@@ -190,6 +191,86 @@ public class NativeHomeActivity extends SecuredActivity {
         return true;
     }
 
+    public void appRTCVideoCall() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setComponent(new ComponentName("org.appspot.apprtc",
+                "org.appspot.apprtc.ConnectActivity"));
+        startActivity(intent);
+    }
+
+    public void videoCall() {
+        popup_dialog = new Dialog(NativeHomeActivity.this);
+        popup_dialog.setContentView(R.layout.dialog_box);
+
+        //   getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+        ListView listview = (ListView) popup_dialog
+                .findViewById(R.id.listview);
+
+        Button submit = (Button) popup_dialog.findViewById(R.id.btn);
+        String[] accounts = new String[]{"Dhanush1", "Dhanush2"};
+
+
+        popup_dialog.show();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                NativeHomeActivity.this,
+                android.R.layout.simple_list_item_1, accounts);
+        listview.setAdapter(adapter);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1,
+                                    int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+                obj = arg0.getItemAtPosition(arg2);
+                Log.v("Selected Item", obj.toString());
+
+
+            }
+
+        });
+
+        submit.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                if (obj.toString().equalsIgnoreCase("Dhanush1")) {
+
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.setComponent(new ComponentName("org.jitsi",
+                            "org.jitsi.android.gui.LauncherActivity"));
+
+                    intent.putExtra("Username",
+                            "dhanush1@jwchat.org");
+                    intent.putExtra("Password", "123456");
+
+                    startActivity(intent);
+                    finish();
+
+                } else if (obj.toString().equalsIgnoreCase("Dhanush2")) {
+
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.setComponent(new ComponentName("org.jitsi",
+                            "org.jitsi.android.gui.LauncherActivity"));
+
+                    intent.putExtra("Username",
+                            "dhanush2@jwchat.org");
+                    intent.putExtra("Password", "123456");
+
+
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+        });
+
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -199,11 +280,12 @@ public class NativeHomeActivity extends SecuredActivity {
             case R.id.settings:
                 startActivity(new Intent(this, NativeSettingsActivity.class));
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 
     public void updateFromServer() {
         UpdateActionsTask updateActionsTask = new UpdateActionsTask(

@@ -1,9 +1,11 @@
 package org.ei.telemedicine.view.dialog;
 
-import android.view.View;
+import static android.view.View.VISIBLE;
+import static org.ei.telemedicine.Context.getInstance;
 
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
+import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
 import org.ei.telemedicine.view.contract.ChildSmartRegisterClient;
 import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
@@ -13,9 +15,7 @@ import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
 
-import static android.view.View.VISIBLE;
-import static org.ei.telemedicine.Context.getInstance;
-import static org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import android.view.View;
 
 public class FPPrioritizationAllECServiceMode extends ServiceModeOption {
 

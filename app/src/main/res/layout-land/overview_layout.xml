@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/doc_main_header_height"
+        android:layout_weight="0.5"
+        android:background="@color/light_blue"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:background="@drawable/transparent_gray_background"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:scaleType="center"
+            android:src="@drawable/opensrp_logo" />
+
+        <ImageView
+            android:id="@+id/home_title_separator"
+            android:layout_width="@dimen/smart_register_nav_bar_separator"
+            android:layout_height="fill_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/separator" />
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/tv_mother_name"
+            style="@style/CustomFontTextViewStyle.NavBar.Black"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/imageView"
+            android:background="@android:color/transparent"
+            android:paddingLeft="7dp"
+            android:text="Mother name " />
+
+        <ImageButton
+            android:id="@+id/ib_overview_options"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:onClick="showPopup"
+            android:paddingLeft="15dp"
+            android:paddingRight="40dp"
+            android:src="@android:drawable/ic_menu_edit" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05"
+        android:background="@android:color/black"
+        android:padding="5dp">
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/tv_register_type"
+            style="@style/CustomFontTextViewStyle.StatusBar.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EC"
+            android:textSize="20sp" />
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/tv_priority"
+            style="@style/CustomFontTextViewStyle.StatusBar.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="end|right"
+            android:text="Normal Prioriry"
+            android:textColor="@android:color/holo_blue_light" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="9"
+        android:background="#E5E4E2">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:weightSum="1">
+
+            <ImageButton
+                android:id="@+id/ib_profile_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:src="@drawable/woman_placeholder" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.7"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_woman_name"
+                    style="@style/CustomFontTextViewStyle.ListView.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:gravity="center"
+                    android:text="Woman Name"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="25sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_husband_name"
+                    style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:gravity="center"
+                    android:text="Husband Name"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_village_name"
+                    style="@style/CustomFontTextViewStyle.ListView.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:gravity="center"
+                    android:text="Village Name"
+                    android:textColor="@android:color/black"
+                    android:textSize="15sp" />
+
+                <org.ei.telemedicine.view.customControls.CustomFontTextView
+                    android:id="@+id/tv_id_no"
+                    style="@style/CustomFontTextViewStyle.ListView.Normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:gravity="center"
+                    android:text="EC No:"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/custom_view"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/linearLayout"
+            android:background="@android:color/darker_gray" />
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/summary"
+            style="@style/CustomFontTextViewStyle.ListView.Normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/custom_view"
+            android:layout_margin="2dp"
+            android:gravity="center"
+            android:text="Summary"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_ec_summary"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/summary"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/overview_box"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <org.ei.telemedicine.view.customControls.CustomFontTextView
+                android:id="@+id/tv_priority_value"
+                style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="Normal Priority"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="25sp" />
+        </LinearLayout>
+
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/title_ec_fp"
+            style="@style/CustomFontTextViewStyle.ListView.Normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_ec_summary"
+            android:layout_margin="3dp"
+            android:gravity="center"
+            android:text="Family Planning"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_ec_fp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_ec_fp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/overview_box"
+            android:padding="10dp">
+
+            <org.ei.telemedicine.view.customControls.CustomFontTextView
+                android:id="@+id/tv_fp_value"
+                style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="Current"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/title_ec_timeline"
+            style="@style/CustomFontTextViewStyle.ListView.Normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_ec_fp"
+            android:layout_margin="3dp"
+            android:gravity="center"
+            android:text="Timeline"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+</LinearLayout>

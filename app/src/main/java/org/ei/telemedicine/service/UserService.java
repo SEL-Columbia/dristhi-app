@@ -6,6 +6,7 @@ import org.ei.telemedicine.repository.AllSettings;
 import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.ei.telemedicine.repository.Repository;
 import org.ei.telemedicine.sync.SaveANMLocationTask;
+import org.ei.telemedicine.util.Log;
 import org.ei.telemedicine.util.Session;
 
 import static org.ei.telemedicine.AllConstants.*;

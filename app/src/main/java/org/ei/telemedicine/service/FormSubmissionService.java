@@ -221,6 +221,31 @@ public class FormSubmissionService {
                         doctorData.setVisitType(getDataFromJson(visit_type, riskJson));
                         Log.e(TAG, "record" + doctorData.getFormInformation());
                         allDoctorRepository.addData(doctorData);
+//                        String id = getData("id", riskJson);
+//                        if (!tempList.contains(getData("id", riskJson))) {
+//                            tempList.add(getData("id", riskJson));
+//                            doctorDataArrayList.add(doctorData);
+//                        }
+//
+//                        syncAdapter = new PendingConsultantBaseAdapter(NativeDoctorActivity.this, doctorDataArrayList);
+//                        syncAdapter.notifyDataSetChanged();
+//                        lv_pending_consultants.setAdapter(syncAdapter);
+//                        anc_count = 0;
+//                        pnc_count = 0;
+//                        child_count = 0;
+//                        if (doctorDataArrayList.size() != 0) {
+//                            for (DoctorData doctorDataInfo : doctorDataArrayList) {
+//                                if (doctorDataInfo.getVisitType().equalsIgnoreCase("ANC"))
+//                                    anc_count = anc_count + 1;
+//                                else if (doctorDataInfo.getVisitType().equalsIgnoreCase("PNC"))
+//                                    pnc_count = pnc_count + 1;
+//                                else
+//                                    child_count = child_count + 1;
+//                            }
+//                            tv_anc_count.setText(anc_count + "");
+//                            tv_pnc_count.setText(pnc_count + "");
+//                            tv_child_count.setText(child_count + "");
+//                        }
                         Log.e(TAG, "record" + "insert");
                     }
                 }

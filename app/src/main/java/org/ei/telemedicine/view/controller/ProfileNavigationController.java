@@ -5,7 +5,6 @@ import android.content.Intent;
 import org.ei.telemedicine.view.activity.ANCDetailActivity;
 import org.ei.telemedicine.view.activity.ChildDetailActivity;
 import org.ei.telemedicine.view.activity.EligibleCoupleDetailActivity;
-
 import org.ei.telemedicine.view.activity.PNCDetailActivity;
 
 import static org.ei.telemedicine.AllConstants.CASE_ID;
@@ -35,4 +34,5 @@ public class ProfileNavigationController {
         intent.putExtra(CASE_ID, caseId);
         context.startActivity(intent);
     }
+
 }

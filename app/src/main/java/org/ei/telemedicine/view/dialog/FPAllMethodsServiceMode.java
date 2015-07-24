@@ -1,17 +1,26 @@
 package org.ei.telemedicine.view.dialog;
 
-import android.view.View;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
-import org.ei.telemedicine.view.contract.*;
-import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
-import org.ei.telemedicine.view.viewHolder.*;
-
 import static android.view.View.VISIBLE;
 import static org.ei.telemedicine.AllConstants.FormNames.FP_COMPLICATIONS;
 import static org.ei.telemedicine.Context.getInstance;
-import static org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
+import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
+import org.ei.telemedicine.view.contract.AlertStatus;
+import org.ei.telemedicine.view.contract.ChildSmartRegisterClient;
+import org.ei.telemedicine.view.contract.FPAlertType;
+import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
+import org.ei.telemedicine.view.contract.RefillFollowUps;
+import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
+import org.ei.telemedicine.view.viewHolder.NativeANCSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
+
+import android.view.View;
 
 public class FPAllMethodsServiceMode extends ServiceModeOption {
 
@@ -136,4 +145,5 @@ public class FPAllMethodsServiceMode extends ServiceModeOption {
     public void setupListView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
 
     }
+
 }

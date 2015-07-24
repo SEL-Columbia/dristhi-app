@@ -1,11 +1,11 @@
 package org.ei.telemedicine.view.dialog;
 
-import org.ei.telemedicine.R;
+import java.util.Collections;
+
 import org.ei.telemedicine.Context;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.view.contract.SmartRegisterClients;
 import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
-
-import java.util.Collections;
 
 public class DateOfDeliverySort implements SortOption {
     @Override

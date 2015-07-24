@@ -1,9 +1,9 @@
 package org.ei.telemedicine.view.dialog;
 
+import static org.ei.telemedicine.Context.getInstance;
+
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
-
-import static org.ei.telemedicine.Context.getInstance;
 
 public class FPIUCDServiceMode extends FPAllMethodsServiceMode {
 

@@ -561,6 +561,7 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                         saveDatainLocal(documentId, resultJson.toString(), et_reason.getText().toString());
 //                                                                        saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString());
                                                                     } else if (!swich_poc_pending.isChecked() && (diagnosisArray.length() != 0 || drugsArray.length() != 0 || testsArray.length() != 0 || resultJson.getString("advice").length() != 0)) {
+                                                                        Toast.makeText(DoctorPlanofCareActivity.this, "dia" + resultJson.getString("diagnosis").length() + " ,drugs=" + resultJson.getString("drugs").length() + " ,inve=" + resultJson.getString("investigations").length() + " ,advice=" + resultJson.getString("advice").length(), Toast.LENGTH_SHORT).show();
                                                                         saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString());
                                                                     } else {
                                                                         Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care / Reason for Pending must be given", Toast.LENGTH_SHORT).show();

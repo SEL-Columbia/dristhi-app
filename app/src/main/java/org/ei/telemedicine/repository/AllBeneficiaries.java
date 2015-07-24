@@ -1,6 +1,7 @@
 package org.ei.telemedicine.repository;
 
 import org.apache.commons.lang3.tuple.Pair;
+import org.ei.telemedicine.doctor.DoctorData;
 import org.ei.telemedicine.domain.Child;
 import org.ei.telemedicine.domain.EligibleCouple;
 import org.ei.telemedicine.domain.Mother;
@@ -15,15 +16,17 @@ public class AllBeneficiaries {
     private MotherRepository motherRepository;
     private final AlertRepository alertRepository;
     private final TimelineEventRepository timelineEventRepository;
+    private TestRepository testRepository;
     private DoctorRepository doctorRepository;
-
+//    private ConsultantRepostitory consultantRepostitory;
 
     public AllBeneficiaries(MotherRepository motherRepository, ChildRepository childRepository,
-                            AlertRepository alertRepository, TimelineEventRepository timelineEventRepository, DoctorRepository doctorRepository) {
+                            AlertRepository alertRepository, TimelineEventRepository timelineEventRepository, TestRepository testRepository,  DoctorRepository doctorRepository) {
         this.childRepository = childRepository;
         this.motherRepository = motherRepository;
         this.alertRepository = alertRepository;
         this.timelineEventRepository = timelineEventRepository;
+        this.testRepository = testRepository;
         this.doctorRepository = doctorRepository;
     }
 

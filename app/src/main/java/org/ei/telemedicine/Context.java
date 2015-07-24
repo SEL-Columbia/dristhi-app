@@ -108,6 +108,12 @@ public class Context {
     private AllDoctorRepository allDoctorRepository;
 
 
+    private TestRepository testRepository;
+    private AllTestRepository allTestRepository;
+    private TestService testService;
+    private Cache<TestClients> testClientsCache;
+    private TestSubmissionHandler testSubmissionHandler;
+
     // New Content
 
 
@@ -171,7 +177,7 @@ public class Context {
                     ttHandler(), ifaHandler(), hbTestHandler(), deliveryOutcomeHandler(), pncRegistrationOAHandler(),
                     pncCloseHandler(), pncVisitHandler(), childImmunizationsHandler(), childRegistrationECHandler(),
                     childRegistrationOAHandler(), childCloseHandler(), childIllnessHandler(), vitaminAHandler(),
-                    deliveryPlanHandler(), ecEditHandler(), ancInvestigationsHandler());
+                    deliveryPlanHandler(), ecEditHandler(), ancInvestigationsHandler(), testSubmissionHandler());
         }
         return formSubmissionRouter;
     }
@@ -424,7 +430,7 @@ public class Context {
     public AllBeneficiaries allBeneficiaries() {
         initRepository();
         if (allBeneficiaries == null) {
-            allBeneficiaries = new AllBeneficiaries(motherRepository(), childRepository(), alertRepository(), timelineEventRepository(),  doctorRepository());
+            allBeneficiaries = new AllBeneficiaries(motherRepository(), childRepository(), alertRepository(), timelineEventRepository(), testRepository(),  doctorRepository());
         }
         return allBeneficiaries;
     }
@@ -495,6 +501,12 @@ public class Context {
         return timelineEventRepository;
     }
 
+    private TestRepository testRepository() {
+        if (testRepository == null) {
+            testRepository = new TestRepository();
+        }
+        return testRepository;
+    }
 
     private DoctorRepository doctorRepository() {
         if (doctorRepository == null) {
@@ -716,6 +728,39 @@ public class Context {
         return allDoctorRepository;
     }
 
+
+    public AllTestRepository allTestRepository() {
+        initRepository();
+        if (allTestRepository == null) {
+            allTestRepository = new AllTestRepository(testRepository(),
+                    alertRepository(), timelineEventRepository());
+        }
+        return allTestRepository;
+    }
+
+
+    public TestService TestService() {
+        if (testService == null) {
+            testService = new TestService(allTestRepository(),
+                    allTimelineEvents(), allBeneficiaries());
+        }
+        return testService;
+    }
+
+    public Cache<TestClients> testClientsCache() {
+        if (testClientsCache == null) {
+            testClientsCache = new Cache<TestClients>();
+        }
+        return testClientsCache;
+
+    }
+
+    private TestSubmissionHandler testSubmissionHandler() {
+        if (testSubmissionHandler == null) {
+            testSubmissionHandler = new TestSubmissionHandler(TestService());
+        }
+        return testSubmissionHandler;
+    }
 
     public SharedPreferences getShared() {
         return applicationContext().getSharedPreferences("Server", android.content.Context.MODE_PRIVATE);

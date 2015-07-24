@@ -17,6 +17,7 @@ import java.util.List;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
+import org.ei.telemedicine.bluetooth.BlueToothInfoActivity;
 import org.ei.telemedicine.domain.form.FieldOverrides;
 import org.ei.telemedicine.provider.ANCSmartRegisterClientsProvider;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;

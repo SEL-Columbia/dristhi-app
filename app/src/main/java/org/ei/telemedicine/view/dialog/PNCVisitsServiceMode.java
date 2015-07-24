@@ -1,18 +1,21 @@
 package org.ei.telemedicine.view.dialog;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import static android.view.View.VISIBLE;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT;
+import static org.ei.telemedicine.Context.getInstance;
 
-import com.google.gson.Gson;
-
-import org.ei.telemedicine.R;
 import org.ei.telemedicine.Context;
+import org.ei.telemedicine.R;
 import org.ei.telemedicine.domain.ANCServiceType;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
 import org.ei.telemedicine.util.DateUtil;
-import org.ei.telemedicine.view.contract.*;
+import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
+import org.ei.telemedicine.view.contract.AlertDTO;
+import org.ei.telemedicine.view.contract.AlertStatus;
+import org.ei.telemedicine.view.contract.ChildSmartRegisterClient;
+import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
+import org.ei.telemedicine.view.contract.ServiceProvidedDTO;
 import org.ei.telemedicine.view.contract.pnc.PNCFirstSevenDaysVisits;
 import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
 import org.ei.telemedicine.view.viewHolder.NativeANCSmartRegisterViewHolder;
@@ -20,10 +23,12 @@ import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
 import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
 
-import static android.view.View.VISIBLE;
-import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT;
-import static org.ei.telemedicine.Context.getInstance;
-import static org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
 
 public class PNCVisitsServiceMode extends ServiceModeOption {
     public static final AlertDTO emptyAlert = new AlertDTO("", "", "");

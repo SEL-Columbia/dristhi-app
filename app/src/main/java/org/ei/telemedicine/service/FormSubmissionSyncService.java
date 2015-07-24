@@ -117,7 +117,28 @@ public class FormSubmissionSyncService {
         if (pendingFormSubmissions.isEmpty()) {
             return;
         }
+//        } else {
+//            Context context = Context.getInstance();
+//            for (FormSubmission formSubmission : pendingFormSubmissions) {
+//                if (formSubmission.formName().equals(context.userService().getFormName().equals(AllConstants.FormNames.ANC_VISIT) || context.userService().getFormName().equals(AllConstants.FormNames.ANC_INVESTIGATIONS) || context.userService().getFormName().equals(AllConstants.FormNames.PNC_VISIT))) {
+//                    try {
+//                        JSONObject formInstanceJsonData = new JSONObject(formSubmission.instance());
+//                        JSONArray formFieldsjsonArray = formInstanceJsonData.getJSONArray("fields");
+//                        for (int i = formFieldsjsonArray.length() - 1; i >= 0; i--) {
+//                            JSONObject jsonData = formFieldsjsonArray.getJSONObject(i);
+//                            if (jsonData.getString("name").equals(AllConstants.STETHOSCOPE_DATA)) {
+//                                String fileLocation = jsonData.has("value") ? jsonData.getString("value") : "";
+//                            }
+//                        }
+//
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//        }
         String jsonPayload = mapToFormSubmissionDTO(pendingFormSubmissions);
+        logError("Json Data " + jsonPayload);
         Response<String> response = httpAgent.post(
                 format("{0}/{1}",
                         configuration.dristhiBaseURL(),

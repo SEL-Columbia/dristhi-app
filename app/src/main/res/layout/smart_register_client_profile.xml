@@ -55,21 +55,14 @@
                     android:scaleType="fitStart"
                     android:src="@drawable/flag_bpl" />
 
-            <!--<ImageView-->
-                    <!--android:id="@+id/img_sc_badge"-->
-                    <!--android:layout_width="@dimen/client_profile_badge_width"-->
-                    <!--android:layout_height="@dimen/client_profile_badge_height"-->
-                    <!--android:layout_marginBottom="-5dp"-->
-                    <!--android:scaleType="fitStart"-->
-                    <!--android:src="@drawable/flag_sc"/>-->
+                <!--<ImageView-->
+                <!--android:id="@+id/img_poc_badge"-->
+                <!--android:layout_width="@dimen/client_profile_badge_width"-->
+                <!--android:layout_height="@dimen/client_profile_badge_height"-->
+                <!--android:layout_marginBottom="-5dp"-->
+                <!--android:scaleType="fitStart"-->
+                <!--android:src="@drawable/ic_cross" />-->
 
-            <!--<ImageView-->
-                    <!--android:id="@+id/img_st_badge"-->
-                    <!--android:layout_width="@dimen/client_profile_badge_width"-->
-                    <!--android:layout_height="@dimen/client_profile_badge_height"-->
-                    <!--android:scaleType="fitStart"-->
-                    <!--android:layout_marginBottom="-5dp"-->
-                    <!--android:src="@drawable/flag_st"/>-->
             </LinearLayout>
 
             <ImageView

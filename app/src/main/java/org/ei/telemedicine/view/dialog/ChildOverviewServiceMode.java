@@ -4,8 +4,8 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static org.ei.telemedicine.AllConstants.FormNames.CHILD_ILLNESS;
 
-import org.ei.telemedicine.R;
 import org.ei.telemedicine.Context;
+import org.ei.telemedicine.R;
 
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
 import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
@@ -87,6 +87,7 @@ public class ChildOverviewServiceMode extends ServiceModeOption {
     public void setupListView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
 
     }
+
 
     private void setupDobView(ChildSmartRegisterClient client, NativeChildSmartRegisterViewHolder viewHolder) {
         viewHolder.dobView().setText(client.dateOfBirth());

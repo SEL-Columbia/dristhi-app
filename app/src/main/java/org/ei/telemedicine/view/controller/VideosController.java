@@ -1,15 +1,15 @@
 package org.ei.telemedicine.view.controller;
 
+import java.text.MessageFormat;
+
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.util.Log;
+
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.util.Log;
-
-import java.text.MessageFormat;
 
 public class VideosController {
     public static final String VIDEO_PLAYER_INTENT = "org.ei.dristhi_iec.VIDEO_PLAYER";

@@ -18,7 +18,7 @@
         android:showAsAction="always"
         android:title="Settings" />
 
-    <item
+    <!--<item
         android:id="@+id/video"
         android:icon="@android:drawable/ic_media_play"
         android:orderInCategory="100"
@@ -28,7 +28,7 @@
         android:icon="@android:drawable/ic_media_play"
         android:orderInCategory="100"
         android:title="AppRTC Video Calling" />
-
+-->
     <!--<item-->
     <!--android:id="@+id/switchLanguageMenuItem"-->
     <!--android:icon="@drawable/ic_menu_edit"-->

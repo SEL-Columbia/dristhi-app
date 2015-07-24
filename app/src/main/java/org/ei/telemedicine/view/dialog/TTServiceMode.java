@@ -1,21 +1,32 @@
 package org.ei.telemedicine.view.dialog;
 
-import android.view.View;
-import android.widget.TextView;
+import static android.view.View.VISIBLE;
+import static org.ei.telemedicine.AllConstants.FormNames.TT;
+import static org.ei.telemedicine.Context.getInstance;
+import static org.ei.telemedicine.domain.ANCServiceType.TT_1;
+import static org.ei.telemedicine.domain.ANCServiceType.TT_2;
+import static org.ei.telemedicine.domain.ANCServiceType.TT_BOOSTER;
+import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
 
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.domain.ANCServiceType;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
-import org.ei.telemedicine.view.contract.*;
+import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
+import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
+import org.ei.telemedicine.view.contract.AlertDTO;
+import org.ei.telemedicine.view.contract.AlertStatus;
+import org.ei.telemedicine.view.contract.ChildSmartRegisterClient;
+import org.ei.telemedicine.view.contract.FPSmartRegisterClient;
+import org.ei.telemedicine.view.contract.ServiceProvidedDTO;
 import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
-import org.ei.telemedicine.view.viewHolder.*;
+import org.ei.telemedicine.view.viewHolder.NativeANCSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativeChildSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativeFPSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.NativePNCSmartRegisterViewHolder;
+import org.ei.telemedicine.view.viewHolder.OnClickFormLauncher;
 
-import static android.view.View.VISIBLE;
-import static org.ei.telemedicine.AllConstants.FormNames.TT;
-import static org.ei.telemedicine.Context.getInstance;
-import static org.ei.telemedicine.domain.ANCServiceType.*;
-import static org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
-import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
+import android.view.View;
+import android.widget.TextView;
 
 public class TTServiceMode extends ServiceModeOption {
 
@@ -80,6 +91,7 @@ public class TTServiceMode extends ServiceModeOption {
     public void setupListView(PNCSmartRegisterClient client, NativePNCSmartRegisterViewHolder viewHolder, View.OnClickListener clientSectionClickListener) {
 
     }
+
 
     public void setupTT1Layout(ANCSmartRegisterClient client,
                                NativeANCSmartRegisterViewHolder viewHolder) {

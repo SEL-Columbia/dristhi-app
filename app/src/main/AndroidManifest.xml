@@ -18,7 +18,6 @@
         <screen
             android:screenDensity="xhdpi"
             android:screenSize="large" />
-
         <screen
             android:screenDensity="ldpi"
             android:screenSize="xlarge" />
@@ -41,10 +40,16 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
+
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="16" />
@@ -142,22 +147,18 @@
             android:name=".view.activity.NativeECSmartRegisterActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
-
         <activity
             android:name=".view.activity.NativeChildSmartRegisterActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
-
         <activity
             android:name=".view.activity.NativeFPSmartRegisterActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
-
         <activity
             android:name=".view.activity.NativeANCSmartRegisterActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
-       
         <activity
             android:name=".view.activity.NativePNCSmartRegisterActivity"
             android:screenOrientation="landscape"
@@ -171,6 +172,10 @@
             android:name=".view.activity.NativeSettingsActivity"
             android:screenOrientation="landscape"></activity>
 
+        <activity
+            android:name=".bluetooth.BlueToothInfoActivity"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".doctor.DoctorANCScreenActivity"
             android:screenOrientation="landscape" />

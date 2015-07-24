@@ -48,4 +48,5 @@ public abstract class ServiceModeOption implements DialogOption {
                                        NativePNCSmartRegisterViewHolder viewHolder,
                                        View.OnClickListener clientSectionClickListener);
 
+
 }

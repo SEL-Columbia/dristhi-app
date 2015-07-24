@@ -1,16 +1,5 @@
 package org.ei.telemedicine.view.dialog;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.AllConstants;
-import org.ei.telemedicine.domain.ANCServiceType;
-import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
-import org.ei.telemedicine.view.contract.pnc.PNCSmartRegisterClient;
-
 import static android.view.View.VISIBLE;
 import static org.ei.telemedicine.AllConstants.BOOLEAN_TRUE;
 import static org.ei.telemedicine.AllConstants.DeliveryPlanFields.BIRTH_COMPANION;
@@ -26,6 +15,10 @@ import static org.ei.telemedicine.domain.ANCServiceType.DELIVERY_PLAN;
 import static org.ei.telemedicine.util.StringUtil.humanize;
 import static org.ei.telemedicine.view.contract.AlertDTO.emptyAlert;
 
+import org.ei.telemedicine.AllConstants;
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.domain.ANCServiceType;
+import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
 import org.ei.telemedicine.view.activity.SecuredNativeSmartRegisterActivity.ClientsHeaderProvider;
 import org.ei.telemedicine.view.contract.ANCSmartRegisterClient;
 import org.ei.telemedicine.view.contract.AlertDTO;

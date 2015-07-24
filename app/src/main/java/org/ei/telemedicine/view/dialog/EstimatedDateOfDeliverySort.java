@@ -1,12 +1,12 @@
 package org.ei.telemedicine.view.dialog;
 
-import org.ei.telemedicine.R;
-import org.ei.telemedicine.Context;
-import org.ei.telemedicine.view.contract.SmartRegisterClients;
+import static org.ei.telemedicine.view.contract.ANCSmartRegisterClient.EDD_COMPARATOR;
 
 import java.util.Collections;
 
-import static org.ei.telemedicine.view.contract.ANCSmartRegisterClient.EDD_COMPARATOR;
+import org.ei.telemedicine.Context;
+import org.ei.telemedicine.R;
+import org.ei.telemedicine.view.contract.SmartRegisterClients;
 
 public class EstimatedDateOfDeliverySort implements SortOption {
     @Override

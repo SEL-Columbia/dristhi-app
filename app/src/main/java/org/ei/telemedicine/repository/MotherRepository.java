@@ -208,6 +208,9 @@ public class MotherRepository extends DrishtiRepository {
         return mothers.isEmpty() ? null : mothers.get(0);
     }
 
+
+
+
     public boolean isPregnant(String ecId) {
         return longForQuery(masterRepository.getReadableDatabase(), "SELECT COUNT(1) FROM " + MOTHER_TABLE_NAME
                         + " WHERE " + EC_CASEID_COLUMN + " = ? AND " + IS_CLOSED_COLUMN + " = ? AND " + TYPE_COLUMN + " = ?",

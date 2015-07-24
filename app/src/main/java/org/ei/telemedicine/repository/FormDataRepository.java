@@ -50,7 +50,7 @@ public class FormDataRepository extends DrishtiRepository {
         TABLE_COLUMN_MAP.put(EligibleCoupleRepository.EC_TABLE_NAME, EligibleCoupleRepository.EC_TABLE_COLUMNS);
         TABLE_COLUMN_MAP.put(MotherRepository.MOTHER_TABLE_NAME, MotherRepository.MOTHER_TABLE_COLUMNS);
         TABLE_COLUMN_MAP.put(ChildRepository.CHILD_TABLE_NAME, ChildRepository.CHILD_TABLE_COLUMNS);
-
+//		TABLE_COLUMN_MAP.put(TestRepository.TAB_NAME,TestRepository.test_tb_cols);
     }
 
     @Override
@@ -83,6 +83,7 @@ public class FormDataRepository extends DrishtiRepository {
     }
 
     public String saveFormSubmission(String paramsJSON, String data, String formDataDefinitionVersion) {
+
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         Map<String, String> params = new Gson().fromJson(paramsJSON, new TypeToken<Map<String, String>>() {
         }.getType());
@@ -131,6 +132,7 @@ public class FormDataRepository extends DrishtiRepository {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(SERVER_VERSION_COLUMN, serverVersion);
+//        values.put(INSTANCE_COLUMN, instance);
         database.update(FORM_SUBMISSION_TABLE_NAME, values, INSTANCE_ID_COLUMN + " = ?", new String[]{instanceId});
     }
 
