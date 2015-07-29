@@ -31,4 +31,4 @@ android:
     - adb shell input keyevent 82 &
 
   #execute the tests
-    -/gradlew build connectedCheck
+    - ./gradlew build connectedCheck
