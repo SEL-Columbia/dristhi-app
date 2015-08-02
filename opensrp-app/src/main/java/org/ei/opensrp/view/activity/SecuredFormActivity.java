@@ -3,22 +3,30 @@ package org.ei.opensrp.view.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Environment;
+import android.webkit.GeolocationPermissions;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
+
 import org.apache.commons.io.IOUtils;
 import org.ei.opensrp.Context;
-import org.ei.opensrp.service.FormPathService;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
 
 import static java.util.UUID.randomUUID;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
-import static org.ei.opensrp.AllConstants.*;
-import static org.ei.opensrp.R.string.*;
+import static org.ei.opensrp.AllConstants.ENTITY_ID_PARAM;
+import static org.ei.opensrp.AllConstants.FIELD_OVERRIDES_PARAM;
+import static org.ei.opensrp.AllConstants.FORM_NAME_PARAM;
+import static org.ei.opensrp.AllConstants.FORM_SUBMISSION_ROUTER;
+import static org.ei.opensrp.AllConstants.INSTANCE_ID_PARAM;
+import static org.ei.opensrp.AllConstants.REPOSITORY;
+import static org.ei.opensrp.AllConstants.ZIGGY_FILE_LOADER;
+import static org.ei.opensrp.R.string.form_back_confirm_dialog_message;
+import static org.ei.opensrp.R.string.form_back_confirm_dialog_title;
+import static org.ei.opensrp.R.string.no_button_label;
+import static org.ei.opensrp.R.string.yes_button_label;
 import static org.ei.opensrp.util.Log.logError;
 
 public abstract class SecuredFormActivity extends SecuredWebActivity {
@@ -50,16 +58,15 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
         formName = intent.getStringExtra(FORM_NAME_PARAM);
         entityId = intent.getStringExtra(ENTITY_ID_PARAM);
         fieldOverrides = intent.getStringExtra(FIELD_OVERRIDES_PARAM);
-
-        FormPathService fps = new FormPathService(this.context);
-
-        model = fps.getForms(formName + "/model.xml", null);
-        form = fps.getForms(formName + "/form.xml", null);
+        model = IOUtils.toString(getAssets().open("www/form/" + formName + "/model.xml"));
+        form = IOUtils.toString(getAssets().open("www/form/" + formName + "/form.xml"));
     }
 
     private void webViewInitialization() {
         WebSettings webViewSettings = webView.getSettings();
         webViewSettings.setJavaScriptEnabled(true);
+        webViewSettings.setGeolocationEnabled(true);
+        webView.setWebChromeClient(new GeoWebChromeClient());
         webViewSettings.setDatabaseEnabled(true);
         webViewSettings.setDomStorageEnabled(true);
         webView.addJavascriptInterface(new FormWebInterface(model, form, this), ANDROID_CONTEXT_FIELD);
@@ -110,5 +117,15 @@ public abstract class SecuredFormActivity extends SecuredWebActivity {
 
     private void goBack() {
         super.onBackPressed();
+    }
+
+    public class GeoWebChromeClient extends WebChromeClient {
+        @Override
+        public void onGeolocationPermissionsShowPrompt(String origin,
+                                                       GeolocationPermissions.Callback callback) {
+            // Always grant permission since the app itself requires location
+            // permission and the user has therefore already granted it
+            callback.invoke(origin, true, false);
+        }
     }
 }
