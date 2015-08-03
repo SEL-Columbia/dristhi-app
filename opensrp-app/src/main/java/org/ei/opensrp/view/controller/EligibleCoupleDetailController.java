@@ -15,6 +15,7 @@ import org.ei.opensrp.view.contract.ECDetail;
 import org.ei.opensrp.view.contract.TimelineEvent;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import android.webkit.JavascriptInterface;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,6 +38,7 @@ public class EligibleCoupleDetailController {
         this.allTimelineEvents = allTimelineEvents;
     }
 
+    @JavascriptInterface
     public String get() {
         EligibleCouple eligibleCouple = allEligibleCouples.findByCaseID(caseId);
 
@@ -49,6 +51,7 @@ public class EligibleCoupleDetailController {
         return new Gson().toJson(ecContext);
     }
 
+    @JavascriptInterface
     public void takePhoto() {
         Intent intent = new Intent(context, CameraLaunchActivity.class);
         intent.putExtra(AllConstants.TYPE, WOMAN_TYPE);
@@ -56,6 +59,7 @@ public class EligibleCoupleDetailController {
         context.startActivity(intent);
     }
 
+    @JavascriptInterface
     private List<TimelineEvent> getEvents() {
         List<org.ei.opensrp.domain.TimelineEvent> events = allTimelineEvents.forCase(caseId);
         List<TimelineEvent> timelineEvents = new ArrayList<TimelineEvent>();
