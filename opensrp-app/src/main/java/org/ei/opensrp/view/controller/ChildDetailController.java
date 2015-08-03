@@ -18,6 +18,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import com.ocpsoft.pretty.time.PrettyTime;
+import android.webkit.JavascriptInterface;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,6 +44,7 @@ public class ChildDetailController {
         this.allTimelineEvents = allTimelineEvents;
     }
 
+    @JavascriptInterface
     public String get() {
         Child child = allBeneficiaries.findChild(caseId);
         Mother mother = allBeneficiaries.findMother(child.motherCaseId());
@@ -65,6 +67,7 @@ public class ChildDetailController {
         return new Gson().toJson(detail);
     }
 
+    @JavascriptInterface
     public void takePhoto() {
         Intent intent = new Intent(context, CameraLaunchActivity.class);
         intent.putExtra(AllConstants.TYPE, CHILD_TYPE);
@@ -72,6 +75,7 @@ public class ChildDetailController {
         context.startActivity(intent);
     }
 
+    @JavascriptInterface
     private List<TimelineEvent> getEvents() {
         List<org.ei.opensrp.domain.TimelineEvent> events = allTimelineEvents.forCase(caseId);
         List<TimelineEvent> timelineEvents = new ArrayList<TimelineEvent>();

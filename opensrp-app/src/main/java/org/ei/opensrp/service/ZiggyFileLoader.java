@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import android.webkit.JavascriptInterface;
 
 import static java.text.MessageFormat.format;
 import static org.ei.opensrp.util.Log.logError;
@@ -33,6 +34,7 @@ public class ZiggyFileLoader {
         return builder.toString();
     }
 
+    @JavascriptInterface
     public String loadAppData(String fileName) {
         try {
             FormPathService fps = new FormPathService(assetManager);

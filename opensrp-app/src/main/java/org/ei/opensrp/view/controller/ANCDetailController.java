@@ -18,6 +18,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.Months;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import android.webkit.JavascriptInterface;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,6 +43,7 @@ public class ANCDetailController {
         this.allTimelineEvents = allTimelineEvents;
     }
 
+    @JavascriptInterface
     public String get() {
         Mother mother = allBeneficiaries.findMotherWithOpenStatus(caseId);
         EligibleCouple couple = allEligibleCouples.findByCaseID(mother.ecCaseId());
@@ -68,6 +70,7 @@ public class ANCDetailController {
         return new Gson().toJson(detail);
     }
 
+    @JavascriptInterface
     public void takePhoto() {
         Intent intent = new Intent(context, CameraLaunchActivity.class);
         intent.putExtra(AllConstants.TYPE, WOMAN_TYPE);
@@ -76,6 +79,7 @@ public class ANCDetailController {
         context.startActivity(intent);
     }
 
+    @JavascriptInterface
     private List<TimelineEvent> getEvents() {
         List<org.ei.opensrp.domain.TimelineEvent> events = allTimelineEvents.forCase(caseId);
         List<TimelineEvent> timelineEvents = new ArrayList<TimelineEvent>();

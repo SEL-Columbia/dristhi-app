@@ -4,6 +4,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.ei.opensrp.domain.form.FormSubmission;
 import org.ei.opensrp.repository.FormDataRepository;
 import org.ei.opensrp.util.Log;
+import android.webkit.JavascriptInterface;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -73,6 +74,7 @@ public class FormSubmissionRouter {
         handlerMap.put(ANC_INVESTIGATIONS, ancInvestigationsHandler);
     }
 
+    @JavascriptInterface
     public void route(String instanceId) throws Exception {
         FormSubmission submission = formDataRepository.fetchFromSubmission(instanceId);
         FormSubmissionHandler handler = handlerMap.get(submission.formName());
