@@ -1760,6 +1760,30 @@ input:not([type="radio"]):not([type="checkbox"]), textarea { height: 36px; }
 
 .touch .bootstrap-timepicker-widget.dropdown-menu input { width: 50px; margin: 0 auto; }
 
+.geopoint { margin-top: 25px; }
+.geopoint .geo-inputs { min-width: 160px; width: 27%; margin: 0 4% 0 0; }
+@media screen and (max-width: 700px) { .geopoint .geo-inputs { width: 100%; } }
+.geopoint .map-canvas-wrapper, .geopoint .search-bar { width: 65%; float: right; padding-left: 4%; border-left: solid 1px #bbbbbb; }
+@media screen and (max-width: 700px) { .geopoint .map-canvas-wrapper, .geopoint .search-bar { width: 100%; float: none; padding-left: 0; border-left: none; } }
+.geopoint .map-canvas-wrapper img, .geopoint .search-bar img { width: 100%; height: 100%; }
+.geopoint .search-bar .form-control, .geopoint .search-bar input:not([type=radio]):not([type=checkbox]), .geopoint .search-bar select, .geopoint .search-bar textarea { margin-top: 0; }
+.geopoint button { height: 34px; padding-bottom: 4px; }
+.geopoint button[name="geodetect"] { display: inline-block; float: right; font-size: 16px; margin: 0 0 0 4%; width: 40px; }
+.geopoint .no-search-input.no-map { border-left: none; }
+.geopoint .no-search-input button[name="geodetect"] { float: none; display: block; margin: 15px auto 15px auto; width: 50%; }
+.geopoint label.geo { font-family: "Helvetica Neue", "Kannada Sangam MN", Helvetica, Arial, sans-serif; font-weight: normal; font-style: normal; display: block; border: none; padding: 0; margin: 15px 0 0 0; }
+.geopoint label.geo:nth-of-type(1) { padding-top: 5px; }
+.geopoint label.geo:nth-of-type(2) { margin-bottom: 20px; }
+.geopoint label.geo:nth-of-type(3) { border-top: solid 1px #bbbbbb; padding: 12px 0 0 0; margin: 0 0 0 0; }
+@media screen and (max-width: 700px) { .geopoint label.geo:nth-of-type(3) { border-top: none; } }
+.geopoint label.geo:nth-of-type(4) { padding: 0; margin: 5px 0 0 0; }
+.geopoint label.geo:nth-of-type(3), .geopoint label.geo:nth-of-type(4) { min-height: 70px; line-height: 50px; font-size: 16.5px; }
+.geopoint input[name="lat"], .geopoint input[name="long"] { float: none; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%; }
+.geopoint input[name="alt"], .geopoint input[name="acc"] { -moz-box-sizing: border-box; box-sizing: border-box; display: block; float: right; width: 40%; }
+@media screen and (max-width: 700px) { .geopoint input[name="alt"], .geopoint input[name="acc"] { width: 50%; } }
+.geopoint .map-canvas { width: 100%; border: 1px solid #ccc; border-radius: 3px; margin-top: 10px; height: 275px; }
+.geopoint .map-canvas img { max-width: none; }
+
 .question.or-appearance-compact legend, .question.or-appearance-quickcompact legend { border: none; }
 .question.or-appearance-compact .option-wrapper > label, .question.or-appearance-quickcompact .option-wrapper > label { float: left; }
 .question.or-appearance-compact .option-wrapper > label:hover, .question.or-appearance-quickcompact .option-wrapper > label:hover { background: none; }
