@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import android.webkit.JavascriptInterface;
 
 import static java.lang.System.currentTimeMillis;
 import static java.util.Arrays.asList;
@@ -65,6 +66,7 @@ public class FormDataRepository extends DrishtiRepository {
         database.execSQL(FORM_SUBMISSION_SQL);
     }
 
+    @JavascriptInterface
     public String queryUniqueResult(String sql) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery(sql, new String[]{});
@@ -76,6 +78,7 @@ public class FormDataRepository extends DrishtiRepository {
         return new Gson().toJson(result);
     }
 
+    @JavascriptInterface
     public String queryList(String sql) {
         SQLiteDatabase database = masterRepository.getReadableDatabase();
         Cursor cursor = database.rawQuery(sql, new String[]{});
@@ -89,6 +92,7 @@ public class FormDataRepository extends DrishtiRepository {
         return new Gson().toJson(results);
     }
 
+    @JavascriptInterface
     public String saveFormSubmission(String paramsJSON, String data, String formDataDefinitionVersion) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         Map<String, String> params = new Gson().fromJson(paramsJSON, new TypeToken<Map<String, String>>() {
@@ -97,6 +101,7 @@ public class FormDataRepository extends DrishtiRepository {
         return params.get(INSTANCE_ID_PARAM);
     }
 
+    @JavascriptInterface
     public void saveFormSubmission(FormSubmission formSubmission) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(FORM_SUBMISSION_TABLE_NAME, null, createValuesForFormSubmission(formSubmission));
@@ -143,6 +148,7 @@ public class FormDataRepository extends DrishtiRepository {
         return isThere;
     }
 
+    @JavascriptInterface
     public String saveEntity(String entityType, String fields) {
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         Map<String, String> updatedFieldsMap = new Gson().fromJson(fields, new TypeToken<Map<String, String>>() {
@@ -274,6 +280,7 @@ public class FormDataRepository extends DrishtiRepository {
         return entityMap;
     }
 
+    @JavascriptInterface
     public String generateIdFor(String entityType) {
         return randomUUID().toString();
     }
