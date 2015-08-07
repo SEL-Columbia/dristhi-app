@@ -1,15 +1,22 @@
 package org.ei.telemedicine.view.activity;
 
-import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
-import static org.ei.telemedicine.domain.LoginResponse.SUCCESS;
-import static org.ei.telemedicine.util.Log.logError;
-import static org.ei.telemedicine.util.Log.logVerbose;
-
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.os.Environment;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
@@ -25,23 +32,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+
+import static android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS;
+import static org.ei.telemedicine.domain.LoginResponse.SUCCESS;
+import static org.ei.telemedicine.util.Log.logError;
+import static org.ei.telemedicine.util.Log.logVerbose;
 
 public class LoginActivity extends Activity {
     private Context context;
@@ -197,7 +198,7 @@ public class LoginActivity extends Activity {
 
             @Override
             public void setInvisible() {
-                if (progressDialog != null)
+                if (progressDialog != null && progressDialog.isShowing())
                     progressDialog.dismiss();
             }
         });

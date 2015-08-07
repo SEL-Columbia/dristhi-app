@@ -2,6 +2,8 @@ package org.ei.telemedicine.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.util.Log;
+
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.ei.telemedicine.domain.TimelineEvent;
@@ -29,8 +31,20 @@ public class TimelineEventRepository extends DrishtiRepository {
     }
 
     public void add(TimelineEvent timelineEvent) {
+        Log.e("Timeline", "Created" + timelineEvent.caseId() + "--" + timelineEvent.title());
         SQLiteDatabase database = masterRepository.getWritableDatabase();
         database.insert(TIMELINEEVENT_TABLE_NAME, null, createValuesFor(timelineEvent));
+    }
+
+    private boolean isExist(TimelineEvent timelineEvent) {
+        List<TimelineEvent> getTimelineEvents = allFor(timelineEvent.caseId());
+        for (int i = 0; i < getTimelineEvents.size(); i++) {
+            TimelineEvent event = getTimelineEvents.get(i);
+            if (event.type().equals(timelineEvent.type()) && event.referenceDate().equals(timelineEvent.referenceDate()) && event.title().equals(timelineEvent.title()) && event.detail1().equals(timelineEvent.detail1()) && event.detail2().equals(timelineEvent.detail2())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public List<TimelineEvent> allFor(String caseId) {
@@ -48,6 +62,7 @@ public class TimelineEventRepository extends DrishtiRepository {
         cursor.moveToFirst();
         List<TimelineEvent> timelineEvents = new ArrayList<TimelineEvent>();
         while (!cursor.isAfterLast()) {
+
             timelineEvents.add(new TimelineEvent(cursor.getString(0), cursor.getString(1), LocalDate.parse(cursor.getString(2)), cursor.getString(3), cursor.getString(4), cursor.getString(5)));
             cursor.moveToNext();
         }
@@ -65,4 +80,5 @@ public class TimelineEventRepository extends DrishtiRepository {
         values.put(DETAIL2_COLUMN, timelineEvent.detail2());
         return values;
     }
+
 }

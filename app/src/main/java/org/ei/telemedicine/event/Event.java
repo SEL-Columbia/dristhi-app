@@ -15,6 +15,7 @@ public class Event<CallbackType> {
     public static final Event<Boolean> SYNC_COMPLETED = new Event<Boolean>();
     public static final Event<String> FORM_SUBMITTED = new Event<String>();
     public static final Event<String> ACTION_HANDLED = new Event<String>();
+    public static final Event<Boolean> NETWORK_AVAILABLE = new Event<Boolean>();
 
     List<WeakReference<Listener<CallbackType>>> listeners;
 

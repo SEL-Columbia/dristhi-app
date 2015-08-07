@@ -12,7 +12,11 @@ import org.joda.time.LocalDate;
 import java.util.Map;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
-import static org.ei.telemedicine.AllConstants.PNCVisitFields.*;
+import static org.ei.telemedicine.AllConstants.ANCVisitFields.POC_INFO;
+import static org.ei.telemedicine.AllConstants.PNCVisitFields.BP_DIASTOLIC;
+import static org.ei.telemedicine.AllConstants.PNCVisitFields.BP_SYSTOLIC;
+import static org.ei.telemedicine.AllConstants.PNCVisitFields.HB_LEVEL;
+import static org.ei.telemedicine.AllConstants.PNCVisitFields.TEMPERATURE;
 import static org.ei.telemedicine.util.EasyMap.create;
 import static org.ei.telemedicine.util.EasyMap.mapOf;
 
@@ -36,7 +40,6 @@ public class TimelineEvent {
     public static TimelineEvent forChildBirthInChildProfile(String caseId, String dateOfBirth, String weight, String immunizationsGiven) {
         Map<String, String> details = create("childWeight", weight).put("immunizationsGiven", immunizationsGiven).map();
         String detailsString = new DetailBuilder(details).withWeight("childWeight").withImmunizations("immunizationsGiven").value();
-
         return new TimelineEvent(caseId, "CHILD-BIRTH", LocalDate.parse(dateOfBirth), "Birth Date: " + DateUtil.formatDateForTimelineEvent(dateOfBirth), detailsString, null);
     }
 
@@ -88,8 +91,10 @@ public class TimelineEvent {
 
     public static TimelineEvent forANCCareProvided(String caseId, String visitNumber, String visitDate, Map<String, String> details) {
         String detailsString = new DetailBuilder(details).withBP("bpSystolic", "bpDiastolic").withTemperature("temperature").withWeight("riskObservedDuringANC").withHbLevel("hbLevel").value();
+        String pocData = new DetailBuilder(details).withPOC(POC_INFO).value();
         Log.e("Details String", detailsString);
-        return new TimelineEvent(caseId, "ANCVISIT", LocalDate.parse(visitDate), "ANC Visit " + visitNumber, detailsString, null);
+        Log.e("PocInfo", pocData);
+        return new TimelineEvent(caseId, "ANCVISIT", LocalDate.parse(visitDate), "ANC Visit " + visitNumber, detailsString, pocData);
     }
 
     public static TimelineEvent forIFATabletsGiven(String caseId, String numberOfIFATabletsProvided, String visitDate) {
@@ -238,6 +243,12 @@ public class TimelineEvent {
         private DetailBuilder withBP(String bpSystolic, String bpDiastolic) {
             String bp = "BP: " + details.get(bpSystolic) + "/" + details.get(bpDiastolic) + "<br />";
             this.stringBuilder.append(checkEmptyField(bp, details.get(bpSystolic)));
+            return this;
+        }
+
+        private DetailBuilder withPOC(String pocData) {
+            String pocInfo = details.get(pocData);
+            this.stringBuilder.append(checkEmptyField(pocInfo, details.get("docPocInfo")));
             return this;
         }
 

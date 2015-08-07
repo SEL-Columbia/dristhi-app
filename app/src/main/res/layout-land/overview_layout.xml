@@ -14,19 +14,20 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/iv_home"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:background="@drawable/transparent_gray_background"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:scaleType="center"
-            android:src="@drawable/opensrp_logo" />
+            android:src="@drawable/homestacks" />
 
         <ImageView
             android:id="@+id/home_title_separator"
             android:layout_width="@dimen/smart_register_nav_bar_separator"
             android:layout_height="fill_parent"
+            android:layout_toRightOf="@+id/iv_home"
             android:scaleType="fitXY"
             android:src="@drawable/separator" />
 
@@ -36,9 +37,9 @@
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/imageView"
+            android:layout_toRightOf="@+id/home_title_separator"
             android:background="@android:color/transparent"
-            android:paddingLeft="7dp"
+            android:paddingLeft="10dp"
             android:text="Mother name " />
 
         <ImageButton
@@ -47,9 +48,8 @@
             android:layout_height="fill_parent"
             android:layout_alignParentRight="true"
             android:background="@android:color/transparent"
-            android:onClick="showPopup"
             android:paddingLeft="15dp"
-            android:paddingRight="40dp"
+            android:paddingRight="20dp"
             android:src="@android:drawable/ic_menu_edit" />
     </RelativeLayout>
 
@@ -242,6 +242,23 @@
             android:text="Timeline"
             android:textColor="@android:color/darker_gray"
             android:textSize="20sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_ec_timeline"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_ec_timeline"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/overview_box"
+            android:padding="10dp">
+
+            <ListView
+                android:id="@+id/lv_timeline_events"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+        </LinearLayout>
+
     </RelativeLayout>
 
 </LinearLayout>

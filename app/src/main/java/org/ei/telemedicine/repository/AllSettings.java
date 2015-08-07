@@ -15,6 +15,10 @@ public class AllSettings {
         this.settingsRepository = settingsRepository;
     }
 
+    public void clearPreferences() {
+        preferences.clearPreferences();
+    }
+
     public void registerANM(String userName, String password) {
         preferences.updateANMUserName(userName);
         settingsRepository.updateSetting(ANM_PASSWORD_PREFERENCE_KEY, password);
@@ -25,7 +29,6 @@ public class AllSettings {
         preferences.updateUserRole(userRole);
         settingsRepository.updateSetting(ANM_PASSWORD_PREFERENCE_KEY, password);
     }
-
 
     public void savePreviousFetchIndex(String value) {
         settingsRepository.updateSetting(PREVIOUS_FETCH_INDEX_SETTING_KEY, value);

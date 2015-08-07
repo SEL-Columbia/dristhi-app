@@ -13,6 +13,10 @@ public class FormController {
         activity.startFormActivity(formName, entityId, metaData);
     }
 
+    public void viewFormActivity(String formName, String entityId, String metaData, Boolean isFormView) {
+        activity.startFormActivity(formName, entityId, metaData, isFormView);
+    }
+
     public void startMicroFormActivity(String formName, String entityId, String metaData) {
         activity.startMicroFormActivity(formName, entityId, metaData);
     }

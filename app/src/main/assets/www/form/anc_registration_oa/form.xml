@@ -3576,30 +3576,29 @@
             <legend>
                 <span class="question-label active" lang="">Does the woman have any of the following
                     medical conditions?
-
                 </span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/medical_histories"
-                        data-type-xml="select" type="checkbox" value="Medical_History:_TB" />
+                        data-type-xml="select" type="checkbox" value="Medical History:TB" />
                     <span class="option-label active" lang="">TB</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/medical_histories"
                         data-type-xml="select" type="checkbox"
-                        value="Medical_History:_Hypertension" />
+                        value="Medical History:Hypertension" />
                     <span class="option-label active" lang="">Hypertension</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/medical_histories"
                         data-type-xml="select" type="checkbox"
-                        value="Medical_History:_Heart_Related_Diseases" />
+                        value="Medical History:Heart Related Diseases" />
                     <span class="option-label active" lang="">Heart-related diseases</span>
                 </label>
                 <label class="">
                     <input name="/ANC_Registration_OA_EngKan/medical_histories"
-                        data-type-xml="select" type="checkbox" value="Medical_History:_Diabetes" />
+                        data-type-xml="select" type="checkbox" value="Medical History:Diabetes" />
                     <span class="option-label active" lang="">Diabetes</span>
                 </label>
             </div>

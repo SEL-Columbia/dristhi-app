@@ -197,8 +197,7 @@ public class HTTPAgent {
                 Log.e("Upload file to server", "error: " + ex.getMessage(), ex);
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.e("Upload file to server Exception", "Exception : "
-                        + e.getMessage(), e);
+                Log.e("server Exception", "Exception:" + String.format(e.getMessage()));
             }
 
         }

@@ -45,6 +45,10 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -197,6 +201,13 @@
             android:name=".doctor.NativeDoctorActivity"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".view.activity.NativeOverviewActivity"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".doctor.NativeGraphActivity"
+            android:screenOrientation="landscape" />
 
         <receiver android:name=".view.receiver.SyncBroadcastReceiver" />
         <receiver android:name=".view.receiver.ConnectivityChangeReceiver">

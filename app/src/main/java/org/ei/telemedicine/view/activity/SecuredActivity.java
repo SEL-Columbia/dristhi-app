@@ -1,21 +1,17 @@
 package org.ei.telemedicine.view.activity;
 
-import static android.widget.Toast.LENGTH_SHORT;
-import static org.ei.telemedicine.AllConstants.ALERT_NAME_PARAM;
-import static org.ei.telemedicine.AllConstants.ENTITY_ID;
-import static org.ei.telemedicine.AllConstants.ENTITY_ID_PARAM;
-import static org.ei.telemedicine.AllConstants.FIELD_OVERRIDES_PARAM;
-import static org.ei.telemedicine.AllConstants.FORM_NAME_PARAM;
-import static org.ei.telemedicine.AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE;
-import static org.ei.telemedicine.R.string.form_back_confirm_dialog_message;
-import static org.ei.telemedicine.R.string.form_back_confirm_dialog_title;
-import static org.ei.telemedicine.R.string.no_button_label;
-import static org.ei.telemedicine.R.string.yes_button_label;
-import static org.ei.telemedicine.event.Event.ON_LOGOUT;
-import static org.ei.telemedicine.util.Log.logError;
-import static org.ei.telemedicine.util.Log.logInfo;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
-import java.util.Map;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
@@ -28,19 +24,20 @@ import org.ei.telemedicine.view.controller.ANMController;
 import org.ei.telemedicine.view.controller.FormController;
 import org.ei.telemedicine.view.controller.NavigationController;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Toast;
+import java.util.Map;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import static org.ei.telemedicine.AllConstants.ALERT_NAME_PARAM;
+import static org.ei.telemedicine.AllConstants.ENTITY_ID;
+import static org.ei.telemedicine.AllConstants.ENTITY_ID_PARAM;
+import static org.ei.telemedicine.AllConstants.FIELD_OVERRIDES_PARAM;
+import static org.ei.telemedicine.AllConstants.FORM_NAME_PARAM;
+import static org.ei.telemedicine.AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE;
+import static org.ei.telemedicine.AllConstants.VIEW_FORM;
+import static org.ei.telemedicine.R.string.no_button_label;
+import static org.ei.telemedicine.R.string.yes_button_label;
+import static org.ei.telemedicine.event.Event.ON_LOGOUT;
+import static org.ei.telemedicine.util.Log.logError;
+import static org.ei.telemedicine.util.Log.logInfo;
 
 public abstract class SecuredActivity extends Activity {
     protected Context context;
@@ -115,8 +112,25 @@ public abstract class SecuredActivity extends Activity {
 
     protected abstract void onResumption();
 
+
     public void startFormActivity(String formName, String entityId, String metaData) {
         launchForm(formName, entityId, metaData, FormActivity.class);
+    }
+
+    public void startFormActivity(String formName, String entityId, String metaData, boolean isViewForm) {
+        viewForm(formName, entityId, metaData, FormActivity.class, isViewForm);
+    }
+
+    private void viewForm(String formName, String entityId, String metaData, Class formActivityClass, boolean isViewForm) {
+        this.metaData = metaData;
+
+        Intent intent = new Intent(this, formActivityClass);
+        intent.putExtra(FORM_NAME_PARAM, formName);
+        intent.putExtra(ENTITY_ID_PARAM, entityId);
+        intent.putExtra(VIEW_FORM, true);
+        addFieldOverridesIfExist(intent);
+        startActivityForResult(intent, FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE);
+
     }
 
     public void startMicroFormActivity(String formName, String entityId, String metaData) {
@@ -202,4 +216,6 @@ public abstract class SecuredActivity extends Activity {
     private boolean hasMetadata() {
         return this.metaData != null && !this.metaData.equalsIgnoreCase("undefined");
     }
+
+
 }

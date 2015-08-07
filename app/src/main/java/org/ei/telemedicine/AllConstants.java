@@ -1,6 +1,7 @@
 package org.ei.telemedicine;
 
 public class AllConstants {
+    public static final String HOME_SCREEN = "homeScreen";
     public static final String VIEW_PLAN_OF_CARE = "viewPlanOfCare";
     public static final String VIEW_PNC_PLAN_OF_CARE = "viewPNCPlanOfCare";
     public static final String VIEW_CHILD_PLAN_OF_CARE = "viewCHILDPlanOfCare";
@@ -52,6 +53,7 @@ public class AllConstants {
     public static final String DOCTOR_ROLE = "ROLE_DOC_USER";
 
     public static final String FORM_NAME_PARAM = "formName";
+    public static final String VIEW_FORM = "viewForm";
     public static final String INSTANCE_ID_PARAM = "instanceId";
     public static final String ENTITY_ID_PARAM = "entityId";
     public static final String FIELD_OVERRIDES_PARAM = "fieldOverrides";
@@ -88,6 +90,7 @@ public class AllConstants {
 
     public class FormNames {
         public static final String EC_REGISTRATION = "ec_registration";
+        public static final String VIEW_EC_REGISTRATION = "view_ec_registration";
         public static final String FP_COMPLICATIONS = "fp_complications";
         public static final String FP_CHANGE = "fp_change";
         public static final String RENEW_FP_PRODUCT = "renew_fp_product";
@@ -211,6 +214,7 @@ public class AllConstants {
         public static final String BP_DIASTOLIC = "bpDiastolic";
         public static final String TEMPERATURE = "temperature";
         public static final String WEIGHT = "weight";
+        public static final String POC_INFO = "docPocInfo";
     }
 
     public class PNCVisitFields {

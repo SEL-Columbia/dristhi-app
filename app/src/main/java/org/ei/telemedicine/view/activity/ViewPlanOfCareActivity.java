@@ -27,7 +27,7 @@ import org.json.JSONObject;
  */
 public class ViewPlanOfCareActivity extends Activity {
     EditText et_anc_num, et_woman_name, et_plan_of_care_date, et_doc_name, et_investigations, et_drugs, et_advice, et_diagnosis;
-    Button bt_close;
+    Button bt_close, bt_history;
     String entityId;
     private String TAG = "ViewPlanofCareActivity";
     String visitType, intentVisitType;
@@ -43,6 +43,7 @@ public class ViewPlanOfCareActivity extends Activity {
 
             setContentView(R.layout.view_anc_poc);
             bt_close = (Button) findViewById(R.id.bt_close);
+            bt_history = (Button) findViewById(R.id.bt_history);
             et_anc_num = (EditText) findViewById(R.id.et_anc_num);
             et_woman_name = (EditText) findViewById(R.id.et_woman_name);
             et_plan_of_care_date = (EditText) findViewById(R.id.et_plan_of_care_date);
@@ -52,7 +53,12 @@ public class ViewPlanOfCareActivity extends Activity {
             et_advice = (EditText) findViewById(R.id.et_advice_data);
             et_diagnosis = (EditText) findViewById(R.id.et_diagnosis);
             tv_anc_number_title = (TextView) findViewById(R.id.tv_anc_num_title);
-
+            bt_history.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(ViewPlanOfCareActivity.this, "Poc History", Toast.LENGTH_SHORT).show();
+                }
+            });
             bt_close.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -67,21 +73,35 @@ public class ViewPlanOfCareActivity extends Activity {
                 if (docPocInfo != null && !docPocInfo.equals("")) {
                     Log.e(TAG, "Doc Poc" + docPocInfo);
                     try {
-                        JSONObject pocJson = new JSONObject(docPocInfo);
-                        visitType = getDatafromJson(pocJson, "visitType");
-                        if (visitType.equals(intentVisitType)) {
-                            et_woman_name.setText(eligibleCouple.wifeName());
-                            et_investigations.setText(getDatafromArray(pocJson.getJSONArray("investigations").toString()));
-                            et_doc_name.setText(getDatafromJson(pocJson, "doctorName"));
-                            et_anc_num.setText(mother.getDetail("ancNumber"));
-                            if (visitType.equals("PNC")) {
-                                tv_anc_number_title.setText("PNC Number");
+                        JSONArray docPocInfoArray = new JSONArray(docPocInfo);
+                        JSONObject pocInfo = docPocInfoArray.length() != 0 ? docPocInfoArray.getJSONObject(docPocInfoArray.length() - 1)
+                                : new JSONObject();
+                        if (pocInfo.getString("pending").length() == 0) {
+                            JSONObject pocJson = pocInfo.has("poc") ? new JSONObject(pocInfo.getString("poc")) : new JSONObject();
+                            Log.e("Pox", pocJson.toString());
+                            visitType = getDatafromJson(pocJson, "visitType");
+                            if (visitType.equals(intentVisitType)) {
+                                et_woman_name.setText(eligibleCouple.wifeName());
+                                et_investigations.setText(getDatafromArray(pocJson.getJSONArray("investigations").toString()));
+                                et_doc_name.setText(getDatafromJson(pocJson, "doctorName"));
+                                et_anc_num.setText(mother.getDetail("ancNumber"));
+                                if (visitType.equals("PNC")) {
+                                    tv_anc_number_title.setText("PNC Number");
+                                }
+                                et_plan_of_care_date.setText(getDatafromJson(pocJson, "planofCareDate"));
+                                et_drugs.setText(getDatafromDrugsArray(pocJson.getString("drugs")));
+                                et_diagnosis.setText(getDatafromArray(pocJson.getJSONArray("diagnosis").toString()));
+                                Log.e(TAG, "Advice" + pocJson.getString("advice"));
+                                et_advice.setText(getDatafromJson(pocJson, "advice"));
                             }
-                            et_plan_of_care_date.setText(getDatafromJson(pocJson, "planofCareDate"));
-                            et_drugs.setText(getDatafromDrugsArray(pocJson.getString("drugs")));
-                            et_diagnosis.setText(getDatafromArray(pocJson.getJSONArray("diagnosis").toString()));
-                            Log.e(TAG, "Advice" + pocJson.getString("advice"));
-                            et_advice.setText(getDatafromJson(pocJson, "advice"));
+                        } else {
+                            Toast.makeText(ViewPlanOfCareActivity.this, "Pending= " + pocInfo.getString("pending"), Toast.LENGTH_SHORT).show();
+                            new AlertDialog.Builder(ViewPlanOfCareActivity.this).setTitle("Poc pending reason").setMessage(pocInfo.getString("pending")).setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ViewPlanOfCareActivity.this.finish();
+                                }
+                            }).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -101,19 +121,32 @@ public class ViewPlanOfCareActivity extends Activity {
                 if (docPocInfo != null && !docPocInfo.equals("")) {
                     Log.e(TAG, "Child Doc Poc" + docPocInfo);
                     try {
-                        JSONObject pocJson = new JSONObject(docPocInfo);
-                        visitType = getDatafromJson(pocJson, "visitType");
-                        if (visitType.equalsIgnoreCase(intentVisitType)) {
-                            et_woman_name.setText(eligibleCouple.wifeName());
-                            et_investigations.setText(getDatafromArray(pocJson.getJSONArray("investigations").toString()));
-                            et_doc_name.setText(getDatafromJson(pocJson, "doctorName"));
+                        JSONArray docPocInfoArray = new JSONArray(docPocInfo);
+                        JSONObject pocInfo = docPocInfoArray.length() != 0 ? docPocInfoArray.getJSONObject(docPocInfoArray.length() - 1)
+                                : new JSONObject();
+                        if (pocInfo.getString("pending").length() == 0) {
+                            JSONObject pocJson = pocInfo.has("poc") ? new JSONObject(pocInfo.getString("poc")) : new JSONObject();
+                            visitType = getDatafromJson(pocJson, "visitType");
+                            if (visitType.equalsIgnoreCase(intentVisitType)) {
+                                et_woman_name.setText(eligibleCouple.wifeName());
+                                et_investigations.setText(getDatafromArray(pocJson.getJSONArray("investigations").toString()));
+                                et_doc_name.setText(getDatafromJson(pocJson, "doctorName"));
 //                          et_anc_num.setText(mother.getDetail("ancNumber"));
 //                          tv_anc_number_title.setText("PNC Number");
-                            et_plan_of_care_date.setText(getDatafromJson(pocJson, "planofCareDate"));
-                            et_drugs.setText(getDatafromDrugsArray(pocJson.getString("drugs")));
-                            et_diagnosis.setText(getDatafromArray(pocJson.getJSONArray("diagnosis").toString()));
-                            Log.e(TAG, "Advice" + pocJson.getString("advice"));
-                            et_advice.setText(getDatafromJson(pocJson, "advice"));
+                                et_plan_of_care_date.setText(getDatafromJson(pocJson, "planofCareDate"));
+                                et_drugs.setText(getDatafromDrugsArray(pocJson.getString("drugs")));
+                                et_diagnosis.setText(getDatafromArray(pocJson.getJSONArray("diagnosis").toString()));
+                                Log.e(TAG, "Advice" + pocJson.getString("advice"));
+                                et_advice.setText(getDatafromJson(pocJson, "advice"));
+                            }
+                        } else {
+                            Toast.makeText(ViewPlanOfCareActivity.this, "Pending= " + pocInfo.getString("pending"), Toast.LENGTH_SHORT).show();
+                            new AlertDialog.Builder(ViewPlanOfCareActivity.this).setTitle("Poc pending reason").setMessage(pocInfo.getString("pending")).setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ViewPlanOfCareActivity.this.finish();
+                                }
+                            }).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

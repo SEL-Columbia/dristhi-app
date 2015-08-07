@@ -2,6 +2,7 @@ package org.ei.telemedicine.view.activity;
 
 import static org.ei.telemedicine.event.Event.ACTION_HANDLED;
 import static org.ei.telemedicine.event.Event.FORM_SUBMITTED;
+import static org.ei.telemedicine.event.Event.NETWORK_AVAILABLE;
 import static org.ei.telemedicine.event.Event.SYNC_COMPLETED;
 import static org.ei.telemedicine.event.Event.SYNC_STARTED;
 
@@ -24,6 +25,8 @@ public class HomeActivity extends SecuredWebActivity {
             updateMenuItem.setActionView(R.layout.progress);
         }
     };
+
+
 
     private Listener<Boolean> onSyncCompleteListener = new Listener<Boolean>() {
         @Override
@@ -60,6 +63,7 @@ public class HomeActivity extends SecuredWebActivity {
         SYNC_COMPLETED.addListener(onSyncCompleteListener);
         FORM_SUBMITTED.addListener(onFormSubmittedListener);
         ACTION_HANDLED.addListener(updateANMDetailsListener);
+
 
         webView.loadUrl("file:///android_asset/www/home.html");
         webView.addJavascriptInterface(new HomeController(updateController), "context");

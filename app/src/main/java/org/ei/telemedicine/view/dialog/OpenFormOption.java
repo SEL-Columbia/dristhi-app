@@ -15,6 +15,7 @@ public class OpenFormOption implements EditOption {
     private final String formName;
     private final FormController formController;
     android.content.Context context;
+    boolean isFormView = false;
 
     public OpenFormOption(String name, String formName, FormController formController) {
         this.name = name;
@@ -29,6 +30,13 @@ public class OpenFormOption implements EditOption {
         this.formController = formController;
     }
 
+    public OpenFormOption(String name, String formName, FormController formController, boolean viewForm) {
+        this.name = name;
+        this.formName = formName;
+        this.formController = formController;
+        this.isFormView = viewForm;
+    }
+
     @Override
     public String name() {
         return name;
@@ -36,22 +44,25 @@ public class OpenFormOption implements EditOption {
 
     @Override
     public void doEdit(SmartRegisterClient client) {
-        if (formName.equals(AllConstants.VIEW_PLAN_OF_CARE)) {
-            Intent intent = new Intent(context, ViewPlanOfCareActivity.class);
-            intent.putExtra(AllConstants.ENTITY_ID, client.entityId());
-            intent.putExtra(AllConstants.VISIT_TYPE, "ANC");
-            context.startActivity(intent);
-        } else if (formName.equals(AllConstants.VIEW_PNC_PLAN_OF_CARE)) {
-            Intent intent = new Intent(context, ViewPlanOfCareActivity.class);
-            intent.putExtra(AllConstants.ENTITY_ID, client.entityId());
-            intent.putExtra(AllConstants.VISIT_TYPE, "PNC");
-            context.startActivity(intent);
-        } else if (formName.equals(AllConstants.VIEW_CHILD_PLAN_OF_CARE)) {
-            Intent intent = new Intent(context, ViewPlanOfCareActivity.class);
-            intent.putExtra(AllConstants.ENTITY_ID, client.entityId());
-            intent.putExtra(AllConstants.VISIT_TYPE, "Child");
-            context.startActivity(intent);
+        if (!isFormView) {
+            if (formName.equals(AllConstants.VIEW_PLAN_OF_CARE)) {
+                Intent intent = new Intent(context, ViewPlanOfCareActivity.class);
+                intent.putExtra(AllConstants.ENTITY_ID, client.entityId());
+                intent.putExtra(AllConstants.VISIT_TYPE, "ANC");
+                context.startActivity(intent);
+            } else if (formName.equals(AllConstants.VIEW_PNC_PLAN_OF_CARE)) {
+                Intent intent = new Intent(context, ViewPlanOfCareActivity.class);
+                intent.putExtra(AllConstants.ENTITY_ID, client.entityId());
+                intent.putExtra(AllConstants.VISIT_TYPE, "PNC");
+                context.startActivity(intent);
+            } else if (formName.equals(AllConstants.VIEW_CHILD_PLAN_OF_CARE)) {
+                Intent intent = new Intent(context, ViewPlanOfCareActivity.class);
+                intent.putExtra(AllConstants.ENTITY_ID, client.entityId());
+                intent.putExtra(AllConstants.VISIT_TYPE, "Child");
+                context.startActivity(intent);
+            } else
+                formController.startFormActivity(formName, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getLocationJSON()).getJSONString());
         } else
-            formController.startFormActivity(formName, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getLocationJSON()).getJSONString());
+            formController.viewFormActivity(formName, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getLocationJSON()).getJSONString(), isFormView);
     }
 }

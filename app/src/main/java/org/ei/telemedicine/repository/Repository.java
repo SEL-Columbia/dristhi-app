@@ -1,6 +1,8 @@
 package org.ei.telemedicine.repository;
 
 import android.content.Context;
+import android.util.Log;
+
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
@@ -72,5 +74,6 @@ public class Repository extends SQLiteOpenHelper {
         close();
         context.deleteDatabase(dbName);
         context.getDatabasePath(dbName).delete();
+        Log.e("Delete", "Repository");
     }
 }

@@ -2,7 +2,14 @@ package org.ei.telemedicine.repository;
 
 import android.content.SharedPreferences;
 
-import static org.ei.telemedicine.AllConstants.*;
+import static org.ei.telemedicine.AllConstants.ANC_REGISTERS_KEY;
+import static org.ei.telemedicine.AllConstants.CHILD_REGISTERS_KEY;
+import static org.ei.telemedicine.AllConstants.DEFAULT_LOCALE;
+import static org.ei.telemedicine.AllConstants.EC_REGISTERS_KEY;
+import static org.ei.telemedicine.AllConstants.FP_REGISTERS_KEY;
+import static org.ei.telemedicine.AllConstants.IS_SYNC_IN_PROGRESS_PREFERENCE_KEY;
+import static org.ei.telemedicine.AllConstants.LANGUAGE_PREFERENCE_KEY;
+import static org.ei.telemedicine.AllConstants.PNC_REGISTERS_KEY;
 
 public class AllSharedPreferences {
 
@@ -11,10 +18,15 @@ public class AllSharedPreferences {
     public static final String FORM_NAME_KEY = "formName";
     public static final String ENTITY_KEY = "entityId";
     public static final String PASSWORD = "password";
+    public static final String SCREEN = "screen";
     private SharedPreferences preferences;
 
     public AllSharedPreferences(SharedPreferences preferences) {
         this.preferences = preferences;
+    }
+
+    public boolean clearPreferences() {
+        return preferences.edit().clear().commit();
     }
 
     public void updateUserRole(String userRole) {
@@ -45,8 +57,17 @@ public class AllSharedPreferences {
     public void savePwd(String password) {
         preferences.edit().putString(PASSWORD, password).commit();
     }
-    public String getPwd(){
-        return preferences.getString(PASSWORD,"");
+
+    public void saveCurrent(String currentScreen) {
+        preferences.edit().putString(SCREEN, currentScreen).commit();
+    }
+
+    public String getScreen() {
+        return preferences.getString(SCREEN, "");
+    }
+
+    public String getPwd() {
+        return preferences.getString(PASSWORD, "");
     }
 
     public String fetchRegisteredANM() {
@@ -65,9 +86,15 @@ public class AllSharedPreferences {
         return preferences.getBoolean(IS_SYNC_IN_PROGRESS_PREFERENCE_KEY, false);
     }
 
+
     public void saveIsSyncInProgress(Boolean isSyncInProgress) {
         preferences.edit().putBoolean(IS_SYNC_IN_PROGRESS_PREFERENCE_KEY, isSyncInProgress).commit();
     }
+
+    public Boolean getIsSyncInProgress() {
+        return preferences.getBoolean(IS_SYNC_IN_PROGRESS_PREFERENCE_KEY, false);
+    }
+
 
     public void saveECRegisterState(Boolean state) {
         preferences.edit().putBoolean(EC_REGISTERS_KEY, state).commit();
@@ -90,7 +117,7 @@ public class AllSharedPreferences {
     }
 
     public Boolean registerState(String registername) {
-        return preferences.getBoolean(registername, false);
+        return preferences.getBoolean(registername, true);
     }
 }
 

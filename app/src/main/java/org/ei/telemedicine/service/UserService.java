@@ -6,10 +6,14 @@ import org.ei.telemedicine.repository.AllSettings;
 import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.ei.telemedicine.repository.Repository;
 import org.ei.telemedicine.sync.SaveANMLocationTask;
-import org.ei.telemedicine.util.Log;
 import org.ei.telemedicine.util.Session;
 
-import static org.ei.telemedicine.AllConstants.*;
+import static org.ei.telemedicine.AllConstants.ENGLISH_LANGUAGE;
+import static org.ei.telemedicine.AllConstants.ENGLISH_LOCALE;
+import static org.ei.telemedicine.AllConstants.KANNADA_LANGUAGE;
+import static org.ei.telemedicine.AllConstants.KANNADA_LOCALE;
+import static org.ei.telemedicine.AllConstants.USER_DETAILS_URL_PATH;
+import static org.ei.telemedicine.AllConstants.VILLAGES_USER_URL_PATH;
 import static org.ei.telemedicine.event.Event.ON_LOGOUT;
 
 public class UserService {
@@ -93,6 +97,7 @@ public class UserService {
 
     public void logout() {
         logoutSession();
+        allSettings.clearPreferences();
         allSettings.registerANM("", "");
         allSettings.savePreviousFetchIndex("0");
         repository.deleteRepository();

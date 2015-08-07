@@ -67,6 +67,7 @@ public class MotherService {
                                 .put(TEMPERATURE, submission.getFieldValue(TEMPERATURE))
                                 .put(WEIGHT, submission.getFieldValue(WEIGHT))
                                 .put("riskObservedDuringANC", submission.getFieldValue("riskObservedDuringANC"))
+                                .put(AllConstants.ANCVisitFields.POC_INFO,submission.getFieldValue(AllConstants.ANCVisitFields.POC_INFO))
                                 .map()));
         serviceProvidedService.add(
                 ServiceProvided.forANCCareProvided(

@@ -13,6 +13,7 @@ import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.view.receiver.SyncBroadcastReceiver;
 
 import static java.text.MessageFormat.format;
+import static org.ei.telemedicine.event.Event.NETWORK_AVAILABLE;
 import static org.ei.telemedicine.event.Event.ON_LOGOUT;
 import static org.ei.telemedicine.util.Log.logInfo;
 import static org.joda.time.DateTimeConstants.MILLIS_PER_MINUTE;
@@ -20,7 +21,7 @@ import static org.joda.time.DateTimeConstants.MILLIS_PER_SECOND;
 
 public class DrishtiSyncScheduler {
     public static final int SYNC_INTERVAL = 2 * MILLIS_PER_MINUTE;
-    public static final int SYNC_START_DELAY = 5 * MILLIS_PER_SECOND;
+    public static final int SYNC_START_DELAY = 2 * MILLIS_PER_SECOND;
     private static Listener<Boolean> logoutListener;
     private static String TAG = "DrishtiSyncScheduler";
 
@@ -28,7 +29,7 @@ public class DrishtiSyncScheduler {
         if (org.ei.telemedicine.Context.getInstance().IsUserLoggedOut()) {
             return;
         }
-
+        NETWORK_AVAILABLE.notifyListeners(true);
         PendingIntent syncBroadcastReceiverIntent = PendingIntent.getBroadcast(context, 0, new Intent(context, SyncBroadcastReceiver.class), 0);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -67,7 +68,7 @@ public class DrishtiSyncScheduler {
 
     public static void stop(Context context) {
         PendingIntent syncBroadcastReceiverIntent = PendingIntent.getBroadcast(context, 0, new Intent(context, SyncBroadcastReceiver.class), 0);
-
+        NETWORK_AVAILABLE.notifyListeners(false);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(syncBroadcastReceiverIntent);
 
