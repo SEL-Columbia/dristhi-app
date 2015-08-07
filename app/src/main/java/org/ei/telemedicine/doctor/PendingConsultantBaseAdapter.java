@@ -88,7 +88,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
 
 //        String wifeName = getData(DoctorFormDataConstants.wife_name, formData);
 
-        viewHolder.tv_husband_name.setText(getData(husband_name, formData));
+        viewHolder.tv_husband_name.setText(!getData(husband_name, formData).equals("Null") ? getData(husband_name, formData) : "");
         viewHolder.tv_village_name.setText(getData(village_name, formData));
         viewHolder.tv_id_no.setText(getData(id_no, formData));
         viewHolder.tv_visit_type.setText(getData(visit_type, formData));
@@ -96,7 +96,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
         viewHolder.tv_poc_pending.setText(pocPendingInfo);
 //        viewHolder.tv_status.setText(getData(status, formData));
         viewHolder.tv_wife_age.setText(getData(age, formData));
-        Log.e(TAG, "pocPending Info" + pocPendingInfo.length());
+//        Log.e(TAG, "pocPending Info" + pocPendingInfo.length());
         viewHolder.ll_clients_header_layout.setBackgroundColor(Color.parseColor((pocPendingInfo.length() != 0) ? "#c0c0c0" : "#FFFFFF"));
         Drawable imgae = null;
         String data = getData(visit_type, formData);
@@ -144,7 +144,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
                                                           }
                                                           if (intent != null) {
                                                               intent.putExtra("formData", formData);
-                                                              Log.e(TAG, "Data from adapter " + formData);
+//                                                              Log.e(TAG, "Data from adapter " + formData);
                                                               context.startActivity(intent);
                                                           }
                                                       }
@@ -202,7 +202,7 @@ public class PendingConsultantBaseAdapter extends BaseAdapter {
 
         if (formData != null) try {
             JSONObject jsonData = new JSONObject(formData);
-            return (jsonData != null && jsonData.has(key)) ? WordUtils.capitalize(jsonData.getString(key)) : null;
+            return (jsonData != null && jsonData.has(key) && jsonData.getString(key) != null) ? WordUtils.capitalize(jsonData.getString(key)) : "";
         } catch (JSONException e) {
             e.printStackTrace();
         }

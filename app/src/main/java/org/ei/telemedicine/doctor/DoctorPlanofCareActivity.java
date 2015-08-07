@@ -211,16 +211,15 @@ public class DoctorPlanofCareActivity extends Activity {
 
                 }
                 tv_doc_name.setText(Context.getInstance().allSharedPreferences().fetchRegisteredANM());
-                tv_doc_type.setText("");
-                tv_mother_name.setText(formDataJson.getString(DoctorFormDataConstants.wife_name));
-                tv_age.setText(formDataJson.getString(DoctorFormDataConstants.age));
-                visitType = formDataJson.getString(DoctorFormDataConstants.visit_type);
-                visitNumber = formDataJson.getString(DoctorFormDataConstants.anc_visit_number);
+                tv_mother_name.setText(getData(formDataJson, DoctorFormDataConstants.wife_name));
+                tv_age.setText(getData(formDataJson, DoctorFormDataConstants.age));
+                visitType = getData(formDataJson, DoctorFormDataConstants.visit_type);
+                visitNumber = getData(formDataJson, DoctorFormDataConstants.anc_visit_number);
 
                 tv_visit_type.setText(visitType);
-                tv_village.setText(formDataJson.getString(DoctorFormDataConstants.village_name));
-                tv_health_worker_name.setText(formDataJson.getString(DoctorFormDataConstants.anmId));
-                tv_health_worker_village.setText(formDataJson.getString(DoctorFormDataConstants.village_name));
+                tv_village.setText(getData(formDataJson, DoctorFormDataConstants.village_name));
+                tv_health_worker_name.setText(getData(formDataJson, DoctorFormDataConstants.anmId));
+                tv_health_worker_village.setText(getData(formDataJson, DoctorFormDataConstants.village_name));
 
                 Log.e(TAG, selectICD10Diagnosis.size() + "--" + selectDrugs.size() + "--" + selectTests.size());
 
@@ -511,7 +510,7 @@ public class DoctorPlanofCareActivity extends Activity {
                                                             @Override
                                                             public void onClick(View v) {
 //                                                                if (!swich_poc_pending.isChecked() && et_reason.getText().length()@) {
-                                                                Toast.makeText(DoctorPlanofCareActivity.this, "Submitted", Toast.LENGTH_SHORT).show();
+
                                                                 try {
                                                                     JSONObject resultJson = new JSONObject();
                                                                     JSONArray drugsArray = new JSONArray();
@@ -551,9 +550,8 @@ public class DoctorPlanofCareActivity extends Activity {
                                                                     Log.e(TAG, "selected Json" + resultJson.toString());
                                                                     if (swich_poc_pending.isChecked() && et_reason.getText().toString().trim().length() != 0) {
                                                                         saveDatainLocal(documentId, resultJson.toString(), et_reason.getText().toString());
-//                                                                        saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString());
+                                                                        saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString());
                                                                     } else if (!swich_poc_pending.isChecked() && (diagnosisArray.length() != 0 || drugsArray.length() != 0 || testsArray.length() != 0 || resultJson.getString("advice").length() != 0)) {
-                                                                        Toast.makeText(DoctorPlanofCareActivity.this, "dia" + resultJson.getString("diagnosis").length() + " ,drugs=" + resultJson.getString("drugs").length() + " ,inve=" + resultJson.getString("investigations").length() + " ,advice=" + resultJson.getString("advice").length(), Toast.LENGTH_SHORT).show();
                                                                         saveData(documentId, resultJson.toString(), formDataJson, et_reason.getText().toString());
                                                                     } else {
                                                                         Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care / Reason for Pending must be given", Toast.LENGTH_SHORT).show();
@@ -636,22 +634,26 @@ public class DoctorPlanofCareActivity extends Activity {
     private void saveDatainLocal(String documentId, String pocJsonInfo, String
             pocPendingInfo) {
         context.allDoctorRepository().updatePocInLocal(documentId, pocJsonInfo, pocPendingInfo);
-        Toast.makeText(DoctorPlanofCareActivity.this, "Saved", Toast.LENGTH_SHORT).show();
         gotoHome();
     }
 
-    private void saveData(final String docId, String pocJsonData, JSONObject formDataJson, String pocPendingReason) {
+    private void saveData(final String docId, String pocJsonData, JSONObject formDataJson, final String pocPendingReason) {
         savePocData(docId, pocJsonData, formDataJson, pocPendingReason, new Listener<String>() {
-            //        getDataFromServer(new Listener<String>() {
-            public void onEvent(String resultData) {
-                if (resultData != null) {
-                    context.allDoctorRepository().deleteUseCaseId(docId);
-                    gotoHome();
-                } else {
-                    Toast.makeText(DoctorPlanofCareActivity.this, "Data is not saved!", Toast.LENGTH_SHORT).show();
+                    //        getDataFromServer(new Listener<String>() {
+                    public void onEvent(String resultData) {
+                        if (resultData != null) {
+                            if (pocPendingReason.length() == 0) {
+                                context.allDoctorRepository().deleteUseCaseId(docId);
+                            }
+                            Toast.makeText(DoctorPlanofCareActivity.this, "Plan of care is submitted", Toast.LENGTH_SHORT).show();
+                            gotoHome();
+                        } else {
+                            Toast.makeText(DoctorPlanofCareActivity.this, "Data is not saved!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
                 }
-            }
-        });
+        );
     }
 
     private void gotoHome() {

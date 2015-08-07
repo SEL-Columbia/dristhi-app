@@ -93,7 +93,7 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity {
             //        getDataFromServer(new Listener<String>() {
             public void onEvent(String resultData) {
                 if (resultData != null) {
-                    Toast.makeText(DoctorPatientDetailSuperActivity.this, "Document Id " + documentId, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DoctorPatientDetailSuperActivity.this, "Document Id " + documentId, Toast.LENGTH_SHORT).show();
                     Log.e("Document Id", documentId);
                     Intent intent = new Intent(DoctorPatientDetailSuperActivity.this, DoctorPlanofCareActivity.class);
                     intent.putExtra(AllConstants.DRUG_INFO_RESULT, resultData);

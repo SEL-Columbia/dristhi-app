@@ -11,12 +11,29 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:title="Refresh" />
+    <!--<item-->
+    <!--android:id="@+id/settings"-->
+    <!--android:icon="@android:drawable/ic_menu_manage"-->
+    <!--android:orderInCategory="100"-->
+    <!--android:showAsAction="always"-->
+    <!--android:title="Settings" />-->
     <item
-        android:id="@+id/settings"
-        android:icon="@android:drawable/ic_menu_manage"
+        android:id="@+id/networkMenuItem"
+        android:icon="@drawable/online"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:title="Settings" />
+        android:title="Network" />
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/logout"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="Logout" />
+    <!--<item-->
+    <!--android:id="@+id/overview"-->
+    <!--android:orderInCategory="100"-->
+    <!--android:showAsAction="always"-->
+    <!--android:title="Overview" />-->
 
     <!--<item
         android:id="@+id/video"

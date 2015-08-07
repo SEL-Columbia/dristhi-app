@@ -1,11 +1,13 @@
 package org.ei.telemedicine.doctor;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.AsyncTask;
@@ -35,6 +37,7 @@ import org.ei.telemedicine.repository.AllDoctorRepository;
 import org.ei.telemedicine.sync.SyncAfterFetchListener;
 import org.ei.telemedicine.sync.SyncProgressIndicator;
 import org.ei.telemedicine.sync.UpdateActionsTask;
+import org.ei.telemedicine.view.activity.LoginActivity;
 import org.ei.telemedicine.view.contract.HomeContext;
 import org.ei.telemedicine.view.contract.SmartRegisterClient;
 import org.ei.telemedicine.view.controller.NativeAfterANMDetailsFetchListener;
@@ -73,7 +76,7 @@ import static org.ei.telemedicine.event.Event.SYNC_STARTED;
 
 public class NativeDoctorActivity extends Activity implements View.OnClickListener {
     ListView lv_pending_consultants;
-    ImageButton ib_start_sync_doc_data, ib_clear_search, ib_filter_selection, ib_sort_selection;
+    ImageButton ib_start_sync_doc_data, ib_clear_search, ib_filter_selection, ib_sort_selection, ib_logout;
     ProgressBar sync_progressBar;
     ImageView iv_profile;
     EditText edt_search;
@@ -169,11 +172,13 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
         ib_clear_search = (ImageButton) findViewById(R.id.ib_doc_search_cancel);
         ib_filter_selection = (ImageButton) findViewById(R.id.ib_filter_selection);
         ib_sort_selection = (ImageButton) findViewById(R.id.ib_sort_selection);
+        ib_logout = (ImageButton) findViewById(R.id.ib_logout);
 
         ib_start_sync_doc_data.setOnClickListener(this);
         ib_filter_selection.setOnClickListener(this);
         ib_sort_selection.setOnClickListener(this);
         ib_clear_search.setOnClickListener(this);
+        ib_logout.setOnClickListener(this);
     }
 
     private void initalize() {
@@ -283,6 +288,10 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
                 .show(ft, DIALOG_TAG);
     }
 
+    public void logoutUser() {
+        context.userService().logout();
+        startActivity(new Intent(this, LoginActivity.class));
+    }
 
     @Override
     public void onClick(View v) {
@@ -292,7 +301,6 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
                 ib_clear_search.setVisibility(View.INVISIBLE);
                 break;
             case R.id.ib_filter_selection:
-
                 ArrayList<String> villages_with_all = new ArrayList<String>();
                 villages_with_all.add("All");
                 villages_with_all.addAll(Context.getInstance().allDoctorRepository().getVillages());
@@ -309,8 +317,19 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
                 showFragmentDialog(sortingList, "Sort");
                 break;
             case R.id.start_sync_doc_data:
-
                 updateFromServer();
+                break;
+            case R.id.ib_logout:
+                new AlertDialog.Builder(this).setTitle("Do you want logout?").setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        logoutUser();
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                }).show();
                 break;
         }
     }

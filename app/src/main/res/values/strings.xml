@@ -296,6 +296,7 @@
     <string name="please_select_frequency">Please Select Frequency</string>
     <string name="please_select_direction">Please Select Direction</string>
     <string name="please_select_dosage">Please Select Dosage</string>
+    <string name="view_ec_form">View EC</string>
 
 
 </resources>

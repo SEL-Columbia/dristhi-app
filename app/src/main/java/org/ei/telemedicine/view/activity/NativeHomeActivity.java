@@ -1,20 +1,24 @@
 package org.ei.telemedicine.view.activity;
 
-import static java.lang.String.valueOf;
-import static org.ei.telemedicine.event.Event.ACTION_HANDLED;
-import static org.ei.telemedicine.event.Event.FORM_SUBMITTED;
-import static org.ei.telemedicine.event.Event.SYNC_COMPLETED;
-import static org.ei.telemedicine.event.Event.SYNC_STARTED;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import org.apache.commons.lang3.text.WordUtils;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.R;
-import org.ei.telemedicine.bluetooth.BlueToothInfoActivity;
-import org.ei.telemedicine.doctor.DoctorANCScreenActivity;
-import org.ei.telemedicine.doctor.NativeDoctorActivity;
-//import org.ei.telemedicine.doctor.NativeDoctorSmartRegisterActivity;
-//import org.ei.telemedicine.doctor.NativeDoctorFragmentActivity;
-import org.ei.telemedicine.domain.form.FieldOverrides;
+import org.ei.telemedicine.doctor.NativeGraphActivity;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.ei.telemedicine.service.PendingFormSubmissionService;
@@ -24,45 +28,46 @@ import org.ei.telemedicine.sync.UpdateActionsTask;
 import org.ei.telemedicine.view.contract.HomeContext;
 import org.ei.telemedicine.view.controller.NativeAfterANMDetailsFetchListener;
 import org.ei.telemedicine.view.controller.NativeUpdateANMDetailsTask;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import android.app.Dialog;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.os.Environment;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.ListView;
-import android.widget.TextView;
+import static java.lang.String.valueOf;
+import static org.ei.telemedicine.event.Event.ACTION_HANDLED;
+import static org.ei.telemedicine.event.Event.FORM_SUBMITTED;
+import static org.ei.telemedicine.event.Event.NETWORK_AVAILABLE;
+import static org.ei.telemedicine.event.Event.SYNC_COMPLETED;
+import static org.ei.telemedicine.event.Event.SYNC_STARTED;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Map;
+//import org.ei.telemedicine.doctor.NativeDoctorSmartRegisterActivity;
+//import org.ei.telemedicine.doctor.NativeDoctorFragmentActivity;
 
 public class NativeHomeActivity extends SecuredActivity {
     private MenuItem updateMenuItem;
+    private MenuItem networkMenuItem;
     private MenuItem remainingFormsToSyncMenuItem;
     private PendingFormSubmissionService pendingFormSubmissionService;
     Dialog popup_dialog;
     Object obj;
-
     private Listener<Boolean> onSyncStartListener = new Listener<Boolean>() {
         @Override
         public void onEvent(Boolean data) {
             if (updateMenuItem != null) {
                 updateMenuItem.setActionView(R.layout.progress);
             }
+            if (context.allSharedPreferences().getScreen().equals(AllConstants.HOME_SCREEN)) {
+                progressDialog = new ProgressDialog(NativeHomeActivity.this);
+                progressDialog.setMessage("Data is Syncing");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+            }
+        }
+    };
+
+    private Listener<Boolean> onNetworkChangeListener = new Listener<Boolean>() {
+        @Override
+        public void onEvent(Boolean data) {
+            if (networkMenuItem != null)
+                networkMenuItem.setIcon(data ? R.drawable.online : R.drawable.offline);
         }
     };
 
@@ -79,6 +84,8 @@ public class NativeHomeActivity extends SecuredActivity {
             if (updateMenuItem != null) {
                 updateMenuItem.setActionView(null);
             }
+            if (progressDialog != null && progressDialog.isShowing())
+                progressDialog.dismiss();
             updateRegisterCounts();
         }
     };
@@ -102,15 +109,16 @@ public class NativeHomeActivity extends SecuredActivity {
     private TextView pncRegisterClientCountView;
     private TextView fpRegisterClientCountView;
     private TextView childRegisterClientCountView;
-
+    private ProgressDialog progressDialog;
+    private org.ei.telemedicine.view.customControls.CustomFontTextView tv_anm_name, tv_phc_name, tv_subcenter_name;
     private FrameLayout ec_register, fp_register, anc_register, pnc_register, child_register;
     private String TAG = "NativeHomeActivity";
 
     @Override
     protected void onCreation() {
         setContentView(R.layout.smart_registers_home);
-        setupViews();
 
+        setupViews();
         initialize();
     }
 
@@ -144,6 +152,11 @@ public class NativeHomeActivity extends SecuredActivity {
         anc_register = (FrameLayout) findViewById(R.id.frame_anc_reg);
         pnc_register = (FrameLayout) findViewById(R.id.frame_pnc_reg);
         child_register = (FrameLayout) findViewById(R.id.frame_child_reg);
+
+        tv_anm_name = (org.ei.telemedicine.view.customControls.CustomFontTextView) findViewById(R.id.tv_anm_name);
+        tv_phc_name = (org.ei.telemedicine.view.customControls.CustomFontTextView) findViewById(R.id.tv_phc_name);
+        tv_subcenter_name = (org.ei.telemedicine.view.customControls.CustomFontTextView) findViewById(R.id.tv_sub_center_name);
+//        iv_networkStatus = (ImageView) findViewById(R.id.iv_network);
     }
 
     private void initialize() {
@@ -152,15 +165,36 @@ public class NativeHomeActivity extends SecuredActivity {
         SYNC_COMPLETED.addListener(onSyncCompleteListener);
         FORM_SUBMITTED.addListener(onFormSubmittedListener);
         ACTION_HANDLED.addListener(updateANMDetailsListener);
+        NETWORK_AVAILABLE.addListener(onNetworkChangeListener);
+
     }
 
     @Override
     protected void onResumption() {
+        Log.e("Resume", "resume");
+        context.allSharedPreferences().saveCurrent(AllConstants.HOME_SCREEN);
         visibleRegisters();
         updateRegisterCounts();
         updateSyncIndicator();
         updateRemainingFormsToSyncCount();
+        try {
+            JSONObject locationJson = new JSONObject(context.allSettings().fetchANMLocation());
+            tv_anm_name.setText(WordUtils.capitalize(context.allSharedPreferences().fetchRegisteredANM()));
+            tv_phc_name.setText("PHC: " + (locationJson.has("phcName") ? locationJson.getString("phcName") : ""));
+            tv_subcenter_name.setText("Sub Center: " + (locationJson.has("subCenter") ? locationJson.getString("subCenter") : ""));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("Pause", "pause");
+        context.allSharedPreferences().saveCurrent("");
+    }
+
 
     private void updateRegisterCounts() {
         NativeUpdateANMDetailsTask task = new NativeUpdateANMDetailsTask(Context.getInstance().anmController());
@@ -185,91 +219,11 @@ public class NativeHomeActivity extends SecuredActivity {
         super.onPrepareOptionsMenu(menu);
         updateMenuItem = menu.findItem(R.id.updateMenuItem);
         remainingFormsToSyncMenuItem = menu.findItem(R.id.remainingFormsToSyncMenuItem);
-
+        networkMenuItem = menu.findItem(R.id.networkMenuItem);
         updateSyncIndicator();
         updateRemainingFormsToSyncCount();
         return true;
     }
-
-    public void appRTCVideoCall() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.setComponent(new ComponentName("org.appspot.apprtc",
-                "org.appspot.apprtc.ConnectActivity"));
-        startActivity(intent);
-    }
-
-    public void videoCall() {
-        popup_dialog = new Dialog(NativeHomeActivity.this);
-        popup_dialog.setContentView(R.layout.dialog_box);
-
-        //   getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
-        ListView listview = (ListView) popup_dialog
-                .findViewById(R.id.listview);
-
-        Button submit = (Button) popup_dialog.findViewById(R.id.btn);
-        String[] accounts = new String[]{"Dhanush1", "Dhanush2"};
-
-
-        popup_dialog.show();
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                NativeHomeActivity.this,
-                android.R.layout.simple_list_item_1, accounts);
-        listview.setAdapter(adapter);
-
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1,
-                                    int arg2, long arg3) {
-                // TODO Auto-generated method stub
-
-                obj = arg0.getItemAtPosition(arg2);
-                Log.v("Selected Item", obj.toString());
-
-
-            }
-
-        });
-
-        submit.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if (obj.toString().equalsIgnoreCase("Dhanush1")) {
-
-                    Intent intent = new Intent(Intent.ACTION_MAIN);
-                    intent.setComponent(new ComponentName("org.jitsi",
-                            "org.jitsi.android.gui.LauncherActivity"));
-
-                    intent.putExtra("Username",
-                            "dhanush1@jwchat.org");
-                    intent.putExtra("Password", "123456");
-
-                    startActivity(intent);
-                    finish();
-
-                } else if (obj.toString().equalsIgnoreCase("Dhanush2")) {
-
-                    Intent intent = new Intent(Intent.ACTION_MAIN);
-                    intent.setComponent(new ComponentName("org.jitsi",
-                            "org.jitsi.android.gui.LauncherActivity"));
-
-                    intent.putExtra("Username",
-                            "dhanush2@jwchat.org");
-                    intent.putExtra("Password", "123456");
-
-
-                    startActivity(intent);
-                    finish();
-                }
-            }
-
-        });
-
-    }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -277,14 +231,33 @@ public class NativeHomeActivity extends SecuredActivity {
             case R.id.updateMenuItem:
                 updateFromServer();
                 return true;
-            case R.id.settings:
-                startActivity(new Intent(this, NativeSettingsActivity.class));
+//            case R.id.settings:
+//                startActivity(new Intent(this, NativeSettingsActivity.class));
+//                return true;
+            case R.id.logout:
+                new AlertDialog.Builder(this).setTitle("Do you want logout?").setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (!context.allSharedPreferences().getIsSyncInProgress() && pendingFormSubmissionService.pendingFormSubmissionCount() == 0) {
+                            logoutUser();
+                        } else {
+                            Toast.makeText(NativeHomeActivity.this, "Need to sync all information in server", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                }).show();
+
                 return true;
+//            case R.id.overview:
+//                startActivity(new Intent(this, NativeGraphActivity.class));
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
 
     public void updateFromServer() {
@@ -296,19 +269,21 @@ public class NativeHomeActivity extends SecuredActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         SYNC_STARTED.removeListener(onSyncStartListener);
         SYNC_COMPLETED.removeListener(onSyncCompleteListener);
         FORM_SUBMITTED.removeListener(onFormSubmittedListener);
         ACTION_HANDLED.removeListener(updateANMDetailsListener);
+        NETWORK_AVAILABLE.removeListener(onNetworkChangeListener);
     }
 
     private void updateSyncIndicator() {
         if (updateMenuItem != null) {
             if (context.allSharedPreferences().fetchIsSyncInProgress()) {
                 updateMenuItem.setActionView(R.layout.progress);
-            } else
+            } else {
                 updateMenuItem.setActionView(null);
+
+            }
         }
     }
 
@@ -369,4 +344,5 @@ public class NativeHomeActivity extends SecuredActivity {
             }
         }
     };
+
 }
