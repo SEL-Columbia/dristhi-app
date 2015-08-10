@@ -18,7 +18,6 @@ import org.ei.telemedicine.view.contract.SmartRegisterClient;
 import org.ei.telemedicine.view.controller.FPSmartRegisterController;
 import org.ei.telemedicine.view.controller.VillageController;
 import org.ei.telemedicine.view.dialog.AllClientsFilter;
-import org.ei.telemedicine.view.dialog.BPLSort;
 import org.ei.telemedicine.view.dialog.DialogOption;
 import org.ei.telemedicine.view.dialog.DialogOptionMapper;
 import org.ei.telemedicine.view.dialog.DialogOptionModel;
@@ -42,8 +41,6 @@ import org.ei.telemedicine.view.dialog.FilterOption;
 import org.ei.telemedicine.view.dialog.HighPrioritySort;
 import org.ei.telemedicine.view.dialog.NameSort;
 import org.ei.telemedicine.view.dialog.OpenFormOption;
-import org.ei.telemedicine.view.dialog.SCSort;
-import org.ei.telemedicine.view.dialog.STSort;
 import org.ei.telemedicine.view.dialog.ServiceModeOption;
 import org.ei.telemedicine.view.dialog.SortOption;
 
@@ -168,7 +165,7 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    protected void startRegistration() {
+    protected void startRegistration(String village) {
         FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
         startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
     }

@@ -116,6 +116,8 @@ public interface SmartRegisterClient {
 
     public boolean isPOC();
 
+    public boolean isPocPending();
+
     public String profilePhotoPath();
 
     public String locationStatus();

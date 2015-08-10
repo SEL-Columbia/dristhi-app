@@ -1,5 +1,11 @@
 package org.ei.telemedicine.repository;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class AllSettings {
     public static final String APPLIED_VILLAGE_FILTER_SETTING_KEY = "appliedVillageFilter";
     public static final String PREVIOUS_FETCH_INDEX_SETTING_KEY = "previousFetchIndex";
@@ -65,5 +71,22 @@ public class AllSettings {
     public String fetchANMLocation() {
         String setting = settingsRepository.querySetting(ANM_LOCATION, "");
         return setting;
+    }
+
+    public ArrayList<String> getVillages() {
+        final ArrayList<String> villagesList = new ArrayList<String>();
+        String fetchLocation = fetchANMLocation();
+        if (fetchLocation != null) {
+            try {
+                JSONObject locationJson = new JSONObject(fetchLocation);
+                JSONArray villageArray = locationJson.has("villages") ? locationJson.getJSONArray("villages") : new JSONArray();
+                for (int i = 0; i < villageArray.length(); i++) {
+                    villagesList.add(villageArray.getString(i));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return villagesList;
     }
 }

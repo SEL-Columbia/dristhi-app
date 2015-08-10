@@ -13,6 +13,9 @@ import org.ei.telemedicine.view.contract.*;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.ISODateTimeFormat;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.*;
 
@@ -154,6 +157,25 @@ public class PNCClient implements PNCSmartRegisterClient {
     public boolean isPOC() {
         return pocInfo != null && !pocInfo.equals("");
     }
+
+    @Override
+    public boolean isPocPending() {
+        try {
+            if (pocInfo != null && !pocInfo.equals("")) {
+                JSONArray docPocInfoArray = new JSONArray(pocInfo);
+                JSONObject pocInfo = docPocInfoArray.length() != 0 ? docPocInfoArray.getJSONObject(docPocInfoArray.length() - 1)
+                        : new JSONObject();
+                if (pocInfo.getString("pending").length() != 0) {
+                    return true;
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 
     @Override
     public String profilePhotoPath() {

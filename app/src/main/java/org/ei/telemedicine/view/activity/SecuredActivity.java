@@ -123,13 +123,13 @@ public abstract class SecuredActivity extends Activity {
 
     private void viewForm(String formName, String entityId, String metaData, Class formActivityClass, boolean isViewForm) {
         this.metaData = metaData;
-
+        Log.e("EntityId", entityId);
         Intent intent = new Intent(this, formActivityClass);
         intent.putExtra(FORM_NAME_PARAM, formName);
         intent.putExtra(ENTITY_ID_PARAM, entityId);
         intent.putExtra(VIEW_FORM, true);
         addFieldOverridesIfExist(intent);
-        startActivityForResult(intent, FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE);
+        startActivity(intent);
 
     }
 

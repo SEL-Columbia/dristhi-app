@@ -8,9 +8,10 @@ import static org.ei.telemedicine.AllConstants.FormNames.EC_CLOSE;
 import static org.ei.telemedicine.AllConstants.FormNames.EC_EDIT;
 import static org.ei.telemedicine.AllConstants.FormNames.EC_REGISTRATION;
 import static org.ei.telemedicine.AllConstants.FormNames.FP_CHANGE;
+import static org.ei.telemedicine.AllConstants.FormNames.VIEW_ANC_REGISTRATION_EC;
 import static org.ei.telemedicine.AllConstants.FormNames.VIEW_EC_REGISTRATION;
 
-import org.ei.telemedicine.AllConstants;
+import org.codehaus.jackson.node.POJONode;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
 import org.ei.telemedicine.domain.form.FieldOverrides;
@@ -22,7 +23,6 @@ import org.ei.telemedicine.view.controller.ECSmartRegisterController;
 import org.ei.telemedicine.view.controller.VillageController;
 import org.ei.telemedicine.view.dialog.AllClientsFilter;
 import org.ei.telemedicine.view.dialog.AllEligibleCoupleServiceMode;
-import org.ei.telemedicine.view.dialog.BPLSort;
 import org.ei.telemedicine.view.dialog.DialogOption;
 import org.ei.telemedicine.view.dialog.DialogOptionMapper;
 import org.ei.telemedicine.view.dialog.DialogOptionModel;
@@ -32,20 +32,13 @@ import org.ei.telemedicine.view.dialog.FilterOption;
 import org.ei.telemedicine.view.dialog.HighPrioritySort;
 import org.ei.telemedicine.view.dialog.NameSort;
 import org.ei.telemedicine.view.dialog.OpenFormOption;
-import org.ei.telemedicine.view.dialog.SCSort;
-import org.ei.telemedicine.view.dialog.STSort;
 import org.ei.telemedicine.view.dialog.ServiceModeOption;
 import org.ei.telemedicine.view.dialog.SortOption;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import android.app.AlertDialog;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
 
@@ -154,32 +147,12 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    protected void startRegistration() {
-//        final ArrayList<String> arrayList = new ArrayList<String>();
-//        arrayList.add("one");
-//        arrayList.add("two");
-//        arrayList.add("three");
-//        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-//        ListView listView = new ListView(this);
-//        listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList));
-//        alertDialog.setView(listView);
-//        alertDialog.setTitle("List");
-//        alertDialog.show();
-//        alertDialog.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                TextView tv = (TextView) view;
-//                Toast.makeText(NativeECSmartRegisterActivity.this, tv.getText().toString() + "\n" + arrayList.get(position).toString(), Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//
+    protected void startRegistration(String village) throws JSONException {
         String locationJSON = context.anmLocationController().getLocationJSON();
-        FieldOverrides fieldOverrides = new FieldOverrides(locationJSON);
+        JSONObject locations = new JSONObject(locationJSON);
+        locations.put("village", village);
+//        locations.put("ecNumber", context.allSharedPreferences().fetchRegisteredANM() + "-" + System.currentTimeMillis());
+        FieldOverrides fieldOverrides = new FieldOverrides(locations.toString());
         startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
     }
 

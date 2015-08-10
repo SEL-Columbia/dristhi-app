@@ -20,7 +20,6 @@ import org.ei.telemedicine.view.contract.SmartRegisterClient;
 import org.ei.telemedicine.view.controller.PNCSmartRegisterController;
 import org.ei.telemedicine.view.controller.VillageController;
 import org.ei.telemedicine.view.dialog.AllClientsFilter;
-import org.ei.telemedicine.view.dialog.BPLSort;
 import org.ei.telemedicine.view.dialog.DateOfDeliverySort;
 import org.ei.telemedicine.view.dialog.DialogOption;
 import org.ei.telemedicine.view.dialog.DialogOptionMapper;
@@ -33,10 +32,10 @@ import org.ei.telemedicine.view.dialog.OpenFormOption;
 import org.ei.telemedicine.view.dialog.OutOfAreaFilter;
 import org.ei.telemedicine.view.dialog.PNCOverviewServiceMode;
 import org.ei.telemedicine.view.dialog.PNCVisitsServiceMode;
-import org.ei.telemedicine.view.dialog.SCSort;
-import org.ei.telemedicine.view.dialog.STSort;
 import org.ei.telemedicine.view.dialog.ServiceModeOption;
 import org.ei.telemedicine.view.dialog.SortOption;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.view.View;
 
@@ -150,8 +149,12 @@ public class NativePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     }
 
     @Override
-    protected void startRegistration() {
-        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
+    protected void startRegistration(String village) throws JSONException {
+        String locationJSON = context.anmLocationController().getLocationJSON();
+        JSONObject locations = new JSONObject(locationJSON);
+        locations.put("village", village);
+        locations.put("validAge", 18);
+        FieldOverrides fieldOverrides = new FieldOverrides(locations.toString());
         startFormActivity(PNC_REGISTRATION_OA, null, fieldOverrides.getJSONString());
     }
 

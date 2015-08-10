@@ -91,6 +91,7 @@ public class AllConstants {
     public class FormNames {
         public static final String EC_REGISTRATION = "ec_registration";
         public static final String VIEW_EC_REGISTRATION = "view_ec_registration";
+        public static final String VIEW_ANC_REGISTRATION_EC = "view_anc_registration_ec";
         public static final String FP_COMPLICATIONS = "fp_complications";
         public static final String FP_CHANGE = "fp_change";
         public static final String RENEW_FP_PRODUCT = "renew_fp_product";

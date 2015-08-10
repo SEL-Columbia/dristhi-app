@@ -144,6 +144,11 @@ public class ECClient implements ECSmartRegisterClient {
     }
 
     @Override
+    public boolean isPocPending() {
+        return false;
+    }
+
+    @Override
     public String profilePhotoPath() {
         return photo_path;
     }

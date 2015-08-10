@@ -3,9 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#e5e5e5"
-    android:visibility="visible"
     android:fillViewport="false"
-    >
+    android:visibility="visible">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -102,72 +101,72 @@
                     style="@style/CustomFontTextViewStyle.ListView.Bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mother Name"
-                    android:textSize="25sp"
                     android:layout_above="@+id/tv_age_title"
-                    android:layout_toRightOf="@+id/iv_mother_profile" />
+                    android:layout_toRightOf="@+id/iv_mother_profile"
+                    android:text="Mother Name"
+                    android:textSize="25sp" />
 
                 <TextView
                     android:id="@+id/tv_age_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Age :"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp"
                     android:layout_above="@+id/tv_village_title"
                     android:layout_alignLeft="@+id/tv_mother_name"
-                    android:layout_marginLeft="23dp" />
+                    android:layout_marginLeft="23dp"
+                    android:text="Age :"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
 
                 <org.ei.telemedicine.view.customControls.CustomFontTextView
                     android:id="@+id/tv_age"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_above="@+id/tv_village_title"
+                    android:layout_alignRight="@+id/tv_village_title"
                     android:text="10"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp"
-                    android:layout_above="@+id/tv_village_title"
-                    android:layout_alignRight="@+id/tv_village_title" />
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tv_visit_type_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Visit Type :"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp"
                     android:layout_above="@+id/tv_village"
                     android:layout_alignLeft="@+id/tv_village"
-                    android:layout_marginLeft="27dp" />
+                    android:layout_marginLeft="27dp"
+                    android:text="Visit Type :"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
 
                 <org.ei.telemedicine.view.customControls.CustomFontTextView
                     android:id="@+id/tv_visit_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp"
-                    android:text="ANC"
                     android:layout_above="@+id/tv_village"
-                    android:layout_toRightOf="@+id/tv_visit_type_title" />
+                    android:layout_toRightOf="@+id/tv_visit_type_title"
+                    android:text="ANC"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tv_village_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_age_title"
+                    android:layout_alignParentBottom="true"
                     android:text="Village :"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignLeft="@+id/tv_age_title" />
+                    android:textSize="20sp" />
 
                 <org.ei.telemedicine.view.customControls.CustomFontTextView
                     android:id="@+id/tv_village"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/tv_village_title"
                     android:text="Name"
                     android:textColor="@android:color/black"
-                    android:textSize="20sp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/tv_village_title" />
+                    android:textSize="20sp" />
 
             </RelativeLayout>
 
@@ -219,8 +218,11 @@
         <Spinner
             android:id="@+id/sp_services"
             android:layout_width="500dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@android:color/darker_gray"
+            android:popupBackground="@android:color/white" />
 
         <AutoCompleteTextView
             android:id="@+id/act_tests"
@@ -258,26 +260,38 @@
         <Spinner
             android:id="@+id/sp_drug_name"
             android:layout_width="500dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@android:color/darker_gray"
+            android:popupBackground="@android:color/white" />
 
         <Spinner
             android:id="@+id/sp_drug_frequency"
             android:layout_width="500dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@android:color/darker_gray"
+            android:popupBackground="@android:color/white" />
 
         <Spinner
             android:id="@+id/sp_drug_direction"
             android:layout_width="500dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@android:color/darker_gray"
+            android:popupBackground="@android:color/white" />
 
         <Spinner
             android:id="@+id/sp_drug_dosage"
             android:layout_width="500dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@android:color/darker_gray"
+            android:popupBackground="@android:color/white" />
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -288,11 +302,11 @@
             <org.ei.telemedicine.view.customControls.CustomFontTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="Number of Days"
                 android:textColor="@android:color/black"
-                android:textSize="25sp"
-                android:layout_margin="5dp" />
+                android:textSize="25sp" />
 
             <EditText
                 android:id="@+id/et_drug_no_of_days"
@@ -350,9 +364,9 @@
                 android:id="@+id/ib_add_drug"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
+                android:layout_margin="5dp"
                 android:background="#2d000000"
-                android:src="@drawable/poc_add"
-                android:layout_margin="5dp" />
+                android:src="@drawable/poc_add" />
 
         </LinearLayout>
 

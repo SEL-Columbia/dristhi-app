@@ -269,6 +269,11 @@ public class FPClient implements FPSmartRegisterClient {
     }
 
     @Override
+    public boolean isPocPending() {
+        return false;
+    }
+
+    @Override
     public String profilePhotoPath() {
         return photo_path;
     }

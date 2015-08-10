@@ -23,6 +23,7 @@ import java.util.List;
 import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.ei.telemedicine.AllConstants.ChildRegistrationFields.CHILD_POC_INFO;
 import static org.ei.telemedicine.domain.ServiceProvided.*;
 
 public class ChildSmartRegisterController {
@@ -53,7 +54,7 @@ public class ChildSmartRegisterController {
                     String photoPath = isBlank(child.photoPath()) ? (AllConstants.FEMALE_GENDER.equalsIgnoreCase(child.gender()) ? AllConstants.DEFAULT_GIRL_INFANT_IMAGE_PLACEHOLDER_PATH : AllConstants.DEFAULT_BOY_INFANT_IMAGE_PLACEHOLDER_PATH) : child.photoPath();
                     List<AlertDTO> alerts = getAlerts(child.caseId());
                     List<ServiceProvidedDTO> servicesProvided = getServicesProvided(child.caseId());
-                    Log.e("CHild POC", child.getDetail(AllConstants.ChildRegistrationFields.CHILD_POC_INFO) + "");
+                    Log.e("CHild POC", child.getDetail(CHILD_POC_INFO) + "");
                     ChildClient childClient =
                             new ChildClient(
                                     child.caseId(),
@@ -64,7 +65,7 @@ public class ChildSmartRegisterController {
                                     .withEntityIdToSavePhoto(child.caseId())
                                     .withMotherName(child.ec().wifeName())
                                     .withDOB(child.dateOfBirth())
-                                    .withPoc(child.getDetail(AllConstants.ChildRegistrationFields.CHILD_POC_INFO))
+                                    .withPOC(child.getDetail(AllConstants.ChildRegistrationFields.CHILD_POC_INFO))
                                     .withMotherAge(child.ec().age())
                                     .withFatherName(child.ec().husbandName())
                                     .withVillage(child.ec().village())
@@ -106,6 +107,7 @@ public class ChildSmartRegisterController {
                                     .withEntityIdToSavePhoto(child.caseId())
                                     .withMotherName(child.ec().wifeName())
                                     .withDOB(child.dateOfBirth())
+                                    .withPOC(child.getDetail(AllConstants.ChildRegistrationFields.CHILD_POC_INFO))
                                     .withMotherAge(child.ec().age())
                                     .withFatherName(child.ec().husbandName())
                                     .withVillage(child.ec().village())

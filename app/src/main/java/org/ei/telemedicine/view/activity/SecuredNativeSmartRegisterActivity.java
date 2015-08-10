@@ -6,8 +6,10 @@ import static android.view.View.VISIBLE;
 import static java.text.MessageFormat.format;
 import static java.util.Arrays.asList;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
+import static org.ei.telemedicine.AllConstants.PNC_REGISTERS_KEY;
 import static org.ei.telemedicine.AllConstants.SHORT_DATE_FORMAT;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.ei.telemedicine.R;
@@ -27,9 +29,14 @@ import org.ei.telemedicine.view.dialog.ServiceModeOption;
 import org.ei.telemedicine.view.dialog.SmartRegisterDialogFragment;
 import org.ei.telemedicine.view.dialog.SortOption;
 import org.joda.time.LocalDate;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -40,12 +47,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity {
 
@@ -122,6 +132,25 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         navBarOptionsProvider = getNavBarOptionsProvider();
 
         setupViews();
+    }
+
+    public void chooseVillage() {
+        final ArrayList<String> villages = context.allSettings().getVillages();
+        if (villages.size() != 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(SecuredNativeSmartRegisterActivity.this);
+            builder.setTitle("Choose Village")
+                    .setItems(villages.toArray(new CharSequence[villages.size()]), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            try {
+                                startRegistration(villages.get(which).toString());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+            builder.show();
+        } else
+            Toast.makeText(SecuredNativeSmartRegisterActivity.this, "No villages for this anm", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -356,7 +385,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
     protected abstract void onInitialization();
 
-    protected abstract void startRegistration();
+    protected abstract void startRegistration(String village) throws JSONException;
 
     private class FilterDialogOptionModel implements DialogOptionModel {
         @Override
@@ -465,7 +494,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
                     goBack();
                     break;
                 case R.id.register_client:
-                    startRegistration();
+                    chooseVillage();
                     break;
                 case R.id.filter_selection:
                     showFragmentDialog(new FilterDialogOptionModel());

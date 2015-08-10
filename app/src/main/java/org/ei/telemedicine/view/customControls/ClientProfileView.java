@@ -67,8 +67,13 @@ public class ClientProfileView extends RelativeLayout {
         setHROrHRPBadge(client);
         badgeHRView.setVisibility(client.isHighRisk() ? View.VISIBLE : View.GONE);
         badgeBPLView.setVisibility(client.isBPL() ? View.VISIBLE : View.GONE);
-        badgePOCPendingView.setVisibility(client.isBPL() ? View.VISIBLE : View.GONE);
-        badgePocCompleteView.setVisibility(client.isPOC() ? View.VISIBLE : View.GONE);
+//        if (client.isPOC()) {
+//            badgePocCompleteView.setVisibility(VISIBLE);
+//            badgePocCompleteView.setImageResource(client.isPocPending() ? R.drawable.flag_poc_pending : R.drawable.flag_poc_complete);
+//        }
+
+        badgePocCompleteView.setVisibility(client.isPOC() && !client.isPocPending() ? View.VISIBLE : View.GONE);
+        badgePOCPendingView.setVisibility(client.isPocPending() ? View.VISIBLE : View.GONE);
     }
 
     private void setHROrHRPBadge(SmartRegisterClient client) {

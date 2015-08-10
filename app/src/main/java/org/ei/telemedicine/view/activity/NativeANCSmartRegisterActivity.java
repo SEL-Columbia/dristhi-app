@@ -11,13 +11,13 @@ import static org.ei.telemedicine.AllConstants.FormNames.DELIVERY_PLAN;
 import static org.ei.telemedicine.AllConstants.FormNames.HB_TEST;
 import static org.ei.telemedicine.AllConstants.FormNames.IFA;
 import static org.ei.telemedicine.AllConstants.FormNames.TT;
+import static org.ei.telemedicine.AllConstants.FormNames.VIEW_ANC_REGISTRATION_EC;
 
 import java.util.List;
 
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.adapter.SmartRegisterPaginatedAdapter;
-import org.ei.telemedicine.bluetooth.BlueToothInfoActivity;
 import org.ei.telemedicine.domain.form.FieldOverrides;
 import org.ei.telemedicine.provider.ANCSmartRegisterClientsProvider;
 import org.ei.telemedicine.provider.SmartRegisterClientsProvider;
@@ -27,7 +27,6 @@ import org.ei.telemedicine.view.controller.VillageController;
 import org.ei.telemedicine.view.dialog.ANCOverviewServiceMode;
 import org.ei.telemedicine.view.dialog.ANCVisitsServiceMode;
 import org.ei.telemedicine.view.dialog.AllClientsFilter;
-import org.ei.telemedicine.view.dialog.BPLSort;
 import org.ei.telemedicine.view.dialog.DeliveryPlanServiceMode;
 import org.ei.telemedicine.view.dialog.DialogOption;
 import org.ei.telemedicine.view.dialog.DialogOptionMapper;
@@ -40,13 +39,12 @@ import org.ei.telemedicine.view.dialog.HbIFAServiceMode;
 import org.ei.telemedicine.view.dialog.NameSort;
 import org.ei.telemedicine.view.dialog.OpenFormOption;
 import org.ei.telemedicine.view.dialog.OutOfAreaFilter;
-import org.ei.telemedicine.view.dialog.SCSort;
-import org.ei.telemedicine.view.dialog.STSort;
 import org.ei.telemedicine.view.dialog.ServiceModeOption;
 import org.ei.telemedicine.view.dialog.SortOption;
 import org.ei.telemedicine.view.dialog.TTServiceMode;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import android.content.Intent;
 import android.view.View;
 
 public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
@@ -169,8 +167,12 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     }
 
     @Override
-    protected void startRegistration() {
-        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
+    protected void startRegistration(String village) throws JSONException {
+        String locationJSON = context.anmLocationController().getLocationJSON();
+        JSONObject locations = new JSONObject(locationJSON);
+        locations.put("village", village);
+        locations.put("validAge", 18);
+        FieldOverrides fieldOverrides = new FieldOverrides(locations.toString());
         startFormActivity(AllConstants.FormNames.ANC_REGISTRATION_OA, null, fieldOverrides.getJSONString());
     }
 

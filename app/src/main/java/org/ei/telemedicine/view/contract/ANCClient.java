@@ -6,9 +6,13 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.telemedicine.domain.ANCServiceType;
 import org.ei.telemedicine.util.IntegerUtil;
+import org.ei.telemedicine.util.Log;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.ISODateTimeFormat;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.*;
 
@@ -151,11 +155,6 @@ public class ANCClient implements ANCSmartRegisterClient {
     }
 
     @Override
-    public boolean isPocGiven() {
-        return pocInfo != null;
-    }
-
-    @Override
     public boolean isBPL() {
 //        return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
         return economicStatus != null && economicStatus.equalsIgnoreCase(BPL_VALUE);
@@ -165,6 +164,26 @@ public class ANCClient implements ANCSmartRegisterClient {
     public boolean isPOC() {
         return pocInfo != null && !pocInfo.equals("");
     }
+
+    @Override
+    public boolean isPocPending() {
+        try {
+            if (pocInfo != null && !pocInfo.equals("")) {
+                JSONArray docPocInfoArray = new JSONArray(pocInfo);
+                JSONObject pocInfo = docPocInfoArray.length() != 0 ? docPocInfoArray.getJSONObject(docPocInfoArray.length() - 1)
+                        : new JSONObject();
+                if (pocInfo.getString("pending").length() != 0) {
+                    android.util.Log.e("Pen", name + "---" + pocInfo.getString("pending"));
+                    return true;
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 
     @Override
     public String profilePhotoPath() {

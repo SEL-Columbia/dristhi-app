@@ -72,6 +72,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:paddingLeft="5dp"
+                android:visibility="gone"
                 android:src="@drawable/flag_poc_pending" />
 
             <ImageView
@@ -81,6 +82,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:paddingLeft="5dp"
+                android:visibility="gone"
                 android:src="@drawable/flag_poc_complete" />
         </RelativeLayout>
     </FrameLayout>

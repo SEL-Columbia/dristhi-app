@@ -7,9 +7,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.domain.ChildServiceType;
 import org.ei.telemedicine.util.DateUtil;
+import org.ei.telemedicine.util.Log;
 import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -183,8 +187,28 @@ public class ChildClient implements ChildSmartRegisterClient {
 
     @Override
     public boolean isPOC() {
+        return pocInfo != null && !pocInfo.equals("");
+    }
+
+    @Override
+    public boolean isPocPending() {
+        try {
+            if (pocInfo != null && !pocInfo.equals("")) {
+                JSONArray docPocInfoArray = new JSONArray(pocInfo);
+                JSONObject pocInfo = docPocInfoArray.length() != 0 ? docPocInfoArray.getJSONObject(docPocInfoArray.length() - 1)
+                        : new JSONObject();
+                if (pocInfo.getString("pending").length() != 0) {
+                    android.util.Log.e("pendin", pocInfo.getString("pending"));
+                    return true;
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
+
 
     @Override
     public String entityId() {
@@ -321,8 +345,9 @@ public class ChildClient implements ChildSmartRegisterClient {
         return this;
     }
 
-    public ChildClient withPoc(String pocInfo) {
+    public ChildClient withPOC(String pocInfo) {
         this.pocInfo = pocInfo;
+        android.util.Log.e("Poc", pocInfo + "---" + name);
         return this;
     }
 

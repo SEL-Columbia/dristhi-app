@@ -232,13 +232,16 @@ public class DoctorPlanofCareActivity extends Activity {
                 pocDrugBaseAdapter = new PocDrugBaseAdapter(DoctorPlanofCareActivity.this, selectDrugs);
                 lv_selected_drugs.setAdapter(pocDrugBaseAdapter);
 
-                sp_services.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, android.R.layout.simple_list_item_1, pocServicesList));
+//                ArrayAdapter adapter = ArrayAdapter.createFromResource(this, pocServicesList, R.layout.spinner_item);
+//                adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
+                sp_services.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocServicesList));
                 act_icd10Diagnosis.setAdapter(new DiagnosisArrayAdapter(DoctorPlanofCareActivity.this, R.layout.diagnosis_list_item, pocDiagnosises));
 
-                sp_drug_name.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, android.R.layout.simple_list_item_1, pocDrugNamesList));
-                sp_drug_dosage.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, android.R.layout.simple_list_item_1, pocDrugDosagesList));
-                sp_drug_frequency.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, android.R.layout.simple_list_item_1, pocDrugFrequenciesList));
-                sp_drug_direction.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, android.R.layout.simple_list_item_1, pocDrugDirectionsList));
+                sp_drug_name.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocDrugNamesList));
+                sp_drug_dosage.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocDrugDosagesList));
+                sp_drug_frequency.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocDrugFrequenciesList));
+                sp_drug_direction.setAdapter(new ArrayAdapter(DoctorPlanofCareActivity.this, R.layout.spinner_item, pocDrugDirectionsList));
 
                 ib_anm_logo.setOnClickListener(new View.OnClickListener() {
                     @Override
