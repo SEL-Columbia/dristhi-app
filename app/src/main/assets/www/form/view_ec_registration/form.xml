@@ -85,13 +85,6 @@
         <input name="/EC_View_EngKan/ec_view_group/religion" autocomplete="off"
             data-type-xml="string" disabled="disabled" type="text" />
     </label>
-
-    <label class="question non-select ">
-        <span class="question-label active" lang="">Religion:</span>
-        <span class="or-output" data-value=" /EC_View_EngKan/ec_view_group/religion "
-            disabled="disabled" />
-    </label>
-
     <label class="question non-select ">
         <span class="question-label active" lang="">Woman's education level</span>
         <input name="/EC_View_EngKan/ec_view_group/woman_education_level" autocomplete="off"

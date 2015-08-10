@@ -4,6 +4,7 @@
             <formhub>
                 <uuid />
             </formhub>
+            <past_anc_visit/>
             <today />
             <case_woman_name />
             <anc_reg_num />

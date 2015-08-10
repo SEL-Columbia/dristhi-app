@@ -2,67 +2,71 @@
     <instance>
         <PNC_Child_Registration_EngKan id="PNC_Child_Registration_EngKan">
             <formhub>
-                <uuid/>
+                <uuid />
             </formhub>
-            <today/>
-            <pnc_reg_date/>
-            <district/>
-            <pnc_number/>
-            <woman_id_type/>
-            <aadhaar_number/>
-            <dob/>
+            <today />
+            <pnc_reg_date />
+            <district />
+            <pnc_number />
+            <woman_id_type />
+            <aadhaar_number />
+            <dob />
 
-            <phc/>
-            <sub_center/>
-            <district_value/>
-            <phc_value/>
-            <sub_center_value/>
-            <district_note/>
-            <phc_note/>
-            <sub_center_note/>
-            <village/>
-            <hh_address/>
-            <woman_name/>
-            <woman_age/>
+            <wife_dob />
+            <wife_age />
+            <wife_age_note />
+            
+            <phc />
+            <sub_center />
+            <district_value />
+            <phc_value />
+            <sub_center_value />
+            <district_note />
+            <phc_note />
+            <sub_center_note />
+            <village />
+            <hh_address />
+            <woman_name />
+            <woman_age />
 
 
-            <husband_name/>
-            <phone_no/>
-            <phone_owner/>
+            <husband_name />
+            <phone_no />
+            <phone_owner />
             <religion />
-            <delivery_date/>
-            <place_delivery/>
-            <name_delivery_facility/>
-            <skilled_delivery/>
-            <type_delivery/>
-            <delivery_outcome/>
+            <delivery_date />
+            <place_delivery />
+            <name_delivery_facility />
+            <skilled_delivery />
+            <type_delivery />
+            <delivery_outcome />
             <still_birth_group>
-                <cause_of_still_birth/>
-                <other_cause_of_still_birth/>
+                <cause_of_still_birth />
+                <other_cause_of_still_birth />
             </still_birth_group>
             <child template="">
-                <sex_child/>
-                <birthweight/>
-                <child_blood_group/>
-                <immunizations_atbirth/>
-                <lbw/>
-                <vlbw/>
-                <is_child_high_risk1/>
-                <child_high_risk_reasons/>
-                <high_risk_note_child/>
-                <is_child_high_risk/>
-                <addl_pnc_visit_message/>
+                <sex_child />
+                <birthweight />
+                <child_blood_group />
+                <immunizations_atbirth />
+                <lbw />
+                <vlbw />
+                <is_child_high_risk1 />
+                <child_high_risk_reasons />
+                <high_risk_note_child />
+                <is_child_high_risk />
+                <addl_pnc_visit_message />
             </child>
-            <breastfeeding_postbirth/>
-            <had_delivery_complications/>
-            <complications/>
-            <delivery_complications_other/>
-            <is_high_risk/>
-            <high_risk_reason/>
-            <stay_in_area/>
-            <woman_survived/>
+            <breastfeeding_postbirth />
+            <had_delivery_complications />
+            <complications />
+            <delivery_complications_other />
+            <is_high_risk />
+            <high_risk_reason />
+            <stay_in_area />
+            <woman_survived />
             <meta>
-                <instanceID/>
+                <instanceID />
             </meta>
         </PNC_Child_Registration_EngKan>
     </instance>
@@ -4462,7 +4466,6 @@
                 <phc>phc_chikanakoppa</phc>
                 <sub_center>yarihanchinal</sub_center>
             </item>
-
 
 
             <item>

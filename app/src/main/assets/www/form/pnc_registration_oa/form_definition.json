@@ -32,6 +32,7 @@
       },
       {
         "name": "village",
+        "shouldLoadValue": true,
         "bind": "/model/instance/PNC_Child_Registration_EngKan/village"
       },
       {
@@ -52,7 +53,7 @@
       },
       {
         "name": "wifeDOB",
-        "bind": "/model/instance/PNC_Child_Registration_EngKan/dob"
+        "bind": "/model/instance/PNC_Child_Registration_EngKan/wife_dob"
       },
       {
         "name": "wifeName",
@@ -60,7 +61,7 @@
       },
       {
         "name": "wifeAge",
-        "bind": "/model/instance/PNC_Child_Registration_EngKan/woman_age"
+        "bind": "/model/instance/PNC_Child_Registration_EngKan/wife_age"
       },
       {
         "name": "husbandName",

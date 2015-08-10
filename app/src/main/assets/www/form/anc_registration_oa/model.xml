@@ -2,80 +2,85 @@
     <instance>
         <ANC_Registration_OA_EngKan id="ANC_Registration_OA_EngKan">
             <formhub>
-                <uuid/>
+                <uuid />
             </formhub>
-            <today/>
-            <out_of_area_reg_date/>
-            <out_of_area_village/>
-            <district/>
-            <phc/>
-            <sub_center/>
-            <district_value/>
-            <phc_value/>
-            <sub_center_value/>
-            <district_note/>
-            <phc_note/>
-            <sub_center_note/>
-            <village/>
-            <hh_address/>
+            <today />
+            <out_of_area_reg_date />
+            <out_of_area_village />
+            <district />
+            <phc />
+            <sub_center />
+            <district_value />
 
-            <woman_name/>
-            <woman_name2/>
+            <wife_dob />
+            <wife_age />
+            <wife_age_note />
+
+            <phc_value />
+            <sub_center_value />
+            <district_note />
+            <phc_note />
+            <sub_center_note />
+            <village />
+            <hh_address />
+
+            <woman_name />
+            <woman_name2 />
 
             <woman_id_type />
             <aadhaar_number />
             <woman_age />
             <dob />
-            <husband_age/>
+            <husband_age />
 
-            <husband_name/>
-            <phone_no/>
-            <phone_owner/>
-            <phone_no2/>
-            <phone_owner2/>
+            <husband_name />
+            <phone_no />
+            <phone_owner />
+            <phone_no2 />
+            <phone_owner2 />
             <religion />
 
 
-            <anc_number1/>
-            <anc_number/>
-            <lmp_date/>
-            <edd/>
-            <edd_formatted/>
-            <edd_note/>
-            <num_pregnancies1/>
-            <num_pregnancies/>
-            <num_abortions/>
-            <num_livebirths/>
-            <num_stillbirths1/>
-            <num_stillbirths/>
-            <parity/>
-            <num_livingchildren/>
-            <youngestchild_under2/>
-            <complication/>
-            <other_complication/>
-            <medical_histories/>
-            <w_blood_group/>
-            <height/>
-            <weight_startofpregnancy/>
-            <parity_risk/>
-            <age_risk/>
-            <youngchild_risk/>
-            <abortion_risk/>
-            <weight_risk/>
-            <height_risk/>
-            <is_high_risk_till_delivery/>
-            <is_high_risk_till_delivery_reason/>
-            <is_high_risk_till_pnc_close/>
-            <is_high_risk_till_pnc_close_reason/>
-            <is_high_risk1/>
-            <high_risk_reason/>
-            <high_risk_note/>
-            <is_high_risk/>
-            <num_days_since_lmp/>
-            <num_weeks/>
-            <birth_plan_message/>
+            <anc_number1 />
+            <anc_number />
+            <lmp_date />
+            <edd />
+            <edd_formatted />
+            <edd_note />
+            <num_pregnancies1 />
+            <num_pregnancies />
+            <num_abortions />
+            <num_livebirths />
+            <num_stillbirths1 />
+            <num_stillbirths />
+            <parity />
+            <num_livingchildren />
+            <youngestchild_under2 />
+            <complication />
+            <other_complication />
+            <medical_histories />
+            <w_blood_group />
+            <height />
+            <weight_startofpregnancy />
+            <parity_risk />
+            <age_risk />
+            <youngchild_risk />
+            <abortion_risk />
+            <weight_risk />
+            <height_risk />
+            <is_high_risk_till_delivery />
+            <is_high_risk_till_delivery_reason />
+            <is_high_risk_till_pnc_close />
+            <is_high_risk_till_pnc_close_reason />
+            <is_high_risk1 />
+            <high_risk_reason />
+            <high_risk_note />
+            <is_high_risk />
+            <num_days_since_lmp />
+            <num_weeks />
+            <birth_plan_message />
             <meta>
-                <instanceID/>
+                <instanceID />
             </meta>
         </ANC_Registration_OA_EngKan>
     </instance>
@@ -353,7 +358,6 @@
                 <itextId>static_instance-phc-44</itextId>
                 <name>phc_chikanakoppa</name>
             </item>
-
 
 
             <item>

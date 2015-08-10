@@ -29,6 +29,7 @@
       },
       {
         "name": "village",
+        "shouldLoadValue": true,
         "bind": "/model/instance/Child_Registration_EngKan/village",
         "source": "child.mother.eligible_couple.village"
       },

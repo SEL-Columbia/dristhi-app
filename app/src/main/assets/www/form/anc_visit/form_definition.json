@@ -27,6 +27,7 @@
       },
       {
         "name": "ancVisitNumber",
+        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Visit_EngKan/this_anc_number"
       },
       {

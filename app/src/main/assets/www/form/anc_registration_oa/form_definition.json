@@ -27,6 +27,7 @@
       },
       {
         "name": "village",
+        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_OA_EngKan/village"
       },
       {
@@ -51,11 +52,11 @@
       },
       {
         "name": "wifeDOB",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/dob"
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/wife_dob"
       },
       {
         "name": "wifeAge",
-        "bind": "/model/instance/ANC_Registration_OA_EngKan/woman_age"
+        "bind": "/model/instance/ANC_Registration_OA_EngKan/wife_age"
       },
       {
         "name": "husbandName",
