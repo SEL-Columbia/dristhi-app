@@ -47,12 +47,12 @@ public abstract class SecuredWebActivity extends SecuredActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.updateMenuItem:
-                updateFromServer();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int i = item.getItemId();
+        if (i == R.id.updateMenuItem) {
+            updateFromServer();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
