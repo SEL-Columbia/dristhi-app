@@ -17,8 +17,8 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import org.ei.opensrp.Context;
-import org.ei.opensrp.R;
 import org.ei.opensrp.domain.LoginResponse;
 import org.ei.opensrp.domain.Response;
 import org.ei.opensrp.domain.ResponseStatus;
@@ -28,6 +28,8 @@ import org.ei.opensrp.util.Log;
 import org.ei.opensrp.view.BackgroundAction;
 import org.ei.opensrp.view.LockingBackgroundTask;
 import org.ei.opensrp.view.ProgressIndicator;
+import org.ei.opensrp.view.activity.NativeHomeActivity;
+import org.ei.opensrp.view.activity.SettingsActivity;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
