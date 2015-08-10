@@ -12,7 +12,7 @@ buildscript {
     }
 }
 
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'org.robolectric'
 
 android {
@@ -49,7 +49,7 @@ android {
 
     defaultConfig {
         // multiDexEnabled = true
-        applicationId "org.ei.opensrp"
+        //applicationId "org.ei.opensrp"
         minSdkVersion 16
         targetSdkVersion 21
         versionCode 1
@@ -119,7 +119,8 @@ dependencies {
     compile 'com.github.bmelnychuk:atv:1.2.+'
     compile 'com.github.johnkil.print:print:1.2.3'
     compile 'ch.acra:acra:4.5.0'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+
 }
 
 dependencies {
@@ -132,10 +133,22 @@ dependencies {
     testCompile('com.squareup:fest-android:1.0.+') { exclude module: 'support-v4' }
     testCompile 'org.robolectric:robolectric:2.4'
 }
+task clearJar(type: Delete) {
+    delete 'build/libs/myCompiledLibrary.jar'
+}
+
+task makeJar(type: Copy) {
+    from('build/intermediates/bundles/release/')
+    into('build/libs/')
+    include('classes.jar')
+    rename ('classes.jar', 'myCompiledLibrary.jar')
+}
+
+makeJar.dependsOn(clearJar, build)
 
 import org.apache.commons.lang3.StringUtils
 gradle.projectsEvaluated {
-    def variants = android.applicationVariants.collect()
+    def variants = android.libraryVariants.collect()
 
     tasks.withType(Test) { task ->
         try {
@@ -170,4 +183,5 @@ gradle.projectsEvaluated {
             }
         } catch (Exception e) {} // Just drop the exception
     }
+
 }
