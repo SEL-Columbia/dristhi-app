@@ -6,6 +6,7 @@ import org.ei.opensrp.view.dialog.SortOption;
 
 import java.util.Collections;
 import java.util.Comparator;
+
 /**
  * Created by Raihan Ahmed on 3/22/15.
  */

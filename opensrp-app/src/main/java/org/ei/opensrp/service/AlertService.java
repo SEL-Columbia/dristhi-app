@@ -36,4 +36,7 @@ public class AlertService {
     public void changeAlertStatusToInProcess(String entityId, String alertName) {
         repository.changeAlertStatusToInProcess(entityId, alertName);
     }
+    public void changeAlertStatusToComplete(String entityId, String alertName) {
+        repository.changeAlertStatusToComplete(entityId, alertName);
+    }
 }
