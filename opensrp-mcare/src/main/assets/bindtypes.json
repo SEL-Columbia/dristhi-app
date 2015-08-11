@@ -1,0 +1,12 @@
+{
+    "bindobjects":
+ [
+    {
+      "name": "household",
+      "columns" : [ ]
+    },{
+            "name": "elco",
+            "columns" : [ ]
+          }
+ ]
+}
