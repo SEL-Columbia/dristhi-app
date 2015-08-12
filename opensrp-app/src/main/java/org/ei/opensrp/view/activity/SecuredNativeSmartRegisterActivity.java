@@ -45,10 +45,47 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
     private View searchCancelView;
     private TextView titleLabelView;
 
+    public EditText getSearchView() {
+        return searchView;
+    }
+
+    public View getSearchCancelView() {
+        return searchCancelView;
+    }
+
+    public FilterOption getCurrentVillageFilter() {
+        return currentVillageFilter;
+    }
+
+    public FilterOption getCurrentSearchFilter() {
+        return currentSearchFilter;
+    }
+
+    public SortOption getCurrentSortOption() {
+        return currentSortOption;
+    }
+
+    public ServiceModeOption getCurrentServiceModeOption() {
+        return currentServiceModeOption;
+    }
+
+    public SmartRegisterPaginatedAdapter getClientsAdapter() {
+        return clientsAdapter;
+    }
+
+    public void setClientsAdapter(SmartRegisterPaginatedAdapter clientsAdapter) {
+        this.clientsAdapter = clientsAdapter;
+    }
+
     private SmartRegisterPaginatedAdapter clientsAdapter;
 
     private FilterOption currentVillageFilter;
     private SortOption currentSortOption;
+
+    public void setCurrentSearchFilter(FilterOption currentSearchFilter) {
+        this.currentSearchFilter = currentSearchFilter;
+    }
+
     private FilterOption currentSearchFilter;
     private ServiceModeOption currentServiceModeOption;
 
@@ -312,7 +349,7 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
         showFragmentDialog(dialogOptionModel, null);
     }
 
-    void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
+    protected void showFragmentDialog(DialogOptionModel dialogOptionModel, Object tag) {
         if (dialogOptionModel.getDialogOptions().length <= 0) {
             return;
         }
@@ -415,13 +452,13 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
         @Override
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.btn_next_page:
-                    gotoNextPage();
-                    break;
-                case R.id.btn_previous_page:
-                    goBackToPreviousPage();
-                    break;
+            int i = view.getId();
+            if (i == R.id.btn_next_page) {
+                gotoNextPage();
+
+            } else if (i == R.id.btn_previous_page) {
+                goBackToPreviousPage();
+
             }
         }
 
@@ -440,23 +477,22 @@ public abstract class SecuredNativeSmartRegisterActivity extends SecuredActivity
 
         @Override
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.title_layout:
-                case R.id.btn_back_to_home:
-                    goBack();
-                    break;
-                case R.id.register_client:
-                    startRegistration();
-                    break;
-                case R.id.filter_selection:
-                    showFragmentDialog(new FilterDialogOptionModel());
-                    break;
-                case R.id.sort_selection:
-                    showFragmentDialog(new SortDialogOptionModel());
-                    break;
-                case R.id.service_mode_selection:
-                    showFragmentDialog(new ServiceModeDialogOptionModel());
-                    break;
+            int i = view.getId();
+            if (i == R.id.title_layout || i == R.id.btn_back_to_home) {
+                goBack();
+
+            } else if (i == R.id.register_client) {
+                startRegistration();
+
+            } else if (i == R.id.filter_selection) {
+                showFragmentDialog(new FilterDialogOptionModel());
+
+            } else if (i == R.id.sort_selection) {
+                showFragmentDialog(new SortDialogOptionModel());
+
+            } else if (i == R.id.service_mode_selection) {
+                showFragmentDialog(new ServiceModeDialogOptionModel());
+
             }
         }
     }
