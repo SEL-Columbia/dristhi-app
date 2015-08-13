@@ -5,6 +5,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.ei.opensrp.Context;
 import org.ei.opensrp.commonregistry.CommonPersonObjectController;
@@ -18,6 +19,7 @@ import org.ei.opensrp.view.contract.HomeContext;
 import org.ei.opensrp.view.controller.NativeAfterANMDetailsFetchListener;
 import org.ei.opensrp.view.controller.NativeUpdateANMDetailsTask;
 
+import static android.widget.Toast.LENGTH_SHORT;
 import static java.lang.String.valueOf;
 import static org.ei.opensrp.event.Event.ACTION_HANDLED;
 import static org.ei.opensrp.event.Event.FORM_SUBMITTED;
@@ -162,6 +164,11 @@ public class NativeHomeActivity extends SecuredActivity {
         switch (item.getItemId()) {
             case R.id.updateMenuItem:
                 updateFromServer();
+                return true;
+            case R.id.switchLanguageMenuItem:
+                String newLanguagePreference = LoginActivity.switchLanguagePreference();
+                LoginActivity.setLanguage();
+                Toast.makeText(this, "Language preference set to " + newLanguagePreference + ". Please restart the application.", LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

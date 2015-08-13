@@ -50,6 +50,13 @@ public class LoginActivity extends Activity {
     private EditText userNameEditText;
     private EditText passwordEditText;
     private ProgressDialog progressDialog;
+    public static final String ENGLISH_LOCALE = "en";
+    public static final String KANNADA_LOCALE = "kn";
+    public static final String BENGALI_LOCALE = "bn";
+    public static final String ENGLISH_LANGUAGE = "English";
+    public static final String KANNADA_LANGUAGE = "Kannada";
+    public static final String Bengali_LANGUAGE = "Bengali";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -301,6 +308,30 @@ public class LoginActivity extends Activity {
             conf.locale = new Locale(preferredLocale);
             res.updateConfiguration(conf, dm);
 
+    }
+     public static String switchLanguagePreference() {
+         AllSharedPreferences allSharedPreferences = new AllSharedPreferences(getDefaultSharedPreferences(Context.getInstance().applicationContext()));
+
+         String preferredLocale = allSharedPreferences.fetchLanguagePreference();
+        if (ENGLISH_LOCALE.equals(preferredLocale)) {
+            allSharedPreferences.saveLanguagePreference(BENGALI_LOCALE);
+            Resources res = Context.getInstance().applicationContext().getResources();
+            // Change locale settings in the app.
+            DisplayMetrics dm = res.getDisplayMetrics();
+            android.content.res.Configuration conf = res.getConfiguration();
+            conf.locale = new Locale(BENGALI_LOCALE);
+            res.updateConfiguration(conf, dm);
+            return Bengali_LANGUAGE;
+        } else {
+            allSharedPreferences.saveLanguagePreference(ENGLISH_LOCALE);
+            Resources res = Context.getInstance().applicationContext().getResources();
+            // Change locale settings in the app.
+            DisplayMetrics dm = res.getDisplayMetrics();
+            android.content.res.Configuration conf = res.getConfiguration();
+            conf.locale = new Locale(ENGLISH_LOCALE);
+            res.updateConfiguration(conf, dm);
+            return ENGLISH_LANGUAGE;
+        }
     }
 
 }
