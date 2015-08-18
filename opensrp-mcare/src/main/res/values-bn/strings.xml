@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OpenSRP</string>
+    <string name="userNameEditText">ব্যবহারকারীর নাম</string>
+    <string name="passwordEditText">পাসওয়ার্ড</string>
+    <string name="login_text">লগইন করুন </string>
+    <string name="image_description">logo</string>
+    <string name="spacer">spacer</string>
+    <string name="loggin_in_dialog_title">Logging in…</string>
+    <string name="loggin_in_dialog_message">Please wait</string>
+    <string name="login_failed_dialog_title">Log in failed</string>
+    <string name="login_failed_dialog_message">Please check the credentials</string>
+    <string name="home_hh_label">খানা </string>
+    <string name="home_ec_label">সক্ষম দম্পত্তি</string>
+    <string name="home_child_label">শিশু</string>
+
+    <string name="hh_profile">বৃত্তান্ত</string>
+    <string name="hh_no_of_mwra">প্রজনন বয়সী বিবাহিত মহিলার সংখ্যা </string>
+    <string name="hh_last_visit_date">শেষ  ভিজিটের  তারিখ</string>
+    <string name="hh_visit_due_date">পরিদর্শনের নির্ধারিত তারিখ</string>
+    <string name="hh_other_inhabitants">খানার অন্যান্য সদস্য </string>
+    <string name="hh_inhabitants_details">খানা সদস্যদের বিস্তারিত তথ্য</string>
+    <string name="household_entries">সকল খানার তালিকা </string>
+    <string name="hh_register_title_in_short">খানা </string>
+
+    <string name="elco_profile">বৃত্তান্ত</string>
+    <string name="elco_unique_id">স্বতন্ত্র আইডি  </string>
+    <string name="elco_lmp">এল এম পি </string>
+    <string name="elco_psrf_due_date">পিএসআরএফ ভিজিটের নির্ধারিত তারিখ</string>
+
+    <string name="sortoption">বাছাইকৃতঃ </string>
+    <string name="label_sorted_by">সাজানোঃ</string>
+
+    <string name="hh_alphabetical_sort">বর্ণানুক্রমিক (খানা প্রধানের নাম)</string>
+    <string name="hh_fwGobhhid_sort">সরকারী খানা  আইডি</string>
+    <string name="hh_fwJivhhid_sort">জীবিতা খানা আইডি </string>
+    <string name="due_status"> ভিজিটের অবস্থা</string>
+    <string name="hh_search_hint">খানা অনুসন্ধান</string>
+
+    <string name="filter_by_all_label">সকল(অপশন)</string>
+    <string name="hh_no_mwra"> প্রজনন বয়সী বিবাহিত মহিলা একজনও নেই </string>
+    <string name="hh_has_mwra"> প্রজনন বয়সী বিবাহিত মহিলা এক বা একাধিক আছে </string>
+
+    <string name="ec_register_title_in_short">সক্ষম দম্পত্তি:</string>
+    <string name="str_ec_search_hint">সক্ষম দম্পত্তি অনুসন্ধান</string>
+
+    <string name="elco_search_hint">ইসি অনুসন্ধান</string>
+    <string name="elco_woman_details">সক্ষম দম্পত্তির বিস্তারিত তথ্য</string>
+    <string name="elco_details_summary">সারসংক্ষেপ </string>
+    <string name="elco_mwra_registration_date_label">প্রজনন বয়সী বিবাহিত মহিলা নিবন্ধনের তারিখ</string>
+    <string name="elco_last_psf_date_label">সর্বশেষ পি এস এফ পরিদর্শনের তারিখ </string>
+    <string name="all_eligible_couples">সকল সক্ষম দম্পত্তি</string>
+    <string name="hhid_gob">সরকারী খানা  আইডি  :</string>
+    <string name="hhid_jivita">জীবিতা খানা আইডি  :</string>
+    <string name="BRID">জন্ম নিবন্ধন সনদ নং :</string>
+    <string name="elco_details_husband_name_label">স্বামীর নাম :</string>
+    <string name="elco_age_label">বয়স :</string>
+    <string name="hhiid_jivita_elco_label"> জীবিতা খানা আইডি  :</string>
+    <string name="hhid_gob_elco_label">সরকারী খানা আই ডি :</string>
+    <string name="elco_details_mauza">মৌজা :</string>
+
+    <string name="home_report_label">Reporting</string>
+    <string name="register_label">নিবন্ধন</string>
+    <string name="home_videos_label">Videos</string>
+    <string name="elco_alphabetical_sort">বর্ণানুক্রমিক( মহিলার নাম)</string>
+</resources>

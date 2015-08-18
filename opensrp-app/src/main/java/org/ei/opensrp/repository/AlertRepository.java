@@ -149,4 +149,12 @@ public class AlertRepository extends DrishtiRepository {
         valuesToBeUpdated.put(ALERTS_STATUS_COLUMN, inProcess.value());
         database.update(ALERTS_TABLE_NAME, valuesToBeUpdated, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, caseAndVisitCodeColumnValues);
     }
+    public void changeAlertStatusToComplete(String entityId, String alertName) {
+        SQLiteDatabase database = masterRepository.getWritableDatabase();
+        String[] caseAndVisitCodeColumnValues = {entityId, alertName};
+
+        ContentValues valuesToBeUpdated = new ContentValues();
+        valuesToBeUpdated.put(ALERTS_STATUS_COLUMN, complete.value());
+        database.update(ALERTS_TABLE_NAME, valuesToBeUpdated, CASE_AND_VISIT_CODE_COLUMN_SELECTIONS, caseAndVisitCodeColumnValues);
+    }
 }

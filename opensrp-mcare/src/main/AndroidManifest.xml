@@ -1,0 +1,35 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="org.ei.opensrp.mcare">
+
+    <application android:allowBackup="true" android:label="@string/app_name"
+         >
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="landscape"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".NativeHomeActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".household.HouseHoldSmartRegisterActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".household.tutorial.tutorialCircleViewFlow"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".household.HouseHoldDetailActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".elco.ElcoSmartRegisterActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".elco.ElcoDetailActivity"
+            android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen"
+            android:screenOrientation="landscape"/>
+
+    </application>
+
+</manifest>

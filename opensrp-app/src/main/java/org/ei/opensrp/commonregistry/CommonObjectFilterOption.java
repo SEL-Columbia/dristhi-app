@@ -2,37 +2,36 @@ package org.ei.opensrp.commonregistry;
 
 import org.ei.opensrp.view.contract.SmartRegisterClient;
 import org.ei.opensrp.view.dialog.FilterOption;
-/*
- by Raihan Ahmed
- */
+
 public class CommonObjectFilterOption implements FilterOption {
     private final String criteria;
-    public final String fieldname,sortOptionName;
+    public final String fieldname;
+    private final String filterOptionName;
     ByColumnAndByDetails byColumnAndByDetails;
 
     public enum ByColumnAndByDetails{
         byColumn,byDetails;
     }
 
-    public CommonObjectFilterOption(String sortOptionName ,String criteria, String fieldname, ByColumnAndByDetails byColumnAndByDetails) {
+    public CommonObjectFilterOption(String criteria,String fieldname,ByColumnAndByDetails byColumnAndByDetails,String filteroptionname) {
         this.criteria = criteria;
         this.fieldname = fieldname;
         this.byColumnAndByDetails= byColumnAndByDetails;
-        this.sortOptionName = sortOptionName;
+        this.filterOptionName = filteroptionname;
     }
 
     @Override
     public String name() {
-        return sortOptionName;
+        return filterOptionName;
     }
 
     @Override
     public boolean filter(SmartRegisterClient client) {
         switch (byColumnAndByDetails){
             case byColumn:
-                return ((CommonPersonObjectClient)client).getColumnmaps().get(fieldname).trim().toLowerCase().contains(criteria.trim().toLowerCase());
+                return ((CommonPersonObjectClient)client).getColumnmaps().get(fieldname).contains(criteria);
             case byDetails:
-                return (((CommonPersonObjectClient)client).getDetails().get(fieldname)!=null?((CommonPersonObjectClient)client).getDetails().get(fieldname):"").trim().toLowerCase().contains(criteria.toLowerCase());
+                return (((CommonPersonObjectClient)client).getDetails().get(fieldname)!=null?((CommonPersonObjectClient)client).getDetails().get(fieldname):"").toLowerCase().contains(criteria.toLowerCase());
         }
         return false;
     }

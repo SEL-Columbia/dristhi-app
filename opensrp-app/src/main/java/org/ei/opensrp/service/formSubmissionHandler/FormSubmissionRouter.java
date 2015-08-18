@@ -91,4 +91,8 @@ public class FormSubmissionRouter {
         }
         FORM_SUBMITTED.notifyListeners(instanceId);
     }
+
+    public Map<String, FormSubmissionHandler> getHandlerMap() {
+        return handlerMap;
+    }
 }

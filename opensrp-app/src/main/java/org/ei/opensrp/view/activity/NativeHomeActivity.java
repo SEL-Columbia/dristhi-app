@@ -134,12 +134,12 @@ public class NativeHomeActivity extends SecuredActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.updateMenuItem:
-                updateFromServer();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int i = item.getItemId();
+        if (i == R.id.updateMenuItem) {
+            updateFromServer();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 
@@ -187,26 +187,22 @@ public class NativeHomeActivity extends SecuredActivity {
 
         @Override
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.btn_ec_register:
-                    navigationController.startECSmartRegistry();
-                    break;
+            int i = view.getId();
+            if (i == R.id.btn_ec_register) {
+                navigationController.startECSmartRegistry();
 
-                case R.id.btn_anc_register:
-                    navigationController.startANCSmartRegistry();
-                    break;
+            } else if (i == R.id.btn_anc_register) {
+                navigationController.startANCSmartRegistry();
 
-                case R.id.btn_pnc_register:
-                    navigationController.startPNCSmartRegistry();
-                    break;
+            } else if (i == R.id.btn_pnc_register) {
+                navigationController.startPNCSmartRegistry();
 
-                case R.id.btn_child_register:
-                    navigationController.startChildSmartRegistry();
-                    break;
+            } else if (i == R.id.btn_child_register) {
+                navigationController.startChildSmartRegistry();
 
-                case R.id.btn_fp_register:
-                    navigationController.startFPSmartRegistry();
-                    break;
+            } else if (i == R.id.btn_fp_register) {
+                navigationController.startFPSmartRegistry();
+
             }
         }
     };
@@ -215,14 +211,13 @@ public class NativeHomeActivity extends SecuredActivity {
 
         @Override
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.btn_reporting:
-                    navigationController.startReports();
-                    break;
+            int i = view.getId();
+            if (i == R.id.btn_reporting) {
+                navigationController.startReports();
 
-                case R.id.btn_videos:
-                    navigationController.startVideos();
-                    break;
+            } else if (i == R.id.btn_videos) {
+                navigationController.startVideos();
+
             }
         }
     };

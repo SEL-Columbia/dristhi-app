@@ -88,15 +88,14 @@ public class FPSmartRegisterDialogFragment extends DialogFragment {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 ArrayAdapter<DialogOption> adapter = null;
-                switch (checkedId) {
-                    case R.id.rb_fp_method:
-                        dispatchEvent(R.id.rb_fp_method);
-                        adapter = getDialogOptionArrayAdapter(options);
-                        break;
-                    case R.id.rb_fp_prioritization:
-                        dispatchEvent(R.id.rb_fp_prioritization);
-                        adapter = getDialogOptionArrayAdapter(prioritizationOptions);
-                        break;
+                if (checkedId == R.id.rb_fp_method) {
+                    dispatchEvent(R.id.rb_fp_method);
+                    adapter = getDialogOptionArrayAdapter(options);
+
+                } else if (checkedId == R.id.rb_fp_prioritization) {
+                    dispatchEvent(R.id.rb_fp_prioritization);
+                    adapter = getDialogOptionArrayAdapter(prioritizationOptions);
+
                 }
 
                 listView.setAdapter(adapter);

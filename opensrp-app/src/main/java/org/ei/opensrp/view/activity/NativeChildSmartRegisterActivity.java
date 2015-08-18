@@ -140,13 +140,13 @@ public class NativeChildSmartRegisterActivity extends SecuredNativeSmartRegister
     private class ClientActionHandler implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.profile_info_layout:
-                    showProfileView((SmartRegisterClient) view.getTag());
-                    break;
-                case R.id.btn_edit:
-                    showFragmentDialog(new EditDialogOptionModel(), view.getTag());
-                    break;
+            int i = view.getId();
+            if (i == R.id.profile_info_layout) {
+                showProfileView((SmartRegisterClient) view.getTag());
+
+            } else if (i == R.id.btn_edit) {
+                showFragmentDialog(new EditDialogOptionModel(), view.getTag());
+
             }
         }
 

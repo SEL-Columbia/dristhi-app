@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="@dimen/client_profile_pic_width"
+            android:layout_height="@dimen/client_profile_pic_height"
+            android:id="@+id/householdprofileview"
+            android:src="@mipmap/household_profile"
+            android:layout_margin="5dp"
+            android:scaleType="fitXY" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="Large Text"
+                android:layout_margin="5dp"
+                android:id="@+id/name_household_head"
+                android:textSize="26sp"
+                android:textColor="@color/text_black" />
+
+            <org.ei.opensrp.view.customControls.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                style="@style/CustomFontTextViewStyle.ListView.Medium"
+                android:text="Large Text"
+                android:id="@+id/mauza"
+                android:textSize="24sp"
+                android:layout_margin="5dp"
+                android:textColor="@color/text_black" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

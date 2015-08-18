@@ -145,23 +145,23 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     private class ClientActionHandler implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.profile_info_layout:
-                    showProfileView((FPClient) view.getTag());
-                    break;
-                case R.id.btn_fp_method_update:
-                    NativeFPSmartRegisterActivity.super.showFragmentDialog(new UpdateDialogOptionModel(), view.getTag());
-                    break;
-                case R.id.btn_side_effects:
-                    SmartRegisterClient fpClient = (SmartRegisterClient) view.getTag();
-                    startFormActivity(FP_COMPLICATIONS, fpClient.entityId(), null);
-                    break;
-                case R.id.lyt_fp_add:
-                    NativeFPSmartRegisterActivity.super.showFragmentDialog(new UpdateDialogOptionModel(), view.getTag());
-                    break;
-                case R.id.lyt_fp_videos:
-                    navigationController.startVideos();
-                    break;
+            int i = view.getId();
+            if (i == R.id.profile_info_layout) {
+                showProfileView((FPClient) view.getTag());
+
+            } else if (i == R.id.btn_fp_method_update) {
+                NativeFPSmartRegisterActivity.super.showFragmentDialog(new UpdateDialogOptionModel(), view.getTag());
+
+            } else if (i == R.id.btn_side_effects) {
+                SmartRegisterClient fpClient = (SmartRegisterClient) view.getTag();
+                startFormActivity(FP_COMPLICATIONS, fpClient.entityId(), null);
+
+            } else if (i == R.id.lyt_fp_add) {
+                NativeFPSmartRegisterActivity.super.showFragmentDialog(new UpdateDialogOptionModel(), view.getTag());
+
+            } else if (i == R.id.lyt_fp_videos) {
+                navigationController.startVideos();
+
             }
         }
 
