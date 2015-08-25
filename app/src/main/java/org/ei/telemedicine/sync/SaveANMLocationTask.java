@@ -24,11 +24,11 @@ public class SaveANMLocationTask {
         });
     }
 
-    public void save(final String anmLocation) {
+    public void save(final String anmLocation, final String anmDrugs, final String anmConfig) {
         task.doActionInBackground(new BackgroundAction<String>() {
             @Override
             public String actionToDoInBackgroundThread() {
-                allSettings.saveANMLocation(anmLocation);
+                allSettings.saveANMInfo(anmLocation, anmDrugs, anmConfig);
                 return anmLocation;
             }
 

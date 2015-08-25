@@ -14,6 +14,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Map;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -42,6 +43,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
 import org.ei.telemedicine.bluetooth.blood.BloodBuf;
@@ -54,9 +58,17 @@ import org.ei.telemedicine.bluetooth.pulse.ICallBack;
 import org.ei.telemedicine.bluetooth.pulse.PulseBuf;
 import org.ei.telemedicine.domain.form.FormSubmission;
 import org.ei.telemedicine.sync.DrishtiSyncScheduler;
+import org.ei.telemedicine.view.activity.FormActivity;
+import org.ei.telemedicine.view.activity.NativeANMPlanofCareActivity;
+import org.ei.telemedicine.view.contract.SmartRegisterClient;
+import org.ei.telemedicine.view.dialog.EditOption;
+import org.ei.telemedicine.view.dialog.OpenFormOption;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static org.ei.telemedicine.AllConstants.DRUGS;
+import static org.ei.telemedicine.AllConstants.DRUGS_INFO_RESULT_CODE;
 
 public class BlueToothInfoActivity extends Activity implements OnClickListener,
         ICallBack, OnBluetoothResult, org.ei.telemedicine.bluetooth.bp.ICallBack,
@@ -65,7 +77,7 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
     org.ei.telemedicine.view.customControls.CustomFontTextView bt_save;
     String entityId, instanceId, formName;
 
-    ImageView iv_bp, iv_steh, iv_bgm, iv_eet, iv_fetal;
+    ImageView iv_bp, iv_steh, iv_bgm, iv_eet, iv_fetal, iv_poc;
     EditText et_bp_sys, et_bp_dia, et_steh, et_bgm, et_fetal, et_eet, et_bp_heart;
     TextView tv_eet_cen, tv_fetal;
     LinearLayout ll_fetal_data;
@@ -99,11 +111,11 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
     public static String fetal_data = "fetalData";
     public static String blood_glucose_data = "bloodGlucoseData";
     public static String pstechoscope_data = "pstechoscopeData";
-
+    public static String anm_poc = "anmPoc";
+    static String anmPocInfo = "";
     private static int time = 10000;
     private MediaRecorder mRecorder;
     private MediaPlayer mPlayer;
-
 
     @Override
     protected void onStart() {
@@ -180,6 +192,7 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
             ib_record = (ImageButton) findViewById(R.id.ib_record);
             tv_fetal = (TextView) findViewById(R.id.tv_fetal);
             ll_fetal_data = (LinearLayout) findViewById(R.id.ll_fetal_data);
+            iv_poc = (ImageView) findViewById(R.id.iv_poc);
 
             et_bp_heart = (EditText) findViewById(R.id.et_bp_heart);
             et_bgm = (EditText) findViewById(R.id.et_bgm);
@@ -206,7 +219,7 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
             bt_save.setOnClickListener(this);
             ib_play.setOnClickListener(this);
             ib_record.setOnClickListener(this);
-
+            iv_poc.setOnClickListener(this);
             File file = new File(getFilePath());
             if (file.exists()) {
                 ib_play.setVisibility(View.VISIBLE);
@@ -215,25 +228,89 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
             progressDialog = new ProgressDialog(BlueToothInfoActivity.this);
             progressDialog.setTitle("Device Connecting");
             bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-            if (bluetoothAdapter != null && !bluetoothAdapter.isEnabled())
+            if (!bluetoothAdapter.isEnabled()) {
                 bluetoothAdapter.enable();
-            IntentFilter intent = new IntentFilter();
-            intent.addAction(BluetoothDevice.ACTION_FOUND);
-            intent.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
-            intent.addAction(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
-            intent.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
-            registerReceiver(searchDevices, intent);
+            }
+            if (bluetoothAdapter != null) {
+                IntentFilter intent = new IntentFilter();
+                intent.addAction(BluetoothDevice.ACTION_FOUND);
+                intent.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+                intent.addAction(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
+                intent.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+                registerReceiver(searchDevices, intent);
+
+            }
 
         }
-
     }
+
+    // For Testing
+    String metaData;
+
+    public void showForm(String entityId) {
+        String str = null;
+        this.metaData = null;
+        Intent intent = new Intent(this, FormActivity.class);
+        intent.putExtra(AllConstants.FORM_NAME_PARAM, AllConstants.FormNames.ANC_VISIT_EDIT);
+        intent.putExtra(AllConstants.ENTITY_ID_PARAM, entityId);
+        addFieldOverridesIfExist(intent);
+        startActivityForResult(intent, AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE);
+    }
+
+    private void addFieldOverridesIfExist(Intent intent) {
+        if (hasMetadata()) {
+            Map<String, String> metaDataMap = new Gson().fromJson(
+                    this.metaData, new TypeToken<Map<String, String>>() {
+                    }.getType());
+            if (metaDataMap.containsKey(AllConstants.FIELD_OVERRIDES_PARAM)) {
+                intent.putExtra(AllConstants.FIELD_OVERRIDES_PARAM,
+                        metaDataMap.get(AllConstants.FIELD_OVERRIDES_PARAM));
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (isSuccessfulFormSubmission(resultCode)) {
+            Log.i("", "Form successfully saved. MetaData: " + metaData);
+            if (hasMetadata()) {
+                Map<String, String> metaDataMap = new Gson().fromJson(metaData,
+                        new TypeToken<Map<String, String>>() {
+                        }.getType());
+                if (metaDataMap.containsKey(AllConstants.ENTITY_ID)
+                        && metaDataMap.containsKey(AllConstants.ALERT_NAME_PARAM)) {
+                    org.ei.telemedicine.Context.getInstance()
+                            .alertService()
+                            .changeAlertStatusToInProcess(
+                                    metaDataMap.get(AllConstants.ENTITY_ID),
+                                    metaDataMap.get(AllConstants.ALERT_NAME_PARAM));
+                }
+            }
+        } else if (resultCode == DRUGS_INFO_RESULT_CODE) {
+            Log.e("drugs", data.getExtras().getString(DRUGS));
+            anmPocInfo = data.getExtras().getString(DRUGS);
+        }
+    }
+
+    private boolean isSuccessfulFormSubmission(int resultCode) {
+        return resultCode == AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE;
+    }
+
+    private boolean hasMetadata() {
+        return this.metaData != null
+                && !this.metaData.equalsIgnoreCase("undefined");
+    }
+    // For Opening form
+
 
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
+        showForm(entityId);
         Toast.makeText(BlueToothInfoActivity.this, "Must Save bluetooth Information", Toast.LENGTH_SHORT).show();
     }
+
 
     private BroadcastReceiver searchDevices = new BroadcastReceiver() {
 
@@ -251,6 +328,7 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
                 BluetoothDevice device = intent
                         .getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
+
                 if (device.getName() != null
                         && device.getName().contains(Constants.PULSE_DEVICE)) {
 
@@ -265,7 +343,7 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
                     pulseService.connect(device, context,
                             Constants.PULSE_DEVICE_NUM);
                 } else if (device.getName() != null
-                        && device.getName().contains(Constants.BP_DEVICE)) {
+                        && device.getName().startsWith(Constants.BP_DEVICE)) {
                     Log.e(TAG, "Connect" + "BP Device");
 
                     if (bpService != null)
@@ -279,7 +357,7 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
                     bpService.connect(device, BlueToothInfoActivity.this,
                             Constants.BP_DEVICE_NUM);
                 } else if (device.getName() != null
-                        && device.getName().contains(Constants.EET_DEVICE)) {
+                        && device.getName().startsWith(Constants.EET_DEVICE)) {
                     Log.e(TAG, "Connect" + "EET Device");
 
                     if (eetService != null)
@@ -293,7 +371,7 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
                     eetService.connect(device, BlueToothInfoActivity.this,
                             Constants.EET_DEVICE_NUM);
                 } else if (device.getName() != null
-                        && device.getName().contains(Constants.FET_DEVICE)) {
+                        && device.getName().startsWith(Constants.FET_DEVICE)) {
                     Log.e(TAG, "Connect" + "FET Device");
 
                     if (fetalService != null)
@@ -307,7 +385,7 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
                     fetalService.connect(device, BlueToothInfoActivity.this,
                             Constants.FET_DEVICE_NUM);
                 } else if (device.getName() != null
-                        && device.getName().contains(Constants.BLOOD_DEVICE)) {
+                        && device.getName().startsWith(Constants.BLOOD_DEVICE)) {
                     Log.e(TAG, "Connect" + "Blood Device");
 
                     if (bloodService != null)
@@ -360,6 +438,9 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
                 device = Constants.FET_DEVICE_NUM;
                 iv_fetal.setImageDrawable(getResources().getDrawable(R.drawable.fetal_enable));
                 startDiscovery();
+                break;
+            case R.id.iv_poc:
+                startActivityForResult(new Intent(this, NativeANMPlanofCareActivity.class), DRUGS_INFO_RESULT_CODE);
                 break;
             case R.id.bt_info_save:
                 try {
@@ -477,35 +558,16 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
         mRecorder = null;
     }
 
-    private byte[] convertToByte(File file) {
-        try {
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            BufferedInputStream in = null;
-            in = new BufferedInputStream(new FileInputStream(file));
-            int read;
-            byte[] buff = new byte[1024];
-            while ((read = in.read(buff)) > 0) {
-                out.write(buff, 0, read);
-            }
-            out.flush();
-            byte[] audioBytes = out.toByteArray();
-            Log.e("Audio Bytes", audioBytes + "");
-            return audioBytes;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
     private void saveDevicesData(String entityId) throws JSONException, UnsupportedEncodingException {
 //        Toast.makeText(BlueToothInfoActivity.this, "cleic", Toast.LENGTH_SHORT).show();
         org.ei.telemedicine.Context context = org.ei.telemedicine.Context.getInstance();
-        Log.e(TAG, "Entity ID----" + entityId + et_bgm.getText().toString());
+        Log.e(TAG, "Entity ID----" + entityId);
+
         if (entityId != null) {
             FormSubmission formSubmission = context.formDataRepository().fetchFromSubmissionUseEntity(entityId);
-            Log.e(TAG, "Instance Id" + formSubmission.instanceId());
+            Log.e(TAG, "Instance Id " + formSubmission.instanceId());
+            Log.e(TAG, "Form Name " + formSubmission.formName());
             JSONObject formData = new JSONObject(formSubmission.instance());
             JSONObject instanceData = formData.getJSONObject("form");
             JSONArray jsonArray = instanceData.getJSONArray("fields");
@@ -525,24 +587,24 @@ public class BlueToothInfoActivity extends Activity implements OnClickListener,
                         jsonObject.put("value", et_fetal.getText().toString());
                     else if (jsonObject.get("name").equals(blood_glucose_data))
                         jsonObject.put("value", et_bgm.getText().toString());
-//                    else if (jsonObject.get("name").equals(fetal_data))
-//                        jsonObject.put("value", new String(convertToByte(new File(getFilePath())), "UTF-8"));
-
+                    else if (jsonObject.get("name").equals(pstechoscope_data))
+                        jsonObject.put("value", getFilePath());
+                    else if (jsonObject.get("name").equals(anm_poc))
+                        jsonObject.put("value", anmPocInfo);
                     jsonArray.put(i, jsonObject);
                 }
             }
-
             Log.e(TAG, "After Putting values ---- " + jsonArray);
             instanceData.put("fields", jsonArray);
             formData.put("form", instanceData);
             context.formDataRepository().updateInstance(instanceId, formData.toString());
         }
         Log.e(TAG, "Over");
-        File file = new File(getFilePath());
-        if (file.exists()) {
-            if (file.delete())
-                Toast.makeText(BlueToothInfoActivity.this, "File Deleted", Toast.LENGTH_SHORT).show();
-        }
+//        File file = new File(getFilePath());
+//        if (file.exists()) {
+//            if (file.delete())
+//                Toast.makeText(BlueToothInfoActivity.this, "File Deleted", Toast.LENGTH_SHORT).show();
+//        }
         Toast.makeText(BlueToothInfoActivity.this, "Record Stored", Toast.LENGTH_SHORT).show();
         String userRole = context.userService().getUserRole();
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);

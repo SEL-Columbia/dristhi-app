@@ -150,22 +150,20 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_fetal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fetal Doppler"
+                        android:text="E-Stethoscope"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:id="@+id/iv_fetal"
+                        android:id="@+id/iv_steh"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:src="@drawable/fetal_disable" />
+                        android:src="@drawable/steh_disable" />
 
                     <LinearLayout
-                        android:id="@+id/ll_fetal_data"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -173,29 +171,22 @@
                         android:orientation="horizontal"
                         android:weightSum="4">
 
-                        <TextView
-                            android:layout_width="0dp"
+                        <ImageButton
+                            android:id="@+id/ib_record"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.5"
                             android:gravity="center"
-                            android:text="FHR"
-                            android:textSize="20sp" />
+                            android:src="@drawable/refresh"
+                            android:text="Data"
+                            android:visibility="gone" />
 
-                        <EditText
-                            android:id="@+id/et_fetal"
-                            android:layout_width="0dp"
+                        <ImageButton
+                            android:id="@+id/ib_play"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.5"
-
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="left"
-                            android:text="bpm"
-                            android:textSize="20sp" />
+                            android:gravity="center"
+                            android:src="@android:drawable/ic_media_play"
+                            android:text="Data" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -341,20 +332,22 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_fetal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="E-Stethoscope"
+                        android:text="Fetal Doppler"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:id="@+id/iv_steh"
+                        android:id="@+id/iv_fetal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:src="@drawable/steh_disable" />
+                        android:src="@drawable/fetal_disable" />
 
                     <LinearLayout
+                        android:id="@+id/ll_fetal_data"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -362,23 +355,46 @@
                         android:orientation="horizontal"
                         android:weightSum="4">
 
-                        <ImageButton
-                            android:id="@+id/ib_record"
-                            android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
                             android:gravity="center"
-                            android:src="@drawable/refresh"
-                            android:text="Data"
-                            android:visibility="gone" />
+                            android:text="FHR"
+                            android:textSize="20sp" />
 
-                        <ImageButton
-                            android:id="@+id/ib_play"
-                            android:layout_width="wrap_content"
+                        <EditText
+                            android:id="@+id/et_fetal"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:src="@android:drawable/ic_media_play"
-                            android:text="Data" />
+                            android:layout_weight="1.5"
+
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="left"
+                            android:text="bpm"
+                            android:textSize="20sp" />
                     </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="3"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_poc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/add_bt" />
                 </LinearLayout>
 
                 <LinearLayout

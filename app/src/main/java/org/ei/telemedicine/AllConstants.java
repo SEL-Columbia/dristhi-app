@@ -7,6 +7,12 @@ public class AllConstants {
     public static final String VIEW_CHILD_PLAN_OF_CARE = "viewCHILDPlanOfCare";
     public static final String VISIT_TYPE = "visitType";
 
+    public static final String PRESCRIBE_DRUGS = "Prescribe Possible Drugs";
+    public static final String PERSONAL_INFO = "personal_info";
+    public static final String ROLE = "role";
+    public static final String DRUGS = "drugs";
+    public static final String LOCATION = "location";
+
     public static final String REPORT_CATEGORY = "reportCategory";
     public static final String INDICATOR_DETAIL = "indicatorDetail";
     public static final String CATEGORY_DESCRIPTION = "categoryDescription";
@@ -33,10 +39,15 @@ public class AllConstants {
     public static final String WOMAN_TYPE = "woman";
     public static final String CHILD_TYPE = "child";
     public static final String REALM = "Dristhi";
+
+    public static final String LOGIN_URL_PATH = "/auth/?userid=";
     public static final String VILLAGES_USER_URL_PATH = "/anm-villages?anm-id=";
 
     public static final String DRUG_INFO_URL_PATH = "/druginfo/";
-
+    //    public static final String VITALS_INFO_URL_PATH = "/vitalsdata/";
+    public static final String VITALS_INFO_URL_PATH = "/vitalsdata/?visit=";
+    public static final String VITALS_INFO_RESULT = "vitalsData";
+    public static final String VITAL_TYPE = "vitalType";
     public static final String POC_DATA_SAVE_URL_PATH = "/pocupdate/?";
 
 
@@ -44,13 +55,13 @@ public class AllConstants {
     public static final String POC_DRUGS = "drug_data";
     public static final String POC_INVESTIGATIONS = "investigation_data";
     public static final String POC_DIAGNOSIS = "diagnosis_data";
-    public static final String STETHOSCOPE_DATA = "stethoscope_data";
+    public static final String PSTETHOSCOPE_DATA = "pstechoscopeData";
 
     //    public static final String USER_DETAILS_URL_PATH = "/user-details/anm?anm-id=";
-    public static final String USER_DETAILS_URL_PATH = "/user-details?anm-id=";
-    //    public static final String USER_DETAILS_URL_PATH = "/user-role?anm-id=";
-    public static final String ANM_ROLE = "ROLE_USER";
-    public static final String DOCTOR_ROLE = "ROLE_DOC_USER";
+//    public static final String USER_DETAILS_URL_PATH = "/user-details?anm-id=";
+    public static final String USER_DETAILS_URL_PATH = "/user-role?anm-id=";
+    public static final String ANM_ROLE = "ANM";
+    public static final String DOCTOR_ROLE = "DOC";
 
     public static final String FORM_NAME_PARAM = "formName";
     public static final String VIEW_FORM = "viewForm";
@@ -70,6 +81,7 @@ public class AllConstants {
 
     public static final String ENTITY_ID = "entityId";
     public static final int FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE = 112;
+    public static final int DRUGS_INFO_RESULT_CODE = 113;
     public static final String ALERT_NAME_PARAM = "alertName";
     public static final String BOOLEAN_TRUE = "yes";
     public static final String BOOLEAN_FALSE = "no";
@@ -88,9 +100,18 @@ public class AllConstants {
     public static final String OUT_OF_AREA = "out_of_area";
     public static final String IN_AREA = "in_area";
 
+    public class Configuration {
+        public static final String WIFE_MIN_AGE = "wifeAgeMin";
+        public static final String HUSBAND_MIN_AGE = "husbandAgeMin";
+        public static final String WIFE_MAX_AGE = "wifeAgeMax";
+        public static final String HUSBAND_MAX_AGE = "husbandAgeMax";
+        public static final String TEMPERATURE = "temperature";
+    }
+
     public class FormNames {
         public static final String EC_REGISTRATION = "ec_registration";
         public static final String VIEW_EC_REGISTRATION = "view_ec_registration";
+        public static final String VIEW_ANC_REGISTRATION = "view_anc_registration_oa";
         public static final String VIEW_ANC_REGISTRATION_EC = "view_anc_registration_ec";
         public static final String FP_COMPLICATIONS = "fp_complications";
         public static final String FP_CHANGE = "fp_change";
@@ -99,6 +120,7 @@ public class AllConstants {
         public static final String ANC_REGISTRATION = "anc_registration";
         public static final String ANC_REGISTRATION_OA = "anc_registration_oa";
         public static final String ANC_VISIT = "anc_visit";
+        public static final String ANC_VISIT_EDIT = "anc_visit_edit";
         public static final String ANC_CLOSE = "anc_close";
         public static final String TT = "tt";
         public static final String TT_BOOSTER = "tt_booster";
@@ -124,7 +146,7 @@ public class AllConstants {
         public static final String FP_REFERRAL_FOLLOWUP = "fp_referral_followup";
         public static final String FP_FOLLOWUP = "fp_followup";
         //New Content
-        public static final String CUS_REG_FORMs = "cus_reg_form";
+        public static final String CUS_REG_FORMsFORMs = "cus_reg_form";
 
     }
 
@@ -183,6 +205,17 @@ public class AllConstants {
         public static final String ANC_VISIT = "ANC";
         public static final String PNC_VISIT = "PNC";
         public static final String CHILD_VISIT = "CHILD";
+    }
+
+    public class GraphFields {
+        public static final String TEMPERATURE = "temperature";
+        public static final String FETALDATA = "fetalData";
+        public static final String BP = "bpDiastolic";
+        public static final String BP_DIA = "bpDiastolic";
+        public static final String BP_SYS = "bpSystolic";
+        public static final String VISIT_DATE = "visitDate";
+        public static final String VISITNUMBER = "visit_number";
+        public static final String BLOODGLUCOSEDATA = "bloodGlucoseData";
     }
 
     public class ANCRegistrationFields {
