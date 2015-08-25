@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/ec_settings"
-        android:icon="@android:drawable/ic_menu_manage"
-        android:orderInCategory="100"
-        android:showAsAction="always"
-        android:title="EC Settings" />
+        android:id="@+id/register_fp_through_ec"
+        android:title="Register FP" />
+    <item
+        android:id="@+id/register_anc_through_ec"
+        android:title="Register ANC" />
+    <item
+        android:id="@+id/register_child_through_ec"
+        android:title="Register Child" />
+    <item
+        android:id="@+id/edit_ec"
+        android:title="Edit EC" />
+    <item
+        android:id="@+id/view_ec"
+        android:title="View EC" />
+    <item
+        android:id="@+id/close_ec"
+        android:title="Close EC" />
 </menu>

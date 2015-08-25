@@ -19,7 +19,6 @@
     <!--android:title="Settings" />-->
     <item
         android:id="@+id/networkMenuItem"
-        android:icon="@drawable/online"
         android:orderInCategory="100"
         android:showAsAction="always"
         android:title="Network" />

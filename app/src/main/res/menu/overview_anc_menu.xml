@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/anc_visit"
+        android:title="ANC Visit" />
+    <item
+        android:id="@+id/anc_visit_edit"
+        android:title="ANC Visit Edit" />
+    <item
+        android:id="@+id/hb_test"
+        android:title="Hb Test" />
+    <item
+        android:id="@+id/ifa"
+        android:title="IFA" />
+    <item
+        android:id="@+id/tt"
+        android:title="TT" />
+    <item
+        android:id="@+id/delivery_plan"
+        android:title="Delivery Plan" />
+    <item
+        android:id="@+id/pnc_registration"
+        android:title="PNC Registration" />
+    <item
+        android:id="@+id/anc_investigations"
+        android:title="ANC Investigations" />
+    <item
+        android:id="@+id/anc_close"
+        android:title="ANC Close" />
+
+</menu>

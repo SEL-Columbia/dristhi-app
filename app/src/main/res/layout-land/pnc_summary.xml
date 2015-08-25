@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/boarder"
+    android:orientation="vertical"
+    android:visibility="visible">
+
+
+    <LinearLayout
+        android:id="@+id/pnc_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/pnc_summary_priority"
+            style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="left"
+            android:text="High Risk"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="25sp" />
+
+
+        <org.ei.telemedicine.view.customControls.CustomFontTextView
+            android:id="@+id/pnc_summary_risks"
+            style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_priority_value"
+            android:layout_gravity="left"
+            android:text="Prev Preg Complication: Pregnancy with Tumors"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <!--<org.ei.telemedicine.view.customControls.CustomFontTextView-->
+        <!--android:id="@+id/tv_priority_text1"-->
+        <!--style="@style/CustomFontTextViewStyle.ListView.Normal.Bold"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/tv_priority_value"-->
+        <!--android:layout_gravity="left"-->
+        <!--android:text=". Medical History: Hypertention"-->
+        <!--android:textColor="#000000"-->
+        <!--android:textSize="14sp" />-->
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/pnc_summary_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pnc_summary"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="3dp">
+
+
+        <LinearLayout
+            android:id="@+id/pregnency_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <org.ei.telemedicine.view.customControls.CustomFontTextView
+                android:id="@+id/pnc_postpartum_days"
+                style="@style/CustomFontTextViewStyle.ListView.Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:gravity="left"
+                android:text="0"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+
+            <org.ei.telemedicine.view.customControls.CustomFontTextView
+                android:id="@+id/postpartum_title"
+                style="@style/CustomFontTextViewStyle.ListView.Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/pregnency_time"
+                android:layout_margin="3dp"
+                android:gravity="left"
+                android:text="Days Postpartum"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/edd_summary"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pregnency_summary"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <org.ei.telemedicine.view.customControls.CustomFontTextView
+                android:id="@+id/pnc_delivery_date"
+                style="@style/CustomFontTextViewStyle.ListView.Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:gravity="center"
+                android:text="04-05-2016"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+            <org.ei.telemedicine.view.customControls.CustomFontTextView
+                android:id="@+id/pnc_delivery_date_title"
+                style="@style/CustomFontTextViewStyle.ListView.Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/edd_summary_date"
+                android:layout_margin="3dp"
+                android:gravity="center"
+                android:text="Date of Delivery"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
