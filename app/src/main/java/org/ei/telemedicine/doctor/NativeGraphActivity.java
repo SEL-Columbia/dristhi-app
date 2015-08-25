@@ -1,116 +1,253 @@
 package org.ei.telemedicine.doctor;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
-
+import org.achartengine.ChartFactory;
+import org.achartengine.chart.PointStyle;
+import org.achartengine.model.XYMultipleSeriesDataset;
+import org.achartengine.model.XYSeries;
+import org.achartengine.renderer.XYMultipleSeriesRenderer;
+import org.achartengine.renderer.XYSeriesRenderer;
+import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.mockito.internal.util.collections.ArrayUtils;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.Iterator;
 
-import lecho.lib.hellocharts.model.Axis;
-import lecho.lib.hellocharts.model.Line;
-import lecho.lib.hellocharts.model.LineChartData;
-import lecho.lib.hellocharts.model.PointValue;
-import lecho.lib.hellocharts.view.LineChartView;
+import static org.ei.telemedicine.AllConstants.GraphFields.BLOODGLUCOSEDATA;
+import static org.ei.telemedicine.AllConstants.GraphFields.BP_DIA;
+import static org.ei.telemedicine.AllConstants.GraphFields.BP_SYS;
+import static org.ei.telemedicine.AllConstants.GraphFields.FETALDATA;
+import static org.ei.telemedicine.AllConstants.GraphFields.TEMPERATURE;
+import static org.ei.telemedicine.AllConstants.GraphFields.VISITNUMBER;
+import static org.ei.telemedicine.AllConstants.GraphFields.VISIT_DATE;
 
 public class NativeGraphActivity extends Activity {
+
+    private View mChart;
+
+    String vitalsData, vitalType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.graph);
-        // generate Dates
-        Calendar calendar = Calendar.getInstance();
-        Date d1 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d2 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d3 = calendar.getTime();
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            vitalsData = bundle.getString(AllConstants.VITALS_INFO_RESULT);
+            vitalType = bundle.getString(AllConstants.VITAL_TYPE);
+            try {
+                if (vitalsData != null && new JSONArray(vitalsData).length() != 0)
+                    if (vitalType.equals(AllConstants.GraphFields.BP))
+                        bpChart(vitalsData);
+                    else
+                        openChart(vitalsData, vitalType);
+                else {
+                    Toast.makeText(this, "No vital Data", Toast.LENGTH_SHORT).show();
+                    this.finish();
+                }
 
-        Date d4 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d5 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d6 = calendar.getTime();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-        Date d7 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d8 = calendar.getTime();
-        calendar.add(Calendar.DATE, 1);
-        Date d9 = calendar.getTime();
+        }
+
+    }
+
+    private void bpChart(String vitalsData) throws JSONException {
+
+        int[] x = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        ArrayList<Integer> datalist1 = new ArrayList<Integer>();
+        ArrayList<Integer> datalist2 = new ArrayList<Integer>();
+        ArrayList<String> datelist = new ArrayList<String>();
+        int[] vitalReadings1, vitalReadings2;
+        String[] vitalDates;
+        JSONArray vitalsArray = new JSONArray(vitalsData);
+        for (int i = 0; i < vitalsArray.length(); i++) {
+            datalist1.add(getIntDatafromJson(vitalsArray.getJSONObject(i).toString(), BP_SYS));
+            datalist2.add(getIntDatafromJson(vitalsArray.getJSONObject(i).toString(), BP_DIA));
+            datelist.add(getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISIT_DATE) + "\n" + (!getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER).equals("") ? "ANC- " + getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER) : ""));
+        }
+        vitalReadings1 = new int[datalist1.size()];
+        vitalReadings2 = new int[datalist2.size()];
+        vitalDates = new String[datelist.size()];
+        for (int i = 0; i < datalist1.size(); i++) {
+            vitalReadings1[i] = datalist1.get(i).intValue();
+            vitalDates[i] = datelist.get(i).toString();
+        }
+        for (int i = 0; i < datalist2.size(); i++) {
+            vitalReadings2[i] = datalist2.get(i).intValue();
+            vitalDates[i] = datelist.get(i).toString();
+        }
+        XYSeries vitalData = new XYSeries(BP_SYS);
+        for (int i = 0; i < vitalReadings1.length; i++) {
+            vitalData.add(i, vitalReadings1[i]);
+        }
+        XYSeries vitalData2 = new XYSeries(BP_DIA);
+        for (int i = 0; i < vitalReadings2.length; i++) {
+            vitalData2.add(i, vitalReadings2[i]);
+        }
+        XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
+        dataset.addSeries(vitalData);
+        dataset.addSeries(vitalData2);
+
+        // Creating XYSeriesRenderer to customize vitalData
+        XYSeriesRenderer dataRenderer = new XYSeriesRenderer();
+        dataRenderer.setColor(Color.RED);
+        dataRenderer.setPointStyle(PointStyle.CIRCLE);
+        dataRenderer.setFillPoints(true);
+        dataRenderer.setLineWidth(3);
+        dataRenderer.setDisplayChartValues(true);
+        dataRenderer.setDisplayBoundingPoints(true);
+        dataRenderer.setHighlighted(true);
+
+        XYSeriesRenderer dataRenderer2 = new XYSeriesRenderer();
+        dataRenderer2.setColor(Color.BLUE);
+        dataRenderer2.setPointStyle(PointStyle.SQUARE);
+        dataRenderer2.setFillPoints(true);
+        dataRenderer2.setLineWidth(3);
+        dataRenderer2.setDisplayChartValues(true);
+        dataRenderer2.setDisplayBoundingPoints(true);
+        dataRenderer2.setHighlighted(true);
+
+        // Creating a XYMultipleSeriesRenderer to customize the whole chart
+        XYMultipleSeriesRenderer multiRenderer = new XYMultipleSeriesRenderer();
+        multiRenderer.setXLabels(0);
+        multiRenderer.setChartTitle("Vital Readings");
+        multiRenderer.setXTitle("Visit Date");
+        multiRenderer.setYTitle("Readings");
+        multiRenderer.setZoomButtonsVisible(false);
+        multiRenderer.setAxisTitleTextSize(20);
+
+        multiRenderer.setXLabelsColor(Color.parseColor("#ff0099cc"));
+        multiRenderer.setXLabelsPadding(5);
+        for (int i = 0; i < vitalDates.length; i++) {
+            multiRenderer.addXTextLabel(i, vitalDates[i]);
+        }
+
+        multiRenderer.addSeriesRenderer(dataRenderer);
+        multiRenderer.addSeriesRenderer(dataRenderer2);
+
+        LinearLayout chartContainer = (LinearLayout) findViewById(R.id.chart_container);
+        mChart = ChartFactory.getLineChartView(getBaseContext(), dataset, multiRenderer);
+        chartContainer.addView(mChart);
+    }
+
+    private void openChart(String vitalsData, String vitalType) throws JSONException {
+
+        ArrayList<Double> datalist = new ArrayList<Double>();
+        ArrayList<String> datelist = new ArrayList<String>();
+        int[] vitalReadings;
+        String[] vitalDates;
+        JSONArray vitalsArray = new JSONArray(vitalsData);
+        for (int i = 0; i < vitalsArray.length(); i++) {
+            switch (vitalType) {
+                case TEMPERATURE:
+                    datalist.add(getDatafromJson(vitalsArray.getJSONObject(i).toString(), TEMPERATURE));
+                    datelist.add(getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISIT_DATE) + "\n" + (!getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER).equals("") ? "ANC- " + getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER) : ""));
+                    break;
+                case BLOODGLUCOSEDATA:
+                    datalist.add(getDatafromJson(vitalsArray.getJSONObject(i).toString(), BLOODGLUCOSEDATA));
+                    datelist.add(getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISIT_DATE) + "\n" + (!getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER).equals("") ? "ANC- " + getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER) : ""));
+                    break;
+                case FETALDATA:
+                    datalist.add(getDatafromJson(vitalsArray.getJSONObject(i).toString(), FETALDATA));
+                    datelist.add(getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISIT_DATE) + "\n" + (!getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER).equals("") ? "ANC- " + getStringDatafromJson(vitalsArray.getJSONObject(i).toString(), VISITNUMBER) : ""));
+                    break;
+            }
+        }
+        vitalReadings = new int[datalist.size()];
+
+        vitalDates = new String[datelist.size()];
+        for (int i = 0; i < datalist.size(); i++) {
+            vitalReadings[i] = datalist.get(i).intValue();
+            vitalDates[i] = datelist.get(i).toString();
+        }
+
+        XYSeries vitalData = new XYSeries(vitalType);
+        for (int i = 0; i < vitalReadings.length; i++) {
+            vitalData.add(i, vitalReadings[i]);
+        }
+
+        XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
+        dataset.addSeries(vitalData);
+
+        // Creating XYSeriesRenderer to customize vitalData
+        XYSeriesRenderer dataRenderer = new XYSeriesRenderer();
+        dataRenderer.setColor(Color.RED);
+        dataRenderer.setPointStyle(PointStyle.CIRCLE);
+        dataRenderer.setFillPoints(true);
+        dataRenderer.setLineWidth(3);
+        dataRenderer.setDisplayChartValues(true);
+        dataRenderer.setDisplayBoundingPoints(true);
+        dataRenderer.setHighlighted(true);
 
 
-        GraphView graph = (GraphView) findViewById(R.id.graph);
-
-// you can directly pass Date objects to DataPoint-Constructor
-// this will convert the Date to double via Date#getTime()
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[]{
-                new DataPoint(d1, 1),
-                new DataPoint(d2, 5),
-                new DataPoint(d3, 3),
-                new DataPoint(d4, 4),
-                new DataPoint(d5, 6),
-                new DataPoint(d6, 5),
-                new DataPoint(d7, 7),
-                new DataPoint(d8, 4),
-                new DataPoint(d9, 6),
-        });
-        series.setColor(getResources().getColor(android.R.color.holo_green_dark));
-        LineGraphSeries<DataPoint> series2 = new LineGraphSeries<DataPoint>(new DataPoint[]{
-                new DataPoint(d1, 2),
-                new DataPoint(d2, 3),
-                new DataPoint(d3, 3),
-                new DataPoint(d4, 4),
-                new DataPoint(d5, 5),
-                new DataPoint(d6, 5),
-                new DataPoint(d7, 7),
-                new DataPoint(d8, 4),
-                new DataPoint(d9, 6),
-        });
-        series.setColor(getResources().getColor(android.R.color.holo_red_dark));
-        graph.addSeries(series);
-        graph.addSeries(series2);
-
-// set date label formatter
-        graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(NativeGraphActivity.this));
-        graph.getGridLabelRenderer().setNumHorizontalLabels(8); // only 4 because of the space
-
-// set manual x bounds to have nice steps
-        graph.getViewport().setMinX(d1.getTime());
-        graph.getViewport().setMaxX(d9.getTime());
-        graph.getViewport().setXAxisBoundsManual(true);
+        // Creating a XYMultipleSeriesRenderer to customize the whole chart
+        XYMultipleSeriesRenderer multiRenderer = new XYMultipleSeriesRenderer();
+        multiRenderer.setXLabels(0);
+        multiRenderer.setChartTitle("Vital Readings");
+        multiRenderer.setXTitle("Visit Date");
+        multiRenderer.setYTitle("Readings");
+        multiRenderer.setZoomButtonsVisible(false);
 
 
-        lecho.lib.hellocharts.view.LineChartView chartView = (LineChartView) findViewById(R.id.chart);
-        List<PointValue> values = new ArrayList<PointValue>();
-        values.add(new PointValue(0, 2));
-        values.add(new PointValue(1, 4));
-        values.add(new PointValue(2, 3));
-        values.add(new PointValue(3, 4));
+        multiRenderer.setXLabelsColor(Color.parseColor("#ff0099cc"));
+        multiRenderer.setXLabelsPadding(5);
+        for (int i = 0; i < vitalDates.length; i++) {
+            multiRenderer.addXTextLabel(i, vitalDates[i]);
+        }
+        multiRenderer.addSeriesRenderer(dataRenderer);
 
-        //In most cased you can call data model methods in builder-pattern-like manner.
-        Line line = new Line(values).setColor(getResources().getColor(android.R.color.holo_red_dark)).setCubic(false);
 
-        List<Line> lines = new ArrayList<Line>();
-        lines.add(line);
+        LinearLayout chartContainer = (LinearLayout) findViewById(R.id.chart_container);
+        mChart = ChartFactory.getLineChartView(getBaseContext(), dataset, multiRenderer);
+        chartContainer.addView(mChart);
+    }
 
-        LineChartData data = new LineChartData();
-        data.setLines(lines);
-        Axis axis=new Axis();
-        axis.setHasTiltedLabels(true);
+    public String getStringDatafromJson(String jsonStr, String key) {
+        if (jsonStr != null) {
+            try {
+                JSONObject jsonData = new JSONObject(jsonStr);
+                return jsonData.has(key) ? jsonData.getString(key) : "";
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return "";
+    }
 
-        data.setAxisXBottom(new Axis().setAutoGenerated(true));
-        data.setAxisYLeft(new Axis().setAutoGenerated(true));
-        data.setBaseValue(20);
+    public int getIntDatafromJson(String jsonStr, String key) {
+        if (jsonStr != null) {
+            try {
+                JSONObject jsonData = new JSONObject(jsonStr);
+                return jsonData.has(key) ? jsonData.getInt(key) : 0;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
 
-        chartView.setLineChartData(data);
-
+    public double getDatafromJson(String jsonStr, String key) {
+        if (jsonStr != null) {
+            try {
+                JSONObject jsonData = new JSONObject(jsonStr);
+                return jsonData.has(key) ? jsonData.getDouble(key) : 0;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
     }
 }

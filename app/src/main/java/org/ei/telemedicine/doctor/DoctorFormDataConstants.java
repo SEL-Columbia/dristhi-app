@@ -40,11 +40,11 @@ public interface DoctorFormDataConstants {
     public static String anc_visit_number = "ancVisitNumber";
     public static String anc_visit_date = "ancVisitDate";
     public static String risk_symptoms = "riskObservedDuringANC";
-    public static String anc_entityId = "ancentityId";
+    public static String anc_entityId = "entityid";
     public static String lmp="lmp";
     public static String edd="edd";
 
-    public static String pnc_entityId = "pncentityId";
+    public static String pnc_entityId = "entityid";
     public static String pnc_number = "pncNumber";
     public static String pnc_visit_date = "pncVisitDate";
     public static String pnc_visit_place = "pncVisitPlace";

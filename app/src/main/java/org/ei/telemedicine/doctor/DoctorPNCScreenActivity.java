@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.R;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,13 +16,14 @@ import org.json.JSONObject;
 /**
  * Created by naveen on 6/18/15.
  */
-public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity implements View.OnClickListener {
+public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity {
     EditText et_pnc_num, et_woman_name, et_pnc_date, et_bp_sys, et_bp_dia, et_temp, et_blood_glucose, et_hb_level;
     TextView tv_difficuties, tv_vaginal_difficulties, tv_breast_difficulties, tv_kop_feel_hot, tv_urinating_problems, tv_abdominal_problems;
     Button bt_plan_of_care;
+    ImageButton ib_bp_graph, ib_fetal_graph, ib_bgm_graph, ib_temp_graph;
     Bundle bundle;
     ImageButton ib_play_stehoscope;
-    private String documentId;
+    private String documentId, visitId;
 
 
     @Override
@@ -42,16 +44,25 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity im
         tv_kop_feel_hot = (TextView) findViewById(R.id.tv_kop_feel_hot);
         tv_urinating_problems = (TextView) findViewById(R.id.tv_urinating_difficulties);
         tv_abdominal_problems = (TextView) findViewById(R.id.tv_addominal_problems);
+
         ib_play_stehoscope = (ImageButton) findViewById(R.id.ib_play_stehoscope);
+        ib_bp_graph = (ImageButton) findViewById(R.id.ib_bp_graph);
+        ib_temp_graph = (ImageButton) findViewById(R.id.ib_temp_graph);
+        ib_bgm_graph = (ImageButton) findViewById(R.id.ib_bgm_graph);
 
         bt_plan_of_care = (Button) findViewById(R.id.bt_plan_of_care);
         bt_plan_of_care.setOnClickListener(this);
+
         ib_play_stehoscope.setOnClickListener(this);
+        ib_bp_graph.setOnClickListener(this);
+        ib_bgm_graph.setOnClickListener(this);
+        ib_temp_graph.setOnClickListener(this);
+
     }
 
     @Override
     protected String setDatatoViews(String formInfo) {
-
+        visitId = getDatafromJson(formInfo, "entityid");
         documentId = getDatafromJson(formInfo, DoctorFormDataConstants.documentId);
         et_pnc_num.setText(getDatafromJson(formInfo, DoctorFormDataConstants.pnc_number));
         et_woman_name.setText(getDatafromJson(formInfo, DoctorFormDataConstants.wife_name));
@@ -82,6 +93,15 @@ public class DoctorPNCScreenActivity extends DoctorPatientDetailSuperActivity im
                 break;
             case R.id.bt_plan_of_care:
                 getDrugData();
+                break;
+            case R.id.ib_bp_graph:
+                getVitalsData(AllConstants.GraphFields.BP, visitId);
+                break;
+            case R.id.ib_temp_graph:
+                getVitalsData(AllConstants.GraphFields.TEMPERATURE, visitId);
+                break;
+            case R.id.ib_bgm_graph:
+                getVitalsData(AllConstants.GraphFields.BLOODGLUCOSEDATA, visitId);
                 break;
         }
 

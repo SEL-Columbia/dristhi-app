@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import org.ei.telemedicine.AllConstants;
@@ -27,7 +28,7 @@ import static org.ei.telemedicine.doctor.DoctorFormDataConstants.formData;
 /**
  * Created by naveen on 6/18/15.
  */
-public abstract class DoctorPatientDetailSuperActivity extends Activity {
+public abstract class DoctorPatientDetailSuperActivity extends Activity implements View.OnClickListener {
     private ProgressDialog progressDialog;
     private Bundle bundle;
     private String formInfo, documentId;
@@ -53,48 +54,84 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity {
     protected abstract void setupViews();
 
     public void playData(String url) {
+        try {
+            final MediaPlayer player = new MediaPlayer();
+            player.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            player.setDataSource(url);
+            player.prepare();
 
-        new AsyncTask<String, Void, String>() {
-            @Override
-            protected String doInBackground(String... params) {
-                try {
-                    MediaPlayer player = new MediaPlayer();
-                    player.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                    player.setDataSource(params[0]);
-                    player.prepare();
-                    player.start();
+            playProgressDialog = new ProgressDialog(DoctorPatientDetailSuperActivity.this);
+            playProgressDialog.setTitle("Playing Heartbeat");
+            playProgressDialog.setCancelable(false);
+            playProgressDialog.show();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+            player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mp.start();
                 }
-                return null;
-            }
+            });
+            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    if (playProgressDialog != null && playProgressDialog.isShowing()) {
+                        playProgressDialog.dismiss();
+                    }
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//
+//
+//        new AsyncTask<String, Void, Boolean>() {
+//            @Override
+//            protected Boolean doInBackground(String... params) {
+//                try {
+//
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                return false;
+//            }
+//
+//            @Override
+//            protected void onPreExecute() {
+//
+//
+//            }
+//
+//            @Override
+//            protected void onPostExecute(Boolean isRunning) {
+//                if (playProgressDialog != null && !player.isPlaying())
+//                    playProgressDialog.dismiss();
+//            }
+//        }.execute(url);
 
+    }
+
+    public void getVitalsData(final String vitalType, final String visitId) {
+        getData(AllConstants.VITALS_INFO_URL_PATH + visitId, new Listener<String>() {
             @Override
-            protected void onPreExecute() {
-                playProgressDialog = new ProgressDialog(DoctorPatientDetailSuperActivity.this);
-                playProgressDialog.setTitle("Playing Heartbeat");
-                playProgressDialog.setCancelable(false);
-                playProgressDialog.show();
+            public void onEvent(String data) {
+                Log.e("Result", visitId);
+                Intent intent = new Intent(DoctorPatientDetailSuperActivity.this, NativeGraphActivity.class);
+                intent.putExtra(AllConstants.VITALS_INFO_RESULT, data);
+                intent.putExtra(AllConstants.VITAL_TYPE, vitalType);
+                startActivity(intent);
             }
-
-            @Override
-            protected void onPostExecute(String s) {
-                if (playProgressDialog != null)
-                    playProgressDialog.dismiss();
-            }
-        }.execute(url);
-
+        });
     }
 
 
     public void getDrugData() {
-        getData(new Listener<String>() {
+        getData(AllConstants.DRUG_INFO_URL_PATH, new Listener<String>() {
             //        getDataFromServer(new Listener<String>() {
             public void onEvent(String resultData) {
                 if (resultData != null) {
 //                    Toast.makeText(DoctorPatientDetailSuperActivity.this, "Document Id " + documentId, Toast.LENGTH_SHORT).show();
                     Log.e("Document Id", documentId);
+                    Context.getInstance().allDoctorRepository().updatePocInLocal(documentId, "", "");
                     Intent intent = new Intent(DoctorPatientDetailSuperActivity.this, DoctorPlanofCareActivity.class);
                     intent.putExtra(AllConstants.DRUG_INFO_RESULT, resultData);
                     intent.putExtra(DoctorFormDataConstants.formData, formInfo);
@@ -107,13 +144,13 @@ public abstract class DoctorPatientDetailSuperActivity extends Activity {
         });
     }
 
-    private void getData(final Listener<String> afterResult) {
+    private void getData(final String url, final Listener<String> afterResult) {
         new AsyncTask<Void, Void, String>() {
 
             @Override
             protected String doInBackground(Void... params) {
                 Context context = Context.getInstance();
-                String result = context.userService().gettingFromRemoteURL(context.configuration().dristhiDoctorBaseURL() + AllConstants.DRUG_INFO_URL_PATH);
+                String result = context.userService().gettingFromRemoteURL(context.configuration().dristhiDjangoBaseURL() + url);
                 return result;
             }
 

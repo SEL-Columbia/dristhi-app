@@ -583,6 +583,12 @@
                     android:gravity="left"
                     android:text="mmHg"
                     android:textSize="15sp" />
+
+                <ImageButton
+                    android:id="@+id/ib_bp_graph"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/graph" />
             </LinearLayout>
 
             <LinearLayout
@@ -627,10 +633,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="top"
                     android:layout_marginTop="10dp"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.7"
                     android:gravity="left"
                     android:text="mmHg"
                     android:textSize="15sp" />
+
             </LinearLayout>
 
 
@@ -720,6 +727,12 @@
                     android:text="F"
                     android:textSize="15sp" />
 
+                <ImageButton
+                    android:id="@+id/ib_temp_graph"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/graph" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -769,6 +782,11 @@
                     android:text="mmoI/L"
                     android:textSize="15sp" />
 
+                <ImageButton
+                    android:id="@+id/ib_bgm_graph"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/graph" />
             </LinearLayout>
 
             <LinearLayout
@@ -857,6 +875,11 @@
                     android:text="bpm"
                     android:textSize="15sp" />
 
+                <ImageButton
+                    android:id="@+id/ib_fetal_graph"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/graph" />
             </LinearLayout>
 
             <LinearLayout

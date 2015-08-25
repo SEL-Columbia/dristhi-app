@@ -2,16 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/chart_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:orientation="horizontal" />
 
-    <lecho.lib.hellocharts.view.LineChartView
-        android:id="@+id/chart"
-        android:layout_width="fill_parent"
-        android:layout_height="400dp" />
-
-    <com.jjoe64.graphview.GraphView
-        android:id="@+id/graph"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
 </LinearLayout>
