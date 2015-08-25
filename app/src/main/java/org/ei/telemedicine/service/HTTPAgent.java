@@ -49,6 +49,7 @@ import org.ei.telemedicine.domain.Response;
 import org.ei.telemedicine.domain.ResponseStatus;
 import org.ei.telemedicine.repository.AllSettings;
 import org.ei.telemedicine.repository.AllSharedPreferences;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
@@ -207,25 +208,34 @@ public class HTTPAgent {
 
 
     public LoginResponse urlCanBeAccessWithGivenCredentials(String requestURL, String userName, String password) {
-        setCredentials(userName, password);
+//        setCredentials(userName, password);
         try {
             HttpResponse response = httpClient.execute(new HttpGet(requestURL));
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode == HttpStatus.SC_OK) {
                 String responseBody = getResponseBody(response);
-                logError("Success " + requestURL + "\n result" + responseBody);
-                return SUCCESS.withPayload(responseBody);
-            } else if (statusCode == HttpStatus.SC_UNAUTHORIZED) {
-                logError("Invalid credentials for: " + userName + " using " + requestURL);
-                return UNAUTHORIZED;
+                JSONObject responseJson = new JSONObject(responseBody);
+                if (responseJson != null && responseJson.has("status")) {
+                    logError("Invalid credentials for: " + userName + " using " + requestURL);
+                    return UNAUTHORIZED;
+                } else if (responseJson != null && !responseJson.has("status")) {
+                    logError("Success " + requestURL + "\n result" + responseBody);
+                    return SUCCESS.withPayload(responseBody);
+                }
             } else {
                 logError("Bad response from Dristhi. Status code:  " + statusCode + " username: " + userName + " using " + requestURL);
                 return UNKNOWN_RESPONSE;
             }
+
+
         } catch (IOException e) {
             logError("Failed to check credentials of: " + userName + " using " + requestURL + ". Error: " + e.toString());
             return NO_INTERNET_CONNECTIVITY;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return NO_INTERNET_CONNECTIVITY;
         }
+        return NO_INTERNET_CONNECTIVITY;
     }
 
     private void setCredentials(String userName, String password) {

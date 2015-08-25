@@ -12,7 +12,8 @@ public class AllSettings {
     public static final String PREVIOUS_FORM_SYNC_INDEX_SETTING_KEY = "previousFormSyncIndex";
     private static final String ANM_PASSWORD_PREFERENCE_KEY = "anmPassword";
     private static final String ANM_LOCATION = "anmLocation";
-
+    private static final String ANM_DRUGS = "anmDrugs";
+    private static final String ANM_CONFIG = "anmConfiguration";
     private AllSharedPreferences preferences;
     private SettingsRepository settingsRepository;
 
@@ -68,9 +69,32 @@ public class AllSettings {
         settingsRepository.updateSetting(ANM_LOCATION, anmLocation);
     }
 
+    public void saveANMInfo(String anmLocation, String anmDrugs, String anmConfig) {
+        settingsRepository.updateSetting(ANM_LOCATION, anmLocation);
+        settingsRepository.updateSetting(ANM_DRUGS, anmDrugs);
+        settingsRepository.updateSetting(ANM_CONFIG, anmConfig);
+    }
+
     public String fetchANMLocation() {
         String setting = settingsRepository.querySetting(ANM_LOCATION, "");
         return setting;
+    }
+
+    public String fetchDrugs() {
+        return settingsRepository.querySetting(ANM_DRUGS, "");
+    }
+
+    public String fetchANMConfiguration(String configKey) {
+        String config = settingsRepository.querySetting(ANM_CONFIG, "");
+        if (config != null && !config.equals("")) {
+            try {
+                JSONObject configJson = new JSONObject(config);
+                return configJson.has(configKey) && configJson.getString(configKey) != null ? configJson.getString(configKey) : "0";
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return "0";
     }
 
     public ArrayList<String> getVillages() {

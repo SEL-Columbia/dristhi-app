@@ -6,14 +6,10 @@ import org.ei.telemedicine.repository.AllSettings;
 import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.ei.telemedicine.repository.Repository;
 import org.ei.telemedicine.sync.SaveANMLocationTask;
+import org.ei.telemedicine.util.Log;
 import org.ei.telemedicine.util.Session;
 
-import static org.ei.telemedicine.AllConstants.ENGLISH_LANGUAGE;
-import static org.ei.telemedicine.AllConstants.ENGLISH_LOCALE;
-import static org.ei.telemedicine.AllConstants.KANNADA_LANGUAGE;
-import static org.ei.telemedicine.AllConstants.KANNADA_LOCALE;
-import static org.ei.telemedicine.AllConstants.USER_DETAILS_URL_PATH;
-import static org.ei.telemedicine.AllConstants.VILLAGES_USER_URL_PATH;
+import static org.ei.telemedicine.AllConstants.LOGIN_URL_PATH;
 import static org.ei.telemedicine.event.Event.ON_LOGOUT;
 
 public class UserService {
@@ -59,14 +55,16 @@ public class UserService {
 
     public LoginResponse isValidRemoteLogin(String userName, String password) {
 //        String requestURL = configuration.dristhiBaseURL() + AUTHENTICATE_USER_URL_PATH + userName;
-        String requestURL = configuration.dristhiBaseURL() + USER_DETAILS_URL_PATH + userName;
+//        String requestURL = configuration.dristhiBaseURL() + USER_DETAILS_URL_PATH + userName;
+        String requestURL = configuration.dristhiDjangoBaseURL() + LOGIN_URL_PATH + userName + "&pwd=" + password;
+        android.util.Log.e("Login url", requestURL);
         return httpAgent.urlCanBeAccessWithGivenCredentials(requestURL, userName, password);
     }
-
-    public LoginResponse gettingVillagesWithRemoteLogin(String userName, String password) {
-        String requestURL = configuration.dristhiBaseURL() + VILLAGES_USER_URL_PATH + userName;
-        return httpAgent.urlCanBeAccessWithGivenCredentials(requestURL, userName, password);
-    }
+//
+//    public LoginResponse gettingVillagesWithRemoteLogin(String userName, String password) {
+//        String requestURL = configuration.dristhiBaseURL() + VILLAGES_USER_URL_PATH + userName;
+//        return httpAgent.urlCanBeAccessWithGivenCredentials(requestURL, userName, password);
+//    }
 
     private void loginWith(String userName, String password) {
         setupContextForLogin(userName, password);
@@ -82,13 +80,9 @@ public class UserService {
         loginWith(userName, password);
     }
 
-    public void remoteLogin(String userName, String password, String userRole) {
+    public void remoteLogin(String userName, String password, String userRole, String anmLocation, String anmDrugs, String anmConfig) {
         loginWithUserRole(userName, password, userRole);
-//        saveANMLocationTask.save(anmLocation);
-    }
-
-    public void saveVillages(String anmLocation) {
-        saveANMLocationTask.save(anmLocation);
+        saveANMLocationTask.save(anmLocation, anmDrugs, anmConfig);
     }
 
     public boolean hasARegisteredUser() {
@@ -119,17 +113,6 @@ public class UserService {
 
     protected Session session() {
         return session;
-    }
-
-    public String switchLanguagePreference() {
-        String preferredLocale = allSharedPreferences.fetchLanguagePreference();
-        if (ENGLISH_LOCALE.equals(preferredLocale)) {
-            allSharedPreferences.saveLanguagePreference(KANNADA_LOCALE);
-            return KANNADA_LANGUAGE;
-        } else {
-            allSharedPreferences.saveLanguagePreference(ENGLISH_LOCALE);
-            return ENGLISH_LANGUAGE;
-        }
     }
 
     public String gettingFromRemoteURL(String requestURL) {

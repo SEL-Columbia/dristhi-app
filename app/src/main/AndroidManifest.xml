@@ -200,14 +200,17 @@
         <activity
             android:name=".doctor.NativeDoctorActivity"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+            android:theme="@android:style/Theme.Holo.NoActionBar" />
         <activity
             android:name=".view.activity.NativeOverviewActivity"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
         <activity
             android:name=".doctor.NativeGraphActivity"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".view.activity.NativeANMPlanofCareActivity"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
 
         <receiver android:name=".view.receiver.SyncBroadcastReceiver" />
         <receiver android:name=".view.receiver.ConnectivityChangeReceiver">

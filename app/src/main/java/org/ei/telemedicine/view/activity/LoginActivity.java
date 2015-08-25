@@ -189,33 +189,6 @@ public class LoginActivity extends Activity {
     }
 
 
-    private void gettingVillages(final String userName, final String password, final Listener<LoginResponse> afterLoginCheck) {
-        LockingBackgroundTask task = new LockingBackgroundTask(new ProgressIndicator() {
-            @Override
-            public void setVisible() {
-                progressDialog.show();
-            }
-
-            @Override
-            public void setInvisible() {
-                if (progressDialog != null && progressDialog.isShowing())
-                    progressDialog.dismiss();
-            }
-        });
-
-        task.doActionInBackground(new BackgroundAction<LoginResponse>() {
-            public LoginResponse actionToDoInBackgroundThread() {
-                LoginResponse loginResponse = context.userService().gettingVillagesWithRemoteLogin(userName, password);
-//                Log.e(TAG, "Payload Data " + loginResponse.payload() != null ? loginResponse.payload() : "No Response");
-                return loginResponse;
-            }
-
-            public void postExecuteInUIThread(LoginResponse result) {
-                afterLoginCheck.onEvent(result);
-            }
-        });
-    }
-
     private void fillUserIfExists() {
         if (context.userService().hasARegisteredUser()) {
             userNameEditText.setText(context.allSharedPreferences().fetchRegisteredANM());
@@ -235,50 +208,42 @@ public class LoginActivity extends Activity {
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
     }
 
-    private void fetchANMVillages(final String userName, final String password) {
-        gettingVillages(userName, password, new Listener<LoginResponse>() {
-            public void onEvent(LoginResponse loginResponse) {
-                if (loginResponse == SUCCESS) {
-                    context.userService().saveVillages(loginResponse.payload());
-                } else {
-                    if (loginResponse == null) {
-                        showErrorDialog("Login failed. Unknown reason. Try Again");
-                    } else {
-                        showErrorDialog(loginResponse.message());
-                    }
-                }
+
+    private String getFromJson(String jsonStr, String keyValue) {
+        try {
+            JSONObject jsonData = new JSONObject(jsonStr);
+            if (jsonData != null) {
+                return jsonData.has(keyValue) ? jsonData.getString(keyValue) : "";
             }
-        });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
 
     private void remoteLoginWith(String userName, String password, String loginResponse) {
-        String userRole = null;
+        String userRole = null, personalInfo = null, location = null, drugs = null, configuration = null;
         if (loginResponse != null) {
-            try {
-                JSONObject jsonObject = new JSONObject(loginResponse);
-                JSONArray jsonArray = jsonObject.getJSONArray("roles");
-                userRole = jsonArray.get(0).toString();
-                context.userService()
-                        .remoteLogin(userName, password, jsonArray.get(0).toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+
+            userRole = getFromJson(loginResponse, AllConstants.ROLE);
+            personalInfo = getFromJson(loginResponse, AllConstants.PERSONAL_INFO);
+            location = getFromJson(personalInfo, "location");
+            drugs = getFromJson(personalInfo, "drugs");
+            configuration = getFromJson(personalInfo, "configuration");
+
+            context.userService()
+                    .remoteLogin(userName, password, userRole, location, drugs, configuration);
 
         }
-        if (userRole != null && userRole.equals(AllConstants.ANM_ROLE)) {
-            Toast.makeText(getApplicationContext(), "ANM Login", Toast.LENGTH_SHORT).show();
-            fetchANMVillages(userName, password);
-        } else {
+        if (userRole != null && userRole.equals(AllConstants.DOCTOR_ROLE)) {
             context.allSharedPreferences().savePwd(password);
-            Toast.makeText(getApplicationContext(), "Doctor Login", Toast.LENGTH_SHORT).show();
         }
         goToHome(userRole);
         DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
     }
 
     private void goToHome(String userRole) {
-
         startActivity(new Intent(this, (userRole.equals(AllConstants.ANM_ROLE)) ? NativeHomeActivity.class : NativeDoctorActivity.class));
         finish();
     }
