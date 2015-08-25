@@ -80,6 +80,7 @@ public class DoctorPlanofCareActivity extends Activity {
     Context context;
     private String TAG = "DoctorPlanOfCareActivity";
     String visitType, visitNumber;
+    String documentId, formData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +88,8 @@ public class DoctorPlanofCareActivity extends Activity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.getString(AllConstants.DRUG_INFO_RESULT) != null && bundle.getString(DoctorFormDataConstants.documentId) != null && bundle.getString("formData") != null) {
             String resultData = bundle.getString(AllConstants.DRUG_INFO_RESULT);
-            final String documentId = bundle.getString(DoctorFormDataConstants.documentId);
-            final String formData = bundle.getString("formData");
+            documentId = bundle.getString(DoctorFormDataConstants.documentId);
+            formData = bundle.getString("formData");
             try {
                 setContentView(R.layout.doc_plan_of_care);
                 context = Context.getInstance();
@@ -634,10 +635,11 @@ public class DoctorPlanofCareActivity extends Activity {
         return null;
     }
 
-    private void saveDatainLocal(String documentId, String pocJsonInfo, String
+    public void saveDatainLocal(String documentId, String pocJsonInfo, String
             pocPendingInfo) {
         context.allDoctorRepository().updatePocInLocal(documentId, pocJsonInfo, pocPendingInfo);
-        gotoHome();
+        if (!pocPendingInfo.equals(""))
+            gotoHome();
     }
 
     private void saveData(final String docId, String pocJsonData, JSONObject formDataJson, final String pocPendingReason) {
@@ -691,7 +693,7 @@ public class DoctorPlanofCareActivity extends Activity {
                     }
 
                     String encodedParams = URLEncodedUtils.format(_params, "utf-8");
-                    String url = context.configuration().dristhiDoctorBaseURL() + AllConstants.POC_DATA_SAVE_URL_PATH + encodedParams;
+                    String url = context.configuration().dristhiDjangoBaseURL() + AllConstants.POC_DATA_SAVE_URL_PATH + encodedParams;
                     Log.e("Url", url);
                     result = context.userService().gettingFromRemoteURL(url);
                     Log.e(TAG, "Save POC Info " + result);

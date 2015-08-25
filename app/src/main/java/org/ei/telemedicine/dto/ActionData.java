@@ -32,7 +32,7 @@ public class ActionData
   {
     return new ActionData("alert", "createAlert").with("beneficiaryType", paramBeneficiaryType.value()).with("scheduleName", paramString1).with("visitCode", paramString2).with("alertStatus", paramAlertStatus.value()).with("startDate", paramDateTime1.toLocalDate().toString()).with("expiryDate", paramDateTime2.toLocalDate().toString());
   }
-  
+
   public static ActionData from(String paramString1, String paramString2, Map<String, String> paramMap1, Map<String, String> paramMap2)
   {
     ActionData localActionData = new ActionData(paramString2, paramString1);
@@ -99,8 +99,12 @@ public class ActionData
   }
 }
 
-
-/* Location:           C:\Users\appaji.r\Downloads\classes-dex2.jar
- * Qualified Name:     org.ei.drishti.dto.ActionData
- * JD-Core Version:    0.7.0.1
+
+
+/* Location:           C:\Users\appaji.r\Downloads\classes-dex2.jar
+
+ * Qualified Name:     org.ei.drishti.dto.ActionData
+
+ * JD-Core Version:    0.7.0.1
+
  */

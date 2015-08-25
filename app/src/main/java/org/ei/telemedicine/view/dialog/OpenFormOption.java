@@ -1,6 +1,7 @@
 package org.ei.telemedicine.view.dialog;
 
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.ei.telemedicine.AllConstants;
@@ -67,18 +68,20 @@ public class OpenFormOption implements EditOption {
                 intent.putExtra(ENTITY_ID, client.entityId());
                 intent.putExtra(VISIT_TYPE, "Child");
                 context.startActivity(intent);
-            } else if (formName.equals(ANC_VISIT)) {
-                try {
-                    JSONObject visitJson = new JSONObject();
-                    Mother mother = Context.getInstance().allBeneficiaries().findMother(client.entityId());
-                    visitJson.put("ancVisitNumber", mother.getDetail("ancVisitNumber") != null ? Integer.parseInt(mother.getDetail("ancVisitNumber")) + 1 : 1);
-                    formController.startFormActivity(formName, client.entityId(), new FieldOverrides(visitJson.toString()).getJSONString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else
-                formController.startFormActivity(formName, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getLocationJSON()).getJSONString());
+//            } else if (formName.equals(ANC_VISIT)) {
+//                try {
+//                    JSONObject visitJson = new JSONObject();
+//                    Mother mother = Context.getInstance().allBeneficiaries().findMother(client.entityId());
+////                    Log.e("Lmp", mother.getDetail(""));
+//                    visitJson.put("ancVisitNumber", mother.getDetail("ancVisitNumber") != null ? Integer.parseInt(mother.getDetail("ancVisitNumber")) + 1 : 1);
+//                    formController.startFormActivity(formName, client.entityId(), new FieldOverrides(visitJson.toString()).getJSONString());
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+            } else {
+                formController.startFormActivity(formName, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString());
+            }
         } else
-            formController.viewFormActivity(formName, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getLocationJSON()).getJSONString(), isFormView);
+            formController.viewFormActivity(formName, client.entityId(), new FieldOverrides(Context.getInstance().anmLocationController().getFormInfoJSON()).getJSONString(), isFormView);
     }
 }

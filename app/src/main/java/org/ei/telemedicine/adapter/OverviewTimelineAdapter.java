@@ -54,9 +54,46 @@ public class OverviewTimelineAdapter extends BaseAdapter {
         viewHolder.tv_event_info = (TextView) convertView.findViewById(R.id.tv_event_info);
         viewHolder.tv_event_date = (TextView) convertView.findViewById(R.id.tv_event_date);
         viewHolder.iv_event_logo = (ImageView) convertView.findViewById(R.id.iv_event_logo);
-
+        switch (timelineEvents.get(position).type()) {
+            case "ECREGISTERED":
+                viewHolder.iv_event_logo.setImageResource(R.drawable.icon_event_ec);
+                break;
+            case "PREGNANCY":
+                viewHolder.iv_event_logo.setImageResource(R.drawable.icon_event_anc);
+                break;
+            case "CHILD-BIRTH":
+                viewHolder.iv_event_logo.setImageResource(R.drawable.icon_event_birth);
+                break;
+            case "CHILD-DELIVERYPLAN":
+                viewHolder.iv_event_logo.setImageResource(R.drawable.icon_event_birth);
+                break;
+            case "FPCHANGE":
+                viewHolder.iv_event_logo.setImageResource(R.drawable.icon_event_fp);
+                break;
+            case "ANCVISIT":
+                viewHolder.iv_event_logo.setImageResource(R.drawable.icon_event_anc);
+                break;
+            case "IFAPROVIDED":
+                viewHolder.iv_event_logo.setImageResource(R.drawable.icon_event_ifa);
+                break;
+            case "TTSHOTPROVIDED":
+                viewHolder.iv_event_logo.setImageResource(R.drawable.icon_event_inject);
+                break;
+            case "PNCVISIT":
+                viewHolder.iv_event_logo.setImageResource(R.drawable.icon_event_pnc);
+                break;
+            case "IMMUNIZATIONSGIVEN":
+                viewHolder.iv_event_logo.setImageResource(R.drawable.icon_event_inject);
+                break;
+            case "FPRENEW":
+                viewHolder.iv_event_logo.setImageResource(R.drawable.icon_event_fp);
+                break;
+            default:
+                viewHolder.iv_event_logo.setImageResource(R.drawable.icon_event_pnc);
+                break;
+        }
         viewHolder.tv_event_name.setText(timelineEvents.get(position).title());
-        viewHolder.tv_event_info.setText(timelineEvents.get(position).type());
+        viewHolder.tv_event_info.setText(timelineEvents.get(position).detail1());
         viewHolder.tv_event_date.setText(timelineEvents.get(position).referenceDate() + "");
 
         return convertView;

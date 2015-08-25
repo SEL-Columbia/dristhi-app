@@ -142,7 +142,7 @@ public class FormSubmissionService {
                         formData.put(DoctorFormDataConstants.village_name, getDataFromJson("village", datajsonObject));
                         formData.put(age, getDataFromJson("wifeAge", datajsonObject));
 
-                        formData.put(poc_pending, "");
+                        formData.put(poc_pending, getDataFromJson("pocPending", riskJson));
                         formData.put(entityId, getDataFromJson("entityidec", datajsonObject));
                         formData.put(anmId, getDataFromJson("anmId", datajsonObject));
                         formData.put(visit_type, getDataFromJson("visit_type", riskJson));

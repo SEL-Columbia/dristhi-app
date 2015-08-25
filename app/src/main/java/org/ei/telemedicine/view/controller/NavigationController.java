@@ -54,9 +54,11 @@ public class NavigationController {
 
     public void startEC(String entityId) {
         navigateToECProfile(activity, entityId);
+//        navigateToProfile(activity, entityId);
     }
 
     public void startANC(String entityId) {
+//        navigateToProfile(activity, entityId);
         navigateToANCProfile(activity, entityId);
     }
 

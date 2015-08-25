@@ -187,7 +187,7 @@ public class TimelineEvent {
         }
 
         private DetailBuilder withTemperature(String temperature) {
-            String temp = "Temp: " + details.get(temperature) + " °F<br />";
+            String temp = "Temp: " + details.get(temperature) + " °F\n";
             this.stringBuilder.append(checkEmptyField(temp, details.get(temperature)));
             return this;
         }
@@ -229,19 +229,19 @@ public class TimelineEvent {
         }
 
         private DetailBuilder withWeight(String weight) {
-            String wt = "Weight: " + details.get(weight) + " kg<br />";
+            String wt = "Weight: " + details.get(weight) + " kg\n";
             this.stringBuilder.append(checkEmptyField(wt, details.get(weight)));
             return this;
         }
 
         private DetailBuilder withHbLevel(String hbLevel) {
-            String hb = "Hb Level: " + details.get(hbLevel) + "<br />";
+            String hb = "Hb Level: " + details.get(hbLevel) + "\n";
             this.stringBuilder.append(checkEmptyField(hb, details.get(hbLevel)));
             return this;
         }
 
         private DetailBuilder withBP(String bpSystolic, String bpDiastolic) {
-            String bp = "BP: " + details.get(bpSystolic) + "/" + details.get(bpDiastolic) + "<br />";
+            String bp = "BP: " + details.get(bpSystolic) + "/" + details.get(bpDiastolic) + "\n";
             this.stringBuilder.append(checkEmptyField(bp, details.get(bpSystolic)));
             return this;
         }
@@ -256,12 +256,12 @@ public class TimelineEvent {
             if (isBlank(details.get(dateOfDelivery))) {
                 return this;
             }
-            this.stringBuilder.append("On: ").append(DateUtil.formatDateForTimelineEvent(details.get(dateOfDelivery))).append("<br />");
+            this.stringBuilder.append("On: ").append(DateUtil.formatDateForTimelineEvent(details.get(dateOfDelivery))).append("\n");
             return this;
         }
 
         public DetailBuilder withPlaceOfDelivery(String placeOfDelivery) {
-            String place = "At: " + details.get(placeOfDelivery) + "<br />";
+            String place = "At: " + details.get(placeOfDelivery) + "\n";
             this.stringBuilder.append(checkEmptyField(place, details.get(placeOfDelivery)));
             return this;
         }
@@ -272,7 +272,7 @@ public class TimelineEvent {
                 return this;
             }
             String finalString = immunizationFormatter(immunizationString);
-            String formattedImmunization = "Immunizations: " + finalString + "<br />";
+            String formattedImmunization = "Immunizations: " + finalString + "\n";
             this.stringBuilder.append(checkEmptyField(formattedImmunization, finalString));
             return this;
         }
@@ -297,25 +297,25 @@ public class TimelineEvent {
         }
 
         public DetailBuilder withNumberOfCondomsSupplied(String numberOfCondomsSupplied) {
-            String condomsGiven = "Condoms given: " + details.get(numberOfCondomsSupplied) + "<br />";
+            String condomsGiven = "Condoms given: " + details.get(numberOfCondomsSupplied) + "\n";
             this.stringBuilder.append(checkEmptyField(condomsGiven, details.get(numberOfCondomsSupplied)));
             return this;
         }
 
         public DetailBuilder withNumberOfOCPDelivered(String numberOfOCPDelivered) {
-            String ocpCyclesGiven = "OCP cycles given: " + details.get(numberOfOCPDelivered) + "<br />";
+            String ocpCyclesGiven = "OCP cycles given: " + details.get(numberOfOCPDelivered) + "\n";
             this.stringBuilder.append(checkEmptyField(ocpCyclesGiven, details.get(numberOfOCPDelivered)));
             return this;
         }
 
         public DetailBuilder withNewIUDInsertionDate(String iudInsertionDate) {
-            String newIUDInsertionDate = "New IUD insertion date: " + details.get(iudInsertionDate) + "<br />";
+            String newIUDInsertionDate = "New IUD insertion date: " + details.get(iudInsertionDate) + "\n";
             this.stringBuilder.append(checkEmptyField(newIUDInsertionDate, details.get(iudInsertionDate)));
             return this;
         }
 
         public DetailBuilder withDMPAInjectionDate(String dmpaInjectionDate) {
-            String dmpaInjectionDateMessage = "DMPA injection date: " + details.get(dmpaInjectionDate) + "<br />";
+            String dmpaInjectionDateMessage = "DMPA injection date: " + details.get(dmpaInjectionDate) + "\n";
             this.stringBuilder.append(checkEmptyField(dmpaInjectionDateMessage, details.get(dmpaInjectionDate)));
             return this;
         }

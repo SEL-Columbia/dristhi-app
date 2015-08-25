@@ -118,6 +118,7 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
             updateRegisterCounts();
         }
     };
+    private Context _context;
 
     private void updateRegisterCounts() {
         ArrayList<DoctorData> _doctorDataArrayList = new ArrayList<DoctorData>();
@@ -200,6 +201,8 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.doctor_home_screen);
+        _context = Context.getInstance().updateApplicationContext(this.getApplicationContext());
+
         setupViews();
         initalize();
 
@@ -290,7 +293,10 @@ public class NativeDoctorActivity extends Activity implements View.OnClickListen
 
     public void logoutUser() {
         context.userService().logout();
-        startActivity(new Intent(this, LoginActivity.class));
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        this.finish();
     }
 
     @Override

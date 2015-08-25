@@ -235,8 +235,11 @@ public class ChildClient implements ChildSmartRegisterClient {
 
     @Override
     public int compareName(SmartRegisterClient anotherClient) {
+
         ChildSmartRegisterClient anotherChildClient = (ChildSmartRegisterClient) anotherClient;
-        return this.motherName().compareTo(anotherChildClient.motherName());
+        if (this.motherName() != null && anotherChildClient.motherName() != null)
+            return this.motherName().compareTo(anotherChildClient.motherName());
+        else return -1;
     }
 
     public String format(int days_since) {

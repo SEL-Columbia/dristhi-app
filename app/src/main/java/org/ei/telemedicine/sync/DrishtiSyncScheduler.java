@@ -56,14 +56,19 @@ public class DrishtiSyncScheduler {
         ON_LOGOUT.addListener(logoutListener);
     }
 
-    public static void startOnlyIfConnectedToNetwork(Context context, String userRole) {
+    public static boolean isNetWorkAvailable(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
+    public static void startOnlyIfConnectedToNetwork(Context context, String userRole) {
+        if (isNetWorkAvailable(context)) {
             start(context);
         } else {
             logInfo("Device not connected to network so not starting sync scheduler.");
         }
+
     }
 
     public static void stop(Context context) {

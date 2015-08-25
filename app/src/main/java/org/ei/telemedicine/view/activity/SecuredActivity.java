@@ -26,12 +26,17 @@ import org.ei.telemedicine.view.controller.NavigationController;
 
 import java.util.Map;
 
+import static org.ei.telemedicine.AllConstants.*;
 import static org.ei.telemedicine.AllConstants.ALERT_NAME_PARAM;
 import static org.ei.telemedicine.AllConstants.ENTITY_ID;
 import static org.ei.telemedicine.AllConstants.ENTITY_ID_PARAM;
 import static org.ei.telemedicine.AllConstants.FIELD_OVERRIDES_PARAM;
 import static org.ei.telemedicine.AllConstants.FORM_NAME_PARAM;
 import static org.ei.telemedicine.AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_INVESTIGATIONS;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT_EDIT;
+import static org.ei.telemedicine.AllConstants.FormNames.PNC_VISIT;
 import static org.ei.telemedicine.AllConstants.VIEW_FORM;
 import static org.ei.telemedicine.R.string.no_button_label;
 import static org.ei.telemedicine.R.string.yes_button_label;
@@ -112,7 +117,6 @@ public abstract class SecuredActivity extends Activity {
 
     protected abstract void onResumption();
 
-
     public void startFormActivity(String formName, String entityId, String metaData) {
         launchForm(formName, entityId, metaData, FormActivity.class);
     }
@@ -171,46 +175,28 @@ public abstract class SecuredActivity extends Activity {
                     Context.getInstance().alertService().changeAlertStatusToInProcess(metaDataMap.get(ENTITY_ID), metaDataMap.get(ALERT_NAME_PARAM));
                 }
             }
-            if (context.userService().getFormName().equals(AllConstants.FormNames.ANC_VISIT) || context.userService().getFormName().equals(AllConstants.FormNames.ANC_INVESTIGATIONS) || context.userService().getFormName().equals(AllConstants.FormNames.PNC_VISIT)) {
+            if (context.userService().getFormName().equals(ANC_VISIT) || context.userService().getFormName().equals(ANC_INVESTIGATIONS) || context.userService().getFormName().equals(PNC_VISIT) || context.userService().getFormName().equals(ANC_VISIT_EDIT)) {
                 DrishtiSyncScheduler.stop(SecuredActivity.this);
                 logError("Forms " + context.userService().getFormName());
                 Log.e(TAG, "Entity Id" + context.userService().getEntityId());
                 FormSubmission formSubmission = context.formDataRepository().fetchFromSubmissionUseEntity(context.userService().getEntityId());
                 Log.e(TAG, "Form Data" + formSubmission.instance());
-                showDialog(formSubmission.entityId(), formSubmission.instanceId(), context.userService().getFormName());
+                showBluetooth(formSubmission.entityId(), formSubmission.instanceId(), context.userService().getFormName());
             }
         }
     }
 
-    private void showDialog(final String entityId, final String instanceId, final String formName) {
-        new AlertDialog.Builder(this)
-                .setMessage(R.string.bluetooth_info)
-                .setTitle(R.string.bluetooth_info_title)
-                .setCancelable(false)
-                .setPositiveButton(yes_button_label,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,
-                                                int whichButton) {
-                                Intent intent = new Intent(SecuredActivity.this, BlueToothInfoActivity.class);
-                                intent.putExtra(AllConstants.ENTITY_ID, entityId);
-                                intent.putExtra(AllConstants.INSTANCE_ID_PARAM, instanceId);
-                                intent.putExtra(AllConstants.FORM_NAME_PARAM, formName);
-                                startActivity(intent);
+    private void showBluetooth(final String entityId, final String instanceId, final String formName) {
+        Intent intent = new Intent(SecuredActivity.this, BlueToothInfoActivity.class);
+        intent.putExtra(ENTITY_ID, entityId);
+        intent.putExtra(INSTANCE_ID_PARAM, instanceId);
+        intent.putExtra(FORM_NAME_PARAM, formName);
+        startActivity(intent);
 
-                            }
-                        })
-                .setNegativeButton(no_button_label,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,
-                                                int whichButton) {
-                                String userRole = context.userService().getUserRole();
-                                DrishtiSyncScheduler.startOnlyIfConnectedToNetwork(getApplicationContext(), userRole);
-                            }
-                        }).show();
     }
 
     private boolean isSuccessfulFormSubmission(int resultCode) {
-        return resultCode == AllConstants.FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE;
+        return resultCode == FORM_SUCCESSFULLY_SUBMITTED_RESULT_CODE;
     }
 
     private boolean hasMetadata() {

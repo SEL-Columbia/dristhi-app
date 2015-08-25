@@ -52,9 +52,8 @@ public class FetalBuf {
 
             case 0x91:
                 Log.e(TAG, "0x91");
-
                 DeviceDatas deviceDatas11 = m_DevicePackManager.mDeviceDatas;
-                Log.e(TAG, "Count =" + deviceDatas11.m_Data_Count);
+                Log.e(TAG, "Count = " + deviceDatas11.m_Data_Count);
                 ArrayList<DeviceData> deviceDataList11 = deviceDatas11.mDatas;
                 int size = deviceDataList11.size();
 
@@ -64,7 +63,7 @@ public class FetalBuf {
                 byte[] resultData = (result.size() == 0) ? null : result.get(result
                         .size() - 1);
                 onResult.onResult(resultData, Constants.FET_DEVICE_NUM);
-//			pOutputStream.write(DeviceCommand.DELETE_DATA);
+                pOutputStream.write(DeviceCommand.DELETE_DATA);
                 break;
 
         }

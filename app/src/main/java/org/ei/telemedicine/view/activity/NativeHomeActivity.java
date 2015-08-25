@@ -1,5 +1,6 @@
 package org.ei.telemedicine.view.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -7,8 +8,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +26,7 @@ import org.ei.telemedicine.doctor.NativeGraphActivity;
 import org.ei.telemedicine.event.Listener;
 import org.ei.telemedicine.repository.AllSharedPreferences;
 import org.ei.telemedicine.service.PendingFormSubmissionService;
+import org.ei.telemedicine.sync.DrishtiSyncScheduler;
 import org.ei.telemedicine.sync.SyncAfterFetchListener;
 import org.ei.telemedicine.sync.SyncProgressIndicator;
 import org.ei.telemedicine.sync.UpdateActionsTask;
@@ -67,14 +72,11 @@ public class NativeHomeActivity extends SecuredActivity {
         @Override
         public void onEvent(Boolean data) {
             if (networkMenuItem != null)
-                networkMenuItem.setIcon(data ? R.drawable.online : R.drawable.offline);
+                Log.e("Internet Status", data + "");
+            networkMenuItem.setIcon(data ? R.drawable.online : R.drawable.offline);
         }
     };
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return super.onCreateOptionsMenu(menu);
-    }
 
     private Listener<Boolean> onSyncCompleteListener = new Listener<Boolean>() {
         @Override
@@ -117,7 +119,6 @@ public class NativeHomeActivity extends SecuredActivity {
     @Override
     protected void onCreation() {
         setContentView(R.layout.smart_registers_home);
-
         setupViews();
         initialize();
     }
@@ -165,7 +166,7 @@ public class NativeHomeActivity extends SecuredActivity {
         SYNC_COMPLETED.addListener(onSyncCompleteListener);
         FORM_SUBMITTED.addListener(onFormSubmittedListener);
         ACTION_HANDLED.addListener(updateANMDetailsListener);
-        NETWORK_AVAILABLE.addListener(onNetworkChangeListener);
+//        NETWORK_AVAILABLE.addListener(onNetworkChangeListener);
 
     }
 
@@ -186,6 +187,7 @@ public class NativeHomeActivity extends SecuredActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        NETWORK_AVAILABLE.addListener(onNetworkChangeListener);
     }
 
     @Override
@@ -193,6 +195,7 @@ public class NativeHomeActivity extends SecuredActivity {
         super.onPause();
         Log.e("Pause", "pause");
         context.allSharedPreferences().saveCurrent("");
+        NETWORK_AVAILABLE.removeListener(onNetworkChangeListener);
     }
 
 
@@ -212,6 +215,17 @@ public class NativeHomeActivity extends SecuredActivity {
         pncRegisterClientCountView.setText(valueOf(homeContext.pncCount()));
         fpRegisterClientCountView.setText(valueOf(homeContext.fpCount()));
         childRegisterClientCountView.setText(valueOf(homeContext.childCount()));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        if (networkMenuItem == null) {
+            networkMenuItem = menu.findItem(R.id.networkMenuItem);
+        }
+        networkMenuItem.setIcon(DrishtiSyncScheduler.isNetWorkAvailable(this) ? R.drawable.online : R.drawable.offline);
+        return true;
     }
 
     @Override
@@ -252,7 +266,7 @@ public class NativeHomeActivity extends SecuredActivity {
 
                 return true;
 //            case R.id.overview:
-//                startActivity(new Intent(this, NativeGraphActivity.class));
+//                startActivity(new Intent(this, NativeANMPlanofCareActivity.class));
 //                return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -273,7 +287,7 @@ public class NativeHomeActivity extends SecuredActivity {
         SYNC_COMPLETED.removeListener(onSyncCompleteListener);
         FORM_SUBMITTED.removeListener(onFormSubmittedListener);
         ACTION_HANDLED.removeListener(updateANMDetailsListener);
-        NETWORK_AVAILABLE.removeListener(onNetworkChangeListener);
+//        NETWORK_AVAILABLE.removeListener(onNetworkChangeListener);
     }
 
     private void updateSyncIndicator() {

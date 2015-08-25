@@ -1,11 +1,20 @@
 package org.ei.telemedicine.service;
 
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.ei.telemedicine.AllConstants;
 import org.ei.telemedicine.Context;
 import org.ei.telemedicine.DristhiConfiguration;
@@ -24,10 +33,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.text.MessageFormat.format;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
+import static org.ei.telemedicine.AllConstants.PSTETHOSCOPE_DATA;
 import static org.ei.telemedicine.convertor.FormSubmissionConvertor.toDomain;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.age;
 import static org.ei.telemedicine.doctor.DoctorFormDataConstants.anc_entityId;
@@ -111,32 +129,86 @@ public class FormSubmissionSyncService {
         return pullFromServer();
     }
 
+    private byte[] convertToByte(File file) {
+        try {
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            BufferedInputStream in = null;
+            in = new BufferedInputStream(new FileInputStream(file));
+            int read;
+            byte[] buff = new byte[2048];
+            while ((read = in.read(buff)) > 0) {
+                out.write(buff, 0, read);
+            }
+            out.flush();
+            byte[] audioBytes = out.toByteArray();
+            Log.e("Audio Bytes", audioBytes + "");
+            return audioBytes;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
     public void pushToServer() {
         List<FormSubmission> pendingFormSubmissions = formDataRepository.getPendingFormSubmissions();
 
         if (pendingFormSubmissions.isEmpty()) {
             return;
+        } else {
+            for (FormSubmission formSubmission : pendingFormSubmissions) {
+
+                if (formSubmission.formName().equals(ANC_VISIT)) {
+                    try {
+                        String formData = formSubmission.instance();
+                        JSONObject formInstanceJsonData = new JSONObject(formData);
+                        Log.e("JsonD", formInstanceJsonData + "");
+                        JSONArray formFieldsjsonArray = formInstanceJsonData.getJSONObject("form").getJSONArray("fields");
+                        for (int i = formFieldsjsonArray.length() - 1; i >= 0; i--) {
+                            JSONObject jsonData = formFieldsjsonArray.getJSONObject(i);
+                            if (jsonData.getString("name").equals(PSTETHOSCOPE_DATA)) {
+                                String fileLocation = jsonData.has("value") ? jsonData.getString("value") : "";
+                                File file = new File(fileLocation);
+                                if (file.exists()) {
+                                    String jsonLoad = new JSONObject().put("jsonstring", new String(convertToByte(file))).toString();
+
+                                    HttpClient httpClient = new DefaultHttpClient();
+                                    HttpPost httpPost = new HttpPost("http://10.10.11.95:8081/telemedicinefileuploaddemo/uploadfile");
+                                    List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(1);
+                                    nameValuePair.add(new BasicNameValuePair("file", jsonLoad));
+                                    //Encoding POST data
+                                    try {
+                                        httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
+
+                                    } catch (UnsupportedEncodingException e) {
+                                        e.printStackTrace();
+                                    }
+                                    try {
+                                        HttpResponse response = httpClient.execute(httpPost);
+                                        // write response to log
+                                        Log.e("Http Post Response:", response.toString() + "---" + response.getStatusLine());
+                                    } catch (ClientProtocolException e) {
+                                        // Log exception
+                                        e.printStackTrace();
+                                    } catch (IOException e) {
+                                        // Log exception
+                                        e.printStackTrace();
+                                    }
+
+
+                                }
+                                Log.e("No", "No file");
+                            }
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
-//        } else {
-//            Context context = Context.getInstance();
-//            for (FormSubmission formSubmission : pendingFormSubmissions) {
-//                if (formSubmission.formName().equals(context.userService().getFormName().equals(AllConstants.FormNames.ANC_VISIT) || context.userService().getFormName().equals(AllConstants.FormNames.ANC_INVESTIGATIONS) || context.userService().getFormName().equals(AllConstants.FormNames.PNC_VISIT))) {
-//                    try {
-//                        JSONObject formInstanceJsonData = new JSONObject(formSubmission.instance());
-//                        JSONArray formFieldsjsonArray = formInstanceJsonData.getJSONArray("fields");
-//                        for (int i = formFieldsjsonArray.length() - 1; i >= 0; i--) {
-//                            JSONObject jsonData = formFieldsjsonArray.getJSONObject(i);
-//                            if (jsonData.getString("name").equals(AllConstants.STETHOSCOPE_DATA)) {
-//                                String fileLocation = jsonData.has("value") ? jsonData.getString("value") : "";
-//                            }
-//                        }
-//
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }
         String jsonPayload = mapToFormSubmissionDTO(pendingFormSubmissions);
         logError("Json Data " + jsonPayload);
         Response<String> response = httpAgent.post(
@@ -158,7 +230,7 @@ public class FormSubmissionSyncService {
 
         if (allSharedPreferences.getUserRole().equals(AllConstants.DOCTOR_ROLE)) {
             //For Doctor Module
-            String baseDocURL = configuration.dristhiDoctorBaseURL();
+            String baseDocURL = configuration.dristhiDjangoBaseURL();
 
             String uri = format("{0}/{1}?docname={2}&pwd={3}",
                     baseDocURL,
