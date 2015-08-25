@@ -148,11 +148,11 @@ public class NativeECSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     @Override
     protected void startRegistration(String village) throws JSONException {
-        String locationJSON = context.anmLocationController().getLocationJSON();
-        JSONObject locations = new JSONObject(locationJSON);
-        locations.put("village", village);
-//        locations.put("ecNumber", context.allSharedPreferences().fetchRegisteredANM() + "-" + System.currentTimeMillis());
-        FieldOverrides fieldOverrides = new FieldOverrides(locations.toString());
+        String locationJSON = context.anmLocationController().getFormInfoJSON();
+        JSONObject formData = new JSONObject(locationJSON);
+        formData.put("village", village);
+        //        locations.put("ecNumber", context.allSharedPreferences().fetchRegisteredANM() + "-" + System.currentTimeMillis());
+        FieldOverrides fieldOverrides = new FieldOverrides(formData.toString());
         startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
     }
 

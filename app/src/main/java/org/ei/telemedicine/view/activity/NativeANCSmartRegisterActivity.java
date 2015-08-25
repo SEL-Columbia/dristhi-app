@@ -6,6 +6,7 @@ import static java.util.Arrays.asList;
 import static org.ei.telemedicine.AllConstants.FormNames.ANC_CLOSE;
 import static org.ei.telemedicine.AllConstants.FormNames.ANC_INVESTIGATIONS;
 import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT;
+import static org.ei.telemedicine.AllConstants.FormNames.ANC_VISIT_EDIT;
 import static org.ei.telemedicine.AllConstants.FormNames.DELIVERY_OUTCOME;
 import static org.ei.telemedicine.AllConstants.FormNames.DELIVERY_PLAN;
 import static org.ei.telemedicine.AllConstants.FormNames.HB_TEST;
@@ -45,6 +46,7 @@ import org.ei.telemedicine.view.dialog.TTServiceMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
 import android.view.View;
 
 public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterActivity {
@@ -136,6 +138,7 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
     private DialogOption[] getEditOptions() {
         return new DialogOption[]{
                 new OpenFormOption(getString(R.string.str_register_anc_visit_form), ANC_VISIT, formController),
+                new OpenFormOption("ANC Visit Edit", ANC_VISIT_EDIT, formController),
                 new OpenFormOption(getString(R.string.str_register_hb_test_form), HB_TEST, formController),
                 new OpenFormOption(getString(R.string.str_register_ifa_form), IFA, formController),
                 new OpenFormOption(getString(R.string.str_register_tt_form), TT, formController),
@@ -168,11 +171,11 @@ public class NativeANCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
 
     @Override
     protected void startRegistration(String village) throws JSONException {
-        String locationJSON = context.anmLocationController().getLocationJSON();
+        String locationJSON = context.anmLocationController().getFormInfoJSON();
         JSONObject locations = new JSONObject(locationJSON);
         locations.put("village", village);
-        locations.put("validAge", 18);
         FieldOverrides fieldOverrides = new FieldOverrides(locations.toString());
+        Log.e("Json", fieldOverrides.getJSONString());
         startFormActivity(AllConstants.FormNames.ANC_REGISTRATION_OA, null, fieldOverrides.getJSONString());
     }
 

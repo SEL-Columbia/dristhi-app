@@ -27,7 +27,6 @@
       },
       {
         "name": "ancVisitNumber",
-        "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Visit_EngKan/this_anc_number"
       },
       {
@@ -93,6 +92,10 @@
       {
         "name": "bloodGlucoseData",
         "bind": "/model/instance/ANC_Visit_EngKan/blood_glucose_data"
+      },
+      {
+        "name": "anmPoc",
+        "bind": "/model/instance/ANC_Visit_EngKan/anm_poc"
       },
       {
         "name": "weight",

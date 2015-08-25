@@ -12,9 +12,20 @@
             <sub_center />
             <district_value />
 
+            <wife_min_age />
+            <wife_max_age />
+            <husband_min_age />
+            <husband_max_age />
+
+            <is_lmp_week_days />
+            <is_lmp_weeks />
             <wife_dob />
             <wife_age />
             <wife_age_note />
+
+            <is_consult_doctor />
+            <is_consult_doctor_no_reason2 />
+            <is_consult_doctor_no_reason />
 
             <phc_value />
             <sub_center_value />
@@ -40,12 +51,19 @@
             <phone_owner2 />
             <religion />
 
+            <phone />
 
             <anc_number1 />
             <anc_number />
             <lmp_date />
+
+            <_lmp_date />
+
             <edd />
             <edd_formatted />
+            <edd_date_formatted />
+
+
             <edd_note />
             <num_pregnancies1 />
             <num_pregnancies />
@@ -5007,6 +5025,7 @@
             </item>
         </root>
     </instance>
+
     <instance id="yes_no">
         <root>
             <item>

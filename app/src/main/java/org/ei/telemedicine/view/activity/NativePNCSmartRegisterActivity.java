@@ -150,7 +150,7 @@ public class NativePNCSmartRegisterActivity extends SecuredNativeSmartRegisterAc
 
     @Override
     protected void startRegistration(String village) throws JSONException {
-        String locationJSON = context.anmLocationController().getLocationJSON();
+        String locationJSON = context.anmLocationController().getFormInfoJSON();
         JSONObject locations = new JSONObject(locationJSON);
         locations.put("village", village);
         locations.put("validAge", 18);

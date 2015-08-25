@@ -43,6 +43,8 @@ import org.ei.telemedicine.view.dialog.NameSort;
 import org.ei.telemedicine.view.dialog.OpenFormOption;
 import org.ei.telemedicine.view.dialog.ServiceModeOption;
 import org.ei.telemedicine.view.dialog.SortOption;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -165,8 +167,11 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
     }
 
     @Override
-    protected void startRegistration(String village) {
-        FieldOverrides fieldOverrides = new FieldOverrides(context.anmLocationController().getLocationJSON());
+    protected void startRegistration(String village) throws JSONException {
+        String locationJSON = context.anmLocationController().getFormInfoJSON();
+        JSONObject formData = new JSONObject(locationJSON);
+        formData.put("village", village);
+        FieldOverrides fieldOverrides = new FieldOverrides(formData.toString());
         startFormActivity(EC_REGISTRATION, null, fieldOverrides.getJSONString());
     }
 
@@ -204,7 +209,7 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
             return;
         }
 
-        if (!(dialogOptionModel instanceof  ServiceModeDialogOptionModel)) {
+        if (!(dialogOptionModel instanceof ServiceModeDialogOptionModel)) {
             NativeFPSmartRegisterActivity.super.showFragmentDialog(dialogOptionModel, tag);
             return;
         }
@@ -239,6 +244,7 @@ public class NativeFPSmartRegisterActivity extends SecuredNativeSmartRegisterAct
 
     private class FPServiceModeDialogOptionModel implements FPDialogOptionModel {
         private DialogOption[] parentDialogOption;
+
         @Override
         public DialogOption[] getPrioritizationDialogOptions() {
             return new DialogOption[]{

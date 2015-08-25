@@ -11,6 +11,11 @@
             <village />
             <sub_center />
 
+            <wife_min_age />
+            <wife_max_age />
+            <husband_min_age />
+            <husband_max_age />
+
             <hh_number />
             <hh_address />
             <hh_head />

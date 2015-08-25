@@ -89,7 +89,7 @@
         </span>
         <span class="required">*</span>
         <input name="/EC_Registration_EngKan/wife_dob" autocomplete="off"
-            data-constraint=".&lt;= ( /EC_Registration_EngKan/today  - 18 * 365) and .&gt;= ( /EC_Registration_EngKan/today  - 50* 365)"
+            data-constraint=".&lt;= ( /EC_Registration_EngKan/today  - /EC_Registration_EngKan/wife_min_age * 365) and .&gt;= ( /EC_Registration_EngKan/today  - /EC_Registration_EngKan/wife_max_age* 365)"
             data-type-xml="date" required="required" type="date" />
     </label>
 
@@ -128,7 +128,8 @@
         <span class="question-label active" lang="">Husband's age
         </span>
         <input name="/EC_Registration_EngKan/husband_age" autocomplete="off"
-            data-constraint=". &gt;= 15" data-type-xml="int" type="number" />
+            data-constraint=".&gt;=/EC_Registration_EngKan/husband_min_age and .&lt;=/EC_Registration_EngKan/husband_max_age"
+            data-type-xml="int" type="number" />
     </label>
     <label class="question non-select ">
         <span class="question-label active" lang="">Contact phone number

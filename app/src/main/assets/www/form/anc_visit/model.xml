@@ -4,7 +4,7 @@
             <formhub>
                 <uuid />
             </formhub>
-            <past_anc_visit/>
+            <past_anc_visit />
             <today />
             <case_woman_name />
             <anc_reg_num />
@@ -22,6 +22,7 @@
             <fetal_data />
             <blood_glucose_data />
             <pstechoscope_data />
+            <anm_poc />
 
             <pulse_rate />
             <weight_group>
@@ -57,6 +58,7 @@
             <is_high_risk />
             <is_consult_doctor />
             <is_consult_doctor_no_reason />
+            <is_consult_doctor_no_reason2 />
             <reason_for_no />
             <poc_info />
             <num_weeks />

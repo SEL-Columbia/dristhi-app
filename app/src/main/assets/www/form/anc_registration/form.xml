@@ -15,6 +15,11 @@
     </label>
 
     <label class="question non-select ">
+        <span lang="" class="question-label active">Husband Name: </span>
+        <input autocomplete="off" type="text" name="/ANC_Registration_EngKan/husband_name" data-type-xml="string" disabled="disabled"/>
+    </label>
+
+    <label class="question non-select ">
         <span lang="" class="question-label active">Registration date:
         </span>
         <span class="required">*</span>
@@ -116,7 +121,7 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Linked facility for delivery? 
+                <span lang="" class="question-label active">Linked facility for delivery?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -160,7 +165,7 @@
         </fieldset>
     </fieldset>
     <label class="question or-branch pre-init non-select ">
-        <span lang="" class="question-label active">Name of facility? 
+        <span lang="" class="question-label active">Name of facility?
         </span>
         <input autocomplete="off" type="text" name="/ANC_Registration_EngKan/name_facility"
                data-relevant=" /ANC_Registration_EngKan/linked_facility_delivery  != ''" data-type-xml="string"/>
@@ -168,7 +173,7 @@
     <fieldset class="question or-branch pre-init ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Had complications in any previous pregnancy? 
+                <span lang="" class="question-label active">Had complications in any previous pregnancy?
                 </span>
             </legend>
             <div class="option-wrapper">
@@ -249,35 +254,35 @@
         <fieldset>
             <legend>
                 <span lang="" class="question-label active">Does woman have any of the following medical conditions?
-                    
+
                 </span>
             </legend>
             <div class="option-wrapper">
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/medical_histories"
-                           value="Medical_History:_TB" data-type-xml="select"/>
+                           value="Medical History: TB" data-type-xml="select"/>
                     <span lang="" class="option-label active">TB </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/medical_histories"
-                           value="Medical_History:_Hypertension" data-type-xml="select"/>
+                           value="Medical History: Hypertension" data-type-xml="select"/>
                     <span lang="" class="option-label active">Hypertension </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/medical_histories"
-                           value="Medical_History:_Heart_Related_Diseases" data-type-xml="select"/>
+                           value="Medical History: Heart_Related_Diseases" data-type-xml="select"/>
                     <span lang="" class="option-label active">Heart-related diseases </span>
                 </label>
                 <label class="">
                     <input autocomplete="off" type="checkbox" name="/ANC_Registration_EngKan/medical_histories"
-                           value="Medical_History:_Diabetes" data-type-xml="select"/>
+                           value="Medical History: Diabetes" data-type-xml="select"/>
                     <span lang="" class="option-label active">Diabetes </span>
                 </label>
             </div>
         </fieldset>
     </fieldset>
     <label class="question or-appearance-minimal ">
-        <span lang="" class="question-label active">Woman's blood group? 
+        <span lang="" class="question-label active">Woman's blood group?
         </span>
         <select name="/ANC_Registration_EngKan/w_blood_group" data-name="/ANC_Registration_EngKan/w_blood_group"
                 data-type-xml="select1">
@@ -295,13 +300,13 @@
         </span>
     </label>
     <label class="question non-select ">
-        <span lang="" class="question-label active">Height (in cms) 
+        <span lang="" class="question-label active">Height (in cms)
         </span>
         <input autocomplete="off" type="number" name="/ANC_Registration_EngKan/height" data-type-xml="decimal"
                step="any"/>
     </label>
     <label class="question non-select ">
-        <span lang="" class="question-label active">Weight at start of pregnancy (in kgs) 
+        <span lang="" class="question-label active">Weight at start of pregnancy (in kgs)
         </span>
         <input autocomplete="off" type="number" name="/ANC_Registration_EngKan/weight_startofpregnancy"
                data-type-xml="decimal" step="any"/>
@@ -312,7 +317,7 @@
             </span>is at risk because of,
             <span class="or-output" data-value=" /ANC_Registration_EngKan/woman_name ">
             </span>
-            
+
             <span class="or-output" data-value=" /ANC_Registration_EngKan/high_risk_reason ">
             </span>
         </span>
@@ -323,7 +328,7 @@
     <fieldset class="question ">
         <fieldset>
             <legend>
-                <span lang="" class="question-label active">Do you want to mark as HRP? 
+                <span lang="" class="question-label active">Do you want to mark as HRP?
                 </span>
             </legend>
             <div class="option-wrapper">

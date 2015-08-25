@@ -14,6 +14,26 @@
         "source": "eligible_couple.mother.id"
       },
       {
+        "name": "wifeMINAge",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Child_Registration_EngKan/wife_min_age"
+      },
+      {
+        "name": "wifeMAXAge",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Child_Registration_EngKan/wife_max_age"
+      },
+      {
+        "name": "husbandMINAge",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Child_Registration_EngKan/husband_min_age"
+      },
+      {
+        "name": "husbandMAXAge",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/PNC_Child_Registration_EngKan/husband_max_age"
+      },
+      {
         "name": "registrationDate",
         "bind": "/model/instance/PNC_Child_Registration_EngKan/pnc_reg_date",
         "source": "eligible_couple.mother.registrationDate"

@@ -87,7 +87,7 @@
         </span>
         <span class="required">*</span>
         <input name="/PNC_Child_Registration_EngKan/wife_dob" autocomplete="off"
-            data-constraint=".&lt;= ( /PNC_Child_Registration_EngKan/today  - 18 * 365) and .&gt;= ( /PNC_Child_Registration_EngKan/today  - 50* 365)"
+            data-constraint=".&lt;= ( /PNC_Child_Registration_EngKan/today  - /PNC_Child_Registration_EngKan/wife_min_age * 365) and .&gt;= ( /PNC_Child_Registration_EngKan/today  - /PNC_Child_Registration_EngKan/wife_max_age* 365)"
             data-type-xml="date" required="required" type="date" />
     </label>
 

@@ -24,6 +24,12 @@
         "source": "eligible_couple.ecNumber"
       },
       {
+        "name": "husbandName",
+        "shouldLoadValue": true,
+        "bind": "/model/instance/ANC_Registration_EngKan/husband_name",
+        "source": "eligible_couple.husbandName"
+      },
+      {
         "name": "wifeName",
         "shouldLoadValue": true,
         "bind": "/model/instance/ANC_Registration_EngKan/woman_name",

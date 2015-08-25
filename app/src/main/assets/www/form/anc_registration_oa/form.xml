@@ -85,7 +85,7 @@
         </span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/wife_dob" autocomplete="off"
-            data-constraint=".&lt;= ( /ANC_Registration_OA_EngKan/today  - 18 * 365) and .&gt;= ( /ANC_Registration_OA_EngKan/today  - 50* 365)"
+            data-constraint=".&lt;= ( /ANC_Registration_OA_EngKan/today  - /ANC_Registration_OA_EngKan/wife_min_age * 365) and .&gt;= ( /ANC_Registration_OA_EngKan/today  - /ANC_Registration_OA_EngKan/wife_max_age* 365)"
             data-type-xml="date" required="required" type="date" />
     </label>
 
@@ -105,17 +105,18 @@
     </label>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Husband's age,</span>
+        <span class="question-label active" lang="">Husband's age</span>
+
 
         <input name="/ANC_Registration_OA_EngKan/husband_age"
-            data-constraint=".&gt;=15 and .&lt;=49" data-type-xml="int" type="number" />
+            data-constraint=".&gt;=/ANC_Registration_OA_EngKan/husband_min_age and .&lt;=/ANC_Registration_OA_EngKan/husband_max_age"
+            data-type-xml="int" type="number" />
     </label>
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">Contact phone number,
+        <span class="question-label active" lang="">Contact phone number
         </span>
         <input name="/ANC_Registration_OA_EngKan/phone_no"
-            constraintMsg="Requires a date that is not before today"
             data-constraint=".&gt; 99999999 and .&lt; 10000000000000 " data-type-xml="int"
             type="number" />
     </label>
@@ -314,7 +315,7 @@
 
 
     <label class="question non-select ">
-        <span class="question-label active" lang="">ANC number, ANC</span>
+        <span class="question-label active" lang="">ANC number</span>
         <span class="required">*</span>
         <input name="/ANC_Registration_OA_EngKan/anc_number1" data-constraint=".&gt; 0"
             data-type-xml="int" required="required" type="number" />
@@ -349,17 +350,75 @@
     <!--<input type="number" name="/ANC_Registration_OA_EngKan/asha_phone_number"-->
     <!--data-constraint=".&gt; 999999999 and .&lt; 10000000000" data-type-xml="int"/>-->
     <!--</label>-->
-    <label class="question non-select ">
-        <span class="question-label active" lang="">LMP,
+
+    <!--<fieldset class="question ">-->
+    <!--<fieldset>-->
+    <!--<legend>-->
+    <!--<span class="question-label active" lang="">LMP is in weeks/Days?-->
+    <!--</span>-->
+    <!--<span class="required">*</span>-->
+    <!--</legend>-->
+    <!--<div class="option-wrapper">-->
+    <!--<label class="">-->
+    <!--<input name="/ANC_Registration_OA_EngKan/is_lmp_week_days"-->
+    <!--data-name="/ANC_Registration_OA_EngKan/is_lmp_week_days"-->
+    <!--data-type-xml="select1" required="required" type="radio" value="week" />-->
+    <!--<span class="option-label active" lang="">Week</span>-->
+    <!--</label>-->
+    <!--<label class="">-->
+    <!--<input name="/ANC_Registration_OA_EngKan/is_lmp_week_days"-->
+    <!--data-name="/ANC_Registration_OA_EngKan/is_lmp_week_days"-->
+    <!--data-type-xml="select1" required="required" type="radio" value="days" />-->
+    <!--<span class="option-label active" lang="">Date</span>-->
+    <!--</label>-->
+    <!--</div>-->
+    <!--</fieldset>-->
+    <!--</fieldset>-->
+
+
+    <!--<label class="question or-branch pre-init non-select ">-->
+    <!--<span class="question-label active" lang="">LMP Date:-->
+    <!--</span>-->
+    <!--<span class="required">*</span>-->
+    <!--<input name="/ANC_Registration_OA_EngKan/lmp_date" autocomplete="off"-->
+    <!--data-relevant=" /ANC_Registration_OA_EngKan/is_lmp_week_days  = 'days'"-->
+    <!--data-type-xml="date" required="required" type="date" />-->
+    <!--</label>-->
+
+    <!--<label class="question or-branch pre-init non-select ">-->
+    <!--<span class="question-label active" lang="">LMP in weeks:-->
+    <!--</span>-->
+    <!--<span class="required">*</span>-->
+    <!--<input name="/ANC_Registration_OA_EngKan/is_lmp_weeks" autocomplete="off"-->
+    <!--data-relevant=" /ANC_Registration_OA_EngKan/is_lmp_week_days  = 'week'"-->
+    <!--data-type-xml="int" required="required" type="number" />-->
+    <!--</label>-->
+
+    <label class="question or-branch">
+        <span class="question-label active" lang="">LMP Date:
         </span>
         <span class="required">*</span>
-        <input name="/ANC_Registration_OA_EngKan/lmp_date"
-            data-constraint=".&lt;= /ANC_Registration_OA_EngKan/today " data-type-xml="date"
+        <input name="/ANC_Registration_OA_EngKan/lmp_date" autocomplete="off" data-type-xml="date"
             required="required" type="date" />
     </label>
+
+
+    <!--<label class="question or-branch pre-init non-select">-->
+    <!--<span class="question-label active" lang="">LMP-->
+    <!--</span>-->
+    <!--<span class="required">*</span>-->
+    <!--<input name="/ANC_Registration_OA_EngKan/lmp_date"-->
+    <!--data-constraint=".&lt;= /ANC_Registration_OA_EngKan/today "-->
+    <!--data-relevant="/ANC_Registration_OA_EngKan/is_lmp_week_days='yes'" data-type-xml="date"-->
+    <!--required="required" type="date" />-->
+    <!--</label>-->
+
+
     <label class="note non-select ">
-        <span class="question-label active" lang="">EDD,
-            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/edd_formatted "></span>
+        <span class="question-label active" lang="">EDD
+            <span class="or-output" data-value=" /ANC_Registration_OA_EngKan/edd_formatted"></span>
+            <!--<span class="or-output"-->
+            <!--data-value=" /ANC_Registration_OA_EngKan/edd_date_formatted "></span>-->
         </span>
         <input name="/ANC_Registration_OA_EngKan/edd_note" data-type-xml="string"
             readonly="readonly" type="text" />
@@ -731,8 +790,19 @@
                 data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
+            <input name="/ANC_Registration_OA_EngKan/edd_date_formatted"
+                data-calculate="format-date( /ANC_Registration_OA_EngKan/_lmp_date , '%Y-%n-%e')"
+                data-type-xml="string" type="hidden" />
+        </label>
+
+        <label class="calculation non-select ">
+            <input name="/ANC_Registration_OA_EngKan/_lmp_date"
+                data-calculate="if( /ANC_Registration_OA_EngKan/is_lmp_weeks  = '', '', date( /ANC_Registration_OA_EngKan/today+280-/ANC_Registration_OA_EngKan/is_lmp_weeks))"
+                data-type-xml="string" type="hidden" />
+        </label>
+        <label class="calculation non-select ">
             <input name="/ANC_Registration_OA_EngKan/edd"
-                data-calculate="date( /ANC_Registration_OA_EngKan/lmp_date +280)"
+                data-calculate="if( /ANC_Registration_OA_EngKan/lmp_date  = '', '', date( /ANC_Registration_OA_EngKan/lmp_date +280)) "
                 data-type-xml="string" type="hidden" />
         </label>
         <label class="calculation non-select ">
